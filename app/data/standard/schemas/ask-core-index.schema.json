@@ -1,0 +1,447 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/ask-core-index-v0.1.schema.json",
+  "title": "Open Values Ask Core Index v0.1",
+  "description": "A compact startup-friendly Ask index over non-item targets, with target metadata.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "format",
+    "type",
+    "version",
+    "built",
+    "source",
+    "strategy",
+    "targetFields",
+    "startupContract",
+    "tokens",
+    "aliases",
+    "targets",
+    "stats"
+  ],
+  "properties": {
+    "format": {
+      "const": "ovs-ask-core-index"
+    },
+    "type": {
+      "const": "ask-core"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$"
+    },
+    "built": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "source": {
+      "$ref": "#/$defs/sourceList"
+    },
+    "strategy": {
+      "type": "string",
+      "minLength": 1
+    },
+    "targetFields": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "startupContract": {
+      "$ref": "#/$defs/startupContract"
+    },
+    "tokens": {
+      "$ref": "#/$defs/tokenMap"
+    },
+    "aliases": {
+      "$ref": "#/$defs/aliasMap"
+    },
+    "targets": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "$ref": "#/$defs/target"
+      }
+    },
+    "stats": {
+      "$ref": "#/$defs/stats"
+    }
+  },
+  "$defs": {
+    "nodeId": {
+      "type": "string",
+      "pattern": "^ovs:[a-z0-9-]+/[A-Za-z0-9._:-]+(?:-[A-Za-z0-9._:-]+)*$"
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^#"
+    },
+    "sourceList": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "tokenMap": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "$ref": "#/$defs/nodeId"
+        }
+      }
+    },
+    "aliasMap": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/nodeId"
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "type",
+        "label",
+        "hash"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hash": {
+          "$ref": "#/$defs/hash"
+        }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "startupContract": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "purpose",
+        "appLaneNote",
+        "loadHint",
+        "budget",
+        "covers",
+        "resolver",
+        "lazyBoundary",
+        "emptyState",
+        "goldenQueries"
+      ],
+      "properties": {
+        "purpose": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "appLaneNote": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "loadHint": {
+          "const": "eager-search"
+        },
+        "budget": {
+          "$ref": "#/$defs/startupBudget"
+        },
+        "covers": {
+          "$ref": "#/$defs/startupCoverage"
+        },
+        "resolver": {
+          "$ref": "#/$defs/startupResolver"
+        },
+        "lazyBoundary": {
+          "$ref": "#/$defs/lazyBoundary"
+        },
+        "emptyState": {
+          "$ref": "#/$defs/emptyState"
+        },
+        "goldenQueries": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/goldenQuery"
+          }
+        }
+      }
+    },
+    "startupBudget": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "maxBytes",
+        "currentBytes",
+        "minimumHeadroomBytes",
+        "headroomBytes",
+        "withinBudget",
+        "hasMinimumHeadroom",
+        "measurement"
+      ],
+      "properties": {
+        "maxBytes": {
+          "const": 700000
+        },
+        "currentBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "minimumHeadroomBytes": {
+          "const": 50000
+        },
+        "headroomBytes": {
+          "type": "integer"
+        },
+        "withinBudget": {
+          "type": "boolean"
+        },
+        "hasMinimumHeadroom": {
+          "type": "boolean"
+        },
+        "measurement": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "startupCoverage": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "layer",
+        "targetTypes",
+        "deferredTargetTypes",
+        "targetFields"
+      ],
+      "properties": {
+        "layer": {
+          "const": "core"
+        },
+        "targetTypes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "deferredTargetTypes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "targetFields": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        }
+      }
+    },
+    "startupResolver": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "normalization",
+        "stopWords",
+        "rankOrder",
+        "maxStartupResults"
+      ],
+      "properties": {
+        "normalization": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "stopWords": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "rankOrder": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "maxStartupResults": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "lazyBoundary": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "file",
+        "loadHint",
+        "use",
+        "trigger",
+        "keepCoreIfLazyFails",
+        "failureMode"
+      ],
+      "properties": {
+        "file": {
+          "const": "ask-index.json"
+        },
+        "loadHint": {
+          "const": "lazy-product-search"
+        },
+        "use": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "trigger": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "keepCoreIfLazyFails": {
+          "const": true
+        },
+        "failureMode": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "emptyState": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "when",
+        "primary",
+        "secondary",
+        "mustNot"
+      ],
+      "properties": {
+        "when": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "primary": {
+          "$ref": "#/$defs/hash"
+        },
+        "secondary": {
+          "$ref": "#/$defs/hash"
+        },
+        "mustNot": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "goldenQuery": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "query",
+        "normalized",
+        "intent",
+        "expectAny",
+        "expectOneInTop",
+        "matched",
+        "matchedRank",
+        "expectFirstHash",
+        "expectMatchedHash",
+        "ok",
+        "top"
+      ],
+      "properties": {
+        "query": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "normalized": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "intent": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "expectAny": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/nodeId"
+          }
+        },
+        "expectOneInTop": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "matched": {
+          "$ref": "#/$defs/nodeId"
+        },
+        "matchedRank": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "expectFirstHash": {
+          "$ref": "#/$defs/hash"
+        },
+        "expectMatchedHash": {
+          "$ref": "#/$defs/hash"
+        },
+        "ok": {
+          "const": true
+        },
+        "top": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/goldenHit"
+          }
+        }
+      }
+    },
+    "goldenHit": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "label",
+        "type",
+        "hash",
+        "score",
+        "reason",
+        "key"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/nodeId"
+        },
+        "label": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "type": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "hash": {
+          "$ref": "#/$defs/hash"
+        },
+        "score": {
+          "type": "number"
+        },
+        "reason": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "key": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

@@ -1,0 +1,892 @@
+{
+  "format": "ovs-node-walkthroughs",
+  "version": "0.1",
+  "built": "2026-07-15",
+  "source": [
+    "app/data/nodes/ask-core.json",
+    "app/data/nodes/brands.json",
+    "app/data/nodes/companies.json",
+    "content/lines.json"
+  ],
+  "purpose": "Generated flagship node/Ask walkthrough contracts for app-owned QA and preview demos.",
+  "appLaneNote": "Use as dev-contract test data; app-owned code decides rendering and interaction.",
+  "walkthroughs": [
+    {
+      "id": "nestle-concern-path",
+      "label": "Nestle concern path",
+      "query": "is nestle bad",
+      "purpose": "First-use QA path: Ask concern query -> company/brand node -> ownership receipts -> product examples -> optional avoid line.",
+      "expected": {
+        "company": "ovs:company/nestle",
+        "line": "ovs:line/avoid:nestle",
+        "brands": [
+          "ovs:brand/nestle",
+          "ovs:brand/nescafe"
+        ],
+        "minCompanyBrands": 10,
+        "minCategories": 8,
+        "requiredLineTokens": [
+          "nestle",
+          "nescafe",
+          "kitkat",
+          "maggi"
+        ]
+      },
+      "askTop": [
+        {
+          "id": "ovs:brand/nestle",
+          "label": "Nestlé",
+          "type": "brand",
+          "hash": "#n/brand/nestle",
+          "score": 120,
+          "reason": "alias"
+        },
+        {
+          "id": "ovs:company/nestle",
+          "label": "Nestlé",
+          "type": "company",
+          "hash": "#n/company/nestle",
+          "score": 110,
+          "reason": "exact"
+        },
+        {
+          "id": "ovs:line/avoid:nestle",
+          "label": "Avoid Nestlé",
+          "type": "line",
+          "hash": "#n/line/avoid%3Anestle",
+          "score": 110,
+          "reason": "exact"
+        },
+        {
+          "id": "ovs:company/alphabet",
+          "label": "Alphabet / Google",
+          "type": "company",
+          "hash": "#n/company/alphabet",
+          "score": 76,
+          "reason": "token-containment"
+        },
+        {
+          "id": "ovs:line/avoid:alphabet",
+          "label": "Avoid Alphabet / Google",
+          "type": "line",
+          "hash": "#n/line/avoid%3Aalphabet",
+          "score": 76,
+          "reason": "token-containment"
+        }
+      ],
+      "matchedTop": "ovs:brand/nestle",
+      "pages": {
+        "company": {
+          "id": "ovs:company/nestle",
+          "label": "Nestlé",
+          "hash": "#n/company/nestle",
+          "reads": "Our ownership map links Nestlé to 21 brands. 11 appear in the current comparisons.",
+          "brandNames": [
+            "Acqua Panna",
+            "Coffee Mate",
+            "Digiorno",
+            "Fancy Feast",
+            "Felix",
+            "Friskies",
+            "Garden gourmet",
+            "Gerber",
+            "Häagen-Dazs",
+            "KitKat",
+            "Maggi",
+            "Nescafe",
+            "Nescafe Dolce Gusto",
+            "Nespresso",
+            "Nesquik",
+            "Nestlé",
+            "Perrier",
+            "Purina"
+          ],
+          "brandNameCount": 21,
+          "brandsInCommons": 11,
+          "categories": [
+            {
+              "id": "breakfast-cereal",
+              "label": "Breakfast cereal",
+              "hash": "#explore/breakfast-cereal"
+            },
+            {
+              "id": "cereal-bars",
+              "label": "Cereal bars",
+              "hash": "#explore/cereal-bars"
+            },
+            {
+              "id": "coffee",
+              "label": "Coffee",
+              "hash": "#explore/coffee"
+            },
+            {
+              "id": "crackers",
+              "label": "Crackers",
+              "hash": "#explore/crackers"
+            },
+            {
+              "id": "dark-chocolate",
+              "label": "Dark chocolate",
+              "hash": "#explore/dark-chocolate"
+            },
+            {
+              "id": "energy-drinks",
+              "label": "Energy drinks",
+              "hash": "#explore/energy-drinks"
+            },
+            {
+              "id": "flour-baking",
+              "label": "Flour & baking",
+              "hash": "#explore/flour-baking"
+            },
+            {
+              "id": "frozen-pizza",
+              "label": "Frozen pizza",
+              "hash": "#explore/frozen-pizza"
+            },
+            {
+              "id": "granola",
+              "label": "Granola & muesli",
+              "hash": "#explore/granola"
+            },
+            {
+              "id": "ice-cream",
+              "label": "Ice cream",
+              "hash": "#explore/ice-cream"
+            },
+            {
+              "id": "ketchup",
+              "label": "Ketchup",
+              "hash": "#explore/ketchup"
+            },
+            {
+              "id": "legumes",
+              "label": "Legumes",
+              "hash": "#explore/legumes"
+            },
+            {
+              "id": "mayonnaise",
+              "label": "Mayonnaise",
+              "hash": "#explore/mayonnaise"
+            },
+            {
+              "id": "milk",
+              "label": "Milk",
+              "hash": "#explore/milk"
+            },
+            {
+              "id": "pasta",
+              "label": "Pasta",
+              "hash": "#explore/pasta"
+            },
+            {
+              "id": "pasta-sauce",
+              "label": "Pasta sauce",
+              "hash": "#explore/pasta-sauce"
+            },
+            {
+              "id": "pickles",
+              "label": "Pickles",
+              "hash": "#explore/pickles"
+            },
+            {
+              "id": "plant-based-meat",
+              "label": "Plant based meat",
+              "hash": "#explore/plant-based-meat"
+            },
+            {
+              "id": "ready-meals",
+              "label": "Ready meals",
+              "hash": "#explore/ready-meals"
+            },
+            {
+              "id": "salad-dressing",
+              "label": "Salad dressing",
+              "hash": "#explore/salad-dressing"
+            },
+            {
+              "id": "soda",
+              "label": "Soda",
+              "hash": "#explore/soda"
+            },
+            {
+              "id": "soups",
+              "label": "Soups",
+              "hash": "#explore/soups"
+            },
+            {
+              "id": "tea",
+              "label": "Tea",
+              "hash": "#explore/tea"
+            },
+            {
+              "id": "yogurt",
+              "label": "Yogurt",
+              "hash": "#explore/yogurt"
+            }
+          ],
+          "line": "ovs:line/avoid:nestle",
+          "source": "https://www.nestle.com/brands",
+          "asof": "2026-07-07",
+          "ownershipReceiptCount": 21,
+          "receiptSamples": [
+            {
+              "brand": "ovs:brand/nescafe",
+              "brandName": "Nescafe",
+              "source": "https://www.nestle.com/brands",
+              "asof": "2026-07-07"
+            },
+            {
+              "brand": "ovs:brand/nestle",
+              "brandName": "Nestlé",
+              "source": "https://www.nestle.com/brands",
+              "asof": "2026-07-07"
+            }
+          ]
+        },
+        "line": {
+          "id": "ovs:line/avoid:nestle",
+          "label": "Avoid Nestlé",
+          "hash": "#n/line/avoid%3Anestle",
+          "reads": "Hide Nestlé and the brands it owns.",
+          "why": "https://www.nestle.com/brands",
+          "requiredTokensFound": [
+            "nestle",
+            "nescafe",
+            "kitkat",
+            "maggi"
+          ],
+          "knownBrandTokenCount": 32
+        },
+        "brands": [
+          {
+            "id": "ovs:brand/nestle",
+            "label": "Nestlé",
+            "hash": "#n/brand/nestle",
+            "ownedBy": "ovs:company/nestle",
+            "items": 183,
+            "categories": [
+              {
+                "id": "milk",
+                "label": "Milk",
+                "hash": "#explore/milk"
+              },
+              {
+                "id": "breakfast-cereal",
+                "label": "Breakfast cereal",
+                "hash": "#explore/breakfast-cereal"
+              },
+              {
+                "id": "granola",
+                "label": "Granola & muesli",
+                "hash": "#explore/granola"
+              },
+              {
+                "id": "coffee",
+                "label": "Coffee",
+                "hash": "#explore/coffee"
+              },
+              {
+                "id": "dark-chocolate",
+                "label": "Dark chocolate",
+                "hash": "#explore/dark-chocolate"
+              },
+              {
+                "id": "yogurt",
+                "label": "Yogurt",
+                "hash": "#explore/yogurt"
+              },
+              {
+                "id": "flour-baking",
+                "label": "Flour & baking",
+                "hash": "#explore/flour-baking"
+              },
+              {
+                "id": "plant-based-meat",
+                "label": "Plant based meat",
+                "hash": "#explore/plant-based-meat"
+              },
+              {
+                "id": "tea",
+                "label": "Tea",
+                "hash": "#explore/tea"
+              },
+              {
+                "id": "ice-cream",
+                "label": "Ice cream",
+                "hash": "#explore/ice-cream"
+              },
+              {
+                "id": "soda",
+                "label": "Soda",
+                "hash": "#explore/soda"
+              },
+              {
+                "id": "pasta",
+                "label": "Pasta",
+                "hash": "#explore/pasta"
+              },
+              {
+                "id": "legumes",
+                "label": "Legumes",
+                "hash": "#explore/legumes"
+              },
+              {
+                "id": "soups",
+                "label": "Soups",
+                "hash": "#explore/soups"
+              },
+              {
+                "id": "frozen-pizza",
+                "label": "Frozen pizza",
+                "hash": "#explore/frozen-pizza"
+              },
+              {
+                "id": "cereal-bars",
+                "label": "Cereal bars",
+                "hash": "#explore/cereal-bars"
+              },
+              {
+                "id": "ketchup",
+                "label": "Ketchup",
+                "hash": "#explore/ketchup"
+              },
+              {
+                "id": "mayonnaise",
+                "label": "Mayonnaise",
+                "hash": "#explore/mayonnaise"
+              },
+              {
+                "id": "salad-dressing",
+                "label": "Salad dressing",
+                "hash": "#explore/salad-dressing"
+              }
+            ],
+            "top": [
+              {
+                "cat": "plant-based-meat",
+                "category": "Plant based meat",
+                "code": "7613035982055",
+                "name": "Le Gourmand Soja, Poivre et Persil",
+                "score": 72,
+                "hash": "#item/plant-based-meat/7613035982055"
+              },
+              {
+                "cat": "breakfast-cereal",
+                "category": "Breakfast cereal",
+                "code": "7613287194374",
+                "name": "Bitesize Shredded Wheat",
+                "score": 71,
+                "hash": "#item/breakfast-cereal/7613287194374"
+              },
+              {
+                "cat": "breakfast-cereal",
+                "category": "Breakfast cereal",
+                "code": "7613031473113",
+                "name": "Shredded wheat",
+                "score": 71,
+                "hash": "#item/breakfast-cereal/7613031473113"
+              }
+            ]
+          },
+          {
+            "id": "ovs:brand/nescafe",
+            "label": "Nescafe",
+            "hash": "#n/brand/nescafe",
+            "ownedBy": "ovs:company/nestle",
+            "items": 20,
+            "categories": [
+              {
+                "id": "coffee",
+                "label": "Coffee",
+                "hash": "#explore/coffee"
+              }
+            ],
+            "top": [
+              {
+                "cat": "coffee",
+                "category": "Coffee",
+                "code": "6111018903161",
+                "name": "Nescafé Classic",
+                "score": 63,
+                "hash": "#item/coffee/6111018903161"
+              },
+              {
+                "cat": "coffee",
+                "category": "Coffee",
+                "code": "0028000743079",
+                "name": "Coffee",
+                "score": 61,
+                "hash": "#item/coffee/0028000743079"
+              },
+              {
+                "cat": "coffee",
+                "category": "Coffee",
+                "code": "6111018903185",
+                "name": "Nescafe classic",
+                "score": 56,
+                "hash": "#item/coffee/6111018903185"
+              }
+            ]
+          }
+        ]
+      },
+      "checks": {
+        "askHitsExpectedTarget": true,
+        "companyPresent": true,
+        "linePresent": true,
+        "requiredBrandsPresent": true,
+        "brandsOwnedByCompany": true,
+        "companyBrandNamesAtLeast": true,
+        "companyCategoriesAtLeast": true,
+        "ownershipReceiptsPresent": true,
+        "lineTokensPresent": true,
+        "lineHasWhyUrl": true,
+        "brandTopProductsPresent": true
+      }
+    },
+    {
+      "id": "coke-concern-path",
+      "label": "Coke concern path",
+      "query": "coke",
+      "purpose": "First-use QA path: Ask concern query -> company/brand node -> ownership receipts -> product examples -> optional avoid line.",
+      "expected": {
+        "company": "ovs:company/coca-cola",
+        "line": "ovs:line/avoid:coca-cola",
+        "brands": [
+          "ovs:brand/coca-cola"
+        ],
+        "minCompanyBrands": 8,
+        "minCategories": 2,
+        "requiredLineTokens": [
+          "coca-cola",
+          "coke",
+          "sprite",
+          "fanta"
+        ]
+      },
+      "askTop": [
+        {
+          "id": "ovs:brand/coke",
+          "label": "Coke",
+          "type": "brand",
+          "hash": "#n/brand/coke",
+          "score": 120,
+          "reason": "alias"
+        },
+        {
+          "id": "ovs:line/avoid:coca-cola",
+          "label": "Avoid Coca-Cola Company",
+          "type": "line",
+          "hash": "#n/line/avoid%3Acoca-cola",
+          "score": 110,
+          "reason": "exact"
+        },
+        {
+          "id": "ovs:brand/coles",
+          "label": "coles",
+          "type": "brand",
+          "hash": "#n/brand/coles",
+          "score": 86,
+          "reason": "fuzzy-1"
+        },
+        {
+          "id": "ovs:company/coca-cola",
+          "label": "Coca-Cola Company",
+          "type": "company",
+          "hash": "#n/company/coca-cola",
+          "score": 75,
+          "reason": "token-containment"
+        },
+        {
+          "id": "ovs:brand/coke-zero",
+          "label": "Coke ZERO",
+          "type": "brand",
+          "hash": "#n/brand/coke-zero",
+          "score": 75,
+          "reason": "token-containment"
+        }
+      ],
+      "matchedTop": "ovs:line/avoid:coca-cola",
+      "pages": {
+        "company": {
+          "id": "ovs:company/coca-cola",
+          "label": "Coca-Cola Company",
+          "hash": "#n/company/coca-cola",
+          "reads": "Our ownership map links Coca-Cola Company to 18 brands. 10 appear in the current comparisons.",
+          "brandNames": [
+            "Bodyarmor",
+            "Coca-Cola",
+            "Coke ZERO",
+            "Costa Coffee",
+            "Dasani",
+            "Diet Coke",
+            "fairlife",
+            "Fanta",
+            "Fuze Tea",
+            "Gold Peak",
+            "innocent",
+            "Maaza",
+            "Minute Maid",
+            "Powerade",
+            "Simply",
+            "Smartwater",
+            "Sprite",
+            "Topo Chico"
+          ],
+          "brandNameCount": 18,
+          "brandsInCommons": 10,
+          "categories": [
+            {
+              "id": "canned-tomatoes",
+              "label": "Canned tomatoes",
+              "hash": "#explore/canned-tomatoes"
+            },
+            {
+              "id": "canned-vegetables",
+              "label": "Canned vegetables",
+              "hash": "#explore/canned-vegetables"
+            },
+            {
+              "id": "cheese",
+              "label": "Cheese",
+              "hash": "#explore/cheese"
+            },
+            {
+              "id": "eggs",
+              "label": "Eggs",
+              "hash": "#explore/eggs"
+            },
+            {
+              "id": "energy-drinks",
+              "label": "Energy drinks",
+              "hash": "#explore/energy-drinks"
+            },
+            {
+              "id": "fruit-juice",
+              "label": "Fruit juice",
+              "hash": "#explore/fruit-juice"
+            },
+            {
+              "id": "honey",
+              "label": "Honey",
+              "hash": "#explore/honey"
+            },
+            {
+              "id": "lip-balm",
+              "label": "Lip balm",
+              "hash": "#explore/lip-balm"
+            },
+            {
+              "id": "milk",
+              "label": "Milk",
+              "hash": "#explore/milk"
+            },
+            {
+              "id": "plant-based-milk",
+              "label": "Plant-based milk",
+              "hash": "#explore/plant-based-milk"
+            },
+            {
+              "id": "soda",
+              "label": "Soda",
+              "hash": "#explore/soda"
+            },
+            {
+              "id": "tea",
+              "label": "Tea",
+              "hash": "#explore/tea"
+            }
+          ],
+          "line": "ovs:line/avoid:coca-cola",
+          "source": "https://www.coca-colacompany.com/brands",
+          "asof": "2026-07-07",
+          "ownershipReceiptCount": 18,
+          "receiptSamples": [
+            {
+              "brand": "ovs:brand/coca-cola",
+              "brandName": "Coca-Cola",
+              "source": "https://www.coca-colacompany.com/brands",
+              "asof": "2026-07-07"
+            }
+          ]
+        },
+        "line": {
+          "id": "ovs:line/avoid:coca-cola",
+          "label": "Avoid Coca-Cola Company",
+          "hash": "#n/line/avoid%3Acoca-cola",
+          "reads": "Hide The Coca-Cola Company and its brands.",
+          "why": "https://www.coca-colacompany.com/brands",
+          "requiredTokensFound": [
+            "coca-cola",
+            "coke",
+            "sprite",
+            "fanta"
+          ],
+          "knownBrandTokenCount": 24
+        },
+        "brands": [
+          {
+            "id": "ovs:brand/coca-cola",
+            "label": "Coca-Cola",
+            "hash": "#n/brand/coca-cola",
+            "ownedBy": "ovs:company/coca-cola",
+            "items": 107,
+            "categories": [
+              {
+                "id": "tea",
+                "label": "Tea",
+                "hash": "#explore/tea"
+              },
+              {
+                "id": "soda",
+                "label": "Soda",
+                "hash": "#explore/soda"
+              },
+              {
+                "id": "energy-drinks",
+                "label": "Energy drinks",
+                "hash": "#explore/energy-drinks"
+              }
+            ],
+            "top": [
+              {
+                "cat": "soda",
+                "category": "Soda",
+                "code": "6130003002023",
+                "name": "Coca cola",
+                "score": 54,
+                "hash": "#item/soda/6130003002023"
+              },
+              {
+                "cat": "soda",
+                "category": "Soda",
+                "code": "90370762",
+                "name": "Coca Cola Zéro",
+                "score": 50,
+                "hash": "#item/soda/90370762"
+              },
+              {
+                "cat": "soda",
+                "category": "Soda",
+                "code": "5449000233295",
+                "name": "Coca-Cola Zero Caffeine Free",
+                "score": 45,
+                "hash": "#item/soda/5449000233295"
+              }
+            ]
+          }
+        ]
+      },
+      "checks": {
+        "askHitsExpectedTarget": true,
+        "companyPresent": true,
+        "linePresent": true,
+        "requiredBrandsPresent": true,
+        "brandsOwnedByCompany": true,
+        "companyBrandNamesAtLeast": true,
+        "companyCategoriesAtLeast": true,
+        "ownershipReceiptsPresent": true,
+        "lineTokensPresent": true,
+        "lineHasWhyUrl": true,
+        "brandTopProductsPresent": true
+      }
+    },
+    {
+      "id": "amazon-concern-path",
+      "label": "Amazon concern path",
+      "query": "avoid amazon",
+      "purpose": "First-use QA path: Ask concern query -> company/brand node -> ownership receipts -> product examples -> optional avoid line.",
+      "expected": {
+        "company": "ovs:company/amazon",
+        "line": "ovs:line/avoid:amazon",
+        "brands": [
+          "ovs:brand/amazon"
+        ],
+        "minCompanyBrands": 8,
+        "minCategories": 3,
+        "requiredLineTokens": [
+          "amazon",
+          "aws",
+          "audible",
+          "twitch"
+        ]
+      },
+      "askTop": [
+        {
+          "id": "ovs:company/amazon",
+          "label": "Amazon",
+          "type": "company",
+          "hash": "#n/company/amazon",
+          "score": 95,
+          "reason": "query-token"
+        },
+        {
+          "id": "ovs:line/avoid:amazon",
+          "label": "Avoid Amazon",
+          "type": "line",
+          "hash": "#n/line/avoid%3Aamazon",
+          "score": 95,
+          "reason": "query-token"
+        },
+        {
+          "id": "ovs:brand/amazon",
+          "label": "Amazon",
+          "type": "brand",
+          "hash": "#n/brand/amazon",
+          "score": 95,
+          "reason": "query-token"
+        }
+      ],
+      "matchedTop": "ovs:company/amazon",
+      "pages": {
+        "company": {
+          "id": "ovs:company/amazon",
+          "label": "Amazon",
+          "hash": "#n/company/amazon",
+          "reads": "Our ownership map links Amazon to 18 brands. 2 appear in the current comparisons.",
+          "brandNames": [
+            "Alexa",
+            "Amazon",
+            "Amazon Basics",
+            "Amazon Music",
+            "Amazon Pharmacy",
+            "Audible",
+            "Aws",
+            "Eero",
+            "Imdb",
+            "Kindle",
+            "Metro Goldwyn Mayer",
+            "Presto",
+            "Prime Video",
+            "Ring",
+            "Twitch",
+            "Whole Foods Market",
+            "Wondery",
+            "Zappos"
+          ],
+          "brandNameCount": 18,
+          "brandsInCommons": 2,
+          "categories": [
+            {
+              "id": "books",
+              "label": "Books & reading",
+              "hash": "#explore/books"
+            },
+            {
+              "id": "digital-services",
+              "label": "Digital services",
+              "hash": "#explore/digital-services"
+            },
+            {
+              "id": "laundry",
+              "label": "Laundry",
+              "hash": "#explore/laundry"
+            },
+            {
+              "id": "paper-goods",
+              "label": "Paper goods",
+              "hash": "#explore/paper-goods"
+            },
+            {
+              "id": "period-products",
+              "label": "Period products",
+              "hash": "#explore/period-products"
+            }
+          ],
+          "line": "ovs:line/avoid:amazon",
+          "source": "https://s2.q4cdn.com/299287126/files/doc_financials/2025/ar/Amazon-2024-Annual-Report.pdf",
+          "asof": "2025",
+          "ownershipReceiptCount": 18,
+          "receiptSamples": [
+            {
+              "brand": "ovs:brand/amazon",
+              "brandName": "Amazon",
+              "source": "https://s2.q4cdn.com/299287126/files/doc_financials/2025/ar/Amazon-2024-Annual-Report.pdf",
+              "asof": "2025"
+            }
+          ]
+        },
+        "line": {
+          "id": "ovs:line/avoid:amazon",
+          "label": "Avoid Amazon",
+          "hash": "#n/line/avoid%3Aamazon",
+          "reads": "Hide Amazon and the brands it owns.",
+          "why": "https://s2.q4cdn.com/299287126/files/doc_financials/2025/ar/Amazon-2024-Annual-Report.pdf",
+          "requiredTokensFound": [
+            "amazon",
+            "aws",
+            "audible",
+            "twitch"
+          ],
+          "knownBrandTokenCount": 21
+        },
+        "brands": [
+          {
+            "id": "ovs:brand/amazon",
+            "label": "Amazon",
+            "hash": "#n/brand/amazon",
+            "ownedBy": "ovs:company/amazon",
+            "items": 3,
+            "categories": [
+              {
+                "id": "paper-goods",
+                "label": "Paper goods",
+                "hash": "#explore/paper-goods"
+              },
+              {
+                "id": "books",
+                "label": "Books & reading",
+                "hash": "#explore/books"
+              },
+              {
+                "id": "digital-services",
+                "label": "Digital services",
+                "hash": "#explore/digital-services"
+              }
+            ],
+            "top": [
+              {
+                "cat": "paper-goods",
+                "category": "Paper goods",
+                "code": "presto-toilet-paper",
+                "name": "Presto! Ultra-Soft toilet paper",
+                "score": 59,
+                "hash": "#item/paper-goods/presto-toilet-paper"
+              },
+              {
+                "cat": "digital-services",
+                "category": "Digital services",
+                "code": "twitch",
+                "name": "Twitch",
+                "score": 53,
+                "hash": "#item/digital-services/twitch"
+              },
+              {
+                "cat": "books",
+                "category": "Books & reading",
+                "code": "audible",
+                "name": "Audible (Amazon)",
+                "score": 51,
+                "hash": "#item/books/audible"
+              }
+            ]
+          }
+        ]
+      },
+      "checks": {
+        "askHitsExpectedTarget": true,
+        "companyPresent": true,
+        "linePresent": true,
+        "requiredBrandsPresent": true,
+        "brandsOwnedByCompany": true,
+        "companyBrandNamesAtLeast": true,
+        "companyCategoriesAtLeast": true,
+        "ownershipReceiptsPresent": true,
+        "lineTokensPresent": true,
+        "lineHasWhyUrl": true,
+        "brandTopProductsPresent": true
+      }
+    }
+  ]
+}

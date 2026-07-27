@@ -1,0 +1,311 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/citation-bundle-v0.1.schema.json",
+  "title": "Open Values Citation Bundle v0.1",
+  "description": "A frozen lens snapshot, value query, and expected ranking output for reproducible citation.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "format",
+    "version",
+    "id",
+    "title",
+    "createdAt",
+    "maintainer",
+    "license",
+    "purpose",
+    "rerunCommand",
+    "source",
+    "lensAssumptions",
+    "query",
+    "lensSnapshot",
+    "expected"
+  ],
+  "properties": {
+    "format": {
+      "const": "open-values-citation-bundle"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "createdAt": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "maintainer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "license": {
+      "type": "string",
+      "minLength": 1
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rerunCommand": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "$ref": "#/$defs/source"
+    },
+    "lensAssumptions": {
+      "$ref": "#/$defs/lensAssumptions"
+    },
+    "query": {
+      "$ref": "#/$defs/query"
+    },
+    "lensSnapshot": {
+      "$ref": "https://openvaluesstandard.org/schema/lens-v0.1.schema.json"
+    },
+    "expected": {
+      "$ref": "#/$defs/expected"
+    }
+  },
+  "$defs": {
+    "hexHash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "shortHash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}$"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "lensPath",
+        "lensId",
+        "lensHash",
+        "snapshotSha256",
+        "engineVersion"
+      ],
+      "properties": {
+        "lensPath": {
+          "type": "string",
+          "minLength": 1
+        },
+        "lensId": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "lensHash": {
+          "$ref": "#/$defs/shortHash"
+        },
+        "snapshotSha256": {
+          "$ref": "#/$defs/hexHash"
+        },
+        "engineVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "generatedFromBuild": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "lensAssumptions": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "label",
+        "type",
+        "valueFrame",
+        "disclaimer",
+        "weights",
+        "criteria"
+      ],
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "enum": [
+            "Products",
+            "Services",
+            "Media",
+            "Organizations",
+            "Initiatives"
+          ]
+        },
+        "valueFrame": {
+          "type": "string",
+          "minLength": 1
+        },
+        "disclaimer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "preset": {
+          "type": "string"
+        },
+        "weights": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 5
+          }
+        },
+        "minCoverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "criteria": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "https://openvaluesstandard.org/schema/criterion-v0.1.schema.json"
+          }
+        },
+        "sort": {
+          "type": "string"
+        },
+        "caveat": {
+          "type": "string"
+        }
+      }
+    },
+    "query": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "kind",
+        "focus",
+        "targetCodes",
+        "topN"
+      ],
+      "properties": {
+        "kind": {
+          "const": "rank-lens"
+        },
+        "focus": {
+          "type": "string",
+          "minLength": 1
+        },
+        "targetCodes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "topN": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "rankRow": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "rank",
+        "code",
+        "name",
+        "score",
+        "tier",
+        "why",
+        "coverage"
+      ],
+      "properties": {
+        "rank": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "tier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "why": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "coverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "reason": {
+          "type": "object"
+        },
+        "weakestAxis": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2
+        }
+      }
+    },
+    "expected": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "engineVersion",
+        "lensHash",
+        "snapshotSha256",
+        "rankedCount",
+        "top",
+        "targets"
+      ],
+      "properties": {
+        "engineVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "lensHash": {
+          "$ref": "#/$defs/shortHash"
+        },
+        "snapshotSha256": {
+          "$ref": "#/$defs/hexHash"
+        },
+        "rankedCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "top": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/rankRow"
+          }
+        },
+        "targets": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/rankRow"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,2660 @@
+{
+  "format": "open-values-design-token-index",
+  "version": "0.1.0",
+  "standard": "open-values-standard",
+  "built": "2026-07-10",
+  "purpose": "Generated app-readable index for biophilic design tokens, computed contrast, component contracts, and SVG art tokens.",
+  "generatedFrom": {
+    "path": "content/design/tokens.json",
+    "updated": "2026-07-10",
+    "sha256": "3fcbc2ff72ee85de58125ec65143130320bfa343f88e540cbaa19d4cbf02a0cc"
+  },
+  "principles": [
+    "beauty must not farm attention",
+    "nature-paced motion beats engagement loops",
+    "semantic tokens travel across instances",
+    "contrast is computed, not asserted",
+    "art tokens decorate meaning and navigation, not noise"
+  ],
+  "references": [
+    {
+      "label": "WCAG 2.2 contrast minimum",
+      "url": "https://www.w3.org/TR/WCAG22/#contrast-minimum",
+      "asof": "2026"
+    }
+  ],
+  "valueBloom": {
+    "status": "h4-token-substrate",
+    "consumer": "Claude H4 values-bloom verdict card prototype",
+    "sourceFunction": "CC.engine.signature(entity, key2theme)",
+    "minimumThemesForBloom": 2,
+    "scoreScale": "0..100 mean score per carried theme; omitted themes stay absent, never zero-filled",
+    "order": [
+      "planet",
+      "people",
+      "health",
+      "honesty",
+      "privacy",
+      "animals",
+      "cost",
+      "local"
+    ],
+    "themes": [
+      {
+        "id": "planet",
+        "label": "Planet",
+        "universal": "planet",
+        "petalColor": "#3F8F5E",
+        "centerColor": "#2F6F4E",
+        "role": "leaf green for environment, waste, durability"
+      },
+      {
+        "id": "people",
+        "label": "People",
+        "universal": "people",
+        "petalColor": "#C07A53",
+        "centerColor": "#8F4F31",
+        "role": "clay for labor, ethics, public benefit"
+      },
+      {
+        "id": "health",
+        "label": "Health",
+        "universal": "wellbeing",
+        "petalColor": "#C86D6A",
+        "centerColor": "#884640",
+        "role": "rose clay for nutrition, safety, low-tox care"
+      },
+      {
+        "id": "honesty",
+        "label": "Honesty",
+        "universal": "openness",
+        "petalColor": "#C2A049",
+        "centerColor": "#7C621F",
+        "role": "seed ochre for transparency and independence"
+      },
+      {
+        "id": "privacy",
+        "label": "Privacy",
+        "universal": "autonomy",
+        "petalColor": "#4F8FA9",
+        "centerColor": "#2D6075",
+        "role": "water blue for data control, security, openness"
+      },
+      {
+        "id": "animals",
+        "label": "Animals",
+        "universal": "animals",
+        "petalColor": "#8A7FB5",
+        "centerColor": "#5E5484",
+        "role": "violet for animal welfare without alarm"
+      },
+      {
+        "id": "cost",
+        "label": "Cost & ease",
+        "universal": "access",
+        "petalColor": "#6FA07A",
+        "centerColor": "#477451",
+        "role": "sage for affordability, fees, ease"
+      },
+      {
+        "id": "local",
+        "label": "Local",
+        "universal": "community",
+        "petalColor": "#B0894F",
+        "centerColor": "#73582D",
+        "role": "warm bark for community, co-ops, ownership"
+      }
+    ],
+    "signatureVector": {
+      "status": "optional-materialization-contract",
+      "field": "valueSignature",
+      "order": [
+        "planet",
+        "people",
+        "health",
+        "honesty",
+        "privacy",
+        "animals",
+        "cost",
+        "local"
+      ],
+      "shape": "object keyed by carried theme id; numeric values are 0..100 means from scored criteria",
+      "omitMissing": true,
+      "mustNot": [
+        "Do not store absent themes as 0.",
+        "Do not draw a bloom when fewer than two themes resolve.",
+        "Do not use the bloom as evidence; it is a visual summary of already-rendered scores."
+      ]
+    },
+    "signatureCoverage": {
+      "categories": 88,
+      "entries": 23689,
+      "scoredEntries": 23689,
+      "signedEntries": 23689,
+      "drawableEntries": 22547,
+      "missingSignatureEntries": 0,
+      "staleSignatureEntries": 0,
+      "minimumThemesForBloom": 2,
+      "themeCounts": {
+        "planet": 16133,
+        "people": 16843,
+        "health": 19679,
+        "honesty": 3805,
+        "privacy": 2001,
+        "animals": 618,
+        "cost": 7026,
+        "local": 197
+      }
+    },
+    "previewFixtures": [
+      {
+        "category": "phones",
+        "code": "fairphone",
+        "name": "Fairphone",
+        "route": "#card/phones/fairphone",
+        "themeCount": 4,
+        "signature": {
+          "planet": 96,
+          "people": 95,
+          "privacy": 70,
+          "cost": 55
+        }
+      },
+      {
+        "category": "banking",
+        "code": "beneficial-state",
+        "name": "Beneficial State Bank",
+        "route": "#card/banking/beneficial-state",
+        "themeCount": 4,
+        "signature": {
+          "planet": 92,
+          "people": 95,
+          "honesty": 82,
+          "cost": 70
+        }
+      },
+      {
+        "category": "learning-resources",
+        "code": "18f-guides",
+        "name": "18F Guides",
+        "route": "#card/learning-resources/18f-guides",
+        "themeCount": 5,
+        "signature": {
+          "people": 82,
+          "health": 84,
+          "honesty": 82,
+          "privacy": 86,
+          "cost": 87
+        }
+      }
+    ]
+  },
+  "valueSignatureCoverage": {
+    "categories": 88,
+    "entries": 23689,
+    "scoredEntries": 23689,
+    "signedEntries": 23689,
+    "drawableEntries": 22547,
+    "missingSignatureEntries": 0,
+    "staleSignatureEntries": 0,
+    "minimumThemesForBloom": 2,
+    "themeCounts": {
+      "planet": 16133,
+      "people": 16843,
+      "health": 19679,
+      "honesty": 3805,
+      "privacy": 2001,
+      "animals": 618,
+      "cost": 7026,
+      "local": 197
+    }
+  },
+  "cssVariableMapping": {
+    "status": "i3-review-table",
+    "consumer": "Claude I3 styles.css token injection",
+    "sourceProfile": "quiet-commons",
+    "note": "Review table only: Codex owns the data tokens; app/design owns the eventual styles.css injection diff.",
+    "rows": [
+      {
+        "token": "color.background",
+        "cssVariable": "--bg",
+        "role": "page background"
+      },
+      {
+        "token": "color.surface",
+        "cssVariable": "--surface",
+        "role": "primary surface"
+      },
+      {
+        "token": "color.surfaceAlt",
+        "cssVariable": "--track",
+        "role": "quiet track and badge fill"
+      },
+      {
+        "token": "color.surfaceAlt",
+        "cssVariable": "--pill",
+        "role": "subtle pill and callout fill"
+      },
+      {
+        "token": "color.text",
+        "cssVariable": "--ink",
+        "role": "primary text"
+      },
+      {
+        "token": "color.mutedText",
+        "cssVariable": "--muted",
+        "role": "secondary text"
+      },
+      {
+        "token": "color.mutedText",
+        "cssVariable": "--hint",
+        "role": "tertiary hint text; app should preserve contrast watch-list decisions"
+      },
+      {
+        "token": "color.border",
+        "cssVariable": "--line",
+        "role": "divider and hairline border"
+      },
+      {
+        "token": "color.accent",
+        "cssVariable": "--accent",
+        "role": "primary action and living emphasis"
+      },
+      {
+        "token": "color.accentText",
+        "cssVariable": "--accent-text",
+        "role": "text on accent action surfaces"
+      },
+      {
+        "token": "color.warning",
+        "cssVariable": "--warn",
+        "role": "caution and steer-clear accents"
+      },
+      {
+        "token": "valueBloom.themes.planet.petalColor",
+        "cssVariable": "--bloom-planet-petal",
+        "role": "H4 planet bloom petal color"
+      },
+      {
+        "token": "valueBloom.themes.planet.centerColor",
+        "cssVariable": "--bloom-planet-center",
+        "role": "H4 planet bloom center color"
+      },
+      {
+        "token": "valueBloom.themes.people.petalColor",
+        "cssVariable": "--bloom-people-petal",
+        "role": "H4 people bloom petal color"
+      },
+      {
+        "token": "valueBloom.themes.people.centerColor",
+        "cssVariable": "--bloom-people-center",
+        "role": "H4 people bloom center color"
+      },
+      {
+        "token": "valueBloom.themes.health.petalColor",
+        "cssVariable": "--bloom-health-petal",
+        "role": "H4 health bloom petal color"
+      },
+      {
+        "token": "valueBloom.themes.health.centerColor",
+        "cssVariable": "--bloom-health-center",
+        "role": "H4 health bloom center color"
+      },
+      {
+        "token": "valueBloom.themes.honesty.petalColor",
+        "cssVariable": "--bloom-honesty-petal",
+        "role": "H4 honesty bloom petal color"
+      },
+      {
+        "token": "valueBloom.themes.honesty.centerColor",
+        "cssVariable": "--bloom-honesty-center",
+        "role": "H4 honesty bloom center color"
+      },
+      {
+        "token": "valueBloom.themes.privacy.petalColor",
+        "cssVariable": "--bloom-privacy-petal",
+        "role": "H4 privacy bloom petal color"
+      },
+      {
+        "token": "valueBloom.themes.privacy.centerColor",
+        "cssVariable": "--bloom-privacy-center",
+        "role": "H4 privacy bloom center color"
+      },
+      {
+        "token": "valueBloom.themes.animals.petalColor",
+        "cssVariable": "--bloom-animals-petal",
+        "role": "H4 animals bloom petal color"
+      },
+      {
+        "token": "valueBloom.themes.animals.centerColor",
+        "cssVariable": "--bloom-animals-center",
+        "role": "H4 animals bloom center color"
+      },
+      {
+        "token": "valueBloom.themes.cost.petalColor",
+        "cssVariable": "--bloom-cost-petal",
+        "role": "H4 cost bloom petal color"
+      },
+      {
+        "token": "valueBloom.themes.cost.centerColor",
+        "cssVariable": "--bloom-cost-center",
+        "role": "H4 cost bloom center color"
+      },
+      {
+        "token": "valueBloom.themes.local.petalColor",
+        "cssVariable": "--bloom-local-petal",
+        "role": "H4 local bloom petal color"
+      },
+      {
+        "token": "valueBloom.themes.local.centerColor",
+        "cssVariable": "--bloom-local-center",
+        "role": "H4 local bloom center color"
+      },
+      {
+        "token": "dayCycle.variants.dawn.aliases.bg",
+        "cssVariable": "--day-dawn-bg",
+        "role": "H2 dawn page background"
+      },
+      {
+        "token": "dayCycle.variants.dawn.aliases.surface",
+        "cssVariable": "--day-dawn-surface",
+        "role": "H2 dawn primary surface"
+      },
+      {
+        "token": "dayCycle.variants.dawn.aliases.pill",
+        "cssVariable": "--day-dawn-pill",
+        "role": "H2 dawn quiet pill fill"
+      },
+      {
+        "token": "dayCycle.variants.dawn.aliases.line",
+        "cssVariable": "--day-dawn-line",
+        "role": "H2 dawn divider"
+      },
+      {
+        "token": "dayCycle.variants.dawn.aliases.ink",
+        "cssVariable": "--day-dawn-ink",
+        "role": "H2 dawn primary text"
+      },
+      {
+        "token": "dayCycle.variants.dawn.aliases.muted",
+        "cssVariable": "--day-dawn-muted",
+        "role": "H2 dawn secondary text"
+      },
+      {
+        "token": "dayCycle.variants.dawn.aliases.hint",
+        "cssVariable": "--day-dawn-hint",
+        "role": "H2 dawn hint text"
+      },
+      {
+        "token": "dayCycle.variants.dawn.aliases.accent",
+        "cssVariable": "--day-dawn-accent",
+        "role": "H2 dawn accent"
+      },
+      {
+        "token": "dayCycle.variants.dawn.aliases.warn",
+        "cssVariable": "--day-dawn-warn",
+        "role": "H2 dawn warning accent"
+      },
+      {
+        "token": "dayCycle.variants.noon.aliases.bg",
+        "cssVariable": "--day-noon-bg",
+        "role": "H2 noon page background"
+      },
+      {
+        "token": "dayCycle.variants.noon.aliases.surface",
+        "cssVariable": "--day-noon-surface",
+        "role": "H2 noon primary surface"
+      },
+      {
+        "token": "dayCycle.variants.noon.aliases.pill",
+        "cssVariable": "--day-noon-pill",
+        "role": "H2 noon quiet pill fill"
+      },
+      {
+        "token": "dayCycle.variants.noon.aliases.line",
+        "cssVariable": "--day-noon-line",
+        "role": "H2 noon divider"
+      },
+      {
+        "token": "dayCycle.variants.noon.aliases.ink",
+        "cssVariable": "--day-noon-ink",
+        "role": "H2 noon primary text"
+      },
+      {
+        "token": "dayCycle.variants.noon.aliases.muted",
+        "cssVariable": "--day-noon-muted",
+        "role": "H2 noon secondary text"
+      },
+      {
+        "token": "dayCycle.variants.noon.aliases.hint",
+        "cssVariable": "--day-noon-hint",
+        "role": "H2 noon hint text"
+      },
+      {
+        "token": "dayCycle.variants.noon.aliases.accent",
+        "cssVariable": "--day-noon-accent",
+        "role": "H2 noon accent"
+      },
+      {
+        "token": "dayCycle.variants.noon.aliases.warn",
+        "cssVariable": "--day-noon-warn",
+        "role": "H2 noon warning accent"
+      },
+      {
+        "token": "dayCycle.variants.dusk.aliases.bg",
+        "cssVariable": "--day-dusk-bg",
+        "role": "H2 dusk page background"
+      },
+      {
+        "token": "dayCycle.variants.dusk.aliases.surface",
+        "cssVariable": "--day-dusk-surface",
+        "role": "H2 dusk primary surface"
+      },
+      {
+        "token": "dayCycle.variants.dusk.aliases.pill",
+        "cssVariable": "--day-dusk-pill",
+        "role": "H2 dusk quiet pill fill"
+      },
+      {
+        "token": "dayCycle.variants.dusk.aliases.line",
+        "cssVariable": "--day-dusk-line",
+        "role": "H2 dusk divider"
+      },
+      {
+        "token": "dayCycle.variants.dusk.aliases.ink",
+        "cssVariable": "--day-dusk-ink",
+        "role": "H2 dusk primary text"
+      },
+      {
+        "token": "dayCycle.variants.dusk.aliases.muted",
+        "cssVariable": "--day-dusk-muted",
+        "role": "H2 dusk secondary text"
+      },
+      {
+        "token": "dayCycle.variants.dusk.aliases.hint",
+        "cssVariable": "--day-dusk-hint",
+        "role": "H2 dusk hint text"
+      },
+      {
+        "token": "dayCycle.variants.dusk.aliases.accent",
+        "cssVariable": "--day-dusk-accent",
+        "role": "H2 dusk accent"
+      },
+      {
+        "token": "dayCycle.variants.dusk.aliases.warn",
+        "cssVariable": "--day-dusk-warn",
+        "role": "H2 dusk warning accent"
+      },
+      {
+        "token": "dayCycle.variants.night.aliases.bg",
+        "cssVariable": "--day-night-bg",
+        "role": "H2 night page background"
+      },
+      {
+        "token": "dayCycle.variants.night.aliases.surface",
+        "cssVariable": "--day-night-surface",
+        "role": "H2 night primary surface"
+      },
+      {
+        "token": "dayCycle.variants.night.aliases.pill",
+        "cssVariable": "--day-night-pill",
+        "role": "H2 night quiet pill fill"
+      },
+      {
+        "token": "dayCycle.variants.night.aliases.line",
+        "cssVariable": "--day-night-line",
+        "role": "H2 night divider"
+      },
+      {
+        "token": "dayCycle.variants.night.aliases.ink",
+        "cssVariable": "--day-night-ink",
+        "role": "H2 night primary text"
+      },
+      {
+        "token": "dayCycle.variants.night.aliases.muted",
+        "cssVariable": "--day-night-muted",
+        "role": "H2 night secondary text"
+      },
+      {
+        "token": "dayCycle.variants.night.aliases.hint",
+        "cssVariable": "--day-night-hint",
+        "role": "H2 night hint text"
+      },
+      {
+        "token": "dayCycle.variants.night.aliases.accent",
+        "cssVariable": "--day-night-accent",
+        "role": "H2 night accent"
+      },
+      {
+        "token": "dayCycle.variants.night.aliases.warn",
+        "cssVariable": "--day-night-warn",
+        "role": "H2 night warning accent"
+      },
+      {
+        "token": "typography.body.family",
+        "cssVariable": "--font-sans",
+        "role": "body interface family"
+      },
+      {
+        "token": "typography.display.family",
+        "cssVariable": "--font-display",
+        "role": "editorial display family"
+      },
+      {
+        "token": "typography.meta.family",
+        "cssVariable": "--font-mono",
+        "role": "compact provenance and technical labels when monospace is needed"
+      },
+      {
+        "token": "typography.meta.size",
+        "cssVariable": "--fs-xs",
+        "role": "metadata text"
+      },
+      {
+        "token": "typography.body.size",
+        "cssVariable": "--fs-base",
+        "role": "body text"
+      },
+      {
+        "token": "typography.heading.size",
+        "cssVariable": "--fs-md",
+        "role": "compact section heading"
+      },
+      {
+        "token": "typography.display.size",
+        "cssVariable": "--fs-xl",
+        "role": "display within cards and guide surfaces"
+      },
+      {
+        "token": "typography.display.lineHeight",
+        "cssVariable": "--lh-tight",
+        "role": "display line height"
+      },
+      {
+        "token": "typography.heading.lineHeight",
+        "cssVariable": "--lh-snug",
+        "role": "heading line height"
+      },
+      {
+        "token": "typography.body.lineHeight",
+        "cssVariable": "--lh-base",
+        "role": "body line height"
+      },
+      {
+        "token": "space.xs",
+        "cssVariable": "--sp-2",
+        "role": "small control gap; app diff may change value to 0.35rem"
+      },
+      {
+        "token": "space.md",
+        "cssVariable": "--sp-3",
+        "role": "base rhythm step"
+      },
+      {
+        "token": "space.xl",
+        "cssVariable": "--sp-5",
+        "role": "section rhythm step"
+      },
+      {
+        "token": "radius.control",
+        "cssVariable": "--r-1",
+        "role": "small control radius"
+      },
+      {
+        "token": "radius.card",
+        "cssVariable": "--r-2",
+        "role": "card radius"
+      },
+      {
+        "token": "radius.panel",
+        "cssVariable": "--r-3",
+        "role": "panel radius"
+      },
+      {
+        "token": "radius.panel",
+        "cssVariable": "--radius",
+        "role": "legacy app radius alias"
+      },
+      {
+        "token": "radius.pill",
+        "cssVariable": "--r-pill",
+        "role": "round chip and facet radius"
+      },
+      {
+        "token": "motion.durationFast",
+        "cssVariable": "--dur-1",
+        "role": "opacity and border-color transitions"
+      },
+      {
+        "token": "motion.durationBase",
+        "cssVariable": "--dur-2",
+        "role": "small hover transitions; rerank motion remains app-owned"
+      },
+      {
+        "token": "motion.easing",
+        "cssVariable": "--ease",
+        "role": "shared calm easing"
+      },
+      {
+        "token": "motion.settleDurations.micro",
+        "cssVariable": "--dur-micro",
+        "role": "H3 micro feedback duration"
+      },
+      {
+        "token": "motion.settleDurations.hover",
+        "cssVariable": "--dur-hover",
+        "role": "H3 hover feedback duration"
+      },
+      {
+        "token": "motion.settleDurations.reveal",
+        "cssVariable": "--dur-reveal",
+        "role": "H3 panel reveal duration"
+      },
+      {
+        "token": "motion.settleDurations.rerank",
+        "cssVariable": "--dur-rerank",
+        "role": "H3 rank rerank duration"
+      },
+      {
+        "token": "motion.settleDurations.bloom",
+        "cssVariable": "--dur-bloom",
+        "role": "H3 value-bloom draw duration"
+      },
+      {
+        "token": "motion.curves.breathe",
+        "cssVariable": "--ease-breathe",
+        "role": "H3 calm hover and micro-feedback easing"
+      },
+      {
+        "token": "motion.curves.settle",
+        "cssVariable": "--ease-settle",
+        "role": "H3 panel reveal easing"
+      },
+      {
+        "token": "motion.curves.rerank",
+        "cssVariable": "--ease-rerank",
+        "role": "H3 rank rerank easing"
+      },
+      {
+        "token": "motion.curves.bloom",
+        "cssVariable": "--ease-bloom",
+        "role": "H3 value-bloom draw easing"
+      },
+      {
+        "token": "elevation.level1",
+        "cssVariable": "--e1",
+        "role": "soft lift"
+      },
+      {
+        "token": "elevation.level2",
+        "cssVariable": "--e2",
+        "role": "strongest allowed lift"
+      },
+      {
+        "token": "materiality.paperGrain.opacity",
+        "cssVariable": "--paper-grain-opacity",
+        "role": "H5 maximum decorative paper grain opacity"
+      },
+      {
+        "token": "materiality.paperGrain.scalePx",
+        "cssVariable": "--paper-grain-scale",
+        "role": "H5 paper grain tile scale"
+      },
+      {
+        "token": "materiality.paperGrain.contrastLimit",
+        "cssVariable": "--paper-grain-contrast-limit",
+        "role": "H5 hard cap for grain contrast contribution"
+      },
+      {
+        "token": "elevation.level1",
+        "cssVariable": "--shadow-soft",
+        "role": "H5 warm-soft surface shadow"
+      },
+      {
+        "token": "elevation.level2",
+        "cssVariable": "--shadow-lift",
+        "role": "H5 maximum allowed lift shadow"
+      }
+    ]
+  },
+  "appCssInjection": {
+    "status": "build-time-injected",
+    "sourceProfile": "quiet-commons",
+    "source": "content/design/tokens.json",
+    "target": "app/styles.css",
+    "markerStart": "/* BEGIN GENERATED DESIGN TOKENS: quiet-commons */",
+    "markerEnd": "/* END GENERATED DESIGN TOKENS */",
+    "runtimeFetch": false,
+    "note": "pipeline/build_design_tokens.js rewrites only the fenced CSS custom-property block in app/styles.css; the rest of the stylesheet remains app-owned."
+  },
+  "contrastRemediationContract": {
+    "status": "h9-app-owned-remediation",
+    "consumer": "Claude H9 contrast cleanup in app/styles.css",
+    "sourceAudit": "research/contrast_audit.js",
+    "appOwnedFile": "app/styles.css",
+    "rule": "Use this as an app-owned remediation checklist; Codex supplies tokens and warnings but does not edit app CSS.",
+    "steps": [
+      {
+        "id": "wire-accent-text-token",
+        "label": "Wire --accent-text on accent action surfaces",
+        "warning": "dark white on accent action contrast 2.01 is below 4.5",
+        "theme": "dark",
+        "foreground": "#fff",
+        "background": "--accent",
+        "ratio": 2.01,
+        "minimum": 4.5,
+        "targetCssVariables": [
+          "--accent-text",
+          "--accent"
+        ],
+        "tokenSource": "color.accentText",
+        "appOwnedEvidence": [
+          "Dark-theme accent buttons and action surfaces use --accent-text rather than literal #fff.",
+          "npm run audit:contrast no longer reports dark white on accent action."
+        ],
+        "mustNot": [
+          "Do not keep literal #fff text on the light green dark-theme accent.",
+          "Do not solve this by lowering the 4.5 contrast floor."
+        ]
+      },
+      {
+        "id": "light-hint-on-pill",
+        "label": "Move tiny hint-on-pill text to a stronger foreground",
+        "warning": "light hint on pill contrast 4.28 is below 4.5",
+        "theme": "light",
+        "foreground": "--hint",
+        "background": "--pill",
+        "ratio": 4.28,
+        "minimum": 4.5,
+        "targetCssVariables": [
+          "--hint",
+          "--pill",
+          "--muted",
+          "--ink"
+        ],
+        "tokenSource": "color.mutedText",
+        "appOwnedEvidence": [
+          "Small text on pill fills uses a darker foreground such as --muted or --ink, or the app token pair is adjusted.",
+          "npm run audit:contrast no longer reports light hint on pill."
+        ],
+        "mustNot": [
+          "Do not leave sub-AA small hint text on pill surfaces.",
+          "Do not make pills visually louder just to avoid changing the foreground."
+        ]
+      },
+      {
+        "id": "light-hint-on-track",
+        "label": "Move tiny hint-on-track text to a stronger foreground",
+        "warning": "light hint on track contrast 3.97 is below 4.5",
+        "theme": "light",
+        "foreground": "--hint",
+        "background": "--track",
+        "ratio": 3.97,
+        "minimum": 4.5,
+        "targetCssVariables": [
+          "--hint",
+          "--track",
+          "--muted",
+          "--ink"
+        ],
+        "tokenSource": "color.mutedText",
+        "appOwnedEvidence": [
+          "Small text on track badges uses a darker foreground such as --muted or --ink, or the app token pair is adjusted.",
+          "npm run audit:contrast no longer reports light hint on track."
+        ],
+        "mustNot": [
+          "Do not keep low-contrast helper text on track badges.",
+          "Do not hide the text to avoid the contrast decision."
+        ]
+      },
+      {
+        "id": "light-muted-on-track",
+        "label": "Raise muted-on-track contrast above the edge",
+        "warning": "light muted on track contrast 4.48 is below 4.5",
+        "theme": "light",
+        "foreground": "--muted",
+        "background": "--track",
+        "ratio": 4.48,
+        "minimum": 4.5,
+        "targetCssVariables": [
+          "--muted",
+          "--track",
+          "--ink"
+        ],
+        "tokenSource": "color.mutedText",
+        "appOwnedEvidence": [
+          "Muted text on track surfaces either crosses AA or uses --ink where the text is small.",
+          "npm run audit:contrast no longer reports light muted on track."
+        ],
+        "mustNot": [
+          "Do not accept an edge-case 4.48 pair as passing for normal text.",
+          "Do not rely on font weight or size changes without verifying the actual text use."
+        ]
+      },
+      {
+        "id": "light-accent-on-track",
+        "label": "Avoid accent-as-small-text on track fills",
+        "warning": "light accent on track contrast 4.34 is below 4.5",
+        "theme": "light",
+        "foreground": "--accent",
+        "background": "--track",
+        "ratio": 4.34,
+        "minimum": 4.5,
+        "targetCssVariables": [
+          "--accent",
+          "--track",
+          "--ink",
+          "--link"
+        ],
+        "tokenSource": "color.accent",
+        "appOwnedEvidence": [
+          "Accent text on track fills is replaced with a passing text token or the pair is adjusted.",
+          "npm run audit:contrast no longer reports light accent on track."
+        ],
+        "mustNot": [
+          "Do not use color alone to carry action or status meaning.",
+          "Do not make track surfaces darker without checking every other track text pair."
+        ]
+      }
+    ],
+    "sharedEvidenceRequired": [
+      "Run npm run audit:contrast after the app CSS change.",
+      "Keep icon-only labels and focus-visible coverage green while changing the color pairs.",
+      "Leave the design-token source as data unless app/design explicitly chooses a new token source."
+    ],
+    "coverage": {
+      "warnings": 5,
+      "steps": 5,
+      "requiredCssVariable": "--accent-text",
+      "appOwned": true,
+      "dataOnlyFix": false
+    }
+  },
+  "skinReadiness": {
+    "status": "substrate-ready",
+    "consumer": "Claude biophilic skin pass",
+    "sourceProfile": "quiet-commons",
+    "generatedFrom": [
+      "content/design/tokens.json",
+      "app/data/*.json valueSignature"
+    ],
+    "dataOnlyDrain": false,
+    "appOwnedNext": "Wear this substrate in app/app.js and app/styles.css, then judge the running app visually and accessibly; this generated contract is not visual sign-off.",
+    "items": [
+      {
+        "id": "h1-palette",
+        "label": "H1 enriched palette and mode aliases",
+        "status": "ready",
+        "consumer": "Claude H1 enriched biophilic palette pass",
+        "paths": [
+          "profiles.quiet-commons.colorRamps",
+          "profiles.quiet-commons.colorModes",
+          "cssVariableMapping.rows"
+        ],
+        "evidence": {
+          "colorRampFamilies": [
+            "soil",
+            "leaf",
+            "water",
+            "light",
+            "clay"
+          ],
+          "colorModes": [
+            "light",
+            "dark"
+          ],
+          "cssVariableMappings": 100
+        },
+        "appOwnedNext": "Pilot the palette in the running app and keep AA contrast checks green."
+      },
+      {
+        "id": "h2-day-cycle",
+        "label": "H2 dawn/noon/dusk/night variants",
+        "status": "ready",
+        "consumer": "Claude H2 day-cycle skin pass",
+        "paths": [
+          "profiles.quiet-commons.dayCycle.variants"
+        ],
+        "evidence": {
+          "variants": [
+            "dawn",
+            "noon",
+            "dusk",
+            "night"
+          ],
+          "defaultMode": "noon",
+          "cssVariables": [
+            "--day-dawn-accent",
+            "--day-dawn-bg",
+            "--day-dawn-hint",
+            "--day-dawn-ink",
+            "--day-dawn-line",
+            "--day-dawn-muted",
+            "--day-dawn-pill",
+            "--day-dawn-surface",
+            "--day-dawn-warn",
+            "--day-dusk-accent",
+            "--day-dusk-bg",
+            "--day-dusk-hint",
+            "--day-dusk-ink",
+            "--day-dusk-line",
+            "--day-dusk-muted",
+            "--day-dusk-pill",
+            "--day-dusk-surface",
+            "--day-dusk-warn",
+            "--day-night-accent",
+            "--day-night-bg",
+            "--day-night-hint",
+            "--day-night-ink",
+            "--day-night-line",
+            "--day-night-muted",
+            "--day-night-pill",
+            "--day-night-surface",
+            "--day-night-warn",
+            "--day-noon-accent",
+            "--day-noon-bg",
+            "--day-noon-hint",
+            "--day-noon-ink",
+            "--day-noon-line",
+            "--day-noon-muted",
+            "--day-noon-pill",
+            "--day-noon-surface",
+            "--day-noon-warn"
+          ]
+        },
+        "appOwnedNext": "Wear variants only when the app can keep contrast, user agency, and reduced-motion behavior intact."
+      },
+      {
+        "id": "h3-motion",
+        "label": "H3 nature-paced motion intents",
+        "status": "ready",
+        "consumer": "Claude H3 nature-paced motion skin pass",
+        "paths": [
+          "profiles.quiet-commons.motion.curves",
+          "profiles.quiet-commons.motion.settleDurations",
+          "profiles.quiet-commons.motion.intents",
+          "profiles.quiet-commons.motion.reducedMotionPolicy"
+        ],
+        "evidence": {
+          "curves": [
+            "breathe",
+            "settle",
+            "rerank",
+            "bloom"
+          ],
+          "intents": [
+            "hover-feedback",
+            "panel-reveal",
+            "rank-rerank",
+            "value-bloom-draw"
+          ],
+          "cssVariables": [
+            "--dur-bloom",
+            "--dur-hover",
+            "--dur-micro",
+            "--dur-rerank",
+            "--dur-reveal",
+            "--ease-bloom",
+            "--ease-breathe",
+            "--ease-rerank",
+            "--ease-settle"
+          ],
+          "maxMovingElements": 12,
+          "reducedMotion": "opacity-or-instant"
+        },
+        "appOwnedNext": "Map app transitions to the named intents; never add engagement loops or motion-gated evidence."
+      },
+      {
+        "id": "h4-value-bloom",
+        "label": "H4 value-bloom colors and signed vectors",
+        "status": "ready",
+        "consumer": "Claude H4 values-bloom verdict card prototype",
+        "paths": [
+          "valueBloom.themes",
+          "valueBloom.signatureCoverage",
+          "valueBloom.previewFixtures",
+          "app/data/* valueSignature"
+        ],
+        "evidence": {
+          "themes": [
+            "planet",
+            "people",
+            "health",
+            "honesty",
+            "privacy",
+            "animals",
+            "cost",
+            "local"
+          ],
+          "cssVariables": [
+            "--bloom-animals-center",
+            "--bloom-animals-petal",
+            "--bloom-cost-center",
+            "--bloom-cost-petal",
+            "--bloom-health-center",
+            "--bloom-health-petal",
+            "--bloom-honesty-center",
+            "--bloom-honesty-petal",
+            "--bloom-local-center",
+            "--bloom-local-petal",
+            "--bloom-people-center",
+            "--bloom-people-petal",
+            "--bloom-planet-center",
+            "--bloom-planet-petal",
+            "--bloom-privacy-center",
+            "--bloom-privacy-petal"
+          ],
+          "signedEntries": 23689,
+          "drawableEntries": 22547,
+          "missingSignatureEntries": 0,
+          "staleSignatureEntries": 0,
+          "previewFixtures": 3
+        },
+        "appOwnedNext": "Render the bloom as a visual summary of already-visible scores, not as new evidence."
+      },
+      {
+        "id": "h5-materiality",
+        "label": "H5 paper grain and warm materiality",
+        "status": "ready",
+        "consumer": "Claude H5 materiality skin pass",
+        "paths": [
+          "profiles.quiet-commons.materiality.paperGrain",
+          "profiles.quiet-commons.materiality.shadow",
+          "profiles.quiet-commons.materiality.surfaces"
+        ],
+        "evidence": {
+          "surfaces": [
+            "page-paper",
+            "card-paper",
+            "quiet-band"
+          ],
+          "cssVariables": [
+            "--paper-grain-contrast-limit",
+            "--paper-grain-opacity",
+            "--paper-grain-scale",
+            "--shadow-lift",
+            "--shadow-soft"
+          ],
+          "paperGrainOpacity": 0.035,
+          "shadowStyle": "warm-soft"
+        },
+        "appOwnedNext": "Use materiality sparingly in app surfaces; no remote textures, animated grain, or nested card stacks."
+      }
+    ],
+    "coverage": {
+      "required": 5,
+      "ready": 5,
+      "blocked": 0,
+      "substrateOnly": true
+    },
+    "mustNot": [
+      "Do not treat substrate readiness as app/design drain evidence.",
+      "Do not use the bloom as evidence beyond the underlying scores.",
+      "Do not weaken contrast, reduced-motion, or no-engagement rules to wear the skin."
+    ]
+  },
+  "counts": {
+    "profiles": 3,
+    "colorTokens": 39,
+    "contrastPairs": 24,
+    "passingContrastPairs": 24,
+    "failingContrastPairs": 0,
+    "componentContracts": 7,
+    "cssVariableMappings": 100,
+    "appCssVariables": 100,
+    "contrastRemediationSteps": 5,
+    "bloomThemes": 8,
+    "valueSignatures": 23689,
+    "drawableBloomEntries": 22547,
+    "bloomPreviewFixtures": 3,
+    "colorRampFamilies": 5,
+    "colorModes": 2,
+    "dayCycleVariants": 4,
+    "materialitySurfaces": 3,
+    "motionCurves": 4,
+    "motionIntents": 4,
+    "skinReadinessItems": 5,
+    "artTokens": 7,
+    "artKinds": 1
+  },
+  "filters": {
+    "profiles": [
+      "kosplora-atlas",
+      "quiet-commons",
+      "socrates-grove"
+    ],
+    "roles": [
+      "learning-instance-skin",
+      "reference-conscious-consuming-skin",
+      "structured-dissent-instance-skin"
+    ],
+    "bloomThemes": [
+      "animals",
+      "cost",
+      "health",
+      "honesty",
+      "local",
+      "people",
+      "planet",
+      "privacy"
+    ],
+    "drawableBloomCategories": [
+      "banking",
+      "learning-resources",
+      "phones"
+    ],
+    "dayCycleVariants": [
+      "dawn",
+      "dusk",
+      "night",
+      "noon"
+    ],
+    "motionIntents": [
+      "hover-feedback",
+      "panel-reveal",
+      "rank-rerank",
+      "value-bloom-draw"
+    ],
+    "skinReadiness": [
+      "h1-palette",
+      "h2-day-cycle",
+      "h3-motion",
+      "h4-value-bloom",
+      "h5-materiality"
+    ],
+    "artKinds": [
+      "svg-line"
+    ]
+  },
+  "profiles": [
+    {
+      "id": "quiet-commons",
+      "label": "Quiet Commons",
+      "role": "reference-conscious-consuming-skin",
+      "status": "format-seed",
+      "summary": "Paper, leaf, ink, moss, clay, and water tones for a calm consumer-decision surface.",
+      "cssVariables": {
+        "--ov-quiet-commons-color-background": "#F7F3EA",
+        "--ov-quiet-commons-color-surface": "#FFFDF7",
+        "--ov-quiet-commons-color-surfaceAlt": "#F3EEE3",
+        "--ov-quiet-commons-color-text": "#243126",
+        "--ov-quiet-commons-color-mutedText": "#596457",
+        "--ov-quiet-commons-color-border": "#C9C1AE",
+        "--ov-quiet-commons-color-accent": "#1D7A5A",
+        "--ov-quiet-commons-color-accentText": "#FFFFFF",
+        "--ov-quiet-commons-color-focus": "#7B4E24",
+        "--ov-quiet-commons-color-link": "#245E89",
+        "--ov-quiet-commons-color-success": "#347A45",
+        "--ov-quiet-commons-color-warning": "#8A5A16",
+        "--ov-quiet-commons-color-danger": "#8B3A32",
+        "--ov-quiet-commons-space-xs": "0.35rem",
+        "--ov-quiet-commons-space-sm": "0.5rem",
+        "--ov-quiet-commons-space-md": "0.75rem",
+        "--ov-quiet-commons-space-lg": "1rem",
+        "--ov-quiet-commons-space-xl": "1.5rem",
+        "--ov-quiet-commons-space-xxl": "2rem",
+        "--ov-quiet-commons-radius-control": "0.25rem",
+        "--ov-quiet-commons-radius-card": "0.75rem",
+        "--ov-quiet-commons-radius-panel": "1rem",
+        "--ov-quiet-commons-radius-pill": "999px",
+        "--ov-quiet-commons-elevation-level1": "0 1px 2px rgba(24, 38, 30, 0.05), 0 3px 10px rgba(24, 38, 30, 0.05)",
+        "--ov-quiet-commons-elevation-level2": "0 4px 16px rgba(24, 38, 30, 0.09), 0 14px 36px rgba(24, 38, 30, 0.08)",
+        "--ov-quiet-commons-font-display": "Georgia, Cambria, Times New Roman, serif",
+        "--ov-quiet-commons-font-size-display": "1.65rem",
+        "--ov-quiet-commons-line-height-display": "1.2",
+        "--ov-quiet-commons-font-heading": "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "--ov-quiet-commons-font-size-heading": "1.06rem",
+        "--ov-quiet-commons-line-height-heading": "1.35",
+        "--ov-quiet-commons-font-body": "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "--ov-quiet-commons-font-size-body": "0.95rem",
+        "--ov-quiet-commons-line-height-body": "1.5",
+        "--ov-quiet-commons-font-meta": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+        "--ov-quiet-commons-font-size-meta": "0.74rem",
+        "--ov-quiet-commons-line-height-meta": "1.35",
+        "--ov-quiet-commons-font-small": "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "--ov-quiet-commons-font-size-small": "0.74rem",
+        "--ov-quiet-commons-line-height-small": "1.35",
+        "--ov-quiet-commons-motion-durationFast": "120",
+        "--ov-quiet-commons-motion-durationBase": "150",
+        "--ov-quiet-commons-motion-durationSlow": "150",
+        "--ov-quiet-commons-motion-durationRerank": "340",
+        "--ov-quiet-commons-motion-easing": "cubic-bezier(0.22, 0.61, 0.36, 1)"
+      },
+      "colorTokens": [
+        {
+          "id": "background",
+          "value": "#F7F3EA",
+          "role": "page background"
+        },
+        {
+          "id": "surface",
+          "value": "#FFFDF7",
+          "role": "primary surface"
+        },
+        {
+          "id": "surfaceAlt",
+          "value": "#F3EEE3",
+          "role": "subtle band and quiet pill fill"
+        },
+        {
+          "id": "text",
+          "value": "#243126",
+          "role": "primary text"
+        },
+        {
+          "id": "mutedText",
+          "value": "#596457",
+          "role": "secondary text"
+        },
+        {
+          "id": "border",
+          "value": "#C9C1AE",
+          "role": "quiet divider"
+        },
+        {
+          "id": "accent",
+          "value": "#1D7A5A",
+          "role": "primary action and living leaf anchor"
+        },
+        {
+          "id": "accentText",
+          "value": "#FFFFFF",
+          "role": "text on accent"
+        },
+        {
+          "id": "focus",
+          "value": "#7B4E24",
+          "role": "focus ring"
+        },
+        {
+          "id": "link",
+          "value": "#245E89",
+          "role": "link and water"
+        },
+        {
+          "id": "success",
+          "value": "#347A45",
+          "role": "strong fit"
+        },
+        {
+          "id": "warning",
+          "value": "#8A5A16",
+          "role": "tradeoff or caution"
+        },
+        {
+          "id": "danger",
+          "value": "#8B3A32",
+          "role": "poor fit without alarm red"
+        }
+      ],
+      "colorRamps": {
+        "soil": {
+          "50": "#F7F3EA",
+          "100": "#ECE2D2",
+          "200": "#D9CBB5",
+          "300": "#C9C1AE",
+          "500": "#7B6442",
+          "700": "#4D3E2A",
+          "900": "#243126",
+          "950": "#16170F"
+        },
+        "leaf": {
+          "50": "#E9F4EA",
+          "100": "#D3EAD7",
+          "300": "#8EBB98",
+          "500": "#3F8F5E",
+          "700": "#1D7A5A",
+          "900": "#143E2E"
+        },
+        "water": {
+          "50": "#E8F2F4",
+          "100": "#D1E6EA",
+          "300": "#86B4C0",
+          "500": "#4F8FA9",
+          "700": "#245E89",
+          "900": "#173949"
+        },
+        "light": {
+          "0": "#FFFDF7",
+          "50": "#F7F3EA",
+          "100": "#F3EEE3",
+          "200": "#ECE2D2",
+          "300": "#E7E5D8"
+        },
+        "clay": {
+          "100": "#F0D7CD",
+          "300": "#C98A5A",
+          "500": "#C07A53",
+          "700": "#8B3A32",
+          "900": "#4B2420"
+        }
+      },
+      "colorModes": {
+        "status": "h1-pilot",
+        "pilotColors": [
+          "background",
+          "surface",
+          "surfaceAlt",
+          "text",
+          "accent"
+        ],
+        "light": {
+          "aliases": {
+            "bg": "#F7F3EA",
+            "surface": "#FFFDF7",
+            "pill": "#F3EEE3",
+            "line": "#C9C1AE",
+            "ink": "#243126",
+            "muted": "#596457",
+            "hint": "#596457",
+            "accent": "#1D7A5A",
+            "warn": "#8A5A16"
+          },
+          "contrastPairs": [
+            {
+              "id": "ink-on-bg",
+              "fg": "ink",
+              "bg": "bg",
+              "minimum": 4.5
+            },
+            {
+              "id": "muted-on-bg",
+              "fg": "muted",
+              "bg": "bg",
+              "minimum": 4.5
+            },
+            {
+              "id": "accent-on-bg",
+              "fg": "accent",
+              "bg": "bg",
+              "minimum": 4.5
+            },
+            {
+              "id": "accent-on-pill",
+              "fg": "accent",
+              "bg": "pill",
+              "minimum": 4.5
+            }
+          ]
+        },
+        "dark": {
+          "aliases": {
+            "bg": "#16170F",
+            "surface": "#1E1F17",
+            "pill": "#222418",
+            "line": "#3A3D2B",
+            "ink": "#E7E5D8",
+            "muted": "#A3A193",
+            "hint": "#96948A",
+            "accent": "#5DCAA5",
+            "warn": "#E3A594"
+          },
+          "contrastPairs": [
+            {
+              "id": "ink-on-bg",
+              "fg": "ink",
+              "bg": "bg",
+              "minimum": 4.5
+            },
+            {
+              "id": "muted-on-surface",
+              "fg": "muted",
+              "bg": "surface",
+              "minimum": 4.5
+            },
+            {
+              "id": "accent-on-surface",
+              "fg": "accent",
+              "bg": "surface",
+              "minimum": 4.5
+            },
+            {
+              "id": "warn-on-surface",
+              "fg": "warn",
+              "bg": "surface",
+              "minimum": 4.5
+            }
+          ]
+        }
+      },
+      "typography": {
+        "display": {
+          "family": "Georgia, Cambria, Times New Roman, serif",
+          "size": "1.65rem",
+          "lineHeight": 1.2
+        },
+        "heading": {
+          "family": "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+          "size": "1.06rem",
+          "lineHeight": 1.35
+        },
+        "body": {
+          "family": "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+          "size": "0.95rem",
+          "lineHeight": 1.5
+        },
+        "meta": {
+          "family": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+          "size": "0.74rem",
+          "lineHeight": 1.35
+        },
+        "small": {
+          "family": "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+          "size": "0.74rem",
+          "lineHeight": 1.35
+        }
+      },
+      "space": {
+        "xs": "0.35rem",
+        "sm": "0.5rem",
+        "md": "0.75rem",
+        "lg": "1rem",
+        "xl": "1.5rem",
+        "xxl": "2rem"
+      },
+      "radius": {
+        "control": "0.25rem",
+        "card": "0.75rem",
+        "panel": "1rem",
+        "pill": "999px"
+      },
+      "motion": {
+        "status": "h3-token-substrate",
+        "consumer": "Claude H3 nature-paced motion skin pass",
+        "durationFast": 120,
+        "durationBase": 150,
+        "durationSlow": 150,
+        "durationRerank": 340,
+        "easing": "cubic-bezier(0.22, 0.61, 0.36, 1)",
+        "reducedMotion": "opacity-or-instant",
+        "maxMovingElements": 12,
+        "curves": {
+          "breathe": "cubic-bezier(0.22, 0.61, 0.36, 1)",
+          "settle": "cubic-bezier(0.18, 0.72, 0.28, 1)",
+          "rerank": "cubic-bezier(0.2, 0.62, 0.24, 1)",
+          "bloom": "cubic-bezier(0.16, 0.76, 0.34, 1)"
+        },
+        "settleDurations": {
+          "micro": 120,
+          "hover": 150,
+          "reveal": 220,
+          "rerank": 340,
+          "bloom": 420
+        },
+        "intents": [
+          {
+            "id": "hover-feedback",
+            "duration": "micro",
+            "curve": "breathe",
+            "maxDistancePx": 0,
+            "allowedProperties": [
+              "opacity",
+              "border-color",
+              "background-color",
+              "color"
+            ],
+            "mustNot": [
+              "Do not move layout on hover.",
+              "Do not make hover feel like a reward."
+            ]
+          },
+          {
+            "id": "panel-reveal",
+            "duration": "reveal",
+            "curve": "settle",
+            "maxDistancePx": 8,
+            "allowedProperties": [
+              "opacity",
+              "transform"
+            ],
+            "mustNot": [
+              "Do not conceal evidence behind animation.",
+              "Do not delay source access."
+            ]
+          },
+          {
+            "id": "rank-rerank",
+            "duration": "rerank",
+            "curve": "rerank",
+            "maxDistancePx": 24,
+            "maxMovingElements": 12,
+            "allowedProperties": [
+              "opacity",
+              "transform"
+            ],
+            "mustNot": [
+              "Do not animate rankings to create urgency.",
+              "Do not make a value change feel like a slot-machine result."
+            ]
+          },
+          {
+            "id": "value-bloom-draw",
+            "duration": "bloom",
+            "curve": "bloom",
+            "maxDistancePx": 0,
+            "allowedProperties": [
+              "opacity",
+              "stroke-dashoffset",
+              "transform"
+            ],
+            "mustNot": [
+              "Do not loop the bloom after it settles.",
+              "Do not draw a bloom before the underlying scores are visible."
+            ]
+          }
+        ],
+        "reducedMotionPolicy": {
+          "mode": "opacity-or-instant",
+          "allowedProperties": [
+            "opacity",
+            "color",
+            "border-color",
+            "background-color"
+          ],
+          "mustNot": [
+            "Do not use transform motion when reduced motion is active.",
+            "Do not remove information when motion is disabled."
+          ]
+        },
+        "mustNot": [
+          "Do not use infinite decorative motion.",
+          "Do not animate rankings to create urgency.",
+          "Do not hide information behind motion.",
+          "Do not use motion to create streaks, urgency, or completion pressure."
+        ]
+      },
+      "elevation": {
+        "level1": "0 1px 2px rgba(24, 38, 30, 0.05), 0 3px 10px rgba(24, 38, 30, 0.05)",
+        "level2": "0 4px 16px rgba(24, 38, 30, 0.09), 0 14px 36px rgba(24, 38, 30, 0.08)"
+      },
+      "contrast": [
+        {
+          "id": "body-on-background",
+          "fg": "text",
+          "bg": "background",
+          "purpose": "normal-text",
+          "foreground": "#243126",
+          "background": "#F7F3EA",
+          "minimum": 4.5,
+          "ratio": 12.3,
+          "pass": true
+        },
+        {
+          "id": "muted-on-background",
+          "fg": "mutedText",
+          "bg": "background",
+          "purpose": "normal-text",
+          "foreground": "#596457",
+          "background": "#F7F3EA",
+          "minimum": 4.5,
+          "ratio": 5.6,
+          "pass": true
+        },
+        {
+          "id": "body-on-surface",
+          "fg": "text",
+          "bg": "surface",
+          "purpose": "normal-text",
+          "foreground": "#243126",
+          "background": "#FFFDF7",
+          "minimum": 4.5,
+          "ratio": 13.39,
+          "pass": true
+        },
+        {
+          "id": "link-on-background",
+          "fg": "link",
+          "bg": "background",
+          "purpose": "normal-text",
+          "foreground": "#245E89",
+          "background": "#F7F3EA",
+          "minimum": 4.5,
+          "ratio": 6.24,
+          "pass": true
+        },
+        {
+          "id": "accent-text-on-accent",
+          "fg": "accentText",
+          "bg": "accent",
+          "purpose": "button-text",
+          "foreground": "#FFFFFF",
+          "background": "#1D7A5A",
+          "minimum": 4.5,
+          "ratio": 5.27,
+          "pass": true
+        },
+        {
+          "id": "focus-on-background",
+          "fg": "focus",
+          "bg": "background",
+          "purpose": "focus-visible",
+          "foreground": "#7B4E24",
+          "background": "#F7F3EA",
+          "minimum": 3,
+          "ratio": 6.41,
+          "pass": true
+        },
+        {
+          "id": "warning-on-surface",
+          "fg": "warning",
+          "bg": "surface",
+          "purpose": "status-text",
+          "foreground": "#8A5A16",
+          "background": "#FFFDF7",
+          "minimum": 4.5,
+          "ratio": 5.81,
+          "pass": true
+        },
+        {
+          "id": "danger-on-surface",
+          "fg": "danger",
+          "bg": "surface",
+          "purpose": "status-text",
+          "foreground": "#8B3A32",
+          "background": "#FFFDF7",
+          "minimum": 4.5,
+          "ratio": 7.51,
+          "pass": true
+        }
+      ],
+      "contrastSummary": {
+        "pairs": 8,
+        "pass": 8,
+        "fail": 0,
+        "minimumRatio": 5.27
+      },
+      "componentContracts": [
+        {
+          "id": "ranked-card",
+          "tokens": [
+            "surface",
+            "text",
+            "mutedText",
+            "border",
+            "accent"
+          ],
+          "mustExpress": [
+            "identity",
+            "fit tier",
+            "one reason",
+            "source access"
+          ],
+          "mustNot": [
+            "look sponsored",
+            "hide weak axes",
+            "resize on hover"
+          ]
+        },
+        {
+          "id": "values-panel",
+          "tokens": [
+            "surfaceAlt",
+            "text",
+            "accent",
+            "focus"
+          ],
+          "mustExpress": [
+            "user control",
+            "tradeoff language",
+            "reset path"
+          ],
+          "mustNot": [
+            "imply moral verdict",
+            "bury reset",
+            "animate continuously"
+          ]
+        },
+        {
+          "id": "provenance-chip",
+          "tokens": [
+            "surface",
+            "link",
+            "mutedText",
+            "border"
+          ],
+          "mustExpress": [
+            "source label",
+            "asof date",
+            "claim scope"
+          ],
+          "mustNot": [
+            "use decorative-only icons",
+            "truncate source meaning"
+          ]
+        }
+      ],
+      "artTokens": [
+        {
+          "id": "terrain-contour",
+          "kind": "svg-line",
+          "viewBox": "0 0 120 60",
+          "stroke": "border",
+          "fill": "none",
+          "path": "M4 42 C18 30 30 48 44 34 S74 18 92 30 S112 45 118 24",
+          "usage": "section divider or quiet background line"
+        },
+        {
+          "id": "leaf-vein",
+          "kind": "svg-line",
+          "viewBox": "0 0 96 48",
+          "stroke": "accent",
+          "fill": "none",
+          "path": "M8 40 C28 8 64 6 88 34 M23 26 L36 30 M38 18 L50 24 M56 15 L66 24",
+          "usage": "fit-tier flourish, never a button label"
+        },
+        {
+          "id": "water-ripple",
+          "kind": "svg-line",
+          "viewBox": "0 0 120 44",
+          "stroke": "link",
+          "fill": "none",
+          "path": "M6 22 C18 10 30 34 42 22 S66 10 78 22 S102 34 114 22",
+          "usage": "transition between learning and evidence areas"
+        }
+      ],
+      "dayCycle": {
+        "status": "h2-token-substrate",
+        "consumer": "Claude H2 day-cycle skin pass",
+        "defaultMode": "noon",
+        "variants": {
+          "dawn": {
+            "label": "Dawn",
+            "role": "warm start-of-day palette for soft first-use and quiet onboarding states",
+            "aliases": {
+              "bg": "#F8EFE3",
+              "surface": "#FFFDF7",
+              "pill": "#F1E2D0",
+              "line": "#C8B89E",
+              "ink": "#243126",
+              "muted": "#5B6154",
+              "hint": "#5B6154",
+              "accent": "#1D7A5A",
+              "warn": "#8A5A16"
+            },
+            "contrastPairs": [
+              {
+                "id": "ink-on-bg",
+                "fg": "ink",
+                "bg": "bg",
+                "minimum": 4.5
+              },
+              {
+                "id": "muted-on-bg",
+                "fg": "muted",
+                "bg": "bg",
+                "minimum": 4.5
+              },
+              {
+                "id": "accent-on-surface",
+                "fg": "accent",
+                "bg": "surface",
+                "minimum": 4.5
+              },
+              {
+                "id": "warn-on-surface",
+                "fg": "warn",
+                "bg": "surface",
+                "minimum": 4.5
+              }
+            ]
+          },
+          "noon": {
+            "label": "Noon",
+            "role": "canonical light mode for ordinary decision work",
+            "aliases": {
+              "bg": "#F7F3EA",
+              "surface": "#FFFDF7",
+              "pill": "#F3EEE3",
+              "line": "#C9C1AE",
+              "ink": "#243126",
+              "muted": "#596457",
+              "hint": "#596457",
+              "accent": "#1D7A5A",
+              "warn": "#8A5A16"
+            },
+            "contrastPairs": [
+              {
+                "id": "ink-on-bg",
+                "fg": "ink",
+                "bg": "bg",
+                "minimum": 4.5
+              },
+              {
+                "id": "muted-on-bg",
+                "fg": "muted",
+                "bg": "bg",
+                "minimum": 4.5
+              },
+              {
+                "id": "accent-on-surface",
+                "fg": "accent",
+                "bg": "surface",
+                "minimum": 4.5
+              },
+              {
+                "id": "accent-on-pill",
+                "fg": "accent",
+                "bg": "pill",
+                "minimum": 4.5
+              }
+            ]
+          },
+          "dusk": {
+            "label": "Dusk",
+            "role": "low-glare transition palette for evening review without theatrical darkness",
+            "aliases": {
+              "bg": "#27251C",
+              "surface": "#302D22",
+              "pill": "#393425",
+              "line": "#5B5138",
+              "ink": "#F1EEE3",
+              "muted": "#C7BFA7",
+              "hint": "#B6AE99",
+              "accent": "#8FD2AD",
+              "warn": "#E4A66D"
+            },
+            "contrastPairs": [
+              {
+                "id": "ink-on-bg",
+                "fg": "ink",
+                "bg": "bg",
+                "minimum": 4.5
+              },
+              {
+                "id": "muted-on-bg",
+                "fg": "muted",
+                "bg": "bg",
+                "minimum": 4.5
+              },
+              {
+                "id": "accent-on-surface",
+                "fg": "accent",
+                "bg": "surface",
+                "minimum": 4.5
+              },
+              {
+                "id": "warn-on-surface",
+                "fg": "warn",
+                "bg": "surface",
+                "minimum": 4.5
+              }
+            ]
+          },
+          "night": {
+            "label": "Night",
+            "role": "dark mode with readable ink, muted surfaces, and no attention-farming glow",
+            "aliases": {
+              "bg": "#16170F",
+              "surface": "#1E1F17",
+              "pill": "#222418",
+              "line": "#3A3D2B",
+              "ink": "#E7E5D8",
+              "muted": "#A3A193",
+              "hint": "#A3A193",
+              "accent": "#5DCAA5",
+              "warn": "#E3A594"
+            },
+            "contrastPairs": [
+              {
+                "id": "ink-on-bg",
+                "fg": "ink",
+                "bg": "bg",
+                "minimum": 4.5
+              },
+              {
+                "id": "muted-on-surface",
+                "fg": "muted",
+                "bg": "surface",
+                "minimum": 4.5
+              },
+              {
+                "id": "accent-on-surface",
+                "fg": "accent",
+                "bg": "surface",
+                "minimum": 4.5
+              },
+              {
+                "id": "warn-on-surface",
+                "fg": "warn",
+                "bg": "surface",
+                "minimum": 4.5
+              }
+            ]
+          }
+        },
+        "mustNot": [
+          "Do not auto-cycle colors in a way that distracts from decisions.",
+          "Do not infer a user's location, sleep schedule, or mood from this token set.",
+          "Do not ship a variant until its declared contrast pairs pass."
+        ]
+      },
+      "materiality": {
+        "status": "h5-token-substrate",
+        "consumer": "Claude H5 materiality skin pass",
+        "paperGrain": {
+          "opacity": 0.035,
+          "scalePx": 180,
+          "contrastLimit": 0.08,
+          "tokens": [
+            "background",
+            "surface",
+            "surfaceAlt"
+          ],
+          "mustNot": [
+            "Do not use grain to hide low contrast.",
+            "Do not load remote texture assets.",
+            "Do not animate grain."
+          ]
+        },
+        "shadow": {
+          "style": "warm-soft",
+          "source": "tokens.elevation",
+          "maxLevels": 2,
+          "mustNot": [
+            "Do not create floating-card stacks.",
+            "Do not exceed the two authored elevation levels.",
+            "Do not use shadow as the only focus indicator."
+          ]
+        },
+        "surfaces": [
+          {
+            "id": "page-paper",
+            "token": "background",
+            "grain": "paperGrain",
+            "role": "subtle page field; never a busy background"
+          },
+          {
+            "id": "card-paper",
+            "token": "surface",
+            "grain": "paperGrain",
+            "role": "quiet decision surface behind product facts"
+          },
+          {
+            "id": "quiet-band",
+            "token": "surfaceAlt",
+            "grain": "paperGrain",
+            "role": "soft section band for evidence, filters, and guide context"
+          }
+        ]
+      }
+    },
+    {
+      "id": "kosplora-atlas",
+      "label": "Kosplora Atlas",
+      "role": "learning-instance-skin",
+      "status": "format-seed",
+      "summary": "Deep sky, meadow, copper, and parchment tones for a learning-path atlas.",
+      "cssVariables": {
+        "--ov-kosplora-atlas-color-background": "#EEF3F6",
+        "--ov-kosplora-atlas-color-surface": "#FFFFFF",
+        "--ov-kosplora-atlas-color-surfaceAlt": "#DDE8ED",
+        "--ov-kosplora-atlas-color-text": "#172B36",
+        "--ov-kosplora-atlas-color-mutedText": "#526A73",
+        "--ov-kosplora-atlas-color-border": "#B9CDD4",
+        "--ov-kosplora-atlas-color-accent": "#265F73",
+        "--ov-kosplora-atlas-color-accentText": "#FFFFFF",
+        "--ov-kosplora-atlas-color-focus": "#8A4B18",
+        "--ov-kosplora-atlas-color-link": "#1F5F99",
+        "--ov-kosplora-atlas-color-success": "#2F7149",
+        "--ov-kosplora-atlas-color-warning": "#7C5A12",
+        "--ov-kosplora-atlas-color-danger": "#7D3D42",
+        "--ov-kosplora-atlas-space-xs": "0.35rem",
+        "--ov-kosplora-atlas-space-sm": "0.5rem",
+        "--ov-kosplora-atlas-space-md": "0.75rem",
+        "--ov-kosplora-atlas-space-lg": "1rem",
+        "--ov-kosplora-atlas-space-xl": "1.5rem",
+        "--ov-kosplora-atlas-space-xxl": "2.25rem",
+        "--ov-kosplora-atlas-radius-control": "0.25rem",
+        "--ov-kosplora-atlas-radius-card": "0.75rem",
+        "--ov-kosplora-atlas-radius-panel": "1rem",
+        "--ov-kosplora-atlas-radius-pill": "999px",
+        "--ov-kosplora-atlas-elevation-level1": "0 1px 2px rgba(20, 40, 44, 0.05), 0 3px 10px rgba(20, 40, 44, 0.05)",
+        "--ov-kosplora-atlas-elevation-level2": "0 4px 16px rgba(20, 40, 44, 0.09), 0 14px 36px rgba(20, 40, 44, 0.08)",
+        "--ov-kosplora-atlas-font-display": "Georgia, Cambria, Times New Roman, serif",
+        "--ov-kosplora-atlas-font-size-display": "1.65rem",
+        "--ov-kosplora-atlas-line-height-display": "1.2",
+        "--ov-kosplora-atlas-font-heading": "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "--ov-kosplora-atlas-font-size-heading": "1.06rem",
+        "--ov-kosplora-atlas-line-height-heading": "1.35",
+        "--ov-kosplora-atlas-font-body": "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "--ov-kosplora-atlas-font-size-body": "0.95rem",
+        "--ov-kosplora-atlas-line-height-body": "1.5",
+        "--ov-kosplora-atlas-font-meta": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+        "--ov-kosplora-atlas-font-size-meta": "0.74rem",
+        "--ov-kosplora-atlas-line-height-meta": "1.35",
+        "--ov-kosplora-atlas-font-small": "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "--ov-kosplora-atlas-font-size-small": "0.74rem",
+        "--ov-kosplora-atlas-line-height-small": "1.35",
+        "--ov-kosplora-atlas-motion-durationFast": "120",
+        "--ov-kosplora-atlas-motion-durationBase": "150",
+        "--ov-kosplora-atlas-motion-durationSlow": "150",
+        "--ov-kosplora-atlas-motion-durationRerank": "340",
+        "--ov-kosplora-atlas-motion-easing": "cubic-bezier(0.2, 0.7, 0.25, 1)"
+      },
+      "colorTokens": [
+        {
+          "id": "background",
+          "value": "#EEF3F6",
+          "role": "page background"
+        },
+        {
+          "id": "surface",
+          "value": "#FFFFFF",
+          "role": "primary surface"
+        },
+        {
+          "id": "surfaceAlt",
+          "value": "#DDE8ED",
+          "role": "pathway band"
+        },
+        {
+          "id": "text",
+          "value": "#172B36",
+          "role": "primary text"
+        },
+        {
+          "id": "mutedText",
+          "value": "#526A73",
+          "role": "secondary text"
+        },
+        {
+          "id": "border",
+          "value": "#B9CDD4",
+          "role": "quiet divider"
+        },
+        {
+          "id": "accent",
+          "value": "#265F73",
+          "role": "primary action and route"
+        },
+        {
+          "id": "accentText",
+          "value": "#FFFFFF",
+          "role": "text on accent"
+        },
+        {
+          "id": "focus",
+          "value": "#8A4B18",
+          "role": "focus ring"
+        },
+        {
+          "id": "link",
+          "value": "#1F5F99",
+          "role": "source and route link"
+        },
+        {
+          "id": "success",
+          "value": "#2F7149",
+          "role": "high-signal resource"
+        },
+        {
+          "id": "warning",
+          "value": "#7C5A12",
+          "role": "tradeoff or caveat"
+        },
+        {
+          "id": "danger",
+          "value": "#7D3D42",
+          "role": "weak fit without alarm red"
+        }
+      ],
+      "colorRamps": {},
+      "colorModes": {},
+      "typography": {
+        "display": {
+          "family": "Georgia, Cambria, Times New Roman, serif",
+          "size": "1.65rem",
+          "lineHeight": 1.2
+        },
+        "heading": {
+          "family": "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+          "size": "1.06rem",
+          "lineHeight": 1.35
+        },
+        "body": {
+          "family": "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+          "size": "0.95rem",
+          "lineHeight": 1.5
+        },
+        "meta": {
+          "family": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+          "size": "0.74rem",
+          "lineHeight": 1.35
+        },
+        "small": {
+          "family": "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+          "size": "0.74rem",
+          "lineHeight": 1.35
+        }
+      },
+      "space": {
+        "xs": "0.35rem",
+        "sm": "0.5rem",
+        "md": "0.75rem",
+        "lg": "1rem",
+        "xl": "1.5rem",
+        "xxl": "2.25rem"
+      },
+      "radius": {
+        "control": "0.25rem",
+        "card": "0.75rem",
+        "panel": "1rem",
+        "pill": "999px"
+      },
+      "motion": {
+        "durationFast": 120,
+        "durationBase": 150,
+        "durationSlow": 150,
+        "durationRerank": 340,
+        "easing": "cubic-bezier(0.2, 0.7, 0.25, 1)",
+        "reducedMotion": "opacity-or-instant",
+        "maxMovingElements": 14,
+        "mustNot": [
+          "Do not make challenge exposure feel like a streak.",
+          "Do not loop decorative map motion.",
+          "Do not obscure source quality."
+        ]
+      },
+      "elevation": {
+        "level1": "0 1px 2px rgba(20, 40, 44, 0.05), 0 3px 10px rgba(20, 40, 44, 0.05)",
+        "level2": "0 4px 16px rgba(20, 40, 44, 0.09), 0 14px 36px rgba(20, 40, 44, 0.08)"
+      },
+      "contrast": [
+        {
+          "id": "body-on-background",
+          "fg": "text",
+          "bg": "background",
+          "purpose": "normal-text",
+          "foreground": "#172B36",
+          "background": "#EEF3F6",
+          "minimum": 4.5,
+          "ratio": 13.09,
+          "pass": true
+        },
+        {
+          "id": "muted-on-background",
+          "fg": "mutedText",
+          "bg": "background",
+          "purpose": "normal-text",
+          "foreground": "#526A73",
+          "background": "#EEF3F6",
+          "minimum": 4.5,
+          "ratio": 5.12,
+          "pass": true
+        },
+        {
+          "id": "body-on-surface",
+          "fg": "text",
+          "bg": "surface",
+          "purpose": "normal-text",
+          "foreground": "#172B36",
+          "background": "#FFFFFF",
+          "minimum": 4.5,
+          "ratio": 14.63,
+          "pass": true
+        },
+        {
+          "id": "link-on-background",
+          "fg": "link",
+          "bg": "background",
+          "purpose": "normal-text",
+          "foreground": "#1F5F99",
+          "background": "#EEF3F6",
+          "minimum": 4.5,
+          "ratio": 5.95,
+          "pass": true
+        },
+        {
+          "id": "accent-text-on-accent",
+          "fg": "accentText",
+          "bg": "accent",
+          "purpose": "button-text",
+          "foreground": "#FFFFFF",
+          "background": "#265F73",
+          "minimum": 4.5,
+          "ratio": 7.08,
+          "pass": true
+        },
+        {
+          "id": "focus-on-background",
+          "fg": "focus",
+          "bg": "background",
+          "purpose": "focus-visible",
+          "foreground": "#8A4B18",
+          "background": "#EEF3F6",
+          "minimum": 3,
+          "ratio": 6.06,
+          "pass": true
+        },
+        {
+          "id": "warning-on-surface",
+          "fg": "warning",
+          "bg": "surface",
+          "purpose": "status-text",
+          "foreground": "#7C5A12",
+          "background": "#FFFFFF",
+          "minimum": 4.5,
+          "ratio": 6.31,
+          "pass": true
+        },
+        {
+          "id": "danger-on-surface",
+          "fg": "danger",
+          "bg": "surface",
+          "purpose": "status-text",
+          "foreground": "#7D3D42",
+          "background": "#FFFFFF",
+          "minimum": 4.5,
+          "ratio": 8.02,
+          "pass": true
+        }
+      ],
+      "contrastSummary": {
+        "pairs": 8,
+        "pass": 8,
+        "fail": 0,
+        "minimumRatio": 5.12
+      },
+      "componentContracts": [
+        {
+          "id": "learning-path-card",
+          "tokens": [
+            "surface",
+            "text",
+            "mutedText",
+            "accent",
+            "link"
+          ],
+          "mustExpress": [
+            "difficulty",
+            "depth",
+            "openness",
+            "next step"
+          ],
+          "mustNot": [
+            "gamify completion",
+            "hide cost",
+            "rank controversy above evidence"
+          ]
+        },
+        {
+          "id": "challenge-panel",
+          "tokens": [
+            "surfaceAlt",
+            "text",
+            "warning",
+            "focus"
+          ],
+          "mustExpress": [
+            "opposite view",
+            "steelman source",
+            "dismiss path"
+          ],
+          "mustNot": [
+            "shame the learner",
+            "force debate",
+            "create urgency"
+          ]
+        }
+      ],
+      "artTokens": [
+        {
+          "id": "atlas-route",
+          "kind": "svg-line",
+          "viewBox": "0 0 128 64",
+          "stroke": "accent",
+          "fill": "none",
+          "path": "M8 52 C24 32 36 44 50 26 S82 8 96 24 S112 46 120 18",
+          "usage": "learning route connector"
+        },
+        {
+          "id": "source-star",
+          "kind": "svg-line",
+          "viewBox": "0 0 64 64",
+          "stroke": "link",
+          "fill": "none",
+          "path": "M32 8 L36 28 L56 32 L36 36 L32 56 L28 36 L8 32 L28 28 Z",
+          "usage": "sourced evidence marker"
+        }
+      ]
+    },
+    {
+      "id": "socrates-grove",
+      "label": "Socrates Grove",
+      "role": "structured-dissent-instance-skin",
+      "status": "format-seed",
+      "summary": "Stone, olive, dusk, and ember tones for structured, sourced disagreement.",
+      "cssVariables": {
+        "--ov-socrates-grove-color-background": "#F1EFE7",
+        "--ov-socrates-grove-color-surface": "#FFFDF8",
+        "--ov-socrates-grove-color-surfaceAlt": "#E4DFD2",
+        "--ov-socrates-grove-color-text": "#292D24",
+        "--ov-socrates-grove-color-mutedText": "#5B6254",
+        "--ov-socrates-grove-color-border": "#C4BCA8",
+        "--ov-socrates-grove-color-accent": "#4B6B39",
+        "--ov-socrates-grove-color-accentText": "#FFFFFF",
+        "--ov-socrates-grove-color-focus": "#7A3F1D",
+        "--ov-socrates-grove-color-link": "#285E7D",
+        "--ov-socrates-grove-color-success": "#3C7042",
+        "--ov-socrates-grove-color-warning": "#815815",
+        "--ov-socrates-grove-color-danger": "#6F3A63",
+        "--ov-socrates-grove-space-xs": "0.35rem",
+        "--ov-socrates-grove-space-sm": "0.5rem",
+        "--ov-socrates-grove-space-md": "0.75rem",
+        "--ov-socrates-grove-space-lg": "1rem",
+        "--ov-socrates-grove-space-xl": "1.5rem",
+        "--ov-socrates-grove-space-xxl": "2rem",
+        "--ov-socrates-grove-radius-control": "0.25rem",
+        "--ov-socrates-grove-radius-card": "0.75rem",
+        "--ov-socrates-grove-radius-panel": "1rem",
+        "--ov-socrates-grove-radius-pill": "999px",
+        "--ov-socrates-grove-elevation-level1": "0 1px 2px rgba(38, 30, 24, 0.05), 0 3px 10px rgba(38, 30, 24, 0.05)",
+        "--ov-socrates-grove-elevation-level2": "0 4px 16px rgba(38, 30, 24, 0.09), 0 14px 36px rgba(38, 30, 24, 0.08)",
+        "--ov-socrates-grove-font-display": "Georgia, Cambria, Times New Roman, serif",
+        "--ov-socrates-grove-font-size-display": "1.65rem",
+        "--ov-socrates-grove-line-height-display": "1.2",
+        "--ov-socrates-grove-font-heading": "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "--ov-socrates-grove-font-size-heading": "1.06rem",
+        "--ov-socrates-grove-line-height-heading": "1.35",
+        "--ov-socrates-grove-font-body": "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "--ov-socrates-grove-font-size-body": "0.95rem",
+        "--ov-socrates-grove-line-height-body": "1.5",
+        "--ov-socrates-grove-font-meta": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+        "--ov-socrates-grove-font-size-meta": "0.74rem",
+        "--ov-socrates-grove-line-height-meta": "1.35",
+        "--ov-socrates-grove-font-small": "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+        "--ov-socrates-grove-font-size-small": "0.74rem",
+        "--ov-socrates-grove-line-height-small": "1.35",
+        "--ov-socrates-grove-motion-durationFast": "100",
+        "--ov-socrates-grove-motion-durationBase": "150",
+        "--ov-socrates-grove-motion-durationSlow": "150",
+        "--ov-socrates-grove-motion-durationRerank": "340",
+        "--ov-socrates-grove-motion-easing": "cubic-bezier(0.24, 0.64, 0.31, 1)"
+      },
+      "colorTokens": [
+        {
+          "id": "background",
+          "value": "#F1EFE7",
+          "role": "page background"
+        },
+        {
+          "id": "surface",
+          "value": "#FFFDF8",
+          "role": "primary surface"
+        },
+        {
+          "id": "surfaceAlt",
+          "value": "#E4DFD2",
+          "role": "argument band"
+        },
+        {
+          "id": "text",
+          "value": "#292D24",
+          "role": "primary text"
+        },
+        {
+          "id": "mutedText",
+          "value": "#5B6254",
+          "role": "secondary text"
+        },
+        {
+          "id": "border",
+          "value": "#C4BCA8",
+          "role": "quiet divider"
+        },
+        {
+          "id": "accent",
+          "value": "#4B6B39",
+          "role": "primary action and grove"
+        },
+        {
+          "id": "accentText",
+          "value": "#FFFFFF",
+          "role": "text on accent"
+        },
+        {
+          "id": "focus",
+          "value": "#7A3F1D",
+          "role": "focus ring"
+        },
+        {
+          "id": "link",
+          "value": "#285E7D",
+          "role": "source and reference link"
+        },
+        {
+          "id": "success",
+          "value": "#3C7042",
+          "role": "well-supported claim"
+        },
+        {
+          "id": "warning",
+          "value": "#815815",
+          "role": "unsettled or caveated claim"
+        },
+        {
+          "id": "danger",
+          "value": "#6F3A63",
+          "role": "unsupported or weak claim"
+        }
+      ],
+      "colorRamps": {},
+      "colorModes": {},
+      "typography": {
+        "display": {
+          "family": "Georgia, Cambria, Times New Roman, serif",
+          "size": "1.65rem",
+          "lineHeight": 1.2
+        },
+        "heading": {
+          "family": "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+          "size": "1.06rem",
+          "lineHeight": 1.35
+        },
+        "body": {
+          "family": "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+          "size": "0.95rem",
+          "lineHeight": 1.5
+        },
+        "meta": {
+          "family": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+          "size": "0.74rem",
+          "lineHeight": 1.35
+        },
+        "small": {
+          "family": "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+          "size": "0.74rem",
+          "lineHeight": 1.35
+        }
+      },
+      "space": {
+        "xs": "0.35rem",
+        "sm": "0.5rem",
+        "md": "0.75rem",
+        "lg": "1rem",
+        "xl": "1.5rem",
+        "xxl": "2rem"
+      },
+      "radius": {
+        "control": "0.25rem",
+        "card": "0.75rem",
+        "panel": "1rem",
+        "pill": "999px"
+      },
+      "motion": {
+        "durationFast": 100,
+        "durationBase": 150,
+        "durationSlow": 150,
+        "durationRerank": 340,
+        "easing": "cubic-bezier(0.24, 0.64, 0.31, 1)",
+        "reducedMotion": "opacity-or-instant",
+        "maxMovingElements": 10,
+        "mustNot": [
+          "Do not animate disagreement as combat.",
+          "Do not reward reply volume.",
+          "Do not conceal uncertainty."
+        ]
+      },
+      "elevation": {
+        "level1": "0 1px 2px rgba(38, 30, 24, 0.05), 0 3px 10px rgba(38, 30, 24, 0.05)",
+        "level2": "0 4px 16px rgba(38, 30, 24, 0.09), 0 14px 36px rgba(38, 30, 24, 0.08)"
+      },
+      "contrast": [
+        {
+          "id": "body-on-background",
+          "fg": "text",
+          "bg": "background",
+          "purpose": "normal-text",
+          "foreground": "#292D24",
+          "background": "#F1EFE7",
+          "minimum": 4.5,
+          "ratio": 12.2,
+          "pass": true
+        },
+        {
+          "id": "muted-on-background",
+          "fg": "mutedText",
+          "bg": "background",
+          "purpose": "normal-text",
+          "foreground": "#5B6254",
+          "background": "#F1EFE7",
+          "minimum": 4.5,
+          "ratio": 5.49,
+          "pass": true
+        },
+        {
+          "id": "body-on-surface",
+          "fg": "text",
+          "bg": "surface",
+          "purpose": "normal-text",
+          "foreground": "#292D24",
+          "background": "#FFFDF8",
+          "minimum": 4.5,
+          "ratio": 13.82,
+          "pass": true
+        },
+        {
+          "id": "link-on-background",
+          "fg": "link",
+          "bg": "background",
+          "purpose": "normal-text",
+          "foreground": "#285E7D",
+          "background": "#F1EFE7",
+          "minimum": 4.5,
+          "ratio": 6.11,
+          "pass": true
+        },
+        {
+          "id": "accent-text-on-accent",
+          "fg": "accentText",
+          "bg": "accent",
+          "purpose": "button-text",
+          "foreground": "#FFFFFF",
+          "background": "#4B6B39",
+          "minimum": 4.5,
+          "ratio": 6.07,
+          "pass": true
+        },
+        {
+          "id": "focus-on-background",
+          "fg": "focus",
+          "bg": "background",
+          "purpose": "focus-visible",
+          "foreground": "#7A3F1D",
+          "background": "#F1EFE7",
+          "minimum": 3,
+          "ratio": 7.14,
+          "pass": true
+        },
+        {
+          "id": "warning-on-surface",
+          "fg": "warning",
+          "bg": "surface",
+          "purpose": "status-text",
+          "foreground": "#815815",
+          "background": "#FFFDF8",
+          "minimum": 4.5,
+          "ratio": 6.18,
+          "pass": true
+        },
+        {
+          "id": "danger-on-surface",
+          "fg": "danger",
+          "bg": "surface",
+          "purpose": "status-text",
+          "foreground": "#6F3A63",
+          "background": "#FFFDF8",
+          "minimum": 4.5,
+          "ratio": 8.39,
+          "pass": true
+        }
+      ],
+      "contrastSummary": {
+        "pairs": 8,
+        "pass": 8,
+        "fail": 0,
+        "minimumRatio": 5.49
+      },
+      "componentContracts": [
+        {
+          "id": "position-card",
+          "tokens": [
+            "surface",
+            "text",
+            "link",
+            "warning"
+          ],
+          "mustExpress": [
+            "claim",
+            "source set",
+            "limits",
+            "counterclaim path"
+          ],
+          "mustNot": [
+            "rank by attention",
+            "hide uncertainty",
+            "turn dissent into sport"
+          ]
+        },
+        {
+          "id": "attestation-row",
+          "tokens": [
+            "surfaceAlt",
+            "text",
+            "mutedText",
+            "border"
+          ],
+          "mustExpress": [
+            "stance",
+            "counted status",
+            "signature state"
+          ],
+          "mustNot": [
+            "show template records as votes",
+            "publish private contact data"
+          ]
+        }
+      ],
+      "artTokens": [
+        {
+          "id": "olive-branch",
+          "kind": "svg-line",
+          "viewBox": "0 0 128 64",
+          "stroke": "accent",
+          "fill": "none",
+          "path": "M10 52 C34 22 70 18 118 12 M36 34 C28 24 20 24 16 30 M58 24 C48 14 38 14 34 22 M82 18 C74 8 62 10 58 18",
+          "usage": "structured disagreement divider"
+        },
+        {
+          "id": "source-plinth",
+          "kind": "svg-line",
+          "viewBox": "0 0 96 56",
+          "stroke": "border",
+          "fill": "none",
+          "path": "M14 44 H82 M24 36 H72 M30 16 H66 M36 16 V36 M60 16 V36 M26 12 H70",
+          "usage": "source set marker"
+        }
+      ]
+    }
+  ]
+}

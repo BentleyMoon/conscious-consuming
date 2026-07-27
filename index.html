@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Values Commons: choose by your values, together or alone</title>
+<meta name="description" content="A public-interest site for decisions by values: try the live app, keep your values as a file, check sourced facts, and make group plans. No ads, no tracking, no pay-to-rank.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#1d7a5a">
+<script>try{var t=localStorage.getItem('cc.theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d7a5a'/%3E%3Cpath d='M18 36c0-13 13-20 28-20-2 16-14 23-28 20z' fill='%23fff'/%3E%3Cpath d='M20 46c6-12 14-18 22-21' stroke='%231d7a5a' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Values Commons">
+<meta property="og:description" content="Choose by your values, check the sources, and make group plans without accounts, ads, or pay-to-rank.">
+<meta property="og:image" content="https://valuescommons.org/og-standard.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Values Commons">
+<meta name="twitter:description" content="Choose by your values, check the sources, and make group plans without accounts, ads, or pay-to-rank.">
+<meta name="twitter:image" content="https://valuescommons.org/og-standard.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://valuescommons.org#website","url":"https://valuescommons.org","name":"Values Commons","inLanguage":"en","publisher":{"@id":"https://futurisminstitute.org#org"}},{"@type":"Organization","@id":"https://futurisminstitute.org#org","name":"Futurism Institute","url":"https://futurisminstitute.org","founder":{"@id":"https://bentleymoon.com#person"},"sameAs":["https://valuescommons.org","https://bentleymoon.com","https://github.com/Vingadden"]},{"@type":"Person","@id":"https://bentleymoon.com#person","name":"Bentley Moon","alternateName":"Bentley Moon-Perkins","url":"https://bentleymoon.com","identifier":"https://orcid.org/0009-0003-0053-1661","sameAs":["https://orcid.org/0009-0003-0053-1661","https://github.com/Vingadden"]},{"@type":"Dataset","@id":"https://valuescommons.org#dataset","name":"Values Commons sourced decision data","description":"Sourced facts for everyday decisions across 88 categories and 23,689 entries, covering food, personal care, home, clothing, learning and media, technology, money, and giving. Every rating carries its source and an as-of date. 220 measures are published as withheld because the evidence is too thin to score, rather than being quietly estimated.","url":"https://valuescommons.org/app/","creator":{"@id":"https://bentleymoon.com#person"},"publisher":{"@id":"https://futurisminstitute.org#org"},"isAccessibleForFree":true,"license":"https://opendatacommons.org/licenses/odbl/1-0/","keywords":["ethical consumption","sourced ratings","open data","values","consumer decisions","open food facts","transparency","open standard"],"variableMeasured":["environment","ethics","transparency","processing","nutrition","privacy","cost","accessibility"],"distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://valuescommons.org/app/data/index.json"}],"measurementTechnique":"Facts are drawn from open datasets and public filings, or hand-checked with a named citation. Scores are computed in the browser from the reader's own weights; no ranking is sold."},{"@type":"SoftwareApplication","@id":"https://valuescommons.org/app/#app","name":"Conscious Consuming","url":"https://valuescommons.org/app/","applicationCategory":"BrowserApplication","operatingSystem":"Any","description":"Rank everyday choices by your own values rather than by who paid for placement. Runs entirely in the browser, works offline, requires no account, and stores nothing about the reader.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://bentleymoon.com#person"}}]}</script>
+<style>
+  /* Field-guide register: serif carries the human argument, mono carries the
+     machine-checkable evidence (scores, weights, sources, labels). One accent
+     (green) for your values; one citation color (ochre) for sources only. */
+  :root{
+    --bg:#f6f8f7; --surface:#ffffff; --sunk:#eef1ef; --ink:#18211d; --muted:#566560; --hint:#8a958f;
+    --line:#e3e7e5; --line-strong:#cfd8d3; --accent:#1d7a5a; --accent-bright:#17936a;
+    --accent-soft:#e9f3ee; --track:#eef1ef; --warn:#a8432f; --ochre:#8a5514; --hl:#bfe3d3; --band:#eef2f0;
+    --glow:0 0 14px rgba(29,122,90,.2);
+    --font-display:"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,ui-serif,serif;
+    --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --max:1120px; --e1:0 1px 2px rgba(24,38,30,.05),0 3px 10px rgba(24,38,30,.05);
+    --e2:0 4px 16px rgba(24,38,30,.09),0 14px 36px rgba(24,38,30,.08); --ease:cubic-bezier(.2,.7,.2,1);
+  }
+  @media (prefers-color-scheme:dark){ :root{
+    --bg:#0f1512; --surface:#161d18; --sunk:#0b100d; --ink:#e6ece8; --muted:#9aa8a1; --hint:#6c7a72;
+    --line:rgba(255,255,255,.10); --line-strong:rgba(255,255,255,.17); --accent:#5dcaa5; --accent-bright:#6ad9ab;
+    --accent-soft:#16241d; --track:#1b241f; --warn:#e3a594; --ochre:#cc9c5e; --hl:#1e3f30; --band:#131b16;
+    --glow:0 0 16px rgba(93,202,165,.28);
+    --e1:0 1px 2px rgba(0,0,0,.3),0 3px 10px rgba(0,0,0,.3); --e2:0 6px 22px rgba(0,0,0,.5); } }
+  /* Explicit theme override, so the masthead switch (cc.theme) wins over the OS */
+  :root[data-theme="dark"]{--bg:#0f1512;--surface:#161d18;--sunk:#0b100d;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.10);--line-strong:rgba(255,255,255,.17);--accent:#5dcaa5;--accent-bright:#6ad9ab;--accent-soft:#16241d;--track:#1b241f;--warn:#e3a594;--ochre:#cc9c5e;--hl:#1e3f30;--band:#131b16;--glow:0 0 16px rgba(93,202,165,.28);--e1:0 1px 2px rgba(0,0,0,.3),0 3px 10px rgba(0,0,0,.3);--e2:0 6px 22px rgba(0,0,0,.5);color-scheme:dark}
+  :root[data-theme="light"]{--bg:#f6f8f7;--surface:#ffffff;--sunk:#eef1ef;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--line-strong:#cfd8d3;--accent:#1d7a5a;--accent-bright:#17936a;--accent-soft:#e9f3ee;--track:#eef1ef;--warn:#a8432f;--ochre:#8a5514;--hl:#bfe3d3;--band:#eef2f0;--glow:0 0 14px rgba(29,122,90,.2);--e1:0 1px 2px rgba(24,38,30,.05),0 3px 10px rgba(24,38,30,.05);--e2:0 4px 16px rgba(24,38,30,.09),0 14px 36px rgba(24,38,30,.08);color-scheme:light}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-display);font-size:17.5px;line-height:1.58;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-feature-settings:"kern" 1}
+  html{scroll-behavior:smooth}
+  a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.55rem .9rem;border-radius:0 0 8px 0;z-index:20}
+  .skip:focus{left:0}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{transition:none!important;animation:none!important}}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1.1rem,4vw,2.2rem)}
+  h1,h2,h3{font-family:var(--font-display);font-weight:600;text-wrap:balance;letter-spacing:-.015em}
+  .tnum{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+  .sk{font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 .55rem}
+  .sh{font-size:clamp(1.5rem,3vw,2rem);margin:0 0 .55rem}
+  .sd{color:var(--muted);max-width:56ch;margin:0 0 1.4rem}
+
+  /* masthead + edition bar */
+  .masthead{border-bottom:1px solid var(--line-strong)}
+  .masthead .wrap{display:flex;align-items:baseline;justify-content:space-between;gap:.6rem 1rem;flex-wrap:wrap;padding-top:1.3rem;padding-bottom:1.05rem}
+  .nameplate{display:flex;align-items:baseline;gap:.65rem}
+  .nameplate .mark{font-weight:700;font-size:1.38rem;letter-spacing:-.015em;color:var(--ink)}
+  .nameplate .vrule{width:1px;height:1rem;background:var(--line-strong);align-self:center}
+  .nameplate .kind{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+  .topnav{display:flex;align-items:center;gap:.45rem 1.05rem;flex-wrap:wrap;font-family:var(--font-mono);font-size:.75rem}
+  .topnav a{color:var(--muted);padding-bottom:2px;border-bottom:1px solid transparent}
+  .topnav a:hover{color:var(--ink);border-bottom-color:var(--accent);text-decoration:none}
+  .topnav .open{color:var(--accent);font-weight:600}
+  /* Version strip: one quiet line. The detail of what is unfinished lives on the awards
+     ledger, not on the front page. */
+  .devnotice{border-bottom:1px solid var(--line)}
+  .devnotice .wrap{display:flex;align-items:center;gap:.55rem;padding-top:.4rem;padding-bottom:.4rem;font-size:.8rem;line-height:1.4}
+  .devnotice .stage{flex:none;font-family:var(--font-mono);font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 45%,transparent);border-radius:2px;padding:.1rem .4rem}
+  .devnotice span.note{color:var(--muted);min-width:0}
+  @media (max-width:30rem){.devnotice .wrap{align-items:flex-start}}
+  .editionbar{border-bottom:1px solid var(--line)}
+  .editionbar .wrap{display:flex;gap:.45rem 1.5rem;flex-wrap:wrap;padding:.5rem clamp(1.1rem,4vw,2.2rem);font-family:var(--font-mono);font-size:.68rem;letter-spacing:.03em;color:var(--hint)}
+  .editionbar b{color:var(--muted);font-weight:600}
+  .editionbar span{position:relative;padding-left:.85rem}
+  .editionbar span::before{content:"";position:absolute;left:0;top:.52em;width:4px;height:4px;border-radius:50%;background:var(--accent);opacity:.45}
+
+  /* hero: the canopy wash, one low ochre horizon */
+  .hero{background:radial-gradient(54rem 32rem at 2% -16%,color-mix(in srgb,var(--accent) 8%,transparent),transparent 56%),radial-gradient(40rem 24rem at 100% -10%,color-mix(in srgb,var(--ochre) 4%,transparent),transparent 60%)}
+  .hero .wrap{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(1.6rem,4vw,3.2rem);align-items:start;padding-top:clamp(2rem,4.5vw,3.2rem);padding-bottom:clamp(1.8rem,4vw,2.8rem)}
+  .hero h1{font-size:clamp(2.3rem,5.2vw,3.4rem);line-height:1.05;margin:0 0 1rem}
+  .hero h1 .u{color:var(--accent);white-space:nowrap}
+  .lede{font-size:1.12rem;color:var(--muted);max-width:36ch;margin:0 0 1.4rem}
+  .lede b{color:var(--ink);font-weight:600}
+  .cta{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1.6rem}
+  .btn{font-family:var(--font-mono);font-size:.8rem;font-weight:600;letter-spacing:.02em;display:inline-flex;align-items:center;min-height:2.65rem;padding:.55rem 1rem;border-radius:3px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);cursor:pointer;transition:border-color .15s,color .15s,background .15s}
+  .btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.primary:hover{background:var(--accent-bright);border-color:var(--accent-bright);color:#fff}
+  ::selection{background:color-mix(in srgb,var(--accent) 24%,transparent)}
+  .cta .btn:not(.primary){background:transparent;border-color:var(--line);color:var(--muted)}
+  .cta .btn:not(.primary):hover{border-color:var(--accent);color:var(--accent);background:var(--surface)}
+  .tourline{font-size:.92rem;color:var(--muted);margin:1.2rem 0 0}
+
+  /* the working sample (the proof) */
+  .rank{background:var(--surface);border:1px solid var(--line-strong);border-radius:4px;box-shadow:var(--e2);overflow:hidden}
+  .rank-head{padding:.95rem 1.1rem .9rem;border-bottom:1px solid var(--line)}
+  .rank-head .row1{display:flex;align-items:baseline;justify-content:space-between;gap:.6rem}
+  .rank-head .cat{font-weight:700;font-size:1.12rem}
+  .rank-head .livechip{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:.4rem}
+  .livechip .dot{width:6px;height:6px;border-radius:50%;background:var(--accent-bright)}
+  .rank-head .sub{margin:.3rem 0 0;font-size:.88rem;color:var(--muted)}
+  .trunks{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}
+  .trunk{border-right:1px solid var(--line);padding:.7rem .9rem .8rem;min-width:0}
+  .trunk:last-child{border-right:0}
+  .trunk .slider label{color:var(--accent);font-size:.7rem;letter-spacing:.11em}
+  .slider .thint{grid-column:1/-1;grid-row:3;font-family:var(--font-mono);font-size:.6rem;color:var(--hint);letter-spacing:.02em;margin-top:.15rem}
+  .finetune{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .finetune summary{cursor:pointer;padding:.5rem 1.1rem;font-family:var(--font-mono);font-size:.66rem;letter-spacing:.05em;color:var(--muted);list-style:none}
+  .finetune summary::-webkit-details-marker{display:none}
+  .finetune summary::before{content:"+ ";color:var(--accent)}
+  .finetune[open] summary::before{content:"\2212 ";color:var(--accent)}
+  .finetune summary:hover{color:var(--accent)}
+  .leaves{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--line)}
+  .leaf-group{border:0;border-right:1px solid var(--line);margin:0;padding:.5rem .9rem .65rem;min-width:0}
+  .leaf-group:last-child{border-right:0}
+  .leaf-group legend{font-family:var(--font-mono);font-size:.6rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--hint);padding:0}
+  .slider{display:grid;grid-template-columns:auto auto 1fr;align-items:baseline;gap:0 .4rem;margin-top:.5rem;position:relative}
+  .whatis{grid-row:1;grid-column:2;width:1.5rem;height:1.5rem;border-radius:50%;border:1px solid var(--line-strong);background:var(--surface);color:var(--hint);font-family:var(--font-mono);font-size:.68rem;line-height:1;cursor:pointer;padding:0;align-self:center}
+  .whatis:hover,.slider.open .whatis{border-color:var(--accent);color:var(--accent);box-shadow:0 0 6px color-mix(in srgb,var(--accent) 40%,transparent)}
+  .slider .pop{display:none;position:absolute;top:2rem;left:0;right:0;z-index:6;background:var(--surface);border:1px solid var(--line-strong);border-radius:4px;box-shadow:var(--e2);padding:.6rem .7rem;font-size:.8rem;line-height:1.45}
+  .whatis:hover ~ .pop,.whatis:focus-visible ~ .pop,.slider .pop:hover,.slider.open .pop{display:block}
+  .pop .popt{display:block;color:var(--muted);text-transform:none;letter-spacing:0;font-family:var(--font-display);font-weight:400}
+  .pop .popsrc{display:block;font-family:var(--font-mono);font-size:.64rem;color:var(--ochre);margin-top:.35rem;text-transform:none;letter-spacing:.02em}
+  .pop .poplearn{display:block;font-family:var(--font-mono);font-size:.66rem;color:var(--accent);margin-top:.3rem}
+  .learnline{margin:0;padding:.55rem 1.1rem .7rem;font-size:.8rem;color:var(--hint);border-top:1px solid var(--line)}
+  .learnline b{font-family:var(--font-mono);color:var(--accent)}
+  .learnline a{font-family:var(--font-mono);font-size:.72rem}
+  .slider label{grid-column:1;grid-row:1;font-family:var(--font-mono);font-size:.66rem;letter-spacing:.02em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .slider .val{grid-column:3;grid-row:1;justify-self:end;font-family:var(--font-mono);font-size:.66rem;color:var(--hint)}
+  .slider input[type=range]{grid-column:1/-1;grid-row:2;width:100%;height:1.9rem;margin:.05rem 0 0;cursor:pointer;accent-color:var(--accent-bright);background:transparent}
+  .vetoline{padding:.5rem 1.1rem;border-bottom:1px solid var(--line);font-family:var(--font-mono);font-size:.66rem;color:var(--hint);letter-spacing:.02em}
+  .vetoline b{color:var(--warn);font-weight:600}
+  .rows{list-style:none;margin:0;padding:.3rem}
+  .entry{position:relative;display:grid;grid-template-columns:1.35rem 1fr auto;gap:.1rem .65rem;align-items:baseline;padding:.56rem .65rem .6rem;border-radius:3px;will-change:transform}
+  .entry + .entry{border-top:1px solid var(--line)}
+  .entry .rk{font-family:var(--font-mono);font-size:.8rem;color:var(--hint);grid-row:1;grid-column:1;justify-self:end}
+  .entry .nm{grid-row:1;grid-column:2;font-weight:700;font-size:1rem;line-height:1.25}
+  .entry .sc{grid-row:1;grid-column:3;font-family:var(--font-mono);font-weight:600;font-size:1rem;text-align:right}
+  .entry .why{grid-row:2;grid-column:2/-1;font-size:.86rem;color:var(--muted);margin:.08rem 0 .3rem;line-height:1.35}
+  .entry .src{color:var(--ochre);font-family:var(--font-mono);font-size:.7rem;border-bottom:1px dotted var(--ochre);padding-bottom:1px}
+  .entry .bar{grid-row:3;grid-column:2/-1;height:4px;border-radius:99px;background:var(--sunk);overflow:hidden}
+  .entry .fill{display:block;height:100%;border-radius:99px;background:var(--accent);transition:width .5s var(--ease)}
+  .entry.lead{background:var(--accent-soft)}
+  .entry.lead .fill{background:var(--accent-bright);box-shadow:0 0 6px color-mix(in srgb,var(--accent-bright) 45%,transparent)}
+  .entry.lead .sc{text-shadow:0 0 9px color-mix(in srgb,var(--accent-bright) 35%,transparent)}
+  .rank-foot{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem;flex-wrap:wrap;padding:.65rem 1.1rem .8rem;border-top:1px solid var(--line);font-family:var(--font-mono);font-size:.66rem;color:var(--hint)}
+  .reset{background:none;border:none;cursor:pointer;font-family:var(--font-mono);font-size:.66rem;color:var(--muted);text-decoration:underline;text-underline-offset:2px;padding:0}
+  .reset:hover{color:var(--accent)}
+
+  /* sections */
+  section{border-top:1px solid var(--line)}
+  main>section:nth-of-type(even){background:var(--band)}
+  section .wrap{padding-top:clamp(2.6rem,5.5vw,4.2rem);padding-bottom:clamp(2.6rem,5.5vw,4.2rem)}
+  /* method */
+  .anatomy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(1.4rem,4vw,2.8rem);align-items:start;margin-top:1.5rem}
+  .formula{font-family:var(--font-mono);font-size:.8rem;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:1rem 1.1rem;line-height:1.9}
+  .formula .op{color:var(--hint)}
+  .formula .divider{display:block;border-top:1px solid var(--line-strong);margin:.45rem 0}
+  .formula .g{color:var(--accent)} .formula .o{color:var(--ochre)} .formula b{color:var(--ink)}
+  .formula .note{display:block;margin-top:.6rem;font-size:.72rem;line-height:1.55;color:var(--hint)}
+  .ledger{width:100%;border-collapse:collapse;font-size:.9rem}
+  .ledger caption{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);text-align:left;padding-bottom:.55rem}
+  .ledger th,.ledger td{text-align:left;padding:.45rem .3rem;border-bottom:1px solid var(--line);vertical-align:baseline}
+  .ledger thead th{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--hint);font-weight:600}
+  .ledger td.tr{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+  .ledger td.n{font-family:var(--font-mono);text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+  .ledger td.f{color:var(--ink)}
+  .ledger tfoot td{font-family:var(--font-mono);font-weight:700;color:var(--ink);border-top:2px solid var(--line-strong);border-bottom:none;padding-top:.55rem}
+  .ledger tfoot td.n{color:var(--ink)}
+  html{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--accent) 45%,var(--track)) transparent}
+  .methodlinks{margin:1.3rem 0 0;font-size:.92rem;color:var(--muted)}
+
+  /* promises */
+  .promises{display:grid;grid-template-columns:repeat(auto-fit,minmax(14.5rem,1fr));margin-top:1.5rem;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:var(--surface)}
+  .promise{display:block;padding:1rem 1.1rem;border-right:1px solid var(--line);border-bottom:1px solid var(--line);color:var(--ink)}
+  .promise:hover{background:var(--accent-soft);text-decoration:none}
+  .promise .pl{display:flex;align-items:baseline;gap:.5rem;margin-bottom:.35rem}
+  .promise .num{font-family:var(--font-mono);font-size:.64rem;color:var(--muted);letter-spacing:.1em}
+  .promise .pt{font-weight:700;font-size:1rem}
+  .promise p{margin:0;font-size:.87rem;color:var(--muted);line-height:1.45}
+  .promise .go{display:block;margin-top:.5rem;font-family:var(--font-mono);font-size:.7rem;color:var(--accent)}
+
+  /* project map: a catalog index, not cards */
+
+  /* instances */
+  .apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0;margin-top:1.4rem;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:var(--surface)}
+  .app{display:block;padding:1.05rem 1.15rem;border-right:1px solid var(--line);color:var(--ink)}
+  .app:hover{background:var(--accent-soft);text-decoration:none}
+  .app .stat{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.4rem}
+  .app h3{font-size:1.08rem;margin:0 0 .3rem}
+  .app p{margin:0;font-size:.87rem;color:var(--muted);line-height:1.45}
+  .app .go{display:block;margin-top:.55rem;font-family:var(--font-mono);font-size:.7rem;color:var(--accent)}
+
+  /* principles */
+  .prin{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:0 2.2rem;margin-top:.6rem}
+  .prin div{padding:.6rem 0;border-top:1px solid var(--line);font-size:.9rem}
+  .prin b{display:block;font-size:1rem;margin-bottom:.05rem}
+  .prin small{color:var(--muted);font-size:.86rem}
+
+  /* the stakes */
+
+  /* build strip */
+  .bb{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.2rem}
+
+  /* colophon */
+  footer{border-top:1px solid var(--line-strong);background:var(--sunk)}
+  footer .wrap{padding:clamp(1.7rem,4vw,2.4rem) clamp(1.1rem,4vw,2.2rem);display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1.3rem 2rem}
+  footer h3{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 .55rem;font-weight:600}
+  footer p,footer li{font-size:.88rem;color:var(--muted);margin:.2rem 0;line-height:1.5}
+  footer ul{list-style:none;margin:0;padding:0}
+  footer ul.cols{columns:2;column-gap:1.6rem}
+  footer a{color:var(--ochre);border-bottom:1px dotted var(--ochre)}
+  footer a:hover{text-decoration:none;color:var(--accent);border-bottom-color:var(--accent)}
+  footer .sign{grid-column:1/-1;border-top:1px solid var(--line);padding-top:.95rem;font-family:var(--font-mono);font-size:.68rem;color:var(--hint);display:flex;justify-content:space-between;gap:.5rem 1rem;flex-wrap:wrap}
+
+  @media (max-width:860px){
+    .hero .wrap{grid-template-columns:1fr}
+    .anatomy{grid-template-columns:1fr}
+    .index{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .trunks,.leaves{grid-template-columns:1fr}
+    .trunk,.leaf-group{border-right:0;border-bottom:1px solid var(--line)}
+    .trunk:last-child,.leaf-group:last-child{border-bottom:0}
+    body{font-size:16.5px}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="nameplate">
+      <span class="mark">&#9671; Values&nbsp;Commons</span>
+      <span class="vrule" aria-hidden="true"></span>
+      <span class="kind">Open&nbsp;field&nbsp;guide</span>
+    </div>
+    <nav class="topnav" aria-label="Primary">
+      <a href="instances/index.html">Apps</a>
+      <a href="awards/index.html">Awards</a>
+      <a href="passport/index.html">Your values</a>
+      <a href="standard/index.html">For builders</a>
+      <a class="open" href="app/index.html">Open the app &rarr;</a>
+    </nav>
+  </div>
+</header>
+<aside class="devnotice" aria-label="Version status">
+  <div class="wrap">
+    <span class="stage">Beta</span>
+    <span class="note">This site is in active development.</span>
+  </div>
+</aside>
+<div class="editionbar">
+  <div class="wrap">
+    <span>Works offline &middot; fits on a flash drive</span>
+    <span><b>Every</b> fact carries its source and its date</span>
+    <span><b>The core</b> is files you keep, not a platform that keeps you</span>
+  </div>
+</div>
+
+<main id="content" tabindex="-1">
+
+  <section class="hero" style="border-top:none">
+    <div class="wrap">
+      <div>
+        <h1>Rank everyday choices by your values, not by <span class="u">who paid</span>.</h1>
+        <p class="lede">Free, open tools that rank real things (coffee, banks, phone apps) on facts that show their sources. You decide what matters. No one can buy a spot at the top, and you can challenge any fact.</p>
+        <div class="cta">
+          <a class="btn primary" href="app/index.html">Open the app &rarr;</a>
+          <a class="btn" href="tour/index.html">Two-minute tour</a>
+        </div>
+        <p class="tourline">The sample is live, not a screenshot. Drag a slider and watch the list reorder, with nobody's thumb on the scale.</p>
+      </div>
+
+      <div class="rank" id="rank" aria-label="A working sample: everyday coffee, ranked by your priorities">
+        <div class="rank-head">
+          <div class="row1">
+            <span class="cat">Everyday coffee, a working sample</span>
+            <span class="livechip"><span class="dot" aria-hidden="true"></span>Live</span>
+          </div>
+          <p class="sub">Adjust a priority and the list reorders at once, computed in your browser.</p>
+        </div>
+        <div class="trunks" id="trunks">
+          <div class="trunk" data-tslider="you"></div>
+          <div class="trunk" data-tslider="world"></div>
+          <div class="trunk" data-tslider="cost"></div>
+        </div>
+        <details class="finetune">
+          <summary>Every factor: weigh it yourself, learn what it measures</summary>
+          <div class="leaves">
+            <fieldset class="leaf-group" data-trunk="you"><legend>You</legend></fieldset>
+            <fieldset class="leaf-group" data-trunk="world"><legend>The world</legend></fieldset>
+            <fieldset class="leaf-group" data-trunk="cost"><legend>Cost</legend></fieldset>
+          </div>
+          <p class="learnline">Each <b>?</b> says what a factor measures and how to weigh it wisely. The guides go deeper: <a href="app/g/index.html">open the guides library &rarr;</a></p>
+        </details>
+        <p class="vetoline"><b>Hard lines are vetoes, not weights.</b> In the app an allergen or a boycott excludes an entry outright; it is never quietly down-weighted.</p>
+        <ul class="rows" id="rows">
+          <li class="entry lead"><span class="rk tnum">1</span><span class="nm">Local roaster co-op</span><span class="sc tnum">79</span><span class="why"><span class="src">member disclosure</span> &middot; strong on fair pay</span><span class="bar"><span class="fill" style="width:79%"></span></span></li>
+          <li class="entry"><span class="rk tnum">2</span><span class="nm">Fairtrade supermarket line</span><span class="sc tnum">78</span><span class="why"><span class="src">Fairtrade Intl.</span> &middot; strong on fair pay</span><span class="bar"><span class="fill" style="width:78%"></span></span></li>
+          <li class="entry"><span class="rk tnum">3</span><span class="nm">Single-origin specialty</span><span class="sc tnum">71</span><span class="why"><span class="src">Open Food Facts</span> &middot; strong on gentle processing</span><span class="bar"><span class="fill" style="width:71%"></span></span></li>
+          <li class="entry"><span class="rk tnum">4</span><span class="nm">Global brand, house blend</span><span class="sc tnum">56</span><span class="why"><span class="src">company filing</span> &middot; strong on price</span><span class="bar"><span class="fill" style="width:56%"></span></span></li>
+          <li class="entry"><span class="rk tnum">5</span><span class="nm">Budget instant</span><span class="sc tnum">44</span><span class="why"><span class="src">Open Food Facts</span> &middot; strong on price</span><span class="bar"><span class="fill" style="width:44%"></span></span></li>
+        </ul>
+        <div class="rank-foot">
+          <span>Archetypes, not brands. The live app compares 23,600+ entries across 88 decision categories.</span>
+          <button class="reset" id="reset" type="button">reset to balanced</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="method">
+    <div class="wrap">
+      <p class="sk">The method, in plain sight</p>
+      <h2 class="sh">A score is facts &times; your weights. Nothing hidden.</h2>
+      <p class="sd">No black box, no proprietary ranking. Take the leader above: its number is the sourced facts, each multiplied by how much you said it matters, added up. Move a weight and you can watch exactly which fact moved the answer.</p>
+      <div class="anatomy">
+        <div class="formula" aria-hidden="true">
+          <span class="o">fact</span> <span class="op">(sourced, 0&ndash;100)</span><br>
+          &nbsp;&nbsp;<span class="op">&times;</span> <span class="g">your weight</span> <span class="op">(the value trunk you set &times; its factor; shares below)</span>
+          <span class="divider"></span>
+          &nbsp;&nbsp;<span class="op">&Sigma;</span> &divide; total weight <span class="op">=</span> <b>score</b>
+          <span class="note">Facts we lack are pulled toward a neutral 50, never guessed. A high overall can still hide one weak axis, so the app flags it. Weighting one thing more means everything else counts a little less; that trade-off is the whole idea.</span>
+        </div>
+        <table class="ledger">
+          <caption>Current leader, factor by factor</caption>
+          <thead><tr><th scope="col">Values</th><th scope="col">Factor</th><th scope="col">Source</th><th scope="col" style="text-align:right">Fact</th><th scope="col" style="text-align:right">Share</th></tr></thead>
+          <tbody id="ledgerbody">
+            <tr><td class="tr">You</td><td class="f">Gentle processing</td><td class="n" style="text-align:left"><span class="src" style="font-size:.7rem;color:var(--ochre)">member disclosure</span></td><td class="n">88</td><td class="n">20%</td></tr>
+          </tbody>
+          <tfoot><tr><td></td><td class="f">Overall</td><td></td><td class="n tnum" id="ledgerscore">79</td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <p class="methodlinks">Read <a href="app/index.html#guide/how-scores-work">the full method in plain language</a>, or see how <a href="workshop/index.html">a correction with a source</a> lands in the facts themselves.</p>
+    </div>
+  </section>
+
+  <section id="use">
+    <div class="wrap">
+      <p class="sk">Open one now</p>
+      <h2 class="sh">Three tools, one engine</h2>
+      <p class="sd">Set your values once. A small file carries them into any of these, and each ranks its own world your way.</p>
+      <div class="apps">
+        <a class="app" href="app/index.html">
+          <span class="stat">88 subjects &middot; 23,600+ entries</span>
+          <h3>Conscious Consuming</h3>
+          <p>Where to bank, eat, read, and give, scored on sourced facts, with plain guides for the hard calls.</p>
+          <span class="go">Open the flagship &rarr;</span>
+        </a>
+        <a class="app" href="kosplora/index.html">
+          <span class="stat">Learning demo</span>
+          <h3>Kosplora</h3>
+          <p>Where to learn: a map of courses, channels, and references, ranked by what you want out of learning.</p>
+          <span class="go">Open &rarr;</span>
+        </a>
+        <a class="app" href="instances/messages/index.html">
+          <span class="stat">Messaging demo</span>
+          <h3>Where to Message</h3>
+          <p>Which messenger fits you on privacy, openness, and reach, from sourced facts alone.</p>
+          <span class="go">Open &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contracts">
+    <div class="wrap">
+      <p class="sk">The civic tools</p>
+      <h2 class="sh">Five parts you keep as files, and what each promises</h2>
+      <p class="sd">Not a platform that keeps you. Each is a plain file you can read, hand to someone, and challenge, and each is a page that works today.</p>
+      <div class="promises">
+        <a class="promise" href="passport/index.html">
+          <span class="pl"><span class="num">01</span><span class="pt">Your values file</span></span>
+          <p>A values file, not a profile: only weights, deal-breakers, and ranking preferences travel. No identity, no account.</p>
+          <span class="go">See how it works &rarr;</span>
+        </a>
+        <a class="promise" href="assembly/index.html">
+          <span class="pl"><span class="num">02</span><span class="pt">Group agreement</span></span>
+          <p>Consent first: people bring their values files, dissent stays visible, and no server decides for the group.</p>
+          <span class="go">Merge with consent &rarr;</span>
+        </a>
+        <a class="promise" href="workshop/index.html">
+          <span class="pl"><span class="num">03</span><span class="pt">Fact repair</span></span>
+          <p>Source before score: each correction is scoped, attributable, reversible, and tied to its source.</p>
+          <span class="go">Correct a fact &rarr;</span>
+        </a>
+        <a class="promise" href="slate/index.html">
+          <span class="pl"><span class="num">04</span><span class="pt">Shared plan</span></span>
+          <p>Commit, not command: every action keeps its reason, its dissent, and the fact-file it was built on.</p>
+          <span class="go">Act together &rarr;</span>
+        </a>
+        <a class="promise" href="weave/index.html">
+          <span class="pl"><span class="num">05</span><span class="pt">Ownership map</span></span>
+          <p>Ownership, alternatives, and look-alike choices are inspectable claims with receipts or clear computed labels.</p>
+          <span class="go">Inspect the map &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="honest">
+    <div class="wrap">
+      <p class="sk">How it stays honest</p>
+      <h2 class="sh">The lines it will not cross</h2>
+      <p class="sd">These are not features. They are the promise, and crossing any one of them makes it no longer this thing.</p>
+      <div class="prin">
+        <div><b>No ads, no paid rank</b><small>Your values set the order. Nothing buys a spot at the top.</small></div>
+        <div><b>No account, no tracking</b><small>Your values carry no name and stay on your device.</small></div>
+        <div><b>Every fact shows its source</b><small>Disagree? Keep your own facts file and show where it came from.</small></div>
+        <div><b>Reproducible</b><small>Same inputs, same result. Anyone can re-derive it by hand.</small></div>
+        <div><b>Yours to keep</b><small>Values, facts, and plans are files. It works offline and fits on a flash drive.</small></div>
+        <div><b>Forkable</b><small>Don't like how it is run? Take the whole thing and run your own.</small></div>
+      </div>
+      <p class="sd" style="max-width:64ch;margin-top:1.4rem">Promises are cheap, so here is one that costs something. Where the evidence is thin, we award nothing and say so in public: <a href="awards/index.html"><b>220 measures are published as withheld</b></a>, next to the 329 that earned a top mark. That list is the work we owe you, in the open, where leaving it undone has a price.</p>
+    </div>
+  </section>
+
+  <section id="build">
+    <div class="wrap">
+      <p class="sk">Help out</p>
+      <h2 class="sh">Make a decision clearer</h2>
+      <p class="sd" style="max-width:62ch">Correct a fact with a source, or build the next subject area from a facts file, a design, and the shared engine. Read the adoption guide before code, then share what happened after real use. A movement here is just a folder of files, so a household, congregation, or co-op can find common ground and act, with <a href="funders/index.html">no center anyone can capture</a>.</p>
+      <div class="bb">
+        <a class="btn primary" href="docs/ADOPTION-KIT.md">Read the adoption guide</a>
+        <a class="btn" href="contribute/index.html">Help out</a>
+        <a class="btn" href="docs/PREVIEW-FEEDBACK-LOOP.md">Share what happened</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h3>What this is</h3>
+      <p><b style="color:var(--ink)">Values Commons</b>: free, open tools for choosing by your values, alone or together. The coffee panel above uses archetypes; the live apps rank real entries on sourced facts.</p>
+    </div>
+    <div>
+      <h3>Doors</h3>
+      <ul class="cols">
+        <li><a href="app/index.html">Open the app</a></li>
+        <li><a href="tour/index.html">Two-minute tour</a></li>
+        <li><a href="passport/index.html">Your values file</a></li>
+        <li><a href="instances/index.html">The apps</a></li>
+        <li><a href="weave/index.html">Ownership map</a></li>
+        <li><a href="assembly/index.html">Group agreement</a></li>
+        <li><a href="workshop/index.html">Fact repair</a></li>
+        <li><a href="slate/index.html">Shared plan</a></li>
+        <li><a href="standard/index.html">For builders</a></li>
+        <li><a href="contribute/index.html">Help out</a></li>
+        <li><a href="funders/index.html">Funders</a></li>
+        <li><a href="docs/FEDERATION.md">How file-sharing works</a></li>
+      </ul>
+    </div>
+    <div class="sign">
+      <span class="status" id="status">Values Commons &middot; static &amp; local &middot; works offline</span>
+      <span>Serif for the argument, mono for the evidence</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app/engine.js"></script>
+<script>
+  // The working sample: five coffee archetypes, five factors under three value
+  // trunks (You / The world / Cost). Scoring is the same transparent weighted
+  // mean the method section spells out: facts × your weights, no more.
+  (function(){
+    var TRUNKS=[
+      {key:"you",  name:"You",       hint:"good for you",
+       info:{t:"What lands on you: body, attention, safety. Evidence sets the starting weights here; the final say is always yours.",
+             s:"defaults disclosed and sourced",href:"app/g/how-scores-work.html",l:"How scores work"}},
+      {key:"world",name:"The world", hint:"good beyond you",
+       info:{t:"What lands on everyone else: climate, labor, power. No science ranks these against each other, so the start is equal and the presets are yours to choose.",
+             s:"your call, stated plainly",href:"app/g/vote-with-your-money.html",l:"Vote with your money"}},
+      {key:"cost", name:"Cost",      hint:"your wallet",
+       info:{t:"Your budget, honestly. For things that last, cost means cost over lifetime, not the sticker price.",
+             s:"unit math, shown",href:"app/g/vote-with-your-money.html",l:"Vote with your money"}}
+    ];
+    var TNAME={you:"You",world:"The world",cost:"Cost"};
+    var FACTORS=[
+      {key:"proc",   trunk:"you",   label:"Gentle processing",
+       info:{t:"How close the coffee is to the bean. Instant and flavored mixes count as more processed.",
+             s:"NOVA scale, via Open Food Facts",href:"app/g/how-scores-work.html",l:"How scores work"}},
+      {key:"clean",  trunk:"you",   label:"Clean label",
+       info:{t:"Additive and flavoring flags read straight from the ingredient list. Fewer contested additives scores higher.",
+             s:"Open Food Facts ingredient data",href:"app/g/how-scores-work.html",l:"How scores work"}},
+      {key:"climate",trunk:"world", label:"Climate",
+       info:{t:"Growing, roasting and shipping footprint. In coffee the biggest lever is usually how and where it was grown.",
+             s:"eco-labels + origin disclosures",href:"app/g/coffee.html",l:"The coffee guide"}},
+      {key:"pay",    trunk:"world", label:"Fair pay",
+       info:{t:"Whether growers get a price floor and a premium. The gap between the commodity price and a living income is the thing to know.",
+             s:"certification registers (Fairtrade and similar)",href:"app/g/coffee.html",l:"The coffee guide"}},
+      {key:"price",  trunk:"cost",  label:"Price",
+       info:{t:"Price per cup, not per bag; concentration changes the math.",
+             s:"community price data (Open Prices)",href:"app/g/vote-with-your-money.html",l:"Vote with your money"}}
+    ];
+    var ENTRIES=[
+      {name:"Local roaster co-op",        src:"member disclosure", f:{proc:88,clean:92,climate:84,pay:92,price:38}},
+      {name:"Fairtrade supermarket line", src:"Fairtrade Intl.",   f:{proc:72,clean:80,climate:71,pay:86,price:80}},
+      {name:"Single-origin specialty",    src:"Open Food Facts",   f:{proc:93,clean:88,climate:77,pay:66,price:30}},
+      {name:"Global brand, house blend",  src:"company filing",    f:{proc:55,clean:52,climate:46,pay:39,price:88}},
+      {name:"Budget instant",             src:"Open Food Facts",   f:{proc:28,clean:40,climate:31,pay:26,price:96}}
+    ];
+    var DEFAULT=50;
+    var trunkW={}; TRUNKS.forEach(function(t){trunkW[t.key]=DEFAULT;});
+    var leafW={};  FACTORS.forEach(function(f){leafW[f.key]=DEFAULT;});
+    var rowsEl=document.getElementById("rows");
+    if(!rowsEl) return;
+    var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+    var controls=[];
+
+    function closePops(){
+      document.querySelectorAll(".slider.open").forEach(function(s){
+        s.classList.remove("open");
+        var b=s.querySelector(".whatis"); if(b) b.setAttribute("aria-expanded","false");
+      });
+    }
+    document.addEventListener("click",closePops);
+
+    function addSlider(container,id,labelText,store,key,aria,hint,info){
+      var wrap=document.createElement("div"); wrap.className="slider";
+      var lab=document.createElement("label"); lab.textContent=labelText; lab.setAttribute("for",id);
+      var val=document.createElement("span"); val.className="val tnum"; val.textContent=DEFAULT;
+      var input=document.createElement("input");
+      input.type="range"; input.min=0; input.max=100; input.step=1; input.value=DEFAULT;
+      input.id=id; input.setAttribute("aria-label",aria+": "+labelText);
+      input.addEventListener("input",function(){ store[key]=+input.value; val.textContent=input.value; render(); });
+      wrap.appendChild(lab);
+      if(info){
+        var wb=document.createElement("button");
+        wb.type="button"; wb.className="whatis"; wb.textContent="?";
+        wb.setAttribute("aria-expanded","false");
+        wb.setAttribute("aria-label","What is "+labelText+"?");
+        wb.addEventListener("click",function(e){
+          e.stopPropagation();
+          var wasOpen=wrap.classList.contains("open");
+          closePops();
+          if(!wasOpen){ wrap.classList.add("open"); wb.setAttribute("aria-expanded","true"); }
+        });
+        wrap.appendChild(wb);
+      }
+      wrap.appendChild(val); wrap.appendChild(input);
+      if(hint){var h=document.createElement("small");h.className="thint";h.textContent=hint;wrap.appendChild(h);}
+      if(info){
+        var pop=document.createElement("span"); pop.className="pop";
+        pop.addEventListener("click",function(e){e.stopPropagation();});
+        var pt=document.createElement("span"); pt.className="popt"; pt.textContent=info.t;
+        var ps=document.createElement("span"); ps.className="popsrc"; ps.textContent=info.s;
+        var pa=document.createElement("a"); pa.className="poplearn"; pa.href=info.href;
+        pa.innerHTML="Learn: "+info.l+" &rarr;";
+        pop.appendChild(pt); pop.appendChild(ps); pop.appendChild(pa);
+        wrap.appendChild(pop);
+      }
+      container.appendChild(wrap);
+      controls.push({input:input,val:val,store:store,key:key});
+    }
+
+    // the three value trunks: the surface you actually drive
+    TRUNKS.forEach(function(t){
+      var box=document.querySelector('.trunk[data-tslider="'+t.key+'"]');
+      if(box) addSlider(box,"t-"+t.key,t.name,trunkW,t.key,"Value weight",t.hint,t.info);
+    });
+    // the five factors: deeper modulation, one honest layer down
+    FACTORS.forEach(function(f){
+      var fs=document.querySelector('.leaf-group[data-trunk="'+f.trunk+'"]');
+      if(fs) addSlider(fs,"s-"+f.key,f.label,leafW,f.key,"Factor weight",null,f.info);
+    });
+
+    // rebuild the rows we own (replacing the static no-JS fallback)
+    rowsEl.innerHTML="";
+    var nodes={};
+    ENTRIES.forEach(function(e){
+      var li=document.createElement("li"); li.className="entry";
+      li.innerHTML='<span class="rk tnum"></span><span class="nm"></span><span class="sc tnum"></span>'+
+                   '<span class="why"></span><span class="bar"><span class="fill"></span></span>';
+      li.querySelector(".nm").textContent=e.name;
+      rowsEl.appendChild(li);
+      nodes[e.name]={el:li,rk:li.querySelector(".rk"),sc:li.querySelector(".sc"),
+                     why:li.querySelector(".why"),fill:li.querySelector(".fill")};
+    });
+
+    // effective weight of a factor = its trunk's weight × its own weight
+    var BALANCED=DEFAULT*DEFAULT;
+    function eff(f){ return trunkW[f.trunk]*leafW[f.key]; }
+    function score(e){
+      var num=0,den=0;
+      FACTORS.forEach(function(f){var w=eff(f);num+=e.f[f.key]*w;den+=w;});
+      return den===0?50:num/den;
+    }
+    function note(e,isLead){
+      var best=null,worst=null;
+      FACTORS.forEach(function(f){
+        var v=e.f[f.key], w=eff(f);
+        if(w>=BALANCED && v>=78 && (!best||v>best.v)) best={l:f.label,v:v};
+        if(w>BALANCED && v<55 && (!worst||v<worst.v)) worst={l:f.label,v:v};
+      });
+      if(isLead&&best) return "strong on "+best.l.toLowerCase();
+      if(worst) return "thin on "+worst.l.toLowerCase();
+      if(best) return "strong on "+best.l.toLowerCase();
+      return null;
+    }
+
+    var ledgerBody=document.getElementById("ledgerbody");
+    var ledgerScore=document.getElementById("ledgerscore");
+    function renderLedger(top){
+      if(!ledgerBody||!top) return;
+      var den=0; FACTORS.forEach(function(f){den+=eff(f);});
+      ledgerBody.innerHTML="";
+      FACTORS.forEach(function(f){
+        var share=den===0?0:Math.round(eff(f)/den*100);
+        var tr=document.createElement("tr");
+        tr.innerHTML='<td class="tr">'+TNAME[f.trunk]+'</td><td class="f">'+f.label+'</td>'+
+          '<td><span style="font-family:var(--font-mono);font-size:.7rem;color:var(--ochre)">'+top.e.src+'</span></td>'+
+          '<td class="n tnum">'+top.e.f[f.key]+'</td><td class="n tnum">'+share+'%</td>';
+        ledgerBody.appendChild(tr);
+      });
+      ledgerScore.textContent=Math.round(top.s);
+    }
+
+    function render(){
+      var scored=ENTRIES.map(function(e){return {e:e,s:score(e)};});
+      scored.sort(function(a,b){return b.s-a.s;});
+      var first={};
+      if(!reduce) ENTRIES.forEach(function(e){first[e.name]=nodes[e.name].el.getBoundingClientRect().top;});
+      scored.forEach(function(row,i){
+        var n=nodes[row.e.name];
+        rowsEl.appendChild(n.el);
+        n.el.classList.toggle("lead",i===0);
+        n.rk.textContent=(i+1);
+        n.sc.textContent=Math.round(row.s);
+        var t=note(row.e,i===0);
+        n.why.innerHTML='<span class="src"></span>'+(t?' &middot; '+t:'');
+        n.why.querySelector(".src").textContent=row.e.src;
+        n.fill.style.width=Math.round(row.s)+"%";
+      });
+      if(!reduce){
+        scored.forEach(function(row){
+          var el=nodes[row.e.name].el;
+          var dy=first[row.e.name]-el.getBoundingClientRect().top;
+          if(dy){
+            el.style.transition="none";
+            el.style.transform="translateY("+dy+"px)";
+            requestAnimationFrame(function(){
+              el.style.transition="transform .5s cubic-bezier(.2,.7,.2,1)";
+              el.style.transform="";
+            });
+          }
+        });
+      }
+      renderLedger(scored[0]);
+    }
+
+    var resetBtn=document.getElementById("reset");
+    if(resetBtn) resetBtn.addEventListener("click",function(){
+      controls.forEach(function(c){
+        c.store[c.key]=DEFAULT; c.input.value=DEFAULT; c.val.textContent=DEFAULT;
+      });
+      render();
+    });
+
+    render();
+  })();
+
+  // Honest "am I current?" touch: show the live engine version if it loaded; degrade silently otherwise.
+  (function(){ try{ if(window.CC&&CC.engine){ var s=document.getElementById('status');
+    if(s)s.textContent='Values Commons · Open Values Engine v'+CC.engine.VERSION+' · static & local · works offline'; } }catch(e){} })();
+</script>
+<script src="app/theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,938 @@
+{
+  "format": "ovs-node-preview-matrix",
+  "version": "0.1",
+  "built": "2026-07-15",
+  "source": [
+    "app/data/nodes/ask-traces.json",
+    "app/data/nodes/ask-presentation.json",
+    "app/data/nodes/node-walkthroughs.json",
+    "app/data/nodes/node-route-fixtures.json",
+    "app/data/nodes/node-route-guardrails.json",
+    "app/data/nodes/node-load-plan.json",
+    "app/data/nodes/node-runtime-states.json",
+    "app/data/nodes/node-integration-checklist.json",
+    "app/data/nodes/readiness.json",
+    "app/data/nodes/manifest.json"
+  ],
+  "purpose": "Generated private-preview and H4-drain QA matrix for app-owned node and Ask integration.",
+  "appLaneNote": "Preview QA contract only; app-owned code owns UI details, copy, implementation, and the final drain decision.",
+  "status": "pending-app-integration",
+  "h4DrainableFromDataAlone": false,
+  "groups": [
+    "startup-search",
+    "lazy-product",
+    "route",
+    "route-guardrail",
+    "runtime-state",
+    "flagship-walkthrough",
+    "handoff-drain"
+  ],
+  "runContract": {
+    "purpose": "App-owned private-preview run contract for generated node and Ask integration.",
+    "status": "pending-app-integration",
+    "h4DrainableFromDataAlone": false,
+    "namedConsumer": "Claude H4 private-preview and generated-node integration QA.",
+    "drainRule": "H4 drains only after the app-owned implementation walks this run order or records equivalent coverage for every scenario group.",
+    "evidenceRequired": [
+      "Running-app behavior, screenshot, or manual QA note for each runOrder group.",
+      "Explicit pass/fail note for lazy ask-index loading and failure behavior.",
+      "Explicit pass/fail note for the final h4-drain-decision scenario."
+    ],
+    "runOrder": [
+      {
+        "step": 1,
+        "group": "startup-search",
+        "scenarioIds": [
+          "startup-nestle-concern",
+          "startup-best-bank",
+          "startup-password-manager",
+          "startup-private-messaging",
+          "startup-typo-nestel"
+        ],
+        "passWhen": [
+          "All startup-search scenarios pass against the app-owned implementation.",
+          "Required acceptance criteria are observed in the running app or documented equivalent QA.",
+          "No must-not clause is violated."
+        ],
+        "mustNot": [
+          "Do not mark this group passed from source-file existence alone.",
+          "Do not hide app-owned failures behind generated fixture success."
+        ]
+      },
+      {
+        "step": 2,
+        "group": "lazy-product",
+        "scenarioIds": [
+          "lazy-barcode-lookup"
+        ],
+        "passWhen": [
+          "All lazy-product scenarios pass against the app-owned implementation.",
+          "Required acceptance criteria are observed in the running app or documented equivalent QA.",
+          "No must-not clause is violated."
+        ],
+        "mustNot": [
+          "Do not mark this group passed from source-file existence alone.",
+          "Do not hide app-owned failures behind generated fixture success."
+        ]
+      },
+      {
+        "step": 3,
+        "group": "route",
+        "scenarioIds": [
+          "route-category",
+          "route-item",
+          "route-guide",
+          "route-brand"
+        ],
+        "passWhen": [
+          "All route scenarios pass against the app-owned implementation.",
+          "Required acceptance criteria are observed in the running app or documented equivalent QA.",
+          "No must-not clause is violated."
+        ],
+        "mustNot": [
+          "Do not mark this group passed from source-file existence alone.",
+          "Do not hide app-owned failures behind generated fixture success."
+        ]
+      },
+      {
+        "step": 4,
+        "group": "route-guardrail",
+        "scenarioIds": [
+          "guardrail-unknown-target",
+          "guardrail-malformed",
+          "guardrail-canonicalize"
+        ],
+        "passWhen": [
+          "All route-guardrail scenarios pass against the app-owned implementation.",
+          "Required acceptance criteria are observed in the running app or documented equivalent QA.",
+          "No must-not clause is violated."
+        ],
+        "mustNot": [
+          "Do not mark this group passed from source-file existence alone.",
+          "Do not hide app-owned failures behind generated fixture success."
+        ]
+      },
+      {
+        "step": 5,
+        "group": "runtime-state",
+        "scenarioIds": [
+          "runtime-hash-mismatch-retry",
+          "runtime-ask-no-results",
+          "runtime-lazy-product-unavailable",
+          "runtime-offline-core-available"
+        ],
+        "passWhen": [
+          "All runtime-state scenarios pass against the app-owned implementation.",
+          "Required acceptance criteria are observed in the running app or documented equivalent QA.",
+          "No must-not clause is violated."
+        ],
+        "mustNot": [
+          "Do not mark this group passed from source-file existence alone.",
+          "Do not hide app-owned failures behind generated fixture success."
+        ]
+      },
+      {
+        "step": 6,
+        "group": "flagship-walkthrough",
+        "scenarioIds": [
+          "flagship-nestle-concern-path",
+          "flagship-coke-concern-path",
+          "flagship-amazon-concern-path"
+        ],
+        "passWhen": [
+          "All flagship-walkthrough scenarios pass against the app-owned implementation.",
+          "Required acceptance criteria are observed in the running app or documented equivalent QA.",
+          "No must-not clause is violated."
+        ],
+        "mustNot": [
+          "Do not mark this group passed from source-file existence alone.",
+          "Do not hide app-owned failures behind generated fixture success."
+        ]
+      },
+      {
+        "step": 7,
+        "group": "handoff-drain",
+        "scenarioIds": [
+          "h4-drain-decision"
+        ],
+        "passWhen": [
+          "All handoff-drain scenarios pass against the app-owned implementation.",
+          "Required acceptance criteria are observed in the running app or documented equivalent QA.",
+          "No must-not clause is violated."
+        ],
+        "mustNot": [
+          "Do not drain H4 from generated data alone.",
+          "Do not skip evidence from startup, lazy product, route, runtime, and flagship groups."
+        ]
+      }
+    ],
+    "exitCriteria": [
+      "Every scenario id appears in exactly one runOrder group.",
+      "Every matrix group has at least one app-owned pass/fail note.",
+      "The h4-drain-decision scenario remains last and cannot pass from data generation alone."
+    ],
+    "coverage": {
+      "scenarioCount": 21,
+      "groupCount": 7,
+      "allScenariosCovered": true,
+      "allGroupsCovered": true,
+      "orderedGroups": [
+        "startup-search",
+        "lazy-product",
+        "route",
+        "route-guardrail",
+        "runtime-state",
+        "flagship-walkthrough",
+        "handoff-drain"
+      ],
+      "drainScenarioId": "h4-drain-decision"
+    }
+  },
+  "scenarios": [
+    {
+      "id": "startup-nestle-concern",
+      "group": "startup-search",
+      "title": "Concern query finds Nestle brand/company/avoid line",
+      "owner": "app/design",
+      "sourceFiles": [
+        "ask-core.json",
+        "ask-traces.json",
+        "ask-presentation.json"
+      ],
+      "steps": [
+        "Enter Ask query: is nestle bad",
+        "Render the generated top results with labels, type badges, match reasons, and route hashes.",
+        "Open the matched result hash and confirm the route parser/page contract handles it."
+      ],
+      "acceptanceCriteria": [
+        "The expected matched result appears within the fixture rank window.",
+        "The first result hash and matched result hash match the generated trace.",
+        "The result list preserves the generated match reason."
+      ],
+      "mustNot": [
+        "Do not reorder typo matches behind loose token containment.",
+        "Do not strip route hashes from rendered results."
+      ],
+      "fixtures": {
+        "query": "is nestle bad",
+        "layer": "core",
+        "matched": "ovs:brand/nestle",
+        "matchedRank": 1,
+        "expectFirstHash": "#n/brand/nestle",
+        "expectMatchedHash": "#n/brand/nestle",
+        "expectReason": "alias"
+      }
+    },
+    {
+      "id": "startup-best-bank",
+      "group": "startup-search",
+      "title": "Money query finds ethical banking",
+      "owner": "app/design",
+      "sourceFiles": [
+        "ask-core.json",
+        "ask-traces.json",
+        "ask-presentation.json"
+      ],
+      "steps": [
+        "Enter Ask query: best bank",
+        "Render the generated top results with labels, type badges, match reasons, and route hashes.",
+        "Open the matched result hash and confirm the route parser/page contract handles it."
+      ],
+      "acceptanceCriteria": [
+        "The expected matched result appears within the fixture rank window.",
+        "The first result hash and matched result hash match the generated trace.",
+        "The result list preserves the generated match reason."
+      ],
+      "mustNot": [
+        "Do not reorder typo matches behind loose token containment.",
+        "Do not strip route hashes from rendered results."
+      ],
+      "fixtures": {
+        "query": "best bank",
+        "layer": "core",
+        "matched": "ovs:cat/banking",
+        "matchedRank": 1,
+        "expectFirstHash": "#explore/banking",
+        "expectMatchedHash": "#explore/banking",
+        "expectReason": "alias"
+      }
+    },
+    {
+      "id": "startup-password-manager",
+      "group": "startup-search",
+      "title": "Digital security query finds password managers",
+      "owner": "app/design",
+      "sourceFiles": [
+        "ask-core.json",
+        "ask-traces.json",
+        "ask-presentation.json"
+      ],
+      "steps": [
+        "Enter Ask query: best password manager",
+        "Render the generated top results with labels, type badges, match reasons, and route hashes.",
+        "Open the matched result hash and confirm the route parser/page contract handles it."
+      ],
+      "acceptanceCriteria": [
+        "The expected matched result appears within the fixture rank window.",
+        "The first result hash and matched result hash match the generated trace.",
+        "The result list preserves the generated match reason."
+      ],
+      "mustNot": [
+        "Do not reorder typo matches behind loose token containment.",
+        "Do not strip route hashes from rendered results."
+      ],
+      "fixtures": {
+        "query": "best password manager",
+        "layer": "core",
+        "matched": "ovs:cat/password-managers",
+        "matchedRank": 1,
+        "expectFirstHash": "#explore/password-managers",
+        "expectMatchedHash": "#explore/password-managers",
+        "expectReason": "alias"
+      }
+    },
+    {
+      "id": "startup-private-messaging",
+      "group": "startup-search",
+      "title": "Privacy query finds private messaging guidance",
+      "owner": "app/design",
+      "sourceFiles": [
+        "ask-core.json",
+        "ask-traces.json",
+        "ask-presentation.json"
+      ],
+      "steps": [
+        "Enter Ask query: private messaging app",
+        "Render the generated top results with labels, type badges, match reasons, and route hashes.",
+        "Open the matched result hash and confirm the route parser/page contract handles it."
+      ],
+      "acceptanceCriteria": [
+        "The expected matched result appears within the fixture rank window.",
+        "The first result hash and matched result hash match the generated trace.",
+        "The result list preserves the generated match reason."
+      ],
+      "mustNot": [
+        "Do not reorder typo matches behind loose token containment.",
+        "Do not strip route hashes from rendered results."
+      ],
+      "fixtures": {
+        "query": "private messaging app",
+        "layer": "core",
+        "matched": "ovs:guide/private-messaging",
+        "matchedRank": 2,
+        "expectFirstHash": "#n/tag/privacy",
+        "expectMatchedHash": "#guide/private-messaging",
+        "expectReason": "query-token"
+      }
+    },
+    {
+      "id": "startup-typo-nestel",
+      "group": "startup-search",
+      "title": "Typo query ranks Nestle before loose containment",
+      "owner": "app/design",
+      "sourceFiles": [
+        "ask-core.json",
+        "ask-traces.json",
+        "ask-presentation.json"
+      ],
+      "steps": [
+        "Enter Ask query: nestel",
+        "Render the generated top results with labels, type badges, match reasons, and route hashes.",
+        "Open the matched result hash and confirm the route parser/page contract handles it."
+      ],
+      "acceptanceCriteria": [
+        "The expected matched result appears within the fixture rank window.",
+        "The first result hash and matched result hash match the generated trace.",
+        "The result list preserves the generated match reason."
+      ],
+      "mustNot": [
+        "Do not reorder typo matches behind loose token containment.",
+        "Do not strip route hashes from rendered results."
+      ],
+      "fixtures": {
+        "query": "nestel",
+        "layer": "core",
+        "matched": "ovs:company/nestle",
+        "matchedRank": 1,
+        "expectFirstHash": "#n/company/nestle",
+        "expectMatchedHash": "#n/company/nestle",
+        "expectReason": "fuzzy-1"
+      }
+    },
+    {
+      "id": "lazy-barcode-lookup",
+      "group": "lazy-product",
+      "title": "Barcode lookup uses the lazy full Ask index",
+      "owner": "app/design",
+      "sourceFiles": [
+        "ask-index.json",
+        "ask-fixtures.json",
+        "ask-traces.json",
+        "node-load-plan.json"
+      ],
+      "steps": [
+        "Start with compact Ask available.",
+        "Enter barcode query: 5449000054227.",
+        "Load ask-index.json only for the barcode/product path and route to the expected item."
+      ],
+      "acceptanceCriteria": [
+        "Barcode result resolves from the full index.",
+        "The expected item hash matches the generated trace.",
+        "Compact core Ask remains usable while lazy lookup loads."
+      ],
+      "mustNot": [
+        "Do not eagerly load ask-index.json at startup.",
+        "Do not hide core results if lazy product lookup fails."
+      ],
+      "fixtures": {
+        "query": "5449000054227",
+        "layer": "full",
+        "matched": "ovs:item/soda/5449000054227",
+        "expectFirstHash": "#item/soda/5449000054227",
+        "expectMatchedHash": "#item/soda/5449000054227"
+      }
+    },
+    {
+      "id": "route-category",
+      "group": "route",
+      "title": "Category route opens a category page",
+      "owner": "app/design",
+      "sourceFiles": [
+        "node-route-fixtures.json",
+        "node-page-contracts.json"
+      ],
+      "steps": [
+        "Open generated hash: #explore/banking.",
+        "Parse only documented route families.",
+        "Confirm the rendered page uses the matching page contract."
+      ],
+      "acceptanceCriteria": [
+        "The route parses to the expected route, type, id, and params.",
+        "The target exists before a content page is rendered.",
+        "Required page-contract fields are present before display."
+      ],
+      "mustNot": [
+        "Do not infer a different target when the fixture hash is exact.",
+        "Do not render a page without required contract fields."
+      ],
+      "fixtures": {
+        "fixtureId": "category-1-explore-banking",
+        "hash": "#explore/banking",
+        "expect": {
+          "route": "explore",
+          "type": "category",
+          "id": "ovs:cat/banking",
+          "params": {
+            "cid": "banking"
+          }
+        }
+      }
+    },
+    {
+      "id": "route-item",
+      "group": "route",
+      "title": "Item route opens a verdict page",
+      "owner": "app/design",
+      "sourceFiles": [
+        "node-route-fixtures.json",
+        "node-page-contracts.json"
+      ],
+      "steps": [
+        "Open generated hash: #item/soda/5449000054227.",
+        "Parse only documented route families.",
+        "Confirm the rendered page uses the matching page contract."
+      ],
+      "acceptanceCriteria": [
+        "The route parses to the expected route, type, id, and params.",
+        "The target exists before a content page is rendered.",
+        "Required page-contract fields are present before display."
+      ],
+      "mustNot": [
+        "Do not infer a different target when the fixture hash is exact.",
+        "Do not render a page without required contract fields."
+      ],
+      "fixtures": {
+        "fixtureId": "item-4-item-soda-5449000054227",
+        "hash": "#item/soda/5449000054227",
+        "expect": {
+          "route": "item",
+          "type": "item",
+          "id": "ovs:item/soda/5449000054227",
+          "params": {
+            "cid": "soda",
+            "code": "5449000054227"
+          }
+        }
+      }
+    },
+    {
+      "id": "route-guide",
+      "group": "route",
+      "title": "Guide route opens a guide page",
+      "owner": "app/design",
+      "sourceFiles": [
+        "node-route-fixtures.json",
+        "node-page-contracts.json"
+      ],
+      "steps": [
+        "Open generated hash: #guide/ethical-banking.",
+        "Parse only documented route families.",
+        "Confirm the rendered page uses the matching page contract."
+      ],
+      "acceptanceCriteria": [
+        "The route parses to the expected route, type, id, and params.",
+        "The target exists before a content page is rendered.",
+        "Required page-contract fields are present before display."
+      ],
+      "mustNot": [
+        "Do not infer a different target when the fixture hash is exact.",
+        "Do not render a page without required contract fields."
+      ],
+      "fixtures": {
+        "fixtureId": "guide-5-guide-ethical-banking",
+        "hash": "#guide/ethical-banking",
+        "expect": {
+          "route": "guide",
+          "type": "guide",
+          "id": "ovs:guide/ethical-banking",
+          "params": {
+            "slug": "ethical-banking"
+          }
+        }
+      }
+    },
+    {
+      "id": "route-brand",
+      "group": "route",
+      "title": "Brand node route opens a brand page",
+      "owner": "app/design",
+      "sourceFiles": [
+        "node-route-fixtures.json",
+        "node-page-contracts.json"
+      ],
+      "steps": [
+        "Open generated hash: #n/brand/nestle.",
+        "Parse only documented route families.",
+        "Confirm the rendered page uses the matching page contract."
+      ],
+      "acceptanceCriteria": [
+        "The route parses to the expected route, type, id, and params.",
+        "The target exists before a content page is rendered.",
+        "Required page-contract fields are present before display."
+      ],
+      "mustNot": [
+        "Do not infer a different target when the fixture hash is exact.",
+        "Do not render a page without required contract fields."
+      ],
+      "fixtures": {
+        "fixtureId": "brand-8-n-brand-nestle",
+        "hash": "#n/brand/nestle",
+        "expect": {
+          "route": "node",
+          "type": "brand",
+          "id": "ovs:brand/nestle",
+          "params": {
+            "type": "brand",
+            "slug": "nestle"
+          }
+        }
+      }
+    },
+    {
+      "id": "guardrail-unknown-target",
+      "group": "route-guardrail",
+      "title": "Unknown generated target routes to not-covered",
+      "owner": "app/design",
+      "sourceFiles": [
+        "node-route-guardrails.json"
+      ],
+      "steps": [
+        "Open or parse guardrail hash: #explore/not-a-real-category.",
+        "Apply the generated parseability and target-existence expectations.",
+        "Use the documented fallback/canonicalization behavior."
+      ],
+      "acceptanceCriteria": [
+        "The parseable, targetExists, and canonicalHash expectations match the guardrail fixture.",
+        "Unknown or malformed targets recover without fabricated pages.",
+        "Canonical routes preserve encoded line ids."
+      ],
+      "mustNot": [
+        "Do not coerce unsupported hashes into generated node routes.",
+        "Do not silently redirect unknown targets to nearby real nodes."
+      ],
+      "fixtures": {
+        "fixtureId": "unknown-category",
+        "kind": "unknown-target",
+        "hash": "#explore/not-a-real-category",
+        "expect": {
+          "parseable": true,
+          "targetExists": false,
+          "canonicalHash": "#explore/not-a-real-category",
+          "route": "explore",
+          "type": "category",
+          "id": "ovs:cat/not-a-real-category",
+          "params": {
+            "cid": "not-a-real-category"
+          }
+        }
+      }
+    },
+    {
+      "id": "guardrail-malformed",
+      "group": "route-guardrail",
+      "title": "Malformed generated hash does not create a page",
+      "owner": "app/design",
+      "sourceFiles": [
+        "node-route-guardrails.json"
+      ],
+      "steps": [
+        "Open or parse guardrail hash: <missing>.",
+        "Apply the generated parseability and target-existence expectations.",
+        "Use the documented fallback/canonicalization behavior."
+      ],
+      "acceptanceCriteria": [
+        "The parseable, targetExists, and canonicalHash expectations match the guardrail fixture.",
+        "Unknown or malformed targets recover without fabricated pages.",
+        "Canonical routes preserve encoded line ids."
+      ],
+      "mustNot": [
+        "Do not coerce unsupported hashes into generated node routes.",
+        "Do not silently redirect unknown targets to nearby real nodes."
+      ],
+      "fixtures": {
+        "fixtureId": "empty-hash",
+        "kind": "malformed",
+        "hash": null,
+        "expect": {
+          "parseable": false,
+          "targetExists": false,
+          "canonicalHash": null
+        }
+      }
+    },
+    {
+      "id": "guardrail-canonicalize",
+      "group": "route-guardrail",
+      "title": "Non-canonical line hash rewrites to encoded canonical hash",
+      "owner": "app/design",
+      "sourceFiles": [
+        "node-route-guardrails.json"
+      ],
+      "steps": [
+        "Open or parse guardrail hash: #n/line/avoid:nestle.",
+        "Apply the generated parseability and target-existence expectations.",
+        "Use the documented fallback/canonicalization behavior."
+      ],
+      "acceptanceCriteria": [
+        "The parseable, targetExists, and canonicalHash expectations match the guardrail fixture.",
+        "Unknown or malformed targets recover without fabricated pages.",
+        "Canonical routes preserve encoded line ids."
+      ],
+      "mustNot": [
+        "Do not coerce unsupported hashes into generated node routes.",
+        "Do not silently redirect unknown targets to nearby real nodes."
+      ],
+      "fixtures": {
+        "fixtureId": "line-id-canonicalization",
+        "kind": "canonicalize",
+        "hash": "#n/line/avoid:nestle",
+        "expect": {
+          "parseable": true,
+          "targetExists": true,
+          "canonicalHash": "#n/line/avoid%3Anestle",
+          "route": "node",
+          "type": "line",
+          "id": "ovs:line/avoid:nestle",
+          "params": {
+            "type": "line",
+            "slug": "avoid:nestle"
+          }
+        }
+      }
+    },
+    {
+      "id": "runtime-hash-mismatch-retry",
+      "group": "runtime-state",
+      "title": "Hash mismatch triggers bounded refetch",
+      "owner": "app/design",
+      "sourceFiles": [
+        "node-runtime-states.json",
+        "node-load-plan.json"
+      ],
+      "steps": [
+        "Force or simulate runtime state: hash-mismatch-retry.",
+        "Render the app-owned treatment for the generated state family.",
+        "Confirm already-valid stages keep working when the state is partial failure."
+      ],
+      "acceptanceCriteria": [
+        "Required behavior clauses from node-runtime-states.json are satisfied.",
+        "Must-not clauses are not violated.",
+        "The recovery path keeps the rest of the app honest and usable."
+      ],
+      "mustNot": [
+        "Do not silently use a mismatched generated file.",
+        "Do not invalidate unrelated files whose hashes match."
+      ],
+      "fixtures": {
+        "stateId": "hash-mismatch-retry",
+        "family": "integrity",
+        "stage": "bootstrap-metadata",
+        "sourceFiles": [
+          "manifest.json",
+          "node-load-plan.json"
+        ]
+      }
+    },
+    {
+      "id": "runtime-ask-no-results",
+      "group": "runtime-state",
+      "title": "No-results state offers request and browse recovery",
+      "owner": "app/design",
+      "sourceFiles": [
+        "node-runtime-states.json",
+        "node-load-plan.json"
+      ],
+      "steps": [
+        "Force or simulate runtime state: ask-no-results.",
+        "Render the app-owned treatment for the generated state family.",
+        "Confirm already-valid stages keep working when the state is partial failure."
+      ],
+      "acceptanceCriteria": [
+        "Required behavior clauses from node-runtime-states.json are satisfied.",
+        "Must-not clauses are not violated.",
+        "The recovery path keeps the rest of the app honest and usable."
+      ],
+      "mustNot": [
+        "Do not invent a close result.",
+        "Do not imply that the entire commons has been searched if lazy product lookup was not loaded."
+      ],
+      "fixtures": {
+        "stateId": "ask-no-results",
+        "family": "empty",
+        "stage": "startup-ask-core",
+        "sourceFiles": [
+          "ask-presentation.json",
+          "ask-core.json"
+        ]
+      }
+    },
+    {
+      "id": "runtime-lazy-product-unavailable",
+      "group": "runtime-state",
+      "title": "Lazy product failure leaves compact Ask usable",
+      "owner": "app/design",
+      "sourceFiles": [
+        "node-runtime-states.json",
+        "node-load-plan.json"
+      ],
+      "steps": [
+        "Force or simulate runtime state: lazy-product-unavailable.",
+        "Render the app-owned treatment for the generated state family.",
+        "Confirm already-valid stages keep working when the state is partial failure."
+      ],
+      "acceptanceCriteria": [
+        "Required behavior clauses from node-runtime-states.json are satisfied.",
+        "Must-not clauses are not violated.",
+        "The recovery path keeps the rest of the app honest and usable."
+      ],
+      "mustNot": [
+        "Do not claim product/barcode coverage if ask-index.json failed.",
+        "Do not treat a lazy product failure as a failure of categories, guides, or node pages."
+      ],
+      "fixtures": {
+        "stateId": "lazy-product-unavailable",
+        "family": "unavailable",
+        "stage": "lazy-product-ask",
+        "sourceFiles": [
+          "ask-index.json"
+        ]
+      }
+    },
+    {
+      "id": "runtime-offline-core-available",
+      "group": "runtime-state",
+      "title": "Offline cached core requires manifest integrity",
+      "owner": "app/design",
+      "sourceFiles": [
+        "node-runtime-states.json",
+        "node-load-plan.json"
+      ],
+      "steps": [
+        "Force or simulate runtime state: offline-core-available.",
+        "Render the app-owned treatment for the generated state family.",
+        "Confirm already-valid stages keep working when the state is partial failure."
+      ],
+      "acceptanceCriteria": [
+        "Required behavior clauses from node-runtime-states.json are satisfied.",
+        "Must-not clauses are not violated.",
+        "The recovery path keeps the rest of the app honest and usable."
+      ],
+      "mustNot": [
+        "Do not skip integrity validation because data came from cache.",
+        "Do not fetch or require lazy indexes while offline."
+      ],
+      "fixtures": {
+        "stateId": "offline-core-available",
+        "family": "offline",
+        "stage": "startup-ask-core",
+        "sourceFiles": [
+          "manifest.json",
+          "ask-core.json"
+        ]
+      }
+    },
+    {
+      "id": "flagship-nestle-concern-path",
+      "group": "flagship-walkthrough",
+      "title": "Nestle concern path",
+      "owner": "app/design",
+      "sourceFiles": [
+        "node-walkthroughs.json",
+        "ask-core.json",
+        "brands.json",
+        "companies.json",
+        "content/lines.json"
+      ],
+      "steps": [
+        "Enter Ask query: is nestle bad.",
+        "Open the generated brand/company/line route from the top results.",
+        "Confirm ownership receipts, known brands, categories, and product examples are visible without overclaiming coverage."
+      ],
+      "acceptanceCriteria": [
+        "The walkthrough matchedTop appears in generated Ask results.",
+        "The company or brand page exposes generated ownership context.",
+        "The path can be followed end to end in a private-preview demo."
+      ],
+      "mustNot": [
+        "Do not imply complete market coverage.",
+        "Do not show ownership facts without generated receipts or source context."
+      ],
+      "fixtures": {
+        "walkthroughId": "nestle-concern-path",
+        "query": "is nestle bad",
+        "matchedTop": "ovs:brand/nestle",
+        "companyHash": "#n/company/nestle",
+        "brandHashes": [
+          "#n/brand/nestle",
+          "#n/brand/nescafe"
+        ]
+      }
+    },
+    {
+      "id": "flagship-coke-concern-path",
+      "group": "flagship-walkthrough",
+      "title": "Coke concern path",
+      "owner": "app/design",
+      "sourceFiles": [
+        "node-walkthroughs.json",
+        "ask-core.json",
+        "brands.json",
+        "companies.json",
+        "content/lines.json"
+      ],
+      "steps": [
+        "Enter Ask query: coke.",
+        "Open the generated brand/company/line route from the top results.",
+        "Confirm ownership receipts, known brands, categories, and product examples are visible without overclaiming coverage."
+      ],
+      "acceptanceCriteria": [
+        "The walkthrough matchedTop appears in generated Ask results.",
+        "The company or brand page exposes generated ownership context.",
+        "The path can be followed end to end in a private-preview demo."
+      ],
+      "mustNot": [
+        "Do not imply complete market coverage.",
+        "Do not show ownership facts without generated receipts or source context."
+      ],
+      "fixtures": {
+        "walkthroughId": "coke-concern-path",
+        "query": "coke",
+        "matchedTop": "ovs:line/avoid:coca-cola",
+        "companyHash": "#n/company/coca-cola",
+        "brandHashes": [
+          "#n/brand/coca-cola"
+        ]
+      }
+    },
+    {
+      "id": "flagship-amazon-concern-path",
+      "group": "flagship-walkthrough",
+      "title": "Amazon concern path",
+      "owner": "app/design",
+      "sourceFiles": [
+        "node-walkthroughs.json",
+        "ask-core.json",
+        "brands.json",
+        "companies.json",
+        "content/lines.json"
+      ],
+      "steps": [
+        "Enter Ask query: avoid amazon.",
+        "Open the generated brand/company/line route from the top results.",
+        "Confirm ownership receipts, known brands, categories, and product examples are visible without overclaiming coverage."
+      ],
+      "acceptanceCriteria": [
+        "The walkthrough matchedTop appears in generated Ask results.",
+        "The company or brand page exposes generated ownership context.",
+        "The path can be followed end to end in a private-preview demo."
+      ],
+      "mustNot": [
+        "Do not imply complete market coverage.",
+        "Do not show ownership facts without generated receipts or source context."
+      ],
+      "fixtures": {
+        "walkthroughId": "amazon-concern-path",
+        "query": "avoid amazon",
+        "matchedTop": "ovs:company/amazon",
+        "companyHash": "#n/company/amazon",
+        "brandHashes": [
+          "#n/brand/amazon"
+        ]
+      }
+    },
+    {
+      "id": "h4-drain-decision",
+      "group": "handoff-drain",
+      "title": "Final H4 drain decision",
+      "owner": "app/design",
+      "sourceFiles": [
+        "node-integration-checklist.json",
+        "node-preview-matrix.json",
+        "readiness.json",
+        "manifest.json"
+      ],
+      "steps": [
+        "Run all smoke commands listed in node-integration-checklist.json.",
+        "Walk this preview matrix across startup search, lazy product lookup, routes, runtime states, and flagship paths.",
+        "Drain H4 only after app-owned implementation consumes these files or documents equivalent coverage."
+      ],
+      "acceptanceCriteria": [
+        "Generated audits pass.",
+        "App-owned behavior covers all matrix groups.",
+        "H4 remains active until generated node/Ask behavior no longer depends only on sample.json or live in-memory entries."
+      ],
+      "mustNot": [
+        "Do not mark H4 drained from data generation alone.",
+        "Do not skip runtime failure states when testing the preview path."
+      ],
+      "fixtures": {
+        "activeHandoff": "H4",
+        "expectedStatusBeforeAppWork": "pending-app-integration",
+        "loadPlanStages": 6,
+        "runtimeStateCases": 15
+      }
+    }
+  ],
+  "totals": {
+    "scenarios": 21,
+    "byGroup": {
+      "startup-search": 5,
+      "lazy-product": 1,
+      "route": 4,
+      "route-guardrail": 3,
+      "runtime-state": 4,
+      "flagship-walkthrough": 3,
+      "handoff-drain": 1
+    }
+  }
+}

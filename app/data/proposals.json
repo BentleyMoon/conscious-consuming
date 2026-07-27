@@ -1,0 +1,295 @@
+{
+  "format": "open-values-governance-index",
+  "version": "0.1.0",
+  "standard": "open-values-standard",
+  "built": "2026-07-08",
+  "purpose": "Generated app-readable index for file-based governance proposals and attestations.",
+  "generatedFrom": {
+    "path": "content/governance/proposals.json",
+    "updated": "2026-07-08",
+    "sha256": "e065975ef257787eef1a05b83f02830870a8d04a6d36557f1c2e4d114394cdbe"
+  },
+  "publication": {
+    "status": "format-seed",
+    "storage": "single-json-file",
+    "relay": "static host, repository discussion, email-to-file, or other dumb relay",
+    "identity": "pseudonymous or attributed by choice; no account system is required by the format",
+    "liveVoting": false,
+    "contactGated": true,
+    "ratification": "No live ratification is active. A real community process must be explicitly opened before attestations can count.",
+    "privacy": "Do not publish email addresses, phone numbers, exact addresses, private beneficiary details, or sensitive threat models in this file."
+  },
+  "kAnonymity": {
+    "minimumGroupSize": 5,
+    "countedStatuses": [
+      "submitted"
+    ],
+    "uncountedStatuses": [
+      "template",
+      "draft",
+      "archived"
+    ],
+    "countedOnlyWhen": [
+      "signature.verified === true",
+      "attestation.counted === true",
+      "proposal.status === submitted"
+    ],
+    "note": "Seed and template records are intentionally below quorum and must not be interpreted as votes."
+  },
+  "counts": {
+    "proposals": 3,
+    "attestations": 3,
+    "countedAttestations": 0,
+    "targets": 3,
+    "targetFormats": 3,
+    "proposalStatuses": {
+      "template": 1,
+      "draft": 2
+    },
+    "attestationStatuses": {
+      "template": 3
+    },
+    "stances": {
+      "support": 1,
+      "concern": 1,
+      "needs-work": 1
+    }
+  },
+  "filters": {
+    "proposalStatuses": [
+      "draft",
+      "template"
+    ],
+    "attestationStatuses": [
+      "template"
+    ],
+    "stances": [
+      "concern",
+      "needs-work",
+      "support"
+    ],
+    "targets": [
+      "content/asks-offers.json",
+      "content/challenge/index.json",
+      "content/lenses/initiatives-causes.json"
+    ],
+    "targetFormats": [
+      "open-values-asks-offers",
+      "open-values-challenge-set",
+      "open-values-lens"
+    ]
+  },
+  "principles": [
+    "governance travels as files",
+    "a proposal names its target, base hash, rationale, author, and patch operations",
+    "attestations are public records, not hidden vote rows",
+    "seed records are templates and drafts, never live ratification",
+    "a relay may move files but must not become the authority"
+  ],
+  "proposals": [
+    {
+      "id": "proposal-asks-offers-reply-safety",
+      "status": "template",
+      "target": {
+        "path": "content/asks-offers.json",
+        "format": "open-values-asks-offers",
+        "baseSha256": "fd892b10cf3661d567362834ccf5c418f9572168dcbc76618c4188d91bb46f17",
+        "baseHash": "fd892b10",
+        "currentSha256": "fd892b10cf3661d567362834ccf5c418f9572168dcbc76618c4188d91bb46f17",
+        "currentHash": "fd892b10",
+        "matchesCurrent": true
+      },
+      "author": {
+        "type": "pseudonymous",
+        "id": "seed-steward",
+        "display": "Conscious Consuming seed steward"
+      },
+      "created": "2026-07-08",
+      "updated": "2026-07-08",
+      "rationale": "Asks and offers need an explicit public-reply safety policy before any future surface lets people fork a template into a live request.",
+      "operations": [
+        {
+          "op": "edit-field",
+          "path": "/publication/privacy",
+          "summary": "Clarify that replies should move through consentful, user-chosen channels and that public files must not contain private contact details.",
+          "impact": "Keeps mutual-aid coordination useful without turning the file into a contact database.",
+          "risk": "Too much caution could make legitimate coordination feel vague unless the app explains the fork/export path."
+        },
+        {
+          "op": "note",
+          "path": "/items/*/limits",
+          "summary": "Require each live fork to preserve or strengthen the seed item's safety limits.",
+          "impact": "Makes limits portable across relays.",
+          "risk": "A relay could ignore the note, so audits must remain file-based and recomputable."
+        }
+      ],
+      "operationCount": 2,
+      "signature": {
+        "method": "none-template",
+        "verified": false
+      },
+      "attestations": {
+        "total": 1,
+        "counted": 0,
+        "stances": {
+          "support": 1
+        }
+      },
+      "limits": [
+        "This proposal is a template, not a vote.",
+        "Do not publish private contact details while discussing replies."
+      ]
+    },
+    {
+      "id": "proposal-challenge-dismissible-default",
+      "status": "draft",
+      "target": {
+        "path": "content/challenge/index.json",
+        "format": "open-values-challenge-set",
+        "baseSha256": "8e679fcc603cea00f7afa7c086d8b13cb1e35147cd341eaa16ddd27f2c1019bc",
+        "baseHash": "8e679fcc",
+        "currentSha256": "8e679fcc603cea00f7afa7c086d8b13cb1e35147cd341eaa16ddd27f2c1019bc",
+        "currentHash": "8e679fcc",
+        "matchesCurrent": true
+      },
+      "author": {
+        "type": "pseudonymous",
+        "id": "seed-steward",
+        "display": "Conscious Consuming seed steward"
+      },
+      "created": "2026-07-08",
+      "updated": "2026-07-08",
+      "rationale": "The anti-echo-chamber layer should stay calm and dismissible as it becomes more prominent in Kosplora and Socrates Colosseum.",
+      "operations": [
+        {
+          "op": "edit-field",
+          "path": "/principles",
+          "summary": "Add or preserve language that challenge is optional, sourced, and never an engagement mechanic.",
+          "impact": "Protects the flagship challenge feature from becoming attention bait.",
+          "risk": "If the app later hides challenge too deeply, the feature may not meaningfully counter echo chambers."
+        }
+      ],
+      "operationCount": 1,
+      "signature": {
+        "method": "none-template",
+        "verified": false
+      },
+      "attestations": {
+        "total": 1,
+        "counted": 0,
+        "stances": {
+          "concern": 1
+        }
+      },
+      "limits": [
+        "Do not make this a moderation or persuasion system.",
+        "Do not count attention, dwell time, or repeat views as support."
+      ]
+    },
+    {
+      "id": "proposal-initiatives-source-refresh",
+      "status": "draft",
+      "target": {
+        "path": "content/lenses/initiatives-causes.json",
+        "format": "open-values-lens",
+        "baseSha256": "5c70878420320619bb9c43179d11dffaf9447de5b84dc89c474c22e39a4a3f15",
+        "baseHash": "5c708784",
+        "currentSha256": "5c70878420320619bb9c43179d11dffaf9447de5b84dc89c474c22e39a4a3f15",
+        "currentHash": "5c708784",
+        "matchesCurrent": true
+      },
+      "author": {
+        "type": "pseudonymous",
+        "id": "seed-steward",
+        "display": "Conscious Consuming seed steward"
+      },
+      "created": "2026-07-08",
+      "updated": "2026-07-08",
+      "rationale": "The initiatives lens is now a high-leverage collaborative surface, so its future source refreshes should be proposed in public before broad score changes land.",
+      "operations": [
+        {
+          "op": "note",
+          "path": "/products/*/provenance",
+          "summary": "For broad score changes, publish the intended evidence refresh as a proposal before editing scores.",
+          "impact": "Makes high-stakes charity and initiative changes easier to inspect, fork, and contest.",
+          "risk": "The process should not block urgent corrections to clearly stale or broken links."
+        }
+      ],
+      "operationCount": 1,
+      "signature": {
+        "method": "none-template",
+        "verified": false
+      },
+      "attestations": {
+        "total": 1,
+        "counted": 0,
+        "stances": {
+          "needs-work": 1
+        }
+      },
+      "limits": [
+        "Not financial, tax, legal, or charitable-giving advice.",
+        "Do not collapse relationship-based local giving into a universal score."
+      ]
+    }
+  ],
+  "attestations": [
+    {
+      "id": "attestation-template-support-reply-safety",
+      "status": "template",
+      "proposal": "proposal-asks-offers-reply-safety",
+      "stance": "support",
+      "attester": {
+        "type": "pseudonymous",
+        "id": "example-attester-one",
+        "display": "Example attester one"
+      },
+      "created": "2026-07-08",
+      "publicComment": "This shows how a public support record can travel with a proposal without becoming a hidden vote row.",
+      "signature": {
+        "method": "none-template",
+        "verified": false
+      },
+      "counted": false,
+      "privacy": "Template record; contains no private contact details."
+    },
+    {
+      "id": "attestation-template-concern-challenge",
+      "status": "template",
+      "proposal": "proposal-challenge-dismissible-default",
+      "stance": "concern",
+      "attester": {
+        "type": "pseudonymous",
+        "id": "example-attester-two",
+        "display": "Example attester two"
+      },
+      "created": "2026-07-08",
+      "publicComment": "This shows how a concern can be preserved without blocking a proposal or becoming a moderation queue.",
+      "signature": {
+        "method": "none-template",
+        "verified": false
+      },
+      "counted": false,
+      "privacy": "Template record; contains no private contact details."
+    },
+    {
+      "id": "attestation-template-needs-work-initiatives",
+      "status": "template",
+      "proposal": "proposal-initiatives-source-refresh",
+      "stance": "needs-work",
+      "attester": {
+        "type": "pseudonymous",
+        "id": "example-attester-three",
+        "display": "Example attester three"
+      },
+      "created": "2026-07-08",
+      "publicComment": "This shows how an attester can ask for a sharper exception path for urgent corrections.",
+      "signature": {
+        "method": "none-template",
+        "verified": false
+      },
+      "counted": false,
+      "privacy": "Template record; contains no private contact details."
+    }
+  ]
+}

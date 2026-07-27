@@ -1,0 +1,528 @@
+{
+  "format": "ovs-node-manifest",
+  "version": "0.1",
+  "built": "2026-07-15",
+  "source": "pipeline/build_nodes.js",
+  "appLaneNote": "App-owned code chooses which node indexes to load and how to merge them.",
+  "integrity": {
+    "algorithm": "sha256",
+    "scope": "Each index entry hashes the canonical pretty-printed JSON body of that file; manifest.json does not hash itself."
+  },
+  "loadOrder": [
+    "node-load-plan.json",
+    "tags.json",
+    "errands.json",
+    "synonyms.json",
+    "ask-core.json",
+    "brands.json",
+    "companies.json",
+    "ask-index.json",
+    "avoid-tokens.json",
+    "sample.json"
+  ],
+  "loaderPlan": {
+    "purpose": "App-readable runtime fetch plan derived from node-load-plan.json and manifest hashes.",
+    "source": "app/data/nodes/node-load-plan.json",
+    "integrity": {
+      "algorithm": "sha256",
+      "cacheKey": "<file>:<sha256>",
+      "validate": "Use the sha256 value from manifest.json for each loaded node file when the runtime supports digest checks.",
+      "retry": "On a hash mismatch or parse failure, refetch the file once before marking that stage unavailable.",
+      "fallback": "Never fabricate results from a failed generated index; keep already-loaded stages usable."
+    },
+    "stages": [
+      {
+        "step": 1,
+        "id": "bootstrap-metadata",
+        "label": "Bootstrap node metadata",
+        "loadHint": "eager-metadata",
+        "runtime": true,
+        "trigger": "App startup, before node or Ask features claim generated-index coverage.",
+        "failureMode": "Keep existing app search/data paths usable and mark generated node features as unavailable if metadata cannot load.",
+        "files": [
+          {
+            "file": "manifest.json",
+            "type": "manifest",
+            "loadHint": "eager-metadata",
+            "integrity": "self-unhashed",
+            "cacheKey": null
+          },
+          {
+            "file": "node-load-plan.json",
+            "type": "node-load-plan",
+            "loadHint": "eager-metadata",
+            "bytes": 6262,
+            "sha256": "43fbf2f7e8e2c20ff85a60648d14f4c61f3db35f5b1e3d0cbc3f8e49b7584810",
+            "cacheKey": "node-load-plan.json:43fbf2f7e8e2c20ff85a60648d14f4c61f3db35f5b1e3d0cbc3f8e49b7584810"
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "id": "established-node-primitives",
+        "label": "Keep established node primitives eager",
+        "loadHint": "eager",
+        "runtime": true,
+        "trigger": "Startup, using the existing small node files already produced by other pipelines.",
+        "failureMode": "Disable the affected helper surface rather than fabricating labels or routes.",
+        "bytes": 85711,
+        "files": [
+          {
+            "file": "tags.json",
+            "type": "tag",
+            "loadHint": "eager",
+            "bytes": 54983,
+            "sha256": "f452926f6bab7e8b500bbbebc0b22346578480c1142b08fc1ed4a60a5f4a800f",
+            "cacheKey": "tags.json:f452926f6bab7e8b500bbbebc0b22346578480c1142b08fc1ed4a60a5f4a800f"
+          },
+          {
+            "file": "errands.json",
+            "type": "errand",
+            "loadHint": "eager",
+            "bytes": 17047,
+            "sha256": "cf1628668db77aa521def86780a47a9f58ff448e25cea07854c1a8f0487eb1cf",
+            "cacheKey": "errands.json:cf1628668db77aa521def86780a47a9f58ff448e25cea07854c1a8f0487eb1cf"
+          },
+          {
+            "file": "synonyms.json",
+            "type": "synonym",
+            "loadHint": "eager",
+            "bytes": 13681,
+            "sha256": "ae3d1f1536a738df30078381f6d14e15f0db2ed06e5e0b88f03475cfbc9f2306",
+            "cacheKey": "synonyms.json:ae3d1f1536a738df30078381f6d14e15f0db2ed06e5e0b88f03475cfbc9f2306"
+          }
+        ]
+      },
+      {
+        "step": 3,
+        "id": "startup-ask-core",
+        "label": "Load compact Ask core for startup search",
+        "loadHint": "eager-search",
+        "runtime": true,
+        "trigger": "Startup search box, command palette, or any first-use Ask entry point.",
+        "failureMode": "Show a search-unavailable state or fall back to existing in-memory search; do not eagerly pull ask-index.json as a rescue path.",
+        "bytes": 642114,
+        "files": [
+          {
+            "file": "ask-core.json",
+            "type": "ask-core",
+            "loadHint": "eager-search",
+            "bytes": 642114,
+            "sha256": "624e46bb764b12eb6bf62a3c20cf58bf409074ead4659ff7400b0433f6b6f74d",
+            "cacheKey": "ask-core.json:624e46bb764b12eb6bf62a3c20cf58bf409074ead4659ff7400b0433f6b6f74d"
+          }
+        ]
+      },
+      {
+        "step": 4,
+        "id": "defer-page-nodes",
+        "label": "Defer full brand and company page nodes",
+        "loadHint": "defer-page-nodes",
+        "runtime": true,
+        "trigger": "First visit to a brand or company node page, ownership view, or flagship walkthrough that needs full node context.",
+        "failureMode": "Brand/company node pages can be unavailable while category and guide routes remain usable.",
+        "bytes": 1540361,
+        "files": [
+          {
+            "file": "brands.json",
+            "type": "brand",
+            "loadHint": "defer-page-nodes",
+            "bytes": 1433712,
+            "sha256": "8aad4e812bbb2fc22ffc5275dfa0ea052ebe8cfd2a73e77111aae5238ddd7e8e",
+            "cacheKey": "brands.json:8aad4e812bbb2fc22ffc5275dfa0ea052ebe8cfd2a73e77111aae5238ddd7e8e"
+          },
+          {
+            "file": "companies.json",
+            "type": "company",
+            "loadHint": "defer-page-nodes",
+            "bytes": 106649,
+            "sha256": "aeb98594d3167ddf2dba601d01addd22f5e4509c694eecb6fdc5e2d6b56a14e3",
+            "cacheKey": "companies.json:aeb98594d3167ddf2dba601d01addd22f5e4509c694eecb6fdc5e2d6b56a14e3"
+          }
+        ]
+      },
+      {
+        "step": 5,
+        "id": "lazy-product-ask",
+        "label": "Lazy-load full product and barcode Ask",
+        "loadHint": "lazy-product-search",
+        "runtime": true,
+        "trigger": "Product-name search, barcode lookup, or an explicit deeper-results action.",
+        "failureMode": "Product lookup can fail independently without breaking startup Ask or generated node pages.",
+        "bytes": 5579274,
+        "files": [
+          {
+            "file": "ask-index.json",
+            "type": "ask",
+            "loadHint": "lazy-product-search",
+            "bytes": 5579274,
+            "sha256": "1b646232da40611f84be007793273dc9ff2253b91707a95996e3a3be5b8cd999",
+            "cacheKey": "ask-index.json:1b646232da40611f84be007793273dc9ff2253b91707a95996e3a3be5b8cd999"
+          }
+        ]
+      },
+      {
+        "step": 6,
+        "id": "dev-contracts",
+        "label": "Use generated contracts for integration QA",
+        "loadHint": "dev-contract",
+        "runtime": false,
+        "trigger": "Development, preview QA, and H4 drain checks; not needed for normal runtime.",
+        "failureMode": "A green build is not enough to drain H4 if the app has no matching integration behavior.",
+        "files": [
+          {
+            "file": "ask-fixtures.json",
+            "type": "ask-fixtures",
+            "loadHint": "dev-contract",
+            "bytes": 4451,
+            "sha256": "6b7e795ab538fced302676462f927a07584adf43795771fc04c53fcc8456c02e",
+            "cacheKey": "ask-fixtures.json:6b7e795ab538fced302676462f927a07584adf43795771fc04c53fcc8456c02e"
+          },
+          {
+            "file": "ask-traces.json",
+            "type": "ask-traces",
+            "loadHint": "dev-contract",
+            "bytes": 19353,
+            "sha256": "7deb1053721e6535c415e66aff6bb366711510f204765a947407b681308d4d30",
+            "cacheKey": "ask-traces.json:7deb1053721e6535c415e66aff6bb366711510f204765a947407b681308d4d30"
+          },
+          {
+            "file": "ask-presentation.json",
+            "type": "ask-presentation",
+            "loadHint": "dev-contract",
+            "bytes": 5382,
+            "sha256": "f2b02f2372861d2eb80fd7973b68ebcb70a4aa60d8098659d7120cd477e22c4b",
+            "cacheKey": "ask-presentation.json:f2b02f2372861d2eb80fd7973b68ebcb70a4aa60d8098659d7120cd477e22c4b"
+          },
+          {
+            "file": "node-walkthroughs.json",
+            "type": "node-walkthroughs",
+            "loadHint": "dev-contract",
+            "bytes": 26563,
+            "sha256": "dab721e8850d98633ad123c8fdd693ba21c71d65b2171a4f8486b28836f44389",
+            "cacheKey": "node-walkthroughs.json:dab721e8850d98633ad123c8fdd693ba21c71d65b2171a4f8486b28836f44389"
+          },
+          {
+            "file": "node-page-contracts.json",
+            "type": "node-page-contracts",
+            "loadHint": "dev-contract",
+            "bytes": 8481,
+            "sha256": "30cd7f56befa0e552707c0f5bf2a05b8dfecbcbf996752b0fa532b89b175bc16",
+            "cacheKey": "node-page-contracts.json:30cd7f56befa0e552707c0f5bf2a05b8dfecbcbf996752b0fa532b89b175bc16"
+          },
+          {
+            "file": "node-route-fixtures.json",
+            "type": "node-route-fixtures",
+            "loadHint": "dev-contract",
+            "bytes": 9631,
+            "sha256": "b0fa156ad1c7409b7051fdc4bf6b43d5afbd24d07629fc5bfbff17ae61670dbf",
+            "cacheKey": "node-route-fixtures.json:b0fa156ad1c7409b7051fdc4bf6b43d5afbd24d07629fc5bfbff17ae61670dbf"
+          },
+          {
+            "file": "node-route-guardrails.json",
+            "type": "node-route-guardrails",
+            "loadHint": "dev-contract",
+            "bytes": 5608,
+            "sha256": "ff1d86abac19a819a241ae49a3f3caa29af36ccb112fad4fff06661888498e7f",
+            "cacheKey": "node-route-guardrails.json:ff1d86abac19a819a241ae49a3f3caa29af36ccb112fad4fff06661888498e7f"
+          },
+          {
+            "file": "node-runtime-states.json",
+            "type": "node-runtime-states",
+            "loadHint": "dev-contract",
+            "bytes": 19724,
+            "sha256": "a415ae4c450d2a050e29ec2673322faf0bf73ada8eafee89ff48be3f1fc40b72",
+            "cacheKey": "node-runtime-states.json:a415ae4c450d2a050e29ec2673322faf0bf73ada8eafee89ff48be3f1fc40b72"
+          },
+          {
+            "file": "node-preview-matrix.json",
+            "type": "node-preview-matrix",
+            "loadHint": "dev-contract",
+            "bytes": 33340,
+            "sha256": "d7ccbc6645d79eb067207597649306c94202a0beaba71165674369eeb7a67e8c",
+            "cacheKey": "node-preview-matrix.json:d7ccbc6645d79eb067207597649306c94202a0beaba71165674369eeb7a67e8c"
+          },
+          {
+            "file": "node-integration-checklist.json",
+            "type": "node-integration-checklist",
+            "loadHint": "dev-contract",
+            "bytes": 48996,
+            "sha256": "64f0924b73620c10eea3a910b5bcbfbb52c1f043ec133db2b23e660acd1df8f7",
+            "cacheKey": "node-integration-checklist.json:64f0924b73620c10eea3a910b5bcbfbb52c1f043ec133db2b23e660acd1df8f7"
+          }
+        ]
+      }
+    ],
+    "totals": {
+      "stages": 6,
+      "runtimeStages": 5,
+      "devContractStages": 1
+    }
+  },
+  "indexes": [
+    {
+      "type": "sample",
+      "file": "sample.json",
+      "format": "ovs-node-index",
+      "version": "0.1",
+      "built": "2026-07-06",
+      "bytes": 4485,
+      "sha256": "2500ef71ef6bb7f4b2001069bab3318533d04de1a3697ed9923df4378d6a2ec4",
+      "loadHint": "legacy-sample",
+      "nodes": 9
+    },
+    {
+      "type": "tag",
+      "file": "tags.json",
+      "format": "ovs-node-index",
+      "version": "0.1",
+      "built": "2026-07-07",
+      "bytes": 54983,
+      "sha256": "f452926f6bab7e8b500bbbebc0b22346578480c1142b08fc1ed4a60a5f4a800f",
+      "loadHint": "eager",
+      "nodes": 105
+    },
+    {
+      "type": "errand",
+      "file": "errands.json",
+      "format": "ovs-node-index",
+      "version": "0.1",
+      "built": "2026-07-08",
+      "bytes": 17047,
+      "sha256": "cf1628668db77aa521def86780a47a9f58ff448e25cea07854c1a8f0487eb1cf",
+      "loadHint": "eager",
+      "nodes": 12
+    },
+    {
+      "type": "brand",
+      "file": "brands.json",
+      "format": "ovs-node-index",
+      "version": "0.1",
+      "built": "2026-07-15",
+      "bytes": 1433712,
+      "sha256": "8aad4e812bbb2fc22ffc5275dfa0ea052ebe8cfd2a73e77111aae5238ddd7e8e",
+      "loadHint": "defer-page-nodes",
+      "nodes": 2098,
+      "longTail": 4514
+    },
+    {
+      "type": "company",
+      "file": "companies.json",
+      "format": "ovs-node-index",
+      "version": "0.1",
+      "built": "2026-07-15",
+      "bytes": 106649,
+      "sha256": "aeb98594d3167ddf2dba601d01addd22f5e4509c694eecb6fdc5e2d6b56a14e3",
+      "loadHint": "defer-page-nodes",
+      "nodes": 29
+    },
+    {
+      "type": "synonym",
+      "file": "synonyms.json",
+      "format": "ovs-synonym-index",
+      "version": "0.1",
+      "built": "2026-07-07",
+      "bytes": 13681,
+      "sha256": "ae3d1f1536a738df30078381f6d14e15f0db2ed06e5e0b88f03475cfbc9f2306",
+      "loadHint": "eager",
+      "aliases": 113,
+      "normalized": 113
+    },
+    {
+      "type": "ask-core",
+      "file": "ask-core.json",
+      "format": "ovs-ask-core-index",
+      "version": "0.1",
+      "built": "2026-07-15",
+      "bytes": 642114,
+      "sha256": "624e46bb764b12eb6bf62a3c20cf58bf409074ead4659ff7400b0433f6b6f74d",
+      "loadHint": "eager-search",
+      "tokens": 2975,
+      "aliases": 2710,
+      "targets": 2472
+    },
+    {
+      "type": "ask",
+      "file": "ask-index.json",
+      "format": "ovs-ask-index",
+      "version": "0.1",
+      "built": "2026-07-15",
+      "bytes": 5579274,
+      "sha256": "1b646232da40611f84be007793273dc9ff2253b91707a95996e3a3be5b8cd999",
+      "loadHint": "lazy-product-search",
+      "tokens": 62740,
+      "aliases": 2710,
+      "barcodeLikeItems": 20718
+    },
+    {
+      "type": "avoid-token",
+      "file": "avoid-tokens.json",
+      "format": "ovs-avoid-token-index",
+      "version": "0.1",
+      "built": "2026-07-15",
+      "bytes": 8269,
+      "sha256": "ba6a62ee07b814cbbbdcb19b107af16fa5cbfcd63b2c01057411adf9b243f197",
+      "loadHint": "extension-data",
+      "families": 10,
+      "tokens": 208,
+      "uniqueTokens": 208
+    },
+    {
+      "type": "ask-fixtures",
+      "file": "ask-fixtures.json",
+      "format": "ovs-ask-fixtures",
+      "version": "0.1",
+      "built": "2026-07-15",
+      "bytes": 4451,
+      "sha256": "6b7e795ab538fced302676462f927a07584adf43795771fc04c53fcc8456c02e",
+      "loadHint": "dev-contract",
+      "cases": 13
+    },
+    {
+      "type": "ask-traces",
+      "file": "ask-traces.json",
+      "format": "ovs-ask-traces",
+      "version": "0.1",
+      "built": "2026-07-15",
+      "bytes": 19353,
+      "sha256": "7deb1053721e6535c415e66aff6bb366711510f204765a947407b681308d4d30",
+      "loadHint": "dev-contract",
+      "traces": 13
+    },
+    {
+      "type": "ask-presentation",
+      "file": "ask-presentation.json",
+      "format": "ovs-ask-presentation-contract",
+      "version": "0.1",
+      "built": "2026-07-15",
+      "bytes": 5382,
+      "sha256": "f2b02f2372861d2eb80fd7973b68ebcb70a4aa60d8098659d7120cd477e22c4b",
+      "loadHint": "dev-contract",
+      "qaCases": 13
+    },
+    {
+      "type": "node-walkthroughs",
+      "file": "node-walkthroughs.json",
+      "format": "ovs-node-walkthroughs",
+      "version": "0.1",
+      "built": "2026-07-15",
+      "bytes": 26563,
+      "sha256": "dab721e8850d98633ad123c8fdd693ba21c71d65b2171a4f8486b28836f44389",
+      "loadHint": "dev-contract",
+      "walkthroughs": 3
+    },
+    {
+      "type": "node-page-contracts",
+      "file": "node-page-contracts.json",
+      "format": "ovs-node-page-contracts",
+      "version": "0.1",
+      "built": "2026-07-15",
+      "bytes": 8481,
+      "sha256": "30cd7f56befa0e552707c0f5bf2a05b8dfecbcbf996752b0fa532b89b175bc16",
+      "loadHint": "dev-contract",
+      "contracts": 8
+    },
+    {
+      "type": "node-route-fixtures",
+      "file": "node-route-fixtures.json",
+      "format": "ovs-node-route-fixtures",
+      "version": "0.1",
+      "built": "2026-07-15",
+      "bytes": 9631,
+      "sha256": "b0fa156ad1c7409b7051fdc4bf6b43d5afbd24d07629fc5bfbff17ae61670dbf",
+      "loadHint": "dev-contract",
+      "cases": 22
+    },
+    {
+      "type": "node-route-guardrails",
+      "file": "node-route-guardrails.json",
+      "format": "ovs-node-route-guardrails",
+      "version": "0.1",
+      "built": "2026-07-15",
+      "bytes": 5608,
+      "sha256": "ff1d86abac19a819a241ae49a3f3caa29af36ccb112fad4fff06661888498e7f",
+      "loadHint": "dev-contract",
+      "cases": 11
+    },
+    {
+      "type": "node-runtime-states",
+      "file": "node-runtime-states.json",
+      "format": "ovs-node-runtime-states",
+      "version": "0.1",
+      "built": "2026-07-15",
+      "bytes": 19724,
+      "sha256": "a415ae4c450d2a050e29ec2673322faf0bf73ada8eafee89ff48be3f1fc40b72",
+      "loadHint": "dev-contract",
+      "cases": 15,
+      "families": 6
+    },
+    {
+      "type": "node-preview-matrix",
+      "file": "node-preview-matrix.json",
+      "format": "ovs-node-preview-matrix",
+      "version": "0.1",
+      "built": "2026-07-15",
+      "bytes": 33340,
+      "sha256": "d7ccbc6645d79eb067207597649306c94202a0beaba71165674369eeb7a67e8c",
+      "loadHint": "dev-contract",
+      "scenarios": 21,
+      "groups": 7
+    },
+    {
+      "type": "node-integration-checklist",
+      "file": "node-integration-checklist.json",
+      "format": "ovs-node-integration-checklist",
+      "version": "0.1",
+      "built": "2026-07-15",
+      "bytes": 48996,
+      "sha256": "64f0924b73620c10eea3a910b5bcbfbb52c1f043ec133db2b23e660acd1df8f7",
+      "loadHint": "dev-contract",
+      "phases": 10
+    },
+    {
+      "type": "node-load-plan",
+      "file": "node-load-plan.json",
+      "format": "ovs-node-load-plan",
+      "version": "0.1",
+      "built": "2026-07-15",
+      "bytes": 6262,
+      "sha256": "43fbf2f7e8e2c20ff85a60648d14f4c61f3db35f5b1e3d0cbc3f8e49b7584810",
+      "loadHint": "eager-metadata",
+      "stages": 6
+    },
+    {
+      "type": "readiness",
+      "file": "readiness.json",
+      "format": "ovs-node-readiness",
+      "version": "0.1",
+      "built": "2026-07-15",
+      "bytes": 52024,
+      "sha256": "e94fb07e0cb6f182867c228e3b8ac9da4589e460c416be41a493328391d8ef71",
+      "loadHint": "dev-contract",
+      "status": "ready-for-app-integration"
+    }
+  ],
+  "totals": {
+    "generatedPageNodes": 2244,
+    "askCoreTokens": 2975,
+    "askCoreTargets": 2472,
+    "askTokens": 62740,
+    "askAliases": 2710,
+    "askBarcodeLikeItems": 20718,
+    "avoidTokenFamilies": 10,
+    "avoidTokens": 208,
+    "avoidUniqueTokens": 208,
+    "askFixtures": 13,
+    "askTraces": 13,
+    "askPresentationCases": 13,
+    "nodeWalkthroughs": 3,
+    "nodePageContracts": 8,
+    "nodeRouteFixtures": 22,
+    "nodeRouteGuardrails": 11,
+    "nodeRuntimeStateCases": 15,
+    "nodePreviewScenarios": 21,
+    "nodeIntegrationPhases": 10,
+    "nodeLoadPlanStages": 6,
+    "readinessReports": 1
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/node-readiness-v0.1.schema.json",
+  "title": "Open Values Node Readiness v0.1",
+  "description": "Readiness report for generated node and Ask integration.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["format", "version", "built", "source", "status", "appLaneNote", "runtimePlan", "devContracts", "routeContract", "counts", "budgets", "publicGates", "h4DrainContract", "goldenQueries"],
+  "properties": {
+    "format": { "const": "ovs-node-readiness" },
+    "version": { "$ref": "#/$defs/version" },
+    "built": { "$ref": "#/$defs/date" },
+    "source": { "$ref": "#/$defs/source" },
+    "status": { "const": "ready-for-app-integration" },
+    "appLaneNote": { "$ref": "#/$defs/nonEmptyString" },
+    "runtimePlan": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/runtimeStep" } },
+    "devContracts": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/devContract" } },
+    "routeContract": { "type": "object", "minProperties": 1 },
+    "counts": { "type": "object", "minProperties": 1 },
+    "budgets": { "type": "object", "minProperties": 1 },
+    "publicGates": { "$ref": "#/$defs/publicGates" },
+    "h4DrainContract": { "$ref": "#/$defs/h4DrainContract" },
+    "goldenQueries": { "type": "array", "minItems": 1 }
+  },
+  "$defs": {
+    "version": { "type": "string", "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$" },
+    "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "source": {
+      "oneOf": [
+        { "$ref": "#/$defs/nonEmptyString" },
+        { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+      ]
+    },
+    "publicGates": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["status", "namedConsumer", "voiceSource", "rule", "appOwnedBeforePublic", "releaseContract", "surfaces"],
+      "properties": {
+        "status": { "const": "ready-for-app-public-gates" },
+        "namedConsumer": { "$ref": "#/$defs/nonEmptyString" },
+        "voiceSource": { "$ref": "#/$defs/nonEmptyString" },
+        "rule": { "$ref": "#/$defs/nonEmptyString" },
+        "appOwnedBeforePublic": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "releaseContract": { "$ref": "#/$defs/releaseContract" },
+        "surfaces": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/publicGateSurface" } }
+      }
+    },
+    "releaseContract": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["purpose", "status", "namedConsumer", "releaseRule", "voiceSource", "releaseOrder", "sharedEvidenceRequired", "rollbackRule", "coverage"],
+      "properties": {
+        "purpose": { "$ref": "#/$defs/nonEmptyString" },
+        "status": { "const": "ready-for-app-public-gates" },
+        "namedConsumer": { "$ref": "#/$defs/nonEmptyString" },
+        "releaseRule": { "$ref": "#/$defs/nonEmptyString" },
+        "voiceSource": { "$ref": "#/$defs/nonEmptyString" },
+        "releaseOrder": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/releaseStep" } },
+        "sharedEvidenceRequired": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "rollbackRule": { "$ref": "#/$defs/nonEmptyString" },
+        "coverage": { "type": "object", "minProperties": 1 }
+      }
+    },
+    "releaseStep": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["step", "surfaceId", "label", "voiceStatus", "sourceFiles", "evidenceRequired", "releaseWhen", "mustNot"],
+      "properties": {
+        "step": { "type": "integer", "minimum": 1 },
+        "surfaceId": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "label": { "$ref": "#/$defs/nonEmptyString" },
+        "voiceStatus": { "enum": ["signed", "minimal-generated-copy"] },
+        "sourceFiles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "evidenceRequired": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "releaseWhen": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+      }
+    },
+    "h4DrainContract": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["purpose", "status", "activeHandoff", "namedConsumer", "h4DrainableFromDataAlone", "drainRule", "steps", "finalDecision", "coverage"],
+      "properties": {
+        "purpose": { "$ref": "#/$defs/nonEmptyString" },
+        "status": { "const": "pending-app-integration" },
+        "activeHandoff": { "const": "H4" },
+        "namedConsumer": { "$ref": "#/$defs/nonEmptyString" },
+        "h4DrainableFromDataAlone": { "const": false },
+        "drainRule": { "$ref": "#/$defs/nonEmptyString" },
+        "steps": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/h4DrainStep" } },
+        "finalDecision": {
+          "type": "object",
+          "additionalProperties": true,
+          "required": ["expectedStatusBeforeAppWork", "dataAloneIsInsufficient", "drainOnlyWhen", "mustNot"],
+          "properties": {
+            "expectedStatusBeforeAppWork": { "const": "pending-app-integration" },
+            "dataAloneIsInsufficient": { "const": true },
+            "drainOnlyWhen": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+            "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+          }
+        },
+        "coverage": { "type": "object", "minProperties": 1 }
+      }
+    },
+    "h4DrainStep": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["step", "id", "label", "phaseIds", "sourceFiles", "contractPointer", "appOwnedEvidence", "passWhen", "mustNot"],
+      "properties": {
+        "step": { "type": "integer", "minimum": 1 },
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "label": { "$ref": "#/$defs/nonEmptyString" },
+        "phaseIds": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^[a-z0-9-]+$" } },
+        "sourceFiles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "contractPointer": { "$ref": "#/$defs/nonEmptyString" },
+        "appOwnedEvidence": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "passWhen": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+      }
+    },
+    "publicGateSurface": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "label", "owner", "status", "proseClass", "sourceFiles", "voice", "appOwnedGate", "mustNot"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "label": { "$ref": "#/$defs/nonEmptyString" },
+        "owner": { "const": "app/design" },
+        "status": { "const": "voice-signed-app-gate" },
+        "proseClass": { "$ref": "#/$defs/nonEmptyString" },
+        "sourceFiles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "voice": { "$ref": "#/$defs/publicGateVoice" },
+        "generatedCount": { "type": "integer", "minimum": 0 },
+        "appOwnedGate": { "$ref": "#/$defs/nonEmptyString" },
+        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+      }
+    },
+    "publicGateVoice": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["status", "signedAt", "signoffBlock", "pilotSamples"],
+      "properties": {
+        "status": { "enum": ["signed", "minimal-generated-copy"] },
+        "signedAt": { "$ref": "#/$defs/date" },
+        "signoffBlock": { "$ref": "#/$defs/nonEmptyString" },
+        "pilotSamples": { "type": "integer", "minimum": 0 },
+        "note": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    },
+    "runtimeStep": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["step", "purpose"],
+      "properties": {
+        "step": { "type": "integer", "minimum": 1 },
+        "file": { "$ref": "#/$defs/nonEmptyString" },
+        "files": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "purpose": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    },
+    "devContract": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["file", "purpose"],
+      "properties": {
+        "file": { "$ref": "#/$defs/nonEmptyString" },
+        "purpose": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    }
+  }
+}

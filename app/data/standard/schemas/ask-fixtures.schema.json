@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/ask-fixtures-v0.1.schema.json",
+  "title": "Open Values Ask Fixtures v0.1",
+  "description": "Golden Ask queries and expected resolver behavior for app-owned integration tests.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["format", "version", "built", "source", "purpose", "resolverOrder", "layers", "cases"],
+  "properties": {
+    "format": { "const": "ovs-ask-fixtures" },
+    "version": { "$ref": "#/$defs/version" },
+    "built": { "$ref": "#/$defs/date" },
+    "source": { "$ref": "#/$defs/source" },
+    "purpose": { "$ref": "#/$defs/nonEmptyString" },
+    "resolverOrder": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/nonEmptyString" }
+    },
+    "layers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["layer", "file", "use"],
+        "properties": {
+          "layer": { "enum": ["core", "full"] },
+          "file": { "$ref": "#/$defs/jsonFile" },
+          "use": { "$ref": "#/$defs/nonEmptyString" }
+        }
+      }
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/fixtureCase" }
+    }
+  },
+  "$defs": {
+    "version": { "type": "string", "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$" },
+    "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "jsonFile": { "type": "string", "pattern": "^[A-Za-z0-9._/-]+\\.json$" },
+    "ovsId": { "type": "string", "pattern": "^ovs:[^\\s/]+/.+$" },
+    "source": {
+      "oneOf": [
+        { "$ref": "#/$defs/nonEmptyString" },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/nonEmptyString" }
+        }
+      ]
+    },
+    "fixtureCase": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["query", "layer", "expectAny", "normalized"],
+      "properties": {
+        "query": { "$ref": "#/$defs/nonEmptyString" },
+        "intent": { "$ref": "#/$defs/nonEmptyString" },
+        "layer": { "enum": ["core", "full"] },
+        "expectAny": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/ovsId" }
+        },
+        "normalized": { "$ref": "#/$defs/nonEmptyString" },
+        "expectOneInTop": { "type": "integer", "minimum": 1 },
+        "orderingAssertions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/orderingAssertion" }
+        }
+      }
+    },
+    "orderingAssertion": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "winnerReason", "loserReason"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonEmptyString" },
+        "winnerReason": { "$ref": "#/$defs/nonEmptyString" },
+        "winnerAny": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ovsId" }
+        },
+        "loserReason": { "$ref": "#/$defs/nonEmptyString" },
+        "loserAny": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ovsId" }
+        },
+        "note": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    }
+  }
+}

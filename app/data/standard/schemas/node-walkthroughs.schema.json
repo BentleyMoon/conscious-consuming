@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/node-walkthroughs-v0.1.schema.json",
+  "title": "Open Values Node Walkthroughs v0.1",
+  "description": "Generated flagship node and Ask walkthrough contracts for app-owned QA and previews.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["format", "version", "built", "source", "purpose", "appLaneNote", "walkthroughs"],
+  "properties": {
+    "format": { "const": "ovs-node-walkthroughs" },
+    "version": { "$ref": "#/$defs/version" },
+    "built": { "$ref": "#/$defs/date" },
+    "source": { "$ref": "#/$defs/source" },
+    "purpose": { "$ref": "#/$defs/nonEmptyString" },
+    "appLaneNote": { "$ref": "#/$defs/nonEmptyString" },
+    "walkthroughs": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/walkthrough" } }
+  },
+  "$defs": {
+    "version": { "type": "string", "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$" },
+    "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "ovsId": { "type": "string", "pattern": "^ovs:[^\\s/]+/.+$" },
+    "routeHash": { "type": "string", "pattern": "^#" },
+    "source": {
+      "oneOf": [
+        { "$ref": "#/$defs/nonEmptyString" },
+        { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+      ]
+    },
+    "askHit": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "label", "hash", "score", "reason"],
+      "properties": {
+        "id": { "$ref": "#/$defs/ovsId" },
+        "label": { "$ref": "#/$defs/nonEmptyString" },
+        "hash": { "$ref": "#/$defs/routeHash" },
+        "score": { "type": "number" },
+        "reason": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    },
+    "walkthrough": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "label", "query", "expected", "askTop", "matchedTop", "pages", "checks"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "label": { "$ref": "#/$defs/nonEmptyString" },
+        "query": { "$ref": "#/$defs/nonEmptyString" },
+        "expected": { "type": "object", "minProperties": 1 },
+        "askTop": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/askHit" } },
+        "matchedTop": { "$ref": "#/$defs/ovsId" },
+        "pages": { "type": "object", "minProperties": 1 },
+        "checks": { "type": "object", "minProperties": 1 }
+      }
+    }
+  }
+}

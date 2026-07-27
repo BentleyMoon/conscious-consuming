@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/presentation-fixtures-v1.0.schema.json",
+  "title": "Open Values Presentation Fixtures v1.0",
+  "description": "Real rich, thin, and not-yet-covered cases for each shared presentation page kind.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "version", "updated", "states", "fixtureSets"],
+  "properties": {
+    "format": {"const": "open-values-presentation-fixtures"},
+    "version": {"const": "1.0.0"},
+    "updated": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "states": {"const": ["rich", "thin", "not-yet-covered"]},
+    "fixtureSets": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {"$ref": "#/$defs/fixtureSet"}
+    }
+  },
+  "$defs": {
+    "fixtureSet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pageKind", "cases"],
+      "properties": {
+        "pageKind": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "cases": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"$ref": "#/$defs/fixture"}}
+      }
+    },
+    "fixture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "state", "title", "route", "sourceRefs", "expected", "requirements"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "state": {"enum": ["rich", "thin", "not-yet-covered"]},
+        "instance": {"enum": ["conscious-consuming", "kosplora"]},
+        "title": {"type": "string", "minLength": 1},
+        "route": {"type": "string", "pattern": "^#"},
+        "sourceRefs": {"type": "array", "minItems": 1, "items": {"type": "object"}},
+        "expected": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["coverage", "action", "path", "mustShow", "mustNotClaim"],
+          "properties": {
+            "coverage": {"type": "string", "minLength": 1},
+            "action": {"type": "string", "minLength": 1},
+            "path": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+            "mustShow": {"type": "array", "minItems": 3, "items": {"type": "string", "minLength": 1}},
+            "mustNotClaim": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+          }
+        },
+        "requirements": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^R-[A-Z]+-\\d{2}$"}}
+      }
+    }
+  }
+}

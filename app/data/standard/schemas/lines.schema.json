@@ -1,0 +1,461 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/lines-v0.2.schema.json",
+  "title": "Open Values Lines v0.2",
+  "description": "A registry of user-held lines and published, forkable line-sets such as the shared floor.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "format",
+    "version",
+    "updated",
+    "kinds",
+    "lines"
+  ],
+  "properties": {
+    "format": {
+      "const": "open-values-lines"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^0\\.2(?:\\.0)?(?:[-+].*)?$"
+    },
+    "updated": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "note": {
+      "type": "string"
+    },
+    "kinds": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "sets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/lineSet"
+      }
+    },
+    "lines": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/line"
+      }
+    }
+  },
+  "$defs": {
+    "lineSet": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "format",
+        "id",
+        "tier",
+        "label",
+        "version",
+        "published",
+        "status",
+        "defaultOn",
+        "presentation",
+        "unknownEvidence",
+        "namedConsumer",
+        "bounds",
+        "fork",
+        "governance",
+        "changelog",
+        "rules"
+      ],
+      "properties": {
+        "format": {
+          "const": "open-values-line-set"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^floor:[a-z0-9-]+$"
+        },
+        "tier": {
+          "const": "floor"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+(?:[-+][a-z0-9.-]+)?$"
+        },
+        "published": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "status": {
+          "enum": [
+            "founder-signoff-pending",
+            "published",
+            "superseded"
+          ]
+        },
+        "defaultOn": {
+          "const": true
+        },
+        "presentation": {
+          "const": "fold"
+        },
+        "unknownEvidence": {
+          "const": "keep-visible"
+        },
+        "namedConsumer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bounds": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "maximumRules",
+            "maximumExcludedSharePerCategory",
+            "maximumExcludedShareOverall",
+            "minimumRemainingPerCategory",
+            "minimumMatchesPerRule"
+          ],
+          "properties": {
+            "maximumRules": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "maximumExcludedSharePerCategory": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "exclusiveMaximum": 1
+            },
+            "maximumExcludedShareOverall": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "exclusiveMaximum": 1
+            },
+            "minimumRemainingPerCategory": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "minimumMatchesPerRule": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "fork": {
+          "type": "object",
+          "required": [
+            "license",
+            "portableRuleIds",
+            "localRuleOverrides",
+            "requiredAttribution"
+          ],
+          "properties": {
+            "license": {
+              "type": "string",
+              "minLength": 1
+            },
+            "portableRuleIds": {
+              "const": true
+            },
+            "localRuleOverrides": {
+              "const": true
+            },
+            "requiredAttribution": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "governance": {
+          "type": "object",
+          "required": [
+            "curator",
+            "status",
+            "changePath",
+            "noCapture"
+          ],
+          "properties": {
+            "curator": {
+              "type": "string",
+              "minLength": 1
+            },
+            "status": {
+              "type": "string",
+              "minLength": 1
+            },
+            "changePath": {
+              "type": "string",
+              "minLength": 1
+            },
+            "noCapture": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "changelog": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "version",
+              "date",
+              "changes"
+            ],
+            "properties": {
+              "version": {
+                "type": "string",
+                "minLength": 1
+              },
+              "date": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "changes": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "rules": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/floorRule"
+          }
+        }
+      }
+    },
+    "floorRule": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "kind",
+        "tier",
+        "label",
+        "reads",
+        "effect",
+        "scope",
+        "match",
+        "receipt"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^avoid:floor-[a-z0-9-]+$"
+        },
+        "kind": {
+          "const": "avoid"
+        },
+        "tier": {
+          "const": "floor"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reads": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effect": {
+          "const": "fold"
+        },
+        "scope": {
+          "type": "object",
+          "required": [
+            "categories"
+          ],
+          "properties": {
+            "categories": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]+$"
+              }
+            }
+          }
+        },
+        "match": {
+          "type": "object",
+          "required": [
+            "type",
+            "criterion",
+            "band",
+            "maximumExclusive",
+            "requiresSource",
+            "requiresAsOf"
+          ],
+          "properties": {
+            "type": {
+              "const": "criterion-band"
+            },
+            "criterion": {
+              "type": "string",
+              "pattern": "^[a-z0-9_]+$"
+            },
+            "band": {
+              "const": "poor"
+            },
+            "maximumExclusive": {
+              "const": 20
+            },
+            "requiresSource": {
+              "const": true
+            },
+            "requiresAsOf": {
+              "const": true
+            }
+          }
+        },
+        "receipt": {
+          "type": "object",
+          "required": [
+            "note",
+            "source",
+            "asof"
+          ],
+          "properties": {
+            "note": {
+              "type": "string",
+              "minLength": 1
+            },
+            "source": {
+              "type": "string",
+              "pattern": "^https?://"
+            },
+            "asof": {
+              "type": "string",
+              "pattern": "^\\d{4}(?:-\\d{2}(?:-\\d{2})?)?$"
+            }
+          }
+        }
+      }
+    },
+    "line": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "kind",
+        "label",
+        "reads"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(allergy|diet|require|avoid|cap|lean):[a-z0-9-]+$"
+        },
+        "kind": {
+          "enum": [
+            "allergy",
+            "diet",
+            "require",
+            "avoid",
+            "cap",
+            "lean"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reads": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tag": {
+          "type": "string",
+          "minLength": 1
+        },
+        "accept": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "entity": {
+          "type": "string",
+          "minLength": 1
+        },
+        "why": {
+          "type": "string",
+          "pattern": "^https?://"
+        },
+        "brands": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "allergy"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "tag"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "diet",
+                  "require"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "accept"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "avoid"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "entity",
+              "brands"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

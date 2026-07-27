@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/passport-v0.1.schema.json",
+  "title": "Open Values Passport v0.1",
+  "description": "A nameless, user-owned map of universal value weights that can travel between Open Values Standard instances.",
+  "type": "object",
+  "required": ["format", "version", "values"],
+  "additionalProperties": true,
+  "properties": {
+    "format": { "const": "open-values-passport" },
+    "version": { "type": "string", "pattern": "^0\\.1" },
+    "source": { "type": "string" },
+    "exported": { "type": "string" },
+    "values": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "planet": { "$ref": "#/$defs/weight" },
+        "people": { "$ref": "#/$defs/weight" },
+        "openness": { "$ref": "#/$defs/weight" },
+        "access": { "$ref": "#/$defs/weight" },
+        "wellbeing": { "$ref": "#/$defs/weight" },
+        "autonomy": { "$ref": "#/$defs/weight" },
+        "animals": { "$ref": "#/$defs/weight" },
+        "community": { "$ref": "#/$defs/weight" },
+        "quality": { "$ref": "#/$defs/weight" },
+        "joy": { "$ref": "#/$defs/weight" }
+      }
+    }
+  },
+  "$defs": {
+    "weight": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/source-v0.1.schema.json",
+  "title": "Open Values Source v0.1",
+  "description": "A provenance value for an Open Values claim. Legacy strings remain readable; citation objects are preferred for assessed claims.",
+  "oneOf": [
+    {
+      "type": "string",
+      "minLength": 1
+    },
+    {
+      "$ref": "#/$defs/citation"
+    }
+  ],
+  "$defs": {
+    "citation": {
+      "type": "object",
+      "required": [
+        "note",
+        "source",
+        "asof"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "note": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "type": "string",
+          "pattern": "^https?://"
+        },
+        "asof": {
+          "type": "string",
+          "pattern": "(19|20)\\d{2}"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "accessed": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "license": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

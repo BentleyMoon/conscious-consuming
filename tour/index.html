@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>try{var t=localStorage.getItem('cc.theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Values Commons in two minutes: choose a messenger by your values, check the sourced facts, combine group values, and make a shared plan. Live, in your browser.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#1d7a5a">
+<link rel="canonical" href="https://valuescommons.org/tour/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://valuescommons.org/tour/">
+<meta property="og:site_name" content="Values Commons">
+<meta property="og:title" content="Values Commons in two minutes">
+<meta property="og:description" content="Choose a messenger by your values, check the sourced facts, combine group values, and make a shared plan. Live, in your browser.">
+<meta property="og:image" content="https://valuescommons.org/og-standard.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Values Commons in two minutes">
+<meta name="twitter:description" content="Choose a messenger by your values, check the sourced facts, combine group values, and make a shared plan. Live, in your browser.">
+<meta name="twitter:image" content="https://valuescommons.org/og-standard.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d7a5a'/%3E%3Cpath d='M18 36c0-13 13-20 28-20-2 16-14 23-28 20z' fill='%23fff'/%3E%3Cpath d='M20 46c6-12 14-18 22-21' stroke='%231d7a5a' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>Values Commons in two minutes</title>
+<style>
+  :root{ --bg:#f6f8f7; --surface:#ffffff; --ink:#18211d; --muted:#566560; --hint:#8a958f; --line:#e3e7e5;
+    --accent:#1d7a5a; --accent-soft:#e9f3ee; --track:#eef1ef; --clay:#a8432f;
+    --fd:"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,ui-serif,serif;
+    --fs:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,system-ui,sans-serif; }
+  @media (prefers-color-scheme:dark){:root{ color-scheme:dark; --bg:#0f1512; --surface:#161d18; --ink:#e6ece8; --muted:#9aa8a1;
+    --hint:#6c7a72; --line:rgba(255,255,255,.10); --accent:#5dcaa5; --accent-soft:#16241d; --track:#1b241f; --clay:#e3a594; }}
+  *{box-sizing:border-box}
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--fs);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto;padding:0 1.2rem 4rem}
+  a{color:var(--accent)} h1,h2,h3{font-family:var(--fd);font-weight:600;text-wrap:balance}
+  .top{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-bottom:.5px solid var(--line);margin-bottom:2rem;font-size:.92rem}
+  .top .wm{font-family:var(--fd);font-weight:600;color:var(--ink);text-decoration:none}
+  .tourlinks{display:flex;flex-wrap:wrap;gap:.4rem .8rem;margin:-1.2rem 0 2rem;font-size:.82rem;color:var(--hint)}
+  .tourlinks a{color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:.18rem .55rem;background:var(--surface)}
+  .tourlinks a:hover{color:var(--accent);border-color:var(--accent)}
+  .hero{padding:1rem 0 1.5rem}
+  .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 .8rem}
+  .hero h1{font-size:clamp(2rem,5vw,2.7rem);line-height:1.08;margin:0 0 .8rem}
+  .hero p{font-size:1.1rem;color:var(--muted);margin:0}
+  .beat{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.3rem 1.4rem;margin:1.1rem 0}
+  .bn{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+  .bn b{display:grid;place-items:center;width:1.5rem;height:1.5rem;border-radius:50%;background:var(--accent);color:#fff;font-size:.8rem}
+  .beat h2{font-size:1.4rem;margin:.5rem 0 .3rem}
+  .beat .lead{color:var(--muted);margin:0 0 1rem;font-size:.96rem}
+  .cap{font-size:.88rem;color:var(--muted);margin:1rem 0 0;border-top:1px dashed var(--line);padding-top:.8rem}
+  .cap a{font-weight:600}
+  /* beat 1: sliders + live ranking */
+  .vrow{display:grid;grid-template-columns:8rem 1fr 1.4rem;align-items:center;gap:.7rem;padding:.32rem 0}
+  .vrow label{font-size:.9rem} .vrow input{width:100%;accent-color:var(--accent);cursor:pointer}
+  .vrow .vv{text-align:right;color:var(--muted);font-size:.88rem;font-variant-numeric:tabular-nums}
+  .rank{margin-top:1rem;display:flex;flex-direction:column;gap:.4rem}
+  .ri{display:flex;align-items:center;gap:.8rem;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:.55rem .8rem;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+  .ri .rk{font-family:var(--fd);font-size:1.2rem;color:var(--hint);min-width:1.2rem}
+  .ri .nm{flex:1;font-weight:600} .ri .nm small{font-weight:400;color:var(--hint)}
+  .ri .tier{font-size:.72rem;color:var(--accent)} .ri .sc{font-family:var(--fd);font-size:1.2rem;min-width:2rem;text-align:right}
+  /* shared band/verdict bits */
+  .bandlbl{font-size:.64rem;font-weight:700;padding:.05rem .4rem;border-radius:5px;background:var(--track);color:var(--muted)}
+  .bandlbl.hi{background:var(--accent-soft);color:var(--accent)}
+  .verdict{display:flex;align-items:baseline;gap:.7rem;margin:.2rem 0 .6rem}
+  .verdict .vs{font-family:var(--fd);font-size:2rem} .verdict .vt{color:var(--accent);font-weight:600}
+  .reason{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 8px 8px 0;padding:.55rem .8rem;font-size:.9rem;margin:.4rem 0}
+  .bars{display:flex;flex-wrap:wrap;gap:.3rem .7rem;font-size:.78rem;color:var(--hint)}
+  .bars span{display:inline-flex;gap:.3rem;align-items:center}
+  /* beat 3: collective */
+  .cbar{display:grid;grid-template-columns:7rem 1fr 3.6rem;gap:.6rem;align-items:center;padding:.2rem 0;font-size:.86rem}
+  .track{height:8px;background:var(--track);border-radius:6px;overflow:hidden}.fill{height:100%;background:var(--accent);border-radius:6px}
+  .cons{font-size:.62rem;font-weight:700;text-transform:uppercase;text-align:center;padding:.08rem 0;border-radius:5px}
+  .cons.hi{background:var(--accent-soft);color:var(--accent)} .cons.lo{background:rgba(168,67,47,.14);color:var(--clay)}
+  .readout{margin-top:.8rem;font-size:.9rem} .readout b{color:var(--ink)}
+  .tag{font-size:.64rem;font-weight:700;text-transform:uppercase;padding:.1rem .42rem;border-radius:5px;margin-right:.4rem}
+  .tag.s{background:var(--accent-soft);color:var(--accent)} .tag.x{background:rgba(168,67,47,.14);color:var(--clay)}
+  /* beat 4: slate */
+  .slate h3{font-size:1rem;margin:.8rem 0 .4rem}
+  .si{display:flex;align-items:baseline;gap:.6rem;padding:.4rem 0;border-top:1px solid var(--line)}
+  .si .snm{font-weight:600;flex:1} .si .snm small{font-weight:400;color:var(--hint)}
+  .si .why{font-size:.82rem;color:var(--muted);flex:2} .si .ssc{font-family:var(--fd);color:var(--accent)} .si .ssc.low{color:var(--clay)}
+  .close{text-align:center;padding:2rem 1rem 0}
+  .close .loop{font-family:var(--fd);font-size:1.3rem;margin:0 0 .4rem}
+  .cta{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:1rem}
+  .btn{font-weight:600;font-size:.95rem;padding:.55rem 1.05rem;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none}
+  .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .nextmoves{margin:1.45rem 0 0;text-align:left;display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.65rem}
+  .nextmoves a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.8rem .85rem;text-decoration:none;color:var(--ink)}
+  .nextmoves a:hover{border-color:var(--accent)}
+  .nextmoves b{display:block;font-family:var(--fd);font-size:1rem;line-height:1.2;margin-bottom:.18rem}
+  .nextmoves span{display:block;color:var(--muted);font-size:.82rem;line-height:1.35}
+  .err{color:var(--clay)}
+  /* craft: calm reveal-on-scroll (animation, not transition, so it never fights hover) + a pulse when beat 2 reacts */
+  .reveal-on .reveal,.reveal-on .beat,.reveal-on .close{opacity:0}
+  .reveal-on .reveal.in,.reveal-on .beat.in,.reveal-on .close.in{animation:revealin .6s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes revealin{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  .beat.pulse{animation:beatpulse .7s ease}
+  @keyframes beatpulse{0%{box-shadow:0 0 0 0 rgba(29,122,90,0)}28%{box-shadow:0 0 0 4px rgba(29,122,90,.18)}100%{box-shadow:0 0 0 0 rgba(29,122,90,0)}}
+  @media (prefers-reduced-motion:reduce){.beat.pulse{animation:none}}
+  /* Field-guide register, shared with the landing: serif argues, mono measures */
+  :root{--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--ochre:#8a5514;--line-strong:#cfd8d3}
+  @media(prefers-color-scheme:dark){:root{--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17)}}
+  body{font-family:var(--fd);line-height:1.58}
+  .top{border-bottom-color:var(--line-strong)}
+  .top .wm{font-weight:700;letter-spacing:-.015em}
+  .top .wm::after{content:"Open field guide";font-family:var(--mono);font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ochre);margin-left:.6rem;padding-left:.6rem;border-left:1px solid var(--line-strong)}
+  .tourlinks{font-family:var(--mono);font-size:.72rem}
+  .tourlinks a{border-radius:3px}
+  .eyebrow{font-family:var(--mono);letter-spacing:.16em}
+  .bn{font-family:var(--mono)}
+  .beat{border-radius:4px}
+  .cap{font-size:.86rem}
+  .vrow input[type=range]{height:1.75rem;accent-color:var(--accent)}
+  .vv{font-family:var(--mono);font-size:.8rem}
+  .keepbtn{font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:.02em;min-height:2.2rem;padding:.35rem .7rem;border:1px solid var(--accent);border-radius:3px;background:var(--surface);color:var(--accent);cursor:pointer;vertical-align:middle}
+  .keepbtn:hover{background:var(--accent-soft)}
+  #keepnote{color:var(--accent);font-family:var(--mono);font-size:.7rem}
+  /* Professional futurism: light spent on the living and the chosen */
+  :root{--glow:0 0 14px rgba(29,122,90,.2)}
+  @media(prefers-color-scheme:dark){:root{--glow:0 0 16px rgba(93,202,165,.28)}}
+  ::selection{background:color-mix(in srgb,var(--accent) 24%,transparent)}
+  .hero{background:radial-gradient(40rem 22rem at 6% -10%,color-mix(in srgb,var(--accent) 7%,transparent),transparent 62%),radial-gradient(32rem 18rem at 96% -8%,color-mix(in srgb,var(--ochre) 4%,transparent),transparent 64%)}
+  .btn.primary:hover,.keepbtn:hover{box-shadow:var(--glow)}
+  html{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--accent) 45%,var(--track)) transparent}
+  a:focus-visible,button:focus-visible,input:focus-visible{box-shadow:var(--glow)}
+  #tour-sigil svg{filter:drop-shadow(0 0 6px color-mix(in srgb,var(--accent) 45%,transparent))}
+  :root[data-theme="dark"]{--bg:#0f1512;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.10);--accent:#5dcaa5;--accent-soft:#16241d;--track:#1b241f;--clay:#e3a594;--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17);--glow:0 0 16px rgba(93,202,165,.28);color-scheme:dark}
+  :root[data-theme="light"]{--bg:#f6f8f7;--surface:#ffffff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--accent-soft:#e9f3ee;--track:#eef1ef;--clay:#a8432f;--ochre:#8a5514;--line-strong:#cfd8d3;--glow:0 0 14px rgba(29,122,90,.2);color-scheme:light}
+  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.55rem .9rem;border-radius:0 0 8px 0;z-index:20}
+  .skip:focus{left:0}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <div class="top"><a class="wm" href="../index.html">◇ Values Commons</a><a href="../index.html">Skip the tour →</a></div>
+  <div class="tourlinks" aria-label="Tour exits">
+    <span>After the tour:</span>
+    <a href="../passport/index.html">Your values</a>
+    <a href="../instances/index.html">Apps</a>
+    <a href="../workshop/index.html">Fix facts</a>
+    <a href="../assembly/index.html">Group agreement</a>
+    <a href="../slate/index.html">Shared plan</a>
+    <a href="../weave/index.html">Ownership map</a>
+    <a href="../contribute/index.html">Help out</a>
+  </div>
+
+  <header class="hero" id="main" tabindex="-1">
+    <p class="eyebrow">A two-minute tour · live in your browser</p>
+    <h1>Follow one choice from your rules to a group decision.</h1>
+    <p>Use a familiar question, <b>which messenger to choose</b>, to see how personal rules, sourced facts, group agreement, and a shared plan fit together. Everything below runs in your browser. Nothing is uploaded.</p>
+  </header>
+
+  <section class="beat" id="b1">
+    <span class="bn"><b>1</b> Value</span>
+    <h2>Set what matters to you</h2>
+    <p class="lead">Weigh what you care about. The ranking is yours: re-ordered live, never by who pays. Move a slider:</p>
+    <div id="sliders"></div>
+    <div id="tour-sigil" style="text-align:center;margin:.5rem 0 .2rem;color:var(--accent)"></div>
+    <div class="rank" id="rank"></div>
+    <p class="cap">Your values just became a portable file - no name, no account. <button class="keepbtn" id="keepfile" type="button">&#10515; Keep this file</button> <span id="keepnote" role="status"></span><br>It loads in <a href="../app/index.html">the live app</a> and <a href="../assembly/index.html">group agreement</a>; <a href="../passport/index.html">see what it carries →</a></p>
+  </section>
+
+  <section class="beat" id="b2">
+    <span class="bn"><b>2</b> Know</span>
+    <h2>The facts are sourced and repairable</h2>
+    <p class="lead" id="b2lead">Your top pick, and the cited reason behind it:</p>
+    <div id="know"></div>
+    <p class="cap">Every claim carries its source. Disagree with one? Correct it with a citation or keep an alternate facts file in <a href="../workshop/index.html">fact repair →</a></p>
+  </section>
+
+  <section class="beat" id="b3">
+    <span class="bn"><b>3</b> Decide</span>
+    <h2>See where the group agrees and where it does not</h2>
+    <p class="lead">Four neighbours hand each other their values files. Their shared stance forms locally - honest about where they agree <i>and</i> where they're split:</p>
+    <div id="collective"></div>
+    <p class="cap">No one's values are uploaded; the tally is reproducible by anyone holding the same files. <a href="../assembly/index.html">Find group agreement →</a></p>
+  </section>
+
+  <section class="beat" id="b4">
+    <span class="bn"><b>4</b> Act</span>
+    <h2>A shared decision with reasons</h2>
+    <p class="lead">Their shared values, applied to the same facts, become a plan: where the group messages, and where it moves away - every line with its reason.</p>
+    <div class="slate" id="slate"></div>
+    <p class="cap">Derived, never decreed; a recommendation the group chooses to commit to. <a href="../slate/index.html">Make a shared plan →</a></p>
+  </section>
+
+  <div class="close">
+    <p class="loop">value → know → decide → act</p>
+    <p style="color:var(--muted);margin:0">No server. No account. No owner. A movement is a folder of files.</p>
+    <div class="nextmoves" aria-label="Choose your next move">
+      <a href="../instances/index.html"><b>Try an app</b><span>Open the live apps and see the same values file travel.</span></a>
+      <a href="../passport/index.html"><b>Carry values</b><span>Inspect the nameless file that moves between subjects.</span></a>
+      <a href="../workshop/index.html"><b>Correct a claim</b><span>Patch sourced facts without waiting for a central editor.</span></a>
+      <a href="../assembly/index.html"><b>Find group agreement</b><span>Combine values files while keeping dissent visible.</span></a>
+      <a href="../weave/index.html"><b>Trace relationships</b><span>Follow alternatives, ownership, analogies, and action paths.</span></a>
+      <a href="../contribute/index.html"><b>Build the commons</b><span>Scope a new app, add a source, or contribute a relationship.</span></a>
+    </div>
+    <div class="cta">
+      <a class="btn primary" href="../instances/index.html">See the apps</a>
+      <a class="btn" href="../index.html">Values Commons →</a>
+      <a class="btn" href="../contribute/index.html">Contribute →</a>
+    </div>
+  </div>
+</div>
+
+<script src="../app/engine.js"></script>
+<script src="../app/sigil.js"></script>
+<script src="../instances/messages/lens.js"></script>
+<script>
+(function(){
+  'use strict';
+  if(!(window.CC && CC.engine && window.OVS_LENS)){ document.getElementById('rank').innerHTML='<p class="err">Couldn’t load the live engine. Refresh, or open the tour from the <a href="../index.html">standard’s home</a>.</p>'; return; }
+  var E=CC.engine, L=window.OVS_LENS;
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  var ULAB={planet:'Planet',people:'People',openness:'Openness',access:'Access',wellbeing:'Wellbeing',autonomy:'Autonomy',animals:'Animals',community:'Community',quality:'Quality',joy:'Joy'};
+
+  // --- Beat 1 + 2: live ranking + the verdict for the top pick ---
+  var passport={}; L.themes.forEach(function(t){passport[t.id]=3;});
+  function weights(){ return E.themeDefaults(L.criteria, passport, L.key2theme); }
+  function ranked(){ var w=weights(); return L.resources.map(function(r){return [r,E.score(r,{criteria:L.criteria,weights:w})];}).filter(function(x){return x[1];}).sort(function(a,b){return b[1].score-a[1].score;}); }
+  function renderRank(){
+    var arr=ranked().slice(0,3), first={};
+    [].forEach.call(document.querySelectorAll('#rank .ri'),function(el){first[el.dataset.c]=el.getBoundingClientRect();});
+    document.getElementById('rank').innerHTML=arr.map(function(x,i){var r=x[0],t=E.scoreTier(x[1].score);
+      return '<div class="ri" data-c="'+r.code+'"><span class="rk">'+(i+1)+'</span><span class="nm">'+esc(r.name)+' <small>'+esc(r.brand)+'</small></span><span class="tier">'+esc(t[0])+'</span><span class="sc">'+x[1].score+'</span></div>';}).join('');
+    [].forEach.call(document.querySelectorAll('#rank .ri'),function(el){var f=first[el.dataset.c];if(!f)return;var l=el.getBoundingClientRect(),dy=f.top-l.top;if(!dy)return;el.style.transform='translateY('+dy+'px)';el.style.transition='none';requestAnimationFrame(function(){requestAnimationFrame(function(){el.style.transition='';el.style.transform='';});});});
+  }
+  function renderKnow(){
+    var top=ranked()[0]; if(!top){document.getElementById('know').innerHTML='';return;}
+    var r=top[0], V=E.verdict(r,{criteria:L.criteria,weights:weights()}); if(!V)return;
+    var dec=V.reason, bars=V.bands.slice(0,4).map(function(b){return '<span>'+esc(b.label)+' <span class="bandlbl '+(b.v>=70?'hi':'')+'">'+esc(b.band[0])+'</span></span>';}).join('');
+    document.getElementById('know').innerHTML=
+      '<div class="verdict"><span class="vs">'+V.score+'</span><span><span class="vt">'+esc(V.tier[0])+'</span> · '+esc(r.name)+' <small style="color:var(--hint)">'+esc(r.brand)+'</small></span></div>'+
+      (dec?'<div class="reason"><b>'+esc(dec.label)+': '+esc(dec.band[0])+'</b> · '+esc(dec.note||'')+'</div>':'')+
+      '<div class="bars">'+bars+'</div>';
+  }
+  document.getElementById('sliders').innerHTML=L.themes.map(function(t){
+    return '<div class="vrow"><label for="t_'+t.id+'">'+esc(t.label)+'</label><input id="t_'+t.id+'" type="range" min="0" max="5" step="1" value="3" data-t="'+t.id+'"><span class="vv" data-v="'+t.id+'">3</span></div>';}).join('');
+  [].forEach.call(document.querySelectorAll('#sliders input'),function(s){ s.oninput=function(){passport[s.dataset.t]=+s.value;var o=document.querySelector('[data-v="'+s.dataset.t+'"]');if(o)o.textContent=s.value;renderRank();renderKnow();renderTourSigil();var b2=document.getElementById('b2');if(b2){b2.classList.remove('pulse');void b2.offsetWidth;b2.classList.add('pulse');}}; });
+  function renderTourSigil(){ var el=document.getElementById('tour-sigil'); if(el&&window.CC&&CC.sigil) el.innerHTML=CC.sigil(passport,{size:88})+'<div style="font-size:.7rem;color:var(--hint);margin-top:.1rem">your values, as a unique mark; it morphs as you weigh</div>'; }
+  renderRank(); renderKnow(); renderTourSigil();
+  // Keep this file: the beat-1 values leave with the visitor, in the shared passport shape.
+  // Local theme ids translate to the universal ids (mirrors this lens's universalToLocal),
+  // so the file merges cleanly in group agreement and travels like any app passport.
+  var TO_UNIVERSAL={private:'autonomy',open:'openness',ease:'access',reach:'community'};
+  var kb=document.getElementById('keepfile');
+  if(kb) kb.onclick=function(){
+    var vals={}; Object.keys(passport).forEach(function(k){vals[TO_UNIVERSAL[k]||k]=passport[k];});
+    var f={kind:'values-passport',version:'0.1',source:'two-minute tour',values:vals};
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(new Blob([JSON.stringify(f,null,2)],{type:'application/json'}));
+    a.download='my-values-passport.json';
+    document.body.appendChild(a); a.click(); a.remove();
+    var n=document.getElementById('keepnote'); if(n)n.textContent='Saved to your device.';
+  };
+
+  // --- Beat 3: the collective (four example passports, universal values travel) ---
+  // Four neighbours' passports. We weight only values THIS instance carries (its universalToLocal:
+  // openness→open, autonomy→privacy, access→ease, community→reach) so what they SHARE in beat 3 is visibly
+  // what drives the slate in beat 4: they agree on openness + reach, and split on privacy vs. ease.
+  var EXAMPLE=[
+    {nick:'Ada',values:{openness:5,access:1,autonomy:5,community:4}},
+    {nick:'Ben',values:{openness:4,access:2,autonomy:1,community:5}},
+    {nick:'Cy', values:{openness:5,access:5,autonomy:5,community:2}},
+    {nick:'Dee',values:{openness:4,access:1,autonomy:1,community:5}}
+  ];
+  var COL=E.mergePassports(EXAMPLE,'four neighbours');
+  (function(){
+    var keys=Object.keys(COL.values).sort(function(a,b){return COL.values[b]-COL.values[a];});
+    var rows=keys.map(function(u){var a=COL.agreement[u],hi=a.consensus>=0.5;
+      return '<div class="cbar"><span>'+esc(ULAB[u]||u)+'</span><span class="track"><span class="fill" style="width:'+(a.mean/5*100).toFixed(0)+'%"></span></span><span class="cons '+(hi?'hi':'lo')+'">'+(hi?'aligned':'split')+'</span></div>';}).join('');
+    var shared=keys.filter(function(u){return COL.values[u]>=3.5&&COL.agreement[u].consensus>=0.5;}).slice(0,4).map(function(u){return ULAB[u]||u;});
+    var split=COL.dissent.filter(function(u){return COL.agreement[u].consensus<0.5;}).map(function(u){return ULAB[u]||u;});
+    var sharedTxt=shared.length?'<b>'+shared.join('</b> · <b>')+'</b>':'<i style="color:var(--hint)">broad alignment</i>';
+    var splitTxt=split.length?'<b>'+split.join('</b> · <b>')+'</b>':'<i style="color:var(--hint)">nothing major; rare, but honest</i>';
+    document.getElementById('collective').innerHTML=rows+
+      '<div class="readout"><p><span class="tag s">What they share</span> '+sharedTxt+'</p>'+
+      '<p><span class="tag x">Where they’re split</span> '+splitTxt+'</p></div>';
+  })();
+
+  // --- Beat 4: the slate (their shared values, applied to messaging) ---
+  (function(){
+    var split=COL.dissent.filter(function(u){return COL.agreement[u].consensus<0.5;}).map(function(u){return ULAB[u]||u;});
+    var S=E.buildSlate(COL, L, {dissent:split});
+    function row(x,low){var c=x.conflicts&&x.conflicts[0];var why=low?(c?('fails '+esc(c.label)+(c.note?': '+esc(c.note):'')):''):(x.reason?('fits on '+esc(x.reason.label)+(x.reason.note?': '+esc(x.reason.note):'')):'');
+      return '<div class="si"><span class="snm">'+esc(x.name)+' <small>'+esc(x.brand)+'</small></span><span class="why">'+why+'</span><span class="ssc'+(low?' low':'')+'">'+x.score+'</span></div>';}
+    document.getElementById('slate').innerHTML=
+      '<h3 style="color:var(--accent)">Where they message</h3>'+(S.endorse.length?S.endorse.map(function(x){return row(x,false);}).join(''):'<p class="cap" style="border:none">–</p>')+
+      '<h3 style="color:var(--clay)">Where they move money &amp; attention from</h3>'+(S.divest.length?S.divest.map(function(x){return row(x,true);}).join(''):'<p style="font-size:.86rem;color:var(--muted)">Nothing egregiously against their shared values; no call-outs.</p>');
+  })();
+})();
+</script>
+<script src="../app/reveal.js"></script>
+<script src="../app/theme.js"></script>
+</body>
+</html>

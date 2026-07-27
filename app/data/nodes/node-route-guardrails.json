@@ -1,0 +1,189 @@
+{
+  "format": "ovs-node-route-guardrails",
+  "version": "0.1",
+  "built": "2026-07-15",
+  "source": [
+    "app/data/nodes/node-route-fixtures.json",
+    "app/data/nodes/node-page-contracts.json"
+  ],
+  "purpose": "Generated negative and canonicalization route guardrails for app-owned router integration.",
+  "appLaneNote": "Guardrail data only; app-owned code decides exact not-found UI and recovery copy.",
+  "fallbackGuidance": {
+    "malformed": "Do not load a content page; recover to a neutral browse or not-found state.",
+    "unsupported": "Ignore as an unknown route family unless app-owned code claims it elsewhere.",
+    "unknownTarget": "Show a not-covered/not-found state rather than fabricating a page.",
+    "canonicalize": "Prefer replacing equivalent non-canonical hashes with the canonical encoded hash."
+  },
+  "cases": [
+    {
+      "id": "empty-hash",
+      "kind": "malformed",
+      "hash": "",
+      "reason": "Empty hashes should not be parsed as a content route.",
+      "expect": {
+        "parseable": false,
+        "targetExists": false,
+        "canonicalHash": null
+      }
+    },
+    {
+      "id": "unsupported-family",
+      "kind": "unsupported",
+      "hash": "#search/nestle",
+      "reason": "Only the documented route families should be parsed by this generated contract.",
+      "expect": {
+        "parseable": false,
+        "targetExists": false,
+        "canonicalHash": null
+      }
+    },
+    {
+      "id": "missing-category-id",
+      "kind": "malformed",
+      "hash": "#explore/",
+      "reason": "Explore routes need a category id.",
+      "expect": {
+        "parseable": false,
+        "targetExists": false,
+        "canonicalHash": null
+      }
+    },
+    {
+      "id": "missing-item-code",
+      "kind": "malformed",
+      "hash": "#item/soda/",
+      "reason": "Item routes need both category id and item code.",
+      "expect": {
+        "parseable": false,
+        "targetExists": false,
+        "canonicalHash": null
+      }
+    },
+    {
+      "id": "missing-node-slug",
+      "kind": "malformed",
+      "hash": "#n/company/",
+      "reason": "Node routes need both type and slug.",
+      "expect": {
+        "parseable": false,
+        "targetExists": false,
+        "canonicalHash": null
+      }
+    },
+    {
+      "id": "unknown-category",
+      "kind": "unknown-target",
+      "hash": "#explore/not-a-real-category",
+      "reason": "A syntactically valid category route can still point at no known category.",
+      "expect": {
+        "parseable": true,
+        "targetExists": false,
+        "canonicalHash": "#explore/not-a-real-category",
+        "route": "explore",
+        "type": "category",
+        "id": "ovs:cat/not-a-real-category",
+        "params": {
+          "cid": "not-a-real-category"
+        }
+      }
+    },
+    {
+      "id": "unknown-item",
+      "kind": "unknown-target",
+      "hash": "#item/soda/0000000000000",
+      "reason": "A syntactically valid item route can still point at no known entry.",
+      "expect": {
+        "parseable": true,
+        "targetExists": false,
+        "canonicalHash": "#item/soda/0000000000000",
+        "route": "item",
+        "type": "item",
+        "id": "ovs:item/soda/0000000000000",
+        "params": {
+          "cid": "soda",
+          "code": "0000000000000"
+        }
+      }
+    },
+    {
+      "id": "unknown-guide",
+      "kind": "unknown-target",
+      "hash": "#guide/not-a-real-guide",
+      "reason": "A syntactically valid guide route can still point at no known guide.",
+      "expect": {
+        "parseable": true,
+        "targetExists": false,
+        "canonicalHash": "#guide/not-a-real-guide",
+        "route": "guide",
+        "type": "guide",
+        "id": "ovs:guide/not-a-real-guide",
+        "params": {
+          "slug": "not-a-real-guide"
+        }
+      }
+    },
+    {
+      "id": "unknown-brand",
+      "kind": "unknown-target",
+      "hash": "#n/brand/not-a-real-brand",
+      "reason": "A syntactically valid brand node route can still point at no known brand.",
+      "expect": {
+        "parseable": true,
+        "targetExists": false,
+        "canonicalHash": "#n/brand/not-a-real-brand",
+        "route": "node",
+        "type": "brand",
+        "id": "ovs:brand/not-a-real-brand",
+        "params": {
+          "type": "brand",
+          "slug": "not-a-real-brand"
+        }
+      }
+    },
+    {
+      "id": "unknown-line",
+      "kind": "unknown-target",
+      "hash": "#n/line/avoid%3Anot-a-real-company",
+      "reason": "A syntactically valid line node route can still point at no known line.",
+      "expect": {
+        "parseable": true,
+        "targetExists": false,
+        "canonicalHash": "#n/line/avoid%3Anot-a-real-company",
+        "route": "node",
+        "type": "line",
+        "id": "ovs:line/avoid:not-a-real-company",
+        "params": {
+          "type": "line",
+          "slug": "avoid:not-a-real-company"
+        }
+      }
+    },
+    {
+      "id": "line-id-canonicalization",
+      "kind": "canonicalize",
+      "hash": "#n/line/avoid:nestle",
+      "reason": "Unencoded line ids may parse, but the canonical route hash uses an encoded colon.",
+      "expect": {
+        "parseable": true,
+        "targetExists": true,
+        "canonicalHash": "#n/line/avoid%3Anestle",
+        "route": "node",
+        "type": "line",
+        "id": "ovs:line/avoid:nestle",
+        "params": {
+          "type": "line",
+          "slug": "avoid:nestle"
+        }
+      }
+    }
+  ],
+  "totals": {
+    "cases": 11,
+    "byKind": {
+      "malformed": 4,
+      "unsupported": 1,
+      "unknown-target": 5,
+      "canonicalize": 1
+    }
+  }
+}

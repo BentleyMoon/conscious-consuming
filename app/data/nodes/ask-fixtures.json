@@ -1,0 +1,184 @@
+{
+  "format": "ovs-ask-fixtures",
+  "version": "0.1",
+  "built": "2026-07-15",
+  "source": "pipeline/build_nodes.js",
+  "purpose": "Golden resolver contract for app-owned Ask integration; not a runtime dataset.",
+  "resolverOrder": [
+    "exact-alias",
+    "exact-token",
+    "query-token",
+    "edit-distance",
+    "token-containment",
+    "type-priority"
+  ],
+  "layers": [
+    {
+      "layer": "core",
+      "file": "ask-core.json",
+      "use": "startup/category-brand-company-guide search"
+    },
+    {
+      "layer": "full",
+      "file": "ask-index.json",
+      "use": "lazy product-name and barcode search"
+    }
+  ],
+  "cases": [
+    {
+      "query": "is nestle bad",
+      "intent": "company/brand concern",
+      "layer": "core",
+      "expectAny": [
+        "ovs:company/nestle",
+        "ovs:line/avoid:nestle",
+        "ovs:brand/nestle"
+      ],
+      "normalized": "nestle",
+      "expectOneInTop": 5
+    },
+    {
+      "query": "vegan cheese",
+      "intent": "multi-intent food query",
+      "layer": "core",
+      "expectAny": [
+        "ovs:cat/cheese",
+        "ovs:tag/vegan"
+      ],
+      "normalized": "vegan cheese",
+      "expectOneInTop": 5
+    },
+    {
+      "query": "best bank",
+      "intent": "plain category question",
+      "layer": "core",
+      "expectAny": [
+        "ovs:cat/banking",
+        "ovs:errand/pick-a-bank"
+      ],
+      "normalized": "bank",
+      "expectOneInTop": 5
+    },
+    {
+      "query": "coke",
+      "intent": "everyday brand alias",
+      "layer": "core",
+      "expectAny": [
+        "ovs:company/coca-cola",
+        "ovs:line/avoid:coca-cola",
+        "ovs:brand/coca-cola"
+      ],
+      "normalized": "coke",
+      "expectOneInTop": 5
+    },
+    {
+      "query": "nestel",
+      "intent": "single-edit typo",
+      "layer": "core",
+      "expectAny": [
+        "ovs:company/nestle",
+        "ovs:brand/nestle",
+        "ovs:line/avoid:nestle"
+      ],
+      "orderingAssertions": [
+        {
+          "id": "typo-before-loose-containment",
+          "winnerReason": "fuzzy-1",
+          "winnerAny": [
+            "ovs:company/nestle",
+            "ovs:brand/nestle",
+            "ovs:line/avoid:nestle"
+          ],
+          "loserReason": "token-containment",
+          "note": "Single-edit typo results must rank before loose containment matches such as Nest."
+        }
+      ],
+      "normalized": "nestel",
+      "expectOneInTop": 5
+    },
+    {
+      "query": "is oatly ethical",
+      "intent": "question scaffolding strips away",
+      "layer": "core",
+      "expectAny": [
+        "ovs:brand/oatly"
+      ],
+      "normalized": "oatly",
+      "expectOneInTop": 5
+    },
+    {
+      "query": "best password manager",
+      "intent": "digital category",
+      "layer": "core",
+      "expectAny": [
+        "ovs:cat/password-managers"
+      ],
+      "normalized": "password manager",
+      "expectOneInTop": 5
+    },
+    {
+      "query": "avoid amazon",
+      "intent": "line/company action intent",
+      "layer": "core",
+      "expectAny": [
+        "ovs:company/amazon",
+        "ovs:line/avoid:amazon",
+        "ovs:brand/amazon"
+      ],
+      "normalized": "avoid amazon",
+      "expectOneInTop": 5
+    },
+    {
+      "query": "b corp toilet paper",
+      "intent": "tag plus household language",
+      "layer": "core",
+      "expectAny": [
+        "ovs:tag/b-corp",
+        "ovs:cat/paper-goods"
+      ],
+      "normalized": "b corp toilet paper",
+      "expectOneInTop": 5
+    },
+    {
+      "query": "washing up liquid",
+      "intent": "regional synonym",
+      "layer": "core",
+      "expectAny": [
+        "ovs:cat/dish-soap"
+      ],
+      "normalized": "washing up liquid",
+      "expectOneInTop": 5
+    },
+    {
+      "query": "cell phone",
+      "intent": "common synonym",
+      "layer": "core",
+      "expectAny": [
+        "ovs:cat/phones"
+      ],
+      "normalized": "cell phone",
+      "expectOneInTop": 5
+    },
+    {
+      "query": "private messaging app",
+      "intent": "guide-style question",
+      "layer": "core",
+      "expectAny": [
+        "ovs:guide/private-messaging",
+        "ovs:cat/digital-services"
+      ],
+      "normalized": "private messaging app",
+      "expectOneInTop": 5
+    },
+    {
+      "query": "5449000054227",
+      "intent": "barcode routes to an item",
+      "layer": "full",
+      "expectAny": [
+        "ovs:item/soda/5449000054227"
+      ],
+      "normalized": "5449000054227",
+      "expectOneInTop": 5
+    }
+  ]
+}

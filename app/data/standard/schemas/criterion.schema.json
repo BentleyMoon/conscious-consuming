@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/criterion-v0.1.schema.json",
+  "title": "Open Values Criterion v0.1",
+  "description": "A single scoring axis within a lens.",
+  "type": "object",
+  "required": [
+    "key",
+    "label"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "key": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tier": {
+      "type": "string",
+      "enum": [
+        "measured",
+        "certified",
+        "assessed"
+      ]
+    },
+    "source": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,382 @@
+{
+  "format": "ovs-node-route-fixtures",
+  "version": "0.1",
+  "built": "2026-07-15",
+  "source": [
+    "app/data/nodes/node-page-contracts.json"
+  ],
+  "purpose": "Generated positive route parser fixtures for app-owned router integration and QA.",
+  "appLaneNote": "Parse fixtures only; app-owned code decides rendering, navigation timing, and fallback behavior.",
+  "parserRules": {
+    "hashOnly": true,
+    "decodeParamsWith": "decodeURIComponent",
+    "acceptedPatterns": [
+      "#explore/<cid>",
+      "#item/<cid>/<code>",
+      "#guide/<slug>",
+      "#n/<type>/<slug>"
+    ],
+    "nodeSlugNote": "The <slug> segment for #n routes may be URL-encoded; line ids use encoded colons, e.g. avoid%3Anestle."
+  },
+  "cases": [
+    {
+      "id": "category-1-explore-banking",
+      "type": "category",
+      "label": "Ethical banking",
+      "hash": "#explore/banking",
+      "source": "app/data/index.json + app/data/<cid>.json",
+      "expect": {
+        "route": "explore",
+        "type": "category",
+        "id": "ovs:cat/banking",
+        "params": {
+          "cid": "banking"
+        }
+      }
+    },
+    {
+      "id": "category-2-explore-password-managers",
+      "type": "category",
+      "label": "Password managers",
+      "hash": "#explore/password-managers",
+      "source": "app/data/index.json + app/data/<cid>.json",
+      "expect": {
+        "route": "explore",
+        "type": "category",
+        "id": "ovs:cat/password-managers",
+        "params": {
+          "cid": "password-managers"
+        }
+      }
+    },
+    {
+      "id": "category-3-explore-soda",
+      "type": "category",
+      "label": "Soda",
+      "hash": "#explore/soda",
+      "source": "app/data/index.json + app/data/<cid>.json",
+      "expect": {
+        "route": "explore",
+        "type": "category",
+        "id": "ovs:cat/soda",
+        "params": {
+          "cid": "soda"
+        }
+      }
+    },
+    {
+      "id": "item-4-item-soda-5449000054227",
+      "type": "item",
+      "label": "Coca-Cola Original Taste",
+      "hash": "#item/soda/5449000054227",
+      "source": "app/data/<cid>.json products[]",
+      "expect": {
+        "route": "item",
+        "type": "item",
+        "id": "ovs:item/soda/5449000054227",
+        "params": {
+          "cid": "soda",
+          "code": "5449000054227"
+        }
+      }
+    },
+    {
+      "id": "guide-5-guide-ethical-banking",
+      "type": "guide",
+      "label": "Where you bank is a climate decision",
+      "hash": "#guide/ethical-banking",
+      "source": "app/guides.js",
+      "expect": {
+        "route": "guide",
+        "type": "guide",
+        "id": "ovs:guide/ethical-banking",
+        "params": {
+          "slug": "ethical-banking"
+        }
+      }
+    },
+    {
+      "id": "guide-6-guide-password-managers",
+      "type": "guide",
+      "label": "Picking a password manager you can trust",
+      "hash": "#guide/password-managers",
+      "source": "app/guides.js",
+      "expect": {
+        "route": "guide",
+        "type": "guide",
+        "id": "ovs:guide/password-managers",
+        "params": {
+          "slug": "password-managers"
+        }
+      }
+    },
+    {
+      "id": "guide-7-guide-private-messaging",
+      "type": "guide",
+      "label": "Choosing a private messenger",
+      "hash": "#guide/private-messaging",
+      "source": "app/guides.js",
+      "expect": {
+        "route": "guide",
+        "type": "guide",
+        "id": "ovs:guide/private-messaging",
+        "params": {
+          "slug": "private-messaging"
+        }
+      }
+    },
+    {
+      "id": "brand-8-n-brand-nestle",
+      "type": "brand",
+      "label": "Nestlé",
+      "hash": "#n/brand/nestle",
+      "source": "app/data/nodes/brands.json",
+      "expect": {
+        "route": "node",
+        "type": "brand",
+        "id": "ovs:brand/nestle",
+        "params": {
+          "type": "brand",
+          "slug": "nestle"
+        }
+      }
+    },
+    {
+      "id": "brand-9-n-brand-coca-cola",
+      "type": "brand",
+      "label": "Coca-Cola",
+      "hash": "#n/brand/coca-cola",
+      "source": "app/data/nodes/brands.json",
+      "expect": {
+        "route": "node",
+        "type": "brand",
+        "id": "ovs:brand/coca-cola",
+        "params": {
+          "type": "brand",
+          "slug": "coca-cola"
+        }
+      }
+    },
+    {
+      "id": "brand-10-n-brand-amazon",
+      "type": "brand",
+      "label": "Amazon",
+      "hash": "#n/brand/amazon",
+      "source": "app/data/nodes/brands.json",
+      "expect": {
+        "route": "node",
+        "type": "brand",
+        "id": "ovs:brand/amazon",
+        "params": {
+          "type": "brand",
+          "slug": "amazon"
+        }
+      }
+    },
+    {
+      "id": "company-11-n-company-nestle",
+      "type": "company",
+      "label": "Nestlé",
+      "hash": "#n/company/nestle",
+      "source": "app/data/nodes/companies.json",
+      "expect": {
+        "route": "node",
+        "type": "company",
+        "id": "ovs:company/nestle",
+        "params": {
+          "type": "company",
+          "slug": "nestle"
+        }
+      }
+    },
+    {
+      "id": "company-12-n-company-coca-cola",
+      "type": "company",
+      "label": "Coca-Cola Company",
+      "hash": "#n/company/coca-cola",
+      "source": "app/data/nodes/companies.json",
+      "expect": {
+        "route": "node",
+        "type": "company",
+        "id": "ovs:company/coca-cola",
+        "params": {
+          "type": "company",
+          "slug": "coca-cola"
+        }
+      }
+    },
+    {
+      "id": "company-13-n-company-amazon",
+      "type": "company",
+      "label": "Amazon",
+      "hash": "#n/company/amazon",
+      "source": "app/data/nodes/companies.json",
+      "expect": {
+        "route": "node",
+        "type": "company",
+        "id": "ovs:company/amazon",
+        "params": {
+          "type": "company",
+          "slug": "amazon"
+        }
+      }
+    },
+    {
+      "id": "tag-14-n-tag-organic",
+      "type": "tag",
+      "label": "Organic",
+      "hash": "#n/tag/organic",
+      "source": "app/data/nodes/tags.json",
+      "expect": {
+        "route": "node",
+        "type": "tag",
+        "id": "ovs:tag/organic",
+        "params": {
+          "type": "tag",
+          "slug": "organic"
+        }
+      }
+    },
+    {
+      "id": "tag-15-n-tag-vegan",
+      "type": "tag",
+      "label": "Vegan",
+      "hash": "#n/tag/vegan",
+      "source": "app/data/nodes/tags.json",
+      "expect": {
+        "route": "node",
+        "type": "tag",
+        "id": "ovs:tag/vegan",
+        "params": {
+          "type": "tag",
+          "slug": "vegan"
+        }
+      }
+    },
+    {
+      "id": "tag-16-n-tag-open-source",
+      "type": "tag",
+      "label": "Open source",
+      "hash": "#n/tag/open-source",
+      "source": "app/data/nodes/tags.json",
+      "expect": {
+        "route": "node",
+        "type": "tag",
+        "id": "ovs:tag/open-source",
+        "params": {
+          "type": "tag",
+          "slug": "open-source"
+        }
+      }
+    },
+    {
+      "id": "errand-17-n-errand-pick-a-bank",
+      "type": "errand",
+      "label": "Pick a bank",
+      "hash": "#n/errand/pick-a-bank",
+      "source": "app/data/nodes/errands.json",
+      "expect": {
+        "route": "node",
+        "type": "errand",
+        "id": "ovs:errand/pick-a-bank",
+        "params": {
+          "type": "errand",
+          "slug": "pick-a-bank"
+        }
+      }
+    },
+    {
+      "id": "errand-18-n-errand-new-phone-sanely",
+      "type": "errand",
+      "label": "New phone, sanely",
+      "hash": "#n/errand/new-phone-sanely",
+      "source": "app/data/nodes/errands.json",
+      "expect": {
+        "route": "node",
+        "type": "errand",
+        "id": "ovs:errand/new-phone-sanely",
+        "params": {
+          "type": "errand",
+          "slug": "new-phone-sanely"
+        }
+      }
+    },
+    {
+      "id": "errand-19-n-errand-back-to-school",
+      "type": "errand",
+      "label": "Back to school",
+      "hash": "#n/errand/back-to-school",
+      "source": "app/data/nodes/errands.json",
+      "expect": {
+        "route": "node",
+        "type": "errand",
+        "id": "ovs:errand/back-to-school",
+        "params": {
+          "type": "errand",
+          "slug": "back-to-school"
+        }
+      }
+    },
+    {
+      "id": "line-20-n-line-avoid-nestle",
+      "type": "line",
+      "label": "Avoid Nestlé",
+      "hash": "#n/line/avoid%3Anestle",
+      "source": "content/lines.json",
+      "expect": {
+        "route": "node",
+        "type": "line",
+        "id": "ovs:line/avoid:nestle",
+        "params": {
+          "type": "line",
+          "slug": "avoid:nestle"
+        }
+      }
+    },
+    {
+      "id": "line-21-n-line-avoid-coca-cola",
+      "type": "line",
+      "label": "Avoid Coca-Cola Company",
+      "hash": "#n/line/avoid%3Acoca-cola",
+      "source": "content/lines.json",
+      "expect": {
+        "route": "node",
+        "type": "line",
+        "id": "ovs:line/avoid:coca-cola",
+        "params": {
+          "type": "line",
+          "slug": "avoid:coca-cola"
+        }
+      }
+    },
+    {
+      "id": "line-22-n-line-require-open-source",
+      "type": "line",
+      "label": "Open source",
+      "hash": "#n/line/require%3Aopen-source",
+      "source": "content/lines.json",
+      "expect": {
+        "route": "node",
+        "type": "line",
+        "id": "ovs:line/require:open-source",
+        "params": {
+          "type": "line",
+          "slug": "require:open-source"
+        }
+      }
+    }
+  ],
+  "totals": {
+    "cases": 22,
+    "typeCounts": {
+      "category": 3,
+      "item": 1,
+      "guide": 3,
+      "brand": 3,
+      "company": 3,
+      "tag": 3,
+      "errand": 3,
+      "line": 3
+    }
+  }
+}

@@ -1,0 +1,722 @@
+{
+  "format": "ovs-ask-traces",
+  "version": "0.1",
+  "built": "2026-07-15",
+  "source": [
+    "app/data/nodes/ask-fixtures.json",
+    "app/data/nodes/ask-core.json",
+    "app/data/nodes/ask-index.json"
+  ],
+  "purpose": "Deterministic resolver traces for app-owned Ask integration and visual QA.",
+  "resolverModel": "pipeline/build_nodes.js resolveAskQuery",
+  "traces": [
+    {
+      "query": "is nestle bad",
+      "normalized": "nestle",
+      "intent": "company/brand concern",
+      "layer": "core",
+      "file": "ask-core.json",
+      "expectAny": [
+        "ovs:company/nestle",
+        "ovs:line/avoid:nestle",
+        "ovs:brand/nestle"
+      ],
+      "expectOneInTop": 5,
+      "orderingAssertions": [],
+      "matched": "ovs:brand/nestle",
+      "matchedRank": 1,
+      "orderingChecks": [],
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:brand/nestle",
+          "label": "Nestlé",
+          "type": "brand",
+          "route": "node",
+          "hash": "#n/brand/nestle",
+          "score": 120,
+          "reason": "alias",
+          "key": "nestle"
+        },
+        {
+          "id": "ovs:company/nestle",
+          "label": "Nestlé",
+          "type": "company",
+          "route": "node",
+          "hash": "#n/company/nestle",
+          "score": 110,
+          "reason": "exact",
+          "key": "nestle"
+        },
+        {
+          "id": "ovs:line/avoid:nestle",
+          "label": "Avoid Nestlé",
+          "type": "line",
+          "route": "node",
+          "hash": "#n/line/avoid%3Anestle",
+          "score": 110,
+          "reason": "exact",
+          "key": "nestle"
+        },
+        {
+          "id": "ovs:company/alphabet",
+          "label": "Alphabet / Google",
+          "type": "company",
+          "route": "node",
+          "hash": "#n/company/alphabet",
+          "score": 76,
+          "reason": "token-containment",
+          "key": "nest"
+        },
+        {
+          "id": "ovs:line/avoid:alphabet",
+          "label": "Avoid Alphabet / Google",
+          "type": "line",
+          "route": "node",
+          "hash": "#n/line/avoid%3Aalphabet",
+          "score": 76,
+          "reason": "token-containment",
+          "key": "nest"
+        }
+      ]
+    },
+    {
+      "query": "vegan cheese",
+      "normalized": "vegan cheese",
+      "intent": "multi-intent food query",
+      "layer": "core",
+      "file": "ask-core.json",
+      "expectAny": [
+        "ovs:cat/cheese",
+        "ovs:tag/vegan"
+      ],
+      "expectOneInTop": 5,
+      "orderingAssertions": [],
+      "matched": "ovs:cat/cheese",
+      "matchedRank": 3,
+      "orderingChecks": [],
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:line/diet:vegan",
+          "label": "Vegan",
+          "type": "line",
+          "route": "node",
+          "hash": "#n/line/diet%3Avegan",
+          "score": 95,
+          "reason": "query-token",
+          "key": "vegan"
+        },
+        {
+          "id": "ovs:line/diet:vegetarian",
+          "label": "Vegetarian",
+          "type": "line",
+          "route": "node",
+          "hash": "#n/line/diet%3Avegetarian",
+          "score": 95,
+          "reason": "query-token",
+          "key": "vegan"
+        },
+        {
+          "id": "ovs:cat/cheese",
+          "label": "Cheese",
+          "type": "category",
+          "route": "explore",
+          "hash": "#explore/cheese",
+          "score": 95,
+          "reason": "query-token",
+          "key": "cheese"
+        },
+        {
+          "id": "ovs:tag/vegan",
+          "label": "Vegan",
+          "type": "tag",
+          "route": "node",
+          "hash": "#n/tag/vegan",
+          "score": 95,
+          "reason": "query-token",
+          "key": "vegan"
+        },
+        {
+          "id": "ovs:guide/cheese",
+          "label": "Choosing cheese by use, sodium, and dairy impact",
+          "type": "guide",
+          "route": "guide",
+          "hash": "#guide/cheese",
+          "score": 95,
+          "reason": "query-token",
+          "key": "cheese"
+        }
+      ]
+    },
+    {
+      "query": "best bank",
+      "normalized": "bank",
+      "intent": "plain category question",
+      "layer": "core",
+      "file": "ask-core.json",
+      "expectAny": [
+        "ovs:cat/banking",
+        "ovs:errand/pick-a-bank"
+      ],
+      "expectOneInTop": 5,
+      "orderingAssertions": [],
+      "matched": "ovs:cat/banking",
+      "matchedRank": 1,
+      "orderingChecks": [],
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:cat/banking",
+          "label": "Ethical banking",
+          "type": "category",
+          "route": "explore",
+          "hash": "#explore/banking",
+          "score": 120,
+          "reason": "alias",
+          "key": "bank"
+        },
+        {
+          "id": "ovs:guide/ethical-banking",
+          "label": "Where you bank is a climate decision",
+          "type": "guide",
+          "route": "guide",
+          "hash": "#guide/ethical-banking",
+          "score": 76,
+          "reason": "token-containment",
+          "key": "banking"
+        },
+        {
+          "id": "ovs:errand/pick-a-bank",
+          "label": "Pick a bank",
+          "type": "errand",
+          "route": "node",
+          "hash": "#n/errand/pick-a-bank",
+          "score": 75,
+          "reason": "token-containment",
+          "key": "bank account"
+        },
+        {
+          "id": "ovs:brand/global-bank-us",
+          "label": "global bank (US)",
+          "type": "brand",
+          "route": "node",
+          "hash": "#n/brand/global-bank-us",
+          "score": 74,
+          "reason": "token-containment",
+          "key": "global bank us"
+        },
+        {
+          "id": "ovs:brand/national-bank-us",
+          "label": "national bank (US)",
+          "type": "brand",
+          "route": "node",
+          "hash": "#n/brand/national-bank-us",
+          "score": 74,
+          "reason": "token-containment",
+          "key": "national bank us"
+        }
+      ]
+    },
+    {
+      "query": "coke",
+      "normalized": "coke",
+      "intent": "everyday brand alias",
+      "layer": "core",
+      "file": "ask-core.json",
+      "expectAny": [
+        "ovs:company/coca-cola",
+        "ovs:line/avoid:coca-cola",
+        "ovs:brand/coca-cola"
+      ],
+      "expectOneInTop": 5,
+      "orderingAssertions": [],
+      "matched": "ovs:line/avoid:coca-cola",
+      "matchedRank": 2,
+      "orderingChecks": [],
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:brand/coke",
+          "label": "Coke",
+          "type": "brand",
+          "route": "node",
+          "hash": "#n/brand/coke",
+          "score": 120,
+          "reason": "alias",
+          "key": "coke"
+        },
+        {
+          "id": "ovs:line/avoid:coca-cola",
+          "label": "Avoid Coca-Cola Company",
+          "type": "line",
+          "route": "node",
+          "hash": "#n/line/avoid%3Acoca-cola",
+          "score": 110,
+          "reason": "exact",
+          "key": "coke"
+        },
+        {
+          "id": "ovs:brand/coles",
+          "label": "coles",
+          "type": "brand",
+          "route": "node",
+          "hash": "#n/brand/coles",
+          "score": 86,
+          "reason": "fuzzy-1",
+          "key": "cole"
+        },
+        {
+          "id": "ovs:company/coca-cola",
+          "label": "Coca-Cola Company",
+          "type": "company",
+          "route": "node",
+          "hash": "#n/company/coca-cola",
+          "score": 75,
+          "reason": "token-containment",
+          "key": "coke zero"
+        },
+        {
+          "id": "ovs:brand/coke-zero",
+          "label": "Coke ZERO",
+          "type": "brand",
+          "route": "node",
+          "hash": "#n/brand/coke-zero",
+          "score": 75,
+          "reason": "token-containment",
+          "key": "coke zero"
+        }
+      ]
+    },
+    {
+      "query": "nestel",
+      "normalized": "nestel",
+      "intent": "single-edit typo",
+      "layer": "core",
+      "file": "ask-core.json",
+      "expectAny": [
+        "ovs:company/nestle",
+        "ovs:brand/nestle",
+        "ovs:line/avoid:nestle"
+      ],
+      "expectOneInTop": 5,
+      "orderingAssertions": [
+        {
+          "id": "typo-before-loose-containment",
+          "winnerReason": "fuzzy-1",
+          "winnerAny": [
+            "ovs:company/nestle",
+            "ovs:brand/nestle",
+            "ovs:line/avoid:nestle"
+          ],
+          "loserReason": "token-containment",
+          "note": "Single-edit typo results must rank before loose containment matches such as Nest."
+        }
+      ],
+      "matched": "ovs:company/nestle",
+      "matchedRank": 1,
+      "orderingChecks": [
+        {
+          "id": "typo-before-loose-containment",
+          "note": "Single-edit typo results must rank before loose containment matches such as Nest.",
+          "winnerReason": "fuzzy-1",
+          "loserReason": "token-containment",
+          "winnerRank": 1,
+          "loserRank": 4,
+          "ok": true
+        }
+      ],
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:company/nestle",
+          "label": "Nestlé",
+          "type": "company",
+          "route": "node",
+          "hash": "#n/company/nestle",
+          "score": 86,
+          "reason": "fuzzy-1",
+          "key": "nestle"
+        },
+        {
+          "id": "ovs:line/avoid:nestle",
+          "label": "Avoid Nestlé",
+          "type": "line",
+          "route": "node",
+          "hash": "#n/line/avoid%3Anestle",
+          "score": 86,
+          "reason": "fuzzy-1",
+          "key": "nestle"
+        },
+        {
+          "id": "ovs:brand/nestle",
+          "label": "Nestlé",
+          "type": "brand",
+          "route": "node",
+          "hash": "#n/brand/nestle",
+          "score": 86,
+          "reason": "fuzzy-1",
+          "key": "nestle"
+        },
+        {
+          "id": "ovs:company/alphabet",
+          "label": "Alphabet / Google",
+          "type": "company",
+          "route": "node",
+          "hash": "#n/company/alphabet",
+          "score": 76,
+          "reason": "token-containment",
+          "key": "nest"
+        },
+        {
+          "id": "ovs:line/avoid:alphabet",
+          "label": "Avoid Alphabet / Google",
+          "type": "line",
+          "route": "node",
+          "hash": "#n/line/avoid%3Aalphabet",
+          "score": 76,
+          "reason": "token-containment",
+          "key": "nest"
+        }
+      ]
+    },
+    {
+      "query": "is oatly ethical",
+      "normalized": "oatly",
+      "intent": "question scaffolding strips away",
+      "layer": "core",
+      "file": "ask-core.json",
+      "expectAny": [
+        "ovs:brand/oatly"
+      ],
+      "expectOneInTop": 5,
+      "orderingAssertions": [],
+      "matched": "ovs:brand/oatly",
+      "matchedRank": 1,
+      "orderingChecks": [],
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:brand/oatly",
+          "label": "Oatly",
+          "type": "brand",
+          "route": "node",
+          "hash": "#n/brand/oatly",
+          "score": 120,
+          "reason": "alias",
+          "key": "oatly"
+        }
+      ]
+    },
+    {
+      "query": "best password manager",
+      "normalized": "password manager",
+      "intent": "digital category",
+      "layer": "core",
+      "file": "ask-core.json",
+      "expectAny": [
+        "ovs:cat/password-managers"
+      ],
+      "expectOneInTop": 5,
+      "orderingAssertions": [],
+      "matched": "ovs:cat/password-managers",
+      "matchedRank": 1,
+      "orderingChecks": [],
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:cat/password-managers",
+          "label": "Password managers",
+          "type": "category",
+          "route": "explore",
+          "hash": "#explore/password-managers",
+          "score": 120,
+          "reason": "alias",
+          "key": "password manager"
+        },
+        {
+          "id": "ovs:guide/password-managers",
+          "label": "Picking a password manager you can trust",
+          "type": "guide",
+          "route": "guide",
+          "hash": "#guide/password-managers",
+          "score": 110,
+          "reason": "exact",
+          "key": "password manager"
+        }
+      ]
+    },
+    {
+      "query": "avoid amazon",
+      "normalized": "avoid amazon",
+      "intent": "line/company action intent",
+      "layer": "core",
+      "file": "ask-core.json",
+      "expectAny": [
+        "ovs:company/amazon",
+        "ovs:line/avoid:amazon",
+        "ovs:brand/amazon"
+      ],
+      "expectOneInTop": 5,
+      "orderingAssertions": [],
+      "matched": "ovs:company/amazon",
+      "matchedRank": 1,
+      "orderingChecks": [],
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:company/amazon",
+          "label": "Amazon",
+          "type": "company",
+          "route": "node",
+          "hash": "#n/company/amazon",
+          "score": 95,
+          "reason": "query-token",
+          "key": "amazon"
+        },
+        {
+          "id": "ovs:line/avoid:amazon",
+          "label": "Avoid Amazon",
+          "type": "line",
+          "route": "node",
+          "hash": "#n/line/avoid%3Aamazon",
+          "score": 95,
+          "reason": "query-token",
+          "key": "amazon"
+        },
+        {
+          "id": "ovs:brand/amazon",
+          "label": "Amazon",
+          "type": "brand",
+          "route": "node",
+          "hash": "#n/brand/amazon",
+          "score": 95,
+          "reason": "query-token",
+          "key": "amazon"
+        }
+      ]
+    },
+    {
+      "query": "b corp toilet paper",
+      "normalized": "b corp toilet paper",
+      "intent": "tag plus household language",
+      "layer": "core",
+      "file": "ask-core.json",
+      "expectAny": [
+        "ovs:tag/b-corp",
+        "ovs:cat/paper-goods"
+      ],
+      "expectOneInTop": 5,
+      "orderingAssertions": [],
+      "matched": "ovs:cat/paper-goods",
+      "matchedRank": 2,
+      "orderingChecks": [],
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:line/require:b-corp",
+          "label": "B Corp",
+          "type": "line",
+          "route": "node",
+          "hash": "#n/line/require%3Ab-corp",
+          "score": 74,
+          "reason": "token-containment",
+          "key": "b corp"
+        },
+        {
+          "id": "ovs:cat/paper-goods",
+          "label": "Paper goods",
+          "type": "category",
+          "route": "explore",
+          "hash": "#explore/paper-goods",
+          "score": 74,
+          "reason": "token-containment",
+          "key": "toilet paper"
+        },
+        {
+          "id": "ovs:brand/b-corp",
+          "label": "B Corp",
+          "type": "brand",
+          "route": "node",
+          "hash": "#n/brand/b-corp",
+          "score": 74,
+          "reason": "token-containment",
+          "key": "b corp"
+        },
+        {
+          "id": "ovs:tag/b-corp",
+          "label": "B Corp",
+          "type": "tag",
+          "route": "node",
+          "hash": "#n/tag/b-corp",
+          "score": 74,
+          "reason": "token-containment",
+          "key": "b corp"
+        }
+      ]
+    },
+    {
+      "query": "washing up liquid",
+      "normalized": "washing up liquid",
+      "intent": "regional synonym",
+      "layer": "core",
+      "file": "ask-core.json",
+      "expectAny": [
+        "ovs:cat/dish-soap"
+      ],
+      "expectOneInTop": 5,
+      "orderingAssertions": [],
+      "matched": "ovs:cat/dish-soap",
+      "matchedRank": 1,
+      "orderingChecks": [],
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:cat/dish-soap",
+          "label": "Dish soap",
+          "type": "category",
+          "route": "explore",
+          "hash": "#explore/dish-soap",
+          "score": 120,
+          "reason": "alias",
+          "key": "washing up liquid"
+        },
+        {
+          "id": "ovs:brand/up-and-up",
+          "label": "up&up",
+          "type": "brand",
+          "route": "node",
+          "hash": "#n/brand/up-and-up",
+          "score": 75,
+          "reason": "token-containment",
+          "key": "up up"
+        }
+      ]
+    },
+    {
+      "query": "cell phone",
+      "normalized": "cell phone",
+      "intent": "common synonym",
+      "layer": "core",
+      "file": "ask-core.json",
+      "expectAny": [
+        "ovs:cat/phones"
+      ],
+      "expectOneInTop": 5,
+      "orderingAssertions": [],
+      "matched": "ovs:cat/phones",
+      "matchedRank": 1,
+      "orderingChecks": [],
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:cat/phones",
+          "label": "Phones",
+          "type": "category",
+          "route": "explore",
+          "hash": "#explore/phones",
+          "score": 120,
+          "reason": "alias",
+          "key": "cell phone"
+        },
+        {
+          "id": "ovs:errand/new-phone-sanely",
+          "label": "New phone, sanely",
+          "type": "errand",
+          "route": "node",
+          "hash": "#n/errand/new-phone-sanely",
+          "score": 95,
+          "reason": "query-token",
+          "key": "phone"
+        },
+        {
+          "id": "ovs:guide/phones",
+          "label": "Choosing a phone you can keep longer",
+          "type": "guide",
+          "route": "guide",
+          "hash": "#guide/phones",
+          "score": 95,
+          "reason": "query-token",
+          "key": "phone"
+        }
+      ]
+    },
+    {
+      "query": "private messaging app",
+      "normalized": "private messaging app",
+      "intent": "guide-style question",
+      "layer": "core",
+      "file": "ask-core.json",
+      "expectAny": [
+        "ovs:guide/private-messaging",
+        "ovs:cat/digital-services"
+      ],
+      "expectOneInTop": 5,
+      "orderingAssertions": [],
+      "matched": "ovs:guide/private-messaging",
+      "matchedRank": 2,
+      "orderingChecks": [],
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:tag/privacy",
+          "label": "Privacy",
+          "type": "tag",
+          "route": "node",
+          "hash": "#n/tag/privacy",
+          "score": 95,
+          "reason": "query-token",
+          "key": "private"
+        },
+        {
+          "id": "ovs:guide/private-messaging",
+          "label": "Choosing a private messenger",
+          "type": "guide",
+          "route": "guide",
+          "hash": "#guide/private-messaging",
+          "score": 95,
+          "reason": "query-token",
+          "key": "messaging"
+        }
+      ]
+    },
+    {
+      "query": "5449000054227",
+      "normalized": "5449000054227",
+      "intent": "barcode routes to an item",
+      "layer": "full",
+      "file": "ask-index.json",
+      "expectAny": [
+        "ovs:item/soda/5449000054227"
+      ],
+      "expectOneInTop": 5,
+      "orderingAssertions": [],
+      "matched": "ovs:item/soda/5449000054227",
+      "matchedRank": 1,
+      "orderingChecks": [],
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:item/soda/5449000054227",
+          "label": "Coca-Cola Original Taste",
+          "type": "item",
+          "route": "item",
+          "hash": "#item/soda/5449000054227",
+          "score": 110,
+          "reason": "exact",
+          "key": "5449000054227"
+        },
+        {
+          "id": "ovs:item/soda/54490000",
+          "label": "Coca-Cola Original Taste",
+          "type": "item",
+          "route": "item",
+          "hash": "#item/soda/54490000",
+          "score": 76,
+          "reason": "token-containment",
+          "key": "54490000"
+        }
+      ]
+    }
+  ]
+}

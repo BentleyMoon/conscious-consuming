@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/pulse-v0.1.schema.json",
+  "title": "Open Values Pulse v0.1",
+  "description": "A generated recent-work and freshness feed for project state surfaces.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "format",
+    "version",
+    "built",
+    "windowDays",
+    "entries",
+    "truncated"
+  ],
+  "properties": {
+    "format": {
+      "const": "ovs-pulse"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$"
+    },
+    "built": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "windowDays": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entry"
+      }
+    },
+    "truncated": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "$defs": {
+    "entry": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "date",
+        "node",
+        "kind",
+        "what"
+      ],
+      "properties": {
+        "date": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "node": {
+          "type": "string",
+          "pattern": "^ovs:[a-z]+/[a-z0-9-]+$"
+        },
+        "kind": {
+          "enum": [
+            "added",
+            "corrected",
+            "contested",
+            "stale"
+          ]
+        },
+        "what": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "type": "string",
+          "pattern": "^https?://"
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}$"
+        }
+      }
+    }
+  }
+}

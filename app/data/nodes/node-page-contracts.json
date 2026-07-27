@@ -1,0 +1,368 @@
+{
+  "format": "ovs-node-page-contracts",
+  "version": "0.1",
+  "built": "2026-07-15",
+  "source": [
+    "app/data/index.json",
+    "app/data/nodes/brands.json",
+    "app/data/nodes/companies.json",
+    "app/data/nodes/tags.json",
+    "app/data/nodes/errands.json",
+    "content/lines.json",
+    "app/guides.js",
+    "app/data/*.json"
+  ],
+  "purpose": "Generated page-type and route contracts for app-owned node, category, guide, and item rendering.",
+  "appLaneNote": "Contract only; app-owned code decides layout, copy, and interaction.",
+  "contracts": [
+    {
+      "type": "category",
+      "routePattern": "#explore/<cid>",
+      "source": "app/data/index.json + app/data/<cid>.json",
+      "requiredFields": [
+        "id",
+        "label",
+        "file",
+        "n",
+        "type",
+        "criteria"
+      ],
+      "optionalFields": [
+        "domain",
+        "group"
+      ],
+      "sections": [
+        "summary",
+        "presets",
+        "criteria",
+        "ranked entries",
+        "filters",
+        "guide banner if mapped"
+      ],
+      "examples": [
+        {
+          "id": "ovs:cat/banking",
+          "label": "Ethical banking",
+          "hash": "#explore/banking",
+          "count": 25,
+          "domain": "Money"
+        },
+        {
+          "id": "ovs:cat/password-managers",
+          "label": "Password managers",
+          "hash": "#explore/password-managers",
+          "count": 88,
+          "domain": "Tech & digital"
+        },
+        {
+          "id": "ovs:cat/soda",
+          "label": "Soda",
+          "hash": "#explore/soda",
+          "count": 377,
+          "domain": "Food & drink"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "type": "item",
+      "routePattern": "#item/<cid>/<code>",
+      "source": "app/data/<cid>.json products[]",
+      "requiredFields": [
+        "code",
+        "name",
+        "scores"
+      ],
+      "optionalFields": [
+        "brand",
+        "links",
+        "region",
+        "focuses",
+        "provenance",
+        "allergens",
+        "description"
+      ],
+      "sections": [
+        "verdict",
+        "score breakdown",
+        "provenance",
+        "labels",
+        "category return link"
+      ],
+      "examples": [
+        {
+          "id": "ovs:item/soda/5449000054227",
+          "label": "Coca-Cola Original Taste",
+          "hash": "#item/soda/5449000054227",
+          "category": "Soda",
+          "categoryId": "soda",
+          "brand": "Coca Cola Life"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "type": "guide",
+      "routePattern": "#guide/<slug>",
+      "source": "app/guides.js",
+      "requiredFields": [
+        "slug",
+        "title",
+        "html",
+        "status"
+      ],
+      "optionalFields": [
+        "category",
+        "last_updated",
+        "disclosure"
+      ],
+      "sections": [
+        "title",
+        "disclosure",
+        "body",
+        "related category link"
+      ],
+      "examples": [
+        {
+          "id": "ovs:guide/ethical-banking",
+          "label": "Where you bank is a climate decision",
+          "hash": "#guide/ethical-banking"
+        },
+        {
+          "id": "ovs:guide/password-managers",
+          "label": "Picking a password manager you can trust",
+          "hash": "#guide/password-managers"
+        },
+        {
+          "id": "ovs:guide/private-messaging",
+          "label": "Choosing a private messenger",
+          "hash": "#guide/private-messaging"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "type": "brand",
+      "routePattern": "#n/brand/<slug>",
+      "source": "app/data/nodes/brands.json",
+      "requiredFields": [
+        "id",
+        "type",
+        "label",
+        "items",
+        "categories",
+        "top"
+      ],
+      "optionalFields": [
+        "aliases",
+        "ownedBy"
+      ],
+      "sections": [
+        "summary",
+        "categories",
+        "ownership link",
+        "top product examples"
+      ],
+      "examples": [
+        {
+          "id": "ovs:brand/nestle",
+          "label": "Nestlé",
+          "hash": "#n/brand/nestle"
+        },
+        {
+          "id": "ovs:brand/coca-cola",
+          "label": "Coca-Cola",
+          "hash": "#n/brand/coca-cola"
+        },
+        {
+          "id": "ovs:brand/amazon",
+          "label": "Amazon",
+          "hash": "#n/brand/amazon"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "type": "company",
+      "routePattern": "#n/company/<slug>",
+      "source": "app/data/nodes/companies.json",
+      "requiredFields": [
+        "id",
+        "type",
+        "label",
+        "reads",
+        "brandNames",
+        "ownershipSources"
+      ],
+      "optionalFields": [
+        "brands",
+        "categories",
+        "line",
+        "source",
+        "asof",
+        "aliases"
+      ],
+      "sections": [
+        "summary",
+        "known brands",
+        "brands in commons",
+        "ownership receipts",
+        "avoid line link"
+      ],
+      "examples": [
+        {
+          "id": "ovs:company/nestle",
+          "label": "Nestlé",
+          "hash": "#n/company/nestle"
+        },
+        {
+          "id": "ovs:company/coca-cola",
+          "label": "Coca-Cola Company",
+          "hash": "#n/company/coca-cola"
+        },
+        {
+          "id": "ovs:company/amazon",
+          "label": "Amazon",
+          "hash": "#n/company/amazon"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "type": "tag",
+      "routePattern": "#n/tag/<slug>",
+      "source": "app/data/nodes/tags.json",
+      "requiredFields": [
+        "id",
+        "type",
+        "label",
+        "kind",
+        "reads",
+        "items",
+        "categories"
+      ],
+      "optionalFields": [
+        "aliases",
+        "receipt"
+      ],
+      "sections": [
+        "summary",
+        "what this label means",
+        "categories where it appears",
+        "receipt if available"
+      ],
+      "examples": [
+        {
+          "id": "ovs:tag/organic",
+          "label": "Organic",
+          "hash": "#n/tag/organic"
+        },
+        {
+          "id": "ovs:tag/vegan",
+          "label": "Vegan",
+          "hash": "#n/tag/vegan"
+        },
+        {
+          "id": "ovs:tag/open-source",
+          "label": "Open source",
+          "hash": "#n/tag/open-source"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "type": "errand",
+      "routePattern": "#n/errand/<slug>",
+      "source": "app/data/nodes/errands.json",
+      "requiredFields": [
+        "id",
+        "type",
+        "label",
+        "reads",
+        "categories",
+        "steps"
+      ],
+      "optionalFields": [
+        "aliases",
+        "tradeoff",
+        "output"
+      ],
+      "sections": [
+        "summary",
+        "steps",
+        "category links",
+        "tradeoff hints"
+      ],
+      "examples": [
+        {
+          "id": "ovs:errand/pick-a-bank",
+          "label": "Pick a bank",
+          "hash": "#n/errand/pick-a-bank"
+        },
+        {
+          "id": "ovs:errand/new-phone-sanely",
+          "label": "New phone, sanely",
+          "hash": "#n/errand/new-phone-sanely"
+        },
+        {
+          "id": "ovs:errand/back-to-school",
+          "label": "Back to school",
+          "hash": "#n/errand/back-to-school"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "type": "line",
+      "routePattern": "#n/line/<encoded-line-id>",
+      "source": "content/lines.json",
+      "requiredFields": [
+        "id",
+        "kind",
+        "label",
+        "reads"
+      ],
+      "optionalFields": [
+        "tag",
+        "accept",
+        "brands",
+        "why"
+      ],
+      "sections": [
+        "summary",
+        "rule behavior",
+        "known reach",
+        "source link when present"
+      ],
+      "examples": [
+        {
+          "id": "ovs:line/avoid:nestle",
+          "label": "Avoid Nestlé",
+          "hash": "#n/line/avoid%3Anestle"
+        },
+        {
+          "id": "ovs:line/avoid:coca-cola",
+          "label": "Avoid Coca-Cola Company",
+          "hash": "#n/line/avoid%3Acoca-cola"
+        },
+        {
+          "id": "ovs:line/require:open-source",
+          "label": "Open source",
+          "hash": "#n/line/require%3Aopen-source"
+        }
+      ],
+      "notes": [
+        "Line ids contain a colon and are URL-encoded in route hashes, for example #n/line/avoid%3Anestle."
+      ]
+    }
+  ],
+  "totals": {
+    "categories": 88,
+    "brands": 2098,
+    "companies": 29,
+    "tags": 105,
+    "errands": 12,
+    "lines": 40,
+    "guides": 100
+  }
+}

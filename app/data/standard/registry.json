@@ -1,0 +1,2176 @@
+{
+  "format": "open-values-format-registry",
+  "version": "0.1.0",
+  "standard": "open-values-standard",
+  "standardVersion": "1.0.0-draft.1",
+  "updated": "2026-07-18",
+  "entries": [
+    {
+      "id": "open-values-format-registry",
+      "version": "0.1.0",
+      "declaredVersion": "0.1.0",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "Machine-readable registry of Open Values file formats, schemas, builders, audits, and ownership lanes.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-format-registry",
+        "pathPattern": "app/data/standard/registry.json"
+      },
+      "schema": "app/data/standard/schemas/format-registry.schema.json",
+      "sourceOfTruth": [
+        "docs/STANDARD-v1.md",
+        "docs/STANDARD-v1-REGISTRY-INVENTORY.md",
+        "app/data/standard/registry.json"
+      ],
+      "generatedOutputs": [
+        "app/data/challenge-index.json"
+      ],
+      "builders": [
+        "pipeline/build_challenge.js"
+      ],
+      "audits": [
+        "npm run audit:standard"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "audit:standard",
+        "standard documentation"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "This registry begins in v1 draft and has no legacy file."
+      }
+    },
+    {
+      "id": "open-values-conformance-vectors",
+      "version": "0.1.0",
+      "declaredVersion": "0.1.0",
+      "status": "draft",
+      "kind": "fixture",
+      "purpose": "Known-good and known-bad examples for Standard v1 audit checks.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-conformance-vectors",
+        "pathPattern": "app/data/standard/conformance-vectors.json"
+      },
+      "schema": "app/data/standard/schemas/conformance-vectors.schema.json",
+      "sourceOfTruth": [
+        "app/data/standard/conformance-vectors.json",
+        "docs/STANDARD-v1.md"
+      ],
+      "generatedOutputs": [
+        "app/data/asks-offers-index.json"
+      ],
+      "builders": [
+        "pipeline/build_initiatives.js"
+      ],
+      "audits": [
+        "npm run audit:standard"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "audit:standard",
+        "future implementer test suites"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "This vector set begins in v1 draft and has no legacy file."
+      }
+    },
+    {
+      "id": "open-values-source",
+      "version": "0.1.0",
+      "declaredVersion": "0.1.0",
+      "status": "stable",
+      "kind": "internal",
+      "purpose": "Reusable provenance value schema for notes and citation objects.",
+      "marker": {
+        "mode": "schema",
+        "pathPattern": "app/data/standard/schemas/source.schema.json"
+      },
+      "schema": "app/data/standard/schemas/source.schema.json",
+      "sourceOfTruth": [
+        "docs/STANDARD-v1.md",
+        "app/data/standard/schemas/source.schema.json"
+      ],
+      "generatedOutputs": [],
+      "builders": [],
+      "audits": [
+        "npm run audit:standard"
+      ],
+      "ownerLane": "shared",
+      "runtimeConsumers": [
+        "open-values-entity",
+        "open-values-rating",
+        "open-values-lens"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": true,
+        "notes": "Legacy plain-string provenance remains valid; citation objects are preferred for assessed claims."
+      }
+    },
+    {
+      "id": "open-values-criterion",
+      "version": "0.1.0",
+      "declaredVersion": "0.1.0",
+      "status": "stable",
+      "kind": "internal",
+      "purpose": "Reusable criterion schema for scoring axes within lenses and category indexes.",
+      "marker": {
+        "mode": "schema",
+        "pathPattern": "app/data/standard/schemas/criterion.schema.json"
+      },
+      "schema": "app/data/standard/schemas/criterion.schema.json",
+      "sourceOfTruth": [
+        "docs/STANDARD-v1.md",
+        "app/data/standard/schemas/criterion.schema.json"
+      ],
+      "generatedOutputs": [],
+      "builders": [],
+      "audits": [
+        "npm run audit:standard"
+      ],
+      "ownerLane": "shared",
+      "runtimeConsumers": [
+        "open-values-lens",
+        "open-values-category-index"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": true,
+        "notes": "Current criteria already match this shape."
+      }
+    },
+    {
+      "id": "open-values-rating",
+      "version": "0.1.0",
+      "declaredVersion": "0.1.0",
+      "status": "stable",
+      "kind": "internal",
+      "purpose": "Reusable score-value and expanded rating schema.",
+      "marker": {
+        "mode": "schema",
+        "pathPattern": "app/data/standard/schemas/rating.schema.json"
+      },
+      "schema": "app/data/standard/schemas/rating.schema.json",
+      "sourceOfTruth": [
+        "docs/STANDARD-v1.md",
+        "app/data/standard/schemas/rating.schema.json"
+      ],
+      "generatedOutputs": [],
+      "builders": [],
+      "audits": [
+        "npm run audit:standard"
+      ],
+      "ownerLane": "shared",
+      "runtimeConsumers": [
+        "open-values-entity",
+        "open-values-lens"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": true,
+        "notes": "Sparse map scores and explicit null unknowns remain valid."
+      },
+      "dependencies": [
+        "open-values-source"
+      ]
+    },
+    {
+      "id": "open-values-entity",
+      "version": "0.1.0",
+      "declaredVersion": "0.1.0",
+      "status": "stable",
+      "kind": "internal",
+      "purpose": "Reusable entity schema for products, services, media, organizations, and initiatives inside lenses.",
+      "marker": {
+        "mode": "schema",
+        "pathPattern": "app/data/standard/schemas/entity.schema.json"
+      },
+      "schema": "app/data/standard/schemas/entity.schema.json",
+      "sourceOfTruth": [
+        "docs/STANDARD-v1.md",
+        "app/data/standard/schemas/entity.schema.json"
+      ],
+      "generatedOutputs": [],
+      "builders": [],
+      "audits": [
+        "npm run audit:standard"
+      ],
+      "ownerLane": "shared",
+      "runtimeConsumers": [
+        "open-values-lens",
+        "open-values-category-dataset"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": true,
+        "notes": "Consumers must ignore unknown entity extension fields."
+      },
+      "dependencies": [
+        "open-values-rating",
+        "open-values-source"
+      ]
+    },
+    {
+      "id": "open-values-lens",
+      "version": "0.1.0",
+      "declaredVersion": "none",
+      "status": "stable",
+      "kind": "source",
+      "purpose": "A domain-specific set of criteria and ranked entities with sparse scores and provenance.",
+      "marker": {
+        "mode": "legacy-shape",
+        "pathPattern": "content/lenses/*.json",
+        "notes": "Existing lenses are identified by path plus meta/criteria/products shape."
+      },
+      "schema": "app/data/standard/schemas/lens.schema.json",
+      "sourceOfTruth": [
+        "content/lenses/*.json"
+      ],
+      "generatedOutputs": [
+        "app/data/<cid>.json",
+        "app/data.js"
+      ],
+      "builders": [
+        "pipeline/build_datasets.py"
+      ],
+      "audits": [
+        "npm run audit:conformance",
+        "node research/verify_run.js"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "app data loader",
+        "app/engine.js",
+        "verdict cards",
+        "node indexes"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": true,
+        "notes": "Root format/version fields are not required for existing lenses during v1 draft."
+      },
+      "dependencies": [
+        "open-values-criterion",
+        "open-values-entity"
+      ]
+    },
+    {
+      "id": "open-values-decision-contracts",
+      "version": "0.2.0",
+      "declaredVersion": "0.2.0",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "Signed differences reads, practical category axes, budget-data posture, and applicable computed-answer slots for decision pages.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-decision-contracts",
+        "pathPattern": "content/decisions.json"
+      },
+      "schema": "app/data/standard/schemas/decision-contracts.schema.json",
+      "schemaNote": "The schema guards the portable shape; research/two_fields_audit.js resolves categories, verifies populated criterion spreads, and checks generated dataset/index parity.",
+      "sourceOfTruth": [
+        "content/decisions.json"
+      ],
+      "generatedOutputs": [
+        "app/data/<cid>.json meta.decision",
+        "app/data/index.json categories[].decision",
+        "app/data.js"
+      ],
+      "builders": [
+        "pipeline/build_datasets.py"
+      ],
+      "audits": [
+        "node research/two_fields_audit.js",
+        "node research/decision_rollout_audit.js",
+        "npm run audit:standard"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "Round 4 decision-page header",
+        "Round 4 practical dials",
+        "Round 4 computed answer recipes",
+        "Round 6 shared-floor interface",
+        "Round 9 category-wide decision-page rollout"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "The contract is semver-native; founder-approved preserves the bounded Round 5 pilot baseline and records the Round 9 batch rollout."
+      },
+      "dependencies": [
+        "open-values-criterion"
+      ]
+    },
+    {
+      "id": "open-values-category-dataset",
+      "version": "0.1.0",
+      "declaredVersion": "none",
+      "status": "stable",
+      "kind": "generated",
+      "purpose": "Built app-ready category data, including curated and open-data product/service datasets.",
+      "marker": {
+        "mode": "legacy-shape",
+        "pathPattern": "app/data/<cid>.json",
+        "notes": "Category datasets have meta, criteria, and products; app/data/index.json and node indexes are separate formats."
+      },
+      "schema": "app/data/standard/schemas/category-dataset.schema.json",
+      "sourceOfTruth": [
+        "content/lenses/*.json",
+        "pipeline/raw/*.jsonl",
+        "pipeline/raw_beauty/*.jsonl",
+        "pipeline/raw_safer_choice/*.jsonl",
+        "content/ontology.json",
+        "content/decisions.json"
+      ],
+      "generatedOutputs": [
+        "app/data/*.json",
+        "app/data.js"
+      ],
+      "builders": [
+        "pipeline/build_datasets.py"
+      ],
+      "audits": [
+        "node research/verify_run.js",
+        "npm run audit:content",
+        "npm run audit:generated"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "app data loader",
+        "Ask",
+        "verdict cards",
+        "linked-data export"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": true,
+        "notes": "Generated category files remain unmarked while the source lens contract is stabilized."
+      },
+      "dependencies": [
+        "open-values-lens",
+        "open-values-ontology",
+        "open-values-decision-contracts"
+      ]
+    },
+    {
+      "id": "open-values-passport",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "stable",
+      "kind": "source",
+      "purpose": "Portable nameless value weights that can be projected into local criteria.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-passport"
+      },
+      "schema": "app/data/standard/schemas/passport.schema.json",
+      "sourceOfTruth": [
+        "docs/STANDARD-v0.md",
+        "research/schema/passport.schema.json"
+      ],
+      "generatedOutputs": [],
+      "builders": [],
+      "audits": [
+        "npm run audit:conformance",
+        "node research/federation_test.js",
+        "node research/interop_test.js"
+      ],
+      "ownerLane": "shared",
+      "runtimeConsumers": [
+        "app/engine.js",
+        "values export/import",
+        "federation tests"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Current passport files use bare version 0.1; registry normalizes it as 0.1.0."
+      }
+    },
+    {
+      "id": "open-values-ontology",
+      "version": "0.4.0",
+      "declaredVersion": "4",
+      "status": "stable",
+      "kind": "source",
+      "purpose": "Needs-first navigation taxonomy with a backward-compatible domain index for live and growing categories.",
+      "marker": {
+        "mode": "legacy-shape",
+        "pathPattern": "content/ontology.json",
+        "field": "version",
+        "value": 4
+      },
+      "schema": "app/data/standard/schemas/ontology.schema.json",
+      "schemaNote": "Round 10 adds eight needs and one need id per category while preserving the v3 domain tree.",
+      "sourceOfTruth": [
+        "content/ontology.json"
+      ],
+      "generatedOutputs": [
+        "app/data/index.json"
+      ],
+      "builders": [
+        "pipeline/build_datasets.py",
+        "pipeline/mature_ontology.py"
+      ],
+      "audits": [
+        "node research/needs_ontology_audit.js",
+        "node research/verify_run.js",
+        "npm run audit:content"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "Round 11 needs map",
+        "app browse tree",
+        "app/data/index.json",
+        "public routes"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": true,
+        "notes": "Version 4 is additive: domains, groups, facets, types, and live cids remain available for old routes and consumers."
+      }
+    },
+    {
+      "id": "open-values-category-index",
+      "version": "0.2.0",
+      "declaredVersion": "none",
+      "status": "stable",
+      "kind": "generated",
+      "purpose": "Generated app category index listing each live category's need and compatibility domain, plus attribution and embedded ontology.",
+      "marker": {
+        "mode": "legacy-shape",
+        "pathPattern": "app/data/index.json"
+      },
+      "schema": "app/data/standard/schemas/category-index.schema.json",
+      "schemaNote": "Round 10 requires one valid need id and the existing domain field on every live category.",
+      "sourceOfTruth": [
+        "content/ontology.json",
+        "content/lenses/*.json",
+        "content/decisions.json",
+        "pipeline/build_datasets.py"
+      ],
+      "generatedOutputs": [
+        "app/data/index.json"
+      ],
+      "builders": [
+        "pipeline/build_datasets.py"
+      ],
+      "audits": [
+        "node research/needs_ontology_audit.js",
+        "node research/verify_run.js",
+        "node research/two_fields_audit.js",
+        "npm run audit:content",
+        "npm run audit:routes"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "Round 11 needs map",
+        "app browse tree",
+        "Ask",
+        "Round 4 decision-page contract loader",
+        "public routes"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": true,
+        "notes": "No explicit format field yet; the path and category array identify it, and legacy domain fields remain required."
+      },
+      "dependencies": [
+        "open-values-ontology",
+        "open-values-category-dataset",
+        "open-values-decision-contracts"
+      ]
+    },
+    {
+      "id": "open-values-lines",
+      "version": "0.2.0",
+      "declaredVersion": "0.2",
+      "status": "stable",
+      "kind": "source",
+      "purpose": "Registry of portable user-held lines plus published, forkable line-sets such as a shared floor.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-lines",
+        "pathPattern": "content/lines.json"
+      },
+      "schema": "app/data/standard/schemas/lines.schema.json",
+      "schemaNote": "Core personal-line and optional line-set shapes are schema-backed; research/lines_audit.js enforces generated sync, floor receipts, entry-level evidence gates, and exclusion bounds.",
+      "sourceOfTruth": [
+        "content/lines.json"
+      ],
+      "generatedOutputs": [
+        "app/lines.js"
+      ],
+      "builders": [
+        "pipeline/build_lines.js"
+      ],
+      "audits": [
+        "node research/lines_audit.js"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "app line filters",
+        "future browser extension"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Current source declares version 0.2."
+      }
+    },
+    {
+      "id": "ovs-tag-registry",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "stable",
+      "kind": "source",
+      "purpose": "Canonical tag labels, aliases, kinds, readable meanings, and receipt links.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "ovs-tag-registry",
+        "pathPattern": "content/tags.json"
+      },
+      "schema": "app/data/standard/schemas/tag-registry.schema.json",
+      "schemaNote": "Core shape is schema-backed; research/tags_audit.js still enforces alias collisions, generated sync, and receipt policy.",
+      "sourceOfTruth": [
+        "content/tags.json"
+      ],
+      "generatedOutputs": [
+        "app/data/nodes/tags.json"
+      ],
+      "builders": [
+        "pipeline/build_tags.js"
+      ],
+      "audits": [
+        "node research/tags_audit.js"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "Discover facets",
+        "node pages",
+        "Ask"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Current source declares version 0.1."
+      }
+    },
+    {
+      "id": "ovs-synonym-registry",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "stable",
+      "kind": "source",
+      "purpose": "Canonical search aliases that normalize user language into known targets.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "ovs-synonym-registry",
+        "pathPattern": "content/synonyms.json"
+      },
+      "schema": "app/data/standard/schemas/synonym-registry.schema.json",
+      "schemaNote": "Core shape is schema-backed; research/tags_audit.js still enforces target existence and generated sync.",
+      "sourceOfTruth": [
+        "content/synonyms.json"
+      ],
+      "generatedOutputs": [
+        "app/data/nodes/synonyms.json"
+      ],
+      "builders": [
+        "pipeline/build_tags.js"
+      ],
+      "audits": [
+        "node research/tags_audit.js"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "Ask",
+        "node search"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Current source declares version 0.1."
+      }
+    },
+    {
+      "id": "ovs-errand-registry",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "stable",
+      "kind": "source",
+      "purpose": "Structured errand prompts that map real-life tasks to categories and guide context.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "ovs-errand-registry",
+        "pathPattern": "content/errands.json"
+      },
+      "schema": "app/data/standard/schemas/errand-registry.schema.json",
+      "schemaNote": "Core shape is schema-backed; research/errands_audit.js still enforces seed coverage, category links, tradeoffs, and generated sync.",
+      "sourceOfTruth": [
+        "content/errands.json"
+      ],
+      "generatedOutputs": [
+        "app/data/nodes/errands.json"
+      ],
+      "builders": [
+        "pipeline/build_errands.js"
+      ],
+      "audits": [
+        "node research/errands_audit.js"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "Ask",
+        "future errand runner"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Current source declares version 0.1."
+      }
+    },
+    {
+      "id": "open-values-citation-bundle",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "stable",
+      "kind": "source",
+      "purpose": "Frozen lens snapshot, value query, and expected output for reproducible citation.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-citation-bundle",
+        "pathPattern": "content/citation-bundles/*.json"
+      },
+      "schema": "app/data/standard/schemas/citation-bundle.schema.json",
+      "schemaNote": "Core shape is schema-backed; research/citation_bundle_audit.js still reruns the frozen query and checks hashes, engine version, and packaged copies.",
+      "sourceOfTruth": [
+        "content/citation-bundles/*.json"
+      ],
+      "generatedOutputs": [
+        "dist/citation-bundles/*.json"
+      ],
+      "builders": [
+        "research/create_citation_bundle.js",
+        "pipeline/build_site.py"
+      ],
+      "audits": [
+        "npm run audit:citations"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "citation pages",
+        "grant/preview evidence"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Bundle output depends on the reference engine version and lens hash."
+      }
+    },
+    {
+      "id": "ovs-node-index",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "stable",
+      "kind": "generated",
+      "purpose": "Generic generated node index for brands, companies, tags, errands, and sample nodes.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "ovs-node-index",
+        "pathPatterns": [
+          "app/data/nodes/brands.json",
+          "app/data/nodes/companies.json",
+          "app/data/nodes/errands.json",
+          "app/data/nodes/sample.json",
+          "app/data/nodes/tags.json"
+        ]
+      },
+      "schema": "app/data/standard/schemas/node-index.schema.json",
+      "schemaNote": "Core shape is schema-backed; node_index_audit still enforces generated sync, required node coverage, category references, and type-specific runtime expectations.",
+      "sourceOfTruth": [
+        "content/lenses/*.json",
+        "content/tags.json",
+        "content/errands.json",
+        "app/edges.json"
+      ],
+      "generatedOutputs": [
+        "app/data/nodes/brands.json",
+        "app/data/nodes/companies.json",
+        "app/data/nodes/errands.json",
+        "app/data/nodes/sample.json",
+        "app/data/nodes/tags.json"
+      ],
+      "builders": [
+        "pipeline/build_nodes.js",
+        "pipeline/build_tags.js",
+        "pipeline/build_errands.js"
+      ],
+      "audits": [
+        "node research/node_index_audit.js",
+        "node research/tags_audit.js",
+        "node research/errands_audit.js"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "Ask",
+        "node pages",
+        "Discover"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Specialization is by the generated file's type field."
+      }
+    },
+    {
+      "id": "ovs-synonym-index",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "stable",
+      "kind": "generated",
+      "purpose": "Generated normalized alias map for Ask and node search.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "ovs-synonym-index",
+        "pathPattern": "app/data/nodes/synonyms.json"
+      },
+      "schema": "app/data/standard/schemas/synonym-index.schema.json",
+      "schemaNote": "Core shape is schema-backed; tags_audit still enforces generated sync and target existence.",
+      "sourceOfTruth": [
+        "content/synonyms.json",
+        "content/tags.json"
+      ],
+      "generatedOutputs": [
+        "app/data/nodes/synonyms.json"
+      ],
+      "builders": [
+        "pipeline/build_tags.js"
+      ],
+      "audits": [
+        "node research/tags_audit.js"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "Ask",
+        "node search"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Current generated file declares version 0.1."
+      },
+      "dependencies": [
+        "ovs-synonym-registry",
+        "ovs-tag-registry"
+      ]
+    },
+    {
+      "id": "ovs-ask-core-index",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "stable",
+      "kind": "generated",
+      "purpose": "Compact eager Ask index for categories, guides, errands, and high-priority targets.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "ovs-ask-core-index",
+        "pathPattern": "app/data/nodes/ask-core.json"
+      },
+      "schema": "app/data/standard/schemas/ask-core-index.schema.json",
+      "schemaNote": "Core shape is schema-backed; node_index_audit and ask_readiness_audit still enforce startup budgets, resolver quality, and expected target coverage.",
+      "sourceOfTruth": [
+        "content/ontology.json",
+        "content/guides/*.md",
+        "content/errands.json",
+        "content/lenses/*.json"
+      ],
+      "generatedOutputs": [
+        "app/data/nodes/ask-core.json"
+      ],
+      "builders": [
+        "pipeline/build_nodes.js"
+      ],
+      "audits": [
+        "node research/node_index_audit.js",
+        "node research/ask_readiness_audit.js"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "Ask startup search"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Current generated file declares version 0.1."
+      }
+    },
+    {
+      "id": "ovs-ask-index",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "stable",
+      "kind": "generated",
+      "purpose": "Full generated Ask search index for deeper product and node lookup.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "ovs-ask-index",
+        "pathPattern": "app/data/nodes/ask-index.json"
+      },
+      "schema": "app/data/standard/schemas/ask-index.schema.json",
+      "schemaNote": "Core shape is schema-backed; node_index_audit and ask_readiness_audit still enforce generated sync, token coverage, resolver behavior, lazy load hint, byte budget, and shard posture.",
+      "sourceOfTruth": [
+        "content/lenses/*.json",
+        "content/ontology.json",
+        "content/guides/*.md",
+        "app/data/*.json"
+      ],
+      "generatedOutputs": [
+        "app/data/nodes/ask-index.json"
+      ],
+      "builders": [
+        "pipeline/build_nodes.js"
+      ],
+      "audits": [
+        "node research/node_index_audit.js",
+        "node research/ask_readiness_audit.js"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "Ask product search"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Current generated file declares version 0.1."
+      }
+    },
+    {
+      "id": "ovs-avoid-token-index",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "stable",
+      "kind": "generated",
+      "purpose": "Compact avoid-line token export for browser-extension and line tooling.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "ovs-avoid-token-index",
+        "pathPattern": "app/data/nodes/avoid-tokens.json"
+      },
+      "schema": "app/data/standard/schemas/avoid-token-index.schema.json",
+      "schemaNote": "Core shape is schema-backed; node_index_audit still enforces generated sync, token provenance, ASCII normalization, compactness, and manifest coverage.",
+      "sourceOfTruth": [
+        "content/lines.json",
+        "app/data/nodes/companies.json",
+        "pipeline/build_nodes.js"
+      ],
+      "generatedOutputs": [
+        "app/data/nodes/avoid-tokens.json"
+      ],
+      "builders": [
+        "pipeline/build_nodes.js"
+      ],
+      "audits": [
+        "node research/node_index_audit.js"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "future browser extension",
+        "line tooling"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Current generated file declares version 0.1."
+      },
+      "dependencies": [
+        "open-values-lines",
+        "ovs-node-index"
+      ]
+    },
+    {
+      "id": "ovs-ask-fixtures",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "dev-contract",
+      "kind": "fixture",
+      "purpose": "Golden Ask queries and expected resolver behavior.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "ovs-ask-fixtures",
+        "pathPattern": "app/data/nodes/ask-fixtures.json"
+      },
+      "schema": "app/data/standard/schemas/ask-fixtures.schema.json",
+      "schemaNote": "Core shape is schema-backed; ask_readiness_audit still enforces resolver behavior and expected target coverage.",
+      "sourceOfTruth": [
+        "pipeline/build_nodes.js"
+      ],
+      "generatedOutputs": [
+        "app/data/nodes/ask-fixtures.json"
+      ],
+      "builders": [
+        "pipeline/build_nodes.js"
+      ],
+      "audits": [
+        "node research/ask_readiness_audit.js",
+        "node research/node_index_audit.js"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "Ask QA",
+        "app-lane integration"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Dev contract, not public user data."
+      }
+    },
+    {
+      "id": "ovs-ask-traces",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "dev-contract",
+      "kind": "fixture",
+      "purpose": "Resolver traces for Ask golden queries.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "ovs-ask-traces",
+        "pathPattern": "app/data/nodes/ask-traces.json"
+      },
+      "schema": "app/data/standard/schemas/ask-traces.schema.json",
+      "schemaNote": "Core shape is schema-backed; ask_readiness_audit still enforces trace freshness against the resolver.",
+      "sourceOfTruth": [
+        "app/data/nodes/ask-fixtures.json",
+        "pipeline/build_nodes.js"
+      ],
+      "generatedOutputs": [
+        "app/data/nodes/ask-traces.json"
+      ],
+      "builders": [
+        "pipeline/build_nodes.js"
+      ],
+      "audits": [
+        "node research/ask_readiness_audit.js",
+        "node research/node_index_audit.js"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "Ask QA",
+        "app-lane integration"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Dev contract, not public user data."
+      },
+      "dependencies": [
+        "ovs-ask-fixtures",
+        "ovs-ask-core-index",
+        "ovs-ask-index"
+      ]
+    },
+    {
+      "id": "ovs-ask-presentation-contract",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "dev-contract",
+      "kind": "generated",
+      "purpose": "Copy, route, empty-state, and QA contract for app Ask presentation.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "ovs-ask-presentation-contract",
+        "pathPattern": "app/data/nodes/ask-presentation.json"
+      },
+      "schema": "app/data/standard/schemas/ask-presentation-contract.schema.json",
+      "schemaNote": "Core shape is schema-backed; ask_readiness_audit and node_index_audit still enforce QA parity with generated traces.",
+      "sourceOfTruth": [
+        "pipeline/build_nodes.js",
+        "app/data/nodes/ask-traces.json"
+      ],
+      "generatedOutputs": [
+        "app/data/nodes/ask-presentation.json"
+      ],
+      "builders": [
+        "pipeline/build_nodes.js"
+      ],
+      "audits": [
+        "node research/ask_readiness_audit.js",
+        "node research/node_index_audit.js"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "app Ask UI",
+        "app-lane integration"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "App consumes this as a dev contract; hand-edited app code remains app lane."
+      },
+      "dependencies": [
+        "ovs-ask-core-index",
+        "ovs-ask-index",
+        "ovs-ask-traces"
+      ]
+    },
+    {
+      "id": "ovs-node-manifest",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "stable",
+      "kind": "generated",
+      "purpose": "Integrity manifest, load order, and byte/hash summary for node data files.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "ovs-node-manifest",
+        "pathPattern": "app/data/nodes/manifest.json"
+      },
+      "schema": "app/data/standard/schemas/node-manifest.schema.json",
+      "schemaNote": "Core shape is schema-backed; node_index_audit still enforces file existence, byte counts, sha256 hashes, and load-order policy.",
+      "sourceOfTruth": [
+        "app/data/nodes/*.json",
+        "pipeline/build_nodes.js"
+      ],
+      "generatedOutputs": [
+        "app/data/nodes/manifest.json"
+      ],
+      "builders": [
+        "pipeline/build_nodes.js"
+      ],
+      "audits": [
+        "node research/node_index_audit.js"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "future node loader",
+        "app-lane integration"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Manifest does not hash itself."
+      }
+    },
+    {
+      "id": "ovs-node-readiness",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "dev-contract",
+      "kind": "generated",
+      "purpose": "Readiness report for generated node and Ask integration.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "ovs-node-readiness",
+        "pathPattern": "app/data/nodes/readiness.json"
+      },
+      "schema": "app/data/standard/schemas/node-readiness.schema.json",
+      "schemaNote": "Core shape is schema-backed; node_index_audit still enforces generated counts, budgets, required files, and I5 public-gate readiness.",
+      "sourceOfTruth": [
+        "pipeline/build_nodes.js",
+        "app/data/nodes/*.json"
+      ],
+      "generatedOutputs": [
+        "app/data/nodes/readiness.json"
+      ],
+      "builders": [
+        "pipeline/build_nodes.js"
+      ],
+      "audits": [
+        "node research/node_index_audit.js",
+        "node research/ask_readiness_audit.js"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "app-lane integration",
+        "preview QA"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Dev contract, not a public exchange format."
+      }
+    },
+    {
+      "id": "ovs-node-walkthroughs",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "dev-contract",
+      "kind": "generated",
+      "purpose": "Generated walkthrough scenarios for node surfaces.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "ovs-node-walkthroughs",
+        "pathPattern": "app/data/nodes/node-walkthroughs.json"
+      },
+      "schema": "app/data/standard/schemas/node-walkthroughs.schema.json",
+      "schemaNote": "Core shape is schema-backed; node_walkthrough_audit and node_index_audit still enforce flagship path viability.",
+      "sourceOfTruth": [
+        "pipeline/build_nodes.js"
+      ],
+      "generatedOutputs": [
+        "app/data/nodes/node-walkthroughs.json"
+      ],
+      "builders": [
+        "pipeline/build_nodes.js"
+      ],
+      "audits": [
+        "node research/node_walkthrough_audit.js",
+        "node research/node_index_audit.js"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "preview QA",
+        "app-lane integration"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Dev contract, not a public exchange format."
+      }
+    },
+    {
+      "id": "ovs-node-page-contracts",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "dev-contract",
+      "kind": "generated",
+      "purpose": "Route and page contract data for generated node pages.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "ovs-node-page-contracts",
+        "pathPattern": "app/data/nodes/node-page-contracts.json"
+      },
+      "schema": "app/data/standard/schemas/node-page-contracts.schema.json",
+      "schemaNote": "Core shape is schema-backed; node_index_audit still enforces route examples and target existence.",
+      "sourceOfTruth": [
+        "pipeline/build_nodes.js"
+      ],
+      "generatedOutputs": [
+        "app/data/nodes/node-page-contracts.json"
+      ],
+      "builders": [
+        "pipeline/build_nodes.js"
+      ],
+      "audits": [
+        "node research/node_index_audit.js"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "app-lane integration",
+        "public route planning"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Dev contract, not a public exchange format."
+      }
+    },
+    {
+      "id": "ovs-node-route-fixtures",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "dev-contract",
+      "kind": "fixture",
+      "purpose": "Golden route examples for node pages.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "ovs-node-route-fixtures",
+        "pathPattern": "app/data/nodes/node-route-fixtures.json"
+      },
+      "schema": "app/data/standard/schemas/node-route-fixtures.schema.json",
+      "schemaNote": "Core shape is schema-backed; node_index_audit still enforces parser expectations and live target existence.",
+      "sourceOfTruth": [
+        "pipeline/build_nodes.js",
+        "app/data/nodes/node-page-contracts.json"
+      ],
+      "generatedOutputs": [
+        "app/data/nodes/node-route-fixtures.json"
+      ],
+      "builders": [
+        "pipeline/build_nodes.js"
+      ],
+      "audits": [
+        "node research/node_index_audit.js"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "app-lane integration",
+        "route QA"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Dev contract, not a public exchange format."
+      }
+    },
+    {
+      "id": "ovs-node-route-guardrails",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "dev-contract",
+      "kind": "fixture",
+      "purpose": "Route behavior guardrails for node pages and fallback states.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "ovs-node-route-guardrails",
+        "pathPattern": "app/data/nodes/node-route-guardrails.json"
+      },
+      "schema": "app/data/standard/schemas/node-route-guardrails.schema.json",
+      "schemaNote": "Core shape is schema-backed; node_index_audit still enforces canonicalization and fallback semantics.",
+      "sourceOfTruth": [
+        "pipeline/build_nodes.js",
+        "app/data/nodes/node-route-fixtures.json"
+      ],
+      "generatedOutputs": [
+        "app/data/nodes/node-route-guardrails.json"
+      ],
+      "builders": [
+        "pipeline/build_nodes.js"
+      ],
+      "audits": [
+        "node research/node_index_audit.js"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "app-lane integration",
+        "route QA"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Dev contract, not a public exchange format."
+      }
+    },
+    {
+      "id": "ovs-node-load-plan",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "dev-contract",
+      "kind": "generated",
+      "purpose": "Planned load order and startup/lazy-loading hints for node data.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "ovs-node-load-plan",
+        "pathPattern": "app/data/nodes/node-load-plan.json"
+      },
+      "schema": "app/data/standard/schemas/node-load-plan.schema.json",
+      "schemaNote": "Core shape is schema-backed; node_index_audit still enforces byte budgets, stage order, and manifest parity.",
+      "sourceOfTruth": [
+        "pipeline/build_nodes.js",
+        "app/data/nodes/manifest.json"
+      ],
+      "generatedOutputs": [
+        "app/data/nodes/node-load-plan.json"
+      ],
+      "builders": [
+        "pipeline/build_nodes.js"
+      ],
+      "audits": [
+        "node research/node_index_audit.js"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "future node loader",
+        "app-lane integration"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Dev contract, not a public exchange format."
+      }
+    },
+    {
+      "id": "ovs-node-runtime-states",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "dev-contract",
+      "kind": "fixture",
+      "purpose": "Expected runtime states and failure cases for node-data loading.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "ovs-node-runtime-states",
+        "pathPattern": "app/data/nodes/node-runtime-states.json"
+      },
+      "schema": "app/data/standard/schemas/node-runtime-states.schema.json",
+      "schemaNote": "Core shape is schema-backed; node_index_audit still enforces required runtime failure cases.",
+      "sourceOfTruth": [
+        "pipeline/build_nodes.js",
+        "app/data/nodes/node-load-plan.json"
+      ],
+      "generatedOutputs": [
+        "app/data/nodes/node-runtime-states.json"
+      ],
+      "builders": [
+        "pipeline/build_nodes.js"
+      ],
+      "audits": [
+        "node research/node_index_audit.js"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "app-lane integration",
+        "runtime QA"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Dev contract, not a public exchange format."
+      }
+    },
+    {
+      "id": "ovs-node-preview-matrix",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "dev-contract",
+      "kind": "fixture",
+      "purpose": "Preview scenarios that combine Ask, node routes, walkthroughs, and readiness signals.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "ovs-node-preview-matrix",
+        "pathPattern": "app/data/nodes/node-preview-matrix.json"
+      },
+      "schema": "app/data/standard/schemas/node-preview-matrix.schema.json",
+      "schemaNote": "Core shape is schema-backed; node_index_audit still enforces scenario coverage and H4 drain guardrails.",
+      "sourceOfTruth": [
+        "pipeline/build_nodes.js",
+        "app/data/nodes/*.json"
+      ],
+      "generatedOutputs": [
+        "app/data/nodes/node-preview-matrix.json"
+      ],
+      "builders": [
+        "pipeline/build_nodes.js"
+      ],
+      "audits": [
+        "node research/node_index_audit.js",
+        "npm run audit:preview"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "preview QA",
+        "app-lane integration"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Dev contract, not a public exchange format."
+      }
+    },
+    {
+      "id": "ovs-node-integration-checklist",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "dev-contract",
+      "kind": "generated",
+      "purpose": "Checklist for draining node/Ask integration work across lanes.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "ovs-node-integration-checklist",
+        "pathPattern": "app/data/nodes/node-integration-checklist.json"
+      },
+      "schema": "app/data/standard/schemas/node-integration-checklist.schema.json",
+      "schemaNote": "Core shape is schema-backed; node_index_audit still enforces checklist phases, counts, smoke commands, and I5 public-gate surfaces.",
+      "sourceOfTruth": [
+        "pipeline/build_nodes.js",
+        "docs/CONTENT-HANDOFF.md"
+      ],
+      "generatedOutputs": [
+        "app/data/nodes/node-integration-checklist.json"
+      ],
+      "builders": [
+        "pipeline/build_nodes.js"
+      ],
+      "audits": [
+        "node research/node_index_audit.js"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "app-lane integration",
+        "handoff review"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Dev contract, not a public exchange format."
+      }
+    },
+    {
+      "id": "open-values-challenge-set",
+      "version": "0.1.0",
+      "declaredVersion": "0.1.0",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "Algorithmic anti-echo-chamber contract: opposite-view ranking fixtures, sourced steelman facts, contrary tags, and instance challenge defaults.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-challenge-set",
+        "pathPattern": "content/challenge/index.json"
+      },
+      "schema": "app/data/standard/schemas/challenge-set.schema.json",
+      "schemaNote": "Core shape is schema-backed; audit:challenge still replays rankings against generated datasets and verifies tag provenance parity.",
+      "sourceOfTruth": [
+        "content/challenge/index.json",
+        "app/data/*.json",
+        "docs/REALIGNMENT-MASTERPLAN.md"
+      ],
+      "generatedOutputs": [],
+      "builders": [],
+      "audits": [
+        "npm run audit:challenge",
+        "npm run audit:standard"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "future challenge surface",
+        "Kosplora configuration",
+        "Socrates Colosseum format seed"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "C13 starts as a semver-native source contract."
+      },
+      "dependencies": [
+        "open-values-category-dataset"
+      ]
+    },
+    {
+      "id": "open-values-value-editorial",
+      "version": "0.4.0",
+      "declaredVersion": "0.4.0",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "Claim-level explanatory copy and receipts for value pages, including evidence classification, explicit pilot coverage, and missing-editorial state.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-value-editorial",
+        "pathPattern": "content/value-editorial.json"
+      },
+      "schema": "app/data/standard/schemas/value-editorial.schema.json",
+      "schemaNote": "Core source shape is schema-backed; audit:value-editorial also enforces app-key parity, evidence classification, skeptical section order, source diversity, generated parity, the five-route render contract, and the no-data-only drain boundary.",
+      "sourceOfTruth": [
+        "content/value-editorial.json",
+        "codex.md"
+      ],
+      "generatedOutputs": [
+        "app/data/index.json",
+        "app/data.js"
+      ],
+      "builders": [
+        "pipeline/build_datasets.py"
+      ],
+      "audits": [
+        "npm run audit:value-editorial",
+        "npm run audit:standard"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "#value/<key>",
+        "app-design handoff H22"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "Q10 begins as a semver-native source contract; Part 1 is intentionally limited to five founder-review samples."
+      },
+      "dependencies": [
+        "open-values-category-index",
+        "open-values-source"
+      ]
+    },
+    {
+      "id": "open-values-challenge-index",
+      "version": "0.1.0",
+      "declaredVersion": "0.1.0",
+      "status": "draft",
+      "kind": "generated",
+      "purpose": "Compact generated challenge index for runtime-facing anti-echo-chamber surfaces: instance defaults, replayed top picks, and selected sourced contrary facts.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-challenge-index",
+        "pathPattern": "app/data/challenge-index.json"
+      },
+      "schema": "app/data/standard/schemas/challenge-index.schema.json",
+      "schemaNote": "Core shape is schema-backed; audit:challenge checks replay and byte-for-byte generated sync against the source challenge set.",
+      "sourceOfTruth": [
+        "content/challenge/index.json",
+        "app/data/*.json"
+      ],
+      "generatedOutputs": [
+        "app/data/challenge-index.json"
+      ],
+      "builders": [
+        "pipeline/build_challenge.js"
+      ],
+      "audits": [
+        "node pipeline/build_challenge.js --check",
+        "npm run audit:challenge",
+        "npm run audit:standard"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "future challenge surface",
+        "Kosplora configuration",
+        "Socrates Colosseum format seed"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "Generated semver-native view of open-values-challenge-set."
+      },
+      "dependencies": [
+        "open-values-challenge-set",
+        "open-values-category-dataset"
+      ]
+    },
+    {
+      "id": "open-values-asks-offers",
+      "version": "0.1.0",
+      "declaredVersion": "0.1.0",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "File-based help-over-selling primitive for publishable asks and offers without accounts, private contact details, or a live authority database.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-asks-offers",
+        "pathPattern": "content/asks-offers.json"
+      },
+      "schema": "app/data/standard/schemas/asks-offers.schema.json",
+      "schemaNote": "Core shape is schema-backed; audit:initiatives verifies related categories, guides, initiative ids, seed-only status, and no private contact data.",
+      "sourceOfTruth": [
+        "content/asks-offers.json",
+        "content/lenses/initiatives-causes.json",
+        "docs/REALIGNMENT-MASTERPLAN.md"
+      ],
+      "generatedOutputs": [],
+      "builders": [],
+      "audits": [
+        "npm run audit:initiatives",
+        "npm run audit:standard"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "future asks/offers board",
+        "future initiatives surface",
+        "community fork workflows"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "C14 starts as a semver-native source contract."
+      },
+      "dependencies": [
+        "open-values-lens"
+      ]
+    },
+    {
+      "id": "open-values-asks-offers-index",
+      "version": "0.1.0",
+      "declaredVersion": "0.1.0",
+      "status": "draft",
+      "kind": "generated",
+      "purpose": "Board-ready generated index for file-based asks/offers templates, resolving related categories, guides, and initiatives without creating a live forum database.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-asks-offers-index",
+        "pathPattern": "app/data/asks-offers-index.json"
+      },
+      "schema": "app/data/standard/schemas/asks-offers-index.schema.json",
+      "schemaNote": "Core shape is schema-backed; audit:initiatives checks source/link resolution and byte-for-byte generated sync.",
+      "sourceOfTruth": [
+        "content/asks-offers.json",
+        "app/data/index.json",
+        "app/data/causes-to-support.json",
+        "content/guides/*.md"
+      ],
+      "generatedOutputs": [
+        "app/data/asks-offers-index.json"
+      ],
+      "builders": [
+        "pipeline/build_initiatives.js"
+      ],
+      "audits": [
+        "node pipeline/build_initiatives.js --check",
+        "npm run audit:initiatives",
+        "npm run audit:standard"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "future asks/offers board",
+        "future initiatives surface",
+        "community fork workflows"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "Generated semver-native view of open-values-asks-offers."
+      },
+      "dependencies": [
+        "open-values-asks-offers",
+        "open-values-category-index",
+        "open-values-category-dataset"
+      ]
+    },
+    {
+      "id": "open-values-proposal",
+      "version": "0.1.0",
+      "declaredVersion": "0.1.0",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "Portable governance patch record with target, base hash, rationale, author, operations, and signature metadata.",
+      "marker": {
+        "mode": "schema",
+        "pathPattern": "content/governance/proposals.json#/proposals/*"
+      },
+      "schema": "app/data/standard/schemas/proposal.schema.json",
+      "sourceOfTruth": [
+        "content/governance/proposals.json",
+        "docs/STANDARD-v1.md"
+      ],
+      "generatedOutputs": [
+        "app/data/proposals.json"
+      ],
+      "builders": [
+        "pipeline/build_proposals.js"
+      ],
+      "audits": [
+        "npm run audit:governance",
+        "npm run audit:standard"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "governance ledger",
+        "generated governance index",
+        "future dumb relays"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "C15 begins as a new file-based governance format; no legacy proposal records are grandfathered."
+      }
+    },
+    {
+      "id": "open-values-attestation",
+      "version": "0.1.0",
+      "declaredVersion": "0.1.0",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "Public support, concern, or objection record for a governance proposal.",
+      "marker": {
+        "mode": "schema",
+        "pathPattern": "content/governance/proposals.json#/attestations/*"
+      },
+      "schema": "app/data/standard/schemas/attestation.schema.json",
+      "sourceOfTruth": [
+        "content/governance/proposals.json",
+        "docs/STANDARD-v1.md"
+      ],
+      "generatedOutputs": [
+        "app/data/proposals.json"
+      ],
+      "builders": [
+        "pipeline/build_proposals.js"
+      ],
+      "audits": [
+        "npm run audit:governance",
+        "npm run audit:standard"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "governance ledger",
+        "generated governance index",
+        "future dumb relays"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "C15 begins as a new public attestation format; seed attestations are non-counted templates."
+      },
+      "dependencies": [
+        "open-values-proposal"
+      ]
+    },
+    {
+      "id": "open-values-governance-ledger",
+      "version": "0.1.0",
+      "declaredVersion": "0.1.0",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "File-based ledger of proposal patches and attestations, explicitly not a vote database.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-governance-ledger",
+        "pathPattern": "content/governance/proposals.json"
+      },
+      "schema": "app/data/standard/schemas/governance-ledger.schema.json",
+      "sourceOfTruth": [
+        "content/governance/proposals.json",
+        "docs/STANDARD-v1.md"
+      ],
+      "generatedOutputs": [],
+      "builders": [],
+      "audits": [
+        "npm run audit:governance",
+        "npm run audit:standard"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "audit:governance",
+        "generated governance index",
+        "future governance relay"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "Governance starts as a format seed with contact-gated ratification and no live voting."
+      },
+      "dependencies": [
+        "open-values-proposal",
+        "open-values-attestation"
+      ]
+    },
+    {
+      "id": "open-values-governance-index",
+      "version": "0.1.0",
+      "declaredVersion": "0.1.0",
+      "status": "draft",
+      "kind": "generated",
+      "purpose": "Generated app-readable index for file-based governance proposals and attestations.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-governance-index",
+        "pathPattern": "app/data/proposals.json"
+      },
+      "schema": "app/data/standard/schemas/governance-index.schema.json",
+      "sourceOfTruth": [
+        "content/governance/proposals.json"
+      ],
+      "generatedOutputs": [
+        "app/data/proposals.json"
+      ],
+      "builders": [
+        "pipeline/build_proposals.js"
+      ],
+      "audits": [
+        "node pipeline/build_proposals.js --check",
+        "npm run audit:governance",
+        "npm run audit:standard"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "future app governance surface",
+        "audit:governance"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "Generated from the C15 governance ledger; not a source of ratification authority."
+      },
+      "dependencies": [
+        "open-values-governance-ledger",
+        "open-values-proposal",
+        "open-values-attestation"
+      ]
+    },
+    {
+      "id": "open-values-design-tokens",
+      "version": "0.1.0",
+      "declaredVersion": "0.1.0",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "Source design-token profiles for skinnable Open Values instances: semantic palettes, type, spacing, motion doctrine, component contracts, computed-contrast pairs, and SVG art tokens.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-design-tokens",
+        "pathPattern": "content/design/tokens.json"
+      },
+      "schema": "app/data/standard/schemas/design-tokens.schema.json",
+      "schemaNote": "Core shape is schema-backed; audit:design-tokens enforces palette diversity, computed contrast, reduced-motion doctrine, and generated sync.",
+      "sourceOfTruth": [
+        "content/design/tokens.json",
+        "docs/STANDARD-v1.md",
+        "docs/REALIGNMENT-MASTERPLAN.md"
+      ],
+      "generatedOutputs": [],
+      "builders": [],
+      "audits": [
+        "npm run audit:design-tokens",
+        "npm run audit:contrast",
+        "npm run audit:standard"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "future app skin loader",
+        "design token audit",
+        "standard documentation",
+        "Kosplora/Socrates instance skins"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "C16 begins as a semver-native token source; no legacy design-token source is grandfathered."
+      }
+    },
+    {
+      "id": "open-values-design-token-index",
+      "version": "0.1.0",
+      "declaredVersion": "0.1.0",
+      "status": "draft",
+      "kind": "generated",
+      "purpose": "Generated app-readable index for design-token profiles, CSS custom-property maps, computed contrast results, component contracts, and SVG art tokens.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-design-token-index",
+        "pathPattern": "app/data/design-tokens.json"
+      },
+      "schema": "app/data/standard/schemas/design-token-index.schema.json",
+      "schemaNote": "Generated from the C16 design-token source; audit:design-tokens and --check mode enforce byte-for-byte sync.",
+      "sourceOfTruth": [
+        "content/design/tokens.json"
+      ],
+      "generatedOutputs": [
+        "app/data/design-tokens.json"
+      ],
+      "builders": [
+        "pipeline/build_design_tokens.js"
+      ],
+      "audits": [
+        "node pipeline/build_design_tokens.js --check",
+        "npm run audit:design-tokens",
+        "npm run audit:contrast",
+        "npm run audit:standard"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "future app skin loader",
+        "audit:design-tokens",
+        "preview QA"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "Generated semver-native view of open-values-design-tokens."
+      },
+      "dependencies": [
+        "open-values-design-tokens"
+      ]
+    },
+    {
+      "id": "ovs-pulse",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "stable",
+      "kind": "generated",
+      "purpose": "Generated recent-work pulse feed for project state and preview context.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "ovs-pulse",
+        "pathPattern": "app/data/pulse.json"
+      },
+      "schema": "app/data/standard/schemas/pulse.schema.json",
+      "schemaNote": "Core shape is schema-backed; research/pulse_audit.js still enforces generated sync, node resolution, ordering, and calm wording.",
+      "sourceOfTruth": [
+        "git history",
+        "pipeline/build_pulse.js"
+      ],
+      "generatedOutputs": [
+        "app/data/pulse.json"
+      ],
+      "builders": [
+        "pipeline/build_pulse.js"
+      ],
+      "audits": [
+        "node research/pulse_audit.js"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "status surfaces",
+        "preview context"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Pulse can vary with git history and time; drift audit intentionally ignores it."
+      }
+    },
+    {
+      "id": "open-values-edges",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "stable",
+      "kind": "generated",
+      "purpose": "Ownership and relationship edge graph for brands and companies.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-edges",
+        "pathPattern": "app/edges.json"
+      },
+      "schema": "app/data/standard/schemas/edges.schema.json",
+      "schemaNote": "Core shape is schema-backed; ownership_edges_audit and graph tests still enforce reciprocal ownership, required companies, and stale-edge corrections.",
+      "sourceOfTruth": [
+        "content/lenses/*.json",
+        "pipeline/build_datasets.py"
+      ],
+      "generatedOutputs": [
+        "app/edges.json",
+        "dist/app/edges.json"
+      ],
+      "builders": [
+        "pipeline/build_datasets.py",
+        "pipeline/build_site.py"
+      ],
+      "audits": [
+        "node research/ownership_edges_audit.js",
+        "node research/graph_test.js"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "ownership node pages",
+        "graph tests"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Current edge graph declares version 0.1."
+      }
+    },
+    {
+      "id": "open-values-door",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "stable",
+      "kind": "distribution",
+      "purpose": "Well-known discovery document for published Open Values instances and lens distributions.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-door",
+        "pathPattern": "dist/.well-known/open-values.json"
+      },
+      "schema": "app/data/standard/schemas/door.schema.json",
+      "schemaNote": "Core shape is schema-backed; well_known_audit still verifies generated hashes, origins, license URLs, and lens parity with the packaged app index.",
+      "sourceOfTruth": [
+        "pipeline/build_site.py",
+        "app/data/*.json"
+      ],
+      "generatedOutputs": [
+        "dist/.well-known/open-values.json"
+      ],
+      "builders": [
+        "pipeline/build_site.py"
+      ],
+      "audits": [
+        "npm run audit:well-known"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "mirrors",
+        "federation/discovery clients"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Current public discovery file declares version 0.1."
+      }
+    },
+    {
+      "id": "open-values-stack-index",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "stable",
+      "kind": "distribution",
+      "purpose": "Content-addressed stack index for published lens snapshots.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-stack-index",
+        "pathPattern": "dist/stacks/index.json"
+      },
+      "schema": "app/data/standard/schemas/stack-index.schema.json",
+      "schemaNote": "Core shape is schema-backed; stacks_audit still verifies content-addressed paths, sha256 integrity, and packaged lens copies.",
+      "sourceOfTruth": [
+        "pipeline/build_site.py",
+        "app/data/*.json",
+        "dist/.well-known/open-values.json"
+      ],
+      "generatedOutputs": [
+        "dist/stacks/index.json",
+        "dist/stacks/lens/*/*.json"
+      ],
+      "builders": [
+        "pipeline/build_site.py"
+      ],
+      "audits": [
+        "npm run audit:stacks"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "mirrors",
+        "citation clients",
+        "federation/discovery clients"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Current stack index declares version 0.1."
+      },
+      "dependencies": [
+        "open-values-door",
+        "open-values-category-dataset"
+      ]
+    },
+    {
+      "id": "open-values-presentation-strings",
+      "version": "1.0.0",
+      "declaredVersion": "1.0.0",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "Signed vocabulary, evidence language, state copy, actions, and errors for the shared presentation layer.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-presentation-strings",
+        "pathPattern": "content/presentation/strings.json"
+      },
+      "schema": "app/data/standard/schemas/presentation-strings.schema.json",
+      "sourceOfTruth": [
+        "content/presentation/strings.json",
+        "docs/design/PATTERN-LANGUAGE.md",
+        "docs/design/REQUIREMENTS-LEDGER.md"
+      ],
+      "generatedOutputs": [
+        "app/data/presentation.json"
+      ],
+      "builders": [
+        "pipeline/build_presentation.js"
+      ],
+      "audits": [
+        "npm run audit:presentation-package"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "P5 presentation implementation"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "The presentation string contract begins at v1 and has no legacy file."
+      }
+    },
+    {
+      "id": "open-values-presentation-page-kinds",
+      "version": "1.0.0",
+      "declaredVersion": "1.0.0",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "Ordered sections and coverage-state copy for the ten shared presentation page kinds.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-presentation-page-kinds",
+        "pathPattern": "content/presentation/page-kinds.json"
+      },
+      "schema": "app/data/standard/schemas/presentation-page-kinds.schema.json",
+      "sourceOfTruth": [
+        "content/presentation/page-kinds.json",
+        "docs/design/PATTERN-LANGUAGE.md"
+      ],
+      "generatedOutputs": [
+        "app/data/presentation.json"
+      ],
+      "builders": [
+        "pipeline/build_presentation.js"
+      ],
+      "audits": [
+        "npm run audit:presentation-package"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "P5 presentation implementation"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "The page-kind contract begins at v1 and has no legacy file."
+      }
+    },
+    {
+      "id": "open-values-presentation-fixtures",
+      "version": "1.0.0",
+      "declaredVersion": "1.0.0",
+      "status": "draft",
+      "kind": "fixture",
+      "purpose": "Real rich, thin, and not-yet-covered render cases for each shared presentation page kind.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-presentation-fixtures",
+        "pathPattern": "content/presentation/fixtures.json"
+      },
+      "schema": "app/data/standard/schemas/presentation-fixtures.schema.json",
+      "sourceOfTruth": [
+        "content/presentation/fixtures.json",
+        "docs/design/PATTERN-LANGUAGE.md",
+        "docs/design/FOUNDER-WALK.md"
+      ],
+      "generatedOutputs": [
+        "app/data/presentation.json"
+      ],
+      "builders": [
+        "pipeline/build_presentation.js"
+      ],
+      "audits": [
+        "npm run audit:presentation-package"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "P5 presentation renderer snapshots",
+        "presentation acceptance audit"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "The presentation fixture contract begins at v1 and has no legacy file."
+      },
+      "dependencies": [
+        "open-values-presentation-strings",
+        "open-values-presentation-page-kinds"
+      ]
+    },
+    {
+      "id": "open-values-presentation-source-index",
+      "version": "1.0.0",
+      "declaredVersion": "1.0.0",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "Stable source identities and reverse claim links required by accepted source-page routes.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-presentation-source-index",
+        "pathPattern": "content/presentation/sources.json"
+      },
+      "schema": "app/data/standard/schemas/presentation-source-index.schema.json",
+      "sourceOfTruth": [
+        "content/presentation/sources.json",
+        "content/lenses/banking.json",
+        "docs/design/INFORMATION-ARCHITECTURE.md"
+      ],
+      "generatedOutputs": [
+        "app/data/presentation.json"
+      ],
+      "builders": [
+        "pipeline/build_presentation.js"
+      ],
+      "audits": [
+        "npm run audit:presentation-package"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "P5 source pages",
+        "presentation acceptance audit"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "The bounded source index begins at v1; uncatalogued receipt URLs remain ordinary links until curated."
+      },
+      "dependencies": [
+        "open-values-source",
+        "open-values-category-dataset"
+      ]
+    },
+    {
+      "id": "open-values-presentation-package",
+      "version": "1.0.0",
+      "declaredVersion": "1.0.0",
+      "status": "draft",
+      "kind": "generated",
+      "purpose": "Implementation-ready taxonomy routes, public strings, and page-kind contracts for a presentation shell.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-presentation-package",
+        "pathPattern": "app/data/presentation.json"
+      },
+      "schema": "app/data/standard/schemas/presentation-package.schema.json",
+      "schemaNote": "Core shape is schema-backed; presentation_package_audit additionally proves exact source parity, counts, routes, copy, and the pre-implementation consumer boundary.",
+      "sourceOfTruth": [
+        "content/ontology.json",
+        "content/presentation/strings.json",
+        "content/presentation/page-kinds.json"
+      ],
+      "generatedOutputs": [
+        "app/data/presentation.json"
+      ],
+      "builders": [
+        "pipeline/build_presentation.js"
+      ],
+      "audits": [
+        "npm run audit:presentation-package"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "P5 presentation implementation"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "The generated presentation package begins at v1 and has no legacy file."
+      },
+      "dependencies": [
+        "open-values-ontology",
+        "open-values-category-index",
+        "open-values-presentation-strings",
+        "open-values-presentation-page-kinds",
+        "open-values-presentation-fixtures",
+        "open-values-presentation-source-index"
+      ]
+    }
+  ]
+}

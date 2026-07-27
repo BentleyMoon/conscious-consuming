@@ -1,0 +1,222 @@
+{
+  "format": "open-values-asks-offers",
+  "version": "0.1.0",
+  "standard": "open-values-standard",
+  "updated": "2026-07-08",
+  "purpose": "C14 seed for help-over-selling coordination: file-based asks and offers that can be published, forked, and answered without accounts or a live database.",
+  "principles": [
+    "file-based and publishable",
+    "templates are not live help claims",
+    "no private contact details in public files",
+    "asks and offers point back to sourced guides, categories, or initiatives",
+    "a relay may move the file but must not become the authority"
+  ],
+  "publication": {
+    "status": "format-seed",
+    "storage": "single-json-file",
+    "relay": "static host, repository discussion, or other dumb relay",
+    "identity": "pseudonymous or attributed by choice",
+    "liveDatabase": false,
+    "privacy": "Do not publish private contact details, exact addresses, beneficiary identities, or sensitive threat models in this file."
+  },
+  "items": [
+    {
+      "id": "ask-digital-safety-clinic",
+      "kind": "ask",
+      "status": "template",
+      "title": "We need help running a digital-safety clinic",
+      "summary": "A library, community group, or mutual-aid group needs help with safer messaging, passwords, 2FA, VPN basics, and a handout people can actually use.",
+      "prompt": "Can you help run a calm digital-safety session for people who do not want jargon?",
+      "audience": ["community group", "library", "mutual-aid group"],
+      "needs": ["facilitator", "privacy-tool setup help", "accessible handout", "follow-up office hours"],
+      "values": ["autonomy", "openness", "access", "community"],
+      "regions": ["global"],
+      "related": {
+        "categories": ["digital-services", "password-managers", "vpn"],
+        "guides": ["digital-literacy", "private-messaging", "password-managers", "vpn"],
+        "initiatives": ["eff", "library-freedom-project", "signal-foundation"]
+      },
+      "receipts": [
+        {
+          "note": "EFF publishes Surveillance Self-Defense as public digital-security guidance for people and groups.",
+          "source": "https://ssd.eff.org/",
+          "asof": "2026"
+        },
+        {
+          "note": "Library Freedom Project publishes resources for privacy and intellectual freedom work in libraries.",
+          "source": "https://libraryfreedom.org/resources/",
+          "asof": "2026"
+        }
+      ],
+      "limits": [
+        "Do not publish a group's threat model or participant names.",
+        "Do not imply the facilitator can provide legal or emergency safety advice."
+      ]
+    },
+    {
+      "id": "offer-private-comms-starter-pack",
+      "kind": "offer",
+      "status": "template",
+      "title": "I can share a private-communications starter pack",
+      "summary": "I can share a plain-language checklist for moving a group to Signal, choosing a password manager, and setting safer admin habits.",
+      "prompt": "I can share a starter pack for safer group communication and help adapt it to your group's constraints.",
+      "audience": ["organizing group", "family network", "volunteer team"],
+      "offers": ["checklist", "tool comparison", "group-admin setup review", "low-jargon explainer"],
+      "values": ["autonomy", "access", "community"],
+      "regions": ["global"],
+      "related": {
+        "categories": ["digital-services", "password-managers"],
+        "guides": ["private-messaging", "password-managers", "digital-literacy"],
+        "initiatives": ["signal-foundation", "eff", "access-now"]
+      },
+      "receipts": [
+        {
+          "note": "Signal publishes support material for group chats and group-management features.",
+          "source": "https://support.signal.org/hc/en-us/articles/360007319331-Group-chats",
+          "asof": "2026"
+        },
+        {
+          "note": "Access Now runs digital-security and digital-rights support programs for at-risk users and civil society.",
+          "source": "https://www.accessnow.org/help/",
+          "asof": "2026"
+        }
+      ],
+      "limits": [
+        "Do not post invite links publicly.",
+        "Do not turn the offer into private security consulting without consent and scope."
+      ]
+    },
+    {
+      "id": "ask-mutual-aid-fund-due-diligence",
+      "kind": "ask",
+      "status": "template",
+      "title": "We need help checking a fundraiser before we share it",
+      "summary": "A local group wants a quick accountability check before amplifying a fundraiser or emergency giving appeal.",
+      "prompt": "Can you help us check the organizer identity, payment route, recipient clarity, fees, and update pattern before we share this?",
+      "audience": ["neighbors", "campus group", "local coalition"],
+      "needs": ["fundraiser verification", "fee check", "plain-language risk note", "follow-up update plan"],
+      "values": ["people", "community", "openness", "access"],
+      "regions": ["US", "global"],
+      "related": {
+        "categories": ["causes-to-support", "payments"],
+        "guides": ["where-to-give", "payments"],
+        "initiatives": ["bbb-wise-giving-alliance", "givedirectly", "techsoup"]
+      },
+      "receipts": [
+        {
+          "note": "The FTC's charity guidance tells donors to check charity names, payment methods, and fundraiser claims before giving.",
+          "source": "https://consumer.ftc.gov/articles/giving-charity",
+          "asof": "2026"
+        },
+        {
+          "note": "BBB Wise Giving Alliance publishes charity accountability standards that can inform lightweight due-diligence checks.",
+          "source": "https://give.org/charity-landing-page/bbb-standards-for-charity-accountability",
+          "asof": "2026"
+        }
+      ],
+      "limits": [
+        "Do not publish recipient medical, immigration, housing, or safety details.",
+        "Do not present a quick check as a formal audit."
+      ]
+    },
+    {
+      "id": "offer-giving-research-brief",
+      "kind": "offer",
+      "status": "template",
+      "title": "I can share a one-page giving research brief",
+      "summary": "I can make a short source list for people comparing evidence-backed giving, climate giving, or local commitments before a fundraising season.",
+      "prompt": "I can turn public giving research into a one-page brief that keeps impact, transparency, and local commitments separate.",
+      "audience": ["donor circle", "workplace giving group", "faith or community group"],
+      "offers": ["one-page brief", "source list", "portfolio split template", "discussion questions"],
+      "values": ["people", "quality", "openness", "community"],
+      "regions": ["global"],
+      "related": {
+        "categories": ["causes-to-support"],
+        "guides": ["where-to-give"],
+        "initiatives": ["givewell", "giving-what-we-can", "giving-green", "against-malaria", "givedirectly"]
+      },
+      "receipts": [
+        {
+          "note": "GiveWell publishes a top-charities list and research pages for highly cost-effective giving opportunities.",
+          "source": "https://www.givewell.org/charities/top-charities",
+          "asof": "2026"
+        },
+        {
+          "note": "Giving What We Can publishes cause-area guidance for donors comparing global health, animal welfare, climate, and other areas.",
+          "source": "https://www.givingwhatwecan.org/cause-areas",
+          "asof": "2026"
+        }
+      ],
+      "limits": [
+        "Do not imply the brief is personal financial, tax, or legal advice.",
+        "Do not collapse local relationship-based giving into cost-effectiveness scoring."
+      ]
+    },
+    {
+      "id": "ask-repair-first-device-choice",
+      "kind": "ask",
+      "status": "template",
+      "title": "We need help choosing a repair-first phone or laptop",
+      "summary": "A household, school, or small organization wants to compare repair, reuse, refurbished options, software support, and total cost before buying.",
+      "prompt": "Can you help us compare repairability, software support, used or refurbished options, and total cost before we replace devices?",
+      "audience": ["household", "school club", "small nonprofit"],
+      "needs": ["repairability check", "refurbished option scan", "data-wipe plan", "local repair referral"],
+      "values": ["planet", "quality", "access", "community"],
+      "regions": ["global"],
+      "related": {
+        "categories": ["phones", "laptops"],
+        "guides": ["phones", "laptops", "right-to-repair"],
+        "initiatives": ["software-freedom-conservancy", "open-source-initiative", "consumer-federation-america"]
+      },
+      "receipts": [
+        {
+          "note": "iFixit publishes repairability material for electronics, including phones and laptops.",
+          "source": "https://www.ifixit.com/repairability",
+          "asof": "2026"
+        },
+        {
+          "note": "The FTC's Nixing the Fix report describes repair restrictions as a consumer and competition issue.",
+          "source": "https://www.ftc.gov/reports/nixing-fix-ftc-report-congress-repair-restrictions",
+          "asof": "2021"
+        }
+      ],
+      "limits": [
+        "Do not ask volunteers to handle devices containing private data without a wipe plan.",
+        "Do not present repairability as a substitute for safety recalls or warranty rights."
+      ]
+    },
+    {
+      "id": "offer-open-source-nonprofit-tech-help",
+      "kind": "offer",
+      "status": "template",
+      "title": "I can help a nonprofit map open-source and security-maintenance options",
+      "summary": "I can help a nonprofit compare maintainable open-source tools, hosted options, security responsibilities, and exit plans before it gets locked in.",
+      "prompt": "I can help compare open-source tools, security-maintenance responsibilities, hosted options, and exit plans for a nonprofit workflow.",
+      "audience": ["small nonprofit", "mutual-aid group", "civic-tech team"],
+      "offers": ["tool shortlist", "maintenance-risk note", "data-export plan", "security-basics checklist"],
+      "values": ["openness", "autonomy", "quality", "access"],
+      "regions": ["global"],
+      "related": {
+        "categories": ["digital-services"],
+        "guides": ["digital-literacy"],
+        "initiatives": ["openssf", "open-source-initiative", "software-freedom-conservancy", "techsoup"]
+      },
+      "receipts": [
+        {
+          "note": "OpenSSF coordinates industry and community work on open-source software security.",
+          "source": "https://openssf.org/about/",
+          "asof": "2026"
+        },
+        {
+          "note": "TechSoup provides nonprofit technology resources, discounts, and learning material.",
+          "source": "https://www.techsoup.org/",
+          "asof": "2026"
+        }
+      ],
+      "limits": [
+        "Do not collect sensitive beneficiary data while scoping tool needs.",
+        "Do not recommend self-hosting unless the group has maintenance capacity."
+      ]
+    }
+  ]
+}

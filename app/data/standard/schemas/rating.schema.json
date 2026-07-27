@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/rating-v0.1.schema.json",
+  "title": "Open Values Rating v0.1",
+  "description": "A sparse score on one criterion, optionally represented as an expanded record.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/scoreValue"
+    },
+    {
+      "$ref": "#/$defs/ratingRecord"
+    }
+  ],
+  "$defs": {
+    "scoreValue": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 100
+    },
+    "ratingRecord": {
+      "type": "object",
+      "required": [
+        "key",
+        "value"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "value": {
+          "$ref": "#/$defs/scoreValue"
+        },
+        "provenance": {
+          "$ref": "https://openvaluesstandard.org/schema/source-v0.1.schema.json"
+        }
+      }
+    }
+  }
+}

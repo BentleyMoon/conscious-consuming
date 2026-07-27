@@ -1,0 +1,5156 @@
+{
+  "format": "open-values-presentation-package",
+  "version": "1.0.0",
+  "built": "2026-07-20",
+  "consumer": "P5 presentation implementation",
+  "sources": [
+    "content/ontology.json",
+    "content/presentation/strings.json",
+    "content/presentation/page-kinds.json",
+    "content/presentation/fixtures.json",
+    "content/presentation/sources.json"
+  ],
+  "taxonomy": {
+    "source": "content/ontology.json",
+    "sourceSchema": "app/data/standard/schemas/ontology.schema.json",
+    "generatedSource": "app/data/index.json#/ontology/presentation",
+    "version": 1,
+    "levels": [
+      {
+        "id": "need",
+        "label": "Need"
+      },
+      {
+        "id": "category",
+        "label": "Category"
+      },
+      {
+        "id": "subcategory",
+        "label": "Subcategory"
+      },
+      {
+        "id": "decision",
+        "label": "Decision"
+      },
+      {
+        "id": "entry",
+        "label": "Entry"
+      }
+    ],
+    "leafState": {
+      "liveWhen": "cid is present",
+      "gapWhen": "cid is absent",
+      "gapLabel": "Not yet covered",
+      "gapIdRule": "Kebab-case the source-row label; fail the build if two gap labels produce the same id."
+    },
+    "counts": {
+      "needs": 8,
+      "categories": 18,
+      "subcategories": 39,
+      "decisions": 206,
+      "livePaths": 96,
+      "liveDatasets": 88,
+      "notYetCovered": 110
+    },
+    "needs": [
+      {
+        "id": "nourish",
+        "label": "NOURISH",
+        "reads": "Food and drink for ordinary meals, shared tables, and the days in between.",
+        "categories": [
+          {
+            "id": "everyday-food",
+            "label": "Everyday food",
+            "reads": "Breakfast, staples, ingredients, and the foods that make a meal.",
+            "subcategories": [
+              {
+                "id": "breakfast-and-bread",
+                "label": "Breakfast and bread",
+                "decisionIds": [
+                  "breakfast-cereal",
+                  "granola",
+                  "oats",
+                  "bread"
+                ]
+              },
+              {
+                "id": "dairy-and-alternatives",
+                "label": "Dairy and alternatives",
+                "decisionIds": [
+                  "plant-based-milk",
+                  "milk",
+                  "plant-based-yogurt",
+                  "eggs",
+                  "yogurt",
+                  "cheese",
+                  "butter"
+                ]
+              },
+              {
+                "id": "protein-and-meals",
+                "label": "Protein and meals",
+                "decisionIds": [
+                  "plant-based-meat",
+                  "tofu",
+                  "hummus",
+                  "frozen-pizza",
+                  "ready-meals",
+                  "meat-and-poultry",
+                  "fish-seafood"
+                ]
+              },
+              {
+                "id": "pantry-and-cooking",
+                "label": "Pantry and cooking",
+                "decisionIds": [
+                  "olive-oil",
+                  "pasta-sauce",
+                  "rice",
+                  "pasta",
+                  "legumes",
+                  "soups",
+                  "canned-fish",
+                  "canned-tomatoes",
+                  "canned-vegetables",
+                  "frozen-vegetables",
+                  "pantry-staples",
+                  "flour-baking",
+                  "spices-seasoning"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "drinks",
+            "label": "Drinks",
+            "reads": "Everyday drinks and the alcoholic drinks not yet compared here.",
+            "subcategories": [
+              {
+                "id": "drinks-all",
+                "label": "Drinks",
+                "decisionIds": [
+                  "coffee",
+                  "tea",
+                  "fruit-juice",
+                  "soda",
+                  "energy-drinks",
+                  "bottled-water",
+                  "wine",
+                  "beer",
+                  "spirits"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "snacks-and-extras",
+            "label": "Snacks and extras",
+            "reads": "Snacks, sweets, spreads, and condiments used around a meal.",
+            "subcategories": [
+              {
+                "id": "snacks-and-sweets",
+                "label": "Snacks and sweets",
+                "decisionIds": [
+                  "dark-chocolate",
+                  "nuts",
+                  "ice-cream",
+                  "crisps",
+                  "biscuits",
+                  "dried-fruit",
+                  "cereal-bars",
+                  "crackers"
+                ]
+              },
+              {
+                "id": "spreads-and-condiments",
+                "label": "Spreads and condiments",
+                "decisionIds": [
+                  "nut-butter",
+                  "honey",
+                  "fruit-jam",
+                  "chocolate-spread",
+                  "ketchup",
+                  "mayonnaise",
+                  "salad-dressing",
+                  "pickles"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "care",
+        "label": "CARE",
+        "reads": "What touches bodies, clothing, children, pets, and everyday wellbeing.",
+        "categories": [
+          {
+            "id": "body-care",
+            "label": "Body care",
+            "reads": "Products used on skin, hair, teeth, and the body.",
+            "subcategories": [
+              {
+                "id": "bath-and-body",
+                "label": "Bath and body",
+                "decisionIds": [
+                  "soap",
+                  "body-wash",
+                  "deodorant"
+                ]
+              },
+              {
+                "id": "skin-and-cosmetics",
+                "label": "Skin and cosmetics",
+                "decisionIds": [
+                  "sunscreen",
+                  "face-wash",
+                  "face-cream",
+                  "hand-cream",
+                  "lip-balm",
+                  "skincare",
+                  "make-up-and-cosmetics",
+                  "nail-care",
+                  "fragrance-and-perfume"
+                ]
+              },
+              {
+                "id": "hair-and-grooming",
+                "label": "Hair and grooming",
+                "decisionIds": [
+                  "shampoo",
+                  "hair-conditioner",
+                  "razors",
+                  "period-products",
+                  "hair-styling"
+                ]
+              },
+              {
+                "id": "oral-care",
+                "label": "Oral care",
+                "decisionIds": [
+                  "toothpaste",
+                  "mouthwash",
+                  "glasses-and-contact-lenses"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "health-and-wellbeing",
+            "label": "Health and wellbeing",
+            "reads": "Everyday health, fitness, sleep, and reproductive care.",
+            "subcategories": [
+              {
+                "id": "remedies-and-health",
+                "label": "Remedies and health",
+                "decisionIds": [
+                  "vitamins-and-supplements",
+                  "over-the-counter-medicine",
+                  "first-aid",
+                  "contraception"
+                ]
+              },
+              {
+                "id": "mind-and-movement",
+                "label": "Mind and movement",
+                "decisionIds": [
+                  "fitness-equipment",
+                  "sports-nutrition",
+                  "mental-health-apps",
+                  "meditation-apps"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "clothes-family-and-pets",
+            "label": "Clothes, family, and pets",
+            "reads": "Clothing, repair, children's needs, and care for animals at home.",
+            "subcategories": [
+              {
+                "id": "clothing-and-repair",
+                "label": "Clothing and repair",
+                "decisionIds": [
+                  "clothing",
+                  "outerwear-and-coats",
+                  "underwear-and-socks",
+                  "jewellery-and-watches",
+                  "secondhand-and-resale",
+                  "repair-and-tailoring"
+                ]
+              },
+              {
+                "id": "children-and-pets",
+                "label": "Children and pets",
+                "decisionIds": [
+                  "diapers-and-nappies",
+                  "baby-food-and-formula",
+                  "baby-wipes",
+                  "car-seats",
+                  "strollers-and-pushchairs",
+                  "toys",
+                  "kids-clothing",
+                  "childcare",
+                  "dog-food",
+                  "cat-food",
+                  "pet-supplies",
+                  "flea-and-worming",
+                  "pet-insurance",
+                  "vet-services",
+                  "adoption-and-rescue"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "keep-a-home",
+        "label": "KEEP A HOME",
+        "reads": "Cleaning, energy, water, tools, and the things that make a place work.",
+        "categories": [
+          {
+            "id": "cleaning-and-kitchen",
+            "label": "Cleaning and kitchen",
+            "reads": "Cleaning, household supplies, cooking, storage, and water at home.",
+            "subcategories": [
+              {
+                "id": "cleaning-and-household-supplies",
+                "label": "Cleaning and household supplies",
+                "decisionIds": [
+                  "cleaning-products",
+                  "laundry",
+                  "paper-goods",
+                  "dish-soap"
+                ]
+              },
+              {
+                "id": "kitchen-and-water",
+                "label": "Kitchen and water",
+                "decisionIds": [
+                  "cookware-and-pans",
+                  "food-storage",
+                  "water-filters",
+                  "water-suppliers"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "home-energy-and-outdoors",
+            "label": "Home, energy, and outdoors",
+            "reads": "Furniture, appliances, energy, repairs, gardens, and outdoor space.",
+            "subcategories": [
+              {
+                "id": "furniture-and-appliances",
+                "label": "Furniture and appliances",
+                "decisionIds": [
+                  "furniture",
+                  "mattresses",
+                  "bedding-and-linens",
+                  "lighting",
+                  "major-appliances",
+                  "vacuum-cleaners",
+                  "smart-home"
+                ]
+              },
+              {
+                "id": "energy-and-repairs",
+                "label": "Energy and repairs",
+                "decisionIds": [
+                  "tools-and-diy",
+                  "electricity-and-green-tariffs",
+                  "gas-suppliers",
+                  "solar-panels",
+                  "heat-pumps",
+                  "smart-thermostats"
+                ]
+              },
+              {
+                "id": "garden-and-outdoor-home",
+                "label": "Garden and outdoor home",
+                "decisionIds": [
+                  "plants-and-seeds",
+                  "compost-and-soil",
+                  "garden-tools",
+                  "garden-furniture"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "connect",
+        "label": "CONNECT",
+        "reads": "Devices and services that help people reach each other and the wider world.",
+        "categories": [
+          {
+            "id": "communication",
+            "label": "Communication",
+            "reads": "Messaging, online services, internet access, and mobile service.",
+            "subcategories": [
+              {
+                "id": "online-services",
+                "label": "Online services",
+                "decisionIds": [
+                  "digital-services:messaging",
+                  "digital-services:email",
+                  "digital-services:browser",
+                  "digital-services:search",
+                  "digital-services:social",
+                  "digital-services:cloud-storage",
+                  "digital-services:notes",
+                  "digital-services:maps",
+                  "digital-services:video-calls"
+                ]
+              },
+              {
+                "id": "internet-and-mobile",
+                "label": "Internet and mobile",
+                "decisionIds": [
+                  "broadband-internet",
+                  "mobile-carriers"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "devices",
+            "label": "Devices",
+            "reads": "Phones, computers, media devices, and the hardware used to stay connected.",
+            "subcategories": [
+              {
+                "id": "phones-and-computers",
+                "label": "Phones and computers",
+                "decisionIds": [
+                  "phones",
+                  "laptops",
+                  "tablets"
+                ]
+              },
+              {
+                "id": "personal-and-media-devices",
+                "label": "Personal and media devices",
+                "decisionIds": [
+                  "smartwatches-and-wearables",
+                  "headphones-and-earbuds",
+                  "tvs",
+                  "game-consoles",
+                  "cameras"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "move",
+        "label": "MOVE",
+        "reads": "The choices that carry people, belongings, and journeys.",
+        "categories": [
+          {
+            "id": "getting-around",
+            "label": "Getting around",
+            "reads": "Footwear, bags, cars, bikes, and everyday transport.",
+            "subcategories": [
+              {
+                "id": "footwear-and-bags",
+                "label": "Footwear and bags",
+                "decisionIds": [
+                  "shoes",
+                  "activewear",
+                  "bags-and-backpacks"
+                ]
+              },
+              {
+                "id": "cars-bikes-and-transit",
+                "label": "Cars, bikes, and transit",
+                "decisionIds": [
+                  "cars",
+                  "electric-vehicles",
+                  "used-cars",
+                  "tyres",
+                  "bicycles",
+                  "e-bikes",
+                  "ride-hailing",
+                  "public-transit"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "trips-and-outdoors",
+            "label": "Trips and outdoors",
+            "reads": "Travel, places to stay, luggage, camping, and hiking.",
+            "subcategories": [
+              {
+                "id": "travel-and-stays",
+                "label": "Travel and stays",
+                "decisionIds": [
+                  "airlines",
+                  "hotels",
+                  "vacation-rentals",
+                  "booking-platforms",
+                  "tours-and-activities",
+                  "cruises"
+                ]
+              },
+              {
+                "id": "outdoor-and-travel-gear",
+                "label": "Outdoor and travel gear",
+                "decisionIds": [
+                  "luggage",
+                  "camping-gear",
+                  "hiking-equipment"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "learn",
+        "label": "LEARN",
+        "reads": "Resources, media, and tools for understanding, making, and staying informed.",
+        "categories": [
+          {
+            "id": "learning-and-making",
+            "label": "Learning and making",
+            "reads": "Learning resources, courses, school needs, books, and AI assistants.",
+            "subcategories": [
+              {
+                "id": "courses-resources-and-ai",
+                "label": "Courses, resources, and AI",
+                "decisionIds": [
+                  "ai-assistants",
+                  "learning-resources",
+                  "online-courses",
+                  "language-learning"
+                ]
+              },
+              {
+                "id": "books-and-school",
+                "label": "Books and school",
+                "decisionIds": [
+                  "e-readers",
+                  "books",
+                  "school-supplies"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "news-and-culture",
+            "label": "News and culture",
+            "reads": "News, podcasts, music, video, and other media used to understand the world.",
+            "subcategories": [
+              {
+                "id": "news-and-reference",
+                "label": "News and reference",
+                "decisionIds": [
+                  "news-sources"
+                ]
+              },
+              {
+                "id": "music-video-and-podcasts",
+                "label": "Music, video, and podcasts",
+                "decisionIds": [
+                  "music-streaming",
+                  "podcasts",
+                  "video-streaming",
+                  "audiobooks"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "give-and-act",
+        "label": "GIVE & ACT",
+        "reads": "Ways to support people, causes, and organizations with money, time, or voice.",
+        "categories": [
+          {
+            "id": "giving-and-helping",
+            "label": "Giving and helping",
+            "reads": "Ways to give money, volunteer, or support a campaign.",
+            "subcategories": [
+              {
+                "id": "giving",
+                "label": "Giving",
+                "decisionIds": [
+                  "causes-to-support",
+                  "charities-by-cause",
+                  "effective-giving",
+                  "mutual-aid-funds",
+                  "ethical-gifts"
+                ]
+              },
+              {
+                "id": "volunteering-and-campaigns",
+                "label": "Volunteering and campaigns",
+                "decisionIds": [
+                  "volunteering",
+                  "petitions-and-campaigns"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "organizations-and-shared-action",
+            "label": "Organizations and shared action",
+            "reads": "Organizations, co-operatives, and businesses shaped by how they are run.",
+            "subcategories": [
+              {
+                "id": "organizations-and-makers",
+                "label": "Organizations and makers",
+                "decisionIds": [
+                  "mission-businesses",
+                  "b-corporations",
+                  "co-operatives",
+                  "worker-owned",
+                  "local-independents"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "protect",
+        "label": "PROTECT",
+        "reads": "Money, privacy, security, and the systems that guard what matters.",
+        "categories": [
+          {
+            "id": "money",
+            "label": "Money",
+            "reads": "Banking, payments, saving, investing, borrowing, and insurance.",
+            "subcategories": [
+              {
+                "id": "everyday-money",
+                "label": "Everyday money",
+                "decisionIds": [
+                  "banking",
+                  "payments",
+                  "credit-cards",
+                  "money-transfer-and-remittance"
+                ]
+              },
+              {
+                "id": "saving-investing-and-insurance",
+                "label": "Saving, investing, and insurance",
+                "decisionIds": [
+                  "investing",
+                  "pensions",
+                  "insurance",
+                  "budgeting-apps",
+                  "loans-and-mortgages",
+                  "crypto-exchanges"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "privacy-and-security",
+            "label": "Privacy and security",
+            "reads": "Tools that protect accounts, devices, connections, and personal information.",
+            "subcategories": [
+              {
+                "id": "passwords-and-private-connections",
+                "label": "Passwords and private connections",
+                "decisionIds": [
+                  "password-managers",
+                  "vpn"
+                ]
+              },
+              {
+                "id": "account-security",
+                "label": "Account security",
+                "decisionIds": [
+                  "authenticator-2fa-apps"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "breakfast-cereal",
+        "label": "Breakfast cereal",
+        "state": "live",
+        "route": "#decide/breakfast-cereal",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "breakfast-and-bread",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Breakfast & bread",
+        "cid": "breakfast-cereal"
+      },
+      {
+        "id": "granola",
+        "label": "Granola & muesli",
+        "state": "live",
+        "route": "#decide/granola",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "breakfast-and-bread",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Breakfast & bread",
+        "cid": "granola"
+      },
+      {
+        "id": "oats",
+        "label": "Oats",
+        "state": "live",
+        "route": "#decide/oats",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "breakfast-and-bread",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Breakfast & bread",
+        "cid": "oats"
+      },
+      {
+        "id": "bread",
+        "label": "Bread",
+        "state": "live",
+        "route": "#decide/bread",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "breakfast-and-bread",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Breakfast & bread",
+        "cid": "bread"
+      },
+      {
+        "id": "plant-based-milk",
+        "label": "Plant-based milk",
+        "state": "live",
+        "route": "#decide/plant-based-milk",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "dairy-and-alternatives",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Dairy & alternatives",
+        "cid": "plant-based-milk"
+      },
+      {
+        "id": "milk",
+        "label": "Milk",
+        "state": "live",
+        "route": "#decide/milk",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "dairy-and-alternatives",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Dairy & alternatives",
+        "cid": "milk"
+      },
+      {
+        "id": "plant-based-yogurt",
+        "label": "Plant-based yogurt",
+        "state": "live",
+        "route": "#decide/plant-based-yogurt",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "dairy-and-alternatives",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Dairy & alternatives",
+        "cid": "plant-based-yogurt"
+      },
+      {
+        "id": "eggs",
+        "label": "Eggs",
+        "state": "live",
+        "route": "#decide/eggs",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "dairy-and-alternatives",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Dairy & alternatives",
+        "cid": "eggs"
+      },
+      {
+        "id": "yogurt",
+        "label": "Yogurt",
+        "state": "live",
+        "route": "#decide/yogurt",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "dairy-and-alternatives",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Dairy & alternatives",
+        "cid": "yogurt"
+      },
+      {
+        "id": "cheese",
+        "label": "Cheese",
+        "state": "live",
+        "route": "#decide/cheese",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "dairy-and-alternatives",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Dairy & alternatives",
+        "cid": "cheese"
+      },
+      {
+        "id": "butter",
+        "label": "Butter",
+        "state": "live",
+        "route": "#decide/butter",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "dairy-and-alternatives",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Dairy & alternatives",
+        "cid": "butter"
+      },
+      {
+        "id": "plant-based-meat",
+        "label": "Plant-based meat",
+        "state": "live",
+        "route": "#decide/plant-based-meat",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "protein-and-meals",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Protein & mains",
+        "cid": "plant-based-meat"
+      },
+      {
+        "id": "tofu",
+        "label": "Tofu",
+        "state": "live",
+        "route": "#decide/tofu",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "protein-and-meals",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Protein & mains",
+        "cid": "tofu"
+      },
+      {
+        "id": "hummus",
+        "label": "Hummus",
+        "state": "live",
+        "route": "#decide/hummus",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "protein-and-meals",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Protein & mains",
+        "cid": "hummus"
+      },
+      {
+        "id": "frozen-pizza",
+        "label": "Frozen pizza",
+        "state": "live",
+        "route": "#decide/frozen-pizza",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "protein-and-meals",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Protein & mains",
+        "cid": "frozen-pizza"
+      },
+      {
+        "id": "ready-meals",
+        "label": "Ready meals",
+        "state": "live",
+        "route": "#decide/ready-meals",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "protein-and-meals",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Protein & mains",
+        "cid": "ready-meals"
+      },
+      {
+        "id": "meat-and-poultry",
+        "label": "Meat & poultry",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/meat-and-poultry",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "protein-and-meals",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Protein & mains"
+      },
+      {
+        "id": "fish-seafood",
+        "label": "Fish & seafood",
+        "state": "live",
+        "route": "#decide/fish-seafood",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "protein-and-meals",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Protein & mains",
+        "cid": "fish-seafood"
+      },
+      {
+        "id": "olive-oil",
+        "label": "Olive oil",
+        "state": "live",
+        "route": "#decide/olive-oil",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "pantry-and-cooking",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Pantry & cooking",
+        "cid": "olive-oil"
+      },
+      {
+        "id": "pasta-sauce",
+        "label": "Pasta sauce",
+        "state": "live",
+        "route": "#decide/pasta-sauce",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "pantry-and-cooking",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Pantry & cooking",
+        "cid": "pasta-sauce"
+      },
+      {
+        "id": "rice",
+        "label": "Rice",
+        "state": "live",
+        "route": "#decide/rice",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "pantry-and-cooking",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Pantry & cooking",
+        "cid": "rice"
+      },
+      {
+        "id": "pasta",
+        "label": "Pasta",
+        "state": "live",
+        "route": "#decide/pasta",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "pantry-and-cooking",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Pantry & cooking",
+        "cid": "pasta"
+      },
+      {
+        "id": "legumes",
+        "label": "Beans & legumes",
+        "state": "live",
+        "route": "#decide/legumes",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "pantry-and-cooking",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Pantry & cooking",
+        "cid": "legumes"
+      },
+      {
+        "id": "soups",
+        "label": "Soups",
+        "state": "live",
+        "route": "#decide/soups",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "pantry-and-cooking",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Pantry & cooking",
+        "cid": "soups"
+      },
+      {
+        "id": "canned-fish",
+        "label": "Canned tuna & fish",
+        "state": "live",
+        "route": "#decide/canned-fish",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "pantry-and-cooking",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Pantry & cooking",
+        "cid": "canned-fish"
+      },
+      {
+        "id": "canned-tomatoes",
+        "label": "Canned tomatoes",
+        "state": "live",
+        "route": "#decide/canned-tomatoes",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "pantry-and-cooking",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Pantry & cooking",
+        "cid": "canned-tomatoes"
+      },
+      {
+        "id": "canned-vegetables",
+        "label": "Canned vegetables",
+        "state": "live",
+        "route": "#decide/canned-vegetables",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "pantry-and-cooking",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Pantry & cooking",
+        "cid": "canned-vegetables"
+      },
+      {
+        "id": "frozen-vegetables",
+        "label": "Frozen vegetables",
+        "state": "live",
+        "route": "#decide/frozen-vegetables",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "pantry-and-cooking",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Pantry & cooking",
+        "cid": "frozen-vegetables"
+      },
+      {
+        "id": "pantry-staples",
+        "label": "Pantry staples",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/pantry-staples",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "pantry-and-cooking",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Pantry & cooking"
+      },
+      {
+        "id": "flour-baking",
+        "label": "Flour & baking",
+        "state": "live",
+        "route": "#decide/flour-baking",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "pantry-and-cooking",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Pantry & cooking",
+        "cid": "flour-baking"
+      },
+      {
+        "id": "spices-seasoning",
+        "label": "Spices & seasonings",
+        "state": "live",
+        "route": "#decide/spices-seasoning",
+        "need": "nourish",
+        "category": "everyday-food",
+        "subcategory": "pantry-and-cooking",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Pantry & cooking",
+        "cid": "spices-seasoning"
+      },
+      {
+        "id": "coffee",
+        "label": "Coffee",
+        "state": "live",
+        "route": "#decide/coffee",
+        "need": "nourish",
+        "category": "drinks",
+        "subcategory": "drinks-all",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Drinks",
+        "cid": "coffee"
+      },
+      {
+        "id": "tea",
+        "label": "Tea",
+        "state": "live",
+        "route": "#decide/tea",
+        "need": "nourish",
+        "category": "drinks",
+        "subcategory": "drinks-all",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Drinks",
+        "cid": "tea"
+      },
+      {
+        "id": "fruit-juice",
+        "label": "Fruit juice",
+        "state": "live",
+        "route": "#decide/fruit-juice",
+        "need": "nourish",
+        "category": "drinks",
+        "subcategory": "drinks-all",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Drinks",
+        "cid": "fruit-juice"
+      },
+      {
+        "id": "soda",
+        "label": "Soda",
+        "state": "live",
+        "route": "#decide/soda",
+        "need": "nourish",
+        "category": "drinks",
+        "subcategory": "drinks-all",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Drinks",
+        "cid": "soda"
+      },
+      {
+        "id": "energy-drinks",
+        "label": "Energy drinks",
+        "state": "live",
+        "route": "#decide/energy-drinks",
+        "need": "nourish",
+        "category": "drinks",
+        "subcategory": "drinks-all",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Drinks",
+        "cid": "energy-drinks"
+      },
+      {
+        "id": "bottled-water",
+        "label": "Bottled water",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/bottled-water",
+        "need": "nourish",
+        "category": "drinks",
+        "subcategory": "drinks-all",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Drinks"
+      },
+      {
+        "id": "wine",
+        "label": "Wine",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/wine",
+        "need": "nourish",
+        "category": "drinks",
+        "subcategory": "drinks-all",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Beer, wine & spirits"
+      },
+      {
+        "id": "beer",
+        "label": "Beer",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/beer",
+        "need": "nourish",
+        "category": "drinks",
+        "subcategory": "drinks-all",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Beer, wine & spirits"
+      },
+      {
+        "id": "spirits",
+        "label": "Spirits",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/spirits",
+        "need": "nourish",
+        "category": "drinks",
+        "subcategory": "drinks-all",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Beer, wine & spirits"
+      },
+      {
+        "id": "dark-chocolate",
+        "label": "Dark chocolate",
+        "state": "live",
+        "route": "#decide/dark-chocolate",
+        "need": "nourish",
+        "category": "snacks-and-extras",
+        "subcategory": "snacks-and-sweets",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Snacks & sweets",
+        "cid": "dark-chocolate"
+      },
+      {
+        "id": "nuts",
+        "label": "Nuts",
+        "state": "live",
+        "route": "#decide/nuts",
+        "need": "nourish",
+        "category": "snacks-and-extras",
+        "subcategory": "snacks-and-sweets",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Snacks & sweets",
+        "cid": "nuts"
+      },
+      {
+        "id": "ice-cream",
+        "label": "Ice cream",
+        "state": "live",
+        "route": "#decide/ice-cream",
+        "need": "nourish",
+        "category": "snacks-and-extras",
+        "subcategory": "snacks-and-sweets",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Snacks & sweets",
+        "cid": "ice-cream"
+      },
+      {
+        "id": "crisps",
+        "label": "Crisps & chips",
+        "state": "live",
+        "route": "#decide/crisps",
+        "need": "nourish",
+        "category": "snacks-and-extras",
+        "subcategory": "snacks-and-sweets",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Snacks & sweets",
+        "cid": "crisps"
+      },
+      {
+        "id": "biscuits",
+        "label": "Biscuits & cookies",
+        "state": "live",
+        "route": "#decide/biscuits",
+        "need": "nourish",
+        "category": "snacks-and-extras",
+        "subcategory": "snacks-and-sweets",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Snacks & sweets",
+        "cid": "biscuits"
+      },
+      {
+        "id": "dried-fruit",
+        "label": "Dried fruit",
+        "state": "live",
+        "route": "#decide/dried-fruit",
+        "need": "nourish",
+        "category": "snacks-and-extras",
+        "subcategory": "snacks-and-sweets",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Snacks & sweets",
+        "cid": "dried-fruit"
+      },
+      {
+        "id": "cereal-bars",
+        "label": "Cereal & granola bars",
+        "state": "live",
+        "route": "#decide/cereal-bars",
+        "need": "nourish",
+        "category": "snacks-and-extras",
+        "subcategory": "snacks-and-sweets",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Snacks & sweets",
+        "cid": "cereal-bars"
+      },
+      {
+        "id": "crackers",
+        "label": "Crackers",
+        "state": "live",
+        "route": "#decide/crackers",
+        "need": "nourish",
+        "category": "snacks-and-extras",
+        "subcategory": "snacks-and-sweets",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Snacks & sweets",
+        "cid": "crackers"
+      },
+      {
+        "id": "nut-butter",
+        "label": "Nut butter",
+        "state": "live",
+        "route": "#decide/nut-butter",
+        "need": "nourish",
+        "category": "snacks-and-extras",
+        "subcategory": "spreads-and-condiments",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Spreads & condiments",
+        "cid": "nut-butter"
+      },
+      {
+        "id": "honey",
+        "label": "Honey",
+        "state": "live",
+        "route": "#decide/honey",
+        "need": "nourish",
+        "category": "snacks-and-extras",
+        "subcategory": "spreads-and-condiments",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Spreads & condiments",
+        "cid": "honey"
+      },
+      {
+        "id": "fruit-jam",
+        "label": "Fruit jam",
+        "state": "live",
+        "route": "#decide/fruit-jam",
+        "need": "nourish",
+        "category": "snacks-and-extras",
+        "subcategory": "spreads-and-condiments",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Spreads & condiments",
+        "cid": "fruit-jam"
+      },
+      {
+        "id": "chocolate-spread",
+        "label": "Chocolate spread",
+        "state": "live",
+        "route": "#decide/chocolate-spread",
+        "need": "nourish",
+        "category": "snacks-and-extras",
+        "subcategory": "spreads-and-condiments",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Spreads & condiments",
+        "cid": "chocolate-spread"
+      },
+      {
+        "id": "ketchup",
+        "label": "Ketchup",
+        "state": "live",
+        "route": "#decide/ketchup",
+        "need": "nourish",
+        "category": "snacks-and-extras",
+        "subcategory": "spreads-and-condiments",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Spreads & condiments",
+        "cid": "ketchup"
+      },
+      {
+        "id": "mayonnaise",
+        "label": "Mayonnaise",
+        "state": "live",
+        "route": "#decide/mayonnaise",
+        "need": "nourish",
+        "category": "snacks-and-extras",
+        "subcategory": "spreads-and-condiments",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Spreads & condiments",
+        "cid": "mayonnaise"
+      },
+      {
+        "id": "salad-dressing",
+        "label": "Salad dressing",
+        "state": "live",
+        "route": "#decide/salad-dressing",
+        "need": "nourish",
+        "category": "snacks-and-extras",
+        "subcategory": "spreads-and-condiments",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Spreads & condiments",
+        "cid": "salad-dressing"
+      },
+      {
+        "id": "pickles",
+        "label": "Pickles",
+        "state": "live",
+        "route": "#decide/pickles",
+        "need": "nourish",
+        "category": "snacks-and-extras",
+        "subcategory": "spreads-and-condiments",
+        "type": "Products",
+        "sourceDomain": "Food & drink",
+        "sourceGroup": "Spreads & condiments",
+        "cid": "pickles"
+      },
+      {
+        "id": "soap",
+        "label": "Soap",
+        "state": "live",
+        "route": "#decide/soap",
+        "need": "care",
+        "category": "body-care",
+        "subcategory": "bath-and-body",
+        "type": "Products",
+        "sourceDomain": "Personal care",
+        "sourceGroup": "Body & bath",
+        "cid": "soap"
+      },
+      {
+        "id": "body-wash",
+        "label": "Body wash",
+        "state": "live",
+        "route": "#decide/body-wash",
+        "need": "care",
+        "category": "body-care",
+        "subcategory": "bath-and-body",
+        "type": "Products",
+        "sourceDomain": "Personal care",
+        "sourceGroup": "Body & bath",
+        "cid": "body-wash"
+      },
+      {
+        "id": "deodorant",
+        "label": "Deodorant",
+        "state": "live",
+        "route": "#decide/deodorant",
+        "need": "care",
+        "category": "body-care",
+        "subcategory": "bath-and-body",
+        "type": "Products",
+        "sourceDomain": "Personal care",
+        "sourceGroup": "Body & bath",
+        "cid": "deodorant"
+      },
+      {
+        "id": "sunscreen",
+        "label": "Sunscreen",
+        "state": "live",
+        "route": "#decide/sunscreen",
+        "need": "care",
+        "category": "body-care",
+        "subcategory": "skin-and-cosmetics",
+        "type": "Products",
+        "sourceDomain": "Personal care",
+        "sourceGroup": "Skin & face",
+        "cid": "sunscreen"
+      },
+      {
+        "id": "face-wash",
+        "label": "Face wash & cleansers",
+        "state": "live",
+        "route": "#decide/face-wash",
+        "need": "care",
+        "category": "body-care",
+        "subcategory": "skin-and-cosmetics",
+        "type": "Products",
+        "sourceDomain": "Personal care",
+        "sourceGroup": "Skin & face",
+        "cid": "face-wash"
+      },
+      {
+        "id": "face-cream",
+        "label": "Face cream",
+        "state": "live",
+        "route": "#decide/face-cream",
+        "need": "care",
+        "category": "body-care",
+        "subcategory": "skin-and-cosmetics",
+        "type": "Products",
+        "sourceDomain": "Personal care",
+        "sourceGroup": "Skin & face",
+        "cid": "face-cream"
+      },
+      {
+        "id": "hand-cream",
+        "label": "Hand cream",
+        "state": "live",
+        "route": "#decide/hand-cream",
+        "need": "care",
+        "category": "body-care",
+        "subcategory": "skin-and-cosmetics",
+        "type": "Products",
+        "sourceDomain": "Personal care",
+        "sourceGroup": "Skin & face",
+        "cid": "hand-cream"
+      },
+      {
+        "id": "lip-balm",
+        "label": "Lip balm",
+        "state": "live",
+        "route": "#decide/lip-balm",
+        "need": "care",
+        "category": "body-care",
+        "subcategory": "skin-and-cosmetics",
+        "type": "Products",
+        "sourceDomain": "Personal care",
+        "sourceGroup": "Skin & face",
+        "cid": "lip-balm"
+      },
+      {
+        "id": "skincare",
+        "label": "Skincare",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/skincare",
+        "need": "care",
+        "category": "body-care",
+        "subcategory": "skin-and-cosmetics",
+        "type": "Products",
+        "sourceDomain": "Personal care",
+        "sourceGroup": "Skin & face"
+      },
+      {
+        "id": "make-up-and-cosmetics",
+        "label": "Make-up & cosmetics",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/make-up-and-cosmetics",
+        "need": "care",
+        "category": "body-care",
+        "subcategory": "skin-and-cosmetics",
+        "type": "Products",
+        "sourceDomain": "Personal care",
+        "sourceGroup": "Make-up"
+      },
+      {
+        "id": "nail-care",
+        "label": "Nail care",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/nail-care",
+        "need": "care",
+        "category": "body-care",
+        "subcategory": "skin-and-cosmetics",
+        "type": "Products",
+        "sourceDomain": "Personal care",
+        "sourceGroup": "Make-up"
+      },
+      {
+        "id": "fragrance-and-perfume",
+        "label": "Fragrance & perfume",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/fragrance-and-perfume",
+        "need": "care",
+        "category": "body-care",
+        "subcategory": "skin-and-cosmetics",
+        "type": "Products",
+        "sourceDomain": "Personal care",
+        "sourceGroup": "Fragrance"
+      },
+      {
+        "id": "shampoo",
+        "label": "Shampoo",
+        "state": "live",
+        "route": "#decide/shampoo",
+        "need": "care",
+        "category": "body-care",
+        "subcategory": "hair-and-grooming",
+        "type": "Products",
+        "sourceDomain": "Personal care",
+        "sourceGroup": "Hair",
+        "cid": "shampoo"
+      },
+      {
+        "id": "hair-conditioner",
+        "label": "Hair conditioner",
+        "state": "live",
+        "route": "#decide/hair-conditioner",
+        "need": "care",
+        "category": "body-care",
+        "subcategory": "hair-and-grooming",
+        "type": "Products",
+        "sourceDomain": "Personal care",
+        "sourceGroup": "Hair",
+        "cid": "hair-conditioner"
+      },
+      {
+        "id": "razors",
+        "label": "Razors & shaving",
+        "state": "live",
+        "route": "#decide/razors",
+        "need": "care",
+        "category": "body-care",
+        "subcategory": "hair-and-grooming",
+        "type": "Products",
+        "sourceDomain": "Personal care",
+        "sourceGroup": "Grooming",
+        "cid": "razors"
+      },
+      {
+        "id": "period-products",
+        "label": "Period products",
+        "state": "live",
+        "route": "#decide/period-products",
+        "need": "care",
+        "category": "body-care",
+        "subcategory": "hair-and-grooming",
+        "type": "Products",
+        "sourceDomain": "Personal care",
+        "sourceGroup": "Grooming",
+        "cid": "period-products"
+      },
+      {
+        "id": "hair-styling",
+        "label": "Hair styling",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/hair-styling",
+        "need": "care",
+        "category": "body-care",
+        "subcategory": "hair-and-grooming",
+        "type": "Products",
+        "sourceDomain": "Personal care",
+        "sourceGroup": "Hair"
+      },
+      {
+        "id": "toothpaste",
+        "label": "Toothpaste",
+        "state": "live",
+        "route": "#decide/toothpaste",
+        "need": "care",
+        "category": "body-care",
+        "subcategory": "oral-care",
+        "type": "Products",
+        "sourceDomain": "Personal care",
+        "sourceGroup": "Oral care",
+        "cid": "toothpaste"
+      },
+      {
+        "id": "mouthwash",
+        "label": "Mouthwash",
+        "state": "live",
+        "route": "#decide/mouthwash",
+        "need": "care",
+        "category": "body-care",
+        "subcategory": "oral-care",
+        "type": "Products",
+        "sourceDomain": "Personal care",
+        "sourceGroup": "Oral care",
+        "cid": "mouthwash"
+      },
+      {
+        "id": "glasses-and-contact-lenses",
+        "label": "Glasses & contact lenses",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/glasses-and-contact-lenses",
+        "need": "care",
+        "category": "body-care",
+        "subcategory": "oral-care",
+        "type": "Products",
+        "sourceDomain": "Health & wellness",
+        "sourceGroup": "Eyes & teeth"
+      },
+      {
+        "id": "vitamins-and-supplements",
+        "label": "Vitamins & supplements",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/vitamins-and-supplements",
+        "need": "care",
+        "category": "health-and-wellbeing",
+        "subcategory": "remedies-and-health",
+        "type": "Products",
+        "sourceDomain": "Health & wellness",
+        "sourceGroup": "Remedies & supplements"
+      },
+      {
+        "id": "over-the-counter-medicine",
+        "label": "Over-the-counter medicine",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/over-the-counter-medicine",
+        "need": "care",
+        "category": "health-and-wellbeing",
+        "subcategory": "remedies-and-health",
+        "type": "Products",
+        "sourceDomain": "Health & wellness",
+        "sourceGroup": "Remedies & supplements"
+      },
+      {
+        "id": "first-aid",
+        "label": "First aid",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/first-aid",
+        "need": "care",
+        "category": "health-and-wellbeing",
+        "subcategory": "remedies-and-health",
+        "type": "Products",
+        "sourceDomain": "Health & wellness",
+        "sourceGroup": "Remedies & supplements"
+      },
+      {
+        "id": "contraception",
+        "label": "Contraception",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/contraception",
+        "need": "care",
+        "category": "health-and-wellbeing",
+        "subcategory": "remedies-and-health",
+        "type": "Products",
+        "sourceDomain": "Health & wellness",
+        "sourceGroup": "Sexual & reproductive health"
+      },
+      {
+        "id": "fitness-equipment",
+        "label": "Fitness equipment",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/fitness-equipment",
+        "need": "care",
+        "category": "health-and-wellbeing",
+        "subcategory": "mind-and-movement",
+        "type": "Products",
+        "sourceDomain": "Health & wellness",
+        "sourceGroup": "Body & fitness"
+      },
+      {
+        "id": "sports-nutrition",
+        "label": "Sports nutrition",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/sports-nutrition",
+        "need": "care",
+        "category": "health-and-wellbeing",
+        "subcategory": "mind-and-movement",
+        "type": "Products",
+        "sourceDomain": "Health & wellness",
+        "sourceGroup": "Body & fitness"
+      },
+      {
+        "id": "mental-health-apps",
+        "label": "Mental-health apps",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/mental-health-apps",
+        "need": "care",
+        "category": "health-and-wellbeing",
+        "subcategory": "mind-and-movement",
+        "type": "Services",
+        "sourceDomain": "Health & wellness",
+        "sourceGroup": "Mind & sleep"
+      },
+      {
+        "id": "meditation-apps",
+        "label": "Meditation apps",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/meditation-apps",
+        "need": "care",
+        "category": "health-and-wellbeing",
+        "subcategory": "mind-and-movement",
+        "type": "Services",
+        "sourceDomain": "Health & wellness",
+        "sourceGroup": "Mind & sleep"
+      },
+      {
+        "id": "clothing",
+        "label": "Everyday clothing",
+        "state": "live",
+        "route": "#decide/clothing",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "clothing-and-repair",
+        "type": "Products",
+        "sourceDomain": "Clothing",
+        "sourceGroup": "Wear",
+        "cid": "clothing"
+      },
+      {
+        "id": "outerwear-and-coats",
+        "label": "Outerwear & coats",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/outerwear-and-coats",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "clothing-and-repair",
+        "type": "Products",
+        "sourceDomain": "Clothing",
+        "sourceGroup": "Wear"
+      },
+      {
+        "id": "underwear-and-socks",
+        "label": "Underwear & socks",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/underwear-and-socks",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "clothing-and-repair",
+        "type": "Products",
+        "sourceDomain": "Clothing",
+        "sourceGroup": "Wear"
+      },
+      {
+        "id": "jewellery-and-watches",
+        "label": "Jewellery & watches",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/jewellery-and-watches",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "clothing-and-repair",
+        "type": "Products",
+        "sourceDomain": "Clothing",
+        "sourceGroup": "Accessories"
+      },
+      {
+        "id": "secondhand-and-resale",
+        "label": "Secondhand & resale",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/secondhand-and-resale",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "clothing-and-repair",
+        "type": "Services",
+        "sourceDomain": "Clothing",
+        "sourceGroup": "Pre-loved & repair"
+      },
+      {
+        "id": "repair-and-tailoring",
+        "label": "Repair & tailoring",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/repair-and-tailoring",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "clothing-and-repair",
+        "type": "Services",
+        "sourceDomain": "Clothing",
+        "sourceGroup": "Pre-loved & repair"
+      },
+      {
+        "id": "diapers-and-nappies",
+        "label": "Diapers & nappies",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/diapers-and-nappies",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "children-and-pets",
+        "type": "Products",
+        "sourceDomain": "Kids & family",
+        "sourceGroup": "Baby"
+      },
+      {
+        "id": "baby-food-and-formula",
+        "label": "Baby food & formula",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/baby-food-and-formula",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "children-and-pets",
+        "type": "Products",
+        "sourceDomain": "Kids & family",
+        "sourceGroup": "Baby"
+      },
+      {
+        "id": "baby-wipes",
+        "label": "Baby wipes",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/baby-wipes",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "children-and-pets",
+        "type": "Products",
+        "sourceDomain": "Kids & family",
+        "sourceGroup": "Baby"
+      },
+      {
+        "id": "car-seats",
+        "label": "Car seats",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/car-seats",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "children-and-pets",
+        "type": "Products",
+        "sourceDomain": "Kids & family",
+        "sourceGroup": "Baby"
+      },
+      {
+        "id": "strollers-and-pushchairs",
+        "label": "Strollers & pushchairs",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/strollers-and-pushchairs",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "children-and-pets",
+        "type": "Products",
+        "sourceDomain": "Kids & family",
+        "sourceGroup": "Baby"
+      },
+      {
+        "id": "toys",
+        "label": "Toys",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/toys",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "children-and-pets",
+        "type": "Products",
+        "sourceDomain": "Kids & family",
+        "sourceGroup": "Children"
+      },
+      {
+        "id": "kids-clothing",
+        "label": "Kids' clothing",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/kids-clothing",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "children-and-pets",
+        "type": "Products",
+        "sourceDomain": "Kids & family",
+        "sourceGroup": "Children"
+      },
+      {
+        "id": "childcare",
+        "label": "Childcare",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/childcare",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "children-and-pets",
+        "type": "Services",
+        "sourceDomain": "Kids & family",
+        "sourceGroup": "Care"
+      },
+      {
+        "id": "dog-food",
+        "label": "Dog food",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/dog-food",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "children-and-pets",
+        "type": "Products",
+        "sourceDomain": "Pets",
+        "sourceGroup": "Feed"
+      },
+      {
+        "id": "cat-food",
+        "label": "Cat food",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/cat-food",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "children-and-pets",
+        "type": "Products",
+        "sourceDomain": "Pets",
+        "sourceGroup": "Feed"
+      },
+      {
+        "id": "pet-supplies",
+        "label": "Pet supplies",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/pet-supplies",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "children-and-pets",
+        "type": "Products",
+        "sourceDomain": "Pets",
+        "sourceGroup": "Care"
+      },
+      {
+        "id": "flea-and-worming",
+        "label": "Flea & worming",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/flea-and-worming",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "children-and-pets",
+        "type": "Products",
+        "sourceDomain": "Pets",
+        "sourceGroup": "Care"
+      },
+      {
+        "id": "pet-insurance",
+        "label": "Pet insurance",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/pet-insurance",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "children-and-pets",
+        "type": "Services",
+        "sourceDomain": "Pets",
+        "sourceGroup": "Care"
+      },
+      {
+        "id": "vet-services",
+        "label": "Vet services",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/vet-services",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "children-and-pets",
+        "type": "Services",
+        "sourceDomain": "Pets",
+        "sourceGroup": "Care"
+      },
+      {
+        "id": "adoption-and-rescue",
+        "label": "Adoption & rescue",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/adoption-and-rescue",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "children-and-pets",
+        "type": "Initiatives",
+        "sourceDomain": "Pets",
+        "sourceGroup": "Adopt"
+      },
+      {
+        "id": "cleaning-products",
+        "label": "Cleaning products",
+        "state": "live",
+        "route": "#decide/cleaning-products",
+        "need": "keep-a-home",
+        "category": "cleaning-and-kitchen",
+        "subcategory": "cleaning-and-household-supplies",
+        "type": "Products",
+        "sourceDomain": "Home",
+        "sourceGroup": "Clean & care",
+        "cid": "cleaning-products"
+      },
+      {
+        "id": "laundry",
+        "label": "Laundry",
+        "state": "live",
+        "route": "#decide/laundry",
+        "need": "keep-a-home",
+        "category": "cleaning-and-kitchen",
+        "subcategory": "cleaning-and-household-supplies",
+        "type": "Products",
+        "sourceDomain": "Home",
+        "sourceGroup": "Clean & care",
+        "cid": "laundry"
+      },
+      {
+        "id": "paper-goods",
+        "label": "Paper goods",
+        "state": "live",
+        "route": "#decide/paper-goods",
+        "need": "keep-a-home",
+        "category": "cleaning-and-kitchen",
+        "subcategory": "cleaning-and-household-supplies",
+        "type": "Products",
+        "sourceDomain": "Home",
+        "sourceGroup": "Clean & care",
+        "cid": "paper-goods"
+      },
+      {
+        "id": "dish-soap",
+        "label": "Dish soap",
+        "state": "live",
+        "route": "#decide/dish-soap",
+        "need": "keep-a-home",
+        "category": "cleaning-and-kitchen",
+        "subcategory": "cleaning-and-household-supplies",
+        "type": "Products",
+        "sourceDomain": "Home",
+        "sourceGroup": "Clean & care",
+        "cid": "dish-soap"
+      },
+      {
+        "id": "cookware-and-pans",
+        "label": "Cookware & pans",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/cookware-and-pans",
+        "need": "keep-a-home",
+        "category": "cleaning-and-kitchen",
+        "subcategory": "kitchen-and-water",
+        "type": "Products",
+        "sourceDomain": "Home",
+        "sourceGroup": "Kitchen"
+      },
+      {
+        "id": "food-storage",
+        "label": "Food storage",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/food-storage",
+        "need": "keep-a-home",
+        "category": "cleaning-and-kitchen",
+        "subcategory": "kitchen-and-water",
+        "type": "Products",
+        "sourceDomain": "Home",
+        "sourceGroup": "Kitchen"
+      },
+      {
+        "id": "water-filters",
+        "label": "Water filters",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/water-filters",
+        "need": "keep-a-home",
+        "category": "cleaning-and-kitchen",
+        "subcategory": "kitchen-and-water",
+        "type": "Products",
+        "sourceDomain": "Home",
+        "sourceGroup": "Kitchen"
+      },
+      {
+        "id": "water-suppliers",
+        "label": "Water suppliers",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/water-suppliers",
+        "need": "keep-a-home",
+        "category": "cleaning-and-kitchen",
+        "subcategory": "kitchen-and-water",
+        "type": "Services",
+        "sourceDomain": "Energy & connectivity",
+        "sourceGroup": "Water"
+      },
+      {
+        "id": "furniture",
+        "label": "Furniture",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/furniture",
+        "need": "keep-a-home",
+        "category": "home-energy-and-outdoors",
+        "subcategory": "furniture-and-appliances",
+        "type": "Products",
+        "sourceDomain": "Home",
+        "sourceGroup": "Furnish"
+      },
+      {
+        "id": "mattresses",
+        "label": "Mattresses",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/mattresses",
+        "need": "keep-a-home",
+        "category": "home-energy-and-outdoors",
+        "subcategory": "furniture-and-appliances",
+        "type": "Products",
+        "sourceDomain": "Home",
+        "sourceGroup": "Furnish"
+      },
+      {
+        "id": "bedding-and-linens",
+        "label": "Bedding & linens",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/bedding-and-linens",
+        "need": "keep-a-home",
+        "category": "home-energy-and-outdoors",
+        "subcategory": "furniture-and-appliances",
+        "type": "Products",
+        "sourceDomain": "Home",
+        "sourceGroup": "Furnish"
+      },
+      {
+        "id": "lighting",
+        "label": "Lighting",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/lighting",
+        "need": "keep-a-home",
+        "category": "home-energy-and-outdoors",
+        "subcategory": "furniture-and-appliances",
+        "type": "Products",
+        "sourceDomain": "Home",
+        "sourceGroup": "Furnish"
+      },
+      {
+        "id": "major-appliances",
+        "label": "Major appliances",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/major-appliances",
+        "need": "keep-a-home",
+        "category": "home-energy-and-outdoors",
+        "subcategory": "furniture-and-appliances",
+        "type": "Products",
+        "sourceDomain": "Home",
+        "sourceGroup": "Appliances"
+      },
+      {
+        "id": "vacuum-cleaners",
+        "label": "Vacuum cleaners",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/vacuum-cleaners",
+        "need": "keep-a-home",
+        "category": "home-energy-and-outdoors",
+        "subcategory": "furniture-and-appliances",
+        "type": "Products",
+        "sourceDomain": "Home",
+        "sourceGroup": "Appliances"
+      },
+      {
+        "id": "smart-home",
+        "label": "Smart home",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/smart-home",
+        "need": "keep-a-home",
+        "category": "home-energy-and-outdoors",
+        "subcategory": "furniture-and-appliances",
+        "type": "Products",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Devices"
+      },
+      {
+        "id": "tools-and-diy",
+        "label": "Tools & DIY",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/tools-and-diy",
+        "need": "keep-a-home",
+        "category": "home-energy-and-outdoors",
+        "subcategory": "energy-and-repairs",
+        "type": "Products",
+        "sourceDomain": "Home",
+        "sourceGroup": "Improve & maintain"
+      },
+      {
+        "id": "electricity-and-green-tariffs",
+        "label": "Electricity & green tariffs",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/electricity-and-green-tariffs",
+        "need": "keep-a-home",
+        "category": "home-energy-and-outdoors",
+        "subcategory": "energy-and-repairs",
+        "type": "Services",
+        "sourceDomain": "Energy & connectivity",
+        "sourceGroup": "Home energy"
+      },
+      {
+        "id": "gas-suppliers",
+        "label": "Gas suppliers",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/gas-suppliers",
+        "need": "keep-a-home",
+        "category": "home-energy-and-outdoors",
+        "subcategory": "energy-and-repairs",
+        "type": "Services",
+        "sourceDomain": "Energy & connectivity",
+        "sourceGroup": "Home energy"
+      },
+      {
+        "id": "solar-panels",
+        "label": "Solar panels",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/solar-panels",
+        "need": "keep-a-home",
+        "category": "home-energy-and-outdoors",
+        "subcategory": "energy-and-repairs",
+        "type": "Products",
+        "sourceDomain": "Energy & connectivity",
+        "sourceGroup": "Home energy"
+      },
+      {
+        "id": "heat-pumps",
+        "label": "Heat pumps",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/heat-pumps",
+        "need": "keep-a-home",
+        "category": "home-energy-and-outdoors",
+        "subcategory": "energy-and-repairs",
+        "type": "Products",
+        "sourceDomain": "Energy & connectivity",
+        "sourceGroup": "Home energy"
+      },
+      {
+        "id": "smart-thermostats",
+        "label": "Smart thermostats",
+        "state": "live",
+        "route": "#decide/smart-thermostats",
+        "need": "keep-a-home",
+        "category": "home-energy-and-outdoors",
+        "subcategory": "energy-and-repairs",
+        "type": "Products",
+        "sourceDomain": "Energy & connectivity",
+        "sourceGroup": "Home energy",
+        "cid": "smart-thermostats"
+      },
+      {
+        "id": "plants-and-seeds",
+        "label": "Plants & seeds",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/plants-and-seeds",
+        "need": "keep-a-home",
+        "category": "home-energy-and-outdoors",
+        "subcategory": "garden-and-outdoor-home",
+        "type": "Products",
+        "sourceDomain": "Garden & outdoors",
+        "sourceGroup": "Grow"
+      },
+      {
+        "id": "compost-and-soil",
+        "label": "Compost & soil",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/compost-and-soil",
+        "need": "keep-a-home",
+        "category": "home-energy-and-outdoors",
+        "subcategory": "garden-and-outdoor-home",
+        "type": "Products",
+        "sourceDomain": "Garden & outdoors",
+        "sourceGroup": "Grow"
+      },
+      {
+        "id": "garden-tools",
+        "label": "Garden tools",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/garden-tools",
+        "need": "keep-a-home",
+        "category": "home-energy-and-outdoors",
+        "subcategory": "garden-and-outdoor-home",
+        "type": "Products",
+        "sourceDomain": "Garden & outdoors",
+        "sourceGroup": "Grow"
+      },
+      {
+        "id": "garden-furniture",
+        "label": "Garden furniture",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/garden-furniture",
+        "need": "keep-a-home",
+        "category": "home-energy-and-outdoors",
+        "subcategory": "garden-and-outdoor-home",
+        "type": "Products",
+        "sourceDomain": "Garden & outdoors",
+        "sourceGroup": "Outdoor living"
+      },
+      {
+        "id": "digital-services:messaging",
+        "label": "Messaging",
+        "state": "live",
+        "route": "#decide/digital-services/messaging",
+        "need": "connect",
+        "category": "communication",
+        "subcategory": "online-services",
+        "type": "Services",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Digital services",
+        "cid": "digital-services",
+        "facet": "messaging"
+      },
+      {
+        "id": "digital-services:email",
+        "label": "Email",
+        "state": "live",
+        "route": "#decide/digital-services/email",
+        "need": "connect",
+        "category": "communication",
+        "subcategory": "online-services",
+        "type": "Services",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Digital services",
+        "cid": "digital-services",
+        "facet": "email"
+      },
+      {
+        "id": "digital-services:browser",
+        "label": "Browsers",
+        "state": "live",
+        "route": "#decide/digital-services/browser",
+        "need": "connect",
+        "category": "communication",
+        "subcategory": "online-services",
+        "type": "Services",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Digital services",
+        "cid": "digital-services",
+        "facet": "browser"
+      },
+      {
+        "id": "digital-services:search",
+        "label": "Search",
+        "state": "live",
+        "route": "#decide/digital-services/search",
+        "need": "connect",
+        "category": "communication",
+        "subcategory": "online-services",
+        "type": "Services",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Digital services",
+        "cid": "digital-services",
+        "facet": "search"
+      },
+      {
+        "id": "digital-services:social",
+        "label": "Social networks",
+        "state": "live",
+        "route": "#decide/digital-services/social",
+        "need": "connect",
+        "category": "communication",
+        "subcategory": "online-services",
+        "type": "Services",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Digital services",
+        "cid": "digital-services",
+        "facet": "social"
+      },
+      {
+        "id": "digital-services:cloud-storage",
+        "label": "Cloud storage",
+        "state": "live",
+        "route": "#decide/digital-services/cloud%20storage",
+        "need": "connect",
+        "category": "communication",
+        "subcategory": "online-services",
+        "type": "Services",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Digital services",
+        "cid": "digital-services",
+        "facet": "cloud storage"
+      },
+      {
+        "id": "digital-services:notes",
+        "label": "Notes",
+        "state": "live",
+        "route": "#decide/digital-services/notes",
+        "need": "connect",
+        "category": "communication",
+        "subcategory": "online-services",
+        "type": "Services",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Digital services",
+        "cid": "digital-services",
+        "facet": "notes"
+      },
+      {
+        "id": "digital-services:maps",
+        "label": "Maps",
+        "state": "live",
+        "route": "#decide/digital-services/maps",
+        "need": "connect",
+        "category": "communication",
+        "subcategory": "online-services",
+        "type": "Services",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Digital services",
+        "cid": "digital-services",
+        "facet": "maps"
+      },
+      {
+        "id": "digital-services:video-calls",
+        "label": "Video calls",
+        "state": "live",
+        "route": "#decide/digital-services/video%20calls",
+        "need": "connect",
+        "category": "communication",
+        "subcategory": "online-services",
+        "type": "Services",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Digital services",
+        "cid": "digital-services",
+        "facet": "video calls"
+      },
+      {
+        "id": "broadband-internet",
+        "label": "Broadband & internet",
+        "state": "live",
+        "route": "#decide/broadband-internet",
+        "need": "connect",
+        "category": "communication",
+        "subcategory": "internet-and-mobile",
+        "type": "Services",
+        "sourceDomain": "Energy & connectivity",
+        "sourceGroup": "Connect",
+        "cid": "broadband-internet"
+      },
+      {
+        "id": "mobile-carriers",
+        "label": "Mobile carriers",
+        "state": "live",
+        "route": "#decide/mobile-carriers",
+        "need": "connect",
+        "category": "communication",
+        "subcategory": "internet-and-mobile",
+        "type": "Services",
+        "sourceDomain": "Energy & connectivity",
+        "sourceGroup": "Connect",
+        "cid": "mobile-carriers"
+      },
+      {
+        "id": "phones",
+        "label": "Phones",
+        "state": "live",
+        "route": "#decide/phones",
+        "need": "connect",
+        "category": "devices",
+        "subcategory": "phones-and-computers",
+        "type": "Products",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Devices",
+        "cid": "phones"
+      },
+      {
+        "id": "laptops",
+        "label": "Laptops",
+        "state": "live",
+        "route": "#decide/laptops",
+        "need": "connect",
+        "category": "devices",
+        "subcategory": "phones-and-computers",
+        "type": "Products",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Devices",
+        "cid": "laptops"
+      },
+      {
+        "id": "tablets",
+        "label": "Tablets",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/tablets",
+        "need": "connect",
+        "category": "devices",
+        "subcategory": "phones-and-computers",
+        "type": "Products",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Devices"
+      },
+      {
+        "id": "smartwatches-and-wearables",
+        "label": "Smartwatches & wearables",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/smartwatches-and-wearables",
+        "need": "connect",
+        "category": "devices",
+        "subcategory": "personal-and-media-devices",
+        "type": "Products",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Devices"
+      },
+      {
+        "id": "headphones-and-earbuds",
+        "label": "Headphones & earbuds",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/headphones-and-earbuds",
+        "need": "connect",
+        "category": "devices",
+        "subcategory": "personal-and-media-devices",
+        "type": "Products",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Devices"
+      },
+      {
+        "id": "tvs",
+        "label": "TVs",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/tvs",
+        "need": "connect",
+        "category": "devices",
+        "subcategory": "personal-and-media-devices",
+        "type": "Products",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Devices"
+      },
+      {
+        "id": "game-consoles",
+        "label": "Game consoles",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/game-consoles",
+        "need": "connect",
+        "category": "devices",
+        "subcategory": "personal-and-media-devices",
+        "type": "Products",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Devices"
+      },
+      {
+        "id": "cameras",
+        "label": "Cameras",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/cameras",
+        "need": "connect",
+        "category": "devices",
+        "subcategory": "personal-and-media-devices",
+        "type": "Products",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Devices"
+      },
+      {
+        "id": "shoes",
+        "label": "Shoes",
+        "state": "live",
+        "route": "#decide/shoes",
+        "need": "move",
+        "category": "getting-around",
+        "subcategory": "footwear-and-bags",
+        "type": "Products",
+        "sourceDomain": "Clothing",
+        "sourceGroup": "Footwear",
+        "cid": "shoes"
+      },
+      {
+        "id": "activewear",
+        "label": "Activewear",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/activewear",
+        "need": "move",
+        "category": "getting-around",
+        "subcategory": "footwear-and-bags",
+        "type": "Products",
+        "sourceDomain": "Clothing",
+        "sourceGroup": "Wear"
+      },
+      {
+        "id": "bags-and-backpacks",
+        "label": "Bags & backpacks",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/bags-and-backpacks",
+        "need": "move",
+        "category": "getting-around",
+        "subcategory": "footwear-and-bags",
+        "type": "Products",
+        "sourceDomain": "Clothing",
+        "sourceGroup": "Accessories"
+      },
+      {
+        "id": "cars",
+        "label": "Cars",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/cars",
+        "need": "move",
+        "category": "getting-around",
+        "subcategory": "cars-bikes-and-transit",
+        "type": "Products",
+        "sourceDomain": "Transport & mobility",
+        "sourceGroup": "Cars"
+      },
+      {
+        "id": "electric-vehicles",
+        "label": "Electric vehicles",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/electric-vehicles",
+        "need": "move",
+        "category": "getting-around",
+        "subcategory": "cars-bikes-and-transit",
+        "type": "Products",
+        "sourceDomain": "Transport & mobility",
+        "sourceGroup": "Cars"
+      },
+      {
+        "id": "used-cars",
+        "label": "Used cars",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/used-cars",
+        "need": "move",
+        "category": "getting-around",
+        "subcategory": "cars-bikes-and-transit",
+        "type": "Products",
+        "sourceDomain": "Transport & mobility",
+        "sourceGroup": "Cars"
+      },
+      {
+        "id": "tyres",
+        "label": "Tyres",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/tyres",
+        "need": "move",
+        "category": "getting-around",
+        "subcategory": "cars-bikes-and-transit",
+        "type": "Products",
+        "sourceDomain": "Transport & mobility",
+        "sourceGroup": "Cars"
+      },
+      {
+        "id": "bicycles",
+        "label": "Bicycles",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/bicycles",
+        "need": "move",
+        "category": "getting-around",
+        "subcategory": "cars-bikes-and-transit",
+        "type": "Products",
+        "sourceDomain": "Transport & mobility",
+        "sourceGroup": "Bikes & micromobility"
+      },
+      {
+        "id": "e-bikes",
+        "label": "E-bikes",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/e-bikes",
+        "need": "move",
+        "category": "getting-around",
+        "subcategory": "cars-bikes-and-transit",
+        "type": "Products",
+        "sourceDomain": "Transport & mobility",
+        "sourceGroup": "Bikes & micromobility"
+      },
+      {
+        "id": "ride-hailing",
+        "label": "Ride-hailing",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/ride-hailing",
+        "need": "move",
+        "category": "getting-around",
+        "subcategory": "cars-bikes-and-transit",
+        "type": "Services",
+        "sourceDomain": "Transport & mobility",
+        "sourceGroup": "Get around"
+      },
+      {
+        "id": "public-transit",
+        "label": "Public transit",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/public-transit",
+        "need": "move",
+        "category": "getting-around",
+        "subcategory": "cars-bikes-and-transit",
+        "type": "Services",
+        "sourceDomain": "Transport & mobility",
+        "sourceGroup": "Get around"
+      },
+      {
+        "id": "airlines",
+        "label": "Airlines",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/airlines",
+        "need": "move",
+        "category": "trips-and-outdoors",
+        "subcategory": "travel-and-stays",
+        "type": "Services",
+        "sourceDomain": "Travel & leisure",
+        "sourceGroup": "Get there"
+      },
+      {
+        "id": "hotels",
+        "label": "Hotels",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/hotels",
+        "need": "move",
+        "category": "trips-and-outdoors",
+        "subcategory": "travel-and-stays",
+        "type": "Services",
+        "sourceDomain": "Travel & leisure",
+        "sourceGroup": "Stay"
+      },
+      {
+        "id": "vacation-rentals",
+        "label": "Vacation rentals",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/vacation-rentals",
+        "need": "move",
+        "category": "trips-and-outdoors",
+        "subcategory": "travel-and-stays",
+        "type": "Services",
+        "sourceDomain": "Travel & leisure",
+        "sourceGroup": "Stay"
+      },
+      {
+        "id": "booking-platforms",
+        "label": "Booking platforms",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/booking-platforms",
+        "need": "move",
+        "category": "trips-and-outdoors",
+        "subcategory": "travel-and-stays",
+        "type": "Services",
+        "sourceDomain": "Travel & leisure",
+        "sourceGroup": "Stay"
+      },
+      {
+        "id": "tours-and-activities",
+        "label": "Tours & activities",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/tours-and-activities",
+        "need": "move",
+        "category": "trips-and-outdoors",
+        "subcategory": "travel-and-stays",
+        "type": "Services",
+        "sourceDomain": "Travel & leisure",
+        "sourceGroup": "Experience"
+      },
+      {
+        "id": "cruises",
+        "label": "Cruises",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/cruises",
+        "need": "move",
+        "category": "trips-and-outdoors",
+        "subcategory": "travel-and-stays",
+        "type": "Services",
+        "sourceDomain": "Travel & leisure",
+        "sourceGroup": "Experience"
+      },
+      {
+        "id": "luggage",
+        "label": "Luggage",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/luggage",
+        "need": "move",
+        "category": "trips-and-outdoors",
+        "subcategory": "outdoor-and-travel-gear",
+        "type": "Products",
+        "sourceDomain": "Travel & leisure",
+        "sourceGroup": "Gear"
+      },
+      {
+        "id": "camping-gear",
+        "label": "Camping gear",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/camping-gear",
+        "need": "move",
+        "category": "trips-and-outdoors",
+        "subcategory": "outdoor-and-travel-gear",
+        "type": "Products",
+        "sourceDomain": "Garden & outdoors",
+        "sourceGroup": "Adventure"
+      },
+      {
+        "id": "hiking-equipment",
+        "label": "Hiking equipment",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/hiking-equipment",
+        "need": "move",
+        "category": "trips-and-outdoors",
+        "subcategory": "outdoor-and-travel-gear",
+        "type": "Products",
+        "sourceDomain": "Garden & outdoors",
+        "sourceGroup": "Adventure"
+      },
+      {
+        "id": "ai-assistants",
+        "label": "AI assistants",
+        "state": "live",
+        "route": "#decide/ai-assistants",
+        "need": "learn",
+        "category": "learning-and-making",
+        "subcategory": "courses-resources-and-ai",
+        "type": "Services",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "AI & assistants",
+        "cid": "ai-assistants"
+      },
+      {
+        "id": "learning-resources",
+        "label": "Learning resources",
+        "state": "live",
+        "route": "#decide/learning-resources",
+        "need": "learn",
+        "category": "learning-and-making",
+        "subcategory": "courses-resources-and-ai",
+        "type": "Media",
+        "sourceDomain": "Learning & media",
+        "sourceGroup": "Learn",
+        "cid": "learning-resources"
+      },
+      {
+        "id": "online-courses",
+        "label": "Online courses",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/online-courses",
+        "need": "learn",
+        "category": "learning-and-making",
+        "subcategory": "courses-resources-and-ai",
+        "type": "Services",
+        "sourceDomain": "Learning & media",
+        "sourceGroup": "Learn"
+      },
+      {
+        "id": "language-learning",
+        "label": "Language learning",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/language-learning",
+        "need": "learn",
+        "category": "learning-and-making",
+        "subcategory": "courses-resources-and-ai",
+        "type": "Services",
+        "sourceDomain": "Learning & media",
+        "sourceGroup": "Learn"
+      },
+      {
+        "id": "e-readers",
+        "label": "E-readers",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/e-readers",
+        "need": "learn",
+        "category": "learning-and-making",
+        "subcategory": "books-and-school",
+        "type": "Products",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Devices"
+      },
+      {
+        "id": "books",
+        "label": "Books & reading",
+        "state": "live",
+        "route": "#decide/books",
+        "need": "learn",
+        "category": "learning-and-making",
+        "subcategory": "books-and-school",
+        "type": "Services",
+        "sourceDomain": "Learning & media",
+        "sourceGroup": "Read",
+        "cid": "books"
+      },
+      {
+        "id": "school-supplies",
+        "label": "School supplies",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/school-supplies",
+        "need": "learn",
+        "category": "learning-and-making",
+        "subcategory": "books-and-school",
+        "type": "Products",
+        "sourceDomain": "Kids & family",
+        "sourceGroup": "Children"
+      },
+      {
+        "id": "news-sources",
+        "label": "News sources",
+        "state": "live",
+        "route": "#decide/news-sources",
+        "need": "learn",
+        "category": "news-and-culture",
+        "subcategory": "news-and-reference",
+        "type": "Media",
+        "sourceDomain": "Learning & media",
+        "sourceGroup": "Stay informed",
+        "cid": "news-sources"
+      },
+      {
+        "id": "music-streaming",
+        "label": "Music streaming",
+        "state": "live",
+        "route": "#decide/music-streaming",
+        "need": "learn",
+        "category": "news-and-culture",
+        "subcategory": "music-video-and-podcasts",
+        "type": "Services",
+        "sourceDomain": "Learning & media",
+        "sourceGroup": "Listen",
+        "cid": "music-streaming"
+      },
+      {
+        "id": "podcasts",
+        "label": "Podcasts",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/podcasts",
+        "need": "learn",
+        "category": "news-and-culture",
+        "subcategory": "music-video-and-podcasts",
+        "type": "Media",
+        "sourceDomain": "Learning & media"
+      },
+      {
+        "id": "video-streaming",
+        "label": "Video streaming",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/video-streaming",
+        "need": "learn",
+        "category": "news-and-culture",
+        "subcategory": "music-video-and-podcasts",
+        "type": "Services",
+        "sourceDomain": "Learning & media",
+        "sourceGroup": "Watch"
+      },
+      {
+        "id": "audiobooks",
+        "label": "Audiobooks",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/audiobooks",
+        "need": "learn",
+        "category": "news-and-culture",
+        "subcategory": "music-video-and-podcasts",
+        "type": "Services",
+        "sourceDomain": "Learning & media",
+        "sourceGroup": "Listen"
+      },
+      {
+        "id": "causes-to-support",
+        "label": "Causes to support",
+        "state": "live",
+        "route": "#decide/causes-to-support",
+        "need": "give-and-act",
+        "category": "giving-and-helping",
+        "subcategory": "giving",
+        "type": "Initiatives",
+        "sourceDomain": "Giving & causes",
+        "sourceGroup": "Give money",
+        "cid": "causes-to-support"
+      },
+      {
+        "id": "charities-by-cause",
+        "label": "Charities by cause",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/charities-by-cause",
+        "need": "give-and-act",
+        "category": "giving-and-helping",
+        "subcategory": "giving",
+        "type": "Initiatives",
+        "sourceDomain": "Giving & causes",
+        "sourceGroup": "Give money"
+      },
+      {
+        "id": "effective-giving",
+        "label": "Effective giving",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/effective-giving",
+        "need": "give-and-act",
+        "category": "giving-and-helping",
+        "subcategory": "giving",
+        "type": "Initiatives",
+        "sourceDomain": "Giving & causes",
+        "sourceGroup": "Give money"
+      },
+      {
+        "id": "mutual-aid-funds",
+        "label": "Mutual aid funds",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/mutual-aid-funds",
+        "need": "give-and-act",
+        "category": "giving-and-helping",
+        "subcategory": "giving",
+        "type": "Initiatives",
+        "sourceDomain": "Giving & causes",
+        "sourceGroup": "Give money"
+      },
+      {
+        "id": "ethical-gifts",
+        "label": "Ethical gifts",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/ethical-gifts",
+        "need": "give-and-act",
+        "category": "giving-and-helping",
+        "subcategory": "giving",
+        "type": "Products",
+        "sourceDomain": "Giving & causes",
+        "sourceGroup": "Give money"
+      },
+      {
+        "id": "volunteering",
+        "label": "Volunteering",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/volunteering",
+        "need": "give-and-act",
+        "category": "giving-and-helping",
+        "subcategory": "volunteering-and-campaigns",
+        "type": "Initiatives",
+        "sourceDomain": "Giving & causes",
+        "sourceGroup": "Give time & voice"
+      },
+      {
+        "id": "petitions-and-campaigns",
+        "label": "Petitions & campaigns",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/petitions-and-campaigns",
+        "need": "give-and-act",
+        "category": "giving-and-helping",
+        "subcategory": "volunteering-and-campaigns",
+        "type": "Initiatives",
+        "sourceDomain": "Giving & causes",
+        "sourceGroup": "Give time & voice"
+      },
+      {
+        "id": "mission-businesses",
+        "label": "Mission-driven businesses",
+        "state": "live",
+        "route": "#decide/mission-businesses",
+        "need": "give-and-act",
+        "category": "organizations-and-shared-action",
+        "subcategory": "organizations-and-makers",
+        "type": "Organizations",
+        "sourceDomain": "Companies & makers",
+        "sourceGroup": "By how they're run",
+        "cid": "mission-businesses"
+      },
+      {
+        "id": "b-corporations",
+        "label": "B Corporations",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/b-corporations",
+        "need": "give-and-act",
+        "category": "organizations-and-shared-action",
+        "subcategory": "organizations-and-makers",
+        "type": "Organizations",
+        "sourceDomain": "Companies & makers",
+        "sourceGroup": "By how they're run"
+      },
+      {
+        "id": "co-operatives",
+        "label": "Co-operatives",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/co-operatives",
+        "need": "give-and-act",
+        "category": "organizations-and-shared-action",
+        "subcategory": "organizations-and-makers",
+        "type": "Organizations",
+        "sourceDomain": "Companies & makers",
+        "sourceGroup": "By how they're run"
+      },
+      {
+        "id": "worker-owned",
+        "label": "Worker-owned",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/worker-owned",
+        "need": "give-and-act",
+        "category": "organizations-and-shared-action",
+        "subcategory": "organizations-and-makers",
+        "type": "Organizations",
+        "sourceDomain": "Companies & makers",
+        "sourceGroup": "By how they're run"
+      },
+      {
+        "id": "local-independents",
+        "label": "Local independents",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/local-independents",
+        "need": "give-and-act",
+        "category": "organizations-and-shared-action",
+        "subcategory": "organizations-and-makers",
+        "type": "Organizations",
+        "sourceDomain": "Companies & makers",
+        "sourceGroup": "By how they're run"
+      },
+      {
+        "id": "banking",
+        "label": "Banking",
+        "state": "live",
+        "route": "#decide/banking",
+        "need": "protect",
+        "category": "money",
+        "subcategory": "everyday-money",
+        "type": "Services",
+        "sourceDomain": "Money",
+        "sourceGroup": "Bank & spend",
+        "cid": "banking"
+      },
+      {
+        "id": "payments",
+        "label": "Payments",
+        "state": "live",
+        "route": "#decide/payments",
+        "need": "protect",
+        "category": "money",
+        "subcategory": "everyday-money",
+        "type": "Services",
+        "sourceDomain": "Money",
+        "sourceGroup": "Bank & spend",
+        "cid": "payments"
+      },
+      {
+        "id": "credit-cards",
+        "label": "Credit cards",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/credit-cards",
+        "need": "protect",
+        "category": "money",
+        "subcategory": "everyday-money",
+        "type": "Services",
+        "sourceDomain": "Money",
+        "sourceGroup": "Bank & spend"
+      },
+      {
+        "id": "money-transfer-and-remittance",
+        "label": "Money transfer & remittance",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/money-transfer-and-remittance",
+        "need": "protect",
+        "category": "money",
+        "subcategory": "everyday-money",
+        "type": "Services",
+        "sourceDomain": "Money",
+        "sourceGroup": "Bank & spend"
+      },
+      {
+        "id": "investing",
+        "label": "Pensions & investing",
+        "state": "live",
+        "route": "#decide/investing",
+        "need": "protect",
+        "category": "money",
+        "subcategory": "saving-investing-and-insurance",
+        "type": "Services",
+        "sourceDomain": "Money",
+        "sourceGroup": "Grow & protect",
+        "cid": "investing"
+      },
+      {
+        "id": "pensions",
+        "label": "Pensions",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/pensions",
+        "need": "protect",
+        "category": "money",
+        "subcategory": "saving-investing-and-insurance",
+        "type": "Services",
+        "sourceDomain": "Money",
+        "sourceGroup": "Grow & protect"
+      },
+      {
+        "id": "insurance",
+        "label": "Insurance",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/insurance",
+        "need": "protect",
+        "category": "money",
+        "subcategory": "saving-investing-and-insurance",
+        "type": "Services",
+        "sourceDomain": "Money",
+        "sourceGroup": "Grow & protect"
+      },
+      {
+        "id": "budgeting-apps",
+        "label": "Budgeting apps",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/budgeting-apps",
+        "need": "protect",
+        "category": "money",
+        "subcategory": "saving-investing-and-insurance",
+        "type": "Services",
+        "sourceDomain": "Money",
+        "sourceGroup": "Grow & protect"
+      },
+      {
+        "id": "loans-and-mortgages",
+        "label": "Loans & mortgages",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/loans-and-mortgages",
+        "need": "protect",
+        "category": "money",
+        "subcategory": "saving-investing-and-insurance",
+        "type": "Services",
+        "sourceDomain": "Money",
+        "sourceGroup": "Grow & protect"
+      },
+      {
+        "id": "crypto-exchanges",
+        "label": "Crypto exchanges",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/crypto-exchanges",
+        "need": "protect",
+        "category": "money",
+        "subcategory": "saving-investing-and-insurance",
+        "type": "Services",
+        "sourceDomain": "Money",
+        "sourceGroup": "Grow & protect"
+      },
+      {
+        "id": "password-managers",
+        "label": "Password managers",
+        "state": "live",
+        "route": "#decide/password-managers",
+        "need": "protect",
+        "category": "privacy-and-security",
+        "subcategory": "passwords-and-private-connections",
+        "type": "Services",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Privacy & security",
+        "cid": "password-managers"
+      },
+      {
+        "id": "vpn",
+        "label": "VPNs",
+        "state": "live",
+        "route": "#decide/vpn",
+        "need": "protect",
+        "category": "privacy-and-security",
+        "subcategory": "passwords-and-private-connections",
+        "type": "Services",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Privacy & security",
+        "cid": "vpn"
+      },
+      {
+        "id": "authenticator-2fa-apps",
+        "label": "Authenticator / 2FA apps",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/authenticator-2fa-apps",
+        "need": "protect",
+        "category": "privacy-and-security",
+        "subcategory": "account-security",
+        "type": "Services",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Privacy & security"
+      }
+    ]
+  },
+  "strings": {
+    "locale": "en",
+    "signedVocabulary": {
+      "personalRules": "My rules",
+      "sharedBaseline": "The baseline",
+      "tasks": "Tasks",
+      "file": "Your file",
+      "closeCallPriorities": "Close-call priorities"
+    },
+    "search": {
+      "label": "Search",
+      "placeholder": "Search products, services, companies, guides, or tasks",
+      "submit": "Search",
+      "missTitle": "We could not find this page",
+      "missAction": "Search for something else"
+    },
+    "objectTypes": {
+      "need": "Need",
+      "category": "Category",
+      "subcategory": "Subcategory",
+      "decision": "Decision",
+      "entry": "Entry",
+      "value": "Value",
+      "source": "Source",
+      "company": "Company",
+      "brand": "Brand",
+      "guide": "Guide",
+      "task": "Task",
+      "file": "File",
+      "change": "Change",
+      "record": "Record"
+    },
+    "coverage": {
+      "rich": {
+        "label": "Sources cover this answer",
+        "sentence": "{source} supports the decisive facts in this answer.",
+        "action": "See the sources"
+      },
+      "thin": {
+        "label": "Some evidence is missing",
+        "sentence": "{missing} does not have enough source detail.",
+        "action": "See what is missing"
+      },
+      "lowEvidence": {
+        "label": "Not enough evidence to rank",
+        "sentence": "We cannot rank this reliably because {missing} is missing.",
+        "action": "See the available facts"
+      },
+      "notCovered": {
+        "label": "Not yet covered",
+        "sentence": "{decision} is mapped under {parent}, but we do not have a comparison yet.",
+        "action": "Suggest sources"
+      },
+      "unavailable": {
+        "label": "Could not load this source",
+        "sentence": "The original source could not be opened. Stored citation details were last checked {date}.",
+        "action": "Use the stored citation"
+      }
+    },
+    "fieldStates": {
+      "sourceMissing": "Source not supplied",
+      "sourceMissingAction": "Suggest a source",
+      "ownershipUnknown": "Ownership has not been established.",
+      "explicitlyIndependent": "The source states that no parent company applies.",
+      "noRecentChanges": "No recorded changes affecting this page in the last 90 days.",
+      "noCurrentUse": "No current decision uses this value.",
+      "noGuide": "No guide is published for this choice.",
+      "noFileChoices": "No personal rules or saved choices yet. The baseline still applies.",
+      "noLiveAsks": "No live asks are published. Six templates show the file format."
+    },
+    "evidenceKinds": {
+      "measured": "Measured",
+      "certified": "Certified",
+      "assessed": "Assessed from public evidence"
+    },
+    "appliedValues": {
+      "label": "Why this answer",
+      "templates": {
+        "baselineOnly": "The baseline folded {foldedCount} {choiceNoun}. {answer} ranks first because {decisiveFact}.",
+        "personalRule": "Your rule ‘{rule}’ folded {foldedCount} {choiceNoun}. {answer} ranks first because {decisiveFact}.",
+        "practicalChange": "With {namedPole} given more weight, {answer} moves ahead because {decisiveFact}.",
+        "nothingFolded": "The baseline and My rules folded no {choiceNoun}. {answer} ranks first because {decisiveFact}.",
+        "missingPrice": "Comparable prices are not available here, so price did not affect this answer.",
+        "lowEvidence": "We cannot rank this reliably because {missingFacts} are missing."
+      },
+      "actions": {
+        "showAll": "Show every choice",
+        "changeRules": "Change My rules",
+        "inspectBaseline": "Inspect The baseline"
+      }
+    },
+    "actions": {
+      "open": "Open",
+      "saveChoice": "Save this choice",
+      "saveList": "Save this list",
+      "compare": "Compare two choices",
+      "readSource": "Read source",
+      "openOriginal": "Open original source",
+      "suggestCorrection": "Suggest a correction",
+      "suggestOwnershipCorrection": "Suggest an ownership correction",
+      "history": "History",
+      "whatLinksHere": "What links here",
+      "dataForAgents": "Data for agents",
+      "downloadFile": "Download a copy",
+      "uploadFile": "Upload a file",
+      "exportCopy": "Export a copy",
+      "hostCopy": "Host your own copy",
+      "back": "Back to {title}"
+    },
+    "errors": {
+      "invalidRoute": "This address is not valid.",
+      "unknownPage": "We could not find this page.",
+      "loadFailed": "Part of this page could not load. The available facts and sources are still shown.",
+      "invalidFile": "This file could not be imported. Check {field} and version {version}.",
+      "requiredSource": "Add a source and date for this factual change."
+    }
+  },
+  "pageKinds": [
+    {
+      "id": "entry",
+      "label": "Entry",
+      "purpose": "Decide whether this choice fits the current task, then inspect the facts behind the answer.",
+      "mainAction": "Save this choice",
+      "sections": [
+        {
+          "id": "safety",
+          "heading": "Safety",
+          "when": "applicable"
+        },
+        {
+          "id": "facts",
+          "heading": "What matters here",
+          "when": "required"
+        },
+        {
+          "id": "why",
+          "heading": "Why this answer",
+          "when": "ranked-or-filtered"
+        },
+        {
+          "id": "sources",
+          "heading": "Sources",
+          "when": "required"
+        },
+        {
+          "id": "ownership",
+          "heading": "Ownership",
+          "when": "applicable"
+        },
+        {
+          "id": "other-case",
+          "heading": "The case the other way",
+          "when": "available"
+        },
+        {
+          "id": "analogues",
+          "heading": "Similar across domains",
+          "when": "available"
+        },
+        {
+          "id": "connections",
+          "heading": "Connections",
+          "when": "required"
+        },
+        {
+          "id": "links-here",
+          "heading": "What links here",
+          "when": "required"
+        },
+        {
+          "id": "history",
+          "heading": "History",
+          "when": "required"
+        }
+      ],
+      "stateCopy": {
+        "rich": "The supported facts are available below.",
+        "thin": "Some facts do not have a source or date. They are marked below.",
+        "notCovered": "We do not have a source-backed entry for this choice yet."
+      }
+    },
+    {
+      "id": "category",
+      "label": "Decision",
+      "purpose": "Compare the choices for one bounded decision and keep the facts behind the current answer visible.",
+      "mainAction": "Save this list",
+      "sections": [
+        {
+          "id": "answer",
+          "heading": "Current answer",
+          "when": "required"
+        },
+        {
+          "id": "why",
+          "heading": "Why this answer",
+          "when": "required"
+        },
+        {
+          "id": "controls",
+          "heading": "What can change the answer",
+          "when": "available"
+        },
+        {
+          "id": "choices",
+          "heading": "Compare the choices",
+          "when": "required"
+        },
+        {
+          "id": "folded",
+          "heading": "Folded choices",
+          "when": "applicable"
+        },
+        {
+          "id": "other-case",
+          "heading": "The case the other way",
+          "when": "available"
+        },
+        {
+          "id": "guides",
+          "heading": "Guides and tasks",
+          "when": "available"
+        },
+        {
+          "id": "sources",
+          "heading": "Sources",
+          "when": "required"
+        },
+        {
+          "id": "links-here",
+          "heading": "What links here",
+          "when": "required"
+        },
+        {
+          "id": "history",
+          "heading": "History",
+          "when": "required"
+        }
+      ],
+      "stateCopy": {
+        "rich": "The current data supports a starting answer and comparison.",
+        "thin": "One or more active facts are thin across this comparison.",
+        "notCovered": "{decision} is mapped under {parent}, but we do not have a comparison yet."
+      }
+    },
+    {
+      "id": "value",
+      "label": "Value",
+      "purpose": "Explain what this value means, how it is checked, and where its evidence stops.",
+      "mainAction": "Decide with this value",
+      "sections": [
+        {
+          "id": "meaning",
+          "heading": "What it means",
+          "when": "required"
+        },
+        {
+          "id": "requirements",
+          "heading": "What it requires",
+          "when": "applicable"
+        },
+        {
+          "id": "verification",
+          "heading": "Who checks it",
+          "when": "applicable"
+        },
+        {
+          "id": "method",
+          "heading": "How it is assessed",
+          "when": "applicable"
+        },
+        {
+          "id": "limits",
+          "heading": "Where it stops",
+          "when": "required"
+        },
+        {
+          "id": "instance-use",
+          "heading": "How this site reads it",
+          "when": "required"
+        },
+        {
+          "id": "used-by",
+          "heading": "Where this is used",
+          "when": "required"
+        },
+        {
+          "id": "sources",
+          "heading": "Sources",
+          "when": "required"
+        },
+        {
+          "id": "history",
+          "heading": "History",
+          "when": "required"
+        }
+      ],
+      "stateCopy": {
+        "rich": "A sourced explanation, method, limits, and current uses are available.",
+        "thin": "We have not yet published a sourced explanation of the requirements and limits.",
+        "notCovered": "This value is named, but a sourced explanation has not been published yet."
+      }
+    },
+    {
+      "id": "source",
+      "label": "Source",
+      "purpose": "Show who published this source, when, what it supports here, and where its limits are recorded.",
+      "mainAction": "Open original source",
+      "sections": [
+        {
+          "id": "identity",
+          "heading": "Source details",
+          "when": "required"
+        },
+        {
+          "id": "scope",
+          "heading": "Scope and method",
+          "when": "required"
+        },
+        {
+          "id": "claims",
+          "heading": "Claims supported here",
+          "when": "required"
+        },
+        {
+          "id": "limits",
+          "heading": "Known limits",
+          "when": "available"
+        },
+        {
+          "id": "versions",
+          "heading": "Versions",
+          "when": "available"
+        },
+        {
+          "id": "links-here",
+          "heading": "What links here",
+          "when": "required"
+        },
+        {
+          "id": "history",
+          "heading": "History",
+          "when": "required"
+        }
+      ],
+      "stateCopy": {
+        "rich": "Publisher, date, scope, original link, and supported claims are recorded.",
+        "thin": "The source is recorded, but its method or scope is missing.",
+        "notCovered": "This claim does not have a source page because no source was supplied."
+      }
+    },
+    {
+      "id": "company-brand",
+      "label": "Company or brand",
+      "purpose": "Answer who owns this brand or which brands this company controls, with a source and date.",
+      "mainAction": "Add a rule",
+      "sections": [
+        {
+          "id": "ownership",
+          "heading": "Ownership",
+          "when": "required"
+        },
+        {
+          "id": "brands",
+          "heading": "Brands",
+          "when": "applicable"
+        },
+        {
+          "id": "choices",
+          "heading": "Choices in current comparisons",
+          "when": "available"
+        },
+        {
+          "id": "rule-reach",
+          "heading": "What this rule affects",
+          "when": "applicable"
+        },
+        {
+          "id": "connections",
+          "heading": "Connections",
+          "when": "required"
+        },
+        {
+          "id": "links-here",
+          "heading": "What links here",
+          "when": "required"
+        },
+        {
+          "id": "history",
+          "heading": "History",
+          "when": "required"
+        }
+      ],
+      "stateCopy": {
+        "rich": "A dated source supports the ownership answer and its current comparison reach.",
+        "thin": "Known brand names exist, but none appears in current comparisons.",
+        "notCovered": "Ownership has not been established. Suggest a dated ownership source."
+      }
+    },
+    {
+      "id": "guide",
+      "label": "Guide",
+      "purpose": "Give the longer answer, explain the practical trade-offs, and return to a concrete decision.",
+      "mainAction": "Open the decision",
+      "sections": [
+        {
+          "id": "short-answer",
+          "heading": "The short answer",
+          "when": "required"
+        },
+        {
+          "id": "what-to-compare",
+          "heading": "What to compare",
+          "when": "required"
+        },
+        {
+          "id": "traps",
+          "heading": "Marketing traps",
+          "when": "available"
+        },
+        {
+          "id": "default",
+          "heading": "A reasonable default",
+          "when": "available"
+        },
+        {
+          "id": "sources",
+          "heading": "Sources",
+          "when": "required"
+        },
+        {
+          "id": "related",
+          "heading": "Related decisions and tasks",
+          "when": "available"
+        },
+        {
+          "id": "links-here",
+          "heading": "What links here",
+          "when": "required"
+        },
+        {
+          "id": "history",
+          "heading": "History",
+          "when": "required"
+        }
+      ],
+      "stateCopy": {
+        "rich": "The guide is reviewed, sourced, and linked to a working decision.",
+        "thin": "Useful text is available, but some factual passages do not have complete citations.",
+        "notCovered": "No guide is published for this choice. The decision remains available."
+      }
+    },
+    {
+      "id": "task",
+      "label": "Task",
+      "purpose": "Finish one real job by joining the few decisions it needs and saving a usable result.",
+      "mainAction": "Start with the current answer",
+      "sections": [
+        {
+          "id": "output",
+          "heading": "What you will have",
+          "when": "required"
+        },
+        {
+          "id": "conditions",
+          "heading": "What applies",
+          "when": "required"
+        },
+        {
+          "id": "steps",
+          "heading": "Steps",
+          "when": "required"
+        },
+        {
+          "id": "result",
+          "heading": "Your saved result",
+          "when": "available"
+        },
+        {
+          "id": "sources",
+          "heading": "Sources and limits",
+          "when": "required"
+        },
+        {
+          "id": "related",
+          "heading": "Related guides and decisions",
+          "when": "available"
+        },
+        {
+          "id": "links-here",
+          "heading": "What links here",
+          "when": "required"
+        },
+        {
+          "id": "history",
+          "heading": "History",
+          "when": "required"
+        }
+      ],
+      "stateCopy": {
+        "rich": "Every step resolves and keeps the evidence behind the saved result.",
+        "thin": "One step has thin evidence. The missing field is named in that step.",
+        "notCovered": "Completed steps are kept. {decision} is not covered yet."
+      }
+    },
+    {
+      "id": "file",
+      "label": "Your file",
+      "purpose": "Inspect, change, export, and carry your anonymous rules, priorities, saved choices, and receipts.",
+      "mainAction": "Download a copy",
+      "sections": [
+        {
+          "id": "baseline",
+          "heading": "The baseline",
+          "when": "required"
+        },
+        {
+          "id": "rules",
+          "heading": "My rules",
+          "when": "required"
+        },
+        {
+          "id": "saved",
+          "heading": "Saved choices",
+          "when": "required"
+        },
+        {
+          "id": "priorities",
+          "heading": "Close-call priorities",
+          "when": "optional"
+        },
+        {
+          "id": "evidence",
+          "heading": "Evidence bundles",
+          "when": "available"
+        },
+        {
+          "id": "transfer",
+          "heading": "What carried",
+          "when": "available"
+        },
+        {
+          "id": "not-carried",
+          "heading": "What did not carry",
+          "when": "available"
+        },
+        {
+          "id": "versions",
+          "heading": "Compare versions",
+          "when": "available"
+        },
+        {
+          "id": "history",
+          "heading": "History",
+          "when": "required"
+        }
+      ],
+      "stateCopy": {
+        "rich": "The contents, version, receipts, and transfer result are readable.",
+        "thin": "This file is valid, but some fields are old or unsupported. The original remains unchanged.",
+        "notCovered": "This field is not supported here. It remains unchanged in the source file."
+      }
+    },
+    {
+      "id": "changes",
+      "label": "Changes",
+      "purpose": "Show material changes to evidence, ownership, coverage, files, or published rules.",
+      "mainAction": "Filter changes",
+      "sections": [
+        {
+          "id": "scope",
+          "heading": "Scope and dates",
+          "when": "required"
+        },
+        {
+          "id": "events",
+          "heading": "Changes",
+          "when": "required"
+        },
+        {
+          "id": "filters",
+          "heading": "Filter changes",
+          "when": "available"
+        },
+        {
+          "id": "related",
+          "heading": "Related pages",
+          "when": "available"
+        },
+        {
+          "id": "links-here",
+          "heading": "What links here",
+          "when": "required"
+        },
+        {
+          "id": "policy",
+          "heading": "Correction and history policy",
+          "when": "required"
+        }
+      ],
+      "stateCopy": {
+        "rich": "The affected object, date, change kind, and source or commit are recorded.",
+        "thin": "The affected object and commit are recorded, but no field-level difference is available.",
+        "notCovered": "No history is recorded for this object yet. No creation event is inferred."
+      }
+    },
+    {
+      "id": "commons-governance",
+      "label": "Shared record",
+      "purpose": "Publish a stable proposal, format, ask, or offer with its status, sources, and history clear.",
+      "mainAction": "Read this record",
+      "sections": [
+        {
+          "id": "record",
+          "heading": "The record",
+          "when": "required"
+        },
+        {
+          "id": "status",
+          "heading": "Status",
+          "when": "required"
+        },
+        {
+          "id": "rationale",
+          "heading": "Rationale and scope",
+          "when": "required"
+        },
+        {
+          "id": "sources",
+          "heading": "Sources and limits",
+          "when": "required"
+        },
+        {
+          "id": "responses",
+          "heading": "Recorded responses",
+          "when": "available"
+        },
+        {
+          "id": "related",
+          "heading": "Related pages",
+          "when": "available"
+        },
+        {
+          "id": "history",
+          "heading": "History",
+          "when": "required"
+        },
+        {
+          "id": "links-here",
+          "heading": "What links here",
+          "when": "required"
+        }
+      ],
+      "stateCopy": {
+        "rich": "Stable text, sources, dates, status, responses, and history are recorded.",
+        "thin": "This record is missing a required source, scope, expiry, or safety limit.",
+        "notCovered": "No organization or live activity is inferred from this template."
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "pageKind": "entry",
+      "cases": [
+        {
+          "id": "entry-rich-local-open-ai",
+          "state": "rich",
+          "title": "Local and open AI models",
+          "route": "#item/ai-assistants/local-open",
+          "sourceRefs": [
+            {
+              "path": "app/data/ai-assistants.json",
+              "collection": "products",
+              "match": {
+                "field": "code",
+                "equals": "local-open"
+              }
+            }
+          ],
+          "expected": {
+            "coverage": "Sources cover this answer",
+            "action": "Save this choice",
+            "path": [
+              "Money & privacy",
+              "Digital life",
+              "AI assistants",
+              "Local and open AI models"
+            ],
+            "mustShow": [
+              "Local / open models (Ollama, llama.cpp)",
+              "Privacy",
+              "Sources"
+            ],
+            "mustNotClaim": [
+              "Best for everyone"
+            ]
+          },
+          "requirements": [
+            "R-IA-03",
+            "R-TRUTH-02",
+            "R-COMP-04"
+          ]
+        },
+        {
+          "id": "entry-thin-triodos",
+          "state": "thin",
+          "title": "Triodos Bank",
+          "route": "#item/banking/triodos",
+          "sourceRefs": [
+            {
+              "path": "content/lenses/banking.json",
+              "collection": "products",
+              "match": {
+                "field": "code",
+                "equals": "triodos"
+              }
+            }
+          ],
+          "expected": {
+            "coverage": "Some evidence is missing",
+            "action": "Save this choice",
+            "path": [
+              "Money & privacy",
+              "Money",
+              "Everyday money",
+              "Banking",
+              "Triodos Bank"
+            ],
+            "mustShow": [
+              "Fees: source not supplied",
+              "Easy to use: source not supplied",
+              "Show every choice"
+            ],
+            "mustNotClaim": [
+              "All five facts are sourced"
+            ]
+          },
+          "requirements": [
+            "R-WORD-06",
+            "R-TRUTH-03",
+            "R-VAL-08"
+          ]
+        },
+        {
+          "id": "entry-gap-furniture",
+          "state": "not-yet-covered",
+          "title": "Furniture entry",
+          "route": "#not-yet-covered/furniture",
+          "sourceRefs": [
+            {
+              "path": "content/ontology.json",
+              "contains": "\"label\": \"Furniture\""
+            }
+          ],
+          "expected": {
+            "coverage": "Not yet covered",
+            "action": "Suggest sources",
+            "path": [
+              "Home",
+              "Home setup",
+              "Furniture"
+            ],
+            "mustShow": [
+              "Furniture",
+              "We do not have a comparison yet",
+              "Suggest sources"
+            ],
+            "mustNotClaim": [
+              "Furniture entries are available"
+            ]
+          },
+          "requirements": [
+            "R-IA-10",
+            "R-TRUTH-01",
+            "R-TRUTH-08"
+          ]
+        }
+      ]
+    },
+    {
+      "pageKind": "category",
+      "cases": [
+        {
+          "id": "category-rich-banking",
+          "state": "rich",
+          "title": "Pick a bank",
+          "route": "#decide/banking",
+          "sourceRefs": [
+            {
+              "path": "app/data/banking.json",
+              "collection": "products",
+              "match": {
+                "field": "code",
+                "equals": "triodos"
+              }
+            },
+            {
+              "path": "content/decisions.json",
+              "collection": "contracts",
+              "match": {
+                "field": "category",
+                "equals": "banking"
+              }
+            }
+          ],
+          "expected": {
+            "coverage": "Sources cover this answer",
+            "action": "Save this list",
+            "path": [
+              "Money & privacy",
+              "Money",
+              "Everyday money",
+              "Banking"
+            ],
+            "mustShow": [
+              "Pick a bank",
+              "Lower fees",
+              "Less fossil financing"
+            ],
+            "mustNotClaim": [
+              "Triodos is the best bank"
+            ]
+          },
+          "requirements": [
+            "R-VAL-04",
+            "R-VAL-07",
+            "R-TRUTH-07"
+          ]
+        },
+        {
+          "id": "category-thin-ai-price",
+          "state": "thin",
+          "title": "AI assistants without comparable prices",
+          "route": "#decide/ai-assistants",
+          "sourceRefs": [
+            {
+              "path": "content/decisions.json",
+              "collection": "contracts",
+              "match": {
+                "field": "category",
+                "equals": "ai-assistants"
+              }
+            }
+          ],
+          "expected": {
+            "coverage": "Some evidence is missing",
+            "action": "Save this list",
+            "path": [
+              "Money & privacy",
+              "Digital life",
+              "AI assistants"
+            ],
+            "mustShow": [
+              "AI assistants",
+              "Comparable prices are not available here",
+              "Price did not affect this answer"
+            ],
+            "mustNotClaim": [
+              "Cheapest AI assistant"
+            ]
+          },
+          "requirements": [
+            "R-SAFE-08",
+            "R-TRUTH-03",
+            "R-WORD-06"
+          ]
+        },
+        {
+          "id": "category-gap-furniture",
+          "state": "not-yet-covered",
+          "title": "Furniture",
+          "route": "#not-yet-covered/furniture",
+          "sourceRefs": [
+            {
+              "path": "content/ontology.json",
+              "contains": "\"label\": \"Furniture\""
+            }
+          ],
+          "expected": {
+            "coverage": "Not yet covered",
+            "action": "Suggest sources",
+            "path": [
+              "Home",
+              "Home setup",
+              "Furniture"
+            ],
+            "mustShow": [
+              "Furniture",
+              "Mapped under Keep a home",
+              "We do not have a comparison yet"
+            ],
+            "mustNotClaim": [
+              "0 furniture products"
+            ]
+          },
+          "requirements": [
+            "R-IA-04",
+            "R-IA-10",
+            "R-TRUTH-06"
+          ]
+        }
+      ]
+    },
+    {
+      "pageKind": "value",
+      "cases": [
+        {
+          "id": "value-rich-organic",
+          "state": "rich",
+          "title": "Organic",
+          "route": "#value/organic",
+          "sourceRefs": [
+            {
+              "path": "content/value-editorial.json",
+              "collection": "entries",
+              "key": "organic"
+            }
+          ],
+          "expected": {
+            "coverage": "Sources cover this answer",
+            "action": "Decide with this value",
+            "path": [
+              "Values",
+              "Organic"
+            ],
+            "mustShow": [
+              "Organic",
+              "What it requires",
+              "Where it stops"
+            ],
+            "mustNotClaim": [
+              "Organic proves a product is healthy"
+            ]
+          },
+          "requirements": [
+            "R-TRUTH-02",
+            "R-TRUTH-04",
+            "R-IA-07"
+          ]
+        },
+        {
+          "id": "value-thin-labor",
+          "state": "thin",
+          "title": "Labor",
+          "route": "#value/labor",
+          "sourceRefs": [
+            {
+              "path": "content/lenses/clothing.json",
+              "collection": "criteria",
+              "match": {
+                "field": "key",
+                "equals": "labor"
+              }
+            }
+          ],
+          "expected": {
+            "coverage": "Some evidence is missing",
+            "action": "Decide with this value",
+            "path": [
+              "Values",
+              "Labor"
+            ],
+            "mustShow": [
+              "Labor",
+              "Used in clothing",
+              "No sourced explanation is published yet"
+            ],
+            "mustNotClaim": [
+              "Labor requirements are certified"
+            ]
+          },
+          "requirements": [
+            "R-WORD-06",
+            "R-TRUTH-04",
+            "R-COMP-04"
+          ]
+        },
+        {
+          "id": "value-gap-oeko-tex",
+          "state": "not-yet-covered",
+          "title": "OEKO-TEX",
+          "route": "#value/oeko-tex",
+          "sourceRefs": [
+            {
+              "path": "content/tags.json",
+              "collection": "tags",
+              "match": {
+                "field": "id",
+                "equals": "ovs:tag/oeko-tex"
+              }
+            }
+          ],
+          "expected": {
+            "coverage": "Not yet covered",
+            "action": "Suggest sources",
+            "path": [
+              "Values",
+              "OEKO-TEX"
+            ],
+            "mustShow": [
+              "OEKO-TEX",
+              "Canonical label",
+              "No sourced explanation is published yet"
+            ],
+            "mustNotClaim": [
+              "The neighboring value definition applies"
+            ]
+          },
+          "requirements": [
+            "R-TRUTH-01",
+            "R-TRUTH-03",
+            "R-IA-10"
+          ]
+        }
+      ]
+    },
+    {
+      "pageKind": "source",
+      "cases": [
+        {
+          "id": "source-rich-ran-2026",
+          "state": "rich",
+          "title": "Banking on Climate Chaos 2026",
+          "route": "#source/ran-banking-on-climate-chaos-2026",
+          "sourceRefs": [
+            {
+              "path": "content/presentation/sources.json",
+              "collection": "records",
+              "match": {
+                "field": "id",
+                "equals": "ran-banking-on-climate-chaos-2026"
+              }
+            },
+            {
+              "path": "content/lenses/banking.json",
+              "collection": "products",
+              "match": {
+                "field": "code",
+                "equals": "chase"
+              }
+            }
+          ],
+          "expected": {
+            "coverage": "Sources cover this answer",
+            "action": "Open original source",
+            "path": [
+              "Sources",
+              "Rainforest Action Network",
+              "Banking on Climate Chaos 2026"
+            ],
+            "mustShow": [
+              "Rainforest Action Network",
+              "2026",
+              "JPMorgan Chase"
+            ],
+            "mustNotClaim": [
+              "The report supports unrelated banking facts"
+            ]
+          },
+          "requirements": [
+            "R-IA-06",
+            "R-TRUTH-02",
+            "R-COMP-03"
+          ]
+        },
+        {
+          "id": "source-thin-triodos-treaty",
+          "state": "thin",
+          "title": "Triodos fossil-fuel treaty release",
+          "route": "#source/triodos-fossil-fuel-treaty-2024",
+          "sourceRefs": [
+            {
+              "path": "content/presentation/sources.json",
+              "collection": "records",
+              "match": {
+                "field": "id",
+                "equals": "triodos-fossil-fuel-treaty-2024"
+              }
+            },
+            {
+              "path": "content/lenses/banking.json",
+              "collection": "products",
+              "match": {
+                "field": "code",
+                "equals": "triodos"
+              }
+            }
+          ],
+          "expected": {
+            "coverage": "Some evidence is missing",
+            "action": "Open original source",
+            "path": [
+              "Sources",
+              "Triodos Bank",
+              "Fossil-fuel treaty release"
+            ],
+            "mustShow": [
+              "Triodos Bank",
+              "2024",
+              "Method or scope is not recorded"
+            ],
+            "mustNotClaim": [
+              "A method was supplied"
+            ]
+          },
+          "requirements": [
+            "R-WORD-06",
+            "R-TRUTH-03",
+            "R-COMP-04"
+          ]
+        },
+        {
+          "id": "source-gap-triodos-fees",
+          "state": "not-yet-covered",
+          "title": "Triodos fee note without a source",
+          "route": "#item/banking/triodos#fees",
+          "sourceRefs": [
+            {
+              "path": "content/lenses/banking.json",
+              "collection": "products",
+              "match": {
+                "field": "code",
+                "equals": "triodos"
+              }
+            }
+          ],
+          "expected": {
+            "coverage": "Not yet covered",
+            "action": "Suggest a source",
+            "path": [
+              "Banking",
+              "Triodos Bank",
+              "Fees"
+            ],
+            "mustShow": [
+              "Source not supplied",
+              "Fees",
+              "Suggest a source"
+            ],
+            "mustNotClaim": [
+              "A source page exists"
+            ]
+          },
+          "requirements": [
+            "R-TRUTH-03",
+            "R-TRUTH-05",
+            "R-ACT-06"
+          ]
+        }
+      ]
+    },
+    {
+      "pageKind": "company-brand",
+      "cases": [
+        {
+          "id": "company-rich-nestle",
+          "state": "rich",
+          "title": "Nestlé",
+          "route": "#company/nestle",
+          "sourceRefs": [
+            {
+              "path": "app/data/nodes/companies.json",
+              "collection": "nodes",
+              "match": {
+                "field": "id",
+                "equals": "ovs:company/nestle"
+              }
+            }
+          ],
+          "expected": {
+            "coverage": "Sources cover this answer",
+            "action": "Add a rule",
+            "path": [
+              "Companies",
+              "Nestlé"
+            ],
+            "mustShow": [
+              "21 known brand names",
+              "11 appear in current comparisons",
+              "Ownership source reviewed 2026-07-07"
+            ],
+            "mustNotClaim": [
+              "21 products"
+            ]
+          },
+          "requirements": [
+            "R-ACT-07",
+            "R-TRUTH-06",
+            "R-COMP-04"
+          ]
+        },
+        {
+          "id": "company-thin-jpmorgan",
+          "state": "thin",
+          "title": "JPMorgan Chase",
+          "route": "#company/jpmorgan-chase",
+          "sourceRefs": [
+            {
+              "path": "app/data/nodes/companies.json",
+              "collection": "nodes",
+              "match": {
+                "field": "id",
+                "equals": "ovs:company/jpmorgan-chase"
+              }
+            }
+          ],
+          "expected": {
+            "coverage": "Some evidence is missing",
+            "action": "Add a rule",
+            "path": [
+              "Companies",
+              "JPMorgan Chase"
+            ],
+            "mustShow": [
+              "8 known brand names",
+              "None is in the current comparisons yet",
+              "Ownership source reviewed 2026-07-07"
+            ],
+            "mustNotClaim": [
+              "No brands exist"
+            ]
+          },
+          "requirements": [
+            "R-WORD-06",
+            "R-TRUTH-06",
+            "R-ACT-07"
+          ]
+        },
+        {
+          "id": "brand-gap-carrefour-owner",
+          "state": "not-yet-covered",
+          "title": "Carrefour ownership",
+          "route": "#brand/carrefour",
+          "sourceRefs": [
+            {
+              "path": "app/data/nodes/brands.json",
+              "collection": "nodes",
+              "match": {
+                "field": "id",
+                "equals": "ovs:brand/carrefour"
+              }
+            }
+          ],
+          "expected": {
+            "coverage": "Not yet covered",
+            "action": "Suggest an ownership correction",
+            "path": [
+              "Brands",
+              "Carrefour"
+            ],
+            "mustShow": [
+              "Carrefour",
+              "Ownership has not been established",
+              "Current comparison categories"
+            ],
+            "mustNotClaim": [
+              "Carrefour is independent"
+            ]
+          },
+          "requirements": [
+            "R-TRUTH-03",
+            "R-ACT-07",
+            "R-IA-07"
+          ]
+        }
+      ]
+    },
+    {
+      "pageKind": "guide",
+      "cases": [
+        {
+          "id": "guide-rich-ethical-banking",
+          "state": "rich",
+          "title": "Where you bank is a climate decision",
+          "route": "#guide/ethical-banking",
+          "sourceRefs": [
+            {
+              "path": "content/guides/ethical-banking.md",
+              "contains": "title: Where you bank is a climate decision"
+            }
+          ],
+          "expected": {
+            "coverage": "Sources cover this answer",
+            "action": "Open the decision",
+            "path": [
+              "Guides",
+              "Money",
+              "Where you bank is a climate decision"
+            ],
+            "mustShow": [
+              "The short answer",
+              "Marketing traps",
+              "A reasonable default"
+            ],
+            "mustNotClaim": [
+              "Personal financial advice"
+            ]
+          },
+          "requirements": [
+            "R-IA-06",
+            "R-TRUTH-02",
+            "R-SAFE-05"
+          ]
+        },
+        {
+          "id": "guide-thin-broadband",
+          "state": "thin",
+          "title": "Choosing internet service when the best option is local",
+          "route": "#guide/broadband-internet",
+          "sourceRefs": [
+            {
+              "path": "content/guides/broadband-internet.md",
+              "contains": "title: Choosing internet service when the best option is local"
+            }
+          ],
+          "expected": {
+            "coverage": "Some evidence is missing",
+            "action": "Open the decision",
+            "path": [
+              "Guides",
+              "Technology",
+              "Choosing internet service when the best option is local"
+            ],
+            "mustShow": [
+              "Useful guide text",
+              "Citation links are incomplete",
+              "Open broadband and internet"
+            ],
+            "mustNotClaim": [
+              "Every factual passage has a citation"
+            ]
+          },
+          "requirements": [
+            "R-WORD-06",
+            "R-TRUTH-02",
+            "R-COMP-04"
+          ]
+        },
+        {
+          "id": "guide-gap-furniture",
+          "state": "not-yet-covered",
+          "title": "Furniture guide",
+          "route": "#not-yet-covered/furniture",
+          "sourceRefs": [
+            {
+              "path": "content/ontology.json",
+              "contains": "\"label\": \"Furniture\""
+            }
+          ],
+          "expected": {
+            "coverage": "Not yet covered",
+            "action": "Open the parent category",
+            "path": [
+              "Guides",
+              "Home",
+              "Furniture"
+            ],
+            "mustShow": [
+              "No guide is published for this choice",
+              "Furniture",
+              "Home"
+            ],
+            "mustNotClaim": [
+              "A guide is published"
+            ]
+          },
+          "requirements": [
+            "R-IA-10",
+            "R-TRUTH-01",
+            "R-IA-07"
+          ]
+        }
+      ]
+    },
+    {
+      "pageKind": "task",
+      "cases": [
+        {
+          "id": "task-rich-weekly-groceries",
+          "state": "rich",
+          "title": "Weekly groceries",
+          "route": "#task/weekly-groceries",
+          "sourceRefs": [
+            {
+              "path": "app/data/nodes/errands.json",
+              "collection": "nodes",
+              "match": {
+                "field": "id",
+                "equals": "ovs:errand/weekly-groceries"
+              }
+            }
+          ],
+          "expected": {
+            "coverage": "Sources cover this answer",
+            "action": "Start with the current answer",
+            "path": [
+              "Tasks",
+              "Weekly groceries"
+            ],
+            "mustShow": [
+              "Six decisions",
+              "Price and nutrition",
+              "Save the list to Your file"
+            ],
+            "mustNotClaim": [
+              "The task is complete before all six steps resolve"
+            ]
+          },
+          "requirements": [
+            "R-ACT-03",
+            "R-VAL-04",
+            "R-COMP-03"
+          ]
+        },
+        {
+          "id": "task-thin-pick-a-bank",
+          "state": "thin",
+          "title": "Pick a bank",
+          "route": "#task/pick-a-bank",
+          "sourceRefs": [
+            {
+              "path": "app/data/nodes/errands.json",
+              "collection": "nodes",
+              "match": {
+                "field": "id",
+                "equals": "ovs:errand/pick-a-bank"
+              }
+            },
+            {
+              "path": "content/lenses/banking.json",
+              "collection": "products",
+              "match": {
+                "field": "code",
+                "equals": "triodos"
+              }
+            }
+          ],
+          "expected": {
+            "coverage": "Some evidence is missing",
+            "action": "Start with the current answer",
+            "path": [
+              "Tasks",
+              "Pick a bank"
+            ],
+            "mustShow": [
+              "One decision",
+              "Fee and access sources are missing",
+              "Save one choice"
+            ],
+            "mustNotClaim": [
+              "Every banking fact is sourced"
+            ]
+          },
+          "requirements": [
+            "R-WORD-06",
+            "R-ACT-03",
+            "R-TRUTH-03"
+          ]
+        },
+        {
+          "id": "task-gap-furnish-a-room",
+          "state": "not-yet-covered",
+          "title": "Furnish a room",
+          "route": "#task/furnish-a-room",
+          "sourceRefs": [
+            {
+              "path": "content/ontology.json",
+              "contains": "\"label\": \"Furniture\""
+            }
+          ],
+          "expected": {
+            "coverage": "Not yet covered",
+            "action": "Suggest sources",
+            "path": [
+              "Tasks",
+              "Furnish a room"
+            ],
+            "mustShow": [
+              "Furniture is not covered yet",
+              "No task has been inferred",
+              "Suggest sources"
+            ],
+            "mustNotClaim": [
+              "A Furnish a room task is registered"
+            ]
+          },
+          "requirements": [
+            "R-TRUTH-01",
+            "R-IA-10",
+            "R-SAFE-03"
+          ]
+        }
+      ]
+    },
+    {
+      "pageKind": "file",
+      "cases": [
+        {
+          "id": "file-rich-transfer-report",
+          "state": "rich",
+          "title": "Your file with a transfer report",
+          "route": "#file",
+          "sourceRefs": [
+            {
+              "path": "research/values_spine_test.js",
+              "contains": "planet is reported as not-transferred"
+            },
+            {
+              "path": "content/citation-bundles/banking-fossil-free-green.json",
+              "contains": "\"rankedCount\": 25"
+            }
+          ],
+          "expected": {
+            "coverage": "Sources cover this answer",
+            "action": "Download a copy",
+            "path": [
+              "Your file"
+            ],
+            "mustShow": [
+              "What carried",
+              "What did not carry",
+              "Stored only on this device"
+            ],
+            "mustNotClaim": [
+              "Every value transfers"
+            ]
+          },
+          "requirements": [
+            "R-VAL-09",
+            "R-SAFE-01",
+            "R-COMP-07"
+          ]
+        },
+        {
+          "id": "file-thin-tour-v01",
+          "state": "thin",
+          "title": "Older tour file",
+          "route": "#file",
+          "sourceRefs": [
+            {
+              "path": "tour/index.html",
+              "contains": "kind:'values-passport',version:'0.1'"
+            }
+          ],
+          "expected": {
+            "coverage": "Some evidence is missing",
+            "action": "Download a copy",
+            "path": [
+              "Your file"
+            ],
+            "mustShow": [
+              "Version 0.1",
+              "Unsupported fields are listed",
+              "The original file remains unchanged"
+            ],
+            "mustNotClaim": [
+              "The old file was silently upgraded"
+            ]
+          },
+          "requirements": [
+            "R-WORD-06",
+            "R-VAL-09",
+            "R-COMP-07"
+          ]
+        },
+        {
+          "id": "file-gap-planet-in-kosplora",
+          "state": "not-yet-covered",
+          "instance": "kosplora",
+          "title": "Planet does not transfer to Kosplora",
+          "route": "#file",
+          "sourceRefs": [
+            {
+              "path": "research/values_spine_test.js",
+              "contains": "planet is reported as not-transferred"
+            }
+          ],
+          "expected": {
+            "coverage": "Not yet covered",
+            "action": "Export a copy",
+            "path": [
+              "Your file",
+              "Transfer report"
+            ],
+            "mustShow": [
+              "Planet",
+              "Not transferred",
+              "The source file remains unchanged"
+            ],
+            "mustNotClaim": [
+              "Planet was discarded"
+            ]
+          },
+          "requirements": [
+            "R-VAL-09",
+            "R-TRUTH-03",
+            "R-COMP-01",
+            "R-COMP-05"
+          ]
+        }
+      ]
+    },
+    {
+      "pageKind": "changes",
+      "cases": [
+        {
+          "id": "changes-rich-banking",
+          "state": "rich",
+          "title": "Changes affecting banking",
+          "route": "#changes/banking",
+          "sourceRefs": [
+            {
+              "path": "app/data/pulse.json",
+              "collection": "entries",
+              "match": {
+                "field": "node",
+                "equals": "ovs:cat/banking"
+              }
+            }
+          ],
+          "expected": {
+            "coverage": "Sources cover this answer",
+            "action": "Filter changes",
+            "path": [
+              "Changes",
+              "Banking"
+            ],
+            "mustShow": [
+              "18 July 2026",
+              "Banking data rebuilt",
+              "Commit 59930db9"
+            ],
+            "mustNotClaim": [
+              "One notification"
+            ]
+          },
+          "requirements": [
+            "R-TRUTH-02",
+            "R-TRUTH-06",
+            "R-SAFE-04"
+          ]
+        },
+        {
+          "id": "changes-thin-ai-assistants",
+          "state": "thin",
+          "title": "AI assistants change without a field diff",
+          "route": "#changes/ai-assistants",
+          "sourceRefs": [
+            {
+              "path": "app/data/pulse.json",
+              "collection": "entries",
+              "match": {
+                "field": "node",
+                "equals": "ovs:cat/ai-assistants"
+              }
+            }
+          ],
+          "expected": {
+            "coverage": "Some evidence is missing",
+            "action": "Filter changes",
+            "path": [
+              "Changes",
+              "AI assistants"
+            ],
+            "mustShow": [
+              "Commit 59930db9",
+              "Affected object: AI assistants",
+              "No field-level difference is available"
+            ],
+            "mustNotClaim": [
+              "A field-level difference is recorded"
+            ]
+          },
+          "requirements": [
+            "R-WORD-06",
+            "R-TRUTH-03",
+            "R-COMP-04"
+          ]
+        },
+        {
+          "id": "changes-gap-furniture",
+          "state": "not-yet-covered",
+          "title": "Furniture history",
+          "route": "#changes/furniture",
+          "sourceRefs": [
+            {
+              "path": "content/ontology.json",
+              "contains": "\"label\": \"Furniture\""
+            }
+          ],
+          "expected": {
+            "coverage": "Not yet covered",
+            "action": "Open Furniture",
+            "path": [
+              "Changes",
+              "Furniture"
+            ],
+            "mustShow": [
+              "No history is recorded for Furniture",
+              "No creation event is inferred",
+              "Open Furniture"
+            ],
+            "mustNotClaim": [
+              "Furniture was created today"
+            ]
+          },
+          "requirements": [
+            "R-TRUTH-01",
+            "R-TRUTH-08",
+            "R-SAFE-04"
+          ]
+        }
+      ]
+    },
+    {
+      "pageKind": "commons-governance",
+      "cases": [
+        {
+          "id": "commons-rich-challenge-proposal",
+          "state": "rich",
+          "title": "Keep the case the other way calm and optional",
+          "route": "#commons/proposal/proposal-challenge-dismissible-default",
+          "sourceRefs": [
+            {
+              "path": "content/governance/proposals.json",
+              "collection": "proposals",
+              "match": {
+                "field": "id",
+                "equals": "proposal-challenge-dismissible-default"
+              }
+            }
+          ],
+          "expected": {
+            "coverage": "Sources cover this answer",
+            "action": "Read this record",
+            "path": [
+              "Commons",
+              "Proposals",
+              "Keep the case the other way calm and optional"
+            ],
+            "mustShow": [
+              "Draft proposal",
+              "This is a draft, not a vote",
+              "No attestations count"
+            ],
+            "mustNotClaim": [
+              "The proposal was adopted"
+            ]
+          },
+          "requirements": [
+            "R-SAFE-02",
+            "R-TRUTH-07",
+            "R-COMP-04"
+          ]
+        },
+        {
+          "id": "commons-thin-digital-safety-ask",
+          "state": "thin",
+          "title": "Digital-safety clinic template",
+          "route": "#commons/ask/ask-digital-safety-clinic",
+          "sourceRefs": [
+            {
+              "path": "content/asks-offers.json",
+              "collection": "items",
+              "match": {
+                "field": "id",
+                "equals": "ask-digital-safety-clinic"
+              }
+            }
+          ],
+          "expected": {
+            "coverage": "Some evidence is missing",
+            "action": "Read this record",
+            "path": [
+              "Commons",
+              "Asks",
+              "Digital-safety clinic template"
+            ],
+            "mustShow": [
+              "Template",
+              "No expiry is recorded",
+              "This is not a live request"
+            ],
+            "mustNotClaim": [
+              "A community group is waiting for help"
+            ]
+          },
+          "requirements": [
+            "R-WORD-06",
+            "R-SAFE-03",
+            "R-TRUTH-03"
+          ]
+        },
+        {
+          "id": "commons-gap-library-organization",
+          "state": "not-yet-covered",
+          "title": "Library organization named by a template",
+          "route": "#commons/organization/library",
+          "sourceRefs": [
+            {
+              "path": "content/asks-offers.json",
+              "collection": "items",
+              "match": {
+                "field": "id",
+                "equals": "ask-digital-safety-clinic"
+              }
+            }
+          ],
+          "expected": {
+            "coverage": "Not yet covered",
+            "action": "Suggest sources",
+            "path": [
+              "Commons",
+              "Organizations",
+              "Library"
+            ],
+            "mustShow": [
+              "A template names libraries",
+              "No organization page has been inferred",
+              "Suggest sources"
+            ],
+            "mustNotClaim": [
+              "A library has published this request"
+            ]
+          },
+          "requirements": [
+            "R-TRUTH-01",
+            "R-IA-10",
+            "R-SAFE-02"
+          ]
+        }
+      ]
+    }
+  ],
+  "sourceIndex": {
+    "scope": "Canonical source records required by the P4 acceptance fixtures. Other receipt URLs remain links until a stable record is curated.",
+    "records": [
+      {
+        "id": "ran-banking-on-climate-chaos-2026",
+        "title": "Banking on Climate Chaos 2026",
+        "publisher": "Rainforest Action Network",
+        "sourceType": "Report release",
+        "published": "2026-06-08",
+        "reviewed": "2026-07-20",
+        "url": "https://www.ran.org/press-releases/bocc26/",
+        "scope": "The release summarizes the seventeenth Banking on Climate Chaos report and its fossil-fuel financing findings for the world's 65 largest banks.",
+        "method": "The release links to the complete report, dataset, methodology FAQ, policy scores, and media assets.",
+        "limits": [
+          "This record supports the named fossil-financing claims, not unrelated banking criteria.",
+          "The complete methodology and dataset live on the report site linked by the publisher."
+        ],
+        "supportedClaims": [
+          {
+            "category": "banking",
+            "entry": "capital-one",
+            "criterion": "environment"
+          },
+          {
+            "category": "banking",
+            "entry": "hsbc",
+            "criterion": "environment"
+          },
+          {
+            "category": "banking",
+            "entry": "bofa",
+            "criterion": "environment"
+          },
+          {
+            "category": "banking",
+            "entry": "chase",
+            "criterion": "environment"
+          }
+        ]
+      },
+      {
+        "id": "triodos-fossil-fuel-treaty-2024",
+        "title": "Seventeen values-based banks support treaty to end use of fossil fuels",
+        "publisher": "Triodos Bank",
+        "sourceType": "Press release",
+        "published": "2024-04-22",
+        "reviewed": "2026-07-20",
+        "url": "https://www.triodos.com/en/press-releases/2024/seventeen-banks-from-the-global-alliance-for-banking-on-values-join-global-call-for-binding-treaty-to-end-use-of-fossil-fuels",
+        "scope": "The release records endorsement of the Fossil Fuel Non-Proliferation Treaty initiative by seventeen Global Alliance for Banking on Values members.",
+        "method": null,
+        "limits": [
+          "The release does not provide a research method.",
+          "This record supports the named Triodos environment claim, not its fees or account access."
+        ],
+        "supportedClaims": [
+          {
+            "category": "banking",
+            "entry": "triodos",
+            "criterion": "environment"
+          }
+        ]
+      }
+    ]
+  },
+  "checksum": "sha256:998fea9b817dba122ab808d6a1aed57cf768895f5ba14cfe26f5a2171209c497"
+}

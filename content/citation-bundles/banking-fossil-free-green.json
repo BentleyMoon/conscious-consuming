@@ -1,0 +1,1657 @@
+{
+  "format": "open-values-citation-bundle",
+  "version": "0.1",
+  "id": "banking-fossil-free-green",
+  "title": "Ethical banking, fossil-free and green ranking",
+  "createdAt": "2026-07-04",
+  "maintainer": "Values Commons",
+  "license": "ODbL-1.0 data snapshot; CC BY-SA 4.0 explanatory text",
+  "purpose": "A self-contained, re-runnable citation bundle for the reviewer question: which banking options rank highest when green financing is weighted heavily?",
+  "rerunCommand": "npm run audit:citations",
+  "source": {
+    "lensPath": "app/data/banking.json",
+    "lensId": "banking",
+    "lensHash": "92535888",
+    "snapshotSha256": "fbc5b44cedeaadf57c6a27e633f30b74dfc6fe94e4a3f84f53707ba2813d86d8",
+    "engineVersion": "0.10",
+    "generatedFromBuild": "2026-07-04T23:14:17Z"
+  },
+  "lensAssumptions": {
+    "label": "Ethical banking",
+    "type": "Services",
+    "valueFrame": "Values-relative ranking, not a universal verdict.",
+    "disclaimer": "Banking comparisons are general information, not financial advice.",
+    "preset": "Fossil-free & green",
+    "weights": {
+      "environment": 5,
+      "ethics": 4,
+      "transparency": 2,
+      "fees": 1,
+      "accessibility": 1
+    },
+    "minCoverage": 0.25,
+    "criteria": [
+      {
+        "key": "environment",
+        "label": "Green financing",
+        "tier": "assessed"
+      },
+      {
+        "key": "ethics",
+        "label": "Ethics & ownership",
+        "tier": "assessed"
+      },
+      {
+        "key": "transparency",
+        "label": "Transparent",
+        "tier": "assessed"
+      },
+      {
+        "key": "fees",
+        "label": "Low fees",
+        "tier": "assessed"
+      },
+      {
+        "key": "accessibility",
+        "label": "Easy to use",
+        "tier": "assessed"
+      }
+    ],
+    "sort": "score descending, then name ascending",
+    "caveat": "The bundle freezes a source lens and query so the result can be rerun. Later live data may differ."
+  },
+  "query": {
+    "kind": "rank-lens",
+    "focus": "Show how the banking lens ranks when green financing and ethics are the strongest weights.",
+    "targetCodes": [
+      "triodos",
+      "beneficial-state",
+      "credit-union",
+      "chase"
+    ],
+    "topN": 10
+  },
+  "lensSnapshot": {
+    "meta": {
+      "id": "banking",
+      "label": "Ethical banking",
+      "type": "Services",
+      "source": "Conscious Consuming (curated)",
+      "attribution": "Where your money sleeps is one of the biggest votes it casts. Fossil-financing figures are from the Banking on Climate Chaos (BOCC) reports by Rainforest Action Network et al.; structure & certifications from the banks, GABV, B Lab and public filings. Each rating links its source and date — not financial advice. Reviewed 2026-06. Dispute or correct any rating via Contribute.",
+      "allergens": false,
+      "presets": {
+        "Balanced": {
+          "w": {
+            "environment": 3,
+            "ethics": 3,
+            "transparency": 3,
+            "fees": 2,
+            "accessibility": 2
+          },
+          "x": []
+        },
+        "Fossil-free & green": {
+          "w": {
+            "environment": 5,
+            "ethics": 4,
+            "transparency": 2,
+            "fees": 1,
+            "accessibility": 1
+          },
+          "x": []
+        },
+        "Most transparent": {
+          "w": {
+            "transparency": 5,
+            "ethics": 3,
+            "environment": 3,
+            "fees": 1,
+            "accessibility": 1
+          },
+          "x": []
+        },
+        "Easy & low-fee": {
+          "w": {
+            "accessibility": 5,
+            "fees": 4,
+            "ethics": 2,
+            "environment": 1,
+            "transparency": 1
+          },
+          "x": []
+        }
+      },
+      "n": 25
+    },
+    "criteria": [
+      {
+        "key": "environment",
+        "label": "Green financing",
+        "source": "curated",
+        "tier": "assessed"
+      },
+      {
+        "key": "ethics",
+        "label": "Ethics & ownership",
+        "source": "curated",
+        "tier": "assessed"
+      },
+      {
+        "key": "transparency",
+        "label": "Transparent",
+        "source": "curated",
+        "tier": "assessed"
+      },
+      {
+        "key": "fees",
+        "label": "Low fees",
+        "source": "curated",
+        "tier": "assessed"
+      },
+      {
+        "key": "accessibility",
+        "label": "Easy to use",
+        "source": "curated",
+        "tier": "assessed"
+      }
+    ],
+    "products": [
+      {
+        "code": "triodos",
+        "name": "Triodos Bank",
+        "brand": "ethical bank",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "A European sustainability bank that lends only to social, cultural and environmental projects — and publishes every organisation it finances.",
+        "scores": {
+          "environment": 98,
+          "ethics": 92,
+          "transparency": 100,
+          "fees": 55,
+          "accessibility": 74
+        },
+        "provenance": {
+          "environment": {
+            "note": "Lends nothing to fossil fuels; first bank in the world to sign the Fossil Fuel Non-Proliferation Treaty",
+            "source": "https://www.triodos.com/en/press-releases/2024/seventeen-banks-from-the-global-alliance-for-banking-on-values-join-global-call-for-binding-treaty-to-end-use-of-fossil-fuels",
+            "asof": "2024"
+          },
+          "ethics": {
+            "note": "Certified B Corp and GABV co-founder; ownership mission-locked via the SAAT foundation (no holder above 10%)",
+            "source": "https://www.gabv.org/members/",
+            "asof": "2026"
+          },
+          "transparency": {
+            "note": "Publishes every loan and investment it makes",
+            "source": "https://www.triodos.com/en/about-triodos-bank",
+            "asof": "2024"
+          },
+          "fees": "Monthly account fee on the current account",
+          "accessibility": "UK & several EU countries; app + online, limited branches. (Note: investor depository-receipts had a 2020–23 liquidity freeze.)"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://www.triodos.com/"
+          }
+        ],
+        "region": [
+          "EU",
+          "UK"
+        ],
+        "focuses": [
+          "Fossil-free",
+          "Transparent",
+          "B Corp",
+          "GABV"
+        ]
+      },
+      {
+        "code": "gls-bank",
+        "name": "GLS Bank",
+        "brand": "cooperative bank (DE)",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "Germany's pioneering social-ecological bank — a member-owned cooperative that finances renewable energy, organic farming and social projects.",
+        "scores": {
+          "environment": 94,
+          "ethics": 92,
+          "transparency": 88,
+          "fees": 52,
+          "accessibility": 70
+        },
+        "provenance": {
+          "environment": {
+            "note": "Finances renewables and social projects, not fossil fuels; GABV signatory to the Fossil Fuel Non-Proliferation Treaty",
+            "source": "https://en.wikipedia.org/wiki/GLS_Bank",
+            "asof": "2024"
+          },
+          "ethics": {
+            "note": "A registered cooperative (member-owned) and 2009 co-founder of the Global Alliance for Banking on Values",
+            "source": "https://en.wikipedia.org/wiki/Global_Alliance_for_Banking_on_Values",
+            "asof": "2024"
+          },
+          "transparency": {
+            "note": "Reports where members' money is lent — publishes its lending in the bank's own customer magazine",
+            "source": "https://en.wikipedia.org/wiki/GLS_Bank",
+            "asof": "2026"
+          },
+          "fees": "Membership share + account fees",
+          "accessibility": "Germany; online + member offices"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://www.gls.de/"
+          }
+        ],
+        "region": [
+          "EU"
+        ],
+        "focuses": [
+          "Fossil-free",
+          "Member-owned",
+          "GABV"
+        ]
+      },
+      {
+        "code": "beneficial-state",
+        "name": "Beneficial State Bank",
+        "brand": "community bank (US)",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "A West-Coast community bank majority-owned by a nonprofit foundation, so its economic rights are held in the public interest rather than by private shareholders.",
+        "scores": {
+          "environment": 92,
+          "ethics": 95,
+          "transparency": 82,
+          "fees": 70,
+          "accessibility": 70
+        },
+        "provenance": {
+          "environment": {
+            "note": "Pledged fossil-fuel-free; no lending to fossil fuels, private prisons or weapons; endorsed the Fossil Fuel Non-Proliferation Treaty",
+            "source": "https://www.beneficialstatebank.com/better-banking-blog/news-and-announcements/why-weve-pledged-to-stay-fossil-fuel-free",
+            "asof": "2024"
+          },
+          "ethics": {
+            "note": "Certified B Corp, GABV member and US-Treasury-certified CDFI; majority-owned by the nonprofit Beneficial State Foundation",
+            "source": "https://www.beneficialstatebank.com/about-us",
+            "asof": "2024"
+          },
+          "transparency": {
+            "note": "Publishes impact reporting; the nonprofit-foundation ownership model is public",
+            "source": "https://en.wikipedia.org/wiki/Beneficial_State_Bank",
+            "asof": "2026"
+          },
+          "fees": "Low fees; community focus",
+          "accessibility": "US (CA/OR/WA) + digital"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://beneficialstatebank.com/"
+          }
+        ],
+        "region": [
+          "US"
+        ],
+        "focuses": [
+          "Fossil-free",
+          "B Corp",
+          "Community",
+          "GABV"
+        ]
+      },
+      {
+        "code": "climate-first",
+        "name": "Climate First Bank",
+        "brand": "climate bank (US)",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "A Florida-based, fully digital community bank built around climate — fossil-fuel-free and a major financier of residential solar.",
+        "scores": {
+          "environment": 95,
+          "ethics": 85,
+          "transparency": 80,
+          "fees": 68,
+          "accessibility": 68
+        },
+        "provenance": {
+          "environment": {
+            "note": "Fossil-fuel-free; financed $427M+ in residential solar since 2021, net-zero operations",
+            "source": "https://finance.yahoo.com/news/climate-first-bank-reaches-1-110000320.html",
+            "asof": "2024"
+          },
+          "ethics": {
+            "note": "Certified B Corp and 1% for the Planet member (GABV membership is planned, not yet confirmed)",
+            "source": "https://www.climatefirstbank.com/our-impact",
+            "asof": "2024"
+          },
+          "transparency": {
+            "note": "Publishes impact metrics on its public impact page",
+            "source": "https://www.climatefirstbank.com/our-impact",
+            "asof": "2026"
+          },
+          "fees": "Low fees; digital",
+          "accessibility": "US (FL branches + nationwide digital)"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://www.climatefirstbank.com/"
+          }
+        ],
+        "region": [
+          "US"
+        ],
+        "focuses": [
+          "Fossil-free",
+          "B Corp",
+          "Solar"
+        ]
+      },
+      {
+        "code": "amalgamated",
+        "name": "Amalgamated Bank",
+        "brand": "values bank (US)",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "A century-old, labour-rooted US bank — the largest B-Corp bank in America — that runs a 100% fossil-fuel-free lending portfolio.",
+        "scores": {
+          "environment": 90,
+          "ethics": 86,
+          "transparency": 80,
+          "fees": 70,
+          "accessibility": 80
+        },
+        "provenance": {
+          "environment": {
+            "note": "100% fossil-fuel-free portfolio; ~a third of lending directed to climate solutions",
+            "source": "https://www.amalgamatedbank.com/news/amalgamated-bank-launches-100-fossil-fuel-free-portfolio",
+            "asof": "2024"
+          },
+          "ethics": {
+            "note": "Certified B Corp and GABV member, labour/union-rooted — though publicly listed (Nasdaq: AMAL), not a cooperative",
+            "source": "https://www.gabv.org/members/",
+            "asof": "2026"
+          },
+          "transparency": {
+            "note": "Publishes impact reports; publicly listed, so filings are public",
+            "source": "https://en.wikipedia.org/wiki/Amalgamated_Bank",
+            "asof": "2026"
+          },
+          "fees": "Low fees",
+          "accessibility": "US; digital + limited branches"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://www.amalgamatedbank.com/"
+          }
+        ],
+        "region": [
+          "US"
+        ],
+        "focuses": [
+          "Fossil-free",
+          "B Corp",
+          "GABV"
+        ]
+      },
+      {
+        "code": "tomorrow",
+        "name": "Tomorrow",
+        "brand": "sustainable fintech (DE)",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "A German mobile-first banking provider whose deposits are channelled into climate and impact projects.",
+        "scores": {
+          "environment": 90,
+          "ethics": 80,
+          "transparency": 80,
+          "fees": 55,
+          "accessibility": 82
+        },
+        "provenance": {
+          "environment": {
+            "note": "Deposits fund climate projects; no fossil-fuel lending",
+            "source": "https://www.tomorrow.one/en-eu/impact/",
+            "asof": "2024"
+          },
+          "ethics": {
+            "note": "Sustainability-first mission; a fintech operating on a partner-bank licence (Solaris), not a licensed bank itself",
+            "source": "https://en.wikipedia.org/wiki/Tomorrow_(bank)",
+            "asof": "2026"
+          },
+          "transparency": {
+            "note": "Shows the impact of your money in-app and on its public impact page",
+            "source": "https://www.tomorrow.one/en-eu/impact/",
+            "asof": "2026"
+          },
+          "fees": "Paid monthly tiers",
+          "accessibility": "EU; mobile-first"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://www.tomorrow.one/"
+          }
+        ],
+        "region": [
+          "EU"
+        ],
+        "focuses": [
+          "Fossil-free",
+          "Fintech"
+        ]
+      },
+      {
+        "code": "coop-bank-uk",
+        "name": "The Co-operative Bank",
+        "brand": "ethical bank (UK)",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "A UK bank with a customer-led Ethical Policy since 1992 — and, since January 2025, back inside the mutual sector via Coventry Building Society.",
+        "scores": {
+          "environment": 86,
+          "ethics": 84,
+          "transparency": 80,
+          "fees": 78,
+          "accessibility": 86
+        },
+        "provenance": {
+          "environment": {
+            "note": "Customer-led Ethical Policy excludes fossil-fuel extraction; markets itself as fossil-free certified",
+            "source": "https://www.co-operativebank.co.uk/values-and-ethics/",
+            "asof": "2024"
+          },
+          "ethics": {
+            "note": "Acquired by Coventry Building Society (completed Jan 2025), returning it to mutual ownership after hedge-fund ownership 2017–24",
+            "source": "https://en.wikipedia.org/wiki/The_Co-operative_Bank",
+            "asof": "2025"
+          },
+          "transparency": {
+            "note": "Publishes its customer-polled Ethical Policy in full",
+            "source": "https://www.co-operativebank.co.uk/values-and-ethics/",
+            "asof": "2026"
+          },
+          "fees": "Free everyday current accounts",
+          "accessibility": "UK; app, online + branches"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://www.co-operativebank.co.uk/"
+          }
+        ],
+        "region": [
+          "UK"
+        ],
+        "focuses": [
+          "Fossil-free",
+          "Ethical policy"
+        ]
+      },
+      {
+        "code": "nationwide-bs",
+        "name": "Nationwide Building Society",
+        "brand": "mutual (UK)",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "The world's largest building society — owned by its ~16 million members, with no shareholders and no stock-market listing.",
+        "scores": {
+          "environment": 82,
+          "ethics": 85,
+          "transparency": 72,
+          "fees": 85,
+          "accessibility": 92
+        },
+        "provenance": {
+          "environment": {
+            "note": "Does not lend to the fossil-fuel sector; named among UK institutions not financing fossil-fuel expansion",
+            "source": "https://bank.green/banks/nationwide",
+            "asof": "2024"
+          },
+          "ethics": {
+            "note": "A member-owned mutual — no shareholders, no stock-market listing",
+            "source": "https://en.wikipedia.org/wiki/Nationwide_Building_Society",
+            "asof": "2024"
+          },
+          "transparency": {
+            "note": "Member-governed with AGM voting; climate/financed-emissions disclosure tracked publicly",
+            "source": "https://bank.green/banks/nationwide",
+            "asof": "2026"
+          },
+          "fees": "Free everyday banking",
+          "accessibility": "UK; excellent branch + app reach"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://www.nationwide.co.uk/"
+          }
+        ],
+        "region": [
+          "UK"
+        ],
+        "focuses": [
+          "Mutual",
+          "Member-owned",
+          "Fossil-free"
+        ]
+      },
+      {
+        "code": "credit-union",
+        "name": "Local credit union",
+        "brand": "member-owned",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "Not-for-profit financial cooperatives owned by their members — one member, one vote — that by structure rarely finance fossil fuels.",
+        "scores": {
+          "environment": 78,
+          "ethics": 86,
+          "transparency": 66,
+          "fees": 88,
+          "accessibility": 76
+        },
+        "provenance": {
+          "environment": {
+            "note": "Structurally minimal: US credit unions can't invest in stock markets and are largely absent from fossil-financing tables — but individual unions vary, so check yours",
+            "source": "https://howtodivest.org/credit-unions/",
+            "asof": "2022"
+          },
+          "ethics": {
+            "note": "Not-for-profit, member-owned cooperatives; surplus returned to members, not external shareholders",
+            "source": "https://www.youracu.org/credit-unions-vs-banks/",
+            "asof": "2024"
+          },
+          "transparency": {
+            "note": "Member-governed (one member, one vote) by structure; disclosure practice varies by individual union",
+            "source": "https://en.wikipedia.org/wiki/Credit_union",
+            "asof": "2026"
+          },
+          "fees": "Low or no fees",
+          "accessibility": "Varies locally; smaller branch/app networks"
+        },
+        "links": [
+          {
+            "label": "About credit unions (US)",
+            "url": "https://www.mycreditunion.gov/"
+          }
+        ],
+        "region": [
+          "US",
+          "UK",
+          "EU"
+        ],
+        "focuses": [
+          "Member-owned",
+          "Community"
+        ]
+      },
+      {
+        "code": "monzo",
+        "name": "Monzo",
+        "brand": "neobank (UK)",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "A popular UK app-only bank. Fossil-free largely by virtue of its deposit model — but profit-driven and VC-backed, it avoids harm rather than actively funding the transition.",
+        "scores": {
+          "environment": 80,
+          "ethics": 56,
+          "transparency": 70,
+          "fees": 88,
+          "accessibility": 95
+        },
+        "provenance": {
+          "environment": {
+            "note": "States it does not lend to or invest in fossil-fuel, arms or tobacco companies; most deposits sit at the central bank",
+            "source": "https://monzo.com/our-business-practices",
+            "asof": "2024"
+          },
+          "ethics": {
+            "note": "Shareholder-owned, VC-backed; net-zero-by-2030 aim but no positive green-finance mandate",
+            "source": "https://www.ethicalconsumer.org/company-profile/monzo-bank-limited",
+            "asof": "2024"
+          },
+          "transparency": {
+            "note": "Publishes business-practice notes; no financed-emissions detail",
+            "source": "https://monzo.com/our-business-practices",
+            "asof": "2026"
+          },
+          "fees": "Free everyday banking; paid tiers optional",
+          "accessibility": "UK; best-in-class app"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://monzo.com/"
+          }
+        ],
+        "region": [
+          "UK"
+        ],
+        "focuses": [
+          "Fossil-free",
+          "Fintech"
+        ]
+      },
+      {
+        "code": "starling",
+        "name": "Starling Bank",
+        "brand": "neobank (UK)",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "A UK app bank with an ethics statement excluding harmful sectors and renewable-powered operations — though, like Monzo, privately held and profit-driven.",
+        "scores": {
+          "environment": 80,
+          "ethics": 56,
+          "transparency": 68,
+          "fees": 88,
+          "accessibility": 92
+        },
+        "provenance": {
+          "environment": {
+            "note": "Ethics statement excludes fossil-fuel lending/investment; branchless with renewable-powered offices",
+            "source": "https://www.starlingbank.com/about/ethics-statement/",
+            "asof": "2024"
+          },
+          "ethics": {
+            "note": "Shareholder-owned, privately held; board-level climate governance but doesn't disclose financed emissions",
+            "source": "https://www.ethicalconsumer.org/company-profile/starling-bank-limited",
+            "asof": "2024"
+          },
+          "transparency": {
+            "note": "Clear fees; limited impact disclosure beyond the ethics statement",
+            "source": "https://www.ethicalconsumer.org/company-profile/starling-bank-limited",
+            "asof": "2026"
+          },
+          "fees": "Free everyday banking",
+          "accessibility": "UK; strong app"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://www.starlingbank.com/"
+          }
+        ],
+        "region": [
+          "UK"
+        ],
+        "focuses": [
+          "Fossil-free",
+          "Fintech"
+        ]
+      },
+      {
+        "code": "bunq",
+        "name": "bunq",
+        "brand": "fintech (EU)",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "A pan-European app bank that plants trees with spending and avoids fossil-fuel lending — greener than mainstream, lighter on disclosure.",
+        "scores": {
+          "environment": 76,
+          "ethics": 64,
+          "transparency": 62,
+          "fees": 55,
+          "accessibility": 88
+        },
+        "provenance": {
+          "environment": {
+            "note": "No fossil-fuel lending; plants trees with card spending",
+            "source": "https://www.bunq.com/sustainability",
+            "asof": "2024"
+          },
+          "ethics": {
+            "note": "Shareholder-owned fintech (founder-controlled); greener than mainstream, no positive mandate",
+            "source": "https://en.wikipedia.org/wiki/Bunq",
+            "asof": "2026"
+          },
+          "transparency": {
+            "note": "Limited impact disclosure — the sustainability page is the extent of it",
+            "source": "https://www.bunq.com/sustainability",
+            "asof": "2026"
+          },
+          "fees": "Subscription model",
+          "accessibility": "EU; slick mobile app"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://www.bunq.com/"
+          }
+        ],
+        "region": [
+          "EU"
+        ],
+        "focuses": [
+          "Fintech"
+        ]
+      },
+      {
+        "code": "chime",
+        "name": "Chime",
+        "brand": "neobank (US)",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "A fee-light US banking app. It runs on partner banks and publishes no fossil-free policy or financing data, so its impact is largely unknown.",
+        "scores": {
+          "environment": 46,
+          "ethics": 50,
+          "transparency": 48,
+          "fees": 90,
+          "accessibility": 90
+        },
+        "provenance": {
+          "environment": {
+            "note": "Not a stated focus; operates on partner banks (The Bancorp, Stride) — no fossil-free policy or financing disclosure (data unavailable)",
+            "source": "https://en.wikipedia.org/wiki/Chime_(company)",
+            "asof": "2026"
+          },
+          "ethics": {
+            "note": "Mainstream, fee-free consumer model; shareholder-owned (publicly listed 2025)",
+            "source": "https://en.wikipedia.org/wiki/Chime_(company)",
+            "asof": "2026"
+          },
+          "transparency": {
+            "note": "Limited disclosure of where deposits are held beyond naming its partner banks",
+            "source": "https://en.wikipedia.org/wiki/Chime_(company)",
+            "asof": "2026"
+          },
+          "fees": "No monthly or overdraft fees",
+          "accessibility": "US; mobile-first"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://www.chime.com/"
+          }
+        ],
+        "region": [
+          "US"
+        ],
+        "focuses": [
+          "Fintech"
+        ]
+      },
+      {
+        "code": "us-bank",
+        "name": "U.S. Bank",
+        "brand": "national bank (US)",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "A large US bank — a second-tier (not top-four) fossil financier with rising fossil lending and no exclusion policy.",
+        "scores": {
+          "environment": 28,
+          "ethics": 42,
+          "transparency": 52,
+          "fees": 60,
+          "accessibility": 88
+        },
+        "provenance": {
+          "environment": {
+            "note": "About $12.8bn fossil-fuel financing in 2023 and rising; a $50bn environmental-finance goal but no fossil exclusion",
+            "source": "https://bank.green/banks/us_bancorp",
+            "asof": "2025"
+          },
+          "ethics": {
+            "note": "Shareholder-owned (NYSE: USB); no fossil exclusion policy",
+            "source": "https://en.wikipedia.org/wiki/U.S._Bancorp",
+            "asof": "2026"
+          },
+          "transparency": {
+            "note": "Discloses financials (public filings); limited financed-emissions detail",
+            "source": "https://bank.green/banks/us_bancorp",
+            "asof": "2026"
+          },
+          "fees": "Monthly fees unless waived",
+          "accessibility": "US; large branch network + app"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://www.usbank.com/"
+          }
+        ],
+        "region": [
+          "US"
+        ],
+        "focuses": []
+      },
+      {
+        "code": "capital-one",
+        "name": "Capital One",
+        "brand": "national bank (US)",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "A US card-and-consumer bank. Not a flagged major fossil financier, but with no published climate or exclusion commitments.",
+        "scores": {
+          "environment": 50,
+          "ethics": 46,
+          "transparency": 50,
+          "fees": 70,
+          "accessibility": 88
+        },
+        "provenance": {
+          "environment": {
+            "note": "Not among BOCC's highlighted fossil financiers (business concentrated in cards/consumer lending) — but no fossil-free policy and limited public data",
+            "source": "https://www.ran.org/press-releases/bocc26/",
+            "asof": "2026"
+          },
+          "ethics": {
+            "note": "Shareholder-owned (NYSE: COF); no published climate commitments",
+            "source": "https://en.wikipedia.org/wiki/Capital_One",
+            "asof": "2026"
+          },
+          "transparency": {
+            "note": "Discloses financials (public filings)",
+            "source": "https://en.wikipedia.org/wiki/Capital_One",
+            "asof": "2026"
+          },
+          "fees": "Many fee-free consumer accounts",
+          "accessibility": "US; strong app + cafés"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://www.capitalone.com/"
+          }
+        ],
+        "region": [
+          "US"
+        ],
+        "focuses": []
+      },
+      {
+        "code": "ally",
+        "name": "Ally Bank",
+        "brand": "online bank (US)",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "A branchless US bank, mostly auto finance and deposits. Not a major fossil lender, but with thin climate disclosure and no exclusion policy.",
+        "scores": {
+          "environment": 50,
+          "ethics": 50,
+          "transparency": 55,
+          "fees": 85,
+          "accessibility": 86
+        },
+        "provenance": {
+          "environment": {
+            "note": "Not a flagged major fossil financier, but sets no science-based targets, doesn't disclose financed emissions, and has no fossil-exclusion policy",
+            "source": "https://bank.green/banks/ally_fncl",
+            "asof": "2025"
+          },
+          "ethics": {
+            "note": "Shareholder-owned (NYSE: ALLY); 'neutral by default'",
+            "source": "https://en.wikipedia.org/wiki/Ally_Financial",
+            "asof": "2026"
+          },
+          "transparency": {
+            "note": "Limited climate disclosure — no financed-emissions reporting or science-based targets",
+            "source": "https://bank.green/banks/ally_fncl",
+            "asof": "2026"
+          },
+          "fees": "No monthly fees; competitive savings",
+          "accessibility": "US; online-only, strong app"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://www.ally.com/"
+          }
+        ],
+        "region": [
+          "US"
+        ],
+        "focuses": []
+      },
+      {
+        "code": "lloyds",
+        "name": "Lloyds Banking Group",
+        "brand": "high-street bank (UK)",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "A big UK high-street bank — among the lower fossil financiers of the UK majors, but still a conventional shareholder bank with no fossil-free guarantee.",
+        "scores": {
+          "environment": 36,
+          "ethics": 46,
+          "transparency": 55,
+          "fees": 72,
+          "accessibility": 92
+        },
+        "provenance": {
+          "environment": {
+            "note": "About $1.6bn fossil-fuel financing in 2024 — materially lower than Barclays/HSBC, reflecting earlier oil-and-gas restrictions",
+            "source": "https://theecologist.org/2025/jun/17/banking-climate-collapse",
+            "asof": "2025"
+          },
+          "ethics": {
+            "note": "Shareholder-owned (LSE: LLOY); mainstream",
+            "source": "https://en.wikipedia.org/wiki/Lloyds_Banking_Group",
+            "asof": "2026"
+          },
+          "transparency": {
+            "note": "Discloses financials and climate reporting (public filings)",
+            "source": "https://en.wikipedia.org/wiki/Lloyds_Banking_Group",
+            "asof": "2026"
+          },
+          "fees": "Free everyday banking",
+          "accessibility": "UK; vast branch + app reach"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://www.lloydsbank.com/"
+          }
+        ],
+        "region": [
+          "UK"
+        ],
+        "focuses": []
+      },
+      {
+        "code": "natwest",
+        "name": "NatWest Group",
+        "brand": "high-street bank (UK)",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "A major UK high-street bank — one of the lower-financing UK majors, but a mainstream shareholder bank without a fossil-free commitment.",
+        "scores": {
+          "environment": 34,
+          "ethics": 47,
+          "transparency": 55,
+          "fees": 75,
+          "accessibility": 90
+        },
+        "provenance": {
+          "environment": {
+            "note": "About $2.7bn fossil-fuel financing in 2024 — among the lowest of the UK majors",
+            "source": "https://theecologist.org/2025/jun/17/banking-climate-collapse",
+            "asof": "2025"
+          },
+          "ethics": {
+            "note": "Shareholder-owned (LSE: NWG); mainstream",
+            "source": "https://en.wikipedia.org/wiki/NatWest_Group",
+            "asof": "2026"
+          },
+          "transparency": {
+            "note": "Discloses financials and climate reporting (public filings)",
+            "source": "https://en.wikipedia.org/wiki/NatWest_Group",
+            "asof": "2026"
+          },
+          "fees": "Free everyday banking",
+          "accessibility": "UK; broad branch + app reach"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://www.natwest.com/"
+          }
+        ],
+        "region": [
+          "UK"
+        ],
+        "focuses": []
+      },
+      {
+        "code": "santander-uk",
+        "name": "Santander UK",
+        "brand": "high-street bank",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "The UK arm of Banco Santander, whose group fossil financing is significant and rising — so it doesn't stand out as climate-aligned.",
+        "scores": {
+          "environment": 24,
+          "ethics": 40,
+          "transparency": 52,
+          "fees": 70,
+          "accessibility": 90
+        },
+        "provenance": {
+          "environment": {
+            "note": "Parent group Santander financed roughly $14–17bn in fossil fuels in 2024 and doubled its fossil debt financing vs 2021 (group-level; no separate UK figure)",
+            "source": "https://www.euronews.com/green/2025/06/17/banks-backtracked-on-climate-pledges-last-year-handing-750bn-to-fossil-fuel-firms",
+            "asof": "2025"
+          },
+          "ethics": {
+            "note": "Part of publicly traded Banco Santander; mainstream",
+            "source": "https://en.wikipedia.org/wiki/Santander_UK",
+            "asof": "2026"
+          },
+          "transparency": {
+            "note": "Discloses financials (public filings of the listed parent group)",
+            "source": "https://en.wikipedia.org/wiki/Santander_UK",
+            "asof": "2026"
+          },
+          "fees": "Some accounts charge a monthly fee",
+          "accessibility": "UK; branch + app"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://www.santander.co.uk/"
+          }
+        ],
+        "region": [
+          "UK"
+        ],
+        "focuses": []
+      },
+      {
+        "code": "hsbc",
+        "name": "HSBC",
+        "brand": "global bank",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "A major global bank that financed billions in fossil fuels and increased that lending into 2025 — not a values-aligned choice on climate.",
+        "scores": {
+          "environment": 16,
+          "ethics": 36,
+          "transparency": 56,
+          "fees": 65,
+          "accessibility": 92
+        },
+        "provenance": {
+          "environment": {
+            "note": "About $16.2bn fossil-fuel financing in 2024, and increased fossil financing ~16% in 2025",
+            "source": "https://www.ran.org/press-releases/bocc26/",
+            "asof": "2026"
+          },
+          "ethics": {
+            "note": "Shareholder-owned (LSE: HSBA); withdrew from the Net-Zero Banking Alliance in 2025",
+            "source": "https://earth.org/un-backed-net-zero-banking-alliance-pauses-operations-following-high-profile-departures/",
+            "asof": "2025"
+          },
+          "transparency": {
+            "note": "Discloses financials (LSE-listed public filings)",
+            "source": "https://en.wikipedia.org/wiki/HSBC",
+            "asof": "2026"
+          },
+          "fees": "Varies by account",
+          "accessibility": "Global reach; branch + app"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://www.hsbc.com/"
+          }
+        ],
+        "region": [
+          "global"
+        ],
+        "focuses": []
+      },
+      {
+        "code": "barclays",
+        "name": "Barclays",
+        "brand": "global bank (UK)",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "Europe's single largest fossil-fuel financier — a clear avoid for a climate-minded customer.",
+        "scores": {
+          "environment": 10,
+          "ethics": 33,
+          "transparency": 55,
+          "fees": 70,
+          "accessibility": 90
+        },
+        "provenance": {
+          "environment": {
+            "note": "Europe's largest fossil-fuel financier — about $35.4bn in 2024",
+            "source": "https://www.euronews.com/green/2025/06/17/banks-backtracked-on-climate-pledges-last-year-handing-750bn-to-fossil-fuel-firms",
+            "asof": "2025"
+          },
+          "ethics": {
+            "note": "Shareholder-owned (LSE: BARC); withdrew from the Net-Zero Banking Alliance in 2025; criticised for 'sustainable finance' greenwashing",
+            "source": "https://www.thebureauinvestigates.com/stories/2024-05-13/barclays-billions-of-sustainable-finance-for-fossil-fuel-industry-is-greenwash-says-investor",
+            "asof": "2024"
+          },
+          "transparency": {
+            "note": "Discloses financials (LSE-listed public filings)",
+            "source": "https://en.wikipedia.org/wiki/Barclays",
+            "asof": "2026"
+          },
+          "fees": "Free everyday banking",
+          "accessibility": "UK/global; vast reach"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://www.barclays.co.uk/"
+          }
+        ],
+        "region": [
+          "UK",
+          "EU"
+        ],
+        "focuses": []
+      },
+      {
+        "code": "wells-fargo",
+        "name": "Wells Fargo",
+        "brand": "global bank (US)",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "A top-five lifetime fossil financier that also publicly walked back its climate targets — a poor fit for climate-conscious customers.",
+        "scores": {
+          "environment": 12,
+          "ethics": 22,
+          "transparency": 45,
+          "fees": 55,
+          "accessibility": 92
+        },
+        "provenance": {
+          "environment": {
+            "note": "~$296bn fossil-fuel financing since 2016 — the world's 5th-largest funder",
+            "source": "https://databoks.katadata.co.id/en/environment/statistics/669fa0b4028ce/list-of-banks-funding-the-largest-fossil-fuel-companies-since-2016",
+            "asof": "2024"
+          },
+          "ethics": {
+            "note": "Shareholder-owned (NYSE: WFC); became the first major US bank to abandon its net-zero commitment (Feb 2025); history of consumer scandals",
+            "source": "https://www.banktrack.org/article/wells_fargo_becomes_first_major_us_bank_to_abandon_its_netzero_commitment",
+            "asof": "2025"
+          },
+          "transparency": {
+            "note": "Discloses financials (NYSE-listed public filings)",
+            "source": "https://en.wikipedia.org/wiki/Wells_Fargo",
+            "asof": "2026"
+          },
+          "fees": "Monthly fees common unless waived",
+          "accessibility": "US; broad branch + app reach"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://www.wellsfargo.com/"
+          }
+        ],
+        "region": [
+          "US"
+        ],
+        "focuses": []
+      },
+      {
+        "code": "citi",
+        "name": "Citibank",
+        "brand": "global bank (US)",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "A top-two lifetime fossil financier and the single biggest backer of fossil-fuel expansion since Paris — among the least climate-aligned options.",
+        "scores": {
+          "environment": 9,
+          "ethics": 30,
+          "transparency": 52,
+          "fees": 58,
+          "accessibility": 90
+        },
+        "provenance": {
+          "environment": {
+            "note": "~$396bn fossil-fuel financing since 2016 (#2 globally) and the worst funder of fossil-fuel expansion",
+            "source": "https://databoks.katadata.co.id/en/environment/statistics/669fa0b4028ce/list-of-banks-funding-the-largest-fossil-fuel-companies-since-2016",
+            "asof": "2024"
+          },
+          "ethics": {
+            "note": "Shareholder-owned (NYSE: C); exited the Net-Zero Banking Alliance in 2025",
+            "source": "https://www.sierraclub.org/press-releases/2025/01/regardless-net-zero-alliance-membership-major-us-banks-must-uphold-their",
+            "asof": "2025"
+          },
+          "transparency": {
+            "note": "Discloses financials (NYSE-listed public filings)",
+            "source": "https://en.wikipedia.org/wiki/Citigroup",
+            "asof": "2026"
+          },
+          "fees": "Monthly fees common unless waived",
+          "accessibility": "US/global; broad reach"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://www.citi.com/"
+          }
+        ],
+        "region": [
+          "US",
+          "global"
+        ],
+        "focuses": []
+      },
+      {
+        "code": "bofa",
+        "name": "Bank of America",
+        "brand": "global bank (US)",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "Consistently a top-three global fossil financier — not a values-aligned choice on climate.",
+        "scores": {
+          "environment": 10,
+          "ethics": 32,
+          "transparency": 50,
+          "fees": 55,
+          "accessibility": 95
+        },
+        "provenance": {
+          "environment": {
+            "note": "About $47bn fossil-fuel financing in 2025 (#2 globally); ~$333bn since 2016",
+            "source": "https://www.ran.org/press-releases/bocc26/",
+            "asof": "2026"
+          },
+          "ethics": {
+            "note": "Shareholder-owned (NYSE: BAC); exited the Net-Zero Banking Alliance in 2025",
+            "source": "https://www.sierraclub.org/press-releases/2025/01/regardless-net-zero-alliance-membership-major-us-banks-must-uphold-their",
+            "asof": "2025"
+          },
+          "transparency": {
+            "note": "Discloses financials (NYSE-listed public filings)",
+            "source": "https://en.wikipedia.org/wiki/Bank_of_America",
+            "asof": "2026"
+          },
+          "fees": "Monthly fees unless waived",
+          "accessibility": "US/global; vast branch + app network"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://www.bankofamerica.com/"
+          }
+        ],
+        "region": [
+          "US"
+        ],
+        "focuses": []
+      },
+      {
+        "code": "chase",
+        "name": "JPMorgan Chase",
+        "brand": "global bank (US)",
+        "allergens": [],
+        "allergensDeclared": true,
+        "description": "The world's single largest funder of fossil fuels for most years on record — a clear avoid for a climate-minded customer.",
+        "scores": {
+          "environment": 8,
+          "ethics": 30,
+          "transparency": 50,
+          "fees": 55,
+          "accessibility": 96
+        },
+        "provenance": {
+          "environment": {
+            "note": "World's #1 fossil-fuel financier — about $58bn in 2025 (up 12.6%), and ~$430bn since 2016",
+            "source": "https://www.ran.org/press-releases/bocc26/",
+            "asof": "2026"
+          },
+          "ethics": {
+            "note": "Shareholder-owned (NYSE: JPM); exited the Net-Zero Banking Alliance in 2025; no fossil exclusion",
+            "source": "https://www.esgdive.com/news/jpmorgan-chase-exits-net-zero-banking-alliance-nzba-members-gfanz-bofa-citi/736686/",
+            "asof": "2025"
+          },
+          "transparency": {
+            "note": "Discloses financials (NYSE-listed public filings); no financed-emissions transparency",
+            "source": "https://en.wikipedia.org/wiki/JPMorgan_Chase",
+            "asof": "2026"
+          },
+          "fees": "Monthly account fees common unless waived",
+          "accessibility": "US/global; the largest branch & ATM network, strong app"
+        },
+        "links": [
+          {
+            "label": "Website",
+            "url": "https://www.chase.com/"
+          }
+        ],
+        "region": [
+          "US"
+        ],
+        "focuses": []
+      }
+    ]
+  },
+  "expected": {
+    "engineVersion": "0.10",
+    "lensHash": "92535888",
+    "snapshotSha256": "fbc5b44cedeaadf57c6a27e633f30b74dfc6fe94e4a3f84f53707ba2813d86d8",
+    "rankedCount": 25,
+    "top": [
+      {
+        "rank": 1,
+        "code": "triodos",
+        "name": "Triodos Bank",
+        "score": 91,
+        "tier": "Excellent fit",
+        "why": [
+          "Green financing",
+          "Ethics & ownership"
+        ],
+        "coverage": 1,
+        "reason": {
+          "label": "Transparent",
+          "value": 100,
+          "band": "Strong",
+          "note": "Publishes every loan and investment it makes",
+          "source": "https://www.triodos.com/en/about-triodos-bank",
+          "asof": "2024"
+        },
+        "weakestAxis": [
+          "Low fees",
+          55
+        ]
+      },
+      {
+        "rank": 2,
+        "code": "beneficial-state",
+        "name": "Beneficial State Bank",
+        "score": 88,
+        "tier": "Excellent fit",
+        "why": [
+          "Green financing",
+          "Ethics & ownership"
+        ],
+        "coverage": 1,
+        "reason": {
+          "label": "Ethics & ownership",
+          "value": 95,
+          "band": "Strong",
+          "note": "Certified B Corp, GABV member and US-Treasury-certified CDFI; majority-owned by the nonprofit Beneficial State Foundation",
+          "source": "https://www.beneficialstatebank.com/about-us",
+          "asof": "2024"
+        },
+        "weakestAxis": [
+          "Low fees",
+          70
+        ]
+      },
+      {
+        "rank": 3,
+        "code": "gls-bank",
+        "name": "GLS Bank",
+        "score": 87,
+        "tier": "Excellent fit",
+        "why": [
+          "Green financing",
+          "Ethics & ownership"
+        ],
+        "coverage": 1,
+        "reason": {
+          "label": "Green financing",
+          "value": 94,
+          "band": "Strong",
+          "note": "Finances renewables and social projects, not fossil fuels; GABV signatory to the Fossil Fuel Non-Proliferation Treaty",
+          "source": "https://en.wikipedia.org/wiki/GLS_Bank",
+          "asof": "2024"
+        },
+        "weakestAxis": [
+          "Low fees",
+          52
+        ]
+      },
+      {
+        "rank": 4,
+        "code": "amalgamated",
+        "name": "Amalgamated Bank",
+        "score": 85,
+        "tier": "Excellent fit",
+        "why": [
+          "Green financing",
+          "Ethics & ownership"
+        ],
+        "coverage": 1,
+        "reason": {
+          "label": "Green financing",
+          "value": 90,
+          "band": "Strong",
+          "note": "100% fossil-fuel-free portfolio; ~a third of lending directed to climate solutions",
+          "source": "https://www.amalgamatedbank.com/news/amalgamated-bank-launches-100-fossil-fuel-free-portfolio",
+          "asof": "2024"
+        },
+        "weakestAxis": [
+          "Low fees",
+          70
+        ]
+      },
+      {
+        "rank": 5,
+        "code": "climate-first",
+        "name": "Climate First Bank",
+        "score": 85,
+        "tier": "Excellent fit",
+        "why": [
+          "Green financing",
+          "Ethics & ownership"
+        ],
+        "coverage": 1,
+        "reason": {
+          "label": "Green financing",
+          "value": 95,
+          "band": "Strong",
+          "note": "Fossil-fuel-free; financed $427M+ in residential solar since 2021, net-zero operations",
+          "source": "https://finance.yahoo.com/news/climate-first-bank-reaches-1-110000320.html",
+          "asof": "2024"
+        },
+        "weakestAxis": [
+          "Low fees",
+          68
+        ]
+      },
+      {
+        "rank": 6,
+        "code": "coop-bank-uk",
+        "name": "The Co-operative Bank",
+        "score": 84,
+        "tier": "Excellent fit",
+        "why": [
+          "Green financing",
+          "Ethics & ownership"
+        ],
+        "coverage": 1,
+        "reason": {
+          "label": "Green financing",
+          "value": 86,
+          "band": "Strong",
+          "note": "Customer-led Ethical Policy excludes fossil-fuel extraction; markets itself as fossil-free certified",
+          "source": "https://www.co-operativebank.co.uk/values-and-ethics/",
+          "asof": "2024"
+        },
+        "weakestAxis": [
+          "Low fees",
+          78
+        ]
+      },
+      {
+        "rank": 7,
+        "code": "nationwide-bs",
+        "name": "Nationwide Building Society",
+        "score": 82,
+        "tier": "Excellent fit",
+        "why": [
+          "Green financing",
+          "Ethics & ownership"
+        ],
+        "coverage": 1,
+        "reason": {
+          "label": "Ethics & ownership",
+          "value": 85,
+          "band": "Strong",
+          "note": "A member-owned mutual — no shareholders, no stock-market listing",
+          "source": "https://en.wikipedia.org/wiki/Nationwide_Building_Society",
+          "asof": "2024"
+        },
+        "weakestAxis": [
+          "Transparent",
+          72
+        ]
+      },
+      {
+        "rank": 8,
+        "code": "tomorrow",
+        "name": "Tomorrow",
+        "score": 82,
+        "tier": "Excellent fit",
+        "why": [
+          "Green financing",
+          "Ethics & ownership"
+        ],
+        "coverage": 1,
+        "reason": {
+          "label": "Green financing",
+          "value": 90,
+          "band": "Strong",
+          "note": "Deposits fund climate projects; no fossil-fuel lending",
+          "source": "https://www.tomorrow.one/en-eu/impact/",
+          "asof": "2024"
+        },
+        "weakestAxis": [
+          "Low fees",
+          55
+        ]
+      },
+      {
+        "rank": 9,
+        "code": "credit-union",
+        "name": "Local credit union",
+        "score": 79,
+        "tier": "Excellent fit",
+        "why": [
+          "Green financing",
+          "Ethics & ownership"
+        ],
+        "coverage": 1,
+        "reason": {
+          "label": "Ethics & ownership",
+          "value": 86,
+          "band": "Strong",
+          "note": "Not-for-profit, member-owned cooperatives; surplus returned to members, not external shareholders",
+          "source": "https://www.youracu.org/credit-unions-vs-banks/",
+          "asof": "2024"
+        },
+        "weakestAxis": [
+          "Transparent",
+          66
+        ]
+      },
+      {
+        "rank": 10,
+        "code": "monzo",
+        "name": "Monzo",
+        "score": 73,
+        "tier": "Strong fit",
+        "why": [
+          "Green financing",
+          "Ethics & ownership"
+        ],
+        "coverage": 1,
+        "reason": {
+          "label": "Green financing",
+          "value": 80,
+          "band": "Strong",
+          "note": "States it does not lend to or invest in fossil-fuel, arms or tobacco companies; most deposits sit at the central bank",
+          "source": "https://monzo.com/our-business-practices",
+          "asof": "2024"
+        },
+        "weakestAxis": [
+          "Ethics & ownership",
+          56
+        ]
+      }
+    ],
+    "targets": {
+      "triodos": {
+        "rank": 1,
+        "code": "triodos",
+        "name": "Triodos Bank",
+        "score": 91,
+        "tier": "Excellent fit",
+        "why": [
+          "Green financing",
+          "Ethics & ownership"
+        ],
+        "coverage": 1,
+        "reason": {
+          "label": "Transparent",
+          "value": 100,
+          "band": "Strong",
+          "note": "Publishes every loan and investment it makes",
+          "source": "https://www.triodos.com/en/about-triodos-bank",
+          "asof": "2024"
+        },
+        "weakestAxis": [
+          "Low fees",
+          55
+        ]
+      },
+      "beneficial-state": {
+        "rank": 2,
+        "code": "beneficial-state",
+        "name": "Beneficial State Bank",
+        "score": 88,
+        "tier": "Excellent fit",
+        "why": [
+          "Green financing",
+          "Ethics & ownership"
+        ],
+        "coverage": 1,
+        "reason": {
+          "label": "Ethics & ownership",
+          "value": 95,
+          "band": "Strong",
+          "note": "Certified B Corp, GABV member and US-Treasury-certified CDFI; majority-owned by the nonprofit Beneficial State Foundation",
+          "source": "https://www.beneficialstatebank.com/about-us",
+          "asof": "2024"
+        },
+        "weakestAxis": [
+          "Low fees",
+          70
+        ]
+      },
+      "credit-union": {
+        "rank": 9,
+        "code": "credit-union",
+        "name": "Local credit union",
+        "score": 79,
+        "tier": "Excellent fit",
+        "why": [
+          "Green financing",
+          "Ethics & ownership"
+        ],
+        "coverage": 1,
+        "reason": {
+          "label": "Ethics & ownership",
+          "value": 86,
+          "band": "Strong",
+          "note": "Not-for-profit, member-owned cooperatives; surplus returned to members, not external shareholders",
+          "source": "https://www.youracu.org/credit-unions-vs-banks/",
+          "asof": "2024"
+        },
+        "weakestAxis": [
+          "Transparent",
+          66
+        ]
+      },
+      "chase": {
+        "rank": 24,
+        "code": "chase",
+        "name": "JPMorgan Chase",
+        "score": 32,
+        "tier": "Weak fit",
+        "why": [
+          "Ethics & ownership",
+          "Transparent"
+        ],
+        "coverage": 1,
+        "reason": {
+          "label": "Green financing",
+          "value": 8,
+          "band": "Poor",
+          "note": "World's #1 fossil-fuel financier — about $58bn in 2025 (up 12.6%), and ~$430bn since 2016",
+          "source": "https://www.ran.org/press-releases/bocc26/",
+          "asof": "2026"
+        },
+        "weakestAxis": [
+          "Green financing",
+          8
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "schema": "values-commons-funding-ledger-v1",
+  "lastReviewed": "2026-07-04",
+  "project": {
+    "name": "Values Commons",
+    "referenceInstance": "Conscious Consuming",
+    "standard": "Open Values Standard",
+    "maintainer": "Bentley Moon-Perkins"
+  },
+  "policy": {
+    "purpose": "Record external grants and donations accepted by the project, and make the independence rules inspectable before money is accepted.",
+    "independenceLine": "No funder may buy ranking placement, coverage, scoring treatment, source treatment, guide copy, endorsements, user data, private analytics, or roadmap control.",
+    "noStringsAttestation": "Accepted support may fund time, outreach, validation, documentation, hosting, and public-interest maintenance only. It cannot influence facts, scores, ranking order, category inclusion, app copy, or user data access.",
+    "publishedCaps": [
+      {
+        "kind": "rated_entity_or_affiliate",
+        "capUsd": 0,
+        "period": "ever",
+        "rule": "Decline money from any brand, platform, product maker, service provider, fund, charity, or affiliate that is rated or likely to be rated by a Values Commons lens."
+      },
+      {
+        "kind": "conditional_or_rank_influencing_money",
+        "capUsd": 0,
+        "period": "ever",
+        "rule": "Decline any money conditioned on coverage, ranking, score changes, source treatment, guide wording, data access, private reporting, or roadmap control."
+      },
+      {
+        "kind": "single_unrestricted_grant_or_donation",
+        "capUsd": 35000,
+        "period": "rolling_12_months",
+        "rule": "Amounts above this cap must be declined or recorded as a public pledge before acceptance, with the reason and independence terms visible in this ledger."
+      }
+    ],
+    "requiredEntryFields": [
+      "id",
+      "funder.name",
+      "funder.type",
+      "amount.value",
+      "amount.currency",
+      "receivedAt",
+      "purpose",
+      "noStringsAttestation",
+      "relationshipToRatedEntities",
+      "sourceUrl"
+    ]
+  },
+  "whoFundsUsLens": {
+    "status": "deferred",
+    "reason": "No external funder entries are recorded in this repository snapshot, so a scored who-funds-us lens would invent data. Missing means omit until real accepted funders exist."
+  },
+  "entries": [],
+  "limitations": [
+    "This ledger records external grants and donations accepted by the project. It is not a personal expense ledger.",
+    "An empty entries array means no external grants or donations are recorded in this repository snapshot; it is not a claim about future funding."
+  ]
+}
