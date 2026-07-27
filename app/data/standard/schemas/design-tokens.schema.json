@@ -1,0 +1,424 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/design-tokens-v0.1.schema.json",
+  "title": "Open Values Design Tokens v0.1",
+  "description": "Source design-token file for skinnable Open Values instances: semantic color, typography, spacing, motion, component contracts, and SVG art tokens.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["format", "version", "standard", "updated", "purpose", "principles", "valueBloom", "cssVariableMapping", "profiles"],
+  "properties": {
+    "format": { "const": "open-values-design-tokens" },
+    "version": { "type": "string", "pattern": "^0\\.1\\.0(?:[-+].*)?$" },
+    "standard": { "const": "open-values-standard" },
+    "updated": { "$ref": "#/$defs/date" },
+    "purpose": { "$ref": "#/$defs/nonEmptyString" },
+    "principles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "references": { "type": "array", "items": { "$ref": "#/$defs/reference" } },
+    "valueBloom": { "$ref": "#/$defs/valueBloom" },
+    "cssVariableMapping": { "$ref": "#/$defs/cssVariableMapping" },
+    "contrastRemediationContract": { "$ref": "#/$defs/contrastRemediationContract" },
+    "profiles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/profile" } }
+  },
+  "$defs": {
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "hex": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+    "length": { "type": "string", "pattern": "^(\\d+(\\.\\d+)?)(rem|px)$" },
+    "themeId": { "enum": ["planet", "people", "health", "honesty", "privacy", "animals", "cost", "local"] },
+    "reference": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["label", "url", "asof"],
+      "properties": {
+        "label": { "$ref": "#/$defs/nonEmptyString" },
+        "url": { "type": "string", "pattern": "^https?://" },
+        "asof": { "type": "string", "pattern": "^(19|20)\\d{2}$" }
+      }
+    },
+    "colorToken": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["value", "role"],
+      "properties": {
+        "value": { "$ref": "#/$defs/hex" },
+        "role": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    },
+    "colorRamp": {
+      "type": "object",
+      "minProperties": 4,
+      "additionalProperties": { "$ref": "#/$defs/hex" }
+    },
+    "colorRamps": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/colorRamp" }
+    },
+    "colorMode": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["aliases", "contrastPairs"],
+      "properties": {
+        "aliases": {
+          "type": "object",
+          "minProperties": 4,
+          "additionalProperties": { "$ref": "#/$defs/hex" }
+        },
+        "contrastPairs": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/colorModeContrastPair" } }
+      }
+    },
+    "colorModeContrastPair": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "fg", "bg", "minimum"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "fg": { "$ref": "#/$defs/nonEmptyString" },
+        "bg": { "$ref": "#/$defs/nonEmptyString" },
+        "minimum": { "type": "number", "minimum": 3 }
+      }
+    },
+    "colorModes": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["status", "pilotColors"],
+      "properties": {
+        "status": { "$ref": "#/$defs/nonEmptyString" },
+        "pilotColors": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "light": { "$ref": "#/$defs/colorMode" },
+        "dark": { "$ref": "#/$defs/colorMode" }
+      }
+    },
+    "dayCycle": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["status", "consumer", "defaultMode", "variants", "mustNot"],
+      "properties": {
+        "status": { "const": "h2-token-substrate" },
+        "consumer": { "$ref": "#/$defs/nonEmptyString" },
+        "defaultMode": { "const": "noon" },
+        "variants": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/dayCycleVariant" },
+          "required": ["dawn", "noon", "dusk", "night"],
+          "properties": {
+            "dawn": { "$ref": "#/$defs/dayCycleVariant" },
+            "noon": { "$ref": "#/$defs/dayCycleVariant" },
+            "dusk": { "$ref": "#/$defs/dayCycleVariant" },
+            "night": { "$ref": "#/$defs/dayCycleVariant" }
+          }
+        },
+        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+      }
+    },
+    "dayCycleVariant": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["label", "role", "aliases", "contrastPairs"],
+      "properties": {
+        "label": { "$ref": "#/$defs/nonEmptyString" },
+        "role": { "$ref": "#/$defs/nonEmptyString" },
+        "aliases": {
+          "type": "object",
+          "minProperties": 4,
+          "additionalProperties": { "$ref": "#/$defs/hex" }
+        },
+        "contrastPairs": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/colorModeContrastPair" } }
+      }
+    },
+    "valueBloom": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["status", "consumer", "sourceFunction", "minimumThemesForBloom", "scoreScale", "order", "themes", "signatureVector"],
+      "properties": {
+        "status": { "const": "h4-token-substrate" },
+        "consumer": { "$ref": "#/$defs/nonEmptyString" },
+        "sourceFunction": { "$ref": "#/$defs/nonEmptyString" },
+        "minimumThemesForBloom": { "type": "integer", "minimum": 2 },
+        "scoreScale": { "$ref": "#/$defs/nonEmptyString" },
+        "order": { "type": "array", "minItems": 8, "maxItems": 8, "items": { "$ref": "#/$defs/themeId" } },
+        "themes": { "type": "array", "minItems": 8, "maxItems": 8, "items": { "$ref": "#/$defs/valueBloomTheme" } },
+        "signatureVector": { "$ref": "#/$defs/signatureVector" }
+      }
+    },
+    "valueBloomTheme": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "label", "universal", "petalColor", "centerColor", "role"],
+      "properties": {
+        "id": { "$ref": "#/$defs/themeId" },
+        "label": { "$ref": "#/$defs/nonEmptyString" },
+        "universal": { "$ref": "#/$defs/nonEmptyString" },
+        "petalColor": { "$ref": "#/$defs/hex" },
+        "centerColor": { "$ref": "#/$defs/hex" },
+        "role": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    },
+    "signatureVector": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["status", "field", "order", "shape", "omitMissing", "mustNot"],
+      "properties": {
+        "status": { "const": "optional-materialization-contract" },
+        "field": { "const": "valueSignature" },
+        "order": { "type": "array", "minItems": 8, "maxItems": 8, "items": { "$ref": "#/$defs/themeId" } },
+        "shape": { "$ref": "#/$defs/nonEmptyString" },
+        "omitMissing": { "const": true },
+        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+      }
+    },
+    "typographyToken": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["family", "size", "lineHeight"],
+      "properties": {
+        "family": { "$ref": "#/$defs/nonEmptyString" },
+        "size": { "$ref": "#/$defs/length" },
+        "lineHeight": { "type": "number", "minimum": 1, "maximum": 2 }
+      }
+    },
+    "motion": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["durationFast", "durationBase", "durationSlow", "durationRerank", "easing", "reducedMotion", "maxMovingElements", "mustNot"],
+      "properties": {
+        "status": { "const": "h3-token-substrate" },
+        "consumer": { "$ref": "#/$defs/nonEmptyString" },
+        "durationFast": { "type": "integer", "minimum": 0, "maximum": 150 },
+        "durationBase": { "type": "integer", "minimum": 0, "maximum": 150 },
+        "durationSlow": { "type": "integer", "minimum": 0, "maximum": 150 },
+        "durationRerank": { "type": "integer", "minimum": 200, "maximum": 500 },
+        "easing": { "$ref": "#/$defs/nonEmptyString" },
+        "reducedMotion": { "$ref": "#/$defs/nonEmptyString" },
+        "maxMovingElements": { "type": "integer", "minimum": 0, "maximum": 16 },
+        "curves": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/nonEmptyString" }
+        },
+        "settleDurations": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0, "maximum": 600 }
+        },
+        "intents": { "type": "array", "items": { "$ref": "#/$defs/motionIntent" } },
+        "reducedMotionPolicy": { "$ref": "#/$defs/reducedMotionPolicy" },
+        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+      }
+    },
+    "motionIntent": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "duration", "curve", "maxDistancePx", "allowedProperties", "mustNot"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "duration": { "$ref": "#/$defs/nonEmptyString" },
+        "curve": { "$ref": "#/$defs/nonEmptyString" },
+        "maxDistancePx": { "type": "integer", "minimum": 0, "maximum": 24 },
+        "maxMovingElements": { "type": "integer", "minimum": 0, "maximum": 16 },
+        "allowedProperties": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+      }
+    },
+    "reducedMotionPolicy": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["mode", "allowedProperties", "mustNot"],
+      "properties": {
+        "mode": { "$ref": "#/$defs/nonEmptyString" },
+        "allowedProperties": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+      }
+    },
+    "elevation": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 2,
+      "additionalProperties": { "$ref": "#/$defs/nonEmptyString" }
+    },
+    "materiality": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["status", "consumer", "paperGrain", "shadow", "surfaces"],
+      "properties": {
+        "status": { "const": "h5-token-substrate" },
+        "consumer": { "$ref": "#/$defs/nonEmptyString" },
+        "paperGrain": { "$ref": "#/$defs/paperGrain" },
+        "shadow": { "$ref": "#/$defs/materialShadow" },
+        "surfaces": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/materialSurface" } }
+      }
+    },
+    "paperGrain": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["opacity", "scalePx", "contrastLimit", "tokens", "mustNot"],
+      "properties": {
+        "opacity": { "type": "number", "exclusiveMinimum": 0, "maximum": 0.08 },
+        "scalePx": { "type": "integer", "minimum": 96, "maximum": 320 },
+        "contrastLimit": { "type": "number", "exclusiveMinimum": 0, "maximum": 0.1 },
+        "tokens": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+      }
+    },
+    "materialShadow": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["style", "source", "maxLevels", "mustNot"],
+      "properties": {
+        "style": { "const": "warm-soft" },
+        "source": { "const": "tokens.elevation" },
+        "maxLevels": { "type": "integer", "minimum": 1, "maximum": 2 },
+        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+      }
+    },
+    "materialSurface": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "token", "grain", "role"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "token": { "$ref": "#/$defs/nonEmptyString" },
+        "grain": { "const": "paperGrain" },
+        "role": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    },
+    "cssVariableMapping": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["status", "consumer", "sourceProfile", "note", "rows"],
+      "properties": {
+        "status": { "const": "i3-review-table" },
+        "consumer": { "$ref": "#/$defs/nonEmptyString" },
+        "sourceProfile": { "$ref": "#/$defs/nonEmptyString" },
+        "note": { "$ref": "#/$defs/nonEmptyString" },
+        "rows": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/cssVariableMappingRow" } }
+      }
+    },
+    "cssVariableMappingRow": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["token", "cssVariable", "role"],
+      "properties": {
+        "token": { "$ref": "#/$defs/nonEmptyString" },
+        "cssVariable": { "type": "string", "pattern": "^--[a-z0-9-]+$" },
+        "role": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    },
+    "contrastRemediationContract": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["status", "consumer", "sourceAudit", "appOwnedFile", "rule", "steps", "sharedEvidenceRequired", "coverage"],
+      "properties": {
+        "status": { "const": "h9-app-owned-remediation" },
+        "consumer": { "$ref": "#/$defs/nonEmptyString" },
+        "sourceAudit": { "const": "research/contrast_audit.js" },
+        "appOwnedFile": { "const": "app/styles.css" },
+        "rule": { "$ref": "#/$defs/nonEmptyString" },
+        "steps": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/contrastRemediationStep" } },
+        "sharedEvidenceRequired": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "coverage": { "type": "object", "minProperties": 1 }
+      }
+    },
+    "contrastRemediationStep": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "label", "warning", "theme", "foreground", "background", "ratio", "minimum", "targetCssVariables", "tokenSource", "appOwnedEvidence", "mustNot"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "label": { "$ref": "#/$defs/nonEmptyString" },
+        "warning": { "$ref": "#/$defs/nonEmptyString" },
+        "theme": { "enum": ["light", "dark"] },
+        "foreground": { "$ref": "#/$defs/nonEmptyString" },
+        "background": { "$ref": "#/$defs/nonEmptyString" },
+        "ratio": { "type": "number", "minimum": 1 },
+        "minimum": { "type": "number", "minimum": 3 },
+        "targetCssVariables": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^--[a-z0-9-]+$" } },
+        "tokenSource": { "$ref": "#/$defs/nonEmptyString" },
+        "appOwnedEvidence": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+      }
+    },
+    "tokens": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["color", "typography", "space", "radius", "motion", "elevation"],
+      "properties": {
+        "color": {
+          "type": "object",
+          "minProperties": 8,
+          "additionalProperties": { "$ref": "#/$defs/colorToken" }
+        },
+        "colorRamps": { "$ref": "#/$defs/colorRamps" },
+        "colorModes": { "$ref": "#/$defs/colorModes" },
+        "dayCycle": { "$ref": "#/$defs/dayCycle" },
+        "typography": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "$ref": "#/$defs/typographyToken" }
+        },
+        "space": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/length" }
+        },
+        "radius": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/length" }
+        },
+        "motion": { "$ref": "#/$defs/motion" },
+        "elevation": { "$ref": "#/$defs/elevation" },
+        "materiality": { "$ref": "#/$defs/materiality" }
+      }
+    },
+    "contrastPair": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "fg", "bg", "purpose", "minimum"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "fg": { "$ref": "#/$defs/nonEmptyString" },
+        "bg": { "$ref": "#/$defs/nonEmptyString" },
+        "purpose": { "$ref": "#/$defs/nonEmptyString" },
+        "minimum": { "type": "number", "minimum": 3 }
+      }
+    },
+    "componentContract": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "tokens", "mustExpress", "mustNot"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "tokens": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "mustExpress": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+      }
+    },
+    "artToken": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "kind", "viewBox", "stroke", "fill", "path", "usage"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "kind": { "enum": ["svg-line", "svg-fill"] },
+        "viewBox": { "$ref": "#/$defs/nonEmptyString" },
+        "stroke": { "$ref": "#/$defs/nonEmptyString" },
+        "fill": { "$ref": "#/$defs/nonEmptyString" },
+        "path": { "$ref": "#/$defs/nonEmptyString" },
+        "usage": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "label", "role", "status", "summary", "tokens", "contrastPairs", "componentContracts", "artTokens"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "label": { "$ref": "#/$defs/nonEmptyString" },
+        "role": { "$ref": "#/$defs/nonEmptyString" },
+        "status": { "enum": ["format-seed", "active", "archived"] },
+        "summary": { "$ref": "#/$defs/nonEmptyString" },
+        "tokens": { "$ref": "#/$defs/tokens" },
+        "contrastPairs": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/contrastPair" } },
+        "componentContracts": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/componentContract" } },
+        "artTokens": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/artToken" } }
+      }
+    }
+  }
+}

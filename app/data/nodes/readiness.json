@@ -1,0 +1,1441 @@
+{
+  "format": "ovs-node-readiness",
+  "version": "0.1",
+  "built": "2026-07-15",
+  "source": "pipeline/build_nodes.js",
+  "status": "ready-for-app-integration",
+  "appLaneNote": "Generated data only; app-owned code chooses when and how to load these files.",
+  "runtimePlan": [
+    {
+      "step": 1,
+      "files": [
+        "manifest.json",
+        "node-load-plan.json"
+      ],
+      "loadHint": "eager-metadata",
+      "bytes": 6262,
+      "purpose": "Discover available node indexes, byte sizes, integrity hashes, and runtime loading stages."
+    },
+    {
+      "step": 2,
+      "files": [
+        "tags.json",
+        "errands.json",
+        "synonyms.json"
+      ],
+      "loadHint": "eager",
+      "bytes": 85711,
+      "purpose": "Small node helpers for tag, errand, and everyday-phrase routing; sample.json stays out of runtime evidence."
+    },
+    {
+      "step": 3,
+      "file": "ask-core.json",
+      "loadHint": "eager-search",
+      "bytes": 642114,
+      "budgetBytes": 700000,
+      "headroomBytes": 57886,
+      "purpose": "Startup search over categories, brands, companies, tags, guides, errands, and lines."
+    },
+    {
+      "step": 4,
+      "files": [
+        "brands.json",
+        "companies.json"
+      ],
+      "loadHint": "defer-page-nodes",
+      "bytes": 1540361,
+      "purpose": "Full brand/company node pages and ownership context."
+    },
+    {
+      "step": 5,
+      "file": "ask-index.json",
+      "loadHint": "lazy-product-search",
+      "bytes": 5579274,
+      "purpose": "Lazy product-name and barcode lookup."
+    }
+  ],
+  "devContracts": [
+    {
+      "file": "ask-fixtures.json",
+      "loadHint": "dev-contract",
+      "cases": 13,
+      "purpose": "Golden resolver cases for app integration tests."
+    },
+    {
+      "file": "ask-traces.json",
+      "loadHint": "dev-contract",
+      "traces": 13,
+      "purpose": "Expected top results, match ranks, labels, hashes, and reasons for visual QA."
+    },
+    {
+      "file": "ask-presentation.json",
+      "loadHint": "dev-contract",
+      "qaCases": 13,
+      "purpose": "Suggested type labels, actions, result sections, match-reason labels, and empty-state doors."
+    },
+    {
+      "file": "node-walkthroughs.json",
+      "loadHint": "dev-contract",
+      "walkthroughs": 3,
+      "purpose": "Flagship Ask-to-node QA paths for preview demos and app integration checks."
+    },
+    {
+      "file": "node-page-contracts.json",
+      "loadHint": "dev-contract",
+      "contracts": 8,
+      "purpose": "Page-type route patterns, required fields, sections, and sample hashes for app-owned rendering."
+    },
+    {
+      "file": "node-route-fixtures.json",
+      "loadHint": "dev-contract",
+      "cases": 22,
+      "purpose": "Positive route parser fixtures covering category, item, guide, and node hashes."
+    },
+    {
+      "file": "node-route-guardrails.json",
+      "loadHint": "dev-contract",
+      "cases": 11,
+      "purpose": "Malformed, unsupported, unknown-target, and canonicalization route guardrails."
+    },
+    {
+      "file": "node-runtime-states.json",
+      "loadHint": "dev-contract",
+      "cases": 15,
+      "purpose": "Loading, empty, unavailable, integrity, route, and offline state fixtures for app integration QA."
+    },
+    {
+      "file": "node-preview-matrix.json",
+      "loadHint": "dev-contract",
+      "scenarios": 21,
+      "purpose": "Private-preview and H4-drain QA matrix tying search, routes, runtime states, and flagship walkthroughs together."
+    },
+    {
+      "file": "node-integration-checklist.json",
+      "loadHint": "dev-contract",
+      "phases": 10,
+      "purpose": "Acceptance checklist tying load plan, Ask, routes, pages, guardrails, and flagship walkthroughs together."
+    },
+    {
+      "file": "node-load-plan.json",
+      "loadHint": "runtime-contract",
+      "stages": 6,
+      "purpose": "Runtime loading stages, integrity behavior, and failure-mode contract for app-owned integration."
+    }
+  ],
+  "routeContract": {
+    "category": "#explore/<cid>",
+    "guide": "#guide/<slug>",
+    "item": "#item/<cid>/<code>",
+    "node": "#n/<type>/<slug>"
+  },
+  "counts": {
+    "brands": 2098,
+    "brandLongTail": 4514,
+    "companies": 29,
+    "askCoreTokens": 2975,
+    "askCoreTargets": 2472,
+    "askTokens": 62740,
+    "askAliases": 2710,
+    "goldenQueries": 13
+  },
+  "budgets": {
+    "askCoreBytes": 642114,
+    "startupBudgetBytes": 700000,
+    "minimumHeadroomBytes": 50000,
+    "askCoreHeadroomBytes": 57886,
+    "askCoreWithinBudget": true,
+    "askCoreHasHeadroom": true,
+    "fullAskBytes": 5579274,
+    "nodeLoadPlanStages": 6,
+    "nodeRuntimeStateCases": 15,
+    "nodePreviewScenarios": 21
+  },
+  "publicGates": {
+    "status": "ready-for-app-public-gates",
+    "namedConsumer": "Claude I5 workbench graduation",
+    "voiceSource": "codex.md#c8-voice-pass-status",
+    "rule": "Move one surface public at a time only after the app renders the generated file or documents equivalent coverage.",
+    "appOwnedBeforePublic": [
+      "Render the surface from generated data or document an equivalent app-owned merge path.",
+      "Keep app-added copy in the signed voice; do not add engagement mechanics or inflated coverage.",
+      "Run the smoke commands before moving the surface out of the workbench."
+    ],
+    "releaseContract": {
+      "purpose": "App-owned public release contract for graduating workbench surfaces one at a time.",
+      "status": "ready-for-app-public-gates",
+      "namedConsumer": "Claude I5 workbench graduation",
+      "releaseRule": "Release one surface at a time, after app-owned rendering evidence satisfies that surface gate and the shared pre-public rules.",
+      "voiceSource": "codex.md#c8-voice-pass-status",
+      "releaseOrder": [
+        {
+          "step": 1,
+          "surfaceId": "company-pages",
+          "label": "Company pages",
+          "voiceStatus": "signed",
+          "sourceFiles": [
+            "app/data/nodes/companies.json",
+            "app/data/nodes/node-page-contracts.json",
+            "pipeline/build_nodes.js",
+            "codex.md"
+          ],
+          "evidenceRequired": [
+            "Running-app route or surface evidence that the named generated files are consumed or an equivalent merge path is documented.",
+            "Voice check against codex.md#c8-voice-pass-status.",
+            "A pass/fail note for each appOwnedGate and mustNot clause before public release."
+          ],
+          "releaseWhen": [
+            "A company page can go public when its signed read, owned brands, visible-shelf count, and ownership receipts render together.",
+            "The surface has no engagement mechanics, inflated coverage, or unsourced claims.",
+            "The public release keeps rollback simple by moving this surface one at a time."
+          ],
+          "mustNot": [
+            "Do not publish a company page without its ownership receipt list.",
+            "Do not claim unobserved brands appear in the commons."
+          ]
+        },
+        {
+          "step": 2,
+          "surfaceId": "tag-pages",
+          "label": "Tag pages",
+          "voiceStatus": "signed",
+          "sourceFiles": [
+            "app/data/nodes/tags.json",
+            "content/tags.json",
+            "pipeline/build_tags.js",
+            "codex.md"
+          ],
+          "evidenceRequired": [
+            "Running-app route or surface evidence that the named generated files are consumed or an equivalent merge path is documented.",
+            "Voice check against codex.md#c8-voice-pass-status.",
+            "A pass/fail note for each appOwnedGate and mustNot clause before public release."
+          ],
+          "releaseWhen": [
+            "A tag page can go public when certification reads name who checks the claim and property tags do not pretend to be certifications.",
+            "The surface has no engagement mechanics, inflated coverage, or unsourced claims.",
+            "The public release keeps rollback simple by moving this surface one at a time."
+          ],
+          "mustNot": [
+            "Do not show an unsourced certification as if it had a receipt.",
+            "Do not collapse property tags and third-party certification tags into one promise."
+          ]
+        },
+        {
+          "step": 3,
+          "surfaceId": "errand-pages",
+          "label": "Errand pages",
+          "voiceStatus": "signed",
+          "sourceFiles": [
+            "app/data/nodes/errands.json",
+            "content/errands.json",
+            "pipeline/build_errands.js",
+            "codex.md"
+          ],
+          "evidenceRequired": [
+            "Running-app route or surface evidence that the named generated files are consumed or an equivalent merge path is documented.",
+            "Voice check against codex.md#c8-voice-pass-status.",
+            "A pass/fail note for each appOwnedGate and mustNot clause before public release."
+          ],
+          "releaseWhen": [
+            "An errand can go public when every step ends in a list-ready choice and the runner keeps output:list visible.",
+            "The surface has no engagement mechanics, inflated coverage, or unsourced claims.",
+            "The public release keeps rollback simple by moving this surface one at a time."
+          ],
+          "mustNot": [
+            "Do not turn errands into a feed or checklist streak.",
+            "Do not hide why each stop belongs in the errand."
+          ]
+        },
+        {
+          "step": 4,
+          "surfaceId": "pulse-strip",
+          "label": "Pulse strip",
+          "voiceStatus": "signed",
+          "sourceFiles": [
+            "app/data/pulse.json",
+            "pipeline/build_pulse.js",
+            "codex.md"
+          ],
+          "evidenceRequired": [
+            "Running-app route or surface evidence that the named generated files are consumed or an equivalent merge path is documented.",
+            "Voice check against codex.md#c8-voice-pass-status.",
+            "A pass/fail note for each appOwnedGate and mustNot clause before public release."
+          ],
+          "releaseWhen": [
+            "The pulse strip can go public when entries read as a maintenance ledger: what changed, the count, and the source.",
+            "The surface has no engagement mechanics, inflated coverage, or unsourced claims.",
+            "The public release keeps rollback simple by moving this surface one at a time."
+          ],
+          "mustNot": [
+            "Do not add streaks, likes, or urgency language.",
+            "Do not show a pulse row without a source URL or commit."
+          ]
+        },
+        {
+          "step": 5,
+          "surfaceId": "brand-pages",
+          "label": "Brand pages",
+          "voiceStatus": "minimal-generated-copy",
+          "sourceFiles": [
+            "app/data/nodes/brands.json",
+            "app/data/nodes/node-page-contracts.json",
+            "pipeline/build_nodes.js",
+            "codex.md"
+          ],
+          "evidenceRequired": [
+            "Running-app route or surface evidence that the named generated files are consumed or an equivalent merge path is documented.",
+            "Voice check against codex.md#c8-voice-pass-status.",
+            "A pass/fail note for each appOwnedGate and mustNot clause before public release."
+          ],
+          "releaseWhen": [
+            "A brand page can go public when it renders labels, categories, owner links when present, and top examples without inventing coverage.",
+            "The surface has no engagement mechanics, inflated coverage, or unsourced claims.",
+            "The public release keeps rollback simple by moving this surface one at a time."
+          ],
+          "mustNot": [
+            "Do not turn item counts into importance claims.",
+            "Do not imply every brand product is covered."
+          ]
+        }
+      ],
+      "sharedEvidenceRequired": [
+        "The surface renders from generated data or a documented equivalent app-owned merge path.",
+        "The public copy stays in the signed voice and does not add engagement mechanics.",
+        "The relevant smoke commands pass before release."
+      ],
+      "rollbackRule": "If a surface misses its gate in app QA, leave only that surface in the workbench and keep the others on their previous public/workbench status.",
+      "coverage": {
+        "surfaces": 5,
+        "releaseSteps": 5,
+        "allSurfacesCovered": true,
+        "minimalGeneratedCopy": [
+          "brand-pages"
+        ],
+        "signedSurfaces": [
+          "company-pages",
+          "tag-pages",
+          "errand-pages",
+          "pulse-strip"
+        ]
+      }
+    },
+    "surfaces": [
+      {
+        "id": "brand-pages",
+        "label": "Brand pages",
+        "owner": "app/design",
+        "status": "voice-signed-app-gate",
+        "proseClass": "minimal-generated-copy",
+        "sourceFiles": [
+          "app/data/nodes/brands.json",
+          "app/data/nodes/node-page-contracts.json",
+          "pipeline/build_nodes.js",
+          "codex.md"
+        ],
+        "voice": {
+          "status": "minimal-generated-copy",
+          "signedAt": "2026-07-08",
+          "signoffBlock": "codex.md#c8-voice-pass-status",
+          "pilotSamples": 0,
+          "note": "Brand nodes expose labels, categories, owners, and top examples; app copy must name coverage without adding a fabricated brand read."
+        },
+        "appOwnedGate": "A brand page can go public when it renders labels, categories, owner links when present, and top examples without inventing coverage.",
+        "mustNot": [
+          "Do not turn item counts into importance claims.",
+          "Do not imply every brand product is covered."
+        ],
+        "generatedCount": 2098
+      },
+      {
+        "id": "company-pages",
+        "label": "Company pages",
+        "owner": "app/design",
+        "status": "voice-signed-app-gate",
+        "proseClass": "company-reads",
+        "sourceFiles": [
+          "app/data/nodes/companies.json",
+          "app/data/nodes/node-page-contracts.json",
+          "pipeline/build_nodes.js",
+          "codex.md"
+        ],
+        "voice": {
+          "status": "signed",
+          "signedAt": "2026-07-08",
+          "signoffBlock": "codex.md#c8-voice-pass-status",
+          "pilotSamples": 5
+        },
+        "appOwnedGate": "A company page can go public when its signed read, owned brands, visible-shelf count, and ownership receipts render together.",
+        "mustNot": [
+          "Do not publish a company page without its ownership receipt list.",
+          "Do not claim unobserved brands appear in the commons."
+        ],
+        "generatedCount": 29
+      },
+      {
+        "id": "tag-pages",
+        "label": "Tag pages",
+        "owner": "app/design",
+        "status": "voice-signed-app-gate",
+        "proseClass": "tag-reads",
+        "sourceFiles": [
+          "app/data/nodes/tags.json",
+          "content/tags.json",
+          "pipeline/build_tags.js",
+          "codex.md"
+        ],
+        "voice": {
+          "status": "signed",
+          "signedAt": "2026-07-08",
+          "signoffBlock": "codex.md#c8-voice-pass-status",
+          "pilotSamples": 5
+        },
+        "appOwnedGate": "A tag page can go public when certification reads name who checks the claim and property tags do not pretend to be certifications.",
+        "mustNot": [
+          "Do not show an unsourced certification as if it had a receipt.",
+          "Do not collapse property tags and third-party certification tags into one promise."
+        ]
+      },
+      {
+        "id": "errand-pages",
+        "label": "Errand pages",
+        "owner": "app/design",
+        "status": "voice-signed-app-gate",
+        "proseClass": "errand-step-notes",
+        "sourceFiles": [
+          "app/data/nodes/errands.json",
+          "content/errands.json",
+          "pipeline/build_errands.js",
+          "codex.md"
+        ],
+        "voice": {
+          "status": "signed",
+          "signedAt": "2026-07-08",
+          "signoffBlock": "codex.md#c8-voice-pass-status",
+          "pilotSamples": 5
+        },
+        "appOwnedGate": "An errand can go public when every step ends in a list-ready choice and the runner keeps output:list visible.",
+        "mustNot": [
+          "Do not turn errands into a feed or checklist streak.",
+          "Do not hide why each stop belongs in the errand."
+        ],
+        "generatedCount": 12
+      },
+      {
+        "id": "pulse-strip",
+        "label": "Pulse strip",
+        "owner": "app/design",
+        "status": "voice-signed-app-gate",
+        "proseClass": "pulse-ledger-lines",
+        "sourceFiles": [
+          "app/data/pulse.json",
+          "pipeline/build_pulse.js",
+          "codex.md"
+        ],
+        "voice": {
+          "status": "signed",
+          "signedAt": "2026-07-08",
+          "signoffBlock": "codex.md#c8-voice-pass-status",
+          "pilotSamples": 5
+        },
+        "appOwnedGate": "The pulse strip can go public when entries read as a maintenance ledger: what changed, the count, and the source.",
+        "mustNot": [
+          "Do not add streaks, likes, or urgency language.",
+          "Do not show a pulse row without a source URL or commit."
+        ]
+      }
+    ]
+  },
+  "h4DrainContract": {
+    "purpose": "App-owned H4 drain contract for generated node and Ask integration.",
+    "status": "pending-app-integration",
+    "activeHandoff": "H4",
+    "namedConsumer": "Claude H4 generated-node integration drain pass",
+    "h4DrainableFromDataAlone": false,
+    "drainRule": "H4 drains only after app-owned implementation evidence covers every step here or documents equivalent coverage; generated data alone is insufficient.",
+    "steps": [
+      {
+        "step": 1,
+        "id": "manifest-loader",
+        "label": "Consume manifest loader plan",
+        "phaseIds": [
+          "discover-load-plan"
+        ],
+        "sourceFiles": [
+          "app/data/nodes/manifest.json",
+          "app/data/nodes/node-load-plan.json",
+          "app/data/nodes/readiness.json"
+        ],
+        "contractPointer": "manifest.json#loaderPlan",
+        "appOwnedEvidence": [
+          "Running-app loader reads the manifest loaderPlan or documents an equivalent ordered load table.",
+          "Cache keys or integrity checks use the generated sha256 values before trusting cached node files."
+        ],
+        "passWhen": [
+          "Startup loads only eager runtime files before optional node depth.",
+          "The app has a visible recovery path for missing or stale generated node files."
+        ],
+        "mustNot": [
+          "Do not eager-load ask-index.json just to make startup search work.",
+          "Do not ignore sha256/hash-mismatch behavior in the loader path."
+        ]
+      },
+      {
+        "step": 2,
+        "id": "startup-ask-core",
+        "label": "Wire compact startup Ask",
+        "phaseIds": [
+          "startup-ask",
+          "ask-presentation"
+        ],
+        "sourceFiles": [
+          "app/data/nodes/ask-core.json",
+          "app/data/nodes/ask-fixtures.json",
+          "app/data/nodes/ask-traces.json",
+          "app/data/nodes/ask-presentation.json"
+        ],
+        "contractPointer": "ask-core.json#startupContract",
+        "appOwnedEvidence": [
+          "Running-app Ask resolves the compact golden queries before loading the full product index.",
+          "Rendered result rows preserve type labels, route hashes, match reasons, and empty-state recovery from the presentation contract."
+        ],
+        "passWhen": [
+          "The compact core works for category, guide, brand, company, tag, errand, and line targets.",
+          "The nestel typo case ranks edit-distance Nestle matches before loose containment hits."
+        ],
+        "mustNot": [
+          "Do not treat a green data resolver as enough without checking rendered result order.",
+          "Do not hide no-results states behind a silent empty panel."
+        ]
+      },
+      {
+        "step": 3,
+        "id": "lazy-product-ask",
+        "label": "Keep product Ask lazy and bounded",
+        "phaseIds": [
+          "lazy-product-ask"
+        ],
+        "sourceFiles": [
+          "app/data/nodes/ask-index.json",
+          "app/data/nodes/ask-fixtures.json",
+          "app/data/nodes/ask-traces.json"
+        ],
+        "contractPointer": "ask-index.json#loadHint",
+        "appOwnedEvidence": [
+          "Running-app product-name or barcode lookup loads ask-index.json only after compact startup Ask is usable.",
+          "Failure to load ask-index.json leaves compact Ask, browse, and route behavior available."
+        ],
+        "passWhen": [
+          "Barcode fixtures resolve to the expected item hashes after lazy load.",
+          "The full Ask index remains outside the eager startup path unless a later budget decision explicitly changes that contract."
+        ],
+        "mustNot": [
+          "Do not block startup search on the full product/barcode index.",
+          "Do not make lazy product failure look like the whole app has failed."
+        ]
+      },
+      {
+        "step": 4,
+        "id": "route-and-page-rendering",
+        "label": "Render generated routes and page types",
+        "phaseIds": [
+          "route-parser",
+          "page-rendering"
+        ],
+        "sourceFiles": [
+          "app/data/nodes/node-page-contracts.json",
+          "app/data/nodes/node-route-fixtures.json",
+          "app/data/nodes/node-route-guardrails.json",
+          "app/data/nodes/brands.json",
+          "app/data/nodes/companies.json",
+          "app/data/nodes/tags.json",
+          "app/data/nodes/errands.json"
+        ],
+        "contractPointer": "node-page-contracts.json#contracts",
+        "appOwnedEvidence": [
+          "Running-app route parser passes positive fixtures and guardrail fixtures.",
+          "Category, item, guide, brand, company, tag, errand, and line routes render from generated contracts or documented equivalent page data."
+        ],
+        "passWhen": [
+          "Malformed or unsupported hashes never fabricate content pages.",
+          "Known generated page types expose required fields and check optional fields before display."
+        ],
+        "mustNot": [
+          "Do not invent page copy when generated fields are absent.",
+          "Do not collapse unknown generated targets into unrelated real pages."
+        ]
+      },
+      {
+        "step": 5,
+        "id": "runtime-state-qa",
+        "label": "Walk runtime loading and failure states",
+        "phaseIds": [
+          "runtime-states"
+        ],
+        "sourceFiles": [
+          "app/data/nodes/node-runtime-states.json",
+          "app/data/nodes/node-load-plan.json",
+          "app/data/nodes/node-route-guardrails.json"
+        ],
+        "contractPointer": "node-runtime-states.json#qaContract",
+        "appOwnedEvidence": [
+          "Running-app QA covers startup, route/page, lazy product, and copy/failure modes from qaContract.",
+          "Hash mismatch, offline, parse failure, no-results, and lazy-unavailable states have visible treatments."
+        ],
+        "passWhen": [
+          "Partial data failure degrades to the scoped state named by qaContract.",
+          "Compact Ask and browse recovery remain available when lazy product lookup fails."
+        ],
+        "mustNot": [
+          "Do not replace integrity failures with stale generated data.",
+          "Do not leave blank panes for missing node or Ask files."
+        ]
+      },
+      {
+        "step": 6,
+        "id": "flagship-walkthroughs",
+        "label": "Walk first-use concern paths",
+        "phaseIds": [
+          "flagship-walkthroughs"
+        ],
+        "sourceFiles": [
+          "app/data/nodes/node-walkthroughs.json",
+          "app/data/nodes/ask-core.json",
+          "app/data/nodes/brands.json",
+          "app/data/nodes/companies.json"
+        ],
+        "contractPointer": "node-walkthroughs.json#walkthroughs",
+        "appOwnedEvidence": [
+          "A person can follow the Nestle, Coca-Cola, and Amazon concern paths from Ask result to generated node context.",
+          "Company and brand pages expose ownership receipts, known brands, categories, and top examples without overclaiming coverage."
+        ],
+        "passWhen": [
+          "Every flagship walkthrough reaches its expected company, line, and brand targets.",
+          "The page language stays in the signed C8 voice or explicitly names minimal generated copy."
+        ],
+        "mustNot": [
+          "Do not pass flagship QA from isolated fixture success alone.",
+          "Do not imply complete brand/product coverage from generated node examples."
+        ]
+      },
+      {
+        "step": 7,
+        "id": "private-preview-run",
+        "label": "Walk the private-preview run contract",
+        "phaseIds": [
+          "startup-ask",
+          "lazy-product-ask",
+          "route-parser",
+          "runtime-states",
+          "flagship-walkthroughs",
+          "final-h4-drain"
+        ],
+        "sourceFiles": [
+          "app/data/nodes/node-preview-matrix.json",
+          "app/data/nodes/node-integration-checklist.json",
+          "app/data/nodes/readiness.json"
+        ],
+        "contractPointer": "node-preview-matrix.json#runContract",
+        "appOwnedEvidence": [
+          "Running-app private-preview notes cover every ordered runContract group.",
+          "The h4-drain-decision scenario is walked last and records whether app behavior still depends on sample-only paths."
+        ],
+        "passWhen": [
+          "Every preview scenario id appears in exactly one runContract group.",
+          "Each group has a pass/fail note from the app-owned implementation or a documented equivalent QA path."
+        ],
+        "mustNot": [
+          "Do not drain H4 from generated fixture existence alone.",
+          "Do not skip runtime failure states during preview QA."
+        ]
+      },
+      {
+        "step": 8,
+        "id": "public-gate-release",
+        "label": "Walk public gate release contract",
+        "phaseIds": [
+          "workbench-public-gates"
+        ],
+        "sourceFiles": [
+          "app/data/nodes/node-integration-checklist.json",
+          "app/data/nodes/readiness.json",
+          "app/data/nodes/brands.json",
+          "app/data/nodes/companies.json",
+          "app/data/nodes/tags.json",
+          "app/data/nodes/errands.json",
+          "app/data/pulse.json"
+        ],
+        "contractPointer": "node-integration-checklist.json#publicGates.releaseContract",
+        "appOwnedEvidence": [
+          "App-owned release notes walk company, tag, errand, pulse, then brand pages one surface at a time.",
+          "Each surface records rendered evidence, voice status, source-file consumption, and must-not checks before public release."
+        ],
+        "passWhen": [
+          "Signed surfaces use the C8 voice source.",
+          "Brand pages remain last while they are minimal generated copy."
+        ],
+        "mustNot": [
+          "Do not move every workbench surface public in one batch without per-surface rollback.",
+          "Do not publish brand pages as signed prose while their voice status is minimal-generated-copy."
+        ]
+      },
+      {
+        "step": 9,
+        "id": "final-h4-drain-decision",
+        "label": "Decide whether H4 can drain",
+        "phaseIds": [
+          "final-h4-drain"
+        ],
+        "sourceFiles": [
+          "app/data/nodes/node-integration-checklist.json",
+          "app/data/nodes/node-preview-matrix.json",
+          "app/data/nodes/readiness.json",
+          "docs/CONTENT-HANDOFF.md"
+        ],
+        "contractPointer": "node-integration-checklist.json#h4DrainContract",
+        "appOwnedEvidence": [
+          "All generated smoke commands pass and app-owned evidence covers every prior drain step.",
+          "H4 remains active if any generated node/Ask behavior still depends only on sample.json, in-memory entries, or unwalked preview groups."
+        ],
+        "passWhen": [
+          "The final decision records either H4 drained by app/design or the exact remaining app-owned blocker.",
+          "No Codex data-only change is treated as sufficient to drain H4."
+        ],
+        "mustNot": [
+          "Do not mark H4 drained from data generation alone.",
+          "Do not bury remaining app-owned blockers in a generic \"integration done\" note."
+        ]
+      }
+    ],
+    "finalDecision": {
+      "expectedStatusBeforeAppWork": "pending-app-integration",
+      "dataAloneIsInsufficient": true,
+      "drainOnlyWhen": [
+        "The app-owned implementation has evidence for every h4DrainContract step.",
+        "node-preview-matrix.json#runContract has been walked or equivalent app QA is documented for every group.",
+        "publicGates.releaseContract has been walked surface by surface before public workbench graduation.",
+        "docs/CONTENT-HANDOFF.md moves H4 to drained only after app/design makes that decision."
+      ],
+      "mustNot": [
+        "Do not drain H4 from data generation alone.",
+        "Do not drain H4 while generated node/Ask behavior still relies only on sample.json or in-memory fallback paths."
+      ]
+    },
+    "coverage": {
+      "steps": 9,
+      "phaseCount": 10,
+      "coveredPhaseCount": 10,
+      "allPhasesCovered": true,
+      "previewScenarios": 21,
+      "publicGateSurfaces": 5,
+      "dataAloneDrainable": false,
+      "finalStepId": "final-h4-drain-decision"
+    }
+  },
+  "h4ClosureManifest": {
+    "status": "h4-generated-node-review-stack-closure",
+    "purpose": "Close the generated H4 node and Ask review stack by naming every generated layer, the remaining app-owned gates, and the no-data-only drain boundary.",
+    "schema": "h4-generated-node-review-stack-closure-v1",
+    "appOwned": true,
+    "activeHandoff": "H4",
+    "localOnly": true,
+    "noServerAuthority": true,
+    "h4DrainableFromClosureAlone": false,
+    "generatedRecursionClosed": true,
+    "stackLayers": [
+      {
+        "id": "manifest-index",
+        "pointer": "app/data/nodes/manifest.json",
+        "format": "ovs-node-manifest",
+        "reviewRole": "Lists generated node files, byte sizes, sha256 values, and load hints.",
+        "drainableFromLayerAlone": false
+      },
+      {
+        "id": "manifest-loader-plan",
+        "pointer": "app/data/nodes/manifest.json#loaderPlan",
+        "format": "manifest-loader-plan",
+        "reviewRole": "App-facing copy of the ordered runtime loader plan and cache-key policy.",
+        "drainableFromLayerAlone": false
+      },
+      {
+        "id": "node-load-plan",
+        "pointer": "app/data/nodes/node-load-plan.json",
+        "format": "ovs-node-load-plan",
+        "reviewRole": "Runtime loading stages, integrity behavior, budgets, and failure boundaries.",
+        "drainableFromLayerAlone": false
+      },
+      {
+        "id": "ask-core-startup-contract",
+        "pointer": "app/data/nodes/ask-core.json#startupContract",
+        "format": "ovs-ask-core-index",
+        "reviewRole": "Compact startup Ask contract, covered target types, and golden query order.",
+        "drainableFromLayerAlone": false
+      },
+      {
+        "id": "ask-index-lazy-boundary",
+        "pointer": "app/data/nodes/ask-index.json#loadHint",
+        "format": "ovs-ask-index",
+        "reviewRole": "Lazy product and barcode Ask boundary for the large full index.",
+        "drainableFromLayerAlone": false,
+        "loadHint": "lazy-product-search"
+      },
+      {
+        "id": "ask-fixtures",
+        "pointer": "app/data/nodes/ask-fixtures.json",
+        "format": "ovs-ask-fixtures",
+        "reviewRole": "Golden resolver cases for app-owned Ask integration checks.",
+        "drainableFromLayerAlone": false
+      },
+      {
+        "id": "ask-traces",
+        "pointer": "app/data/nodes/ask-traces.json",
+        "format": "ovs-ask-traces",
+        "reviewRole": "Deterministic top-result traces, ranks, hashes, and match reasons.",
+        "drainableFromLayerAlone": false
+      },
+      {
+        "id": "ask-presentation",
+        "pointer": "app/data/nodes/ask-presentation.json",
+        "format": "ovs-ask-presentation-contract",
+        "reviewRole": "Suggested Ask result labels, sections, actions, reasons, and empty states.",
+        "drainableFromLayerAlone": false
+      },
+      {
+        "id": "node-page-contracts",
+        "pointer": "app/data/nodes/node-page-contracts.json",
+        "format": "ovs-node-page-contracts",
+        "reviewRole": "Page-type route patterns, required fields, optional fields, and sample hashes.",
+        "drainableFromLayerAlone": false
+      },
+      {
+        "id": "node-route-fixtures",
+        "pointer": "app/data/nodes/node-route-fixtures.json",
+        "format": "ovs-node-route-fixtures",
+        "reviewRole": "Positive route parser fixtures for category, item, guide, and node hashes.",
+        "drainableFromLayerAlone": false
+      },
+      {
+        "id": "node-route-guardrails",
+        "pointer": "app/data/nodes/node-route-guardrails.json",
+        "format": "ovs-node-route-guardrails",
+        "reviewRole": "Malformed, unsupported, unknown-target, and canonicalization route guardrails.",
+        "drainableFromLayerAlone": false
+      },
+      {
+        "id": "node-runtime-states",
+        "pointer": "app/data/nodes/node-runtime-states.json",
+        "format": "ovs-node-runtime-states",
+        "reviewRole": "Loading, empty, unavailable, integrity, route, and offline state fixtures.",
+        "drainableFromLayerAlone": false
+      },
+      {
+        "id": "node-walkthroughs",
+        "pointer": "app/data/nodes/node-walkthroughs.json",
+        "format": "ovs-node-walkthroughs",
+        "reviewRole": "First-use concern-path walkthroughs from Ask result to generated node context.",
+        "drainableFromLayerAlone": false
+      },
+      {
+        "id": "node-preview-matrix",
+        "pointer": "app/data/nodes/node-preview-matrix.json",
+        "format": "ovs-node-preview-matrix",
+        "reviewRole": "Private-preview matrix covering startup, lazy, route, runtime, and flagship groups.",
+        "drainableFromLayerAlone": false,
+        "status": "pending-app-integration"
+      },
+      {
+        "id": "node-preview-run-contract",
+        "pointer": "app/data/nodes/node-preview-matrix.json#runContract",
+        "format": "h4-preview-run-contract",
+        "reviewRole": "Ordered run groups and final h4-drain-decision scenario for app-owned QA.",
+        "drainableFromLayerAlone": false,
+        "status": "pending-app-integration"
+      },
+      {
+        "id": "public-gates",
+        "pointer": "app/data/nodes/node-integration-checklist.json#publicGates",
+        "format": "h4-public-gates",
+        "reviewRole": "Workbench surface gates for company, tag, errand, pulse, and brand pages.",
+        "drainableFromLayerAlone": false,
+        "status": "ready-for-app-public-gates"
+      },
+      {
+        "id": "public-release-contract",
+        "pointer": "app/data/nodes/node-integration-checklist.json#publicGates.releaseContract",
+        "format": "h4-public-release-contract",
+        "reviewRole": "One-surface-at-a-time public release order and rollback boundary.",
+        "drainableFromLayerAlone": false,
+        "status": "ready-for-app-public-gates"
+      },
+      {
+        "id": "h4-drain-contract",
+        "pointer": "app/data/nodes/node-integration-checklist.json#h4DrainContract",
+        "format": "h4-drain-contract",
+        "reviewRole": "App-owned evidence steps and final H4 drain decision boundary.",
+        "drainableFromLayerAlone": false,
+        "status": "pending-app-integration"
+      },
+      {
+        "id": "node-integration-checklist",
+        "pointer": "app/data/nodes/node-integration-checklist.json",
+        "format": "ovs-node-integration-checklist",
+        "reviewRole": "Acceptance phases, smoke commands, public gates, and H4 drain contract.",
+        "drainableFromLayerAlone": false
+      },
+      {
+        "id": "readiness-report",
+        "pointer": "app/data/nodes/readiness.json",
+        "format": "ovs-node-readiness",
+        "reviewRole": "App-facing readiness summary that mirrors public gates, H4 drain, and closure.",
+        "drainableFromLayerAlone": false
+      }
+    ],
+    "appOwnedGates": [
+      {
+        "stepId": "manifest-loader",
+        "label": "Consume manifest loader plan",
+        "trackedBy": "app/data/nodes/node-integration-checklist.json#h4DrainContract.steps",
+        "requiresRunningAppEvidence": true,
+        "finalDecision": false,
+        "phaseCount": 1,
+        "sourceFileCount": 3
+      },
+      {
+        "stepId": "startup-ask-core",
+        "label": "Wire compact startup Ask",
+        "trackedBy": "app/data/nodes/node-integration-checklist.json#h4DrainContract.steps",
+        "requiresRunningAppEvidence": true,
+        "finalDecision": false,
+        "phaseCount": 2,
+        "sourceFileCount": 4
+      },
+      {
+        "stepId": "lazy-product-ask",
+        "label": "Keep product Ask lazy and bounded",
+        "trackedBy": "app/data/nodes/node-integration-checklist.json#h4DrainContract.steps",
+        "requiresRunningAppEvidence": true,
+        "finalDecision": false,
+        "phaseCount": 1,
+        "sourceFileCount": 3
+      },
+      {
+        "stepId": "route-and-page-rendering",
+        "label": "Render generated routes and page types",
+        "trackedBy": "app/data/nodes/node-integration-checklist.json#h4DrainContract.steps",
+        "requiresRunningAppEvidence": true,
+        "finalDecision": false,
+        "phaseCount": 2,
+        "sourceFileCount": 7
+      },
+      {
+        "stepId": "runtime-state-qa",
+        "label": "Walk runtime loading and failure states",
+        "trackedBy": "app/data/nodes/node-integration-checklist.json#h4DrainContract.steps",
+        "requiresRunningAppEvidence": true,
+        "finalDecision": false,
+        "phaseCount": 1,
+        "sourceFileCount": 3
+      },
+      {
+        "stepId": "flagship-walkthroughs",
+        "label": "Walk first-use concern paths",
+        "trackedBy": "app/data/nodes/node-integration-checklist.json#h4DrainContract.steps",
+        "requiresRunningAppEvidence": true,
+        "finalDecision": false,
+        "phaseCount": 1,
+        "sourceFileCount": 4
+      },
+      {
+        "stepId": "private-preview-run",
+        "label": "Walk the private-preview run contract",
+        "trackedBy": "app/data/nodes/node-integration-checklist.json#h4DrainContract.steps",
+        "requiresRunningAppEvidence": true,
+        "finalDecision": false,
+        "phaseCount": 6,
+        "sourceFileCount": 3
+      },
+      {
+        "stepId": "public-gate-release",
+        "label": "Walk public gate release contract",
+        "trackedBy": "app/data/nodes/node-integration-checklist.json#h4DrainContract.steps",
+        "requiresRunningAppEvidence": true,
+        "finalDecision": false,
+        "phaseCount": 1,
+        "sourceFileCount": 7
+      },
+      {
+        "stepId": "final-h4-drain-decision",
+        "label": "Decide whether H4 can drain",
+        "trackedBy": "app/data/nodes/node-integration-checklist.json#h4DrainContract.steps",
+        "requiresRunningAppEvidence": false,
+        "finalDecision": true,
+        "phaseCount": 1,
+        "sourceFileCount": 4
+      }
+    ],
+    "previewGroups": [
+      {
+        "step": 1,
+        "group": "startup-search",
+        "scenarioCount": 5,
+        "finalGroup": false
+      },
+      {
+        "step": 2,
+        "group": "lazy-product",
+        "scenarioCount": 1,
+        "finalGroup": false
+      },
+      {
+        "step": 3,
+        "group": "route",
+        "scenarioCount": 4,
+        "finalGroup": false
+      },
+      {
+        "step": 4,
+        "group": "route-guardrail",
+        "scenarioCount": 3,
+        "finalGroup": false
+      },
+      {
+        "step": 5,
+        "group": "runtime-state",
+        "scenarioCount": 4,
+        "finalGroup": false
+      },
+      {
+        "step": 6,
+        "group": "flagship-walkthrough",
+        "scenarioCount": 3,
+        "finalGroup": false
+      },
+      {
+        "step": 7,
+        "group": "handoff-drain",
+        "scenarioCount": 1,
+        "finalGroup": true
+      }
+    ],
+    "publicGateSurfaces": [
+      {
+        "step": 1,
+        "surfaceId": "company-pages",
+        "label": "Company pages",
+        "voiceStatus": "signed"
+      },
+      {
+        "step": 2,
+        "surfaceId": "tag-pages",
+        "label": "Tag pages",
+        "voiceStatus": "signed"
+      },
+      {
+        "step": 3,
+        "surfaceId": "errand-pages",
+        "label": "Errand pages",
+        "voiceStatus": "signed"
+      },
+      {
+        "step": 4,
+        "surfaceId": "pulse-strip",
+        "label": "Pulse strip",
+        "voiceStatus": "signed"
+      },
+      {
+        "step": 5,
+        "surfaceId": "brand-pages",
+        "label": "Brand pages",
+        "voiceStatus": "minimal-generated-copy"
+      }
+    ],
+    "smokeCommands": [
+      "node pipeline/build_nodes.js --check",
+      "node research/node_index_audit.js",
+      "node research/ask_readiness_audit.js",
+      "node research/node_walkthrough_audit.js",
+      "npm run audit:handoff",
+      "npm run verify"
+    ],
+    "completionRules": [
+      "Run the H4 smoke commands, then walk the generated contracts in the running app or document equivalent app QA.",
+      "Record local h4-local-evidence-v1 observations through the workbench evidence path before the final decision.",
+      "Keep sample.json as legacy/non-runtime evidence; it cannot stand in for generated Ask or node integration.",
+      "Move H4 in docs/CONTENT-HANDOFF.md only after app/design records the final drain or remaining blocker decision.",
+      "Keep screenshots, typed queries, tester notes, browsing history, analytics identifiers, and local receipts out of automatic upload paths."
+    ],
+    "stopRules": [
+      "Do not add another generated node validator layer to drain H4.",
+      "Do not treat green builds, generated closure, or file existence as running-app evidence.",
+      "Do not mark sample.json or in-memory legacy search as generated node/Ask integration evidence.",
+      "Do not move public gates in one batch; keep the one-surface-at-a-time release rule.",
+      "Do not upload local H4 receipts, tester notes, screenshots, or evidence summaries automatically."
+    ],
+    "nextAppActions": [
+      "Open the H4 workbench in the running app and walk loader, Ask, route, runtime, preview, walkthrough, and public-gate sections.",
+      "Run the button-gated lazy Ask check and confirm ask-index.json stays out of startup.",
+      "Walk public gates one surface at a time in the release order before graduating any workbench surface.",
+      "Either drain H4 in docs/CONTENT-HANDOFF.md with app/design evidence or name the exact remaining blocker."
+    ],
+    "coverage": {
+      "stackLayerCount": 20,
+      "appOwnedGateCount": 9,
+      "finalGateId": "final-h4-drain-decision",
+      "phaseCount": 10,
+      "previewScenarioCount": 21,
+      "previewGroupCount": 7,
+      "publicGateSurfaceCount": 5,
+      "smokeCommandCount": 6,
+      "generatedRecursionClosed": true,
+      "closureAloneDrainable": false
+    }
+  },
+  "goldenQueries": [
+    {
+      "query": "is nestle bad",
+      "layer": "core",
+      "matched": "ovs:brand/nestle",
+      "matchedRank": 1,
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:brand/nestle",
+          "label": "Nestlé",
+          "type": "brand",
+          "hash": "#n/brand/nestle",
+          "reason": "alias"
+        },
+        {
+          "id": "ovs:company/nestle",
+          "label": "Nestlé",
+          "type": "company",
+          "hash": "#n/company/nestle",
+          "reason": "exact"
+        },
+        {
+          "id": "ovs:line/avoid:nestle",
+          "label": "Avoid Nestlé",
+          "type": "line",
+          "hash": "#n/line/avoid%3Anestle",
+          "reason": "exact"
+        }
+      ]
+    },
+    {
+      "query": "vegan cheese",
+      "layer": "core",
+      "matched": "ovs:cat/cheese",
+      "matchedRank": 3,
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:line/diet:vegan",
+          "label": "Vegan",
+          "type": "line",
+          "hash": "#n/line/diet%3Avegan",
+          "reason": "query-token"
+        },
+        {
+          "id": "ovs:line/diet:vegetarian",
+          "label": "Vegetarian",
+          "type": "line",
+          "hash": "#n/line/diet%3Avegetarian",
+          "reason": "query-token"
+        },
+        {
+          "id": "ovs:cat/cheese",
+          "label": "Cheese",
+          "type": "category",
+          "hash": "#explore/cheese",
+          "reason": "query-token"
+        }
+      ]
+    },
+    {
+      "query": "best bank",
+      "layer": "core",
+      "matched": "ovs:cat/banking",
+      "matchedRank": 1,
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:cat/banking",
+          "label": "Ethical banking",
+          "type": "category",
+          "hash": "#explore/banking",
+          "reason": "alias"
+        },
+        {
+          "id": "ovs:guide/ethical-banking",
+          "label": "Where you bank is a climate decision",
+          "type": "guide",
+          "hash": "#guide/ethical-banking",
+          "reason": "token-containment"
+        },
+        {
+          "id": "ovs:errand/pick-a-bank",
+          "label": "Pick a bank",
+          "type": "errand",
+          "hash": "#n/errand/pick-a-bank",
+          "reason": "token-containment"
+        }
+      ]
+    },
+    {
+      "query": "coke",
+      "layer": "core",
+      "matched": "ovs:line/avoid:coca-cola",
+      "matchedRank": 2,
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:brand/coke",
+          "label": "Coke",
+          "type": "brand",
+          "hash": "#n/brand/coke",
+          "reason": "alias"
+        },
+        {
+          "id": "ovs:line/avoid:coca-cola",
+          "label": "Avoid Coca-Cola Company",
+          "type": "line",
+          "hash": "#n/line/avoid%3Acoca-cola",
+          "reason": "exact"
+        },
+        {
+          "id": "ovs:brand/coles",
+          "label": "coles",
+          "type": "brand",
+          "hash": "#n/brand/coles",
+          "reason": "fuzzy-1"
+        }
+      ]
+    },
+    {
+      "query": "nestel",
+      "layer": "core",
+      "matched": "ovs:company/nestle",
+      "matchedRank": 1,
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:company/nestle",
+          "label": "Nestlé",
+          "type": "company",
+          "hash": "#n/company/nestle",
+          "reason": "fuzzy-1"
+        },
+        {
+          "id": "ovs:line/avoid:nestle",
+          "label": "Avoid Nestlé",
+          "type": "line",
+          "hash": "#n/line/avoid%3Anestle",
+          "reason": "fuzzy-1"
+        },
+        {
+          "id": "ovs:brand/nestle",
+          "label": "Nestlé",
+          "type": "brand",
+          "hash": "#n/brand/nestle",
+          "reason": "fuzzy-1"
+        }
+      ]
+    },
+    {
+      "query": "is oatly ethical",
+      "layer": "core",
+      "matched": "ovs:brand/oatly",
+      "matchedRank": 1,
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:brand/oatly",
+          "label": "Oatly",
+          "type": "brand",
+          "hash": "#n/brand/oatly",
+          "reason": "alias"
+        }
+      ]
+    },
+    {
+      "query": "best password manager",
+      "layer": "core",
+      "matched": "ovs:cat/password-managers",
+      "matchedRank": 1,
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:cat/password-managers",
+          "label": "Password managers",
+          "type": "category",
+          "hash": "#explore/password-managers",
+          "reason": "alias"
+        },
+        {
+          "id": "ovs:guide/password-managers",
+          "label": "Picking a password manager you can trust",
+          "type": "guide",
+          "hash": "#guide/password-managers",
+          "reason": "exact"
+        }
+      ]
+    },
+    {
+      "query": "avoid amazon",
+      "layer": "core",
+      "matched": "ovs:company/amazon",
+      "matchedRank": 1,
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:company/amazon",
+          "label": "Amazon",
+          "type": "company",
+          "hash": "#n/company/amazon",
+          "reason": "query-token"
+        },
+        {
+          "id": "ovs:line/avoid:amazon",
+          "label": "Avoid Amazon",
+          "type": "line",
+          "hash": "#n/line/avoid%3Aamazon",
+          "reason": "query-token"
+        },
+        {
+          "id": "ovs:brand/amazon",
+          "label": "Amazon",
+          "type": "brand",
+          "hash": "#n/brand/amazon",
+          "reason": "query-token"
+        }
+      ]
+    },
+    {
+      "query": "b corp toilet paper",
+      "layer": "core",
+      "matched": "ovs:cat/paper-goods",
+      "matchedRank": 2,
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:line/require:b-corp",
+          "label": "B Corp",
+          "type": "line",
+          "hash": "#n/line/require%3Ab-corp",
+          "reason": "token-containment"
+        },
+        {
+          "id": "ovs:cat/paper-goods",
+          "label": "Paper goods",
+          "type": "category",
+          "hash": "#explore/paper-goods",
+          "reason": "token-containment"
+        },
+        {
+          "id": "ovs:brand/b-corp",
+          "label": "B Corp",
+          "type": "brand",
+          "hash": "#n/brand/b-corp",
+          "reason": "token-containment"
+        }
+      ]
+    },
+    {
+      "query": "washing up liquid",
+      "layer": "core",
+      "matched": "ovs:cat/dish-soap",
+      "matchedRank": 1,
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:cat/dish-soap",
+          "label": "Dish soap",
+          "type": "category",
+          "hash": "#explore/dish-soap",
+          "reason": "alias"
+        },
+        {
+          "id": "ovs:brand/up-and-up",
+          "label": "up&up",
+          "type": "brand",
+          "hash": "#n/brand/up-and-up",
+          "reason": "token-containment"
+        }
+      ]
+    },
+    {
+      "query": "cell phone",
+      "layer": "core",
+      "matched": "ovs:cat/phones",
+      "matchedRank": 1,
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:cat/phones",
+          "label": "Phones",
+          "type": "category",
+          "hash": "#explore/phones",
+          "reason": "alias"
+        },
+        {
+          "id": "ovs:errand/new-phone-sanely",
+          "label": "New phone, sanely",
+          "type": "errand",
+          "hash": "#n/errand/new-phone-sanely",
+          "reason": "query-token"
+        },
+        {
+          "id": "ovs:guide/phones",
+          "label": "Choosing a phone you can keep longer",
+          "type": "guide",
+          "hash": "#guide/phones",
+          "reason": "query-token"
+        }
+      ]
+    },
+    {
+      "query": "private messaging app",
+      "layer": "core",
+      "matched": "ovs:guide/private-messaging",
+      "matchedRank": 2,
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:tag/privacy",
+          "label": "Privacy",
+          "type": "tag",
+          "hash": "#n/tag/privacy",
+          "reason": "query-token"
+        },
+        {
+          "id": "ovs:guide/private-messaging",
+          "label": "Choosing a private messenger",
+          "type": "guide",
+          "hash": "#guide/private-messaging",
+          "reason": "query-token"
+        }
+      ]
+    },
+    {
+      "query": "5449000054227",
+      "layer": "full",
+      "matched": "ovs:item/soda/5449000054227",
+      "matchedRank": 1,
+      "ok": true,
+      "top": [
+        {
+          "id": "ovs:item/soda/5449000054227",
+          "label": "Coca-Cola Original Taste",
+          "type": "item",
+          "hash": "#item/soda/5449000054227",
+          "reason": "exact"
+        },
+        {
+          "id": "ovs:item/soda/54490000",
+          "label": "Coca-Cola Original Taste",
+          "type": "item",
+          "hash": "#item/soda/54490000",
+          "reason": "token-containment"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>try{var t=localStorage.getItem('cc.theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0f9d8a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d7a5a'/%3E%3Cpath d='M18 36c0-13 13-20 28-20-2 16-14 23-28 20z' fill='%23fff'/%3E%3Cpath d='M20 46c6-12 14-18 22-21' stroke='%231d7a5a' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>Where to Message</title>
+<meta name="description" content="Rank messengers like Signal, WhatsApp, and iMessage by your own values: privacy, openness, and reach. Every fact carries its source, and nothing here is sponsored.">
+<style>
+  /* A THIRD skin, deliberately unlike CC (warm parchment) and Kosplora (dark indigo): light "daylight",
+     teal accent, SANS display. Same shell underneath; only these tokens + class colours change (L3). */
+  :root{ --bg:#f5f8f6; --surface:#ffffff; --ink:#15201c; --muted:#566b62; --hint:#85978e;
+    --line:rgba(20,45,32,.11); --accent:#0f9d8a; --track:#e7ece9;
+    --bd-hi-bg:#d7f1ea; --bd-hi-fg:#0a6e60; --bd-mid-bg:#eef1ef; --bd-mid-fg:#566b62; }
+  @media (prefers-color-scheme:dark){:root{ color-scheme:dark;
+    --bg:#0f1614; --surface:#17201d; --ink:#e3ece8; --muted:#93a89f; --hint:#7c8f86;
+    --line:rgba(255,255,255,.12); --accent:#3fd0bb; --track:#212a27;
+    --bd-hi-bg:#0d3a31; --bd-hi-fg:#5fd9c4; --bd-mid-bg:#222a27; --bd-mid-fg:#93a89f; }}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;line-height:1.6}
+  .wrap{max-width:780px;margin:0 auto;padding:2rem 1.2rem 4rem}
+  .instancebar{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;margin:0 0 1.6rem;padding:0 0 .9rem;border-bottom:1px solid var(--line)}
+  .instancebar .home{font-weight:800;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+  .instancebar nav{display:flex;gap:.35rem .8rem;flex-wrap:wrap;font-size:.86rem}
+  .instancebar nav a{color:var(--muted);text-decoration:none}
+  .instancebar nav a[aria-current="page"]{color:var(--accent);font-weight:700}
+  .instancebar nav a:hover{color:var(--accent);text-decoration:none}
+  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.55rem .9rem;border-radius:0 0 8px 0;z-index:20}
+  .skip:focus{left:0}
+  .proofstrip{border-top:1px solid var(--line);margin-top:2.2rem;padding-top:1.3rem}
+  .proofnote{font-size:.84rem;color:var(--muted);margin:.55rem 0 0;line-height:1.55}
+  h1{font-weight:700;font-size:2.05rem;letter-spacing:-.02em;margin:.2rem 0 .3rem}
+  .sub{color:var(--muted);margin:0 0 1.3rem;font-size:1.02rem}
+  .banner{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:.85rem 1.05rem;margin:0 0 1.6rem;font-size:.9rem;color:var(--muted)}
+  .banner b{color:var(--ink)} .banner a{color:var(--accent)}
+  .vh{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--hint);margin:0 0 .5rem}
+  .summary{font-size:.9rem;color:var(--muted);margin:0 0 1.5rem;min-height:1.2em}
+  .summary b{color:var(--accent)}
+  /* value sliders */
+  #chips{display:flex;flex-direction:column;gap:0;margin-bottom:1rem}
+  .vrow{display:grid;grid-template-columns:1fr 120px 1.4rem;align-items:center;gap:.7rem;padding:.5rem 0;border-bottom:1px solid var(--line)}
+  .vrow:last-child{border-bottom:none}
+  .vlab{display:flex;flex-direction:column;font-size:.95rem;color:var(--ink)}
+  .vlab small{font-size:.72rem;color:var(--hint);font-weight:400}
+  .vsl{width:100%;accent-color:var(--accent);cursor:pointer}
+  .vval{text-align:right;color:var(--muted);font-size:.9rem}
+  /* ranked rows + FLIP */
+  .row{display:flex;gap:1rem;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem 1.15rem;margin-bottom:.7rem;cursor:pointer;transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .15s}
+  .row:hover{border-color:var(--accent)}
+  .rk{font-weight:700;font-size:1.4rem;color:var(--hint);min-width:1.7rem;text-align:right;line-height:1.6}
+  .main{flex:1;min-width:0}
+  .nm{font-weight:600;font-size:1.08rem}
+  .br{color:var(--hint);font-size:.85rem;margin-left:.1rem}
+  .why{color:var(--muted);font-size:.86rem;margin:.15rem 0 .5rem}
+  .why .tier{color:var(--accent);font-weight:600} .seemore{color:var(--accent)}
+  .bars{display:flex;flex-wrap:wrap;gap:.3rem .7rem}
+  .bar{display:flex;align-items:center;gap:.35rem;font-size:.72rem;color:var(--hint)}
+  .bandlbl{font-size:.62rem;font-weight:700;padding:.04rem .4rem;border-radius:5px;background:var(--bd-mid-bg);color:var(--bd-mid-fg)}
+  .bandlbl.bd-hi{background:var(--bd-hi-bg);color:var(--bd-hi-fg)}
+  .sc{font-weight:700;font-size:1.5rem;color:var(--ink);min-width:2.5rem;text-align:right}
+  .sc small{font-size:.7rem;color:var(--hint);font-weight:400}
+  /* verdict / detail */
+  .back{display:inline-block;color:var(--accent);cursor:pointer;font-size:.9rem;margin-bottom:1rem;text-decoration:none}
+  .detail{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.3rem 1.4rem}
+  .dnm{font-size:1.45rem;font-weight:700;color:var(--ink)}
+  .dverdict{display:flex;align-items:center;gap:.9rem;margin:.8rem 0 .4rem}
+  .dsc{font-weight:700;font-size:2.3rem;color:var(--ink);line-height:1} .dsc small{font-size:.85rem;color:var(--hint);font-weight:400}
+  .dtier{color:var(--accent);font-weight:600} .dfor{color:var(--muted);font-weight:400}
+  .dreason{border-left:3px solid var(--accent);background:var(--bd-hi-bg);border-radius:0 8px 8px 0;padding:.65rem .85rem;margin:.5rem 0 1.1rem;color:var(--ink);font-size:.92rem;line-height:1.5}
+  .dbars{display:flex;flex-direction:column;gap:.55rem}
+  .dbar{display:flex;justify-content:space-between;gap:1.2rem;font-size:.84rem;align-items:baseline}
+  .dbl{color:var(--ink);white-space:nowrap} .dbn{color:var(--hint);text-align:right}
+  .proofgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.65rem;margin:0 0 1.5rem}
+  .proofgrid div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.85rem .95rem;color:var(--muted);font-size:.86rem}
+  .proofgrid b{display:block;color:var(--ink);font-weight:700;font-size:1rem;margin-bottom:.15rem}
+  footer{margin-top:2rem;color:var(--hint);font-size:.84rem;border-top:1px solid var(--line);padding-top:1rem}
+  footer a{color:var(--accent)}
+  code{background:var(--track);padding:.05rem .35rem;border-radius:4px;font-size:.85em}
+  :root[data-theme="light"]{--bg:#f5f8f6;--surface:#ffffff;--ink:#15201c;--muted:#566b62;--hint:#85978e;--line:rgba(20,45,32,.11);--accent:#0f9d8a;--track:#e7ece9;--bd-hi-bg:#d7f1ea;--bd-hi-fg:#0a6e60;--bd-mid-bg:#eef1ef;--bd-mid-fg:#566b62;color-scheme:light}
+  :root[data-theme="dark"]{--bg:#0f1614;--surface:#17201d;--ink:#e3ece8;--muted:#93a89f;--hint:#7c8f86;--line:rgba(255,255,255,.12);--accent:#3fd0bb;--track:#212a27;--bd-hi-bg:#0d3a31;--bd-hi-fg:#5fd9c4;--bd-mid-bg:#222a27;--bd-mid-fg:#93a89f;color-scheme:dark}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <header class="instancebar">
+    <a class="home" href="../../index.html">&#9671; Values Commons</a>
+    <nav aria-label="Instance spine">
+      <a href="../index.html">Instances</a>
+      <a href="../../passport/index.html">Passport</a>
+      <a href="../../kosplora/index.html">Kosplora</a>
+      <a href="index.html" aria-current="page">Where to Message</a>
+      <a href="../../workshop/index.html">Workshop</a>
+    </nav>
+  </header>
+  <main id="main" tabindex="-1">
+    <h1>Where to Message</h1>
+    <p class="sub">Pick a messenger by your own values: privacy, openness, reach. Not by who advertises hardest.</p>
+
+    <h2 class="vh">What do you value in how you message? (set how much each matters, 0&ndash;5)</h2>
+    <div id="chips"></div>
+    <p class="summary" id="summary"></p>
+
+    <div class="passport-row" style="margin:-.4rem 0 1.4rem;font-size:.86rem">
+      <label style="cursor:pointer;color:var(--accent)">&#10498; Bring your values from another instance<input type="file" id="passfile" accept="application/json,.json" hidden></label>
+      <span id="passnote" style="color:var(--muted)"></span>
+    </div>
+
+    <div id="list"></div>
+
+    <section class="proofstrip" aria-labelledby="proofh">
+      <h2 class="vh" id="proofh">What this instance proves</h2>
+      <div class="proofgrid">
+        <div><b>Engine transfer</b>The unedited shared engine ranks messengers by privacy, openness, reach, and ease.</div>
+        <div><b>Passport transfer</b>Autonomy and openness can travel in from another instance without importing identity.</div>
+        <div><b>Instance pattern</b>This page is a lens, a skin, and the shared shell. Zero shell edits.</div>
+      </div>
+      <p class="proofnote">Instance #3 of the <a href="../../standard/index.html">Open Values Standard</a>: the same <code>engine.js</code> and <code>shell.js</code> that run Conscious Consuming and Kosplora, with only a lens and a skin changed. Your values travel in from any instance through a <a href="../../passport/index.html">Values Passport</a>. Facts are public; scores illustrative. <a href="../new/index.html">Build one &rarr;</a></p>
+    </section>
+  </main>
+
+  <footer id="foot"></footer>
+</div>
+
+<!-- The shared L1 core (the math), unedited. -->
+<script src="../../app/engine.js"></script>
+<!-- This instance's MANIFEST: data + value vocabulary + the passport map. The only file unique to this instance (besides the skin above). -->
+<script src="lens.js"></script>
+<!-- The shared L2 SHELL: the same experience logic Kosplora and CC run; no per-instance code. -->
+<script src="../../app/shell.js"></script>
+<script src="../../app/theme.js"></script>
+</body>
+</html>

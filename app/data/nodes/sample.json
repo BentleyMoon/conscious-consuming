@@ -1,0 +1,60 @@
+{
+  "format": "ovs-node-index",
+  "version": "0.1",
+  "built": "2026-07-06",
+  "note": "HAND-WRITTEN sample — the node schema proven by working example (codex.md N1). C1 generates brands.json / companies.json / ask-index.json to exactly these shapes once the node page renders this file. Every number here is real and computed (balanced-lens scores via engine.score, all-3 weights), never invented.",
+  "nodes": [
+    { "id": "ovs:brand/nescafe", "type": "brand", "label": "Nescafé", "aliases": ["nescafe"],
+      "items": 37, "categories": ["coffee"], "ownedBy": "ovs:company/nestle",
+      "top": [
+        { "cat": "coffee", "code": "3033710076017", "name": "NESCAFÉ SPECIAL FILTRE L'Original", "score": 71 },
+        { "cat": "coffee", "code": "3033710072927", "name": "NESCAFÉ NES, Café Soluble, 25 Sticks", "score": 69 },
+        { "cat": "coffee", "code": "3033710077274", "name": "NESCAFÉ NES, Café Soluble, 200g", "score": 68 }
+      ] },
+    { "id": "ovs:brand/ben-and-jerrys", "type": "brand", "label": "Ben & Jerry's", "aliases": ["ben and jerrys", "ben & jerrys"],
+      "items": 14, "categories": ["ice-cream"], "ownedBy": "ovs:company/unilever",
+      "top": [
+        { "cat": "ice-cream", "code": "8711327629394", "name": "Spectacu-love 465g", "score": 55 },
+        { "cat": "ice-cream", "code": "8711327373105", "name": "Cookie Dough Vanilla", "score": 53 },
+        { "cat": "ice-cream", "code": "8711327374324", "name": "Caramel Brownie Party", "score": 53 }
+      ] },
+    { "id": "ovs:brand/fairphone", "type": "brand", "label": "Fairphone", "aliases": [],
+      "items": 1, "categories": ["phones"], "ownedBy": null,
+      "top": [ { "cat": "phones", "code": "fairphone", "name": "Fairphone", "score": 82 } ] },
+
+    { "id": "ovs:company/nestle", "type": "company", "label": "Nestlé", "aliases": ["nestle"],
+      "reads": "The world's largest food company, headquartered in Switzerland.",
+      "brands": ["ovs:brand/nescafe"],
+      "brandNames": ["Nescafé", "Nespresso", "Nesquik", "KitKat", "Smarties", "San Pellegrino", "Perrier", "Häagen-Dazs", "Maggi", "Purina", "Gerber"],
+      "categories": ["coffee", "dark-chocolate", "breakfast-cereal", "ice-cream", "soda"],
+      "line": "avoid:nestle",
+      "source": "https://www.nestle.com/brands", "asof": "2026-07" },
+    { "id": "ovs:company/unilever", "type": "company", "label": "Unilever", "aliases": [],
+      "reads": "A British consumer-goods company holding hundreds of food, care and cleaning brands.",
+      "brands": ["ovs:brand/ben-and-jerrys"],
+      "brandNames": ["Ben & Jerry's", "Hellmann's", "Knorr", "Magnum", "Dove", "Lipton", "Marmite"],
+      "categories": ["ice-cream", "mayonnaise", "soups", "tea"],
+      "line": "avoid:unilever",
+      "source": "https://www.unilever.com/brands/", "asof": "2026-07" },
+
+    { "id": "ovs:tag/b-corp", "type": "tag", "label": "B Corp", "aliases": ["b corporation", "bcorp"],
+      "kind": "certification",
+      "reads": "A company certified by the nonprofit B Lab to meet audited standards of social and environmental performance.",
+      "receipt": "https://www.bcorporation.net/en-us/standards/",
+      "items": 139, "categories": ["banking", "investing", "clothing", "shoes", "cleaning-products", "laundry", "paper-goods", "razors", "period-products", "books", "mission-businesses"] },
+    { "id": "ovs:tag/open-source", "type": "tag", "label": "Open source", "aliases": ["open-source", "opensource", "foss"],
+      "kind": "property",
+      "reads": "The code is public: anyone can inspect it, verify what it does, and keep it alive if the maker walks away.",
+      "receipt": "https://opensource.org/osd",
+      "items": 383, "categories": ["digital-services", "ai-assistants", "password-managers", "vpn", "phones", "laptops", "payments", "music-streaming", "learning-resources", "clothing"] },
+
+    { "id": "ovs:errand/pick-a-bank", "type": "errand", "label": "Pick a bank", "aliases": ["choose a bank", "switch banks"],
+      "reads": "Find where your money should sleep — one decision, sourced, weighed by what you care about.",
+      "output": "list",
+      "steps": [ { "cat": "banking", "pick": "one", "note": "Your everyday account — where your paycheck lands." } ],
+      "tradeoff": ["fees", "environment"] },
+
+    { "id": "ovs:value/planet", "type": "value", "label": "Planet", "aliases": ["environment", "climate"],
+      "reads": "Environment, waste and durability — what a choice costs the living world." }
+  ]
+}

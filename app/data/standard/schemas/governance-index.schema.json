@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/governance-index-v0.1.schema.json",
+  "title": "Open Values Governance Index v0.1",
+  "description": "Generated app-readable index for file-based governance proposals and attestations.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["format", "version", "standard", "built", "purpose", "generatedFrom", "publication", "kAnonymity", "counts", "filters", "principles", "proposals", "attestations"],
+  "properties": {
+    "format": { "const": "open-values-governance-index" },
+    "version": { "type": "string", "pattern": "^0\\.1\\.0(?:[-+].*)?$" },
+    "standard": { "const": "open-values-standard" },
+    "built": { "$ref": "#/$defs/date" },
+    "purpose": { "$ref": "#/$defs/nonEmptyString" },
+    "generatedFrom": { "$ref": "#/$defs/generatedFrom" },
+    "publication": { "$ref": "#/$defs/publication" },
+    "kAnonymity": { "$ref": "#/$defs/kAnonymity" },
+    "counts": { "$ref": "#/$defs/counts" },
+    "filters": { "$ref": "#/$defs/filters" },
+    "principles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "proposals": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/proposal" } },
+    "attestations": { "type": "array", "items": { "$ref": "#/$defs/attestation" } }
+  },
+  "$defs": {
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "shortHash": { "type": "string", "pattern": "^[0-9a-f]{8}$" },
+    "formatId": { "type": "string", "pattern": "^(open-values|ovs)-[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "generatedFrom": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "updated", "sha256"],
+      "properties": {
+        "path": { "const": "content/governance/proposals.json" },
+        "updated": { "$ref": "#/$defs/date" },
+        "sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "publication": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["status", "storage", "relay", "identity", "liveVoting", "contactGated", "ratification", "privacy"],
+      "properties": {
+        "status": { "enum": ["format-seed", "active", "archived"] },
+        "storage": { "$ref": "#/$defs/nonEmptyString" },
+        "relay": { "$ref": "#/$defs/nonEmptyString" },
+        "identity": { "$ref": "#/$defs/nonEmptyString" },
+        "liveVoting": { "const": false },
+        "contactGated": { "const": true },
+        "ratification": { "$ref": "#/$defs/nonEmptyString" },
+        "privacy": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    },
+    "kAnonymity": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["minimumGroupSize", "countedStatuses", "uncountedStatuses", "countedOnlyWhen", "note"],
+      "properties": {
+        "minimumGroupSize": { "type": "integer", "minimum": 5 },
+        "countedStatuses": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "uncountedStatuses": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "countedOnlyWhen": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "note": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["proposals", "attestations", "countedAttestations", "targets", "targetFormats", "proposalStatuses", "attestationStatuses", "stances"],
+      "properties": {
+        "proposals": { "type": "integer", "minimum": 1 },
+        "attestations": { "type": "integer", "minimum": 0 },
+        "countedAttestations": { "type": "integer", "const": 0 },
+        "targets": { "type": "integer", "minimum": 1 },
+        "targetFormats": { "type": "integer", "minimum": 1 },
+        "proposalStatuses": { "type": "object" },
+        "attestationStatuses": { "type": "object" },
+        "stances": { "type": "object" }
+      }
+    },
+    "filters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["proposalStatuses", "attestationStatuses", "stances", "targets", "targetFormats"],
+      "properties": {
+        "proposalStatuses": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "attestationStatuses": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "stances": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "targets": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "targetFormats": { "type": "array", "items": { "$ref": "#/$defs/formatId" } }
+      }
+    },
+    "actor": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["type", "id", "display"],
+      "properties": {
+        "type": { "$ref": "#/$defs/nonEmptyString" },
+        "id": { "$ref": "#/$defs/slug" },
+        "display": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["method", "verified"],
+      "properties": {
+        "method": { "$ref": "#/$defs/nonEmptyString" },
+        "verified": { "type": "boolean" }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["path", "format", "baseSha256", "baseHash", "currentSha256", "currentHash", "matchesCurrent"],
+      "properties": {
+        "path": { "$ref": "#/$defs/nonEmptyString" },
+        "format": { "$ref": "#/$defs/formatId" },
+        "baseSha256": { "$ref": "#/$defs/sha256" },
+        "baseHash": { "$ref": "#/$defs/shortHash" },
+        "currentSha256": { "$ref": "#/$defs/sha256" },
+        "currentHash": { "$ref": "#/$defs/shortHash" },
+        "matchesCurrent": { "type": "boolean" }
+      }
+    },
+    "operation": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["op", "path", "summary"],
+      "properties": {
+        "op": { "enum": ["add-item", "remove-item", "edit-field", "set-field", "note"] },
+        "path": { "type": "string", "pattern": "^/" },
+        "summary": { "$ref": "#/$defs/nonEmptyString" },
+        "impact": { "$ref": "#/$defs/nonEmptyString" },
+        "risk": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    },
+    "proposal": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "status", "target", "author", "created", "updated", "rationale", "operations", "operationCount", "signature", "attestations", "limits"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "status": { "enum": ["template", "draft", "submitted", "withdrawn", "superseded", "archived"] },
+        "target": { "$ref": "#/$defs/target" },
+        "author": { "$ref": "#/$defs/actor" },
+        "created": { "$ref": "#/$defs/date" },
+        "updated": { "$ref": "#/$defs/date" },
+        "rationale": { "$ref": "#/$defs/nonEmptyString" },
+        "operations": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/operation" } },
+        "operationCount": { "type": "integer", "minimum": 1 },
+        "signature": { "$ref": "#/$defs/signature" },
+        "attestations": { "type": "object" },
+        "limits": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } }
+      }
+    },
+    "attestation": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "status", "proposal", "stance", "attester", "created", "publicComment", "signature", "counted", "privacy"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "status": { "enum": ["template", "submitted", "withdrawn", "archived"] },
+        "proposal": { "$ref": "#/$defs/slug" },
+        "stance": { "enum": ["support", "concern", "needs-work", "oppose", "abstain"] },
+        "attester": { "$ref": "#/$defs/actor" },
+        "created": { "$ref": "#/$defs/date" },
+        "publicComment": { "$ref": "#/$defs/nonEmptyString" },
+        "signature": { "$ref": "#/$defs/signature" },
+        "counted": { "type": "boolean", "const": false },
+        "privacy": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    }
+  }
+}

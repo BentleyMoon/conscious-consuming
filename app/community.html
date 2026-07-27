@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Community: Conscious Consuming</title>
+<script>try{var _t=localStorage.getItem('cc.theme');if(_t==='dark'||_t==='light')document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
+<link rel="stylesheet" href="./styles.css">
+<style>
+  /* Map Conscious Consuming's theme tokens onto the Community widget — it auto-follows CC's light/dark. */
+  :root {
+    --fi-bg: var(--bg); --fi-surface: var(--surface); --fi-text: var(--ink);
+    --fi-text-muted: var(--muted); --fi-border: var(--line);
+    --fi-accent: var(--accent); --fi-accent-strong: var(--accent); --fi-accent-2: var(--t-meas-fg, var(--accent));
+    --fi-radius: var(--r-2, 12px); --fi-font-body: var(--font-sans);
+  }
+  body { background: var(--bg); color: var(--ink); font-family: var(--font-sans); margin: 0; }
+  .cc-wrap { max-width: var(--max, 760px); margin: 0 auto; padding: 1.25rem 1rem 4rem; }
+  .cc-nav { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: .6rem 0 1rem; border-bottom: 1px solid var(--line); margin-bottom: 1.25rem; }
+  .cc-nav a { color: var(--ink); text-decoration: none; }
+  .cc-nav a:hover { color: var(--accent); }
+  .cc-wordmark { font-family: var(--font-display, serif); font-weight: 600; font-size: 1.15rem; }
+  .cc-eyebrow { text-transform: uppercase; letter-spacing: .1em; font-size: .72rem; font-weight: 700; color: var(--accent); margin: 0 0 .3rem; }
+  h1 { font-family: var(--font-display, serif); font-size: var(--fs-xl, 1.6rem); margin: .1rem 0 .4rem; }
+  .lede { color: var(--muted); max-width: 62ch; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="cc-wrap">
+  <nav class="cc-nav">
+    <a class="cc-wordmark" href="./index.html#home">Conscious Consuming</a>
+    <a href="./index.html#home">← Back to the guide</a>
+  </nav>
+
+  <p class="cc-eyebrow">Optional community discussion</p>
+  <h1>Discuss the claims without changing the ranking.</h1>
+  <p class="lede">
+    This separate space is for discussing products, services, and the evidence behind them. You can rate
+    the measures shown here (<strong>ethics, cost &amp; value, quality, sustainability</strong>), but your
+    personal ranking is still calculated on your device and never sent. Discussion is optional; the guide
+    works without it.
+  </p>
+
+  <div id="commons-mount" style="margin-top: 1.5rem;"></div>
+
+  <footer>
+    Powered by the same privacy-first Community engine that can run across the ecosystem: no trackers, no
+    accounts required, your data in plain rows. <a href="../index.html">Part of Values Commons.</a>
+    <a href="../standard/">Built on the Open Values Standard.</a>
+  </footer>
+</div>
+
+<!-- Production config: the one place to set the Worker URL (safe to ship as-is for local dev). -->
+<script src="./commons-config.js"></script>
+<script>
+  // Point this at your Community deployment. Only fall back to the local dev service when actually on
+  // localhost; in production set window.COMMONS_ORIGIN (in commons-config.js) to the deployed Worker URL.
+  var isLocal = location.hostname==='localhost' || location.hostname==='127.0.0.1' || location.protocol==='file:';
+  var COMMONS_ORIGIN = window.COMMONS_ORIGIN || (isLocal ? 'http://localhost:8787' : '');
+  var mount = document.getElementById('commons-mount');
+  // Graceful degradation: if the Community Worker isn't reachable (e.g. the localhost default in a deployed
+  // preview), show a dignified "coming" state instead of a broken/empty embed — the local-first core still works.
+  function commonsFallback(){
+    var w = mount.querySelector('fi-commons');
+    if (w && (w.shadowRoot || w.children.length)) return;   // the widget actually rendered — leave it
+    mount.innerHTML = '<div style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.2rem 1.3rem">'+
+      '<p style="margin:.1rem 0 .4rem;font-weight:600">Community is coming.</p>'+
+      '<p style="margin:0;color:var(--muted)">A privacy-first space to discuss and rate by your values: no accounts, your data in plain rows. It isn’t live in this preview yet. Your values already work fully offline: '+
+      '<a href="./index.html#you">set them on the You page</a> or <a href="../assembly/index.html">form an Assembly</a>.</p></div>';
+  }
+  if(!COMMONS_ORIGIN){
+    // No Community deployment configured (e.g. a live build before the Worker is set) — show the dignified
+    // "coming" state at once, rather than attempting a doomed localhost / cross-origin load.
+    commonsFallback();
+  } else {
+    var el = document.createElement('fi-commons');
+    el.setAttribute('space', 'conscious-consuming');
+    el.setAttribute('api', COMMONS_ORIGIN + '/api');
+    mount.appendChild(el);
+    var s = document.createElement('script');
+    s.type = 'module';
+    s.src = COMMONS_ORIGIN + '/widget/commons.js';
+    s.onerror = commonsFallback;
+    document.head.appendChild(s);
+    setTimeout(commonsFallback, 4000);
+  }
+</script>
+</body>
+</html>

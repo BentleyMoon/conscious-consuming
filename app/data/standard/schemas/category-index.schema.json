@@ -1,0 +1,415 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/category-index-v0.2.schema.json",
+  "title": "Open Values Category Index v0.2",
+  "description": "Generated index of live category datasets with needs, compatibility domains, embedded ontology, and attribution.",
+  "type": "object",
+  "required": [
+    "categories",
+    "attribution",
+    "ontology"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "categories": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/categorySummary"
+      }
+    },
+    "attribution": {
+      "type": "string"
+    },
+    "ontology": {
+      "$ref": "https://openvaluesstandard.org/schema/ontology-v0.4.schema.json"
+    },
+    "regionDecisionContract": {
+      "$ref": "#/$defs/regionDecisionContract"
+    },
+    "namingContract": {
+      "$ref": "#/$defs/namingContract"
+    }
+  },
+  "$defs": {
+    "categorySummary": {
+      "type": "object",
+      "required": [
+        "id",
+        "label",
+        "file",
+        "n",
+        "type",
+        "criteria",
+        "need",
+        "domain"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "file": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*\\.json$"
+        },
+        "n": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Products",
+            "Services",
+            "Media",
+            "Organizations",
+            "Initiatives"
+          ]
+        },
+        "criteria": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "https://openvaluesstandard.org/schema/criterion-v0.1.schema.json"
+          }
+        },
+        "domain": {
+          "type": "string",
+          "minLength": 1
+        },
+        "need": {
+          "type": "string",
+          "enum": [
+            "nourish",
+            "care",
+            "keep-a-home",
+            "connect",
+            "move",
+            "learn",
+            "give-and-act",
+            "protect"
+          ]
+        },
+        "group": {
+          "type": "string"
+        },
+        "regionProfile": {
+          "$ref": "#/$defs/regionProfile"
+        },
+        "decision": {
+          "$ref": "https://openvaluesstandard.org/schema/decision-contracts-v0.2.schema.json#/$defs/decision"
+        }
+      }
+    },
+    "regionProfile": {
+      "type": "object",
+      "required": [
+        "entryCount",
+        "regionTagged",
+        "missingRegion",
+        "values",
+        "filterValues",
+        "globalEntries",
+        "unknownRegionValues",
+        "countryLevelNeeded",
+        "countryLevelLimitationCount",
+        "strictCurrentEnumSafe"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "entryCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "regionTagged": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "missingRegion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "values": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "filterValues": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "US",
+              "EU",
+              "UK"
+            ]
+          }
+        },
+        "globalEntries": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unknownRegionValues": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "countryLevelNeeded": {
+          "type": "boolean"
+        },
+        "countryLevelLimitationCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "strictCurrentEnumSafe": {
+          "type": "boolean"
+        }
+      }
+    },
+    "namingContract": {
+      "type": "object",
+      "required": [
+        "status",
+        "consumer",
+        "canonicalNames",
+        "domainPosture",
+        "copyRules",
+        "appOwnedTargets",
+        "recommendation",
+        "appOwnedDecision",
+        "drainRule",
+        "coverage"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "consumer": {
+          "type": "string"
+        },
+        "canonicalNames": {
+          "type": "object",
+          "required": [
+            "ecosystem",
+            "standard",
+            "instance"
+          ],
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "name",
+              "role",
+              "use"
+            ],
+            "additionalProperties": true,
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "role": {
+                "type": "string"
+              },
+              "use": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "domainPosture": {
+          "type": "object",
+          "required": [
+            "ecosystemHome",
+            "appCanonicalBase",
+            "standardHome",
+            "standardDomainAlias",
+            "legacyDomainAlias"
+          ],
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "copyRules": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "name",
+              "useFor",
+              "doNotUseFor"
+            ],
+            "additionalProperties": true
+          }
+        },
+        "appOwnedTargets": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "surface",
+              "preferred",
+              "avoid"
+            ],
+            "additionalProperties": true
+          }
+        },
+        "recommendation": {
+          "type": "string"
+        },
+        "appOwnedDecision": {
+          "type": "string"
+        },
+        "drainRule": {
+          "type": "string"
+        },
+        "coverage": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "regionDecisionContract": {
+      "type": "object",
+      "required": [
+        "status",
+        "consumer",
+        "currentFilterValues",
+        "currentEntryRegionValues",
+        "currentFilterRule",
+        "recommendation",
+        "appOwnedDecision",
+        "categoriesWithRegionControls",
+        "countryLevelLimitations",
+        "missingLimitationEntries",
+        "coverage"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "consumer": {
+          "type": "string"
+        },
+        "currentFilterValues": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "everywhere",
+              "US",
+              "EU",
+              "UK"
+            ]
+          }
+        },
+        "currentEntryRegionValues": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "US",
+              "EU",
+              "UK",
+              "global"
+            ]
+          }
+        },
+        "currentFilterRule": {
+          "type": "string"
+        },
+        "recommendation": {
+          "type": "string"
+        },
+        "appOwnedDecision": {
+          "type": "string"
+        },
+        "categoriesWithRegionControls": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        },
+        "countryLevelLimitations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/countryLevelLimitation"
+          }
+        },
+        "missingLimitationEntries": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "coverage": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "countryLevelLimitation": {
+      "type": "object",
+      "required": [
+        "category",
+        "code",
+        "name",
+        "market",
+        "currentRegion",
+        "proposedRegionValue",
+        "reason"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "category": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "market": {
+          "type": "string"
+        },
+        "currentRegion": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "US",
+              "EU",
+              "UK",
+              "global"
+            ]
+          }
+        },
+        "proposedRegionValue": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

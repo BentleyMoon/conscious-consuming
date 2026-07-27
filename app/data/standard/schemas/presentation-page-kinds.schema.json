@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/presentation-page-kinds-v1.0.schema.json",
+  "title": "Open Values Presentation Page Kinds v1.0",
+  "description": "Ordered furniture and coverage-state copy for each presentation page kind.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "version", "updated", "pageKinds"],
+  "properties": {
+    "format": {"const": "open-values-presentation-page-kinds"},
+    "version": {"const": "1.0.0"},
+    "updated": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "pageKinds": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {"$ref": "#/$defs/pageKind"}
+    }
+  },
+  "$defs": {
+    "pageKind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "purpose", "mainAction", "sections", "stateCopy"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "label": {"type": "string", "minLength": 1},
+        "purpose": {"type": "string", "minLength": 1},
+        "mainAction": {"type": "string", "minLength": 1},
+        "sections": {"type": "array", "minItems": 6, "items": {"$ref": "#/$defs/section"}},
+        "stateCopy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["rich", "thin", "notCovered"],
+          "properties": {
+            "rich": {"type": "string", "minLength": 1},
+            "thin": {"type": "string", "minLength": 1},
+            "notCovered": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    },
+    "section": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "heading", "when"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "heading": {"type": "string", "minLength": 1},
+        "when": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

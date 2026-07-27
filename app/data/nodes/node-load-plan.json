@@ -1,0 +1,148 @@
+{
+  "format": "ovs-node-load-plan",
+  "version": "0.1",
+  "built": "2026-07-15",
+  "source": [
+    "pipeline/build_nodes.js",
+    "app/data/nodes/manifest.json",
+    "app/data/nodes/readiness.json"
+  ],
+  "purpose": "Generated runtime loading contract for app-owned node and Ask integration.",
+  "appLaneNote": "Data contract only; app-owned code chooses fetch, cache, UI states, and error presentation.",
+  "integrityContract": {
+    "algorithm": "sha256",
+    "cacheKey": "<file>:<sha256>",
+    "validate": "Use the sha256 value from manifest.json for each loaded node file when the runtime supports digest checks.",
+    "retry": "On a hash mismatch or parse failure, refetch the file once before marking that stage unavailable.",
+    "fallback": "Never fabricate results from a failed generated index; keep already-loaded stages usable."
+  },
+  "budgets": {
+    "startupBudgetBytes": 700000,
+    "minimumHeadroomBytes": 50000,
+    "askCoreBytes": 642114,
+    "askCoreHeadroomBytes": 57886,
+    "askCoreWithinBudget": true,
+    "askCoreHasHeadroom": true,
+    "fullAskBytes": 5579274,
+    "pageNodeBytes": 1540361,
+    "establishedEagerBytes": 85711
+  },
+  "stages": [
+    {
+      "id": "bootstrap-metadata",
+      "label": "Bootstrap node metadata",
+      "loadHint": "eager-metadata",
+      "files": [
+        "manifest.json",
+        "node-load-plan.json"
+      ],
+      "trigger": "App startup, before node or Ask features claim generated-index coverage.",
+      "acceptanceCriteria": [
+        "Load metadata before generated node search or node pages are enabled.",
+        "Treat manifest.json as the file inventory and node-load-plan.json as the runtime sequence.",
+        "Do not block the first usable app view on lazy product or page-node indexes."
+      ],
+      "failureMode": "Keep existing app search/data paths usable and mark generated node features as unavailable if metadata cannot load."
+    },
+    {
+      "id": "established-node-primitives",
+      "label": "Keep established node primitives eager",
+      "loadHint": "eager",
+      "files": [
+        "tags.json",
+        "errands.json",
+        "synonyms.json"
+      ],
+      "trigger": "Startup, using the existing small node files already produced by other pipelines.",
+      "acceptanceCriteria": [
+        "Keep tag, errand, and synonym node helpers available without waiting for full Ask.",
+        "If a helper file is absent, degrade only the dependent helper surface.",
+        "Do not infer missing tag, errand, or synonym coverage from generated brand/company data."
+      ],
+      "failureMode": "Disable the affected helper surface rather than fabricating labels or routes.",
+      "bytes": 85711
+    },
+    {
+      "id": "startup-ask-core",
+      "label": "Load compact Ask core for startup search",
+      "loadHint": "eager-search",
+      "files": [
+        "ask-core.json"
+      ],
+      "trigger": "Startup search box, command palette, or any first-use Ask entry point.",
+      "acceptanceCriteria": [
+        "Keep ask-core.json under the startup budget with minimum headroom.",
+        "Use ask-core hash targets directly; do not require ask-index.json for category, brand, company, guide, line, tag, or errand results.",
+        "Preserve resolver ordering from the generated traces, including typo before loose containment."
+      ],
+      "failureMode": "Show a search-unavailable state or fall back to existing in-memory search; do not eagerly pull ask-index.json as a rescue path.",
+      "bytes": 642114,
+      "budgetBytes": 700000,
+      "headroomBytes": 57886,
+      "withinBudget": true,
+      "hasMinimumHeadroom": true
+    },
+    {
+      "id": "defer-page-nodes",
+      "label": "Defer full brand and company page nodes",
+      "loadHint": "defer-page-nodes",
+      "files": [
+        "brands.json",
+        "companies.json"
+      ],
+      "trigger": "First visit to a brand or company node page, ownership view, or flagship walkthrough that needs full node context.",
+      "acceptanceCriteria": [
+        "Do not load brand/company page indexes before startup search is usable.",
+        "Use node page contracts to check required fields before rendering.",
+        "If the target node is unknown, render a not-covered state instead of a blank or fabricated page."
+      ],
+      "failureMode": "Brand/company node pages can be unavailable while category and guide routes remain usable.",
+      "bytes": 1540361
+    },
+    {
+      "id": "lazy-product-ask",
+      "label": "Lazy-load full product and barcode Ask",
+      "loadHint": "lazy-product-search",
+      "files": [
+        "ask-index.json"
+      ],
+      "trigger": "Product-name search, barcode lookup, or an explicit deeper-results action.",
+      "acceptanceCriteria": [
+        "Never require the full Ask index for the first usable search result list.",
+        "Load once and cache by manifest sha256 when a product/barcode path asks for it.",
+        "If the lazy index fails, keep core results visible and label product lookup as unavailable."
+      ],
+      "failureMode": "Product lookup can fail independently without breaking startup Ask or generated node pages.",
+      "bytes": 5579274
+    },
+    {
+      "id": "dev-contracts",
+      "label": "Use generated contracts for integration QA",
+      "loadHint": "dev-contract",
+      "files": [
+        "ask-fixtures.json",
+        "ask-traces.json",
+        "ask-presentation.json",
+        "node-walkthroughs.json",
+        "node-page-contracts.json",
+        "node-route-fixtures.json",
+        "node-route-guardrails.json",
+        "node-runtime-states.json",
+        "node-preview-matrix.json",
+        "node-integration-checklist.json"
+      ],
+      "trigger": "Development, preview QA, and H4 drain checks; not needed for normal runtime.",
+      "acceptanceCriteria": [
+        "Run contract audits before claiming node/Ask integration complete.",
+        "Use positive route fixtures and guardrails together.",
+        "Keep H4 active until the app consumes these contracts or documents equivalent coverage."
+      ],
+      "failureMode": "A green build is not enough to drain H4 if the app has no matching integration behavior."
+    }
+  ],
+  "totals": {
+    "stages": 6,
+    "runtimeStages": 5,
+    "devContractStages": 1
+  }
+}

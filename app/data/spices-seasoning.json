@@ -1,0 +1,3843 @@
+{
+ "meta": {
+  "id": "spices-seasoning",
+  "label": "Spices & seasonings",
+  "type": "Products",
+  "primaryAxis": "nutrition_grade",
+  "source": "Open Food Facts",
+  "license": "ODbL 1.0",
+  "attribution": "Data © Open Food Facts contributors (ODbL)",
+  "allergens": true,
+  "productBase": "https://world.openfoodfacts.org/product/",
+  "presets": {
+   "Balanced": {
+    "w": {
+     "environment": 3,
+     "processing": 3,
+     "nutrition_grade": 3,
+     "protein": 3,
+     "low_sugar": 3,
+     "ethics": 2
+    },
+    "x": []
+   },
+   "Climate-first": {
+    "w": {
+     "environment": 5,
+     "processing": 3,
+     "nutrition_grade": 2,
+     "protein": 1,
+     "low_sugar": 1,
+     "ethics": 2
+    },
+    "x": []
+   },
+   "Most protein": {
+    "w": {
+     "protein": 5,
+     "low_sugar": 2,
+     "nutrition_grade": 2,
+     "processing": 1,
+     "environment": 1,
+     "ethics": 1
+    },
+    "x": []
+   },
+   "Nut-free family": {
+    "w": {
+     "nutrition_grade": 4,
+     "processing": 3,
+     "low_sugar": 3,
+     "environment": 2,
+     "protein": 2,
+     "ethics": 1
+    },
+    "x": [
+     "nuts",
+     "peanut"
+    ]
+   },
+   "Fewest additives": {
+    "w": {
+     "processing": 5,
+     "low_sugar": 3,
+     "nutrition_grade": 3,
+     "ethics": 2,
+     "environment": 2,
+     "protein": 1
+    },
+    "x": []
+   },
+   "Most affordable": {
+    "w": {
+     "economical": 5,
+     "nutrition_grade": 2,
+     "environment": 2,
+     "processing": 1,
+     "protein": 1,
+     "low_sugar": 1
+    },
+    "x": []
+   }
+  },
+  "n": 53,
+  "tradeoff": [
+   "economical",
+   "nutrition_grade"
+  ],
+  "tradeoffLabels": [
+   "cheapest",
+   "healthiest"
+  ],
+  "priced": 9,
+  "valueSignatureProfile": {
+   "entryCount": 53,
+   "signedEntries": 53,
+   "drawableEntries": 51,
+   "minimumThemesForBloom": 2,
+   "themeCounts": {
+    "planet": 29,
+    "people": 40,
+    "health": 52,
+    "cost": 9
+   }
+  },
+  "provenanceProfile": {
+   "entryCount": 53,
+   "singleSourceEntries": 44,
+   "multiSourceEntries": 9,
+   "noSourceEntries": 0,
+   "noteOnlyEntries": 0,
+   "averageSourceDomains": 1.17,
+   "topPrimarySources": [
+    {
+     "label": "Open Food Facts",
+     "entries": 53
+    }
+   ]
+  },
+  "decision": {
+   "category": "spices-seasoning",
+   "reads": {
+    "text": "Compare spices & seasonings by nutrition, processing, cost, and environmental impact.",
+    "basis": [
+     {
+      "criterion": "nutrition_grade",
+      "readsAs": "nutrition"
+     },
+     {
+      "criterion": "processing",
+      "readsAs": "processing"
+     },
+     {
+      "criterion": "economical",
+      "readsAs": "cost"
+     },
+     {
+      "criterion": "environment",
+      "readsAs": "environmental impact"
+     }
+    ],
+    "signature": {
+     "by": "Conscious Consuming",
+     "on": "2026-07-15",
+     "status": "approved-batch"
+    },
+    "receipt": {
+     "dataset": "spices-seasoning",
+     "entryCount": 53,
+     "criteria": [
+      {
+       "criterion": "nutrition_grade",
+       "readsAs": "nutrition",
+       "known": 11,
+       "minimum": 0,
+       "maximum": 100,
+       "spread": 100
+      },
+      {
+       "criterion": "processing",
+       "readsAs": "processing",
+       "known": 49,
+       "minimum": 0,
+       "maximum": 100,
+       "spread": 100
+      },
+      {
+       "criterion": "economical",
+       "readsAs": "cost",
+       "known": 9,
+       "minimum": 30,
+       "maximum": 95,
+       "spread": 65
+      },
+      {
+       "criterion": "environment",
+       "readsAs": "environmental impact",
+       "known": 29,
+       "minimum": 0,
+       "maximum": 100,
+       "spread": 100
+      }
+     ]
+    }
+   },
+   "axes": [
+    {
+     "id": "cost-or-values",
+     "kind": "cost-values",
+     "label": "Price or overall fit",
+     "question": "Lower observed price or a stronger overall fit?",
+     "criteria": [
+      "economical",
+      "nutrition_grade",
+      "processing",
+      "environment",
+      "protein",
+      "low_sugar",
+      "ethics"
+     ],
+     "poles": [
+      "Lower observed price",
+      "Stronger overall fit"
+     ],
+     "default": 50
+    },
+    {
+     "id": "processing",
+     "kind": "criterion",
+     "label": "Processing",
+     "question": "Does simpler processing matter more?",
+     "criteria": [
+      "processing"
+     ],
+     "poles": [
+      "Flexible",
+      "Simpler processing"
+     ],
+     "default": 50
+    }
+   ],
+   "budget": {
+    "available": true,
+    "mode": "observed-price-rank",
+    "criterion": "economical",
+    "minimumKnown": 5,
+    "knownEntries": 9,
+    "coverage": 0.1698
+   },
+   "archetypes": [
+    "best-for-most",
+    "strictest-match",
+    "budget-honest"
+   ],
+   "page": {
+    "stage": "approved-batch",
+    "primaryRoute": true
+   },
+   "consumer": {
+    "reads": "Round 8 approved category differences reads.",
+    "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+    "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+    "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+    "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+   }
+  }
+ },
+ "criteria": [
+  {
+   "key": "environment",
+   "label": "Environment",
+   "source": "Green-Score",
+   "tier": "measured"
+  },
+  {
+   "key": "processing",
+   "label": "Processing",
+   "source": "NOVA",
+   "tier": "measured"
+  },
+  {
+   "key": "nutrition_grade",
+   "label": "Nutrition",
+   "source": "Nutri-Score",
+   "tier": "measured"
+  },
+  {
+   "key": "protein",
+   "label": "Protein",
+   "source": "OFF nutriments",
+   "tier": "measured"
+  },
+  {
+   "key": "low_sugar",
+   "label": "Low sugar",
+   "source": "OFF nutriments",
+   "tier": "measured"
+  },
+  {
+   "key": "ethics",
+   "label": "Ethics",
+   "source": "certified labels",
+   "tier": "certified"
+  },
+  {
+   "key": "economical",
+   "label": "Economical",
+   "source": "Open Prices",
+   "tier": "measured"
+  }
+ ],
+ "products": [
+  {
+   "code": "6111184001562",
+   "name": "Sel de table iodé",
+   "brand": "Star",
+   "description": "Sel de table iodé from Star, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 100,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": null,
+    "low_sugar": 100,
+    "ethics": null
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score A.",
+     "source": "https://world.openfoodfacts.org/product/6111184001562",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/6111184001562",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/6111184001562",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/6111184001562"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "health": 83
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "8076809513722",
+   "name": "Basilico",
+   "brand": "Barilla",
+   "description": "Basilico from Barilla, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 0,
+    "nutrition_grade": 100,
+    "protein": 20,
+    "low_sugar": 76,
+    "ethics": 0,
+    "economical": 73
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": [
+     "gluten"
+    ]
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 4.",
+     "source": "https://world.openfoodfacts.org/product/8076809513722",
+     "asof": "2026"
+    },
+    "nutrition_grade": {
+     "note": "Open Food Facts reports Nutri-Score A.",
+     "source": "https://world.openfoodfacts.org/product/8076809513722",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 1.6 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/8076809513722",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 5.9 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/8076809513722",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/8076809513722",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Open Prices observations average about 1.7 EUR (n=10).",
+     "source": "https://prices.openfoodfacts.org/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/8076809513722"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Vegetarian"
+   ],
+   "valueSignature": {
+    "people": 0,
+    "health": 49,
+    "cost": 73
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "Open Food Facts",
+    "sourceLabels": [
+     "Open Food Facts",
+     "Open Prices"
+    ]
+   }
+  },
+  {
+   "code": "6111184003276",
+   "name": "Assaisonnement aromatisé au citron",
+   "brand": "Star",
+   "description": "Assaisonnement aromatisé au citron from Star, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 100,
+    "processing": 0,
+    "nutrition_grade": null,
+    "protein": 0,
+    "low_sugar": null,
+    "ethics": null
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score A.",
+     "source": "https://world.openfoodfacts.org/product/6111184003276",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 4.",
+     "source": "https://world.openfoodfacts.org/product/6111184003276",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/6111184003276",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/6111184003276"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "health": 0
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "7610313390076",
+   "name": "Herbamare original",
+   "brand": "A.Vogel",
+   "description": "Herbamare original from A.Vogel, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": 11,
+    "low_sugar": 94,
+    "ethics": 100,
+    "economical": 30
+   },
+   "allergens": [
+    "celery"
+   ],
+   "allergensDeclared": true,
+   "allergenEvidence": {
+    "declares": [
+     "celery"
+    ],
+    "declaredFree": []
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/7610313390076",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.9 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/7610313390076",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 1.5 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/7610313390076",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels include 2 organic, fair-trade or Rainforest Alliance tag(s).",
+     "source": "https://world.openfoodfacts.org/product/7610313390076",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Open Prices observations average about 4.07 EUR (n=5).",
+     "source": "https://prices.openfoodfacts.org/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/7610313390076"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Organic",
+    "Vegan",
+    "Vegetarian"
+   ],
+   "valueSignature": {
+    "people": 100,
+    "health": 57,
+    "cost": 30
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "Open Food Facts",
+    "sourceLabels": [
+     "Open Food Facts",
+     "Open Prices"
+    ]
+   }
+  },
+  {
+   "code": "3183280001800",
+   "name": "sel",
+   "brand": "baleine",
+   "description": "sel from baleine, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": 0,
+    "low_sugar": null,
+    "ethics": 0,
+    "economical": 95
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/3183280001800",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3183280001800",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/3183280001800",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Open Prices observations average about 0.46 EUR (n=8).",
+     "source": "https://prices.openfoodfacts.org/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3183280001800"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "people": 0,
+    "health": 33,
+    "cost": 95
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "Open Food Facts",
+    "sourceLabels": [
+     "Open Food Facts",
+     "Open Prices"
+    ]
+   }
+  },
+  {
+   "code": "3183280000728",
+   "name": "Sel Moulu de Méditerranée",
+   "brand": "La Baleine",
+   "description": "Sel Moulu de Méditerranée from La Baleine, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 100,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": null,
+    "low_sugar": null,
+    "ethics": 0,
+    "economical": 93
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score A.",
+     "source": "https://world.openfoodfacts.org/product/3183280000728",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/3183280000728",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/3183280000728",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Open Prices observations average about 0.56 EUR (n=7).",
+     "source": "https://prices.openfoodfacts.org/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3183280000728"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "people": 0,
+    "health": 66,
+    "cost": 93
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "Open Food Facts",
+    "sourceLabels": [
+     "Open Food Facts",
+     "Open Prices"
+    ]
+   }
+  },
+  {
+   "code": "3179140213964",
+   "name": "Arôme vanille",
+   "brand": "Vahiné",
+   "description": "Arôme vanille from Vahiné, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 25,
+    "processing": 0,
+    "nutrition_grade": null,
+    "protein": 0,
+    "low_sugar": null,
+    "ethics": 0,
+    "economical": 52
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score D.",
+     "source": "https://world.openfoodfacts.org/product/3179140213964",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 4.",
+     "source": "https://world.openfoodfacts.org/product/3179140213964",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3179140213964",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/3179140213964",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Open Prices observations average about 2.83 EUR (n=3).",
+     "source": "https://prices.openfoodfacts.org/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3179140213964"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 25,
+    "people": 0,
+    "health": 0,
+    "cost": 52
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "Open Food Facts",
+    "sourceLabels": [
+     "Open Food Facts",
+     "Open Prices"
+    ]
+   }
+  },
+  {
+   "code": "3252378001319",
+   "name": "Sel fin iodé",
+   "brand": "Cerebos",
+   "description": "Sel fin iodé from Cerebos, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 100,
+    "processing": null,
+    "nutrition_grade": null,
+    "protein": 0,
+    "low_sugar": 100,
+    "ethics": 0,
+    "economical": 92
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score A.",
+     "source": "https://world.openfoodfacts.org/product/3252378001319",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3252378001319",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3252378001319",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/3252378001319",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Open Prices observations average about 0.63 EUR (n=6).",
+     "source": "https://prices.openfoodfacts.org/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3252378001319"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "people": 0,
+    "health": 50,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "Open Food Facts",
+    "sourceLabels": [
+     "Open Food Facts",
+     "Open Prices"
+    ]
+   }
+  },
+  {
+   "code": "3183280012875",
+   "name": "Sel de mer",
+   "brand": "La Baleine",
+   "description": "Sel de mer from La Baleine, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": 0,
+    "low_sugar": 100,
+    "ethics": null,
+    "economical": 87
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/3183280012875",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3183280012875",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3183280012875",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Open Prices observations average about 0.92 EUR (n=1).",
+     "source": "https://prices.openfoodfacts.org/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3183280012875"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "health": 55.33,
+    "cost": 87
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "Open Food Facts",
+    "sourceLabels": [
+     "Open Food Facts",
+     "Open Prices"
+    ]
+   }
+  },
+  {
+   "code": "3183280017337",
+   "name": "Sel Fin",
+   "brand": "La Baleine",
+   "description": "Sel Fin from La Baleine, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": 0,
+    "low_sugar": 100,
+    "ethics": 0,
+    "economical": 83
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/3183280017337",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3183280017337",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3183280017337",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/3183280017337",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Open Prices observations average about 1.13 EUR (n=4).",
+     "source": "https://prices.openfoodfacts.org/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3183280017337"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "people": 0,
+    "health": 55.33,
+    "cost": 83
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "Open Food Facts",
+    "sourceLabels": [
+     "Open Food Facts",
+     "Open Prices"
+    ]
+   }
+  },
+  {
+   "code": "3445850024023",
+   "name": "Sel moulu de Guérande",
+   "brand": "Le Guérandais",
+   "description": "Sel moulu de Guérande from Le Guérandais, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": 0,
+    "low_sugar": 100,
+    "ethics": 0,
+    "economical": 55
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/3445850024023",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3445850024023",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3445850024023",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/3445850024023",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Open Prices observations average about 2.69 EUR (n=5).",
+     "source": "https://prices.openfoodfacts.org/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3445850024023"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "people": 0,
+    "health": 55.33,
+    "cost": 55
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "Open Food Facts",
+    "sourceLabels": [
+     "Open Food Facts",
+     "Open Prices"
+    ]
+   }
+  },
+  {
+   "code": "6111250472265",
+   "name": "Assaisonnement aromatise au citron",
+   "brand": "efor",
+   "description": "Assaisonnement aromatise au citron from efor, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 100,
+    "processing": null,
+    "nutrition_grade": null,
+    "protein": 0,
+    "low_sugar": 99,
+    "ethics": null
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score A.",
+     "source": "https://world.openfoodfacts.org/product/6111250472265",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/6111250472265",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.1 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/6111250472265",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/6111250472265"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "health": 49.5
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3166290200197",
+   "name": "Cannelle moulue",
+   "brand": "Ducros",
+   "description": "Cannelle moulue from Ducros, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 0,
+    "processing": 100,
+    "nutrition_grade": null,
+    "protein": null,
+    "low_sugar": null,
+    "ethics": 0
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score E.",
+     "source": "https://world.openfoodfacts.org/product/3166290200197",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 1.",
+     "source": "https://world.openfoodfacts.org/product/3166290200197",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/3166290200197",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3166290200197"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 0,
+    "people": 0,
+    "health": 100
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "20020811",
+   "name": "Sel fin",
+   "brand": "ChanteSel",
+   "description": "Sel fin from ChanteSel, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 100,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": 0,
+    "low_sugar": 100,
+    "ethics": null
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score A.",
+     "source": "https://world.openfoodfacts.org/product/20020811",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/20020811",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/20020811",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/20020811",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/20020811"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "health": 55.33
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "8904043901015",
+   "name": "Tata Salt",
+   "brand": "Tata",
+   "description": "Tata Salt from Tata, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 100,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": 0,
+    "low_sugar": 100,
+    "ethics": 0
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score A.",
+     "source": "https://world.openfoodfacts.org/product/8904043901015",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/8904043901015",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/8904043901015",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/8904043901015",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/8904043901015",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/8904043901015"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Vegetarian"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "people": 0,
+    "health": 55.33
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3252378000954",
+   "name": "Sel fin iodé",
+   "brand": "Cérébos",
+   "description": "Sel fin iodé from Cérébos, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 100,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": 0,
+    "low_sugar": 100,
+    "ethics": 0
+   },
+   "allergens": [],
+   "allergensDeclared": true,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score A.",
+     "source": "https://world.openfoodfacts.org/product/3252378000954",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/3252378000954",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3252378000954",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3252378000954",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/3252378000954",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3252378000954"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "people": 0,
+    "health": 55.33
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3183280000650",
+   "name": "Sel fin iodé et fluoré",
+   "brand": "La Baleine",
+   "description": "Sel fin iodé et fluoré from La Baleine, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": 0,
+    "low_sugar": 100,
+    "ethics": null
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/3183280000650",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3183280000650",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3183280000650",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3183280000650"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "health": 55.33
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "6111184003283",
+   "name": "Assaisonnement au citron",
+   "brand": "Star",
+   "description": "Assaisonnement au citron from Star, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 100,
+    "nutrition_grade": 100,
+    "protein": 0,
+    "low_sugar": 100,
+    "ethics": null
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 1.",
+     "source": "https://world.openfoodfacts.org/product/6111184003283",
+     "asof": "2026"
+    },
+    "nutrition_grade": {
+     "note": "Open Food Facts reports Nutri-Score A.",
+     "source": "https://world.openfoodfacts.org/product/6111184003283",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/6111184003283",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/6111184003283",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/6111184003283"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "health": 75
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3183280000544",
+   "name": "FLEUR DE SEL",
+   "brand": "Le Saunier de Camargue",
+   "description": "FLEUR DE SEL from Le Saunier de Camargue, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": null,
+    "low_sugar": null,
+    "ethics": 0
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": [
+     "gluten"
+    ]
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/3183280000544",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/3183280000544",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3183280000544"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "people": 0,
+    "health": 66
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3248832940539",
+   "name": "Poulet🐔 au Curry et Noix de Coco 🥥",
+   "brand": "WW",
+   "description": "Poulet🐔 au Curry et Noix de Coco 🥥 from WW, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 0,
+    "processing": 0,
+    "nutrition_grade": 50,
+    "protein": 79,
+    "low_sugar": 90,
+    "ethics": 0
+   },
+   "allergens": [
+    "celery",
+    "coconut",
+    "crustaceans",
+    "eggs",
+    "fish",
+    "gluten",
+    "milk",
+    "molluscs",
+    "mustard",
+    "soy"
+   ],
+   "allergensDeclared": true,
+   "allergenEvidence": {
+    "declares": [
+     "celery",
+     "coconut",
+     "crustaceans",
+     "eggs",
+     "fish",
+     "gluten",
+     "milk",
+     "molluscs",
+     "mustard",
+     "soy"
+    ],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score E.",
+     "source": "https://world.openfoodfacts.org/product/3248832940539",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 4.",
+     "source": "https://world.openfoodfacts.org/product/3248832940539",
+     "asof": "2026"
+    },
+    "nutrition_grade": {
+     "note": "Open Food Facts reports Nutri-Score C.",
+     "source": "https://world.openfoodfacts.org/product/3248832940539",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 6.3 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3248832940539",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 2.5 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3248832940539",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/3248832940539",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3248832940539"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 0,
+    "people": 0,
+    "health": 54.75
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3183280021259",
+   "name": "Sel de mer fin",
+   "brand": "La Baleine",
+   "description": "Sel de mer fin from La Baleine, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 100,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": 0,
+    "low_sugar": 100,
+    "ethics": null
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score A.",
+     "source": "https://world.openfoodfacts.org/product/3183280021259",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/3183280021259",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3183280021259",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3183280021259",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3183280021259"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "health": 55.33
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3245390028594",
+   "name": "Sel de Guérande IGP",
+   "brand": "Reflets de France",
+   "description": "Sel de Guérande IGP from Reflets de France, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": 0,
+    "low_sugar": 100,
+    "ethics": 0
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/3245390028594",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3245390028594",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3245390028594",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/3245390028594",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3245390028594"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "people": 0,
+    "health": 55.33
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "8712100423147",
+   "name": "Knorr Secret d'Arômes Plein Sud Origan et Basilic Tube 145g",
+   "brand": "Knorr",
+   "description": "Knorr Secret d'Arômes Plein Sud Origan et Basilic Tube 145g from Knorr, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 0,
+    "nutrition_grade": null,
+    "protein": 100,
+    "low_sugar": 24,
+    "ethics": 0
+   },
+   "allergens": [
+    "celery",
+    "eggs",
+    "gluten",
+    "milk",
+    "mustard",
+    "soy"
+   ],
+   "allergensDeclared": true,
+   "allergenEvidence": {
+    "declares": [
+     "celery",
+     "eggs",
+     "gluten",
+     "milk",
+     "mustard",
+     "soy"
+    ],
+    "declaredFree": []
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 4.",
+     "source": "https://world.openfoodfacts.org/product/8712100423147",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 11.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/8712100423147",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 19.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/8712100423147",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/8712100423147",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/8712100423147"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Vegan",
+    "Vegetarian"
+   ],
+   "valueSignature": {
+    "people": 0,
+    "health": 41.33
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3011360000767",
+   "name": "Knorr Assaisonnement En Poudre Aromat Tube 70g",
+   "brand": "Knorr",
+   "description": "Knorr Assaisonnement En Poudre Aromat Tube 70g from Knorr, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 0,
+    "processing": 0,
+    "nutrition_grade": null,
+    "protein": 88,
+    "low_sugar": 32,
+    "ethics": 0
+   },
+   "allergens": [
+    "celery",
+    "eggs",
+    "gluten",
+    "milk",
+    "mustard",
+    "soy"
+   ],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [
+     "celery",
+     "eggs",
+     "gluten",
+     "milk",
+     "mustard",
+     "soy"
+    ],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score E.",
+     "source": "https://world.openfoodfacts.org/product/3011360000767",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 4.",
+     "source": "https://world.openfoodfacts.org/product/3011360000767",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 7.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3011360000767",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 17.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3011360000767",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/3011360000767",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3011360000767"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 0,
+    "people": 0,
+    "health": 40
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3250391650163",
+   "name": "Sel fin de Guérande",
+   "brand": "Itinéraire des Saveurs",
+   "description": "Sel fin de Guérande from Itinéraire des Saveurs, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": null,
+    "low_sugar": null,
+    "ethics": 0
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/3250391650163",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/3250391650163",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3250391650163"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "people": 0,
+    "health": 66
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3179142720200",
+   "name": "Arôme vanille Bourbon",
+   "brand": "Vahiné",
+   "description": "Arôme vanille Bourbon from Vahiné, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 25,
+    "processing": 0,
+    "nutrition_grade": null,
+    "protein": null,
+    "low_sugar": null,
+    "ethics": 0
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score D.",
+     "source": "https://world.openfoodfacts.org/product/3179142720200",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 4.",
+     "source": "https://world.openfoodfacts.org/product/3179142720200",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/3179142720200",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3179142720200"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 25,
+    "people": 0,
+    "health": 0
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3245550078964",
+   "name": "SNACK POPPÉ SEL & POIVRE",
+   "brand": "TOO GOOD",
+   "description": "SNACK POPPÉ SEL & POIVRE from TOO GOOD, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 0,
+    "nutrition_grade": 100,
+    "protein": 100,
+    "low_sugar": 84,
+    "ethics": 0
+   },
+   "allergens": [
+    "soy"
+   ],
+   "allergensDeclared": true,
+   "allergenEvidence": {
+    "declares": [
+     "soy"
+    ],
+    "declaredFree": [
+     "gluten"
+    ]
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 4.",
+     "source": "https://world.openfoodfacts.org/product/3245550078964",
+     "asof": "2026"
+    },
+    "nutrition_grade": {
+     "note": "Open Food Facts reports Nutri-Score A.",
+     "source": "https://world.openfoodfacts.org/product/3245550078964",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 18.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3245550078964",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 3.9 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3245550078964",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/3245550078964",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3245550078964"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Vegetarian"
+   ],
+   "valueSignature": {
+    "people": 0,
+    "health": 71
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "20164041",
+   "name": "Sugo al pomodoro con basilico",
+   "brand": "Italiamo",
+   "description": "Sugo al pomodoro con basilico from Italiamo, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 100,
+    "processing": 33,
+    "nutrition_grade": 100,
+    "protein": 20,
+    "low_sugar": 80,
+    "ethics": 0
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score A.",
+     "source": "https://world.openfoodfacts.org/product/20164041",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 3.",
+     "source": "https://world.openfoodfacts.org/product/20164041",
+     "asof": "2026"
+    },
+    "nutrition_grade": {
+     "note": "Open Food Facts reports Nutri-Score A.",
+     "source": "https://world.openfoodfacts.org/product/20164041",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 1.6 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/20164041",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 5.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/20164041",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/20164041",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/20164041"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Vegan",
+    "Vegetarian"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "people": 0,
+    "health": 58.25
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "4008258442012",
+   "name": "Morceaux de Gingembre confit",
+   "brand": "Seeberger",
+   "description": "Morceaux de Gingembre confit from Seeberger, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 100,
+    "processing": 0,
+    "nutrition_grade": null,
+    "protein": 2,
+    "low_sugar": 0,
+    "ethics": 0
+   },
+   "allergens": [
+    "sulphites"
+   ],
+   "allergensDeclared": true,
+   "allergenEvidence": {
+    "declares": [
+     "sulphites"
+    ],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score A.",
+     "source": "https://world.openfoodfacts.org/product/4008258442012",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 4.",
+     "source": "https://world.openfoodfacts.org/product/4008258442012",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.2 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/4008258442012",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 74.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/4008258442012",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/4008258442012",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/4008258442012"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Vegan",
+    "Vegetarian"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "people": 0,
+    "health": 0.67
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3166296208869",
+   "name": "Paprika fumé",
+   "brand": "Ducros",
+   "description": "Paprika fumé from Ducros, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 0,
+    "processing": 100,
+    "nutrition_grade": null,
+    "protein": null,
+    "low_sugar": null,
+    "ethics": null
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score E.",
+     "source": "https://world.openfoodfacts.org/product/3166296208869",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 1.",
+     "source": "https://world.openfoodfacts.org/product/3166296208869",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3166296208869"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 0,
+    "health": 100
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "5013665103134",
+   "name": "VERY LOW SALT ORGANIC VEGETABLE STOCK CUBES",
+   "brand": "kallø",
+   "description": "VERY LOW SALT ORGANIC VEGETABLE STOCK CUBES from kallø, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 0,
+    "nutrition_grade": null,
+    "protein": 1,
+    "low_sugar": 99,
+    "ethics": 100
+   },
+   "allergens": [
+    "celery",
+    "eggs",
+    "mustard",
+    "soy"
+   ],
+   "allergensDeclared": true,
+   "allergenEvidence": {
+    "declares": [
+     "celery",
+     "eggs",
+     "mustard",
+     "soy"
+    ],
+    "declaredFree": [
+     "gluten",
+     "lactose"
+    ]
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 4.",
+     "source": "https://world.openfoodfacts.org/product/5013665103134",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.1 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/5013665103134",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.2 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/5013665103134",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels include 2 organic, fair-trade or Rainforest Alliance tag(s).",
+     "source": "https://world.openfoodfacts.org/product/5013665103134",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/5013665103134"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Organic"
+   ],
+   "valueSignature": {
+    "people": 100,
+    "health": 33.33
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "5011308700375",
+   "name": "Mild curry paste",
+   "brand": "Patak&#039;s",
+   "description": "Mild curry paste from Patak&#039;s, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 33,
+    "nutrition_grade": 0,
+    "protein": 49,
+    "low_sugar": 97,
+    "ethics": 0
+   },
+   "allergens": [
+    "mustard",
+    "nuts",
+    "peanut"
+   ],
+   "allergensDeclared": true,
+   "allergenEvidence": {
+    "declares": [
+     "mustard",
+     "nuts",
+     "peanut"
+    ],
+    "declaredFree": [
+     "gluten"
+    ]
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 3.",
+     "source": "https://world.openfoodfacts.org/product/5011308700375",
+     "asof": "2026"
+    },
+    "nutrition_grade": {
+     "note": "Open Food Facts reports Nutri-Score E.",
+     "source": "https://world.openfoodfacts.org/product/5011308700375",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 3.9 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/5011308700375",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.7 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/5011308700375",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/5011308700375",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/5011308700375"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Vegan",
+    "Vegetarian"
+   ],
+   "valueSignature": {
+    "people": 0,
+    "health": 44.75
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3252378001678",
+   "name": "Sel -33 % sodium",
+   "brand": "Cérébos",
+   "description": "Sel -33 % sodium from Cérébos, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 100,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": 0,
+    "low_sugar": 100,
+    "ethics": null
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score A.",
+     "source": "https://world.openfoodfacts.org/product/3252378001678",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/3252378001678",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3252378001678",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3252378001678",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3252378001678"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "health": 55.33
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3445850070709",
+   "name": "Sel de Guérande",
+   "brand": "Le Guérandais",
+   "description": "Sel de Guérande from Le Guérandais, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": null,
+    "low_sugar": null,
+    "ethics": 50
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/3445850070709",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels include 1 organic, fair-trade or Rainforest Alliance tag(s).",
+     "source": "https://world.openfoodfacts.org/product/3445850070709",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3445850070709"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Organic"
+   ],
+   "valueSignature": {
+    "people": 50,
+    "health": 66
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "4027400148008",
+   "name": "Gewürzketchup Curry",
+   "brand": "Hela",
+   "description": "Gewürzketchup Curry from Hela, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 100,
+    "processing": 0,
+    "nutrition_grade": 25,
+    "protein": 9,
+    "low_sugar": 0,
+    "ethics": 0
+   },
+   "allergens": [
+    "celery",
+    "mustard"
+   ],
+   "allergensDeclared": true,
+   "allergenEvidence": {
+    "declares": [
+     "celery",
+     "mustard"
+    ],
+    "declaredFree": [
+     "gluten",
+     "lactose"
+    ]
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score A.",
+     "source": "https://world.openfoodfacts.org/product/4027400148008",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 4.",
+     "source": "https://world.openfoodfacts.org/product/4027400148008",
+     "asof": "2026"
+    },
+    "nutrition_grade": {
+     "note": "Open Food Facts reports Nutri-Score D.",
+     "source": "https://world.openfoodfacts.org/product/4027400148008",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.7 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/4027400148008",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 28.8 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/4027400148008",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/4027400148008",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/4027400148008"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Vegan",
+    "Vegetarian"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "people": 0,
+    "health": 8.5
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3166291464901",
+   "name": "Paprika doux",
+   "brand": "Ducros",
+   "description": "Paprika doux from Ducros, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 0,
+    "processing": 100,
+    "nutrition_grade": null,
+    "protein": null,
+    "low_sugar": null,
+    "ethics": 0
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score E.",
+     "source": "https://world.openfoodfacts.org/product/3166291464901",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 1.",
+     "source": "https://world.openfoodfacts.org/product/3166291464901",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/3166291464901",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3166291464901"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 0,
+    "people": 0,
+    "health": 100
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "6111184009636",
+   "name": "Salt ملح",
+   "brand": "Star",
+   "description": "Salt ملح from Star, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 100,
+    "processing": null,
+    "nutrition_grade": null,
+    "protein": 0,
+    "low_sugar": 100,
+    "ethics": null
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score A.",
+     "source": "https://world.openfoodfacts.org/product/6111184009636",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/6111184009636",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/6111184009636",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/6111184009636"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "health": 50
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3166290200081",
+   "name": "Ail semoule",
+   "brand": "Ducros",
+   "description": "Ail semoule from Ducros, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 100,
+    "processing": 100,
+    "nutrition_grade": 100,
+    "protein": 100,
+    "low_sugar": 4,
+    "ethics": 0
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score A.",
+     "source": "https://world.openfoodfacts.org/product/3166290200081",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 1.",
+     "source": "https://world.openfoodfacts.org/product/3166290200081",
+     "asof": "2026"
+    },
+    "nutrition_grade": {
+     "note": "Open Food Facts reports Nutri-Score A.",
+     "source": "https://world.openfoodfacts.org/product/3166290200081",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 17.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3166290200081",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 24.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3166290200081",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/3166290200081",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3166290200081"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "people": 0,
+    "health": 76
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "0716270001660",
+   "name": "Ginger Crystallized In Dark Chocolate",
+   "brand": "Chocolove",
+   "description": "Ginger Crystallized In Dark Chocolate from Chocolove, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 0,
+    "nutrition_grade": null,
+    "protein": 83,
+    "low_sugar": 0,
+    "ethics": 50
+   },
+   "allergens": [
+    "soy"
+   ],
+   "allergensDeclared": true,
+   "allergenEvidence": {
+    "declares": [
+     "soy"
+    ],
+    "declaredFree": []
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 4.",
+     "source": "https://world.openfoodfacts.org/product/0716270001660",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 6.7 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/0716270001660",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 40.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/0716270001660",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels include 1 organic, fair-trade or Rainforest Alliance tag(s).",
+     "source": "https://world.openfoodfacts.org/product/0716270001660",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/0716270001660"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Rainforest Alliance"
+   ],
+   "valueSignature": {
+    "people": 50,
+    "health": 27.67
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3564709000374",
+   "name": "Sel de Guérande",
+   "brand": "Nos regions ont du talent",
+   "description": "Sel de Guérande from Nos regions ont du talent, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": 0,
+    "low_sugar": 100,
+    "ethics": 0
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/3564709000374",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3564709000374",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3564709000374",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/3564709000374",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3564709000374"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "people": 0,
+    "health": 55.33
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "8480000341778",
+   "name": "Canela molida",
+   "brand": "Hacendado",
+   "description": "Canela molida from Hacendado, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 100,
+    "nutrition_grade": null,
+    "protein": null,
+    "low_sugar": null,
+    "ethics": 0
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": [
+     "gluten"
+    ]
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 1.",
+     "source": "https://world.openfoodfacts.org/product/8480000341778",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/8480000341778",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/8480000341778"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "people": 0,
+    "health": 100
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3166296555307",
+   "name": "Ail semoule Ducros 110g",
+   "brand": "Ducros",
+   "description": "Ail semoule Ducros 110g from Ducros, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 100,
+    "processing": 100,
+    "nutrition_grade": 100,
+    "protein": null,
+    "low_sugar": null,
+    "ethics": 0
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score A.",
+     "source": "https://world.openfoodfacts.org/product/3166296555307",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 1.",
+     "source": "https://world.openfoodfacts.org/product/3166296555307",
+     "asof": "2026"
+    },
+    "nutrition_grade": {
+     "note": "Open Food Facts reports Nutri-Score A.",
+     "source": "https://world.openfoodfacts.org/product/3166296555307",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/3166296555307",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3166296555307"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "people": 0,
+    "health": 100
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3035626803558",
+   "name": "Original Herbamare • Sel marin, plantes et légumes frais",
+   "brand": "A.Vogel",
+   "description": "Original Herbamare • Sel marin, plantes et légumes frais from A.Vogel, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": 11,
+    "low_sugar": 94,
+    "ethics": 100
+   },
+   "allergens": [
+    "celery"
+   ],
+   "allergensDeclared": true,
+   "allergenEvidence": {
+    "declares": [
+     "celery"
+    ],
+    "declaredFree": []
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/3035626803558",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.9 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3035626803558",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 1.5 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3035626803558",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels include 2 organic, fair-trade or Rainforest Alliance tag(s).",
+     "source": "https://world.openfoodfacts.org/product/3035626803558",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3035626803558"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Organic"
+   ],
+   "valueSignature": {
+    "people": 100,
+    "health": 57
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3445850024207",
+   "name": "Sel de Guérande",
+   "brand": "Le Guérandais",
+   "description": "Sel de Guérande from Le Guérandais, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": null,
+    "low_sugar": null,
+    "ethics": 0
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/3445850024207",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/3445850024207",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3445850024207"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "people": 0,
+    "health": 66
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3252378000398",
+   "name": "Sel fin iodé fluoré",
+   "brand": "Cerebos",
+   "description": "Sel fin iodé fluoré from Cerebos, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 100,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": 0,
+    "low_sugar": 100,
+    "ethics": 0
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score A.",
+     "source": "https://world.openfoodfacts.org/product/3252378000398",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/3252378000398",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3252378000398",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3252378000398",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/3252378000398",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3252378000398"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "people": 0,
+    "health": 55.33
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3166296550371",
+   "name": "Moulin poivre noir",
+   "brand": "Ducros",
+   "description": "Moulin poivre noir from Ducros, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 0,
+    "processing": 100,
+    "nutrition_grade": null,
+    "protein": 0,
+    "low_sugar": 100,
+    "ethics": null
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score E.",
+     "source": "https://world.openfoodfacts.org/product/3166296550371",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 1.",
+     "source": "https://world.openfoodfacts.org/product/3166296550371",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3166296550371",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/3166296550371",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3166296550371"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 0,
+    "health": 66.67
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "7610313391264",
+   "name": "Herbamare",
+   "brand": "A.Vogel",
+   "description": "Herbamare from A.Vogel, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": 11,
+    "low_sugar": 94,
+    "ethics": 100
+   },
+   "allergens": [
+    "celery"
+   ],
+   "allergensDeclared": true,
+   "allergenEvidence": {
+    "declares": [
+     "celery"
+    ],
+    "declaredFree": [
+     "gluten"
+    ]
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/7610313391264",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.9 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/7610313391264",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 1.5 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/7610313391264",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels include 2 organic, fair-trade or Rainforest Alliance tag(s).",
+     "source": "https://world.openfoodfacts.org/product/7610313391264",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/7610313391264"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Organic"
+   ],
+   "valueSignature": {
+    "people": 100,
+    "health": 57
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "20000318",
+   "name": "Pfeffer gemahlen",
+   "brand": "Kania",
+   "description": "Pfeffer gemahlen from Kania, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 0,
+    "processing": null,
+    "nutrition_grade": null,
+    "protein": null,
+    "low_sugar": null,
+    "ethics": 0
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score E.",
+     "source": "https://world.openfoodfacts.org/product/20000318",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/20000318",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/20000318"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 0,
+    "people": 0
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "3166296555338",
+   "name": "Curcuma moulu",
+   "brand": "Ducros",
+   "description": "Curcuma moulu from Ducros, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 0,
+    "processing": 100,
+    "nutrition_grade": null,
+    "protein": null,
+    "low_sugar": null,
+    "ethics": 0
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score E.",
+     "source": "https://world.openfoodfacts.org/product/3166296555338",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 1.",
+     "source": "https://world.openfoodfacts.org/product/3166296555338",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/3166296555338",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/3166296555338"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 0,
+    "people": 0,
+    "health": 100
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "5011544070034",
+   "name": "Lo Salt",
+   "brand": "Lo Salt",
+   "description": "Lo Salt from Lo Salt, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 100,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": 0,
+    "low_sugar": 100,
+    "ethics": 0
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score A.",
+     "source": "https://world.openfoodfacts.org/product/5011544070034",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/5011544070034",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/5011544070034",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/5011544070034",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/5011544070034",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/5011544070034"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Vegan",
+    "Vegetarian"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "people": 0,
+    "health": 55.33
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "5012818160154",
+   "name": "Chopped Garlic",
+   "brand": "Very Lazy",
+   "description": "Chopped Garlic from Very Lazy, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 100,
+    "nutrition_grade": 100,
+    "protein": 59,
+    "low_sugar": 97,
+    "ethics": 0
+   },
+   "allergens": [
+    "sulphites"
+   ],
+   "allergensDeclared": true,
+   "allergenEvidence": {
+    "declares": [
+     "sulphites"
+    ],
+    "declaredFree": []
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 1.",
+     "source": "https://world.openfoodfacts.org/product/5012818160154",
+     "asof": "2026"
+    },
+    "nutrition_grade": {
+     "note": "Open Food Facts reports Nutri-Score A.",
+     "source": "https://world.openfoodfacts.org/product/5012818160154",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 4.7 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/5012818160154",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.7 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/5012818160154",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/5012818160154",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/5012818160154"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Vegan",
+    "Vegetarian"
+   ],
+   "valueSignature": {
+    "people": 0,
+    "health": 89
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "5010338301507",
+   "name": "THAI RED CURRY paste",
+   "brand": "BLUE DRAGON",
+   "description": "THAI RED CURRY paste from BLUE DRAGON, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": null,
+    "processing": 0,
+    "nutrition_grade": 25,
+    "protein": 28,
+    "low_sugar": 76,
+    "ethics": 0
+   },
+   "allergens": [
+    "soy"
+   ],
+   "allergensDeclared": true,
+   "allergenEvidence": {
+    "declares": [
+     "soy"
+    ],
+    "declaredFree": []
+   },
+   "provenance": {
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 4.",
+     "source": "https://world.openfoodfacts.org/product/5010338301507",
+     "asof": "2026"
+    },
+    "nutrition_grade": {
+     "note": "Open Food Facts reports Nutri-Score D.",
+     "source": "https://world.openfoodfacts.org/product/5010338301507",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 2.3 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/5010338301507",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 6.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/5010338301507",
+     "asof": "2026"
+    },
+    "ethics": {
+     "note": "Open Food Facts labels are present, but none match the organic, fair-trade or Rainforest Alliance set.",
+     "source": "https://world.openfoodfacts.org/product/5010338301507",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/5010338301507"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Vegan",
+    "Vegetarian"
+   ],
+   "valueSignature": {
+    "people": 0,
+    "health": 32.25
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  },
+  {
+   "code": "20443528",
+   "name": "Himalaias rock salt",
+   "brand": "Deluxe",
+   "description": "Himalaias rock salt from Deluxe, scored from Open Food Facts nutrition, ingredient, label and impact data.",
+   "scores": {
+    "environment": 100,
+    "processing": 66,
+    "nutrition_grade": null,
+    "protein": 0,
+    "low_sugar": 100,
+    "ethics": null
+   },
+   "allergens": [],
+   "allergensDeclared": false,
+   "allergenEvidence": {
+    "declares": [],
+    "declaredFree": []
+   },
+   "provenance": {
+    "environment": {
+     "note": "Open Food Facts reports Green-Score A.",
+     "source": "https://world.openfoodfacts.org/product/20443528",
+     "asof": "2026"
+    },
+    "processing": {
+     "note": "Open Food Facts reports NOVA group 2.",
+     "source": "https://world.openfoodfacts.org/product/20443528",
+     "asof": "2026"
+    },
+    "protein": {
+     "note": "Open Food Facts nutriments report 0.0 g protein per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/20443528",
+     "asof": "2026"
+    },
+    "low_sugar": {
+     "note": "Open Food Facts nutriments report 0.0 g sugar per 100 g.",
+     "source": "https://world.openfoodfacts.org/product/20443528",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Open Food Facts",
+     "url": "https://world.openfoodfacts.org/product/20443528"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "health": 55.33
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "Open Food Facts"
+   }
+  }
+ ]
+}

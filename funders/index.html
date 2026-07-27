@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>try{var t=localStorage.getItem('cc.theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Grant brief, Values Commons / Open Values Standard</title>
+<meta name="description" content="Values Commons is live public-interest technology for choosing with sourced facts, carrying personal rules, and making group decisions without a central platform.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#1d7a5a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d7a5a'/%3E%3Cpath d='M18 36c0-13 13-20 28-20-2 16-14 23-28 20z' fill='%23fff'/%3E%3Cpath d='M20 46c6-12 14-18 22-21' stroke='%231d7a5a' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Values Commons, grant brief">
+<meta property="og:description" content="A finished, privacy-first, uncapturable way to vote with your money and organize. The build is done; a modest grant funds first real use.">
+<meta property="og:image" content="https://valuescommons.org/funders/og-funders.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Values Commons, grant brief">
+<meta name="twitter:description" content="A finished, privacy-first, uncapturable way to vote with your money and organize. The build is done; a modest grant funds first real use.">
+<meta name="twitter:image" content="https://valuescommons.org/funders/og-funders.png">
+<style>
+  :root{
+    --bg:#f6f8f7; --surface:#ffffff; --ink:#18211d; --muted:#566560; --hint:#8a958f;
+    --line:#e3e7e5; --accent:#1d7a5a; --accent-soft:#e9f3ee; --track:#eef1ef; --clay:#a8432f;
+    --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,system-ui,sans-serif;
+    --font-display:"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,ui-serif,serif;
+    --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --max:62rem; --e1:0 1px 2px rgba(24,38,30,.05),0 3px 10px rgba(24,38,30,.05);
+    --e2:0 4px 16px rgba(24,38,30,.09),0 14px 36px rgba(24,38,30,.08); --ease:cubic-bezier(.2,.7,.2,1);
+  }
+  @media (prefers-color-scheme:dark){ :root{
+    --bg:#0f1512; --surface:#161d18; --ink:#e6ece8; --muted:#9aa8a1; --hint:#6c7a72;
+    --line:rgba(255,255,255,.10); --accent:#5dcaa5; --accent-soft:#16241d; --track:#1b241f; --clay:#e3a594;
+    --e1:0 1px 2px rgba(0,0,0,.3),0 3px 10px rgba(0,0,0,.3); --e2:0 6px 22px rgba(0,0,0,.5); } }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-sans);line-height:1.62;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{transition:none!important;animation:none!important}}
+  a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+  a:focus-visible,button:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.55rem .9rem;border-radius:0 0 8px 0;z-index:20}
+  .skip:focus{left:0}
+  h1,h2,h3{font-family:var(--font-display);font-weight:600;text-wrap:balance;letter-spacing:-.01em}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 1.25rem}
+  /* nav */
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:1.1rem 0;border-bottom:.5px solid var(--line);margin-bottom:2rem}
+  .wordmark{font-family:var(--font-display);font-weight:600;font-size:1.12rem;color:var(--ink)}
+  .navlinks{display:flex;gap:.5rem 1rem;flex-wrap:wrap;align-items:center;font-size:.9rem}
+  .navlinks a{color:var(--muted)} .navlinks a:hover{color:var(--accent);text-decoration:none}
+  .navcta{border:1px solid var(--accent);color:var(--accent);padding:.3rem .7rem;border-radius:999px}
+  /* hero */
+  .hero{padding:1.4rem 0 1rem;max-width:48rem}
+  .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin:0 0 1rem}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.04;letter-spacing:-.015em;margin:0 0 1.05rem}
+  .lede{font-size:1.14rem;color:var(--muted);margin:0 0 1.4rem}
+  .lede b{color:var(--ink);font-weight:600}
+  .ask-chip{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:.5rem;background:var(--accent-soft);border:1px solid var(--accent);color:var(--accent);
+    border-radius:12px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;margin:.2rem 0 1.5rem}
+  .ask-chip b{font-family:var(--font-display);font-size:1.15rem}
+  .ask-chip span{color:var(--muted);font-weight:400}
+  .cta{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center}
+  .btn{display:inline-block;font-weight:600;font-size:.95rem;padding:.6rem 1.1rem;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);transition:.15s var(--ease)}
+  .btn:hover{text-decoration:none;border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+  .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)} .btn.primary:hover{color:#fff;box-shadow:var(--e1)}
+  /* sections */
+  section{padding:2.3rem 0;border-top:.5px solid var(--line)}
+  .sk{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--hint);margin:0 0 .5rem}
+  .sh{font-size:1.7rem;margin:0 0 .7rem;max-width:40rem}
+  .sd{color:var(--muted);max-width:44rem;margin:0 0 1.3rem}
+  .sd b{color:var(--ink)}
+  /* stat tiles */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:.7rem;margin:1.1rem 0 .4rem}
+  .stat{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:1rem 1.05rem}
+  .stat .n{font-family:var(--font-display);font-size:2.3rem;line-height:1;color:var(--accent);display:block;margin-bottom:.34rem;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+  .stat .l{font-size:.85rem;color:var(--ink);font-weight:600;line-height:1.3}
+  .stat .c{display:block;font-size:.72rem;color:var(--hint);font-weight:400;margin-top:.3rem}
+  .stats.proof .stat .n{font-size:2rem}
+  /* principle cards */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:.8rem;margin-top:.4rem}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.15rem}
+  .card h3{font-size:1.08rem;margin:0 0 .3rem;color:var(--ink)}
+  .card p{font-size:.9rem;color:var(--muted);margin:0}
+  .card .phase{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:.12rem .5rem;margin:0 0 .55rem}
+  /* the running updates log, dated entries, newest first */
+  .updates{display:flex;flex-direction:column;gap:.7rem;margin-top:.7rem}
+  .update{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:.75rem .95rem}
+  .update time{display:block;font-size:.72rem;font-weight:700;letter-spacing:.06em;color:var(--accent);margin-bottom:.2rem}
+  .update p{margin:0;font-size:.92rem;color:var(--muted)}
+  .update b{color:var(--ink)}
+  .hero-foot{margin:.9rem 0 0;font-size:.86rem}
+  .hero-foot a{color:var(--accent);text-decoration:none}
+  .hero-foot a:hover{text-decoration:underline}
+  /* the ask block */
+  .askbox{background:var(--surface);border:1px solid var(--accent);border-radius:16px;padding:1.5rem 1.5rem;box-shadow:var(--e1);margin:.3rem 0 1.3rem}
+  .askbox .big{font-family:var(--font-display);font-size:2.2rem;color:var(--accent);line-height:1;margin:0 0 .25rem}
+  .askbox .sub{color:var(--muted);margin:0 0 1rem;font-size:.98rem}
+  .askbox .sub b{color:var(--ink)}
+  ol.plan{margin:.2rem 0 0;padding-left:0;list-style:none;counter-reset:p}
+  ol.plan li{position:relative;padding:.5rem 0 .5rem 2.1rem;border-top:.5px solid var(--line);font-size:.96rem;counter-increment:p}
+  ol.plan li:first-child{border-top:none}
+  ol.plan li::before{content:counter(p);position:absolute;left:0;top:.5rem;width:1.45rem;height:1.45rem;display:grid;place-items:center;
+    background:var(--accent-soft);color:var(--accent);border-radius:50%;font-size:.8rem;font-weight:700;font-family:var(--font-sans)}
+  ol.plan li b{color:var(--ink)}
+  ul.report{margin:.3rem 0 0;padding-left:1.1rem} ul.report li{font-size:.96rem;margin:.3rem 0;color:var(--muted)} ul.report li b{color:var(--ink)}
+  .pull{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;padding:.85rem 1.05rem;margin:1.1rem 0;color:var(--ink);font-family:var(--font-display);font-size:1.15rem;line-height:1.5;max-width:44rem}
+  .who{display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-start}
+  .sources{font-size:.78rem;color:var(--hint);margin:1rem 0 0;line-height:1.5}
+  .sources a{color:var(--hint);text-decoration:underline}
+  footer{border-top:.5px solid var(--line);padding:2rem 0 3rem;color:var(--hint);font-size:.85rem}
+  .flinks{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;margin:.6rem 0 1rem}
+  .status{font-family:var(--font-mono);font-size:.8rem;color:var(--hint)}
+  /* calm reveal-on-scroll (animation, not transition, so it never fights hover) */
+  .reveal-on .reveal,.reveal-on .card{opacity:0}
+  .reveal-on .reveal.in,.reveal-on .card.in{animation:revealin .6s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes revealin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  /* Field-guide register, shared with the landing: serif argues, mono measures */
+  :root{--ochre:#8a5514;--line-strong:#cfd8d3}
+  @media(prefers-color-scheme:dark){:root{--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17)}}
+  body{font-family:var(--font-display);line-height:1.6}
+  .nav{border-bottom-color:var(--line-strong)}
+  .wordmark{font-weight:700;font-size:1.18rem;letter-spacing:-.015em}
+  .wordmark::after{content:"Open field guide";font-family:var(--font-mono);font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ochre);margin-left:.6rem;padding-left:.6rem;border-left:1px solid var(--line-strong)}
+  .navlinks{font-family:var(--font-mono);font-size:.75rem}
+  .navcta{border-radius:3px}
+  .eyebrow,.sk{font-family:var(--font-mono);letter-spacing:.16em}
+  .btn{font-family:var(--font-mono);font-size:.8rem;letter-spacing:.02em;border-radius:3px}
+  .btn:hover{transform:none}
+  .ask-chip{border-radius:4px}
+  .stat{border-radius:4px}
+  .stat .n{font-family:var(--font-mono);font-size:1.9rem;font-weight:700}
+  .stats.proof .stat .n{font-size:1.7rem}
+  .stat .c{font-family:var(--font-mono);font-size:.66rem;color:var(--ochre)}
+  .card{border-radius:4px}
+  .card .phase{font-family:var(--font-mono);border-radius:3px}
+  .update{border-radius:0 4px 4px 0}
+  /* Professional futurism: light spent on the living and the chosen */
+  :root{--glow:0 0 14px rgba(29,122,90,.2)}
+  @media(prefers-color-scheme:dark){:root{--glow:0 0 16px rgba(93,202,165,.28)}}
+  ::selection{background:color-mix(in srgb,var(--accent) 24%,transparent)}
+  .hero{background:radial-gradient(44rem 24rem at 6% -10%,color-mix(in srgb,var(--accent) 7%,transparent),transparent 62%),radial-gradient(36rem 20rem at 96% -8%,color-mix(in srgb,var(--ochre) 4%,transparent),transparent 64%)}
+  .btn.primary:hover,.navcta:hover{box-shadow:var(--glow)}
+  html{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--accent) 45%,var(--track)) transparent}
+  a:focus-visible,button:focus-visible{box-shadow:var(--glow)}
+  :root[data-theme="dark"]{--bg:#0f1512;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.10);--accent:#5dcaa5;--accent-soft:#16241d;--track:#1b241f;--clay:#e3a594;--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17);--glow:0 0 16px rgba(93,202,165,.28);color-scheme:dark}
+  :root[data-theme="light"]{--bg:#f6f8f7;--surface:#ffffff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--accent-soft:#e9f3ee;--track:#eef1ef;--clay:#a8432f;--ochre:#8a5514;--line-strong:#cfd8d3;--glow:0 0 14px rgba(29,122,90,.2);color-scheme:light}
+</style>
+</head>
+<body>
+<a class="skip" href="#brief">Skip to the brief</a>
+<div class="wrap">
+
+  <nav class="nav">
+    <div class="wordmark">◇ Values Commons</div>
+    <div class="navlinks">
+      <span style="color:var(--hint)">Grant brief · July 2026</span>
+      <a href="../tour/index.html">2-min tour</a>
+      <a href="../instances/index.html">Apps</a>
+      <a class="navcta" href="../index.html">Values Commons →</a>
+    </div>
+  </nav>
+
+  <main id="brief">
+  <header class="hero">
+    <p class="eyebrow">For funders · first real use</p>
+    <h1>Vote with your money, and organize with others, on a tool no one can buy or shut down.</h1>
+    <p class="lede"><b>Values Commons is live.</b> Conscious Consuming already compares everyday choices on sourced facts; the same open standard also carries personal rules, correctable evidence, and group decisions between compatible tools. What remains unproven is human use. Funding would pay for the first users and groups, careful observation, and improvements drawn from what they actually need.</p>
+    <div class="cta">
+      <a class="btn primary" href="../tour/index.html">Take the 2-minute tour</a>
+      <a class="btn" href="../instances/index.html">Explore apps</a>
+      <a class="btn" href="../docs/GRANT-ONE-PAGER.html">Read the full written brief</a>
+    </div>
+    <p class="hero-foot"><a href="#ask">What a grant would fund, and what we would report back →</a></p>
+  </header>
+
+    <section class="reveal" id="standard">
+    <p class="sk">What sits underneath</p>
+    <h2 class="sh">The app is one use of an open standard.</h2>
+    <p class="sd">Conscious Consuming is the first working app. The Open Values Standard underneath it keeps three things in files people can hold and inspect:</p>
+    <div class="grid">
+      <div class="card"><h3>A values file people keep</h3><p>Rules and close-call priorities can move between compatible apps without an account or identity profile.</p></div>
+      <div class="card"><h3>Evidence anyone can correct</h3><p>Facts and ratings keep their citations. A community can review, correct, copy, and combine them without a central platform's permission.</p></div>
+      <div class="card"><h3>Group decisions without an account</h3><p>People can find common ground, inspect disagreement, and make a shared plan while the files stay in their hands.</p></div>
+    </div>
+    <p class="sd" style="margin-top:1.1rem">The core runs in the browser and travels as files. Optional discussion can be hosted separately, but choosing, checking facts, and making group plans do not depend on a central service. <a href="../docs/FEDERATION.html">See how file-sharing works →</a></p>
+  </section>
+
+    <section class="reveal" id="problem">
+    <p class="sk">The problem</p>
+    <h2 class="sh">A trillion-dollar industry reaches us before our own values do.</h2>
+    <p class="sd">Many tools that promise to help people choose are paid through advertising, affiliate commissions, brand relationships, or user data. Those incentives can work against the person making the choice. Groups face a second problem: acting together usually requires someone else's accounts, database, and off-switch.</p>
+    <div class="stats proof">
+      <div class="stat"><span class="n">$1.1&nbsp;trillion+</span><span class="l">Global ad spending in 2025, about three-quarters of it digital.<span class="c">WARC / WPP Media, 2025</span></span></div>
+      <div class="stat"><span class="n">~9.7%</span><span class="l">The average premium shoppers say they would pay for sustainably made goods.<span class="c">PwC Voice of the Consumer, 2024 (20,000+ shoppers, 31 countries)</span></span></div>
+      <div class="stat"><span class="n">53%</span><span class="l">Of environmental claims examined were vague, misleading or unfounded; 40% unsubstantiated.<span class="c">European Commission, 2020</span></span></div>
+    </div>
+    <p class="pull">People already want to choose by their values. What's missing isn't willingness, it's <b>trustworthy, unsponsored information</b>, and rankings that aren't for sale.</p>
+  </section>
+
+    <section class="reveal" id="built">
+    <p class="sk">What exists now</p>
+    <h2 class="sh">The reference app is live.</h2>
+    <p class="sd">Conscious Consuming lets a person set durable rules, make a practical trade-off, and compare real products, services, media, organisations, and causes. The facts keep their sources. The app is static, installable, and works offline.</p>
+    <div class="stats">
+      <div class="stat"><span class="n">88</span><span class="l">decision categories across everyday life</span></div>
+      <div class="stat"><span class="n">23,689</span><span class="l">entries with visible source summaries</span></div>
+      <div class="stat"><span class="n">100</span><span class="l">published guides</span></div>
+      <div class="stat"><span class="n">2,900+</span><span class="l">shareable, sourced comparison pages</span></div>
+      <div class="stat"><span class="n">99%+</span><span class="l">of facts measured, certified, cited, or marked low-stakes</span></div>
+      <div class="stat"><span class="n">220</span><span class="l">measures we refuse to award, published as withheld until the evidence is there</span></div>
+      <div class="stat"><span class="n">$0</span><span class="l">taken from any brand we rate · no ads · no pay-to-rank</span></div>
+    </div>
+    <p class="sd" style="margin-top:1.1rem">Where the evidence is strong we say so precisely, and where it is thin we say that too: the <a href="../awards/index.html">awards ledger</a> gives a top mark on 329 well-evidenced measures and openly lists the 220 it will not award yet. Your values and saved choices live on your own device. There is no server holding them. The same unedited engine also runs <a href="../kosplora/index.html">a learning atlas</a> and <a href="../instances/messages/index.html">a messaging-choice guide</a>, showing that another subject does not require another platform.</p>
+  </section>
+
+    <section class="reveal" id="updates">
+    <p class="sk">Latest updates</p>
+    <h2 class="sh">What's new, most recent first.</h2>
+    <p class="sd">A running log of shipped progress and findings, updated as they land. Every entry is dated, so reviewers can see the pace.</p>
+    <!-- TO UPDATE: copy one .update block to the TOP of .updates, set the date (YYYY-MM-DD) and text. Newest always first. -->
+    <div class="updates">
+      <div class="update"><time>2026-07-08</time><p><b>Ownership graph, live.</b> On any product you can now boycott its parent company and every brand it owns in one tap; those brands then vanish from every ranking, on your device, with a receipt for why.</p></div>
+      <div class="update"><time>2026-07-07</time><p><b>Navigation rebuilt.</b> The flat category wall became a real branching tree, from area of life down to kind, and region became a single global control that applies across the whole app.</p></div>
+      <div class="update"><time>2026-07-06</time><p><b>The lines model shipped.</b> Plain rules you set once, diet, allergies, boycotts, now filter across every category at once, and only where the data supports them.</p></div>
+    </div>
+  </section>
+
+    <section class="reveal" id="why">
+    <p class="sk">Why grant funding fits</p>
+    <h2 class="sh">It won't sell ads, data, or rankings, so it needs funding instead.</h2>
+    <div class="grid">
+      <div class="card"><h3>Private by construction</h3><p>The core needs no accounts and no central store of anyone's values. Nothing is uploaded.</p></div>
+      <div class="card"><h3>Open to inspection and reuse</h3><p>Others can check the engine, copy the file formats, and build a guide for another subject without asking permission.</p></div>
+      <div class="card"><h3>Rankings are not for sale</h3><p>No ads, affiliate ranking, brand payments, dark patterns, streaks, or engagement farming.</p></div>
+      <div class="card"><h3>Useful alone or together</h3><p>One person can make a choice; a group can reach a decision without handing control to a platform.</p></div>
+    </div>
+    <p class="pull">It won't sell attention, data, rankings, or brand access, the usual ways recommendation software pays for itself. A grant funds that <b>independence</b> directly.</p>
+  </section>
+
+    <section class="reveal" id="equalizer">
+    <p class="sk">The equalizer case</p>
+    <h2 class="sh">The tools that shape choice are concentrating. This one is built not to.</h2>
+    <p class="sd">Search, recommendations, and generative AI are concentrated in a small number of companies and countries. These figures show why a decision tool should be able to run almost anywhere.</p>
+    <div class="stats proof">
+      <div class="stat"><span class="n">77%</span><span class="l">Of the world's data-centre capacity sits in high-income countries; low-income countries hold less than 0.1%.<span class="c">UNCTAD Technology and Innovation Report, 2025</span></span></div>
+      <div class="stat"><span class="n">97%</span><span class="l">Of top-500 supercomputing capacity is held by high-income countries.<span class="c">UNCTAD, 2025</span></span></div>
+      <div class="stat"><span class="n">50&times;</span><span class="l">More generative-AI visits per internet user in high-income countries than in low-income ones, which see under 1% of traffic.<span class="c">World Bank, 2025</span></span></div>
+      <div class="stat"><span class="n">945&nbsp;TWh</span><span class="l">Projected data-centre electricity use by 2030, more than Japan's total consumption today.<span class="c">IEA, Energy and AI, 2025</span></span></div>
+      <div class="stat"><span class="n">2.6&nbsp;billion</span><span class="l">People remain offline entirely, outside every recommendation engine and every AI assistant.<span class="c">ITU Facts and Figures, 2024</span></span></div>
+    </div>
+    <p class="pull">Values Commons is deliberately the opposite shape: <b>static files that work offline, need no account, run from a flash drive, and can be forked by anyone</b>. It costs almost nothing to serve, nothing to join, and no data centre to own. Choice infrastructure that the excluded can hold in their own hands.</p>
+  </section>
+
+    <section class="reveal" id="ecosystem">
+    <p class="sk">What support strengthens</p>
+    <h2 class="sh">More people can use it, check it, and adapt it.</h2>
+    <p class="sd">The reference app proves the engine on real choices. Support would help people use it in earnest and help another community apply the same rules to a subject it understands.</p>
+    <div class="grid">
+      <div class="card"><h3>Values remain portable</h3><p>Rules and priorities travel between compatible apps without an account or central profile.</p></div>
+      <div class="card"><h3>Evidence remains correctable</h3><p>Sourced facts can be inspected, corrected, copied, and combined with a visible trail.</p></div>
+      <div class="card"><h3>Groups keep disagreement visible</h3><p>Shared decisions preserve dissent instead of manufacturing unanimity.</p></div>
+      <div class="card"><h3>Another community can build</h3><p>A new subject can use the same standard instead of starting from scratch. The in-browser <a href="../instances/new/index.html">instance press</a> makes it a ten-minute start: name a decision, add options with sources required before scores, then download a working guide.</p></div>
+    </div>
+  </section>
+
+    <section class="reveal" id="adoption">
+    <p class="sk">What we would test</p>
+    <h2 class="sh">Three questions for six months.</h2>
+    <p class="sd">Can one person use it for a real choice? Can one group use it without losing dissent? Can another community plan a useful app for a subject it knows?</p>
+    <div class="grid">
+      <div class="card"><h3>Individual use</h3><p>Invite 20-50 people to use a live app for real decisions and report what helped, confused them, or remained missing.</p></div>
+      <div class="card"><h3>One shared decision</h3><p>Take one group from personal rules to a shared plan, recording dissent and any blockers plainly.</p></div>
+      <div class="card"><h3>One new subject</h3><p>Help an outside community name the decision, audience, starter facts, correction route, and values that truly belong.</p></div>
+    </div>
+  </section>
+
+    <section class="reveal" id="proof-plan">
+    <p class="sk">Six months of work</p>
+    <h2 class="sh">Use it, learn, and fix what matters.</h2>
+    <p class="sd">The grant would not fund speculative features. It would fund real use, careful notes, and improvements tied to what people actually encounter.</p>
+    <div class="grid">
+      <div class="card"><span class="phase">Month 1</span><h3>Invite the first users</h3><p>Name the decisions, invite 20-50 people, and ask for feedback without accounts or tracking.</p></div>
+      <div class="card"><span class="phase">Months 2-3</span><h3>Observe real choices</h3><p>Document where the live instances help, where people get stuck, and which sourced lenses need the most careful improvement.</p></div>
+      <div class="card"><span class="phase">Months 3-4</span><h3>Try one group decision</h3><p>Work with a real group, then publish the blockers, disagreement, and reasons behind the decision.</p></div>
+      <div class="card"><span class="phase">Months 4-5</span><h3>Plan one new app</h3><p>Help an outside community describe its subject, starter facts, privacy limits, and correction path before code begins.</p></div>
+      <div class="card"><span class="phase">Month 6</span><h3>Improve the adoption guide</h3><p>Revise the public guide using what the first users and outside community needed. <a href="../docs/ADOPTION-KIT.md">Read the current guide</a>.</p></div>
+      <div class="card"><span class="phase">Closeout</span><h3>Publish what happened</h3><p>Share the findings, group result, new-subject brief, and open questions without inflating the outcome.</p></div>
+    </div>
+  </section>
+
+    <section class="reveal" id="ask">
+    <p class="sk">What a grant would fund</p>
+    <h2 class="sh">Six months to reach first real use.</h2>
+    <div class="askbox">
+      <p class="big">$35,000</p>
+      <p class="sub">Over <b>6 months</b>. Running costs are near zero by design, the grant funds <b>time, outreach, validation, and documentation</b>, not servers.</p>
+      <ol class="plan">
+        <li><b>Reach the first users.</b> Invite 20–50 people to make real decisions with the reference app and learn whether it helps.</li>
+        <li><b>Test one shared decision.</b> Work with one or two real groups and keep disagreement visible.</li>
+        <li><b>Make adoption clearer.</b> Improve the standard, values-file, and new-app guidance using what an outside community actually needs.</li>
+        <li><b>Improve what real users touch.</b> Deepen evidence and usability only where the first users and groups actually need it.</li>
+        <li><b>Stay independent.</b> Fund focused maker time so the project never needs ads, affiliates, sponsorship, or surveillance.</li>
+      </ol>
+    </div>
+    <p class="sk" style="margin-top:.4rem">What we will report back</p>
+    <ul class="report">
+      <li>A live, free tool used by a first cohort, with <b>honest evidence</b> of whether it helped them choose more by their own values.</li>
+      <li>At least one real group using the tools for a shared decision, <b>or a clear account of what blocked them</b>.</li>
+      <li>Improvements contributed back to open-data sources where possible.</li>
+      <li>A clearer public path for others to use Values Commons, fork the standard, or build a fourth instance.</li>
+    </ul>
+  </section>
+
+  <section class="reveal" id="who">
+    <p class="sk">Who is behind it · why now</p>
+    <h2 class="sh">Built independently; ready to be tested in public.</h2>
+    <p class="sd"><b>Bentley Moon-Perkins</b> is a solo maker building public-interest software. He designed and built the flagship app, two illustrative apps, the shared engine, the guides, and the group-decision tools independently.</p>
+    <p class="sd">The same maker runs the other half of this work in the open: an AI-evaluation lab at <a href="https://bentleymoon.com" rel="noopener">bentleymoon.com</a>, where the standard of evidence is the same one applied here. Four of its own headline results have been refuted by its own harness and the retractions are published beside the survivors. That is the practice behind the withheld column above.</p>
+    <p class="pull">The app works and the evidence behind it is strong enough to show. What's still untested isn't the technology, it's whether real people and real groups will actually use it. A modest grant moves the project from a finished build to <b>infrastructure people have used in earnest</b>, without giving up the independence that makes it worth trusting.</p>
+    <p class="sd"><b>To continue the conversation:</b> reply to the email that shared this preview. We're glad to give a live walkthrough, answer diligence questions, or hand over the full written brief and the deployable preview to host yourself.</p>
+  </section>
+  </main>
+
+  <footer>
+    <p style="margin:0 0 .3rem;color:var(--muted)"><b style="color:var(--ink);font-family:var(--font-display)">Values Commons</b>, independent public-interest technology for everyday and shared decisions.</p>
+    <div class="flinks">
+      <a href="../app/index.html">Reference app</a>
+      <a href="../tour/index.html">2-minute tour</a>
+      <a href="../index.html">Values Commons</a>
+      <a href="../instances/index.html">Apps</a>
+      <a href="../docs/GRANT-ONE-PAGER.html">Full written brief</a>
+      <a href="../docs/FEDERATION.html">Federation</a>
+    </div>
+    <p class="sources"><b>Sources.</b> Global ad spending: WARC / WPP Media, reported 2025. Sustainability premium: PwC <i>Voice of the Consumer Survey</i>, 2024 (20,000+ consumers across 31 countries). Green-claims findings: European Commission, 2020 study of environmental claims. Project figures are live counts from the current build.</p>
+    <p class="status" id="status">Static &amp; local · works offline · no tracking · this page sets no cookies</p>
+  </footer>
+
+</div>
+<script src="../app/engine.js"></script>
+<script src="../app/reveal.js"></script>
+<script>
+  // Honest "this is live" touch, show the real engine version if it loaded; degrade silently otherwise.
+  (function(){ try{ if(window.CC&&CC.engine){ var s=document.getElementById('status');
+    if(s)s.textContent='Running the Open Values Engine v'+CC.engine.VERSION+' · static & local · no tracking · sets no cookies'; } }catch(e){} })();
+</script>
+<script src="../app/theme.js"></script>
+</body>
+</html>

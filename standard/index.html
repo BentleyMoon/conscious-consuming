@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>try{var t=localStorage.getItem('cc.theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open Values Standard - Values Commons</title>
+<meta name="description" content="The builder-facing file format underneath Values Commons: values files, sourced facts, reproducible rankings, group agreement, shared plans, and compatible apps.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#1d7a5a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d7a5a'/%3E%3Cpath d='M18 36c0-13 13-20 28-20-2 16-14 23-28 20z' fill='%23fff'/%3E%3Cpath d='M20 46c6-12 14-18 22-21' stroke='%231d7a5a' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="canonical" href="https://valuescommons.org/standard/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://valuescommons.org/standard/">
+<meta property="og:site_name" content="Values Commons">
+<meta property="og:title" content="Open Values Standard">
+<meta property="og:description" content="The builder-facing file format underneath Values Commons: values files, sourced facts, reproducible rankings, and compatible apps.">
+<meta property="og:image" content="https://valuescommons.org/og-standard.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Open Values Standard">
+<meta name="twitter:description" content="The builder-facing file format underneath Values Commons: values files, sourced facts, reproducible rankings, and compatible apps.">
+<meta name="twitter:image" content="https://valuescommons.org/og-standard.png">
+<style>
+  :root{--bg:#f6f8f7;--surface:#fff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--soft:#e9f3ee;--track:#eef1ef;--max:1040px;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,system-ui,sans-serif;--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,ui-serif,serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  @media(prefers-color-scheme:dark){:root{--bg:#0f1512;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.1);--accent:#5dcaa5;--soft:#16241d;--track:#1b241f}}
+  *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}.wrap{max-width:var(--max);margin:0 auto;padding:0 1.25rem}.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:1.05rem 0;border-bottom:1px solid var(--line)}.brand{font-family:var(--serif);font-weight:600;color:var(--ink);font-size:1.12rem}.links{display:flex;gap:.45rem 1rem;flex-wrap:wrap;font-size:.92rem}.links a{color:var(--muted)}.links a:hover{color:var(--accent);text-decoration:none}.cta{border:1px solid var(--accent);border-radius:999px;padding:.28rem .68rem;color:var(--accent)!important}.hero{padding:4.2rem 0 3rem}.kicker{font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 .9rem}h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.12;text-wrap:balance}h1{font-size:clamp(2.3rem,6vw,4.4rem);margin:0 0 1rem}h2{font-size:1.75rem;margin:0 0 .6rem}h3{font-size:1.15rem;margin:0 0 .35rem}.lede{max-width:45rem;color:var(--muted);font-size:1.16rem;margin:0}.actions{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1.45rem}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:2.65rem;padding:.58rem 1rem;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:650}.btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn.primary:hover{color:#fff}.band{border-top:1px solid var(--line);padding:2.5rem 0}.intro{color:var(--muted);max-width:44rem;margin:0 0 1.2rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:.85rem}.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1rem}.card p{margin:.35rem 0 0;color:var(--muted);font-size:.93rem}.tag{display:inline-block;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--accent);background:var(--soft);border-radius:999px;padding:.12rem .5rem;margin-bottom:.55rem}.check{display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:.55rem}.check div{border-top:1px solid var(--line);padding:.72rem 0;color:var(--muted)}.check b{color:var(--ink)}code{font-family:var(--mono);font-size:.88em;background:var(--track);border-radius:5px;padding:.08rem .32rem}.spec{display:grid;grid-template-columns:minmax(0,1fr) minmax(17rem,.6fr);gap:1rem;align-items:start}.note{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1rem;color:var(--muted)}footer{border-top:1px solid var(--line);padding:1.7rem 0 2.7rem;color:var(--hint);font-size:.88rem}.footlinks{display:flex;gap:.4rem 1rem;flex-wrap:wrap;margin-top:.45rem}@media(max-width:760px){.spec{grid-template-columns:1fr}.hero{padding:3.2rem 0 2.4rem}}
+  /* Field-guide register, shared with the landing: serif argues, mono measures */
+  :root{--ochre:#8a5514;--line-strong:#cfd8d3}
+  @media(prefers-color-scheme:dark){:root{--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17)}}
+  body{font-family:var(--serif);line-height:1.58}
+  .nav{border-bottom-color:var(--line-strong)}
+  .brand{font-weight:700;font-size:1.18rem;letter-spacing:-.015em}
+  .brand::after{content:"Open field guide";font-family:var(--mono);font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ochre);margin-left:.6rem;padding-left:.6rem;border-left:1px solid var(--line-strong)}
+  .links{font-family:var(--mono);font-size:.75rem}
+  .cta{border-radius:3px}
+  .primitivebar{font-family:var(--mono);font-size:.68rem;letter-spacing:.03em}
+  .primitivebar a{border-radius:3px}
+  .kicker{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;color:var(--muted)}
+  h1{font-size:clamp(2.2rem,5vw,3.2rem);letter-spacing:-.015em}
+  .btn{font-family:var(--mono);font-size:.8rem;letter-spacing:.02em;font-weight:600;border-radius:3px}
+  .tag{font-family:var(--mono);border-radius:3px}
+  .card,.route,.note,.build,.edgemap,.specimen{border-radius:4px}
+  pre,table{border-radius:4px}
+  footer{font-size:.85rem}
+  /* Professional futurism: light spent on the living and the chosen */
+  :root{--glow:0 0 14px rgba(29,122,90,.2)}
+  @media(prefers-color-scheme:dark){:root{--glow:0 0 16px rgba(93,202,165,.28)}}
+  ::selection{background:color-mix(in srgb,var(--accent) 24%,transparent)}
+  .hero{background:radial-gradient(44rem 24rem at 6% -10%,color-mix(in srgb,var(--accent) 7%,transparent),transparent 62%),radial-gradient(36rem 20rem at 96% -8%,color-mix(in srgb,var(--ochre) 4%,transparent),transparent 64%)}
+  .btn.primary:hover,.cta:hover{box-shadow:var(--glow)}
+  html{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--accent) 45%,var(--track)) transparent}
+  a:focus-visible,button:focus-visible{box-shadow:var(--glow)}
+  :root[data-theme="dark"]{--bg:#0f1512;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.1);--accent:#5dcaa5;--soft:#16241d;--track:#1b241f;--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17);--glow:0 0 16px rgba(93,202,165,.28);color-scheme:dark}
+  :root[data-theme="light"]{--bg:#f6f8f7;--surface:#fff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--soft:#e9f3ee;--track:#eef1ef;--ochre:#8a5514;--line-strong:#cfd8d3;--glow:0 0 14px rgba(29,122,90,.2);color-scheme:light}
+  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.55rem .9rem;border-radius:0 0 8px 0;z-index:20}
+  .skip:focus{left:0}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <nav class="nav" aria-label="Values Commons">
+    <a class="brand" href="../index.html">&#9671; Values Commons</a>
+    <div class="links">
+      <a href="../passport/index.html">Your values</a>
+      <a href="../instances/index.html">Apps</a>
+      <a href="../weave/index.html">Ownership map</a>
+      <a href="../contribute/index.html">Help out</a>
+      <a class="cta" href="../app/index.html">Open the app</a>
+    </div>
+  </nav>
+
+  <main id="main" tabindex="-1">
+    <header class="hero">
+      <p class="kicker">For builders</p>
+      <h1>Open Values Standard</h1>
+      <p class="lede">This is the builder-facing specification for the files Values Commons passes around: what someone values, what the sourced facts say, how rankings are re-run, how a group finds agreement, and how a plan stays accountable. The point is permissionless compatibility, not a central platform.</p>
+      <div class="actions">
+        <a class="btn primary" href="../docs/STANDARD-v0.md">Read the current spec</a>
+        <a class="btn" href="../passport/index.html">See the values file</a>
+        <a class="btn" href="../instances/index.html#create">Build a compatible app</a>
+      </div>
+    </header>
+
+    <section class="band">
+      <p class="kicker">The shape</p>
+      <h2>Small files, reproducible decisions</h2>
+      <p class="intro">The standard is not a social network or a ranking authority. It is a grammar for decisions that can be inspected, repaired, combined, and re-run from files.</p>
+      <div class="grid">
+        <div class="card"><span class="tag">Values</span><h3>Values file</h3><p>A local, nameless file of weights and deal-breakers that says what matters to a person or group.</p></div>
+        <div class="card"><span class="tag">Facts</span><h3>Sourced facts</h3><p>A roster of options, criteria, scores, notes, links, and dates. It can be corrected or kept as a separate version.</p></div>
+        <div class="card"><span class="tag">Decision</span><h3>Ranking</h3><p>A deterministic result from values plus facts. Same inputs, same order, with withheld confidence when facts are thin.</p></div>
+        <div class="card"><span class="tag">Together</span><h3>Group agreement</h3><p>Many values files combined into a shared stance that preserves disagreement instead of smoothing it away.</p></div>
+        <div class="card"><span class="tag">Action</span><h3>Shared plan</h3><p>A derived list of buys, avoids, switches, or priorities with the reason and evidence attached.</p></div>
+        <div class="card"><span class="tag">Apps</span><h3>Compatible app</h3><p>A subject-specific front end running the shared shell and engine with its own facts, look, and language.</p></div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="spec">
+        <div>
+          <p class="kicker">Conformance v0.1</p>
+          <h2>What counts as standard-aligned</h2>
+          <p class="intro">A project can be creative in its domain and design, but the core promise should stay recognizable.</p>
+          <div class="check">
+            <div><b>Local-first core.</b> Values and rankings work without an account or server dependency.</div>
+            <div><b>No pay-to-rank.</b> Money cannot buy placement inside a values-relative ranking.</div>
+            <div><b>Portable values.</b> A user can export and import values without identity baggage.</div>
+            <div><b>Sourced claims.</b> Assessed facts carry sources, dates, and a human-readable basis.</div>
+            <div><b>Repairable facts.</b> Disagreement creates a visible patch or alternate file, not an opaque moderation fight.</div>
+            <div><b>Reproducible results.</b> Rankings can be re-derived from the same public inputs.</div>
+          </div>
+        </div>
+        <aside class="note">
+          <h3>The spec versus the public site</h3>
+          <p><b>Open Values Standard</b> is the protocol. <b>Values Commons</b> is the public site built on it. Conscious Consuming is the first flagship app proving that the protocol can carry real, sourced decisions.</p>
+          <p>That is why <code>openvaluesstandard.org</code> is best used as the spec home or redirect to this page, while <code>valuescommons.org</code> carries the public story.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>Values Commons - powered by the Open Values Standard.</div>
+    <div class="footlinks">
+      <a href="../index.html">Home</a>
+      <a href="../docs/FEDERATION.md">File-sharing model</a>
+      <a href="../docs/CREATE-AN-INSTANCE.md">Implementation guide</a>
+      <a href="../workshop/index.html">Workshop</a>
+      <a href="../funders/index.html">Funders</a>
+    </div>
+  </footer>
+</div>
+<script src="../app/theme.js"></script>
+</body>
+</html>

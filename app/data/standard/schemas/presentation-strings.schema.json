@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/presentation-strings-v1.0.schema.json",
+  "title": "Open Values Presentation Strings v1.0",
+  "description": "Signed public vocabulary and reusable presentation-layer copy.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "version", "updated", "locale", "signedVocabulary", "search", "objectTypes", "coverage", "fieldStates", "evidenceKinds", "appliedValues", "actions", "errors"],
+  "properties": {
+    "format": {"const": "open-values-presentation-strings"},
+    "version": {"const": "1.0.0"},
+    "updated": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "locale": {"type": "string", "minLength": 2},
+    "signedVocabulary": {"$ref": "#/$defs/stringMap"},
+    "search": {"$ref": "#/$defs/stringMap"},
+    "objectTypes": {"$ref": "#/$defs/stringMap"},
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rich", "thin", "lowEvidence", "notCovered", "unavailable"],
+      "properties": {
+        "rich": {"$ref": "#/$defs/coverageState"},
+        "thin": {"$ref": "#/$defs/coverageState"},
+        "lowEvidence": {"$ref": "#/$defs/coverageState"},
+        "notCovered": {"$ref": "#/$defs/coverageState"},
+        "unavailable": {"$ref": "#/$defs/coverageState"}
+      }
+    },
+    "fieldStates": {"$ref": "#/$defs/stringMap"},
+    "evidenceKinds": {"$ref": "#/$defs/stringMap"},
+    "appliedValues": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "templates", "actions"],
+      "properties": {
+        "label": {"type": "string", "minLength": 1},
+        "templates": {"$ref": "#/$defs/stringMap"},
+        "actions": {"$ref": "#/$defs/stringMap"}
+      }
+    },
+    "actions": {"$ref": "#/$defs/stringMap"},
+    "errors": {"$ref": "#/$defs/stringMap"}
+  },
+  "$defs": {
+    "stringMap": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": "string", "minLength": 1}
+    },
+    "coverageState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "sentence", "action"],
+      "properties": {
+        "label": {"type": "string", "minLength": 1},
+        "sentence": {"type": "string", "minLength": 1},
+        "action": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

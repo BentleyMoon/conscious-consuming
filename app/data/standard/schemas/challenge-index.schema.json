@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/challenge-index-v0.1.schema.json",
+  "title": "Open Values Challenge Index v0.1",
+  "description": "Generated compact index for challenge surfaces: instance defaults, replayed top picks, and selected sourced contrary facts.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["format", "version", "standard", "built", "purpose", "generatedFrom", "counts", "principles", "algorithms", "instances", "categories", "cases"],
+  "properties": {
+    "format": { "const": "open-values-challenge-index" },
+    "version": { "type": "string", "pattern": "^0\\.1\\.0(?:[-+].*)?$" },
+    "standard": { "const": "open-values-standard" },
+    "built": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "purpose": { "$ref": "#/$defs/nonEmptyString" },
+    "generatedFrom": { "$ref": "#/$defs/generatedFrom" },
+    "counts": { "$ref": "#/$defs/counts" },
+    "principles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "algorithms": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/algorithm" } },
+    "instances": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/instance" } },
+    "categories": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/category" } },
+    "cases": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/case" } }
+  },
+  "$defs": {
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "slug": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "entityCode": { "type": "string", "pattern": "^[A-Za-z0-9._:-]+(?:-[A-Za-z0-9._:-]+)*$" },
+    "score": { "type": "number", "minimum": 0, "maximum": 100 },
+    "generatedFrom": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "updated", "sha256"],
+      "properties": {
+        "path": { "const": "content/challenge/index.json" },
+        "updated": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["instances", "algorithms", "cases", "contraryTags", "categories"],
+      "properties": {
+        "instances": { "type": "integer", "minimum": 1 },
+        "algorithms": { "type": "integer", "minimum": 1 },
+        "cases": { "type": "integer", "minimum": 1 },
+        "contraryTags": { "type": "integer", "minimum": 1 },
+        "categories": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["note", "source", "asof"],
+      "properties": {
+        "note": { "$ref": "#/$defs/nonEmptyString" },
+        "source": { "type": "string", "pattern": "^https?://" },
+        "asof": { "type": "string", "pattern": "^(19|20)\\d{2}$" }
+      }
+    },
+    "selectedTag": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["tag", "axis", "score", "summary", "source"],
+      "properties": {
+        "tag": { "$ref": "#/$defs/nonEmptyString" },
+        "axis": { "$ref": "#/$defs/nonEmptyString" },
+        "score": { "$ref": "#/$defs/score" },
+        "summary": { "$ref": "#/$defs/nonEmptyString" },
+        "source": { "$ref": "#/$defs/source" }
+      }
+    },
+    "weights": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 5
+      }
+    },
+    "top": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["code", "name", "score", "coverage", "why"],
+      "properties": {
+        "code": { "$ref": "#/$defs/entityCode" },
+        "name": { "$ref": "#/$defs/nonEmptyString" },
+        "brand": { "$ref": "#/$defs/nonEmptyString" },
+        "score": { "$ref": "#/$defs/score" },
+        "coverage": { "type": "number", "minimum": 0, "maximum": 1 },
+        "why": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } }
+      }
+    },
+    "algorithm": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "summary"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "label": { "$ref": "#/$defs/nonEmptyString" },
+        "summary": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    },
+    "instance": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "label", "role", "challengeDefault", "surfaces"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "label": { "$ref": "#/$defs/nonEmptyString" },
+        "role": { "$ref": "#/$defs/nonEmptyString" },
+        "status": { "$ref": "#/$defs/nonEmptyString" },
+        "challengeDefault": { "enum": ["available", "prominent", "primary"] },
+        "surfaces": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+      }
+    },
+    "category": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "label", "type", "file", "criteria"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "label": { "$ref": "#/$defs/nonEmptyString" },
+        "type": { "enum": ["Products", "Services", "Media", "Organizations", "Initiatives"] },
+        "file": { "type": "string", "pattern": "^app/data/[a-z0-9-]+\\.json$" },
+        "n": { "type": "integer", "minimum": 0 },
+        "criteria": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["key", "label"],
+            "properties": {
+              "key": { "$ref": "#/$defs/nonEmptyString" },
+              "label": { "$ref": "#/$defs/nonEmptyString" }
+            }
+          }
+        }
+      }
+    },
+    "view": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["label", "weights", "expectedTop", "top"],
+      "properties": {
+        "label": { "$ref": "#/$defs/nonEmptyString" },
+        "weights": { "$ref": "#/$defs/weights" },
+        "expectedTop": { "$ref": "#/$defs/entityCode" },
+        "top": { "$ref": "#/$defs/top" },
+        "sourceTag": { "$ref": "#/$defs/nonEmptyString" },
+        "selectedTag": { "$ref": "#/$defs/selectedTag" },
+        "receipt": { "$ref": "#/$defs/selectedTag" }
+      }
+    },
+    "steelman": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["forEntity", "axis", "sourceTag", "framing", "line", "selectedTag", "receipt"],
+      "properties": {
+        "forEntity": { "$ref": "#/$defs/entityCode" },
+        "axis": { "$ref": "#/$defs/nonEmptyString" },
+        "sourceTag": { "$ref": "#/$defs/nonEmptyString" },
+        "framing": { "$ref": "#/$defs/nonEmptyString" },
+        "line": { "$ref": "#/$defs/nonEmptyString" },
+        "selectedTag": { "$ref": "#/$defs/selectedTag" },
+        "receipt": { "$ref": "#/$defs/selectedTag" }
+      }
+    },
+    "case": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "category", "label", "reads", "userView", "oppositeView", "steelman"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "category": { "$ref": "#/$defs/slug" },
+        "label": { "$ref": "#/$defs/nonEmptyString" },
+        "reads": { "type": "string", "pattern": "^The strongest case the other way: .{1,104}$" },
+        "userView": { "$ref": "#/$defs/view" },
+        "oppositeView": { "$ref": "#/$defs/view" },
+        "steelman": { "$ref": "#/$defs/steelman" }
+      }
+    }
+  }
+}

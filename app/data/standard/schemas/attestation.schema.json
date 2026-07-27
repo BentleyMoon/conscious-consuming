@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/attestation-v0.1.schema.json",
+  "title": "Open Values Attestation v0.1",
+  "description": "A public support, concern, or objection record for a governance proposal.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["format", "version", "id", "status", "proposal", "stance", "attester", "created", "publicComment", "signature", "counted", "privacy"],
+  "properties": {
+    "format": { "const": "open-values-attestation" },
+    "version": { "type": "string", "pattern": "^0\\.1\\.0(?:[-+].*)?$" },
+    "id": { "$ref": "#/$defs/slug" },
+    "status": { "enum": ["template", "submitted", "withdrawn", "archived"] },
+    "proposal": { "$ref": "#/$defs/slug" },
+    "stance": { "enum": ["support", "concern", "needs-work", "oppose", "abstain"] },
+    "attester": { "$ref": "#/$defs/actor" },
+    "created": { "$ref": "#/$defs/date" },
+    "publicComment": { "$ref": "#/$defs/nonEmptyString" },
+    "signature": { "$ref": "#/$defs/signature" },
+    "counted": { "type": "boolean" },
+    "privacy": { "$ref": "#/$defs/nonEmptyString" }
+  },
+  "$defs": {
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "actor": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["type", "id", "display"],
+      "properties": {
+        "type": { "$ref": "#/$defs/nonEmptyString" },
+        "id": { "$ref": "#/$defs/slug" },
+        "display": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["method", "verified"],
+      "properties": {
+        "method": { "$ref": "#/$defs/nonEmptyString" },
+        "verified": { "type": "boolean" }
+      }
+    }
+  }
+}

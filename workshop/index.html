@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>try{var t=localStorage.getItem('cc.theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2f6d8c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d7a5a'/%3E%3Cpath d='M18 36c0-13 13-20 28-20-2 16-14 23-28 20z' fill='%23fff'/%3E%3Cpath d='M20 46c6-12 14-18 22-21' stroke='%231d7a5a' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>Repair sourced facts - Values Commons</title>
+<meta name="description" content="Correct a fact, add an option, preview changes from others, and export improved sourced facts without a server owning the truth.">
+<link rel="canonical" href="https://valuescommons.org/workshop/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://valuescommons.org/workshop/">
+<meta property="og:site_name" content="Values Commons">
+<meta property="og:title" content="Repair sourced facts">
+<meta property="og:description" content="Correct a fact, add an option, preview changes from others, and export improved sourced facts without a server owning the truth.">
+<meta property="og:image" content="https://valuescommons.org/og-standard.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Repair sourced facts">
+<meta name="twitter:description" content="Correct a fact, add an option, preview changes from others, and export improved sourced facts without a server owning the truth.">
+<meta name="twitter:image" content="https://valuescommons.org/og-standard.png">
+<style>
+  /* A FIFTH skin (a drafting table / blueprint): cool light, slate-blue accent, monospace for patches & logs. */
+  :root{ --bg:#e9eef2; --surface:#ffffff; --ink:#16242e; --muted:#52646f; --hint:#8295a0;
+    --line:rgba(20,40,55,.14); --accent:#2f6d8c; --warn:#9a5a23; --track:#dce5eb;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+  @media (prefers-color-scheme:dark){:root{ color-scheme:dark;
+    --bg:#121a1f; --surface:#1a242c; --ink:#e3eaef; --muted:#9fb0ba; --hint:#7e909b;
+    --line:rgba(255,255,255,.13); --accent:#62b3d8; --warn:#d59a5a; --track:#232f38; }}
+  *{box-sizing:border-box}
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;line-height:1.55}
+  .wrap{max-width:820px;margin:0 auto;padding:2rem 1.2rem 4rem}
+  .sitebar{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;margin:0 0 1.6rem;padding:0 0 .9rem;border-bottom:1px solid var(--line)}
+  .sitebar .home{font-weight:800;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+  .sitebar nav{display:flex;gap:.35rem .8rem;flex-wrap:wrap;font-size:.86rem}
+  .sitebar nav a{color:var(--muted);text-decoration:none}
+  .sitebar nav a[aria-current="page"]{color:var(--accent);font-weight:700}
+  .sitebar nav a:hover{color:var(--accent);text-decoration:none}
+  .loopnote{font-size:.78rem;color:var(--hint);margin:-.8rem 0 1.4rem}
+  h1{font-weight:700;font-size:1.95rem;letter-spacing:-.02em;margin:.2rem 0 .3rem}
+  .sub{color:var(--muted);margin:0 0 1.2rem}
+  .banner{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:.8rem 1rem;margin:0 0 1.4rem;font-size:.88rem;color:var(--muted)}
+  .banner b{color:var(--ink)} .banner a{color:var(--accent)}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.2rem;margin-bottom:1.1rem}
+  .card h2{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--hint);margin:0 0 .8rem}
+  .lensttl{font-weight:700;font-size:1.2rem} .lensttl .id{font-family:var(--mono);font-size:.8rem;color:var(--hint);font-weight:400}
+  .meta{color:var(--muted);font-size:.86rem;margin:.3rem 0 .6rem}
+  .chips{display:flex;flex-wrap:wrap;gap:.35rem;margin:.2rem 0 .6rem}
+  .chip{font-size:.72rem;background:var(--track);color:var(--muted);padding:.12rem .5rem;border-radius:999px}
+  .lineage{font-family:var(--mono);font-size:.76rem;color:var(--hint)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:.6rem .8rem}
+  label.fl{display:flex;flex-direction:column;gap:.2rem;font-size:.72rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--hint)}
+  input,select{font:inherit;font-size:.92rem;padding:.4rem .55rem;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink)}
+  input[type=number]{width:100%}
+  .sub2{font-weight:700;font-size:.92rem;margin:1rem 0 .5rem;color:var(--ink)}
+  .row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:end}
+  .btn{font:inherit;font-weight:600;color:#fff;background:var(--accent);border:none;padding:.45rem .8rem;border-radius:7px;cursor:pointer}
+  .btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+  .btn:disabled{opacity:.45;cursor:not-allowed}
+  .hint{font-size:.78rem;color:var(--hint);margin:.3rem 0 0} .warn{color:var(--warn)}
+  .curval{font-family:var(--mono);font-size:.85rem;color:var(--muted)}
+  .gradegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(8.5rem,1fr));gap:.5rem;margin:.4rem 0}
+  .oplist,.loglist{list-style:none;margin:.6rem 0 0;padding:0}
+  .oplist li,.loglist li{font-family:var(--mono);font-size:.82rem;padding:.4rem .55rem;background:var(--bg);border:1px solid var(--line);border-radius:7px;margin-bottom:.35rem;display:flex;justify-content:space-between;gap:.6rem;align-items:flex-start}
+  .oplist .x{cursor:pointer;color:var(--hint);border:none;background:none;font-size:.9rem}
+  .loglist .by{color:var(--accent);font-weight:700} .loglist .st{color:var(--warn)}
+  .actions{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem;align-items:center}
+  .flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.65rem;margin:0 0 1.2rem}
+  .flow div,.flow a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.85rem .95rem;color:var(--muted);font-size:.86rem;text-decoration:none}
+  .flow a:hover{border-color:var(--accent)}
+  .flow b{display:block;color:var(--ink);font-size:.98rem;margin-bottom:.15rem}
+  .flow small{display:block;color:var(--hint);font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.2rem}
+  footer{margin-top:1.6rem;color:var(--hint);font-size:.82rem;border-top:1px solid var(--line);padding-top:1rem}
+  footer a{color:var(--accent)} code{font-family:var(--mono);background:var(--track);padding:.05rem .3rem;border-radius:4px;font-size:.85em}
+  .err{color:#b3402f}
+  :root[data-theme="light"]{--bg:#e9eef2;--surface:#ffffff;--ink:#16242e;--muted:#52646f;--hint:#8295a0;--line:rgba(20,40,55,.14);--accent:#2f6d8c;--warn:#9a5a23;--track:#dce5eb;color-scheme:light}
+  :root[data-theme="dark"]{--bg:#121a1f;--surface:#1a242c;--ink:#e3eaef;--muted:#9fb0ba;--hint:#7e909b;--line:rgba(255,255,255,.13);--accent:#62b3d8;--warn:#d59a5a;--track:#232f38;color-scheme:dark}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="sitebar">
+    <a class="home" href="../index.html">◇ Values Commons</a>
+    <nav aria-label="Group decision tools">
+      <a href="../assembly/index.html">Group agreement</a>
+      <a href="../workshop/index.html" aria-current="page">Fact repair</a>
+      <a href="../slate/index.html">Shared plan</a>
+      <a href="../tour/index.html">Tour</a>
+      <a href="../instances/index.html">Apps</a>
+    </nav>
+  </header>
+  <p class="loopnote">Facts should be correctable without losing their sources. This page lets you make and inspect those changes.</p>
+  <h1>Repair the facts</h1>
+  <p class="sub">Correct a score, add a missing option, or inspect someone else's change. Every edit keeps its source and can be exported as a small file.</p>
+
+  <div class="banner">
+    <b>Change the claim, not the trust rule.</b> Correct a score or add an option, then hand someone the change with its author and source attached. They can inspect it before accepting it. Nothing is uploaded. <a href="../docs/FEDERATION.md">How file-sharing works →</a>
+  </div>
+
+  <section class="flow" aria-label="How the files move">
+    <div><small>Input</small><b>Facts and changes</b>Load a subject file, then add sourced corrections or change files from others.</div>
+    <div><small>This page</small><b>Attributable preview</b>Preview each change, keep the source trail, and export the improved facts or change file.</div>
+    <a href="../slate/index.html"><small>Next</small><b>Act with better facts</b>Use the improved facts in a shared plan, or drop them into a new app folder.</a>
+  </section>
+
+  <section class="flow" aria-label="What a useful correction includes">
+    <div><small>Scope</small><b>Change one thing</b>Name the affected facts file, option, criterion, relationship, or source.</div>
+    <div><small>Evidence</small><b>Source before score</b>Attach a URL, date, dataset, or method note. Mark judgement as judgement.</div>
+    <div><small>Change</small><b>Keep it reversible</b>Prefer a narrow edit someone can inspect, accept, reject, or reverse without mystery.</div>
+    <div><small>Attribution</small><b>A label, not an account</b>Add a human-readable author label and note; identity is optional, rationale is not.</div>
+  </section>
+
+  <div class="card" id="lenscard"></div>
+  <div class="card" id="contribute"></div>
+  <div class="card" id="merge"></div>
+
+  <footer>
+    Part of <a href="../index.html"><b>Values Commons</b></a> - the same <code>engine.js</code> as
+    <a href="../app/index.html">Conscious Consuming</a> and the <a href="../assembly/index.html">group agreement page</a>.
+    Facts stay contestable: a correction without a source is just an opinion.
+  </footer>
+</div>
+
+<script src="../app/engine.js"></script>
+<!-- An example lens to work on (you can load your own with the button). -->
+<script src="../instances/messages/lens.js"></script>
+<script>
+(function(){
+  'use strict';
+  var lc=document.getElementById('lenscard');
+  if(!(window.CC && CC.engine)){ lc.innerHTML='<p class="err">Couldn’t load the engine. Refresh, or open this page from the <a href="../index.html">Values Commons home</a>.</p>'; return; }
+  var E=CC.engine;
+  function clone(o){ return JSON.parse(JSON.stringify(o)); }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function slug(s){ return String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
+
+  var lens=null, ops=[], applied=0, pending=[], pendingLog=null;
+  function ename(code){ var r=lens.resources.find(function(x){return x.code===code;}); return r?r.name:code; }
+  function clabel(key){ var c=lens.criteria.find(function(x){return x.key===key;}); return c?c.label:key; }
+
+  function setLens(L){ lens=clone(L); lens.resources=lens.resources||[]; lens.criteria=lens.criteria||[]; ops=[]; applied=0; pending=[]; pendingLog=null; renderAll(); }
+  function renderAll(){ renderLens(); renderContribute(); renderMerge(); }
+
+  function renderLens(){
+    var m=lens.meta||{}, ff=m.forkedFrom;
+    lc.innerHTML='<h2>Working facts file</h2>'+
+      '<div class="lensttl">'+esc(m.title||'(untitled facts)')+' <span class="id">'+esc(m.id||'?')+'</span></div>'+
+      '<div class="meta">'+lens.resources.length+' options · '+lens.criteria.length+' criteria</div>'+
+      '<div class="chips">'+lens.criteria.map(function(c){return '<span class="chip">'+esc(c.label)+'</span>';}).join('')+'</div>'+
+      '<div class="lineage">#'+E.lensHash(lens)+(applied?(' · '+applied+' change file'+(applied===1?'':'s')+' applied'):'')+(ff?(' · forked from '+esc(ff.id)+' #'+esc(ff.hash)):'')+'</div>'+
+      '<div class="actions"><label class="btn ghost" style="cursor:pointer">Load a facts file<input type="file" id="lensfile" accept=".json,.js,application/json" hidden></label>'+
+        '<label class="btn ghost" style="cursor:pointer" title="Turn a community&apos;s aggregated ratings into editable, sourced facts">Import community ratings &rarr; facts<input type="file" id="ratingsfile" accept=".json,application/json" hidden></label></div>';
+    var lf=document.getElementById('lensfile'); if(lf)lf.onchange=function(e){ var f=e.target.files&&e.target.files[0]; if(f)readLensFile(f); e.target.value=''; };
+    var rf=document.getElementById('ratingsfile'); if(rf)rf.onchange=function(e){ var f=e.target.files&&e.target.files[0]; if(f)readRatings(f); e.target.value=''; };
+  }
+
+  function renderContribute(){
+    var c=document.getElementById('contribute');
+    var entOpts=lens.resources.map(function(r){return '<option value="'+esc(r.code)+'">'+esc(r.name)+'</option>';}).join('');
+    var critOpts=lens.criteria.map(function(cr){return '<option value="'+esc(cr.key)+'">'+esc(cr.label)+'</option>';}).join('');
+    var grid=lens.criteria.map(function(cr){return '<label class="fl">'+esc(cr.label)+'<input type="number" min="0" max="100" id="ne_'+esc(cr.key)+'" placeholder="0–100"></label>';}).join('');
+    c.innerHTML='<h2>Propose changes</h2>'+
+      '<div class="sub2">Correct a fact</div>'+
+      '<div class="grid2">'+
+        '<label class="fl">Option<select id="cs_ent">'+entOpts+'</select></label>'+
+        '<label class="fl">Criterion<select id="cs_crit">'+critOpts+'</select></label>'+
+        '<label class="fl">New value (0–100)<input type="number" min="0" max="100" id="cs_val"></label>'+
+        '<label class="fl">Source<input id="cs_src" placeholder="where this fact comes from"></label>'+
+      '</div>'+
+      '<div class="hint">Currently: <span class="curval" id="cs_cur">–</span></div>'+
+      '<div class="actions"><button class="btn" id="cs_add">+ Add correction</button><span class="hint" id="cs_note"></span></div>'+
+      '<div class="sub2">Add an option</div>'+
+      '<div class="grid2"><label class="fl">Name<input id="ae_name"></label><label class="fl">Brand / kind<input id="ae_brand"></label></div>'+
+      '<div class="gradegrid">'+grid+'</div>'+
+      '<div class="grid2"><label class="fl">Source<input id="ae_src" placeholder="where these facts come from"></label></div>'+
+      '<div class="actions"><button class="btn" id="ae_add">+ Add option</button><span class="hint" id="ae_note"></span></div>'+
+      '<div class="sub2">Your change file <span class="hint" style="font-weight:400">· '+ops.length+' change'+(ops.length===1?'':'s')+'</span></div>'+
+      '<div class="grid2"><label class="fl">Your name (optional)<input id="p_by" placeholder="a label, not an account"></label><label class="fl">Change note<input id="p_note" placeholder="why these changes"></label></div>'+
+      '<ul class="oplist">'+(ops.length?ops.map(function(o,i){return '<li><span>'+esc(opDesc(o))+'</span><button class="x" data-i="'+i+'" aria-label="remove">✕</button></li>';}).join(''):'<li style="justify-content:flex-start;color:var(--hint)">No changes yet.</li>')+'</ul>'+
+      '<div class="actions"><button class="btn" id="p_exp"'+(ops.length?'':' disabled')+'>⤓ Export change file</button></div>';
+
+    var ent=document.getElementById('cs_ent'), crit=document.getElementById('cs_crit'), cur=document.getElementById('cs_cur');
+    function upd(){ var r=lens.resources.find(function(x){return x.code===ent.value;}); var v=r&&r.scores?r.scores[crit.value]:null; cur.textContent=(v==null?'no value yet':v+' / 100')+' · '+clabel(crit.value); }
+    if(ent&&crit){ ent.onchange=upd; crit.onchange=upd; upd(); }
+    document.getElementById('cs_add').onclick=addCorrection;
+    document.getElementById('ae_add').onclick=addOption;
+    document.getElementById('p_exp').onclick=exportPatch;
+    [].forEach.call(c.querySelectorAll('.oplist .x'),function(b){ b.onclick=function(){ ops.splice(+b.dataset.i,1); renderContribute(); }; });
+  }
+
+  function opDesc(o){
+    if(o.op==='set-score') return 'correct '+ename(o.code)+' · '+clabel(o.key)+' → '+o.value+(o.source?(' ['+o.source+']'):' [no source]');
+    if(o.op==='add-entity') return 'add "'+(o.entity.name||o.entity.code)+'"'+(o.entity.brand?(' ('+o.entity.brand+')'):'');
+    return o.op;
+  }
+  function addCorrection(){
+    var code=document.getElementById('cs_ent').value, key=document.getElementById('cs_crit').value;
+    var val=document.getElementById('cs_val').value, src=document.getElementById('cs_src').value.trim();
+    var note=document.getElementById('cs_note');
+    if(val===''){ note.innerHTML='<span class="warn">Enter a value 0–100.</span>'; return; }
+    var v=Math.max(0,Math.min(100,+val));
+    ops.push({op:'set-score',code:code,key:key,value:v,source:src,note:''});
+    renderContribute();
+    if(!src){ document.getElementById('cs_note').innerHTML='<span class="warn">Added. A correction without a source is just an opinion; consider adding one.</span>'; }
+  }
+  function addOption(){
+    var name=document.getElementById('ae_name').value.trim(), brand=document.getElementById('ae_brand').value.trim(), src=document.getElementById('ae_src').value.trim();
+    var note=document.getElementById('ae_note');
+    if(!name){ note.innerHTML='<span class="warn">A name is required.</span>'; return; }
+    var code=slug(name); if(lens.resources.some(function(r){return r.code===code;})||ops.some(function(o){return o.op==='add-entity'&&o.entity.code===code;})){ note.innerHTML='<span class="warn">An option with that name already exists.</span>'; return; }
+    var scores={}, prov={};
+    lens.criteria.forEach(function(cr){ var el=document.getElementById('ne_'+cr.key); var v=(el&&el.value!=='')?Math.max(0,Math.min(100,+el.value)):50; scores[cr.key]=v; prov[cr.key]={note:'',source:src}; });
+    ops.push({op:'add-entity',entity:{code:code,name:name,brand:brand||'',scores:scores,provenance:prov},source:src});
+    renderContribute();
+  }
+  function exportPatch(){
+    var patch={format:'open-values-lens-patch',version:'0.1',target:(lens.meta&&lens.meta.id)||'',baseHash:E.lensHash(lens),
+      by:document.getElementById('p_by').value.trim(),note:document.getElementById('p_note').value.trim(),
+      created:new Date().toISOString(),ops:ops};
+    download(JSON.stringify(patch,null,2),((lens.meta&&lens.meta.id)||'lens')+'-'+E.lensHash(lens)+'.lens-patch.json');
+  }
+
+  function renderMerge(){
+    var mg=document.getElementById('merge');
+    var log = pendingLog ? '<ul class="loglist">'+pendingLog.map(function(l){
+        if(l.status==='base-mismatch') return '<li><span><span class="by">'+esc(l.by||'?')+'</span> &#9888; authored for a different version (#'+esc(l.expected)+' vs your #'+esc(l.got)+'); review before applying</span></li>';
+        if(l.status) return '<li><span><span class="by">'+esc(l.by||'?')+'</span> '+esc(l.op)+' '+esc(l.code||'')+' · <span class="st">'+esc(l.status)+'</span></span></li>';
+        if(l.op==='set-score') return '<li><span><span class="by">'+esc(l.by)+'</span> corrected '+esc(ename(l.code))+' · '+esc(clabel(l.key))+': '+(l.from==null?'–':l.from)+' → '+l.to+(l.source?(' ['+esc(l.source)+']'):'')+'</span></li>';
+        if(l.op==='add-entity') return '<li><span><span class="by">'+esc(l.by)+'</span> added "'+esc(l.name)+'"'+(l.source?(' ['+esc(l.source)+']'):'')+'</span></li>';
+        return '';
+      }).join('')+'</ul>' : '';
+    mg.innerHTML='<h2>Preview changes</h2>'+
+      '<div class="actions"><label class="btn ghost" style="cursor:pointer">Load change file(s)<input type="file" id="patchfiles" accept=".json,application/json" multiple hidden></label>'+
+        (pending.length?'<span class="hint">'+pending.length+' change file'+(pending.length===1?'':'s')+' loaded · '+(pendingLog?pendingLog.length:0)+' change(s)</span>':'<span class="hint">Load changes others sent you; preview every change before applying.</span>')+'</div>'+
+      log+
+      (pending.length?'<div class="actions"><button class="btn" id="applybtn">✓ Apply to working facts</button></div>':'')+
+      '<div class="sub2">Export</div>'+
+      '<div class="actions"><button class="btn ghost" id="explens">⤓ Export facts (.js)</button><button class="btn ghost" id="expfork">⑂ Export alternate file</button></div>'+
+      '<div class="hint">Drop the exported <code>lens.js</code> into an app folder to ship the improved facts - no server, no permission needed.</div>';
+    var pf=document.getElementById('patchfiles'); if(pf)pf.onchange=function(e){ loadPatches(e.target.files); e.target.value=''; };
+    var ab=document.getElementById('applybtn'); if(ab)ab.onclick=applyMerge;
+    document.getElementById('explens').onclick=function(){ exportLens(lens,(lens.meta&&lens.meta.id)||'lens'); };
+    document.getElementById('expfork').onclick=exportFork;
+  }
+  function loadPatches(list){
+    var files=[].slice.call(list||[]); if(!files.length) return;
+    pending=[]; var left=files.length;
+    files.forEach(function(f){ var rd=new FileReader(); rd.onload=function(){ try{ var p=JSON.parse(rd.result); if(p&&p.ops)pending.push(p); }catch(_){ } if(--left===0)preview(); }; rd.onerror=function(){ if(--left===0)preview(); }; rd.readAsText(f); });
+  }
+  function preview(){ var res=E.mergeLens(lens,pending); pendingLog=res.log; renderMerge(); }
+  function applyMerge(){ var res=E.mergeLens(lens,pending); lens=res.lens; applied+=pending.length; pending=[]; pendingLog=null; renderAll(); }
+
+  function exportLens(L,id){ download('window.OVS_LENS = '+JSON.stringify(L,null,2)+';\n', id+'-'+E.lensHash(L)+'.lens.js'); }
+  function exportFork(){
+    var id=(lens.meta&&lens.meta.id)||'lens';
+    var fork=E.forkLens(lens,{ id:id+'-fork', title:((lens.meta&&lens.meta.title)||'Lens')+' (fork)' });
+    download('window.OVS_LENS = '+JSON.stringify(fork,null,2)+';\n', fork.meta.id+'-'+E.lensHash(fork)+'.lens.js');
+  }
+
+  function readLensFile(f){
+    var rd=new FileReader();
+    rd.onload=function(){ var txt=rd.result, L=null;
+      try{ if(/OVS_LENS|KOSPLORA_LENS/.test(txt)){ var w={}; (new Function('window',txt))(w); L=w.OVS_LENS||w.KOSPLORA_LENS; } else { L=JSON.parse(txt); } }catch(e){ L=null; }
+      if(L&&L.resources){ setLens(L); } else { document.getElementById('lenscard').insertAdjacentHTML('beforeend','<p class="err" style="font-size:.82rem">That file is not a facts file (no options found).</p>'); }
+    };
+    rd.readAsText(f);
+  }
+  // Interop (the Commons → the Standard): load a community's aggregated ratings and turn them into a forkable lens
+  // via the shared engine, so the crowd's judgement becomes editable, sourced, passport-rankable facts.
+  function inferCriteria(ratings){
+    var seen={}, out=[];
+    (ratings||[]).forEach(function(r){ var sc=(r&&r.scores)||{}; for(var k in sc){ if(!seen[k]){ seen[k]=1; out.push({key:k,label:k.charAt(0).toUpperCase()+k.slice(1),tier:'assessed'}); } } });
+    return out;
+  }
+  function readRatings(f){
+    var rd=new FileReader();
+    rd.onload=function(){ var L=null;
+      try{ var j=JSON.parse(rd.result);
+        var ratings = Array.isArray(j) ? j : (j.ratings||j.products||[]);
+        var criteria = (j&&j.criteria) || inferCriteria(ratings);
+        if(ratings.length && criteria.length) L=E.lensFromRatings(ratings,{id:(j&&j.id)||'community-ratings',title:(j&&j.title)||'Community ratings',criteria:criteria,universalToLocal:(j&&j.universalToLocal)});
+      }catch(e){ L=null; }
+      if(L && L.resources.length){ setLens(L); }
+      else { document.getElementById('lenscard').insertAdjacentHTML('beforeend','<p class="err" style="font-size:.82rem">That file is not community ratings; expected a list of <code>{code, name, scores}</code>.</p>'); }
+    };
+    rd.readAsText(f);
+  }
+  function download(text,name){ var b=new Blob([text],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=name; document.body.appendChild(a); a.click(); a.remove(); }
+
+  setLens(window.OVS_LENS || { meta:{id:'blank',title:'Blank facts file'}, criteria:[], resources:[] });
+})();
+</script>
+<script src="../app/theme.js"></script>
+</body>
+</html>

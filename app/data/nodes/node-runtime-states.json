@@ -1,0 +1,543 @@
+{
+  "format": "ovs-node-runtime-states",
+  "version": "0.1",
+  "built": "2026-07-15",
+  "source": [
+    "app/data/nodes/node-load-plan.json",
+    "app/data/nodes/ask-presentation.json",
+    "app/data/nodes/node-route-guardrails.json",
+    "app/data/nodes/manifest.json"
+  ],
+  "purpose": "Generated runtime state and failure-mode fixtures for app-owned node and Ask integration.",
+  "appLaneNote": "State contract only; app-owned code chooses visual treatment, exact copy, interaction timing, and telemetry policy.",
+  "caseFields": [
+    "id",
+    "family",
+    "stage",
+    "trigger",
+    "requiredBehavior",
+    "mustNot",
+    "sourceFiles"
+  ],
+  "qaContract": {
+    "purpose": "App-owned runtime QA contract for generated node and Ask loading states.",
+    "status": "pending-app-integration",
+    "h4DrainableFromDataAlone": false,
+    "drainRule": "H4 runtime-state QA drains only after app-owned behavior is checked against each referenced case requiredBehavior and mustNot clause.",
+    "modes": [
+      {
+        "id": "startup-smoke",
+        "owner": "app/design",
+        "caseIds": [
+          "metadata-loading",
+          "metadata-unavailable",
+          "hash-mismatch-retry",
+          "hash-mismatch-unavailable",
+          "ask-core-loading",
+          "ask-core-unavailable",
+          "ask-no-results",
+          "offline-core-available"
+        ],
+        "sourceFiles": [
+          "manifest.json",
+          "node-load-plan.json",
+          "ask-core.json",
+          "ask-presentation.json"
+        ],
+        "passWhen": [
+          "The base app remains usable while metadata and ask-core.json load.",
+          "Startup Ask never requires ask-index.json for core category, brand, company, guide, line, tag, or errand results.",
+          "Empty and unavailable states route to the generated recovery hashes."
+        ],
+        "mustNot": [
+          "Do not block category browsing on generated-node startup work.",
+          "Do not claim product or barcode coverage before ask-index.json is loaded and valid."
+        ]
+      },
+      {
+        "id": "route-page-smoke",
+        "owner": "app/design",
+        "caseIds": [
+          "page-node-loading",
+          "page-node-unavailable",
+          "unknown-target-route",
+          "malformed-route",
+          "canonical-route-rewrite"
+        ],
+        "sourceFiles": [
+          "brands.json",
+          "companies.json",
+          "node-page-contracts.json",
+          "node-route-guardrails.json"
+        ],
+        "passWhen": [
+          "Known brand and company routes can wait for their lazy indexes without breaking unrelated routes.",
+          "Unknown and malformed hashes recover without fabricating node pages.",
+          "Canonical route rewrites preserve encoded generated ids."
+        ],
+        "mustNot": [
+          "Do not render partial brand or company data as a complete page.",
+          "Do not redirect an unknown generated route to a different real node."
+        ]
+      },
+      {
+        "id": "lazy-product-smoke",
+        "owner": "app/design",
+        "caseIds": [
+          "lazy-product-loading",
+          "lazy-product-unavailable"
+        ],
+        "sourceFiles": [
+          "ask-index.json",
+          "manifest.json",
+          "node-load-plan.json"
+        ],
+        "passWhen": [
+          "ask-index.json loads only after a product-name or barcode path asks for it.",
+          "Core Ask results stay visible while the lazy product index loads.",
+          "A lazy index failure disables only product and barcode lookup."
+        ],
+        "mustNot": [
+          "Do not eagerly load ask-index.json at startup.",
+          "Do not treat lazy product failure as failure of categories, guides, or node pages."
+        ]
+      },
+      {
+        "id": "copy-failure-review",
+        "owner": "app/design",
+        "caseIds": [
+          "metadata-loading",
+          "metadata-unavailable",
+          "hash-mismatch-retry",
+          "hash-mismatch-unavailable",
+          "ask-core-loading",
+          "ask-core-unavailable",
+          "ask-no-results",
+          "page-node-loading",
+          "page-node-unavailable",
+          "unknown-target-route",
+          "malformed-route",
+          "canonical-route-rewrite",
+          "lazy-product-loading",
+          "lazy-product-unavailable",
+          "offline-core-available"
+        ],
+        "sourceFiles": [
+          "node-runtime-states.json"
+        ],
+        "passWhen": [
+          "Every visible loading, unavailable, empty, route, integrity, and offline state names the affected capability plainly.",
+          "Recovery copy offers browse, search, reload, retry, or request paths already named by the fixture.",
+          "No state implies the whole app failed when only one generated-node capability is unavailable."
+        ],
+        "mustNot": [
+          "Do not add urgency, blame, or engagement copy to runtime failure states.",
+          "Do not hide the app-owned copy decision behind generated placeholder prose."
+        ]
+      }
+    ],
+    "loadStageCoverage": {
+      "bootstrap-metadata": {
+        "loadHint": "eager-metadata",
+        "runtime": true,
+        "sourceFiles": [
+          "manifest.json",
+          "node-load-plan.json"
+        ],
+        "caseIds": [
+          "metadata-loading",
+          "metadata-unavailable",
+          "hash-mismatch-retry",
+          "hash-mismatch-unavailable",
+          "malformed-route"
+        ]
+      },
+      "defer-page-nodes": {
+        "loadHint": "defer-page-nodes",
+        "runtime": true,
+        "sourceFiles": [
+          "brands.json",
+          "companies.json"
+        ],
+        "caseIds": [
+          "page-node-loading",
+          "page-node-unavailable",
+          "unknown-target-route",
+          "canonical-route-rewrite"
+        ]
+      },
+      "lazy-product-ask": {
+        "loadHint": "lazy-product-search",
+        "runtime": true,
+        "sourceFiles": [
+          "ask-index.json"
+        ],
+        "caseIds": [
+          "lazy-product-loading",
+          "lazy-product-unavailable"
+        ]
+      },
+      "startup-ask-core": {
+        "loadHint": "eager-search",
+        "runtime": true,
+        "sourceFiles": [
+          "ask-core.json"
+        ],
+        "caseIds": [
+          "ask-core-loading",
+          "ask-core-unavailable",
+          "ask-no-results",
+          "offline-core-available"
+        ]
+      }
+    },
+    "coverage": {
+      "caseCount": 15,
+      "modeCount": 4,
+      "stagesCovered": 4,
+      "allCasesCovered": true,
+      "runtimeModeIds": [
+        "startup-smoke",
+        "route-page-smoke",
+        "lazy-product-smoke"
+      ],
+      "manualReviewModeIds": [
+        "copy-failure-review"
+      ]
+    }
+  },
+  "cases": [
+    {
+      "id": "metadata-loading",
+      "family": "loading",
+      "stage": "bootstrap-metadata",
+      "trigger": "manifest.json and node-load-plan.json are being fetched or parsed.",
+      "requiredBehavior": [
+        "Keep the base app usable while generated node features initialize.",
+        "Avoid claiming generated node or Ask coverage before metadata is known.",
+        "Prepare cache keys from manifest sha256 values once metadata is available."
+      ],
+      "mustNot": [
+        "Do not block category browsing on full generated node indexes.",
+        "Do not start loading ask-index.json before the load plan is known."
+      ],
+      "appOwnedCopyIntent": "Use calm, honest copy that names what is unavailable without implying total app failure.",
+      "sourceFiles": [
+        "manifest.json",
+        "node-load-plan.json"
+      ]
+    },
+    {
+      "id": "metadata-unavailable",
+      "family": "unavailable",
+      "stage": "bootstrap-metadata",
+      "trigger": "Metadata fetch, JSON parse, or required field validation fails.",
+      "requiredBehavior": [
+        "Keep existing app search and browse paths available.",
+        "Mark generated node features as unavailable for this session or until retry.",
+        "Offer a neutral recovery path such as browse or reload."
+      ],
+      "mustNot": [
+        "Do not fabricate generated node coverage.",
+        "Do not continue into generated Ask integration without a usable manifest."
+      ],
+      "appOwnedCopyIntent": "Use calm, honest copy that names what is unavailable without implying total app failure.",
+      "sourceFiles": [
+        "manifest.json",
+        "node-load-plan.json"
+      ]
+    },
+    {
+      "id": "hash-mismatch-retry",
+      "family": "integrity",
+      "stage": "bootstrap-metadata",
+      "trigger": "A loaded generated node file does not match the sha256 value in manifest.json.",
+      "requiredBehavior": [
+        "Treat the cached copy as stale or corrupted.",
+        "Refetch the mismatched file once using the manifest cache key shape.",
+        "Keep already-valid stages usable while the retry happens."
+      ],
+      "mustNot": [
+        "Do not silently use a mismatched generated file.",
+        "Do not invalidate unrelated files whose hashes match."
+      ],
+      "appOwnedCopyIntent": "Use calm, honest copy that names what is unavailable without implying total app failure.",
+      "sourceFiles": [
+        "manifest.json",
+        "node-load-plan.json"
+      ],
+      "cacheKey": "<file>:<sha256>"
+    },
+    {
+      "id": "hash-mismatch-unavailable",
+      "family": "integrity",
+      "stage": "bootstrap-metadata",
+      "trigger": "A generated node file still fails sha256 validation after one refetch.",
+      "requiredBehavior": [
+        "Mark only the affected stage unavailable.",
+        "Keep previously loaded valid stages visible.",
+        "Expose a calm retry/reload path."
+      ],
+      "mustNot": [
+        "Do not fabricate results from the failed index.",
+        "Do not fall through to stale cached data after a confirmed mismatch."
+      ],
+      "appOwnedCopyIntent": "Use calm, honest copy that names what is unavailable without implying total app failure.",
+      "sourceFiles": [
+        "manifest.json",
+        "node-load-plan.json"
+      ]
+    },
+    {
+      "id": "ask-core-loading",
+      "family": "loading",
+      "stage": "startup-ask-core",
+      "trigger": "Startup Ask core is being fetched or parsed.",
+      "requiredBehavior": [
+        "Keep navigation and browse routes usable.",
+        "Delay generated Ask results until ask-core.json is ready.",
+        "Keep the full Ask index out of the startup path."
+      ],
+      "mustNot": [
+        "Do not load ask-index.json merely to fill the startup search slot.",
+        "Do not show product/barcode lookup as ready before the lazy index loads."
+      ],
+      "appOwnedCopyIntent": "Use calm, honest copy that names what is unavailable without implying total app failure.",
+      "sourceFiles": [
+        "ask-core.json"
+      ]
+    },
+    {
+      "id": "ask-core-unavailable",
+      "family": "unavailable",
+      "stage": "startup-ask-core",
+      "trigger": "ask-core.json fails fetch, parse, budget, or integrity checks.",
+      "requiredBehavior": [
+        "Fall back to existing in-memory search if present, or show generated Ask unavailable.",
+        "Keep category and guide browsing usable.",
+        "Do not require the lazy full Ask index as a recovery path."
+      ],
+      "mustNot": [
+        "Do not claim generated Ask coverage.",
+        "Do not hide the rest of the app because compact Ask failed."
+      ],
+      "appOwnedCopyIntent": "Use calm, honest copy that names what is unavailable without implying total app failure.",
+      "sourceFiles": [
+        "ask-core.json"
+      ]
+    },
+    {
+      "id": "ask-no-results",
+      "family": "empty",
+      "stage": "startup-ask-core",
+      "trigger": "A generated Ask query returns no core or full-index hits.",
+      "requiredBehavior": [
+        "Use the Ask presentation empty-state route shape.",
+        "Offer a request path that preserves the query.",
+        "Offer browse as a secondary recovery path."
+      ],
+      "mustNot": [
+        "Do not invent a close result.",
+        "Do not imply that the entire commons has been searched if lazy product lookup was not loaded."
+      ],
+      "appOwnedCopyIntent": "Use calm, honest copy that names what is unavailable without implying total app failure.",
+      "sourceFiles": [
+        "ask-presentation.json",
+        "ask-core.json"
+      ],
+      "recovery": {
+        "primary": "#contribute/want/<query>",
+        "secondary": "#browse"
+      }
+    },
+    {
+      "id": "page-node-loading",
+      "family": "loading",
+      "stage": "defer-page-nodes",
+      "trigger": "A brand or company node route is visited before brands.json or companies.json has loaded.",
+      "requiredBehavior": [
+        "Render the route as pending while the needed page-node index loads.",
+        "Keep category and guide routes usable.",
+        "Check node-page-contracts.json required fields before final render."
+      ],
+      "mustNot": [
+        "Do not render a partial brand/company page as complete.",
+        "Do not block unrelated node types on brand/company page-node loading."
+      ],
+      "appOwnedCopyIntent": "Use calm, honest copy that names what is unavailable without implying total app failure.",
+      "sourceFiles": [
+        "brands.json",
+        "companies.json",
+        "node-page-contracts.json"
+      ]
+    },
+    {
+      "id": "page-node-unavailable",
+      "family": "unavailable",
+      "stage": "defer-page-nodes",
+      "trigger": "The requested brand/company page-node index fails to load or validate.",
+      "requiredBehavior": [
+        "Keep the route addressable but mark the node page unavailable.",
+        "Provide a route back to search or browse.",
+        "Allow retry without reloading unrelated generated indexes."
+      ],
+      "mustNot": [
+        "Do not fabricate ownership or brand lists.",
+        "Do not use long-tail brand text as if it were a full node."
+      ],
+      "appOwnedCopyIntent": "Use calm, honest copy that names what is unavailable without implying total app failure.",
+      "sourceFiles": [
+        "brands.json",
+        "companies.json"
+      ]
+    },
+    {
+      "id": "unknown-target-route",
+      "family": "route",
+      "stage": "defer-page-nodes",
+      "trigger": "A syntactically valid route points at no known generated target.",
+      "requiredBehavior": [
+        "Parse the route, then render a not-covered/not-found state.",
+        "Keep the original hash visible enough for QA/debugging.",
+        "Offer search or browse as recovery."
+      ],
+      "mustNot": [
+        "Do not fabricate a node page for the missing target.",
+        "Do not redirect silently to a different real node."
+      ],
+      "appOwnedCopyIntent": "Use calm, honest copy that names what is unavailable without implying total app failure.",
+      "sourceFiles": [
+        "node-route-guardrails.json",
+        "node-page-contracts.json"
+      ],
+      "fixture": {
+        "kind": "unknown-target",
+        "hash": "#explore/not-a-real-category",
+        "parseable": true,
+        "targetExists": false,
+        "canonicalHash": "#explore/not-a-real-category"
+      }
+    },
+    {
+      "id": "malformed-route",
+      "family": "route",
+      "stage": "bootstrap-metadata",
+      "trigger": "A hash cannot be parsed as one of the generated content route families.",
+      "requiredBehavior": [
+        "Treat it as malformed or unsupported generated-node input.",
+        "Recover to a neutral not-found, browse, or existing app route.",
+        "Avoid fetching generated node indexes solely for an unparseable hash."
+      ],
+      "mustNot": [
+        "Do not load a content page from malformed route text.",
+        "Do not coerce arbitrary hashes into node ids."
+      ],
+      "appOwnedCopyIntent": "Use calm, honest copy that names what is unavailable without implying total app failure.",
+      "sourceFiles": [
+        "node-route-guardrails.json"
+      ],
+      "fixture": {
+        "kind": "malformed",
+        "hash": "",
+        "parseable": false,
+        "targetExists": false,
+        "canonicalHash": null
+      }
+    },
+    {
+      "id": "canonical-route-rewrite",
+      "family": "route",
+      "stage": "defer-page-nodes",
+      "trigger": "A route parses to a real target but has a non-canonical generated hash.",
+      "requiredBehavior": [
+        "Prefer the canonical hash from the route guardrail fixture.",
+        "Render the same target after canonicalization.",
+        "Preserve encoded line ids, including encoded colons."
+      ],
+      "mustNot": [
+        "Do not treat the non-canonical hash as a separate node.",
+        "Do not drop encoded line ids during route round-trip."
+      ],
+      "appOwnedCopyIntent": "Use calm, honest copy that names what is unavailable without implying total app failure.",
+      "sourceFiles": [
+        "node-route-guardrails.json"
+      ],
+      "fixture": {
+        "kind": "canonicalize",
+        "hash": "#n/line/avoid:nestle",
+        "parseable": true,
+        "targetExists": true,
+        "canonicalHash": "#n/line/avoid%3Anestle"
+      }
+    },
+    {
+      "id": "lazy-product-loading",
+      "family": "loading",
+      "stage": "lazy-product-ask",
+      "trigger": "A product-name or barcode lookup requests the full Ask index.",
+      "requiredBehavior": [
+        "Keep core search results visible while full product lookup loads.",
+        "Load ask-index.json once and cache by manifest sha256.",
+        "Keep product lookup clearly separate from startup Ask readiness."
+      ],
+      "mustNot": [
+        "Do not blank core Ask results while lazy product lookup is pending.",
+        "Do not load ask-index.json before the user path asks for product/barcode depth."
+      ],
+      "appOwnedCopyIntent": "Use calm, honest copy that names what is unavailable without implying total app failure.",
+      "sourceFiles": [
+        "ask-index.json"
+      ]
+    },
+    {
+      "id": "lazy-product-unavailable",
+      "family": "unavailable",
+      "stage": "lazy-product-ask",
+      "trigger": "ask-index.json fails fetch, parse, integrity, or memory checks.",
+      "requiredBehavior": [
+        "Keep compact core results visible.",
+        "Label product/barcode lookup as unavailable for the moment.",
+        "Allow retry without restarting the whole app."
+      ],
+      "mustNot": [
+        "Do not claim product/barcode coverage if ask-index.json failed.",
+        "Do not treat a lazy product failure as a failure of categories, guides, or node pages."
+      ],
+      "appOwnedCopyIntent": "Use calm, honest copy that names what is unavailable without implying total app failure.",
+      "sourceFiles": [
+        "ask-index.json"
+      ]
+    },
+    {
+      "id": "offline-core-available",
+      "family": "offline",
+      "stage": "startup-ask-core",
+      "trigger": "The app is offline but manifest and ask-core.json are already valid in cache.",
+      "requiredBehavior": [
+        "Use cached core results only if their manifest sha256 values match.",
+        "Keep lazy product lookup unavailable until the full index is cached and valid.",
+        "Avoid implying live freshness while offline."
+      ],
+      "mustNot": [
+        "Do not skip integrity validation because data came from cache.",
+        "Do not fetch or require lazy indexes while offline."
+      ],
+      "appOwnedCopyIntent": "Use calm, honest copy that names what is unavailable without implying total app failure.",
+      "sourceFiles": [
+        "manifest.json",
+        "ask-core.json"
+      ]
+    }
+  ],
+  "totals": {
+    "cases": 15,
+    "byFamily": {
+      "loading": 4,
+      "unavailable": 4,
+      "integrity": 2,
+      "empty": 1,
+      "route": 3,
+      "offline": 1
+    }
+  }
+}

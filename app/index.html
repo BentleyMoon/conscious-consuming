@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Conscious Consuming is the first working Values Commons app: an open, honest guide to choosing by your values: sourced, private, never sponsored.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Conscious Consuming: choose by your values">
+<meta property="og:description" content="The flagship Values Commons app for choosing by your own values across food, tech, money, clothing and more. Sourced, private, no ads, never sponsored.">
+<meta property="og:image" content="https://valuescommons.org/app/og-home.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Conscious Consuming: choose by your values">
+<meta name="twitter:description" content="A Values Commons app for ranking real things by what you care about, not by who pays. Private, no tracking, no ads.">
+<meta name="twitter:image" content="https://valuescommons.org/app/og-home.png">
+<title>Conscious Consuming: choose by your values, not by who pays</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#1d7a5a">
+<script>try{var _t=localStorage.getItem('cc.theme');if(_t==='dark'||_t==='light')document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Conscious">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d7a5a'/%3E%3Cpath d='M18 36c0-13 13-20 28-20-2 16-14 23-28 20z' fill='%23fff'/%3E%3Cpath d='M20 46c6-12 14-18 22-21' stroke='%231d7a5a' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="./styles.css?v=b339eefd">
+<style>
+  /* Development state, disclosed above the fold. The stage alone would be a hedge;
+     the sentence after it is the checkable part. */
+  .devnotice{display:flex;align-items:center;gap:.55rem;font-size:.8rem;line-height:1.4;
+    padding:.4rem clamp(.8rem,3vw,1.4rem);border-bottom:1px solid var(--line,rgba(0,0,0,.12))}
+  .devnotice .stage{flex:none;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--accent,#1d7a5a);border:1px solid color-mix(in srgb,var(--accent,#1d7a5a) 45%,transparent);
+    border-radius:2px;padding:.1rem .4rem}
+  .devnotice .note{color:var(--muted,#566560);min-width:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="skip" href="#main">Skip to content</a>
+  <div id="live" aria-live="polite" class="sr-only"></div>
+  <nav class="nav">
+    <span class="navback"><button id="backbtn" class="navbtn" aria-label="Go back" disabled><svg class="ic ic-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg></button><a href="#recent" class="navbtn" aria-label="Recently viewed" title="Recently viewed"><svg class="ic ic-recent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9.5A8 8 0 1 1 4 13M4.5 9.5h4M4.5 9.5v-4M12 8.5V12l2.6 1.8"/></svg></a></span>
+    <a href="#home" class="wordmark">Conscious Consuming</a>
+    <button id="navtoggle" class="navtoggle" aria-expanded="false" aria-controls="navlinks" aria-label="Menu"><svg class="ic ic-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <span class="navlinks" id="navlinks">
+      <a href="#home" data-nav="home">Home</a>
+      <a href="#map" data-nav="explore">Explore</a>
+      <a href="#guides" data-nav="guides">Guides</a>
+      <a href="#scan" data-nav="scan">Scan</a>
+    </span>
+    <span class="navutil"><a href="#you" id="navvalues" class="navvalues" aria-label="Advanced: close-call priorities" title="Advanced: close-call priorities"></a><button id="themebtn" class="navbtn themebtn" aria-label="Theme" title="Theme"><svg class="ic ic-theme" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17ZM12 3.5v17"/></svg></button><a href="#you" class="navyou" data-nav="you" title="You: my rules and data" aria-label="You: my rules and data"><span class="navyou-av" aria-hidden="true"></span>You</a><!-- Language switcher removed until a locale reaches real coverage (ES was chrome-only). The i18n framework + es seed stay in i18n.js for the future contribution surface. --></span>
+  </nav>
+  <aside class="devnotice" aria-label="Version status">
+    <span class="stage">Beta</span>
+    <span class="note">This app is in active development.</span>
+  </aside>
+  <button id="totop" class="totop" aria-label="Back to top" title="Back to top"><svg class="ic ic-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5"/></svg></button>
+
+  <nav id="crumbs" class="crumbs" aria-label="Breadcrumb" hidden></nav>
+  <main id="main" tabindex="-1">
+  <section id="view-home" class="view"><noscript><h1>Choose by your values, not by who pays.</h1><p>An open, honest, private guide to voting with your money: sourced, never sponsored, no tracking. The interactive tool needs JavaScript; meanwhile, browse the <a href="./g/index.html">full guides library →</a></p></noscript></section>
+  <section id="view-recent" class="view"></section>
+  <section id="view-guides" class="view"></section>
+  <section id="view-guide" class="view"></section>
+  <section id="view-discover" class="view"></section>
+  <section id="view-search" class="view"></section>
+  <section id="view-contribute" class="view"></section>
+  <section id="view-compare" class="view"></section>
+  <section id="view-map" class="view"></section>
+  <section id="view-you" class="view"></section>
+  <section id="view-card" class="view"></section>
+  <section id="view-values" class="view"></section>
+  <section id="view-need" class="view"></section>
+  <section id="view-value" class="view"></section>
+  <section id="view-domain" class="view"></section>
+  <section id="view-scan" class="view"></section>
+  <section id="view-decide" class="view"></section>
+  <section id="view-garden" class="view"></section>
+  <section id="view-indexes" class="view"></section>
+  <section id="view-node" class="view"></section>
+  <section id="view-workbench" class="view"></section>
+
+  <section id="view-explore" class="view">
+    <div id="exptoggle" class="exptoggle"></div>
+    <div id="cats" class="cats"></div>
+    <div class="panel">
+      <h2>Tune this category</h2>
+      <p class="hint" style="color:var(--ink);font-size:.95rem;margin:.15rem 0 .7rem">The list reorders as you tune. No refresh, no secret thumb on the scale. Presets are quick starting points.</p>
+      <div id="errandbar"></div>
+      <div class="presets" id="presets"></div>
+      <details class="finetune">
+        <summary><svg class="ic ic-scales" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4.5V19M8 19h8M6 7.5h12M6 7.5 3.5 13a2.5 2.5 0 0 0 5 0zM18 7.5 15.5 13a2.5 2.5 0 0 0 5 0zM9 6l3-1.5L15 6"/></svg> Fine-tune: weigh every factor yourself</summary>
+        <div id="themes" class="themebar"></div>
+        <div class="sliders" id="sliders"></div>
+        <p class="hint">Weighing one thing more means everything else counts a little less. That trade-off is the whole idea.</p>
+      </details>
+      <div class="filters" id="filters"><span>Exclude:</span></div>
+      <div id="trustlens" class="trustlens"></div>
+      <div class="find">
+        <input id="q" type="search" placeholder="Search a product or brand…" aria-label="Search within this category" autocomplete="off">
+        <select id="sort" aria-label="Sort by"></select>
+        <select id="region" aria-label="Region"></select>
+      </div>
+      <div class="profnote"><span id="profstatus"></span><a id="profreset">reset to balanced</a></div>
+      <details class="explain"><summary>How are these scores made?</summary><p>Each entry carries <b>sourced</b> facts. Food uses measures such as Nutri-Score, NOVA, Green-Score, and declared labels from Open Food Facts. Researched categories cite their assessments. Your controls set the trade-offs. The score combines the facts with those choices and moves toward a neutral 50 when evidence is missing. Missing facts are never guessed. A high total can still hide one weak point, so we show it. Nobody can pay to rank.</p><p class="explainmore"><a href="#guide/how-scores-work">Read the full method in plain language →</a></p></details>
+      <p id="filternote" class="filternote"></p>
+    </div>
+    <div class="facets facetbar" id="facetbar"></div>
+    <p class="count" id="count"></p>
+    <p class="evcovline" id="evcov"></p>
+    <div id="results"></div>
+    <p class="attr" id="attr">Loading…</p>
+  </section>
+  </main>
+
+  <footer>
+    <nav class="footlinks"><a href="#map">Explore</a><a href="#contribute">Contribute</a><a href="#you">You</a><a href="./community.html">Community</a></nav>
+    <a href="https://valuescommons.org/">Part of Values Commons</a> · Conscious Consuming is the first working instance · <a href="https://valuescommons.org/standard/">Built on the Open Values Standard</a> · weighted to your values, not ours · no brand pays us<br>
+    Facts from <a href="https://world.openfoodfacts.org/" target="_blank" rel="noopener">Open Food Facts</a> (ODbL) ·
+    always confirm allergens on the physical label
+  </footer>
+  <nav class="tabbar" aria-label="Primary navigation">
+    <a href="#home" data-nav="home" class="tab"><span class="tab-i" aria-hidden="true"><svg class="ic ic-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11.2 12 4l8.5 7.2M6 9.6V20h4.2v-5.2h3.6V20H18V9.6"/></svg></span><span class="tab-l">Home</span></a>
+    <a href="#map" data-nav="explore" class="tab"><span class="tab-i" aria-hidden="true"><svg class="ic ic-explore" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17ZM15.3 8.7l-1.6 4.6-4.6 1.6 1.6-4.6z"/></svg></span><span class="tab-l">Explore</span></a>
+    <a href="#scan" data-nav="scan" class="tab"><span class="tab-i" aria-hidden="true"><svg class="ic ic-scan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5.6A1.6 1.6 0 0 1 5.6 4H8M16 4h2.4A1.6 1.6 0 0 1 20 5.6V8M20 16v2.4a1.6 1.6 0 0 1-1.6 1.6H16M8 20H5.6A1.6 1.6 0 0 1 4 18.4V16M7.5 12h9"/></svg></span><span class="tab-l">Scan</span></a>
+    <a href="#guides" data-nav="guides" class="tab"><span class="tab-i" aria-hidden="true"><svg class="ic ic-guides" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.4C10.6 5.2 8.8 4.6 6 4.6c-.9 0-1.6.1-2 .2v13c.4-.1 1.1-.2 2-.2 2.8 0 4.6.6 6 1.8M12 6.4c1.4-1.2 3.2-1.8 6-1.8.9 0 1.6.1 2 .2v13c-.4-.1-1.1-.2-2-.2-2.8 0-4.6.6-6 1.8M12 6.4v13"/></svg></span><span class="tab-l">Guides</span></a>
+    <a href="#you" data-nav="you" class="tab"><span class="tab-i" aria-hidden="true"><svg class="ic ic-you" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 11.4a3.4 3.4 0 1 0 0-6.8 3.4 3.4 0 0 0 0 6.8ZM5.5 19.6c.7-3.1 3.3-5 6.5-5s5.8 1.9 6.5 5"/></svg></span><span class="tab-l">You</span></a>
+  </nav>
+</div>
+<!-- data.js (the full ~5MB bundle) is NOT loaded here — served mode lazy-loads ./data/index.json + per-category JSON.
+     boot() injects data.js only as a file:// fallback (where fetch is blocked). -->
+<script src="./icons.js?v=1"></script>
+<script src="./i18n.js?v=c4d8978a"></script>
+<script defer src="./guides.js?v=0532d778"></script>
+<script src="./engine.js?v=5e30bd88"></script>
+<script src="./decision.js?v=134be91d"></script>
+<script src="./sigil.js?v=d35540c5"></script>
+<script src="./lines.js?v=238eb67b"></script>
+<script src="./presentation.js?v=0dc79001"></script>
+<script src="./app.js?v=b50d4cd8"></script>
+</body>
+</html>

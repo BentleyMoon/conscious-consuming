@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/entity-v0.1.schema.json",
+  "title": "Open Values Entity v0.1",
+  "description": "A product, service, organization, media resource, initiative, or other thing weighed inside a lens.",
+  "type": "object",
+  "required": [
+    "code",
+    "name",
+    "scores"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "code": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]+(?:-[A-Za-z0-9._:-]+)*$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "brand": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "scores": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "https://openvaluesstandard.org/schema/rating-v0.1.schema.json#/$defs/scoreValue"
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "https://openvaluesstandard.org/schema/source-v0.1.schema.json"
+      }
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/link"
+      }
+    },
+    "region": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "US",
+          "UK",
+          "EU",
+          "global"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "focuses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allergens": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allergensDeclared": {
+      "type": "boolean"
+    }
+  },
+  "$defs": {
+    "link": {
+      "type": "object",
+      "required": [
+        "label",
+        "url"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build a Values Commons app</title>
+<meta name="description" content="Build a small values guide around one decision, using sourced options and the shared Values Commons engine.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#1d7a5a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d7a5a'/%3E%3Cpath d='M18 36c0-13 13-20 28-20-2 16-14 23-28 20z' fill='%23fff'/%3E%3Cpath d='M20 46c6-12 14-18 22-21' stroke='%231d7a5a' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="canonical" href="https://valuescommons.org/instances/new/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://valuescommons.org/instances/new/">
+<meta property="og:site_name" content="Values Commons">
+<meta property="og:title" content="Build a Values Commons app">
+<meta property="og:description" content="Build a small values guide around one decision, using sourced options and the shared Values Commons engine.">
+<meta property="og:image" content="https://valuescommons.org/og-standard.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Build a Values Commons app">
+<meta name="twitter:description" content="Build a small values guide around one decision, using sourced options and the shared Values Commons engine.">
+<meta name="twitter:image" content="https://valuescommons.org/og-standard.png">
+<script>try{var t=localStorage.getItem('cc.theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<style>
+  :root{--bg:#f6f8f7;--surface:#fff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--soft:#e9f3ee;--track:#eef1ef;--max:1120px;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,system-ui,sans-serif;--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,ui-serif,serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--ochre:#8a5514;--line-strong:#cfd8d3;--warn:#a8432f;--glow:0 0 14px rgba(29,122,90,.22)}
+  @media(prefers-color-scheme:dark){:root{--bg:#0f1512;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.1);--accent:#5dcaa5;--soft:#16241d;--track:#1b241f;--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17);--warn:#e3a594;--glow:0 0 16px rgba(93,202,165,.3)}}
+  :root[data-theme="dark"]{--bg:#0f1512;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.1);--accent:#5dcaa5;--soft:#16241d;--track:#1b241f;--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17);--warn:#e3a594;--glow:0 0 16px rgba(93,202,165,.3);color-scheme:dark}
+  :root[data-theme="light"]{--bg:#f6f8f7;--surface:#fff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--soft:#e9f3ee;--track:#eef1ef;--ochre:#8a5514;--line-strong:#cfd8d3;--warn:#a8432f;--glow:0 0 14px rgba(29,122,90,.22);color-scheme:light}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.58;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 1.25rem}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:1.05rem 0;border-bottom:1px solid var(--line-strong)}
+  .brand{font-family:var(--serif);font-weight:700;color:var(--ink);font-size:1.18rem;letter-spacing:-.015em}
+  .brand::after{content:"Open field guide";font-family:var(--mono);font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ochre);margin-left:.6rem;padding-left:.6rem;border-left:1px solid var(--line-strong)}
+  .links{display:flex;gap:.45rem 1rem;flex-wrap:wrap;font-family:var(--mono);font-size:.75rem}
+  .links a{color:var(--muted)}.links a:hover{color:var(--accent);text-decoration:none}
+  .kicker{font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 .9rem}
+  h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.12;text-wrap:balance;letter-spacing:-.015em}
+  h1{font-size:clamp(2rem,4.5vw,2.9rem);margin:0 0 .8rem}
+  h2{font-size:1.4rem;margin:0 0 .5rem}
+  .hero{position:relative;overflow:hidden;padding:2.6rem 0 1.6rem;background:radial-gradient(48rem 28rem at 4% -12%,color-mix(in srgb,var(--accent) 15%,transparent),transparent 58%),radial-gradient(40rem 22rem at 98% -8%,color-mix(in srgb,var(--ochre) 8%,transparent),transparent 60%)}
+  .hero>:not(.grove){position:relative;z-index:1}
+  .grove{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+  ::selection{background:color-mix(in srgb,var(--accent) 24%,transparent)}
+  .lede{max-width:56ch;color:var(--muted);font-size:1.1rem;margin:0}
+  .lede b{color:var(--ink)}
+  .law{border:1px solid var(--line);border-left:3px solid var(--warn);border-radius:4px;background:var(--surface);padding:.7rem .9rem;margin:1.1rem 0 0;font-size:.93rem;max-width:56ch}
+  .law b{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--warn);display:block;margin-bottom:.2rem}
+
+  .press{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(1.2rem,3vw,2.2rem);align-items:start;padding:1.2rem 0 3rem}
+  .step{border:1px solid var(--line);border-radius:4px;background:var(--surface);margin:0 0 1rem;overflow:hidden}
+  .step-h{display:flex;align-items:baseline;gap:.6rem;padding:.75rem 1rem;border-bottom:1px solid var(--line)}
+  .step-h .no{font-family:var(--mono);font-size:.66rem;color:var(--ochre)}
+  .step-h h2{font-size:1.08rem;margin:0}
+  .step-h .hint{margin-left:auto;font-family:var(--mono);font-size:.64rem;color:var(--hint)}
+  .step-b{padding:.9rem 1rem 1rem}
+  .frow{display:grid;grid-template-columns:auto 1fr;gap:.3rem .7rem;align-items:baseline;margin:0 0 .6rem}
+  .frow label{font-family:var(--mono);font-size:.66rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  input[type=text],textarea,select{font:inherit;font-size:.95rem;color:var(--ink);background:var(--bg);border:1px solid var(--line-strong);border-radius:3px;padding:.42rem .55rem;width:100%;min-height:2.2rem}
+  textarea{font-family:var(--mono);font-size:.8rem;line-height:1.45;resize:vertical}
+  input::placeholder,textarea::placeholder{color:var(--hint)}
+  .tiny{font-size:.82rem;color:var(--hint);margin:.3rem 0 0}
+  .mono{font-family:var(--mono)}
+
+  .theme-row,.opt{border-top:1px dashed var(--line);padding:.8rem 0 .2rem;position:relative}
+  .theme-row:first-child,.opt:first-child{border-top:0;padding-top:.2rem}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:.5rem .7rem}
+  .grid3{display:grid;grid-template-columns:1.1fr 1fr .9fr;gap:.5rem .7rem}
+  .rm{position:absolute;top:.55rem;right:0;background:none;border:1px solid var(--line);border-radius:3px;color:var(--hint);font-family:var(--mono);font-size:.66rem;min-height:1.6rem;padding:.1rem .45rem;cursor:pointer}
+  .rm:hover{border-color:var(--warn);color:var(--warn)}
+  .add{font-family:var(--mono);font-size:.74rem;font-weight:600;min-height:2.2rem;padding:.4rem .8rem;border:1px solid var(--accent);border-radius:3px;background:var(--surface);color:var(--accent);cursor:pointer;margin-top:.7rem}
+  .add:hover{background:var(--soft)}
+  .exbtn{font-family:var(--mono);font-size:.7rem;background:none;border:none;color:var(--muted);text-decoration:underline;text-underline-offset:2px;cursor:pointer;padding:0}
+  .exbtn:hover{color:var(--accent)}
+
+  .factrow{display:grid;grid-template-columns:7.5rem 4.2rem 1fr;gap:.4rem .6rem;align-items:center;margin:.35rem 0}
+  .factrow .fl{font-family:var(--mono);font-size:.66rem;letter-spacing:.03em;text-transform:uppercase;color:var(--muted)}
+  .factrow input[type=number]{font-family:var(--mono);font-size:.85rem;text-align:right;min-height:2rem;padding:.25rem .4rem;background:var(--bg);border:1px solid var(--line-strong);border-radius:3px;color:var(--ink);width:100%}
+  .factrow input[type=number]:disabled{background:var(--track);color:var(--hint);border-style:dashed;cursor:not-allowed}
+  .factrow input.src{min-height:2rem;font-family:var(--mono);font-size:.74rem;padding:.25rem .5rem}
+  .factrow input.src:placeholder-shown{border-color:var(--line)}
+
+  /* the live proof */
+  .proof{position:sticky;top:1rem;border:1px solid var(--line-strong);border-radius:4px;background:var(--surface);overflow:hidden}
+  .proof-h{padding:.8rem 1rem;border-bottom:1px solid var(--line)}
+  .proof-h .cat{font-weight:700;font-size:1.05rem}
+  .proof-h .livechip{float:right;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  .proof-h .sub{margin:.25rem 0 0;font-size:.85rem;color:var(--muted)}
+  .proof-sliders{padding:.6rem 1rem .8rem;border-bottom:1px solid var(--line)}
+  .ps{display:grid;grid-template-columns:1fr auto;gap:0 .5rem;align-items:baseline;margin-top:.45rem}
+  .ps label{font-family:var(--mono);font-size:.66rem;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .ps .v{font-family:var(--mono);font-size:.7rem;color:var(--hint)}
+  .ps input{grid-column:1/-1;width:100%;height:1.75rem;accent-color:var(--accent);cursor:pointer;margin:0}
+  .proof-rows{list-style:none;margin:0;padding:.3rem}
+  .pe{display:grid;grid-template-columns:1.3rem 1fr auto;gap:.1rem .6rem;align-items:baseline;padding:.5rem .6rem;border-radius:3px}
+  .pe+.pe{border-top:1px solid var(--line)}
+  .pe .rk{font-family:var(--mono);font-size:.78rem;color:var(--hint);justify-self:end}
+  .pe .nm{font-weight:700;font-size:.98rem}
+  .pe .sc{font-family:var(--mono);font-weight:600}
+  .pe .why{grid-column:2/-1;font-size:.8rem;color:var(--muted)}
+  .pe.lead{background:var(--soft)}
+  .proof-empty{padding:1rem;color:var(--hint);font-size:.9rem}
+  .proof-foot{padding:.6rem 1rem .8rem;border-top:1px solid var(--line);font-family:var(--mono);font-size:.66rem;color:var(--hint)}
+  .proof-foot .okz{color:var(--accent)} .proof-foot .bad{color:var(--warn)}
+
+  .pressbar{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;padding:.9rem 1rem;border-top:1px solid var(--line)}
+  .btn{font-family:var(--mono);font-size:.8rem;font-weight:600;letter-spacing:.02em;display:inline-flex;align-items:center;min-height:2.5rem;padding:.5rem .95rem;border-radius:3px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);cursor:pointer}
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;transition:box-shadow .3s}
+  .btn.primary:hover{color:#fff}
+  .btn.primary:not(:disabled){box-shadow:var(--glow)}
+  .btn:disabled{opacity:.45;cursor:not-allowed}
+  .pe.lead .sc{text-shadow:0 0 9px color-mix(in srgb,var(--accent) 38%,transparent)}
+  #pressnote{font-family:var(--mono);font-size:.68rem;color:var(--accent)}
+
+  footer{border-top:1px solid var(--line);padding:1.5rem 0 2.5rem;color:var(--hint);font-size:.85rem}
+  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.55rem .9rem;border-radius:0 0 8px 0;z-index:20}
+  .skip:focus{left:0}
+  @media(max-width:900px){.press{grid-template-columns:1fr}.proof{position:static}}
+  @media(max-width:560px){.grid2,.grid3{grid-template-columns:1fr}.factrow{grid-template-columns:6rem 3.8rem 1fr}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <nav class="nav" aria-label="Values Commons">
+    <a class="brand" href="../../index.html">&#9671; Values Commons</a>
+    <div class="links">
+      <a href="../index.html">Apps</a>
+      <a href="../../standard/index.html">For builders</a>
+      <a href="../../contribute/index.html">Help out</a>
+      <a href="../../docs/ADOPTION-KIT.md">Adoption guide</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <canvas class="grove" id="grove" aria-hidden="true"></canvas>
+    <p class="kicker">Starter builder &middot; facts + design + the shared engine</p>
+    <h1>Build an app around one decision</h1>
+    <p class="lede">Name the decision, choose what can be compared, and add options with their sources. The ranking runs here on the same engine as the live apps, and you can take the finished files with you.</p>
+    <div class="law"><b>The one law</b> No source, no score. A number you cannot cite does not exist here; the score field stays shut until its source is written. That rule is what makes the result worth trusting.</div>
+  </header>
+
+  <div class="press" id="main" tabindex="-1">
+    <div>
+      <div class="step">
+        <div class="step-h"><span class="no">1</span><h2>The decision</h2><span class="hint">start here, not with features</span></div>
+        <div class="step-b">
+          <p class="tiny" style="margin:0 0 .7rem">A worked example is loaded so you can see the ranking change. <button class="exbtn" id="loadex" type="button">Clear it and name your own &rarr;</button><br>Start with the decision, not a feature list.</p>
+          <div class="frow"><label for="f-noun">Where to&hellip;</label><input type="text" id="f-noun" placeholder="drink coffee &middot; bank &middot; host photos" autocomplete="off"></div>
+          <div class="frow"><label for="f-title">Title</label><input type="text" id="f-title" placeholder="Where to Drink Coffee" autocomplete="off"></div>
+          <div class="frow"><label for="f-tag">One honest line</label><input type="text" id="f-tag" placeholder="Pick a daily coffee by your values, not by the loudest shelf." autocomplete="off"></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-h"><span class="no">2</span><h2>The values</h2><span class="hint">2&ndash;4 priorities that change the choice</span></div>
+        <div class="step-b">
+          <div id="themes"></div>
+          <button class="add" id="addtheme" type="button">+ Add a value</button>
+          <p class="tiny">Connect each local measure to one of the ten shared values. That lets another person's values file carry over without inventing a match the subject cannot support.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-h"><span class="no">3</span><h2>The options</h2><span class="hint">source first, score second</span></div>
+        <div class="step-b">
+          <div id="opts"></div>
+          <button class="add" id="addopt" type="button">+ Add an option</button>
+        </div>
+      </div>
+    </div>
+
+    <aside>
+      <div class="proof" aria-label="Your app, ranking live">
+        <div class="proof-h">
+          <span class="livechip">Live</span>
+          <span class="cat" id="proof-title">Your app</span>
+          <p class="sub">This is a working ranking, not a mockup. It uses the same engine as the live apps.</p>
+        </div>
+        <div class="proof-sliders" id="proof-sliders"></div>
+        <ul class="proof-rows" id="proof-rows"><li class="proof-empty">Name a decision, add a value and two sourced options, and the ranking appears.</li></ul>
+        <div class="proof-foot" id="proof-foot"></div>
+        <div class="pressbar">
+          <button class="btn primary" id="dl-lens" type="button" disabled>&#10515; lens.js</button>
+          <button class="btn" id="dl-page" type="button" disabled>&#10515; starter page</button>
+          <span id="pressnote" role="status"></span>
+        </div>
+      </div>
+      <p class="tiny" style="margin:.7rem .2rem 0">The starter page keeps the facts in one readable file and links to the shared engine. Put both files in a folder and open the page. To go further, study <a href="../messages/index.html">Where to Message's source</a> and the <a href="../../docs/CREATE-AN-INSTANCE.md">build guide</a>.</p>
+    </aside>
+  </div>
+
+  <footer>
+    Values Commons &middot; <a href="../../docs/ADOPTION-KIT.md">read the adoption guide</a> &middot; <a href="../../contribute/index.html">get help</a>
+  </footer>
+</div>
+
+<script src="../../app/engine.js"></script>
+<script>
+// The grove: an organic circuit grown behind the hero of the creation surface.
+// Decoration that behaves: low alpha, capped work, static under reduced motion,
+// waits for real layout dimensions, regrows on resize.
+(function () {
+  var c = document.getElementById('grove');
+  if (!c || !c.getContext) return;
+  var section = c.parentElement;
+  var ctx = c.getContext('2d');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var tone = dark ? '93,202,165' : '29,122,90';
+  var lineA = dark ? 0.13 : 0.08;
+  var budA = dark ? 0.3 : 0.18;
+  var W = 0, H = 0, branches = [], steps = 0, MAX = 480, running = false;
+  function bud(x, y, r) { ctx.fillStyle = 'rgba(' + tone + ',' + budA + ')'; ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill(); }
+  function seed(x, a) { branches.push({ x: x, y: H + 4, a: a, w: 1.4, life: 34 + Math.random() * 28 }); }
+  function tick() {
+    for (var i = branches.length - 1; i >= 0; i--) {
+      var b = branches[i];
+      var nx = b.x + Math.cos(b.a) * 7, ny = b.y + Math.sin(b.a) * 7;
+      ctx.strokeStyle = 'rgba(' + tone + ',' + lineA + ')'; ctx.lineWidth = b.w;
+      ctx.beginPath(); ctx.moveTo(b.x, b.y); ctx.lineTo(nx, ny); ctx.stroke();
+      b.x = nx; b.y = ny; b.a += (Math.random() * 0.5 - 0.25); b.life--; steps++;
+      if (Math.random() < 0.09 && branches.length < 36) {
+        bud(b.x, b.y, 1.4);
+        branches.push({ x: b.x, y: b.y, a: b.a + (Math.random() < 0.5 ? -0.7 : 0.7), w: Math.max(0.5, b.w * 0.75), life: b.life * 0.7 });
+      }
+      if (b.life <= 0 || b.y < H * 0.2 || b.x < -20 || b.x > W + 20) { bud(b.x, b.y, 2); branches.splice(i, 1); }
+    }
+  }
+  function grow() {
+    W = section.clientWidth; H = section.clientHeight;
+    if (!W || !H) { requestAnimationFrame(grow); return; }
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    c.width = W * dpr; c.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.lineCap = 'round';
+    branches = []; steps = 0;
+    for (var i = 0; i < 4; i++) seed(W * (0.55 + Math.random() * 0.4), -Math.PI / 2 + (Math.random() * 0.3 - 0.15));
+    if (reduce) { var guard = 0; while (branches.length && steps < MAX && guard++ < 400) tick(); }
+    else if (!running) {
+      running = true;
+      (function loop() { tick(); if (branches.length && steps < MAX) requestAnimationFrame(loop); else running = false; })();
+    }
+  }
+  grow();
+  var rT;
+  window.addEventListener('resize', function () {
+    clearTimeout(rT);
+    rT = setTimeout(function () { if (Math.abs(section.clientWidth - W) > 80) grow(); }, 300);
+  });
+})();
+
+(function(){
+'use strict';
+var E = window.CC && CC.engine;
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+var UNIVERSAL=[['planet','Planet'],['people','People'],['openness','Openness'],['access','Access'],['wellbeing','Wellbeing'],['autonomy','Autonomy'],['animals','Animals'],['community','Community'],['quality','Quality'],['joy','Joy']];
+
+var S={ noun:'', title:'', tag:'', themes:[], opts:[] };
+function slug(s){return String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,24)||'x';}
+
+/* ---------- builders ---------- */
+function newTheme(label,blurb,uni){return {label:label||'',blurb:blurb||'',uni:uni||''};}
+function newOpt(name,brand){return {name:name||'',brand:brand||'',scores:{},srcs:{}};}
+
+function themeIds(){var seen={};return S.themes.map(function(t){var id=slug(t.label);while(seen[id])id=id+'2';seen[id]=1;return id;});}
+
+/* ---------- step 2: themes UI ---------- */
+var themesEl=document.getElementById('themes');
+function renderThemes(){
+  themesEl.innerHTML='';
+  S.themes.forEach(function(t,i){
+    var d=document.createElement('div');d.className='theme-row';
+    d.innerHTML='<button class="rm" type="button" aria-label="remove this value">remove</button>'+
+      '<div class="grid3">'+
+      '<span><label class="fl mono" style="font-size:.66rem;text-transform:uppercase;color:var(--muted)" for="tl'+i+'">Value label</label><input type="text" id="tl'+i+'" value="'+esc(t.label)+'" placeholder="Fair pay" autocomplete="off"></span>'+
+      '<span><label class="fl mono" style="font-size:.66rem;text-transform:uppercase;color:var(--muted)" for="tb'+i+'">In a few words</label><input type="text" id="tb'+i+'" value="'+esc(t.blurb)+'" placeholder="growers get a floor price" autocomplete="off"></span>'+
+      '<span><label class="fl mono" style="font-size:.66rem;text-transform:uppercase;color:var(--muted)" for="tu'+i+'">Universal value</label><select id="tu'+i+'"><option value="">choose&hellip;</option>'+UNIVERSAL.map(function(u){return '<option value="'+u[0]+'"'+(t.uni===u[0]?' selected':'')+'>'+u[1]+'</option>';}).join('')+'</select></span>'+
+      '</div>';
+    d.querySelector('.rm').onclick=function(){S.themes.splice(i,1);renderThemes();renderOpts();renderProof();};
+    d.querySelector('#tl'+i).oninput=function(){t.label=this.value;renderOpts();renderProof();};
+    d.querySelector('#tb'+i).oninput=function(){t.blurb=this.value;};
+    d.querySelector('#tu'+i).onchange=function(){t.uni=this.value;renderProof();};
+    themesEl.appendChild(d);
+  });
+}
+document.getElementById('addtheme').onclick=function(){ if(S.themes.length<4){S.themes.push(newTheme());renderThemes();} };
+
+/* ---------- step 3: options UI (the law lives here) ---------- */
+var optsEl=document.getElementById('opts');
+function renderOpts(){
+  var ids=themeIds();
+  optsEl.innerHTML='';
+  S.opts.forEach(function(o,oi){
+    var d=document.createElement('div');d.className='opt';
+    var head='<button class="rm" type="button" aria-label="remove this option">remove</button>'+
+      '<div class="grid2">'+
+      '<span><label class="fl mono" style="font-size:.66rem;text-transform:uppercase;color:var(--muted)" for="on'+oi+'">Option</label><input type="text" id="on'+oi+'" value="'+esc(o.name)+'" placeholder="Local roaster co-op" autocomplete="off"></span>'+
+      '<span><label class="fl mono" style="font-size:.66rem;text-transform:uppercase;color:var(--muted)" for="ob'+oi+'">Brand or org</label><input type="text" id="ob'+oi+'" value="'+esc(o.brand)+'" placeholder="member-owned" autocomplete="off"></span></div>';
+    var rows=S.themes.map(function(t,ti){
+      var id=ids[ti], sv=o.scores[id], src=o.srcs[id]||'';
+      var gated=src.trim().length<3;
+      return '<div class="factrow">'+
+        '<span class="fl">'+esc(t.label||('value '+(ti+1)))+'</span>'+
+        '<input type="number" min="0" max="100" step="1" inputmode="numeric" aria-label="Score for '+esc(t.label)+'" data-o="'+oi+'" data-t="'+id+'" value="'+(sv==null?'':sv)+'"'+(gated?' disabled placeholder="&#8212;"':'')+'>'+
+        '<input type="text" class="src" aria-label="Source for '+esc(t.label)+'" data-so="'+oi+'" data-st="'+id+'" value="'+esc(src)+'" placeholder="source first: certification register, filing, label&hellip;">'+
+        '</div>';
+    }).join('');
+    d.innerHTML=head+rows;
+    d.querySelector('.rm').onclick=function(){S.opts.splice(oi,1);renderOpts();renderProof();};
+    d.querySelector('#on'+oi).oninput=function(){o.name=this.value;renderProof();};
+    d.querySelector('#ob'+oi).oninput=function(){o.brand=this.value;renderProof();};
+    optsEl.appendChild(d);
+  });
+  optsEl.querySelectorAll('input[type=number]').forEach(function(inp){
+    inp.oninput=function(){
+      var o=S.opts[+inp.dataset.o], id=inp.dataset.t, v=inp.value===''?null:Math.max(0,Math.min(100,+inp.value));
+      if(v==null){delete o.scores[id];}else{o.scores[id]=v;}
+      renderProof();
+    };
+  });
+  optsEl.querySelectorAll('input.src').forEach(function(inp){
+    inp.oninput=function(){
+      var o=S.opts[+inp.dataset.so], id=inp.dataset.st;
+      o.srcs[id]=inp.value;
+      var gate=optsEl.querySelector('input[type=number][data-o="'+inp.dataset.so+'"][data-t="'+id+'"]');
+      var gated=inp.value.trim().length<3;
+      if(gate){ gate.disabled=gated; if(gated){delete o.scores[id];gate.value='';} }
+      renderProof();
+    };
+  });
+}
+document.getElementById('addopt').onclick=function(){S.opts.push(newOpt());renderOpts();};
+
+/* ---------- the lens, assembled ---------- */
+function buildLens(){
+  var ids=themeIds();
+  var themes=S.themes.map(function(t,i){return {id:ids[i],label:t.label||('Value '+(i+1)),blurb:t.blurb||''};});
+  var criteria=themes.map(function(t){return {key:t.id,label:t.label,tier:'assessed'};});
+  var k2t={},u2l={};
+  themes.forEach(function(t){k2t[t.id]=t.id;});
+  S.themes.forEach(function(t,i){ if(t.uni) u2l[t.uni]=ids[i]; });
+  var resources=S.opts.map(function(o,i){
+    var scores={},prov={};
+    ids.forEach(function(id){
+      var src=(o.srcs[id]||'').trim();
+      if(src.length>=3 && o.scores[id]!=null){ scores[id]=o.scores[id]; prov[id]=src; }
+    });
+    return {code:slug(o.name)||('opt'+(i+1)),name:o.name||('Option '+(i+1)),brand:o.brand||'',scores:scores,provenance:prov};
+  }).filter(function(r){return Object.keys(r.scores).length>0;});
+  return {
+    meta:{ id:slug(S.title||S.noun||'instance'), storeKey:'ovs-'+slug(S.title||S.noun||'instance')+'.values',
+      noun:S.noun||'', title:S.title||'Untitled instance', tagline:S.tag||'',
+      attribution:'Facts entered with named sources by the person who built this app; scores are sourced assessments, not audits.',
+      footer:'Built with Values Commons; runs on the shared engine, unmodified.' },
+    criteria:criteria, themes:themes, key2theme:k2t, universalToLocal:u2l, resources:resources
+  };
+}
+function lensComplete(L){
+  return L.themes.length>=1 && L.resources.length>=2 && S.title.trim().length>0;
+}
+function unsourcedCount(){
+  var n=0;
+  S.opts.forEach(function(o){ Object.keys(o.scores).forEach(function(id){ if((o.srcs[id]||'').trim().length<3) n++; }); });
+  return n;
+}
+
+/* ---------- the live proof (real engine) ---------- */
+var passport={};
+var slidersEl=document.getElementById('proof-sliders'),rowsEl=document.getElementById('proof-rows'),footEl=document.getElementById('proof-foot');
+function renderProof(){
+  var L=buildLens();
+  document.getElementById('proof-title').textContent=S.title||'Your app';
+  /* sliders follow themes */
+  slidersEl.innerHTML='';
+  L.themes.forEach(function(t){
+    if(passport[t.id]==null)passport[t.id]=3;
+    var d=document.createElement('div');d.className='ps';
+    d.innerHTML='<label for="pp-'+t.id+'">'+esc(t.label)+'</label><span class="v" id="pv-'+t.id+'">'+passport[t.id]+'</span>'+
+      '<input type="range" id="pp-'+t.id+'" min="0" max="5" step="1" value="'+passport[t.id]+'" aria-label="Weight: '+esc(t.label)+'">';
+    d.querySelector('input').oninput=function(){passport[t.id]=+this.value;document.getElementById('pv-'+t.id).textContent=this.value;renderProof();};
+    slidersEl.appendChild(d);
+  });
+  /* ranking via the real engine */
+  var ok=lensComplete(L);
+  if(!ok || !E){
+    rowsEl.innerHTML='<li class="proof-empty">'+(E?'Name a decision, add a value and two sourced options, and the ranking appears.':'The live engine did not load; refresh to see the ranking. You can still save both files.')+'</li>';
+  } else {
+    var w=E.themeDefaults(L.criteria,passport,L.key2theme);
+    var ranked=L.resources.map(function(r){return [r,E.score(r,{criteria:L.criteria,weights:w})];})
+      .filter(function(x){return x[1];})
+      .sort(function(a,b){return b[1].score-a[1].score;});
+    if(!ranked.length){ rowsEl.innerHTML='<li class="proof-empty">Sourced scores are still too sparse for the coverage floor; add a few more.</li>'; }
+    else rowsEl.innerHTML=ranked.map(function(x,i){
+      var r=x[0],v=x[1];
+      var why=r.provenance && r.provenance[Object.keys(r.provenance)[0]] ? Object.keys(r.provenance)[0] : '';
+      return '<li class="pe'+(i===0?' lead':'')+'"><span class="rk">'+(i+1)+'</span><span class="nm">'+esc(r.name)+'</span><span class="sc">'+v.score+'</span>'+
+        (r.brand?'<span class="why">'+esc(r.brand)+'</span>':'')+'</li>';
+    }).join('');
+  }
+  /* foot + press buttons */
+  var un=unsourcedCount();
+  footEl.innerHTML=L.themes.length+' value'+(L.themes.length===1?'':'s')+' &middot; '+L.resources.length+' option'+(L.resources.length===1?'':'s')+' with sourced scores &middot; '+
+    (un===0?'<span class="okz">every score carries a source</span>':'<span class="bad">'+un+' score'+(un===1?'':'s')+' waiting on a source</span>');
+  var ready=ok&&un===0;
+  document.getElementById('dl-lens').disabled=!ready;
+  document.getElementById('dl-page').disabled=!ready;
+}
+
+/* ---------- press: the downloads ---------- */
+function dl(name,text,type){
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([text],{type:type||'text/plain'}));
+  a.download=name;document.body.appendChild(a);a.click();a.remove();
+  var n=document.getElementById('pressnote');if(n)n.textContent='Saved '+name;
+}
+function lensSource(){
+  var L=buildLens();
+  return '/* "'+(L.meta.title.replace(/\*\//g,''))+'" - built with Values Commons on the Open Values Standard.\n'+
+   '   Facts carry named sources per score (provenance). Runs on the shared, unmodified engine. */\n'+
+   'window.OVS_LENS = '+JSON.stringify(L,null,2)+';\n';
+}
+function pageSource(){
+  var L=buildLens();
+  var SC='scr'+'ipt';
+  return '<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n'+
+  '<title>'+esc(L.meta.title)+'</title>\n'+
+  '<style>\n:root{--bg:#f6f8f7;--surface:#fff;--ink:#18211d;--muted:#566560;--line:#e3e7e5;--accent:#1d7a5a;--soft:#e9f3ee;--mono:ui-monospace,Menlo,Consolas,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}\n'+
+  '@media(prefers-color-scheme:dark){:root{--bg:#0f1512;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--line:rgba(255,255,255,.1);--accent:#5dcaa5;--soft:#16241d}}\n'+
+  'body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.55;padding:1.2rem}\n'+
+  '.wrap{max-width:640px;margin:0 auto}h1{font-size:1.7rem;margin:.2rem 0}\n'+
+  '.tag{color:var(--muted);margin:0 0 1rem}\n'+
+  '.ps{display:grid;grid-template-columns:1fr auto;gap:0 .5rem;margin:.4rem 0}\n'+
+  '.ps label{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;color:var(--muted)}\n'+
+  '.ps input{grid-column:1/-1;width:100%;height:1.75rem;accent-color:var(--accent)}\n'+
+  '.pe{display:grid;grid-template-columns:1.3rem 1fr auto;gap:.1rem .6rem;padding:.5rem .4rem;border-top:1px solid var(--line)}\n'+
+  '.pe .rk,.pe .sc{font-family:var(--mono)}.pe .nm{font-weight:700}.pe.lead{background:var(--soft)}\n'+
+  '.pe .pv{grid-column:2/-1;font-size:.8rem;color:var(--muted)}\n'+
+  'footer{margin-top:1.4rem;font-size:.8rem;color:var(--muted)}\n</style>\n</head>\n<body>\n<div class="wrap">\n'+
+  '<h1>'+esc(L.meta.title)+'</h1>\n<p class="tag">'+esc(L.meta.tagline)+'</p>\n'+
+  '<div id="sliders"></div>\n<div id="rank"></div>\n'+
+  '<footer>'+L.meta.footer+' &middot; attribution: '+esc(L.meta.attribution)+'</footer>\n</div>\n'+
+  '<'+SC+' src="https://valuescommons.org/app/engine.js"></'+SC+'>\n'+
+  '<'+SC+' src="lens.js"></'+SC+'>\n'+
+  '<'+SC+'>\n(function(){\n'+
+  "var E=window.CC&&CC.engine,L=window.OVS_LENS;\n"+
+  "if(!E||!L){document.getElementById('rank').textContent='Could not load the engine (needs the internet once, or copy engine.js beside this file and change the src).';return;}\n"+
+  "function esc(s){return String(s==null?'':s).replace(/[&<>\"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c];});}\n"+
+  "var passport={};L.themes.forEach(function(t){passport[t.id]=3;});\n"+
+  "function render(){\n"+
+  " var w=E.themeDefaults(L.criteria,passport,L.key2theme);\n"+
+  " var ranked=L.resources.map(function(r){return [r,E.score(r,{criteria:L.criteria,weights:w})];}).filter(function(x){return x[1];}).sort(function(a,b){return b[1].score-a[1].score;});\n"+
+  " document.getElementById('rank').innerHTML=ranked.map(function(x,i){var r=x[0],v=x[1];\n"+
+  "  var pv=Object.keys(r.provenance||{}).map(function(k){return esc(k)+': '+esc(r.provenance[k]);}).join(' · ');\n"+
+  "  return '<div class=\"pe'+(i===0?' lead':'')+'\"><span class=\"rk\">'+(i+1)+'</span><span class=\"nm\">'+esc(r.name)+(r.brand?' <small>'+esc(r.brand)+'</small>':'')+'</span><span class=\"sc\">'+v.score+'</span><span class=\"pv\">'+pv+'</span></div>';}).join('');\n"+
+  "}\n"+
+  "document.getElementById('sliders').innerHTML=L.themes.map(function(t){return '<div class=\"ps\"><label for=\"s-'+t.id+'\">'+esc(t.label)+'</label><input id=\"s-'+t.id+'\" type=\"range\" min=\"0\" max=\"5\" step=\"1\" value=\"3\" data-t=\"'+t.id+'\"></div>';}).join('');\n"+
+  "[].forEach.call(document.querySelectorAll('#sliders input'),function(s){s.oninput=function(){passport[s.dataset.t]=+s.value;render();};});\n"+
+  "render();\n})();\n</"+SC+">\n</body>\n</html>\n";
+}
+document.getElementById('dl-lens').onclick=function(){dl('lens.js',lensSource(),'text/javascript');};
+document.getElementById('dl-page').onclick=function(){dl('index.html',pageSource(),'text/html');};
+
+/* ---------- worked example: start with a useful, non-empty ranking ---------- */
+function loadExample(){
+  S.noun='drink coffee'; S.title='Where to Drink Coffee'; S.tag='Pick a daily coffee by your values, not by the loudest shelf.';
+  document.getElementById('f-noun').value=S.noun;
+  document.getElementById('f-title').value=S.title;
+  document.getElementById('f-tag').value=S.tag;
+  S.themes=[ newTheme('Fair pay','growers get a floor price','people'),
+             newTheme('Climate','how and where it was grown','planet'),
+             newTheme('Price','per cup, honestly','access') ];
+  S.opts=[ newOpt('Local roaster co-op','member-owned'), newOpt('Fairtrade supermarket line',''), newOpt('Budget instant','') ];
+  var ids=['fair-pay','climate','price'];
+  var seed=[ [92,'co-op member disclosure',84,'origin + roast disclosure',38,'shelf price per cup'],
+             [86,'Fairtrade certification register',71,'certifier climate criteria',80,'shelf price per cup'],
+             [26,'no certification on record',31,'no origin disclosure',96,'shelf price per cup'] ];
+  S.opts.forEach(function(o,i){ ids.forEach(function(id,j){ o.scores[id]=seed[i][j*2]; o.srcs[id]=seed[i][j*2+1]; }); });
+  renderThemes();renderOpts();renderProof();
+}
+function clearAll(){
+  S.noun='';S.title='';S.tag='';
+  document.getElementById('f-noun').value='';
+  document.getElementById('f-title').value='';
+  document.getElementById('f-tag').value='';
+  passport={};
+  S.themes=[newTheme()]; S.opts=[newOpt(),newOpt()];
+  renderThemes();renderOpts();renderProof();
+  document.getElementById('f-noun').focus();
+}
+document.getElementById('loadex').onclick=clearAll;
+
+/* ---------- wire the decision fields + boot ---------- */
+document.getElementById('f-noun').oninput=function(){S.noun=this.value;renderProof();};
+document.getElementById('f-title').oninput=function(){S.title=this.value;renderProof();};
+document.getElementById('f-tag').oninput=function(){S.tag=this.value;};
+loadExample();   // open on the worked example instead of an empty form
+})();
+</script>
+<script src="../../app/theme.js"></script>
+</body>
+</html>

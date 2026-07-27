@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/lens-v0.1.schema.json",
+  "title": "Open Values Standard Lens v0.1",
+  "description": "A values-relative, sourced lens: criteria plus entities with sparse 0-100 scores and per-score provenance. Unknown values are omitted, never encoded as zero.",
+  "type": "object",
+  "required": ["meta", "criteria"],
+  "additionalProperties": true,
+  "oneOf": [
+    { "required": ["products"], "not": { "required": ["resources"] } },
+    { "required": ["resources"], "not": { "required": ["products"] } }
+  ],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["id", "label", "type", "source"],
+      "additionalProperties": true,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "label": { "type": "string", "minLength": 1 },
+        "type": { "type": "string", "enum": ["Products", "Services", "Media", "Organizations", "Initiatives"] },
+        "domain": { "type": "string" },
+        "source": { "type": "string", "minLength": 1 },
+        "attribution": { "type": "string" },
+        "license": { "type": "string" },
+        "allergens": { "type": "boolean" },
+        "productBase": { "type": "string" },
+        "presets": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["w"],
+            "additionalProperties": true,
+            "properties": {
+              "w": {
+                "type": "object",
+                "additionalProperties": { "type": "number", "minimum": 0, "maximum": 5 }
+              },
+              "x": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "criteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["key", "label"],
+        "additionalProperties": true,
+        "properties": {
+          "key": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+          "label": { "type": "string", "minLength": 1 },
+          "tier": { "type": "string", "enum": ["measured", "certified", "assessed"] },
+          "source": { "type": "string" }
+        }
+      }
+    },
+    "products": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/entity" }
+    },
+    "resources": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/entity" }
+    }
+  },
+  "$defs": {
+    "entity": {
+      "type": "object",
+      "required": ["code", "name", "scores"],
+      "additionalProperties": true,
+      "properties": {
+        "code": { "type": "string", "pattern": "^[A-Za-z0-9._:-]+(?:-[A-Za-z0-9._:-]+)*$" },
+        "name": { "type": "string", "minLength": 1 },
+        "brand": { "type": "string" },
+        "description": { "type": "string" },
+        "scores": {
+          "type": "object",
+          "additionalProperties": { "type": "number", "minimum": 0, "maximum": 100 }
+        },
+        "provenance": {
+          "type": "object",
+          "additionalProperties": {
+            "oneOf": [
+              { "type": "string", "minLength": 1 },
+              {
+                "type": "object",
+                "required": ["note", "source", "asof"],
+                "additionalProperties": true,
+                "properties": {
+                  "note": { "type": "string", "minLength": 1 },
+                  "source": { "type": "string", "pattern": "^https?://" },
+                  "asof": { "type": "string", "pattern": "(19|20)\\d{2}" }
+                }
+              }
+            ]
+          }
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label", "url"],
+            "additionalProperties": true,
+            "properties": {
+              "label": { "type": "string", "minLength": 1 },
+              "url": { "type": "string" }
+            }
+          }
+        },
+        "region": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["US", "UK", "EU", "global"] },
+          "uniqueItems": true
+        },
+        "focuses": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

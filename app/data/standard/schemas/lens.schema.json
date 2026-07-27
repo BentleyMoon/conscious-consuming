@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/lens-v0.1.schema.json",
+  "title": "Open Values Lens v0.1",
+  "description": "A values-relative, sourced lens: criteria plus entities with sparse 0-100 scores and per-score provenance.",
+  "type": "object",
+  "required": [
+    "meta",
+    "criteria"
+  ],
+  "additionalProperties": true,
+  "oneOf": [
+    {
+      "required": [
+        "products"
+      ],
+      "not": {
+        "required": [
+          "resources"
+        ]
+      }
+    },
+    {
+      "required": [
+        "resources"
+      ],
+      "not": {
+        "required": [
+          "products"
+        ]
+      }
+    }
+  ],
+  "properties": {
+    "format": {
+      "const": "open-values-lens"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$"
+    },
+    "meta": {
+      "$ref": "#/$defs/meta"
+    },
+    "criteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "https://openvaluesstandard.org/schema/criterion-v0.1.schema.json"
+      }
+    },
+    "products": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "https://openvaluesstandard.org/schema/entity-v0.1.schema.json"
+      }
+    },
+    "resources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "https://openvaluesstandard.org/schema/entity-v0.1.schema.json"
+      }
+    }
+  },
+  "$defs": {
+    "meta": {
+      "type": "object",
+      "required": [
+        "id",
+        "label",
+        "type",
+        "source"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Products",
+            "Services",
+            "Media",
+            "Organizations",
+            "Initiatives"
+          ]
+        },
+        "domain": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attribution": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string"
+        },
+        "allergens": {
+          "type": "boolean"
+        },
+        "productBase": {
+          "type": "string"
+        },
+        "presets": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/preset"
+          }
+        },
+        "governance": {
+          "$ref": "#/$defs/governance"
+        },
+        "decision": {
+          "$ref": "https://openvaluesstandard.org/schema/decision-contracts-v0.2.schema.json#/$defs/decision"
+        }
+      }
+    },
+    "preset": {
+      "type": "object",
+      "required": [
+        "w"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "w": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 5
+          }
+        },
+        "x": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "policy": {
+          "type": "string"
+        },
+        "whoMayMerge": {
+          "type": "string"
+        },
+        "quorum": {
+          "type": "string"
+        },
+        "discussion": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

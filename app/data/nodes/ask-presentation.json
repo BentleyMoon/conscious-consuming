@@ -1,0 +1,214 @@
+{
+  "format": "ovs-ask-presentation-contract",
+  "version": "0.1",
+  "built": "2026-07-15",
+  "source": [
+    "app/data/nodes/ask-core.json",
+    "app/data/nodes/ask-index.json",
+    "app/data/nodes/ask-traces.json"
+  ],
+  "purpose": "Suggested presentation contract for app-owned Ask integration; copy, layout, and interaction remain app-owned.",
+  "appLaneNote": "Use as a dev contract, not a hard UI mandate.",
+  "resultSections": [
+    {
+      "id": "places",
+      "label": "Places this could mean",
+      "layers": [
+        "core"
+      ],
+      "targetTypes": [
+        "category",
+        "brand",
+        "company",
+        "tag",
+        "guide",
+        "errand",
+        "line"
+      ],
+      "maxItems": 5
+    },
+    {
+      "id": "entries",
+      "label": "Entries and barcodes",
+      "layers": [
+        "full"
+      ],
+      "targetTypes": [
+        "item"
+      ],
+      "maxItems": 5
+    }
+  ],
+  "typeCopy": {
+    "category": {
+      "badge": "Category",
+      "action": "Compare options",
+      "route": "#explore/<cid>"
+    },
+    "guide": {
+      "badge": "Guide",
+      "action": "Read guide",
+      "route": "#guide/<slug>"
+    },
+    "brand": {
+      "badge": "Brand",
+      "action": "Open brand page",
+      "route": "#n/brand/<slug>"
+    },
+    "company": {
+      "badge": "Company",
+      "action": "Open company page",
+      "route": "#n/company/<slug>"
+    },
+    "tag": {
+      "badge": "Label",
+      "action": "Open label page",
+      "route": "#n/tag/<slug>"
+    },
+    "line": {
+      "badge": "Line",
+      "action": "Open line",
+      "route": "#n/line/<slug>"
+    },
+    "errand": {
+      "badge": "Errand",
+      "action": "Open errand",
+      "route": "#n/errand/<slug>"
+    },
+    "item": {
+      "badge": "Entry",
+      "action": "Open verdict",
+      "route": "#item/<cid>/<code>"
+    }
+  },
+  "matchReasons": {
+    "alias": "direct alias",
+    "exact": "exact match",
+    "query-token": "word match",
+    "fuzzy-1": "typo match",
+    "token-containment": "related phrase"
+  },
+  "emptyState": {
+    "title": "We do not cover this yet.",
+    "primary": "#contribute/want/<query>",
+    "primaryAction": "Request this",
+    "secondary": "#browse",
+    "secondaryAction": "Browse the commons"
+  },
+  "qaCases": [
+    {
+      "query": "is nestle bad",
+      "section": "places",
+      "expectFirstHash": "#n/brand/nestle",
+      "expectMatchedHash": "#n/brand/nestle",
+      "orderingChecks": [],
+      "ok": true
+    },
+    {
+      "query": "vegan cheese",
+      "section": "places",
+      "expectFirstHash": "#n/line/diet%3Avegan",
+      "expectMatchedHash": "#explore/cheese",
+      "orderingChecks": [],
+      "ok": true
+    },
+    {
+      "query": "best bank",
+      "section": "places",
+      "expectFirstHash": "#explore/banking",
+      "expectMatchedHash": "#explore/banking",
+      "orderingChecks": [],
+      "ok": true
+    },
+    {
+      "query": "coke",
+      "section": "places",
+      "expectFirstHash": "#n/brand/coke",
+      "expectMatchedHash": "#n/line/avoid%3Acoca-cola",
+      "orderingChecks": [],
+      "ok": true
+    },
+    {
+      "query": "nestel",
+      "section": "places",
+      "expectFirstHash": "#n/company/nestle",
+      "expectMatchedHash": "#n/company/nestle",
+      "orderingChecks": [
+        {
+          "id": "typo-before-loose-containment",
+          "note": "Single-edit typo results must rank before loose containment matches such as Nest.",
+          "winnerReason": "fuzzy-1",
+          "loserReason": "token-containment",
+          "winnerRank": 1,
+          "loserRank": 4,
+          "ok": true
+        }
+      ],
+      "ok": true
+    },
+    {
+      "query": "is oatly ethical",
+      "section": "places",
+      "expectFirstHash": "#n/brand/oatly",
+      "expectMatchedHash": "#n/brand/oatly",
+      "orderingChecks": [],
+      "ok": true
+    },
+    {
+      "query": "best password manager",
+      "section": "places",
+      "expectFirstHash": "#explore/password-managers",
+      "expectMatchedHash": "#explore/password-managers",
+      "orderingChecks": [],
+      "ok": true
+    },
+    {
+      "query": "avoid amazon",
+      "section": "places",
+      "expectFirstHash": "#n/company/amazon",
+      "expectMatchedHash": "#n/company/amazon",
+      "orderingChecks": [],
+      "ok": true
+    },
+    {
+      "query": "b corp toilet paper",
+      "section": "places",
+      "expectFirstHash": "#n/line/require%3Ab-corp",
+      "expectMatchedHash": "#explore/paper-goods",
+      "orderingChecks": [],
+      "ok": true
+    },
+    {
+      "query": "washing up liquid",
+      "section": "places",
+      "expectFirstHash": "#explore/dish-soap",
+      "expectMatchedHash": "#explore/dish-soap",
+      "orderingChecks": [],
+      "ok": true
+    },
+    {
+      "query": "cell phone",
+      "section": "places",
+      "expectFirstHash": "#explore/phones",
+      "expectMatchedHash": "#explore/phones",
+      "orderingChecks": [],
+      "ok": true
+    },
+    {
+      "query": "private messaging app",
+      "section": "places",
+      "expectFirstHash": "#n/tag/privacy",
+      "expectMatchedHash": "#guide/private-messaging",
+      "orderingChecks": [],
+      "ok": true
+    },
+    {
+      "query": "5449000054227",
+      "section": "entries",
+      "expectFirstHash": "#item/soda/5449000054227",
+      "expectMatchedHash": "#item/soda/5449000054227",
+      "orderingChecks": [],
+      "ok": true
+    }
+  ]
+}
