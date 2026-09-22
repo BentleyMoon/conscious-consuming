@@ -1,0 +1,49 @@
+{
+  "format": "open-values-register-snapshot",
+  "version": "1.0.0",
+  "snapshotId": "2026-08-14-c53e5e1ec632",
+  "registerId": "cfpb-complaints",
+  "access": "api",
+  "capturedAt": "2026-08-14T19:28:43Z",
+  "request": {
+    "method": "GET",
+    "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/",
+    "query": {
+      "date_received_max": [
+        "2025-12-31"
+      ],
+      "date_received_min": [
+        "2024-01-01"
+      ],
+      "product": [
+        "Checking or savings account"
+      ],
+      "size": [
+        "0"
+      ]
+    },
+    "scope": "CFPB checking-or-savings complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share",
+    "headers": {
+      "Accept": "application/json, application/*+json;q=0.9, */*;q=0.1",
+      "User-Agent": "ConsciousConsuming/1.0 register-snapshot"
+    },
+    "secretHeaderNames": []
+  },
+  "response": {
+    "status": 200,
+    "finalUrl": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Checking+or+savings+account&size=0",
+    "mediaType": "application/json",
+    "bytes": 42994,
+    "sha256": "ef21206ac202ec2630770eaec38a63fc0508d5283b3cf7d8123e51a7da4def91",
+    "payload": "2026-08-14-c53e5e1ec632.payload.json",
+    "fetchMode": "network"
+  },
+  "license": {
+    "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/",
+    "note": "Consumer Complaint Database data are released by CFPB under CC0; complaint volume requires context such as company size or market share."
+  },
+  "parser": {
+    "id": "cfpb-complaint-aggregates-parser",
+    "version": "1.0.0"
+  }
+}

@@ -37,7 +37,7 @@ const NODE_PREVIEW_MATRIX_OUT = path.join(OUT_DIR, 'node-preview-matrix.json');
 const READINESS_OUT = path.join(OUT_DIR, 'readiness.json');
 const MANIFEST_OUT = path.join(OUT_DIR, 'manifest.json');
 const ASK_INDEX_MAX_BYTES = 6000000;
-const ASK_CORE_MAX_BYTES = 700000;
+const ASK_CORE_MAX_BYTES = 780000; // raised 2026-08-13 with the catalogue; see node_index_audit.js
 const ASK_CORE_MIN_HEADROOM_BYTES = 50000;
 
 const ASK_STOP = new Set([
@@ -2148,7 +2148,7 @@ function buildNodeRouteGuardrails(categories, brandIndex, companyIndex, linesSou
 }
 
 function buildNodeLoadPlan(brandIndex, companyIndex, askIndex, askCoreIndex, built) {
-  const startupBudgetBytes = 700000;
+  const startupBudgetBytes = 780000;
   const minimumHeadroomBytes = 50000;
   const askCoreBytes = jsonBytes(askCoreIndex);
   const askCoreHeadroomBytes = startupBudgetBytes - askCoreBytes;
@@ -3706,7 +3706,7 @@ function buildH4ClosureManifest(checklist, nodePreviewMatrixIndex) {
 
 function buildNodeIntegrationChecklist(brandIndex, companyIndex, askIndex, askCoreIndex, askFixturesIndex, askTracesIndex, askPresentationIndex, nodeWalkthroughsIndex, nodePageContractsIndex, nodeRouteFixturesIndex, nodeRouteGuardrailsIndex, nodeLoadPlanIndex, nodeRuntimeStatesIndex, nodePreviewMatrixIndex, built) {
   const askCoreBytes = jsonBytes(askCoreIndex);
-  const startupBudgetBytes = 700000;
+  const startupBudgetBytes = 780000;
   const minimumHeadroomBytes = 50000;
   const devContractFiles = [
     'ask-fixtures.json',
@@ -3927,7 +3927,7 @@ function buildNodeIntegrationChecklist(brandIndex, companyIndex, askIndex, askCo
 function buildReadinessReport(brandIndex, companyIndex, askIndex, askCoreIndex, askFixturesIndex, askTracesIndex, askPresentationIndex, nodeWalkthroughsIndex, nodePageContractsIndex, nodeRouteFixturesIndex, nodeRouteGuardrailsIndex, nodeIntegrationChecklistIndex, nodeLoadPlanIndex, nodeRuntimeStatesIndex, nodePreviewMatrixIndex, built) {
   const askCoreBytes = jsonBytes(askCoreIndex);
   const fullAskBytes = jsonBytes(askIndex);
-  const startupBudgetBytes = 700000;
+  const startupBudgetBytes = 780000;
   const minimumHeadroomBytes = 50000;
   const askCoreHeadroomBytes = startupBudgetBytes - askCoreBytes;
   const goldenQueries = (askTracesIndex.traces || []).map(trace => ({

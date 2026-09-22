@@ -75,6 +75,24 @@ function mainHtmlText(html) {
   return stripHtml(m ? m[1] : html);
 }
 
+// PROSE ONLY, for the readability floor.
+//
+// Flesch-Kincaid counts sentences by terminal punctuation, so an index of a hundred link titles
+// reads as one 252-word sentence and scores -178. That is a category error rather than an
+// unreadable page: a list of names has no prose in it to be unreadable, and the floor exists to
+// catch dense writing. Paragraphs and list items that actually contain a sentence are the text the
+// rule was written about. A page with none is skipped rather than scored, and the caller says so.
+function proseText(html) {
+  const m = String(html || '').match(/<main\b[^>]*>([\s\S]*?)<\/main>/i);
+  const scope = m ? m[1] : String(html || '');
+  const blocks = [];
+  for (const match of scope.matchAll(/<(p|li|blockquote)\b[^>]*>([\s\S]*?)<\/\1>/gi)) {
+    const s = stripHtml(match[2]).trim();
+    if (/[.!?]/.test(s)) blocks.push(s);
+  }
+  return blocks.join(' ');
+}
+
 function cleanWord(word) {
   return String(word || '').toLowerCase().replace(/^[^a-z]+|[^a-z]+$/g, '');
 }
@@ -331,15 +349,20 @@ function checkGuides() {
     checkDuplicateIds(rel, html);
     checkTargetBlankRel(rel, html);
 
-    const text = mainHtmlText(html);
+    const text = proseText(html);
     const score = readability(text);
-    expect(score.words >= 80, `${rel}: guide text is too thin for accessibility context (${score.words} words)`);
-    expect(score.flesch >= 24, `${rel}: Flesch reading-ease ${score.flesch.toFixed(1)} is below the plain-language floor`);
-    expect(score.avgSentence <= 32, `${rel}: average sentence length ${score.avgSentence.toFixed(1)} exceeds the plain-language floor`);
+    // An index page is a set of destinations, not a document. It gets the structural checks above
+    // and is exempt from the prose floor, because there is no prose on it to hold to a floor.
+    const isIndex = /(^|\/)index\.html$/i.test(rel) && score.words < 80;
+    if (!isIndex) {
+      expect(score.words >= 80, `${rel}: guide text is too thin for accessibility context (${score.words} words)`);
+      expect(score.flesch >= 24, `${rel}: Flesch reading-ease ${score.flesch.toFixed(1)} is below the plain-language floor`);
+      expect(score.avgSentence <= 32, `${rel}: average sentence length ${score.avgSentence.toFixed(1)} exceeds the plain-language floor`);
+    }
 
     const density = jargonDensity(text);
     if (density > 18) warnings.push(`${rel}: high jargon density (${density.toFixed(1)} terms per 1000 words)`);
-    if (score.flesch < minFlesch) {
+    if (!isIndex && score.flesch < minFlesch) {
       minFlesch = score.flesch;
       lowest = rel;
     }
@@ -361,6 +384,35 @@ function checkGuides() {
   };
 }
 
+function htmlFiles(dir, out = []) {
+  if (!fs.existsSync(dir)) return out;
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) htmlFiles(full, out);
+    else if (entry.name.endsWith('.html')) out.push(full);
+  }
+  return out;
+}
+
+function checkVerdictPages() {
+  const dir = abs('app/c');
+  expect(fs.existsSync(dir), 'app/c: generated verdict directory is required');
+  if (!fs.existsSync(dir)) return 0;
+  const files = htmlFiles(dir).sort();
+  expect(files.length >= 1000, `app/c: expected at least 1000 generated verdict pages, found ${files.length}`);
+  for (const file of files) {
+    const rel = path.relative(ROOT, file).replace(/\\/g, '/');
+    const html = fs.readFileSync(file, 'utf8');
+    const h1Count = (html.match(/<h1\b/gi) || []).length;
+    expect(h1Count === 1, `${rel}: expected exactly one h1, found ${h1Count}`);
+    expect(/<a\b[^>]*class=["'][^"']*\bskip\b[^"']*["'][^>]*href=["']#main["']/i.test(html), `${rel}: skip link to #main is required`);
+    expect(/<main\b[^>]*\bid\s*=\s*["']main["']/i.test(html), `${rel}: main#main is required`);
+    checkDuplicateIds(rel, html);
+    checkTargetBlankRel(rel, html);
+  }
+  return files.length;
+}
+
 function main() {
   console.log('Accessibility audit');
   const shell = read('app/index.html');
@@ -371,6 +423,7 @@ function main() {
   checkCss(css);
   checkJs(js);
   const guideStats = checkGuides();
+  const verdictCount = checkVerdictPages();
 
   if (warnings.length) {
     console.log(`  warnings: ${warnings.length}`);
@@ -386,6 +439,7 @@ function main() {
   }
 
   console.log(`  guide pages checked: ${guideStats.count}`);
+  console.log(`  verdict pages checked: ${verdictCount}`);
   console.log(`  guide readability: avg ${guideStats.avgFlesch.toFixed(1)}, floor ${guideStats.minFlesch.toFixed(1)} (${guideStats.lowest})`);
   console.log(`  average sentence length: ${guideStats.avgSentence.toFixed(1)} words`);
   console.log('A11Y CHECKS PASS');

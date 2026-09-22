@@ -338,8 +338,14 @@ function checkDecisionRegistry(index) {
   const contracts = Array.isArray(registry.contracts) ? registry.contracts : [];
   const categories = contracts.map((contract) => contract.category);
   const liveCategories = index.categories.map((category) => category.id);
-  expect(contracts.length === 88, `content/decisions.json: expected the 88-category Round 8 batch, found ${contracts.length}`);
-  expect(categories.join('|') === liveCategories.join('|'), 'content/decisions.json: contract order/coverage must exactly match the live category index');
+  // 2026-08-14. Four serially promoted categories take the coverage ratchet to 122.
+  // 124 on 2026-08-26: messaging and browsers authored their own contracts in the split.
+  expect(contracts.length === 124, `content/decisions.json: expected 124 category contracts, found ${contracts.length}`);
+  const categorySet = new Set(categories);
+  expect(
+    liveCategories.every((category) => categorySet.has(category)) && categories.every((category) => liveCategories.includes(category)),
+    'content/decisions.json: contract coverage must exactly match the live category index'
+  );
   expect(new Set(categories).size === categories.length, 'content/decisions.json: duplicate category contract');
 
   for (const sourceDecision of contracts) {

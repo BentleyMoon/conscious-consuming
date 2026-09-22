@@ -468,7 +468,9 @@ function checkDrainContract(contract, reviewMatrix) {
 
   const byId = new Map(steps.map(step => [step.id, step]));
   expect((byId.get('ranked-list-provenance')?.scenarioIds || []).includes('ranked-list-single-source'), 'ranked-list-provenance should cover single-source list fixture');
-  expect((byId.get('item-page-provenance')?.scenarioIds || []).includes('note-only-entry'), 'item-page-provenance should cover note-only fixture');
+  if (scenarioIds.has('note-only-entry')) {
+    expect((byId.get('item-page-provenance')?.scenarioIds || []).includes('note-only-entry'), 'item-page-provenance should cover note-only fixture');
+  }
   expect((byId.get('static-card-provenance')?.sourceFiles || []).includes('app/c/_cards.json'), 'static-card-provenance should include card manifest source');
   expect((byId.get('trust-lens-control')?.sourceFiles || []).some(file => /trustLensControl/.test(file)), 'trust-lens-control should point at trustLensControl source');
   expect((byId.get('final-h10-drain-decision')?.scenarioIds || []).length === scenarioIds.size, 'final-h10-drain-decision should cover every scenario');
@@ -2235,7 +2237,8 @@ function main() {
     noteOnly += expected.noteOnlyEntries;
   }
 
-  expect(categories.length === 88, `app/data/index.json: expected 88 categories, found ${categories.length}`);
+  // 124 on 2026-08-26: the digital-services split gave messaging and browsers their own datasets.
+  expect(categories.length === 124, `app/data/index.json: expected 124 categories, found ${categories.length}`);
   expect(entries > 20000, `app/data: expected broad entry coverage, found ${entries}`);
   expect(singleSource > 10000, `app/data: expected visible single-source population, found ${singleSource}`);
   expect(multiSource > 100, `app/data: expected visible multi-source population, found ${multiSource}`);

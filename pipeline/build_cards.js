@@ -3,14 +3,17 @@
    when shared; these static pages can — with a VISUAL card image (build_card_images.py renders the PNGs from the
    _cards.json manifest this writes). The "wow artifact" the first-users research says every launch needs.
    Uses the REAL engine (app/engine.js) — one source of truth. Run: node pipeline/build_cards.js */
-const fs = require('fs'), path = require('path');
+const fs = require('fs'), path = require('path'), crypto = require('crypto');
 const engine = require('../app/engine.js');
 
 const APP = path.join(__dirname, '..', 'app');
 const DATA = path.join(APP, 'data');
 const CDIR = path.join(APP, 'c');
 const SITE_BASE = (process.env.CC_SITE_BASE || 'https://valuescommons.org/app').replace(/\/+$/, '');
-const FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d7a5a'/%3E%3Cpath d='M18 36c0-13 13-20 28-20-2 16-14 23-28 20z' fill='%23fff'/%3E%3Cpath d='M20 46c6-12 14-18 22-21' stroke='%231d7a5a' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E";
+const STYLE_VERSION = crypto.createHash('sha256').update(fs.readFileSync(path.join(APP, 'styles.css'))).digest('hex').slice(0, 8);
+// The one mark, read rather than copied. pipeline/build_icon.py generates it.
+const FAVICON = "data:image/svg+xml," +
+  encodeURIComponent(fs.readFileSync(path.join(APP, 'icon.svg'), 'utf8').trim());
 
 const attr = s => (s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const safe = s => String(s).replace(/[^a-zA-Z0-9._-]/g, '-');
@@ -168,25 +171,65 @@ function lensDatasetJSONLD(ds, cid) {
   };
 }
 
+/* Edge emission for card JSON-LD. The normalization trio is copied verbatim from
+   build_nodes.js (stripMarks, slugify, isUsableBrand) so that made-by resolution is the same
+   round-trip that created the brand nodes; scripts/../scratch cards_edges.py asserts the
+   originals still exist so a drift in build_nodes turns this copy into a review, not a fork. */
+function stripMarksForBrand(value) {
+  return String(value || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '');
+}
+function brandSlug(value) {
+  return stripMarksForBrand(value)
+    .replace(/&/g, ' and ')
+    .replace(/[\u2018\u2019`]/g, '')
+    .replace(/[^a-zA-Z0-9]+/g, '-')
+    .toLowerCase()
+    .replace(/^-+|-+$/g, '')
+    .replace(/-+/g, '-');
+}
+const BRAND_EDGE = (() => {
+  let brandIds = null, authored = null;
+  return function edgesFor(nodeId, rawBrand) {
+    if (brandIds === null) {
+      brandIds = new Set();
+      try {
+        const b = JSON.parse(fs.readFileSync(path.join(APP, 'data', 'nodes', 'brands.json'), 'utf8'));
+        for (const n of b.nodes || []) brandIds.add(n.id);
+      } catch (e) { brandIds = new Set(); }
+      try {
+        const ef = JSON.parse(fs.readFileSync(path.join(APP, 'edges.json'), 'utf8'));
+        authored = (ef.edges || []).filter(e => e && e.from && e.rel && e.to);
+      } catch (e) { authored = []; }
+    }
+    const out = authored.filter(e => e.from === nodeId);
+    const slug = brandSlug(rawBrand || '');
+    if (slug && brandIds.has('ovs:brand/' + slug)) {
+      out.push({ from: nodeId, rel: 'made-by', to: 'ovs:brand/' + slug });
+    }
+    return out;
+  };
+})();
+
 function entityJSONLD(p, ds, cid, cd) {
   const code = safe(p.code);
-  const url = SITE_BASE + '/c/' + cid + '/' + code + '.html';
+  const url = SITE_BASE + '/c/' + cid + '/' + code;
   const img = SITE_BASE + '/c/' + cid + '/' + code + '.png';
   const node = { id: 'ovs:' + cid + '/' + code, label: p.name || code, ids: p.ids || {} };
-  const out = engine.toJSONLD(node, []) || {};
+  const out = engine.toJSONLD(node, BRAND_EDGE(node.id, p.brand)) || {};
   const props = [];
   const citations = [];
 
   for (const cr of ds.criteria || []) {
     if (cr.key === 'price') continue;
     const v = p.scores && p.scores[cr.key];
-    if (v == null) continue;
     const pr = engine.provOf(p, cr.key);
+    const hasEvidence = Boolean(pr.note || pr.source || pr.asof);
+    if (v == null && !hasEvidence) continue;
     const prop = {
       '@type': 'PropertyValue',
       name: cr.label,
       propertyID: 'ovs:' + cr.key,
-      value: engine.band(v)[0]
+      value: v == null ? 'Not scored' : engine.band(v)[0]
     };
     if (pr.note) prop.description = pr.note;
     if (pr.source) { prop.citation = pr.source; citations.push(pr.source); }
@@ -217,10 +260,36 @@ function entityJSONLD(p, ds, cid, cd) {
   return out;
 }
 
-function cardHTML(p, ds, cid, cd) {
+// WHAT A VERDICT PAGE HAS TO CARRY BEFORE IT IS OFFERED TO A SEARCH ENGINE.
+//
+// 3,428 of these pages existed on 2026-09-21, about 126 words each, and every one of them was in
+// the sitemap. The commonest shape was a single source that was the maker's own website and a
+// check date of "2026", on a page whose brand bar says "sourced, never sponsored". Publishing
+// thousands of those is the sourcing theater the design document refuses, and it teaches a search
+// engine that this domain is mostly thin pages.
+//
+// The bar is the two things that actually vary between these pages:
+//   - more than one independent source domain, so the verdict does not rest on the seller's own
+//     account of itself;
+//   - a check date of at least month precision, because "2026" is a year, not a check.
+// The other two things a reader needs, the decision this belongs to and its alternatives, are on
+// every card by construction: the header links the comparison and the gallery.
+//
+// A page under the bar is still built, still linked, still readable, and still says exactly what it
+// has. It is marked noindex and left out of the sitemap until its sourcing improves, at which point
+// it enters search on the next build without anyone deciding again. The count is printed at build
+// and rendered on the gallery, so the number is public rather than a quiet setting.
+function verdictIsIndexable(p, cd) {
+  const parts = provenanceParts(p);
+  if (!parts || parts.mode !== 'multi') return false;
+  const asof = cd.r && cd.r.asof ? String(cd.r.asof) : '';
+  return /^\d{4}-\d{2}/.test(asof) && Boolean(cd.r.source);
+}
+
+function cardHTML(p, ds, cid, cd, titleName = p.name) {
   const { s, t, r } = cd;
   const code = safe(p.code);
-  const url = SITE_BASE + '/c/' + cid + '/' + code + '.html';
+  const url = SITE_BASE + '/c/' + cid + '/' + code;
   const img = SITE_BASE + '/c/' + cid + '/' + code + '.png';
   const desc = (r ? (r.label + ': ' + r.band[0] + '. ' + (r.note || '')) : (ds.meta.label + ' · sourced by your values, never sponsored')).slice(0, 200);
   const reason = r ? `<div class="vc-reason"><span class="vc-axis">${attr(r.label)}: <b>${attr(r.band[0])}</b>.</span> ${attr(r.note || '')} <a href="${attr(r.source)}" target="_blank" rel="noopener">source↗${r.asof ? ' ' + attr(r.asof) : ''}</a></div>` : '';
@@ -229,39 +298,39 @@ function cardHTML(p, ds, cid, cd) {
   return `<!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${attr(p.name)}: a values verdict · Conscious Consuming</title>
-<meta name="description" content="${attr(desc)}">
+<title>${attr(titleName)} in ${attr(ds.meta.label)}: a values verdict · Conscious Consuming</title>
+<meta name="description" content="${attr(desc)}">${verdictIsIndexable(p, cd) ? '' : '\n<meta name="robots" content="noindex,follow">'}
 <link rel="canonical" href="${attr(url)}">
 <meta property="og:type" content="article"><meta property="og:site_name" content="Conscious Consuming">
-<meta property="og:title" content="${attr(p.name)}: a values verdict">
+<meta property="og:title" content="${attr(titleName)} in ${attr(ds.meta.label)}: a values verdict">
 <meta property="og:description" content="${attr(desc)}">
 <meta property="og:url" content="${attr(url)}">
 <meta property="og:image" content="${attr(img)}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="${attr(p.name)}: a values verdict">
+<meta name="twitter:title" content="${attr(titleName)} in ${attr(ds.meta.label)}: a values verdict">
 <meta name="twitter:description" content="${attr(desc)}">
 <meta name="twitter:image" content="${attr(img)}">
 ${ld}
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#1d7a5a">
 <link rel="icon" href="${FAVICON}">
-<link rel="stylesheet" href="../../styles.css">
-</head><body><div class="wrap">
-<nav class="nav"><a href="../../index.html" class="wordmark">Conscious Consuming</a><span class="navlinks"><a href="../../index.html#explore/${cid}">Compare ${attr(ds.meta.label)}</a><a href="../index.html">All verdicts</a><a href="../../index.html#guides">Guides</a></span></nav>
+<link rel="stylesheet" href="../../styles.css?v=${STYLE_VERSION}">
+</head><body><a class="skip" href="#main">Skip to content</a><div class="wrap">
+<nav class="nav"><a href="../../" class="wordmark">Conscious Consuming</a><span class="navlinks"><a href="../../#explore/${cid}">Compare ${attr(ds.meta.label)}</a><a href="../">All verdicts</a><a href="../../#guides">Guides</a></span></nav>
 <main id="main">
-<a class="back" href="../../index.html#explore/${cid}">← all ${attr(ds.meta.label)}</a>
+<a class="back" href="../../#explore/${cid}">← all ${attr(ds.meta.label)}</a>
 <div class="vcard">
   <div class="vc-brandbar">Conscious Consuming · sourced, never sponsored</div>
-  <div class="vc-name">${attr(p.name)}</div>${p.brand ? `<div class="vc-brand">${attr(p.brand)}</div>` : ''}
+  <h1 class="vc-name">${attr(p.name)}</h1>${p.brand ? `<div class="vc-brand">${attr(p.brand)}</div>` : ''}
   ${s ? `<div class="vc-score"><span class="vc-num">${s.score}<small>/100</small></span><span class="stier ${t[1]}">${t[0]}</span></div><div class="vc-basis">on a balanced view of all values</div>` : ''}
   ${reason}
   ${provenance}
   <div class="vc-foot">No ads · No tracking · No brand pays us</div>
 </div>
-<div class="vc-actions"><a class="catbtn" href="../../index.html#explore/${cid}">Compare ${attr(ds.meta.label)} by <b>your</b> values →</a><a class="savebtn" href="../../index.html#card/${cid}/${encodeURIComponent(p.code)}">Open in the app →</a></div>
-<p class="vc-hint">An honest, sourced verdict from <a href="../../index.html">Conscious Consuming</a>. Choose by your values, not by who pays.</p>
+<div class="vc-actions"><a class="catbtn" href="../../#explore/${cid}">Compare ${attr(ds.meta.label)} by <b>your</b> values →</a><a class="savebtn" href="../../#card/${cid}/${encodeURIComponent(p.code)}">Open in the app →</a></div>
+<p class="vc-hint">An honest, sourced verdict from <a href="../../">Conscious Consuming</a>. Choose by your values, not by who pays.</p>
 </main>
-<footer>An open, honest guide to consuming by your values: sourced, private, never sponsored.<br><a href="../../index.html">Open the interactive app →</a></footer>
+<footer>An open, honest guide to consuming by your values: sourced, private, never sponsored.<br><a href="../../">Open the interactive app →</a></footer>
 </div></body></html>
 `;
 }
@@ -274,11 +343,15 @@ function galleryHTML(manifest) {
   const groups = Object.values(byCid).sort((a, b) => b.items.length - a.items.length);
   for (const g of groups) g.items.sort((a, b) => (b.score == null ? -1 : b.score) - (a.score == null ? -1 : a.score));
   const total = manifest.length, lensCount = groups.length;
+  // The bar, in public. A page that says "sourced, never sponsored" should say how many of these
+  // rest on more than the seller's own account of itself, and those are exactly the ones offered
+  // to a search engine (see verdictIsIndexable).
+  const offered = manifest.filter(m => m.index).length;
   const nav = groups.map(g => `<a href="#${g.cid}">${attr(g.lens)} <span class="gn-n">${g.items.length}</span></a>`).join('');
   const tile = m => {
     const reason = m.reason ? `<span class="gt-reason">${attr(m.reason.label)}: <b>${attr(m.reason.band)}</b></span>` : '';
     const score = (m.score != null) ? `<span class="stier ${m.tier}">${m.score}</span>` : '';
-    return `<a class="gt" href="${m.cid}/${safe(m.code)}.html"><span class="gt-top"><b class="gt-name">${attr(m.name)}</b>${score}</span>${m.brand ? `<span class="gt-brand">${attr(m.brand)}</span>` : ''}${reason}</a>`;
+    return `<a class="gt" href="${m.cid}/${safe(m.code)}"><span class="gt-top"><b class="gt-name">${attr(m.name)}</b>${score}</span>${m.brand ? `<span class="gt-brand">${attr(m.brand)}</span>` : ''}${reason}</a>`;
   };
   const sections = groups.map(g => `<section class="gsec" id="${g.cid}"><h2 class="gsec-h">${attr(g.lens)} <span class="gsec-n">${g.items.length} verdicts</span></h2><div class="ggrid">${g.items.map(tile).join('')}</div></section>`).join('');
   return `<!DOCTYPE html>
@@ -295,19 +368,20 @@ function galleryHTML(manifest) {
 <meta name="theme-color" content="#1d7a5a">
 <link rel="icon" href="${FAVICON}">
 <script>try{var _t=localStorage.getItem('cc.theme');if(_t==='dark'||_t==='light')document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
-<link rel="stylesheet" href="../styles.css">
-</head><body><div class="wrap">
-<nav class="nav"><a href="../index.html" class="wordmark">Conscious Consuming</a><span class="navlinks"><a href="../index.html#guides">Guides</a><a href="../index.html#home">Open the app</a></span></nav>
+<link rel="stylesheet" href="../styles.css?v=${STYLE_VERSION}">
+</head><body><a class="skip" href="#main">Skip to content</a><div class="wrap">
+<nav class="nav"><a href="../" class="wordmark">Conscious Consuming</a><span class="navlinks"><a href="../#guides">Guides</a><a href="../#home">Open the app</a></span></nav>
 <main id="main">
 <header class="ghead">
   <h1>The wall of verdicts</h1>
   <p class="ghead-sub">Every sourced judgment we've made: <b>${total}</b> verdicts across <b>${lensCount}</b> lenses, each with the single most decisive reason and where it comes from. No ads, no tracking, no brand pays us.</p>
+  <p class="ghead-bar"><b>${offered}</b> of these ${total} rest on more than one independent source and carry a check dated to the month. Those are the ones offered to search engines. The rest are here, readable, and marked as not yet: most of them rest on a single source, and often that source is the maker's own website.</p>
   <nav class="gnav">${nav}</nav>
 </header>
 ${sections}
-<p class="gfoot">Scores here weigh every value equally, for honest sharing. Open the app to rank things <a href="../index.html">by <b>your</b> values →</a></p>
+<p class="gfoot">Scores here weigh every value equally, for honest sharing. Open the app to rank things <a href="../">by <b>your</b> values →</a></p>
 </main>
-<footer>An open, honest guide to consuming by your values: sourced, private, never sponsored.<br><a href="../index.html">Open the interactive app →</a></footer>
+<footer>An open, honest guide to consuming by your values: sourced, private, never sponsored.<br><a href="../">Open the interactive app →</a></footer>
 </div></body></html>
 `;
 }
@@ -321,13 +395,19 @@ for (const f of fs.readdirSync(DATA)) {
   if (!ds.criteria || !ds.products || !hasSourced(ds)) continue; // only lenses with real sourced claims
   const cid = ds.meta.id, dir = path.join(CDIR, cid);
   fs.mkdirSync(dir, { recursive: true });
+  const nameCounts = new Map();
+  for (const product of ds.products) nameCounts.set(product.name, (nameCounts.get(product.name) || 0) + 1);
   for (const p of ds.products) {
     const cd = cardData(p, ds);
-    writeFileSyncRetry(path.join(dir, safe(p.code) + '.html'), cardHTML(p, ds, cid, cd));
+    const titleName = nameCounts.get(p.name) > 1
+      ? `${p.name} (${String(p.code).replace(/[-_]+/g, ' ')})`
+      : p.name;
+    writeFileSyncRetry(path.join(dir, safe(p.code) + '.html'), cardHTML(p, ds, cid, cd, titleName));
     manifest.push({
       cid, code: safe(p.code), name: p.name, brand: p.brand || '', lens: ds.meta.label,
       score: cd.s ? cd.s.score : null, tier: cd.t ? cd.t[1] : '', tierLabel: cd.t ? cd.t[0] : '',
-      reason: cd.r ? { label: cd.r.label, band: cd.r.band[0], note: cd.r.note || '', asof: cd.r.asof || '' } : null
+      reason: cd.r ? { label: cd.r.label, band: cd.r.band[0], note: cd.r.note || '', asof: cd.r.asof || '' } : null,
+      index: verdictIsIndexable(p, cd)
     });
     cards++;
   }

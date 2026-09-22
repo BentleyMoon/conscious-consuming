@@ -1,0 +1,497 @@
+{
+  "meta": {
+    "id": "trade-unions",
+    "label": "Trade unions",
+    "type": "Organizations",
+    "primaryAxis": "scale",
+    "tradeoff": [
+      "economical",
+      "scale"
+    ],
+    "tradeoffLabels": [
+      "cheapest national dues",
+      "largest, most resourced union"
+    ],
+    "source": "Conscious Consuming (curated)",
+    "attribution": "Membership, dues and political spending figures are read from each union's most recent Form LM-2 Labor Organization Annual Report, filed with the US Department of Labor's Office of Labor-Management Standards (OLMS) and published in its Online Public Disclosure Room. Most workers cannot choose a union freely: which union represents a workplace is set by sector, employer, and often a National Labor Relations Board certification, not by personal preference. This is closer to a directory of the largest national unions than a ranking. Figures describe the national body only; state, local and workplace-level dues are usually additional and are not included here. Coverage is the twelve US national unions with the largest reported membership among those checked, plus the option of working without a union. Suggest changes via Contribute.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": {
+          "scale": 3,
+          "economical": 3,
+          "political_lobbying": 2
+        },
+        "x": []
+      },
+      "Cheapest dues": {
+        "w": {
+          "economical": 5,
+          "scale": 2,
+          "political_lobbying": 1
+        },
+        "x": []
+      },
+      "Largest union": {
+        "w": {
+          "scale": 5,
+          "economical": 2,
+          "political_lobbying": 1
+        },
+        "x": []
+      },
+      "Least political spending": {
+        "w": {
+          "political_lobbying": 5,
+          "economical": 2,
+          "scale": 2
+        },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    {
+      "key": "economical",
+      "label": "Affordable national dues",
+      "source": "curated"
+    },
+    {
+      "key": "scale",
+      "label": "Size and reach",
+      "source": "curated"
+    },
+    {
+      "key": "political_lobbying",
+      "label": "Low political and lobbying spending per member",
+      "source": "curated"
+    }
+  ],
+  "products": [
+    {
+      "code": "nea",
+      "name": "National Education Association (NEA)",
+      "brand": "teachers and education support staff",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "The largest US union by reported membership, representing teachers, higher education staff and education support professionals.",
+      "scores": {
+        "economical": 58,
+        "scale": 98,
+        "political_lobbying": 63
+      },
+      "provenance": {
+        "economical": {
+          "note": "NEA's own site states that national dues for aspiring educator (student) members are $15 a year. NEA's LM-2 lists a regular per-capita rate of $213 with a reduced rate of $15 on the same line, which supports reading $213 as an annual rate too, about $17.75 a month.",
+          "source": "https://www.nea.org/resource-library/aspiring-educators-membership-faq",
+          "asof": "2026"
+        },
+        "scale": {
+          "note": "NEA's Form LM-2 for the year ending August 31, 2025 reports 2,846,104 total members and fee payers at the national headquarters, filed with the Department of Labor's OLMS.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=925350&rptForm=LM2Form",
+          "asof": "2025"
+        },
+        "political_lobbying": {
+          "note": "The same LM-2 reports $51,747,025 disbursed for political activities and lobbying in the year, about $18 per member.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=925350&rptForm=LM2Form",
+          "asof": "2025"
+        }
+      },
+      "links": [
+        { "label": "LM-2 filing (DOL OLMS)", "url": "https://olmsapps.dol.gov/query/orgReport.do?rptId=925350&rptForm=LM2Form" },
+        { "label": "Website", "url": "https://www.nea.org/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Education", "Public sector"]
+    },
+    {
+      "code": "seiu",
+      "name": "Service Employees International Union (SEIU)",
+      "brand": "healthcare, property services and public sector",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Represents healthcare workers, janitors and security officers, and public employees across the US and Canada.",
+      "scores": {
+        "scale": 87,
+        "political_lobbying": 38
+      },
+      "provenance": {
+        "scale": {
+          "note": "SEIU's Form LM-2 for the year ending December 31, 2024 reports 1,953,646 total members and fee payers at the national headquarters.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=911935&rptForm=LM2Form",
+          "asof": "2024"
+        },
+        "political_lobbying": {
+          "note": "The same LM-2 reports $53,226,177 disbursed for political activities and lobbying in the year, about $27 per member, the highest per-member figure among unions with a stated dues rate in this file.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=911935&rptForm=LM2Form",
+          "asof": "2024"
+        }
+      },
+      "links": [
+        { "label": "LM-2 filing (DOL OLMS)", "url": "https://olmsapps.dol.gov/query/orgReport.do?rptId=911935&rptForm=LM2Form" },
+        { "label": "Website", "url": "https://www.seiu.org/" }
+      ],
+      "region": ["US", "Canada"],
+      "focuses": ["Healthcare", "Public sector", "Property services"]
+    },
+    {
+      "code": "aft",
+      "name": "American Federation of Teachers (AFT)",
+      "brand": "teachers, higher education and healthcare",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Represents teachers, higher education faculty and staff, public employees and healthcare workers.",
+      "scores": {
+        "economical": 52,
+        "scale": 85,
+        "political_lobbying": 50
+      },
+      "provenance": {
+        "economical": {
+          "note": "AFT's Form LM-2 for the year ending June 30, 2025 lists a regular per-capita rate of $20.18 a month, with a range of $1 to $20.18 on the same line.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=924116&rptForm=LM2Form",
+          "asof": "2025"
+        },
+        "scale": {
+          "note": "The same LM-2 reports 1,830,839 total members and fee payers at the national headquarters, designated AFT AFL-CIO.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=924116&rptForm=LM2Form",
+          "asof": "2025"
+        },
+        "political_lobbying": {
+          "note": "The same LM-2 reports $41,508,805 disbursed for political activities and lobbying in the year, about $23 per member.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=924116&rptForm=LM2Form",
+          "asof": "2025"
+        }
+      },
+      "links": [
+        { "label": "LM-2 filing (DOL OLMS)", "url": "https://olmsapps.dol.gov/query/orgReport.do?rptId=924116&rptForm=LM2Form" },
+        { "label": "Website", "url": "https://www.aft.org/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Education", "Healthcare", "Public sector"]
+    },
+    {
+      "code": "afscme",
+      "name": "American Federation of State, County and Municipal Employees (AFSCME)",
+      "brand": "state and local government employees",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Represents public sector workers employed by state and local government, including many care and clerical jobs.",
+      "scores": {
+        "economical": 45,
+        "scale": 75,
+        "political_lobbying": 44
+      },
+      "provenance": {
+        "economical": {
+          "note": "AFSCME's Form LM-2 for the year ending December 31, 2025 lists national per-capita dues of 2% of pay a month, with a stated minimum of $22.90 a month.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=936353&rptForm=LM2Form",
+          "asof": "2025"
+        },
+        "scale": {
+          "note": "The same LM-2 reports 1,337,485 total members and fee payers at the national headquarters, designated State County and Muni Employees AFL-CIO.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=936353&rptForm=LM2Form",
+          "asof": "2025"
+        },
+        "political_lobbying": {
+          "note": "The same LM-2 reports $33,061,730 disbursed for political activities and lobbying in the year, about $25 per member.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=936353&rptForm=LM2Form",
+          "asof": "2025"
+        }
+      },
+      "links": [
+        { "label": "LM-2 filing (DOL OLMS)", "url": "https://olmsapps.dol.gov/query/orgReport.do?rptId=936353&rptForm=LM2Form" },
+        { "label": "Website", "url": "https://www.afscme.org/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Public sector", "Care work"]
+    },
+    {
+      "code": "teamsters",
+      "name": "International Brotherhood of Teamsters (IBT)",
+      "brand": "freight, delivery and warehouse",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Represents drivers, warehouse and freight workers and a wide range of other trades across the US and Canada.",
+      "scores": {
+        "scale": 74,
+        "political_lobbying": 95
+      },
+      "provenance": {
+        "scale": {
+          "note": "The Teamsters' Form LM-2 for the year ending December 31, 2024 reports 1,269,963 total members and fee payers at the national headquarters.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=911199&rptForm=LM2Form",
+          "asof": "2024"
+        },
+        "political_lobbying": {
+          "note": "The same LM-2 lists 'NONE' on the regular dues and fees line, meaning locals set their own dues rather than the international. It reports $8,589,138 disbursed for political activities and lobbying in the year, about $7 per member, the lowest per-member figure in this file.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=911199&rptForm=LM2Form",
+          "asof": "2024"
+        }
+      },
+      "links": [
+        { "label": "LM-2 filing (DOL OLMS)", "url": "https://olmsapps.dol.gov/query/orgReport.do?rptId=911199&rptForm=LM2Form" },
+        { "label": "Website", "url": "https://teamster.org/" }
+      ],
+      "region": ["US", "Canada"],
+      "focuses": ["Transport", "Warehouse", "Delivery"]
+    },
+    {
+      "code": "ibew",
+      "name": "International Brotherhood of Electrical Workers (IBEW)",
+      "brand": "electrical trades and utilities",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Represents electricians, linemen and utility, telecommunications and broadcast workers.",
+      "scores": {
+        "scale": 57,
+        "political_lobbying": 79
+      },
+      "provenance": {
+        "scale": {
+          "note": "IBEW's Form LM-2 for the year ending June 30, 2024 reports 718,949 total members and fee payers at the national headquarters, designated Electrical Workers IBEW AFL-CIO.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=898773&rptForm=LM2Form",
+          "asof": "2024"
+        },
+        "political_lobbying": {
+          "note": "The same LM-2 lists 'NONE' on the regular dues and fees line, so the national body does not set a single member dues figure. It reports $9,553,296 disbursed for political activities and lobbying in the year, about $13 per member.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=898773&rptForm=LM2Form",
+          "asof": "2024"
+        }
+      },
+      "links": [
+        { "label": "LM-2 filing (DOL OLMS)", "url": "https://olmsapps.dol.gov/query/orgReport.do?rptId=898773&rptForm=LM2Form" },
+        { "label": "Website", "url": "https://ibew.org/" }
+      ],
+      "region": ["US", "Canada"],
+      "focuses": ["Electrical trades", "Utilities"]
+    },
+    {
+      "code": "liuna",
+      "name": "Laborers' International Union of North America (LIUNA)",
+      "brand": "construction laborers",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Represents construction laborers and related trades across the US and Canada.",
+      "scores": {
+        "economical": 68,
+        "scale": 51,
+        "political_lobbying": 36
+      },
+      "provenance": {
+        "economical": {
+          "note": "LIUNA's Form LM-2 for the year ending December 31, 2024 lists regular dues and fees as varying, with a stated minimum of $5 and a maximum of $21.50 a month.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=911451&rptForm=LM2Form",
+          "asof": "2024"
+        },
+        "scale": {
+          "note": "The same LM-2 reports 589,385 total members and fee payers at the national headquarters, designated Laborers AFL-CIO.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=911451&rptForm=LM2Form",
+          "asof": "2024"
+        },
+        "political_lobbying": {
+          "note": "The same LM-2 reports $16,653,046 disbursed for political activities and lobbying in the year, about $28 per member.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=911451&rptForm=LM2Form",
+          "asof": "2024"
+        }
+      },
+      "links": [
+        { "label": "LM-2 filing (DOL OLMS)", "url": "https://olmsapps.dol.gov/query/orgReport.do?rptId=911451&rptForm=LM2Form" },
+        { "label": "Website", "url": "https://www.liuna.org/" }
+      ],
+      "region": ["US", "Canada"],
+      "focuses": ["Construction"]
+    },
+    {
+      "code": "cwa",
+      "name": "Communications Workers of America (CWA)",
+      "brand": "telecom, media and public sector",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Represents telecommunications, news media, broadcasting, tech and public sector workers.",
+      "scores": {
+        "scale": 54,
+        "political_lobbying": 34
+      },
+      "provenance": {
+        "scale": {
+          "note": "CWA's Form LM-2 for the year ending May 31, 2023 reports 666,662 total members and fee payers at the national headquarters, designated Communications Workers AFL-CIO.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=871864&rptForm=LM2Form",
+          "asof": "2023"
+        },
+        "political_lobbying": {
+          "note": "The same LM-2 defers its dues formula to a footnote (Item 69) rather than a flat figure, and that footnote describes CWA's benefit trusts and political funds without giving a dues rate. It reports $19,392,225 disbursed for political activities and lobbying in the year, about $29 per member.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=871864&rptForm=LM2Form",
+          "asof": "2023"
+        }
+      },
+      "links": [
+        { "label": "LM-2 filing (DOL OLMS)", "url": "https://olmsapps.dol.gov/query/orgReport.do?rptId=871864&rptForm=LM2Form" },
+        { "label": "Website", "url": "https://cwa-union.org/" }
+      ],
+      "region": ["US", "Canada"],
+      "focuses": ["Telecommunications", "Media", "Public sector"]
+    },
+    {
+      "code": "usw",
+      "name": "United Steelworkers (USW)",
+      "brand": "steel, metals and manufacturing",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Represents steel, metals, paper, rubber, mining and other manufacturing workers across the US and Canada.",
+      "scores": {
+        "economical": 90,
+        "scale": 48,
+        "political_lobbying": 65
+      },
+      "provenance": {
+        "economical": {
+          "note": "USW's Form LM-2 for the year ending December 31, 2022 lists national per-capita dues of 1.45% of pay a month, with a stated minimum of $5 and a cap of 2.8 times average hourly earnings.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=863525&rptForm=LM2Form",
+          "asof": "2022"
+        },
+        "scale": {
+          "note": "The same LM-2 reports 532,535 total members and fee payers at the national headquarters, designated Steelworkers AFL-CIO.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=863525&rptForm=LM2Form",
+          "asof": "2022"
+        },
+        "political_lobbying": {
+          "note": "The same LM-2 reports $9,340,887 disbursed for political activities and lobbying in the year, about $18 per member.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=863525&rptForm=LM2Form",
+          "asof": "2022"
+        }
+      },
+      "links": [
+        { "label": "LM-2 filing (DOL OLMS)", "url": "https://olmsapps.dol.gov/query/orgReport.do?rptId=863525&rptForm=LM2Form" },
+        { "label": "Website", "url": "https://www.usw.org/" }
+      ],
+      "region": ["US", "Canada"],
+      "focuses": ["Manufacturing", "Mining"]
+    },
+    {
+      "code": "uaw",
+      "name": "United Auto Workers (UAW)",
+      "brand": "auto manufacturing and higher education",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Represents auto and manufacturing workers, and a growing number of graduate workers and academic staff.",
+      "scores": {
+        "scale": 37,
+        "political_lobbying": 8
+      },
+      "provenance": {
+        "scale": {
+          "note": "UAW's Form LM-2 for the year ending December 31, 2024 reports 375,979 total members and fee payers at the national headquarters, designated Auto Workers AFL-CIO.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=914254&rptForm=LM2Form",
+          "asof": "2024"
+        },
+        "political_lobbying": {
+          "note": "The same LM-2 leaves the regular dues and fees line blank (n/a), so the national body does not disclose a single member rate here. It reports $21,827,006 disbursed for political activities and lobbying in the year, about $58 per member, the highest per-member figure in this file.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=914254&rptForm=LM2Form",
+          "asof": "2024"
+        }
+      },
+      "links": [
+        { "label": "LM-2 filing (DOL OLMS)", "url": "https://olmsapps.dol.gov/query/orgReport.do?rptId=914254&rptForm=LM2Form" },
+        { "label": "Website", "url": "https://uaw.org/" }
+      ],
+      "region": ["US", "Canada"],
+      "focuses": ["Manufacturing", "Higher education"]
+    },
+    {
+      "code": "nnu",
+      "name": "National Nurses United (NNU)",
+      "brand": "registered nurses",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Represents registered nurses, formed from the merger of state nurses' unions.",
+      "scores": {
+        "economical": 82,
+        "scale": 20,
+        "political_lobbying": 82
+      },
+      "provenance": {
+        "economical": {
+          "note": "NNU's Form LM-2 for the year ending June 30, 2024 lists a flat regular dues rate of $7.83 a month.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=898804&rptForm=LM2Form",
+          "asof": "2024"
+        },
+        "scale": {
+          "note": "The same LM-2 reports 215,151 total members and fee payers at the national headquarters, the smallest membership among the unions in this file.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=898804&rptForm=LM2Form",
+          "asof": "2024"
+        },
+        "political_lobbying": {
+          "note": "The same LM-2 reports $2,692,611 disbursed for political activities and lobbying in the year, about $13 per member.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=898804&rptForm=LM2Form",
+          "asof": "2024"
+        }
+      },
+      "links": [
+        { "label": "LM-2 filing (DOL OLMS)", "url": "https://olmsapps.dol.gov/query/orgReport.do?rptId=898804&rptForm=LM2Form" },
+        { "label": "Website", "url": "https://www.nationalnursesunited.org/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Healthcare", "Nursing"]
+    },
+    {
+      "code": "nalc",
+      "name": "National Association of Letter Carriers (NALC)",
+      "brand": "city letter carriers (USPS)",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Represents city letter carriers employed by the US Postal Service.",
+      "scores": {
+        "economical": 47,
+        "scale": 30,
+        "political_lobbying": 81
+      },
+      "provenance": {
+        "economical": {
+          "note": "NALC's Form LM-2 for the year ending March 31, 2025 lists regular dues and fees of $10.31 per biweekly pay period, about $22.34 a month.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=919270&rptForm=LM2Form",
+          "asof": "2025"
+        },
+        "scale": {
+          "note": "The same LM-2 reports 293,980 total members and fee payers at the national headquarters, designated Letter Carriers, Natl Asn, AFL-CIO.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=919270&rptForm=LM2Form",
+          "asof": "2025"
+        },
+        "political_lobbying": {
+          "note": "The same LM-2 reports $3,785,493 disbursed for political activities and lobbying in the year, about $13 per member.",
+          "source": "https://olmsapps.dol.gov/query/orgReport.do?rptId=919270&rptForm=LM2Form",
+          "asof": "2025"
+        }
+      },
+      "links": [
+        { "label": "LM-2 filing (DOL OLMS)", "url": "https://olmsapps.dol.gov/query/orgReport.do?rptId=919270&rptForm=LM2Form" },
+        { "label": "Website", "url": "https://www.nalc.org/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Postal service", "Public sector"]
+    },
+    {
+      "code": "no-union",
+      "name": "Working without a union",
+      "brand": "no dues, no certified bargaining unit",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Not joining or forming a union. Workers keep the right to act together over pay and conditions, but without a certified representative or a contract, and with no dues.",
+      "scores": {
+        "economical": 100
+      },
+      "provenance": {
+        "economical": {
+          "note": "The National Labor Relations Board's rights page states that employees covered by the NLRA have the right to join together to improve wages and working conditions, with or without a union, and describes the right to engage in concerted activity for mutual aid and protection. No union means no dues and no certified representative to negotiate a contract.",
+          "source": "https://www.nlrb.gov/about-nlrb/rights-we-protect/your-rights",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "NLRB: Your rights", "url": "https://www.nlrb.gov/about-nlrb/rights-we-protect/your-rights" }
+      ],
+      "region": ["US"],
+      "focuses": ["No dues", "No certified representation"]
+    }
+  ]
+}

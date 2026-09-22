@@ -1,0 +1,95 @@
+{
+  "$schema": "../schemas/work-capsule.schema.json",
+  "kind": "cc-work-capsule",
+  "version": "1.0.0",
+  "id": "phase3-guide-citation-depth",
+  "variant": "published-zero-citation-repair-v1",
+  "state": "COMPLETE",
+  "workMode": "guide-publishability",
+  "priority": "P1",
+  "decision": "Do CC's published decision guides expose primary evidence for factual, regulatory, privacy, and interoperability claims?",
+  "liveConsumer": "Readers of the smart-thermostats, broadband-internet, and mobile-carriers guides, including their generated static guide pages.",
+  "model": {
+    "id": "gpt-5.6-sol",
+    "reasoningEffort": "medium"
+  },
+  "writeAuthorized": true,
+  "scope": {
+    "ownedPaths": [
+      "content/guides/smart-thermostats.md",
+      "content/guides/broadband-internet.md",
+      "content/guides/mobile-carriers.md",
+      "research/guide_citation_audit.js",
+      "content/operations/reviews/phase3-guide-citation-baseline-2026-07-15.md",
+      "content/operations/results/phase3-guide-citation-depth.md"
+    ],
+    "forbiddenPaths": [
+      "app/app.js",
+      "app/styles.css",
+      "app/index.html",
+      "content/guides/how-scores-work.md",
+      "content/guides/ethical-banking.md",
+      "content/guides/vote-with-your-money.md"
+    ],
+    "requiresIsolatedWorktree": true
+  },
+  "gates": [
+    {
+      "id": "phase3-founder-authorization",
+      "status": "satisfied",
+      "evidence": "The founder directed Codex to begin Phase 3 on 2026-07-15."
+    },
+    {
+      "id": "measured-reader-gap",
+      "status": "satisfied",
+      "evidence": "A read-only scan found exactly three non-method published guides with zero external citations: smart-thermostats, broadband-internet, and mobile-carriers."
+    }
+  ],
+  "sourceRequirements": [
+    "Current primary regulator, government-program, standards-owner, and first-party policy pages.",
+    "Direct support for energy-certification, broadband-label, location-data enforcement, CPNI, privacy-choice, coverage, and interoperability claims.",
+    "No source-count claim that substitutes citation quantity for evidence quality or editorial independence."
+  ],
+  "preconditions": [
+    {
+      "id": "broad-freshness-queue-exhausted",
+      "status": "satisfied",
+      "evidence": "Freshness and readiness audits found 24 of 25 curated categories presentation-ready; the only stale category is design-owned banking."
+    },
+    {
+      "id": "clean-authoring-scope",
+      "status": "satisfied",
+      "evidence": "All three guide source files and the new audit path are clean. Generated static pages are deterministic pipeline outputs with inherited line-ending-only status noise and are not hand-edited."
+    }
+  ],
+  "doneWhen": [
+    "Each of the three guides links directly to current primary evidence for its highest-consequence claims and shopping checks.",
+    "Every published non-method guide has at least one external citation under an executable audit.",
+    "The guide builder regenerates the three live static pages from source.",
+    "Guide voice, content readiness, and the repository verifier retain their pre-existing verdicts without a new Phase 3 regression.",
+    "A result card records evidence, limitations, and any inherited release blockers."
+  ],
+  "stopConditions": [
+    "A source is merely a search result, affiliate review, unsourced ranking, or inaccessible citation target.",
+    "A citation would imply that certification, interoperability, or a privacy policy independently proves the product is safe or ethical.",
+    "The work would require editing design-owned methodology or banking guides.",
+    "A full dataset rebuild would apply the still-unintegrated Phase 2 provenance contract through inherited-dirty verification code."
+  ],
+  "expectedArtifacts": [
+    "Three citation-deepened published guide sources and their generated static pages.",
+    "A reusable published-guide citation audit.",
+    "A frozen baseline and Phase 3 result card."
+  ],
+  "verificationCommands": [
+    "node research/guide_citation_audit.js",
+    "python pipeline/build_guides.py",
+    "node research/guide_voice_audit.js",
+    "node research/content_readiness_audit.js",
+    "node research/verify_run.js",
+    "node scripts/content-runtime.mjs validate"
+  ],
+  "claimBoundary": {
+    "supports": "The three previously uncited published guides now expose current primary evidence, and future uncited published guides are detected.",
+    "doesNotSupport": "That link count proves accuracy, source independence, product quality, or complete geographic applicability."
+  }
+}

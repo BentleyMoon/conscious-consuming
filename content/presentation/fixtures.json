@@ -1,0 +1,574 @@
+{
+  "format": "open-values-presentation-fixtures",
+  "version": "1.0.0",
+  "updated": "2026-07-20",
+  "states": ["rich", "thin", "not-yet-covered"],
+  "fixtureSets": [
+    {
+      "pageKind": "entry",
+      "cases": [
+        {
+          "id": "entry-rich-local-open-ai",
+          "state": "rich",
+          "title": "Local and open AI models",
+          "route": "#item/ai-assistants/local-open",
+          "sourceRefs": [
+            {"path": "app/data/ai-assistants.json", "collection": "products", "match": {"field": "code", "equals": "local-open"}}
+          ],
+          "expected": {
+            "coverage": "Sources cover this answer",
+            "action": "Save this choice",
+            "path": ["Money & privacy", "Digital life", "AI assistants", "Local and open AI models"],
+            "mustShow": ["Local / open models (Ollama, llama.cpp)", "Privacy", "Sources"],
+            "mustNotClaim": ["Best for everyone"]
+          },
+          "requirements": ["R-IA-03", "R-TRUTH-02", "R-COMP-04"]
+        },
+        {
+          "id": "entry-thin-triodos",
+          "state": "thin",
+          "title": "Triodos Bank",
+          "route": "#item/banking/triodos",
+          "sourceRefs": [
+            {"path": "content/lenses/banking.json", "collection": "products", "match": {"field": "code", "equals": "triodos"}}
+          ],
+          "expected": {
+            "coverage": "Some evidence is missing",
+            "action": "Save this choice",
+            "path": ["Money & privacy", "Money", "Everyday money", "Banking", "Triodos Bank"],
+            "mustShow": ["Fees: source not supplied", "Easy to use: source not supplied", "Show every choice"],
+            "mustNotClaim": ["All five facts are sourced"]
+          },
+          "requirements": ["R-WORD-06", "R-TRUTH-03", "R-VAL-08"]
+        },
+        {
+          "id": "entry-gap-furniture",
+          "state": "not-yet-covered",
+          "title": "Furniture entry",
+          "route": "#not-yet-covered/furniture",
+          "sourceRefs": [
+            {"path": "content/ontology.json", "contains": "\"label\": \"Furniture\""}
+          ],
+          "expected": {
+            "coverage": "Not yet covered",
+            "action": "Suggest sources",
+            "path": ["Home", "Home setup", "Furniture"],
+            "mustShow": ["Furniture", "We do not have a comparison yet", "Suggest sources"],
+            "mustNotClaim": ["Furniture entries are available"]
+          },
+          "requirements": ["R-IA-10", "R-TRUTH-01", "R-TRUTH-08"]
+        }
+      ]
+    },
+    {
+      "pageKind": "category",
+      "cases": [
+        {
+          "id": "category-rich-banking",
+          "state": "rich",
+          "title": "Pick a bank",
+          "route": "#decide/banking",
+          "sourceRefs": [
+            {"path": "app/data/banking.json", "collection": "products", "match": {"field": "code", "equals": "triodos"}},
+            {"path": "content/decisions.json", "collection": "contracts", "match": {"field": "category", "equals": "banking"}}
+          ],
+          "expected": {
+            "coverage": "Sources cover this answer",
+            "action": "Save this list",
+            "path": ["Money & privacy", "Money", "Everyday money", "Banking"],
+            "mustShow": ["Pick a bank", "Lower fees", "Less fossil financing"],
+            "mustNotClaim": ["Triodos is the best bank"]
+          },
+          "requirements": ["R-VAL-04", "R-VAL-07", "R-TRUTH-07"]
+        },
+        {
+          "id": "category-thin-ai-price",
+          "state": "thin",
+          "title": "AI assistants without comparable prices",
+          "route": "#decide/ai-assistants",
+          "sourceRefs": [
+            {"path": "content/decisions.json", "collection": "contracts", "match": {"field": "category", "equals": "ai-assistants"}}
+          ],
+          "expected": {
+            "coverage": "Some evidence is missing",
+            "action": "Save this list",
+            "path": ["Money & privacy", "Digital life", "AI assistants"],
+            "mustShow": ["AI assistants", "Comparable prices are not available here", "Price did not affect this answer"],
+            "mustNotClaim": ["Cheapest AI assistant"]
+          },
+          "requirements": ["R-SAFE-08", "R-TRUTH-03", "R-WORD-06"]
+        },
+        {
+          "id": "category-gap-furniture",
+          "state": "not-yet-covered",
+          "title": "Furniture",
+          "route": "#not-yet-covered/furniture",
+          "sourceRefs": [
+            {"path": "content/ontology.json", "contains": "\"label\": \"Furniture\""}
+          ],
+          "expected": {
+            "coverage": "Not yet covered",
+            "action": "Suggest sources",
+            "path": ["Home", "Home setup", "Furniture"],
+            "mustShow": ["Furniture", "Mapped under Keep a home", "We do not have a comparison yet"],
+            "mustNotClaim": ["0 furniture products"]
+          },
+          "requirements": ["R-IA-04", "R-IA-10", "R-TRUTH-06"]
+        }
+      ]
+    },
+    {
+      "pageKind": "value",
+      "cases": [
+        {
+          "id": "value-rich-organic",
+          "state": "rich",
+          "title": "Organic",
+          "route": "#value/organic",
+          "sourceRefs": [
+            {"path": "content/value-editorial.json", "collection": "entries", "key": "organic"}
+          ],
+          "expected": {
+            "coverage": "Sources cover this answer",
+            "action": "Decide with this value",
+            "path": ["Values", "Organic"],
+            "mustShow": ["Organic", "What it requires", "Where it stops"],
+            "mustNotClaim": ["Organic proves a product is healthy"]
+          },
+          "requirements": ["R-TRUTH-02", "R-TRUTH-04", "R-IA-07"]
+        },
+        {
+          "id": "value-thin-labor",
+          "state": "thin",
+          "title": "Labor",
+          "route": "#value/labor",
+          "sourceRefs": [
+            {"path": "content/lenses/clothing.json", "collection": "criteria", "match": {"field": "key", "equals": "labor"}}
+          ],
+          "expected": {
+            "coverage": "Some evidence is missing",
+            "action": "Decide with this value",
+            "path": ["Values", "Labor"],
+            "mustShow": ["Labor", "Used in clothing", "No sourced explanation is published yet"],
+            "mustNotClaim": ["Labor requirements are certified"]
+          },
+          "requirements": ["R-WORD-06", "R-TRUTH-04", "R-COMP-04"]
+        },
+        {
+          "id": "value-gap-oeko-tex",
+          "state": "not-yet-covered",
+          "title": "OEKO-TEX",
+          "route": "#value/oeko-tex",
+          "sourceRefs": [
+            {"path": "content/tags.json", "collection": "tags", "match": {"field": "id", "equals": "ovs:tag/oeko-tex"}}
+          ],
+          "expected": {
+            "coverage": "Not yet covered",
+            "action": "Suggest sources",
+            "path": ["Values", "OEKO-TEX"],
+            "mustShow": ["OEKO-TEX", "Canonical label", "No sourced explanation is published yet"],
+            "mustNotClaim": ["The neighboring value definition applies"]
+          },
+          "requirements": ["R-TRUTH-01", "R-TRUTH-03", "R-IA-10"]
+        }
+      ]
+    },
+    {
+      "pageKind": "source",
+      "cases": [
+        {
+          "id": "source-rich-ran-2026",
+          "state": "rich",
+          "title": "Banking on Climate Chaos 2026",
+          "route": "#source/ran-banking-on-climate-chaos-2026",
+          "sourceRefs": [
+            {"path": "content/presentation/sources.json", "collection": "records", "match": {"field": "id", "equals": "ran-banking-on-climate-chaos-2026"}},
+            {"path": "content/lenses/banking.json", "collection": "products", "match": {"field": "code", "equals": "chase"}}
+          ],
+          "expected": {
+            "coverage": "Sources cover this answer",
+            "action": "Open original source",
+            "path": ["Sources", "Rainforest Action Network", "Banking on Climate Chaos 2026"],
+            "mustShow": ["Rainforest Action Network", "2026", "JPMorgan Chase"],
+            "mustNotClaim": ["The report supports unrelated banking facts"]
+          },
+          "requirements": ["R-IA-06", "R-TRUTH-02", "R-COMP-03"]
+        },
+        {
+          "id": "source-thin-triodos-treaty",
+          "state": "thin",
+          "title": "Fossil-fuel treaty endorsement",
+          "route": "#source/triodos-fossil-fuel-treaty-2024",
+          "sourceRefs": [
+            {"path": "content/presentation/sources.json", "collection": "records", "match": {"field": "id", "equals": "triodos-fossil-fuel-treaty-2024"}},
+            {"path": "content/lenses/banking.json", "collection": "products", "match": {"field": "code", "equals": "triodos"}}
+          ],
+          "expected": {
+            "coverage": "Some evidence is missing",
+            "action": "Open original source",
+            "path": ["Sources", "Fossil Fuel Non-Proliferation Treaty Initiative", "Fossil-fuel treaty endorsement"],
+            "mustShow": ["Fossil Fuel Non-Proliferation Treaty Initiative", "2024", "Method or scope is not recorded"],
+            "mustNotClaim": ["A method was supplied"]
+          },
+          "requirements": ["R-WORD-06", "R-TRUTH-03", "R-COMP-04"]
+        },
+        {
+          "id": "source-gap-triodos-fees",
+          "state": "not-yet-covered",
+          "title": "Triodos fee note without a source",
+          "route": "#item/banking/triodos#fees",
+          "sourceRefs": [
+            {"path": "content/lenses/banking.json", "collection": "products", "match": {"field": "code", "equals": "triodos"}}
+          ],
+          "expected": {
+            "coverage": "Not yet covered",
+            "action": "Suggest a source",
+            "path": ["Banking", "Triodos Bank", "Fees"],
+            "mustShow": ["Source not supplied", "Fees", "Suggest a source"],
+            "mustNotClaim": ["A source page exists"]
+          },
+          "requirements": ["R-TRUTH-03", "R-TRUTH-05", "R-ACT-06"]
+        }
+      ]
+    },
+    {
+      "pageKind": "company-brand",
+      "cases": [
+        {
+          "id": "company-rich-nestle",
+          "state": "rich",
+          "title": "Nestlé",
+          "route": "#company/nestle",
+          "sourceRefs": [
+            {"path": "app/data/nodes/companies.json", "collection": "nodes", "match": {"field": "id", "equals": "ovs:company/nestle"}}
+          ],
+          "expected": {
+            "coverage": "Sources cover this answer",
+            "action": "Add a rule",
+            "path": ["Companies", "Nestlé"],
+            "mustShow": ["21 known brand names", "11 appear in current comparisons", "Ownership source reviewed 2026-07-07"],
+            "mustNotClaim": ["21 products"]
+          },
+          "requirements": ["R-ACT-07", "R-TRUTH-06", "R-COMP-04"]
+        },
+        {
+          "id": "company-thin-jpmorgan",
+          "state": "thin",
+          "title": "JPMorgan Chase",
+          "route": "#company/jpmorgan-chase",
+          "sourceRefs": [
+            {"path": "app/data/nodes/companies.json", "collection": "nodes", "match": {"field": "id", "equals": "ovs:company/jpmorgan-chase"}}
+          ],
+          "expected": {
+            "coverage": "Some evidence is missing",
+            "action": "Add a rule",
+            "path": ["Companies", "JPMorgan Chase"],
+            "mustShow": ["8 known brand names", "None is in the current comparisons yet", "Ownership source reviewed 2026-07-07"],
+            "mustNotClaim": ["No brands exist"]
+          },
+          "requirements": ["R-WORD-06", "R-TRUTH-06", "R-ACT-07"]
+        },
+        {
+          "id": "brand-gap-carrefour-owner",
+          "state": "not-yet-covered",
+          "title": "Carrefour ownership",
+          "route": "#brand/carrefour",
+          "sourceRefs": [
+            {"path": "app/data/nodes/brands.json", "collection": "nodes", "match": {"field": "id", "equals": "ovs:brand/carrefour"}}
+          ],
+          "expected": {
+            "coverage": "Not yet covered",
+            "action": "Suggest an ownership correction",
+            "path": ["Brands", "Carrefour"],
+            "mustShow": ["Carrefour", "Ownership has not been established", "Current comparison categories"],
+            "mustNotClaim": ["Carrefour is independent"]
+          },
+          "requirements": ["R-TRUTH-03", "R-ACT-07", "R-IA-07"]
+        }
+      ]
+    },
+    {
+      "pageKind": "guide",
+      "cases": [
+        {
+          "id": "guide-rich-ethical-banking",
+          "state": "rich",
+          "title": "Banking: fees, access, and fossil financing",
+          "route": "#guide/ethical-banking",
+          "sourceRefs": [
+            {"path": "content/guides/ethical-banking.md", "contains": "title: Banking: fees, access, and fossil financing"}
+          ],
+          "expected": {
+            "coverage": "Sources cover this answer",
+            "action": "Open the decision",
+            "path": ["Guides", "Money", "Banking: fees, access, and fossil financing"],
+            "mustShow": ["The short answer", "Marketing traps", "A reasonable default"],
+            "mustNotClaim": ["Personal financial advice"]
+          },
+          "requirements": ["R-IA-06", "R-TRUTH-02", "R-SAFE-05"]
+        },
+        {
+          "id": "guide-thin-broadband",
+          "state": "thin",
+          "title": "Home internet: price, privacy, and local options",
+          "route": "#guide/broadband-internet",
+          "sourceRefs": [
+            {"path": "content/guides/broadband-internet.md", "contains": "title: Home internet: price, privacy, and local options"}
+          ],
+          "expected": {
+            "coverage": "Some evidence is missing",
+            "action": "Open the decision",
+            "path": ["Guides", "Technology", "Home internet: price, privacy, and local options"],
+            "mustShow": ["Useful guide text", "Citation links are incomplete", "Open broadband and internet"],
+            "mustNotClaim": ["Every factual passage has a citation"]
+          },
+          "requirements": ["R-WORD-06", "R-TRUTH-02", "R-COMP-04"]
+        },
+        {
+          "id": "guide-gap-furniture",
+          "state": "not-yet-covered",
+          "title": "Furniture guide",
+          "route": "#not-yet-covered/furniture",
+          "sourceRefs": [
+            {"path": "content/ontology.json", "contains": "\"label\": \"Furniture\""}
+          ],
+          "expected": {
+            "coverage": "Not yet covered",
+            "action": "Open the parent category",
+            "path": ["Guides", "Home", "Furniture"],
+            "mustShow": ["No guide is published for this choice", "Furniture", "Home"],
+            "mustNotClaim": ["A guide is published"]
+          },
+          "requirements": ["R-IA-10", "R-TRUTH-01", "R-IA-07"]
+        }
+      ]
+    },
+    {
+      "pageKind": "task",
+      "cases": [
+        {
+          "id": "task-rich-weekly-groceries",
+          "state": "rich",
+          "title": "Weekly groceries",
+          "route": "#task/weekly-groceries",
+          "sourceRefs": [
+            {"path": "app/data/nodes/errands.json", "collection": "nodes", "match": {"field": "id", "equals": "ovs:errand/weekly-groceries"}}
+          ],
+          "expected": {
+            "coverage": "Sources cover this answer",
+            "action": "Start with the current answer",
+            "path": ["Tasks", "Weekly groceries"],
+            "mustShow": ["Six decisions", "Price and nutrition", "Save the list to Your file"],
+            "mustNotClaim": ["The task is complete before all six steps resolve"]
+          },
+          "requirements": ["R-ACT-03", "R-VAL-04", "R-COMP-03"]
+        },
+        {
+          "id": "task-thin-pick-a-bank",
+          "state": "thin",
+          "title": "Pick a bank",
+          "route": "#task/pick-a-bank",
+          "sourceRefs": [
+            {"path": "app/data/nodes/errands.json", "collection": "nodes", "match": {"field": "id", "equals": "ovs:errand/pick-a-bank"}},
+            {"path": "content/lenses/banking.json", "collection": "products", "match": {"field": "code", "equals": "triodos"}}
+          ],
+          "expected": {
+            "coverage": "Some evidence is missing",
+            "action": "Start with the current answer",
+            "path": ["Tasks", "Pick a bank"],
+            "mustShow": ["One decision", "Fee and access sources are missing", "Save one choice"],
+            "mustNotClaim": ["Every banking fact is sourced"]
+          },
+          "requirements": ["R-WORD-06", "R-ACT-03", "R-TRUTH-03"]
+        },
+        {
+          "id": "task-gap-furnish-a-room",
+          "state": "not-yet-covered",
+          "title": "Furnish a room",
+          "route": "#task/furnish-a-room",
+          "sourceRefs": [
+            {"path": "content/ontology.json", "contains": "\"label\": \"Furniture\""}
+          ],
+          "expected": {
+            "coverage": "Not yet covered",
+            "action": "Suggest sources",
+            "path": ["Tasks", "Furnish a room"],
+            "mustShow": ["Furniture is not covered yet", "No task has been inferred", "Suggest sources"],
+            "mustNotClaim": ["A Furnish a room task is registered"]
+          },
+          "requirements": ["R-TRUTH-01", "R-IA-10", "R-SAFE-03"]
+        }
+      ]
+    },
+    {
+      "pageKind": "file",
+      "cases": [
+        {
+          "id": "file-rich-transfer-report",
+          "state": "rich",
+          "title": "Your file with a transfer report",
+          "route": "#file",
+          "sourceRefs": [
+            {"path": "research/values_spine_test.js", "contains": "planet is reported as not-transferred"},
+            {"path": "content/citation-bundles/banking-fossil-free-green.json", "contains": "\"rankedCount\": 25"}
+          ],
+          "expected": {
+            "coverage": "Sources cover this answer",
+            "action": "Download a copy",
+            "path": ["Your file"],
+            "mustShow": ["What carried", "What did not carry", "Stored only on this device"],
+            "mustNotClaim": ["Every value transfers"]
+          },
+          "requirements": ["R-VAL-09", "R-SAFE-01", "R-COMP-07"]
+        },
+        {
+          "id": "file-thin-tour-v01",
+          "state": "thin",
+          "title": "Older tour file",
+          "route": "#file",
+          "sourceRefs": [
+            {"path": "tour/index.html", "contains": "kind:'values-passport',version:'0.1'"}
+          ],
+          "expected": {
+            "coverage": "Some evidence is missing",
+            "action": "Download a copy",
+            "path": ["Your file"],
+            "mustShow": ["Version 0.1", "Unsupported fields are listed", "The original file remains unchanged"],
+            "mustNotClaim": ["The old file was silently upgraded"]
+          },
+          "requirements": ["R-WORD-06", "R-VAL-09", "R-COMP-07"]
+        },
+        {
+          "id": "file-gap-planet-in-kosplora",
+          "state": "not-yet-covered",
+          "instance": "kosplora",
+          "title": "Planet does not transfer to Kosplora",
+          "route": "#file",
+          "sourceRefs": [
+            {"path": "research/values_spine_test.js", "contains": "planet is reported as not-transferred"}
+          ],
+          "expected": {
+            "coverage": "Not yet covered",
+            "action": "Export a copy",
+            "path": ["Your file", "Transfer report"],
+            "mustShow": ["Planet", "Not transferred", "The source file remains unchanged"],
+            "mustNotClaim": ["Planet was discarded"]
+          },
+          "requirements": ["R-VAL-09", "R-TRUTH-03", "R-COMP-01", "R-COMP-05"]
+        }
+      ]
+    },
+    {
+      "pageKind": "changes",
+      "cases": [
+        {
+          "id": "changes-rich-banking",
+          "state": "rich",
+          "title": "Changes affecting banking",
+          "route": "#changes/banking",
+          "sourceRefs": [
+            {"path": "app/data/pulse.json", "collection": "entries", "match": {"field": "node", "equals": "ovs:cat/banking"}}
+          ],
+          "expected": {
+            "coverage": "Sources cover this answer",
+            "action": "Filter changes",
+            "path": ["Changes", "Banking"],
+            "mustShow": ["18 July 2026", "Banking data rebuilt", "Commit 59930db9"],
+            "mustNotClaim": ["One notification"]
+          },
+          "requirements": ["R-TRUTH-02", "R-TRUTH-06", "R-SAFE-04"]
+        },
+        {
+          "id": "changes-thin-ai-assistants",
+          "state": "thin",
+          "title": "AI assistants change without a field diff",
+          "route": "#changes/ai-assistants",
+          "sourceRefs": [
+            {"path": "app/data/pulse.json", "collection": "entries", "match": {"field": "node", "equals": "ovs:cat/ai-assistants"}}
+          ],
+          "expected": {
+            "coverage": "Some evidence is missing",
+            "action": "Filter changes",
+            "path": ["Changes", "AI assistants"],
+            "mustShow": ["Commit 59930db9", "Affected object: AI assistants", "No field-level difference is available"],
+            "mustNotClaim": ["A field-level difference is recorded"]
+          },
+          "requirements": ["R-WORD-06", "R-TRUTH-03", "R-COMP-04"]
+        },
+        {
+          "id": "changes-gap-furniture",
+          "state": "not-yet-covered",
+          "title": "Furniture history",
+          "route": "#changes/furniture",
+          "sourceRefs": [
+            {"path": "content/ontology.json", "contains": "\"label\": \"Furniture\""}
+          ],
+          "expected": {
+            "coverage": "Not yet covered",
+            "action": "Open Furniture",
+            "path": ["Changes", "Furniture"],
+            "mustShow": ["No history is recorded for Furniture", "No creation event is inferred", "Open Furniture"],
+            "mustNotClaim": ["Furniture was created today"]
+          },
+          "requirements": ["R-TRUTH-01", "R-TRUTH-08", "R-SAFE-04"]
+        }
+      ]
+    },
+    {
+      "pageKind": "commons-governance",
+      "cases": [
+        {
+          "id": "commons-rich-challenge-proposal",
+          "state": "rich",
+          "title": "Keep the case the other way calm and optional",
+          "route": "#commons/proposal/proposal-challenge-dismissible-default",
+          "sourceRefs": [
+            {"path": "content/governance/proposals.json", "collection": "proposals", "match": {"field": "id", "equals": "proposal-challenge-dismissible-default"}}
+          ],
+          "expected": {
+            "coverage": "Sources cover this answer",
+            "action": "Read this record",
+            "path": ["Commons", "Proposals", "Keep the case the other way calm and optional"],
+            "mustShow": ["Draft proposal", "This is a draft, not a vote", "No attestations count"],
+            "mustNotClaim": ["The proposal was adopted"]
+          },
+          "requirements": ["R-SAFE-02", "R-TRUTH-07", "R-COMP-04"]
+        },
+        {
+          "id": "commons-thin-digital-safety-ask",
+          "state": "thin",
+          "title": "Digital-safety clinic template",
+          "route": "#commons/ask/ask-digital-safety-clinic",
+          "sourceRefs": [
+            {"path": "content/asks-offers.json", "collection": "items", "match": {"field": "id", "equals": "ask-digital-safety-clinic"}}
+          ],
+          "expected": {
+            "coverage": "Some evidence is missing",
+            "action": "Read this record",
+            "path": ["Commons", "Asks", "Digital-safety clinic template"],
+            "mustShow": ["Template", "No expiry is recorded", "This is not a live request"],
+            "mustNotClaim": ["A community group is waiting for help"]
+          },
+          "requirements": ["R-WORD-06", "R-SAFE-03", "R-TRUTH-03"]
+        },
+        {
+          "id": "commons-gap-library-organization",
+          "state": "not-yet-covered",
+          "title": "Library organization named by a template",
+          "route": "#commons/organization/library",
+          "sourceRefs": [
+            {"path": "content/asks-offers.json", "collection": "items", "match": {"field": "id", "equals": "ask-digital-safety-clinic"}}
+          ],
+          "expected": {
+            "coverage": "Not yet covered",
+            "action": "Suggest sources",
+            "path": ["Commons", "Organizations", "Library"],
+            "mustShow": ["A template names libraries", "No organization page has been inferred", "Suggest sources"],
+            "mustNotClaim": ["A library has published this request"]
+          },
+          "requirements": ["R-TRUTH-01", "R-IA-10", "R-SAFE-02"]
+        }
+      ]
+    }
+  ]
+}

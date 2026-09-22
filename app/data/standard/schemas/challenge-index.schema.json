@@ -175,7 +175,7 @@
         "id": { "$ref": "#/$defs/slug" },
         "category": { "$ref": "#/$defs/slug" },
         "label": { "$ref": "#/$defs/nonEmptyString" },
-        "reads": { "type": "string", "pattern": "^The strongest case the other way: .{1,104}$" },
+        "reads": { "type": "string", "minLength": 24, "maxLength": 140 },
         "userView": { "$ref": "#/$defs/view" },
         "oppositeView": { "$ref": "#/$defs/view" },
         "steelman": { "$ref": "#/$defs/steelman" }

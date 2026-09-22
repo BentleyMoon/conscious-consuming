@@ -1,0 +1,688 @@
+{
+  "meta": {
+    "id": "airlines",
+    "label": "Airlines",
+    "type": "Services",
+    "primaryAxis": "reliability",
+    "tradeoff": [
+      "economical",
+      "reliability"
+    ],
+    "tradeoffLabels": [
+      "cheapest published bag fees",
+      "most on-time arrivals"
+    ],
+    "source": "Conscious Consuming",
+    "attribution": "Reliability and cancellation scores come only from the UK Civil Aviation Authority's own 2025 annual punctuality-by-airline table, which records how every airline with meaningful traffic at the ten largest UK airports performed against its published schedule that year. The reliability score is the share of flights that arrived within 15 minutes of schedule; the cancellation score is 100 minus the share of flights the airline cancelled outright, so a higher cancellation score means fewer cancelled flights, not a better on-time record. These figures describe flights to and from the UK specifically, not an airline's worldwide network, and a carrier can perform differently on routes the CAA does not cover. A search of the same table on the date shown found no row for airlines that carry little or no traffic through those UK airports, including Southwest, so those airlines carry no reliability or cancellation score here rather than a guessed one. Cost scores describe only the fee an airline itself publishes for a first and second checked bag on a standard fare, taken from the airline's own fee page or from a news outlet's direct report of the airline's own announcement; the score is this catalogue's own translation of that published fee, and the surrounding fare rules, into a comparable number, not an official ranking, and it says nothing about the base fare itself, which changes by route, season and how far ahead someone books. Where neither an airline's own fee page nor a direct report of its own announcement could be read, the cost cell is left blank rather than filled with a guess. The differences in emissions between two airlines flying the same route are real but small next to the choice to fly at all: Our World in Data's own analysis of UK government transport emissions factors finds that taking a train instead of a domestic flight cuts emissions by around 86 percent, a bigger swing than any airline-to-airline comparison in this catalogue could show. This dataset does not score airlines on emissions, because the most recent independent per-airline fuel efficiency ranking, published by the International Council on Clean Transportation, dates to 2017 and could not be read directly to check before use; a stale number would be worse than none. Reviewed 2026. Suggest corrections through Contribute.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": {
+          "economical": 3,
+          "reliability": 3,
+          "cancellations": 2
+        },
+        "x": []
+      },
+      "Cheapest fees": {
+        "w": {
+          "economical": 5,
+          "reliability": 2,
+          "cancellations": 1
+        },
+        "x": []
+      },
+      "Most on time": {
+        "w": {
+          "reliability": 5,
+          "cancellations": 3,
+          "economical": 1
+        },
+        "x": []
+      },
+      "Fewest cancellations": {
+        "w": {
+          "cancellations": 5,
+          "reliability": 3,
+          "economical": 1
+        },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    {
+      "key": "economical",
+      "label": "Published checked bag fees",
+      "source": "curated"
+    },
+    {
+      "key": "reliability",
+      "label": "Flights arriving within 15 minutes of schedule (UK CAA, 2025)",
+      "source": "curated"
+    },
+    {
+      "key": "cancellations",
+      "label": "Flights not cancelled (UK CAA, 2025)",
+      "source": "curated"
+    }
+  ],
+  "products": [
+    {
+      "code": "american-airlines",
+      "name": "American Airlines",
+      "brand": "American Airlines Group",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A full-service US network carrier flying domestic and international routes from hubs including Dallas-Fort Worth, Charlotte and Chicago O'Hare.",
+      "scores": {
+        "economical": 50,
+        "reliability": 73.8,
+        "cancellations": 97.2
+      },
+      "provenance": {
+        "economical": {
+          "note": "American's own newsroom release says that for tickets bought on or after April 9, the first checked bag on domestic itineraries costs $45 prepaid online or $50 at the airport, and the second bag $55 prepaid or $60 at the airport; for Basic Economy tickets bought on or after May 18 the first bag costs $50 prepaid or $55 at the airport and the second $60 prepaid or $65 at the airport.",
+          "source": "https://news.aa.com/news/news-details/2026/American-Airlines-updates-bag-fees-and-Basic-Economy-fares-OPS-POL-04/default.aspx",
+          "asof": "2026"
+        },
+        "reliability": {
+          "note": "UK Civil Aviation Authority punctuality data for 2025 records American Airlines flights to and from the ten largest UK airports arriving within 15 minutes of schedule on 73.8 percent of 16,116 matched flights, with an average delay of 22.3 minutes.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        },
+        "cancellations": {
+          "note": "The same 2025 CAA table records American Airlines cancelling 2.78 percent of those 16,116 matched flights.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.aa.com/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "US legacy",
+        "Global alliance"
+      ]
+    },
+    {
+      "code": "delta",
+      "name": "Delta Air Lines",
+      "brand": "Delta Air Lines",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A full-service US network carrier with hubs including Atlanta, Detroit and Minneapolis-St Paul.",
+      "scores": {
+        "economical": 55,
+        "reliability": 76.5,
+        "cancellations": 98.4
+      },
+      "provenance": {
+        "economical": {
+          "note": "Delta's own baggage overview page lists $45 USD for a first standard checked bag under 50 lbs, each way, and $55 USD for a second standard checked bag under 50 lbs, each way, for Delta Main and Delta Comfort customers.",
+          "source": "https://www.delta.com/us/en/baggage/overview",
+          "asof": "2026"
+        },
+        "reliability": {
+          "note": "UK Civil Aviation Authority punctuality data for 2025 records Delta Air Lines flights to and from the ten largest UK airports arriving within 15 minutes of schedule on 76.5 percent of 8,669 matched flights, with an average delay of 15.3 minutes.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        },
+        "cancellations": {
+          "note": "The same 2025 CAA table records Delta Air Lines cancelling 1.59 percent of those 8,669 matched flights.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.delta.com/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "US legacy",
+        "Global alliance"
+      ]
+    },
+    {
+      "code": "united",
+      "name": "United Airlines",
+      "brand": "United Airlines Holdings",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A full-service US network carrier with hubs including Chicago O'Hare, Denver, Houston and Newark.",
+      "scores": {
+        "economical": 55,
+        "reliability": 75.0,
+        "cancellations": 98.1
+      },
+      "provenance": {
+        "economical": {
+          "note": "A news report on United's own fee change says the first checked bag on flights within the US, Mexico, Canada and Latin America now costs $45 and a second bag $55, a change United said followed roughly $400 million in added jet fuel costs since fighting began in the Middle East on February 28, 2026; co-branded credit card holders, certain loyalty-tier members, active-duty military and premium-cabin passengers still get a first bag free.",
+          "source": "https://www.wbrc.com/2026/04/04/united-airlines-raises-bag-fees-amid-rising-fuel-costs-introduces-tiered-premium-fares/",
+          "asof": "2026"
+        },
+        "reliability": {
+          "note": "UK Civil Aviation Authority punctuality data for 2025 records United Airlines flights to and from the ten largest UK airports arriving within 15 minutes of schedule on 75.0 percent of 15,659 matched flights, with an average delay of 18.1 minutes.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        },
+        "cancellations": {
+          "note": "The same 2025 CAA table records United Airlines cancelling 1.88 percent of those 15,659 matched flights.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.united.com/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "US legacy",
+        "Global alliance"
+      ]
+    },
+    {
+      "code": "southwest",
+      "name": "Southwest Airlines",
+      "brand": "Southwest Airlines Co",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A US carrier historically built around low, simple point-to-point fares and open seating, sold mainly through its own site.",
+      "scores": {
+        "economical": 65
+      },
+      "provenance": {
+        "economical": {
+          "note": "CBS News reported that Southwest's first checked bag costs $35 and a second bag $45 starting May 28, 2025, ending the airline's long-standing free-checked-bag policy for most flyers; Business Select and A-List Preferred customers keep two free checked bags, and A-List members or Rapid Rewards credit card holders keep one.",
+          "source": "https://www.cbsnews.com/news/southwest-airlines-new-checked-bag-fee-35/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.southwest.com/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "US low-cost",
+        "Open seating"
+      ]
+    },
+    {
+      "code": "jetblue",
+      "name": "JetBlue Airways",
+      "brand": "JetBlue Airways Corporation",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A US carrier positioned between full-service and low-cost, based mainly at New York JFK and Boston.",
+      "scores": {
+        "economical": 50,
+        "reliability": 82.6,
+        "cancellations": 99.3
+      },
+      "provenance": {
+        "economical": {
+          "note": "JetBlue's own fees page lists a first checked bag at $45 and a second at $59 for its Main Base fare, more than 24 hours before departure and outside peak periods; Main and EvenMore fares carry the same domestic checked-bag rates.",
+          "source": "https://www.jetblue.com/legal/fees",
+          "asof": "2026"
+        },
+        "reliability": {
+          "note": "UK Civil Aviation Authority punctuality data for 2025 records JetBlue Airways flights to and from the ten largest UK airports arriving within 15 minutes of schedule on 82.6 percent of 3,156 matched flights, with an average delay of 11.3 minutes.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        },
+        "cancellations": {
+          "note": "The same 2025 CAA table records JetBlue Airways cancelling 0.73 percent of those 3,156 matched flights.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.jetblue.com/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "US hybrid",
+        "Extra legroom"
+      ]
+    },
+    {
+      "code": "british-airways",
+      "name": "British Airways",
+      "brand": "International Airlines Group",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "The UK flag carrier, a full-service network airline based at London Heathrow and Gatwick.",
+      "scores": {
+        "reliability": 76.7,
+        "cancellations": 98.8
+      },
+      "provenance": {
+        "reliability": {
+          "note": "UK Civil Aviation Authority punctuality data for 2025 records British Airways Group flights to and from the ten largest UK airports arriving within 15 minutes of schedule on 76.7 percent of 355,425 matched flights, with an average delay of 12.6 minutes.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        },
+        "cancellations": {
+          "note": "The same 2025 CAA table records British Airways Group cancelling 1.23 percent of those 355,425 matched flights.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.britishairways.com/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "UK legacy",
+        "Global alliance"
+      ]
+    },
+    {
+      "code": "ryanair",
+      "name": "Ryanair",
+      "brand": "Ryanair Holdings",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "An Irish airline built around low base fares and separately priced extras, flying short-haul routes across Europe.",
+      "scores": {
+        "reliability": 70.1,
+        "cancellations": 99.7
+      },
+      "provenance": {
+        "reliability": {
+          "note": "UK Civil Aviation Authority punctuality data for 2025 records Ryanair Group flights to and from the ten largest UK airports arriving within 15 minutes of schedule on 70.1 percent of 337,671 matched flights, with an average delay of 16.5 minutes.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        },
+        "cancellations": {
+          "note": "The same 2025 CAA table records Ryanair Group cancelling 0.27 percent of those 337,671 matched flights.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.ryanair.com/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "European ultra-low-cost",
+        "Short-haul"
+      ]
+    },
+    {
+      "code": "easyjet",
+      "name": "easyJet",
+      "brand": "easyJet plc",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A UK-based airline flying short and medium-haul routes across Europe on an unbundled fare model.",
+      "scores": {
+        "economical": 40,
+        "reliability": 72.5,
+        "cancellations": 99.2
+      },
+      "provenance": {
+        "economical": {
+          "note": "easyJet's own cabin-baggage page says every passenger may bring one small under-seat bag free, up to 45 x 36 x 20 cm and 15kg, and that hold luggage is not included in any easyJet fare; it directs customers to a separate fees-and-charges page to add hold luggage, so no easyJet fare bundles in a free checked bag.",
+          "source": "https://www.easyjet.com/en/help/baggage",
+          "asof": "2026"
+        },
+        "reliability": {
+          "note": "UK Civil Aviation Authority punctuality data for 2025 records easyJet Europe Group flights to and from the ten largest UK airports arriving within 15 minutes of schedule on 72.5 percent of 393,939 matched flights, with an average delay of 15.1 minutes.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        },
+        "cancellations": {
+          "note": "The same 2025 CAA table records easyJet Europe Group cancelling 0.79 percent of those 393,939 matched flights.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.easyjet.com/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "European low-cost",
+        "Short-haul"
+      ]
+    },
+    {
+      "code": "wizz-air",
+      "name": "Wizz Air",
+      "brand": "Wizz Air Holdings",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A Hungary-based ultra-low-cost carrier flying mainly short-haul routes across central, eastern and western Europe.",
+      "scores": {
+        "reliability": 76.8,
+        "cancellations": 99.7
+      },
+      "provenance": {
+        "reliability": {
+          "note": "UK Civil Aviation Authority punctuality data for 2025 records Wizz Air Group flights to and from the ten largest UK airports arriving within 15 minutes of schedule on 76.8 percent of 58,095 matched flights, with an average delay of 14.7 minutes.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        },
+        "cancellations": {
+          "note": "The same 2025 CAA table records Wizz Air Group cancelling 0.34 percent of those 58,095 matched flights.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://wizzair.com/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "European ultra-low-cost",
+        "Short-haul"
+      ]
+    },
+    {
+      "code": "lufthansa",
+      "name": "Lufthansa",
+      "brand": "Deutsche Lufthansa AG",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "Germany's flag carrier, a full-service network airline based at Frankfurt and Munich.",
+      "scores": {
+        "reliability": 75.0,
+        "cancellations": 98.5
+      },
+      "provenance": {
+        "reliability": {
+          "note": "UK Civil Aviation Authority punctuality data for 2025 records Lufthansa flights to and from the ten largest UK airports arriving within 15 minutes of schedule on 75.0 percent of 24,535 matched flights, with an average delay of 11.3 minutes.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        },
+        "cancellations": {
+          "note": "The same 2025 CAA table records Lufthansa cancelling 1.48 percent of those 24,535 matched flights.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.lufthansa.com/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "European legacy",
+        "Global alliance"
+      ]
+    },
+    {
+      "code": "klm",
+      "name": "KLM",
+      "brand": "Air France-KLM",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "The Netherlands' flag carrier, a full-service network airline based at Amsterdam Schiphol, part of the Air France-KLM group.",
+      "scores": {
+        "reliability": 69.7,
+        "cancellations": 97.4
+      },
+      "provenance": {
+        "reliability": {
+          "note": "UK Civil Aviation Authority punctuality data for 2025 records KLM Group flights to and from the ten largest UK airports arriving within 15 minutes of schedule on 69.7 percent of 42,144 matched flights, with an average delay of 15.1 minutes.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        },
+        "cancellations": {
+          "note": "The same 2025 CAA table records KLM Group cancelling 2.56 percent of those 42,144 matched flights, the highest cancellation rate among the major European network carriers in this table.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.klm.com/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "European legacy",
+        "Global alliance"
+      ]
+    },
+    {
+      "code": "air-france",
+      "name": "Air France",
+      "brand": "Air France-KLM",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "France's flag carrier, a full-service network airline based at Paris Charles de Gaulle, part of the Air France-KLM group.",
+      "scores": {
+        "reliability": 68.9,
+        "cancellations": 98.6
+      },
+      "provenance": {
+        "reliability": {
+          "note": "UK Civil Aviation Authority punctuality data for 2025 records Air France flights to and from the ten largest UK airports arriving within 15 minutes of schedule on 68.9 percent of 13,380 matched flights, the lowest on-time share of the European network carriers in this table, with an average delay of 16.1 minutes.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        },
+        "cancellations": {
+          "note": "The same 2025 CAA table records Air France cancelling 1.39 percent of those 13,380 matched flights.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.airfrance.com/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "European legacy",
+        "Global alliance"
+      ]
+    },
+    {
+      "code": "virgin-atlantic",
+      "name": "Virgin Atlantic",
+      "brand": "Virgin Atlantic Limited",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A UK long-haul airline flying mainly between the UK and North America, the Caribbean and parts of Asia and Africa.",
+      "scores": {
+        "reliability": 81.4,
+        "cancellations": 98.6
+      },
+      "provenance": {
+        "reliability": {
+          "note": "UK Civil Aviation Authority punctuality data for 2025 records Virgin Group flights to and from the ten largest UK airports arriving within 15 minutes of schedule on 81.4 percent of 25,758 matched flights, with an average delay of 10.2 minutes, the lowest average delay of the long-haul carriers in this table.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        },
+        "cancellations": {
+          "note": "The same 2025 CAA table records Virgin Group cancelling 1.36 percent of those 25,758 matched flights.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.virginatlantic.com/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "UK long-haul",
+        "Part-owned by Delta"
+      ]
+    },
+    {
+      "code": "emirates",
+      "name": "Emirates",
+      "brand": "The Emirates Group",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A long-haul full-service airline based in Dubai, flying a hub-and-spoke network built around its home airport.",
+      "scores": {
+        "reliability": 74.9,
+        "cancellations": 99.7
+      },
+      "provenance": {
+        "reliability": {
+          "note": "UK Civil Aviation Authority punctuality data for 2025 records Emirates flights to and from the ten largest UK airports arriving within 15 minutes of schedule on 74.9 percent of 14,015 matched flights, with an average delay of 11.7 minutes.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        },
+        "cancellations": {
+          "note": "The same 2025 CAA table records Emirates cancelling 0.32 percent of those 14,015 matched flights.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.emirates.com/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Gulf long-haul",
+        "Hub carrier"
+      ]
+    },
+    {
+      "code": "qatar-airways",
+      "name": "Qatar Airways",
+      "brand": "Qatar Airways Group",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A long-haul full-service airline based in Doha, flying a hub-and-spoke network built around Hamad International Airport.",
+      "scores": {
+        "reliability": 79.4,
+        "cancellations": 99.6
+      },
+      "provenance": {
+        "reliability": {
+          "note": "UK Civil Aviation Authority punctuality data for 2025 records Qatar Airways flights to and from the ten largest UK airports arriving within 15 minutes of schedule on 79.4 percent of 11,782 matched flights, with an average delay of 11.3 minutes.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        },
+        "cancellations": {
+          "note": "The same 2025 CAA table records Qatar Airways cancelling 0.42 percent of those 11,782 matched flights.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.qatarairways.com/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Gulf long-haul",
+        "Hub carrier"
+      ]
+    },
+    {
+      "code": "tui-airways",
+      "name": "TUI Airways",
+      "brand": "TUI Group",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A UK charter and leisure airline, part of the TUI Group, flying mainly on package holiday routes to European and long-haul beach destinations.",
+      "scores": {
+        "reliability": 59.2,
+        "cancellations": 99.9
+      },
+      "provenance": {
+        "reliability": {
+          "note": "UK Civil Aviation Authority punctuality data for 2025 records TUI Airways flights to and from the ten largest UK airports arriving within 15 minutes of schedule on 59.2 percent of 61,712 matched flights, the lowest on-time share and the highest average delay, 23.4 minutes, of any airline in this table.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        },
+        "cancellations": {
+          "note": "The same 2025 CAA table records TUI Airways cancelling 0.14 percent of those 61,712 matched flights, the lowest cancellation rate of any airline in this table.",
+          "source": "https://www.caa.co.uk/Documents/Download/24022/3d82eddc-84f7-4692-bc12-a9ab96562d04/1713",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.tui.co.uk/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "UK charter/leisure",
+        "Package holidays"
+      ]
+    }
+  ]
+}

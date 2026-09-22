@@ -69,7 +69,13 @@ function guideStatusCounts() {
 
 function handoffItems() {
   const text = readText("docs/CONTENT-HANDOFF.md");
-  const section = sectionBetween(text, "Other app/ asks", "## Parked") || text;
+  // WHOLE FILE, not one section. This read was scoped to section 4, "Other app/ asks", while
+  // scripts/r1-preflight.mjs scans the whole document for the same marker. H20 lives in section 1,
+  // so the generated status report listed three active blockers where the canonical handoff has
+  // four, and audit:r1 failed on the mismatch. A status document that reports fewer open problems
+  // than the source it is generated from is the one drift this project can least afford.
+  // Parked entries are checked to carry no active markers, so widening the scope adds none.
+  const section = text;
   const items = [];
   let current = null;
 

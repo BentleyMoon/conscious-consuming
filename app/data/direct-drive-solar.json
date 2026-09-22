@@ -1,0 +1,973 @@
+{
+ "meta": {
+  "id": "direct-drive-solar",
+  "label": "Direct-drive solar",
+  "type": "Products",
+  "primaryAxis": "economical",
+  "tradeoff": [
+   "economical",
+   "reliability"
+  ],
+  "tradeoffLabels": [
+   "cheapest to buy, with no battery ever to replace",
+   "delivers power on demand, day or night, not only while the sun is up"
+  ],
+  "source": "Conscious Consuming (curated)",
+  "attribution": "Covers real, purchasable direct-drive solar equipment sold into the US market: a solar pump, fan or refrigerator that runs straight from a panel while the sun is up, with no battery to buy, degrade or replace. The roster centres on solar water pumping, the most documented case, and adds a stock-tank aerator, a solar attic fan, a battery-free refrigerator that uses phase-change material instead of a battery, and the high-voltage 'Daylight Drive' approach documented at Living Energy Farm, running tools, an oven and a fridge with no battery at all. Three comparison routes are included so a reader can see what the alternative actually costs: adding a small battery for the one job that cannot wait for daylight, a full battery-based off-grid system, a gasoline or diesel generator, and staying on the electric grid where it already reaches a property. The honest limit of every direct-drive option here is the same: it only powers the load while the sun is up, or briefly afterward if it stores water, ice or heat rather than electricity. That suits filling a tank, aerating a pond, milling grain or running a fan, and does not suit a job with a fixed overnight schedule unless paired with a battery, a generator or a grid connection. Prices and specifications come from each manufacturer's own current product page or listing, dated 2026, and will move; controllers, shipping and installation are often extra. Grundfos's SQFlex pump and VeraSol's independently tested solar-pump register could not be added here: Grundfos's own literature exists only as a non-text PDF, and VeraSol's product database now requires an account sign-up that could not be completed with the tools available. Suggest changes via Contribute.",
+  "allergens": false,
+  "presets": {
+   "Balanced": {
+    "w": {
+     "economical": 3,
+     "reliability": 3,
+     "accessibility": 2,
+     "environment": 2
+    },
+    "x": []
+   },
+   "Cheapest to build": {
+    "w": {
+     "economical": 5,
+     "reliability": 1,
+     "accessibility": 2,
+     "environment": 1
+    },
+    "x": []
+   },
+   "Need it after dark": {
+    "w": {
+     "reliability": 5,
+     "economical": 2,
+     "accessibility": 1,
+     "environment": 1
+    },
+    "x": []
+   },
+   "Simplest to install": {
+    "w": {
+     "accessibility": 5,
+     "economical": 2,
+     "reliability": 2,
+     "environment": 1
+    },
+    "x": []
+   },
+   "Lowest footprint": {
+    "w": {
+     "environment": 5,
+     "reliability": 2,
+     "economical": 2,
+     "accessibility": 1
+    },
+    "x": []
+   }
+  },
+  "n": 13,
+  "valueSignatureProfile": {
+   "entryCount": 13,
+   "signedEntries": 13,
+   "drawableEntries": 11,
+   "minimumThemesForBloom": 2,
+   "themeCounts": {
+    "planet": 6,
+    "honesty": 11,
+    "cost": 11
+   }
+  },
+  "provenanceProfile": {
+   "entryCount": 13,
+   "singleSourceEntries": 10,
+   "multiSourceEntries": 3,
+   "noSourceEntries": 0,
+   "noteOnlyEntries": 0,
+   "averageSourceDomains": 1.38,
+   "topPrimarySources": [
+    {
+     "label": "basc.pnnl.gov",
+     "entries": 2
+    },
+    {
+     "label": "dankoffsolarpumps.com",
+     "entries": 2
+    },
+    {
+     "label": "lorentz.de",
+     "entries": 2
+    },
+    {
+     "label": "livingenergylights.com",
+     "entries": 1
+    },
+    {
+     "label": "ncat.org",
+     "entries": 1
+    },
+    {
+     "label": "remingtonsolar.com",
+     "entries": 1
+    }
+   ]
+  },
+  "decision": {
+   "category": "direct-drive-solar",
+   "reads": {
+    "text": "Compare direct-drive solar by cost, reliability, everyday access, and environmental impact.",
+    "basis": [
+     {
+      "criterion": "economical",
+      "readsAs": "cost"
+     },
+     {
+      "criterion": "reliability",
+      "readsAs": "reliability"
+     },
+     {
+      "criterion": "accessibility",
+      "readsAs": "everyday access"
+     },
+     {
+      "criterion": "environment",
+      "readsAs": "environmental impact"
+     }
+    ],
+    "signature": {
+     "by": "Conscious Consuming",
+     "on": "2026-07-15",
+     "status": "approved-batch"
+    },
+    "receipt": {
+     "dataset": "direct-drive-solar",
+     "entryCount": 13,
+     "criteria": [
+      {
+       "criterion": "economical",
+       "readsAs": "cost",
+       "known": 9,
+       "minimum": 15,
+       "maximum": 92,
+       "spread": 77
+      },
+      {
+       "criterion": "reliability",
+       "readsAs": "reliability",
+       "known": 11,
+       "minimum": 45,
+       "maximum": 90,
+       "spread": 45
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access",
+       "known": 6,
+       "minimum": 30,
+       "maximum": 90,
+       "spread": 60
+      },
+      {
+       "criterion": "environment",
+       "readsAs": "environmental impact",
+       "known": 6,
+       "minimum": 20,
+       "maximum": 96,
+       "spread": 76
+      }
+     ]
+    }
+   },
+   "axes": [
+    {
+     "id": "cost-or-values",
+     "kind": "cost-values",
+     "label": "Cost or overall fit",
+     "question": "Lower cost or a stronger overall fit?",
+     "criteria": [
+      "economical",
+      "reliability",
+      "accessibility",
+      "environment"
+     ],
+     "poles": [
+      "Lower cost",
+      "Stronger overall fit"
+     ],
+     "default": 50
+    },
+    {
+     "id": "accessibility",
+     "kind": "criterion",
+     "label": "Access",
+     "question": "Do you need easier everyday access?",
+     "criteria": [
+      "accessibility"
+     ],
+     "poles": [
+      "Flexible",
+      "Easier access"
+     ],
+     "default": 50
+    }
+   ],
+   "budget": {
+    "available": true,
+    "mode": "assessed-affordability-rank",
+    "criterion": "economical",
+    "minimumKnown": 5,
+    "knownEntries": 9,
+    "coverage": 0.6923
+   },
+   "archetypes": [
+    "best-for-most",
+    "strictest-match",
+    "budget-honest"
+   ],
+   "page": {
+    "stage": "approved-batch",
+    "primaryRoute": true
+   },
+   "consumer": {
+    "reads": "Round 8 approved category differences reads.",
+    "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+    "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+    "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+    "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+   }
+  }
+ },
+ "criteria": [
+  {
+   "key": "economical",
+   "label": "Upfront cost, and whether a battery has to be bought and later replaced",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "reliability",
+   "label": "Delivers water, air or cold when you need it, not only while the sun is up",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "accessibility",
+   "label": "Easy to buy, install and maintain without a specialist",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "environment",
+   "label": "Avoids the battery: nothing mined, manufactured or thrown away to store power",
+   "source": "curated",
+   "tier": "assessed"
+  }
+ ],
+ "products": [
+  {
+   "code": "lorentz-ps2-100",
+   "name": "Lorentz PS2-100 solar pump",
+   "brand": "German pump manufacturer",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A submersible or surface solar pump from the German manufacturer Lorentz, sized to run from a single 205-watt solar panel and configured through a phone app. It is part of Lorentz's wider PS2 platform, built around a brushless DC motor the company calls ECDRIVE.",
+   "scores": {
+    "reliability": 78,
+    "environment": 92
+   },
+   "provenance": {
+    "reliability": {
+     "note": "Lorentz's own PS2-100 page states the system 'provides over 20,000 liters of water per day and pumps up to 40 meter heads,' based on a single 205 Wp PV module, with the water itself standing in for storage rather than a battery.",
+     "source": "https://www.lorentz.de/products-and-technology/products/ps2-100-2/",
+     "asof": "2026"
+    },
+    "environment": {
+     "note": "Lorentz's PS2-100 page states plainly 'there are no expensive batteries required,' since the pump runs directly from the solar panel while the sun is up.",
+     "source": "https://www.lorentz.de/products-and-technology/products/ps2-100-2/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "PS2-100 product page",
+     "url": "https://www.lorentz.de/products-and-technology/products/ps2-100-2/"
+    },
+    {
+     "label": "PS2 platform overview",
+     "url": "https://www.lorentz.de/products-and-technology/products/ps2-solar-pumping-systems/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Water pumping",
+    "No battery",
+    "App configured"
+   ],
+   "valueSignature": {
+    "planet": 92,
+    "honesty": 78
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "lorentz.de"
+   }
+  },
+  {
+   "code": "lorentz-solar-pool-pump",
+   "name": "Lorentz solar pool pump",
+   "brand": "German pump manufacturer",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A pool circulation pump built on the same brushless DC motor platform as Lorentz's water pumps, sold as a direct swap for an existing AC pool pump. It runs while the sun is up and is not built for overnight filtration.",
+   "scores": {
+    "accessibility": 85,
+    "environment": 70
+   },
+   "provenance": {
+    "accessibility": {
+     "note": "Lorentz markets the pump for 'fast and simple installation, direct replacement for an existing pool pump,' and says it is 'speed controllable to match the pool size exactly.'",
+     "source": "https://www.lorentz.de/products-and-technology/pump-types/solar-pool-pumps/",
+     "asof": "2026"
+    },
+    "environment": {
+     "note": "The page describes the pump as 'solar direct connect' using an 'EC DRIVE DC brushless motor... with over 90% efficiency' and MPPT technology; it does not list a battery among the pump's components.",
+     "source": "https://www.lorentz.de/products-and-technology/pump-types/solar-pool-pumps/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Solar pool pumps",
+     "url": "https://www.lorentz.de/products-and-technology/pump-types/solar-pool-pumps/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Pool circulation",
+    "Direct swap",
+    "Daytime only"
+   ],
+   "valueSignature": {
+    "planet": 70,
+    "cost": 85
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "lorentz.de"
+   }
+  },
+  {
+   "code": "dankoff-solarforce",
+   "name": "Dankoff SolarForce piston pump",
+   "brand": "US piston pump manufacturer",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A cast-iron piston pump from the US manufacturer Dankoff Solar, built to lift water up to 230 feet with a 20-year life expectancy. It can run straight from a solar panel without a battery, but only once Dankoff's own controller is added.",
+   "scores": {
+    "economical": 42,
+    "reliability": 68,
+    "accessibility": 50
+   },
+   "provenance": {
+    "economical": {
+     "note": "Dankoff lists SolarForce piston pump models at $3,159 to $3,449 MSRP depending on voltage and performance tier, on top of which a controller is typically added for battery-free operation.",
+     "source": "https://dankoffsolarpumps.com/product/solar-force-piston-pump/",
+     "asof": "2026"
+    },
+    "reliability": {
+     "note": "Dankoff's FAQ says pump controllers 'are required for all positive displacement pumps' like SolarForce 'when used without a battery (PV array-direct)' and that a controller 'will increase system performance by approximately 30% over the course of one year' by letting the pump start earlier and run later in the day.",
+     "source": "https://dankoffsolarpumps.com/resources/faqs/",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Running SolarForce battery-free is not plug and play: Dankoff's FAQ says the controller 'acts like the transmission in a vehicle,' an extra component needed on top of the pump itself for direct solar operation.",
+     "source": "https://dankoffsolarpumps.com/resources/faqs/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "SolarForce piston pump",
+     "url": "https://dankoffsolarpumps.com/product/solar-force-piston-pump/"
+    },
+    {
+     "label": "Dankoff FAQ on controllers",
+     "url": "https://dankoffsolarpumps.com/resources/faqs/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Water pumping",
+    "High head",
+    "Needs a controller"
+   ],
+   "valueSignature": {
+    "honesty": 68,
+    "cost": 46
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "dankoffsolarpumps.com"
+   }
+  },
+  {
+   "code": "dankoff-suncentric",
+   "name": "Dankoff SunCentric surface pump",
+   "brand": "US pump manufacturer",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A centrifugal surface pump from Dankoff Solar for shallow water sources, rated to move up to 50,000 gallons a day for irrigation, livestock watering or domestic supply. Dankoff says it can run without a battery.",
+   "scores": {
+    "economical": 30,
+    "reliability": 80
+   },
+   "provenance": {
+    "economical": {
+     "note": "Dankoff prices SunCentric models from $3,999 to $4,839 MSRP.",
+     "source": "https://dankoffsolarpumps.com/product/suncentric-pump/",
+     "asof": "2026"
+    },
+    "reliability": {
+     "note": "Dankoff says SunCentric pumps 'can be used without batteries' and can move 'as much as 50,000 gallons (200 m3) per day from shallow water sources,' for irrigation, livestock watering, domestic supply and pond management, and have been in worldwide use since 1989.",
+     "source": "https://dankoffsolarpumps.com/product/suncentric-pump/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "SunCentric pump",
+     "url": "https://dankoffsolarpumps.com/product/suncentric-pump/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Water pumping",
+    "High volume",
+    "Shallow sources"
+   ],
+   "valueSignature": {
+    "honesty": 80,
+    "cost": 30
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "dankoffsolarpumps.com"
+   }
+  },
+  {
+   "code": "sunpumps-sds-t-128",
+   "name": "SunPumps SDS-T-128",
+   "brand": "US submersible pump manufacturer",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A small submersible pump from the Arizona manufacturer SunPumps, built since 1985 for the slow, steady filling of a stock tank or cistern from a single small panel rather than for a household's peak demand.",
+   "scores": {
+    "reliability": 45
+   },
+   "provenance": {
+    "reliability": {
+     "note": "SunPumps specifies the SDS-T-128 at 30VDC, drawing up to 4.2 amps and 126 watts maximum, moving 0.6 to 2 gallons a minute from up to 230 feet deep: a small, slow, panel-direct pump for topping up a tank over a day rather than delivering a household's peak demand.",
+     "source": "https://www.sunpumps.com/Products/SDS-T-128",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "SDS-T-128 product page",
+     "url": "https://www.sunpumps.com/Products/SDS-T-128"
+    },
+    {
+     "label": "SunPumps homepage",
+     "url": "https://sunpumps.com/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Small scale",
+    "Stock tanks",
+    "Since 1985"
+   ],
+   "valueSignature": {
+    "honesty": 45
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "sunpumps.com"
+   }
+  },
+  {
+   "code": "sundanzer-bfrv55",
+   "name": "SunDanzer BFRV55",
+   "brand": "battery-free refrigerator manufacturer",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A 55-litre chest refrigerator built to connect straight to four 100-watt solar panels with no battery. It is sold as a vaccine refrigerator, but the same phase-change-material technology is the clearest commercial example of battery-free cold storage.",
+   "scores": {
+    "economical": 45,
+    "environment": 95,
+    "reliability": 60
+   },
+   "provenance": {
+    "economical": {
+     "note": "SunDanzer lists the BFRV55 kit MSRP at $3,399.00, with quantity discounts available, requiring '4 x 100 W' solar modules and no battery to add to that cost.",
+     "source": "https://sundanzer.com/product/bfrv55/",
+     "asof": "2026"
+    },
+    "environment": {
+     "note": "SunDanzer's own product page states the BFRV55 'Does not require batteries to operate. Connect Directly to solar panels.'",
+     "source": "https://sundanzer.com/product/bfrv55/",
+     "asof": "2026"
+    },
+    "reliability": {
+     "note": "SunDanzer says the BFRV55 uses 'Phase change material technology to eliminate cold spots and keep vaccines at proper temperature,' which lets it hold temperature through a cloudy spell without a battery; the product page does not give a specific number of hours of holdover for this model.",
+     "source": "https://sundanzer.com/product/bfrv55/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "BFRV55 product page",
+     "url": "https://sundanzer.com/product/bfrv55/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Refrigeration",
+    "No battery",
+    "Phase change material"
+   ],
+   "valueSignature": {
+    "planet": 95,
+    "honesty": 60,
+    "cost": 45
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "sundanzer.com"
+   }
+  },
+  {
+   "code": "living-energy-lights-daylight-drive",
+   "name": "Living Energy Lights Daylight Drive system",
+   "brand": "appropriate-technology retailer",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The high-voltage, batteryless DC approach documented at Living Energy Farm in Virginia, sold as components, consultation and appliances by its spinoff, Living Energy Lights. Panels feed 90 to 200-volt DC motors directly, running tools, an oven and a refrigerator only while the sun is up.",
+   "scores": {
+    "environment": 96,
+    "accessibility": 30,
+    "reliability": 55
+   },
+   "provenance": {
+    "environment": {
+     "note": "Living Energy Lights' own Daylight Drive page says that with direct drive 'not only is the inverter removed from the circuit, but also the battery: PV panels are connected directly to loads, with little or no controllers or other electronics', and that 'The omission of the battery from the circuit adds a significant layer of resilience and economy to the system'. The same page states the limit plainly: 'Not all DC appliances can run direct drive.'",
+     "source": "https://livingenergylights.com/?page_id=833",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "The same page repeatedly warns that professional electrician installation is required, because Daylight Drive systems typically run at 90 to 120 volts DC, or 180 to 200 volts DC for larger arrays, well above a standard low-voltage solar setup, and says low-voltage 12V alternatives need much bigger, more expensive wiring.",
+     "source": "https://livingenergylights.com/?page_id=833",
+     "asof": "2026"
+    },
+    "reliability": {
+     "note": "The page gives two working examples: a Sunstar refrigerator needing only 80 watts, paired with a 400-watt panel to cover cloudy days, and Living Energy Farm's Roxy Oven, which runs on 300 to 800 watts against the 5,000 to 10,000 watts a typical electric range draws, so it can cook on far less daytime power than a battery system would need to bank for the same job.",
+     "source": "https://livingenergylights.com/?page_id=833",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Daylight Drive overview",
+     "url": "https://livingenergylights.com/?page_id=833"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Appropriate technology",
+    "High voltage DC",
+    "Electrician required"
+   ],
+   "valueSignature": {
+    "planet": 96,
+    "honesty": 55,
+    "cost": 30
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "livingenergylights.com"
+   }
+  },
+  {
+   "code": "missouri-dc-blowhard",
+   "name": "Missouri Wind and Solar DC Blowhard aerator",
+   "brand": "budget aerator",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A small direct-drive aerator sold for stock tanks and ponds up to a quarter acre, running from dawn to dusk with no battery. It keeps water moving and helps slow icing, but stops overnight.",
+   "scores": {
+    "economical": 92,
+    "reliability": 55,
+    "environment": 95
+   },
+   "provenance": {
+    "economical": {
+     "note": "Missouri Wind and Solar's listing prices the DC Blowhard aerator at $199.99, with no battery to add to that cost.",
+     "source": "https://windandsolar.com/products/dc-blowhard-aeration-pump",
+     "asof": "2026"
+    },
+    "reliability": {
+     "note": "The listing says the pump 'works automatically in full, partial and diffused sunlight from approximately dawn until dusk' at 40 litres a minute, for '1/4 acre or 2 foot running depth'; it does not run overnight, which matters for de-icing but not for daytime aeration.",
+     "source": "https://windandsolar.com/products/dc-blowhard-aeration-pump",
+     "asof": "2026"
+    },
+    "environment": {
+     "note": "The listing states the aerator runs 'with no batteries needed.'",
+     "source": "https://windandsolar.com/products/dc-blowhard-aeration-pump",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "DC Blowhard aerator",
+     "url": "https://windandsolar.com/products/dc-blowhard-aeration-pump"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Pond and tank aeration",
+    "Low cost",
+    "Daytime only"
+   ],
+   "valueSignature": {
+    "planet": 95,
+    "honesty": 55,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "windandsolar.com"
+   }
+  },
+  {
+   "code": "remington-solar-attic-fan",
+   "name": "Remington Solar 60-Watt attic fan",
+   "brand": "attic fan manufacturer",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A roof-mounted attic fan powered by its own 38-volt DC motor and solar panel, sold with no battery included. A separate hybrid adapter is available to keep it running after dark.",
+   "scores": {
+    "economical": 60,
+    "reliability": 58
+   },
+   "provenance": {
+    "economical": {
+     "note": "Remington Solar prices the 60-watt black steel roof-mount fan at $599.00, plus '$49 Flat Rate Shipping.'",
+     "source": "https://remingtonsolar.com/product/60-watt-black-steel-roof-mount-solar-powered-attic-fan-with-thermostat-humidistat/",
+     "asof": "2026"
+    },
+    "reliability": {
+     "note": "The fan is 'completely powered by free solar energy' with no battery in the base configuration; the page notes it is 'ready for' an optional 110-volt hybrid adapter, sold separately, for nighttime operation, meaning the standard unit only ventilates while the sun is up.",
+     "source": "https://remingtonsolar.com/product/60-watt-black-steel-roof-mount-solar-powered-attic-fan-with-thermostat-humidistat/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "60-watt solar attic fan",
+     "url": "https://remingtonsolar.com/product/60-watt-black-steel-roof-mount-solar-powered-attic-fan-with-thermostat-humidistat/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Attic ventilation",
+    "No battery",
+    "Optional night adapter"
+   ],
+   "valueSignature": {
+    "honesty": 58,
+    "cost": 60
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "remingtonsolar.com"
+   }
+  },
+  {
+   "code": "hybrid-battery-buffer-pump",
+   "name": "Solar pump with a small battery buffer",
+   "brand": "hybrid configuration",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Adding a small battery to an otherwise direct-drive solar pump, for the specific jobs a pump alone cannot cover: keeping water moving overnight to stop a tank freezing, or topping up when the tank cannot store enough during the day.",
+   "scores": {
+    "reliability": 75,
+    "economical": 38,
+    "accessibility": 45
+   },
+   "provenance": {
+    "reliability": {
+     "note": "NCAT's guide says batteries are usually avoided in livestock watering systems because they 'reduce the overall efficiency of the system and add to the maintenance and cost', and names three situations where adding them makes sense: the storage tank is not elevated enough for gravity flow, there is not enough tank capacity so water must be pumped at night or in cloudy weather, and continual flow is needed.",
+     "source": "https://www.ncat.org/publication/solar-powered-livestock-watering-systems/",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "The same guide's overall advice is that 'storing water is almost always cheaper and simpler than storing electricity,' and it lists batteries as a source of efficiency losses and maintenance cost, treating a battery as a fix for a specific problem rather than a default addition.",
+     "source": "https://www.ncat.org/publication/solar-powered-livestock-watering-systems/",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "The battery in a setup like this qualified for the same federal Residential Clean Energy Credit as a full battery bank; the IRS states battery storage technology has been covered at 30 percent of cost since 2023, but the credit 'is not available for any property placed in service after December 31, 2025,' so adding a battery in the US now costs more to justify than it did a year ago.",
+     "source": "https://www.irs.gov/credits-deductions/residential-clean-energy-credit",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "NCAT: Solar-Powered Livestock Watering Systems",
+     "url": "https://www.ncat.org/publication/solar-powered-livestock-watering-systems/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Battery buffer",
+    "Freeze protection",
+    "Not a default"
+   ],
+   "valueSignature": {
+    "honesty": 75,
+    "cost": 41.5
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "ncat.org",
+    "sourceLabels": [
+     "ncat.org",
+     "irs.gov"
+    ]
+   }
+  },
+  {
+   "code": "off-grid-battery-system",
+   "name": "Battery-based off-grid solar system",
+   "brand": "off-grid mainstream",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A conventional off-grid solar-electric system sized to run a home's loads at any hour, using a battery bank to store daytime power for use after dark. It is the setup most people picture when they hear 'off-grid solar,' and the most expensive route in this comparison.",
+   "scores": {
+    "economical": 15,
+    "reliability": 90,
+    "accessibility": 40
+   },
+   "provenance": {
+    "economical": {
+     "note": "NREL's Q1 2021 cost benchmark put a US residential solar system without storage at $2.65 per watt DC, while a 7.15 kW residential system with 5 kW / 12.5 kWh of battery storage cost $30,326 to $33,618 in total, roughly $11,000 to $15,000 more than the same size array would cost alone at the no-storage rate.",
+     "source": "https://www.osti.gov/biblio/1829460",
+     "asof": "2026"
+    },
+    "reliability": {
+     "note": "The Department of Energy's Building America Solution Center says home battery storage can be 'recharged by the sun' and provide 'year-round utility bill savings' on top of backup power, unlike a direct-drive system, which stops producing the moment the sun sets or a cloud passes.",
+     "source": "https://basc.pnnl.gov/information/pv-battery-storage-power-outages",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "The IRS's Residential Clean Energy Credit page confirms battery storage technology has qualified for a 30 percent federal tax credit since 2023, but states the credit 'is not available for any property placed in service after December 31, 2025,' so a battery bought in the US after that date gets no federal discount toward the cost above.",
+     "source": "https://www.irs.gov/credits-deductions/residential-clean-energy-credit",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "NREL cost benchmark record",
+     "url": "https://www.osti.gov/biblio/1829460"
+    },
+    {
+     "label": "DOE Building America: PV battery storage",
+     "url": "https://basc.pnnl.gov/information/pv-battery-storage-power-outages"
+    },
+    {
+     "label": "IRS Residential Clean Energy Credit",
+     "url": "https://www.irs.gov/credits-deductions/residential-clean-energy-credit"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Full off-grid",
+    "Battery bank",
+    "Available after dark"
+   ],
+   "valueSignature": {
+    "honesty": 90,
+    "cost": 27.5
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "basc.pnnl.gov",
+    "sourceLabels": [
+     "basc.pnnl.gov",
+     "irs.gov",
+     "osti.gov"
+    ]
+   }
+  },
+  {
+   "code": "generator-pump",
+   "name": "Generator-powered pump",
+   "brand": "fuel-powered alternative",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A gasoline, diesel or propane generator running a standard electric pump, the option many rural properties already own before considering solar. It works regardless of weather or time of day, at the cost of fuel and routine engine maintenance.",
+   "scores": {
+    "economical": 55,
+    "reliability": 85,
+    "environment": 20
+   },
+   "provenance": {
+    "economical": {
+     "note": "University of Wyoming Extension's Kaycee, Wyoming ranch example put a generator-plus-pump system at $3,428 upfront, cheaper to install than the $5,188 solar system or the $11,031 utility line extension in that comparison, though the extension's equivalent-annual-cost analysis still found the solar system cheaper over the long run.",
+     "source": "https://www.wyoextension.org/publications/html/B1289-2/",
+     "asof": "2026"
+    },
+    "reliability": {
+     "note": "The Department of Energy's Building America Solution Center notes a fossil-fuel generator needs 'periodic maintenance including coolant and oil level checks,' but, unlike solar, is not limited to daylight hours.",
+     "source": "https://basc.pnnl.gov/information/pv-battery-storage-power-outages",
+     "asof": "2026"
+    },
+    "environment": {
+     "note": "The EPA's regulations for nonroad spark-ignition engines list 'generators' by name among the equipment covered, alongside forklifts and farm and industrial machinery, because they burn fuel and produce exhaust; a solar-direct pump, fan or refrigerator has no combustion engine and falls under no such rule.",
+     "source": "https://www.epa.gov/regulations-emissions-vehicles-and-engines/regulations-emissions-heavy-equipment-spark-ignition",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Wyoming Extension: solar-powered watering economics",
+     "url": "https://www.wyoextension.org/publications/html/B1289-2/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Fuel powered",
+    "Works any time",
+    "Needs maintenance"
+   ],
+   "valueSignature": {
+    "planet": 20,
+    "honesty": 85,
+    "cost": 55
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "basc.pnnl.gov",
+    "sourceLabels": [
+     "basc.pnnl.gov",
+     "epa.gov",
+     "wyoextension.org"
+    ]
+   }
+  },
+  {
+   "code": "staying-on-mains",
+   "name": "Staying on the electric grid",
+   "brand": "no-purchase baseline",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Not buying anything: for a property the electric grid already reaches, staying connected is usually the cheapest way to run a pump, a fan or a fridge of any kind. It stops being cheap the moment a new line has to be built to reach it.",
+   "scores": {
+    "economical": 70,
+    "accessibility": 90
+   },
+   "provenance": {
+    "economical": {
+     "note": "University of Wyoming Extension found utility line extension typically costs about $20,000 a mile, and that solar pumping beats a new grid connection on annual cost unless the extension would cost under about $1,348, roughly one sixteenth of a mile; the same publication lists a utility fixed charge above $265 a year as one signal that switching away from an existing connection pays off, which by the same logic means a property already paying less than that to stay connected is hard to beat on cost.",
+     "source": "https://www.wyoextension.org/publications/html/B1289-2/",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "University of Wyoming Extension's costing of a theoretical installation states that 'the cost of a utility line extension is expected to be $20,000 per mile, although this value can vary widely based upon terrain and circumstance', which is the number that decides whether reaching the grid is an option at all.",
+     "source": "https://www.wyoextension.org/publications/html/B1289-2/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Wyoming Extension: solar-powered watering economics",
+     "url": "https://www.wyoextension.org/publications/html/B1289-2/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "No purchase",
+    "Cheapest where present",
+    "Not an option everywhere"
+   ],
+   "valueSignature": {
+    "cost": 80
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "wyoextension.org"
+   }
+  }
+ ]
+}

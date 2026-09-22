@@ -1,0 +1,94 @@
+{
+  "$schema": "../schemas/work-capsule.schema.json",
+  "kind": "cc-work-capsule",
+  "version": "1.0.0",
+  "id": "phase2-provenance-domains",
+  "variant": "psl-registrable-domain-v1",
+  "state": "BLOCKED",
+  "workMode": "correctness-repair",
+  "priority": "P0",
+  "decision": "Does CC count independently controlled source domains rather than treating one publisher's subdomains as corroboration?",
+  "liveConsumer": "The generated provenanceSummary, corroboration indicator, Trust Lens, linked-data exports, and agent-readable sourced facts.",
+  "model": {
+    "id": "gpt-5.6-sol",
+    "reasoningEffort": "medium"
+  },
+  "writeAuthorized": true,
+  "scope": {
+    "ownedPaths": [
+      "content/provenance-domain-contract.json",
+      "pipeline/source_domains.py",
+      "pipeline/build_datasets.py",
+      "research/provenance_domain.js",
+      "research/provenance_domain_test.mjs",
+      "research/provenance_summary_audit.js",
+      "content/operations/reviews/phase2-provenance-domain-baseline-2026-07-15.md",
+      "content/operations/results/phase2-provenance-domains.md"
+    ],
+    "forbiddenPaths": [
+      "app/app.js",
+      "app/styles.css",
+      "app/index.html",
+      "content/lenses/banking.json"
+    ],
+    "requiresIsolatedWorktree": true
+  },
+  "gates": [
+    {
+      "id": "phase2-founder-authorization",
+      "status": "satisfied",
+      "evidence": "The founder directed Codex to begin Phase 2 on 2026-07-15."
+    },
+    {
+      "id": "live-provenance-consumer",
+      "status": "satisfied",
+      "evidence": "provenanceSummary.sourceDomainCount drives the live corroboration indicator and Trust Lens, and is exported in generated app data."
+    }
+  ],
+  "sourceRequirements": [
+    "The official Public Suffix List and its exact, wildcard, exception, and private-domain semantics.",
+    "The current 24,621-entry generated corpus and every provenance URL it contains.",
+    "Adversarial same-publisher subdomain, multi-label suffix, private suffix, IP, and invalid-URL fixtures."
+  ],
+  "preconditions": [
+    {
+      "id": "hostname-overcount-measured",
+      "status": "satisfied",
+      "evidence": "Read-only PSL comparison found 4,845 of 24,621 entries whose raw source hostnames collapse at registrable-domain level; generated multi-source entries fall from 5,857 to 1,227."
+    },
+    {
+      "id": "clean-bounded-scope",
+      "status": "satisfied",
+      "evidence": "The capsule owns only clean generator, contract, and audit paths. research/verify_run.js remains inherited dirty from terminal S3 and is an explicit stop-before-rebuild integration gate."
+    }
+  ],
+  "doneWhen": [
+    "A deterministic PSL-derived contract records the snapshot source, hash, relevant rules, and conservative fallback.",
+    "Python and Node resolve the same registrable domains for exact, multi-label, private, IP, and invalid fixtures.",
+    "The generator and dedicated provenance audit use the shared registrable-domain contract.",
+    "The measured hostname overcount has a frozen baseline and an executable regression test.",
+    "A result card records why the rebuild and release gate remain closed until verify_run integration is clean."
+  ],
+  "stopConditions": [
+    "Any implementation counts same-registrable-domain subdomains as independent.",
+    "The resolver would require a network request during normal builds.",
+    "The change would undercut private-suffix behavior or silently invent organization identity beyond DNS registration boundaries.",
+    "A rebuild would require writing the inherited-dirty research/verify_run.js outside this capsule's locked scope."
+  ],
+  "expectedArtifacts": [
+    "A frozen hostname-overcount baseline.",
+    "A deterministic PSL-derived source-domain contract.",
+    "Shared Python and Node resolvers with adversarial tests.",
+    "A result card and append-only ledger entry."
+  ],
+  "verificationCommands": [
+    "python pipeline/source_domains.py --self-test",
+    "node research/provenance_domain_test.mjs",
+    "node --check research/provenance_summary_audit.js",
+    "node scripts/content-runtime.mjs validate"
+  ],
+  "claimBoundary": {
+    "supports": "CC can conservatively deduplicate provenance URLs by DNS registrable domain for the current corpus without network-dependent builds.",
+    "doesNotSupport": "That distinct registrable domains are editorially or financially independent, or that source count alone proves a claim."
+  }
+}

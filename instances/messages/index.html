@@ -5,82 +5,91 @@
 <script>try{var t=localStorage.getItem('cc.theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0f9d8a">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d7a5a'/%3E%3Cpath d='M18 36c0-13 13-20 28-20-2 16-14 23-28 20z' fill='%23fff'/%3E%3Cpath d='M20 46c6-12 14-18 22-21' stroke='%231d7a5a' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="/app/icon.svg" type="image/svg+xml"><link rel="alternate icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64"><link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
 <title>Where to Message</title>
 <meta name="description" content="Rank messengers like Signal, WhatsApp, and iMessage by your own values: privacy, openness, and reach. Every fact carries its source, and nothing here is sponsored.">
 <style>
   /* A THIRD skin, deliberately unlike CC (warm parchment) and Kosplora (dark indigo): light "daylight",
      teal accent, SANS display. Same shell underneath; only these tokens + class colours change (L3). */
-  :root{ --bg:#f5f8f6; --surface:#ffffff; --ink:#15201c; --muted:#566b62; --hint:#85978e;
-    --line:rgba(20,45,32,.11); --accent:#0f9d8a; --track:#e7ece9;
-    --bd-hi-bg:#d7f1ea; --bd-hi-fg:#0a6e60; --bd-mid-bg:#eef1ef; --bd-mid-fg:#566b62; }
+  :root{--shadow-sm:0 1px 2px rgba(40,34,24,.07),0 1px 1px rgba(40,34,24,.05);--shadow-md:0 2px 6px rgba(40,34,24,.09),0 10px 26px rgba(40,34,24,.07);--shadow-lg:0 6px 16px rgba(40,34,24,.12),0 22px 48px rgba(40,34,24,.10);--bg:#f8f5ee;--surface:#fffdf7;--ink:#221f2b;--muted:#4d4860;--hint:#655f7d;--line:rgba(0,0,0,.14);--accent:#5b45c9;--track:#e3ded1;--bd-hi-bg:#ece6ff;--bd-hi-fg:#3b2d8c;--bd-mid-bg:#eef1ef;--bd-mid-fg:#566b62}
+  /* The reader states a preference and the page honours it. Three sibling sites
+     already did; these two overrode it, which locked out anyone who needs light. */
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--shadow-sm:0 1px 2px rgba(0,0,0,.55);--shadow-md:0 2px 8px rgba(0,0,0,.6),0 12px 30px rgba(0,0,0,.45);--shadow-lg:0 8px 20px rgba(0,0,0,.65),0 28px 56px rgba(0,0,0,.5);--bg:#f5f8f6;--surface:#ffffff;--ink:#15201c;--muted:#566b62;--hint:#85978e;--line:rgba(20,45,32,.11);--accent:#0f9d8a;--track:#e7ece9;--bd-hi-bg:#d7f1ea;--bd-hi-fg:#0a6e60}}
+
   @media (prefers-color-scheme:dark){:root{ color-scheme:dark;
     --bg:#0f1614; --surface:#17201d; --ink:#e3ece8; --muted:#93a89f; --hint:#7c8f86;
     --line:rgba(255,255,255,.12); --accent:#3fd0bb; --track:#212a27;
     --bd-hi-bg:#0d3a31; --bd-hi-fg:#5fd9c4; --bd-mid-bg:#222a27; --bd-mid-fg:#93a89f; }}
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;line-height:1.6}
-  .wrap{max-width:780px;margin:0 auto;padding:2rem 1.2rem 4rem}
-  .instancebar{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;margin:0 0 1.6rem;padding:0 0 .9rem;border-bottom:1px solid var(--line)}
+  .wrap{max-width:780px;margin:0 auto;padding:2rem 1.25rem 4rem}
+  .instancebar{display:flex;align-items:center;justify-content:space-between;gap:0.75rem;flex-wrap:wrap;margin:0 0 1.5rem;padding:0 0 1rem;border-bottom:1px solid var(--line)}
   .instancebar .home{font-weight:800;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
-  .instancebar nav{display:flex;gap:.35rem .8rem;flex-wrap:wrap;font-size:.86rem}
-  .instancebar nav a{color:var(--muted);text-decoration:none}
+  .instancebar nav{display:flex;gap:0.25rem 0.75rem;flex-wrap:wrap;font-size:0.86rem}
+  .instancebar nav a{color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;min-height:24px}
   .instancebar nav a[aria-current="page"]{color:var(--accent);font-weight:700}
   .instancebar nav a:hover{color:var(--accent);text-decoration:none}
-  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.55rem .9rem;border-radius:0 0 8px 0;z-index:20}
+  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:0.5rem 1rem;border-radius:0 0 8px 0;z-index:20}
   .skip:focus{left:0}
-  .proofstrip{border-top:1px solid var(--line);margin-top:2.2rem;padding-top:1.3rem}
-  .proofnote{font-size:.84rem;color:var(--muted);margin:.55rem 0 0;line-height:1.55}
-  h1{font-weight:700;font-size:2.05rem;letter-spacing:-.02em;margin:.2rem 0 .3rem}
-  .sub{color:var(--muted);margin:0 0 1.3rem;font-size:1.02rem}
-  .banner{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:.85rem 1.05rem;margin:0 0 1.6rem;font-size:.9rem;color:var(--muted)}
+  .proofstrip{border-top:1px solid var(--line);margin-top:2.25rem;padding-top:1.25rem}
+  .proofnote{font-size:0.86rem;color:var(--muted);margin:0.5rem 0 0;line-height:1.55}
+  h1{font-weight:550;font-size:1.75rem;letter-spacing:-.02em;margin:0.25rem 0 0.25rem}
+  .sub{color:var(--muted);margin:0 0 1.25rem;font-size:1rem}
+  .banner{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:0.75rem 1rem;margin:0 0 1.5rem;font-size:0.86rem;color:var(--muted)}
   .banner b{color:var(--ink)} .banner a{color:var(--accent)}
-  .vh{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--hint);margin:0 0 .5rem}
-  .summary{font-size:.9rem;color:var(--muted);margin:0 0 1.5rem;min-height:1.2em}
+  .vh{font-size:0.75rem;font-weight:700;letter-spacing:.08em;color:var(--hint);margin:0 0 0.5rem}
+  .summary{font-size:0.86rem;color:var(--muted);margin:0 0 1.5rem;min-height:1.2em}
   .summary b{color:var(--accent)}
   /* value sliders */
   #chips{display:flex;flex-direction:column;gap:0;margin-bottom:1rem}
-  .vrow{display:grid;grid-template-columns:1fr 120px 1.4rem;align-items:center;gap:.7rem;padding:.5rem 0;border-bottom:1px solid var(--line)}
+  .vrow{display:grid;grid-template-columns:1fr 120px 1.4rem;align-items:center;gap:0.75rem;padding:0.5rem 0;border-bottom:1px solid var(--line)}
   .vrow:last-child{border-bottom:none}
-  .vlab{display:flex;flex-direction:column;font-size:.95rem;color:var(--ink)}
-  .vlab small{font-size:.72rem;color:var(--hint);font-weight:400}
+  .vlab{display:flex;flex-direction:column;font-size:1rem;color:var(--ink)}
+  .vlab small{font-size:0.75rem;color:var(--hint);font-weight:400}
   .vsl{width:100%;accent-color:var(--accent);cursor:pointer}
-  .vval{text-align:right;color:var(--muted);font-size:.9rem}
+  .vval{text-align:right;color:var(--muted);font-size:0.86rem}
   /* ranked rows + FLIP */
-  .row{display:flex;gap:1rem;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem 1.15rem;margin-bottom:.7rem;cursor:pointer;transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .15s}
+  .row{display:flex;gap:1rem;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1rem 1.25rem;margin-bottom:0.75rem;cursor:pointer;transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .15s}
   .row:hover{border-color:var(--accent)}
-  .rk{font-weight:700;font-size:1.4rem;color:var(--hint);min-width:1.7rem;text-align:right;line-height:1.6}
+  .rk{font-weight:700;font-size:1.35rem;color:var(--hint);min-width:1.7rem;text-align:right;line-height:1.6}
   .main{flex:1;min-width:0}
-  .nm{font-weight:600;font-size:1.08rem}
-  .br{color:var(--hint);font-size:.85rem;margin-left:.1rem}
-  .why{color:var(--muted);font-size:.86rem;margin:.15rem 0 .5rem}
+  .nm{font-weight:600;font-size:1.12rem}
+  .br{color:var(--hint);font-size:0.86rem;margin-left:0.25rem}
+  .why{color:var(--muted);font-size:0.86rem;margin:0.25rem 0 0.5rem}
   .why .tier{color:var(--accent);font-weight:600} .seemore{color:var(--accent)}
-  .bars{display:flex;flex-wrap:wrap;gap:.3rem .7rem}
-  .bar{display:flex;align-items:center;gap:.35rem;font-size:.72rem;color:var(--hint)}
-  .bandlbl{font-size:.62rem;font-weight:700;padding:.04rem .4rem;border-radius:5px;background:var(--bd-mid-bg);color:var(--bd-mid-fg)}
+  .bars{display:flex;flex-wrap:wrap;gap:0.25rem 0.75rem}
+  .bar{display:flex;align-items:center;gap:0.25rem;font-size:0.75rem;color:var(--hint)}
+  .bandlbl{font-size:0.64rem;font-weight:700;padding:0.25rem 0.5rem;border-radius:5px;background:var(--bd-mid-bg);color:var(--bd-mid-fg)}
   .bandlbl.bd-hi{background:var(--bd-hi-bg);color:var(--bd-hi-fg)}
-  .sc{font-weight:700;font-size:1.5rem;color:var(--ink);min-width:2.5rem;text-align:right}
-  .sc small{font-size:.7rem;color:var(--hint);font-weight:400}
+  .sc{font-weight:700;font-size:1.35rem;color:var(--ink);min-width:2.5rem;text-align:right}
+  .sc small{font-size:0.75rem;color:var(--hint);font-weight:400}
   /* verdict / detail */
-  .back{display:inline-block;color:var(--accent);cursor:pointer;font-size:.9rem;margin-bottom:1rem;text-decoration:none}
-  .detail{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.3rem 1.4rem}
-  .dnm{font-size:1.45rem;font-weight:700;color:var(--ink)}
-  .dverdict{display:flex;align-items:center;gap:.9rem;margin:.8rem 0 .4rem}
-  .dsc{font-weight:700;font-size:2.3rem;color:var(--ink);line-height:1} .dsc small{font-size:.85rem;color:var(--hint);font-weight:400}
+  .back{display:inline-block;color:var(--accent);cursor:pointer;font-size:0.86rem;margin-bottom:1rem;text-decoration:none}
+  .detail{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.25rem 1.5rem}
+  .dnm{font-size:1.35rem;font-weight:700;color:var(--ink)}
+  .dverdict{display:flex;align-items:center;gap:1rem;margin:0.75rem 0 0.5rem}
+  .dsc{font-weight:700;font-size:2.4rem;color:var(--ink);line-height:1} .dsc small{font-size:0.86rem;color:var(--hint);font-weight:400}
   .dtier{color:var(--accent);font-weight:600} .dfor{color:var(--muted);font-weight:400}
-  .dreason{border-left:3px solid var(--accent);background:var(--bd-hi-bg);border-radius:0 8px 8px 0;padding:.65rem .85rem;margin:.5rem 0 1.1rem;color:var(--ink);font-size:.92rem;line-height:1.5}
-  .dbars{display:flex;flex-direction:column;gap:.55rem}
-  .dbar{display:flex;justify-content:space-between;gap:1.2rem;font-size:.84rem;align-items:baseline}
+  .dreason{border-left:3px solid var(--accent);background:var(--bd-hi-bg);border-radius:0 8px 8px 0;padding:0.75rem 0.75rem;margin:0.5rem 0 1rem;color:var(--ink);font-size:0.86rem;line-height:1.5}
+  .dbars{display:flex;flex-direction:column;gap:0.5rem}
+  .dbar{display:flex;justify-content:space-between;gap:1.25rem;font-size:0.86rem;align-items:baseline}
   .dbl{color:var(--ink);white-space:nowrap} .dbn{color:var(--hint);text-align:right}
-  .proofgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.65rem;margin:0 0 1.5rem}
-  .proofgrid div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.85rem .95rem;color:var(--muted);font-size:.86rem}
-  .proofgrid b{display:block;color:var(--ink);font-weight:700;font-size:1rem;margin-bottom:.15rem}
-  footer{margin-top:2rem;color:var(--hint);font-size:.84rem;border-top:1px solid var(--line);padding-top:1rem}
+  .proofgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:0.75rem;margin:0 0 1.5rem}
+  .proofgrid div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:0.75rem 1rem;color:var(--muted);font-size:0.86rem}
+  .proofgrid b{display:block;color:var(--ink);font-weight:700;font-size:1rem;margin-bottom:0.25rem}
+  footer{margin-top:2rem;color:var(--hint);font-size:0.86rem;border-top:1px solid var(--line);padding-top:1rem}
   footer a{color:var(--accent)}
-  code{background:var(--track);padding:.05rem .35rem;border-radius:4px;font-size:.85em}
+  code{background:var(--track);padding:0.25rem 0.25rem;border-radius:5px;font-size:.85em}
   :root[data-theme="light"]{--bg:#f5f8f6;--surface:#ffffff;--ink:#15201c;--muted:#566b62;--hint:#85978e;--line:rgba(20,45,32,.11);--accent:#0f9d8a;--track:#e7ece9;--bd-hi-bg:#d7f1ea;--bd-hi-fg:#0a6e60;--bd-mid-bg:#eef1ef;--bd-mid-fg:#566b62;color-scheme:light}
   :root[data-theme="dark"]{--bg:#0f1614;--surface:#17201d;--ink:#e3ece8;--muted:#93a89f;--hint:#7c8f86;--line:rgba(255,255,255,.12);--accent:#3fd0bb;--track:#212a27;--bd-hi-bg:#0d3a31;--bd-hi-fg:#5fd9c4;--bd-mid-bg:#222a27;--bd-mid-fg:#93a89f;color-scheme:dark}
-</style>
+
+  /* depth pass */
+  /* Containers lift off the page instead of being outlined on it, so a card, a chip and
+     a panel stop announcing themselves with the same single grey pixel. */
+  .banner,.detail,.row{box-shadow:var(--shadow-md);background:var(--surface)}
+  h1{font-weight:550;letter-spacing:-0.02em}
+  h2{font-weight:550;letter-spacing:-0.01em}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -103,7 +112,7 @@
     <div id="chips"></div>
     <p class="summary" id="summary"></p>
 
-    <div class="passport-row" style="margin:-.4rem 0 1.4rem;font-size:.86rem">
+    <div class="passport-row" style="margin:-.4rem 0 1.5rem;font-size:0.86rem">
       <label style="cursor:pointer;color:var(--accent)">&#10498; Bring your values from another instance<input type="file" id="passfile" accept="application/json,.json" hidden></label>
       <span id="passnote" style="color:var(--muted)"></span>
     </div>
@@ -126,6 +135,7 @@
 
 <!-- The shared L1 core (the math), unedited. -->
 <script src="../../app/engine.js"></script>
+<script src="../../app/decision.js"></script>
 <!-- This instance's MANIFEST: data + value vocabulary + the passport map. The only file unique to this instance (besides the skin above). -->
 <script src="lens.js"></script>
 <!-- The shared L2 SHELL: the same experience logic Kosplora and CC run; no per-instance code. -->

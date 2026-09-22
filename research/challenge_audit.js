@@ -46,7 +46,7 @@ function validSource(source, label) {
   if (!source || typeof source !== 'object') return;
   expect(typeof source.note === 'string' && source.note.trim(), `${label}: missing source note`);
   expect(/^https?:\/\//.test(String(source.source || '')), `${label}: missing http(s) source`);
-  expect(/^(19|20)\d{2}$/.test(String(source.asof || '')), `${label}: missing asof year`);
+  expect(/^(19|20)\d{2}(?:-\d{2}(?:-\d{2})?)?$/.test(String(source.asof || '')), `${label}: missing valid asof date`);
 }
 
 function checkReadSentence(value, label) {

@@ -1,0 +1,117 @@
+{
+  "$schema": "./schemas/runtime.schema.json",
+  "kind": "cc-agentic-content-runtime",
+  "version": "1.0.0",
+  "model": {
+    "id": "gpt-5.6-sol",
+    "reasoningEffort": "medium"
+  },
+  "sourcesOfTruth": [
+    "codex.md#§M",
+    "docs/MASTERPLAN.md",
+    "CODEX-AUTOMATION.md",
+    "docs/CODEX-CONTENT-BRIEF.md",
+    "docs/CODEX-CLAUDE-PARALLEL.md"
+  ],
+  "queue": "content/MAJOR-CONTENT-ADDITION-PREP.md",
+  "workInProgressLimit": 1,
+  "maxParallelReadOnlyScouts": 3,
+  "states": [
+    "QUEUED",
+    "PREFLIGHT",
+    "RESEARCHING",
+    "FROZEN",
+    "EDITING",
+    "REVIEW_REQUIRED",
+    "VERIFYING",
+    "FOUNDER_REVIEW",
+    "COMPLETE",
+    "BLOCKED",
+    "KILLED",
+    "SUPERSEDED"
+  ],
+  "activeStates": [
+    "PREFLIGHT",
+    "RESEARCHING",
+    "FROZEN",
+    "EDITING",
+    "REVIEW_REQUIRED",
+    "VERIFYING",
+    "FOUNDER_REVIEW"
+  ],
+  "terminalStates": ["COMPLETE", "BLOCKED", "KILLED", "SUPERSEDED"],
+  "workModes": [
+    "safety-repair",
+    "correctness-repair",
+    "source-freshness",
+    "source-quality",
+    "lens-deepening",
+    "guide-publishability",
+    "recognition-gap-addition",
+    "generated-data-refresh",
+    "critique-stop"
+  ],
+  "verdicts": ["POSITIVE", "NEGATIVE", "MIXED", "BLOCKED", "KILLED"],
+  "failureRoutes": {
+    "source-gap": {
+      "action": "narrow-or-omit",
+      "hardStop": false,
+      "why": "Narrow or omit the unsupported claim and write a source-gap result."
+    },
+    "source-conflict": {
+      "action": "block-for-adjudication",
+      "hardStop": true,
+      "why": "Conflicting authoritative sources require explicit adjudication."
+    },
+    "safety-ambiguity": {
+      "action": "fail-closed",
+      "hardStop": true,
+      "why": "Withhold the safety claim and show no-data behavior; never infer safety."
+    },
+    "price-incomparable": {
+      "action": "withhold-price-comparison",
+      "hardStop": true,
+      "why": "Currency, package, or unit mismatch makes a numerical comparison invalid."
+    },
+    "invalid-output": {
+      "action": "retry-once-narrower",
+      "hardStop": false,
+      "why": "Retry once with a narrower structured prompt, then block."
+    },
+    "timeout": {
+      "action": "preserve-partial-and-stop",
+      "hardStop": false,
+      "why": "Preserve a partial artifact, verify a clean process tree, and stop the lane."
+    },
+    "build-failure": {
+      "action": "hold-capsule",
+      "hardStop": true,
+      "why": "Keep the capsule open and do not release or merge."
+    },
+    "dirty-collision": {
+      "action": "stop-writing",
+      "hardStop": true,
+      "why": "Another owner has touched the declared scope; preserve evidence and stop."
+    },
+    "gate-closed": {
+      "action": "stop-honestly",
+      "hardStop": true,
+      "why": "Founder, adoption, scope, or safety gates cannot be crossed automatically."
+    },
+    "no-live-consumer": {
+      "action": "reject-expansion",
+      "hardStop": true,
+      "why": "A future or unnamed consumer does not justify content expansion."
+    },
+    "unknown": {
+      "action": "write-result-and-block",
+      "hardStop": true,
+      "why": "Unclassified failures are recorded and held for operator review."
+    }
+  },
+  "requiredBuildCommands": [
+    "python pipeline/build_datasets.py",
+    "python pipeline/build_guides.py",
+    "node research/verify_run.js"
+  ]
+}

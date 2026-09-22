@@ -317,10 +317,15 @@ function resolvedTaxonomy(ontology, index) {
   assert(needs.length === 8, `taxonomy: expected 8 needs, found ${needs.length}`);
   assert(needs.reduce((sum, need) => sum + need.categories.length, 0) === 18, 'taxonomy: expected 18 categories');
   assert(needs.flatMap((need) => need.categories).reduce((sum, category) => sum + category.subcategories.length, 0) === 39, 'taxonomy: expected 39 subcategories');
-  assert(decisions.length === 206, `taxonomy: expected 206 decisions, found ${decisions.length}`);
-  assert(live.length === 96, `taxonomy: expected 96 live paths, found ${live.length}`);
-  assert(liveIds.size === 88, `taxonomy: expected 88 live datasets, found ${liveIds.size}`);
-  assert(gaps.length === 110, `taxonomy: expected 110 gaps, found ${gaps.length}`);
+  // 2026-08-13, swarm waves two and three. Two rows added, Reusable nappies and Clothing rental, both being the reuse route beside the thing it replaces, which is the comparison this catalogue exists to make. Ten decisions promoted from gap to live across health, transport, travel, money, home, family and clothing. 206 -> 208 rows, 96 -> 110 live paths, 88 -> 102 datasets, 110 -> 98 gaps.
+  // 2026-08-14, Phase 10 serial promotion. Four built decisions added four source rows;
+  // no existing row moved and the not-yet-covered count stayed at 87.
+  assert(decisions.length === 217, `taxonomy: expected 217 decisions, found ${decisions.length}`);
+  assert(live.length === 130, `taxonomy: expected 130 live paths, found ${live.length}`);
+  // 124 on 2026-08-26: messaging and browsers left the shared digital-services dataset and
+  // gained their own, the first two of the nine-way split in docs/ONTOLOGY-RESEARCH.md 4.1.
+  assert(liveIds.size === 124, `taxonomy: expected 124 live datasets, found ${liveIds.size}`);
+  assert(gaps.length === 87, `taxonomy: expected 87 gaps, found ${gaps.length}`);
   assert(duplicateValues(decisions.map((decision) => decision.id)).length === 0, 'taxonomy: duplicate decision id');
   assert(duplicateValues(decisions.map((decision) => decision.route)).length === 0, 'taxonomy: duplicate decision route');
   assert([...liveIds].every((id) => generatedIds.has(id)) && [...generatedIds].every((id) => liveIds.has(id)), 'taxonomy: generated category set disagrees with resolved live datasets');

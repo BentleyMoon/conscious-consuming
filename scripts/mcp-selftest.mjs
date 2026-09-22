@@ -2,14 +2,16 @@
 // Self-test for the /mcp Worker endpoint (mcp.js) against the REAL app data on disk — the same
 // JSON the ASSETS binding serves in production, so this exercises the true payloads without
 // wrangler. Run: node scripts/mcp-selftest.mjs
-import { handleMcp } from '../mcp.js';
+import { handleMcp, MCP_LIMITS } from '../mcp.js';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const APP_BASE = 'https://valuescommons.org/app';
+const loadCounts = new Map();
 const loadJson = async (p) => {
+  loadCounts.set(p, (loadCounts.get(p) || 0) + 1);
   try { return JSON.parse(await readFile(path.join(ROOT, p.replace(/^\//, '')), 'utf8')); }
   catch (e) { return null; }
 };
@@ -41,6 +43,8 @@ expect(s2p && s2p.results.some((r) => r.id.includes('banking')), 'search "ethica
 const s3 = await rpc('tools/call', { name: 'search', arguments: { query: 'zzqxv wwqqz' } });
 const s3p = s3.result && s3.result.structuredContent;
 expect(s3p && s3p.results.length === 0 && /category/.test(s3p.hint || ''), 'a miss returns the honest category hint, never silence');
+expect(loadCounts.get('/app/data/nodes/ask-core.json') === 1, 'compact search index is loaded once per isolate');
+expect(loadCounts.get('/app/data/nodes/ask-index.json') === 1, 'full search index is loaded once per isolate');
 
 // the real agent journey for a service entry: category search → fetch → entry ids include it
 const j1 = await rpc('tools/call', { name: 'fetch', arguments: { id: 'ovs:cat/banking' } });
@@ -72,6 +76,22 @@ expect(unk.error && unk.error.code === -32601, 'unknown method → -32601');
 
 const note = await post({ jsonrpc: '2.0', method: 'notifications/initialized' });
 expect(note.status === 202, 'notification → 202');
+
+const longQuery = await rpc('tools/call', { name: 'search', arguments: { query: 'q'.repeat(MCP_LIMITS.queryChars + 1) } });
+expect(longQuery.error && longQuery.error.code === -32602, 'overlong search query is rejected before search work');
+
+const longId = await rpc('tools/call', { name: 'fetch', arguments: { id: 'i'.repeat(MCP_LIMITS.idChars + 1) } });
+expect(longId.error && longId.error.code === -32602, 'overlong fetch id is rejected before data loading');
+
+const batch = Array.from({ length: MCP_LIMITS.batchItems + 1 }, (_, i) => ({ jsonrpc: '2.0', id: i + 1, method: 'ping' }));
+const batchResponse = await post(batch);
+expect(batchResponse.status === 413, 'oversized JSON-RPC batch is rejected with 413');
+
+const emptyBatchResponse = await post([]);
+expect(emptyBatchResponse.status === 400, 'empty JSON-RPC batch is rejected as invalid');
+
+const oversizedResponse = await post({ jsonrpc: '2.0', id: 99, method: 'ping', padding: 'x'.repeat(MCP_LIMITS.bodyBytes) });
+expect(oversizedResponse.status === 413, 'oversized request body is rejected with 413');
 
 const get = await handleMcp(new Request('https://x/mcp', { method: 'GET' }), loadJson, APP_BASE);
 expect(get.status === 200 && /search/.test(await get.text()), 'GET returns a friendly descriptor');

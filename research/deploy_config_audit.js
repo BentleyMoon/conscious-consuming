@@ -154,7 +154,15 @@ function checkDistForDeploy() {
   expect(meta.siteBase === 'https://valuescommons.org/app', 'dist/build-meta.json: deploy siteBase should be https://valuescommons.org/app');
   expect(meta.appDataFallback === false, 'dist/build-meta.json: public deploy should omit appDataFallback');
   expect(!exists('dist/app/data.js'), 'dist/app/data.js: public deploy should omit oversized fallback bundle');
-  expect(/Sitemap:\s*https:\/\/valuescommons\.org\/app\/sitemap\.xml/i.test(robots), 'dist/robots.txt: public deploy should advertise the canonical sitemap');
+  // The guarantee here is that a crawler reaching robots.txt can find the app's URLs. That used
+  // to mean pointing robots straight at dist/app/sitemap.xml, because it was the only sitemap.
+  // There is now a root sitemap index covering the ecosystem pages AND the app, so robots points
+  // at the index instead. Same guarantee, wider coverage, so the check follows the new mechanism
+  // rather than the old string: robots must name the index, and the index must still reach the app.
+  expect(/Sitemap:\s*https:\/\/valuescommons\.org\/sitemap\.xml/i.test(robots), 'dist/robots.txt: public deploy should advertise the root sitemap index');
+  const sitemapIndex = read('dist/sitemap.xml');
+  expect(/<sitemapindex/i.test(sitemapIndex), 'dist/sitemap.xml: root sitemap must be a sitemap index');
+  expect(sitemapIndex.includes('https://valuescommons.org/app/sitemap.xml'), 'dist/sitemap.xml: index must still reach the app sitemap, or the app stops being discoverable');
   expect(/workers\.dev/i.test(headers) && /X-Robots-Tag:\s*noindex/i.test(headers), 'dist/_headers: workers.dev fallback should remain noindexed');
 
   expect(receipt.schema === 'values-commons-release-check-v1', 'dist/release-check.json: missing release receipt schema');

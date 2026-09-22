@@ -1,431 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#8b7cf6">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d7a5a'/%3E%3Cpath d='M18 36c0-13 13-20 28-20-2 16-14 23-28 20z' fill='%23fff'/%3E%3Cpath d='M20 46c6-12 14-18 22-21' stroke='%231d7a5a' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
-<title>Kosplora: an illustrative learning decision · Open Values Standard</title>
-<link rel="canonical" href="https://valuescommons.org/kosplora/">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://valuescommons.org/kosplora/">
-<meta property="og:site_name" content="Values Commons">
-<meta property="og:title" content="Kosplora, a learning atlas">
-<meta property="og:description" content="An illustrative learning decision rendered by the same practical decision component as Conscious Consuming, with a different lens and skin.">
-<meta property="og:image" content="https://valuescommons.org/og-standard.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Kosplora, a learning atlas">
-<meta name="twitter:description" content="An illustrative learning decision rendered by the same practical decision component as Conscious Consuming, with a different lens and skin.">
-<meta name="twitter:image" content="https://valuescommons.org/og-standard.png">
-<meta name="description" content="An illustrative learning decision rendered by the same practical decision component as Conscious Consuming, with a different lens and skin.">
-<style>
-  :root{--bg:#13121b;--surface:#1c1b27;--ink:#ece9f5;--muted:#aaa6c0;--hint:#85809f;--line:rgba(255,255,255,.11);--accent:#a99cff;--track:#2a2838;--bd-hi-bg:#2a2640;--bd-hi-fg:#d1c9ff}
-  *{box-sizing:border-box}html{color-scheme:dark}body{margin:0;background:radial-gradient(circle at 12% 0,#242039 0,transparent 30rem),var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;line-height:1.6}
-  .wrap{max-width:820px;margin:0 auto;padding:2rem 1.2rem 4rem}.instancebar{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;margin:0 0 1.6rem;padding:0 0 .9rem;border-bottom:1px solid var(--line)}
-  .instancebar .home{font-family:Georgia,"Times New Roman",serif;font-weight:700;color:var(--ink);text-decoration:none}.instancebar nav{display:flex;gap:.35rem .8rem;flex-wrap:wrap;font-size:.86rem}.instancebar nav a{color:var(--muted);text-decoration:none}.instancebar nav a[aria-current="page"]{color:var(--accent);font-weight:700}.instancebar nav a:hover{color:var(--accent)}
-  .instance-note{font-size:.78rem;color:var(--hint);margin:-.8rem 0 1.4rem}h1{font-family:Georgia,"Times New Roman",serif;font-weight:600;font-size:2.1rem;letter-spacing:-.01em;margin:.2rem 0 .3rem}.sub{color:var(--muted);margin:0 0 1.3rem;font-size:1.02rem}
-  .banner{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:.85rem 1.05rem;margin:0 0 1.1rem;font-size:.9rem;color:var(--muted)}.banner b{color:var(--ink)}.banner a,a{color:var(--accent)}
-  .proofgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.65rem;margin:0 0 1.5rem}.proofgrid div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.85rem .95rem;color:var(--muted);font-size:.86rem}.proofgrid b{display:block;color:var(--ink);font-family:Georgia,"Times New Roman",serif;font-size:1rem;margin-bottom:.15rem}
-  footer{margin-top:2rem;color:var(--hint);font-size:.8rem;border-top:1px solid var(--line);padding-top:1rem}footer a{color:var(--accent)}code{background:var(--track);padding:.05rem .35rem;border-radius:4px;font-size:.85em}
-  button,input{font:inherit}button,summary,.passport-action{cursor:pointer}.decision-page h2,.decision-page h3,.decision-page h4{font-family:Georgia,"Times New Roman",serif;line-height:1.2}.decision-page h2{font-size:1.7rem;margin:.15rem 0 .45rem}.decision-page h3{margin:.1rem 0 .25rem}
-  .decision-kicker{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}.decision-head{padding:1.4rem 0 1rem}.decision-head>h2{font-size:2.35rem;margin:.2rem 0 .45rem}.decision-read{font-size:1.08rem;color:var(--muted);max-width:42rem;margin:.1rem 0 .7rem}
-  .illustrative-note{border-left:3px solid var(--accent);padding:.55rem .8rem;background:var(--bd-hi-bg);color:var(--muted);font-size:.86rem}.illustrative-note b{color:var(--ink)}
-  .instance-context,.decision-controls,.decision-answer,.decision-finetune,.decision-all,.decision-personal-fold,.review-next{background:var(--surface);border:1px solid var(--line);border-radius:14px}
-  .decision-floor>summary{min-height:48px;padding:.85rem 1rem;display:flex;align-items:center;justify-content:space-between;list-style:none}.decision-floor>summary::-webkit-details-marker{display:none}.decision-floor>summary span:first-child{display:flex;flex-direction:column}.decision-floor>summary small{color:var(--muted)}.decision-floor[open]>summary{border-bottom:1px solid var(--line)}
-  .context-body{padding:.9rem 1rem}.context-body h3 span{font:inherit;color:var(--hint)}.context-body p{color:var(--muted);margin:.35rem 0}.context-body .scope-note{font-size:.8rem;color:var(--hint)}
-  .instance-lines{display:grid;grid-template-columns:minmax(12rem,.75fr) minmax(16rem,1.25fr);gap:1rem;padding:1rem;border-top:1px solid var(--line)}.instance-lines p{color:var(--muted);font-size:.86rem;margin:.35rem 0}.linechips{display:grid;gap:.45rem}.linechip{text-align:left;min-height:48px;padding:.65rem .8rem;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}.linechip span{display:block;font-size:.75rem;color:var(--muted)}.linechip.on{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
-  .decision-zero{color:var(--muted);font-size:.86rem;margin:.7rem 0 1rem}.decision-controls{padding:1rem;margin:0 0 1rem}.control-heading,.answer-heading,.decision-answer-top{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start}.control-heading button{min-height:44px;border:1px solid var(--line);border-radius:9px;background:var(--track);color:var(--ink);padding:.45rem .75rem}
-  .decision-dial{padding:.9rem 0;border-top:1px solid var(--line)}.decision-dial-head{display:flex;justify-content:space-between;gap:1rem;align-items:baseline}.decision-dial-head label{font-weight:650}.decision-dial-head output{color:var(--accent);font-size:.82rem}.decision-dial-control{display:grid;grid-template-columns:minmax(5.5rem,1fr) minmax(10rem,2.4fr) minmax(5.5rem,1fr);align-items:center;gap:.7rem;color:var(--muted);font-size:.75rem}.decision-dial-control span:last-child{text-align:right}.decision-dial-control input{width:100%;accent-color:var(--accent)}.budget-note{font-size:.78rem;color:var(--hint);margin:.45rem 0 0}
-  .decision-finetune{margin:0 0 1rem}.decision-finetune>summary,.decision-all>summary,.decision-personal-fold>summary{min-height:48px;padding:.8rem 1rem;display:flex;justify-content:space-between;gap:1rem;align-items:center}.decision-finetune>summary strong{font-size:.78rem;color:var(--accent)}
-  .precedence-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:1rem;padding:1rem;border-top:1px solid var(--line)}.precedence-grid p{color:var(--muted);font-size:.84rem}.precedence-grid ol{list-style:none;margin:0;padding:0}.precedence-grid li{display:flex;justify-content:space-between;gap:.7rem;padding:.4rem 0;border-bottom:1px solid var(--line);font-size:.78rem}.precedence-grid li span{color:var(--muted);text-align:right}
-  .leaning-panel{grid-column:1/-1;border-top:1px solid var(--line);padding-top:.8rem}.leaning-chips{display:flex;flex-wrap:wrap;gap:.4rem}.leaning-chip,.passport-action{min-height:44px;padding:.45rem .7rem;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--muted)}.leaning-chip.on{border-color:var(--accent);color:var(--ink)}.passport-action{display:inline-flex;align-items:center;margin-top:.65rem;color:var(--accent)}#passnote{display:block;color:var(--muted);font-size:.78rem;margin-top:.4rem}
-  .answer-heading{margin:1.5rem 0 .7rem}.answer-heading p{max-width:18rem;color:var(--muted);font-size:.82rem;text-align:right}.decision-collapse{color:var(--muted);font-size:.82rem}.decision-answer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:.7rem}.decision-answer{padding:1rem}.decision-recipe{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:700}.decision-brand{color:var(--hint);font-size:.8rem;margin:0}
-  .decision-answer-proof{margin:.65rem 0}.proof-chip{display:inline-flex;padding:.2rem .5rem;border-radius:999px;background:var(--bd-hi-bg);color:var(--bd-hi-fg);font-size:.7rem}.decision-answer-why{color:var(--muted);font-size:.86rem}.decision-merge{font-size:.78rem;color:var(--hint)}.decision-math>summary{min-height:44px;color:var(--accent);display:flex;align-items:center}.decision-math-recipe{border-top:1px solid var(--line);padding:.65rem 0}.decision-math-recipe p{font-size:.76rem;color:var(--muted)}.decision-math-row{display:flex;justify-content:space-between;gap:1rem;font-size:.75rem;padding:.16rem 0}.decision-math-total{border-top:1px solid var(--line);padding-top:.45rem}
-  .decision-all,.decision-personal-fold{margin-top:.8rem}.decision-all>p,.decision-personal-fold>p{padding:0 1rem;color:var(--muted);font-size:.82rem}.rank-row,.fold-row{display:grid;grid-template-columns:auto 1fr auto;gap:.75rem;align-items:center;padding:.7rem 1rem;border-top:1px solid var(--line)}.rank-row h3,.fold-row h3{font:inherit;font-weight:650;margin:0}.rank-row p,.fold-row p{margin:0;color:var(--muted);font-size:.75rem}.rank-number{color:var(--hint)}.rank-row>strong{font-family:Georgia,serif}.rank-row>strong small{font:inherit;color:var(--hint)}.fold-row{grid-template-columns:1fr auto}.fold-row>span{color:var(--accent);font-size:.72rem}
-  .empty-answer{padding:1rem;background:var(--surface);border:1px solid var(--line);border-radius:12px}.empty-answer p{color:var(--muted)}.review-next{margin-top:1.5rem;padding:1rem}.review-next p{color:var(--muted)}.review-next nav{display:flex;flex-wrap:wrap;gap:.5rem 1rem}.error{color:#ff9a9a}.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-  a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible,.passport-action:focus-within{outline:2px solid var(--accent);outline-offset:2px}
-  @media(max-width:620px){.wrap{padding:1.25rem .85rem 3rem}.decision-head>h2{font-size:2rem}.instance-lines,.precedence-grid{grid-template-columns:1fr}.decision-dial-head,.answer-heading{display:block}.decision-dial-head output{display:block;margin-top:.2rem}.decision-dial-control{grid-template-columns:1fr}.decision-dial-control span:last-child{text-align:left}.answer-heading p{text-align:left}.decision-answer-grid{grid-template-columns:1fr}.rank-row{grid-template-columns:auto 1fr}.rank-row>strong{grid-column:2}.instancebar{align-items:flex-start}}
-  @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.001ms!important;animation-duration:.001ms!important}}
-  /* The atlas: routes walked over weeks, stations chosen by your values. Night-map skin only;
-     every station ranking below comes from the same shared engine as the list. */
-  .atlas{border:1px solid var(--line);border-radius:14px;margin:0 0 1.5rem;overflow:hidden;
-    background:radial-gradient(1px 1px at 12% 22%,rgba(209,201,255,.5) 50%,transparent 51%),
-      radial-gradient(1px 1px at 78% 12%,rgba(209,201,255,.4) 50%,transparent 51%),
-      radial-gradient(1.5px 1.5px at 55% 30%,rgba(209,201,255,.35) 50%,transparent 51%),
-      radial-gradient(1px 1px at 32% 8%,rgba(209,201,255,.45) 50%,transparent 51%),
-      radial-gradient(1px 1px at 90% 26%,rgba(209,201,255,.3) 50%,transparent 51%),var(--surface)}
-  .atlas-head{padding:1rem 1.05rem .6rem}
-  .atlas-head h2{font-family:Georgia,"Times New Roman",serif;font-size:1.45rem;margin:0 0 .25rem}
-  .atlas-head p{margin:0;color:var(--muted);font-size:.9rem;max-width:44rem}
-  .routepick{display:flex;flex-wrap:wrap;gap:.4rem;padding:.7rem 1.05rem .4rem}
-  .routechip{min-height:44px;padding:.45rem .8rem;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--muted);cursor:pointer;font:inherit;font-size:.86rem}
-  .routechip.on{border-color:var(--accent);color:var(--ink);box-shadow:0 0 10px rgba(169,156,255,.25)}
-  .route-reads{padding:.15rem 1.05rem .3rem;color:var(--hint);font-size:.8rem;margin:0}
-  .timelean{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;padding:.35rem 1.05rem .5rem}
-  .timelean .tl-label{font-size:.8rem;color:var(--muted)}
-  .timelean .tl-label b{color:var(--ink);font-weight:650}
-  .timechip{min-width:2rem;min-height:2rem;padding:.2rem .5rem;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--muted);cursor:pointer;font:inherit;font-size:.8rem}
-  .timechip.on{border-color:var(--accent);color:var(--ink);box-shadow:inset 0 0 0 1px var(--accent)}
-  .timelean .tl-reads{flex-basis:100%;margin:.1rem 0 0;font-size:.72rem;color:var(--hint)}
-  .atlas-line{display:flex;align-items:flex-start;padding:.8rem 1.05rem .4rem;position:relative}
-  .station{flex:1;min-width:0;background:none;border:none;color:inherit;font:inherit;cursor:pointer;position:relative;padding:0 .2rem;text-align:center}
-  .station::before{content:"";position:absolute;top:.55rem;left:-50%;width:100%;height:2px;background:rgba(169,156,255,.35)}
-  .station:first-child::before{display:none}
-  .station .node{position:relative;z-index:1;display:inline-block;width:1.15rem;height:1.15rem;border-radius:50%;border:2px solid var(--accent);background:var(--bg)}
-  .station.on .node{background:var(--accent);box-shadow:0 0 12px rgba(169,156,255,.55)}
-  .station .slabel{display:block;font-size:.74rem;color:var(--muted);margin-top:.3rem;line-height:1.25}
-  .station.on .slabel{color:var(--ink)}
-  .station-panel{border-top:1px solid var(--line);padding:.9rem 1.05rem 1.05rem}
-  .station-q{margin:0 0 .55rem;color:var(--muted);font-size:.9rem}
-  .pick{display:grid;grid-template-columns:1fr auto;gap:.15rem .8rem;align-items:baseline;background:var(--bd-hi-bg);border:1px solid var(--line);border-radius:10px;padding:.7rem .85rem}
-  .pick .pname{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:1.05rem;color:var(--ink)}
-  .pick .pname small{font:inherit;font-family:inherit;font-weight:400;font-size:.78rem;color:var(--hint);margin-left:.4rem}
-  .pick .pscore{font-family:Georgia,serif;font-weight:700;color:var(--bd-hi-fg)}
-  .pick .pwhy{grid-column:1/-1;color:var(--muted);font-size:.82rem}
-  .runners{list-style:none;margin:.55rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.35rem .9rem;font-size:.82rem;color:var(--muted)}
-  .runners li b{color:var(--ink);font-weight:650}
-  .atlas-foot{padding:0 1.05rem .9rem;color:var(--hint);font-size:.76rem;margin:0}
-  @media(max-width:620px){.station .slabel{font-size:.68rem}}
-  /* The open university: a curator showing you around. One vivid door at a time,
-     then guided doors in human language, then shelves with a first-visit pick each.
-     The night sky is spent on exactly one object. Skin-layer only. */
-  .openuni{margin:0 0 1.5rem}
-  .openuni-head{padding:.4rem 0 .6rem}
-  .openuni-kicker{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0}
-  .openuni-head h2{font-family:Georgia,"Times New Roman",serif;font-size:1.75rem;margin:.15rem 0 .35rem}
-  .openuni-head p{margin:.35rem 0 0;color:var(--muted);font-size:.98rem;max-width:46rem}
-  .ou-tonight{position:relative;border:1px solid var(--line);border-radius:14px;padding:1.3rem 1.4rem 1.25rem;margin:.9rem 0 1rem;overflow:hidden;background:
-    radial-gradient(1.5px 1.5px at 12% 20%,rgba(209,201,255,.5) 50%,transparent 51%),
-    radial-gradient(1px 1px at 78% 14%,rgba(209,201,255,.4) 50%,transparent 51%),
-    radial-gradient(1px 1px at 55% 75%,rgba(209,201,255,.3) 50%,transparent 51%),
-    radial-gradient(1.3px 1.3px at 90% 60%,rgba(209,201,255,.35) 50%,transparent 51%),
-    radial-gradient(1px 1px at 30% 88%,rgba(209,201,255,.3) 50%,transparent 51%),
-    radial-gradient(circle at 8% 0,#242039 0,transparent 22rem),var(--surface)}
-  .ou-t-k{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 .3rem}
-  .ou-tonight h3{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.5rem,4vw,2.1rem);margin:0 0 .25rem;line-height:1.15}
-  .ou-tonight h3 a{color:var(--ink);text-decoration:none}
-  .ou-tonight h3 a:hover{color:var(--accent)}
-  .ou-t-note{margin:0 0 .4rem;color:var(--muted);font-size:1.05rem;max-width:38rem}
-  .ou-t-meta{margin:0 0 .8rem;color:var(--hint);font-size:.82rem}
-  .ou-t-act{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
-  .ou-t-open{display:inline-flex;align-items:center;min-height:44px;padding:.5rem 1.05rem;border:1px solid var(--accent);border-radius:9px;color:var(--ink);background:var(--bd-hi-bg);text-decoration:none;font-weight:650}
-  .ou-t-open:hover{box-shadow:0 0 12px rgba(169,156,255,.35)}
-  .ou-t-again{min-height:44px;padding:.5rem .9rem;border:1px solid var(--line);border-radius:9px;background:none;color:var(--muted);cursor:pointer;font:inherit}
-  .ou-t-again:hover{color:var(--ink);border-color:var(--accent)}
-  .ou-doors{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.7rem;margin:0 0 .4rem}
-  .ou-door{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:.95rem 1.05rem .8rem}
-  .ou-door h3{font-family:Georgia,"Times New Roman",serif;font-size:1.12rem;margin:0 0 .15rem}
-  .ou-door .dr{margin:0 0 .55rem;color:var(--hint);font-size:.8rem}
-  .ou-door ol{list-style:none;margin:0;padding:0}
-  .ou-door li{padding:.42rem 0;border-top:1px solid rgba(255,255,255,.055)}
-  .ou-door li a{color:var(--ink);text-decoration:none;font-weight:650}
-  .ou-door li a:hover{color:var(--accent);text-decoration:underline}
-  .ou-door li .w{display:block;color:var(--muted);font-size:.8rem;margin-top:.06rem}
-  .ou-door li:first-child{border-top:none}
-  .ou-door li:first-child a{font-size:1.05rem}
-  .ou-doorline{margin:.2rem 0 1.1rem;color:var(--hint);font-size:.8rem}
-  .ou-shelves-h{font-family:Georgia,"Times New Roman",serif;font-size:1.35rem;margin:1.2rem 0 .1rem}
-  .ou-shelves-sub{margin:0 0 .5rem;color:var(--hint);font-size:.85rem}
-  .ou-index{display:flex;flex-wrap:wrap;gap:.25rem .85rem;margin:0 0 .5rem;font-size:.84rem}
-  .ou-index a{color:var(--muted);text-decoration:none}
-  .ou-index a:hover{color:var(--accent);text-decoration:underline}
-  .ou-shelf{border-top:1px solid var(--line);padding:.75rem 0 .5rem}
-  .ou-shelf h3{font-family:Georgia,"Times New Roman",serif;font-size:1.08rem;margin:0 0 .35rem;display:flex;align-items:baseline;gap:.55rem}
-  .ou-shelf h3 span{color:var(--hint);font-size:.74rem;font-family:inherit;font-weight:400}
-  .ou-first{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;background:var(--surface);padding:.55rem .8rem;margin:0 0 .45rem}
-  .ou-first .fk{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.1rem}
-  .ou-first a{color:var(--ink);text-decoration:none;font-weight:700;font-size:1.02rem}
-  .ou-first a:hover{color:var(--accent)}
-  .ou-first p{margin:.1rem 0 0;color:var(--muted);font-size:.88rem}
-  .ou-row{padding:.34rem 0;border-top:1px solid rgba(255,255,255,.05);font-size:.92rem}
-  .ou-row:first-of-type{border-top:none}
-  .ou-row a{color:var(--ink);text-decoration:none;font-weight:600}
-  .ou-row a:hover{color:var(--accent);text-decoration:underline}
-  .ou-row .n{color:var(--muted)}
-  .ou-row .w{color:var(--hint);font-size:.78rem;white-space:nowrap}
-  .ou-optag{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.6rem;letter-spacing:.05em;padding:.05rem .4rem;border-radius:5px;border:1px solid var(--line);color:var(--muted)}
-  .ou-methods{margin:.6rem 0 0;color:var(--hint);font-size:.8rem;max-width:46rem}
-  .ou-beyond,.ou-cautions{border-top:1px solid var(--line);margin-top:.9rem;padding-top:.5rem}
-  .ou-beyond h3,.ou-cautions h3{font-family:Georgia,"Times New Roman",serif;margin:.4rem 0 .2rem;color:var(--ink)}
-  .ou-beyond h3{font-size:1.35rem}.ou-cautions h3{font-size:1.1rem}
-  .ou-bgroup{padding:.45rem 0;border-top:1px solid rgba(255,255,255,.055)}
-  .ou-bgroup>b{color:var(--ink)}
-  .ou-bgroup .gnote{color:var(--hint);font-size:.8rem;margin:.15rem 0 .3rem}
-  .ou-bitems{display:flex;flex-wrap:wrap;gap:.3rem .55rem;margin:.2rem 0 0;padding:0;list-style:none}
-  .ou-bitems li{font-size:.84rem}
-  .ou-bitems a{color:var(--accent);text-decoration:none}
-  .ou-bitems a:hover{text-decoration:underline}
-  .ou-bitems .in{color:var(--hint)}
-  .ou-cautions{padding-bottom:.6rem}
-  .ou-cautions p{color:var(--muted);font-size:.83rem;margin:.3rem 0;padding-left:.8rem;border-left:2px solid var(--line)}
-  @media(max-width:620px){.ou-tonight{padding:1rem 1rem .95rem}.ou-row .w{white-space:normal}}
-  .skip{position:absolute;left:-999px;top:0;background:var(--accent,#6d5ecb);color:#fff;padding:.55rem .9rem;border-radius:0 0 8px 0;z-index:30}
-  .skip:focus{left:0}
-</style>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kosplora: follow a question into the world</title>
+<meta name="description" content="Kosplora turns a real question into a short route through sources, people, places, and practice. Every route ends in something you make and keep.">
+<link rel="icon" href="/app/icon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64">
+<link rel="stylesheet" href="route.css">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
 <div class="wrap">
-  <header class="instancebar">
-    <a class="home" href="../index.html">◇ Values Commons</a>
-    <nav aria-label="Instance spine">
-      <a href="../instances/index.html">Apps</a>
-      <a href="../passport/index.html">Your file</a>
-      <a href="../kosplora/index.html" aria-current="page">Kosplora</a>
-      <a href="../instances/messages/index.html">Where to Message</a>
-      <a href="../workshop/index.html">Correct a fact</a>
-    </nav>
-  </header>
-  <p class="instance-note">One values file works in every app here.</p>
-  <main id="content" tabindex="-1">
-  <h1>Kosplora</h1>
-  <p class="sub">Where to learn, and how to choose it, without turning your principles into a quiz.</p>
-  <div class="banner">
-    <b>Your values travel here.</b> The same values file that ranks groceries in <a href="../app/index.html">Conscious Consuming</a> chooses learning resources on this page. Close-call priorities stay optional and travel through <a href="../passport/index.html">your file</a>. Built openly on the <a href="../standard/index.html">Open Values Standard</a>. <a href="../docs/INSTANCE-2-KOSPLORA.md">How it was built →</a>
-  </div>
-  <section class="openuni" id="openuni" aria-label="The open university"><noscript><div class="openuni-head"><h2>The open university</h2><p>A curator's shelf of where to learn on the open web. Turn on JavaScript to walk it, or read the source list in <code>lens.js</code>.</p></div></noscript></section>
-  <section class="atlas" aria-label="The atlas: routes and stations">
-    <div class="atlas-head">
-      <h2>The atlas</h2>
-      <p>Learning is a route walked over weeks, not a single pick. Choose a route; at every station, your values choose the vehicle. Move the sliders below and watch the stations change.</p>
-    </div>
-    <div class="routepick" id="routepick" role="tablist" aria-label="Routes"></div>
-    <p class="route-reads" id="routereads"></p>
-    <div class="timelean" id="timelean"></div>
-    <div class="atlas-line" id="atlasline"></div>
-    <div class="station-panel" id="stationpanel" aria-live="polite"></div>
-    <p class="atlas-foot">Stations rank live from your saved values for this instance; the full ranked list below shows the same engine at work on everything.</p>
-  </section>
-  <div id="list"></div>
-  <p id="instance-live" class="visually-hidden" aria-live="polite"></p>
-  <section class="proofgrid" aria-label="What this instance proves">
-    <div><b>Decision transfer</b>The shared component renders named choices and computed answers from this list.</div>
-    <div><b>Rule transfer</b>The baseline and my rules decide eligibility before anything is ranked.</div>
-    <div><b>File transfer</b>Close-call priorities can travel in, but break only equal scores.</div>
-    <div><b>Structure transfer</b>Routes and stations are lens data; every station pick is scored by the same shared engine.</div>
-  </section>
-  <footer id="foot"></footer>
-</div>
-<!-- Shared L1 ranking core. -->
-<script src="../app/engine.js"></script>
-<!-- Shared domain-neutral decision component; Conscious Consuming imports this exact file. -->
-<script src="../app/decision.js"></script>
-<!-- Instance configuration only: learning criteria, resources, lines, and practical axes. -->
-<script src="lens.js"></script>
-<!-- Shared L2 instance shell; it contains no Kosplora-specific branch. -->
-<script src="../app/shell.js"></script>
-<!-- The atlas renderer: skin-layer only. It reads the lens routes and the same stored
-     values as the shell, and asks the shared engine for every station ranking. -->
-<script>
-(function(){
-  'use strict';
-  var L=window.OVS_LENS, E=window.CC&&CC.engine;
-  if(!L||!L.routes||!E) return;
-  var byCode={}; L.resources.forEach(function(r){byCode[r.code]=r;});
-  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-  // The atlas scores with the signed criteria PLUS the atlas-only extras (time facts),
-  // so the decision surface below keeps its receipt exactly while stations may also
-  // weigh the stated time ask.
-  var EX=L.atlasExtras||{};
-  var CRIT=L.criteria.concat(EX.criteria||[]);
-  var K2T={}; Object.keys(L.key2theme).forEach(function(k){K2T[k]=L.key2theme[k];});
-  Object.keys(EX.key2theme||{}).forEach(function(k){K2T[k]=EX.key2theme[k];});
-  var TIME_KEY='kosplora.atlas-time';
-  function timeLean(){ var n=3; try{n=parseInt(localStorage.getItem(TIME_KEY),10);}catch(e){} return (n>=0&&n<=5)?n:3; }
-  function vals(){
-    var v={}; try{v=JSON.parse(localStorage.getItem(L.meta.storeKey)||'{}')||{};}catch(e){}
-    var out={}; L.themes.forEach(function(t){out[t.id]=(typeof v[t.id]==='number')?v[t.id]:3;});
-    if(EX.leaning) out[EX.leaning.id]=timeLean();
-    return out;
-  }
-  function rank(codes){
-    var w=E.themeDefaults(CRIT,vals(),K2T);
-    return codes.map(function(c){var r=byCode[c];return r?[r,E.score(r,{criteria:CRIT,weights:w})]:null;})
-      .filter(function(x){return x&&x[1];})
-      .sort(function(a,b){return b[1].score-a[1].score;});
-  }
-  var leanEl=document.getElementById('timelean');
-  function renderLean(){
-    if(!leanEl||!EX.leaning){if(leanEl)leanEl.hidden=true;return;}
-    var cur=timeLean();
-    leanEl.innerHTML='<span class="tl-label"><b>'+esc(EX.leaning.label)+'</b> ('+esc(EX.leaning.blurb)+')</span>'+
-      [0,1,2,3,4,5].map(function(n){return '<button type="button" class="timechip'+(n===cur?' on':'')+'" data-n="'+n+'" aria-pressed="'+(n===cur)+'">'+n+'</button>';}).join('')+
-      '<p class="tl-reads">'+esc(EX.leaning.reads)+'</p>';
-  }
-  var routeId=L.routes[0].id, stationIdx=0;
-  var pickEl=document.getElementById('routepick'), readsEl=document.getElementById('routereads'),
-      lineEl=document.getElementById('atlasline'), panelEl=document.getElementById('stationpanel');
-  function route(){for(var i=0;i<L.routes.length;i++)if(L.routes[i].id===routeId)return L.routes[i];return L.routes[0];}
-  function renderRoutes(){
-    pickEl.innerHTML=L.routes.map(function(rt){
-      return '<button type="button" role="tab" class="routechip'+(rt.id===routeId?' on':'')+'" aria-selected="'+(rt.id===routeId)+'" data-route="'+esc(rt.id)+'">'+esc(rt.label)+'</button>';
-    }).join('');
-    readsEl.textContent=route().reads||'';
-  }
-  function renderLine(){
-    var rt=route();
-    lineEl.innerHTML=rt.stations.map(function(s,i){
-      return '<button type="button" class="station'+(i===stationIdx?' on':'')+'" data-i="'+i+'" aria-label="Station: '+esc(s.label)+'">'+
-        '<span class="node" aria-hidden="true"></span><span class="slabel">'+esc(s.label)+'</span></button>';
-    }).join('');
-  }
-  function renderPanel(){
-    var rt=route(), st=rt.stations[Math.min(stationIdx,rt.stations.length-1)];
-    var ranked=rank(st.candidates);
-    if(!ranked.length){panelEl.innerHTML='<p class="station-q">No eligible resource for this station under your current rules.</p>';return;}
-    var top=ranked[0], r=top[0], v=top[1];
-    // why this pick: the criterion where the winner leads the field hardest, by your weights
-    var w=E.themeDefaults(CRIT,vals(),K2T);
-    var lead=null;
-    CRIT.forEach(function(c){
-      var k=c.key, weight=(w&&typeof w[k]==='number')?w[k]:0;
-      if(!weight||r.scores[k]==null) return;
-      var others=0,n=0;
-      ranked.slice(1).forEach(function(x){ if(x[0].scores[k]!=null){others+=x[0].scores[k];n++;} });
-      var margin=(n?r.scores[k]-others/n:0)*weight;
-      if(!lead||margin>lead.margin) lead={key:k,label:c.label,margin:margin};
-    });
-    var why=lead&&lead.margin>0?('Leads on '+lead.label.toLowerCase()+' by your weights'+((r.provenance&&r.provenance[lead.key])?': '+r.provenance[lead.key]:'')):((r.provenance&&r.provenance.openness)||'');
-    panelEl.innerHTML=
-      '<p class="station-q">'+esc(st.question)+'</p>'+
-      '<div class="pick"><span class="pname">'+esc(r.name)+'<small>'+esc(r.brand)+'</small></span>'+
-      '<span class="pscore">'+v.score+'</span>'+
-      (why?'<span class="pwhy">'+esc(why)+'</span>':'')+'</div>'+
-      '<ul class="runners">'+ranked.slice(1,3).map(function(x){return '<li><b>'+esc(x[0].name)+'</b> '+x[1].score+'</li>';}).join('')+'</ul>';
-  }
-  function renderAll(){renderRoutes();renderLean();renderLine();renderPanel();}
-  if(leanEl) leanEl.addEventListener('click',function(e){
-    var b=e.target.closest('.timechip'); if(!b)return;
-    try{localStorage.setItem(TIME_KEY,b.getAttribute('data-n'));}catch(err){}
-    renderLean(); renderPanel();
-  });
-  pickEl.addEventListener('click',function(e){
-    var b=e.target.closest('.routechip'); if(!b)return;
-    routeId=b.getAttribute('data-route'); stationIdx=0; renderAll();
-  });
-  lineEl.addEventListener('click',function(e){
-    var b=e.target.closest('.station'); if(!b)return;
-    stationIdx=+b.getAttribute('data-i'); renderLine(); renderPanel();
-  });
-  // live re-rank when the shell's sliders (or anything storing values) change
-  var pending=false;
-  function queue(){ if(pending)return; pending=true; requestAnimationFrame(function(){pending=false; renderPanel();}); }
-  document.addEventListener('input',queue,true);
-  window.addEventListener('storage',queue);
-  renderAll();
-})();
-</script>
-<!-- The open university renderer: skin-layer only. It reads L.openUniversity (a curator's
-     shelf the shell and the signed decision both ignore). One vivid door at a time, then
-     doors phrased as human questions (drawn from the lens filter contract's bands), then
-     shelves with a first-visit pick each. Marks render as words; codes never reach the page. -->
-<script>
-(function(){
-  'use strict';
-  var L=window.OVS_LENS, OU=L&&L.openUniversity, host=document.getElementById('openuni');
-  if(!OU||!host) return;
-  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-  function cap(s){s=String(s);return s.charAt(0).toUpperCase()+s.slice(1);}
-  var subs=OU.subjects;
-  var ALL=[]; subs.forEach(function(s){s.channels.forEach(function(c){ALL.push({c:c,s:s});});});
-  var MARKED=ALL.filter(function(x){return x.c.d!=null&&x.c.e!=null;});
-  // his two marks, translated to words a person recognizes
-  function dWord(d){return d==null?'':(d<=3?'gentle start':d<=6?'some footing helps':'a steep climb');}
-  function eWord(e){return e==null?'':(e<=3?'light watching':e<=6?'solid learning':'dense learning');}
-  function words(c){var a=[];if(c.d!=null)a.push(dWord(c.d));if(c.e!=null)a.push(eWord(c.e));return a.join(' · ');}
-  // the doors ARE the filters: human questions applying the lens contract's bands
-  var F=OU.filters||{}, SB=(F.start&&F.start.bands)||[], DB=(F.density&&F.density.bands)||[];
-  function inBand(v,b){return !!b&&v!=null&&v>=b.min&&v<=b.max;}
-  var DOORS=[
-    {q:'Where do I even start?', reads:'Gentle first steps that still teach a lot.',
-     pick:MARKED.filter(function(x){return inBand(x.c.d,SB[0]);}).sort(function(a,b){return b.c.e-a.c.e||a.c.d-b.c.d;}).slice(0,4)},
-    {q:'Give me the deep end', reads:'Steep climbs that repay the effort.',
-     pick:MARKED.filter(function(x){return inBand(x.c.d,SB[2]);}).sort(function(a,b){return b.c.e-a.c.e;}).slice(0,4)},
-    {q:'Big learning, small minutes', reads:'The densest learning per minute on the shelves.',
-     pick:MARKED.filter(function(x){return inBand(x.c.e,DB[2]);}).sort(function(a,b){return a.c.d-b.c.d||b.c.e-a.c.e;}).slice(0,4)}
-  ];
+<header class="instancebar">
+  <a class="home" href="../index.html">&#9671; Values Commons</a>
+  <nav aria-label="Instance spine">
+    <a href="../instances/index.html">Apps</a>
+    <a href="../passport/index.html">Your file</a>
+    <a href="index.html" aria-current="page">Kosplora</a>
+    <a href="shelf/index.html">Reading shelf</a>
+    <a href="../workshop/index.html">Correct a fact</a>
+  </nav>
+</header>
+<p class="instance-note">One values file works in every app here.</p>
 
-  function header(){
-    return '<div class="openuni-head"><p class="openuni-kicker">'+esc(OU.kicker)+'</p>'+
-      '<h2>The open university</h2><p>'+esc(OU.thesis)+'</p></div>';
-  }
-  // one vivid door at a time: the day picks it, one button changes it
-  var tonightIdx=Math.floor(Date.now()/864e5)%(MARKED.length||1);
-  function tonight(){
-    if(!MARKED.length) return '';
-    var x=MARKED[tonightIdx], c=x.c;
-    return '<div class="ou-tonight"><p class="ou-t-k">One door, tonight</p>'+
-      '<h3><a href="'+esc(c.u)+'" target="_blank" rel="noopener">'+esc(c.n)+'</a></h3>'+
-      (c.note?'<p class="ou-t-note">'+esc(cap(c.note))+'</p>':'')+
-      '<p class="ou-t-meta">'+esc(x.s.label)+' · '+esc(words(c))+'</p>'+
-      '<div class="ou-t-act"><a class="ou-t-open" href="'+esc(c.u)+'" target="_blank" rel="noopener">Open it</a>'+
-      '<button type="button" class="ou-t-again">Show me another</button></div></div>';
-  }
-  function doors(){
-    return '<div class="ou-doors">'+DOORS.map(function(d){
-      return '<div class="ou-door"><h3>'+esc(d.q)+'</h3><p class="dr">'+esc(d.reads)+'</p><ol>'+
-        d.pick.map(function(x){
-          return '<li><a href="'+esc(x.c.u)+'" target="_blank" rel="noopener">'+esc(x.c.n)+'</a>'+
-            (x.c.note?'<span class="w">'+esc(cap(x.c.note))+'</span>':'')+'</li>';
-        }).join('')+'</ol></div>';
-    }).join('')+'</div>'+
-    '<p class="ou-doorline">The doors are drawn from the curator marks. Channels without marks keep their place on the shelves below, present, just not competing here.</p>';
-  }
-  function firstPick(s){
-    var best=null;
-    s.channels.forEach(function(c){
-      if(c.d==null||c.e==null) return;
-      if(!best||c.e>best.e||(c.e===best.e&&c.d<best.d)) best=c;
-    });
-    return best;
-  }
-  function row(c){
-    return '<div class="ou-row"><a href="'+esc(c.u)+'" target="_blank" rel="noopener">'+esc(c.n)+'</a>'+
-      (c.note?' <span class="n">'+esc(c.note)+'</span>':'')+
-      (c.op?' <span class="ou-optag">viewpoint</span>':'')+
-      (words(c)?' <span class="w">'+esc(words(c))+'</span>':'')+'</div>';
-  }
-  function shelves(){
-    var out='<h3 class="ou-shelves-h" id="shelves">The shelves</h3>'+
-      '<p class="ou-shelves-sub">Every channel, by subject, the curator note first.</p>'+
-      '<p class="ou-index">'+subs.map(function(s){return '<a href="#shelf-'+esc(s.id)+'">'+esc(s.label)+'</a>';}).join('')+'</p>';
-    subs.forEach(function(s){
-      var first=firstPick(s);
-      out+='<div class="ou-shelf" id="shelf-'+esc(s.id)+'"><h3>'+esc(s.label)+' <span>'+s.channels.length+(s.channels.length===1?' channel':' channels')+'</span></h3>';
-      if(first) out+='<div class="ou-first"><span class="fk">If you only visit one</span><a href="'+esc(first.u)+'" target="_blank" rel="noopener">'+esc(first.n)+'</a>'+(first.note?'<p>'+esc(cap(first.note))+'</p>':'')+'</div>';
-      s.channels.forEach(function(c){ if(c!==first) out+=row(c); });
-      out+='</div>';
-    });
-    return out+'<p class="ou-methods">'+esc(OU.note)+'</p>';
-  }
-  function beyond(){
-    return '<div class="ou-beyond"><h3>Beyond the channels</h3>'+OU.beyond.map(function(g){
-      return '<div class="ou-bgroup"><b>'+esc(g.group)+'</b>'+(g.note?'<p class="gnote">'+esc(g.note)+'</p>':'')+
-        '<ul class="ou-bitems">'+g.items.map(function(it){
-          return '<li><a href="'+esc(it.u)+'" target="_blank" rel="noopener">'+esc(it.n)+'</a>'+(it.note?' <span class="in">'+esc(it.note)+'</span>':'')+'</li>';
-        }).join('')+'</ul></div>';
-    }).join('')+'</div>';
-  }
-  function cautions(){
-    return '<div class="ou-cautions"><h3>Notes for the self-taught</h3>'+OU.cautions.map(function(c){return '<p>'+esc(c)+'</p>';}).join('')+'</main>
-</div>';
-  }
-  function build(){ host.innerHTML=header()+tonight()+doors()+shelves()+beyond()+cautions(); }
-  host.addEventListener('click',function(e){
-    var again=e.target.closest('.ou-t-again');
-    if(!again) return;
-    if(MARKED.length>1){
-      var next=tonightIdx;
-      while(next===tonightIdx) next=Math.floor(Math.random()*MARKED.length);
-      tonightIdx=next;
-    }
-    build();
-    var t=host.querySelector('.ou-t-again'); if(t) t.focus();
-  });
-  build();
-})();
-</script>
+<main id="content" tabindex="-1">
+<h1>Follow a question into the world.</h1>
+<p class="sub">Kosplora turns a real question into a short route through sources, people, places,
+and practice. Every route ends in something you make and keep: a design, a plan, a verified
+correction, a changed question.</p>
+
+<h2>Three routes you can walk now</h2>
+<ul class="routes">
+  <li>
+    <a href="route/local-ai/index.html">Could local AI strengthen community without increasing surveillance?</a>
+    <p class="m">understand + make &middot; 3h alone, 90m together &middot; 6 stations</p>
+    <p>Ends in a two-page design for one tiny service that works without accounts or tracking.</p>
+  </li>
+  <li>
+    <a href="route/gatherings/index.html">What makes a recurring gathering outlive its founder?</a>
+    <p class="m">understand + organize &middot; 2h30m alone, 60m together &middot; 6 stations</p>
+    <p>Ends in a one-page continuity plan a real gathering can adopt, amend, or refuse.</p>
+  </li>
+  <li>
+    <a href="route/second-mapper/index.html">What does one intentional community near you actually invite?</a>
+    <p class="m">understand + make &middot; 2h alone, half a day if a visit is invited &middot; 6 stations</p>
+    <p>Ends in a dated verification note for the public map at
+    <a href="https://earthenbeings.com/">earthenbeings.com</a>, which has never had a second mapper.</p>
+  </li>
+</ul>
+
+<h2>What a route promises</h2>
+<p><b>A route has an end.</b> Every station is visible from the start, spaced by the time it
+actually takes, and the last one is something you make.</p>
+<p><b>Human when a human teaches better.</b> Some stations are conversations, visits, and
+practice. The page hands you to them and waits.</p>
+<p><b>Evidence you can inspect.</b> Every source carries its author and date. Every route states
+what would change it. Disagreement is a station, and it must come from a real published voice
+rather than from whatever drafted the route.</p>
+<p><b>Yours to keep.</b> Your conditions, marks, and notes live in this browser until you export
+them as files. The route itself is <a href="format/index.html">a text file in an open format</a>
+that works in any walker, including one this site did not serve.</p>
+
+<h2>Build a route</h2>
+<p>The composer does not exist yet. The <a href="format/index.html">format</a> is public and a
+route is a text file, so the current composer is a text editor, and that sentence will change
+only when the real one ships.</p>
+
+<p class="stands">Where this honestly stands: three routes, written by the maker and drafted with
+a model, each one saying so on its face. Nobody outside this project has walked one yet; that is
+the next fact this page wants to be able to change. The <a href="shelf/index.html">reading
+shelf</a> holds twelve older ranked-source routes, labelled as reading lists by the format's own
+rule.</p>
+
+<footer>Kosplora, a Values Commons instance. No account, no tracking; nothing you do here is
+sent anywhere.</footer>
+</main>
+</div>
 </body>
 </html>

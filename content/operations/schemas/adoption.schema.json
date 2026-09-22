@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://valuescommons.org/schema/cc-adoption-gate-registry-v1.schema.json",
+  "title": "Conscious Consuming adoption gate registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "kind",
+    "version",
+    "updated",
+    "definition",
+    "strategySources",
+    "eventLedger",
+    "excludedSignals",
+    "privacy",
+    "gates"
+  ],
+  "properties": {
+    "$schema": {"type": "string"},
+    "kind": {"const": "cc-adoption-gate-registry"},
+    "version": {"const": "1.0.0"},
+    "updated": {"type": "string", "format": "date"},
+    "definition": {"$ref": "#/$defs/nonEmptyString"},
+    "strategySources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/nonEmptyString"},
+      "uniqueItems": true
+    },
+    "eventLedger": {"const": "content/operations/adoption-events.jsonl"},
+    "excludedSignals": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/nonEmptyString"},
+      "uniqueItems": true
+    },
+    "privacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["storeContactDetails", "storePrivateValues", "subjectIdentity", "evidenceBoundary"],
+      "properties": {
+        "storeContactDetails": {"const": false},
+        "storePrivateValues": {"const": false},
+        "subjectIdentity": {"$ref": "#/$defs/nonEmptyString"},
+        "evidenceBoundary": {"$ref": "#/$defs/nonEmptyString"}
+      }
+    },
+    "gates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/gate"}
+    }
+  },
+  "$defs": {
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "front", "threshold", "distinctBy", "eventTypes", "unlocks", "source"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "front": {"$ref": "#/$defs/nonEmptyString"},
+        "threshold": {"type": "integer", "minimum": 1},
+        "distinctBy": {"const": "subjectKey"},
+        "eventTypes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "uniqueItems": true
+        },
+        "unlocks": {"$ref": "#/$defs/nonEmptyString"},
+        "source": {"$ref": "#/$defs/nonEmptyString"}
+      }
+    }
+  }
+}

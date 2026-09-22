@@ -1,0 +1,759 @@
+{
+ "meta": {
+  "id": "mortgages",
+  "label": "Mortgages",
+  "type": "Services",
+  "primaryAxis": "accessibility",
+  "tradeoff": [
+   "accessibility",
+   "ownership"
+  ],
+  "tradeoffLabels": [
+   "easiest to qualify for",
+   "most accountable ownership"
+  ],
+  "source": "Conscious Consuming (curated)",
+  "attribution": "Covers the United States mortgage market: the routes a home buyer actually chooses between when borrowing to buy a home, not individual interest rates, which move week to week and would be wrong within a month of publication. The two things a borrower trades off are how easy a route is to qualify for and how clean its documented complaint and enforcement record is. A third measure, who the lender answers to, shows whether it is a member-owned cooperative, a nonprofit, a government program, or a shareholder-owned company. Complaint counts come from the CFPB Consumer Complaint Database, searched directly for each named company for mortgage-product complaints received January 2024 through December 2025; these are raw counts, not adjusted for how many loans a lender makes, so a large national lender will show more complaints than a small one even if its rate of trouble is no worse. Enforcement facts come from the CFPB, the VA, HUD, USDA, the FDIC, the OCC, and one state regulator, each cited to the actual order or program document. Two routes, a portfolio-lending community bank and an independent mortgage broker, are generic categories rather than named companies, so no complaint record exists for them to cite; each is scored on accessibility only, from a regulator's description of how that route's underwriting or lender access actually works, and a reader should check the specific bank or broker for anything beyond that. Refinancing an existing mortgage is a separate decision. Not financial advice. Reviewed 2026-08. Dispute or correct any rating via Contribute.",
+  "allergens": false,
+  "presets": {
+   "Balanced": {
+    "w": {
+     "accessibility": 3,
+     "complaints": 3,
+     "ownership": 2
+    },
+    "x": []
+   },
+   "Easiest to qualify for": {
+    "w": {
+     "accessibility": 5,
+     "complaints": 2,
+     "ownership": 1
+    },
+    "x": []
+   },
+   "Cleanest record": {
+    "w": {
+     "complaints": 5,
+     "accessibility": 2,
+     "ownership": 2
+    },
+    "x": []
+   },
+   "Member owned or mission owned only": {
+    "w": {
+     "ownership": 5,
+     "complaints": 3,
+     "accessibility": 2
+    },
+    "x": []
+   }
+  }
+ },
+ "criteria": [
+  {
+   "key": "accessibility",
+   "label": "Easy to qualify for",
+   "source": "curated"
+  },
+  {
+   "key": "complaints",
+   "label": "Complaint and enforcement record",
+   "source": "curated"
+  },
+  {
+   "key": "ownership",
+   "label": "Who it answers to",
+   "source": "curated"
+  }
+ ],
+ "products": [
+  {
+   "code": "rocket-mortgage",
+   "name": "Rocket Mortgage",
+   "brand": "direct-to-consumer online lender",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A direct-to-consumer lender that takes applications online and by phone rather than through a broker or bank branch. Its parent, Rocket Companies, completed a $14.2 billion acquisition of Mr. Cooper, the country's largest mortgage servicer, in October 2025, so a growing share of Rocket-originated loans end up serviced by that combined company.",
+   "scores": {
+    "complaints": null,
+    "ownership": 25
+   },
+   "provenance": {
+    "complaints": {
+     "note": "For Rocket Mortgage, LLC, Consumer complaint database returned 1 matching record. Category complaint total: 46136; Company complaint total: 993; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Mortgage. Search terms: Mortgage, Rocket Mortgage, LLC. Scope: CFPB mortgage complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, loan count, or market share. Snapshot captured 2026-08-14.",
+     "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&size=0",
+     "asof": "2026"
+    },
+    "ownership": {
+     "note": "Rocket Mortgage's parent, Rocket Companies, Inc., files quarterly reports with the SEC as a public company and trades on the NYSE, so it answers to public shareholders.",
+     "source": "https://www.sec.gov/Archives/edgar/data/1805284/000180528425000065/rkt-20250331.htm",
+     "asof": "2025"
+    }
+   },
+   "links": [
+    {
+     "label": "CFPB complaint search: Rocket Mortgage, LLC",
+     "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/?company=Rocket%20Mortgage%2C%20LLC&date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&tab=List"
+    },
+    {
+     "label": "CFPB dismissal of Rocket Homes kickback suit",
+     "url": "https://www.consumerfinance.gov/enforcement/actions/rocket-homes-real-estate-llc-et-al/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Direct to consumer",
+    "Publicly traded"
+   ]
+  },
+  {
+   "code": "united-wholesale-mortgage",
+   "name": "United Wholesale Mortgage",
+   "brand": "wholesale lender",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A wholesale lender whose loans are originated and priced through independent mortgage brokers rather than sold directly to the public. Its holding company, UWM Holdings Corporation, files as a public company with the SEC.",
+   "scores": {
+    "complaints": null,
+    "ownership": 25
+   },
+   "provenance": {
+    "complaints": {
+     "note": "For United Shore Financial Services, LLC, Consumer complaint database returned 1 matching record. Category complaint total: 46136; Company complaint total: 654; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Mortgage. Search terms: Mortgage, United Shore Financial Services, LLC. Scope: CFPB mortgage complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, loan count, or market share. Snapshot captured 2026-08-14.",
+     "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&size=0",
+     "asof": "2026"
+    },
+    "ownership": {
+     "note": "UWM's parent, UWM Holdings Corporation, is registered with the SEC and files an annual Form 10-K, the report only public companies are required to file.",
+     "source": "https://www.sec.gov/Archives/edgar/data/1783398/000178339826000013/uwmc-20251231.htm",
+     "asof": "2025"
+    }
+   },
+   "links": [
+    {
+     "label": "CFPB complaint search: United Shore Financial Services, LLC",
+     "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/?company=United%20Shore%20Financial%20Services%2C%20LLC&date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&tab=List"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Wholesale, broker only",
+    "Publicly traded"
+   ]
+  },
+  {
+   "code": "chase-home-lending",
+   "name": "Chase Home Lending",
+   "brand": "big bank retail lender",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The mortgage arm of JPMorgan Chase, reached through Chase branches, its website, or a Chase loan officer, alongside the bank's other retail products.",
+   "scores": {
+    "complaints": null
+   },
+   "provenance": {
+    "complaints": {
+     "note": "For JPMORGAN CHASE & CO., Consumer complaint database returned 1 matching record. Category complaint total: 46136; Company complaint total: 1034; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Mortgage. Search terms: JPMORGAN CHASE & CO., Mortgage. Scope: CFPB mortgage complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, loan count, or market share. Snapshot captured 2026-08-14.",
+     "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&size=0",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "CFPB complaint search: JPMorgan Chase & Co.",
+     "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/?company=JPMORGAN%20CHASE%20%26%20CO.&date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&tab=List"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Big bank",
+    "Branch network"
+   ]
+  },
+  {
+   "code": "wells-fargo-home-mortgage",
+   "name": "Wells Fargo Home Mortgage",
+   "brand": "big bank retail lender",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The mortgage arm of Wells Fargo, one of the largest home lenders and servicers in the country by branch reach, with a mortgage-servicing enforcement record that its regulators have specifically called out twice in the last five years.",
+   "scores": {
+    "complaints": null
+   },
+   "provenance": {
+    "complaints": {
+     "note": "For WELLS FARGO & COMPANY, Consumer complaint database returned 1 matching record. Category complaint total: 46136; Company complaint total: 2722; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Mortgage. Search terms: Mortgage, WELLS FARGO & COMPANY. Scope: CFPB mortgage complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, loan count, or market share. Snapshot captured 2026-08-14.",
+     "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&size=0",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "CFPB complaint search: Wells Fargo & Company",
+     "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/?company=WELLS%20FARGO%20%26%20COMPANY&date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&tab=List"
+    },
+    {
+     "label": "CFPB $3.7 billion order",
+     "url": "https://www.consumerfinance.gov/archive/newsroom/cfpb-orders-wells-fargo-to-pay-37-billion-for-widespread-mismanagement-of-auto-loans-mortgages-and-deposit-accounts/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Big bank",
+    "Branch network"
+   ]
+  },
+  {
+   "code": "bank-of-america",
+   "name": "Bank of America",
+   "brand": "big bank retail lender",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The mortgage arm of Bank of America, offered through its branch network and website alongside the bank's other retail products.",
+   "scores": {
+    "complaints": null
+   },
+   "provenance": {
+    "complaints": {
+     "note": "For BANK OF AMERICA, NATIONAL ASSOCIATION, Consumer complaint database returned 1 matching record. Category complaint total: 46136; Company complaint total: 1034; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Mortgage. Search terms: BANK OF AMERICA, NATIONAL ASSOCIATION, Mortgage. Scope: CFPB mortgage complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, loan count, or market share. Snapshot captured 2026-08-14.",
+     "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&size=0",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "CFPB complaint search: Bank of America, National Association",
+     "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/?company=BANK%20OF%20AMERICA%2C%20NATIONAL%20ASSOCIATION&date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&tab=List"
+    },
+    {
+     "label": "CFPB enforcement action, false HMDA data",
+     "url": "https://www.consumerfinance.gov/enforcement/actions/bank-of-america-na-hmda-data-2023/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Big bank",
+    "Branch network"
+   ]
+  },
+  {
+   "code": "pennymac",
+   "name": "PennyMac",
+   "brand": "correspondent lender and servicer",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A nonbank lender that both originates loans directly and buys closed loans from smaller lenders (a correspondent), and is also one of the largest mortgage servicers in the country, so many borrowers who did not choose PennyMac end up sending it their payment anyway after their original lender sells the servicing.",
+   "scores": {
+    "complaints": null,
+    "ownership": 25
+   },
+   "provenance": {
+    "complaints": {
+     "note": "For PENNYMAC LOAN SERVICES, LLC., Consumer complaint database returned 1 matching record. Category complaint total: 46136; Company complaint total: 1130; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Mortgage. Search terms: Mortgage, PENNYMAC LOAN SERVICES, LLC.. Scope: CFPB mortgage complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, loan count, or market share. Snapshot captured 2026-08-14.",
+     "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&size=0",
+     "asof": "2026"
+    },
+    "ownership": {
+     "note": "PennyMac's parent, PennyMac Financial Services, Inc., files an annual Form 10-K with the SEC and trades on the NYSE, so it answers to public shareholders.",
+     "source": "https://www.sec.gov/Archives/edgar/data/1745916/000155837025001148/pfsi-20241231x10k.htm",
+     "asof": "2025"
+    }
+   },
+   "links": [
+    {
+     "label": "CFPB complaint search: PennyMac Loan Services, LLC",
+     "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/?company=PENNYMAC%20LOAN%20SERVICES%2C%20LLC.&date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&tab=List"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Correspondent",
+    "Large servicer",
+    "Publicly traded"
+   ]
+  },
+  {
+   "code": "loandepot",
+   "name": "loanDepot",
+   "brand": "nonbank digital lender",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A nonbank lender that takes applications online, by phone, and through local loan officers. In January 2024 a ransomware attack on loanDepot exposed sensitive personal information for about 16.6 million people, including many who had never knowingly used the company, a scale of breach separate from ordinary complaint volume.",
+   "scores": {
+    "complaints": null,
+    "ownership": 25
+   },
+   "provenance": {
+    "complaints": {
+     "note": "For LD Holdings Group, LLC, Consumer complaint database returned 1 matching record. Category complaint total: 46136; Company complaint total: 398; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Mortgage. Search terms: LD Holdings Group, LLC, Mortgage. Scope: CFPB mortgage complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, loan count, or market share. Snapshot captured 2026-08-14.",
+     "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&size=0",
+     "asof": "2026"
+    },
+    "ownership": {
+     "note": "loanDepot's own investor relations press release states the company launched its initial public offering on January 27, 2021, with shares trading on the New York Stock Exchange under the ticker LDI, confirming it answers to public shareholders.",
+     "source": "https://investors.loandepot.com/news/corporate-and-financial-news/corporate-and-financial-news-details/2021/loanDepot-Announces-Launch-of-Initial-Public-Offering/default.aspx",
+     "asof": "2021"
+    }
+   },
+   "links": [
+    {
+     "label": "CFPB complaint search: LD Holdings Group, LLC",
+     "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/?company=LD%20Holdings%20Group%2C%20LLC&date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&tab=List"
+    },
+    {
+     "label": "loanDepot IPO announcement",
+     "url": "https://investors.loandepot.com/news/corporate-and-financial-news/corporate-and-financial-news-details/2021/loanDepot-Announces-Launch-of-Initial-Public-Offering/default.aspx"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Direct to consumer",
+    "Publicly traded",
+    "2024 data breach"
+   ]
+  },
+  {
+   "code": "freedom-mortgage",
+   "name": "Freedom Mortgage",
+   "brand": "nonbank lender and servicer",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A privately held nonbank lender and one of the largest mortgage servicers in the country, focused heavily on FHA and VA loans and on refinancing.",
+   "scores": {
+    "complaints": null,
+    "ownership": 55
+   },
+   "provenance": {
+    "complaints": {
+     "note": "For Freedom Mortgage Company, Consumer complaint database returned 1 matching record. Category complaint total: 46136; Company complaint total: 2133; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Mortgage. Search terms: Freedom Mortgage Company, Mortgage. Scope: CFPB mortgage complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, loan count, or market share. Snapshot captured 2026-08-14.",
+     "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&size=0",
+     "asof": "2026"
+    },
+    "ownership": {
+     "note": "The CFPB's 2023 consent order identifies Freedom Mortgage Corporation as \"a privately held residential mortgage loan originator and servicer headquartered in Boca Raton, Florida.\"",
+     "source": "https://files.consumerfinance.gov/f/documents/082023_cfpb_Freedom_Mortgage_Corporation_-_Consent_Order.pdf",
+     "asof": "2023"
+    }
+   },
+   "links": [
+    {
+     "label": "CFPB complaint search: Freedom Mortgage Company",
+     "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/?company=Freedom%20Mortgage%20Company&date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&tab=List"
+    },
+    {
+     "label": "CFPB consent order, RESPA kickbacks",
+     "url": "https://files.consumerfinance.gov/f/documents/082023_cfpb_Freedom_Mortgage_Corporation_-_Consent_Order.pdf"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "FHA and VA specialist",
+    "Large servicer",
+    "Privately held"
+   ]
+  },
+  {
+   "code": "crosscountry-mortgage",
+   "name": "CrossCountry Mortgage",
+   "brand": "retail lender",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A retail lender headquartered in Cleveland, Ohio, that originates loans through loan officers across the country rather than through a broker network.",
+   "scores": {
+    "complaints": null
+   },
+   "provenance": {
+    "complaints": {
+     "note": "For CrossCountry Mortgage LLC, Consumer complaint database returned 1 matching record. Category complaint total: 46136; Company complaint total: 452; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Mortgage. Search terms: CrossCountry Mortgage LLC, Mortgage. Scope: CFPB mortgage complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, loan count, or market share. Snapshot captured 2026-08-14.",
+     "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&size=0",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "CFPB complaint search: CrossCountry Mortgage LLC",
+     "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/?company=CrossCountry%20Mortgage%20LLC&date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&tab=List"
+    },
+    {
+     "label": "California DFPI consent order",
+     "url": "https://dfpi.ca.gov/wp-content/uploads/2024/09/Consent-Order-CrossCountry-Mortgage_-LLC.pdf"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Retail lender",
+    "Privately held"
+   ]
+  },
+  {
+   "code": "navy-federal-credit-union",
+   "name": "Navy Federal Credit Union",
+   "brand": "credit union",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The largest credit union in the country, member-owned and open to service members, veterans, Department of Defense civilian personnel, their families and household members, and employees of a list of affiliated organizations that NCUA publishes. In 2023 and 2024, members of Congress and civil-rights groups pressed federal regulators to investigate a large racial gap in Navy Federal's mortgage approval rates, using the credit union's own federally reported lending data; no CFPB or DOJ enforcement outcome had been announced as of the searches for this comparison.",
+   "scores": {
+    "complaints": null,
+    "ownership": 85,
+    "accessibility": 45
+   },
+   "provenance": {
+    "complaints": {
+     "note": "For NAVY FEDERAL CREDIT UNION, Consumer complaint database returned 1 matching record. Category complaint total: 46136; Company complaint total: 430; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Mortgage. Search terms: Mortgage, NAVY FEDERAL CREDIT UNION. Scope: CFPB mortgage complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, loan count, or market share. Snapshot captured 2026-08-14.",
+     "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&size=0",
+     "asof": "2026"
+    },
+    "ownership": {
+     "note": "NCUA describes credit unions as not-for-profit financial cooperatives owned and controlled by their members; Navy Federal's own federal charter and NCUA-published field of membership confirm it operates on that member-owned structure.",
+     "source": "https://ncua.gov/foia/library/navy-federal-credit-union-field-membership",
+     "asof": "2024"
+    },
+    "accessibility": {
+     "note": "NCUA's published field-of-membership record for Navy Federal limits eligibility to military and Department of Defense civilian personnel, service academy midshipmen and cadets, reserve and National Guard members, retirees and annuitants of that employment, their immediate family and household members, and employees of a specific list of affiliated organizations, mostly in California, Nevada, and Guam. It is not open to the general public the way a bank account is.",
+     "source": "https://ncua.gov/foia/library/navy-federal-credit-union-field-membership",
+     "asof": "2024"
+    }
+   },
+   "links": [
+    {
+     "label": "CFPB complaint search: Navy Federal Credit Union",
+     "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/?company=NAVY%20FEDERAL%20CREDIT%20UNION&date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&tab=List"
+    },
+    {
+     "label": "NCUA field of membership",
+     "url": "https://ncua.gov/foia/library/navy-federal-credit-union-field-membership"
+    },
+    {
+     "label": "Senate Banking Committee letter on mortgage denial rates",
+     "url": "https://www.banking.senate.gov/newsroom/majority/brown-colleagues-call-for-a-review-of-navy-federal-after-reported-racial-disparities-in-mortgage-lending"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Member owned",
+    "Largest credit union",
+    "Membership required"
+   ]
+  },
+  {
+   "code": "local-credit-union",
+   "name": "Local credit union",
+   "brand": "member owned",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A not-for-profit financial cooperative owned and controlled by its members, offering mortgages to whoever falls inside its particular field of membership, which might be an employer, a community, a church, or an association. Complaint and enforcement history varies by individual credit union and cannot be scored generically.",
+   "scores": {
+    "ownership": 85,
+    "accessibility": 40
+   },
+   "provenance": {
+    "ownership": {
+     "note": "NCUA describes federal credit unions as not-for-profit institutions owned and controlled by their members, where one member's savings becomes another member's loan and surplus is returned through member benefits rather than paid out to external shareholders.",
+     "source": "https://mycreditunion.gov/about/what-credit-union",
+     "asof": "2025"
+    },
+    "accessibility": {
+     "note": "NCUA explains that federal credit unions serve a defined field of membership, such as an employer, a community, or an association, so anyone outside that field cannot join, unlike a bank, which can serve any customer.",
+     "source": "https://mycreditunion.gov/about/what-credit-union",
+     "asof": "2025"
+    }
+   },
+   "links": [
+    {
+     "label": "About credit unions (NCUA)",
+     "url": "https://mycreditunion.gov/about/what-credit-union"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Member owned",
+    "Local",
+    "Field of membership required"
+   ]
+  },
+  {
+   "code": "community-bank-portfolio-lender",
+   "name": "Community bank that keeps the loan",
+   "brand": "portfolio lender",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A small or regional bank that originates a mortgage to hold in its own loan portfolio rather than selling it into the secondary market. In practice this means the institution that approved the loan is the one a borrower keeps dealing with for the life of the loan, instead of the servicing being sold to a company the borrower never chose. Individual portfolio lenders vary too widely in fees, complaint history, and ownership structure to score generically here; check the specific bank.",
+   "scores": {
+    "accessibility": 55
+   },
+   "provenance": {
+    "accessibility": {
+     "note": "The OCC's Comptroller's Handbook on Mortgage Banking states that banks have traditionally originated residential mortgage loans to hold in their own portfolios, and it separately instructs examiners to review the extent to which a bank's underwriting standards for loans it sells differ from its standards for loans it keeps in portfolio, noting that conforming loans sold to Fannie Mae or Freddie Mac must comply with those agencies' loan size limits, terms and underwriting guidelines while a bank retaining a loan sets its own standard. A portfolio lender is not guaranteed to approve a borrower an automated underwriting system would decline, but its underwriting is not bound to agency guidelines the way a loan built for sale is, which is why this route exists for borrowers who do not fit a standard file.",
+     "source": "https://www.occ.treas.gov/publications-and-resources/publications/comptrollers-handbook/files/mortgage-banking/pub-ch-mortgage-banking.pdf",
+     "asof": "2025"
+    }
+   },
+   "links": [
+    {
+     "label": "OCC Comptroller's Handbook: Mortgage Banking",
+     "url": "https://www.occ.treas.gov/publications-and-resources/publications/comptrollers-handbook/files/mortgage-banking/pub-ch-mortgage-banking.pdf"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Keeps your loan",
+    "Local",
+    "Not sold to the secondary market"
+   ]
+  },
+  {
+   "code": "independent-mortgage-broker",
+   "name": "Independent mortgage broker",
+   "brand": "broker channel",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A licensed intermediary who is not an employee of any single lender and shops a loan application across multiple wholesale lenders on the borrower's behalf, rather than lending the money itself. The borrower typically pays the broker a loan-specific fee for that shopping. Individual brokers vary too widely to score generically; check the specific broker's NMLS record.",
+   "scores": {
+    "accessibility": 60
+   },
+   "provenance": {
+    "accessibility": {
+     "note": "The CFPB states plainly that \"a broker does not lend money\" and that a borrower can use a broker to find different lenders or mortgage loans. Because a broker submits an application to more than one wholesale lender rather than to just one, a borrower whose file does not fit one lender's guidelines can still be placed with another lender through the same broker relationship, which is the structural reason this route can reach borrowers a single retail lender would turn away.",
+     "source": "https://www.consumerfinance.gov/ask-cfpb/what-is-the-difference-between-a-mortgage-lender-and-a-mortgage-broker-en-130/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "CFPB: lender versus broker",
+     "url": "https://www.consumerfinance.gov/ask-cfpb/what-is-the-difference-between-a-mortgage-lender-and-a-mortgage-broker-en-130/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Shops multiple lenders",
+    "Does not lend directly"
+   ]
+  },
+  {
+   "code": "fha-insured-loan",
+   "name": "FHA-insured loan",
+   "brand": "federal insurance program",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A loan made by an ordinary approved lender but insured by HUD's Federal Housing Administration against default, which lets lenders accept lower down payments and lower credit scores than they would on their own. Available nationwide through most of the lenders listed here, not a separate company to apply to.",
+   "scores": {
+    "accessibility": 85
+   },
+   "provenance": {
+    "accessibility": {
+     "note": "The FDIC's Affordable Mortgage Lending Guide states that FHA uses a borrower's credit score to set the maximum loan-to-value it will insure: a score below 500 is not eligible for FHA financing at all, a score of 500 to 579 is limited to 90 percent loan-to-value (a 10 percent down payment), and a score of 580 or above qualifies for the maximum 96.5 percent loan-to-value (3.5 percent down).",
+     "source": "https://www.fdic.gov/resources/bankers/affordable-mortgage-lending-center/guide/part-1-docs/203b-mortgage-insurance-program.pdf",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "HUD FHA loan program",
+     "url": "https://www.hud.gov/helping-americans/loans"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Government insured",
+    "Low down payment",
+    "Available through most lenders"
+   ]
+  },
+  {
+   "code": "va-guaranteed-loan",
+   "name": "VA-guaranteed loan",
+   "brand": "federal guaranty program",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A loan guaranteed by the Department of Veterans Affairs and made by an ordinary approved lender, restricted to veterans, active-duty service members, and certain surviving spouses. VA loans generally require no down payment and no monthly mortgage insurance, in exchange for a one-time funding fee.",
+   "scores": {
+    "accessibility": 40
+   },
+   "provenance": {
+    "accessibility": {
+     "note": "The VA states its home loan benefit generally requires no down payment and has no monthly mortgage insurance, but charges a one-time funding fee of 0.5 to 3.3 percent depending on loan type, down payment, and whether it is a first use of the benefit; veterans receiving VA compensation for a service-connected disability, among other groups, are exempt from the fee. The benefit itself is restricted to veterans, certain active-duty and reserve service members, and some surviving spouses.",
+     "source": "https://www.benefits.va.gov/homeloans/purchaseco_loan_fee.asp",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "VA home loan funding fee",
+     "url": "https://www.benefits.va.gov/homeloans/purchaseco_loan_fee.asp"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Government guaranteed",
+    "No down payment",
+    "Veterans and service members only"
+   ]
+  },
+  {
+   "code": "usda-rural-development-loan",
+   "name": "USDA Rural Development guaranteed loan",
+   "brand": "federal guaranty program",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A loan guaranteed by the USDA and made by an approved private lender, for buyers in eligible rural and small-town areas whose household income falls under a local limit. Requires no down payment, in exchange for an upfront and an annual guarantee fee.",
+   "scores": {
+    "accessibility": 35
+   },
+   "provenance": {
+    "accessibility": {
+     "note": "The FDIC's guide to this USDA program states it is limited to borrowers with incomes up to 115 percent of area median income in eligible rural areas, requires no down payment, and charges the lender a one-time upfront guarantee fee of up to 3.5 percent of the loan amount plus an annual fee of up to 0.5 percent, which the lender may pass on to the borrower.",
+     "source": "https://www.rd.usda.gov/media/file/download/usda-rd-sfh-guarantee-loan-program-101-jan-2026.pdf",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "USDA Single Family Housing Guaranteed Loan Program",
+     "url": "https://www.rd.usda.gov/programs-services/single-family-housing-programs/single-family-housing-guaranteed-loan-program"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Government guaranteed",
+    "No down payment",
+    "Rural areas and income limit only"
+   ]
+  },
+  {
+   "code": "habitat-for-humanity",
+   "name": "Habitat for Humanity homeownership program",
+   "brand": "nonprofit route",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A nonprofit route rather than an ordinary mortgage: the family partners with a local Habitat affiliate and volunteers to build or rehabilitate the home, contributes sweat equity, and then pays an affordable mortgage sized to the household's income, not a market rate. Limited to households under a local income ceiling and to the number of homes a local affiliate can build in a given year.",
+   "scores": {
+    "accessibility": 15,
+    "ownership": 100
+   },
+   "provenance": {
+    "accessibility": {
+     "note": "Habitat for Humanity's own eligibility page states that for U.S. applicants, household income must not exceed 60 percent of the area median income as defined annually by HUD, and that Habitat homes are financed with sweat equity, not a cash down payment; availability is also limited by how many homes a local affiliate builds each year.",
+     "source": "https://www.habitat.org/housing-help/apply/qualifications-for-habitat-homeownership",
+     "asof": "2026"
+    },
+    "ownership": {
+     "note": "Habitat for Humanity describes itself as a nonprofit housing organization; families do not receive a free home but pay an affordable mortgage sized to their income rather than a shareholder-set market rate.",
+     "source": "https://www.habitat.org/housing-help",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Habitat homeownership qualifications",
+     "url": "https://www.habitat.org/housing-help/apply/qualifications-for-habitat-homeownership"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Nonprofit",
+    "Sweat equity",
+    "Income limited"
+   ]
+  },
+  {
+   "code": "assumable-mortgage",
+   "name": "Assuming an existing FHA, VA, or USDA loan",
+   "brand": "not a new loan",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Instead of originating a new mortgage, a buyer takes over the seller's existing FHA, VA, or USDA loan, inheriting its interest rate and remaining balance. Only available when a specific home for sale happens to carry one of these assumable loans, and the buyer still has to qualify and be approved by the loan holder or, for a VA substitution of entitlement, by the VA itself.",
+   "scores": {
+    "accessibility": 25
+   },
+   "provenance": {
+    "accessibility": {
+     "note": "VA policy materials describe a VA loan assumption as an approved transfer of ownership: the person assuming the loan must meet the loan holder's (or VA's) credit underwriting standards, and an assumption funding fee applies unless the assumer is exempt. This route is opportunistic rather than generally available, since it depends on finding a home whose existing loan is both assumable and financially attractive to take over.",
+     "source": "https://www.benefits.va.gov/HOMELOANS/documents/conf/2023-lender-d3-01-assumptions.pdf",
+     "asof": "2023"
+    }
+   },
+   "links": [
+    {
+     "label": "VA loan assumption policy overview",
+     "url": "https://www.benefits.va.gov/HOMELOANS/documents/conf/2023-lender-d3-01-assumptions.pdf"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "No new loan",
+    "Opportunistic",
+    "Requires lender or VA approval"
+   ]
+  },
+  {
+   "code": "seller-financing-contract-for-deed",
+   "name": "Seller financing (contract for deed)",
+   "brand": "not a bank loan",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The seller finances the purchase directly instead of a bank, often through an arrangement called a contract for deed or land contract, in which the buyer makes payments to the seller and only receives the deed after the contract is paid off. It bypasses ordinary mortgage underwriting entirely, which is exactly what regulators say makes the riskiest versions of it dangerous.",
+   "scores": {
+    "complaints": 10
+   },
+   "provenance": {
+    "complaints": {
+     "note": "The CFPB's 2024 research and advisory opinion on contract-for-deed sales found that the arrangement carries high interest rates, balloon payments, and immediate eviction risk for a single missed payment, and documented that it has disproportionately targeted Black, Hispanic, immigrant, and religious communities, with sellers in some cases structuring deals to force default and resell the same home repeatedly.",
+     "source": "https://www.consumerfinance.gov/about-us/newsroom/cfpb-takes-action-to-stop-contract-for-deed-investors-from-setting-borrowers-up-to-fail/",
+     "asof": "2024"
+    }
+   },
+   "links": [
+    {
+     "label": "CFPB action on contract for deed",
+     "url": "https://www.consumerfinance.gov/about-us/newsroom/cfpb-takes-action-to-stop-contract-for-deed-investors-from-setting-borrowers-up-to-fail/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "No bank involved",
+    "No underwriting",
+    "Documented predatory pattern"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,365 @@
+{
+  "meta": {
+    "id": "ride-hailing",
+    "label": "Ride-hailing",
+    "type": "Services",
+    "primaryAxis": "privacy",
+    "tradeoff": [
+      "economical",
+      "privacy"
+    ],
+    "tradeoffLabels": [
+      "cheapest",
+      "least data exposure"
+    ],
+    "source": "Conscious Consuming (curated)",
+    "attribution": "These are the ways a person in the United States gets a ride without owning a car or waiting for a bus: the two national gig-platform apps, two apps that book an already-licensed taxi instead of a gig driver, a taxi hailed on the street or called directly with no app at all, two driver-owned cooperatives, a company that employs its own drivers, a service built for children and other dependents, a service built for disabled and older riders, a phone-only service for people without a smartphone, a shared shuttle run with public transit agencies, and a fully driverless service. Public transit itself, meaning buses, trains and transit passes, is a separate decision on this site; this one covers on-demand, door-to-door rides. The core trade-off is price against how much of your data and history a company collects: the cheapest and most convenient routes are run by platforms that share ride data with advertising partners and, in Uber's case, paid a nine-figure settlement over a covered-up data breach, while the more private and driver-owned routes usually mean a smaller network and less company infrastructure behind you if something goes wrong. Sourced from company safety and privacy pages, the California legislature, New York City's Taxi and Limousine Commission, and the Utah Attorney General; every score links its source and date. Not legal advice. Reviewed 2026-08. Dispute or correct any rating via Contribute.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": { "economical": 3, "privacy": 3, "labor": 3, "safety": 3, "accessibility": 3 },
+        "x": []
+      },
+      "Cheapest": {
+        "w": { "economical": 5, "privacy": 2, "labor": 2, "safety": 2, "accessibility": 2 },
+        "x": []
+      },
+      "Most private": {
+        "w": { "privacy": 5, "economical": 2, "labor": 2, "safety": 2, "accessibility": 2 },
+        "x": []
+      },
+      "Best treated drivers": {
+        "w": { "labor": 5, "economical": 2, "privacy": 2, "safety": 2, "accessibility": 2 },
+        "x": []
+      },
+      "Safest record": {
+        "w": { "safety": 5, "economical": 2, "privacy": 2, "labor": 2, "accessibility": 2 },
+        "x": []
+      },
+      "Easiest to reach": {
+        "w": { "accessibility": 5, "economical": 2, "privacy": 2, "labor": 2, "safety": 2 },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    { "key": "economical", "label": "Cheaper for the rider", "source": "curated" },
+    { "key": "privacy", "label": "Less data shared with advertisers or exposed in a breach", "source": "curated" },
+    { "key": "labor", "label": "How the driver is classified, paid or owns a stake", "source": "curated" },
+    { "key": "safety", "label": "Published safety record or driver screening", "source": "curated" },
+    { "key": "accessibility", "label": "Reaches riders the standard apps miss", "source": "curated" }
+  ],
+  "products": [
+    {
+      "code": "uber",
+      "name": "Uber",
+      "brand": "gig-platform app, independent-contractor drivers",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "One of the two national gig-platform apps, booked entirely through its own network of independent-contractor drivers. Uber's own safety report and a fifty-state data breach settlement are both part of the public record in a way most other options here are not.",
+      "scores": { "privacy": 15, "labor": 32, "safety": 48 },
+      "provenance": {
+        "privacy": {
+          "note": "Uber agreed to pay $148 million to settle with the attorneys general of all 50 states and Washington DC after hackers accessed data on 57 million users and 600,000 drivers in a 2016 breach; Uber paid the hackers to delete the data and did not tell affected drivers for a full year. Utah's share of the settlement was about $900,000, and Uber agreed to hire outside assessors to review its data security going forward.",
+          "source": "https://attorneygeneral.utah.gov/uber-settlement/",
+          "asof": "2018"
+        },
+        "labor": {
+          "note": "California law, as amended by Proposition 22, states that an app-based driver 'is an independent contractor and not an employee or agent' of the network company, as long as the company does not set the driver's schedule, require acceptance of specific ride requests, or block the driver from working for other apps or other jobs.",
+          "source": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&sectionNum=7451",
+          "asof": "2026"
+        },
+        "safety": {
+          "note": "Uber's own second US Safety Report, covering 2019 and 2020, recorded 3,824 reports across its five most severe categories of sexual assault and misconduct, a 38 percent decrease in the reported rate from the prior report period, and states that Uber's motor vehicle fatality rate is still half the national average.",
+          "source": "https://www.uber.com/newsroom/2022-us-safety-report",
+          "asof": "2022"
+        }
+      },
+      "links": [
+        { "label": "Uber US Safety Report overview", "url": "https://www.uber.com/us/en/about/reports/us-safety-report/" },
+        { "label": "Uber privacy notice", "url": "https://www.uber.com/legal/en/document/?name=privacy-notice&country=united-states&lang=en" }
+      ],
+      "region": ["US"],
+      "focuses": ["Contractor drivers", "Data breach settlement", "Publishes a safety report"]
+    },
+    {
+      "code": "lyft",
+      "name": "Lyft",
+      "brand": "gig-platform app, independent-contractor drivers",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "The other national gig-platform app, built on the same independent-contractor driver model as Uber. Lyft's privacy policy and safety report draw on the same kind of disclosure Uber's do, though the specific numbers and dates differ.",
+      "scores": { "privacy": 35, "labor": 32, "safety": 52 },
+      "provenance": {
+        "privacy": {
+          "note": "Lyft's privacy policy says 'we do not sell your personal information to third parties for money' and that 'no one can buy the personal information we collect from and about you,' but adds that Lyft shares personal information with ad and marketing partners such as Google and Meta for targeted advertising, and that this sharing 'may constitute sharing or the sale of personal information' under some state privacy laws.",
+          "source": "https://www.lyft.com/privacy",
+          "asof": "2026"
+        },
+        "labor": {
+          "note": "California law, as amended by Proposition 22, classifies app-based drivers, including those driving for Lyft, as independent contractors rather than employees, as long as the company does not set schedules, force acceptance of ride requests, or block drivers from working other jobs.",
+          "source": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&sectionNum=7451",
+          "asof": "2026"
+        },
+        "safety": {
+          "note": "Lyft's safety data disclosure, using the RALIANCE taxonomy for sexual assault and misconduct categories, recorded 615 reports of non-consensual touching of a sexual body part in 2022 alone, about 1 in every 880,000 rides that year, and 910 reports of attempted touching of a non-sexual body part, about 1 in 600,000 rides.",
+          "source": "https://www.lyft.com/blog/posts/lyft-reports-additional-safety-data",
+          "asof": "2024"
+        }
+      },
+      "links": [
+        { "label": "Lyft 2024 Safety Transparency Report", "url": "https://www.lyft.com/blog/posts/2024-safety-transparency-report" }
+      ],
+      "region": ["US"],
+      "focuses": ["Contractor drivers", "Publishes safety data", "Shares data with ad partners"]
+    },
+    {
+      "code": "curb",
+      "name": "Curb",
+      "brand": "app that books an already-licensed taxi",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "An app that books and pays for an already-licensed taxi instead of dispatching a gig driver. A rider can also use it to pay a driver they are already riding with, without having booked through the app first.",
+      "scores": { "safety": 60 },
+      "provenance": {
+        "safety": {
+          "note": "Curb says every ride is with 'a fully licensed, insured driver' and that it connects riders with 'professionally licensed drivers who undergo background checks, vehicle inspections, and insurance requirements mandated by local taxi commissions,' standards set by each city's regulator rather than by Curb itself.",
+          "source": "https://www.gocurb.com/",
+          "asof": "2026"
+        }
+      },
+      "links": [],
+      "region": ["US"],
+      "focuses": ["Books a licensed taxi", "City-set driver standards", "Also pays for a hailed cab"]
+    },
+    {
+      "code": "arro",
+      "name": "Arro",
+      "brand": "app that books an already-licensed taxi",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A second app that books an already-licensed taxi, in six US metro areas, with a specific no-surge guarantee and a small flat service fee on top of the city-set meter fare.",
+      "scores": { "economical": 58, "safety": 58 },
+      "provenance": {
+        "economical": {
+          "note": "Arro says 'prices do not increase, regardless of weather, demand or conditions' because 'rates are set by the municipal jurisdiction in which the taxi company operates and not by Arro,' and adds a service fee of up to $2.00 for a ride booked through the app, which it says may be waived in some circumstances.",
+          "source": "https://www.ridearro.com/faq/",
+          "asof": "2026"
+        },
+        "safety": {
+          "note": "Arro says its drivers 'go through extensive training and education and are locally licensed for your safety,' the same city licensing system Curb also relies on.",
+          "source": "https://www.ridearro.com/faq/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Arro cities served", "url": "https://www.ridearro.com/about/" }
+      ],
+      "region": ["US"],
+      "focuses": ["No surge pricing", "Small flat service fee", "Six US metro areas"]
+    },
+    {
+      "code": "licensed-taxi-street-hail",
+      "name": "Licensed taxi, hailed or called directly",
+      "brand": "no app, city-set fare",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Flagging a cab on the street or calling a local taxi company, the way people got a ride before any app existed. New York City's fleet is used here as the best-documented example: its medallion taxis charge a fare the city itself sets and are not booked through Uber or Lyft, though many now also work with e-hail apps such as Curb and Arro. Most medallions are leased to drivers rather than owned by them, and the city now runs a debt-relief program for owners after medallion values collapsed.",
+      "scores": { "economical": 60, "labor": 35 },
+      "provenance": {
+        "economical": {
+          "note": "New York City's Taxi and Limousine Commission sets the metered taxicab fare directly: a $3.00 initial charge, $0.70 per additional unit, a $2.50 rush-hour surcharge and a $1.00 nighttime surcharge, plus fixed airport fares such as $70.00 to Kennedy Airport, effective December 19, 2022. The rate does not rise with demand the way an app's dynamic pricing can.",
+          "source": "https://rules.cityofnewyork.us/rule/taximeter-rate-of-fare-and-various-surcharges/",
+          "asof": "2022"
+        },
+        "labor": {
+          "note": "New York City's Medallion Relief Program gives individual medallion owners grants of up to $20,000, and up to $9,000 more in hardship cases, to help them 'afford their medallion debt, so more owners can continue operating yellow taxis.' Most drivers lease a taxi or medallion rather than owning one, and a separate TLC rule caps what an owner can charge a driver who cancels a lease.",
+          "source": "https://rules.cityofnewyork.us/rule/medallion-relief-program/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "NYC TLC minimum pay rule for app-based drivers", "url": "https://rules.cityofnewyork.us/rule/minimum-driver-payment-for-high-volume-for-hire-services/" }
+      ],
+      "region": ["US"],
+      "focuses": ["No app required", "City-set fare", "Medallion debt crisis"]
+    },
+    {
+      "code": "drivers-cooperative",
+      "name": "The Drivers Cooperative",
+      "brand": "driver-owned co-op, New York City and Denver",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A ride-hailing cooperative operating in New York City and Denver, owned by its own drivers rather than by outside investors. It runs on an app like Uber or Lyft's, but the company is structured so members, not outside shareholders, keep what it earns.",
+      "scores": { "economical": 68, "labor": 90 },
+      "provenance": {
+        "economical": {
+          "note": "The Drivers Cooperative says it 'takes a smaller commission than Uber or Lyft' and that this lets it charge riders lower fares while members still earn more per trip.",
+          "source": "https://drivers.coop/",
+          "asof": "2026"
+        },
+        "labor": {
+          "note": "The Drivers Cooperative describes itself as '100% worker-owned': members hold ownership stakes and a vote in how the company runs, earn 8 to 10 percent more per trip than driving for Uber or Lyft, and profits are paid back to drivers as dividends instead of to outside investors.",
+          "source": "https://drivers.coop/",
+          "asof": "2026"
+        }
+      },
+      "links": [],
+      "region": ["US"],
+      "focuses": ["Driver-owned", "New York City and Denver only", "Profits paid to drivers"]
+    },
+    {
+      "code": "fare-coop",
+      "name": "Fare Co-op",
+      "brand": "driver-owned co-op, six states",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A second driver-owned cooperative, operating in six states, and says it became America's third-largest fully licensed rideshare company less than a year after launching. Drivers can join as fractional owners for free or buy a full share for a bigger cut of the profit.",
+      "scores": { "economical": 72, "labor": 92 },
+      "provenance": {
+        "economical": {
+          "note": "Fare Co-op advertises 'no surge pricing' and says riders 'save 20% on average' compared with Uber.",
+          "source": "https://fare.coop/",
+          "asof": "2026"
+        },
+        "labor": {
+          "note": "Fare Co-op says drivers 'hold 50% of the ownership, not Wall Street, not venture capital.' Fractional members keep 55 percent of platform profits on their rides, rising to 85 percent through referrals, and full shareholders keep 85 to 90 percent plus a co-op share.",
+          "source": "https://fare.coop/",
+          "asof": "2026"
+        }
+      },
+      "links": [],
+      "region": ["US"],
+      "focuses": ["Driver-owned", "Six states", "No surge pricing"]
+    },
+    {
+      "code": "alto",
+      "name": "Alto",
+      "brand": "employer-run fleet, W-2 drivers",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A ride service that employs its own drivers and owns its own fleet instead of contracting with independent drivers in their own cars. It runs in four US metro areas, and in two of them its cars and W-2 drivers also appear inside the Uber app under Uber's own premium tiers.",
+      "scores": { "labor": 82, "safety": 68 },
+      "provenance": {
+        "labor": {
+          "note": "Alto says its drivers are 'W-2 drivers... not gig workers, with hourly pay, benefits, and opportunities for career development,' background checked, trained and continuously coached rather than engaged as independent contractors.",
+          "source": "https://ridealto.com/",
+          "asof": "2026"
+        },
+        "safety": {
+          "note": "Alto says its W-2 employee drivers 'are background checked, trained and continuously coached, plus AI-powered real-time video monitoring tracks performance,' and that it operates in Dallas-Fort Worth, Houston, Los Angeles and Miami, with its cars and drivers also running on Uber Black, Uber XL and UberTeen in Los Angeles and Miami.",
+          "source": "https://ridealto.com/",
+          "asof": "2026"
+        }
+      },
+      "links": [],
+      "region": ["US"],
+      "focuses": ["W-2 drivers", "Company-owned fleet", "Four US metros"]
+    },
+    {
+      "code": "hopskipdrive",
+      "name": "HopSkipDrive",
+      "brand": "booked by a guardian, for children and dependents",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A ride service built for children and other dependents who need extra supervision, booked by a parent, guardian or school rather than by the rider. Its drivers, called CareDrivers, are vetted well beyond a standard rideshare background check.",
+      "scores": { "safety": 82 },
+      "provenance": {
+        "safety": {
+          "note": "HopSkipDrive requires its CareDrivers to complete a '15-point certification, including background and driving record checks,' verified caregiving experience, and training in trauma-informed care and neurodiversity, on top of a standard driver background check.",
+          "source": "https://www.hopskipdrive.com/safety/",
+          "asof": "2026"
+        }
+      },
+      "links": [],
+      "region": ["US"],
+      "focuses": ["Booked by a guardian", "Caregiver-vetted drivers", "Not for solo adult riders"]
+    },
+    {
+      "code": "waymo-one",
+      "name": "Waymo One",
+      "brand": "autonomous, no human driver",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A fully driverless ride-hailing service, so there is no human driver to classify, pay or vet. It runs in five US metro areas and publishes more detailed safety data than anything else compared here.",
+      "scores": { "safety": 90 },
+      "provenance": {
+        "safety": {
+          "note": "Waymo's own safety data hub reports 220.6 million rider-only miles driven through March 2026, with 94 percent fewer crashes causing serious injury or worse, 82 percent fewer injury-causing crashes and 82 percent fewer airbag-deployment crashes than a human-driving benchmark, measured against police-reported crash data in the counties where it operates: Phoenix, San Francisco, Los Angeles, Austin and Atlanta.",
+          "source": "https://waymo.com/safety/impact/",
+          "asof": "2026"
+        }
+      },
+      "links": [],
+      "region": ["US"],
+      "focuses": ["No human driver", "Five US metros", "Most detailed public safety data"]
+    },
+    {
+      "code": "via",
+      "name": "Via",
+      "brand": "on-demand shuttle run with a transit agency",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "An on-demand shuttle usually not booked under its own name: cities and transit agencies run it under their own brand, such as Fort Worth's ZIPZONE, and riders share a vehicle with others heading the same way. It fills the gap between a fixed bus route and a private ride, at a fare set by the transit agency rather than by Via.",
+      "scores": { "accessibility": 75 },
+      "provenance": {
+        "accessibility": {
+          "note": "Via says it works with '700+ partners across the world, from rural counties to large transit agencies,' running on-demand shuttles that 'fill the gaps' in a transit network. Named US examples include Trinity Metro's ZIPZONE program in Fort Worth, a Los Angeles Metro pilot connecting riders to transit stations, and an on-demand service in Jersey City linking underserved neighborhoods to public transit.",
+          "source": "https://ridewithvia.com/",
+          "asof": "2026"
+        }
+      },
+      "links": [],
+      "region": ["US"],
+      "focuses": ["Shared shuttle", "Booked under a transit agency's brand", "Transit-set fare"]
+    },
+    {
+      "code": "gogograndparent",
+      "name": "GoGoGrandparent",
+      "brand": "phone call only, no app needed",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A phone-only service for people who do not want to, or cannot, use a smartphone app. Calling one number arranges an Uber or Lyft ride through a human or a touch-tone menu, at the underlying app's own fare plus GoGoGrandparent's own fee.",
+      "scores": { "accessibility": 88, "economical": 35 },
+      "provenance": {
+        "accessibility": {
+          "note": "GoGoGrandparent says 'everything works with a simple phone call. You don't need an app or internet access,' and that pressing 1 on the call line requests 'an Uber or Lyft to be sent to your home' with no need to speak to an operator.",
+          "source": "https://www.gogograndparent.com/about/how-we-work",
+          "asof": "2026"
+        },
+        "economical": {
+          "note": "GoGoGrandparent says a caller 'pays the standard Uber or Lyft fare plus a small service fee for coordination, monitoring, and support,' so a ride costs more than calling the underlying app directly.",
+          "source": "https://www.gogograndparent.com/about/how-we-work",
+          "asof": "2026"
+        }
+      },
+      "links": [],
+      "region": ["US"],
+      "focuses": ["No smartphone needed", "Phone call or touch-tone menu", "Costs more than the app it books"]
+    },
+    {
+      "code": "uzurv",
+      "name": "UZURV",
+      "brand": "scheduled rides for disabled and older riders",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A ride service built for people with disabilities and older adults, run through partnerships with paratransit programs, healthcare providers and transit agencies rather than sold directly to the public in most places. Wheelchair-accessible vehicles are available where a partner program includes them.",
+      "scores": { "accessibility": 80, "safety": 78 },
+      "provenance": {
+        "accessibility": {
+          "note": "UZURV says it provides 'safe, high-quality door-to-door service for older adults and people with disabilities,' including wheelchair-accessible vehicles for riders who 'cannot safely transfer to the seat of a standard UZURV vehicle,' operating through partner programs in cities including Houston, the DC Metro area, Phoenix, Jacksonville, Portland and Atlanta.",
+          "source": "https://uzurv.com/",
+          "asof": "2026"
+        },
+        "safety": {
+          "note": "UZURV requires drivers to pass 'national criminal and driving background checks' at least annually, complete Federal Transit Administration compliant drug screening, and complete credentialing on the Americans with Disabilities Act and 'appropriate techniques for assisting passengers with a variety of different types of disabilities.'",
+          "source": "https://uzurv.com/riding-with-uzurv/",
+          "asof": "2026"
+        }
+      },
+      "links": [],
+      "region": ["US"],
+      "focuses": ["Wheelchair-accessible vehicles", "Booked through a partner program", "Disability-specific driver training"]
+    }
+  ]
+}

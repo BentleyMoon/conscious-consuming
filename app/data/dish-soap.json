@@ -4,6 +4,14 @@
   "label": "Dish soap",
   "type": "Products",
   "primaryAxis": "health",
+  "tradeoff": [
+   "accessibility",
+   "health"
+  ],
+  "tradeoffLabels": [
+   "easiest to identify",
+   "strongest safer-chemistry signal"
+  ],
   "source": "EPA Safer Choice / Envirofacts",
   "attribution": "Data from EPA Safer Choice / Envirofacts. Certification status and product metadata are public EPA data.",
   "allergens": false,
@@ -66,11 +74,11 @@
   },
   "provenanceProfile": {
    "entryCount": 52,
-   "singleSourceEntries": 52,
-   "multiSourceEntries": 0,
+   "singleSourceEntries": 0,
+   "multiSourceEntries": 52,
    "noSourceEntries": 0,
    "noteOnlyEntries": 0,
-   "averageSourceDomains": 1.0,
+   "averageSourceDomains": 2.0,
    "topPrimarySources": [
     {
      "label": "epa.gov",
@@ -81,11 +89,15 @@
   "decision": {
    "category": "dish-soap",
    "reads": {
-    "text": "Compare dish soap by body safety, certification, environmental impact, and disclosure.",
+    "text": "Compare dish soap by body safety, everyday access, certification, and environmental impact.",
     "basis": [
      {
       "criterion": "health",
       "readsAs": "body safety"
+     },
+     {
+      "criterion": "accessibility",
+      "readsAs": "everyday access"
      },
      {
       "criterion": "certification",
@@ -94,10 +106,6 @@
      {
       "criterion": "environment",
       "readsAs": "environmental impact"
-     },
-     {
-      "criterion": "transparency",
-      "readsAs": "disclosure"
      }
     ],
     "signature": {
@@ -118,6 +126,14 @@
        "spread": 8
       },
       {
+       "criterion": "accessibility",
+       "readsAs": "everyday access",
+       "known": 52,
+       "minimum": 76,
+       "maximum": 92,
+       "spread": 16
+      },
+      {
        "criterion": "certification",
        "readsAs": "certification",
        "known": 52,
@@ -132,30 +148,23 @@
        "minimum": 80,
        "maximum": 88,
        "spread": 8
-      },
-      {
-       "criterion": "transparency",
-       "readsAs": "disclosure",
-       "known": 52,
-       "minimum": 85,
-       "maximum": 95,
-       "spread": 10
       }
      ]
     }
    },
    "axes": [
     {
-     "id": "health",
-     "kind": "criterion",
-     "label": "Body safety",
-     "question": "Does body safety matter more?",
+     "id": "access-or-safety",
+     "kind": "tradeoff",
+     "label": "Access or safety record",
+     "question": "Cheaper and easier to find, or a cleaner safety record?",
      "criteria": [
+      "accessibility",
       "health"
      ],
      "poles": [
-      "Flexible",
-      "Body safety"
+      "Easier to find",
+      "Cleaner record"
      ],
      "default": 50
     },
@@ -246,8 +255,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Presto! Dish Liquid Fragrance Free by Amazon.com Services LLC in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t00000014hyFAAQ",
+     "note": "For Amazon.com Services LLC, Safer Choice and Design for the Environment product register returned 1 matching record. Company: Amazon.com Services LLC; Company annual review current: true; Fragrance-free criteria: true; Product: Presto! Dish Liquid Fragrance Free; Program: Safer Choice; Published product identifier count: 1; Sector: Dish Soaps. Search terms: Amazon.com Services LLC, Presto! Dish Liquid Fragrance Free, https://www.epa.gov/saferchoice/products#search=a04t00000014hyFAAQ. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -300,9 +309,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -321,8 +334,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Ultra Palmolive Pure + Clear Fragrance Free Dish Liquid by Colgate-Palmolive Company in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006bWw9AAE",
+     "note": "For Colgate-Palmolive Company, Safer Choice and Design for the Environment product register returned 2 matching records. Company: Colgate-Palmolive Company; Company annual review current: true; Fragrance-free criteria: true; Product: Ultra Palmolive Pure + Clear Fragrance Free Dish Liquid; Program: Safer Choice; Published product identifier count: 2; Sector: Dish Soaps. Search terms: Colgate-Palmolive Company, Ultra Palmolive Pure + Clear Fragrance Free Dish Liquid, https://www.epa.gov/saferchoice/products#search=a04t0000006bWw9AAE. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -375,9 +388,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -396,8 +413,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists ECOS Dish Soap, Free & Clear by Earth Friendly Products in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04i000000WuqAsAAJ",
+     "note": "For Earth Friendly Products, Safer Choice and Design for the Environment product register returned 2 matching records. Company: Earth Friendly Products; Company annual review current: true; Fragrance-free criteria: true; Product: ECOS Dish Soap, Free & Clear; Program: Safer Choice; Published product identifier count: 2; Sector: Dish Soaps. Search terms: ECOS Dish Soap, Free & Clear, Earth Friendly Products, https://www.epa.gov/saferchoice/products#search=a04i000000WuqAsAAJ. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -450,9 +467,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -471,8 +492,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Better Than Clean Dish Soap, Free & Clear by Sensitive Home, Inc. in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006dMwcAAE",
+     "note": "For Sensitive Home, Inc., Safer Choice and Design for the Environment product register returned 1 matching record. Company: Sensitive Home, Inc.; Company annual review current: true; Fragrance-free criteria: true; Product: Better Than Clean Dish Soap, Free & Clear; Program: Safer Choice; Published product identifier count: 1; Sector: Dish Soaps. Search terms: Better Than Clean Dish Soap, Free & Clear, Sensitive Home, Inc., https://www.epa.gov/saferchoice/products#search=a04t0000006dMwcAAE. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -525,9 +546,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -546,8 +571,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Dish Liquid Refill, Free & Clear by Seventh Generation in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t00000047FFDAA2",
+     "note": "For Seventh Generation, Safer Choice and Design for the Environment product register returned 3 matching records. Company: Seventh Generation; Company annual review current: true; Fragrance-free criteria: true; Product: Dish Liquid Refill, Free & Clear; Program: Safer Choice; Published product identifier count: 2; Sector: Dish Soaps. Search terms: Dish Liquid Refill, Free & Clear, Seventh Generation, https://www.epa.gov/saferchoice/products#search=a04t00000047FFDAA2. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -600,9 +625,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -621,8 +650,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Dish Liquid, Free & Clear by Seventh Generation in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000002rHQCAA2",
+     "note": "For Seventh Generation, Safer Choice and Design for the Environment product register returned 4 matching records. Company: Seventh Generation; Company annual review current: true; Fragrance-free criteria: true; Product: Dish Liquid, Free & Clear; Program: Safer Choice; Published product identifier count: 2; Sector: Dish Soaps. Search terms: Dish Liquid, Free & Clear, Seventh Generation, https://www.epa.gov/saferchoice/products#search=a04t0000002rHQCAA2. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -675,9 +704,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -696,8 +729,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Presto! 95% Biobased Dish Liquid, Lemon Orchard Scent by Amazon.com Services LLC in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000000pFmNAAU",
+     "note": "For Amazon.com Services LLC, Safer Choice and Design for the Environment product register returned 1 matching record. Company: Amazon.com Services LLC; Company annual review current: true; Product: Presto! 95% Biobased Dish Liquid, Lemon Orchard Scent; Program: Safer Choice; Published product identifier count: 1; Sector: Dish Soaps. Search terms: Amazon.com Services LLC, Presto! 95% Biobased Dish Liquid, Lemon Orchard Scent, https://www.epa.gov/saferchoice/products#search=a04t0000000pFmNAAU. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -749,9 +782,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -770,8 +807,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Presto! Dish Liquid Orange Grove Scent by Amazon.com Services LLC in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t00000014i15AAA",
+     "note": "For Amazon.com Services LLC, Safer Choice and Design for the Environment product register returned 1 matching record. Company: Amazon.com Services LLC; Company annual review current: true; Product: Presto! Dish Liquid Orange Grove Scent; Program: Safer Choice; Published product identifier count: 1; Sector: Dish Soaps. Search terms: Amazon.com Services LLC, Presto! Dish Liquid Orange Grove Scent, https://www.epa.gov/saferchoice/products#search=a04t00000014i15AAA. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -823,9 +860,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -844,8 +885,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Presto! Dish Liquid Rosemary Mint Scent by Amazon.com Services LLC in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t00000014i0aAAA",
+     "note": "For Amazon.com Services LLC, Safer Choice and Design for the Environment product register returned 1 matching record. Company: Amazon.com Services LLC; Company annual review current: true; Product: Presto! Dish Liquid Rosemary Mint Scent; Program: Safer Choice; Published product identifier count: 1; Sector: Dish Soaps. Search terms: Amazon.com Services LLC, Presto! Dish Liquid Rosemary Mint Scent, https://www.epa.gov/saferchoice/products#search=a04t00000014i0aAAA. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -897,9 +938,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -918,8 +963,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Presto! Dish Soap, Lavender (30oz) by Amazon.com Services LLC in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t000000Da2aWAAR",
+     "note": "For Amazon.com Services LLC, Safer Choice and Design for the Environment product register returned 1 matching record. Company: Amazon.com Services LLC; Company annual review current: true; Product: Presto! Dish Soap, Lavender (30oz); Program: Safer Choice; Published product identifier count: 1; Sector: Dish Soaps. Search terms: Amazon.com Services LLC, Presto! Dish Soap, Lavender (30oz), https://www.epa.gov/saferchoice/products#search=a04t000000Da2aWAAR. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -971,9 +1016,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -992,8 +1041,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Presto! Dish Soap, Lavender (50oz) by Amazon.com Services LLC in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t000000Da2QXAAZ",
+     "note": "For Amazon.com Services LLC, Safer Choice and Design for the Environment product register returned 1 matching record. Company: Amazon.com Services LLC; Company annual review current: true; Product: Presto! Dish Soap, Lavender (50oz); Program: Safer Choice; Published product identifier count: 1; Sector: Dish Soaps. Search terms: Amazon.com Services LLC, Presto! Dish Soap, Lavender (50oz), https://www.epa.gov/saferchoice/products#search=a04t000000Da2QXAAZ. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -1045,9 +1094,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -1066,8 +1119,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Presto! Dish Soap, Lemon (30oz) by Amazon.com Services LLC in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t000000Da2dVAAR",
+     "note": "For Amazon.com Services LLC, Safer Choice and Design for the Environment product register returned 1 matching record. Company: Amazon.com Services LLC; Company annual review current: true; Product: Presto! Dish Soap, Lemon (30oz); Program: Safer Choice; Published product identifier count: 1; Sector: Dish Soaps. Search terms: Amazon.com Services LLC, Presto! Dish Soap, Lemon (30oz), https://www.epa.gov/saferchoice/products#search=a04t000000Da2dVAAR. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -1119,9 +1172,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -1140,8 +1197,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Presto! Dish Soap, Lemon (50oz) by Amazon.com Services LLC in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t000000Da2Z9AAJ",
+     "note": "For Amazon.com Services LLC, Safer Choice and Design for the Environment product register returned 1 matching record. Company: Amazon.com Services LLC; Company annual review current: true; Product: Presto! Dish Soap, Lemon (50oz); Program: Safer Choice; Published product identifier count: 1; Sector: Dish Soaps. Search terms: Amazon.com Services LLC, Presto! Dish Soap, Lemon (50oz), https://www.epa.gov/saferchoice/products#search=a04t000000Da2Z9AAJ. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -1193,9 +1250,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -1214,8 +1275,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Green Works Dishwashing Liquid - 98% Naturally Derived - Free & Clear by Clorox Company in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000005OzRRAA0",
+     "note": "For Clorox Company, Safer Choice and Design for the Environment product register returned 4 matching records. Company: Clorox Company; Company annual review current: true; Product: Green Works Dishwashing Liquid - 98% Naturally Derived - Free & Clear; Program: Safer Choice; Published product identifier count: 4; Sector: Dish Soaps. Search terms: Clorox Company, Green Works Dishwashing Liquid - 98% Naturally Derived - Free & Clear, https://www.epa.gov/saferchoice/products#search=a04t0000005OzRRAA0. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -1267,9 +1328,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -1288,8 +1353,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Ultra Palmolive Pure + Clear Lavender & Eucalyptus Dish Liquid by Colgate-Palmolive Company in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006bWxgAAE",
+     "note": "For Colgate-Palmolive Company, Safer Choice and Design for the Environment product register returned 3 matching records. Company: Colgate-Palmolive Company; Company annual review current: true; Product: Ultra Palmolive Pure + Clear Lavender & Eucalyptus Dish Liquid; Program: Safer Choice; Published product identifier count: 3; Sector: Dish Soaps. Search terms: Colgate-Palmolive Company, Ultra Palmolive Pure + Clear Lavender & Eucalyptus Dish Liquid, https://www.epa.gov/saferchoice/products#search=a04t0000006bWxgAAE. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -1341,9 +1406,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -1362,8 +1431,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Ultra Palmolive Pure + Clear Spring Fresh Dish Liquid by Colgate-Palmolive Company in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006bWyZAAU",
+     "note": "For Colgate-Palmolive Company, Safer Choice and Design for the Environment product register returned 4 matching records. Company: Colgate-Palmolive Company; Company annual review current: true; Product: Ultra Palmolive Pure + Clear Spring Fresh Dish Liquid; Program: Safer Choice; Published product identifier count: 4; Sector: Dish Soaps. Search terms: Colgate-Palmolive Company, Ultra Palmolive Pure + Clear Spring Fresh Dish Liquid, https://www.epa.gov/saferchoice/products#search=a04t0000006bWyZAAU. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -1415,9 +1484,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -1436,8 +1509,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Kirkland Signature Ultra Shine Plant-Based Dish Soap Clementine & Lemongrass scent by Costco Wholesale Corporation in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t00000098k6AAAQ",
+     "note": "For Costco Wholesale Corporation, Safer Choice and Design for the Environment product register returned 1 matching record. Company: Costco Wholesale Corporation; Company annual review current: true; Product: Kirkland Signature Ultra Shine Plant-Based Dish Soap Clementine & Lemongrass scent; Program: Safer Choice; Published product identifier count: 1; Sector: Dish Soaps. Search terms: Costco Wholesale Corporation, Kirkland Signature Ultra Shine Plant-Based Dish Soap Clementine & Lemongrass scent, https://www.epa.gov/saferchoice/products#search=a04t00000098k6AAAQ. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -1489,9 +1562,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -1510,8 +1587,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Kirkland Signature UltraShine Jabon Para Lavar Trastes De Origen Vegetal Aroma a Naranja y Limoncil by Costco Wholesale Corporation in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a043d000005VhkVAAS",
+     "note": "For Costco Wholesale Corporation, Safer Choice and Design for the Environment product register returned 1 matching record. Company: Costco Wholesale Corporation; Company annual review current: true; Product: Kirkland Signature UltraShine Jabon Para Lavar Trastes De Origen Vegetal Aroma a Naranja y Limoncil; Program: Safer Choice; Published product identifier count: 1; Sector: Dish Soaps. Search terms: Costco Wholesale Corporation, Kirkland Signature UltraShine Jabon Para Lavar Trastes De Origen Vegetal Aroma a Naranja y Limoncil, https://www.epa.gov/saferchoice/products#search=a043d000005VhkVAAS. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -1563,9 +1640,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -1584,8 +1665,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists dropps Ultrawash Lemon Citrus by Cot'n Wash Inc. in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ000006122jYAA",
+     "note": "For Cot'n Wash Inc., Safer Choice and Design for the Environment product register returned 5 matching records. Company: Cot'n Wash Inc.; Company annual review current: true; Product: dropps Ultrawash Lemon Citrus; Program: Safer Choice; Published product identifier count: 5; Sector: Dish Soaps. Search terms: Cot'n Wash Inc., dropps Ultrawash Lemon Citrus, https://www.epa.gov/saferchoice/products#search=a04SJ000006122jYAA. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -1637,9 +1718,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -1658,8 +1743,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists dropps Ultrawash Unscented by Cot'n Wash Inc. in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ00000618CzYAI",
+     "note": "For Cot'n Wash Inc., Safer Choice and Design for the Environment product register returned 4 matching records. Company: Cot'n Wash Inc.; Company annual review current: true; Product: dropps Ultrawash Unscented; Program: Safer Choice; Published product identifier count: 4; Sector: Dish Soaps. Search terms: Cot'n Wash Inc., dropps Ultrawash Unscented, https://www.epa.gov/saferchoice/products#search=a04SJ00000618CzYAI. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -1711,9 +1796,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -1732,8 +1821,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists ECOS Dish Soap, Almond by Earth Friendly Products in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04i000000WuqArAAJ",
+     "note": "For Earth Friendly Products, Safer Choice and Design for the Environment product register returned 2 matching records. Company: Earth Friendly Products; Company annual review current: true; Product: ECOS Dish Soap, Almond; Program: Safer Choice; Published product identifier count: 2; Sector: Dish Soaps. Search terms: ECOS Dish Soap, Almond, Earth Friendly Products, https://www.epa.gov/saferchoice/products#search=a04i000000WuqArAAJ. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -1785,9 +1874,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -1806,8 +1899,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists ECOS Dish Soap, Apricot by Earth Friendly Products in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04i000000WuqAoAAJ",
+     "note": "For Earth Friendly Products, Safer Choice and Design for the Environment product register returned 2 matching records. Company: Earth Friendly Products; Company annual review current: true; Product: ECOS Dish Soap, Apricot; Program: Safer Choice; Published product identifier count: 2; Sector: Dish Soaps. Search terms: ECOS Dish Soap, Apricot, Earth Friendly Products, https://www.epa.gov/saferchoice/products#search=a04i000000WuqAoAAJ. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -1859,9 +1952,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -1880,8 +1977,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists ECOS Dish Soap, Grapefruit by Earth Friendly Products in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04i000000WuppdAAB",
+     "note": "For Earth Friendly Products, Safer Choice and Design for the Environment product register returned 4 matching records. Company: Earth Friendly Products; Company annual review current: true; Product: ECOS Dish Soap, Grapefruit; Program: Safer Choice; Published product identifier count: 4; Sector: Dish Soaps. Search terms: ECOS Dish Soap, Grapefruit, Earth Friendly Products, https://www.epa.gov/saferchoice/products#search=a04i000000WuppdAAB. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -1933,9 +2030,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -1954,8 +2055,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists ECOS Dish Soap, Lavender by Earth Friendly Products in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04i000000WuqApAAJ",
+     "note": "For Earth Friendly Products, Safer Choice and Design for the Environment product register returned 2 matching records. Company: Earth Friendly Products; Company annual review current: true; Product: ECOS Dish Soap, Lavender; Program: Safer Choice; Published product identifier count: 2; Sector: Dish Soaps. Search terms: ECOS Dish Soap, Lavender, Earth Friendly Products, https://www.epa.gov/saferchoice/products#search=a04i000000WuqApAAJ. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -2007,9 +2108,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -2028,8 +2133,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists ECOS Dish Soap, Lemon by Earth Friendly Products in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000002DrrnAAC",
+     "note": "For Earth Friendly Products, Safer Choice and Design for the Environment product register returned 1 matching record. Company: Earth Friendly Products; Company annual review current: true; Product: ECOS Dish Soap, Lemon; Program: Safer Choice; Published product identifier count: 1; Sector: Dish Soaps. Search terms: ECOS Dish Soap, Lemon, Earth Friendly Products, https://www.epa.gov/saferchoice/products#search=a04t0000002DrrnAAC. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -2081,9 +2186,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -2102,8 +2211,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists ECOS Dish Soap, Pear by Earth Friendly Products in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04i000000WuqAqAAJ",
+     "note": "For Earth Friendly Products, Safer Choice and Design for the Environment product register returned 3 matching records. Company: Earth Friendly Products; Company annual review current: true; Product: ECOS Dish Soap, Pear; Program: Safer Choice; Published product identifier count: 3; Sector: Dish Soaps. Search terms: ECOS Dish Soap, Pear, Earth Friendly Products, https://www.epa.gov/saferchoice/products#search=a04i000000WuqAqAAJ. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -2155,9 +2264,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -2176,8 +2289,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists ECOS Dishmate Almond (Greek) by Earth Friendly Products in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000005L3itAAC",
+     "note": "For Earth Friendly Products, Safer Choice and Design for the Environment product register returned 2 matching records. Company: Earth Friendly Products; Company annual review current: true; Product: ECOS Dishmate Almond (Greek); Program: Safer Choice; Published product identifier count: 2; Sector: Dish Soaps. Search terms: ECOS Dishmate Almond (Greek), Earth Friendly Products, https://www.epa.gov/saferchoice/products#search=a04t0000005L3itAAC. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -2229,9 +2342,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -2250,8 +2367,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists ECOS Dishmate Pear (Greek) by Earth Friendly Products in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000005L3hSAAS",
+     "note": "For Earth Friendly Products, Safer Choice and Design for the Environment product register returned 2 matching records. Company: Earth Friendly Products; Company annual review current: true; Product: ECOS Dishmate Pear (Greek); Program: Safer Choice; Published product identifier count: 2; Sector: Dish Soaps. Search terms: ECOS Dishmate Pear (Greek), Earth Friendly Products, https://www.epa.gov/saferchoice/products#search=a04t0000005L3hSAAS. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -2303,9 +2420,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -2324,8 +2445,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists High Performing Dish Soap by L'AVANT Collective in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001tpMiAAI",
+     "note": "For L'AVANT Collective, Safer Choice and Design for the Environment product register returned 2 matching records. Company: L'AVANT Collective; Company annual review current: true; Product: High Performing Dish Soap; Program: Safer Choice; Published product identifier count: 2; Sector: Dish Soaps. Search terms: High Performing Dish Soap, L'AVANT Collective, https://www.epa.gov/saferchoice/products#search=a043d000001tpMiAAI. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -2377,9 +2498,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -2398,8 +2523,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Dish Liquid - Yuzu Basil by Seventh Generation in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a043d000002t6maAAA",
+     "note": "For Seventh Generation, Safer Choice and Design for the Environment product register returned 1 matching record. Company: Seventh Generation; Company annual review current: true; Product: Dish Liquid - Yuzu Basil; Program: Safer Choice; Published product identifier count: 1; Sector: Dish Soaps. Search terms: Dish Liquid - Yuzu Basil, Seventh Generation, https://www.epa.gov/saferchoice/products#search=a043d000002t6maAAA. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -2451,9 +2576,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -2472,8 +2601,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Dish Liquid Refill, Clementine Zest & Lemongrass by Seventh Generation in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a043d0000032iFeAAI",
+     "note": "For Seventh Generation, Safer Choice and Design for the Environment product register returned 3 matching records. Company: Seventh Generation; Company annual review current: true; Product: Dish Liquid Refill, Clementine Zest & Lemongrass; Program: Safer Choice; Published product identifier count: 2; Sector: Dish Soaps. Search terms: Dish Liquid Refill, Clementine Zest & Lemongrass, Seventh Generation, https://www.epa.gov/saferchoice/products#search=a043d0000032iFeAAI. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -2525,9 +2654,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -2546,8 +2679,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Dish Liquid Refill, Lavender Flower & Mint by Seventh Generation in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a043d0000032iIfAAI",
+     "note": "For Seventh Generation, Safer Choice and Design for the Environment product register returned 2 matching records. Company: Seventh Generation; Company annual review current: true; Product: Dish Liquid Refill, Lavender Flower & Mint; Program: Safer Choice; Published product identifier count: 1; Sector: Dish Soaps. Search terms: Dish Liquid Refill, Lavender Flower & Mint, Seventh Generation, https://www.epa.gov/saferchoice/products#search=a043d0000032iIfAAI. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -2599,9 +2732,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -2620,8 +2757,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Dish Liquid, Chamomile & Lemon by Seventh Generation in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006imOqAAI",
+     "note": "For Seventh Generation, Safer Choice and Design for the Environment product register returned 2 matching records. Company: Seventh Generation; Company annual review current: true; Product: Dish Liquid, Chamomile & Lemon; Program: Safer Choice; Published product identifier count: 1; Sector: Dish Soaps. Search terms: Dish Liquid, Chamomile & Lemon, Seventh Generation, https://www.epa.gov/saferchoice/products#search=a04t0000006imOqAAI. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -2673,9 +2810,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -2694,8 +2835,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Dish Liquid, Clementine Zest & Lemongrass by Seventh Generation in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000001134SAAQ",
+     "note": "For Seventh Generation, Safer Choice and Design for the Environment product register returned 2 matching records. Company: Seventh Generation; Company annual review current: true; Product: Dish Liquid, Clementine Zest & Lemongrass; Program: Safer Choice; Published product identifier count: 1; Sector: Dish Soaps. Search terms: Dish Liquid, Clementine Zest & Lemongrass, Seventh Generation, https://www.epa.gov/saferchoice/products#search=a04t0000001134SAAQ. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -2747,9 +2888,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -2768,8 +2913,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Dish Liquid, Fresh Lime & Ginger by Seventh Generation in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t00000011DK2AAM",
+     "note": "For Seventh Generation, Safer Choice and Design for the Environment product register returned 2 matching records. Company: Seventh Generation; Company annual review current: true; Product: Dish Liquid, Fresh Lime & Ginger; Program: Safer Choice; Published product identifier count: 1; Sector: Dish Soaps. Search terms: Dish Liquid, Fresh Lime & Ginger, Seventh Generation, https://www.epa.gov/saferchoice/products#search=a04t00000011DK2AAM. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -2821,9 +2966,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -2842,8 +2991,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Dish Liquid, Lavender Flower & Mint by Seventh Generation in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t000000112ucAAA",
+     "note": "For Seventh Generation, Safer Choice and Design for the Environment product register returned 3 matching records. Company: Seventh Generation; Company annual review current: true; Product: Dish Liquid, Lavender Flower & Mint; Program: Safer Choice; Published product identifier count: 2; Sector: Dish Soaps. Search terms: Dish Liquid, Lavender Flower & Mint, Seventh Generation, https://www.epa.gov/saferchoice/products#search=a04t000000112ucAAA. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -2895,9 +3044,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -2916,8 +3069,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Dish Liquid, Summer Orchard by Seventh Generation in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t00000047eYSAAY",
+     "note": "For Seventh Generation, Safer Choice and Design for the Environment product register returned 3 matching records. Company: Seventh Generation; Company annual review current: true; Product: Dish Liquid, Summer Orchard; Program: Safer Choice; Published product identifier count: 2; Sector: Dish Soaps. Search terms: Dish Liquid, Summer Orchard, Seventh Generation, https://www.epa.gov/saferchoice/products#search=a04t00000047eYSAAY. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -2969,9 +3122,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -2990,8 +3147,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Foaming Dish Spray White Lavender & Sage by Seventh Generation in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a043d0000032sU1AAI",
+     "note": "For Seventh Generation, Safer Choice and Design for the Environment product register returned 2 matching records. Company: Seventh Generation; Company annual review current: true; Product: Foaming Dish Spray White Lavender & Sage; Program: Safer Choice; Published product identifier count: 2; Sector: Dish Soaps. Search terms: Foaming Dish Spray White Lavender & Sage, Seventh Generation, https://www.epa.gov/saferchoice/products#search=a043d0000032sU1AAI. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -3043,9 +3200,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -3064,8 +3225,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Power+ Foaming Dish Spray Free & Clear by Seventh Generation in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t000000Dab7aAAB",
+     "note": "For Seventh Generation, Safer Choice and Design for the Environment product register returned 1 matching record. Company: Seventh Generation; Company annual review current: true; Product: Power+ Foaming Dish Spray Free & Clear; Program: Safer Choice; Published product identifier count: 1; Sector: Dish Soaps. Search terms: Power+ Foaming Dish Spray Free & Clear, Seventh Generation, https://www.epa.gov/saferchoice/products#search=a04t000000Dab7aAAB. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -3117,9 +3278,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -3138,8 +3303,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Power+ Foaming Dish Spray Honeycrisp Apple by Seventh Generation in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t000000DabMfAAJ",
+     "note": "For Seventh Generation, Safer Choice and Design for the Environment product register returned 2 matching records. Company: Seventh Generation; Company annual review current: true; Product: Power+ Foaming Dish Spray Honeycrisp Apple; Program: Safer Choice; Published product identifier count: 2; Sector: Dish Soaps. Search terms: Power+ Foaming Dish Spray Honeycrisp Apple, Seventh Generation, https://www.epa.gov/saferchoice/products#search=a04t000000DabMfAAJ. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -3191,9 +3356,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -3212,8 +3381,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Power+ Foaming Dish Spray Honeycrisp Apple refill by Seventh Generation in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001y0KDAAY",
+     "note": "For Seventh Generation, Safer Choice and Design for the Environment product register returned 1 matching record. Company: Seventh Generation; Company annual review current: true; Product: Power+ Foaming Dish Spray Honeycrisp Apple refill; Program: Safer Choice; Published product identifier count: 1; Sector: Dish Soaps. Search terms: Power+ Foaming Dish Spray Honeycrisp Apple refill, Seventh Generation, https://www.epa.gov/saferchoice/products#search=a043d000001y0KDAAY. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -3265,9 +3434,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -3286,8 +3459,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Power+ Foaming Dish Spray Orange Mandarin by Seventh Generation in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t000000Dabf2AAB",
+     "note": "For Seventh Generation, Safer Choice and Design for the Environment product register returned 2 matching records. Company: Seventh Generation; Company annual review current: true; Product: Power+ Foaming Dish Spray Orange Mandarin; Program: Safer Choice; Published product identifier count: 2; Sector: Dish Soaps. Search terms: Power+ Foaming Dish Spray Orange Mandarin, Seventh Generation, https://www.epa.gov/saferchoice/products#search=a04t000000Dabf2AAB. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -3339,9 +3512,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -3360,8 +3537,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Power+ Foaming Dish Spray Orange Mandarin refill by Seventh Generation in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001y0KIAAY",
+     "note": "For Seventh Generation, Safer Choice and Design for the Environment product register returned 1 matching record. Company: Seventh Generation; Company annual review current: true; Product: Power+ Foaming Dish Spray Orange Mandarin refill; Program: Safer Choice; Published product identifier count: 1; Sector: Dish Soaps. Search terms: Power+ Foaming Dish Spray Orange Mandarin refill, Seventh Generation, https://www.epa.gov/saferchoice/products#search=a043d000001y0KIAAY. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -3413,9 +3590,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -3434,8 +3615,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Baby Bottle & Feeding Utensil Wash by Friendly Organic LLC-BST Ltd. in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04i000000WuqZeAAJ",
+     "note": "For Friendly Organic LLC-BST Ltd., Safer Choice and Design for the Environment product register returned 1 matching record. Company: Friendly Organic LLC-BST Ltd.; Company annual review current: true; Fragrance-free criteria: true; Product: Baby Bottle & Feeding Utensil Wash; Program: Safer Choice; Sector: Dish Soaps. Search terms: Baby Bottle & Feeding Utensil Wash, Friendly Organic LLC-BST Ltd., https://www.epa.gov/saferchoice/products#search=a04i000000WuqZeAAJ. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -3488,9 +3669,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -3509,8 +3694,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Breastfeeding Accessory Cleaner by Friendly Organic LLC-BST Ltd. in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04i000000WuqZsAAJ",
+     "note": "For Friendly Organic LLC-BST Ltd., Safer Choice and Design for the Environment product register returned 1 matching record. Company: Friendly Organic LLC-BST Ltd.; Company annual review current: true; Fragrance-free criteria: true; Product: Breastfeeding Accessory Cleaner; Program: Safer Choice; Sector: Dish Soaps. Search terms: Breastfeeding Accessory Cleaner, Friendly Organic LLC-BST Ltd., https://www.epa.gov/saferchoice/products#search=a04i000000WuqZsAAJ. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -3563,9 +3748,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -3584,8 +3773,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Better Than Clean Bath & Daily Shower Cleaner Free & Clear by Sensitive Home, Inc. in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000009vAKQAA2",
+     "note": "For Sensitive Home, Inc., Safer Choice and Design for the Environment product register returned 1 matching record. Company: Sensitive Home, Inc.; Company annual review current: true; Fragrance-free criteria: true; Product: Better Than Clean Bath & Daily Shower Cleaner Free & Clear; Program: Safer Choice; Sector: Dish Soaps. Search terms: Better Than Clean Bath & Daily Shower Cleaner Free & Clear, Sensitive Home, Inc., https://www.epa.gov/saferchoice/products#search=a04t0000009vAKQAA2. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -3638,9 +3827,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -3659,8 +3852,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Amway Home Dish Drops Concentrated Dishwashing Liquid by Amway in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04i000000WuqJIAAZ",
+     "note": "For Amway, Safer Choice and Design for the Environment product register returned 1 matching record. Company: Amway; Company annual review current: true; Product: Amway Home Dish Drops Concentrated Dishwashing Liquid; Program: Safer Choice; Sector: Dish Soaps. Search terms: Amway, Amway Home Dish Drops Concentrated Dishwashing Liquid, https://www.epa.gov/saferchoice/products#search=a04i000000WuqJIAAZ. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -3712,9 +3905,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -3733,8 +3930,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Powder Dish Soap by Blueland in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006ikJdAAI",
+     "note": "For Blueland, Safer Choice and Design for the Environment product register returned 1 matching record. Company: Blueland; Company annual review current: true; Product: Powder Dish Soap; Program: Safer Choice; Sector: Dish Soaps. Search terms: Blueland, Powder Dish Soap, https://www.epa.gov/saferchoice/products#search=a04t0000006ikJdAAI. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -3786,9 +3983,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -3807,8 +4008,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists ECOS Foaming Dish Spray Free & Clear by Earth Friendly Products in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a043d000006kDTGAA2",
+     "note": "For Earth Friendly Products, Safer Choice and Design for the Environment product register returned 1 matching record. Company: Earth Friendly Products; Company annual review current: true; Product: ECOS Foaming Dish Spray Free & Clear; Program: Safer Choice; Sector: Dish Soaps. Search terms: ECOS Foaming Dish Spray Free & Clear, Earth Friendly Products, https://www.epa.gov/saferchoice/products#search=a043d000006kDTGAA2. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -3860,9 +4061,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -3881,8 +4086,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists ECOS Foaming Dish Spray Lemon by Earth Friendly Products in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a043d000006kER2AAM",
+     "note": "For Earth Friendly Products, Safer Choice and Design for the Environment product register returned 1 matching record. Company: Earth Friendly Products; Company annual review current: true; Product: ECOS Foaming Dish Spray Lemon; Program: Safer Choice; Sector: Dish Soaps. Search terms: ECOS Foaming Dish Spray Lemon, Earth Friendly Products, https://www.epa.gov/saferchoice/products#search=a043d000006kER2AAM. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -3934,9 +4139,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -3955,8 +4164,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Dishwashing Liquid Pear by Friendly Organic LLC-BST Ltd. in the Safer Choice program; company good-standing status is true.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04i000000WuqZfAAJ",
+     "note": "For Friendly Organic LLC-BST Ltd., Safer Choice and Design for the Environment product register returned 1 matching record. Company: Friendly Organic LLC-BST Ltd.; Company annual review current: true; Product: Dishwashing Liquid Pear; Program: Safer Choice; Sector: Dish Soaps. Search terms: Dishwashing Liquid Pear, Friendly Organic LLC-BST Ltd., https://www.epa.gov/saferchoice/products#search=a04i000000WuqZfAAJ. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -4008,9 +4217,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   },
   {
@@ -4029,8 +4242,8 @@
    },
    "provenance": {
     "certification": {
-     "note": "EPA Envirofacts lists Biokleen Dish Liquid Free & Clear by PurposeBuilt Brands in the Safer Choice program; company good-standing status is false.",
-     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006qPwkAAE",
+     "note": "For PurposeBuilt Brands, Safer Choice and Design for the Environment product register returned 3 matching records. Company: PurposeBuilt Brands; Fragrance-free criteria: true; Product: Biokleen Dish Liquid Free & Clear; Program: Safer Choice; Published product identifier count: 3; Sector: Dish Soaps. Search terms: Biokleen Dish Liquid Free & Clear, PurposeBuilt Brands, https://www.epa.gov/saferchoice/products#search=a04t0000006qPwkAAE. Scope: Complete EPA Safer Choice and Design for the Environment product table returned by Envirofacts. Snapshot captured 2026-08-14.",
+     "source": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
      "asof": "2026"
     },
     "health": {
@@ -4082,9 +4295,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "epa.gov"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "epa.gov",
+    "sourceLabels": [
+     "epa.gov",
+     "data.epa.gov"
+    ]
    }
   }
  ],

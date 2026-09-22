@@ -1,0 +1,295 @@
+{
+  "format": "open-values-register-coverage-rules",
+  "version": "1.0.0",
+  "updated": "2026-08-14",
+  "note": "Conservative machine-readable applicability rules for public registers. The matrix builder derives its decision side from the taxonomy and its register side from the shelf. A missing reviewed rule remains unmapped, never not-applicable.",
+  "statusDefinitions": {
+    "applicable": "The register's subject matter clearly covers this decision. Individual option coverage may still be partial.",
+    "not-applicable": "A reviewed rule establishes that the register cannot populate this decision.",
+    "blocked": "Applicability is known, but a named durable prerequisite prevents a pass.",
+    "unmapped": "No reviewed applicability determination exists yet. This is the default and is not a claim of irrelevance."
+  },
+  "registers": [
+    {
+      "registerId": "openfda-recalls",
+      "default": { "status": "unmapped", "reason": "FDA recall applicability has not yet been reviewed for this decision." },
+      "selectors": [
+        {
+          "id": "packaged-food-products",
+          "priority": 100,
+          "status": "applicable",
+          "reason": "FDA enforcement records cover packaged food products in grocery decisions.",
+          "match": { "realms": ["food-and-drink"], "fields": ["groceries"], "types": ["Products"] }
+        },
+        {
+          "id": "regulated-drink-products",
+          "priority": 100,
+          "status": "applicable",
+          "reason": "FDA enforcement records cover non-alcoholic packaged drink products.",
+          "match": { "realms": ["food-and-drink"], "fields": ["drinks"], "families": ["cold-drinks", "hot-drinks", "water"], "types": ["Products"] }
+        },
+        {
+          "id": "pet-food-products",
+          "priority": 100,
+          "status": "applicable",
+          "reason": "FDA enforcement records cover animal food products.",
+          "match": { "realms": ["animals"], "families": ["pet-food"], "types": ["Products"] }
+        },
+        {
+          "id": "medicines-and-supplements",
+          "priority": 100,
+          "status": "applicable",
+          "reason": "FDA drug and food enforcement records cover medicine and supplement products.",
+          "match": { "realms": ["health"], "families": ["everyday-medicines", "supplements"], "types": ["Products"] }
+        },
+        {
+          "id": "cosmetic-products",
+          "priority": 90,
+          "status": "applicable",
+          "reason": "FDA enforcement records include cosmetic products.",
+          "match": { "realms": ["personal-care"], "fields": ["body-and-bath", "fragrance", "hair", "make-up", "skin-and-face"], "types": ["Products"] }
+        }
+      ]
+    },
+    {
+      "registerId": "cpsc-recalls",
+      "default": { "status": "unmapped", "reason": "CPSC jurisdiction has not yet been reviewed for this decision." },
+      "selectors": [
+        {
+          "id": "consumer-product-realms",
+          "priority": 80,
+          "status": "applicable",
+          "reason": "CPSC recall records cover consumer products in these catalogue realms, subject to product-specific jurisdiction.",
+          "match": { "realms": ["clothing", "family-and-care", "home", "technology", "travel"], "types": ["Products"] }
+        }
+      ]
+    },
+    {
+      "registerId": "cfpb-complaints",
+      "default": { "status": "unmapped", "reason": "CFPB complaint-product coverage has not yet been reviewed for this decision." },
+      "selectors": [
+        {
+          "id": "consumer-finance-services",
+          "priority": 100,
+          "status": "applicable",
+          "reason": "The CFPB complaint database covers consumer borrowing, banking, payment, and money-management services.",
+          "match": { "realms": ["money"], "fields": ["borrowing", "everyday-banking", "managing-money"], "types": ["Services"] }
+        }
+      ]
+    },
+    {
+      "registerId": "eprel",
+      "default": { "status": "unmapped", "reason": "EPREL product-group coverage has not yet been reviewed for this decision." },
+      "selectors": [
+        {
+          "id": "energy-labelled-product-groups",
+          "priority": 100,
+          "status": "applicable",
+          "reason": "EPREL contains EU energy-label filings for covered household appliance product groups.",
+          "match": { "decisionIds": ["fridges-and-freezers", "washing-machines", "tumble-dryers", "dishwashers", "ovens-and-hobs", "tvs", "monitors", "light-bulbs"] }
+        }
+      ]
+    },
+    {
+      "registerId": "france-durability",
+      "default": { "status": "unmapped", "reason": "French durability-index product coverage has not yet been reviewed for this decision." },
+      "selectors": [
+        {
+          "id": "durability-covered-appliances",
+          "priority": 100,
+          "status": "applicable",
+          "reason": "French durability or repairability filings cover selected appliance and electronics product groups.",
+          "match": { "decisionIds": ["washing-machines", "tvs", "phones", "laptops", "vacuum-cleaners"] }
+        }
+      ]
+    },
+    {
+      "registerId": "openfda-devices",
+      "default": { "status": "unmapped", "reason": "FDA device product-code coverage has not yet been reviewed for this decision." },
+      "selectors": [
+        {
+          "id": "home-and-personal-medical-devices",
+          "priority": 90,
+          "status": "applicable",
+          "reason": "FDA device records cover regulated health products in these medical-device families.",
+          "match": { "realms": ["health"], "fields": ["eyes-teeth-and-hearing", "home-health-and-first-aid", "sexual-and-reproductive-health"], "types": ["Products"] }
+        },
+        {
+          "id": "menstrual-devices",
+          "priority": 100,
+          "status": "applicable",
+          "reason": "FDA device records cover regulated menstrual devices.",
+          "match": { "realms": ["personal-care"], "families": ["menstruation"], "types": ["Products"] }
+        }
+      ]
+    },
+    {
+      "registerId": "companies-house-psc",
+      "default": { "status": "unmapped", "reason": "UK legal-entity and jurisdiction mapping is required before Companies House applicability can be determined." },
+      "selectors": []
+    },
+    {
+      "registerId": "sec-edgar",
+      "default": { "status": "unmapped", "reason": "US public-company identity mapping is required before SEC applicability can be determined." },
+      "selectors": []
+    },
+    {
+      "registerId": "dol-olms",
+      "default": { "status": "unmapped", "reason": "OLMS filing coverage has not yet been reviewed for this decision." },
+      "selectors": []
+    },
+    {
+      "registerId": "gca-survey",
+      "default": { "status": "unmapped", "reason": "Groceries Code Adjudicator survey coverage has not yet been reviewed for this decision." },
+      "selectors": []
+    },
+    {
+      "registerId": "caa-punctuality",
+      "default": { "status": "unmapped", "reason": "CAA punctuality coverage has not yet been reviewed for this decision." },
+      "selectors": []
+    },
+    {
+      "registerId": "ofgem-derogations",
+      "default": { "status": "unmapped", "reason": "Ofgem decision coverage has not yet been reviewed for this decision." },
+      "selectors": []
+    },
+    {
+      "registerId": "citizens-advice-energy",
+      "default": { "status": "unmapped", "reason": "Citizens Advice energy-rating coverage has not yet been reviewed for this decision." },
+      "selectors": []
+    },
+    {
+      "registerId": "usp-nsf",
+      "default": { "status": "unmapped", "reason": "USP and NSF certification coverage has not yet been reviewed for this decision." },
+      "selectors": [
+        {
+          "id": "supplement-products",
+          "priority": 100,
+          "status": "applicable",
+          "reason": "USP and NSF product registers cover supplements and sports-nutrition products.",
+          "match": { "realms": ["health"], "families": ["supplements"], "types": ["Products"] }
+        }
+      ]
+    },
+    {
+      "registerId": "ecolabel-registers",
+      "default": { "status": "unmapped", "reason": "Ecolabel product-group coverage has not yet been reviewed for this decision." },
+      "selectors": [
+        {
+          "id": "cleaning-and-personal-care-products",
+          "priority": 80,
+          "status": "applicable",
+          "reason": "Nordic Swan and EU Ecolabel registers cover selected cleaning and personal-care product groups.",
+          "match": { "realms": ["home", "personal-care"], "families": ["cleaning-supplies", "skin-on-the-body", "washing", "washing-and-conditioning", "cleansing"], "types": ["Products"] }
+        },
+        {
+          "id": "textile-and-nappy-products",
+          "priority": 80,
+          "status": "applicable",
+          "reason": "Nordic Swan and EU Ecolabel registers cover selected textile and absorbent-hygiene products.",
+          "match": { "realms": ["clothing", "family-and-care"], "types": ["Products"] }
+        }
+      ]
+    },
+    {
+      "registerId": "epa-safer-choice",
+      "default": { "status": "unmapped", "reason": "EPA Safer Choice product-class coverage has not yet been reviewed for this decision." },
+      "selectors": [
+        {
+          "id": "reviewed-consumer-cleaning-products",
+          "priority": 100,
+          "status": "applicable",
+          "reason": "EPA publishes product-level Safer Choice and DfE listings for consumer cleaning, dishwashing, and laundry product classes.",
+          "match": { "decisionIds": ["cleaning-products", "dish-soap", "laundry"] }
+        }
+      ]
+    },
+    {
+      "registerId": "blab-directory",
+      "default": { "status": "unmapped", "reason": "B Corp applicability depends on option-level organization identity and has not yet been reviewed for this decision." },
+      "selectors": [
+        {
+          "id": "organization-comparisons",
+          "priority": 60,
+          "status": "applicable",
+          "reason": "The B Lab directory can verify certification for organization comparison decisions.",
+          "match": { "realms": ["organizations"], "types": ["Organizations"] }
+        }
+      ]
+    },
+    {
+      "registerId": "ifixit-repairability",
+      "default": { "status": "unmapped", "reason": "iFixit model coverage has not yet been reviewed for this decision." },
+      "selectors": [
+        {
+          "id": "repairable-devices",
+          "priority": 90,
+          "status": "applicable",
+          "reason": "iFixit publishes model-level repairability evidence for consumer electronics and selected appliances.",
+          "match": { "realms": ["technology"], "fields": ["devices"], "types": ["Products"] }
+        },
+        {
+          "id": "repairable-appliances",
+          "priority": 90,
+          "status": "applicable",
+          "reason": "iFixit publishes repair evidence for selected household appliances.",
+          "match": { "realms": ["home"], "fields": ["appliances"], "types": ["Products"] }
+        }
+      ]
+    },
+    {
+      "registerId": "eur-lex",
+      "default": { "status": "unmapped", "reason": "The relevant EU legal floor has not yet been identified for this decision." },
+      "selectors": []
+    },
+    {
+      "registerId": "ftc-enforcement",
+      "default": { "status": "unmapped", "reason": "US jurisdiction and relevant FTC enforcement subject matter have not yet been reviewed for this decision." },
+      "selectors": []
+    },
+    {
+      "registerId": "data-protection-decisions",
+      "default": { "status": "unmapped", "reason": "Data-protection enforcement applicability has not yet been reviewed for this decision." },
+      "selectors": [
+        {
+          "id": "digital-services",
+          "priority": 70,
+          "status": "applicable",
+          "reason": "Data-protection authority decisions can populate privacy records for digital service decisions.",
+          "match": { "realms": ["technology"], "types": ["Services"] }
+        }
+      ]
+    },
+    {
+      "registerId": "nhtsa",
+      "default": { "status": "unmapped", "reason": "NHTSA product and vehicle jurisdiction has not yet been reviewed for this decision." },
+      "selectors": [
+        {
+          "id": "vehicle-and-road-safety-products",
+          "priority": 80,
+          "status": "applicable",
+          "reason": "NHTSA recall and safety records cover vehicles, tyres, car seats, and some road-product decisions.",
+          "match": { "decisionIds": ["new-cars", "used-cars", "electric-vehicles", "hybrid-and-plug-in-hybrid-cars", "small-and-city-cars", "tyres", "car-parts-and-accessories", "e-bikes", "car-seats"] }
+        }
+      ]
+    },
+    {
+      "registerId": "ace-national-guide",
+      "default": { "status": "unmapped", "reason": "ACE credit-recommendation coverage has not yet been reviewed for this decision." },
+      "selectors": [
+        {
+          "id": "reviewed-course-and-certificate-services",
+          "priority": 80,
+          "status": "applicable",
+          "reason": "The ACE National Guide covers reviewed non-university courses and credentials.",
+          "match": { "decisionIds": ["online-courses", "professional-certification-and-exams"] }
+        }
+      ]
+    },
+    {
+      "registerId": "uk-environment-agency-lca",
+      "default": { "status": "unmapped", "reason": "A relevant public lifecycle assessment has not yet been identified for this decision." },
+      "selectors": []
+    }
+  ]
+}

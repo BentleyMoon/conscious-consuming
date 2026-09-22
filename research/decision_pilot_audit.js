@@ -159,7 +159,13 @@ function appContractChecks() {
   for (const cue of [
     'function rankingHref',
     'function decisionPrimaryCategory',
-    "if(cid&&decisionPrimaryCategory(cid)){location.hash=decideHref(cid,facet);return;}",
+    // Load-bearing string: it pins that #explore/<id> hands off to the decide surface. The
+    // redirect now goes through hopTo(), which uses location.replace — pushing left the explore
+    // route in history, so back landed on it, it redirected again, and the reader was shoved
+    // forward every time. Behaviour preserved, mechanism corrected; update both if it moves again.
+    "if(cid&&decisionPrimaryCategory(cid)){hopTo(decideHref(cid,facet));return;}",
+    "function hopTo(hash)",
+    "location.replace(location.pathname+location.search+to)",
     "else if(view==='rank')",
     'listHref=rankingHref(cid,query)',
     'function decisionNextHTML',
@@ -211,7 +217,9 @@ function main() {
   }
 
   const banking = receipts.find(receipt => receipt.category === 'banking');
-  expect(banking && banking.folded === 6, `banking: expected the bounded floor receipt of 6 folded options, found ${banking ? banking.folded : 'none'}`);
+  // The 2026 BOCC refresh moved HSBC above the sourced <20 floor boundary;
+  // derive the five remaining folded banks from their current evidence.
+  expect(banking && banking.folded === 5, `banking: expected the bounded floor receipt of 5 folded options, found ${banking ? banking.folded : 'none'}`);
   appContractChecks();
   finish(receipts);
 }

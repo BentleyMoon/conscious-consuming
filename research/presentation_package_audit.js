@@ -108,10 +108,14 @@ function main() {
   expect(actual.taxonomy && actual.taxonomy.counts.needs === 8, 'taxonomy needs count changed');
   expect(actual.taxonomy && actual.taxonomy.counts.categories === 18, 'taxonomy category count changed');
   expect(actual.taxonomy && actual.taxonomy.counts.subcategories === 39, 'taxonomy subcategory count changed');
-  expect(actual.taxonomy && actual.taxonomy.counts.decisions === 206, 'taxonomy decision count changed');
-  expect(actual.taxonomy && actual.taxonomy.counts.livePaths === 96, 'taxonomy live path count changed');
-  expect(actual.taxonomy && actual.taxonomy.counts.liveDatasets === 88, 'taxonomy live dataset count changed');
-  expect(actual.taxonomy && actual.taxonomy.counts.notYetCovered === 110, 'taxonomy gap count changed');
+  expect(actual.taxonomy && actual.taxonomy.counts.decisions === 217, 'taxonomy decision count changed');
+  // 2026-08-14 serial promotion: four built energy and open-technology rows
+  // became live without reducing the 87 explicitly not-yet-covered rows.
+  expect(actual.taxonomy && actual.taxonomy.counts.livePaths === 130, 'taxonomy live path count changed');
+  // 124 on 2026-08-26: messaging and browsers left the shared digital-services dataset, the
+  // first two of the nine-way split recorded in docs/ONTOLOGY-RESEARCH.md 4.1.
+  expect(actual.taxonomy && actual.taxonomy.counts.liveDatasets === 124, 'taxonomy live dataset count changed');
+  expect(actual.taxonomy && actual.taxonomy.counts.notYetCovered === 87, 'taxonomy gap count changed');
 
   const decisions = actual.taxonomy && actual.taxonomy.decisions || [];
   expect(new Set(decisions.map((decision) => decision.id)).size === decisions.length, 'generated decision ids are not unique');
@@ -140,7 +144,7 @@ function main() {
   const sourceRecords = actual.sourceIndex && actual.sourceIndex.records || [];
   expect(sourceRecords.length === 2, `expected 2 canonical source records, found ${sourceRecords.length}`);
   expect(new Set(sourceRecords.map((record) => record.id)).size === sourceRecords.length, 'canonical source ids are not unique');
-  expect(sourceRecords.reduce((sum, record) => sum + (record.supportedClaims || []).length, 0) === 5, 'canonical source reverse-claim count changed');
+  expect(sourceRecords.reduce((sum, record) => sum + (record.supportedClaims || []).length, 0) === 15, 'canonical source reverse-claim count changed');
   const thinSource = sourceRecords.find((record) => record.id === 'triodos-fossil-fuel-treaty-2024');
   expect(thinSource && thinSource.method === null, 'thin canonical source must keep its missing method explicit');
 

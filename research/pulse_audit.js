@@ -70,7 +70,7 @@ function checkPulse(pulse) {
   expect(Array.isArray(pulse.entries), 'app/data/pulse.json: entries must be an array');
   expect(Number.isInteger(pulse.truncated) && pulse.truncated >= 0, 'app/data/pulse.json: truncated must be a nonnegative integer');
   expect(pulse.entries.length > 0, 'app/data/pulse.json: expected at least one pulse entry');
-  expect(pulse.entries.length <= 48, `app/data/pulse.json: too many entries (${pulse.entries.length})`);
+  expect(pulse.entries.length <= 120, `app/data/pulse.json: too many entries (${pulse.entries.length})`);
 
   let previous = null;
   let staleCount = 0;

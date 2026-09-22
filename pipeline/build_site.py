@@ -10,13 +10,17 @@ or the public site. Output: drag or deploy `dist/` to a static host.
     python pipeline/build_site.py --public
 """
 import os, re, shutil, sys, json, argparse, datetime as _dt, html as _html, hashlib
+from urllib.parse import quote
 from urllib.parse import urlsplit
 sys.stdout.reconfigure(encoding='utf-8')
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_DIST = os.path.join(ROOT, 'dist')
 PUBLIC_DIRS = ['app', 'kosplora', 'instances', 'assembly', 'workshop', 'slate', 'tour', 'funders', 'standard', 'passport', 'contribute', 'weave', 'awards']
-ROOT_FILES  = ['index.html', 'og-standard.png', 'llms.txt']
+# favicon.ico is here because every site page names /favicon.ico as the ICO fallback for
+# browsers that will not take the SVG. It was generated at the repo root and never copied,
+# so the fallback answered 404 on the live site.
+ROOT_FILES  = ['index.html', 'og-standard.png', 'llms.txt', 'favicon.ico']
 FLASH_DRIVE_README = os.path.join(ROOT, 'content', 'flash-drive-README.md')
 FUNDING_LEDGER = os.path.join(ROOT, 'content', 'ledger.json')
 CITATION_BUNDLES = os.path.join(ROOT, 'content', 'citation-bundles')
@@ -24,7 +28,7 @@ ODBL_LICENSE = 'https://opendatacommons.org/licenses/odbl/1-0/'
 CC_BY_SA_LICENSE = 'https://creativecommons.org/licenses/by-sa/4.0/'
 AGPL_LICENSE = 'https://www.gnu.org/licenses/agpl-3.0.en.html'
 # The canon a reviewer might actually open — rendered to HTML. Internal masterplans/brainstorms stay out of dist.
-PUBLIC_DOCS = ['GRANT-ONE-PAGER', 'GRANT-PREVIEW-PATH', 'DEPLOY-AND-SHARE', 'PREVIEW-FEEDBACK-LOOP', 'R1-REVIEW', 'DECISION-REFRAME-FOUNDER-REVIEW', 'ADOPTION-KIT', 'FEDERATION', 'VALUES-PASSPORT', 'CREATE-AN-INSTANCE', 'INSTANCE-2-KOSPLORA', 'STANDARD-v0', 'THE-VALUES-LAYER', 'THE-WEAVE']
+PUBLIC_DOCS = ['GRANT-ONE-PAGER', 'GRANT-PREVIEW-PATH', 'DEPLOY-AND-SHARE', 'PREVIEW-FEEDBACK-LOOP', 'R1-REVIEW', 'DECISION-REFRAME-FOUNDER-REVIEW', 'ADOPTION-KIT', 'FEDERATION', 'VALUES-PASSPORT', 'CREATE-AN-INSTANCE', 'INSTANCE-2-KOSPLORA', 'STANDARD-v0', 'THE-VALUES-LAYER', 'THE-WEAVE', 'REGISTER-PASS-RUNBOOK', 'REGISTER-FRESHNESS-QUEUE']
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Build Values Commons dist/ as either public production or private preview.')
@@ -74,7 +78,7 @@ ROUTE_META = {
     'instances/messages/index.html': {'path': '/instances/messages/', 'title': 'Where to Message'},
     'contribute/index.html': {'path': '/contribute/', 'title': 'Contribute to Values Commons'},
     'weave/index.html': {'path': '/weave/', 'title': 'Ownership and alternatives map'},
-    'kosplora/index.html': {'path': '/kosplora/', 'title': 'Kosplora'},
+    'kosplora/index.html': {'path': '/kosplora/', 'title': 'Kosplora: follow a question into the world'},
     'assembly/index.html': {'path': '/assembly/', 'title': 'Find group agreement'},
     'workshop/index.html': {'path': '/workshop/', 'title': 'Repair sourced facts'},
     'slate/index.html': {'path': '/slate/', 'title': 'Make a shared plan'},
@@ -408,29 +412,32 @@ footer{margin-top:2.5rem;border-top:.5px solid var(--line);padding-top:1rem;colo
 """
 
 # The shared leaf mark (passed as a format ARG so its %-encoded data-URI isn't touched by %-formatting).
-FAVICON = ("<link rel=\"icon\" href=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'"
-           "%3E%3Crect width='64' height='64' rx='14' fill='%231d7a5a'/%3E%3Cpath d='M18 36c0-13 13-20 28-20-2 16-14 23-28 20z' "
-           "fill='%23fff'/%3E%3Cpath d='M20 46c6-12 14-18 22-21' stroke='%231d7a5a' stroke-width='2.5' fill='none' "
-           "stroke-linecap='round'/%3E%3C/svg%3E\">")
+FAVICON = ('<link rel="icon" href="data:image/svg+xml,' +
+    quote(open(os.path.join(ROOT, 'app', 'icon.svg'), encoding='utf-8').read().strip(),
+          safe="!~*'()") +
+    '">\n<link rel="apple-touch-icon" href="/app/apple-touch-icon.png">')
+
+DOC_SKIP_CSS = ('.skip{position:absolute;left:-999px;top:.4rem;background:#1d7a5a;color:#fff;padding:.5rem .9rem;border-radius:4px;z-index:100;text-decoration:none}.skip:focus{left:.6rem}')
 
 def doc_page(title, body):
     return ('<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width, initial-scale=1">'
             '<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#1d7a5a">%s'
-            '<title>%s — Values Commons</title><style>%s</style></head><body><div class="wrap">'
+            '<title>%s — Values Commons</title><style>%s' + DOC_SKIP_CSS + '</style></head><body>'
+            '<a class="skip" href="#content">Skip to content</a><div class="wrap">'
             '<p class="back"><a href="../index.html">&larr; Values Commons</a></p>'
             '<nav class="docnav" aria-label="Values Commons docs">'
             '<a href="../tour/index.html">Tour</a><a href="../standard/index.html">Standard</a>'
             '<a href="../passport/index.html">Passport</a><a href="../instances/index.html">Instances</a>'
             '<a href="ADOPTION-KIT.html">Adoption kit</a><a href="../contribute/index.html">Contribute</a>'
             '<a href="../weave/index.html">Weave</a></nav>'
-            '<article>%s</article>'
+            '<article id="content" tabindex="-1">%s</article>'
             '<footer>Part of <a href="../index.html">Values Commons</a> · powered by the Open Values Standard · static &amp; local · no tracking</footer>'
             '</div></body></html>') % (FAVICON, _html.escape(title), DOC_CSS, body)
 
 NOTFOUND = ('<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width, initial-scale=1">'
-            '<meta name="robots" content="noindex,nofollow"><title>Not found — Values Commons</title>'
+            '<meta name="robots" content="noindex,nofollow">' + FAVICON + '<title>Not found — Values Commons</title>'
             '<style>body{margin:0;min-height:100vh;display:grid;place-items:center;text-align:center;padding:2rem;'
             'background:#faf8f3;color:#2c2c28;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}'
             '@media(prefers-color-scheme:dark){body{background:#16170f;color:#e7e5d8}}'

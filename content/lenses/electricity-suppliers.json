@@ -1,0 +1,868 @@
+{
+  "meta": {
+    "id": "electricity-suppliers",
+    "label": "Electricity suppliers",
+    "type": "Services",
+    "primaryAxis": "environment",
+    "tradeoff": [
+      "price",
+      "environment"
+    ],
+    "tradeoffLabels": [
+      "lowest bill, protected by the price cap",
+      "genuinely funds new renewable generation"
+    ],
+    "source": "Conscious Consuming (curated)",
+    "attribution": "Covers domestic electricity suppliers in Great Britain, meaning England, Scotland and Wales. Northern Ireland has separate energy regulation and is not included here. Renewable share and fuel mix figures come from each supplier's own Ofgem-mandated Fuel Mix Disclosure, published every October, or from Citizens Advice's compiled fuel mix data where a supplier's own disclosure page could not be read directly. Customer service scores come from the Citizens Advice Energy Supplier Star Rating for January to March 2026, which covers suppliers with more than 25,000 customer accounts and is compiled by Citizens Advice as the statutory consumer advocate for energy, not by a switching site. A tariff marketed as '100 per cent renewable' is usually backed by Renewable Energy Guarantees of Origin (REGO) certificates bought separately from the electricity itself, which on their own do not prove the supplier funded new renewable generation. Ofgem has recognized only three suppliers, Ecotricity, Good Energy and 100Green (formerly Green Energy UK), as giving renewable generation support beyond what subsidies and obligations already require, and has exempted their tariffs from the price cap on that basis. Every other supplier's renewable tariff here relies on REGO certificates unless its own page says otherwise. Prices change every three months with the Ofgem price cap and vary by region and payment method; check a supplier's current Tariff Information Label before switching. Community energy schemes and home solar generation are separate decisions in this catalogue. Suggest changes via Contribute.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": {
+          "price": 3,
+          "environment": 4,
+          "transparency": 2,
+          "accessibility": 3
+        },
+        "x": []
+      },
+      "Lowest bill": {
+        "w": {
+          "price": 5,
+          "environment": 1,
+          "transparency": 1,
+          "accessibility": 2
+        },
+        "x": []
+      },
+      "Genuinely green": {
+        "w": {
+          "environment": 5,
+          "transparency": 3,
+          "price": 1,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Best service": {
+        "w": {
+          "accessibility": 5,
+          "price": 2,
+          "environment": 2,
+          "transparency": 1
+        },
+        "x": []
+      },
+      "Clearest disclosure": {
+        "w": {
+          "transparency": 5,
+          "environment": 3,
+          "price": 1,
+          "accessibility": 1
+        },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    {
+      "key": "price",
+      "label": "Low, price-capped bill",
+      "source": "curated"
+    },
+    {
+      "key": "environment",
+      "label": "Genuine renewable investment",
+      "source": "curated"
+    },
+    {
+      "key": "transparency",
+      "label": "Clear about how 'green' is sourced",
+      "source": "curated"
+    },
+    {
+      "key": "accessibility",
+      "label": "Customer service & complaints",
+      "source": "curated"
+    }
+  ],
+  "products": [
+    {
+      "code": "british-gas",
+      "name": "British Gas",
+      "brand": "largest household supplier",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "The largest domestic electricity and gas supplier in Great Britain, owned by Centrica. Its standard tariffs sit at the regulated price cap, and its dedicated renewable product is backed by REGO certificates rather than new generation.",
+      "scores": {
+        "price": 62,
+        "environment": 50,
+        "transparency": 72,
+        "accessibility": 52
+      },
+      "provenance": {
+        "price": {
+          "note": "British Gas's standard variable and default electricity tariffs cannot charge more than the level Ofgem sets and updates every three months under the energy price cap.",
+          "source": "https://www.ofgem.gov.uk/information-consumers/energy-advice-households/energy-price-cap-and-standing-charges-explained",
+          "asof": "2026"
+        },
+        "environment": {
+          "note": "British Gas's fuel mix for April 2024 to March 2025 was 35 per cent renewables, 55 per cent nuclear, 8 per cent gas and 1 per cent coal, giving 90 per cent zero carbon electricity against a UK average of 58 per cent.",
+          "source": "https://www.britishgas.co.uk/energy/guides/energy-sources.html",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "British Gas's own energy sources page explains that suppliers back renewable tariffs with Renewable Energy Guarantees of Origin certificates rather than delivering specific green electrons to a customer's home.",
+          "source": "https://www.britishgas.co.uk/energy/guides/energy-sources.html",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Citizens Advice gave British Gas an overall star rating of 2.61 out of 5 for January to March 2026, with a complaints rate of 68.7 per 10,000 customers, its weakest scoring category.",
+          "source": "https://www.citizensadvice.org.uk/scotland/consumer/your-energy/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service/british-gas/details",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Fuel mix",
+          "url": "https://www.britishgas.co.uk/energy/guides/energy-sources.html"
+        },
+        {
+          "label": "Citizens Advice rating",
+          "url": "https://www.citizensadvice.org.uk/scotland/consumer/your-energy/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service/british-gas/details"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Market leader",
+        "Big Six",
+        "Price cap",
+        "REGO backed"
+      ]
+    },
+    {
+      "code": "edf-energy",
+      "name": "EDF Energy",
+      "brand": "nuclear-heavy supplier",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A large supplier whose electricity is mostly nuclear rather than renewable. It markets zero carbon and renewable products, but its public fuel mix page does not explain how the renewable claim is backed.",
+      "scores": {
+        "price": 62,
+        "environment": 30,
+        "transparency": 25,
+        "accessibility": 58
+      },
+      "provenance": {
+        "price": {
+          "note": "EDF's default electricity tariff is bound by the same Ofgem price cap as every supplier without a derogation.",
+          "source": "https://www.ofgem.gov.uk/information-consumers/energy-advice-households/energy-price-cap-and-standing-charges-explained",
+          "asof": "2026"
+        },
+        "environment": {
+          "note": "EDF's fuel mix for April 2024 to March 2025 was 54.8 per cent nuclear, 21.0 per cent gas, 18.2 per cent renewables, 4.2 per cent coal and 1.8 per cent other.",
+          "source": "https://www.edfenergy.com/fuel-mix",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "EDF's fuel mix page names which tariffs are marketed as zero carbon or renewable but, unlike British Gas's equivalent page, does not explain REGO certificates or how the renewable claim is backed.",
+          "source": "https://www.edfenergy.com/fuel-mix",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Citizens Advice gave EDF Energy an overall star rating of 2.90 out of 5 for January to March 2026.",
+          "source": "https://www.citizensadvice.org.uk/consumer/energy/energy-supply/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service1/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Fuel mix",
+          "url": "https://www.edfenergy.com/fuel-mix"
+        },
+        {
+          "label": "Citizens Advice ratings",
+          "url": "https://www.citizensadvice.org.uk/consumer/energy/energy-supply/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service1/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Big Six",
+        "Nuclear",
+        "Price cap"
+      ]
+    },
+    {
+      "code": "octopus-energy",
+      "name": "Octopus Energy",
+      "brand": "large independent supplier",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A fast-growing independent supplier reporting the highest renewable share of the mainstream suppliers in this list, with billions of pounds committed to wind, solar and battery projects it owns or has long-term contracts with.",
+      "scores": {
+        "price": 62,
+        "environment": 76,
+        "transparency": 68,
+        "accessibility": 73
+      },
+      "provenance": {
+        "price": {
+          "note": "Octopus Energy's headline tariffs are bound by the Ofgem price cap in the same way as other suppliers without a derogation.",
+          "source": "https://www.ofgem.gov.uk/information-consumers/energy-advice-households/energy-price-cap-and-standing-charges-explained",
+          "asof": "2026"
+        },
+        "environment": {
+          "note": "Octopus reports a fuel mix of 86.4 per cent renewables and 13.6 per cent nuclear for April 2024 to March 2025, and says it has put 6 billion pounds into around 4GW of renewable projects it owns or holds long-term contracts with, plus a further 15 billion pound commitment toward 12GW of offshore wind by 2030.",
+          "source": "https://octopus.energy/green/",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Octopus's green page explains that renewable and other generators all feed the same National Grid, and that it matches customer usage to renewable generation through Power Purchase Agreements with more than 700 UK generators rather than delivering separate electrons to each home.",
+          "source": "https://octopus.energy/green/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Citizens Advice gave Octopus Energy an overall star rating of 3.67 out of 5 for January to March 2026.",
+          "source": "https://www.citizensadvice.org.uk/consumer/energy/energy-supply/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service1/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "How Octopus sources green power",
+          "url": "https://octopus.energy/green/"
+        },
+        {
+          "label": "Citizens Advice ratings",
+          "url": "https://www.citizensadvice.org.uk/consumer/energy/energy-supply/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service1/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Large independent",
+        "Owns generation",
+        "Growing fast"
+      ]
+    },
+    {
+      "code": "ovo-energy",
+      "name": "OVO Energy",
+      "brand": "large independent supplier",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "OVO stopped buying standard renewable certificates in 2023, so its headline fuel mix disclosure looks low. Its Greener Electricity option buys power directly from renewable generators, for an added fee.",
+      "scores": {
+        "price": 58,
+        "environment": 55,
+        "transparency": 90,
+        "accessibility": 66
+      },
+      "provenance": {
+        "price": {
+          "note": "OVO's standard tariffs sit under the same Ofgem price cap as other non-derogated suppliers, and OVO says customers pay an additional fee to upgrade to its 100 per cent renewable Greener Electricity option.",
+          "source": "https://www.ovoenergy.com/ovo-fuel-mix",
+          "asof": "2026"
+        },
+        "environment": {
+          "note": "OVO says it stopped buying standard REGO certificates in 2023, so its disclosed fuel mix for April 2024 to March 2025 is only 2 per cent renewable against a 42 per cent UK average; it says it now buys electricity for its Greener Electricity customers directly from renewable generators and invests in new independent renewable power instead.",
+          "source": "https://www.ovoenergy.com/ovo-fuel-mix",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "OVO's own fuel mix page says REGO certificates 'don't actually make the UK electricity grid any greener' and that a green tariff on its own 'doesn't generate any more green energy or give you 100 per cent green energy at home'.",
+          "source": "https://www.ovoenergy.com/ovo-fuel-mix",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Citizens Advice gave OVO Energy an overall star rating of 3.30 out of 5 for January to March 2026.",
+          "source": "https://www.citizensadvice.org.uk/consumer/energy/energy-supply/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service1/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "OVO's fuel mix explained",
+          "url": "https://www.ovoenergy.com/ovo-fuel-mix"
+        },
+        {
+          "label": "Citizens Advice ratings",
+          "url": "https://www.citizensadvice.org.uk/consumer/energy/energy-supply/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service1/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Large independent",
+        "Dropped REGOs",
+        "Honest disclosure"
+      ]
+    },
+    {
+      "code": "eon-next",
+      "name": "E.ON Next",
+      "brand": "large supplier",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "E.ON Next's renewable tariff, Next Gust, is backed by agreements with UK wind generators, though the company is clear that the electricity itself still comes from the shared National Grid.",
+      "scores": {
+        "price": 62,
+        "environment": 48,
+        "transparency": 68,
+        "accessibility": 74
+      },
+      "provenance": {
+        "price": {
+          "note": "E.ON Next's default electricity tariff sits under the Ofgem price cap along with other suppliers that hold no derogation.",
+          "source": "https://www.ofgem.gov.uk/information-consumers/energy-advice-households/energy-price-cap-and-standing-charges-explained",
+          "asof": "2026"
+        },
+        "environment": {
+          "note": "E.ON Next's fuel mix for April 2024 to March 2025 was 31.3 per cent renewable, below the 42.1 per cent UK average for the same period; its Next Gust tariff is backed by agreements with UK wind generators.",
+          "source": "https://www.eonnext.com/about/fuel-mix",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "E.ON Next states plainly that the renewable electricity backing its Next Gust tariff 'comes from the National Grid' rather than directly from the wind generators it has agreements with.",
+          "source": "https://www.eonnext.com/about/fuel-mix",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Citizens Advice gave E.ON Next an overall star rating of 3.71 out of 5 for January to March 2026, the highest among the large suppliers descended from the Big Six.",
+          "source": "https://www.citizensadvice.org.uk/consumer/energy/energy-supply/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service1/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Fuel mix",
+          "url": "https://www.eonnext.com/about/fuel-mix"
+        },
+        {
+          "label": "Citizens Advice ratings",
+          "url": "https://www.citizensadvice.org.uk/consumer/energy/energy-supply/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service1/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Big Six descended",
+        "Wind-backed tariff",
+        "Price cap"
+      ]
+    },
+    {
+      "code": "scottishpower",
+      "name": "ScottishPower",
+      "brand": "Big Six supplier",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "One of the long-established Big Six suppliers, owned by Iberdrola. Its published fuel mix shows one of the lowest renewable shares among the suppliers in this list.",
+      "scores": {
+        "price": 62,
+        "environment": 20,
+        "accessibility": 59
+      },
+      "provenance": {
+        "price": {
+          "note": "ScottishPower's default tariff is bound by the same Ofgem price cap as other suppliers without a derogation.",
+          "source": "https://www.ofgem.gov.uk/information-consumers/energy-advice-households/energy-price-cap-and-standing-charges-explained",
+          "asof": "2026"
+        },
+        "environment": {
+          "note": "Citizens Advice records ScottishPower's fuel mix as 84 per cent fossil fuel, 7 per cent renewable, 4 per cent nuclear and 5 per cent other for the same reporting period as its January to March 2026 star rating.",
+          "source": "https://www.citizensadvice.org.uk/scotland/consumer/your-energy/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service/scottishpower/details",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Citizens Advice gave ScottishPower an overall star rating of 2.94 out of 5 for January to March 2026, with a complaints rate of 61.8 per 10,000 customers.",
+          "source": "https://www.citizensadvice.org.uk/scotland/consumer/your-energy/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service/scottishpower/details",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Citizens Advice detail",
+          "url": "https://www.citizensadvice.org.uk/scotland/consumer/your-energy/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service/scottishpower/details"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Big Six",
+        "Price cap"
+      ]
+    },
+    {
+      "code": "good-energy",
+      "name": "Good Energy",
+      "brand": "additionality-recognized independent",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A small independent supplier that buys power directly from more than 3,300 British renewable generators. Ofgem has recognized its tariffs as delivering renewable support beyond subsidies, and its standard tariff is exempt from the price cap.",
+      "scores": {
+        "price": 38,
+        "environment": 95,
+        "transparency": 85,
+        "accessibility": 70
+      },
+      "provenance": {
+        "price": {
+          "note": "Ofgem has granted Good Energy an enduring exemption from the default tariff cap for its renewable Standard Variable Tariffs, and states explicitly that it has not assessed whether the exempted tariffs are good value for consumers.",
+          "source": "https://www.ofgem.gov.uk/decision/decision-issue-good-energy-limited-and-good-energy-gas-limited-enduring-derogation-renewable-standard-variable-tariffs-default-tariff-cap",
+          "asof": "2026"
+        },
+        "environment": {
+          "note": "Good Energy says all its tariffs are matched with 100 per cent renewable electricity bought directly from more than 3,300 British generators, and that it achieved a real time match between generation and demand 88 per cent of the time between April 2024 and March 2025.",
+          "source": "https://www.goodenergy.co.uk/our-energy/",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Good Energy publishes its real time matching percentage and the breakdown of its fuel mix by technology, 55 per cent wind, 27 per cent anaerobic digestion, 9 per cent hydro and 9 per cent solar, rather than a single headline renewable figure.",
+          "source": "https://www.goodenergy.co.uk/our-energy/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Citizens Advice gave Good Energy an overall star rating of 3.49 out of 5 for January to March 2026.",
+          "source": "https://www.citizensadvice.org.uk/consumer/energy/energy-supply/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service1/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "How Good Energy sources power",
+          "url": "https://www.goodenergy.co.uk/our-energy/"
+        },
+        {
+          "label": "Ofgem price cap exemption decision",
+          "url": "https://www.ofgem.gov.uk/decision/decision-issue-good-energy-limited-and-good-energy-gas-limited-enduring-derogation-renewable-standard-variable-tariffs-default-tariff-cap"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Additionality recognized",
+        "Direct from generators",
+        "Price cap exempt"
+      ]
+    },
+    {
+      "code": "ecotricity",
+      "name": "Ecotricity",
+      "brand": "additionality-recognized independent",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Founded in 1995 to sell green electricity as a mainstream product, Ecotricity has built its own wind and solar parks over three decades rather than only buying certificates. Its renewable tariffs are also exempt from the Ofgem price cap.",
+      "scores": {
+        "price": 38,
+        "environment": 90,
+        "transparency": 58,
+        "accessibility": 67
+      },
+      "provenance": {
+        "price": {
+          "note": "Ofgem has granted The Renewable Energy Company Limited, trading as Ecotricity, an enduring exemption from the default tariff cap for its renewable Standard Variable Tariffs, and states it has not assessed whether the exempted tariffs are good value for consumers.",
+          "source": "https://www.ofgem.gov.uk/decision/decision-issue-renewable-energy-company-limited-ecotricity-enduring-derogation-renewable-standard-variable-tariffs-default-tariff-cap",
+          "asof": "2026"
+        },
+        "environment": {
+          "note": "Ecotricity says it supplies 100 per cent green electricity against an industry average it puts at around 40 per cent, and that over the past 30 years it has built 24 wind parks, three solar parks and one green gasmill rather than only buying certificates.",
+          "source": "https://www.ecotricity.co.uk/our-news/2025/how-much-green-energy-does-ecotricity-generate",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Ecotricity states it supplies 100 per cent renewable electricity and lists the wind, solar and biogas projects it has built, but its public pages do not break down what share of customer supply comes from its own generation against electricity it buys in.",
+          "source": "https://www.ecotricity.co.uk/our-green-energy/our-fuel-mix",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Citizens Advice gave Ecotricity an overall star rating of 3.36 out of 5 for January to March 2026.",
+          "source": "https://www.citizensadvice.org.uk/consumer/energy/energy-supply/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service1/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "How much green energy Ecotricity generates",
+          "url": "https://www.ecotricity.co.uk/our-news/2025/how-much-green-energy-does-ecotricity-generate"
+        },
+        {
+          "label": "Ofgem price cap exemption decision",
+          "url": "https://www.ofgem.gov.uk/decision/decision-issue-renewable-energy-company-limited-ecotricity-enduring-derogation-renewable-standard-variable-tariffs-default-tariff-cap"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Additionality recognized",
+        "Builds own generation",
+        "Price cap exempt"
+      ]
+    },
+    {
+      "code": "green-energy-uk",
+      "name": "100Green",
+      "brand": "additionality-recognized independent",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Formerly Green Energy UK, 100Green buys electricity through Power Purchase Agreements with independent generators and holds a REGO certificate for every unit it supplies, audited annually by Ofgem. It is one of three suppliers Ofgem has exempted from the price cap for genuine additionality.",
+      "scores": {
+        "price": 38,
+        "environment": 88,
+        "transparency": 80,
+        "accessibility": 87
+      },
+      "provenance": {
+        "price": {
+          "note": "Ofgem has granted Green Energy UK Plc, now trading as 100Green, an enduring exemption from the default tariff cap for its renewable Standard Variable Tariffs, and states it has not assessed whether the exempted tariffs are good value for consumers.",
+          "source": "https://www.ofgem.gov.uk/publications/decision-issue-green-energy-uk-plc-enduring-derogation-renewable-standard-variable-tariffs-default-tariff-cap",
+          "asof": "2026"
+        },
+        "environment": {
+          "note": "100Green's own energy page shows a 100 per cent renewable electricity fuel mix for April 2024 to March 2025, and its FAQ explains that it buys power through Power Purchase Agreements with independent generators rather than generating its own.",
+          "source": "https://100green.com/our-energy/",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "100Green's FAQ explains in plain terms what a Power Purchase Agreement and a REGO certificate are, states it holds a REGO for every megawatt hour it supplies, and says the certification process is audited annually by Ofgem.",
+          "source": "https://100green.com/faqs/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Citizens Advice gave 100Green an overall star rating of 4.33 out of 5 for January to March 2026, the highest of any supplier in its table.",
+          "source": "https://www.citizensadvice.org.uk/consumer/energy/energy-supply/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service1/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "100Green FAQ on PPAs and REGOs",
+          "url": "https://100green.com/faqs/"
+        },
+        {
+          "label": "Ofgem price cap exemption decision",
+          "url": "https://www.ofgem.gov.uk/publications/decision-issue-green-energy-uk-plc-enduring-derogation-renewable-standard-variable-tariffs-default-tariff-cap"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Additionality recognized",
+        "PPA sourced",
+        "Price cap exempt",
+        "Top-rated service"
+      ]
+    },
+    {
+      "code": "utility-warehouse",
+      "name": "Utility Warehouse",
+      "brand": "multi-service bundler",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A telecoms and insurance bundler that also sells energy. Its own fuel mix disclosure shows a small fraction of one per cent renewable on the default tariff; a fully green tariff is sold separately as an add-on.",
+      "scores": {
+        "price": 62,
+        "environment": 15,
+        "transparency": 38,
+        "accessibility": 49
+      },
+      "provenance": {
+        "price": {
+          "note": "Utility Warehouse's electricity tariff is bound by the same Ofgem price cap as other suppliers without a derogation.",
+          "source": "https://www.ofgem.gov.uk/information-consumers/energy-advice-households/energy-price-cap-and-standing-charges-explained",
+          "asof": "2026"
+        },
+        "environment": {
+          "note": "Utility Warehouse's own fuel mix disclosure for April 2024 to March 2025 shows 75 per cent gas, 15 per cent coal, 4 per cent nuclear and only 0.3 per cent renewable on its default supply.",
+          "source": "https://uw.co.uk/legal/energy-information/fuel-mix-disclosure",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Utility Warehouse's fuel mix page states its percentages plainly, including the low renewable share on its default tariff, without offering a REGO or certificate explanation.",
+          "source": "https://uw.co.uk/legal/energy-information/fuel-mix-disclosure",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Citizens Advice gave Utility Warehouse an overall star rating of 2.45 out of 5 for January to March 2026.",
+          "source": "https://www.citizensadvice.org.uk/consumer/energy/energy-supply/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service1/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Fuel mix disclosure",
+          "url": "https://uw.co.uk/legal/energy-information/fuel-mix-disclosure"
+        },
+        {
+          "label": "Citizens Advice ratings",
+          "url": "https://www.citizensadvice.org.uk/consumer/energy/energy-supply/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service1/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Bundled service",
+        "Green as add-on",
+        "Price cap"
+      ]
+    },
+    {
+      "code": "utilita",
+      "name": "Utilita",
+      "brand": "prepayment specialist",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A supplier built around prepayment meters and smart pay-as-you-go billing. It does not market a green tariff and says publicly that no supplier can honestly claim a 100 per cent renewable tariff, a position its own fuel mix disclosure supports.",
+      "scores": {
+        "price": 62,
+        "environment": 10,
+        "transparency": 82,
+        "accessibility": 47
+      },
+      "provenance": {
+        "price": {
+          "note": "Utilita's electricity tariffs sit under the same Ofgem price cap as other suppliers without a derogation.",
+          "source": "https://www.ofgem.gov.uk/information-consumers/energy-advice-households/energy-price-cap-and-standing-charges-explained",
+          "asof": "2026"
+        },
+        "environment": {
+          "note": "Citizens Advice records Utilita's fuel mix as 83 per cent fossil fuel, 11 per cent nuclear, 0 per cent renewable and 7 per cent other for the same period as its January to March 2026 star rating.",
+          "source": "https://www.citizensadvice.org.uk/scotland/consumer/your-energy/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service/utilita/details",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Utilita's own sustainability page says 'no matter what suppliers say, there's no such thing as a 100 per cent renewable tariff' because every household draws from the same National Grid, and the company does not market a green tariff.",
+          "source": "https://utilita.co.uk/sustainability",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Citizens Advice gave Utilita an overall star rating of 2.35 out of 5 for January to March 2026, with a complaints rate of 164.0 per 10,000 customers.",
+          "source": "https://www.citizensadvice.org.uk/scotland/consumer/your-energy/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service/utilita/details",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Utilita on renewable tariff claims",
+          "url": "https://utilita.co.uk/sustainability"
+        },
+        {
+          "label": "Citizens Advice detail",
+          "url": "https://www.citizensadvice.org.uk/scotland/consumer/your-energy/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service/utilita/details"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Prepayment specialist",
+        "No green claim",
+        "Honest about REGOs"
+      ]
+    },
+    {
+      "code": "so-energy",
+      "name": "So Energy",
+      "brand": "independent supplier",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "An independent supplier whose disclosed fuel mix is well above the national average for renewables. Its own page explaining how that share is sourced could not be read directly for this entry, so only the disclosed figures are scored here.",
+      "scores": {
+        "price": 62,
+        "environment": 62,
+        "accessibility": 57
+      },
+      "provenance": {
+        "price": {
+          "note": "So Energy's electricity tariffs are bound by the same Ofgem price cap as other suppliers without a derogation.",
+          "source": "https://www.ofgem.gov.uk/information-consumers/energy-advice-households/energy-price-cap-and-standing-charges-explained",
+          "asof": "2026"
+        },
+        "environment": {
+          "note": "Citizens Advice records So Energy's fuel mix as 67 per cent renewable, 27 per cent fossil fuel, 4 per cent nuclear and 2 per cent other for the same period as its January to March 2026 star rating.",
+          "source": "https://www.citizensadvice.org.uk/scotland/consumer/your-energy/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service/so-energy/details",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Citizens Advice gave So Energy an overall star rating of 2.86 out of 5 for January to March 2026, ranked twelfth of the suppliers it covers.",
+          "source": "https://www.citizensadvice.org.uk/scotland/consumer/your-energy/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service/so-energy/details",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Citizens Advice detail",
+          "url": "https://www.citizensadvice.org.uk/scotland/consumer/your-energy/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service/so-energy/details"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Independent",
+        "Price cap"
+      ]
+    },
+    {
+      "code": "outfox-energy",
+      "name": "Outfox Energy",
+      "brand": "budget challenger",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A Leicester-based budget supplier, formerly Outfox the Market, that Ofgem fined 1.8 million pounds in 2023 for repeatedly failing to submit financial data the regulator had requested. Its customer service now ranks near the top of Citizens Advice's table.",
+      "scores": {
+        "price": 62,
+        "environment": 45,
+        "accessibility": 85
+      },
+      "provenance": {
+        "price": {
+          "note": "Outfox Energy's tariffs are bound by the same Ofgem price cap as other suppliers without a derogation.",
+          "source": "https://www.ofgem.gov.uk/information-consumers/energy-advice-households/energy-price-cap-and-standing-charges-explained",
+          "asof": "2026"
+        },
+        "environment": {
+          "note": "Citizens Advice records Outfox Energy's fuel mix as 41 per cent renewable, 43 per cent fossil fuel, 14 per cent nuclear and 3 per cent other for the same period as its January to March 2026 star rating.",
+          "source": "https://www.citizensadvice.org.uk/scotland/consumer/your-energy/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service/outfox-energy/details",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Citizens Advice gave Outfox Energy an overall star rating of 4.25 out of 5 for January to March 2026, second highest of the suppliers it covers.",
+          "source": "https://www.citizensadvice.org.uk/scotland/consumer/your-energy/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service/outfox-energy/details",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Citizens Advice detail",
+          "url": "https://www.citizensadvice.org.uk/scotland/consumer/your-energy/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service/outfox-energy/details"
+        },
+        {
+          "label": "Ofgem penalty notice",
+          "url": "https://www.ofgem.gov.uk/press-release/outfox-market-pays-ps18-million-failing-report-its-financials"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Budget challenger",
+        "Ofgem penalty",
+        "High service rating"
+      ]
+    },
+    {
+      "code": "truenergy",
+      "name": "TruEnergy",
+      "brand": "small independent",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A small supplier that Ofgem ordered in 2022 to audit and correct how it sets customers' direct debits. It ranks last on Citizens Advice's quarterly supplier table and discloses one of the lowest renewable shares in this list.",
+      "scores": {
+        "price": 62,
+        "environment": 18,
+        "accessibility": 28
+      },
+      "provenance": {
+        "price": {
+          "note": "TruEnergy's tariffs are bound by the same Ofgem price cap as other suppliers without a derogation.",
+          "source": "https://www.ofgem.gov.uk/information-consumers/energy-advice-households/energy-price-cap-and-standing-charges-explained",
+          "asof": "2026"
+        },
+        "environment": {
+          "note": "Citizens Advice records TruEnergy's fuel mix as 8 per cent renewable, 76 per cent fossil fuel, 10 per cent nuclear and 6 per cent other for the same period as its January to March 2026 star rating.",
+          "source": "https://www.citizensadvice.org.uk/scotland/consumer/your-energy/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service/truenergy/details",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Citizens Advice gave TruEnergy an overall star rating of 1.38 out of 5 for January to March 2026, the lowest of any supplier in its table.",
+          "source": "https://www.citizensadvice.org.uk/scotland/consumer/your-energy/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service/truenergy/details",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Citizens Advice detail",
+          "url": "https://www.citizensadvice.org.uk/scotland/consumer/your-energy/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service/truenergy/details"
+        },
+        {
+          "label": "Ofgem provisional order",
+          "url": "https://www.ofgem.gov.uk/press-release/ofgem-orders-truenergy-ltd-improve-its-process-setting-direct-debits"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Small independent",
+        "Ofgem enforcement",
+        "Honest floor"
+      ]
+    },
+    {
+      "code": "coop-energy",
+      "name": "Co-op Energy",
+      "brand": "community-owned brand on Octopus's licence",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Owned by the Midcounties Co-operative and run on Octopus Energy's supply licence and technology. It funds a joint venture, Younity, that has backed more than 250 community energy projects, and puts 10 pounds from every new customer into a community energy fund.",
+      "scores": {
+        "price": 62,
+        "environment": 78,
+        "transparency": 62,
+        "accessibility": 73
+      },
+      "provenance": {
+        "price": {
+          "note": "Co-op Energy is a white label brand supplied under Octopus Energy's licence and technology, so its tariffs are bound by the same Ofgem price cap as Octopus's own tariffs.",
+          "source": "https://energy.yourcoop.coop/Your-Co-op-Energy-and-Octopus-partnership/",
+          "asof": "2026"
+        },
+        "environment": {
+          "note": "EnergyCoop, the brand behind Co-op Energy, says it 'only provides 100 per cent renewable energy' and describes its flagship tariff as the UK's only tariff powered by 100 per cent community owned renewable energy.",
+          "source": "https://energy.yourcoop.coop/community-energy/",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "EnergyCoop explains that its Younity joint venture with Octopus has supported more than 250 community energy projects and puts 10 pounds from every new customer into a Powering Communities Fund for community energy groups.",
+          "source": "https://energy.yourcoop.coop/community-energy/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Citizens Advice gave Co-op Energy an overall star rating of 3.63 out of 5 for January to March 2026.",
+          "source": "https://www.citizensadvice.org.uk/consumer/energy/energy-supply/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service1/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Community energy and the Octopus partnership",
+          "url": "https://energy.yourcoop.coop/community-energy/"
+        },
+        {
+          "label": "Citizens Advice ratings",
+          "url": "https://www.citizensadvice.org.uk/consumer/energy/energy-supply/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service1/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Community owned",
+        "White label on Octopus",
+        "Community fund"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://valuescommons.org/schema/cc-work-capsule-v1.schema.json",
+  "title": "Conscious Consuming work capsule",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "kind",
+    "version",
+    "id",
+    "variant",
+    "state",
+    "workMode",
+    "priority",
+    "decision",
+    "liveConsumer",
+    "model",
+    "writeAuthorized",
+    "scope",
+    "gates",
+    "sourceRequirements",
+    "preconditions",
+    "doneWhen",
+    "stopConditions",
+    "expectedArtifacts",
+    "verificationCommands",
+    "claimBoundary"
+  ],
+  "properties": {
+    "$schema": {"type": "string"},
+    "kind": {"const": "cc-work-capsule"},
+    "version": {"const": "1.0.0"},
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "variant": {"type": "string", "minLength": 1},
+    "state": {"type": "string"},
+    "workMode": {"type": "string"},
+    "priority": {"enum": ["P0", "P1", "P2", "P3", "P4"]},
+    "decision": {"$ref": "#/$defs/nonEmptyString"},
+    "liveConsumer": {"$ref": "#/$defs/nonEmptyString"},
+    "model": {"$ref": "#/$defs/model"},
+    "writeAuthorized": {"type": "boolean"},
+    "scope": {"$ref": "#/$defs/scope"},
+    "gates": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/check"}},
+    "sourceRequirements": {"type": "array", "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "preconditions": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/check"}},
+    "doneWhen": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "stopConditions": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "expectedArtifacts": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "verificationCommands": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "claimBoundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["supports", "doesNotSupport"],
+      "properties": {
+        "supports": {"$ref": "#/$defs/nonEmptyString"},
+        "doesNotSupport": {"$ref": "#/$defs/nonEmptyString"}
+      }
+    }
+  },
+  "$defs": {
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "reasoningEffort"],
+      "properties": {
+        "id": {"const": "gpt-5.6-sol"},
+        "reasoningEffort": {"const": "medium"}
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ownedPaths", "forbiddenPaths", "requiresIsolatedWorktree"],
+      "properties": {
+        "ownedPaths": {"type": "array", "items": {"$ref": "#/$defs/nonEmptyString"}, "uniqueItems": true},
+        "forbiddenPaths": {"type": "array", "items": {"$ref": "#/$defs/nonEmptyString"}, "uniqueItems": true},
+        "requiresIsolatedWorktree": {"type": "boolean"}
+      }
+    },
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "status", "evidence"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "status": {"enum": ["satisfied", "open", "pending", "blocked"]},
+        "evidence": {"$ref": "#/$defs/nonEmptyString"}
+      }
+    }
+  }
+}

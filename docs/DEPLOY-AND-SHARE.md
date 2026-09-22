@@ -28,6 +28,8 @@ npm run audit:citations # re-runnable citation bundles
 npm run audit:linked-data # verdict-card JSON-LD export contract
 npm run audit:flash-drive # physical/offline copy instructions
 npm run audit:funding # public funding ledger + independence caps
+npm run audit:register-pass # complete shelf-to-editorial register gate
+npm run check:delivery # returning-visitor production check after an authorized deploy
 npm run audit:well-known # /.well-known Open Values discovery manifest
 npm run audit:stacks # content-addressed lens stack copies
 npm run audit:routes  # public route shell + share metadata contract

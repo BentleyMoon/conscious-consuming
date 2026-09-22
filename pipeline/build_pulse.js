@@ -19,7 +19,11 @@ const LENSES_DIR = path.join(ROOT, 'content', 'lenses');
 const GUIDES_DIR = path.join(ROOT, 'content', 'guides');
 const OUT = path.join(ROOT, 'app', 'data', 'pulse.json');
 const WINDOW_DAYS = 90;
-const MAX_ENTRIES = 48;
+// 2026-08-13. Raised 48 -> 120. The catalogue went from 88 built decisions to 118 in a day, and
+// thirty new datasets pushed every older category out of the recent-changes window, including
+// banking, the reference category the fixtures assert on. A changes feed that only ever shows the
+// last few days of a busy week is not a change history.
+const MAX_ENTRIES = 120;
 const MAX_GUIDES_PER_COMMIT = 8;
 const ALLOWED_KINDS = new Set(['added', 'corrected', 'contested', 'stale']);
 
