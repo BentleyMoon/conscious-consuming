@@ -176,7 +176,19 @@ function checkGeneratedSeoContract() {
     expect(Boolean(title), `${rel}: title is required`);
     expect(Boolean(canonical), `${rel}: canonical is required`);
     expect(!/\.html(?:$|[?#])/.test(canonical), `${rel}: canonical must be extensionless (${canonical})`);
-    expect(!canonical || listed.has(canonical), `${rel}: canonical is absent from app/sitemap.xml (${canonical})`);
+    // A PAGE ASKS TO BE INDEXED OR IT DOES NOT, AND THE SITEMAP MUST AGREE WITH THE PAGE.
+    // Until 2026-09-22 every generated page had to be in the sitemap, which was right while every
+    // page was offered to search engines. A verdict page now enters the sitemap only when it
+    // carries more than one independent source domain and a dated check (verdictIsIndexable in
+    // pipeline/build_cards.js); one that does not is built, linked, readable and marked noindex.
+    // Listing a noindex page would have the sitemap contradict the page, so the contract now runs
+    // both ways: indexable pages must be listed, and noindex pages must not be.
+    const noindex = /<meta\b[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html);
+    if (noindex) {
+      expect(!canonical || !listed.has(canonical), `${rel}: is marked noindex and its canonical is still listed in app/sitemap.xml (${canonical})`);
+    } else {
+      expect(!canonical || listed.has(canonical), `${rel}: canonical is absent from app/sitemap.xml (${canonical})`);
+    }
     expect(!canonical || !canonicals.has(canonical), `${rel}: duplicate canonical ${canonical}`);
     if (canonical) canonicals.add(canonical);
     if (title) {

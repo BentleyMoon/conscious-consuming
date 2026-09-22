@@ -150,6 +150,13 @@ h1,h2,.hero,.sectionh,.wedge-q,.vc-name{text-wrap:balance}
   padding:.8rem 0;margin-bottom:2rem;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:saturate(140%) blur(12px)}
 .nav.at-home .navback{display:none}
 .wordmark{font-family:var(--font-display);font-weight:600;font-size:1.12rem;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+/* A WHOLE AND A PART, SAID ONCE. The site is Values Commons, this is Conscious Consuming, and for a
+   stranger arriving straight at the app the two names read as two products. The tie is one small
+   line under the wordmark, linking the site, rather than a rename of either: the app is the first
+   app on the standard and the site is where the rest of them live. */
+.wordmark-stack{display:inline-flex;flex-direction:column;gap:.05rem;min-width:0}
+.wordmark-of{font-size:.78rem;letter-spacing:.04em;color:var(--hint);text-decoration:none;line-height:1.2}
+.wordmark-of:hover{color:var(--accent);text-decoration:underline}
 .navlinks{display:flex;gap:.55rem .95rem;flex-wrap:wrap;align-items:center}
 .navlinks a{position:relative;color:var(--muted);text-decoration:none;font-size:0.86rem;padding:.2rem 0}
 .navlinks a::after{content:"";position:absolute;left:0;right:0;bottom:-.15rem;height:2px;border-radius:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform var(--dur-2) var(--ease)}
@@ -1415,7 +1422,7 @@ footer a{color:var(--accent)}
   .nav{gap:.5rem .8rem;margin-bottom:1.1rem;padding-bottom:.8rem}
   .navtoggle{display:inline-flex;min-height:44px;order:3}
   .navback{order:1}
-  .wordmark{order:2;flex:1 1 auto}
+  .wordmark-stack{order:2;flex:1 1 auto;min-width:0}
   .navlinks{order:5;flex-basis:100%;display:none;flex-direction:column;gap:0;margin-top:.4rem;border-top:.5px solid var(--line)}
   .navlinks a{font-size:1rem;padding:.7rem .2rem;border-bottom:.5px solid var(--line)}
   .nav.open .navlinks{display:flex}
@@ -1436,7 +1443,7 @@ footer a{color:var(--accent)}
   .hero{font-size:clamp(1.75rem,7vw,2.3rem)}
   .wedge-q{font-size:1.12rem}
   .navback a[aria-label="Recently viewed"]{display:none}
-  .nav:not(.at-home) .wordmark{display:none}
+  .nav:not(.at-home) .wordmark-stack{display:none}
   .nav:not(.at-home) .navutil{margin-left:auto}
   .home-hero{padding:1.25rem;border-radius:4px}
   .home-hero::before{inset:-20% -45% auto 15%;height:80%}
