@@ -28,6 +28,12 @@
     environment: 'planet', forest: 'planet', packaging: 'planet', palm_oil: 'planet', organic: 'planet', durability: 'planet', repairability: 'planet', longevity: 'planet',
     processing: 'health', nutrition_grade: 'health', protein: 'health', low_sugar: 'health', health: 'health', safety: 'health',
     ethics: 'people', labor: 'people', artist_pay: 'people', impact: 'people', ways_to_help: 'people',
+    // 2026-08-13. Seven keys arrived with the swarm. This is the canonical map: the builder, the
+    // verify script and the theme-map audit all check themselves against it, which is why a key
+    // added in three places and not this one still failed the release.
+    rewards: 'cost',
+    complaints: 'people', buyer_protection: 'people', damage_protection: 'people',
+    permanence: 'honesty', reliability: 'honesty', cancellations: 'honesty',
     transparency: 'honesty', independence: 'honesty', nonprofit: 'honesty', certification: 'honesty', depth: 'honesty',
     privacy: 'privacy', openness: 'privacy', jurisdiction: 'privacy', security: 'privacy',
     vegan: 'animals', cruelty_free: 'animals',

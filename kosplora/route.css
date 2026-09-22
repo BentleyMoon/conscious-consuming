@@ -1,0 +1,112 @@
+/* Kosplora route surfaces: the door, the walker pages, the format page.
+   Tokens copied from the shelf page so the instance reads as one place. Register: serif argues
+   (questions, tasks), mono measures (types, times, dates, versions), ochre is provenance only,
+   and the instance accent marks what the learner chooses. Headings sit at the family's quieted
+   scale, weight 550. Stations carry no boxes: whitespace and a top rule. */
+:root{--ochre:#7a5f18;--bg:#f8f5ee;--surface:#fffdf7;--ink:#221f2b;--muted:#4d4860;--hint:#655f7d;
+  --line:rgba(0,0,0,.14);--accent:#5b45c9;--track:#e3ded1;
+  --font-display:Georgia,'Iowan Old Style','Times New Roman',serif;
+  --font-mono:ui-monospace,'Cascadia Code',Consolas,'Courier New',monospace;
+  --font-body:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ochre:#c9a227;--bg:#13121b;
+  --surface:#1c1b27;--ink:#ece9f5;--muted:#aaa6c0;--hint:#85809f;--line:rgba(255,255,255,.11);
+  --accent:#a99cff;--track:#2a2838}}
+
+*{box-sizing:border-box}
+html{color-scheme:light dark}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);
+  font-size:1.05rem;line-height:1.62}
+.wrap{max-width:46rem;margin:0 auto;padding:0 1.1rem 4rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--surface);padding:.5rem .8rem;z-index:9}
+.skip:focus{left:.5rem}
+
+/* The instance spine, same shape as the shelf's. */
+.instancebar{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;align-items:baseline;
+  padding:.85rem 0 .6rem;border-bottom:1px solid var(--line);font-size:.92rem}
+.instancebar .home{color:var(--muted);text-decoration:none}
+.instancebar nav{display:flex;flex-wrap:wrap;gap:.9rem}
+.instancebar a{color:var(--muted);text-decoration:none;padding-block:.35rem}
+.instancebar a[aria-current]{color:var(--ink);border-bottom:2px solid var(--accent)}
+.instance-note{color:var(--hint);font-size:.85rem;margin:.5rem 0 2.2rem}
+
+h1,h2,h3{font-family:var(--font-display);font-weight:550;line-height:1.14;text-wrap:balance;margin:0 0 .6rem}
+h1{font-size:clamp(1.7rem,3.2vw,2.3rem);letter-spacing:-.01em;max-width:24ch}
+h2{font-size:clamp(1.25rem,2.2vw,1.55rem);margin-top:2.6rem}
+h3{font-size:1.1rem}
+p{max-width:62ch;margin:0 0 1rem}
+a{color:var(--accent);text-underline-offset:.16em}
+.sub{color:var(--muted);font-size:1.08rem;max-width:56ch}
+
+/* Mono is measurement: types, times, dates, counts, versions. */
+.m{font-family:var(--font-mono);font-size:.8rem;letter-spacing:.04em;color:var(--muted)}
+.meta{font-family:var(--font-mono);font-size:.82rem;color:var(--muted);margin:.4rem 0 1.6rem}
+.meta b{color:var(--ink);font-weight:600}
+
+/* Provenance register: ochre, and only provenance. */
+.prov{font-family:var(--font-mono);font-size:.8rem;color:var(--ochre);margin:.3rem 0 0}
+.prov a{color:var(--ochre)}
+
+/* What would change this route: the falsifier sits near the top, plainly. */
+.would{border-left:3px solid var(--line);padding:.15rem 0 .15rem 1rem;margin:1.6rem 0;
+  color:var(--muted);max-width:58ch}
+.would .m{display:block;margin-bottom:.25rem}
+
+/* The whole route, visible before anything is walked. */
+.route-index{margin:2rem 0 .6rem;padding:0;list-style:none}
+.route-index li{display:flex;gap:.9rem;baseline-source:first;padding:.28rem 0;font-size:.95rem}
+.route-index .m{min-width:8.5rem}
+.route-index a{color:var(--ink);text-decoration:none}
+.route-index a:hover{color:var(--accent)}
+.timeline{margin:.8rem 0 0;overflow-x:auto}
+.timeline svg{display:block}
+
+/* Conditions: a sentence the learner states, rendered back in the learner's colour. */
+.conditions{margin:2.2rem 0;padding:1rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.conditions form{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center}
+.conditions label{font-size:.88rem;color:var(--muted)}
+.conditions select{font:inherit;font-size:.9rem;padding:.35rem .4rem;background:var(--surface);
+  color:var(--ink);border:1px solid var(--line);border-radius:4px}
+.conditions-line{color:var(--accent);margin:.7rem 0 0;font-size:.98rem}
+.conditions .m{width:100%}
+
+/* Stations: whitespace and a rule, no boxes. */
+.station{border-top:1px solid var(--line);padding:1.7rem 0 .9rem;margin-top:1.4rem}
+.station .kind{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted)}
+.station .kind .t{color:var(--hint)}
+.station h3{margin:.45rem 0 .5rem;font-family:var(--font-display);max-width:30ch}
+.station .alt{color:var(--hint);font-size:.92rem;max-width:58ch}
+.station .walkbtn{font:inherit;font-size:.85rem;margin-top:.7rem;padding:.45rem .8rem;
+  background:none;border:1px solid var(--line);border-radius:4px;color:var(--muted);cursor:pointer}
+.station .walkbtn[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+.station textarea{width:100%;max-width:38rem;margin-top:.7rem;font:inherit;font-size:.92rem;
+  background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:4px;
+  padding:.55rem;min-height:2.6rem}
+
+/* The end of the route: the artifact, then every exit weighted the same. */
+.artifact{border-top:2px solid var(--ink);padding-top:1.7rem;margin-top:2.4rem}
+.exit{margin:2rem 0 0}
+.exit ul{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:.6rem 1.4rem}
+.exit li{font-size:.95rem}
+.exit button{font:inherit;background:none;border:none;padding:0;color:var(--accent);
+  text-decoration:underline;text-underline-offset:.16em;cursor:pointer}
+
+/* The door's route list. */
+.routes{list-style:none;padding:0;margin:1.4rem 0}
+.routes li{border-top:1px solid var(--line);padding:1.3rem 0}
+.routes a{font-family:var(--font-display);font-size:1.2rem;color:var(--ink);text-decoration:none}
+.routes a:hover{color:var(--accent)}
+.routes p{margin:.4rem 0 0;color:var(--muted);font-size:.97rem}
+
+.stands{border-top:1px solid var(--line);margin-top:3rem;padding-top:1.4rem;color:var(--muted);
+  font-size:.95rem}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:1rem;
+  overflow-x:auto;font-family:var(--font-mono);font-size:.78rem;line-height:1.5}
+footer{margin-top:3.5rem;border-top:1px solid var(--line);padding-top:1rem;color:var(--hint);font-size:.85rem}
+
+@media print{
+  .instancebar,.instance-note,.conditions,.walkbtn,.station textarea,.exit,.skip{display:none}
+  body{background:#fff;color:#000;font-size:11pt}
+  .station{break-inside:avoid}
+  a{color:#000}
+}

@@ -1,0 +1,1969 @@
+{
+ "meta": {
+  "id": "messaging",
+  "label": "Messaging",
+  "type": "Services",
+  "primaryAxis": "privacy",
+  "tradeoff": [
+   "accessibility",
+   "privacy"
+  ],
+  "tradeoffLabels": [
+   "easiest",
+   "most private"
+  ],
+  "source": "Conscious Consuming (curated)",
+  "attribution": "Built from providers' own encryption and privacy documentation, open-source client and server repositories, published security research and app pricing pages, not measured data. Messaging privacy settings change, so check the current documentation yourself before relying on any of these. Privacy reflects whether ordinary chats are end-to-end encrypted by default and what the provider says it can see; openness reflects whether client and server code is published and under what licence, not whether a company markets itself as private; portability reflects whether a chat history or identity can leave the provider's network; respect reflects whether the business model runs on advertising or data-driven profiling rather than user payment or donations; accessibility covers both how easily a person can start using the service and how likely the people they already talk to are on it. Suggest changes via Contribute.",
+  "allergens": false,
+  "presets": {
+   "Balanced": {
+    "w": {
+     "privacy": 3,
+     "openness": 3,
+     "portability": 3,
+     "respect": 3,
+     "accessibility": 3
+    },
+    "x": []
+   },
+   "Most private": {
+    "w": {
+     "privacy": 5,
+     "respect": 4,
+     "openness": 2,
+     "portability": 2,
+     "accessibility": 1
+    },
+    "x": []
+   },
+   "Open and portable": {
+    "w": {
+     "openness": 5,
+     "portability": 4,
+     "privacy": 3,
+     "respect": 2,
+     "accessibility": 1
+    },
+    "x": []
+   },
+   "Escape surveillance": {
+    "w": {
+     "respect": 5,
+     "privacy": 4,
+     "openness": 3,
+     "portability": 1,
+     "accessibility": 1
+    },
+    "x": []
+   },
+   "Easiest, free": {
+    "w": {
+     "accessibility": 5,
+     "economical": 4,
+     "privacy": 2,
+     "respect": 1,
+     "openness": 1
+    },
+    "x": []
+   }
+  },
+  "n": 19,
+  "valueSignatureProfile": {
+   "entryCount": 19,
+   "signedEntries": 19,
+   "drawableEntries": 19,
+   "minimumThemesForBloom": 2,
+   "themeCounts": {
+    "privacy": 19,
+    "cost": 19
+   }
+  },
+  "provenanceProfile": {
+   "entryCount": 19,
+   "singleSourceEntries": 4,
+   "multiSourceEntries": 15,
+   "noSourceEntries": 0,
+   "noteOnlyEntries": 0,
+   "averageSourceDomains": 2.11,
+   "topPrimarySources": [
+    {
+     "label": "GitHub",
+     "entries": 2
+    },
+    {
+     "label": "apps.apple.com",
+     "entries": 1
+    },
+    {
+     "label": "briarproject.org",
+     "entries": 1
+    },
+    {
+     "label": "delta.chat",
+     "entries": 1
+    },
+    {
+     "label": "developers.beeper.com",
+     "entries": 1
+    },
+    {
+     "label": "discord.com",
+     "entries": 1
+    }
+   ]
+  },
+  "decision": {
+   "category": "messaging",
+   "reads": {
+    "text": "Compare messaging by privacy, everyday access, openness, and data portability.",
+    "basis": [
+     {
+      "criterion": "privacy",
+      "readsAs": "privacy"
+     },
+     {
+      "criterion": "accessibility",
+      "readsAs": "everyday access"
+     },
+     {
+      "criterion": "openness",
+      "readsAs": "openness"
+     },
+     {
+      "criterion": "portability",
+      "readsAs": "data portability"
+     }
+    ],
+    "signature": {
+     "by": "Conscious Consuming",
+     "on": "2026-07-15",
+     "status": "approved-batch"
+    },
+    "receipt": {
+     "dataset": "messaging",
+     "entryCount": 19,
+     "criteria": [
+      {
+       "criterion": "privacy",
+       "readsAs": "privacy",
+       "known": 19,
+       "minimum": 20,
+       "maximum": 100,
+       "spread": 80
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access",
+       "known": 19,
+       "minimum": 45,
+       "maximum": 95,
+       "spread": 50
+      },
+      {
+       "criterion": "openness",
+       "readsAs": "openness",
+       "known": 19,
+       "minimum": 10,
+       "maximum": 95,
+       "spread": 85
+      },
+      {
+       "criterion": "portability",
+       "readsAs": "data portability",
+       "known": 19,
+       "minimum": 25,
+       "maximum": 86,
+       "spread": 61
+      }
+     ]
+    }
+   },
+   "axes": [
+    {
+     "id": "cost-or-values",
+     "kind": "cost-values",
+     "label": "Cost or overall fit",
+     "question": "Lower cost or a stronger overall fit?",
+     "criteria": [
+      "economical",
+      "privacy",
+      "accessibility",
+      "openness",
+      "portability",
+      "respect"
+     ],
+     "poles": [
+      "Lower cost",
+      "Stronger overall fit"
+     ],
+     "default": 50
+    },
+    {
+     "id": "access-or-privacy",
+     "kind": "tradeoff",
+     "label": "Access or privacy",
+     "question": "Easier access or less data exposure?",
+     "criteria": [
+      "accessibility",
+      "privacy"
+     ],
+     "poles": [
+      "Easier access",
+      "Less exposure"
+     ],
+     "default": 50
+    },
+    {
+     "id": "openness",
+     "kind": "criterion",
+     "label": "Openness",
+     "question": "Does openness matter more?",
+     "criteria": [
+      "openness"
+     ],
+     "poles": [
+      "Flexible",
+      "More open"
+     ],
+     "default": 50
+    }
+   ],
+   "budget": {
+    "available": true,
+    "mode": "assessed-affordability-rank",
+    "criterion": "economical",
+    "minimumKnown": 5,
+    "knownEntries": 19,
+    "coverage": 1.0
+   },
+   "archetypes": [
+    "best-for-most",
+    "strictest-match",
+    "budget-honest"
+   ],
+   "page": {
+    "stage": "approved-batch",
+    "primaryRoute": true
+   },
+   "consumer": {
+    "reads": "Round 8 approved category differences reads.",
+    "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+    "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+    "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+    "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+   }
+  }
+ },
+ "criteria": [
+  {
+   "key": "privacy",
+   "label": "Privacy",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "openness",
+   "label": "Open source",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "portability",
+   "label": "Portable",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "respect",
+   "label": "No surveillance business model",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "accessibility",
+   "label": "Easy to start and easy to reach people on",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "economical",
+   "label": "Economical",
+   "source": "curated",
+   "tier": "assessed"
+  }
+ ],
+ "products": [
+  {
+   "code": "signal",
+   "name": "Signal",
+   "brand": "messaging",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 100,
+    "openness": 95,
+    "portability": 70,
+    "respect": 100,
+    "accessibility": 85,
+    "economical": 100
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Signal's legal page says it is designed to never collect or store sensitive information and that Signal cannot decrypt or otherwise access the content of messages or calls, though it does retain some technical data such as authentication tokens and push tokens needed to run the service.",
+     "source": "https://signal.org/legal/",
+     "asof": "2026"
+    },
+    "openness": {
+     "note": "Signal publishes client and server source publicly on GitHub, including Signal-Android, Signal-iOS, Signal-Desktop, Signal-Server and libsignal, all under AGPL-3.0.",
+     "source": "https://github.com/signalapp",
+     "asof": "2026"
+    },
+    "portability": {
+     "note": "Signal accounts are tied to a phone number and Signal's own protocol, so leaving the network means losing the identity contacts recognize, even though the app itself is free to leave at any time.",
+     "source": "https://signal.org/legal/",
+     "asof": "2026"
+    },
+    "respect": {
+     "note": "Signal describes itself as an independent nonprofit that cannot be acquired by a tech company, supported by grants and donations, with no ads, affiliate marketing or tracking in the app.",
+     "source": "https://signal.org/",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Signal offers free apps for Android, iPhone, and desktop (Mac, Windows, Linux), though the desktop app requires the phone app to be installed first.",
+     "source": "https://signal.org/download/",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Signal's apps are free to download and use across supported platforms.",
+     "source": "https://signal.org/download/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://signal.org/"
+    },
+    {
+     "label": "Legal and privacy",
+     "url": "https://signal.org/legal/"
+    },
+    {
+     "label": "Source",
+     "url": "https://github.com/signalapp"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "free"
+   },
+   "description": "A nonprofit, end-to-end encrypted messenger that says it stores no message content and publishes its client and server source. Tied to a phone number, so leaving the network means losing that identity.",
+   "focuses": [
+    "Private",
+    "Open source",
+    "Nonprofit",
+    "No ads"
+   ],
+   "valueSignature": {
+    "privacy": 91.25,
+    "cost": 92.5
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "signal.org",
+    "sourceLabels": [
+     "signal.org",
+     "GitHub"
+    ]
+   }
+  },
+  {
+   "code": "element-matrix",
+   "name": "Element (Matrix)",
+   "brand": "messaging",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 88,
+    "openness": 95,
+    "portability": 82,
+    "respect": 90,
+    "accessibility": 70,
+    "economical": 100
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Element's marketing describes end-to-end encrypted messaging and calls, positioned as a Signal or WhatsApp replacement for organizations that need data control.",
+     "source": "https://element.io/",
+     "asof": "2026"
+    },
+    "openness": {
+     "note": "Matrix describes itself as an open network for secure, decentralised communication, and Element publishes its client and server repositories (element-web, element-x-android, synapse) on GitHub under AGPL-3.0.",
+     "source": "https://matrix.org/",
+     "asof": "2026"
+    },
+    "portability": {
+     "note": "Because Matrix is a federated, open protocol rather than a single company's network, a conversation can in principle move between servers or clients, which closed messenger networks do not allow.",
+     "source": "https://matrix.org/",
+     "asof": "2026"
+    },
+    "respect": {
+     "note": "Element frames Matrix's benefits around data sovereignty and avoiding vendor lock-in, positioning the product against advertising-funded or behavior-tracking platforms.",
+     "source": "https://element.io/matrix-benefits",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Usable consumer and business apps exist, but understanding servers, homeservers and federation adds friction that closed single-app messengers do not have.",
+     "source": "https://element.io/",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Element's pricing page offers a free, self-hosted Community tier for non-professional use, with paid per-seat Enterprise and Sovereign tiers for organizations.",
+     "source": "https://element.io/pricing",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Element",
+     "url": "https://element.io/"
+    },
+    {
+     "label": "Matrix",
+     "url": "https://matrix.org/"
+    },
+    {
+     "label": "Source",
+     "url": "https://github.com/element-hq"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "free"
+   },
+   "description": "A Matrix-based messenger for encrypted, federated communication. The open protocol makes it more portable than closed networks, but understanding servers and federation is real friction for a casual user.",
+   "focuses": [
+    "Open source",
+    "Federated",
+    "Self-hostable",
+    "Encrypted"
+   ],
+   "valueSignature": {
+    "privacy": 88.75,
+    "cost": 85
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "element.io",
+    "sourceLabels": [
+     "element.io",
+     "matrix.org"
+    ]
+   }
+  },
+  {
+   "code": "threema",
+   "name": "Threema",
+   "brand": "messaging",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 92,
+    "openness": 70,
+    "portability": 55,
+    "respect": 88,
+    "accessibility": 78,
+    "economical": 75
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Threema Private says every message, call and shared file is end-to-end encrypted, and a phone number or email address is not required because each user gets a randomly generated Threema ID.",
+     "source": "https://threema.com/en/products/private",
+     "asof": "2026"
+    },
+    "openness": {
+     "note": "Threema says its apps are open source, undergo regular independent audits, and comply with GDPR requirements.",
+     "source": "https://threema.com/en/products/private",
+     "asof": "2026"
+    },
+    "portability": {
+     "note": "The anonymous Threema ID avoids phone-number lock-in, but contacts and chat history still live inside Threema's own proprietary network rather than an interoperable protocol.",
+     "source": "https://threema.com/en/products/private",
+     "asof": "2026"
+    },
+    "respect": {
+     "note": "Threema says it finances itself exclusively through app revenue rather than by selling user data.",
+     "source": "https://threema.com/en/products/private",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Threema is a paid app, which is a real barrier compared with free mainstream messengers, even though it removes the need to hand over a phone number.",
+     "source": "https://threema.com/en/products/private",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Threema is a one-time paid app rather than a free download or subscription.",
+     "source": "https://threema.com/en/products/private",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://threema.com/en"
+    },
+    {
+     "label": "Private product page",
+     "url": "https://threema.com/en/products/private"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "$"
+   },
+   "description": "A Swiss paid messenger with end-to-end encryption and no phone-number requirement, funded by app sales rather than data. The one-time price is a real barrier next to free mainstream apps.",
+   "focuses": [
+    "Private",
+    "Open source",
+    "No ads",
+    "Paid"
+   ],
+   "valueSignature": {
+    "privacy": 76.25,
+    "cost": 76.5
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "threema.com"
+   }
+  },
+  {
+   "code": "imessage",
+   "name": "iMessage",
+   "brand": "messaging",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 75,
+    "openness": 20,
+    "portability": 30,
+    "respect": 75,
+    "accessibility": 82,
+    "economical": 90
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Apple's iMessage security guide says outgoing messages are individually encrypted for each receiving device and that Apple doesn't store message content, securing it with end-to-end encryption.",
+     "source": "https://support.apple.com/guide/security/imessage-security-overview-secd9764312f/web",
+     "asof": "2026"
+    },
+    "openness": {
+     "note": "iMessage only works between an iPhone or other Apple device, run entirely on Apple's own closed platform with no published client or server source.",
+     "source": "https://support.apple.com/en-us/104972",
+     "asof": "2026"
+    },
+    "portability": {
+     "note": "Apple's own comparison page says iMessage only works between an iPhone or other Apple device, so conversations do not carry over to non-Apple devices or another provider. The European Commission concluded in February 2024 that iMessage should not be designated a Digital Markets Act gatekeeper service, citing its low usage and end-user numbers in the EU compared with WhatsApp and Messenger, so unlike those two services Apple has no obligation to make iMessage interoperate with other messengers.",
+     "source": "https://digital-markets-act.ec.europa.eu/commission-closes-market-investigations-microsofts-and-apples-services-under-digital-markets-act-2024-02-13_en",
+     "asof": "2026"
+    },
+    "respect": {
+     "note": "There is no advertising feed inside Messages, but iMessage is a tool for keeping people inside the Apple device ecosystem rather than an independent product.",
+     "source": "https://support.apple.com/en-us/104972",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "iMessage is built into every iPhone, iPad and Mac and requires no separate signup, but it only reaches other Apple users; messages to anyone else fall back to plain SMS or RCS.",
+     "source": "https://support.apple.com/en-us/104972",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "iMessage is part of the built-in Messages app on Apple devices; Apple's comparison page does not list any separate price for using it.",
+     "source": "https://support.apple.com/en-us/104972",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Security overview",
+     "url": "https://support.apple.com/guide/security/imessage-security-overview-secd9764312f/web"
+    },
+    {
+     "label": "iMessage vs RCS vs SMS/MMS",
+     "url": "https://support.apple.com/en-us/104972"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "free"
+   },
+   "description": "Apple's built-in encrypted messaging between Apple devices. It costs nothing extra and needs no signup, but it is closed and only reaches other Apple users; everyone else falls back to SMS or RCS.",
+   "focuses": [
+    "Encrypted",
+    "Apple ecosystem",
+    "Closed source",
+    "No ads"
+   ],
+   "valueSignature": {
+    "privacy": 50,
+    "cost": 86
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "support.apple.com",
+    "sourceLabels": [
+     "support.apple.com",
+     "digital-markets-act.ec.europa.eu"
+    ]
+   }
+  },
+  {
+   "code": "telegram",
+   "name": "Telegram",
+   "brand": "messaging",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 50,
+    "openness": 50,
+    "portability": 60,
+    "respect": 62,
+    "accessibility": 88,
+    "economical": 100
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Telegram's own FAQ says ordinary Cloud Chats use client-server encryption and are stored on Telegram's servers, while end-to-end encryption is only used in the optional Secret Chats.",
+     "source": "https://telegram.org/faq#q-how-does-telegram-encrypt-data",
+     "asof": "2026"
+    },
+    "openness": {
+     "note": "Telegram's apps page says its client apps are open source and support reproducible builds, but it does not publish the server-side code the cloud service runs on.",
+     "source": "https://telegram.org/apps",
+     "asof": "2026"
+    },
+    "portability": {
+     "note": "Telegram's own blog describes an in-app tool to export chats, including photos and other media, to your own device.",
+     "source": "https://telegram.org/blog/export-and-more",
+     "asof": "2026"
+    },
+    "respect": {
+     "note": "Telegram's privacy policy describes an ad platform that places ads in public channels with 1,000 or more subscribers, though it says private chat content and contact lists are not used for ad targeting; Telegram Premium subscribers do not see these ads.",
+     "source": "https://telegram.org/privacy",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Telegram's apps page lists fast, actively maintained clients across mobile, desktop and web with cloud sync between them.",
+     "source": "https://telegram.org/apps",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Telegram's core service is free, with an optional paid Telegram Premium tier.",
+     "source": "https://telegram.org/faq#q-how-is-telegram-different-from-whatsapp",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://telegram.org/"
+    },
+    {
+     "label": "Privacy policy",
+     "url": "https://telegram.org/privacy"
+    },
+    {
+     "label": "Encryption FAQ",
+     "url": "https://telegram.org/faq#q-how-does-telegram-encrypt-data"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "free"
+   },
+   "description": "A fast, free messenger with cloud sync and an export tool, but ordinary chats are not end-to-end encrypted by default; that protection only applies if both people start a Secret Chat.",
+   "focuses": [
+    "Freemium",
+    "Export"
+   ],
+   "valueSignature": {
+    "privacy": 55.5,
+    "cost": 94
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "telegram.org"
+   }
+  },
+  {
+   "code": "whatsapp",
+   "name": "WhatsApp",
+   "brand": "messaging",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 66,
+    "openness": 20,
+    "portability": 48,
+    "respect": 36,
+    "accessibility": 90,
+    "economical": 100
+   },
+   "provenance": {
+    "privacy": {
+     "note": "WhatsApp says personal messages, calls, photos and videos are protected with end-to-end encryption so that not even WhatsApp can see them.",
+     "source": "https://www.whatsapp.com/privacy",
+     "asof": "2026"
+    },
+    "openness": {
+     "note": "WhatsApp is closed-source Meta software; there is no published client or server code.",
+     "source": "https://www.whatsapp.com/legal/privacy-policy",
+     "asof": "2026"
+    },
+    "portability": {
+     "note": "The European Commission designated WhatsApp a Digital Markets Act gatekeeper service in September 2023, and Meta has had to open one-to-one WhatsApp messaging to interoperate with other providers' messaging apps since March 2024, with group chats due by September 2025; the first outside apps interoperable with WhatsApp launched in November 2025.",
+     "source": "https://digital-markets-act.ec.europa.eu/developer-portal/messaging-interoperability_en",
+     "asof": "2026"
+    },
+    "respect": {
+     "note": "Ireland's Data Protection Commission fined WhatsApp 225 million euros in 2021 after finding it had not met GDPR transparency obligations about how it shares information with other Meta companies, and ordered it to bring its processing into compliance.",
+     "source": "https://www.dataprotection.ie/en/news-media/press-releases/data-protection-commission-announces-decision-whatsapp-inquiry",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "WhatsApp's own site advertises simple, reliable, private messaging and calling for free, available all over the world, and it is the default messenger for most of the people a new user already knows.",
+     "source": "https://www.whatsapp.com/",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "WhatsApp is free for personal use.",
+     "source": "https://www.whatsapp.com/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.whatsapp.com/"
+    },
+    {
+     "label": "Privacy policy",
+     "url": "https://www.whatsapp.com/legal/privacy-policy"
+    },
+    {
+     "label": "Irish DPC decision",
+     "url": "https://www.dataprotection.ie/en/news-media/press-releases/data-protection-commission-announces-decision-whatsapp-inquiry"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "free"
+   },
+   "description": "The mainstream floor for messaging: end-to-end encrypted by default and free, but closed source and owned by Meta, which Ireland's regulator fined 225 million euros over how it discloses sharing with other Meta companies. EU law now forces it to let outside apps interoperate with one-to-one chats.",
+   "focuses": [
+    "Encrypted",
+    "Meta",
+    "Closed source",
+    "Mainstream"
+   ],
+   "valueSignature": {
+    "privacy": 42.5,
+    "cost": 95
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "whatsapp.com",
+    "sourceLabels": [
+     "whatsapp.com",
+     "dataprotection.ie",
+     "digital-markets-act.ec.europa.eu"
+    ]
+   }
+  },
+  {
+   "code": "line",
+   "name": "LINE",
+   "brand": "messaging and social app",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 56,
+    "openness": 28,
+    "portability": 45,
+    "respect": 54,
+    "accessibility": 88,
+    "economical": 100
+   },
+   "provenance": {
+    "privacy": {
+     "note": "LY Corporation's encryption transparency report describes Letter Sealing end-to-end encryption for one-to-one chats, media and calls, and for group chats up to 50 members, but says group calls, meetings, third-party cloud backups and album media are only protected with transport-level encryption, not end to end.",
+     "source": "https://www.lycorp.co.jp/en/privacy-security/security/transparency/encryption-report/2024/",
+     "asof": "2026"
+    },
+    "openness": {
+     "note": "LY Corporation (LINE's operator) publishes some internal projects as open source, but the main LINE consumer app is proprietary and not published as open source itself.",
+     "source": "https://engineering.linecorp.com/en/opensource",
+     "asof": "2026"
+    },
+    "portability": {
+     "note": "LINE's privacy policy explains how personal data is managed and a user's rights over it, but chat history and the social graph stay inside LINE's proprietary service rather than an open protocol.",
+     "source": "https://privacy.linepluscorp.com/info/privacypolicy/",
+     "asof": "2026"
+    },
+    "respect": {
+     "note": "LINE is a closed platform that also carries official accounts, timelines and other data-driven features beyond one-to-one messaging.",
+     "source": "https://privacy.linepluscorp.com/info/privacypolicy/",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "LINE's own site advertises free voice calls and free messages at any time, and it is the default messenger in several East Asian and Southeast Asian markets.",
+     "source": "https://www.line.me/",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "LINE's core voice calls and messaging are free to use.",
+     "source": "https://www.line.me/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.line.me/"
+    },
+    {
+     "label": "Encryption transparency report",
+     "url": "https://www.lycorp.co.jp/en/privacy-security/security/transparency/encryption-report/2024/"
+    },
+    {
+     "label": "Privacy policy",
+     "url": "https://privacy.linepluscorp.com/info/privacypolicy/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "free"
+   },
+   "description": "A free messenger that is the mainstream default in several Asian markets, with end-to-end encryption for one-to-one and small group chats, though group calls, cloud backups and album media are not covered by it.",
+   "focuses": [
+    "Messaging",
+    "Mainstream",
+    "Closed source",
+    "Encrypted",
+    "Free"
+   ],
+   "valueSignature": {
+    "privacy": 45.75,
+    "cost": 94
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 4,
+    "singleSource": false,
+    "primarySource": "line.me",
+    "sourceLabels": [
+     "line.me",
+     "privacy.linepluscorp.com",
+     "engineering.linecorp.com",
+     "lycorp.co.jp"
+    ]
+   }
+  },
+  {
+   "code": "wechat",
+   "name": "WeChat",
+   "brand": "messaging and super app",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 20,
+    "openness": 10,
+    "portability": 25,
+    "respect": 18,
+    "accessibility": 92,
+    "economical": 100
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Citizen Lab's technical FAQ says WeChat's encryption protects traffic between a device and Tencent's servers, but that this is not end-to-end encryption; WeChat's servers can and do decrypt and read each transmitted message.",
+     "source": "https://citizenlab.ca/research/should-we-chat-too-security-analysis-of-wechats-mmtls-encryption-protocol/should-we-chat-too-faq/",
+     "asof": "2026"
+    },
+    "openness": {
+     "note": "WeChat is a proprietary Tencent super-app with no published client or server source.",
+     "source": "https://www.wechat.com/",
+     "asof": "2026"
+    },
+    "portability": {
+     "note": "WeChat's chats, payments, official accounts and mini programs are bound to a Tencent account inside the WeChat/Weixin ecosystem rather than an interoperable network.",
+     "source": "https://apps.apple.com/us/app/wechat/id414478124",
+     "asof": "2026"
+    },
+    "respect": {
+     "note": "Citizen Lab's research on the WeChat ecosystem found the app collects more usage data than its privacy policy discloses, automatically enrolls Mini Program use into a data-collection and analytics program with no reasonable opt-out, and can access location through the People Nearby feature.",
+     "source": "https://citizenlab.ca/research/privacy-in-the-wechat-ecosystem-full-report/privacy-in-the-wechat-ecosystem-explained/",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "WeChat's App Store listing describes it as connecting a billion people with calls, chats and more, making it a highly accessible mainstream default in markets where it dominates.",
+     "source": "https://apps.apple.com/us/app/wechat/id414478124",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "The App Store lists WeChat as free with in-app purchases.",
+     "source": "https://apps.apple.com/us/app/wechat/id414478124",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.wechat.com/"
+    },
+    {
+     "label": "Encryption security analysis (Citizen Lab)",
+     "url": "https://citizenlab.ca/research/should-we-chat-too-security-analysis-of-wechats-mmtls-encryption-protocol/should-we-chat-too-faq/"
+    },
+    {
+     "label": "Privacy ecosystem research (Citizen Lab)",
+     "url": "https://citizenlab.ca/research/privacy-in-the-wechat-ecosystem-full-report/privacy-in-the-wechat-ecosystem-explained/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "free"
+   },
+   "description": "A huge messaging, social and payment super-app: free and extremely accessible where it already dominates, but Citizen Lab's research found it is not end-to-end encrypted and collects more data than its own policy discloses.",
+   "focuses": [
+    "Messaging",
+    "Mainstream",
+    "Closed source",
+    "Free",
+    "Super app"
+   ],
+   "valueSignature": {
+    "privacy": 18.25,
+    "cost": 96
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "apps.apple.com",
+    "sourceLabels": [
+     "apps.apple.com",
+     "citizenlab.ca",
+     "wechat.com"
+    ]
+   }
+  },
+  {
+   "code": "discord",
+   "name": "Discord",
+   "brand": "chat & communities",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 36,
+    "openness": 25,
+    "portability": 58,
+    "respect": 42,
+    "accessibility": 92,
+    "economical": 100
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Discord's privacy policy opens by saying it explains how Discord collects, uses, stores, protects and shares personal information through its services.",
+     "source": "https://discord.com/privacy",
+     "asof": "2026"
+    },
+    "openness": {
+     "note": "Discord is a closed hosted platform with no published client or server source.",
+     "source": "https://discord.com/privacy",
+     "asof": "2026"
+    },
+    "portability": {
+     "note": "Discord's privacy policy describes a Data & Privacy section in User Settings where a member can request a data packet of their information, delivered in formats such as JSON, within about 30 days.",
+     "source": "https://discord.com/privacy",
+     "asof": "2026"
+    },
+    "respect": {
+     "note": "Discord is free to use, but its privacy policy describes broad collection, use and sharing of personal information across a centralized platform rather than a minimal-data design.",
+     "source": "https://discord.com/privacy",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Discord is available on Windows, macOS, Linux, iOS, Android and consoles at no cost, and is the default chat platform for many gaming and community groups.",
+     "source": "https://discord.com/download",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Core Discord use is free, with an optional paid Nitro subscription starting around three dollars a month.",
+     "source": "https://discord.com/nitro",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://discord.com/"
+    },
+    {
+     "label": "Privacy policy",
+     "url": "https://discord.com/privacy"
+    },
+    {
+     "label": "Download",
+     "url": "https://discord.com/download"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "freemium"
+   },
+   "description": "A free, dominant platform for group and community chat with real personal-messaging use too. Easy to join and use, but closed, and its own privacy policy describes broad collection and sharing of personal information.",
+   "focuses": [
+    "Mainstream",
+    "Closed source",
+    "Data export"
+   ],
+   "valueSignature": {
+    "privacy": 40.25,
+    "cost": 96
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "discord.com"
+   }
+  },
+  {
+   "code": "facebook-messenger",
+   "name": "Facebook / Messenger",
+   "brand": "social network & messaging",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 45,
+    "openness": 18,
+    "portability": 55,
+    "respect": 20,
+    "accessibility": 95,
+    "economical": 100
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Messenger's privacy page says personal messages and calls are end-to-end encrypted by default, so that nobody, including Meta, can see or hear what is sent.",
+     "source": "https://www.messenger.com/privacy?locale=en_US",
+     "asof": "2026"
+    },
+    "openness": {
+     "note": "Facebook and Messenger are closed Meta services with no published client or server source.",
+     "source": "https://privacycenter.instagram.com/policy/",
+     "asof": "2026"
+    },
+    "portability": {
+     "note": "The European Commission designated Messenger a Digital Markets Act gatekeeper service in September 2023; Meta has had to open Messenger to one-to-one interoperability with other providers' messaging apps since September 2024, with group chats due by September 2025.",
+     "source": "https://digital-markets-act.ec.europa.eu/developer-portal/messaging-interoperability_en",
+     "asof": "2026"
+    },
+    "respect": {
+     "note": "Meta's privacy policy describes using information across its products and devices to personalize feeds, Meta AI and ads, saying it does not sell information to anyone but building its business on that cross-service personalization.",
+     "source": "https://privacycenter.instagram.com/policy/",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Facebook and Messenger are broadly available Meta products and, for many people, the place where the most existing contacts already are.",
+     "source": "https://privacycenter.instagram.com/policy/",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Facebook and Messenger are free to use for consumers, funded by advertising rather than a subscription.",
+     "source": "https://privacycenter.instagram.com/policy/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Facebook",
+     "url": "https://www.facebook.com/"
+    },
+    {
+     "label": "Messenger privacy",
+     "url": "https://www.messenger.com/privacy?locale=en_US"
+    },
+    {
+     "label": "Meta privacy policy",
+     "url": "https://privacycenter.instagram.com/policy/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "free"
+   },
+   "description": "Personal messages default to end-to-end encryption now, which is a real change from a few years ago. The wider product is still Meta's advertising business, built on personalization across Facebook, Instagram and Messenger together.",
+   "focuses": [
+    "Meta",
+    "Mainstream",
+    "Closed source",
+    "Data export"
+   ],
+   "valueSignature": {
+    "privacy": 34.5,
+    "cost": 97.5
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "privacycenter.instagram.com",
+    "sourceLabels": [
+     "privacycenter.instagram.com",
+     "digital-markets-act.ec.europa.eu",
+     "messenger.com"
+    ]
+   }
+  },
+  {
+   "code": "viber",
+   "name": "Viber",
+   "brand": "messaging",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 72,
+    "openness": 28,
+    "portability": 48,
+    "respect": 66,
+    "accessibility": 84,
+    "economical": 96
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Viber's privacy policy says that starting with Viber 6.0, core features are secured with end-to-end encryption: one-on-one calls, one-on-one messages, group messages, private media sharing and linked devices.",
+     "source": "https://www.viber.com/en/terms/viber-privacy-policy/",
+     "asof": "2026"
+    },
+    "openness": {
+     "note": "Viber is closed Rakuten-owned software rather than an open messaging protocol.",
+     "source": "https://www.viber.com/en/terms/viber-privacy-policy/",
+     "asof": "2026"
+    },
+    "portability": {
+     "note": "Viber works across major devices, but contacts and conversations stay inside Viber's own network rather than a portable protocol.",
+     "source": "https://www.viber.com/en/download/",
+     "asof": "2026"
+    },
+    "respect": {
+     "note": "Default end-to-end encryption on core features is a strong signal, but Viber's privacy policy also describes collecting activity data, device identifiers and location for product development and for contacting users with marketing.",
+     "source": "https://www.viber.com/en/terms/viber-privacy-policy/",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Viber offers free apps across Android, iOS and desktop platforms, with strong existing adoption in parts of Eastern Europe and the Middle East.",
+     "source": "https://www.viber.com/en/download/",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Viber's core messaging and calling are advertised as free and secure; the site also links to a separate Viber Out product for calling ordinary phone numbers, which is priced separately.",
+     "source": "https://www.viber.com/en/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.viber.com/en/"
+    },
+    {
+     "label": "Privacy policy",
+     "url": "https://www.viber.com/en/terms/viber-privacy-policy/"
+    },
+    {
+     "label": "Download",
+     "url": "https://www.viber.com/en/download/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "free"
+   },
+   "description": "A mainstream messenger with default end-to-end encryption on core features, but its privacy policy also describes collecting activity and location data for marketing, and the network is closed.",
+   "focuses": [
+    "Encrypted",
+    "Closed source",
+    "Mainstream"
+   ],
+   "valueSignature": {
+    "privacy": 53.5,
+    "cost": 90
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "viber.com"
+   }
+  },
+  {
+   "code": "simplex-chat",
+   "name": "SimpleX Chat",
+   "brand": "private messenger",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 98,
+    "openness": 95,
+    "portability": 58,
+    "respect": 96,
+    "accessibility": 62,
+    "economical": 100
+   },
+   "provenance": {
+    "privacy": {
+     "note": "SimpleX describes itself as the first network without user identifiers, not even random ones, where connections are made by sharing a one-time link or QR code rather than a persistent account.",
+     "source": "https://simplex.chat/",
+     "asof": "2026"
+    },
+    "openness": {
+     "note": "The SimpleX Chat repository is public and licensed under AGPLv3.",
+     "source": "https://github.com/simplex-chat/simplex-chat",
+     "asof": "2026"
+    },
+    "portability": {
+     "note": "The no-user-ID design avoids identity lock-in to a phone number or account, but contacts and groups remain specific to SimpleX rather than an interoperable standard.",
+     "source": "https://simplex.chat/",
+     "asof": "2026"
+    },
+    "respect": {
+     "note": "The project is built around not knowing who talks to whom, which rules out the profiling that funds most free messaging apps.",
+     "source": "https://simplex.chat/",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Free apps exist for Android, iPhone, Mac, Windows and Linux, but the link and QR-code connection flow is less familiar than typing in a phone number.",
+     "source": "https://simplex.chat/downloads/",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "SimpleX Chat is free to download and use on all supported platforms.",
+     "source": "https://simplex.chat/downloads/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://simplex.chat/"
+    },
+    {
+     "label": "Source",
+     "url": "https://github.com/simplex-chat/simplex-chat"
+    },
+    {
+     "label": "Downloads",
+     "url": "https://simplex.chat/downloads/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "free"
+   },
+   "description": "A free, open-source messenger built to avoid user identifiers entirely, connecting people by link or QR code instead of a phone number or account. The unfamiliar connection flow is the real cost of that design.",
+   "focuses": [
+    "Private",
+    "Open source",
+    "No ads",
+    "Free"
+   ],
+   "valueSignature": {
+    "privacy": 86.75,
+    "cost": 81
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "simplex.chat",
+    "sourceLabels": [
+     "simplex.chat",
+     "GitHub"
+    ]
+   }
+  },
+  {
+   "code": "briar",
+   "name": "Briar",
+   "brand": "peer-to-peer messenger",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 96,
+    "openness": 90,
+    "portability": 48,
+    "respect": 95,
+    "accessibility": 45,
+    "economical": 100
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Briar says messages synchronize directly between users' devices, and can sync over the Tor network when the internet is available, protecting users and their relationships from surveillance.",
+     "source": "https://briarproject.org/how-it-works/",
+     "asof": "2026"
+    },
+    "openness": {
+     "note": "Briar's source is published publicly under GPLv3.",
+     "source": "https://code.briarproject.org/briar/briar",
+     "asof": "2026"
+    },
+    "portability": {
+     "note": "Peer-to-peer syncing means no central server holds the social graph, but contacts and message history are not portable to a mainstream messaging network.",
+     "source": "https://briarproject.org/how-it-works/",
+     "asof": "2026"
+    },
+    "respect": {
+     "note": "Briar's design avoids central servers and advertising, built for people who need secure communication rather than growth or engagement.",
+     "source": "https://briarproject.org/how-it-works/",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Briar is only available on Android, downloadable from Google Play or F-Droid; there is no iOS, desktop or web client, which sharply limits who a person can actually reach on it.",
+     "source": "https://briarproject.org/download-briar/",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Briar's app is free, and the project describes all its software as open source.",
+     "source": "https://briarproject.org/download-briar/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://briarproject.org/"
+    },
+    {
+     "label": "How it works",
+     "url": "https://briarproject.org/how-it-works/"
+    },
+    {
+     "label": "Download",
+     "url": "https://briarproject.org/download-briar/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "free"
+   },
+   "description": "A free, peer-to-peer encrypted messenger for high-risk communication that keeps working without the internet. It is Android-only, so it cannot reach anyone using an iPhone, desktop or the web.",
+   "focuses": [
+    "Private",
+    "Open source",
+    "No ads",
+    "Free"
+   ],
+   "valueSignature": {
+    "privacy": 82.25,
+    "cost": 72.5
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "briarproject.org",
+    "sourceLabels": [
+     "briarproject.org",
+     "code.briarproject.org"
+    ]
+   }
+  },
+  {
+   "code": "session-messenger",
+   "name": "Session",
+   "brand": "private messenger",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 94,
+    "openness": 85,
+    "portability": 54,
+    "respect": 94,
+    "accessibility": 68,
+    "economical": 100
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Session says no phone number or email is required to sign up, that it does not collect private data, and that it combines end-to-end encryption with onion-routed message paths.",
+     "source": "https://getsession.org/",
+     "asof": "2026"
+    },
+    "openness": {
+     "note": "The Session Technology Foundation publishes Session's Android, iOS, desktop and routing source code publicly on GitHub under GPL-3.0.",
+     "source": "https://github.com/session-foundation",
+     "asof": "2026"
+    },
+    "portability": {
+     "note": "Account IDs replace phone numbers, but contacts and communities remain tied to the Session network rather than an interoperable messaging standard.",
+     "source": "https://getsession.org/faq",
+     "asof": "2026"
+    },
+    "respect": {
+     "note": "Session is built around not collecting private data, so there is nothing about who talks to whom for the project to monetize.",
+     "source": "https://getsession.org/",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Session offers Android, APK, F-Droid, iPhone and desktop downloads, though smaller adoption means fewer of a new user's existing contacts are already on it.",
+     "source": "https://getsession.org/download",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Session's mobile and desktop downloads are free, with no required paid plan.",
+     "source": "https://getsession.org/download",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://getsession.org/"
+    },
+    {
+     "label": "FAQ",
+     "url": "https://getsession.org/faq"
+    },
+    {
+     "label": "Source",
+     "url": "https://github.com/session-foundation"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "free"
+   },
+   "description": "A free, phone-numberless messenger built around onion-routed paths and not collecting private data. It is genuinely private, but a smaller network means fewer people are already reachable on it.",
+   "focuses": [
+    "Private",
+    "Open source",
+    "No ads",
+    "Free",
+    "No phone number"
+   ],
+   "valueSignature": {
+    "privacy": 81.75,
+    "cost": 84
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "getsession.org",
+    "sourceLabels": [
+     "getsession.org",
+     "GitHub"
+    ]
+   }
+  },
+  {
+   "code": "wire-messenger",
+   "name": "Wire",
+   "brand": "secure messenger",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 88,
+    "openness": 82,
+    "portability": 72,
+    "respect": 78,
+    "accessibility": 62,
+    "economical": 86
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Wire presents messaging, calls, conferencing and file sharing as fully end-to-end encrypted.",
+     "source": "https://wire.com/en/",
+     "asof": "2026"
+    },
+    "openness": {
+     "note": "Wire's verified GitHub organization publishes its backend (wire-server), web, desktop, Android and iOS clients under GPL-3.0 and AGPL-3.0 licenses.",
+     "source": "https://github.com/wireapp",
+     "asof": "2026"
+    },
+    "portability": {
+     "note": "Wire runs on the usual platforms, but conversations live inside Wire's own service rather than an open, federated network.",
+     "source": "https://wire.com/en/pricing",
+     "asof": "2026"
+    },
+    "respect": {
+     "note": "Wire's business is paid team and enterprise plans rather than advertising or data sales.",
+     "source": "https://wire.com/en/pricing",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Wire's free plan is capped at small teams of up to five people; beyond that it moves to paid per-person pricing, which makes it a weaker fit for ordinary friends-and-family messaging than free consumer apps.",
+     "source": "https://wire.com/en/pricing",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Wire's free plan covers small teams up to five people; larger use requires a paid SMB plan (around seven to nine euros per person per month) or a custom enterprise plan.",
+     "source": "https://wire.com/en/pricing",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://wire.com/en/"
+    },
+    {
+     "label": "Pricing",
+     "url": "https://wire.com/en/pricing"
+    },
+    {
+     "label": "Source",
+     "url": "https://github.com/wireapp"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "freemium"
+   },
+   "description": "An open-source encrypted messenger built more for teams than for ordinary friends-and-family chat. The free tier tops out at five people, after which it is a paid product.",
+   "focuses": [
+    "Private",
+    "Open source",
+    "Workplace chat",
+    "Freemium",
+    "Encrypted"
+   ],
+   "valueSignature": {
+    "privacy": 80,
+    "cost": 74
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "wire.com",
+    "sourceLabels": [
+     "wire.com",
+     "GitHub"
+    ]
+   }
+  },
+  {
+   "code": "delta-chat",
+   "name": "Delta Chat",
+   "brand": "email-based messenger",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 90,
+    "openness": 95,
+    "portability": 86,
+    "respect": 92,
+    "accessibility": 55,
+    "economical": 100
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Delta Chat's help page says the project has undergone repeated independent security audits (including by Include Security and Cure53) of its end-to-end encryption.",
+     "source": "https://delta.chat/en/help",
+     "asof": "2026"
+    },
+    "openness": {
+     "note": "Delta Chat says it is free and open source software on both the app and server side, built on internet standards, and publishes Android, iOS and desktop clients on GitHub.",
+     "source": "https://github.com/deltachat",
+     "asof": "2026"
+    },
+    "portability": {
+     "note": "Because Delta Chat runs over email and the interoperable chatmail standard rather than a single company's protocol, an identity is not locked to one provider the way closed messenger accounts are.",
+     "source": "https://delta.chat/en/help",
+     "asof": "2026"
+    },
+    "respect": {
+     "note": "Delta Chat's help page says the project does not take venture capital and is not in debt, funded instead through public and grant funding rather than advertising.",
+     "source": "https://delta.chat/en/help",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Delta Chat has mobile and desktop apps, but the underlying email and chatmail-relay concepts, and the need to set up or choose an account, are less familiar than a phone-number messenger.",
+     "source": "https://delta.chat/en/help",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Delta Chat is free and open source software.",
+     "source": "https://delta.chat/en/help",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://delta.chat/"
+    },
+    {
+     "label": "Help",
+     "url": "https://delta.chat/en/help"
+    },
+    {
+     "label": "Source",
+     "url": "https://github.com/deltachat"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "free"
+   },
+   "description": "A free, audited chat app built on email and the open chatmail standard, which makes an identity less locked to one company than closed messengers. The email-based setup is less familiar to a new user.",
+   "focuses": [
+    "Private",
+    "Open source",
+    "Portable",
+    "Free",
+    "Encrypted"
+   ],
+   "valueSignature": {
+    "privacy": 90.75,
+    "cost": 77.5
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "delta.chat",
+    "sourceLabels": [
+     "delta.chat",
+     "GitHub"
+    ]
+   }
+  },
+  {
+   "code": "molly-signal-fork",
+   "name": "Molly",
+   "brand": "Signal-compatible Android messenger",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 92,
+    "openness": 82,
+    "portability": 45,
+    "respect": 90,
+    "accessibility": 48,
+    "economical": 100
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Molly is an independent hardened fork of Signal for Android that adds features including database passphrase encryption.",
+     "source": "https://molly.im/",
+     "asof": "2026"
+    },
+    "openness": {
+     "note": "Molly's repository says it ships in two versions: standard Molly, which includes the same proprietary Google components as Signal (such as push notifications), and Molly-FOSS, which excludes them; the code is published under AGPL-3.0.",
+     "source": "https://github.com/mollyim/mollyim-android",
+     "asof": "2026"
+    },
+    "portability": {
+     "note": "Molly still connects to the Signal network and is Android-only, so it hardens one client rather than creating a portable protocol.",
+     "source": "https://molly.im/",
+     "asof": "2026"
+    },
+    "respect": {
+     "note": "Molly is a community security project rather than an ad-supported product.",
+     "source": "https://github.com/mollyim/mollyim-android",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Molly is Android-only, and is aimed at people who already understand Signal and want a hardened client, which is a narrower audience than mainstream cross-platform apps.",
+     "source": "https://molly.im/",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Molly is distributed free of charge as an open-source Android app.",
+     "source": "https://github.com/mollyim/mollyim-android",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://molly.im/"
+    },
+    {
+     "label": "Source",
+     "url": "https://github.com/mollyim/mollyim-android"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "free"
+   },
+   "description": "A hardened Android fork of Signal for people who want extra local-device protection while staying on the Signal network. Only the Molly-FOSS build drops the proprietary Google components that ordinary Molly and Signal both include; there is no iOS or desktop version.",
+   "focuses": [
+    "Private",
+    "Open source",
+    "Android",
+    "Free",
+    "Signal-compatible"
+   ],
+   "valueSignature": {
+    "privacy": 77.25,
+    "cost": 74
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "GitHub",
+    "sourceLabels": [
+     "GitHub",
+     "molly.im"
+    ]
+   }
+  },
+  {
+   "code": "olvid",
+   "name": "Olvid",
+   "brand": "private messenger",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 94,
+    "openness": 78,
+    "portability": 58,
+    "respect": 92,
+    "accessibility": 58,
+    "economical": 90
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Olvid's Android repository says the app avoids a central user directory and does not need access to a user's contacts, so it can function without any personal information.",
+     "source": "https://github.com/olvid-io/olvid-android",
+     "asof": "2026"
+    },
+    "openness": {
+     "note": "Olvid for Android is published under the GNU Affero General Public License v3.",
+     "source": "https://github.com/olvid-io/olvid-android",
+     "asof": "2026"
+    },
+    "portability": {
+     "note": "Not relying on a central directory reduces identity lock-in, but contacts and conversations remain specific to Olvid's own network.",
+     "source": "https://github.com/olvid-io/olvid-android",
+     "asof": "2026"
+    },
+    "respect": {
+     "note": "Olvid's App Store listing says a user chooses who they talk to, will never receive unsolicited messages from an unknown source, and sees no spam or advertising.",
+     "source": "https://apps.apple.com/us/app/olvid/id1414865219",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Olvid is available on major mobile platforms and Mac, but the invitation-based contact setup and smaller user base make onboarding less casual than mainstream apps.",
+     "source": "https://apps.apple.com/us/app/olvid/id1414865219",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "The App Store lists Olvid as free with in-app purchases for individual and family subscriptions.",
+     "source": "https://apps.apple.com/us/app/olvid/id1414865219",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://olvid.io/"
+    },
+    {
+     "label": "Source",
+     "url": "https://github.com/olvid-io/olvid-android"
+    },
+    {
+     "label": "App Store",
+     "url": "https://apps.apple.com/us/app/olvid/id1414865219"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "freemium"
+   },
+   "description": "A French private messenger with no central user directory, so it never learns who a user's contacts are. It is free to install, with optional paid subscriptions, and is best for deliberate, invited contacts rather than casual reach.",
+   "focuses": [
+    "Private",
+    "Open source",
+    "No ads",
+    "Freemium",
+    "Encrypted"
+   ],
+   "valueSignature": {
+    "privacy": 80.5,
+    "cost": 74
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "GitHub",
+    "sourceLabels": [
+     "GitHub",
+     "apps.apple.com"
+    ]
+   }
+  },
+  {
+   "code": "beeper",
+   "name": "Beeper",
+   "brand": "universal chat inbox",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 62,
+    "openness": 70,
+    "portability": 72,
+    "respect": 70,
+    "accessibility": 86,
+    "economical": 82
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Beeper's developer docs say its natively supported bridges run either on your own device (On-Device Connections) or in Beeper's cloud (Beeper Cloud), which is a real difference in what Beeper itself can see depending on which mode a network uses.",
+     "source": "https://developers.beeper.com/bridges/",
+     "asof": "2026"
+    },
+    "openness": {
+     "note": "Beeper's GitHub organization says it is built on top of Matrix, an open-source chat protocol, and that it has open-sourced most of its backend code, including its bridge-manager tool for self-hosting.",
+     "source": "https://github.com/beeper",
+     "asof": "2026"
+    },
+    "portability": {
+     "note": "Beeper's own docs describe self-hosting options, including running your own bridges connected to your Beeper account, which is more portable than a single closed chat app, though each underlying network (WhatsApp, Telegram, and so on) still has its own separate policies.",
+     "source": "https://developers.beeper.com/bridges/",
+     "asof": "2026"
+    },
+    "respect": {
+     "note": "Beeper is funded through paid Beeper Plus and Beeper Plus Plus subscriptions on top of a free tier, rather than through advertising inside the inbox.",
+     "source": "https://help.beeper.com/en_US/beeper-plus/account-limits-everything-you-need-to-know",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Beeper combines more than ten chat networks into one inbox across mobile and desktop, which reduces app-switching for someone already using several separate messengers.",
+     "source": "https://developers.beeper.com/open-source/",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Beeper's free tier allows up to five total connected accounts; Beeper Plus raises that to ten accounts (three per network) for a monthly or yearly subscription, and Beeper Plus Plus removes the account cap for a higher subscription.",
+     "source": "https://help.beeper.com/en_US/beeper-plus/account-limits-everything-you-need-to-know",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.beeper.com/"
+    },
+    {
+     "label": "Open source",
+     "url": "https://developers.beeper.com/open-source/"
+    },
+    {
+     "label": "Bridges and self-hosting",
+     "url": "https://developers.beeper.com/bridges/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "freemium"
+   },
+   "description": "A Matrix-based inbox that combines other chat networks in one app rather than replacing them, which is convenient but means privacy and portability still depend on whichever network a given conversation actually runs on.",
+   "focuses": [
+    "Chat aggregator",
+    "Matrix",
+    "Open source",
+    "Freemium"
+   ],
+   "valueSignature": {
+    "privacy": 68.5,
+    "cost": 84
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "developers.beeper.com",
+    "sourceLabels": [
+     "developers.beeper.com",
+     "help.beeper.com",
+     "GitHub"
+    ]
+   }
+  }
+ ]
+}

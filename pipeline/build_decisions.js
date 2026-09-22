@@ -85,6 +85,16 @@ const HAND_AXIS_QUESTIONS = {
 };
 
 const COPY = {
+  // 2026-08-13. Five keys arrived with the swarm's waves. A criterion key has to be registered in
+  // three places before a decision page can be generated from it: KEY2THEME in the builder, its
+  // twin in research/verify_run.js, and this reader-facing phrasing. That is a real cost of a new
+  // axis, and it is the reason lens_check warns when a key is new to the corpus.
+  buyer_protection: ['buyer protection', 'Buyer protection', 'Do you want the seller to carry the loss?', 'Flexible', 'Stronger protection'],
+  cancellations: ['cancellations', 'Cancellations', 'How much does a cancelled trip cost you?', 'Flexible', 'Fewer cancellations'],
+  complaints: ['complaint record', 'Complaint record', 'Do you want the cleaner complaint record?', 'Flexible', 'Cleaner record'],
+  permanence: ['permanence', 'Permanence', 'Do you want what you pay for to stay there?', 'Flexible', 'More permanent'],
+  reliability: ['reliability', 'Reliability', 'Do you need it to run to schedule?', 'Flexible', 'More reliable'],
+  rewards: ['rewards', 'Rewards', 'Do you want richer ongoing rewards?', 'Flexible', 'Richer rewards'],
   accessibility: ['everyday access', 'Access', 'Do you need easier everyday access?', 'Flexible', 'Easier access'],
   artist_pay: ['artist pay', 'Artist pay', 'Should fairer artist pay count more?', 'Flexible', 'Fairer artist pay'],
   calm: ['attention load', 'Attention load', 'Do you want the calmer option?', 'Flexible', 'Calmer experience'],
@@ -132,8 +142,27 @@ const COPY = {
 };
 
 const TRADEOFFS = {
+  // 2026-08-13, the swarm's first waves. A tradeoff pair needs its own reader-facing question here
+  // before a decision page can be generated, which together with COPY and the two theme maps makes
+  // four registries a genuinely new axis has to enter. That cost is the argument for reusing an
+  // existing key wherever one honestly fits.
+  'repairability|longevity': ['repair-or-lifespan', 'Repair or lifespan', 'Easier to open and fix, or longer before the battery gives out?', ['Easier to fix', 'Lasts longer']],
+  'environment|durability': ['efficiency-or-durability', 'Efficiency or durability', 'Cheaper to run every wash, or built and legally supported to last?', ['Cheaper to run', 'Built to last']],
+  'ownership|certification': ['ownership-or-certification', 'Ownership or certification', 'Independently owned, or more rigorously verified?', ['Independently owned', 'More verified']],
+  'economical|safety': ['cost-or-safety', 'Cost or safety', 'Lower cost or less risk of the thing catching fire?', ['Lower cost', 'Lower risk']],
+  'accessibility|ownership': ['access-or-ownership', 'Access or ownership', 'Easier to get seen, or locally owned?', ['Easier access', 'Locally owned']],
+  'accessibility|complaints': ['access-or-complaints', 'Access or complaint record', 'Easier to qualify for or a cleaner complaint record?', ['Easier to qualify', 'Cleaner record']],
+  'accessibility|health': ['access-or-safety', 'Access or safety record', 'Cheaper and easier to find, or a cleaner safety record?', ['Easier to find', 'Cleaner record']],
+  'economical|accessibility': ['cost-or-convenience', 'Cost or convenience', 'Lower cost or less daily effort?', ['Lower cost', 'Less effort']],
+  'economical|reliability': ['cost-or-reliability', 'Cost or reliability', 'Lower cost or more likely to run to schedule?', ['Lower cost', 'More reliable']],
+  'economical|transparency': ['cost-or-disclosure', 'Cost or disclosure', 'Lower cost or more told to you before you commit?', ['Lower cost', 'More disclosed']],
+  'fees|buyer_protection': ['fees-or-protection', 'Fees or protection', 'Keep more of the sale, or be covered when something goes wrong?', ['Keep more', 'Be covered']],
+  'fees|rewards': ['fees-or-rewards', 'Fees or rewards', 'Lower annual fee or richer ongoing rewards?', ['Lower fee', 'Richer rewards']],
+  'price|certification': ['price-or-certification', 'Price or certification', 'Lower price or independently certified materials?', ['Lower price', 'Certified materials']],
+  'price|environment': ['price-or-generation', 'Price or generation', 'Lower bill or money that funds new renewable generation?', ['Lower bill', 'Funds generation']],
   'accessibility|privacy': ['access-or-privacy', 'Access or privacy', 'Easier access or less data exposure?', ['Easier access', 'Less exposure']],
   'accessibility|security': ['access-or-security', 'Access or security', 'Easier access or stronger security?', ['Easier access', 'Stronger security']],
+  'accessibility|transparency': ['access-or-transparency', 'Access or disclosure', 'Easier joining or clearer operator disclosure?', ['Easier joining', 'Clearer operator']],
   'catalog|artist_pay': ['catalog-or-artist-pay', 'Catalog or artist pay', 'Larger catalog or fairer artist pay?', ['Larger catalog', 'Fairer artist pay']],
   'economical|certification': ['cost-or-certification', 'Cost or certification', 'Lower cost or stronger certification?', ['Lower cost', 'Stronger certification']],
   'economical|durability': ['cost-or-durability', 'Cost or durability', 'Lower cost or longer useful life?', ['Lower cost', 'Longer life']],
@@ -144,6 +173,7 @@ const TRADEOFFS = {
   'economical|health': ['cost-or-safety', 'Cost or body safety', 'Lower cost or stronger body safety?', ['Lower cost', 'Body safety']],
   'economical|low_sugar': ['price-or-sugar', 'Price or sugar', 'Lower observed price or less sugar?', ['Lower price', 'Less sugar']],
   'economical|nutrition_grade': ['price-or-nutrition', 'Price or nutrition', 'Lower observed price or stronger nutrition?', ['Lower price', 'Stronger nutrition']],
+  'economical|openness': ['cost-or-openness', 'Cost or openness', 'Lower cost or a more open platform?', ['Lower cost', 'More open']],
   'economical|privacy': ['cost-or-privacy', 'Cost or privacy', 'Lower cost or less data exposure?', ['Lower cost', 'Less exposure']],
   'economical|protein': ['price-or-protein', 'Price or protein', 'Lower observed price or more protein?', ['Lower price', 'More protein']],
   'fees|accessibility': ['fees-or-access', 'Fees or access', 'Lower fees or broader availability?', ['Lower fees', 'Broader access']],

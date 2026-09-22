@@ -19,14 +19,19 @@ const EXPECTED_SCRIPTS = {
   'audit:a11y': 'node research/a11y_audit.js',
   'audit:contrast': 'node research/contrast_audit.js',
   'audit:citations': 'node research/citation_bundle_audit.js',
+  'audit:source-promise': 'node research/source_promise_audit.js',
   'audit:conformance': 'node research/validate_lens.js',
   'audit:linked-data': 'node research/linked_data_audit.js',
   'audit:flash-drive': 'node research/flash_drive_audit.js',
   'audit:funding': 'node research/funding_audit.js',
   'audit:freshness': 'node research/freshness_report.js',
+  'build:register-freshness': 'python pipeline/registers/build_freshness_queue.py',
+  'audit:register-freshness': 'python pipeline/registers/build_freshness_queue.py --check',
+  'audit:register-pass': 'node scripts/register-pass-check.mjs',
   'audit:well-known': 'node research/well_known_audit.js',
   'audit:stacks': 'node research/stacks_audit.js',
   'audit:routes': 'node research/public_route_audit.js',
+  'audit:route-protocol': 'node research/route_protocol_audit.js',
   'audit:first-use': 'node research/first_use_audit.js',
   'audit:presentation-ontology': 'node research/presentation_ontology_audit.js',
   'audit:presentation-design': 'node research/presentation_design_audit.js',
@@ -57,6 +62,7 @@ const EXPECTED_SCRIPTS = {
   'release:status': 'node scripts/release-status.mjs',
   'r1:preflight': 'node scripts/r1-preflight.mjs',
   'release:preflight': 'node scripts/release-preflight.mjs',
+  'check:delivery': 'node scripts/delivery-check.mjs',
   'predeploy': 'npm run prepare:public && npm run audit:deploy',
   'deploy': 'wrangler deploy',
   'wrangler:dry-run': 'npm run predeploy && wrangler deploy --dry-run'
@@ -162,6 +168,12 @@ const DOC_COMMANDS = {
     'npm run status:check',
     'npm run health:deploy',
     'npm run audit:commands'
+  ],
+  'docs/REGISTER-PASS-RUNBOOK.md': [
+    'npm run build:register-freshness',
+    'npm run audit:register-freshness',
+    'npm run audit:register-pass',
+    'npm run check:delivery'
   ]
 };
 

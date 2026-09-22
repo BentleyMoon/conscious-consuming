@@ -1,0 +1,35 @@
+{
+  "$schema": "../schemas/adoption-event.schema.json",
+  "kind": "cc-adoption-event-template",
+  "version": "1.0.0",
+  "id": "replace-with-event-id",
+  "gateId": "replace-with-registry-gate-id",
+  "eventType": "replace-with-allowed-event-type",
+  "subjectKey": "receipt-000",
+  "externalActorClass": "external-person",
+  "occurredAt": "2026-01-01T00:00:00Z",
+  "recordedAt": "2026-01-01T00:00:00Z",
+  "summary": "Describe only the externally caused action, without identity, contact details, private values, or sensitive decision details.",
+  "evidence": [
+    {
+      "kind": "private-receipt-id",
+      "reference": "receipt:replace-with-non-identifying-id",
+      "observedAt": "2026-01-01T00:00:00Z",
+      "note": "State what the retained receipt proves without copying its private body."
+    }
+  ],
+  "review": {
+    "status": "pending",
+    "rationale": "Pending founder or release-owner confirmation."
+  },
+  "privacy": {
+    "containsContactDetails": false,
+    "containsPrivateValues": false,
+    "redactionsApplied": true,
+    "note": "Only a pseudonymous receipt key and bounded evidence reference are retained."
+  },
+  "claimBoundary": {
+    "supports": "State the one gate-relevant fact this event can establish.",
+    "doesNotSupport": "State what this one event cannot establish about traction, quality, or broader adoption."
+  }
+}

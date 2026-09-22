@@ -40,11 +40,16 @@ const REQUIRED_SPACE = {
   md: '0.75rem',
   xl: '1.5rem'
 };
+// 2026-08-06: the shape scale went sharp, deliberately. Cards and panels sit on the paper at the
+// control radius; the pill is gone as a shape (3px). Five radius sizes and 44 full pills were the
+// measured fingerprint of the generic product look, and nothing on a survey plate has a rounded
+// end. If a value here drifts UP again, that is the old look returning, and this table is what
+// catches it.
 const REQUIRED_RADIUS = {
   control: '0.25rem',
-  card: '0.75rem',
-  panel: '1rem',
-  pill: '999px'
+  card: '0.25rem',
+  panel: '0.25rem',
+  pill: '3px'
 };
 const REQUIRED_DAY_CYCLE_CSS_VARS = [
   '--day-dawn-bg', '--day-dawn-surface', '--day-dawn-pill', '--day-dawn-line', '--day-dawn-ink', '--day-dawn-muted', '--day-dawn-hint', '--day-dawn-accent', '--day-dawn-warn',

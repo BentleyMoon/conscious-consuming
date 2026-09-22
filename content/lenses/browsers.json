@@ -1,0 +1,1046 @@
+{
+  "meta": {
+    "id": "browsers",
+    "label": "Browsers",
+    "type": "Services",
+    "primaryAxis": "privacy",
+    "tradeoff": [
+      "accessibility",
+      "privacy"
+    ],
+    "tradeoffLabels": [
+      "easiest",
+      "most private"
+    ],
+    "source": "Conscious Consuming (curated)",
+    "attribution": "Built from browser makers' own privacy and telemetry documentation, source repositories, regulator records and browser download pages, not measured data. Browser settings and defaults change between releases, so check current documentation before relying on any of these. Privacy reflects default tracking and fingerprinting protection, not what a setting can be turned up to; openness reflects whether the browser's own code, not just the rendering engine underneath it, is published and under what licence; respect reflects the maker's business model and any regulatory findings about market power over the browser; accessibility covers both how easy the browser is to start using and how compatible it is with ordinary sites and existing extensions. Suggest changes via Contribute.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": {
+          "privacy": 3,
+          "openness": 3,
+          "portability": 3,
+          "respect": 3,
+          "accessibility": 3
+        },
+        "x": []
+      },
+      "Most private": {
+        "w": {
+          "privacy": 5,
+          "respect": 4,
+          "openness": 2,
+          "portability": 2,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Open and portable": {
+        "w": {
+          "openness": 5,
+          "portability": 4,
+          "privacy": 3,
+          "respect": 2,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Escape surveillance": {
+        "w": {
+          "respect": 5,
+          "privacy": 4,
+          "openness": 3,
+          "portability": 1,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Easiest, most compatible": {
+        "w": {
+          "accessibility": 5,
+          "economical": 3,
+          "privacy": 2,
+          "respect": 1,
+          "openness": 1
+        },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    {
+      "key": "privacy",
+      "label": "Blocks tracking by default",
+      "source": "curated"
+    },
+    {
+      "key": "openness",
+      "label": "Open source",
+      "source": "curated"
+    },
+    {
+      "key": "portability",
+      "label": "Portable",
+      "source": "curated"
+    },
+    {
+      "key": "respect",
+      "label": "No surveillance business model",
+      "source": "curated"
+    },
+    {
+      "key": "accessibility",
+      "label": "Easy to start and compatible with sites",
+      "source": "curated"
+    },
+    {
+      "key": "economical",
+      "label": "Economical",
+      "source": "curated"
+    }
+  ],
+  "products": [
+    {
+      "code": "tor-browser",
+      "name": "Tor Browser",
+      "brand": "browser",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 100,
+        "openness": 100,
+        "portability": 85,
+        "respect": 95,
+        "accessibility": 42,
+        "economical": 100
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Tor Project says Tor Browser isolates each site visited so third-party trackers and ads cannot follow you, and prevents someone watching your connection from knowing what sites you visit.",
+          "source": "https://www.torproject.org/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Tor Project distributes Tor Browser as open-source privacy software.",
+          "source": "https://www.torproject.org/download/",
+          "asof": "2026"
+        },
+        "portability": {
+          "note": "Tor Browser is a standards-based Firefox derivative available across major desktop and mobile platforms, so switching devices does not require a different browser.",
+          "source": "https://www.torproject.org/download/",
+          "asof": "2026"
+        },
+        "respect": {
+          "note": "The Tor Project describes itself as a US 501(c)(3) nonprofit, founded in 2006 to maintain Tor's development, with no advertising business tied to the browser.",
+          "source": "https://www.torproject.org/about/history/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Tor Browser is a free download for major platforms, but routing all traffic through Tor is markedly slower than an ordinary browser and some sites block or challenge Tor traffic.",
+          "source": "https://www.torproject.org/",
+          "asof": "2026"
+        },
+        "economical": {
+          "note": "Tor Browser is free to download and use.",
+          "source": "https://www.torproject.org/download/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.torproject.org/"
+        },
+        {
+          "label": "Download",
+          "url": "https://www.torproject.org/download/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "free"
+      },
+      "description": "The strongest anti-tracking, anti-surveillance browser here, free and open source, built and maintained by a nonprofit. Routing everything through Tor makes ordinary browsing noticeably slower and some sites harder to reach.",
+      "focuses": [
+        "Private",
+        "Open source",
+        "Nonprofit"
+      ]
+    },
+    {
+      "code": "firefox",
+      "name": "Firefox",
+      "brand": "browser",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 85,
+        "openness": 100,
+        "portability": 90,
+        "respect": 62,
+        "accessibility": 90,
+        "economical": 100
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Mozilla's 2019 rollout announcement says Enhanced Tracking Protection is on by default for new users as part of the Standard setting, blocking known third-party tracking cookies.",
+          "source": "https://blog.mozilla.org/en/firefox/firefox-now-available-with-enhanced-tracking-protection-by-default/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "GitHub describes mozilla-firefox/firefox as the official repository of Mozilla's Firefox web browser, published for public inspection.",
+          "source": "https://github.com/mozilla-firefox/firefox",
+          "asof": "2026"
+        },
+        "portability": {
+          "note": "Firefox is a cross-platform browser built on open web standards, with ordinary bookmark, password and history export tools.",
+          "source": "https://www.firefox.com/en-US/user-privacy/",
+          "asof": "2026"
+        },
+        "respect": {
+          "note": "Firefox's own privacy page says Mozilla does not sell what little it knows about users, but Mozilla's 2024 annual report states the majority of its revenue still comes from commercial search partnerships, the kind of deal that keeps a default search engine in front of every Firefox user.",
+          "source": "https://www.mozilla.org/en-US/foundation/annualreport/2024/article/financing-an-open-internet-mozillas-path-forward/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Firefox is a mature, free, cross-platform browser with broad site compatibility and an established extension ecosystem.",
+          "source": "https://www.firefox.com/",
+          "asof": "2026"
+        },
+        "economical": {
+          "note": "Firefox's download and marketing pages list no purchase price for the browser.",
+          "source": "https://www.firefox.com/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.firefox.com/"
+        },
+        {
+          "label": "User privacy",
+          "url": "https://www.firefox.com/en-US/user-privacy/"
+        },
+        {
+          "label": "Source",
+          "url": "https://github.com/mozilla-firefox/firefox"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "free"
+      },
+      "description": "An open-source browser with tracker blocking on by default and broad compatibility. Mozilla says it does not sell user data, but its own annual report says most of its revenue still comes from commercial search deals.",
+      "focuses": [
+        "Open source",
+        "Tracking protection",
+        "Nonprofit",
+        "Free"
+      ]
+    },
+    {
+      "code": "brave",
+      "name": "Brave",
+      "brand": "browser",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 85,
+        "openness": 80,
+        "portability": 80,
+        "respect": 68,
+        "accessibility": 85,
+        "economical": 100
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Brave says Shields block trackers, cross-site cookies, phishing and fingerprinting by default, with no extra downloads or settings needed.",
+          "source": "https://brave.com/shields/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Brave's browser source is public on GitHub, built on Chromium and licensed under MPL-2.0.",
+          "source": "https://github.com/brave/brave-browser",
+          "asof": "2026"
+        },
+        "portability": {
+          "note": "Brave is Chromium-based, so extensions and browser data behave much like Chrome's, making migration in either direction straightforward.",
+          "source": "https://github.com/brave/brave-browser",
+          "asof": "2026"
+        },
+        "respect": {
+          "note": "Default tracker blocking is respectful of a visitor's attention, but Brave's own optional Brave Rewards/Ads system keeps an advertising layer inside the same product.",
+          "source": "https://brave.com/shields/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Brave looks and behaves like Chrome, supports Chrome extensions, and is free to install, which makes switching to it low-friction.",
+          "source": "https://brave.com/shields/",
+          "asof": "2026"
+        },
+        "economical": {
+          "note": "Brave is free to download and use.",
+          "source": "https://github.com/brave/brave-browser",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://brave.com/"
+        },
+        {
+          "label": "Shields",
+          "url": "https://brave.com/shields/"
+        },
+        {
+          "label": "Source",
+          "url": "https://github.com/brave/brave-browser"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "free"
+      },
+      "description": "A Chromium browser with strong tracker blocking on by default and a public source repository. Its own optional ads and rewards system is a reminder that advertising is still part of the product.",
+      "focuses": [
+        "Tracking protection",
+        "Open source",
+        "Chromium"
+      ]
+    },
+    {
+      "code": "safari",
+      "name": "Safari",
+      "brand": "browser",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 72,
+        "openness": 30,
+        "portability": 55,
+        "respect": 62,
+        "accessibility": 90,
+        "economical": 100
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Apple says Safari's Intelligent Tracking Prevention uses on-device machine learning to fight cross-site tracking, including hiding a user's IP address from trackers.",
+          "source": "https://www.apple.com/privacy/features/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Safari itself is closed Apple software, though the underlying WebKit engine is described as a fast, open-source web browser engine.",
+          "source": "https://webkit.org/",
+          "asof": "2026"
+        },
+        "portability": {
+          "note": "Safari syncs passwords, bookmarks, history and tabs across Mac, iPad, iPhone and Apple Watch, but there is no current Safari for Windows, Android or Linux, so switching away from Apple devices means switching browsers too.",
+          "source": "https://www.apple.com/safari/",
+          "asof": "2026"
+        },
+        "respect": {
+          "note": "The European Commission's Digital Markets Act gatekeepers portal lists Safari as one of Apple's designated core platform services, meaning EU regulators judged it to have gatekeeper-level market power over how people browse on Apple devices.",
+          "source": "https://digital-markets-act.ec.europa.eu/gatekeepers-portal_en",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Safari comes preinstalled on every Mac, iPhone and iPad and is tightly integrated with those devices, which makes it the effortless default for Apple users and unavailable to everyone else.",
+          "source": "https://www.apple.com/safari/",
+          "asof": "2026"
+        },
+        "economical": {
+          "note": "Safari is included at no extra cost on Apple devices.",
+          "source": "https://www.apple.com/safari/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.apple.com/safari/"
+        },
+        {
+          "label": "Privacy features",
+          "url": "https://www.apple.com/privacy/features/"
+        },
+        {
+          "label": "DMA gatekeeper portal",
+          "url": "https://digital-markets-act.ec.europa.eu/gatekeepers-portal_en"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "free"
+      },
+      "description": "Apple's default browser, with real on-device tracking prevention and deep integration on Apple hardware. It is closed, does not exist for Windows, Android or Linux, and is one of the EU's designated DMA gatekeeper services.",
+      "focuses": [
+        "Apple ecosystem",
+        "Tracking protection",
+        "Closed source"
+      ]
+    },
+    {
+      "code": "chrome",
+      "name": "Google Chrome",
+      "brand": "browser",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 36,
+        "openness": 55,
+        "portability": 75,
+        "respect": 26,
+        "accessibility": 95,
+        "economical": 100
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Google's privacy policy says information collected includes Chrome browsing history synced with a Google Account, along with identifiers that persist a user's activity across sessions.",
+          "source": "https://policies.google.com/privacy?hl=en-US",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "The underlying Chromium project describes itself as open source, but Google Chrome adds proprietary Google components on top of it and is not itself published as open source.",
+          "source": "https://www.chromium.org/Home/",
+          "asof": "2026"
+        },
+        "portability": {
+          "note": "Chrome supports ordinary bookmark and password export and runs on nearly every platform, though signing in with a Google Account ties browsing history to that account.",
+          "source": "https://www.google.com/chrome/",
+          "asof": "2026"
+        },
+        "respect": {
+          "note": "The European Commission's Digital Markets Act gatekeepers portal lists Google Chrome as one of Alphabet's designated core platform services, one of 22 services across six companies that EU regulators found to have gatekeeper-level market power.",
+          "source": "https://digital-markets-act.ec.europa.eu/gatekeepers-portal_en",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Chrome highlights performance features like Energy Saver and Memory Saver, a large extension catalogue, and sign-in sync of bookmarks and passwords across devices.",
+          "source": "https://www.google.com/chrome/",
+          "asof": "2026"
+        },
+        "economical": {
+          "note": "Chrome's download page lists no purchase price; it is offered as a standard free download.",
+          "source": "https://www.google.com/chrome/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.google.com/chrome/"
+        },
+        {
+          "label": "Google privacy policy",
+          "url": "https://policies.google.com/privacy?hl=en-US"
+        },
+        {
+          "label": "DMA gatekeeper portal",
+          "url": "https://digital-markets-act.ec.europa.eu/gatekeepers-portal_en"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "free"
+      },
+      "description": "The dominant browser, free, fast and compatible with nearly everything. It is also the browser the EU has judged to give Google gatekeeper-level market power, and Google's own privacy policy covers synced browsing history and cross-service identifiers.",
+      "focuses": [
+        "Google",
+        "Closed source",
+        "Chromium",
+        "Mainstream"
+      ]
+    },
+    {
+      "code": "edge",
+      "name": "Microsoft Edge",
+      "brand": "browser",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 55,
+        "openness": 55,
+        "portability": 75,
+        "respect": 42,
+        "accessibility": 90,
+        "economical": 100
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Microsoft's own documentation says Edge's Balanced tracking-prevention level, the default, blocks trackers from sites a user has not engaged with and blocks known malicious trackers like fingerprinters and cryptominers, while allowing more tracking than the Strict level.",
+          "source": "https://learn.microsoft.com/en-us/microsoft-edge/web-platform/tracking-prevention",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Edge is built on the open-source Chromium project, but Microsoft's own Edge browser layered on top is proprietary.",
+          "source": "https://learn.microsoft.com/en-us/microsoft-edge/web-platform/tracking-prevention",
+          "asof": "2026"
+        },
+        "portability": {
+          "note": "Chromium compatibility and exportable browser data make switching in or out of Edge straightforward, though Windows and Microsoft account integration add some pull to stay.",
+          "source": "https://explore.microsoft.com/edge/",
+          "asof": "2026"
+        },
+        "respect": {
+          "note": "Microsoft's privacy statement covers broad diagnostic, account, browsing and search data collection used for product improvement and personalized advertising, and the European Commission concluded in February 2024 that Edge, unlike Chrome and Safari, should not be designated a Digital Markets Act gatekeeper service.",
+          "source": "https://digital-markets-act.ec.europa.eu/commission-closes-market-investigations-microsofts-and-apples-services-under-digital-markets-act-2024-02-13_en",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Edge is preinstalled on Windows, optimized for it, and bundles free Microsoft 365 web apps alongside the browser.",
+          "source": "https://explore.microsoft.com/edge/",
+          "asof": "2026"
+        },
+        "economical": {
+          "note": "Edge is a free download with no purchase price listed.",
+          "source": "https://explore.microsoft.com/edge/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://explore.microsoft.com/edge/"
+        },
+        {
+          "label": "Tracking prevention",
+          "url": "https://learn.microsoft.com/en-us/microsoft-edge/web-platform/tracking-prevention"
+        },
+        {
+          "label": "Privacy statement",
+          "url": "https://www.microsoft.com/en-us/privacy/privacystatement"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "free"
+      },
+      "description": "A capable Chromium browser, free and tightly built into Windows, with default tracking prevention that still allows some tracking at its Balanced setting. The EU concluded Edge does not have the market power of Chrome or Safari.",
+      "focuses": [
+        "Chromium",
+        "Closed source",
+        "Mainstream"
+      ]
+    },
+    {
+      "code": "librewolf",
+      "name": "LibreWolf",
+      "brand": "privacy-hardened Firefox fork",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 94,
+        "openness": 96,
+        "portability": 68,
+        "respect": 92,
+        "accessibility": 55,
+        "economical": 100
+      },
+      "provenance": {
+        "privacy": {
+          "note": "LibreWolf says it hardens Firefox against tracking and fingerprinting, removes telemetry and data collection, and ships with uBlock Origin already included.",
+          "source": "https://librewolf.net/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "LibreWolf publishes its source and describes itself as a community-driven open-source browser project.",
+          "source": "https://librewolf.net/",
+          "asof": "2026"
+        },
+        "portability": {
+          "note": "LibreWolf stays close to Firefox and can import similar data, but it intentionally disables DRM playback by default and depends on package managers or the user for updates rather than an automatic updater.",
+          "source": "https://librewolf.net/docs/faq/",
+          "asof": "2026"
+        },
+        "respect": {
+          "note": "LibreWolf describes its priorities as privacy, security and user freedom, explicitly over experiments, adware, telemetry or platform-growth features.",
+          "source": "https://librewolf.net/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "LibreWolf has no built-in auto-update, disables DRM content playback by default, and can break some streaming or DRM-protected sites, trading everyday convenience for hardened defaults.",
+          "source": "https://librewolf.net/docs/faq/",
+          "asof": "2026"
+        },
+        "economical": {
+          "note": "LibreWolf is free to download and use.",
+          "source": "https://librewolf.net/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://librewolf.net/"
+        },
+        {
+          "label": "FAQ",
+          "url": "https://librewolf.net/docs/faq/"
+        },
+        {
+          "label": "Source",
+          "url": "https://codeberg.org/librewolf"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "free"
+      },
+      "description": "A hardened, open-source Firefox fork that strips telemetry and disables DRM playback by default. Those same defaults mean no automatic updates and some streaming sites will not work without extra setup.",
+      "focuses": [
+        "Open source",
+        "Tracking protection",
+        "Private",
+        "Free"
+      ]
+    },
+    {
+      "code": "duckduckgo-browser",
+      "name": "DuckDuckGo Browser",
+      "brand": "privacy browser",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 86,
+        "openness": 35,
+        "portability": 62,
+        "respect": 82,
+        "accessibility": 88,
+        "economical": 100
+      },
+      "provenance": {
+        "privacy": {
+          "note": "DuckDuckGo's own tracking-protections documentation lists third-party tracker loading protection, cookie protections, CNAME cloaking protection, fingerprinting defenses and HTTPS upgrading, and says DuckDuckGo never tracks a user's searches.",
+          "source": "https://duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "DuckDuckGo publishes its web-tracking protections in detail, but the consumer browser itself is an operated proprietary app rather than a published open-source browser project.",
+          "source": "https://duckduckgo.com/app",
+          "asof": "2026"
+        },
+        "portability": {
+          "note": "The browser is available on Windows, Mac, iOS and Android, but its strongest privacy bundle is specific to DuckDuckGo rather than portable to another browser.",
+          "source": "https://duckduckgo.com/app",
+          "asof": "2026"
+        },
+        "respect": {
+          "note": "DuckDuckGo's browser is built around blocking trackers and ads by default rather than an advertising-and-profiling business inside the browsing experience itself.",
+          "source": "https://duckduckgo.com/app",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "DuckDuckGo markets the browser as a one-download privacy upgrade across major desktop and mobile platforms.",
+          "source": "https://duckduckgo.com/app",
+          "asof": "2026"
+        },
+        "economical": {
+          "note": "DuckDuckGo Browser is free to download and use.",
+          "source": "https://duckduckgo.com/app",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://duckduckgo.com/app"
+        },
+        {
+          "label": "Tracking protections",
+          "url": "https://duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "free"
+      },
+      "description": "A mainstream-friendly privacy browser that blocks trackers and ads by default with no configuration needed. It is free and easy to adopt, but it is a closed, DuckDuckGo-operated product rather than an open-source project.",
+      "focuses": [
+        "Private",
+        "Tracking protection",
+        "Mainstream",
+        "Free"
+      ]
+    },
+    {
+      "code": "opera-browser",
+      "name": "Opera Browser",
+      "brand": "browser",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 58,
+        "openness": 28,
+        "portability": 74,
+        "respect": 46,
+        "accessibility": 88,
+        "economical": 96
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Opera advertises an ad blocker and tracking protection built into the browser, and says its free browser VPN neither collects nor stores any data, with the no-log policy independently audited by Deloitte.",
+          "source": "https://www.opera.com/secure-private-browser",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Opera is a proprietary Chromium-based browser rather than a published open-source browser distribution.",
+          "source": "https://www.opera.com/secure-private-browser",
+          "asof": "2026"
+        },
+        "portability": {
+          "note": "Chromium compatibility and Opera Sync make switching in and out manageable, though the built-in VPN, ad blocker and AI features are Opera-specific.",
+          "source": "https://help.opera.com/en/latest/security-and-privacy/",
+          "asof": "2026"
+        },
+        "respect": {
+          "note": "Opera's own privacy notice describes collecting technical, usage and marketing data, including through Google Analytics and Microsoft Clarity, and the browser markets built-in AI, VPN and account features alongside its privacy tools.",
+          "source": "https://www.operalimited.com/privacy-policy",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Opera is a mature, easy-to-install mainstream browser bundling an ad blocker, tracker blocker, free VPN and built-in AI assistant.",
+          "source": "https://www.opera.com/secure-private-browser",
+          "asof": "2026"
+        },
+        "economical": {
+          "note": "Opera's browser and its browser-only VPN are free; a separate VPN Pro subscription for device-wide protection costs around four dollars a month.",
+          "source": "https://www.opera.com/features/free-vpn",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.opera.com/secure-private-browser"
+        },
+        {
+          "label": "Privacy policy",
+          "url": "https://www.operalimited.com/privacy-policy"
+        },
+        {
+          "label": "Free VPN",
+          "url": "https://www.opera.com/features/free-vpn"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "freemium"
+      },
+      "description": "A recognizable mainstream browser with a free built-in ad blocker, tracker blocker and VPN. Its own privacy notice also describes broad technical, usage and marketing data collection, so the built-in privacy tools sit alongside an ordinary data-driven business.",
+      "focuses": [
+        "Chromium",
+        "Closed source",
+        "Mainstream",
+        "Freemium"
+      ]
+    },
+    {
+      "code": "zen-browser",
+      "name": "Zen Browser",
+      "brand": "Firefox-based browser",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 80,
+        "openness": 92,
+        "portability": 76,
+        "respect": 84,
+        "accessibility": 58,
+        "economical": 100
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Zen's own security documentation says online safety and privacy are its top priorities, built on Firefox's tracking-protection and encrypted-connection infrastructure.",
+          "source": "https://docs.zen-browser.app/security",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Zen's desktop repository is public on GitHub, describes itself as open source, and is licensed under MPL-2.0.",
+          "source": "https://github.com/zen-browser/desktop",
+          "asof": "2026"
+        },
+        "portability": {
+          "note": "Zen is Firefox-based and cross-platform, and can sync through Mozilla's own Firefox Sync infrastructure, which Zen says it cannot access.",
+          "source": "https://github.com/zen-browser/desktop",
+          "asof": "2026"
+        },
+        "respect": {
+          "note": "Zen is an open-source, community-run project rather than an advertising or data business layered on top of Firefox.",
+          "source": "https://github.com/zen-browser/desktop",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Zen is a newer browser with a smaller support ecosystem and less battle-tested compatibility than Firefox or Chrome, though it is free to download.",
+          "source": "https://docs.zen-browser.app/security",
+          "asof": "2026"
+        },
+        "economical": {
+          "note": "Zen Browser is free to download and use.",
+          "source": "https://github.com/zen-browser/desktop",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://zen-browser.app/"
+        },
+        {
+          "label": "Security docs",
+          "url": "https://docs.zen-browser.app/security"
+        },
+        {
+          "label": "Source",
+          "url": "https://github.com/zen-browser/desktop"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "free"
+      },
+      "description": "A newer, open-source, Firefox-based browser aimed at Arc-like tab and workspace features without giving up privacy-oriented defaults. It is smaller and less battle-tested than Firefox or Chrome.",
+      "focuses": [
+        "Open source",
+        "Private",
+        "Firefox-based",
+        "Free"
+      ]
+    },
+    {
+      "code": "orion-browser",
+      "name": "Orion Browser",
+      "brand": "Kagi WebKit browser",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 90,
+        "openness": 30,
+        "portability": 62,
+        "respect": 88,
+        "accessibility": 55,
+        "economical": 78
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Kagi says Orion has zero-telemetry browsing with built-in ad blocking and anti-tracking, and no AI data collection.",
+          "source": "https://orionbrowser.com/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Orion is a proprietary Kagi browser built on WebKit rather than a published open-source browser project.",
+          "source": "https://orionbrowser.com/",
+          "asof": "2026"
+        },
+        "portability": {
+          "note": "Orion supports Safari, Chrome and Firefox extensions, but is available for macOS, iOS and iPadOS today, with Linux still in beta and Windows still in development, which limits where it can travel with a user.",
+          "source": "https://orionbrowser.com/",
+          "asof": "2026"
+        },
+        "respect": {
+          "note": "Kagi's privacy documentation says Orion has no built-in telemetry, so it cannot phone home and expose a user's data.",
+          "source": "https://help.kagi.com/orion/privacy-and-security/respecting-privacy.html",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Orion is strongest for Apple users today; Linux support is in beta and Windows support is still in development, so most people cannot yet use it as their everyday browser.",
+          "source": "https://orionbrowser.com/",
+          "asof": "2026"
+        },
+        "economical": {
+          "note": "Orion is a free download funded by optional Orion Plus subscriptions or lifetime licenses.",
+          "source": "https://orionbrowser.com/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://orionbrowser.com/"
+        },
+        {
+          "label": "Privacy docs",
+          "url": "https://help.kagi.com/orion/privacy-and-security/respecting-privacy.html"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "freemium"
+      },
+      "description": "A zero-telemetry WebKit browser from Kagi that supports Safari, Chrome and Firefox extensions. It is strongest for Apple users today, since Windows support is still in development and Linux is in beta.",
+      "focuses": [
+        "Private",
+        "No ads",
+        "Apple ecosystem",
+        "Freemium"
+      ]
+    },
+    {
+      "code": "vivaldi",
+      "name": "Vivaldi",
+      "brand": "browser",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 78,
+        "openness": 58,
+        "portability": 78,
+        "respect": 80,
+        "accessibility": 78,
+        "economical": 100
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Vivaldi's browser privacy policy says browsing history, typed search keywords and downloaded content are stored in the user's own client profile, with only a small daily check-in message (device ID, version, CPU architecture, screen resolution) sent to Vivaldi's servers in Iceland.",
+          "source": "https://vivaldi.com/privacy/browser/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Vivaldi says roughly 92 per cent of the browser's code comes from open-source Chromium, 3 per cent is Vivaldi's own published open-source backend code, and only the remaining 5 per cent, the UI layer, is closed source.",
+          "source": "https://vivaldi.com/blog/technology/why-isnt-vivaldi-browser-open-source/",
+          "asof": "2026"
+        },
+        "portability": {
+          "note": "Vivaldi supports importing and exporting bookmarks, passwords, history and other browser data from other browsers, making it straightforward to move in or out of.",
+          "source": "https://help.vivaldi.com/desktop/tools/import-and-export-browser-data/",
+          "asof": "2026"
+        },
+        "respect": {
+          "note": "Vivaldi is not built on an ad-network business, and its privacy policy frames data minimization as a core product value rather than a compliance afterthought.",
+          "source": "https://vivaldi.com/privacy/browser/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Vivaldi is a free browser for major desktop and mobile platforms, though its dense, feature-rich interface takes more getting used to than a stripped-down browser.",
+          "source": "https://vivaldi.com/download/",
+          "asof": "2026"
+        },
+        "economical": {
+          "note": "Vivaldi is free to download and use.",
+          "source": "https://vivaldi.com/download/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://vivaldi.com/"
+        },
+        {
+          "label": "Privacy policy",
+          "url": "https://vivaldi.com/privacy/browser/"
+        },
+        {
+          "label": "Why isn't Vivaldi open source",
+          "url": "https://vivaldi.com/blog/technology/why-isnt-vivaldi-browser-open-source/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "free"
+      },
+      "description": "A highly customizable, mostly open-source browser that keeps most personal data on the device and sends only a small daily check-in to Vivaldi's own servers. Only its UI layer, about 5 per cent of the code, stays closed.",
+      "focuses": [
+        "Private",
+        "Free",
+        "Portable"
+      ]
+    },
+    {
+      "code": "mullvad-browser",
+      "name": "Mullvad Browser",
+      "brand": "privacy browser",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 94,
+        "openness": 90,
+        "portability": 62,
+        "respect": 96,
+        "accessibility": 45,
+        "economical": 100
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Mullvad Browser is developed together with the Tor Project and designed to minimize tracking and fingerprinting, with telemetry removed rather than collected and later disabled.",
+          "source": "https://mullvad.net/en/browser",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Mullvad Browser's source is published publicly on GitHub under the Mozilla Public License v2.",
+          "source": "https://github.com/mullvad/mullvad-browser",
+          "asof": "2026"
+        },
+        "portability": {
+          "note": "The browser is available for Windows, macOS and Linux, but there is no mobile version, and it intentionally limits fingerprintable customization rather than offering a full sync ecosystem.",
+          "source": "https://mullvad.net/en/download/browser/linux",
+          "asof": "2026"
+        },
+        "respect": {
+          "note": "Mullvad says it does not earn any money from the browser itself; its income comes from its separate VPN service.",
+          "source": "https://mullvad.net/en/browser",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Mullvad Browser is free for desktop, but privacy-hardened defaults and no mobile version make it a narrower daily driver than mainstream browsers.",
+          "source": "https://mullvad.net/en/download/browser/linux",
+          "asof": "2026"
+        },
+        "economical": {
+          "note": "Mullvad Browser is free to use, with or without a Mullvad VPN subscription.",
+          "source": "https://mullvad.net/en/browser",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://mullvad.net/en/browser"
+        },
+        {
+          "label": "Source",
+          "url": "https://github.com/mullvad/mullvad-browser"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "free"
+      },
+      "description": "A Tor Project and Mullvad collaboration built to reduce tracking and fingerprinting, free and open source, funded by Mullvad's separate VPN business rather than the browser itself. Desktop only, with no mobile version.",
+      "focuses": [
+        "Open source",
+        "Private",
+        "No telemetry",
+        "Free"
+      ]
+    }
+  ]
+}

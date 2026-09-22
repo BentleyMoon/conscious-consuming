@@ -1,0 +1,367 @@
+{
+  "format": "open-values-register-evidence-bundle",
+  "version": "1.0.0",
+  "registerId": "cfpb-complaints",
+  "criterion": "complaints",
+  "snapshot": {
+    "snapshotId": "2026-08-14-84710d0cc675",
+    "capturedAt": "2026-08-14T19:28:43Z",
+    "queryUrl": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&size=0",
+    "scope": "CFPB mortgage complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, loan count, or market share",
+    "payloadSha256": "5b5ebb0925c8a779d8a6f20bb114bc174ffcef0bd026df594f26a8756250789a"
+  },
+  "generatedFrom": {
+    "snapshotManifest": "pipeline/registers/raw/cfpb-complaints/2026-08-14-84710d0cc675.snapshot.json",
+    "snapshotManifestSha256": "8fa8b37f470d5a19392bbfeab36025482f1e61cc77f09c2ff595facbcdb962a4",
+    "mapping": "content/register-mappings/cfpb-complaints.json",
+    "mappingSha256": "914e84715a6544196c7ec5f1ea41b4b019cf15a10caad3f5b71bf411ab332a92",
+    "observations": "pipeline/registers/observations/cfpb-complaints-2026-08-14-84710d0cc675.observations.json",
+    "observationsSha256": "cff4d52474fa1904633209dc409b698f10a9f6e3e9f370e82e9642f32e07cdd1",
+    "coverageMatrixSha256": "5b21f894e51fd1c3bfafba6d102d8e0610fd1c80691c131ce49850209e62c62f",
+    "generatorVersion": "1.1.0"
+  },
+  "counts": {
+    "matchedMappings": 10,
+    "recordsFound": 10,
+    "scopedAbsences": 0,
+    "entries": 10
+  },
+  "reviewRequirement": {
+    "method": "lowest-sha256-of-bundle-inputs-and-entry-id",
+    "sampleSize": 10,
+    "entryIds": [
+      "mortgages/bank-of-america",
+      "mortgages/chase-home-lending",
+      "mortgages/crosscountry-mortgage",
+      "mortgages/freedom-mortgage",
+      "mortgages/loandepot",
+      "mortgages/navy-federal-credit-union",
+      "mortgages/pennymac",
+      "mortgages/rocket-mortgage",
+      "mortgages/united-wholesale-mortgage",
+      "mortgages/wells-fargo-home-mortgage"
+    ]
+  },
+  "entries": [
+    {
+      "entryId": "mortgages/bank-of-america",
+      "cid": "mortgages",
+      "entityCode": "bank-of-america",
+      "entityName": "Bank of America",
+      "entityIdentitySha256": "059ec222029b400259c66fb24c443bc4acfa71e1227eaf8b279d0dd0cde02f8a",
+      "legalName": "BANK OF AMERICA, NATIONAL ASSOCIATION",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Mortgage|BANK OF AMERICA, NATIONAL ASSOCIATION"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "BANK OF AMERICA, NATIONAL ASSOCIATION",
+        "Mortgage"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-b6b3406d1c12c38a",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For BANK OF AMERICA, NATIONAL ASSOCIATION, Consumer complaint database returned 1 matching record. Category complaint total: 46136; Company complaint total: 1034; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Mortgage. Search terms: BANK OF AMERICA, NATIONAL ASSOCIATION, Mortgage. Scope: CFPB mortgage complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, loan count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "mortgages/chase-home-lending",
+      "cid": "mortgages",
+      "entityCode": "chase-home-lending",
+      "entityName": "Chase Home Lending",
+      "entityIdentitySha256": "e698c49bdab23c1b3d8ff60dcba2f03b3df11e387a89a0b7d5a380987982bc65",
+      "legalName": "JPMORGAN CHASE & CO.",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Mortgage|JPMORGAN CHASE & CO."
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "JPMORGAN CHASE & CO.",
+        "Mortgage"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-e88239cd659d022f",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For JPMORGAN CHASE & CO., Consumer complaint database returned 1 matching record. Category complaint total: 46136; Company complaint total: 1034; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Mortgage. Search terms: JPMORGAN CHASE & CO., Mortgage. Scope: CFPB mortgage complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, loan count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "mortgages/crosscountry-mortgage",
+      "cid": "mortgages",
+      "entityCode": "crosscountry-mortgage",
+      "entityName": "CrossCountry Mortgage",
+      "entityIdentitySha256": "b19b9443b5fe8ca87bc26e7c23d1daf5c4ce8144492964ffce5cdd584b71cf37",
+      "legalName": "CrossCountry Mortgage LLC",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Mortgage|CrossCountry Mortgage LLC"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "CrossCountry Mortgage LLC",
+        "Mortgage"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-a8f8018fa3ba12fd",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For CrossCountry Mortgage LLC, Consumer complaint database returned 1 matching record. Category complaint total: 46136; Company complaint total: 452; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Mortgage. Search terms: CrossCountry Mortgage LLC, Mortgage. Scope: CFPB mortgage complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, loan count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "mortgages/freedom-mortgage",
+      "cid": "mortgages",
+      "entityCode": "freedom-mortgage",
+      "entityName": "Freedom Mortgage",
+      "entityIdentitySha256": "32b56d903f49a87f46d23768ee7eb19c755e1d5bf10be6f148c335926c39ee47",
+      "legalName": "Freedom Mortgage Company",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Mortgage|Freedom Mortgage Company"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "Freedom Mortgage Company",
+        "Mortgage"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-2a70d6c3c1af1acc",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For Freedom Mortgage Company, Consumer complaint database returned 1 matching record. Category complaint total: 46136; Company complaint total: 2133; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Mortgage. Search terms: Freedom Mortgage Company, Mortgage. Scope: CFPB mortgage complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, loan count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "mortgages/loandepot",
+      "cid": "mortgages",
+      "entityCode": "loandepot",
+      "entityName": "loanDepot",
+      "entityIdentitySha256": "d94a4fa505d7ddb409d7b9784641f7513f396a7713bb4f7eec4daf219f8bf956",
+      "legalName": "LD Holdings Group, LLC",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Mortgage|LD Holdings Group, LLC"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "LD Holdings Group, LLC",
+        "Mortgage"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-62c122936090da62",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For LD Holdings Group, LLC, Consumer complaint database returned 1 matching record. Category complaint total: 46136; Company complaint total: 398; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Mortgage. Search terms: LD Holdings Group, LLC, Mortgage. Scope: CFPB mortgage complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, loan count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "mortgages/navy-federal-credit-union",
+      "cid": "mortgages",
+      "entityCode": "navy-federal-credit-union",
+      "entityName": "Navy Federal Credit Union",
+      "entityIdentitySha256": "3528f50115a24830e8be420b155a63a4cb6cb35cfd2c90edd1e03e4ef46bafad",
+      "legalName": "NAVY FEDERAL CREDIT UNION",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Mortgage|NAVY FEDERAL CREDIT UNION"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "Mortgage",
+        "NAVY FEDERAL CREDIT UNION"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-338017776a13b5d9",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For NAVY FEDERAL CREDIT UNION, Consumer complaint database returned 1 matching record. Category complaint total: 46136; Company complaint total: 430; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Mortgage. Search terms: Mortgage, NAVY FEDERAL CREDIT UNION. Scope: CFPB mortgage complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, loan count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "mortgages/pennymac",
+      "cid": "mortgages",
+      "entityCode": "pennymac",
+      "entityName": "PennyMac",
+      "entityIdentitySha256": "8e566ad46cf01866ac8acc712bccced9f72ac2cd781b49d3b554c3a22b59709d",
+      "legalName": "PENNYMAC LOAN SERVICES, LLC.",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Mortgage|PENNYMAC LOAN SERVICES, LLC."
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "Mortgage",
+        "PENNYMAC LOAN SERVICES, LLC."
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-e444154fce7906bc",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For PENNYMAC LOAN SERVICES, LLC., Consumer complaint database returned 1 matching record. Category complaint total: 46136; Company complaint total: 1130; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Mortgage. Search terms: Mortgage, PENNYMAC LOAN SERVICES, LLC.. Scope: CFPB mortgage complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, loan count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "mortgages/rocket-mortgage",
+      "cid": "mortgages",
+      "entityCode": "rocket-mortgage",
+      "entityName": "Rocket Mortgage",
+      "entityIdentitySha256": "0b7d09273daca049b9c1c424596f455980ebc855d90e399d2e4f8b7567cccf4a",
+      "legalName": "Rocket Mortgage, LLC",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Mortgage|Rocket Mortgage, LLC"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "Mortgage",
+        "Rocket Mortgage, LLC"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-218135fd99f7e15c",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For Rocket Mortgage, LLC, Consumer complaint database returned 1 matching record. Category complaint total: 46136; Company complaint total: 993; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Mortgage. Search terms: Mortgage, Rocket Mortgage, LLC. Scope: CFPB mortgage complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, loan count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "mortgages/united-wholesale-mortgage",
+      "cid": "mortgages",
+      "entityCode": "united-wholesale-mortgage",
+      "entityName": "United Wholesale Mortgage",
+      "entityIdentitySha256": "700f51fea316e2c1219bca6f0b0c67d148f7ef76a92cc08926245a2a6f1b182c",
+      "legalName": "United Shore Financial Services, LLC",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Mortgage|United Shore Financial Services, LLC"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "Mortgage",
+        "United Shore Financial Services, LLC"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-42fc70d1eb65e594",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For United Shore Financial Services, LLC, Consumer complaint database returned 1 matching record. Category complaint total: 46136; Company complaint total: 654; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Mortgage. Search terms: Mortgage, United Shore Financial Services, LLC. Scope: CFPB mortgage complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, loan count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "mortgages/wells-fargo-home-mortgage",
+      "cid": "mortgages",
+      "entityCode": "wells-fargo-home-mortgage",
+      "entityName": "Wells Fargo Home Mortgage",
+      "entityIdentitySha256": "0a127a8c8b6df145bf212148cca31fb27c5af79386d6272c3d144233d18fa2f0",
+      "legalName": "WELLS FARGO & COMPANY",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Mortgage|WELLS FARGO & COMPANY"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "Mortgage",
+        "WELLS FARGO & COMPANY"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-8f755d80b479ec9b",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For WELLS FARGO & COMPANY, Consumer complaint database returned 1 matching record. Category complaint total: 46136; Company complaint total: 2722; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Mortgage. Search terms: Mortgage, WELLS FARGO & COMPANY. Scope: CFPB mortgage complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, loan count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Mortgage&size=0",
+        "asof": "2026"
+      }
+    }
+  ]
+}

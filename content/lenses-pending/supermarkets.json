@@ -1,0 +1,627 @@
+{
+  "meta": {
+    "id": "supermarkets",
+    "label": "Supermarkets",
+    "type": "Services",
+    "primaryAxis": "ethics",
+    "tradeoff": [
+      "economical",
+      "ethics"
+    ],
+    "tradeoffLabels": [
+      "cheapest basket of goods",
+      "best-treated suppliers"
+    ],
+    "source": "Conscious Consuming",
+    "attribution": "Two things differ most between these shops: what a basket costs, and how the shop treats the farms and factories that supply it. Ethics scores are the Groceries Code Adjudicator's own 2026 annual survey, run by the polling company YouGov for the statutory adjudicator among direct suppliers to the 14 large retailers designated under the Groceries Supply Code of Practice; the score is the share of a retailer's suppliers who say it complies with the Code 'consistently' or 'mostly'. Amazon's suppliers gave it by far the lowest score, and the adjudicator opened a formal investigation into Amazon's payment practices under the Code in June 2025, still open when the survey was published. Economical scores come from the Competition and Markets Authority's own July 2023 review of the groceries sector, which reproduces a May 2023 basket-price comparison from the independent tracking firm Which? across eight retailers; this catalogue converts that basket total into a 0 to 100 scale, cheapest at 95 and priciest at 40, scaled linearly between. That is a single dated snapshot rather than a live price index, so relative prices will have moved since, and the other six retailers on this list were not part of that comparison and carry no economical score. Accessibility scores describe how widely a retailer's own online delivery reaches, drawn from each retailer's or its delivery partner's own current statements and converted into a comparable number by this catalogue rather than an official ranking; Aldi and Lidl do not offer online home delivery in the UK, and B&M's only home delivery trial, which covered furniture and electricals rather than groceries, was withdrawn within a year. B&M and Home Bargains are discount variety retailers whose groceries sit inside a wider general-merchandise range rather than a full weekly shop, included here because both are among the 14 retailers designated as large grocery retailers under the Code. This dataset covers the UK; Aldi does not operate in Northern Ireland, and prices, ranges and delivery reach vary there and elsewhere. Food co-operatives, farmers markets and vegetable box schemes are separate decisions on this catalogue and are not repeated here. Reviewed 2026. Suggest corrections through Contribute.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": {
+          "economical": 3,
+          "ethics": 3,
+          "accessibility": 2
+        },
+        "x": []
+      },
+      "Cheapest basket": {
+        "w": {
+          "economical": 5,
+          "ethics": 2,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Best for suppliers": {
+        "w": {
+          "ethics": 5,
+          "economical": 1,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Easiest to get delivered": {
+        "w": {
+          "accessibility": 5,
+          "economical": 2,
+          "ethics": 1
+        },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    {
+      "key": "economical",
+      "label": "Price of a common shopping basket (competition regulator's analysis, 2023)",
+      "source": "curated"
+    },
+    {
+      "key": "ethics",
+      "label": "Treatment of suppliers (Groceries Code Adjudicator survey, 2026)",
+      "source": "curated"
+    },
+    {
+      "key": "accessibility",
+      "label": "Reach of online home delivery",
+      "source": "curated"
+    }
+  ],
+  "products": [
+    {
+      "code": "tesco",
+      "name": "Tesco",
+      "brand": "Tesco plc",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "The UK's largest grocery retailer by market share, running large supermarkets, Tesco Express convenience stores and an online delivery service.",
+      "scores": {
+        "economical": 68,
+        "ethics": 95.99,
+        "accessibility": 92
+      },
+      "provenance": {
+        "economical": {
+          "note": "The Competition and Markets Authority's July 2023 review of the groceries sector reproduces Which?'s May 2023 basket-price comparison, recording Tesco's basket at £77.56, the fifth cheapest of the eight retailers compared.",
+          "source": "https://assets.publishing.service.gov.uk/media/64b80adaef5371000d7aeefb/Competition__choice_and_rising_prices_in_groceries.pdf",
+          "asof": "2023"
+        },
+        "ethics": {
+          "note": "The Groceries Code Adjudicator's 2026 annual survey records 95.99 percent of Tesco's suppliers saying it complies with the Code 'consistently' or 'mostly'.",
+          "source": "https://assets.publishing.service.gov.uk/media/69dfab35a68b527bd9408f2b/GCA_2026_annual_survey_information_pack.pdf",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "The CMA's July 2023 review states that Tesco delivers to more than 99 percent of UK postcodes.",
+          "source": "https://assets.publishing.service.gov.uk/media/64b80adaef5371000d7aeefb/Competition__choice_and_rising_prices_in_groceries.pdf",
+          "asof": "2023"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.tesco.com/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Full-service",
+        "Market leader"
+      ]
+    },
+    {
+      "code": "sainsburys",
+      "name": "Sainsbury's",
+      "brand": "J Sainsbury plc",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "The UK's second-largest supermarket chain, running large stores, Sainsbury's Local convenience shops and online grocery delivery.",
+      "scores": {
+        "economical": 69,
+        "ethics": 96.91,
+        "accessibility": 90
+      },
+      "provenance": {
+        "economical": {
+          "note": "The same May 2023 basket-price comparison, reproduced in the CMA's July 2023 review, records Sainsbury's basket at £77.13, the fourth cheapest of the eight retailers compared.",
+          "source": "https://assets.publishing.service.gov.uk/media/64b80adaef5371000d7aeefb/Competition__choice_and_rising_prices_in_groceries.pdf",
+          "asof": "2023"
+        },
+        "ethics": {
+          "note": "The Groceries Code Adjudicator's 2026 annual survey records 96.91 percent of Sainsbury's suppliers saying it complies with the Code 'consistently' or 'mostly', second highest of the 14 designated retailers.",
+          "source": "https://assets.publishing.service.gov.uk/media/69dfab35a68b527bd9408f2b/GCA_2026_annual_survey_information_pack.pdf",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "The CMA's July 2023 review states that Sainsbury's delivers to 98 percent of UK households.",
+          "source": "https://assets.publishing.service.gov.uk/media/64b80adaef5371000d7aeefb/Competition__choice_and_rising_prices_in_groceries.pdf",
+          "asof": "2023"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.sainsburys.co.uk/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Full-service"
+      ]
+    },
+    {
+      "code": "asda",
+      "name": "Asda",
+      "brand": "Asda Group Limited",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A UK supermarket chain, owned by TDR Capital and the Issa family since 2021, that positions itself against the discounters on price.",
+      "scores": {
+        "economical": 71,
+        "ethics": 90.95,
+        "accessibility": 90
+      },
+      "provenance": {
+        "economical": {
+          "note": "The same May 2023 basket-price comparison, reproduced in the CMA's July 2023 review, records Asda's basket at £76.45, the third cheapest of the eight retailers compared.",
+          "source": "https://assets.publishing.service.gov.uk/media/64b80adaef5371000d7aeefb/Competition__choice_and_rising_prices_in_groceries.pdf",
+          "asof": "2023"
+        },
+        "ethics": {
+          "note": "The Groceries Code Adjudicator's 2026 annual survey records 90.95 percent of Asda's suppliers saying it complies with the Code 'consistently' or 'mostly'.",
+          "source": "https://assets.publishing.service.gov.uk/media/69dfab35a68b527bd9408f2b/GCA_2026_annual_survey_information_pack.pdf",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "The CMA's July 2023 review states that Asda delivers to 98 percent of UK households, the same figure it gives for Sainsbury's.",
+          "source": "https://assets.publishing.service.gov.uk/media/64b80adaef5371000d7aeefb/Competition__choice_and_rising_prices_in_groceries.pdf",
+          "asof": "2023"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.asda.com/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Full-service"
+      ]
+    },
+    {
+      "code": "morrisons",
+      "name": "Morrisons",
+      "brand": "Wm Morrison Supermarkets Limited",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A UK supermarket chain, owned by Clayton, Dubilier & Rice since 2021, that also runs its own food manufacturing and processing sites.",
+      "scores": {
+        "economical": 63,
+        "ethics": 89.11,
+        "accessibility": 82
+      },
+      "provenance": {
+        "economical": {
+          "note": "The same May 2023 basket-price comparison, reproduced in the CMA's July 2023 review, records Morrisons' basket at £79.09, the second most expensive of the four major supermarkets compared.",
+          "source": "https://assets.publishing.service.gov.uk/media/64b80adaef5371000d7aeefb/Competition__choice_and_rising_prices_in_groceries.pdf",
+          "asof": "2023"
+        },
+        "ethics": {
+          "note": "The Groceries Code Adjudicator's 2026 annual survey records 89.11 percent of Morrisons' suppliers saying it complies with the Code 'consistently' or 'mostly', the second lowest of the 14 designated retailers.",
+          "source": "https://assets.publishing.service.gov.uk/media/69dfab35a68b527bd9408f2b/GCA_2026_annual_survey_information_pack.pdf",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Morrisons' own October 2025 announcement of its 'Morrisons Now' rapid delivery service says it had launched in 158 stores and would reach 420 stores nationwide by the end of that month, delivering within an hour, on top of its existing scheduled delivery through groceries.morrisons.com.",
+          "source": "https://www.morrisons-corporate.com/media-centre/corporate-news/morrisons-launches-morrisons-now-fresh-food-fast-delivered-in-as-little-as-one-hour/",
+          "asof": "2025"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://groceries.morrisons.com/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Full-service"
+      ]
+    },
+    {
+      "code": "aldi",
+      "name": "Aldi",
+      "brand": "Aldi Stores Limited",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A German-owned discount supermarket chain carrying a smaller range than the major supermarkets, priced to undercut them; it does not operate in Northern Ireland.",
+      "scores": {
+        "economical": 95,
+        "ethics": 94.33,
+        "accessibility": 20
+      },
+      "provenance": {
+        "economical": {
+          "note": "The CMA's July 2023 review reproduces Which?'s May 2023 basket-price comparison, recording Aldi's basket at £68.60, the cheapest of the eight retailers compared.",
+          "source": "https://assets.publishing.service.gov.uk/media/64b80adaef5371000d7aeefb/Competition__choice_and_rising_prices_in_groceries.pdf",
+          "asof": "2023"
+        },
+        "ethics": {
+          "note": "The Groceries Code Adjudicator's 2026 annual survey records 94.33 percent of Aldi's suppliers saying it complies with the Code 'consistently' or 'mostly'.",
+          "source": "https://assets.publishing.service.gov.uk/media/69dfab35a68b527bd9408f2b/GCA_2026_annual_survey_information_pack.pdf",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "The CMA's July 2023 review states that the discounters, Aldi and Lidl, do not offer online shopping in the UK, and that Aldi is not present in Northern Ireland at all.",
+          "source": "https://assets.publishing.service.gov.uk/media/64b80adaef5371000d7aeefb/Competition__choice_and_rising_prices_in_groceries.pdf",
+          "asof": "2023"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.aldi.co.uk/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Discounter"
+      ]
+    },
+    {
+      "code": "lidl",
+      "name": "Lidl",
+      "brand": "Lidl Great Britain Limited",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A German-owned discount supermarket chain, similar in format to Aldi, competing mainly on price across a smaller range of products.",
+      "scores": {
+        "economical": 89,
+        "ethics": 92.31,
+        "accessibility": 20
+      },
+      "provenance": {
+        "economical": {
+          "note": "The same May 2023 basket-price comparison, reproduced in the CMA's July 2023 review, records Lidl's basket at £70.51, the second cheapest of the eight retailers compared.",
+          "source": "https://assets.publishing.service.gov.uk/media/64b80adaef5371000d7aeefb/Competition__choice_and_rising_prices_in_groceries.pdf",
+          "asof": "2023"
+        },
+        "ethics": {
+          "note": "The Groceries Code Adjudicator's 2026 annual survey records 92.31 percent of Lidl's suppliers saying it complies with the Code 'consistently' or 'mostly'.",
+          "source": "https://assets.publishing.service.gov.uk/media/69dfab35a68b527bd9408f2b/GCA_2026_annual_survey_information_pack.pdf",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "The same CMA review states that neither discounter, Aldi nor Lidl, offers online shopping in the UK.",
+          "source": "https://assets.publishing.service.gov.uk/media/64b80adaef5371000d7aeefb/Competition__choice_and_rising_prices_in_groceries.pdf",
+          "asof": "2023"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.lidl.co.uk/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Discounter"
+      ]
+    },
+    {
+      "code": "waitrose",
+      "name": "Waitrose",
+      "brand": "Waitrose & Partners (John Lewis Partnership)",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "The supermarket arm of the employee-owned John Lewis Partnership, positioned at the premium end of the market on range and quality.",
+      "scores": {
+        "economical": 40,
+        "ethics": 97.83
+      },
+      "provenance": {
+        "economical": {
+          "note": "The same May 2023 basket-price comparison, reproduced in the CMA's July 2023 review, records Waitrose's basket at £86.91, the most expensive of the eight retailers compared.",
+          "source": "https://assets.publishing.service.gov.uk/media/64b80adaef5371000d7aeefb/Competition__choice_and_rising_prices_in_groceries.pdf",
+          "asof": "2023"
+        },
+        "ethics": {
+          "note": "The Groceries Code Adjudicator's 2026 annual survey records 97.83 percent of Waitrose's suppliers saying it complies with the Code 'consistently' or 'mostly', the highest of the 14 designated retailers for the second year running.",
+          "source": "https://assets.publishing.service.gov.uk/media/69dfab35a68b527bd9408f2b/GCA_2026_annual_survey_information_pack.pdf",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.waitrose.com/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Premium",
+        "Employee-owned"
+      ]
+    },
+    {
+      "code": "co-op",
+      "name": "Co-op",
+      "brand": "Co-operative Group",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A consumer co-operative owned by its members, running mostly small and mid-sized convenience stores rather than large supermarkets.",
+      "scores": {
+        "ethics": 95.82,
+        "accessibility": 78
+      },
+      "provenance": {
+        "ethics": {
+          "note": "The Groceries Code Adjudicator's 2026 annual survey records 95.82 percent of Co-op's suppliers saying it complies with the Code 'consistently' or 'mostly', down from 98 percent the year before but still in the upper half of the 14 designated retailers.",
+          "source": "https://assets.publishing.service.gov.uk/media/69dfab35a68b527bd9408f2b/GCA_2026_annual_survey_information_pack.pdf",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Deliveroo's own announcement of Co-op's rollout on Deliveroo Express says the partnership covers nearly 1,400 Co-op stores and that about 86 percent of the UK population can now access Co-op groceries online through it, delivered in as little as 60 minutes.",
+          "source": "https://deliveroo.co.uk/more/news-articles/co-op-joins-deliveroo-express",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.coop.co.uk/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Convenience-led",
+        "Member-owned"
+      ]
+    },
+    {
+      "code": "iceland",
+      "name": "Iceland",
+      "brand": "Iceland Foods Ltd",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A UK retailer specialising in frozen food and promotions on major brands, positioned at the lower-price end of the market.",
+      "scores": {
+        "ethics": 91.84,
+        "accessibility": 75
+      },
+      "provenance": {
+        "ethics": {
+          "note": "The Groceries Code Adjudicator's 2026 annual survey records 91.84 percent of Iceland's suppliers saying it complies with the Code 'consistently' or 'mostly'.",
+          "source": "https://assets.publishing.service.gov.uk/media/69dfab35a68b527bd9408f2b/GCA_2026_annual_survey_information_pack.pdf",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Iceland's own site says orders over £40 qualify for free next-day delivery with no delivery pass required, and that same-day delivery costs £6, or £3 during sales.",
+          "source": "https://www.iceland.co.uk/blog/iceland-delivery-options/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.iceland.co.uk/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Frozen specialist",
+        "Discounter"
+      ]
+    },
+    {
+      "code": "marks-and-spencer",
+      "name": "Marks & Spencer",
+      "brand": "Marks and Spencer Group plc",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A UK retailer whose food business sells almost entirely own-label products from smaller stores than the major supermarkets.",
+      "scores": {
+        "ethics": 94.71,
+        "accessibility": 65
+      },
+      "provenance": {
+        "ethics": {
+          "note": "The Groceries Code Adjudicator's 2026 annual survey records 94.71 percent of M&S's suppliers saying it complies with the Code 'consistently' or 'mostly'.",
+          "source": "https://assets.publishing.service.gov.uk/media/69dfab35a68b527bd9408f2b/GCA_2026_annual_survey_information_pack.pdf",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "M&S's own corporate site describes its joint venture with Ocado, which carries the M&S food range for home delivery and has added over 750 new M&S products to what Ocado offers; M&S does not run a separate grocery delivery service of its own.",
+          "source": "https://corporate.marksandspencer.com/newsroom/blog/its-delivery-day-ocado",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.marksandspencer.com/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Premium",
+        "Mostly own-label"
+      ]
+    },
+    {
+      "code": "ocado",
+      "name": "Ocado",
+      "brand": "Ocado Retail (joint venture of Ocado Group and Marks & Spencer)",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "An online-only grocery retailer with no physical stores, delivering from regional fulfilment centres and carrying the M&S food range.",
+      "scores": {
+        "economical": 49,
+        "ethics": 94.44,
+        "accessibility": 85
+      },
+      "provenance": {
+        "economical": {
+          "note": "The same May 2023 basket-price comparison, reproduced in the CMA's July 2023 review, records Ocado's basket at £83.90, the second most expensive of the eight retailers compared.",
+          "source": "https://assets.publishing.service.gov.uk/media/64b80adaef5371000d7aeefb/Competition__choice_and_rising_prices_in_groceries.pdf",
+          "asof": "2023"
+        },
+        "ethics": {
+          "note": "The Groceries Code Adjudicator's 2026 annual survey records 94.44 percent of Ocado's suppliers saying it complies with the Code 'consistently' or 'mostly'.",
+          "source": "https://assets.publishing.service.gov.uk/media/69dfab35a68b527bd9408f2b/GCA_2026_annual_survey_information_pack.pdf",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Ocado's own corporate site describes Ocado Retail as 'a pure-play online grocery retail business serving customers in the UK, with a geographic coverage of over 80% of UK households'; it has no physical stores.",
+          "source": "https://www.ocadogroup.com/about-us",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.ocado.com/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Online-only"
+      ]
+    },
+    {
+      "code": "amazon",
+      "name": "Amazon",
+      "brand": "Amazon.com, Inc.",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "The online retailer's UK grocery activity, including its own same-day delivery of fresh groceries and its wholesale supply relationships with other retailers.",
+      "scores": {
+        "ethics": 68.58,
+        "accessibility": 35
+      },
+      "provenance": {
+        "ethics": {
+          "note": "The Groceries Code Adjudicator's 2026 annual survey records 68.58 percent of Amazon's suppliers saying it complies with the Code 'consistently' or 'mostly', by far the lowest of the 14 designated retailers; every other retailer in the survey scored at least 89 percent.",
+          "source": "https://assets.publishing.service.gov.uk/media/69dfab35a68b527bd9408f2b/GCA_2026_annual_survey_information_pack.pdf",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Amazon's own announcement of same-day fresh grocery delivery in the UK says the service is available in parts of Central and East London only, with plans to expand to more postcodes and areas 'in the coming months'.",
+          "source": "https://www.aboutamazon.com/news/retail/amazon-grocery-same-day-delivery-uk",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.amazon.co.uk/"
+        },
+        {
+          "label": "GCA notice of investigation into Amazon, opened June 2025",
+          "url": "https://www.gov.uk/government/publications/groceries-code-adjudicator-investigation-into-amazoncom-inc/notice-of-investigation"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Online marketplace"
+      ]
+    },
+    {
+      "code": "bm",
+      "name": "B&M",
+      "brand": "B&M European Value Retail",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A discount variety retailer selling homeware, garden and general merchandise alongside a groceries range, rather than operating as a full supermarket.",
+      "scores": {
+        "ethics": 92.09,
+        "accessibility": 10
+      },
+      "provenance": {
+        "ethics": {
+          "note": "The Groceries Code Adjudicator's 2026 annual survey records 92.09 percent of B&M's suppliers saying it complies with the Code 'consistently' or 'mostly'.",
+          "source": "https://assets.publishing.service.gov.uk/media/69dfab35a68b527bd9408f2b/GCA_2026_annual_survey_information_pack.pdf",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "The trade paper The Grocer reports that B&M's only home delivery trial, covering around 1,000 bulkier general-merchandise items such as furniture and electricals rather than groceries, ran from June 2022 and was quietly withdrawn by the end of January 2023.",
+          "source": "https://www.thegrocer.co.uk/news/bandm-drops-home-delivery-after-less-than-a-year/678349.article",
+          "asof": "2023"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.bmstores.co.uk/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Discount variety"
+      ]
+    },
+    {
+      "code": "home-bargains",
+      "name": "Home Bargains",
+      "brand": "TJ Morris Ltd",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A discount variety retailer, trading as Home Bargains, selling homeware and general merchandise alongside a groceries range.",
+      "scores": {
+        "ethics": 90.64,
+        "accessibility": 45
+      },
+      "provenance": {
+        "ethics": {
+          "note": "The Groceries Code Adjudicator's 2026 annual survey records 90.64 percent of Home Bargains' suppliers saying it complies with the Code 'consistently' or 'mostly'.",
+          "source": "https://assets.publishing.service.gov.uk/media/69dfab35a68b527bd9408f2b/GCA_2026_annual_survey_information_pack.pdf",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Home Bargains' own site lists a Groceries department among its online categories and offers free 'Saver Delivery' once an order reaches £100 of eligible items; it does not describe a dedicated grocery delivery service comparable to a supermarket's.",
+          "source": "https://home.bargains/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.homebargains.co.uk/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Discount variety"
+      ]
+    }
+  ]
+}

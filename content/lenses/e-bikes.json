@@ -1,0 +1,330 @@
+{
+  "meta": {
+    "id": "e-bikes",
+    "label": "E-bikes",
+    "type": "Products",
+    "primaryAxis": "safety",
+    "tradeoff": [
+      "economical",
+      "safety"
+    ],
+    "tradeoffLabels": [
+      "cheapest price",
+      "least fire and battery risk"
+    ],
+    "source": "Conscious Consuming (curated)",
+    "attribution": "These are not e-bike models. They are the routes a person actually uses to get one, because the risk that matters most for an e-bike, whether its battery and electrical system are certified against a recognized fire-safety standard, tracks the route far more reliably than it tracks any one model name. Consumer Reports tells buyers to consider only e-bikes and replacement batteries tested by UL or another nationally recognized laboratory. New York City now requires that certification by law after battery fires killed 18 people there in 2023, and the UK's product safety regulator names conversion kits and unknown sellers as its two biggest concerns. The core trade-off is price against that certification: the cheapest routes, an unfamiliar import or a do-it-yourself conversion kit, are exactly the ones regulators and fire services warn about, and the routes that verify a battery cost more or reach fewer people. Sourced from the New York City Council, London Fire Brigade, the UK's Office for Product Safety and Standards, UK legislation defining what counts as an electrically assisted pedal cycle, Consumer Reports, a Portland State University research center, and the certification pages of Rad Power Bikes, Trek and Upway; every score links its source and date. Not financial or legal advice. Reviewed 2026-08. Dispute or correct any rating via Contribute.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": { "economical": 3, "safety": 3, "accessibility": 3 },
+        "x": []
+      },
+      "Cheapest route": {
+        "w": { "economical": 5, "safety": 2, "accessibility": 3 },
+        "x": []
+      },
+      "Safest battery": {
+        "w": { "safety": 5, "economical": 2, "accessibility": 2 },
+        "x": []
+      },
+      "Easiest to get": {
+        "w": { "accessibility": 5, "economical": 2, "safety": 2 },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    { "key": "economical", "label": "Cheaper price", "source": "curated" },
+    { "key": "safety", "label": "Certified, inspected or built to a recognized fire-safety standard", "source": "curated" },
+    { "key": "accessibility", "label": "Easy to get this way", "source": "curated" }
+  ],
+  "products": [
+    {
+      "code": "independent-bike-shop-ebike",
+      "name": "Independent local bike shop",
+      "brand": "sells major brands, staff know e-bikes",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A shop not tied to a single manufacturer, selling e-bikes it can explain, fit and service. Consumer Reports treats this as the safer default route precisely because it lets a buyer ask whether a specific bike carries recognized certification before paying for it.",
+      "scores": { "economical": 30, "safety": 82 },
+      "provenance": {
+        "economical": {
+          "note": "Consumer Reports' e-bike buying guide warns that a big-box bike can leave a buyer \"spending any money you saved trying to get a budget bike to work properly,\" which only makes sense if a bike shop's price is genuinely higher up front.",
+          "source": "https://www.consumerreports.org/health/electric-bikes/buying-guide/",
+          "asof": "2026"
+        },
+        "safety": {
+          "note": "Consumer Reports says \"most bike shops sell e-bikes, and the sales and service staff are typically quite knowledgeable about them,\" and separately tells buyers to \"consider only bikes (and replacement batteries) that have been tested by Underwriters Laboratory (UL) or another nationally recognized laboratory,\" a question a knowledgeable shop can actually answer.",
+          "source": "https://www.consumerreports.org/health/electric-bikes/buying-guide/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Consumer Reports e-bike buying guide", "url": "https://www.consumerreports.org/health/electric-bikes/buying-guide/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Staff know e-bikes", "Costs more", "Can confirm certification"]
+    },
+    {
+      "code": "certified-direct-to-consumer-brand",
+      "name": "Direct-to-consumer brand with UL certification",
+      "brand": "example: Rad Power Bikes, Aventon",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "An online-direct e-bike brand that publishes third-party certification for its own electrical system rather than asking a buyer to take its word for it. Rad Power Bikes and Aventon both certify current models to UL 2849, the US standard covering the battery, motor, controller and charger as one system.",
+      "scores": { "safety": 85 },
+      "provenance": {
+        "safety": {
+          "note": "Rad Power Bikes states that \"both the batteries and electrical systems for the Radster Road, Radster Trail, RadWagon 5, and RadExpand 5 Plus are certified to UL 2849 and 2271 standards,\" and that UL 2849 testing \"ensures electrical, fire, and shock safety for owners of ebikes with rechargeable lithium batteries.\"",
+          "source": "https://www.radpowerbikes.com/blogs/the-scenic-route/what-ul-certified-means",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "What UL certified means (Rad Power Bikes)", "url": "https://www.radpowerbikes.com/blogs/the-scenic-route/what-ul-certified-means" },
+        { "label": "Aventon UL-certified e-bikes", "url": "https://www.aventon.com/en-ca/collections/ul-certified-ebikes" }
+      ],
+      "region": ["US"],
+      "focuses": ["UL 2849 certified", "No local storefront", "Ships direct"]
+    },
+    {
+      "code": "manufacturer-certified-preowned-trek-ebike",
+      "name": "Manufacturer certified pre-owned (Trek Red Barn Refresh)",
+      "brand": "factory-refurbished, sold through trekbikes.com",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Trek's own trade-in and resale program, which accepts e-bikes up to two years old and puts every bike through the same inspection as a used analog bike, including a check of outstanding recalls and service bulletins on the electrical system.",
+      "scores": { "economical": 60, "safety": 90 },
+      "provenance": {
+        "economical": {
+          "note": "Trek describes Red Barn Refresh bikes as coming with \"a discounted price tag as someone else has already used the bike,\" letting a buyer \"get more bike for your money\" than paying for the same model new.",
+          "source": "https://www.trekbikes.com/us/en_US/red-barn-refresh/FAQ/",
+          "asof": "2026"
+        },
+        "safety": {
+          "note": "Every bike, including e-bikes accepted at less than two years old, gets a \"comprehensive 151-point inspection process\" that includes serial number verification and \"checking all service bulletins, service information, and recalls to potentially address,\" plus a transferable limited lifetime frame warranty and a complimentary first year of service. Only bikes in \"good to excellent condition\" are accepted.",
+          "source": "https://www.trekbikes.com/us/en_US/red-barn-refresh/FAQ/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Red Barn Refresh FAQ", "url": "https://www.trekbikes.com/us/en_US/red-barn-refresh/FAQ/" }
+      ],
+      "region": ["US"],
+      "focuses": ["151-point inspection", "Recall check included", "E-bikes under 2 years only"]
+    },
+    {
+      "code": "certified-used-marketplace-upway",
+      "name": "Certified pre-owned e-bike marketplace (Upway)",
+      "brand": "cross-brand refurbished e-bike marketplace",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "An online marketplace that buys used e-bikes across many brands, inspects and refurbishes each one in its own service centers, and resells them with a written condition report, rather than passing a stranger's bike straight to the next buyer.",
+      "scores": { "safety": 80 },
+      "provenance": {
+        "safety": {
+          "note": "Upway states that \"each bike we receive is subject to a detailed 50-inspection point review\" covering the frame, brakes, wheels, drivetrain, battery and motor, that bikes are \"inspected, refurbished, and certified in Upway's U.S. UpCenters by Master Mechanics,\" and that every e-bike comes with \"a 1-year warranty against mechanical and electrical defects.\"",
+          "source": "https://upway.co/pages/upway-certified",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Upway Certified", "url": "https://upway.co/pages/upway-certified" }
+      ],
+      "region": ["US"],
+      "focuses": ["50-point inspection", "1-year warranty", "Cross-brand"]
+    },
+    {
+      "code": "big-box-store-ebike",
+      "name": "Big-box or mass-merchant store",
+      "brand": "Walmart, Target and similar general retailers",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "General retailers that stock e-bikes alongside groceries and toys, usually the lowest sticker price for an e-bike anywhere. Store staff are generalists rather than bicycle or battery specialists, and a buyer has no one on hand to confirm whether a specific model carries the certification Consumer Reports recommends.",
+      "scores": { "economical": 75, "safety": 20 },
+      "provenance": {
+        "economical": {
+          "note": "Consumer Reports warns that a big-box e-bike can leave a buyer \"spending any money you saved trying to get a budget bike to work properly,\" which only makes sense if the up-front price is genuinely lower than a bike shop's.",
+          "source": "https://www.consumerreports.org/health/electric-bikes/buying-guide/",
+          "asof": "2026"
+        },
+        "safety": {
+          "note": "Consumer Reports says big-box salespeople \"are seldom bicycle experts,\" and separately recommends buying \"only bikes (and replacement batteries) that have been tested by Underwriters Laboratory (UL) or another nationally recognized laboratory,\" a check a general retail floor is not set up to confirm for a shopper on the spot.",
+          "source": "https://www.consumerreports.org/health/electric-bikes/buying-guide/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Consumer Reports e-bike buying guide", "url": "https://www.consumerreports.org/health/electric-bikes/buying-guide/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Cheapest sticker price", "Generalist staff", "Certification not confirmed at point of sale"]
+    },
+    {
+      "code": "unfamiliar-online-marketplace-ebike",
+      "name": "Unfamiliar online brand or marketplace import",
+      "brand": "cheap, uncertified, no local presence",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A cheap e-bike or replacement battery bought from a brand a buyer had not heard of before searching, through a general online marketplace. This is the specific route New York City and the UK's product safety regulator both point to when they warn about uncertified batteries.",
+      "scores": { "safety": 12 },
+      "provenance": {
+        "safety": {
+          "note": "New York City's Local Law 39 bars the sale of e-bikes and batteries not certified to UL 2849, 2271 or 2272, and the City Council reports that since enforcement began, the Department of Consumer and Worker Protection has issued \"40 cease-and-desist letters and more than 25 violations to online retailers\" specifically, on top of over 650 inspections of brick-and-mortar sellers.",
+          "source": "https://council.nyc.gov/press/2024/10/09/2710/",
+          "asof": "2024"
+        }
+      },
+      "links": [
+        { "label": "NYC Council on e-bike battery enforcement", "url": "https://council.nyc.gov/press/2024/10/09/2710/" },
+        { "label": "UK government safety message on e-bikes and e-scooters", "url": "https://www.gov.uk/guidance/government-safety-message-on-e-bikes-and-e-scooters" }
+      ],
+      "region": ["US"],
+      "focuses": ["Usually cheapest listed price", "Certification not verified", "Target of enforcement action"]
+    },
+    {
+      "code": "diy-conversion-kit",
+      "name": "DIY conversion kit on an existing bike",
+      "brand": "aftermarket motor and battery, self-installed",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Turning an ordinary bike into an e-bike with an aftermarket motor and battery kit fitted at home. London Fire Brigade names this route specifically as a leading cause of e-bike fires, distinct from a factory-built and certified electrical system.",
+      "scores": { "safety": 10 },
+      "provenance": {
+        "safety": {
+          "note": "London Fire Brigade states that with conversion kits, \"the battery and charger may be purchased separately, sometimes from different sellers,\" which \"increases the risk of incompatible equipment being used,\" that \"batteries purchased online may not meet UK safety regulations and are more likely to fail,\" and that \"DIY installations can also lead to damage of the kit, increasing the chances of battery failure and the likelihood of a fire.\"",
+          "source": "https://www.london-fire.gov.uk/safety/lithium-batteries/electric-bicycle-conversion-kits",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "London Fire Brigade on e-bike conversion kits", "url": "https://www.london-fire.gov.uk/safety/lithium-batteries/electric-bicycle-conversion-kits" },
+        { "label": "UK government safety message, names conversion kits", "url": "https://www.gov.uk/guidance/government-safety-message-on-e-bikes-and-e-scooters" }
+      ],
+      "region": ["UK"],
+      "focuses": ["Cheapest way to electrify a bike you own", "Battery and charger often mismatched", "Named cause of fires"]
+    },
+    {
+      "code": "professional-conversion-kit-install",
+      "name": "Conversion kit fitted by a professional",
+      "brand": "same aftermarket kit, shop-installed",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "The same kind of aftermarket motor and battery kit as a DIY conversion, but fitted by a bike shop rather than at home. London Fire Brigade recommends this over self-installation, though it does not treat a conversion as equivalent in risk to a factory-certified electrical system.",
+      "scores": { "safety": 45 },
+      "provenance": {
+        "safety": {
+          "note": "London Fire Brigade recommends that riders \"get a professional to carry out conversions rather than attempting them yourself,\" while separately noting that conversion-kit batteries and chargers, even when properly matched, are \"purchased separately, sometimes from different sellers,\" and that batteries bought online \"may not meet UK safety regulations.\"",
+          "source": "https://www.london-fire.gov.uk/safety/lithium-batteries/electric-bicycle-conversion-kits",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "London Fire Brigade on e-bike conversion kits", "url": "https://www.london-fire.gov.uk/safety/lithium-batteries/electric-bicycle-conversion-kits" }
+      ],
+      "region": ["UK"],
+      "focuses": ["Cheaper than a factory e-bike", "Professionally fitted", "Still not factory-certified"]
+    },
+    {
+      "code": "secondhand-private-party-ebike",
+      "name": "Private-party secondhand e-bike",
+      "brand": "peer to peer, no certification record",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Buying a used e-bike directly from its previous owner, with no inspection and no way to know how the battery was charged, stored or damaged before the sale. UK safety guidance addresses exactly this gap by telling buyers to know who they are buying from.",
+      "scores": { "safety": 18 },
+      "provenance": {
+        "safety": {
+          "note": "The UK government's safety guidance for e-bikes and e-scooters tells buyers to \"only BUY an e-bike, e-scooter, charger or battery from a known seller,\" and warns generally that lithium-ion batteries in e-bikes \"can present a risk of serious fire or explosion in certain circumstances,\" a risk a private sale gives a buyer no way to rule out in advance.",
+          "source": "https://www.gov.uk/guidance/government-safety-message-on-e-bikes-and-e-scooters",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "UK government safety message on e-bikes and e-scooters", "url": "https://www.gov.uk/guidance/government-safety-message-on-e-bikes-and-e-scooters" }
+      ],
+      "region": ["UK"],
+      "focuses": ["No certification record", "Battery history unknown", "Usually cheaper than a dealer"]
+    },
+    {
+      "code": "e-bike-share-membership",
+      "name": "E-bike share / hire scheme (Citi Bike)",
+      "brand": "example: Citi Bike, New York City",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A dock-based bike-share membership that includes e-bikes in its shared fleet, so the rider never owns or charges a battery at home. Citi Bike is the largest US example; this entry does not score how the fleet's batteries are maintained, because no source read for this comparison covers that directly.",
+      "scores": { "economical": 45, "accessibility": 70 },
+      "provenance": {
+        "economical": {
+          "note": "Citi Bike's annual membership costs \"$239/year,\" about $19.92 a month, and includes the first 45 minutes of each classic-bike ride; riding an e-bike adds $0.27 a minute, capped at $5.40 for a ride of 45 minutes or less within Manhattan.",
+          "source": "https://citibikenyc.com/pricing/annual",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Membership gives access to \"thousands of bikes around Manhattan, Brooklyn, Queens, Bronx, Jersey City and Hoboken,\" including e-bikes in the shared fleet, with no bike or battery to own, store or charge at home, but coverage stops at the edge of that service area.",
+          "source": "https://citibikenyc.com/pricing/annual",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Citi Bike annual membership pricing", "url": "https://citibikenyc.com/pricing/annual" }
+      ],
+      "region": ["US"],
+      "focuses": ["No battery to own", "Pay per year or per ride", "City coverage only"]
+    },
+    {
+      "code": "employer-cycle-to-work-scheme-ebike",
+      "name": "Employer Cycle to Work scheme",
+      "brand": "UK salary-sacrifice benefit, covers EAPCs",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A UK tax-advantaged way to get an e-bike through an employer that chooses to offer it, available for an electrically assisted pedal cycle (EAPC) on the same terms as an ordinary bike, provided the bike meets the legal definition of one.",
+      "scores": { "economical": 65, "accessibility": 25 },
+      "provenance": {
+        "economical": {
+          "note": "The Department for Transport's official guidance for employers, most recently updated in June 2019, covers \"benefits, eligibility, equipment, taxation, salary sacrifice and national insurance contributions,\" describing a scheme built around reducing the tax and National Insurance charged on the cost of a cycle rather than negotiating its purchase price; an electrically assisted pedal cycle is eligible equipment under the same scheme as a standard bike.",
+          "source": "https://www.gov.uk/government/publications/cycle-to-work-scheme-implementation-guidance",
+          "asof": "2019"
+        },
+        "accessibility": {
+          "note": "The scheme only exists where an employer has chosen to set one up, and to qualify as an EAPC rather than a moped needing separate registration and insurance, UK regulations require \"a maximum continuous rated power which does not exceed 250 watts,\" among other conditions.",
+          "source": "https://www.legislation.gov.uk/uksi/2015/24/made",
+          "asof": "2015"
+        }
+      },
+      "links": [
+        { "label": "Cycle to Work scheme guidance for employers (GOV.UK)", "url": "https://www.gov.uk/government/publications/cycle-to-work-scheme-implementation-guidance" },
+        { "label": "Electrically Assisted Pedal Cycles Regulations 2015", "url": "https://www.legislation.gov.uk/uksi/2015/24/made" }
+      ],
+      "region": ["UK"],
+      "focuses": ["Employer must offer it", "Tax and NI advantaged", "Must meet the legal EAPC definition"]
+    },
+    {
+      "code": "e-bike-lending-library",
+      "name": "E-bike lending library",
+      "brand": "community, nonprofit or municipal programs",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A program, often grant-funded and run through a library, housing authority or community group, that lends e-bikes free or at low cost rather than selling them. It is a genuine route in the places it exists, and rare: a national scan found only a few dozen of them across the entire country.",
+      "scores": { "economical": 90, "accessibility": 35 },
+      "provenance": {
+        "economical": {
+          "note": "A Portland State University transportation research center identified \"54 e-bike lending libraries in the United States,\" the most common model being \"community resource libraries\" that provide \"free or low-cost e-bikes as shared transportation assets,\" funded mainly by grants.",
+          "source": "https://trec.pdx.edu/news/expanding-access-micromobility-e-bike-lending-libraries-across-united-states",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "The same research identified only 54 such programs nationwide, so this route exists in a limited number of places rather than being available to most readers.",
+          "source": "https://trec.pdx.edu/news/expanding-access-micromobility-e-bike-lending-libraries-across-united-states",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "E-bike lending libraries across the United States (PSU TREC)", "url": "https://trec.pdx.edu/news/expanding-access-micromobility-e-bike-lending-libraries-across-united-states" }
+      ],
+      "region": ["US"],
+      "focuses": ["Free or low-cost", "Rare, about 54 nationwide", "Try before you buy in some programs"]
+    }
+  ]
+}

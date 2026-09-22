@@ -1,0 +1,756 @@
+{
+  "meta": {
+    "id": "dog-food",
+    "label": "Dog food",
+    "type": "Products",
+    "primaryAxis": "health",
+    "tradeoff": [
+      "accessibility",
+      "health"
+    ],
+    "tradeoffLabels": [
+      "cheapest and easiest to find",
+      "cleanest safety record"
+    ],
+    "source": "Conscious Consuming",
+    "attribution": "Recall and safety scores are built only from FDA recall and safety-alert pages, company recall notices, court and class-action reporting, and established food-safety and veterinary journalism about a specific incident; where a brand also appears in FDA's dilated cardiomyopathy report counts, the note says so and repeats FDA's own caution that a report does not prove the diet caused the illness. Where a search of FDA's own recall and safety-alert listings on the date shown found nothing for a brand, the note says exactly that; it is not a claim the brand is risk free, only that public FDA records turned up nothing. Price and availability come only from a company's own site, its own press releases, or a retailer's own page describing its distribution, so most cells here are sparse: a price could not be verified from an acceptable source and was left out rather than guessed. Transparency describes what a company's own materials, court records, or FDA inspection findings show about its manufacturing and sourcing. Reviewed 2026. Suggest corrections through Contribute.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": {
+          "accessibility": 3,
+          "health": 3,
+          "transparency": 2
+        },
+        "x": []
+      },
+      "Cheapest and easiest to find": {
+        "w": {
+          "accessibility": 5,
+          "health": 2,
+          "transparency": 1
+        },
+        "x": []
+      },
+      "Cleanest safety record": {
+        "w": {
+          "health": 5,
+          "transparency": 2,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Most transparent": {
+        "w": {
+          "transparency": 5,
+          "health": 3,
+          "accessibility": 1
+        },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    {
+      "key": "accessibility",
+      "label": "Price and availability",
+      "source": "curated"
+    },
+    {
+      "key": "health",
+      "label": "Recall and safety record",
+      "source": "curated"
+    },
+    {
+      "key": "transparency",
+      "label": "Ingredient and manufacturing transparency",
+      "source": "curated"
+    }
+  ],
+  "products": [
+    {
+      "code": "purina-dog-chow",
+      "name": "Purina Dog Chow",
+      "brand": "Nestlé Purina",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "Nestlé Purina's original dry dog food, first sold in 1926 and still marketed as the company's most affordable line.",
+      "scores": {
+        "health": 62,
+        "transparency": 45
+      },
+      "provenance": {
+        "health": {
+          "note": "On December 26, 2025, third-party distributor Gold Star Distribution recalled all FDA-regulated products held at its warehouse, including Purina Dog Chow 4.4 lb bags, after an FDA inspection found rodent droppings, rodent urine, and bird droppings in storage areas. The contamination was at the distributor's warehouse in Minnesota, not at a Purina manufacturing plant, and FDA had not received illness reports linked to the recall as of the notice.",
+          "source": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/gold-star-distribution-inc-issues-recall-certain-fda-regulated-products-three-states-including-drugs",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Independent food-safety journalist Phyllis Entis reviewed 2023 FDA inspection records for three Nestlé Purina plants and found the Clinton, Iowa, plant had not tested a vitamin premix before use, and the Crete, Nebraska, canning plant had a conveyor fault that let two products mix before thermal processing and inadequate chlorination controls on cooling water; a third plant, in Edmond, Oklahoma, showed no deficiencies.",
+          "source": "https://efoodalert.com/2024/04/04/fda-inspections-uncover-food-safety-issues-at-multiple-purina-plants/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.purina.com/dog-chow"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Budget",
+        "Mass retail"
+      ]
+    },
+    {
+      "code": "pedigree",
+      "name": "Pedigree",
+      "brand": "Mars Petcare",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "Mars Petcare's mainstream dry and wet dog food line, one of the best-selling and cheapest dog foods sold in US grocery and mass retail stores.",
+      "scores": {
+        "accessibility": 78,
+        "health": 58
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "Pedigree's own site says 'quality nutrition does not have to come with a premium price' and describes its recipes as offering a great-tasting experience at a price shoppers will love; it lists Walmart-specific items such as Tasty Biscuits and Drizzlers alongside broader multi-retailer distribution.",
+          "source": "https://www.pedigree.com/about-us",
+          "asof": "2026"
+        },
+        "health": {
+          "note": "On July 2, 2026, Mars Petcare US recalled two lots of Pedigree Can High Protein Chopped Chicken & Duck Flavor wet dog food after cans that had been sent to a third party for destruction were fraudulently returned to the marketplace and may contain sharp metal and plastic fragments; Mars said it had received no reports of pet illness or injury as of the notice.",
+          "source": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/voluntary-recall-two-lots-pedigreer-can-high-protein-chopped-chicken-duck-flavor-wet-dog-food-due",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.pedigree.com/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Budget",
+        "Mass retail"
+      ]
+    },
+    {
+      "code": "ol-roy",
+      "name": "Ol' Roy",
+      "brand": "Walmart private label",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "Walmart's private label dog food since the 1980s, sold only at Walmart.",
+      "scores": {
+        "accessibility": 75,
+        "health": 45,
+        "transparency": 30
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "Walmart's own site groups Ol' Roy under its 'Walmart Exclusive Pet Brands' category; the line is sold only at Walmart stores and Walmart.com, in dry, canned, and pouch formats.",
+          "source": "https://www.walmart.com/browse/pets/walmart-exclusive-pet-brands/ol-roy/pet-food/5440_5185817/YnJhbmQ6T2wnUm95fHxjb2xvcjpPdGhlcgieie",
+          "asof": "2026"
+        },
+        "health": {
+          "note": "On February 16, 2018, FDA alerted pet owners that canned dog food made by The J.M. Smucker Company, including Ol' Roy, Gravy Train, Kibbles 'N Bits, and Skippy, tested positive for the euthanasia drug pentobarbital, traced to beef fat used in the recalled brands; FDA said the low levels found were unlikely to pose a health risk but that any amount of pentobarbital makes a pet food adulterated.",
+          "source": "https://www.fda.gov/animal-veterinary/outbreaks-and-advisories/fda-alerts-pet-owners-about-potential-pentobarbital-contamination-canned-dog-food-manufactured-jm",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "CBS News reported that J.M. Smucker, not Walmart, manufactured the recalled canned Ol' Roy in 2018; Walmart's private label brand has used different manufacturers for different product lines over its history, and Walmart's own site does not disclose which company currently makes each Ol' Roy product.",
+          "source": "https://www.cbsnews.com/news/kibbles-n-bits-other-dog-foods-recalled-over-lethal-drug/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Retailer page",
+          "url": "https://www.walmart.com/browse/pets/walmart-exclusive-pet-brands/ol-roy/pet-food/5440_5185817/YnJhbmQ6T2wnUm95fHxjb2xvcjpPdGhlcgieie"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Budget",
+        "Walmart exclusive"
+      ]
+    },
+    {
+      "code": "purina-one",
+      "name": "Purina ONE",
+      "brand": "Nestlé Purina",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A mid tier Nestlé Purina line positioned above Dog Chow, sold at the same grocery and mass retail stores.",
+      "scores": {
+        "health": 68
+      },
+      "provenance": {
+        "health": {
+          "note": "On August 30, 2013, Nestlé Purina recalled a limited number of 3.5 lb bags of Purina ONE beyOnd Our White Meat Chicken & Whole Barley Recipe dry dog food, from a single production run, after one bag tested positive for Salmonella; the company reported no other Purina ONE products were affected and no illnesses had been reported.",
+          "source": "https://www.dvm360.com/view/purina-one-recalls-single-run-salmonella-contaminated-dog-food",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.purina.com/purina-one"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Mid range",
+        "Mass retail"
+      ]
+    },
+    {
+      "code": "purina-pro-plan",
+      "name": "Purina Pro Plan",
+      "brand": "Nestlé Purina",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "Nestlé Purina's vet recommended line, sold at pet specialty stores, some vet clinics, and online.",
+      "scores": {
+        "health": 55,
+        "transparency": 45
+      },
+      "provenance": {
+        "health": {
+          "note": "Nestlé Purina recalled Purina Pro Plan Veterinary Diets EL Elemental dry dog food on February 8, 2023, and expanded the recall on March 10, 2023, to two additional lots, after a production error at a US supplier caused potentially excess vitamin D; two confirmed cases of vitamin D toxicity in dogs eating the food prompted the recall, and FDA later terminated it as completed.",
+          "source": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/nestle-purina-petcare-company-expands-voluntary-recall-purina-pro-plan-veterinary-diets-el-elemental",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Independent food-safety journalist Phyllis Entis reviewed 2023 FDA inspection records and found the Clinton, Iowa, plant that makes Pro Plan and other Purina lines had not tested the vitamin premix supplied by ADM Nutrition before using it, and that ADM's own preventive controls were inadequate, which later drew ADM an FDA warning letter.",
+          "source": "https://efoodalert.com/2024/04/04/fda-inspections-uncover-food-safety-issues-at-multiple-purina-plants/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.proplan.com/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Vet recommended",
+        "Pet specialty"
+      ]
+    },
+    {
+      "code": "iams",
+      "name": "Iams",
+      "brand": "Mars Petcare",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A Mars Petcare dry dog food sold widely in US grocery and mass retail stores.",
+      "scores": {
+        "health": 45
+      },
+      "provenance": {
+        "health": {
+          "note": "On August 16, 2013, Procter & Gamble (Iams' owner at the time) recalled Eukanuba and Iams dog and cat foods made during a 10-day window at a single manufacturing site over Salmonella concerns; the recall was distributed nationwide through pet and retail stores and the company said no other Iams products were affected.",
+          "source": "https://www.cbsnews.com/losangeles/news/eukanuba-iams-pet-foods-recalled-over-salmonella-concerns",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.iams.com/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Mid range",
+        "Mass retail"
+      ]
+    },
+    {
+      "code": "hills-science-diet",
+      "name": "Hill's Science Diet",
+      "brand": "Colgate-Palmolive",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "Colgate-Palmolive's veterinary linked dog food brand, sold mainly through pet specialty stores, vet clinics, and online.",
+      "scores": {
+        "health": 20,
+        "transparency": 75
+      },
+      "provenance": {
+        "health": {
+          "note": "Hill's recalled canned dog food starting in late January 2019 and expanded the recall twice, on March 20 and May 17, 2019, to a total of 86 lots across 33 varieties, after receiving complaints of vitamin D toxicity; FDA laboratories measured vitamin D in the recalled food at more than 33 times the safe upper limit. FDA later closed the recall as completed.",
+          "source": "https://www.fda.gov/animal-veterinary/outbreaks-and-advisories/fda-alerts-pet-owners-and-veterinarians-about-potentially-toxic-levels-vitamin-d-33-varieties-hills",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Hill's own site says it manufactures its recipes in Colgate-Palmolive owned and operated facilities and that its PhD nutritionists and veterinarians test recipes on site, with more than 900 dogs and cats involved in confirming final products before they ship.",
+          "source": "https://www.hillspet.com/about-us/sustainability",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.hillspet.com/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Vet recommended",
+        "Pet specialty"
+      ]
+    },
+    {
+      "code": "royal-canin",
+      "name": "Royal Canin",
+      "brand": "Mars Petcare",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A Mars Petcare brand built around breed and life stage specific formulas, sold only through pet specialty stores and veterinary clinics.",
+      "scores": {
+        "accessibility": 40
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "Royal Canin's own FAQ says its retail products cannot be bought directly from its facilities and are sold exclusively through pet specialty stores, while its Veterinary Exclusive formulas are only available by prescription through vet clinics; it is not sold in grocery stores.",
+          "source": "https://www.royalcanin.com/ca/about-us/faqs",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.royalcanin.com/us"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Vet exclusive",
+        "Breed specific"
+      ]
+    },
+    {
+      "code": "blue-buffalo",
+      "name": "Blue Buffalo",
+      "brand": "General Mills",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A General Mills owned brand marketed on grain-free and by-product-free claims, sold through pet specialty and mass retail stores.",
+      "scores": {
+        "health": 42,
+        "transparency": 32
+      },
+      "provenance": {
+        "health": {
+          "note": "FDA's own June 2019 questions-and-answers page on its dilated cardiomyopathy investigation lists Blue Buffalo among 16 brands named in at least 10 adverse-event reports each, with 31 reports as of April 30, 2019; FDA states this does not establish that the diets caused the disease. Separately, FDA recorded a March 17, 2017, voluntary recall of one lot of Blue Wilderness Rocky Mountain Recipe Red Meat Dinner wet food for excess naturally occurring beef thyroid hormones.",
+          "source": "https://www.fda.gov/animal-veterinary/animal-health-literacy/questions-answers-fda-center-veterinary-medicines-investigation-possible-connection-between-diet-and",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Topclassactions.com reports that Blue Buffalo's 'True Blue Promise' advertised its food as free of poultry by-product meal, corn, wheat, soy, and artificial ingredients; consumers sued alleging the products contained by-products anyway, and Blue Buffalo settled for $32 million in December 2015 without admitting wrongdoing, attributing the issue to a former ingredient supplier.",
+          "source": "https://topclassactions.com/lawsuit-settlements/lawsuit-news/blue-buffalo-reaches-32m-settlement-over-pet-food-ingredients/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://bluebuffalo.com/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Grain-free",
+        "Mass retail"
+      ]
+    },
+    {
+      "code": "nutro",
+      "name": "Nutro",
+      "brand": "Mars Petcare",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A Mars Petcare natural positioned brand sold in mainstream grocery and mass retail stores.",
+      "scores": {
+        "health": 62
+      },
+      "provenance": {
+        "health": {
+          "note": "FDA's June 2019 questions-and-answers page on its dilated cardiomyopathy investigation lists Nutro among the 16 brands named in at least 10 adverse-event reports as of April 30, 2019, with 10 reports, the lowest count of the named brands; FDA states this does not establish that the diets caused the disease. A search of FDA's recalls and safety-alert listings on this date found no separate confirmed recall specific to Nutro.",
+          "source": "https://www.fda.gov/animal-veterinary/animal-health-literacy/questions-answers-fda-center-veterinary-medicines-investigation-possible-connection-between-diet-and",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.nutro.com/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Natural",
+        "Mass retail"
+      ]
+    },
+    {
+      "code": "rachael-ray-nutrish",
+      "name": "Rachael Ray Nutrish",
+      "brand": "J.M. Smucker",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A J.M. Smucker brand marketed in the premium dry dog food segment but sold through ordinary grocery and mass retail channels.",
+      "scores": {
+        "accessibility": 68,
+        "health": 65,
+        "transparency": 58
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "J.M. Smucker's 2018 press release announcing its purchase of Ainsworth Pet Nutrition describes Rachael Ray Nutrish as a leading, fast growing brand in the premium dry dog food segment sold through grocery and mass channels.",
+          "source": "https://www.prnewswire.com/news-releases/the-j-m-smucker-company-to-acquire-ainsworth-pet-nutrition-llc-maker-of-rachael-ray-nutrish-pet-food-company-to-explore-strategic-options-for-us-baking-business-300624569.html",
+          "asof": "2026"
+        },
+        "health": {
+          "note": "Ainsworth Pet Nutrition's own recall notice, dated June 4, 2015, recalled five varieties of Rachael Ray Nutrish wet cat food, not dog food, for naturally high vitamin D from certain fish ingredients, after 11 reports of illness; production was suspended while the company added safety checks. Separately, FDA's dilated cardiomyopathy questions-and-answers page lists Rachael Ray Nutrish dog food among 16 brands named in 10 adverse-event reports as of April 30, 2019, which FDA says does not establish the diets caused the disease.",
+          "source": "https://www.prnewswire.com/news-releases/ainsworth-pet-nutrition-voluntarily-recalls-five-nutrish-wet-cat-food-varieties-for-potentially-elevated-vitamin-d-levels-300094515.html",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "J.M. Smucker's 2018 acquisition press release states Ainsworth owns two of its four manufacturing plants outright, in Meadville, Pennsylvania, and Frontenac, Kansas; the other two facilities are used mainly to contract-manufacture pet food for other companies and were excluded from the sale.",
+          "source": "https://www.prnewswire.com/news-releases/the-j-m-smucker-company-to-acquire-ainsworth-pet-nutrition-llc-maker-of-rachael-ray-nutrish-pet-food-company-to-explore-strategic-options-for-us-baking-business-300624569.html",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.nutrish.com/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Premium grocery",
+        "Mass retail"
+      ]
+    },
+    {
+      "code": "taste-of-the-wild",
+      "name": "Taste of the Wild",
+      "brand": "Diamond Pet Foods",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A grain-free brand made by contract manufacturer Diamond Pet Foods, sold mainly through pet specialty and online retailers.",
+      "scores": {
+        "health": 28,
+        "transparency": 35
+      },
+      "provenance": {
+        "health": {
+          "note": "Food Safety News reported that Salmonella Infantis traced to Diamond Pet Foods' Gaston, South Carolina, plant led to a May 2012 recall covering more than 30 product lines, including Taste of the Wild, and that CDC and state investigators confirmed at least 14 human infections and five hospitalizations across nine states. FDA's dilated cardiomyopathy report also lists Taste of the Wild with 53 adverse-event reports as of April 30, 2019, the third highest of the 16 named brands, which FDA says does not establish that the diets caused the disease.",
+          "source": "https://www.foodsafetynews.com/2012/05/diamond-pet-foods-etc-recalls-2012/",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Food Safety News' account of the 2012 recall lists more than 30 separate product lines, including Diamond's own brands and third-party brands such as Taste of the Wild, Kirkland Signature, Canidae, and Natural Balance, made at the same Gaston, South Carolina, plant, showing Diamond manufactures for many competing labels rather than Taste of the Wild alone.",
+          "source": "https://www.foodsafetynews.com/2012/05/diamond-pet-foods-etc-recalls-2012/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.totw-pet.com/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Grain-free",
+        "Pet specialty"
+      ]
+    },
+    {
+      "code": "victor",
+      "name": "Victor",
+      "brand": "Mid America Pet Food",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "An independently manufactured food made in Mid America Pet Food's own Texas plant, sold through feed, farm, and pet specialty stores.",
+      "scores": {
+        "accessibility": 50,
+        "health": 15,
+        "transparency": 55
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "Victor's own FAQ says its food is sold through independent feed and farm, hardware, garden, and pet specialty stores, plus Chewy, Amazon, and Petflow online, rather than through national grocery or big box chains.",
+          "source": "https://victorpetfood.com/faq",
+          "asof": "2026"
+        },
+        "health": {
+          "note": "Mid America Pet Food, which manufactures Victor, recalled dry pet food for Salmonella Kiambu contamination starting September 2023 and expanded the recall through November 2023; FDA and CDC logged seven related human cases, six in children age one or younger, one hospitalized. Food Safety News reported that a November 22, 2024, FDA warning letter, following a further inspection, found the plant still had multiple resident Salmonella strains, unfollowed cleaning protocols, standing rainwater in production areas, and inadequately heat-treated raw chicken fat.",
+          "source": "https://www.foodsafetynews.com/2024/12/salmonella-outbreak-tied-to-pet-food-spurs-fda-warning-letter-over-facility-failures/",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Victor's own FAQ says it manufactures all of its dry kibble in its own Mt. Pleasant, Texas, plant, certified to the SQF Code for Manufacturing and Safe Feed/Safe Food, with recipes developed by an in-house nutritionist and validated by third-party nutritionists; the November 2024 FDA warning letter found the same plant still failing basic sanitation and process controls more than a year after its 2023 recall.",
+          "source": "https://victorpetfood.com/faq",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://victorpetfood.com/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Independent maker",
+        "Feed and farm stores"
+      ]
+    },
+    {
+      "code": "orijen",
+      "name": "Orijen",
+      "brand": "Champion Petfoods",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A Champion Petfoods premium 'biologically appropriate' line made mainly in the company's own US and Canadian kitchens, sold only through pet specialty retailers.",
+      "scores": {
+        "accessibility": 25,
+        "health": 72,
+        "transparency": 78
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "Orijen's own product page sends buyers to a store locator rather than listing a grocery or mass-retail price, consistent with Champion Petfoods selling it only through pet specialty retailers.",
+          "source": "https://www.orijenpetfoods.com/en-US/dogs/dog-food/original/ds-ori-original-dog.html",
+          "asof": "2026"
+        },
+        "health": {
+          "note": "A search of FDA's recalls, market withdrawals, and safety alerts listings on this date found no confirmed recall for Orijen or manufacturer Champion Petfoods. FDA's dilated cardiomyopathy questions-and-answers page does list Orijen among 16 brands named in adverse-event reports, with 12 as of April 30, 2019, the lowest count of the group other than Nutro and Rachael Ray Nutrish; FDA says this does not establish the diets caused the disease.",
+          "source": "https://www.fda.gov/animal-veterinary/animal-health-literacy/questions-answers-fda-center-veterinary-medicines-investigation-possible-connection-between-diet-and",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Champion Petfoods' own site says it manufactures its dried and freeze-dried foods itself, in its DogStar kitchen in Auburn, Kentucky, and NorthStar kitchen in Acheson, Alberta, rather than through a contract manufacturer, though it says canned products are 'produced by a collaborator' outside the company under its own oversight.",
+          "source": "https://championpetfoods.com/en/frequently-asked-questions.html",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.orijenpetfoods.com/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Premium",
+        "Pet specialty"
+      ]
+    },
+    {
+      "code": "kirkland-natures-domain",
+      "name": "Kirkland Signature Nature's Domain",
+      "brand": "Costco private label",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "Costco's private label dog food, made by contract manufacturer Diamond Pet Foods and sold to Costco members.",
+      "scores": {
+        "accessibility": 55,
+        "health": 30,
+        "transparency": 35
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "Costco's own 'About Kirkland Signature' page describes it as Costco's only private brand, sold exclusively through Costco's own warehouses and website; any Kirkland Signature product sold elsewhere was resold after first being bought at Costco, which requires a paid membership.",
+          "source": "https://www.costco.com/f/-/about-kirkland-signature",
+          "asof": "2026"
+        },
+        "health": {
+          "note": "Food Safety News reported that Diamond Pet Foods, which manufactures Kirkland Signature dog food, recalled Nature's Domain among more than 30 recalled product lines in May 2012 after Salmonella Infantis traced to its Gaston, South Carolina, plant caused at least 14 confirmed human infections and five hospitalizations. FDA's dilated cardiomyopathy report separately lists Nature's Domain with 29 adverse-event reports as of April 30, 2019, which FDA says does not establish the diets caused the disease.",
+          "source": "https://www.foodsafetynews.com/2012/05/diamond-pet-foods-etc-recalls-2012/",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Food Safety News' account of the 2012 recall lists Kirkland Signature alongside Taste of the Wild, Canidae, and Natural Balance as separate brands made at the same Diamond Pet Foods plant, showing the manufacturer supplies many private and branded labels rather than one company being accountable for a single line.",
+          "source": "https://www.foodsafetynews.com/2012/05/diamond-pet-foods-etc-recalls-2012/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Retailer page",
+          "url": "https://www.costco.com/f/-/about-kirkland-signature"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Warehouse club",
+        "Value"
+      ]
+    },
+    {
+      "code": "the-farmers-dog",
+      "name": "The Farmer's Dog",
+      "brand": "The Farmer's Dog",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A fresh, human-grade dog food delivered by subscription, formulated by on-staff board certified veterinary nutritionists.",
+      "scores": {
+        "health": 78,
+        "transparency": 78
+      },
+      "provenance": {
+        "health": {
+          "note": "A search of FDA's recalls, market withdrawals, and safety alerts listings on this date found no confirmed recall for The Farmer's Dog. This is an absence of a public record, not independent proof the food carries no risk.",
+          "source": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "The Farmer's Dog's own site describes a one-year feeding study with Cornell University's College of Veterinary Medicine, begun August 2023, in which ten dogs ate The Farmer's Dog as their primary diet and completed the study in good health; the company says the study was overseen by board certified veterinary nutritionists Dr. Joe Wakshlag and Dr. John Loftus, and that its recipes are developed by its own on-staff board certified nutritionists.",
+          "source": "https://www.thefarmersdog.com/digest/the-farmers-dog-and-the-cornell-university-college-of-veterinary-medicine-partner-for-a-long-term-feeding-study/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.thefarmersdog.com/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Fresh",
+        "Subscription"
+      ]
+    },
+    {
+      "code": "justfoodfordogs",
+      "name": "JustFoodForDogs",
+      "brand": "JustFoodForDogs",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "A fresh-cooked, human-grade dog food made in the company's own USDA-inspected kitchens, sold at its own stores, a growing number of Petco locations, and by direct shipping.",
+      "scores": {
+        "accessibility": 35,
+        "health": 65,
+        "transparency": 82
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "JustFoodForDogs' own site lists its own retail kitchen locations plus Petco stores and store locator search radius options, and offers an autoship subscription with home delivery; it does not describe sale through supermarkets or big box retailers.",
+          "source": "https://www.justfoodfordogs.com/daily-meals/",
+          "asof": "2026"
+        },
+        "health": {
+          "note": "JustFoodForDogs voluntarily recalled its Beef & Russet Potato, Fish & Sweet Potato, and Turducken diets made from November 1, 2017, through January 14, 2018, after green beans from a supplier tested positive for Listeria monocytogenes; the company traced the contamination to that one ingredient and supplier and notified FDA.",
+          "source": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/justfoodfordogs-voluntarily-recalls-three-daily-diets-because-possible-listeria-monocytogenes-health",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "JustFoodForDogs' own vet-team page says it cooks recipes in its own kitchens using only ingredients inspected and approved by the USDA for human consumption, and names a board certified veterinary nutritionist, Dr. Chris Margrey, DACVIM (Nutrition), as responsible for diet formulation and independent lab testing.",
+          "source": "https://vets.justfoodfordogs.com/about",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.justfoodfordogs.com/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Fresh",
+        "Human grade"
+      ]
+    },
+    {
+      "code": "home-cooked-vet-formulated",
+      "name": "Home-cooked, vet-formulated diet",
+      "brand": "not a manufactured product",
+      "allergens": [],
+      "allergensDeclared": false,
+      "description": "Cooking a complete and balanced diet at home from ordinary grocery ingredients, using a recipe from a board certified veterinary nutritionist rather than buying a manufactured food.",
+      "scores": {
+        "accessibility": 60,
+        "health": 55,
+        "transparency": 90
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "Home-cooked food uses ordinary grocery ingredients rather than depending on one manufacturer or retailer, so it can be made anywhere there is a kitchen and a grocery store; UC Davis researchers who reviewed 200 published homemade recipes found most lacked complete feeding and portion instructions, and cooking a diet daily takes far more time than opening a bag or can.",
+          "source": "https://www.ucdavis.edu/news/homemade-dog-food-recipes-can-be-risky-business-study-finds",
+          "asof": "2026"
+        },
+        "health": {
+          "note": "UC Davis researchers analyzed 200 published homemade dog food recipes and found 95 percent lacked adequate levels of at least one essential nutrient and more than 83 percent had multiple deficiencies; the small number of recipes with acceptable nutrient profiles for adult dogs were the ones written by board certified veterinary nutritionists, and researchers advised owners to work with one rather than use a general recipe from a book or website.",
+          "source": "https://www.ucdavis.edu/news/homemade-dog-food-recipes-can-be-risky-business-study-finds",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "A home-cooked diet has no manufacturer between the ingredients and the bowl, so the cook buys and sees every ingredient directly; UC Davis's review found that turning this into a nutritionally complete diet in practice requires the kind of formulation that, in its sample, only recipes from board certified veterinary nutritionists reliably delivered.",
+          "source": "https://www.ucdavis.edu/news/homemade-dog-food-recipes-can-be-risky-business-study-finds",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "UC Davis study summary",
+          "url": "https://www.ucdavis.edu/news/homemade-dog-food-recipes-can-be-risky-business-study-finds"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Not a purchase",
+        "Requires a vet nutritionist recipe"
+      ]
+    }
+  ]
+}

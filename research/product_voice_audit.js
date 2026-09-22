@@ -111,9 +111,14 @@ const RETIRED_COPY = [
 
 const REQUIRED_COPY = {
   'app/app.js': [
-    'Nobody pays to rank',
-    'Sources</b> beside the claims',
-    'If it is in the open data',
+    'Nobody pays to be ranked',
+    // Retired 2026-08-13 with the three-part trust strip on the old front page; the promise itself
+    // survives in one sentence rather than three chips repeated again at the foot of the page.
+    /* Retired 2026-08-13 with the home page barcode card. Scanning is unchanged and still reached
+       from the top navigation, and the scan view keeps its own copy about the open database. This
+       line only ever existed in a card on the front door that duplicated a link already in the
+       nav, and the front page it belonged to no longer exists. */
+
     'This device holds the only copy',
     'Each one says what still needs to be checked'
   ],
@@ -171,7 +176,8 @@ function main() {
     failures.push(`${decisionRel}: invalid JSON (${err.message})`);
   }
   const contracts = decisions && Array.isArray(decisions.contracts) ? decisions.contracts : [];
-  if (contracts.length !== 88) failures.push(`${decisionRel}: expected 88 decision contracts, found ${contracts.length}`);
+  // 124 on 2026-08-26: messaging and browsers authored their own contracts in the split.
+  if (contracts.length !== 124) failures.push(`${decisionRel}: expected 124 decision contracts, found ${contracts.length}`);
   for (const contract of contracts) {
     const label = contract.category || '(unknown category)';
     const summary = contract.reads && contract.reads.text || '';

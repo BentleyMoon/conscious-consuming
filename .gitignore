@@ -49,7 +49,12 @@ yarn-error.log*
 *.bak
 
 # ── Local-only (not part of the public standard) ─────────────────────────────────
-.claude/
+# Everything under .claude is machine-local except the agent definitions, which are project
+# infrastructure: they are how the content swarm is run, and an untracked one is a lane worker that
+# exists on one laptop. Written as .claude/* rather than .claude/ because git cannot re-include a
+# file whose parent directory is excluded.
+.claude/*
+!.claude/agents/
 # local reference copy of a published paper (copyrighted; cite, don't ship)
 kiz.txt
 
@@ -57,3 +62,5 @@ kiz.txt
 # Rebuild any time with:  python pipeline/build_site.py
 # (Un-ignore this if you choose to deploy the repo directly via GitHub Pages.)
 dist/
+# A 55 MB ontology study, kept out of the repo: it is working material, not a product input.
+ontologystudy/

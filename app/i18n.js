@@ -27,3 +27,22 @@ window.CC_I18N = {
     "home.mapHdr": "Lo que está cubierto y lo que aún falta"
   }
 };
+
+// What each locale actually reaches. The picker reads this and says it out loud, because a
+// language menu that silently hands back an English page is the kind of quiet promise this
+// catalogue exists to refuse. `covers` is the honest scope; `strings` is checked against the
+// English table at runtime, so it cannot drift from the file.
+window.CC_LOCALE_META = {
+  en: {
+    label: 'English',
+    endonym: 'English',
+    covers: 'Everything: the interface, the guides, every decision and every source note.',
+    complete: true
+  },
+  es: {
+    label: 'Spanish',
+    endonym: 'Espa\u00f1ol',
+    covers: 'The interface only: navigation, search and labels. Guides, scores and entries stay in English.',
+    complete: false
+  }
+};

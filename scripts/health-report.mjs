@@ -38,6 +38,7 @@ const groups = [
     title: "Product Readiness",
     commands: [
       ["audit:content", "content queues and source freshness"],
+      ["audit:register-pass", "complete public-register operating gate"],
       ["audit:provenance", "source-independence summaries and H10 contracts match generated facts"],
       ["audit:citations", "re-runnable citation bundles"],
       ["audit:conformance", "OVS lens/passport contract"],

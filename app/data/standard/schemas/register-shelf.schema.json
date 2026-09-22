@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/register-shelf-v1.schema.json",
+  "title": "Open Values Register Shelf",
+  "description": "Public registers admitted for repeatable catalogue-wide evidence passes.",
+  "type": "object",
+  "required": ["format", "version", "note", "howToRead", "registers", "refused"],
+  "additionalProperties": false,
+  "properties": {
+    "format": { "const": "open-values-register-shelf" },
+    "version": { "const": "1.0.0" },
+    "note": { "type": "string", "minLength": 24 },
+    "howToRead": {
+      "type": "object",
+      "required": ["reach", "access", "provenanceKey", "proven"],
+      "additionalProperties": false,
+      "properties": {
+        "reach": { "type": "string", "minLength": 1 },
+        "access": { "type": "string", "minLength": 1 },
+        "provenanceKey": { "type": "string", "minLength": 1 },
+        "proven": { "type": "string", "minLength": 1 }
+      }
+    },
+    "registers": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/register" }
+    },
+    "refused": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/refusal" }
+    }
+  },
+  "$defs": {
+    "httpUrl": {
+      "type": "string",
+      "pattern": "^https?://"
+    },
+    "register": {
+      "type": "object",
+      "required": ["id", "name", "publisher", "access", "endpoint", "reach", "provenanceKey", "populates", "proven"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "name": { "type": "string", "minLength": 1 },
+        "publisher": { "type": "string", "minLength": 1 },
+        "access": { "enum": ["api", "bulk", "page"] },
+        "endpoint": { "$ref": "#/$defs/httpUrl" },
+        "alsoAt": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/httpUrl" }
+        },
+        "reach": { "enum": ["cross-cutting", "single"] },
+        "provenanceKey": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "populates": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "proven": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
+        },
+        "note": { "type": "string", "minLength": 1 },
+        "caution": { "type": "string", "minLength": 1 }
+      }
+    },
+    "refusal": {
+      "type": "object",
+      "required": ["pattern", "why"],
+      "additionalProperties": false,
+      "properties": {
+        "pattern": { "type": "string", "minLength": 1 },
+        "examples": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "why": { "type": "string", "minLength": 24 }
+      }
+    }
+  }
+}

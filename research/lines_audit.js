@@ -290,7 +290,10 @@ try {
 
 try {
   const appSource = fs.readFileSync(path.join(ROOT, 'app', 'app.js'), 'utf8');
-  for (const phrase of ['Declares ${label}.', 'Declared ${label}-free.', 'No ${label} data — check the label.'])
+  // The dash in the no-data line became a full stop on 2026-07-31, when the voice gate was
+  // extended to cover the app and found it. The safety property this pins is the three states
+  // staying distinct and present, not the punctuation between them.
+  for (const phrase of ['Declares ${label}.', 'Declared ${label}-free.', 'No ${label} data. Check the label.'])
     if (!appSource.includes(phrase)) err('S3 app copy missing state template: ' + phrase);
   if (!appSource.includes('allergen-safety-fold') || !appSource.includes('Nothing is erased'))
     err('S3 app is missing the visible allergy show-anyway fold');

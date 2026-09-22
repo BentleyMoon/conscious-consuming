@@ -10,6 +10,7 @@ rules, links, bold/italic/code. Guide content is ours (not crowd data), so the
 HTML is trusted. Run: `python build_guides.py`
 """
 import re, os, json, sys
+from urllib.parse import quote
 from tracked_io import write_text
 try:
     sys.stdout.reconfigure(encoding='utf-8')
@@ -73,9 +74,14 @@ def chart_svg(cid, key, n=8):
     label = crit.get('label', key)
     catlabel = (d.get('meta') or {}).get('label', cid)
     W, BAR, GAP, LW, TOP = 560, 22, 10, 190, 34
-    H = TOP + len(rows) * (BAR + GAP) + 24
+    # 38, not 24: the source line below is two lines now. It used to be one long <text> at x=0,
+    # and SVG text does not wrap, so on any category with a longish label it ran past the 560-unit
+    # viewBox and the reader saw "...may rank them d". Clipped on every chart in every guide.
+    H = TOP + len(rows) * (BAR + GAP) + 38
     out = [f'<svg class="gchart" viewBox="0 0 {W} {H}" role="img" '
-           f'aria-label="{_xesc(label)} scores for the top {len(rows)} of {_xesc(catlabel)}, from the live data" '
+           # "live" is build vocabulary here, meaning a category with a dataset behind it. A screen
+           # reader hears it as a claim about freshness instead. Say what a reader wants to know.
+           f'aria-label="{_xesc(label)} scores for the top {len(rows)} of {_xesc(catlabel)}, from the published data" '
            f'xmlns="http://www.w3.org/2000/svg">',
            f'<title>{_xesc(label)}: the top {len(rows)} of {_xesc(catlabel)}, scored 0 to 100</title>',
            f'<text x="0" y="16" class="gc-t">{_xesc(label)} · top {len(rows)} of {_xesc(catlabel.lower())}</text>']
@@ -86,8 +92,9 @@ def chart_svg(cid, key, n=8):
         out.append(f'<text x="{LW - 8}" y="{y + BAR - 7}" text-anchor="end" class="gc-n">{_xesc(nm)}</text>')
         out.append(f'<rect x="{LW}" y="{y}" width="{w}" height="{BAR}" rx="4" class="gc-bar"/>')
         out.append(f'<text x="{LW + w + 6}" y="{y + BAR - 7}" class="gc-v">{int(v)}</text>')
-    out.append(f'<text x="0" y="{H - 6}" class="gc-src">drawn live from the {_xesc(catlabel.lower())} data · '
-               f'{carrying} entries carry this fact · your own weighting may rank them differently</text>')
+    out.append(f'<text x="0" y="{H - 20}" class="gc-src">drawn live from the {_xesc(catlabel.lower())} data · '
+               f'{carrying} entries carry this fact</text>')
+    out.append(f'<text x="0" y="{H - 6}" class="gc-src">your own weighting may rank them differently</text>')
     out.append('</svg>')
     return ''.join(out)
 
@@ -129,7 +136,7 @@ def convert(md):
             t = '<table><thead><tr>' + ''.join(f'<th>{inline(h)}</th>' for h in head) + '</tr></thead><tbody>'
             for r in rows:
                 t += '<tr>' + ''.join(f'<td>{inline(c)}</td>' for c in r) + '</tr>'
-            out.append(t + '</tbody></table>'); continue
+            out.append('<div class="gtable-scroll" tabindex="0" role="region" aria-label="Scrollable table">' + t + '</tbody></table></div>'); continue
         if s.startswith('>'):
             q = []
             while i < len(lines) and lines[i].strip().startswith('>'):
@@ -172,15 +179,14 @@ def parse_front(md):
 # (works from file:// or any static host), carries its own <title> + Open Graph tags, links
 # into the SPA tool, and cross-links other guides. Set the deploy domain via CC_SITE_BASE. ---
 SITE_BASE = os.environ.get('CC_SITE_BASE', 'https://valuescommons.org/app').rstrip('/')
-FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E"
-           "%3Crect width='64' height='64' rx='14' fill='%231d7a5a'/%3E"
-           "%3Cpath d='M18 36c0-13 13-20 28-20-2 16-14 23-28 20z' fill='%23fff'/%3E"
-           "%3Cpath d='M20 46c6-12 14-18 22-21' stroke='%231d7a5a' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")
-NAV = ('<nav class="nav"><a href="../index.html" class="wordmark">Conscious Consuming</a>'
-       '<span class="navlinks"><a href="../index.html#home">Home</a><a href="./index.html">Guides</a>'
-       '<a href="../index.html#explore">Explore</a><a href="../index.html#browse">Browse</a></span></nav>')
+FAVICON = ('data:image/svg+xml,' +
+    quote(open(os.path.join(APP, 'icon.svg'), encoding='utf-8').read().strip(),
+          safe="!~*'()"))
+NAV = ('<nav class="nav"><a href="../" class="wordmark">Conscious Consuming</a>'
+       '<span class="navlinks"><a href="../#home">Home</a><a href="./">Guides</a>'
+       '<a href="../#explore">Explore</a><a href="../#browse">Browse</a></span></nav>')
 FOOTER = ('<footer>A guide to consuming by your values. Sourced, private, never sponsored.<br>'
-          '<a href="../index.html">Open the interactive app →</a></footer>')
+          '<a href="../">Open the interactive app →</a></footer>')
 W, H = 1200, 630
 PAPER, INK, MUTE, GREEN, LINE = (250, 248, 243), (28, 32, 30), (106, 113, 109), (29, 122, 90), (225, 222, 214)
 ACCENTS = [(29, 122, 90), (21, 128, 109), (176, 137, 30), (66, 94, 122), (126, 92, 67)]
@@ -326,8 +332,8 @@ def json_ld_script(obj):
 
 def page_shell(title, desc, canon, body, ver, json_ld=None, image=None):
     url = SITE_BASE + '/' + canon
-    image_url = image or (SITE_BASE + '/g/index.png' if canon == 'g/index.html' else SITE_BASE + '/og-home.png')
-    if json_ld is None and canon == 'g/index.html':
+    image_url = image or (SITE_BASE + '/g/index.png' if canon == 'g/' else SITE_BASE + '/og-home.png')
+    if json_ld is None and canon == 'g/':
         json_ld = {
             '@context': 'https://schema.org',
             '@type': 'CollectionPage',
@@ -361,29 +367,29 @@ def page_shell(title, desc, canon, body, ver, json_ld=None, image=None):
         '<meta name="theme-color" content="#1d7a5a">\n'
         f'<link rel="icon" href="{FAVICON}">\n'
         f'<link rel="stylesheet" href="../styles.css?v={ver}">\n'
-        '</head>\n<body>\n<div class="wrap">\n'
+        '</head>\n<body>\n<a class="skip" href="#main">Skip to content</a><div class="wrap">\n'
         + NAV + '\n<main id="main">\n' + body + '\n</main>\n' + FOOTER + '\n</div>\n</body>\n</html>\n')
 
 
 def guide_page(g, ver, related):
     cat = f'<div class="gcat">{attr(g["category"])}</div>' if g.get('category') else ''
     disc = f'<p class="gdisc">{attr(g["disclosure"])}</p>' if g.get('disclosure') else ''
-    html = g['html'].replace('href="#', 'href="../index.html#')  # in-guide SPA links open the app
-    cta = ('<a class="featured" href="../index.html#guide/' + g['slug'] + '">'
+    html = g['html'].replace('href="#', 'href="../#')  # in-guide SPA links open the app
+    cta = ('<a class="featured" href="../#guide/' + g['slug'] + '">'
            '<span class="flabel">Interactive</span><div class="ft">Open this guide in the app</div>'
            '<p class="fs">Compare real options by your own values. The list re-ranks live as you weigh what matters.</p>'
            '<span class="link">Open the tool →</span></a>')
     rel = ''
     if related:
         cards = ''.join(
-            '<a class="guidecard" href="./' + r['slug'] + '.html"><div class="gt">' + attr(r['title']) +
+            '<a class="guidecard" href="./' + r['slug'] + '"><div class="gt">' + attr(r['title']) +
             '</div><p class="gs">' + attr(r['summary']) + '</p></a>' for r in related)
         rel = '<div class="gsec">Read next</div>' + cards
-    body = ('<a class="back" href="./index.html">← all guides</a>'
+    body = ('<a class="back" href="./">← all guides</a>'
             '<div class="guidehead">' + cat + disc + '</div>'
             '<article class="guide-body">' + html + '</article>'
             '<div class="gd-cta">' + cta + '</div>' + rel)
-    url = SITE_BASE + '/g/' + g['slug'] + '.html'
+    url = SITE_BASE + '/g/' + g['slug']
     image = SITE_BASE + '/g/' + g['slug'] + '.png'
     ld = {
         '@context': 'https://schema.org',
@@ -400,21 +406,50 @@ def guide_page(g, ver, related):
         'image': image,
         'license': 'https://creativecommons.org/licenses/by-sa/4.0/'
     }
-    return page_shell(g['title'], g['summary'], 'g/' + g['slug'] + '.html', body, ver, ld, image)
+    return page_shell(g['title'], g['summary'], 'g/' + g['slug'], body, ver, ld, image)
 
 
 def guides_index_page(guides, ver):
-    cards = []
+    """The index of every guide, grouped by category, as rows.
+
+    WAS: one hundred identical cards, each carrying a title, a category label and a forty-word
+    summary. It measured 24% boxed, the densest surface anywhere in the ecosystem and more than
+    twice the ceiling in the house standards, and it failed for the reason a wall of twelve cards
+    failed on Kosplora: nothing varies between them, so there is nothing for the eye to catch.
+
+    A hundred summaries is also more prose than anyone reads on an index. The summary belongs on
+    the guide, after the reader has chosen it. Here the row carries what distinguishes one guide
+    from another, which is its name and which category it sits in, and the categories become
+    headings so the list can be scanned by section instead of read top to bottom.
+    """
+    by_cat = {}
+    order = []
     for g in guides:
-        gc = f'<div class="gc">{attr(g["category"])}</div>' if g.get('category') else ''
-        cards.append('<a class="guidecard" href="./' + g['slug'] + '.html"><div class="gt">' +
-                     attr(g['title']) + '</div>' + gc + '<p class="gs">' + attr(g['summary']) + '</p></a>')
+        cat = (g.get('category') or 'Other').strip()
+        if cat not in by_cat:
+            by_cat[cat] = []
+            order.append(cat)
+        by_cat[cat].append(g)
+
+    groups = []
+    for cat in sorted(order, key=lambda c: (-len(by_cat[c]), c.lower())):
+        rows = ''.join(
+            '<li><a href="./' + g['slug'] + '">' + attr(g['title']) + '</a></li>'
+            for g in sorted(by_cat[cat], key=lambda x: x['title'].lower())
+        )
+        groups.append(
+            '<section class="gcat"><h2 class="gcat-h">' + attr(cat) +
+            '<span class="gcat-n">' + str(len(by_cat[cat])) + '</span></h2>'
+            '<ul class="gcat-l">' + rows + '</ul></section>'
+        )
+
     body = ('<h1 class="sectionh">Guides: vote with your money</h1>'
-            '<p class="sectionsub">Short, sourced guides to spending by your values. No ads, never sponsored. '
-            'Open any guide below, or <a href="../index.html">use the interactive tool →</a></p>' + ''.join(cards))
+            '<p class="sectionsub">' + str(len(guides)) + ' short, sourced guides to spending by your '
+            'values, in ' + str(len(order)) + ' categories. No ads, never sponsored. Open any guide below, '
+            'or <a href="../">use the interactive tool →</a></p>' + ''.join(groups))
     return page_shell('Guides: vote with your money',
                       'An honest, sourced curriculum for spending by your values. No ads, never sponsored.',
-                      'g/index.html', body, ver, image=SITE_BASE + '/g/index.png')
+                      'g/', body, ver, image=SITE_BASE + '/g/index.png')
 
 
 def remove_orphaned_guide_outputs(gdir, guides):
@@ -454,14 +489,20 @@ def build_static_pages(guides, ver):
         print('  (guide images skipped: CC_SKIP_GUIDE_IMAGES=1)')
     else:
         render_guide_images(guides)
-    urls = [SITE_BASE + '/index.html', SITE_BASE + '/g/index.html'] + [SITE_BASE + '/g/' + g['slug'] + '.html' for g in guides]
+    urls = [SITE_BASE + '/', SITE_BASE + '/g/'] + [SITE_BASE + '/g/' + g['slug'] for g in guides]
     # include the wall-of-verdicts gallery + every sourced card page (built by build_cards.js → app/c/_cards.json)
     cards_manifest = os.path.join(APP, 'c', '_cards.json')
     if os.path.isfile(cards_manifest):
         try:
             cm = json.load(open(cards_manifest, encoding='utf-8'))
-            urls.append(SITE_BASE + '/c/index.html')
-            urls += [SITE_BASE + '/c/' + c['cid'] + '/' + c['code'] + '.html' for c in cm]
+            urls.append(SITE_BASE + '/c/')
+            # ONLY THE VERDICTS THAT CARRY WHAT A VERDICT NEEDS. The rule and the reason are in
+            # pipeline/build_cards.js (verdictIsIndexable); a page under the bar is built, linked
+            # and readable, and is marked noindex, so listing it here would contradict the page.
+            offered = [c for c in cm if c.get('index')]
+            urls += [SITE_BASE + '/c/' + c['cid'] + '/' + c['code'] for c in offered]
+            print('  sitemap: ' + str(len(offered)) + ' of ' + str(len(cm))
+                  + ' verdict pages carry more than one independent source and a dated check')
         except Exception:
             pass
     sm = ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

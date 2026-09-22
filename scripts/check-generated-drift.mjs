@@ -26,6 +26,8 @@ const TOP_LEVEL_DATA_CONTRACTS = new Set([
   "challenge-index.json",
   "design-tokens.json",
   "index.json",
+  "map.json",
+  "presentation.json",
   "proposals.json",
   "pulse.json",
 ]);
@@ -398,8 +400,10 @@ console.log(`  build graph: ${buildGraph.canonical} canonical steps, ${buildGrap
 
 const before = snapshot();
 const ignoredBefore = ignoredNameSnapshot();
+runPython("pipeline/build_icon.py");
 run("node", ["pipeline/build_lines.js"]);
 runPython("pipeline/build_datasets.py");
+run("node", ["pipeline/build_presentation.js"]);
 run("node", ["pipeline/build_tags.js"]);
 run("node", ["pipeline/build_errands.js"]);
 run("node", ["pipeline/build_nodes.js"]);
@@ -409,6 +413,7 @@ run("node", ["pipeline/build_proposals.js"]);
 run("node", ["pipeline/build_initiatives.js"]);
 run("node", ["pipeline/build_design_tokens.js"]);
 run("node", ["pipeline/build_cards.js"]);
+run("node", ["pipeline/build_map.js"]);
 runPython("pipeline/build_guides.py");
 const after = snapshot();
 const ignoredAfter = ignoredNameSnapshot();

@@ -1,0 +1,985 @@
+{
+ "meta": {
+  "id": "secondhand-and-resale",
+  "label": "Secondhand and resale",
+  "type": "Services",
+  "primaryAxis": "fees",
+  "tradeoff": [
+   "fees",
+   "buyer_protection"
+  ],
+  "tradeoffLabels": [
+   "seller keeps more of the sale price",
+   "buyer is protected if something goes wrong"
+  ],
+  "source": "Conscious Consuming (curated)",
+  "attribution": "Fee figures and protection terms come from each marketplace's own published fee policy, seller agreement or buyer protection page, read directly, plus TheRealReal's 2025 annual report filed with the US Securities and Exchange Commission. Dollar thresholds and percentages are the ones each platform states for US sellers and buyers; a platform operating in other countries may set different figures there. These fees change without much notice, several of the platforms scored here changed their fee structure at least once in the last two years, so check the linked page before relying on a number here. A high buyer protection score describes the strength of the guarantee as the platform itself states it, not an independent audit of how often claims are honored. Two routes cost nothing at all: giving clothes away through the Buy Nothing Project or Freecycle, and donating them to a charity thrift shop such as Goodwill, which pays the donor no cash but funds job training programs from what it resells. Suggest changes via Contribute.",
+  "allergens": false,
+  "presets": {
+   "Balanced": {
+    "w": {
+     "fees": 3,
+     "buyer_protection": 3,
+     "accessibility": 2
+    },
+    "x": []
+   },
+   "Best payout for sellers": {
+    "w": {
+     "fees": 5,
+     "buyer_protection": 1,
+     "accessibility": 1
+    },
+    "x": []
+   },
+   "Safest for buyers": {
+    "w": {
+     "buyer_protection": 5,
+     "fees": 1,
+     "accessibility": 1
+    },
+    "x": []
+   },
+   "No listing, no waiting": {
+    "w": {
+     "accessibility": 5,
+     "fees": 2,
+     "buyer_protection": 1
+    },
+    "x": []
+   }
+  },
+  "n": 15,
+  "valueSignatureProfile": {
+   "entryCount": 15,
+   "signedEntries": 15,
+   "drawableEntries": 10,
+   "minimumThemesForBloom": 2,
+   "themeCounts": {
+    "people": 10,
+    "cost": 15
+   }
+  },
+  "provenanceProfile": {
+   "entryCount": 15,
+   "singleSourceEntries": 14,
+   "multiSourceEntries": 1,
+   "noSourceEntries": 0,
+   "noteOnlyEntries": 0,
+   "averageSourceDomains": 1.07,
+   "topPrimarySources": [
+    {
+     "label": "buynothingproject.org",
+     "entries": 1
+    },
+    {
+     "label": "craigslist.org",
+     "entries": 1
+    },
+    {
+     "label": "depophelp.zendesk.com",
+     "entries": 1
+    },
+    {
+     "label": "ebay.com",
+     "entries": 1
+    },
+    {
+     "label": "faq.vestiairecollective.com",
+     "entries": 1
+    },
+    {
+     "label": "freecycle.org",
+     "entries": 1
+    }
+   ]
+  },
+  "decision": {
+   "category": "secondhand-and-resale",
+   "reads": {
+    "text": "Compare secondhand and resale by fees, buyer protection, and everyday access.",
+    "basis": [
+     {
+      "criterion": "fees",
+      "readsAs": "fees"
+     },
+     {
+      "criterion": "buyer_protection",
+      "readsAs": "buyer protection"
+     },
+     {
+      "criterion": "accessibility",
+      "readsAs": "everyday access"
+     }
+    ],
+    "signature": {
+     "by": "Conscious Consuming",
+     "on": "2026-07-15",
+     "status": "approved-batch"
+    },
+    "receipt": {
+     "dataset": "secondhand-and-resale",
+     "entryCount": 15,
+     "criteria": [
+      {
+       "criterion": "fees",
+       "readsAs": "fees",
+       "known": 14,
+       "minimum": 0,
+       "maximum": 100,
+       "spread": 100
+      },
+      {
+       "criterion": "buyer_protection",
+       "readsAs": "buyer protection",
+       "known": 10,
+       "minimum": 5,
+       "maximum": 90,
+       "spread": 85
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access",
+       "known": 5,
+       "minimum": 70,
+       "maximum": 90,
+       "spread": 20
+      }
+     ]
+    }
+   },
+   "axes": [
+    {
+     "id": "cost-or-values",
+     "kind": "cost-values",
+     "label": "Fees or overall fit",
+     "question": "Lower fees or a stronger overall fit?",
+     "criteria": [
+      "fees",
+      "buyer_protection",
+      "accessibility"
+     ],
+     "poles": [
+      "Lower fees",
+      "Stronger overall fit"
+     ],
+     "default": 50
+    },
+    {
+     "id": "accessibility",
+     "kind": "criterion",
+     "label": "Access",
+     "question": "Do you need easier everyday access?",
+     "criteria": [
+      "accessibility"
+     ],
+     "poles": [
+      "Flexible",
+      "Easier access"
+     ],
+     "default": 50
+    }
+   ],
+   "budget": {
+    "available": true,
+    "mode": "assessed-fees-rank",
+    "criterion": "fees",
+    "minimumKnown": 5,
+    "knownEntries": 14,
+    "coverage": 0.9333
+   },
+   "archetypes": [
+    "best-for-most",
+    "strictest-match",
+    "budget-honest"
+   ],
+   "page": {
+    "stage": "approved-batch",
+    "primaryRoute": true
+   },
+   "consumer": {
+    "reads": "Round 8 approved category differences reads.",
+    "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+    "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+    "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+    "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+   }
+  }
+ },
+ "criteria": [
+  {
+   "key": "fees",
+   "label": "Low seller fees, seller keeps more of the sale",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "buyer_protection",
+   "label": "Buyer protection if an item is fake, damaged or never arrives",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "accessibility",
+   "label": "Easy and immediate, without listing or shipping",
+   "source": "curated",
+   "tier": "assessed"
+  }
+ ],
+ "products": [
+  {
+   "code": "ebay",
+   "name": "eBay",
+   "brand": "general online marketplace",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A general online marketplace that sells clothing alongside almost everything else, by auction or fixed price, shipped by the seller after the item sells.",
+   "scores": {
+    "fees": 86,
+    "buyer_protection": 90
+   },
+   "provenance": {
+    "fees": {
+     "note": "eBay's own selling fees page states the final value fee for most categories, including general clothing, is 13.6% of the total sale amount up to $7,500 per item, plus a per-order fee of $0.30 for orders of $10 or less and $0.40 for orders over $10. Women's handbags carry a separate 15% fee (9% above $2,000), and athletic shoes have their own tiered rate.",
+     "source": "https://www.ebay.com/help/selling/fees-credits-invoices/selling-fees?id=4364",
+     "asof": "2026"
+    },
+    "buyer_protection": {
+     "note": "eBay's Money Back Guarantee page states coverage is automatic on virtually every purchase, covers the purchase price plus original shipping, and that there is no extra fee for the coverage. Separately, eBay's own Authenticity Guarantee page states eligible apparel items priced $200 and over from listed brands are physically inspected by experts before being shipped to the buyer.",
+     "source": "https://pages.ebay.com/ebay-money-back-guarantee/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Selling fees",
+     "url": "https://www.ebay.com/help/selling/fees-credits-invoices/selling-fees?id=4364"
+    },
+    {
+     "label": "Authenticity Guarantee",
+     "url": "https://www.ebay.com/help/selling/selling-tools/ebay-authenticity-guarantee?id=4644"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "General marketplace",
+    "Auction and fixed price"
+   ],
+   "valueSignature": {
+    "people": 90,
+    "cost": 86
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "ebay.com",
+    "sourceLabels": [
+     "ebay.com",
+     "pages.ebay.com"
+    ]
+   }
+  },
+  {
+   "code": "poshmark",
+   "name": "Poshmark",
+   "brand": "peer-to-peer social selling app",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A peer-to-peer app built around a social feed, where sellers photograph and price their own clothes and buyers can follow individual sellers' closets.",
+   "scores": {
+    "fees": 80,
+    "buyer_protection": 75
+   },
+   "provenance": {
+    "fees": {
+     "note": "Poshmark's own fee policy page states that after an item sells it deducts a small fee from the final order price: a flat $2.95 for sales under $15, and 20% for sales of $15 and above, so the seller keeps 80% on those sales.",
+     "source": "https://poshmark.com/fee_policy",
+     "asof": "2026"
+    },
+    "buyer_protection": {
+     "note": "Poshmark's own Posh Protect page states buyers get a full refund if their item never ships or does not match the listing, and lists undisclosed damage, incorrect or missing items, and items that are not authentic as covered reasons, with 72 hours from delivery to report. The same page says a buyer cannot return an item under Posh Protect just because it is not their style or does not fit.",
+     "source": "https://poshmark.com/posh_protect",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Fee policy",
+     "url": "https://poshmark.com/fee_policy"
+    },
+    {
+     "label": "Posh Protect",
+     "url": "https://poshmark.com/posh_protect"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Peer to peer",
+    "Social selling"
+   ],
+   "valueSignature": {
+    "people": 75,
+    "cost": 80
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "poshmark.com"
+   }
+  },
+  {
+   "code": "depop",
+   "name": "Depop",
+   "brand": "peer-to-peer marketplace",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A peer-to-peer marketplace popular with younger sellers, built around individual shop pages rather than one combined catalog search.",
+   "scores": {
+    "fees": 95,
+    "buyer_protection": 65
+   },
+   "provenance": {
+    "fees": {
+     "note": "Depop's own seller fees article states no Depop selling fee is charged to sellers based in the UK, US or Australia. A US seller instead pays only the Depop Payments processing fee of 3.3% plus $0.45 per transaction, charged on the item price, shipping and any tax. Sellers outside those three countries pay a flat 10% selling fee.",
+     "source": "https://depophelp.zendesk.com/hc/en-gb/articles/360001791127-Seller-fees-and-charges",
+     "asof": "2026"
+    },
+    "buyer_protection": {
+     "note": "Depop's own Depop Protection page states a buyer gets a full refund, including shipping, fees and tax, if an item does not arrive, arrives damaged, or is significantly not as described, if reported within 30 days of purchase, for buyers in the UK, US and Australia who paid through Depop Payments. The same page states Depop Protection 'is not an insurance policy, a warranty, or a guarantee' and is granted at Depop's discretion.",
+     "source": "https://depophelp.zendesk.com/hc/en-gb/articles/360038461713-Depop-Protection-for-buyers",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Seller fees",
+     "url": "https://depophelp.zendesk.com/hc/en-gb/articles/360001791127-Seller-fees-and-charges"
+    },
+    {
+     "label": "Depop Protection for buyers",
+     "url": "https://depophelp.zendesk.com/hc/en-gb/articles/360038461713-Depop-Protection-for-buyers"
+    }
+   ],
+   "region": [
+    "US",
+    "UK"
+   ],
+   "focuses": [
+    "Peer to peer",
+    "Younger sellers"
+   ],
+   "valueSignature": {
+    "people": 65,
+    "cost": 95
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "depophelp.zendesk.com"
+   }
+  },
+  {
+   "code": "mercari",
+   "name": "Mercari",
+   "brand": "general peer-to-peer marketplace",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A general peer-to-peer marketplace for clothing and almost anything else, with a single flat selling fee and, since January 2025, no separate buyer payment fee.",
+   "scores": {
+    "fees": 90,
+    "buyer_protection": 75
+   },
+   "provenance": {
+    "fees": {
+     "note": "Mercari's help center states a 10% selling fee applies to the combined item price and buyer-paid shipping, for listings created or updated on or after January 6, 2025, and that Mercari no longer charges buyers a separate payment processing fee on those listings.",
+     "source": "https://www.mercari.com/us/help_center/article/169/",
+     "asof": "2025"
+    },
+    "buyer_protection": {
+     "note": "Mercari's Buyer Protection page states a buyer can get a refund if the item is not as described in the listing, but must report the issue within 72 hours of confirmed delivery; after that window the payment is automatically released to the seller and the sale is final.",
+     "source": "https://www.mercari.com/us/help_center/article/235/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Fees on Mercari",
+     "url": "https://www.mercari.com/us/help_center/article/169/"
+    },
+    {
+     "label": "Buyer Protection",
+     "url": "https://www.mercari.com/us/help_center/article/235/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Peer to peer",
+    "General marketplace"
+   ],
+   "valueSignature": {
+    "people": 75,
+    "cost": 90
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "mercari.com"
+   }
+  },
+  {
+   "code": "vinted",
+   "name": "Vinted",
+   "brand": "peer-to-peer clothing marketplace",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A peer-to-peer clothing marketplace that charges sellers no fee at all, funding its buyer guarantee instead through a fee added to what the buyer pays.",
+   "scores": {
+    "fees": 100,
+    "buyer_protection": 65
+   },
+   "provenance": {
+    "fees": {
+     "note": "Vinted's own help page states there are no fees for uploading items or selling them on Vinted, and that once a sale closes the seller receives the full selling price straight to their Vinted Wallet.",
+     "source": "https://www.vinted.com/help/373-is-selling-on-vinted-free",
+     "asof": "2026"
+    },
+    "buyer_protection": {
+     "note": "Vinted's own Buyer Protection page states a buyer is refunded if an item doesn't arrive, arrives damaged, or is significantly not as described, but must press 'I have an issue' within 2 days of the item being marked delivered, or the payment is automatically released to the seller. This is funded by a mandatory Buyer Protection fee added to every order at checkout, typically around 5% of the item price plus $0.70.",
+     "source": "https://www.vinted.com/help/550-buyer-protection",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Is selling on Vinted free?",
+     "url": "https://www.vinted.com/help/373-is-selling-on-vinted-free"
+    },
+    {
+     "label": "Buyer Protection",
+     "url": "https://www.vinted.com/help/550-buyer-protection"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Peer to peer",
+    "No seller fee"
+   ],
+   "valueSignature": {
+    "people": 65,
+    "cost": 100
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "vinted.com"
+   }
+  },
+  {
+   "code": "thredup",
+   "name": "ThredUp",
+   "brand": "mail-in consignment",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A mail-in consignment service. The seller sends a bag or box of clothes and ThredUp decides what to accept, prices it, lists it, and pays a percentage of whatever it sells for.",
+   "scores": {
+    "fees": 35,
+    "accessibility": 80
+   },
+   "provenance": {
+    "fees": {
+     "note": "ThredUp's own Clean Out earnings page shows a sliding payout scale set by ThredUp, not the seller: items that resell for $0.15 to $3 pay 3% to 15% of the sale price, $3 to $15 pay 15% to 30%, $15 to $60 pay 30% to 60%, $60 to $160 pay 60% to 80%, and $160 and up pay 80%.",
+     "source": "https://www.thredup.com/cleanout/earnings",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "ThredUp's own Clean Out page states shipping bags and labels are always free, a bag holds up to 30 pounds and arrives within about a week, and the seller drops it at any UPS location. The same page states 'We price your items. Our algorithms set prices based on past sales, brand, and item quality,' so the seller does not photograph, write up or price each item.",
+     "source": "https://www.thredup.com/cleanout/earnings",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Earn money for used clothing",
+     "url": "https://www.thredup.com/cleanout/earnings"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Mail-in consignment",
+    "Seller doesn't set price"
+   ],
+   "valueSignature": {
+    "cost": 57.5
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "thredup.com"
+   }
+  },
+  {
+   "code": "the-realreal",
+   "name": "The RealReal",
+   "brand": "luxury consignment",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A luxury consignment marketplace that authenticates every item before it is accepted for sale, taking a larger share of lower-priced items and a smaller share of high-value ones.",
+   "scores": {
+    "fees": 62,
+    "buyer_protection": 88
+   },
+   "provenance": {
+    "fees": {
+     "note": "TheRealReal's 2025 annual report, filed with the US Securities and Exchange Commission, states consignors can earn up to 90% of the proceeds from the sale of their consigned items in commissions and achieved an overall commission rate of approximately 62% in 2025.",
+     "source": "https://www.sec.gov/Archives/edgar/data/1573221/000157322126000010/real-20251231.htm",
+     "asof": "2026"
+    },
+    "buyer_protection": {
+     "note": "TheRealReal's 2025 annual report states all consigned items pass through a brand-specific authentication process before they are accepted for consignment, each piece sold comes with an authentication certificate, and the company has 'a zero-tolerance policy when it comes to counterfeit goods,' with items found to be counterfeit removed from its authentication centers before reaching a buyer.",
+     "source": "https://www.sec.gov/Archives/edgar/data/1573221/000157322126000010/real-20251231.htm",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "2025 Form 10-K (SEC EDGAR)",
+     "url": "https://www.sec.gov/Archives/edgar/data/1573221/000157322126000010/real-20251231.htm"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Luxury consignment",
+    "Authenticated"
+   ],
+   "valueSignature": {
+    "people": 88,
+    "cost": 62
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "sec.gov"
+   }
+  },
+  {
+   "code": "grailed",
+   "name": "Grailed",
+   "brand": "menswear and streetwear resale",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A marketplace focused on menswear, streetwear and designer clothing, where sellers list their own items and some listings carry an authentication badge after review.",
+   "scores": {
+    "fees": 88,
+    "buyer_protection": 65
+   },
+   "provenance": {
+    "fees": {
+     "note": "Grailed's own fee page states the seller commission is 9% on sales of $120 or more, and a reduced 6% (minimum $1.99) on sales under $120 for sales on or after May 20, 2026, charged separately from a payment processing fee.",
+     "source": "https://support.grailed.com/hc/en-us/articles/30282580172045-What-are-the-fees",
+     "asof": "2026"
+    },
+    "buyer_protection": {
+     "note": "Grailed's own Purchase Protection page states a buyer is covered if the item received is deemed inauthentic by Grailed, materially differs from its description, or is the wrong item, but issues must be reported within 3 calendar days of the item being received.",
+     "source": "https://support.grailed.com/hc/en-us/articles/30282097906189-Grailed-s-Purchase-Protection",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "What are the fees?",
+     "url": "https://support.grailed.com/hc/en-us/articles/30282580172045-What-are-the-fees"
+    },
+    {
+     "label": "Grailed's Purchase Protection",
+     "url": "https://support.grailed.com/hc/en-us/articles/30282097906189-Grailed-s-Purchase-Protection"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Menswear and streetwear",
+    "Peer to peer"
+   ],
+   "valueSignature": {
+    "people": 65,
+    "cost": 88
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "support.grailed.com"
+   }
+  },
+  {
+   "code": "stockx",
+   "name": "StockX",
+   "brand": "bid-and-ask verified marketplace",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A marketplace built around a live bid-and-ask price, best known for sneakers but also selling streetwear and apparel, where almost every order is physically inspected before it ships to the buyer.",
+   "scores": {
+    "fees": 85,
+    "buyer_protection": 85
+   },
+   "provenance": {
+    "fees": {
+     "note": "StockX's own help page states Verified Marketplace sellers pay a 3% payment processing fee plus a base transaction fee that starts at 9% for a Level 1 seller and falls as low as 7% for a Level 5 seller who meets higher sales requirements, so a new seller pays about 12% combined.",
+     "source": "https://stockx.com/help/articles/what-are-stockxs-fees-for-sellers",
+     "asof": "2026"
+    },
+    "buyer_protection": {
+     "note": "StockX's own help pages state its verification team inspects an item against StockX's condition guidelines before it ships to the buyer, and that the StockX Buyer Promise protects an order that 'arrives materially different from what was described,' with 14 days to report and a full refund if StockX cannot find a replacement after an item fails verification.",
+     "source": "https://stockx.com/help/articles/What-is-The-StockX-Buyer-Promise",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Seller fees",
+     "url": "https://stockx.com/help/articles/what-are-stockxs-fees-for-sellers"
+    },
+    {
+     "label": "The StockX Buyer Promise",
+     "url": "https://stockx.com/help/articles/What-is-The-StockX-Buyer-Promise"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Sneakers and streetwear",
+    "Verified before shipping"
+   ],
+   "valueSignature": {
+    "people": 85,
+    "cost": 85
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "stockx.com"
+   }
+  },
+  {
+   "code": "vestiaire-collective",
+   "name": "Vestiaire Collective",
+   "brand": "global luxury resale",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A global luxury resale marketplace that runs a digital authenticity check on every listing and offers an optional paid physical authentication and quality control service.",
+   "scores": {
+    "fees": 85,
+    "buyer_protection": 70
+   },
+   "provenance": {
+    "fees": {
+     "note": "Vestiaire Collective's own help page states a 12% selling fee applies to items priced between $83 and $16,667, plus a 3% (minimum $3) payment processing fee; items priced under $83 carry a fixed $10 charge instead.",
+     "source": "https://faq.vestiairecollective.com/hc/en-us/articles/24659638721425-Seller-Selling-Fees",
+     "asof": "2026"
+    },
+    "buyer_protection": {
+     "note": "For an item bought from a private seller with Direct Shipping, Vestiaire Collective's own help page gives the buyer 72 hours after delivery to report that the item doesn't match its description, and states it will cancel the order and refund the buyer if the seller does not dispute the report within that window. Items bought from a Professional Seller can be returned within 14 days.",
+     "source": "https://faq.vestiairecollective.com/hc/en-us/articles/360006794218-Buyer-The-Item-I-Received-Doesn-t-Match-Its-Description",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Seller: Selling Fees",
+     "url": "https://faq.vestiairecollective.com/hc/en-us/articles/24659638721425-Seller-Selling-Fees"
+    },
+    {
+     "label": "How trustworthy is Vestiaire Collective?",
+     "url": "https://faq.vestiairecollective.com/hc/en-us/articles/25918378635025-How-trustworthy-is-Vestiaire-Collective"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Luxury resale",
+    "Global"
+   ],
+   "valueSignature": {
+    "people": 70,
+    "cost": 85
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "faq.vestiairecollective.com"
+   }
+  },
+  {
+   "code": "platos-closet",
+   "name": "Plato's Closet",
+   "brand": "in-store buyout chain",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A chain of secondhand clothing stores aimed at teens and young adults. Bring items in and staff buy what they want on the spot, in cash, no shipping, listing or waiting involved. Individual stores set their own buy prices, which are not published, so no fee or payout score is given here.",
+   "scores": {
+    "accessibility": 90
+   },
+   "provenance": {
+    "accessibility": {
+     "note": "Plato's Closet's own site states it buys gently used teen and young adult clothes, shoes and accessories every day, no appointment necessary, and pays cash on the spot if the seller accepts the store's offer.",
+     "source": "https://www.platoscloset.com/home/how-it-works",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "How selling works",
+     "url": "https://www.platoscloset.com/home/how-it-works"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "In-store buyout",
+    "Cash on the spot"
+   ],
+   "valueSignature": {
+    "cost": 90
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "platoscloset.com"
+   }
+  },
+  {
+   "code": "goodwill",
+   "name": "Goodwill",
+   "brand": "charity thrift stores",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A network of independent local nonprofits that sell donated clothing in thrift stores to fund their own job training and employment programs. Donors give the clothes away and receive no cash payout, only a possible tax deduction if they itemize. Return policy varies by the roughly 150 independently run local Goodwill organizations, so no single buyer protection score is given here.",
+   "scores": {
+    "fees": 0,
+    "accessibility": 90
+   },
+   "provenance": {
+    "fees": {
+     "note": "Goodwill's own shopper page describes Goodwill as a global network of independent nonprofits that generate revenue from donated and resold goods to fund their own community job-training and employment programs, not to pay the person who donated the item.",
+     "source": "https://www.goodwill.org/shoppers/",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Goodwill's own site directs donors to a locator of Donation Center and Thrift Store locations across its network, where items can simply be dropped off.",
+     "source": "https://www.goodwill.org/shoppers/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Goodwill shoppers page",
+     "url": "https://www.goodwill.org/shoppers/"
+    },
+    {
+     "label": "Locate a donation center",
+     "url": "https://www.goodwill.org/locate-a-donation-center/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Charity thrift",
+    "Donation"
+   ],
+   "valueSignature": {
+    "cost": 45
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "goodwill.org"
+   }
+  },
+  {
+   "code": "buy-nothing-project",
+   "name": "Buy Nothing Project",
+   "brand": "hyperlocal gift economy",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A network of hyperlocal groups where neighbors give away clothes and other goods for free. Trading, bartering, buying or selling is against the project's own rules, so no marketplace-style buyer protection applies.",
+   "scores": {
+    "fees": 0,
+    "accessibility": 70
+   },
+   "provenance": {
+    "fees": {
+     "note": "The Buy Nothing Project's own about page states it connects neighbors 'to gift each other goods and services freely,' with no cash changing hands, and counts more than 14 million members across more than 50 countries.",
+     "source": "https://buynothingproject.org/about",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "The Buy Nothing Project's own about page describes a network of hyperlocal groups where members give and receive through local Facebook groups or an app; joining a local group is required before posting.",
+     "source": "https://buynothingproject.org/about",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "About the Buy Nothing Project",
+     "url": "https://buynothingproject.org/about"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Gift economy",
+    "Hyperlocal"
+   ],
+   "valueSignature": {
+    "cost": 35
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "buynothingproject.org"
+   }
+  },
+  {
+   "code": "freecycle",
+   "name": "The Freecycle Network",
+   "brand": "free local reuse network",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A nonprofit network of local Town groups for giving away and getting unwanted items, including clothing, with no money changing hands.",
+   "scores": {
+    "fees": 0,
+    "accessibility": 70
+   },
+   "provenance": {
+    "fees": {
+     "note": "Freecycle's own about page states membership is free and 'everything posted must be free, legal and appropriate for all ages,' so no cash payout is ever made to the person giving an item away.",
+     "source": "https://www.freecycle.org/pages/about",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Freecycle's own about page states a member joins one or more local Town groups, posts what they want to gift or receive, and arranges a pickup time and location directly with the other member. It describes more than 5,000 local Town groups with over 11 million members.",
+     "source": "https://www.freecycle.org/pages/about",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "About Freecycle",
+     "url": "https://www.freecycle.org/pages/about"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Gift economy",
+    "Local group"
+   ],
+   "valueSignature": {
+    "cost": 35
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "freecycle.org"
+   }
+  },
+  {
+   "code": "craigslist",
+   "name": "Craigslist",
+   "brand": "local classifieds",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A local classifieds site where a seller writes their own listing and arranges payment and pickup directly with a buyer. Craigslist never touches the money and takes no share of the sale price.",
+   "scores": {
+    "fees": 100,
+    "buyer_protection": 5
+   },
+   "provenance": {
+    "fees": {
+     "note": "Craigslist's own posting fees page lists 'All craigslist postings are free, except for' a named set of paid categories, such as job postings, some apartment rentals, commercial real estate, and for-sale-by-dealer and vehicle listings. General for-sale items posted by an individual owner are not on that paid list.",
+     "source": "https://www.craigslist.org/about/help/posting_fees",
+     "asof": "2026"
+    },
+    "buyer_protection": {
+     "note": "Craigslist's own terms of use state the service is provided on an 'AS IS' and 'AS AVAILABLE' basis, that Craigslist makes no promises, warranties or representations about it, and that its own liability is capped at $100 or the amount a user paid Craigslist in the prior 12 months. There is no buyer or seller guarantee.",
+     "source": "https://www.craigslist.org/about/terms.of.use/en",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Posting fees",
+     "url": "https://www.craigslist.org/about/help/posting_fees"
+    },
+    {
+     "label": "Terms of use",
+     "url": "https://www.craigslist.org/about/terms.of.use/en"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Local classifieds",
+    "No platform fee"
+   ],
+   "valueSignature": {
+    "people": 5,
+    "cost": 100
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "craigslist.org"
+   }
+  }
+ ]
+}

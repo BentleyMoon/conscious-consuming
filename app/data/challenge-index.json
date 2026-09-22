@@ -2,18 +2,18 @@
   "format": "open-values-challenge-index",
   "version": "0.1.0",
   "standard": "open-values-standard",
-  "built": "2026-07-08",
+  "built": "2026-08-14",
   "purpose": "Generated compact index for calm anti-echo-chamber surfaces across Open Values instances.",
   "generatedFrom": {
     "path": "content/challenge/index.json",
-    "updated": "2026-07-08",
-    "sha256": "8e679fcc603cea00f7afa7c086d8b13cb1e35147cd341eaa16ddd27f2c1019bc"
+    "updated": "2026-08-14",
+    "sha256": "9ca83042dccebb92743d145609b5969cc0e3598c8065c3a1295cab438ba05515"
   },
   "counts": {
     "instances": 3,
     "algorithms": 2,
     "cases": 7,
-    "contraryTags": 14,
+    "contraryTags": 16,
     "categories": 7
   },
   "principles": [
@@ -127,14 +127,14 @@
     },
     {
       "id": "banking",
-      "label": "Ethical banking",
+      "label": "Banking",
       "type": "Services",
       "file": "app/data/banking.json",
       "n": 25,
       "criteria": [
         {
           "key": "environment",
-          "label": "Green financing"
+          "label": "Fossil-fuel financing"
         },
         {
           "key": "ethics",
@@ -151,6 +151,10 @@
         {
           "key": "accessibility",
           "label": "Easy to use"
+        },
+        {
+          "key": "complaints",
+          "label": "Complaint record"
         }
       ]
     },
@@ -362,22 +366,22 @@
           "tag": "ai-assistants/chatgpt/accessibility",
           "axis": "accessibility",
           "score": 94,
-          "summary": "OpenAI says GPT-5.5 is available to all ChatGPT tiers, while free-tier usage remains limited and dynamic.",
+          "summary": "ChatGPT makes its default Luna model available on the free tier, while paid plans add Terra and the flagship Sol tier.",
           "source": {
-            "note": "OpenAI says GPT-5.5 is available to all ChatGPT tiers, while free-tier usage remains limited and dynamic.",
+            "note": "OpenAI's GPT-5.6 Luna tier is the default model for Free and Go users, with Terra and the flagship Sol tier available on paid plans; free-tier usage remains limited and dynamic.",
             "source": "https://help.openai.com/en/articles/11909943",
-            "asof": "2026"
+            "asof": "2026-08"
           }
         },
         "receipt": {
           "tag": "ai-assistants/chatgpt/accessibility",
           "axis": "accessibility",
           "score": 94,
-          "summary": "OpenAI says GPT-5.5 is available to all ChatGPT tiers, while free-tier usage remains limited and dynamic.",
+          "summary": "ChatGPT makes its default Luna model available on the free tier, while paid plans add Terra and the flagship Sol tier.",
           "source": {
-            "note": "OpenAI says GPT-5.5 is available to all ChatGPT tiers, while free-tier usage remains limited and dynamic.",
+            "note": "OpenAI's GPT-5.6 Luna tier is the default model for Free and Go users, with Terra and the flagship Sol tier available on paid plans; free-tier usage remains limited and dynamic.",
             "source": "https://help.openai.com/en/articles/11909943",
-            "asof": "2026"
+            "asof": "2026-08"
           }
         }
       },
@@ -722,8 +726,8 @@
     {
       "id": "banking-convenience-vs-mission-banking",
       "category": "banking",
-      "label": "Convenient everyday banking versus mission/climate banking",
-      "reads": "The strongest case the other way: Triodos has a clearer climate and mission-banking mandate.",
+      "label": "Convenient everyday banking versus mission and climate banking",
+      "reads": "The strongest case the other way: Triodos publishes a fossil-fuel position, and Nationwide argues from the shape of its treasury book.",
       "userView": {
         "label": "Low-friction everyday banking first",
         "weights": {
@@ -731,18 +735,19 @@
           "ethics": 1,
           "transparency": 1,
           "fees": 5,
-          "accessibility": 5
+          "accessibility": 5,
+          "complaints": 1
         },
-        "expectedTop": "monzo",
+        "expectedTop": "nationwide-bs",
         "top": {
-          "code": "monzo",
-          "name": "Monzo",
-          "brand": "neobank (UK)",
-          "score": 86,
-          "coverage": 1,
+          "code": "nationwide-bs",
+          "name": "Nationwide Building Society",
+          "brand": "mutual (UK)",
+          "score": 85,
+          "coverage": 0.8571,
           "why": [
-            "Easy to use",
-            "Low fees"
+            "Low fees",
+            "Easy to use"
           ]
         }
       },
@@ -753,17 +758,18 @@
           "ethics": 5,
           "transparency": 4,
           "fees": 1,
-          "accessibility": 1
+          "accessibility": 1,
+          "complaints": 1
         },
         "expectedTop": "triodos",
         "top": {
           "code": "triodos",
           "name": "Triodos Bank",
           "brand": "ethical bank",
-          "score": 92,
-          "coverage": 1,
+          "score": 87,
+          "coverage": 0.9412,
           "why": [
-            "Green financing",
+            "Fossil-fuel financing",
             "Ethics & ownership"
           ]
         },
@@ -771,52 +777,52 @@
         "selectedTag": {
           "tag": "banking/triodos/environment",
           "axis": "environment",
-          "score": 98,
-          "summary": "Triodos lends nothing to fossil fuels and joined a treaty call to end fossil-fuel use.",
+          "score": 96,
+          "summary": "Triodos was the first bank to join the Fossil Fuel Non-Proliferation Treaty initiative and is described as a leading clean-energy lender.",
           "source": {
-            "note": "Lends nothing to fossil fuels; first bank in the world to sign the Fossil Fuel Non-Proliferation Treaty",
-            "source": "https://www.triodos.com/en/press-releases/2024/seventeen-banks-from-the-global-alliance-for-banking-on-values-join-global-call-for-binding-treaty-to-end-use-of-fossil-fuels",
-            "asof": "2024"
+            "note": "The Fossil Fuel Non-Proliferation Treaty's own list of the 25 GABV banks that endorsed the Treaty in 2024 describes Triodos as the first bank in the world to sign up to the Treaty initiative, and among the leading lenders for clean energy projects.",
+            "source": "https://www.fossilfueltreaty.org/25-banks-gabv",
+            "asof": "2026"
           }
         },
         "receipt": {
           "tag": "banking/triodos/environment",
           "axis": "environment",
-          "score": 98,
-          "summary": "Triodos lends nothing to fossil fuels and joined a treaty call to end fossil-fuel use.",
+          "score": 96,
+          "summary": "Triodos was the first bank to join the Fossil Fuel Non-Proliferation Treaty initiative and is described as a leading clean-energy lender.",
           "source": {
-            "note": "Lends nothing to fossil fuels; first bank in the world to sign the Fossil Fuel Non-Proliferation Treaty",
-            "source": "https://www.triodos.com/en/press-releases/2024/seventeen-banks-from-the-global-alliance-for-banking-on-values-join-global-call-for-binding-treaty-to-end-use-of-fossil-fuels",
-            "asof": "2024"
+            "note": "The Fossil Fuel Non-Proliferation Treaty's own list of the 25 GABV banks that endorsed the Treaty in 2024 describes Triodos as the first bank in the world to sign up to the Treaty initiative, and among the leading lenders for clean energy projects.",
+            "source": "https://www.fossilfueltreaty.org/25-banks-gabv",
+            "asof": "2026"
           }
         }
       },
       "steelman": {
-        "forEntity": "monzo",
-        "axis": "ethics",
-        "sourceTag": "banking/monzo/ethics",
-        "framing": "The strongest counterpoint is mission alignment: Monzo is shareholder-owned and VC-backed, without a positive green-finance mandate.",
-        "line": "The strongest counterpoint is mission alignment: Monzo is shareholder-owned and VC-backed, without a positive green-finance mandate.",
+        "forEntity": "nationwide-bs",
+        "axis": "environment",
+        "sourceTag": "banking/nationwide-bs/environment",
+        "framing": "The strongest counterpoint is what is published: Nationwide infers its low fossil-fuel exposure from what its treasury holds, rather than stating a lending exclusion.",
+        "line": "The strongest counterpoint is what is published: Nationwide infers its low fossil-fuel exposure from what its treasury holds, rather than stating a lending exclusion.",
         "selectedTag": {
-          "tag": "banking/monzo/ethics",
-          "axis": "ethics",
-          "score": 56,
-          "summary": "Monzo is shareholder-owned and VC-backed, with no positive green-finance mandate.",
+          "tag": "banking/nationwide-bs/environment",
+          "axis": "environment",
+          "score": 60,
+          "summary": "Nationwide infers low fossil-fuel exposure from what its treasury holds, rather than publishing a lending exclusion.",
           "source": {
-            "note": "Shareholder-owned, VC-backed; net-zero-by-2030 aim but no positive green-finance mandate",
-            "source": "https://www.ethicalconsumer.org/company-profile/monzo-bank-limited",
-            "asof": "2024"
+            "note": "Nationwide's own responsible investment page states its treasury holdings are restricted to government bonds, covered bonds and consumer-finance-backed securities, and that as a result it does not lend directly to high-emitting sectors such as the fossil-fuel industry. This describes the shape of its investment portfolio rather than an active screening policy of the kind Triodos or Beneficial State publish.",
+            "source": "https://www.nationwide.co.uk/about-us/responsible-business/policies-and-statements/responsible-investment-statement/esg-investment-approach",
+            "asof": "2026"
           }
         },
         "receipt": {
-          "tag": "banking/monzo/ethics",
-          "axis": "ethics",
-          "score": 56,
-          "summary": "Monzo is shareholder-owned and VC-backed, with no positive green-finance mandate.",
+          "tag": "banking/nationwide-bs/environment",
+          "axis": "environment",
+          "score": 60,
+          "summary": "Nationwide infers low fossil-fuel exposure from what its treasury holds, rather than publishing a lending exclusion.",
           "source": {
-            "note": "Shareholder-owned, VC-backed; net-zero-by-2030 aim but no positive green-finance mandate",
-            "source": "https://www.ethicalconsumer.org/company-profile/monzo-bank-limited",
-            "asof": "2024"
+            "note": "Nationwide's own responsible investment page states its treasury holdings are restricted to government bonds, covered bonds and consumer-finance-backed securities, and that as a result it does not lend directly to high-emitting sectors such as the fossil-fuel industry. This describes the shape of its investment portfolio rather than an active screening policy of the kind Triodos or Beneficial State publish.",
+            "source": "https://www.nationwide.co.uk/about-us/responsible-business/policies-and-statements/responsible-investment-statement/esg-investment-approach",
+            "asof": "2026"
           }
         }
       }

@@ -1,0 +1,857 @@
+{
+  "meta": {
+    "id": "ad-and-tracker-blockers",
+    "label": "Ad and tracker blockers",
+    "type": "Services",
+    "primaryAxis": "privacy",
+    "tradeoff": [
+      "accessibility",
+      "privacy"
+    ],
+    "tradeoffLabels": [
+      "easiest to set up",
+      "blocks the most"
+    ],
+    "source": "Conscious Consuming",
+    "attribution": "Scores are drawn from each maker's own documentation, source code repositories, help centre pages and, for the Acceptable Ads program, the program's own disclosures. The roster mixes three different routes: browser extensions, blocking built into a browser, and blocking done at the network or DNS level, and covers Windows, Mac, Linux, Android and iOS unevenly; platform limits are noted per option. \"Independent of advertiser payment\" records whether the maker takes money from advertisers or large publishers to let some ads through by default; where a program discloses this, the note says so and links to the program's own page. Not audited by us. Defaults change as filter lists and settings change; check the linked page for the current default. Suggest changes via Contribute.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": {
+          "privacy": 3,
+          "independence": 3,
+          "openness": 2,
+          "accessibility": 3
+        },
+        "x": []
+      },
+      "Independent of ad money": {
+        "w": {
+          "independence": 5,
+          "privacy": 3,
+          "openness": 2,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Blocks the most": {
+        "w": {
+          "privacy": 5,
+          "openness": 2,
+          "independence": 2,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Open source only": {
+        "w": {
+          "openness": 5,
+          "privacy": 3,
+          "independence": 2,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Zero setup": {
+        "w": {
+          "accessibility": 5,
+          "privacy": 2,
+          "independence": 1,
+          "openness": 1
+        },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    {
+      "key": "privacy",
+      "label": "Blocks ads and trackers",
+      "source": "curated"
+    },
+    {
+      "key": "independence",
+      "label": "Independent of advertiser payment",
+      "source": "curated"
+    },
+    {
+      "key": "openness",
+      "label": "Open source",
+      "source": "curated"
+    },
+    {
+      "key": "accessibility",
+      "label": "Easy to set up, and free",
+      "source": "curated"
+    }
+  ],
+  "products": [
+    {
+      "code": "ublock-origin",
+      "name": "uBlock Origin",
+      "brand": "independent extension",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free, open-source browser extension that blocks ads and trackers using multiple filter lists, with no built-in allowlist for paying advertisers. Basic use needs only installing it; fine-tuning needs some filter-list comfort.",
+      "scores": {
+        "privacy": 92,
+        "independence": 96,
+        "openness": 97,
+        "accessibility": 85
+      },
+      "provenance": {
+        "privacy": {
+          "note": "uBlock Origin describes itself as an efficient, wide-spectrum content blocker for Chromium and Firefox, free and open source, with no donations sought and no whitelist arrangement built in.",
+          "source": "https://github.com/gorhill/uBlock",
+          "asof": "2026"
+        },
+        "independence": {
+          "note": "The project's own wiki says the document exception option exists \"for the sake of 'acceptable ads' support, which uBO does not support,\" meaning uBlock Origin does not implement Acceptable Ads or a paid allowlist.",
+          "source": "https://github.com/gorhill/ublock/wiki/static-filter-syntax",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "The repository is published under the GPLv3 license.",
+          "source": "https://github.com/gorhill/uBlock",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "uBlock Origin is free to install from the Chrome, Firefox and Edge extension stores, with no account or payment required.",
+          "source": "https://github.com/gorhill/uBlock",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Source",
+          "url": "https://github.com/gorhill/uBlock"
+        },
+        {
+          "label": "Acceptable Ads policy",
+          "url": "https://github.com/gorhill/ublock/wiki/static-filter-syntax"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Open source",
+        "Independent",
+        "Free"
+      ]
+    },
+    {
+      "code": "adblock",
+      "name": "AdBlock",
+      "brand": "eyeo",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free, source-available browser extension owned by eyeo, the company behind Adblock Plus. It shows non-intrusive ads from the Acceptable Ads program by default; publishers with more than 10 million monthly ad impressions pay eyeo to take part.",
+      "scores": {
+        "privacy": 52,
+        "independence": 15,
+        "openness": 82,
+        "accessibility": 90
+      },
+      "provenance": {
+        "privacy": {
+          "note": "AdBlock's own help centre says \"With AdBlock's default settings enabled, you will see occasional non-intrusive ads\" because Acceptable Ads is on by default, and explains how to switch it off in Chrome, Firefox, Edge, Safari and Samsung Browser.",
+          "source": "https://helpcenter.getadblock.com/adblock-help-center/about-the-acceptable-ads-program-and-non-intrusive-ads",
+          "asof": "2026"
+        },
+        "independence": {
+          "note": "AdBlock's official FAQ says publishers with more than 10 million monthly ad impressions pay a fee to participate in Acceptable Ads, that this fee is paid to eyeo, and that the remaining 90 percent of participating publishers do not pay.",
+          "source": "https://getadblock.com/en/acceptable-ads-faq/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "The public repository for AdBlock for Chrome is published on GitHub under the GPL-3.0 license, with a COPYING file and build instructions.",
+          "source": "https://github.com/betafish-inc/adblock-releases",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "AdBlock is a free extension available for Chrome, Edge and Firefox, and eyeo's own blog describes it and Adblock Plus as combined product teams after eyeo's 2021 purchase of AdBlock (formerly BetaFish).",
+          "source": "https://getadblock.com/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://getadblock.com/"
+        },
+        {
+          "label": "Acceptable Ads FAQ",
+          "url": "https://getadblock.com/en/acceptable-ads-faq/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Mainstream",
+        "Acceptable Ads"
+      ]
+    },
+    {
+      "code": "adblock-plus",
+      "name": "Adblock Plus",
+      "brand": "eyeo",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free, open-source browser extension from eyeo, the company that created the Acceptable Ads program. Non-intrusive ads are allowed through by default; large publishers pay eyeo to be part of the program.",
+      "scores": {
+        "privacy": 52,
+        "independence": 15,
+        "openness": 88,
+        "accessibility": 88
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Adblock Plus's own help centre says \"With Adblock Plus default settings enabled, you will see occasional non-intrusive ads\" and that blocking all ads means also blocking the ones considered Acceptable Ads, which requires turning off a default setting.",
+          "source": "https://help.adblockplus.org/hc/en-us/articles/360060910754-What-are-Acceptable-Ads",
+          "asof": "2026"
+        },
+        "independence": {
+          "note": "Germany's Federal Court of Justice, ruling that Adblock Plus's business does not breach unfair-competition law, described the mechanism in its own press release: companies can have their ads exempted from blocking by meeting eyeo's \"acceptable advertising\" requirements and sharing revenue with eyeo (\"die Unternehmen die Beklagte am Umsatz beteiligen\").",
+          "source": "https://www.bundesgerichtshof.de/SharedDocs/Pressemitteilungen/DE/2018/2018078.html",
+          "asof": "2018"
+        },
+        "openness": {
+          "note": "Adblock Plus's core code (adblockpluscore) is mirrored to GitHub from eyeo's GitLab and distributed under GPLv3.",
+          "source": "https://github.com/adblockplus/adblockpluscore",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Adblock Plus is a free extension available for Chrome, Firefox, Edge, Opera and Safari with no account required.",
+          "source": "https://adblockplus.org/acceptable-ads",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://adblockplus.org/"
+        },
+        {
+          "label": "Acceptable Ads",
+          "url": "https://adblockplus.org/acceptable-ads"
+        },
+        {
+          "label": "German Federal Court of Justice press release",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Pressemitteilungen/DE/2018/2018078.html"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Mainstream",
+        "Acceptable Ads"
+      ]
+    },
+    {
+      "code": "ghostery",
+      "name": "Ghostery",
+      "brand": "independent extension",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free, open-source browser extension with over 100 million downloads that blocks ads and trackers and says it does not endorse Adblock Plus-style Acceptable Ads.",
+      "scores": {
+        "privacy": 82,
+        "independence": 78,
+        "openness": 88,
+        "accessibility": 85
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Ghostery's own comparison page says it does not rely only on fixed blocklists and instead blocks any element of the page that could cause a problem before it is shown.",
+          "source": "https://www.ghostery.com/comparisons/ghostery-adblock-plus",
+          "asof": "2026"
+        },
+        "independence": {
+          "note": "Ghostery's own comparison page says \"We do not endorse the Acceptable Ads initiative, as we believe it can compromise your privacy online as your personal data can still be captured and used without your permission by the trackers contained in the shown adverts.\"",
+          "source": "https://www.ghostery.com/comparisons/ghostery-adblock-plus",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "The Ghostery browser extension repository is published on GitHub under the GPL-3.0 license.",
+          "source": "https://github.com/ghostery/ghostery-extension",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Ghostery's own repository describes it as a free extension for Firefox, Chrome, Opera, Edge and Safari with over 100 million downloads.",
+          "source": "https://github.com/ghostery/ghostery-extension",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.ghostery.com/"
+        },
+        {
+          "label": "Source",
+          "url": "https://github.com/ghostery/ghostery-extension"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Open source",
+        "Free"
+      ]
+    },
+    {
+      "code": "adguard-extension",
+      "name": "AdGuard (browser extension)",
+      "brand": "independent extension",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free, open-source browser extension that blocks ads and trackers and says it is not paid to show any ads. An optional setting, off by default choices vary, allows search-engine ads and a site's own self-promotion.",
+      "scores": {
+        "privacy": 88,
+        "independence": 90,
+        "openness": 85,
+        "accessibility": 85
+      },
+      "provenance": {
+        "privacy": {
+          "note": "AdGuard's GitHub repository says the extension \"effectively blocks all types of ads and trackers on all web pages\" and includes features to prevent sites from building a shadow profile.",
+          "source": "https://github.com/AdguardTeam/AdguardBrowserExtension",
+          "asof": "2026"
+        },
+        "independence": {
+          "note": "AdGuard's knowledge base says \"We do not get paid for showing any of the ads, and we do not use the term 'acceptable' for a reason,\" limiting the unblocked categories to search ads and a site's own self-promotion, both of which can be turned off.",
+          "source": "https://adguard.com/kb/general/ad-filtering/search-ads/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "The AdGuard browser extension repository is published under the GPL-3.0 license and, from version 4.0, uses the open-source tsurlfilter filtering engine.",
+          "source": "https://github.com/AdguardTeam/AdguardBrowserExtension",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "AdGuard's own site says the browser extensions are completely free, available for Chrome, Firefox, Edge, Opera and Safari.",
+          "source": "https://adguard.com/en/welcome.html",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://adguard.com/"
+        },
+        {
+          "label": "Source",
+          "url": "https://github.com/AdguardTeam/AdguardBrowserExtension"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Open source",
+        "Independent"
+      ]
+    },
+    {
+      "code": "privacy-badger",
+      "name": "Privacy Badger",
+      "brand": "EFF (nonprofit)",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free, open-source browser extension from the nonprofit Electronic Frontier Foundation that learns to block trackers by watching their behaviour across sites, rather than removing ads by filter list. Funded by donations, not advertising.",
+      "scores": {
+        "privacy": 55,
+        "independence": 95,
+        "openness": 95,
+        "accessibility": 80
+      },
+      "provenance": {
+        "privacy": {
+          "note": "EFF's own Privacy Badger page says it watches third-party requests as you browse, and if the same source appears to be tracking you across different sites, it tells the browser to stop loading content from that source; this is a behaviour-based tracker blocker rather than an ad filter list.",
+          "source": "https://privacybadger.org/",
+          "asof": "2026"
+        },
+        "independence": {
+          "note": "EFF's own Privacy Badger page says individual donations make up about half of EFF's support, which it says gives it the freedom to work on user-focused projects; the page makes no mention of an advertiser allowlist.",
+          "source": "https://privacybadger.org/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "EFF's own page says Privacy Badger's source code is licensed under GPLv3 or later.",
+          "source": "https://privacybadger.org/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Privacy Badger is a free extension; EFF describes it as available for Chrome, Firefox, Edge and Opera.",
+          "source": "https://privacybadger.org/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://privacybadger.org/"
+        },
+        {
+          "label": "Source",
+          "url": "https://github.com/EFForg/privacybadger"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Open source",
+        "Nonprofit",
+        "Free"
+      ]
+    },
+    {
+      "code": "pi-hole",
+      "name": "Pi-hole",
+      "brand": "self-hosted, open source",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Free, open-source software you run on your own hardware, such as a Raspberry Pi, to block ad and tracking domains for every device on a home network at the DNS level. It cannot hide the blank space an ad leaves behind, and setup needs some networking comfort.",
+      "scores": {
+        "privacy": 75,
+        "independence": 68,
+        "openness": 95,
+        "accessibility": 42
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Pi-hole's own documentation describes it as network-wide ad blocking that answers DNS queries for known ad, tracking and other unwanted domains without installing client software on each device.",
+          "source": "https://docs.pi-hole.net/",
+          "asof": "2026"
+        },
+        "independence": {
+          "note": "Pi-hole is self-hosted software with no company standing between the user and an advertiser; its own documentation describes it as open-source software so that the user is the sole party in control, with no allowlist or advertiser-facing program described.",
+          "source": "https://docs.pi-hole.net/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Pi-hole's own documentation says \"Free: open-source software which helps ensure you are the sole person in control of your privacy.\"",
+          "source": "https://docs.pi-hole.net/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Pi-hole's own repository says its installer walks through setup in under ten minutes, but it still requires dedicated hardware such as a Raspberry Pi and changing a network's DNS settings.",
+          "source": "https://github.com/pi-hole/pi-hole",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Documentation",
+          "url": "https://docs.pi-hole.net/"
+        },
+        {
+          "label": "Source",
+          "url": "https://github.com/pi-hole/pi-hole"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Self-hosted",
+        "Open source",
+        "Free",
+        "Network-level"
+      ]
+    },
+    {
+      "code": "adguard-home",
+      "name": "AdGuard Home",
+      "brand": "self-hosted, open source",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Free, open-source self-hosted DNS software from the AdGuard team that blocks ads and trackers network-wide, in the same style as Pi-hole. It needs a device to run on and comparable technical setup.",
+      "scores": {
+        "privacy": 78,
+        "independence": 65,
+        "openness": 92,
+        "accessibility": 40
+      },
+      "provenance": {
+        "privacy": {
+          "note": "AdGuard Home's own GitHub README describes it as a network-wide ads and trackers blocking DNS server that reroutes tracking domains so devices cannot connect to them; AdGuard's knowledge base says the AdGuard DNS filter it uses combines the AdGuard Base, Tracking Protection, Mobile Ads, EasyList and EasyPrivacy filters.",
+          "source": "https://github.com/AdguardTeam/AdGuardHome",
+          "asof": "2026"
+        },
+        "independence": {
+          "note": "AdGuard Home is free, open-source, self-hosted software; its own README describes no advertiser-facing allowlist or payment program, unlike the Acceptable Ads setting AdGuard documents separately for its browser extension.",
+          "source": "https://github.com/AdguardTeam/AdGuardHome",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "AdGuard Home's GitHub README describes it as \"Free and open source, powerful network-wide ads & trackers blocking DNS server,\" licensed GPL-3.0.",
+          "source": "https://github.com/AdguardTeam/AdGuardHome",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "AdGuard Home is free but self-hosted: users run it themselves on a home server, Raspberry Pi or VPS and point their router's DNS at it.",
+          "source": "https://github.com/AdguardTeam/AdGuardHome",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Source",
+          "url": "https://github.com/AdguardTeam/AdGuardHome"
+        },
+        {
+          "label": "Filter composition",
+          "url": "https://adguard.com/kb/general/ad-filtering/adguard-filters/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Self-hosted",
+        "Open source",
+        "Free",
+        "Network-level"
+      ]
+    },
+    {
+      "code": "nextdns",
+      "name": "NextDNS",
+      "brand": "cloud DNS filtering",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A cloud DNS filtering service, free up to 300,000 queries a month, that blocks ads and trackers using popular blocklists the user chooses. Its hosted service and current apps are not published as open source.",
+      "scores": {
+        "privacy": 68,
+        "openness": 22,
+        "accessibility": 60
+      },
+      "provenance": {
+        "privacy": {
+          "note": "NextDNS's own site says it uses the most popular ads and trackers blocklists, millions of domains updated in real time, alongside optional blocklists for malware, phishing and specific services.",
+          "source": "https://nextdns.io/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "NextDNS's GitHub organization currently lists a command-line client (nextdns/nextdns) and supporting tools, but no graphical Windows, Mac, iOS or Android app source; a discussion on NextDNS's own help site notes the former Windows client repository no longer exists on GitHub.",
+          "source": "https://github.com/orgs/nextdns/repositories",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "NextDNS's own help centre says the free tier covers 300,000 queries a month, after which the resolver keeps working but with no filtering and no logging until the next month.",
+          "source": "https://help.nextdns.io/t/p8hmvaw/what-happens-after-300k-queries",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://nextdns.io/"
+        },
+        {
+          "label": "Free tier limit",
+          "url": "https://help.nextdns.io/t/p8hmvaw/what-happens-after-300k-queries"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Network-level",
+        "Free tier"
+      ]
+    },
+    {
+      "code": "control-d",
+      "name": "Control D",
+      "brand": "cloud DNS filtering",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A cloud DNS filtering service with free, no-signup public resolvers that block malware, ads and trackers, plus paid plans for custom rules and a dashboard. Its command-line proxy is open source; its consumer apps are not confirmed to be.",
+      "scores": {
+        "privacy": 65,
+        "openness": 30,
+        "accessibility": 62
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Control D's own free-resolver page describes an Ads & Tracking configuration that \"Blocks malware, ads, and trackers that follow you around online,\" among several preconfigured free filtering options.",
+          "source": "https://controld.com/free-dns",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Control D publishes ctrld, a DNS forwarding proxy, as open source on GitHub under the Control-D-Inc organization; its Windows, Mac, Android and iOS apps are not published in that organization's source repositories.",
+          "source": "https://github.com/Control-D-Inc/ctrld",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Control D's own free-resolver page describes free, public DNS servers with several filtering profiles to choose from with no account required for the basic resolvers.",
+          "source": "https://controld.com/free-dns",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Free resolvers",
+          "url": "https://controld.com/free-dns"
+        },
+        {
+          "label": "Source (ctrld)",
+          "url": "https://github.com/Control-D-Inc/ctrld"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Network-level",
+        "Free tier"
+      ]
+    },
+    {
+      "code": "brave-shields",
+      "name": "Brave Shields (Brave browser)",
+      "brand": "built into browser",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Built into the free, Chromium-based Brave browser, Shields blocks third-party ads and trackers automatically with no setup, using Brave's own open-source ad-blocking engine. Brave's separate, opt-in Rewards program pays users to see privacy-preserving ads; it does not unblock other advertisers.",
+      "scores": {
+        "privacy": 80,
+        "openness": 78,
+        "accessibility": 95
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Brave's own FAQ says \"By default, the Brave Shields feature blocks third-party tracking scripts (trackers) and the third-party ads that depend on them,\" separately from the opt-in Brave Rewards ad program.",
+          "source": "https://brave.com/faq/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Brave publishes adblock-rust, described in its own repository as \"Brave's Rust-based adblock engine\" and used by default in the Brave browser, as open source on GitHub.",
+          "source": "https://github.com/brave/adblock-rust",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Brave's own Shields page says protection is on by default for every site visited, with no extra downloads or settings to configure.",
+          "source": "https://brave.com/shields/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Shields",
+          "url": "https://brave.com/shields/"
+        },
+        {
+          "label": "Ad-block engine source",
+          "url": "https://github.com/brave/adblock-rust"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Browser built-in",
+        "Free",
+        "Open source"
+      ]
+    },
+    {
+      "code": "firefox-etp",
+      "name": "Firefox Enhanced Tracking Protection",
+      "brand": "built into browser",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Built into the free Firefox browser and on by default, it blocks known cross-site trackers and isolates cookies so they cannot follow you between sites. It does not block display ads themselves.",
+      "scores": {
+        "privacy": 55,
+        "openness": 85,
+        "accessibility": 95
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Mozilla's own blog says \"Enhanced Tracking Protection (ETP), which we launched in 2018, works by blocking trackers based on a maintained list,\" and describes it as distinct from Total Cookie Protection, which confines cookies to the site that created them.",
+          "source": "https://blog.mozilla.org/en/mozilla/firefox-rolls-out-total-cookie-protection-by-default-to-all-users-worldwide/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Firefox's own privacy page says Firefox runs on Gecko, described as Mozilla's independent and open-source browser engine.",
+          "source": "https://www.firefox.com/en-US/user-privacy/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Firefox is a free browser and Mozilla's own blog describes cross-site tracking protection as on for all users by default.",
+          "source": "https://blog.mozilla.org/en/mozilla/firefox-rolls-out-total-cookie-protection-by-default-to-all-users-worldwide/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Total Cookie Protection",
+          "url": "https://blog.mozilla.org/en/mozilla/firefox-rolls-out-total-cookie-protection-by-default-to-all-users-worldwide/"
+        },
+        {
+          "label": "Firefox privacy",
+          "url": "https://www.firefox.com/en-US/user-privacy/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Browser built-in",
+        "Free",
+        "Open source"
+      ]
+    },
+    {
+      "code": "safari-itp",
+      "name": "Safari Intelligent Tracking Prevention",
+      "brand": "built into browser",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Built into Safari on Apple devices and on by default, it blocks third-party cookies and other cross-site tracking methods. It does not block ads from loading; an ad can still display, it just cannot follow you across sites.",
+      "scores": {
+        "privacy": 45,
+        "openness": 55,
+        "accessibility": 82
+      },
+      "provenance": {
+        "privacy": {
+          "note": "WebKit's own tracking-prevention page says \"ITP by default blocks all third-party cookies. There are no exceptions to this blocking,\" and separately downgrades third-party referrers and expires script-writable storage after seven days of no interaction; the page describes blocking tracking mechanisms, not ad content.",
+          "source": "https://webkit.org/tracking-prevention/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "WebKit, the engine Safari uses and where Intelligent Tracking Prevention is implemented, is published under LGPL 2.1 with some components under other open licenses; the Safari application itself is not published as open source.",
+          "source": "https://webkit.org/licensing-webkit/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Apple's own Safari guide says cross-site tracking prevention is part of Safari; because it is on by default, there is nothing to configure to receive it, though it is limited to Apple's own platforms.",
+          "source": "https://support.apple.com/guide/safari/prevent-cross-site-tracking-sfri40732/mac",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "WebKit tracking prevention",
+          "url": "https://webkit.org/tracking-prevention/"
+        },
+        {
+          "label": "Apple support",
+          "url": "https://support.apple.com/guide/safari/prevent-cross-site-tracking-sfri40732/mac"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Browser built-in",
+        "Free",
+        "Apple only"
+      ]
+    },
+    {
+      "code": "opera-ad-blocker",
+      "name": "Opera built-in ad blocker",
+      "brand": "built into browser",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Built into the free Opera browser using EasyList, EasyPrivacy and NoCoin filter lists, but switched off until turned on in settings.",
+      "scores": {
+        "privacy": 78,
+        "openness": 15,
+        "accessibility": 85
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Opera's own help pages say EasyList and NoCoin are enabled by default once the Ad Blocker feature is turned on, with EasyPrivacy available among the filter lists; Opera's own feature page describes it as built on uBlock-compatible technology.",
+          "source": "https://help.opera.com/en/latest/security-and-privacy/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Opera is a proprietary browser; its ad blocker feature page markets the technology without publishing its own source code, unlike the open-source engines it says it is compatible with.",
+          "source": "https://www.opera.com/features/ad-blocker",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Opera's own feature page describes the ad blocker as free and fully integrated into the browser on desktop and mobile with nothing to install; Opera's own help pages describe turning it on with a single switch in Privacy protection settings.",
+          "source": "https://www.opera.com/features/ad-blocker",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Ad blocker",
+          "url": "https://www.opera.com/features/ad-blocker"
+        },
+        {
+          "label": "Help pages",
+          "url": "https://help.opera.com/en/latest/security-and-privacy/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Browser built-in",
+        "Free"
+      ]
+    },
+    {
+      "code": "duckduckgo-browser",
+      "name": "DuckDuckGo browser and extension",
+      "brand": "independent browser and extension",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free browser and browser extension that blocks third-party trackers, tracking cookies and fingerprinting scripts by default across desktop and mobile. Its Android and iOS apps are open source; its Windows and Mac apps are not.",
+      "scores": {
+        "privacy": 55,
+        "openness": 40,
+        "accessibility": 80
+      },
+      "provenance": {
+        "privacy": {
+          "note": "DuckDuckGo's own help pages describe third-party scripts, cookies and fingerprinting scripts on its tracker list as blocked by default across its Firefox, Chrome, Edge and Opera extensions and its iOS, Android, Mac and Windows apps.",
+          "source": "https://duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "DuckDuckGo's own help pages say it makes source code for many products and features available under open source licenses; its Android and iOS browser apps are published as open source, while its Windows and Mac browsers are not.",
+          "source": "https://github.com/duckduckgo/tracker-blocklists",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "DuckDuckGo's browser and extensions are free across Windows, Mac, iOS and Android, with App Tracking Protection an additional free feature of the Android app.",
+          "source": "https://duckduckgo.com/duckduckgo-help-pages/p-app-tracking-protection/what-is-app-tracking-protection",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Web tracking protections",
+          "url": "https://duckduckgo.com/duckduckgo-help-pages/privacy/web-tracking-protections"
+        },
+        {
+          "label": "Tracker blocklists source",
+          "url": "https://github.com/duckduckgo/tracker-blocklists"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Browser built-in",
+        "Free",
+        "Mobile"
+      ]
+    }
+  ]
+}

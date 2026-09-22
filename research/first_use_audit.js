@@ -699,8 +699,13 @@ function checkCoreBasics(app) {
   if (!app.includes('function regionRerender()')) {
     failures.push('app/app.js: region change has no shared re-render path (function regionRerender)');
   }
-  if (!/function cycleRegion\(\)\{[\s\S]{0,600}?regionRerender\(\);/.test(app)) {
-    failures.push('app/app.js: cycleRegion must re-render through regionRerender');
+  // Renamed 2026-08-14: the control became a menu, so the region is chosen rather than cycled to.
+  // The constraint is the same one, and the rule follows the work rather than the old name.
+  if (!/function chooseRegion\([\s\S]{0,600}?regionRerender\(\);/.test(app)) {
+    failures.push('app/app.js: chooseRegion must re-render through regionRerender');
+  }
+  if (/function cycleRegion\(/.test(app)) {
+    failures.push('app/app.js: region cycling is back; the control is a menu and must stay one');
   }
   if (app.includes('if(DATA&&!selected&&!viewingSaved&&!viewingFeedback)render();')) {
     failures.push('app/app.js: the old region guard is back — it re-renders only the plain list view');
@@ -742,7 +747,7 @@ function checkPlainWordsBatch(app) {
   const decision = read('app/decision.js');
   const shell = read('app/shell.js');
   const appHTML = read('app/index.html');
-  const kosplora = read('kosplora/index.html');
+  const kosplora = read('kosplora/shelf/index.html');
   const filePage = read('passport/index.html');
   const glossary = 'My rules · The baseline · Tasks · Price or quality · Your file · Close-call priorities';
   const samples = [
@@ -791,12 +796,12 @@ function checkPlainWordsBatch(app) {
     ['app/decision.js', decision, ['The baseline and your rules', 'with these choices']],
     ['app/shell.js', shell, ['The baseline is on', 'My rules', 'Advanced: Close-call priorities', 'What matters here']],
     ['app/index.html', appHTML, ['href="#you" id="navvalues"', 'Advanced: close-call priorities']],
-    ['kosplora/index.html', kosplora, ['Close-call priorities stay optional', 'The baseline and my rules']],
+    ['kosplora/shelf/index.html', kosplora, ['Close-call priorities stay optional', 'The baseline and my rules']],
     ['passport/index.html', filePage, ['Your file is small, nameless, and yours to keep', 'technical format is called an Open Values Passport']]
   ]) {
     for (const phrase of required) if (!source.includes(phrase)) failures.push(`${name}: signed S2 wording missing (${phrase})`);
   }
-  for (const [name, source] of [['app/decision.js', decision], ['app/shell.js', shell], ['kosplora/index.html', kosplora]]) {
+  for (const [name, source] of [['app/decision.js', decision], ['app/shell.js', shell], ['kosplora/shelf/index.html', kosplora]]) {
     for (const phrase of ['Shared floor and personal lines', 'Practical dials', 'Your lines', 'Portable leanings']) {
       if (source.includes(phrase)) failures.push(`${name}: retired chooser wording remains (${phrase})`);
     }

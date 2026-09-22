@@ -1,0 +1,441 @@
+{
+  "meta": {
+    "id": "clothing-rental",
+    "label": "Clothing rental",
+    "type": "Services",
+    "primaryAxis": "price",
+    "tradeoff": [
+      "price",
+      "damage_protection"
+    ],
+    "tradeoffLabels": [
+      "cheaper each month or per rental",
+      "less you owe if something goes wrong"
+    ],
+    "source": "Conscious Consuming (curated)",
+    "attribution": "Price and damage-liability figures come from each service's own website or terms of service, read directly. Subscription plans, one-off event rentals and peer-to-peer marketplaces price very differently, so the price score compares each service's own lowest advertised starting price on one rough five-band scale, not a cost per item; check the linked page for what that price actually includes before comparing two services directly. Some prices are quoted in pounds sterling or Australian dollars where the service is based outside the US; they are placed on the same rough scale without being formally converted. A high damage protection score means the service's own policy covers more of what goes wrong, such as stains or minor damage, at no extra charge; every service scored here still holds the renter responsible for major damage, loss or theft, usually up to the item's full retail price. This market has had several sudden closures: Le Tote (bankrupt in 2020), Vow To Be Chic (closed in 2018), Rotaro (its old web address now hosts an unrelated site) and My Wardrobe HQ (running a closing-down clearance sale as of when this was checked). None of those four are scored here; check that a service is still trading before you sign up. Suggest changes via Contribute. Two Australian services, GlamCorner and The Volte, were removed because the Open Values region vocabulary has only US, UK, EU and global, and marking an Australia-only service global would tell a reader elsewhere they can rent from it. The roster is short by two as a result and is not published until they are replaced.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": {
+          "price": 3,
+          "damage_protection": 3,
+          "selection": 2
+        },
+        "x": []
+      },
+      "Cheapest": {
+        "w": {
+          "price": 5,
+          "damage_protection": 1,
+          "selection": 1
+        },
+        "x": []
+      },
+      "Least risk if something goes wrong": {
+        "w": {
+          "damage_protection": 5,
+          "price": 1,
+          "selection": 1
+        },
+        "x": []
+      },
+      "Biggest selection": {
+        "w": {
+          "selection": 5,
+          "price": 2,
+          "damage_protection": 2
+        },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    {
+      "key": "price",
+      "label": "Lower starting price",
+      "source": "curated"
+    },
+    {
+      "key": "damage_protection",
+      "label": "Less owed if the item is damaged, lost or stained",
+      "source": "curated"
+    },
+    {
+      "key": "selection",
+      "label": "Size of the catalogue or community",
+      "source": "curated"
+    }
+  ],
+  "products": [
+    {
+      "code": "rent-the-runway",
+      "name": "Rent the Runway",
+      "brand": "subscription and one-time designer rental",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A subscription service with three closet-access tiers, plus one-time Reserve rentals from its Vault, covering both everyday and occasion wear from a large range of brands.",
+      "scores": {
+        "price": 55,
+        "damage_protection": 50
+      },
+      "provenance": {
+        "price": {
+          "note": "Rent the Runway's own how-renting-works page lists three closet-access subscription plans: $129 a month for one shipment of 5 items, $164 a month for two shipments, and $275 a month for four shipments, each with a lower discounted first month.",
+          "source": "https://www.renttherunway.com/how_renting_works",
+          "asof": "2026"
+        },
+        "damage_protection": {
+          "note": "Rent the Runway's own Terms of Service state rental coverage includes normal wear and tear, defined as minor stains, rips, missing beads or stuck zippers, but the subscriber is responsible for loss, theft or damage beyond that, charged up to the item's Original Retail or Comparable Value.",
+          "source": "https://www.renttherunway.com/pages/termsofservice",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "How renting works",
+          "url": "https://www.renttherunway.com/how_renting_works"
+        },
+        {
+          "label": "Terms of Service",
+          "url": "https://www.renttherunway.com/pages/termsofservice"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Subscription",
+        "Market leader"
+      ]
+    },
+    {
+      "code": "nuuly",
+      "name": "Nuuly",
+      "brand": "Urban Outfitters subscription rental",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Urban Outfitters' rental brand and Rent the Runway's largest subscription competitor. Subscribers pick items each month, wear them, then swap for the next month's selection. Nuuly's own site blocks automated readers, so only a selection fact drawn from its parent company's SEC filing is scored here; no price or damage policy could be verified.",
+      "scores": {
+        "selection": 50
+      },
+      "provenance": {
+        "selection": {
+          "note": "URBN's fiscal 2026 annual report, filed with the SEC, states that for a monthly fee, Nuuly subscribers can rent product from a wide selection of the company's own brands, third-party brands and one-of-a-kind vintage pieces, so the catalogue draws from three separate kinds of stock rather than one company's own line. The filing gives no subscriber count, brand count or item count.",
+          "source": "https://www.sec.gov/Archives/edgar/data/912615/000119312526137916/urbn-20260131.htm",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "URBN 2026 Form 10-K, Subscription segment (SEC EDGAR)",
+          "url": "https://www.sec.gov/Archives/edgar/data/912615/000119312526137916/urbn-20260131.htm"
+        },
+        {
+          "label": "Website",
+          "url": "https://www.nuuly.com/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Subscription",
+        "Market leader"
+      ]
+    },
+    {
+      "code": "armoire",
+      "name": "Armoire",
+      "brand": "styled subscription rental",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A subscription service with 4, 6 or 7-item plans and an unlimited plan, aimed at work and everyday clothing, with styling help included.",
+      "scores": {
+        "price": 70,
+        "damage_protection": 50
+      },
+      "provenance": {
+        "price": {
+          "note": "Armoire's own help center lists a 4-item plan at $89 a month, a 7-item plan at $129 a month, and an Unlimited plan at $249 a month, each cheaper per month on longer commitments.",
+          "source": "https://support.armoire.style/faq/",
+          "asof": "2026"
+        },
+        "damage_protection": {
+          "note": "Armoire's own help center states regular wear and tear is included in the subscription, but irreplaceable damage, lost items and theft are not, and in those cases the member is charged 100% of the member price of the item.",
+          "source": "https://support.armoire.style/faq/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "FAQ",
+          "url": "https://support.armoire.style/faq/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Subscription",
+        "Work clothing"
+      ]
+    },
+    {
+      "code": "hurr",
+      "name": "HURR",
+      "brand": "peer-to-peer designer rental",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A UK peer-to-peer marketplace where members rent out their own designer wardrobes to each other, with an optional paid damage protection add-on rather than automatic cover.",
+      "scores": {
+        "damage_protection": 35
+      },
+      "provenance": {
+        "damage_protection": {
+          "note": "HURR's own help center describes HURR Protect as an opt-in damage protection add-on costing £3 to £10 per rental, typically under 2% of an item's recommended retail price, covering major damage beyond repair, loss or theft; a renter who does not opt in is not covered by this scheme.",
+          "source": "https://help.hurrcollective.com/en/article/2a4c5b",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "How to rent",
+          "url": "https://www.hurrcollective.com/how-to-rent"
+        },
+        {
+          "label": "HURR Protect",
+          "url": "https://help.hurrcollective.com/en/article/2a4c5b"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Peer to peer",
+        "Designer"
+      ]
+    },
+    {
+      "code": "by-rotation",
+      "name": "By Rotation",
+      "brand": "peer-to-peer fashion rental app",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A peer-to-peer rental app built on individually listed items from its own users rather than a company-owned catalogue; renters and lenders set their own prices per item.",
+      "scores": {
+        "damage_protection": 40,
+        "selection": 90
+      },
+      "provenance": {
+        "damage_protection": {
+          "note": "By Rotation's own how-it-works page states that, on a case by case basis, By Rotation will step in to resolve conflicts between lenders and renters and reimburse for damage or loss, without stating a fixed fee, cap or automatic guarantee.",
+          "source": "https://byrotation.com/us/how-it-works",
+          "asof": "2026"
+        },
+        "selection": {
+          "note": "By Rotation's own how-it-works page states the app has over 150,000 unique pieces listed by a community of 500,000 Rotators across the UK and US.",
+          "source": "https://byrotation.com/us/how-it-works",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "How it works",
+          "url": "https://byrotation.com/us/how-it-works"
+        }
+      ],
+      "region": [
+        "UK",
+        "US"
+      ],
+      "focuses": [
+        "Peer to peer",
+        "Large community"
+      ]
+    },
+    {
+      "code": "the-black-tux",
+      "name": "The Black Tux",
+      "brand": "menswear formalwear rental",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "An online suit and tuxedo rental service aimed at weddings and formal events, priced per rental rather than by subscription.",
+      "scores": {
+        "price": 40,
+        "damage_protection": 45
+      },
+      "provenance": {
+        "price": {
+          "note": "The Black Tux's own site lists individual suit and tuxedo rentals at $169 to $189 each, before any package discount.",
+          "source": "https://theblacktux.com/collections/suit-and-tuxedo-rentals",
+          "asof": "2026"
+        },
+        "damage_protection": {
+          "note": "The Black Tux's own rental agreement states its Accidental Damage Waiver covers only damage that can be repaired through normal dry cleaning or minor tailoring; if a product is damaged beyond repair or not returned, the customer is charged an Unreturned Fee equal to the item's declared retail value plus tax.",
+          "source": "https://theblacktux.com/pages/rental-agreement",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Rental agreement",
+          "url": "https://theblacktux.com/pages/rental-agreement"
+        },
+        {
+          "label": "Suit and tuxedo rentals",
+          "url": "https://theblacktux.com/collections/suit-and-tuxedo-rentals"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Menswear",
+        "Event rental"
+      ]
+    },
+    {
+      "code": "generation-tux",
+      "name": "Generation Tux",
+      "brand": "menswear formalwear rental",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "An online suit and tuxedo rental service similar to The Black Tux, priced per rental with a required damage waiver fee added to every order.",
+      "scores": {
+        "price": 45,
+        "damage_protection": 45
+      },
+      "provenance": {
+        "price": {
+          "note": "Generation Tux's own site lists tuxedos to shop starting at $139 and shows individual rentals priced at $159.",
+          "source": "https://generationtux.com/",
+          "asof": "2026"
+        },
+        "damage_protection": {
+          "note": "Generation Tux's own FAQ states a $12 nonrefundable damage waiver fee is included in every order, covering a quality control inspection, minor repairs and cleaning related to normal use, but notes a garment destroyed beyond repair can still result in a replacement fee.",
+          "source": "https://generationtux.com/support/faq",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "FAQ",
+          "url": "https://generationtux.com/support/faq"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Menswear",
+        "Event rental"
+      ]
+    },
+    {
+      "code": "or-collective",
+      "name": "OR Collective",
+      "brand": "baby and toddler clothing rental",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A UK baby and toddler clothing rental subscription, formerly branded Bundlee, built around swapping sizes as a child grows.",
+      "scores": {
+        "price": 90,
+        "damage_protection": 90
+      },
+      "provenance": {
+        "price": {
+          "note": "OR Collective's own site lists four subscription tiers: 5 pieces for £24 a month, 10 pieces for £38, 15 pieces for £54, and 20 pieces for £69.",
+          "source": "https://www.orcollective.co.uk/",
+          "asof": "2026"
+        },
+        "damage_protection": {
+          "note": "OR Collective's own site states members are never charged for stains or wear and tear.",
+          "source": "https://www.orcollective.co.uk/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.orcollective.co.uk/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Kids clothing",
+        "Subscription"
+      ]
+    },
+    {
+      "code": "rent-a-romper",
+      "name": "Rent-a-Romper",
+      "brand": "baby and toddler clothing rental",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A US baby and toddler clothing rental subscription with unlimited swaps as a child grows out of items.",
+      "scores": {
+        "price": 80,
+        "damage_protection": 80
+      },
+      "provenance": {
+        "price": {
+          "note": "Rent-a-Romper's own site lists its Premium Capsule membership starting from $49 a month.",
+          "source": "https://rentaromper.com/",
+          "asof": "2026"
+        },
+        "damage_protection": {
+          "note": "Rent-a-Romper's own site says it will attempt to remove stains from returned items and does not describe charging a customer for accidental damage; items that cannot be cleaned are retired from the rental pool instead.",
+          "source": "https://rentaromper.com/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://rentaromper.com/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Kids clothing",
+        "Subscription"
+      ]
+    },
+    {
+      "code": "clothing-library",
+      "name": "The Clothing Library",
+      "brand": "free library-based clothing loan",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A network of free clothing libraries housed inside public libraries, lending occasion wear such as formal dresses, suits and interview outfits for two weeks at a time at no cost.",
+      "scores": {
+        "price": 100
+      },
+      "provenance": {
+        "price": {
+          "note": "The Clothing Library's own site states membership is free and items can be borrowed at no cost for two weeks.",
+          "source": "https://clothinglibrary.org/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://clothinglibrary.org/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Free",
+        "Library"
+      ]
+    }
+  ]
+}

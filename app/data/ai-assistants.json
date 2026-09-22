@@ -13,7 +13,7 @@
    "most private"
   ],
   "source": "Conscious Consuming (curated)",
-  "attribution": "Curated from public policies, model/system cards, and open-weight releases - not measured data, and AI policies change fast, so verify current settings yourself. Privacy reflects whether the consumer product trains on your chats by default; openness reflects whether the weights can be self-hosted. Suggest changes via Contribute.",
+  "attribution": "Built from public policies, model and system cards, regulator decisions and open-weight releases, not measured data. AI policies change fast, so verify current settings yourself. Privacy reflects whether the consumer product trains on your chats by default; openness reflects whether the weights can actually be downloaded and run under a licence that says so, not whether a company calls a product open. Suggest changes via Contribute.",
   "allergens": false,
   "presets": {
    "Balanced": {
@@ -82,11 +82,11 @@
   },
   "provenanceProfile": {
    "entryCount": 98,
-   "singleSourceEntries": 35,
-   "multiSourceEntries": 63,
+   "singleSourceEntries": 33,
+   "multiSourceEntries": 65,
    "noSourceEntries": 0,
    "noteOnlyEntries": 0,
-   "averageSourceDomains": 1.86,
+   "averageSourceDomains": 1.92,
    "topPrimarySources": [
     {
      "label": "GitHub",
@@ -95,10 +95,6 @@
     {
      "label": "huggingface.co",
      "entries": 2
-    },
-    {
-     "label": "about.fb.com",
-     "entries": 1
     },
     {
      "label": "ai.google.dev",
@@ -110,6 +106,10 @@
     },
     {
      "label": "ampcode.com",
+     "entries": 1
+    },
+    {
+     "label": "anthropic.com",
      "entries": 1
     }
    ]
@@ -1587,9 +1587,9 @@
    },
    "provenance": {
     "privacy": {
-     "note": "DuckDuckGo says Duck.ai chats are anonymized, not used for model training by DuckDuckGo or providers, and provider data must be deleted when no longer needed, at most within 30 days.",
+     "note": "DuckDuckGo says it strips identifying metadata such as IP address before sending a prompt to a model provider, that no provider may use Duck.ai conversations to train models, and that providers apply Zero Data Retention, deleting prompts and responses immediately after replying, with a documented exception letting OpenAI and Anthropic hold data in memory for up to one hour for prompt caching.",
      "source": "https://duckduckgo.com/duckduckgo-help-pages/duckai/ai-chat-privacy/",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "transparency": {
      "note": "Duck.ai documents provider limits, local/encrypted chat-history options and a zero-provider-visibility path for supported models.",
@@ -1731,29 +1731,29 @@
    },
    "provenance": {
     "privacy": {
-     "note": "Anthropic says consumer chats are used for model improvement only if users allow it or in limited safety/opt-in cases; Incognito chats are excluded from model improvement.",
+     "note": "Anthropic says Claude Free, Pro and Max do not train on chats by default; chats are used to improve Claude only if a user opts in through Privacy Settings, and Incognito chats stay excluded from training even when that setting is on.",
      "source": "https://privacy.claude.com/en/articles/10023580-is-my-data-used-for-model-training",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "transparency": {
      "note": "Anthropic publishes model system cards and a dedicated transparency hub for deployed Claude models.",
      "source": "https://www.anthropic.com/system-cards",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "openness": {
      "note": "Claude model weights are closed; public disclosure is via system cards and policies rather than downloadable weights.",
      "source": "https://www.anthropic.com/system-cards",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "safety": {
      "note": "Anthropic maintains a public Responsible Scaling Policy and updates it as frontier-risk thresholds change.",
      "source": "https://www.anthropic.com/responsible-scaling-policy",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "accessibility": {
      "note": "Claude has free and paid consumer tiers, but high-use access is gated by subscription and usage limits.",
      "source": "https://privacy.claude.com/en/articles/10023580-is-my-data-used-for-model-training",
-     "asof": "2026"
+     "asof": "2026-08"
     }
    },
    "links": [
@@ -1802,35 +1802,47 @@
    },
    "provenance": {
     "privacy": {
-     "note": "OpenAI's Data Controls let users turn off model improvement; Temporary Chats are not used for training, do not create memories and are deleted after 30 days.",
+     "note": "OpenAI's Data Controls FAQ lets users turn off model improvement for the consumer service; Temporary Chats are not used for training, do not create memories and are deleted after 30 days.",
      "source": "https://help.openai.com/en/articles/7730893-data-controls-faq",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "transparency": {
-     "note": "OpenAI publishes system cards for current frontier models, including predeployment safety evaluations and Preparedness Framework results.",
-     "source": "https://openai.com/index/gpt-5-5-system-card/",
-     "asof": "2026"
+     "note": "OpenAI's GPT-5.6 August Update system card reports safety and capability evaluations for the Sol and Luna tiers, covering disallowed-content testing, jailbreak and prompt-injection resistance, and factuality checks, and states both tiers earned Preparedness Framework 'High' capability ratings for biological/chemical and cybersecurity risk.",
+     "source": "https://deploymentsafety.openai.com/gpt-5-6-august-update",
+     "asof": "2026-08"
     },
     "openness": {
-     "note": "ChatGPT's served frontier models remain closed, though OpenAI separately released gpt-oss open-weight models under Apache 2.0.",
-     "source": "https://openai.com/index/introducing-gpt-oss/",
-     "asof": "2026"
+     "note": "ChatGPT's served frontier models remain closed. OpenAI separately publishes gpt-oss-120b and gpt-oss-20b under an Apache 2.0 licence, downloadable from Hugging Face and runnable locally through Ollama, LM Studio or the published PyTorch/Triton/Metal implementations.",
+     "source": "https://github.com/openai/gpt-oss",
+     "asof": "2026-08"
     },
     "safety": {
-     "note": "The GPT-5.5 system card describes red-teaming, Preparedness Framework evaluation and added safeguards for higher-risk capabilities.",
-     "source": "https://openai.com/index/gpt-5-5-system-card/",
-     "asof": "2026"
+     "note": "The GPT-5.6 August Update system card reports a statistically significant regression on self-harm evaluations for the Sol tier compared with GPT-5.5 Instant, alongside enhanced protections OpenAI says it built for users under 18.",
+     "source": "https://deploymentsafety.openai.com/gpt-5-6-august-update",
+     "asof": "2026-08"
     },
     "accessibility": {
-     "note": "OpenAI says GPT-5.5 is available to all ChatGPT tiers, while free-tier usage remains limited and dynamic.",
+     "note": "OpenAI's GPT-5.6 Luna tier is the default model for Free and Go users, with Terra and the flagship Sol tier available on paid plans; free-tier usage remains limited and dynamic.",
      "source": "https://help.openai.com/en/articles/11909943",
-     "asof": "2026"
+     "asof": "2026-08"
     }
    },
    "links": [
     {
      "label": "Website",
      "url": "https://chatgpt.com/"
+    },
+    {
+     "label": "2024 Garante fine, later annulled",
+     "url": "https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/10085432"
+    },
+    {
+     "label": "2026 court annulment (jurisdiction)",
+     "url": "https://www.ansa.it/canale_tecnologia/notizie/tecnologia/2026/03/20/tribunale-roma-annulla-multa-da-15-milioni-di-euro-del-garante-privacy-a-openai_6560fadd-4099-451e-99a0-7fcbc9a285c1.html"
+    },
+    {
+     "label": "FTC 6(b) inquiry into AI companion chatbots (2025)",
+     "url": "https://www.techpolicy.press/ftc-opens-inquiry-into-ai-chatbots-and-their-impact-on-children/"
     }
    ],
    "region": [
@@ -1849,12 +1861,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 2,
+    "sourceDomainCount": 3,
     "singleSource": false,
-    "primarySource": "openai.com",
+    "primarySource": "deploymentsafety.openai.com",
     "sourceLabels": [
-     "openai.com",
-     "help.openai.com"
+     "deploymentsafety.openai.com",
+     "help.openai.com",
+     "GitHub"
     ]
    }
   },
@@ -1874,35 +1887,39 @@
    },
    "provenance": {
     "privacy": {
-     "note": "Google's Gemini Apps notice covers prompts, uploaded files, live transcripts, connected-app context and device/app data.",
+     "note": "Google's Gemini Apps notice says chats train models when Keep Activity is on, with a default 18-month deletion window a user can shorten or extend; turning Keep Activity off stops future chats from training models and holds them for only 72 hours, and temporary chats are not used for training.",
      "source": "https://support.google.com/gemini/answer/13594961",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "transparency": {
      "note": "Google DeepMind maintains a public Gemini model-card index with 2026 cards covering architecture, evaluation and safety information.",
      "source": "https://deepmind.google/models/model-cards/",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "openness": {
      "note": "Gemini is closed, while Google's separate Gemma family provides open-weight models.",
      "source": "https://ai.google.dev/gemma/docs/core",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "safety": {
      "note": "Recent Gemini model cards report safety-policy evaluation, red-teaming and Frontier Safety Framework testing.",
      "source": "https://deepmind.google/models/model-cards/",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "accessibility": {
      "note": "Gemini is broadly available through Google's consumer products, with free and paid access paths.",
      "source": "https://gemini.google.com/",
-     "asof": "2026"
+     "asof": "2026-08"
     }
    },
    "links": [
     {
      "label": "Website",
      "url": "https://gemini.google.com/"
+    },
+    {
+     "label": "FTC 6(b) inquiry into AI companion chatbots (2025)",
+     "url": "https://www.techpolicy.press/ftc-opens-inquiry-into-ai-chatbots-and-their-impact-on-children/"
     }
    ],
    "region": [
@@ -1947,9 +1964,9 @@
    },
    "provenance": {
     "privacy": {
-     "note": "Consumer Copilot saves conversations by default, stores conversation activity for 18 months, and may use it for model training unless users opt out; Microsoft 365 enterprise data is excluded.",
+     "note": "Consumer Copilot saves conversations by default and stores conversation activity for 18 months; Microsoft trains generative AI models on that conversation data unless a signed-in user opts out, and does not train on data from organizational accounts, unauthenticated users, under-18s, or residents of several excluded countries.",
      "source": "https://support.microsoft.com/en-us/microsoft-copilot/privacy-faq-for-microsoft-copilot",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "transparency": {
      "note": "Microsoft publishes Copilot application-card and privacy/security documentation describing model routing, data use, permissions and review responsibilities for Microsoft 365 Copilot.",
@@ -2019,7 +2036,7 @@
    "scores": {
     "privacy": 82,
     "transparency": 70,
-    "openness": 90,
+    "openness": 78,
     "safety": 60,
     "accessibility": 72
    },
@@ -2035,9 +2052,9 @@
      "asof": "2026"
     },
     "openness": {
-     "note": "Meta distributes Llama weights under a community license with acceptable-use and access terms.",
+     "note": "Llama 4's licence lets most users download, run and fine-tune the weights royalty-free, but it is not an OSI-approved open source licence: anyone whose product passes 700 million monthly active users needs a separate licence from Meta, redistributions must display 'Built with Llama', and the licence terminates automatically if the user sues Meta over IP related to Llama.",
      "source": "https://github.com/meta-llama/llama-models/blob/main/models/llama4/LICENSE",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "safety": {
      "note": "The Llama family includes Llama Guard and Prompt Guard models, but deployed safety depends on the app wrapper.",
@@ -2066,7 +2083,7 @@
    "valueSignature": {
     "health": 60,
     "honesty": 70,
-    "privacy": 86,
+    "privacy": 80,
     "cost": 72
    },
    "provenanceSummary": {
@@ -2099,27 +2116,27 @@
     "privacy": {
      "note": "Mistral's privacy policy covers Vibe/Le Chat-style inputs, outputs, usage data and feedback, with GDPR-facing controls.",
      "source": "https://legal.mistral.ai/terms/privacy-policy",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "transparency": {
-     "note": "Mistral documents current models, product surfaces and trade-offs, but safety reporting is lighter than Anthropic/OpenAI-style system cards.",
-     "source": "https://docs.mistral.ai/models/overview",
-     "asof": "2026"
+     "note": "As an EU-based provider of general-purpose AI models, Mistral has been legally required since 2 August 2025 to keep technical documentation, hold a copyright policy, and publish a sufficiently detailed public summary of training content under Article 53 of the EU AI Act; open-source releases are exempted from the documentation duties unless they carry systemic risk.",
+     "source": "https://digital-strategy.ec.europa.eu/en/faqs/general-purpose-ai-models-ai-act-questions-answers",
+     "asof": "2026-08"
     },
     "openness": {
      "note": "Mistral's current model docs describe both open-weight and commercial large language models, so openness is real but model-dependent.",
      "source": "https://docs.mistral.ai/models",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "safety": {
      "note": "Mistral has usage and privacy policies, but less public frontier-risk reporting than the most safety-documented labs.",
      "source": "https://legal.mistral.ai/terms/privacy-policy",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "accessibility": {
      "note": "Mistral says Le Chat is now Vibe and offers a free plan, while open-weight deployment remains available for capable users.",
      "source": "https://mistral.ai/products/vibe/",
-     "asof": "2026"
+     "asof": "2026-08"
     }
    },
    "links": [
@@ -2154,12 +2171,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 3,
+    "sourceDomainCount": 4,
     "singleSource": false,
-    "primarySource": "docs.mistral.ai",
+    "primarySource": "legal.mistral.ai",
     "sourceLabels": [
-     "docs.mistral.ai",
      "legal.mistral.ai",
+     "digital-strategy.ec.europa.eu",
+     "docs.mistral.ai",
      "mistral.ai"
     ]
    }
@@ -2190,9 +2208,9 @@
      "asof": "2026"
     },
     "openness": {
-     "note": "Google says Gemma 4 models are provided with open weights and permit responsible commercial use for tuning and deployment.",
+     "note": "Gemma 4 spans four architectures (2B/4B, a dense 31B, a 26B mixture-of-experts and a 12B multimodal model) and is released under the Apache 2.0 licence, which Google says permits responsible commercial use; a separate prohibited-use policy still applies, unlike Llama's licence there is no stated user-count threshold that requires a further licence from Google.",
      "source": "https://ai.google.dev/gemma/docs/core",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "safety": {
      "note": "Gemma releases include responsible-use terms and guidance, but deployment safety depends on implementers.",
@@ -2252,19 +2270,19 @@
    },
    "provenance": {
     "privacy": {
-     "note": "DeepSeek's policy says it collects prompts, files, chat history and device data and directly stores/processes data in China.",
-     "source": "https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html",
-     "asof": "2026"
+     "note": "Italy's Garante ordered an immediate, urgent limitation on DeepSeek's processing of Italian users' data on 30 January 2025, after finding the companies' response to its information request 'entirely unsatisfactory', and opened a formal investigation alongside the order.",
+     "source": "https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/10097450",
+     "asof": "2026-08"
     },
     "transparency": {
-     "note": "DeepSeek publishes technical and policy information, but hosted-service data practices carry major caveats.",
-     "source": "https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html",
-     "asof": "2026"
+     "note": "The Garante's own account of its DeepSeek action says the companies initially claimed they did not operate in Italy and that EU data protection law did not apply to them, a position the Authority rejected because the web-based service was accessible to Italian users.",
+     "source": "https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/10097450",
+     "asof": "2026-08"
     },
     "openness": {
-     "note": "DeepSeek releases open-weight models that can be self-hosted, separating the model from the hosted app.",
+     "note": "DeepSeek-R1 is released under the MIT licence, and its weights can be downloaded from Hugging Face and run locally through frameworks such as vLLM or SGLang; the full 671B model needs the separate DeepSeek-V3 deployment guidance.",
      "source": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "safety": {
      "note": "The privacy policy describes safety monitoring, but public safety-framework detail is lighter than frontier lab system cards.",
@@ -2281,6 +2299,14 @@
     {
      "label": "Website",
      "url": "https://www.deepseek.com/"
+    },
+    {
+     "label": "Privacy policy",
+     "url": "https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html"
+    },
+    {
+     "label": "Garante limitation order (2025)",
+     "url": "https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/10097450"
     }
    ],
    "region": [
@@ -2299,10 +2325,11 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 3,
+    "sourceDomainCount": 4,
     "singleSource": false,
-    "primarySource": "cdn.deepseek.com",
+    "primarySource": "garanteprivacy.it",
     "sourceLabels": [
+     "garanteprivacy.it",
      "cdn.deepseek.com",
      "deepseek.com",
      "huggingface.co"
@@ -2327,27 +2354,27 @@
     "privacy": {
      "note": "Open-weight Qwen models can be self-hosted, but hosted Alibaba/Qwen services require trusting that provider's data handling.",
      "source": "https://github.com/QwenLM/Qwen3.6",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "transparency": {
      "note": "Qwen publishes model repositories and technical reports, with clearer model access than consumer-hosted data policies.",
      "source": "https://github.com/QwenLM/Qwen3.6",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "openness": {
      "note": "Qwen states its open-weight models are licensed under Apache 2.0 in the respective repositories.",
      "source": "https://github.com/QwenLM/Qwen3.6",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "safety": {
      "note": "Public safety-framework detail is lighter than major frontier labs, so safe deployment depends heavily on the wrapper.",
      "source": "https://github.com/QwenLM/Qwen3.6",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "accessibility": {
      "note": "Qwen weights are free to download for developers, while hosted access varies by model and platform.",
      "source": "https://github.com/QwenLM/Qwen3.6",
-     "asof": "2026"
+     "asof": "2026-08"
     }
    },
    "links": [
@@ -2611,14 +2638,14 @@
    },
    "provenance": {
     "privacy": {
-     "note": "Meta says public adult content and interactions with Meta AI can be used to train and improve AI at Meta in some regions.",
-     "source": "https://about.fb.com/news/2025/04/making-ai-work-harder-for-europeans/",
-     "asof": "2026"
+     "note": "Ireland's Data Protection Commission says it pressed Meta to pause training its AI on EU/EEA adults' public Facebook and Instagram posts in June 2024, and only let training resume from 27 May 2025 after Meta added clearer transparency notices, a longer objection window, and confirmed private posts stay out of scope; Meta must report back to the DPC on how well those safeguards work.",
+     "source": "https://www.dataprotection.ie/en/news-media/latest-news/dpc-statement-meta-ai",
+     "asof": "2026-08"
     },
     "transparency": {
      "note": "Meta publishes AI-training-data explainers and privacy-center materials, but controls are region- and product-dependent.",
      "source": "https://transparency.meta.com/features/ai-at-meta-training-data/",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "openness": {
      "note": "Meta's Llama weights improve ecosystem openness, but the Meta AI consumer assistant itself is a closed service.",
@@ -2640,6 +2667,14 @@
     {
      "label": "AI at Meta",
      "url": "https://transparency.meta.com/features/ai-at-meta-training-data/"
+    },
+    {
+     "label": "DPC statement on Meta AI training (2025)",
+     "url": "https://www.dataprotection.ie/en/news-media/latest-news/dpc-statement-meta-ai"
+    },
+    {
+     "label": "FTC 6(b) inquiry into AI companion chatbots (2025)",
+     "url": "https://www.techpolicy.press/ftc-opens-inquiry-into-ai-chatbots-and-their-impact-on-children/"
     }
    ],
    "region": [
@@ -2658,13 +2693,14 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 3,
+    "sourceDomainCount": 4,
     "singleSource": false,
-    "primarySource": "about.fb.com",
+    "primarySource": "transparency.meta.com",
     "sourceLabels": [
-     "about.fb.com",
      "transparency.meta.com",
-     "blog.whatsapp.com"
+     "about.fb.com",
+     "blog.whatsapp.com",
+     "dataprotection.ie"
     ]
    }
   },
@@ -2747,13 +2783,13 @@
    "brand": "AI character platform",
    "allergens": [],
    "allergensDeclared": true,
-   "description": "A character-chat platform that is accessible and engaging, but weak for privacy-sensitive or safety-first users.",
+   "description": "A character-chat platform that is accessible and engaging for adults, but has removed open-ended chat for under-18s after lawsuits over teen suicides, and remains weak for privacy-sensitive users.",
    "scores": {
     "privacy": 34,
     "transparency": 48,
     "openness": 16,
-    "safety": 34,
-    "accessibility": 88
+    "safety": 42,
+    "accessibility": 84
    },
    "provenance": {
     "privacy": {
@@ -2772,20 +2808,28 @@
      "asof": "2026"
     },
     "safety": {
-     "note": "Character.AI documents a distinct under-18 experience with more conservative classifiers and additional input/output controls, but companion-chat risk remains high.",
-     "source": "https://support.character.ai/hc/en-us/articles/21704914723995-Safety-Center",
-     "asof": "2026"
+     "note": "Character.AI's own announcement says it removed open-ended chat with any character for users under 18 by 25 November 2025, following lawsuits after teenagers died by suicide after extended chatbot conversations; it now uses an in-house age-assurance model plus a third-party verifier (Persona) and leaves under-18s other features such as video and story creation. Companion-chat risk for adult users is unchanged by this policy.",
+     "source": "https://blog.character.ai/u18-chat-announcement/",
+     "asof": "2026-08"
     },
     "accessibility": {
-     "note": "Character.AI is easy to access and designed for casual chat, which increases both convenience and dependency risk.",
-     "source": "https://character.ai/",
-     "asof": "2026"
+     "note": "Character.AI is easy to access and designed for casual chat for adults; under-18 users lost open-ended chat access in November 2025, which narrows who the product is actually accessible to.",
+     "source": "https://blog.character.ai/u18-chat-announcement/",
+     "asof": "2026-08"
     }
    },
    "links": [
     {
      "label": "Website",
      "url": "https://character.ai/"
+    },
+    {
+     "label": "Under-18 chat removal announcement (2025)",
+     "url": "https://blog.character.ai/u18-chat-announcement/"
+    },
+    {
+     "label": "FTC 6(b) inquiry into AI companion chatbots (2025)",
+     "url": "https://www.techpolicy.press/ftc-opens-inquiry-into-ai-chatbots-and-their-impact-on-children/"
     }
    ],
    "region": [
@@ -2796,10 +2840,10 @@
     "Free tier"
    ],
    "valueSignature": {
-    "health": 34,
+    "health": 42,
     "honesty": 48,
     "privacy": 25,
-    "cost": 88
+    "cost": 84
    },
    "provenanceSummary": {
     "factCount": 5,
@@ -2809,7 +2853,7 @@
     "primarySource": "character.ai",
     "sourceLabels": [
      "character.ai",
-     "support.character.ai"
+     "blog.character.ai"
     ]
    }
   },
@@ -2834,9 +2878,9 @@
      "asof": "2026"
     },
     "transparency": {
-     "note": "Replika's updated policy is more detailed about messages, sensitive information, provider sharing and de-identified internal safety/performance training, but emotional-use risks remain hard to audit.",
-     "source": "https://replika.com/legal/privacy/en",
-     "asof": "2026"
+     "note": "Italy's Garante fined Luka Inc. (Replika) 5 million euros on 10 April 2025, finding it had no legal basis for its data processing as of February 2023, an inadequate privacy policy, and no working age-verification either at registration or during use even though the service is meant to exclude minors; the Authority also opened a new investigation into how the underlying AI model is trained.",
+     "source": "https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/10132048",
+     "asof": "2026-08"
     },
     "openness": {
      "note": "Replika is a closed hosted companion service rather than an open-weight or self-hostable assistant.",
@@ -2868,8 +2912,12 @@
      "url": "https://replika.com/legal/terms/en"
     },
     {
-     "label": "2025 regulator action",
+     "label": "EDPB summary of the 2025 Garante fine",
      "url": "https://www.edpb.europa.eu/news/national-news/2025/ai-italian-supervisory-authority-fines-company-behind-chatbot-replika_en"
+    },
+    {
+     "label": "Garante decision (2025)",
+     "url": "https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/10132048"
     }
    ],
    "region": [
@@ -2887,9 +2935,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "replika.com"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "replika.com",
+    "sourceLabels": [
+     "replika.com",
+     "garanteprivacy.it"
+    ]
    }
   },
   {
@@ -2970,13 +3022,13 @@
    "brand": "AI search and research assistant",
    "allergens": [],
    "allergensDeclared": true,
-   "description": "A search-grounded AI assistant and API platform focused on fresh web answers, with consumer privacy depending on account, ads, and provider routing.",
+   "description": "You.com retired its consumer chat subscriptions and now positions itself mainly as a developer and enterprise web-search API platform, though a chat sign-in still exists; most readers looking for a consumer assistant should look elsewhere.",
    "scores": {
     "privacy": 50,
     "transparency": 64,
     "openness": 20,
     "safety": 60,
-    "accessibility": 84
+    "accessibility": 52
    },
    "provenance": {
     "privacy": {
@@ -3000,9 +3052,9 @@
      "asof": "2026"
     },
     "accessibility": {
-     "note": "You.com offers chat and API access, with free trial/API entry points and paid/enterprise routes.",
+     "note": "You.com's site now leads with usage-based developer APIs (search, contents, answer, research) rather than a consumer chat plan; a chat sign-in remains in the site navigation, but the product is built for developers and enterprises first.",
      "source": "https://you.com/",
-     "asof": "2026"
+     "asof": "2026-08"
     }
    },
    "links": [
@@ -3027,7 +3079,7 @@
     "health": 60,
     "honesty": 64,
     "privacy": 35,
-    "cost": 84
+    "cost": 52
    },
    "provenanceSummary": {
     "factCount": 5,
@@ -5178,14 +5230,14 @@
      "asof": "2026"
     },
     "transparency": {
-     "note": "xAI publishes consumer FAQs and a privacy policy, but less model-card detail than the most transparent frontier labs.",
-     "source": "https://x.ai/legal/faq",
-     "asof": "2026"
+     "note": "Ireland's Data Protection Commission used untested High Court powers for the first time in August 2024 to make X suspend processing EU/EEA users' public posts collected between 7 May and 1 August 2024 for training Grok; the proceedings were struck out in September 2024 after X gave a permanent undertaking to keep to those terms.",
+     "source": "https://www.dataprotection.ie/en/news-media/press-releases/dpc-welcomes-xs-agreement-suspend-its-processing-personal-data-purpose-training-ai-tool-grok",
+     "asof": "2026-08"
     },
     "openness": {
      "note": "xAI released Grok-1 weights and architecture under Apache 2.0, but that release is an older base model, not the current assistant.",
      "source": "https://x.ai/news/grok-os",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "safety": {
      "note": "xAI's own FAQ says user-selected modes can produce coarse, suggestive, violent or offensive content, so safety fit is limited.",
@@ -5202,6 +5254,14 @@
     {
      "label": "Website",
      "url": "https://x.ai/"
+    },
+    {
+     "label": "DPC proceedings concluded (2024)",
+     "url": "https://www.dataprotection.ie/en/news-media/press-releases/data-protection-commission-welcomes-conclusion-proceedings-relating-xs-ai-tool-grok"
+    },
+    {
+     "label": "FTC 6(b) inquiry into AI companion chatbots (2025)",
+     "url": "https://www.techpolicy.press/ftc-opens-inquiry-into-ai-chatbots-and-their-impact-on-children/"
     }
    ],
    "region": [
@@ -5220,9 +5280,13 @@
    "provenanceSummary": {
     "factCount": 5,
     "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "x.ai"
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "x.ai",
+    "sourceLabels": [
+     "x.ai",
+     "dataprotection.ie"
+    ]
    }
   },
   {
@@ -5241,9 +5305,9 @@
    },
    "provenance": {
     "privacy": {
-     "note": "Cohere's enterprise commitments include private deployment options, SaaS training opt-out controls, 30-day prompt/generation deletion and zero-data-retention paths.",
+     "note": "Cohere says it deletes logged SaaS prompts and generations after 30 days by default, lets customers opt out of training use through a Data Controls toggle in dashboard settings, and offers zero-data-retention for enterprise customers who meet additional usage commitments.",
      "source": "https://cohere.com/enterprise-data-commitments",
-     "asof": "2026"
+     "asof": "2026-08"
     },
     "transparency": {
      "note": "Cohere publishes model documentation and enterprise data commitments, but consumer-style disclosure is less relevant.",

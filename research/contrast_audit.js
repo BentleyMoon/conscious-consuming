@@ -43,6 +43,8 @@ const REQUIRED_PAIRS = [
   ['muted on pill', 'muted', 'pill', 4.5],
   ['hint on bg', 'hint', 'bg', 4.5],
   ['hint on surface', 'hint', 'surface', 4.5],
+  ['hint on pill', 'hint', 'pill', 4.5],
+  ['hint on track', 'hint', 'track', 4.5],
   ['accent on bg', 'accent', 'bg', 4.5],
   ['accent on surface', 'accent', 'surface', 4.5],
   ['accent on pill', 'accent', 'pill', 4.5],
@@ -53,8 +55,6 @@ const REQUIRED_PAIRS = [
 ];
 
 const WATCH_PAIRS = [
-  ['hint on pill', 'hint', 'pill', 4.5, 'small hint text on pill surfaces should move to muted/ink or the token should darken'],
-  ['hint on track', 'hint', 'track', 4.5, 'small hint text on track badges is below AA in the light theme'],
   ['muted on track', 'muted', 'track', 4.5, 'muted text on track is right at the AA edge in the light theme'],
   ['accent on track', 'accent', 'track', 4.5, 'accent text on track is below AA in the light theme']
 ];
@@ -180,6 +180,27 @@ function checkContrast(css) {
   return checked;
 }
 
+function checkHomepageContrast(html) {
+  const style = String(html || '').match(/<style>([\s\S]*?)<\/style>/i)?.[1] || '';
+  const themes = [
+    ['light', parseVars(blockFor(style, ':root[data-theme="light"]'))],
+    ['dark', parseVars(blockFor(style, ':root[data-theme="dark"]'))]
+  ];
+  const backgrounds = ['bg', 'surface', 'sunk', 'track'];
+  let checked = 0;
+  for (const [themeName, theme] of themes) {
+    expect(Boolean(theme.hint), `index.html: ${themeName} theme is missing --hint`);
+    for (const background of backgrounds) {
+      expect(Boolean(theme[background]), `index.html: ${themeName} theme is missing --${background}`);
+      if (!theme.hint || !theme[background]) continue;
+      checked += 1;
+      const ratio = contrastRatio(theme.hint, theme[background]);
+      expect(ratio >= 4.5, `index.html: ${themeName} hint on ${background} contrast ${ratio.toFixed(2)} is below 4.5`);
+    }
+  }
+  return checked;
+}
+
 function stripHtml(html) {
   return String(html || '')
     .replace(/<script[\s\S]*?<\/script>/gi, ' ')
@@ -263,7 +284,7 @@ function checkStaticAccessibility(css) {
 function main() {
   console.log('CSS contrast audit');
   const css = read('app/styles.css');
-  const checkedPairs = checkContrast(css);
+  const checkedPairs = checkContrast(css) + checkHomepageContrast(read('index.html'));
   const checkedButtons = checkStaticAccessibility(css);
 
   if (warnings.length) {

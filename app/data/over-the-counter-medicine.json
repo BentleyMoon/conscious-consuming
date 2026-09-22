@@ -1,0 +1,998 @@
+{
+ "meta": {
+  "id": "over-the-counter-medicine",
+  "label": "Over-the-counter medicine",
+  "type": "Products",
+  "primaryAxis": "health",
+  "tradeoff": [
+   "economical",
+   "health"
+  ],
+  "tradeoffLabels": [
+   "cheapest",
+   "lowest risk"
+  ],
+  "source": "Conscious Consuming",
+  "attribution": "Covers medicine-cabinet staples that cut across the whole non-prescription aisle: a pain reliever and fever reducer, an antihistamine for allergy, and an acid reducer for heartburn, each compared brand name against the identical store-brand version. Other decisions in this catalogue go deeper on a single ailment: pain relief; cold, flu and cough remedies; allergy and hay fever treatments; and digestive and stomach remedies, each with room for a fuller roster of its own. Assembled from FDA-approved Drug Facts labels published on DailyMed, the FDA and GAO on the OTC drug monograph system, and Cleveland Clinic, plus retailer product pages for prices. Scope is the US market. Not medical advice. The lowest-risk choice depends on age, pregnancy, allergies, and conditions such as liver, kidney, heart, or stomach disease; ask a pharmacist or doctor if unsure. Reviewed 2026-08. Suggest changes via Contribute.",
+  "allergens": false,
+  "presets": {
+   "Balanced": {
+    "w": {
+     "economical": 3,
+     "health": 3,
+     "accessibility": 2
+    },
+    "x": []
+   },
+   "Cheapest": {
+    "w": {
+     "economical": 5,
+     "health": 2,
+     "accessibility": 2
+    },
+    "x": []
+   },
+   "Lowest risk": {
+    "w": {
+     "health": 5,
+     "economical": 2,
+     "accessibility": 2
+    },
+    "x": []
+   },
+   "Easiest to find": {
+    "w": {
+     "accessibility": 5,
+     "economical": 2,
+     "health": 2
+    },
+    "x": []
+   }
+  },
+  "n": 13,
+  "valueSignatureProfile": {
+   "entryCount": 13,
+   "signedEntries": 13,
+   "drawableEntries": 13,
+   "minimumThemesForBloom": 2,
+   "themeCounts": {
+    "health": 13,
+    "cost": 13
+   }
+  },
+  "provenanceProfile": {
+   "entryCount": 13,
+   "singleSourceEntries": 3,
+   "multiSourceEntries": 10,
+   "noSourceEntries": 0,
+   "noteOnlyEntries": 0,
+   "averageSourceDomains": 2.15,
+   "topPrimarySources": [
+    {
+     "label": "dailymed.nlm.nih.gov",
+     "entries": 8
+    },
+    {
+     "label": "target.com",
+     "entries": 4
+    },
+    {
+     "label": "my.clevelandclinic.org",
+     "entries": 1
+    }
+   ]
+  },
+  "decision": {
+   "category": "over-the-counter-medicine",
+   "reads": {
+    "text": "Compare over-the-counter medicine by body safety, cost, and everyday access.",
+    "basis": [
+     {
+      "criterion": "health",
+      "readsAs": "body safety"
+     },
+     {
+      "criterion": "economical",
+      "readsAs": "cost"
+     },
+     {
+      "criterion": "accessibility",
+      "readsAs": "everyday access"
+     }
+    ],
+    "signature": {
+     "by": "Conscious Consuming",
+     "on": "2026-07-15",
+     "status": "approved-batch"
+    },
+    "receipt": {
+     "dataset": "over-the-counter-medicine",
+     "entryCount": 13,
+     "criteria": [
+      {
+       "criterion": "health",
+       "readsAs": "body safety",
+       "known": 13,
+       "minimum": 45,
+       "maximum": 95,
+       "spread": 50
+      },
+      {
+       "criterion": "economical",
+       "readsAs": "cost",
+       "known": 13,
+       "minimum": 8,
+       "maximum": 100,
+       "spread": 92
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access",
+       "known": 13,
+       "minimum": 55,
+       "maximum": 100,
+       "spread": 45
+      }
+     ]
+    }
+   },
+   "axes": [
+    {
+     "id": "cost-or-values",
+     "kind": "cost-values",
+     "label": "Cost or overall fit",
+     "question": "Lower cost or a stronger overall fit?",
+     "criteria": [
+      "economical",
+      "health",
+      "accessibility"
+     ],
+     "poles": [
+      "Lower cost",
+      "Stronger overall fit"
+     ],
+     "default": 50
+    },
+    {
+     "id": "accessibility",
+     "kind": "criterion",
+     "label": "Access",
+     "question": "Do you need easier everyday access?",
+     "criteria": [
+      "accessibility"
+     ],
+     "poles": [
+      "Flexible",
+      "Easier access"
+     ],
+     "default": 50
+    }
+   ],
+   "budget": {
+    "available": true,
+    "mode": "assessed-affordability-rank",
+    "criterion": "economical",
+    "minimumKnown": 5,
+    "knownEntries": 13,
+    "coverage": 1.0
+   },
+   "archetypes": [
+    "best-for-most",
+    "strictest-match",
+    "budget-honest"
+   ],
+   "page": {
+    "stage": "approved-batch",
+    "primaryRoute": true
+   },
+   "consumer": {
+    "reads": "Round 8 approved category differences reads.",
+    "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+    "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+    "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+    "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+   }
+  }
+ },
+ "criteria": [
+  {
+   "key": "economical",
+   "label": "Price per dose",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "health",
+   "label": "Safety profile",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "accessibility",
+   "label": "Ease of purchase",
+   "source": "curated",
+   "tier": "assessed"
+  }
+ ],
+ "products": [
+  {
+   "code": "tylenol-extra-strength",
+   "name": "Tylenol Extra Strength",
+   "brand": "national brand, acetaminophen",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "economical": 42,
+    "health": 70,
+    "accessibility": 78
+   },
+   "provenance": {
+    "economical": {
+     "note": "Target lists Tylenol Extra Strength Caplets, 100 count, at $10.99, which is $0.11 per 500 mg caplet.",
+     "source": "https://www.target.com/p/tylenol-extra-strength-pain-reliever-and-fever-reducer-caplets-acetaminophen-100ct/-/A-14827711",
+     "asof": "2026"
+    },
+    "health": {
+     "note": "DailyMed's Tylenol Extra Strength label states severe liver damage may occur if you take more than 4,000 mg of acetaminophen in 24 hours, with other acetaminophen-containing products, or with 3 or more alcoholic drinks a day, and caps adult dosing at 6 caplets (3,000 mg) in 24 hours. It carries no stomach, kidney, or cardiovascular warning at labeled doses.",
+     "source": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Tylenol is a nationally marketed brand under the FDA's internal analgesic OTC monograph, not a single retailer's store label, unlike Target's up & up acetaminophen.",
+     "source": "https://www.gao.gov/assets/gao-20-572.pdf",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Target product page",
+     "url": "https://www.target.com/p/tylenol-extra-strength-pain-reliever-and-fever-reducer-caplets-acetaminophen-100ct/-/A-14827711"
+    },
+    {
+     "label": "DailyMed label",
+     "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Brand name",
+    "Pain and fever"
+   ],
+   "description": "The market-leading acetaminophen brand, priced well above the store-brand version that carries the identical 500 mg dose and the identical FDA liver warning.",
+   "valueSignature": {
+    "health": 70,
+    "cost": 60
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "dailymed.nlm.nih.gov",
+    "sourceLabels": [
+     "dailymed.nlm.nih.gov",
+     "gao.gov",
+     "target.com"
+    ]
+   }
+  },
+  {
+   "code": "up-and-up-acetaminophen-extra-strength",
+   "name": "up & up Acetaminophen Extra Strength",
+   "brand": "store brand (Target), acetaminophen",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "economical": 92,
+    "health": 70,
+    "accessibility": 55
+   },
+   "provenance": {
+    "economical": {
+     "note": "Target lists up & up Acetaminophen Extra Strength Caplets, 100 count, at $1.99, which is $0.02 per 500 mg caplet, about a fifth of the Tylenol Extra Strength price for the same dose.",
+     "source": "https://www.target.com/p/acetaminophen-500mg-extra-strength-pain-reliever-fever-reducer-caplets-compare-to-extra-strength-tylenol-caplets-100ct-up-up-153/-/A-11369394",
+     "asof": "2026"
+    },
+    "health": {
+     "note": "DailyMed's label for Target Corporation's Acetaminophen Extra Strength states severe liver damage may occur if you take more than 4,000 mg of acetaminophen in 24 hours, and caps adult dosing at 6 units (3,000 mg) in 24 hours, the same threshold and wording as the Tylenol label.",
+     "source": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=68444e2c-1ad8-4d00-a55c-c0f62942ec11",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "DailyMed lists Target Corporation as the label holder for this product, meaning it is Target's own store brand, sold only through Target stores and target.com rather than a nationally licensed brand carried by multiple chains.",
+     "source": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=68444e2c-1ad8-4d00-a55c-c0f62942ec11",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Target product page",
+     "url": "https://www.target.com/p/acetaminophen-500mg-extra-strength-pain-reliever-fever-reducer-caplets-compare-to-extra-strength-tylenol-caplets-100ct-up-up-153/-/A-11369394"
+    },
+    {
+     "label": "DailyMed label",
+     "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=68444e2c-1ad8-4d00-a55c-c0f62942ec11"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Store brand",
+    "Pain and fever"
+   ],
+   "description": "Target's store-brand acetaminophen, the same 500 mg dose and the same FDA-mandated liver warning as Tylenol Extra Strength, at about a fifth of the price.",
+   "valueSignature": {
+    "health": 70,
+    "cost": 73.5
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "dailymed.nlm.nih.gov",
+    "sourceLabels": [
+     "dailymed.nlm.nih.gov",
+     "target.com"
+    ]
+   }
+  },
+  {
+   "code": "advil",
+   "name": "Advil",
+   "brand": "national brand, ibuprofen",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "economical": 42,
+    "health": 55,
+    "accessibility": 78
+   },
+   "provenance": {
+    "economical": {
+     "note": "Target lists Advil Pain Reliever/Fever Reducer Tablets, 100 count, at $10.99, which is $0.11 per 200 mg ibuprofen tablet.",
+     "source": "https://www.target.com/p/advil-pain-reliever-fever-reducer-tablets-ibuprofen-nsaid-100ct/-/A-14959068",
+     "asof": "2026"
+    },
+    "health": {
+     "note": "DailyMed's Advil label states the product contains an NSAID that may cause severe stomach bleeding, with higher risk over age 60, with a history of stomach ulcers or bleeding, on blood thinners or steroids, with 3 or more alcoholic drinks a day, or taken longer than directed, and that NSAIDs other than aspirin increase the risk of heart attack, heart failure, and stroke, a risk that can appear in the first weeks of use.",
+     "source": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?audience=consumer&setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Advil is a nationally marketed brand product under the FDA's internal analgesic OTC monograph, not a single retailer's private label, unlike Target's up & up ibuprofen.",
+     "source": "https://www.gao.gov/assets/gao-20-572.pdf",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Target product page",
+     "url": "https://www.target.com/p/advil-pain-reliever-fever-reducer-tablets-ibuprofen-nsaid-100ct/-/A-14959068"
+    },
+    {
+     "label": "DailyMed label",
+     "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?audience=consumer&setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Brand name",
+    "Pain and fever"
+   ],
+   "description": "The market-leading ibuprofen brand, carrying the FDA's stomach-bleeding and heart attack and stroke warnings required of every NSAID.",
+   "valueSignature": {
+    "health": 55,
+    "cost": 60
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "dailymed.nlm.nih.gov",
+    "sourceLabels": [
+     "dailymed.nlm.nih.gov",
+     "gao.gov",
+     "target.com"
+    ]
+   }
+  },
+  {
+   "code": "up-and-up-ibuprofen",
+   "name": "up & up Ibuprofen",
+   "brand": "store brand (Target), ibuprofen",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "economical": 92,
+    "health": 55,
+    "accessibility": 55
+   },
+   "provenance": {
+    "economical": {
+     "note": "Target lists up & up Ibuprofen (NSAID) Tablets, 100 count, at $1.99, which is $0.02 per 200 mg tablet, about a fifth of the Advil price for the same dose.",
+     "source": "https://www.target.com/p/ibuprofen-nsaid-pain-reliever-fever-reducer-tablets-100ct-up-up-8482/-/A-11004681",
+     "asof": "2026"
+    },
+    "health": {
+     "note": "DailyMed's label for Target Corporation's ibuprofen states this NSAID may cause severe stomach bleeding, with the same risk factors as the Advil label, and that NSAIDs other than aspirin increase the risk of heart attack, heart failure, and stroke, which can be fatal.",
+     "source": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=ce5fe420-a0b8-4691-86f7-57fea49bd8ce",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "DailyMed's label names Target Corporation as the label holder, meaning this is Target's own store brand, sold only through Target stores and target.com.",
+     "source": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=ce5fe420-a0b8-4691-86f7-57fea49bd8ce",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Target product page",
+     "url": "https://www.target.com/p/ibuprofen-nsaid-pain-reliever-fever-reducer-tablets-100ct-up-up-8482/-/A-11004681"
+    },
+    {
+     "label": "DailyMed label",
+     "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=ce5fe420-a0b8-4691-86f7-57fea49bd8ce"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Store brand",
+    "Pain and fever"
+   ],
+   "description": "Target's store-brand ibuprofen, the same 200 mg dose and the same NSAID warnings as Advil, at about a fifth of the price.",
+   "valueSignature": {
+    "health": 55,
+    "cost": 73.5
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "dailymed.nlm.nih.gov",
+    "sourceLabels": [
+     "dailymed.nlm.nih.gov",
+     "target.com"
+    ]
+   }
+  },
+  {
+   "code": "zyrtec",
+   "name": "Zyrtec 24 Hour Allergy Relief",
+   "brand": "national brand, cetirizine",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "economical": 10,
+    "health": 72,
+    "accessibility": 78
+   },
+   "provenance": {
+    "economical": {
+     "note": "Target lists Zyrtec 24 Hour Allergy Relief Tablets, 30 count, at $16.38, which is $0.55 per 10 mg cetirizine tablet, the second most expensive dose in this roster.",
+     "source": "https://www.target.com/p/zyrtec-24-hour-allergy-relief-tablets-cetirizine-hcl-30ct/-/A-10823475",
+     "asof": "2026"
+    },
+    "health": {
+     "note": "DailyMed's Zyrtec label states drowsiness may occur, to avoid alcoholic drinks, and that alcohol, sedatives, and tranquilizers may increase drowsiness.",
+     "source": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b165db38-b302-4220-8627-77cb07bb078c",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Zyrtec is a nationally marketed brand under the FDA's OTC antihistamine framework, not a single retailer's private label, unlike Target's up & up cetirizine.",
+     "source": "https://www.gao.gov/assets/gao-20-572.pdf",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Target product page",
+     "url": "https://www.target.com/p/zyrtec-24-hour-allergy-relief-tablets-cetirizine-hcl-30ct/-/A-10823475"
+    },
+    {
+     "label": "DailyMed label",
+     "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b165db38-b302-4220-8627-77cb07bb078c"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Brand name",
+    "Allergy"
+   ],
+   "description": "The main cetirizine antihistamine brand; even this newer-generation formula still warns on its own label that drowsiness may occur.",
+   "valueSignature": {
+    "health": 72,
+    "cost": 44
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "dailymed.nlm.nih.gov",
+    "sourceLabels": [
+     "dailymed.nlm.nih.gov",
+     "gao.gov",
+     "target.com"
+    ]
+   }
+  },
+  {
+   "code": "up-and-up-cetirizine",
+   "name": "up & up Cetirizine",
+   "brand": "store brand (Target), cetirizine",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "economical": 32,
+    "health": 72,
+    "accessibility": 55
+   },
+   "provenance": {
+    "economical": {
+     "note": "Target lists up & up Cetirizine Hydrochloride Allergy Relief Tablets, 30 count, at $6.69, which is $0.22 per 10 mg tablet, about two fifths of the Zyrtec price.",
+     "source": "https://www.target.com/p/cetirizine-hydrochloride-allergy-relief-tablets-30ct-up-38-up-8482/-/A-11003526",
+     "asof": "2026"
+    },
+    "health": {
+     "note": "up & up cetirizine is 10 mg cetirizine hydrochloride, the same active ingredient and dose as Zyrtec, and carries the same OTC antihistamine drowsiness and alcohol warning under the FDA monograph.",
+     "source": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b165db38-b302-4220-8627-77cb07bb078c",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "up & up is Target's own store brand; the product page compares its active ingredient to Zyrtec and it is sold only through Target stores and target.com.",
+     "source": "https://www.target.com/p/cetirizine-hydrochloride-allergy-relief-tablets-30ct-up-38-up-8482/-/A-11003526",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Target product page",
+     "url": "https://www.target.com/p/cetirizine-hydrochloride-allergy-relief-tablets-30ct-up-38-up-8482/-/A-11003526"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Store brand",
+    "Allergy"
+   ],
+   "description": "Target's store-brand cetirizine, the same 10 mg dose and the same drowsiness warning as Zyrtec, at under half the price.",
+   "valueSignature": {
+    "health": 72,
+    "cost": 43.5
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "target.com",
+    "sourceLabels": [
+     "target.com",
+     "dailymed.nlm.nih.gov"
+    ]
+   }
+  },
+  {
+   "code": "benadryl",
+   "name": "Benadryl Ultratabs",
+   "brand": "national brand, diphenhydramine",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "economical": 38,
+    "health": 45,
+    "accessibility": 78
+   },
+   "provenance": {
+    "economical": {
+     "note": "Target lists Benadryl Ultratabs Diphenhydramine Tablets, 100 count, at $14.89, which is $0.15 per 25 mg tablet.",
+     "source": "https://www.target.com/p/benadryl-ultratabs-antihistamine-cold-38-allergy-relief-tablets-100ct/-/A-15118505",
+     "asof": "2026"
+    },
+    "health": {
+     "note": "DailyMed's Benadryl label states marked drowsiness may occur, a stronger warning than Zyrtec's \"drowsiness may occur,\" and that alcohol, sedatives, and tranquilizers may increase drowsiness. Diphenhydramine is an older, first-generation antihistamine, unlike cetirizine or loratadine.",
+     "source": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Benadryl is a nationally marketed brand product, not a single retailer's private label, unlike Target's up & up diphenhydramine.",
+     "source": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Target product page",
+     "url": "https://www.target.com/p/benadryl-ultratabs-antihistamine-cold-38-allergy-relief-tablets-100ct/-/A-15118505"
+    },
+    {
+     "label": "DailyMed label",
+     "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Brand name",
+    "Allergy"
+   ],
+   "description": "The main diphenhydramine antihistamine brand; its label warns of marked drowsiness, stronger wording than the newer antihistamines carry.",
+   "valueSignature": {
+    "health": 45,
+    "cost": 58
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "dailymed.nlm.nih.gov",
+    "sourceLabels": [
+     "dailymed.nlm.nih.gov",
+     "target.com"
+    ]
+   }
+  },
+  {
+   "code": "up-and-up-diphenhydramine",
+   "name": "up & up Diphenhydramine",
+   "brand": "store brand (Target), diphenhydramine",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "economical": 85,
+    "health": 45,
+    "accessibility": 55
+   },
+   "provenance": {
+    "economical": {
+     "note": "Target lists up & up Diphenhydramine HCl Allergy Relief Tablets, 100 count, at $3.59, which is $0.04 per 25 mg tablet, about a quarter of the Benadryl price.",
+     "source": "https://www.target.com/p/diphenhydramine-hci-allergy-relief-tablets-100ct-up-38-up-8482/-/A-11046964",
+     "asof": "2026"
+    },
+    "health": {
+     "note": "up & up diphenhydramine is 25 mg diphenhydramine HCl, the same active ingredient and dose as Benadryl, and carries the same first-generation antihistamine marked-drowsiness warning under the FDA monograph.",
+     "source": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "This is Target's up & up store label rather than a nationally licensed brand, so it can only be bought at Target stores or target.com.",
+     "source": "https://www.target.com/p/diphenhydramine-hci-allergy-relief-tablets-100ct-up-38-up-8482/-/A-11046964",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Target product page",
+     "url": "https://www.target.com/p/diphenhydramine-hci-allergy-relief-tablets-100ct-up-38-up-8482/-/A-11046964"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Store brand",
+    "Allergy"
+   ],
+   "description": "Target's store-brand diphenhydramine, the same 25 mg dose and the same marked-drowsiness warning as Benadryl, at about a quarter of the price.",
+   "valueSignature": {
+    "health": 45,
+    "cost": 70
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "target.com",
+    "sourceLabels": [
+     "target.com",
+     "dailymed.nlm.nih.gov"
+    ]
+   }
+  },
+  {
+   "code": "claritin",
+   "name": "Claritin 24 Hour Non-Drowsy",
+   "brand": "national brand, loratadine",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "economical": 8,
+    "health": 78,
+    "accessibility": 78
+   },
+   "provenance": {
+    "economical": {
+     "note": "Target lists Claritin 24-Hour Non-Drowsy Allergy Relief Tablets, 30 count, at $19.99, which is $0.67 per 10 mg loratadine tablet, the most expensive dose in this roster.",
+     "source": "https://www.target.com/p/claritin-allergy-relief-24-hour-non-drowsy-loratadine-tablets-30ct/-/A-11276157",
+     "asof": "2026"
+    },
+    "health": {
+     "note": "DailyMed's Claritin label states taking more than directed may cause drowsiness, implying the labeled dose itself is not expected to, and tells people with liver or kidney disease to ask a doctor because they may need a different dose.",
+     "source": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ac32d6f9-f553-4d5c-ad36-575af5ea56de",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Claritin is a nationally marketed brand, not a single retailer's private label, unlike Target's up & up loratadine.",
+     "source": "https://www.gao.gov/assets/gao-20-572.pdf",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Target product page",
+     "url": "https://www.target.com/p/claritin-allergy-relief-24-hour-non-drowsy-loratadine-tablets-30ct/-/A-11276157"
+    },
+    {
+     "label": "DailyMed label",
+     "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ac32d6f9-f553-4d5c-ad36-575af5ea56de"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Brand name",
+    "Allergy"
+   ],
+   "description": "The main loratadine antihistamine brand, labeled non-drowsy at the directed dose, and the most expensive tablet in this roster.",
+   "valueSignature": {
+    "health": 78,
+    "cost": 43
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "dailymed.nlm.nih.gov",
+    "sourceLabels": [
+     "dailymed.nlm.nih.gov",
+     "gao.gov",
+     "target.com"
+    ]
+   }
+  },
+  {
+   "code": "up-and-up-loratadine",
+   "name": "up & up Loratadine",
+   "brand": "store brand (Target), loratadine",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "economical": 30,
+    "health": 78,
+    "accessibility": 55
+   },
+   "provenance": {
+    "economical": {
+     "note": "Target lists up & up Loratadine Allergy Relief Tablets, 30 count, at $6.99, which is $0.23 per 10 mg tablet, about a third of the Claritin price.",
+     "source": "https://www.target.com/p/loratadine-allergy-relief-tablets-30ct-up-38-up-8482/-/A-11010196",
+     "asof": "2026"
+    },
+    "health": {
+     "note": "up & up loratadine is 10 mg loratadine described on the product page as original prescription strength, the same active ingredient and dose as Claritin, carrying the same FDA monograph warnings.",
+     "source": "https://www.target.com/p/loratadine-allergy-relief-tablets-30ct-up-38-up-8482/-/A-11010196",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "The product page markets this as Target's own version rather than a name brand, and it is not stocked outside Target's stores and website.",
+     "source": "https://www.target.com/p/loratadine-allergy-relief-tablets-30ct-up-38-up-8482/-/A-11010196",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Target product page",
+     "url": "https://www.target.com/p/loratadine-allergy-relief-tablets-30ct-up-38-up-8482/-/A-11010196"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Store brand",
+    "Allergy"
+   ],
+   "description": "Target's store-brand loratadine, the same 10 mg dose and warnings as Claritin, at about a third of the price.",
+   "valueSignature": {
+    "health": 78,
+    "cost": 42.5
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "target.com"
+   }
+  },
+  {
+   "code": "pepcid-ac",
+   "name": "Pepcid AC Maximum Strength",
+   "brand": "national brand, famotidine",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "economical": 22,
+    "health": 80,
+    "accessibility": 78
+   },
+   "provenance": {
+    "economical": {
+     "note": "Target lists Pepcid AC Maximum Strength Acid Reducer Tablets, 50 count, at $19.89, which is $0.40 per 20 mg famotidine tablet.",
+     "source": "https://www.target.com/p/pepcid-ac-acid-reducers-maximum-strength-50ct/-/A-17210308",
+     "asof": "2026"
+    },
+    "health": {
+     "note": "DailyMed's Pepcid AC Maximum Strength label carries no drowsiness warning, tells people with kidney disease to ask a doctor, limits use to 14 days without a doctor, and tells people with heartburn accompanied by lightheadedness, sweating, or dizziness, or with trouble swallowing or bloody or black stools, to seek medical care instead.",
+     "source": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2854047f-c5c4-43c3-8ef2-5c0a84a307f2",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Pepcid AC is a nationally marketed brand, not a single retailer's private label, unlike Target's up & up famotidine.",
+     "source": "https://www.gao.gov/assets/gao-20-572.pdf",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Target product page",
+     "url": "https://www.target.com/p/pepcid-ac-acid-reducers-maximum-strength-50ct/-/A-17210308"
+    },
+    {
+     "label": "DailyMed label",
+     "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2854047f-c5c4-43c3-8ef2-5c0a84a307f2"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Brand name",
+    "Heartburn"
+   ],
+   "description": "The main famotidine acid reducer brand; its label carries no drowsiness warning but limits use to 14 days without seeing a doctor.",
+   "valueSignature": {
+    "health": 80,
+    "cost": 50
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "dailymed.nlm.nih.gov",
+    "sourceLabels": [
+     "dailymed.nlm.nih.gov",
+     "gao.gov",
+     "target.com"
+    ]
+   }
+  },
+  {
+   "code": "up-and-up-famotidine",
+   "name": "up & up Famotidine",
+   "brand": "store brand (Target), famotidine",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "economical": 68,
+    "health": 80,
+    "accessibility": 55
+   },
+   "provenance": {
+    "economical": {
+     "note": "Target lists up & up Famotidine 20mg Maximum Strength Acid Reducer Tablets, 50 count, at $4.79, which is $0.10 per tablet, about a quarter of the Pepcid AC price.",
+     "source": "https://www.target.com/p/famotidine-20mg-maximum-strength-acid-reducer-tablets-50ct-up-38-up-8482/-/A-14364967",
+     "asof": "2026"
+    },
+    "health": {
+     "note": "up & up famotidine is 20 mg famotidine USP, the same active ingredient and dose as Pepcid AC Maximum Strength, carrying the same FDA monograph warnings on kidney disease, 14-day use limits, and alarm symptoms that need medical care.",
+     "source": "https://www.target.com/p/famotidine-20mg-maximum-strength-acid-reducer-tablets-50ct-up-38-up-8482/-/A-14364967",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "As a Target private label, this famotidine is not available at other chains the way Pepcid AC is; it is limited to Target stores and target.com.",
+     "source": "https://www.target.com/p/famotidine-20mg-maximum-strength-acid-reducer-tablets-50ct-up-38-up-8482/-/A-14364967",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Target product page",
+     "url": "https://www.target.com/p/famotidine-20mg-maximum-strength-acid-reducer-tablets-50ct-up-38-up-8482/-/A-14364967"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Store brand",
+    "Heartburn"
+   ],
+   "description": "Target's store-brand famotidine, the same 20 mg dose and warnings as Pepcid AC, at about a quarter of the price.",
+   "valueSignature": {
+    "health": 80,
+    "cost": 61.5
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "target.com"
+   }
+  },
+  {
+   "code": "non-drug-relief",
+   "name": "Rest, fluids, and cold or heat (no medicine)",
+   "brand": "free, no purchase",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "economical": 100,
+    "health": 95,
+    "accessibility": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "No product to buy, so no per-dose cost.",
+     "source": "https://my.clevelandclinic.org/health/symptoms/10880-fever",
+     "asof": "2026"
+    },
+    "health": {
+     "note": "Cleveland Clinic states a mild fever, under 101 F, usually does not need treatment with medication, and recommends fluids, rest, and a lukewarm bath instead. This applies to mild fever and minor aches specifically, not to allergy symptoms or heartburn, and it is not a substitute for medicine or a doctor's care when symptoms are higher or lasting.",
+     "source": "https://my.clevelandclinic.org/health/symptoms/10880-fever",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Requires no store, no delivery, and no money, only what is already available at home.",
+     "source": "https://my.clevelandclinic.org/health/symptoms/10880-fever",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Cleveland Clinic on fever",
+     "url": "https://my.clevelandclinic.org/health/symptoms/10880-fever"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Free",
+    "No purchase"
+   ],
+   "description": "Rest, fluids, and a cool cloth or lukewarm bath, which Cleveland Clinic says is usually enough for a mild fever without any medicine at all.",
+   "valueSignature": {
+    "health": 95,
+    "cost": 100
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "my.clevelandclinic.org"
+   }
+  }
+ ]
+}

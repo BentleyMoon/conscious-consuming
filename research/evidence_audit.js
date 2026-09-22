@@ -39,3 +39,8 @@ for (const r of rows) {
 const sum = rows.reduce((a, r) => { a.good += r.good; a.total += r.total; return a; }, { good: 0, total: 0 });
 console.log('\n  TOTAL curated: ' + sum.good + '/' + sum.total + ' (' + Math.round(sum.good / sum.total * 100) + '%) sourced across ' + rows.length + ' lenses');
 console.log('  Target: every high-stakes lens → at least ◐ partial; the wedge lenses → ✓ strong.\n');
+  // This one reports and never gates: it has no pass condition, only a coverage number that
+  // should rise. Unlabelled, a reporter sitting in a chain of gates gets read as a finding,
+  // which is how a number nobody can fail ends up being acted on. Said in the output, where a
+  // reader sees it, not in a comment where only an author does.
+  console.log('  ADVISORY: a place to look, not a finding. This audit never fails a build.');

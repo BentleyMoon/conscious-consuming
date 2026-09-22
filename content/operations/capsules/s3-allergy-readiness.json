@@ -1,0 +1,95 @@
+{
+  "$schema": "../schemas/work-capsule.schema.json",
+  "kind": "cc-work-capsule",
+  "version": "1.0.0",
+  "id": "s3-allergy-readiness",
+  "variant": "eu14-three-state-v1",
+  "state": "BLOCKED",
+  "workMode": "safety-repair",
+  "priority": "P0",
+  "decision": "Can a person with an allergy distinguish declared absence, declared presence or trace, and missing data without CC implying safety?",
+  "liveConsumer": "Food category and product decision surfaces that display allergen information.",
+  "model": {
+    "id": "gpt-5.6-sol",
+    "reasoningEffort": "medium"
+  },
+  "writeAuthorized": true,
+  "scope": {
+    "ownedPaths": [
+      "pipeline/scoring.py",
+      "pipeline/test_scoring.py",
+      "research/allergen_safety_audit.js",
+      "research/verify_run.js",
+      "docs/CONTENT-HANDOFF.md",
+      "content/operations/reviews/s3-allergy-baseline-2026-07-15.md",
+      "content/operations/results/s3-allergy-readiness.md"
+    ],
+    "forbiddenPaths": [
+      "app/app.js",
+      "app/styles.css",
+      "app/index.html",
+      "content/lenses/banking.json"
+    ],
+    "requiresIsolatedWorktree": true
+  },
+  "gates": [
+    {
+      "id": "s3-sequence-gate",
+      "status": "satisfied",
+      "evidence": "On 2026-07-15 the founder explicitly directed Codex to begin Phase 1. This capsule is limited to the S3 data-safety contract and does not claim app release readiness."
+    },
+    {
+      "id": "phase1-write-authorization",
+      "status": "satisfied",
+      "evidence": "The founder's 2026-07-15 instruction to begin 1/X authorizes this bounded Phase 1 implementation in the isolated content worktree."
+    }
+  ],
+  "sourceRequirements": [
+    "Authoritative EU-14 allergen definitions and labeling semantics.",
+    "The raw Open Food Facts allergen and trace fields actually consumed by the pipeline.",
+    "A measured baseline of mapped, unmapped, trace-only, and missing-data products.",
+    "An explicit three-state output contract that never converts missing data into declared absence."
+  ],
+  "preconditions": [
+    {
+      "id": "current-mapping-audited",
+      "status": "satisfied",
+      "evidence": "Read-only baseline frozen on 2026-07-15: 20,651 raw rows, 13,789 with allergen/trace tags, 6,862 without structured tags; 19,772 built products, including 4,736 unsafe declared-empty rows under the old contract."
+    },
+    {
+      "id": "backward-compatible-fail-closed-path",
+      "status": "satisfied",
+      "evidence": "The data transition preserves the legacy allergens union for filtering, adds distinct contains/trace/free fields, and makes declared true only when mapped structured evidence exists. App-owned per-allergen rendering will be logged as a release-blocking handoff."
+    }
+  ],
+  "doneWhen": [
+    "EU-14 mappings and raw tag normalization are explicit and tested.",
+    "Declared, trace-only, and missing-data states cannot collapse into one another.",
+    "A build-failing audit catches unsafe state regressions.",
+    "The normal sequential rebuild finishes green.",
+    "The result card states coverage and limitations without making medical claims."
+  ],
+  "stopConditions": [
+    "The gate remains blocked or write authorization remains false.",
+    "Raw source semantics cannot distinguish a required state.",
+    "The implementation would require an unapproved app-side semantic change.",
+    "Any audit suggests that missing data could be rendered as allergy-safe."
+  ],
+  "expectedArtifacts": [
+    "A frozen baseline evidence packet.",
+    "A mapping and three-state contract.",
+    "A targeted safety audit.",
+    "A result card and append-only ledger entry."
+  ],
+  "verificationCommands": [
+    "python pipeline/test_scoring.py",
+    "python pipeline/build_datasets.py",
+    "python pipeline/build_guides.py",
+    "node research/verify_run.js",
+    "node research/allergen_safety_audit.js"
+  ],
+  "claimBoundary": {
+    "supports": "CC can represent the covered source's allergen declarations and missingness without inferring safety.",
+    "doesNotSupport": "Medical advice, absence of cross-contamination, universal label completeness, or safety for any individual."
+  }
+}

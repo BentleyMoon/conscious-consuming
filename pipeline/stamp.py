@@ -11,7 +11,13 @@ from tracked_io import write_text
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 APP = os.path.normpath(os.path.join(HERE, '..', 'app'))
-ASSETS = ('styles.css', 'data.js', 'i18n.js', 'guides.js', 'engine.js', 'decision.js', 'sigil.js', 'lines.js', 'presentation.js', 'app.js')
+# Every versioned asset index.html loads must be listed here, or its cache-bust query never moves
+# and browsers keep the first copy they ever saw forever. homelens.js, icons.js and needsrose.js
+# were hand-written as ?v=1 and left out of this tuple, so six successive rewrites of the front-page
+# map shipped behind a URL that had not changed since the file was created. research/asset_stamp_audit.js
+# now fails the build if index.html carries a version that is not a real content hash.
+ASSETS = ('styles.css', 'data.js', 'i18n.js', 'guides.js', 'engine.js', 'decision.js', 'sigil.js',
+          'lines.js', 'presentation.js', 'icons.js', 'homelens.js', 'needsrose.js', 'app.js')
 
 def asset_versions():
     versions = {}
@@ -37,9 +43,29 @@ def bundle_version(versions=None):
     return ver
 
 
+
+def stamp_service_worker(bundle):
+    """Name the service worker cache after the release it belongs to.
+
+    The cache name was the constant 'cc-v3'. activate() deletes every cache except the current
+    name, so a name that never changes means the old shell is never evicted: the worker is
+    network-first and hides it while you are online, and the moment a request fails a reader is
+    handed the last release instead of this one. Naming it after the bundle hash makes every
+    release a new cache and the previous one garbage on activate.
+    """
+    sw = os.path.join(APP, 'sw.js')
+    if not os.path.isfile(sw):
+        return
+    text = open(sw, encoding='utf-8').read()
+    updated = re.sub(r"const CACHE = '[^']*';", "const CACHE = 'cc-" + bundle + "';", text, count=1)
+    if updated != text:
+        write_text(sw, updated)
+
+
 def stamp():
     versions = asset_versions()
     bundle = bundle_version(versions)
+    stamp_service_worker(bundle)
     asset_pat = '|'.join(a.replace('.', r'\.') for a in ASSETS)
     idx = os.path.join(APP, 'index.html')
     if not os.path.isfile(idx):

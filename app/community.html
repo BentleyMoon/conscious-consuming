@@ -6,6 +6,7 @@
 <meta name="robots" content="noindex">
 <title>Community: Conscious Consuming</title>
 <script>try{var _t=localStorage.getItem('cc.theme');if(_t==='dark'||_t==='light')document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="./styles.css">
 <style>
   /* Map Conscious Consuming's theme tokens onto the Community widget — it auto-follows CC's light/dark. */
@@ -29,6 +30,7 @@
 </style>
 </head>
 <body>
+<a class="skip" href="#content">Skip to content</a>
 <div class="cc-wrap">
   <nav class="cc-nav">
     <a class="cc-wordmark" href="./index.html#home">Conscious Consuming</a>
@@ -36,7 +38,7 @@
   </nav>
 
   <p class="cc-eyebrow">Optional community discussion</p>
-  <h1>Discuss the claims without changing the ranking.</h1>
+  <h1 id="content" tabindex="-1">Discuss the claims without changing the ranking.</h1>
   <p class="lede">
     This separate space is for discussing products, services, and the evidence behind them. You can rate
     the measures shown here (<strong>ethics, cost &amp; value, quality, sustainability</strong>), but your
@@ -65,7 +67,7 @@
   // preview), show a dignified "coming" state instead of a broken/empty embed — the local-first core still works.
   function commonsFallback(){
     var w = mount.querySelector('fi-commons');
-    if (w && (w.shadowRoot || w.children.length)) return;   // the widget actually rendered — leave it
+    if (w && (w.shadowRoot || w.children.length)) return;   // the widget actually rendered, leave it
     mount.innerHTML = '<div style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.2rem 1.3rem">'+
       '<p style="margin:.1rem 0 .4rem;font-weight:600">Community is coming.</p>'+
       '<p style="margin:0;color:var(--muted)">A privacy-first space to discuss and rate by your values: no accounts, your data in plain rows. It isn’t live in this preview yet. Your values already work fully offline: '+

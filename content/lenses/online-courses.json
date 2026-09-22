@@ -1,0 +1,521 @@
+{
+  "meta": {
+    "id": "online-courses",
+    "label": "Online courses",
+    "type": "Services",
+    "primaryAxis": "certification",
+    "tradeoff": ["economical", "certification"],
+    "tradeoffLabels": ["cheapest", "strongest certification"],
+    "source": "Conscious Consuming (curated)",
+    "attribution": "Drawn from platform terms of use, refund policies, court and settlement records, and the American Council on Education's National Guide to college credit recommendations, not audited by us. Course platforms differ less on subject coverage than on what a certificate is worth once you leave the platform, what you get back if the course does not deliver, and whether the person teaching was paid or was giving the platform free labour. Where a platform's own pages could not be read directly, the score is left out rather than guessed. Suggest changes via Contribute.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": { "economical": 3, "certification": 3, "buyer_protection": 2, "labor": 2 },
+        "x": []
+      },
+      "Free or cheapest": {
+        "w": { "economical": 5, "certification": 1, "buyer_protection": 2, "labor": 1 },
+        "x": []
+      },
+      "Strongest certification": {
+        "w": { "certification": 5, "economical": 1, "buyer_protection": 2, "labor": 1 },
+        "x": []
+      },
+      "Best refund protection": {
+        "w": { "buyer_protection": 5, "economical": 2, "certification": 2, "labor": 1 },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    {
+      "key": "economical",
+      "label": "Affordable (free routes score highest)",
+      "source": "curated"
+    },
+    {
+      "key": "certification",
+      "label": "Certificate or credit an outside body recognises",
+      "source": "curated"
+    },
+    {
+      "key": "buyer_protection",
+      "label": "Refund or recourse if the course does not deliver",
+      "source": "curated"
+    },
+    {
+      "key": "labor",
+      "label": "Whether the people teaching are paid or unpaid",
+      "source": "curated"
+    }
+  ],
+  "products": [
+    {
+      "code": "coursera",
+      "name": "Coursera",
+      "brand": "Coursera Inc.",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A large university and industry partner platform offering free audit access to many courses alongside paid Specializations, Professional Certificates and full online degrees.",
+      "scores": {
+        "economical": 45,
+        "certification": 75,
+        "buyer_protection": 55
+      },
+      "provenance": {
+        "economical": {
+          "note": "Coursera's own pricing page lists Coursera Plus at $59 a month, cancel anytime, or $399 a year with a 14-day money-back guarantee.",
+          "source": "https://www.coursera.org/courseraplus",
+          "asof": "2026"
+        },
+        "certification": {
+          "note": "Coursera's American Council on Education National Guide listing states Coursera has completed an ACE Learning Evaluations review to become an ACE Authorized Instructional Platform, with dozens of Professional Certificates from partners such as Google and IBM carrying ACE credit recommendations.",
+          "source": "https://www.acenet.edu/National-Guide/Pages/Organization.aspx?oid=49ddc095-0bdc-ea11-a813-000d3a33232a",
+          "asof": "2026"
+        },
+        "buyer_protection": {
+          "note": "Coursera's Terms of Use say you may receive a full refund if you cancel within 7 days of payment or before earning a certificate, whichever comes first; annual subscriptions must be cancelled within 14 days and renewal charges are not refunded; refunds are denied for Honor Code or Terms of Use violations or once a significant portion of the content has been accessed.",
+          "source": "https://www.coursera.org/about/terms",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.coursera.org/" },
+        { "label": "Terms of Use", "url": "https://www.coursera.org/about/terms" }
+      ],
+      "region": ["global"],
+      "focuses": ["Mainstream", "University-backed"]
+    },
+    {
+      "code": "edx",
+      "name": "edX",
+      "brand": "2U, Inc.",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A course platform founded by Harvard and MIT that keeps a free audit track on most courses alongside paid Verified Certificates; the edX business is now operated by 2U, a for-profit company that emerged from Chapter 11 bankruptcy in 2024.",
+      "scores": {
+        "economical": 75,
+        "certification": 60,
+        "buyer_protection": 55
+      },
+      "provenance": {
+        "economical": {
+          "note": "edX's own Terms of Service describe a free audit track alongside a paid Certificate Track, with refunds available for 14 days after payment for the certificate track and no refunds once a certificate is earned.",
+          "source": "https://www.edx.org/edx-terms-service",
+          "asof": "2026"
+        },
+        "certification": {
+          "note": "The ACE National Guide lists edX with 9 active courses carrying ACE credit recommendations, from 3 to 18 credits, including Harvard's CS50x and an IBM full stack cloud development course, valid through 2026.",
+          "source": "https://www.acenet.edu/National-Guide/Pages/Organization.aspx?oid=bb0ea623-cb38-eb11-a813-000d3a33232a",
+          "asof": "2026"
+        },
+        "buyer_protection": {
+          "note": "edX's Terms of Service state Certificate Track refunds are available for 14 days after payment, Professional Education refunds for 2 days after the course starts, unused Program bundle entitlements for 6 months, no refunds on Subscription Offerings, and no obligation to refund once a Certificate is earned.",
+          "source": "https://www.edx.org/edx-terms-service",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.edx.org/" },
+        { "label": "2U bankruptcy emergence", "url": "https://www.highereddive.com/news/judge-signs-off-on-2u-bankruptcy-plan/726776/" }
+      ],
+      "region": ["global"],
+      "focuses": ["University-backed", "Free audit track"]
+    },
+    {
+      "code": "udemy",
+      "name": "Udemy",
+      "brand": "Udemy, Inc.",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A marketplace of individually priced courses from independent instructors, built around frequent discount pricing; instructor pay and pricing pages could not be read directly for this entry.",
+      "scores": {
+        "buyer_protection": 30
+      },
+      "provenance": {
+        "buyer_protection": {
+          "note": "A federal class action, Williams v. Udemy Inc. (N.D. Cal., case 3:21-cv-06489), alleged Udemy displayed fictitious original list prices with strikethrough formatting next to discounted sale prices for courses that were never sold at the full listed price; the case was later refiled in California Superior Court, San Diego County (case 37-2023-00003666-CU-BT-NC) and settled, with eligible buyers able to claim $4 for each course purchased during the class period, up to $40.",
+          "source": "https://unicourt.com/case/pc-db5-williams-v-udemy-inc-994426",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.udemy.com/" },
+        { "label": "Settlement terms", "url": "https://topclassactions.com/lawsuit-settlements/closed-settlements/udemy-price-promotion-class-action-settlement/" }
+      ],
+      "region": ["global"],
+      "focuses": ["Mainstream", "Marketplace"]
+    },
+    {
+      "code": "udacity",
+      "name": "Udacity",
+      "brand": "Accenture",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A project-based tech skills platform built around paid Nanodegree programs, acquired by Accenture in 2024 and folded into its Accenture LearnVantage training business.",
+      "scores": {
+        "economical": 15,
+        "buyer_protection": 40
+      },
+      "provenance": {
+        "economical": {
+          "note": "Udacity's own announcement of its All Access subscription sets the price at $249 a month, or $846 for a four-month plan paid upfront, which it describes as a 15 percent saving, for access to its full Nanodegree and course catalog.",
+          "source": "https://www.udacity.com/blog/2023/09/all-access.html",
+          "asof": "2026"
+        },
+        "buyer_protection": {
+          "note": "Udacity's Terms of Use give students 7 days from initial purchase of a subscription or a single Nanodegree program to cancel and request a full refund, state fees are non-refundable outside that window, and limit refunds to one per student for the life of the account.",
+          "source": "https://www.udacity.com/en-US/legal/terms-of-use",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.udacity.com/" },
+        { "label": "Accenture completes acquisition", "url": "https://newsroom.accenture.com/news/2024/accenture-completes-acquisition-of-udacity" }
+      ],
+      "region": ["global"],
+      "focuses": ["Tech skills", "Project-based"]
+    },
+    {
+      "code": "linkedin-learning",
+      "name": "LinkedIn Learning",
+      "brand": "Microsoft",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A subscription video course library bundled with LinkedIn Premium, whose main credential is a certificate of completion that can be shown on a LinkedIn profile rather than an accredited qualification.",
+      "scores": {
+        "certification": 45,
+        "buyer_protection": 50
+      },
+      "provenance": {
+        "certification": {
+          "note": "LinkedIn's own help page says that when you complete a course or learning path you can add the certificate and new skills to your LinkedIn profile and share the completion with your network, but that LinkedIn does not provide certificates for collections or individual videos.",
+          "source": "https://www.linkedin.com/help/learning/answer/a704787/add-learning-certificates-of-completion-and-skills-to-your-linkedin-profile",
+          "asof": "2026"
+        },
+        "buyer_protection": {
+          "note": "LinkedIn's refund policy states Premium subscriptions, including LinkedIn Learning, may be refundable within 7 days from the date the subscription is charged without Premium usage, and that EU citizens are entitled to a full refund during the 14 days after the subscription begins.",
+          "source": "https://www.linkedin.com/help/learning/answer/a1337140/linkedin-refund-policy?lang=en-us",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.linkedin.com/learning/" },
+        { "label": "Refund policy", "url": "https://www.linkedin.com/help/learning/answer/a1337140/linkedin-refund-policy?lang=en-us" }
+      ],
+      "region": ["global"],
+      "focuses": ["Mainstream", "Professional profile"]
+    },
+    {
+      "code": "skillshare",
+      "name": "Skillshare",
+      "brand": "Skillshare, Inc.",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A subscription library of short creative and professional classes, with some classes free and a 30-day trial on paid membership; teacher payment pages could not be read directly for this entry.",
+      "scores": {
+        "economical": 55
+      },
+      "provenance": {
+        "economical": {
+          "note": "Skillshare's own app listing states a 30-day trial before payment is automatically charged, with membership pricing shown as $31.99 a month or $169.99 a year for one plan tier and $49.99 a month or $167.99 a year for another, alongside free classes available without a subscription.",
+          "source": "https://apps.apple.com/us/app/skillshare-creativity-classes/id916819843",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.skillshare.com/" }
+      ],
+      "region": ["global"],
+      "focuses": ["Creative", "Subscription"]
+    },
+    {
+      "code": "masterclass",
+      "name": "MasterClass",
+      "brand": "MasterClass",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A subscription of video lessons taught by well-known experts and public figures, sold as one flat annual membership rather than individual accredited courses.",
+      "scores": {
+        "economical": 75
+      },
+      "provenance": {
+        "economical": {
+          "note": "MasterClass's own app listing shows an Individual annual membership at $119.99, a Duo plan at $179.99 and a Family plan at $239.99, each an auto-renewing annual subscription; the listing makes no mention of a certificate for completing a class.",
+          "source": "https://apps.apple.com/us/app/masterclass-online-classes/id1273867416",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.masterclass.com/" }
+      ],
+      "region": ["global"],
+      "focuses": ["Mainstream", "Expert-taught"]
+    },
+    {
+      "code": "khan-academy",
+      "name": "Khan Academy",
+      "brand": "Khan Academy",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A donor-funded nonprofit offering free K-12 and early college courses, with content built by a paid staff rather than sold per course.",
+      "scores": {
+        "economical": 100,
+        "labor": 75
+      },
+      "provenance": {
+        "economical": {
+          "note": "Khan Academy's own About page states its mission is to provide a free, world-class education to anyone, anywhere, describing itself as a free tool with over 840 free courses.",
+          "source": "https://www.khanacademy.org/about",
+          "asof": "2026"
+        },
+        "labor": {
+          "note": "Khan Academy describes itself as a 501(c)(3) nonprofit organization that relies on donor contributions to sustain its work, meaning content is produced by an employed, donor-funded staff rather than sold per learner to individual instructors.",
+          "source": "https://www.khanacademy.org/about",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.khanacademy.org/" }
+      ],
+      "region": ["global"],
+      "focuses": ["Free", "Nonprofit"]
+    },
+    {
+      "code": "mit-ocw",
+      "name": "MIT OpenCourseWare",
+      "brand": "MIT",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free, Creative Commons-licensed archive of course materials from thousands of MIT courses, with no enrollment and no credit or certificate attached.",
+      "scores": {
+        "economical": 100,
+        "certification": 5
+      },
+      "provenance": {
+        "economical": {
+          "note": "MIT OpenCourseWare's own About page describes it as a free and open collection of material from thousands of MIT courses, with no enrollment required and materials always available to browse at your own pace.",
+          "source": "https://ocw.mit.edu/about/",
+          "asof": "2026"
+        },
+        "certification": {
+          "note": "MIT OpenCourseWare's About page states plainly that MIT does not offer credit or certification to users of OCW.",
+          "source": "https://ocw.mit.edu/about/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://ocw.mit.edu/" }
+      ],
+      "region": ["global"],
+      "focuses": ["Free", "No certificate"]
+    },
+    {
+      "code": "freecodecamp",
+      "name": "freeCodeCamp",
+      "brand": "freeCodeCamp.org",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A donor-supported nonprofit teaching programming through free, project-based curriculum and self-issued certifications, with the curriculum itself substantially built by unpaid volunteer contributors.",
+      "scores": {
+        "economical": 100,
+        "certification": 40,
+        "labor": 40
+      },
+      "provenance": {
+        "economical": {
+          "note": "freeCodeCamp's own About page states it is a tax-exempt 501(c)(3) donor-supported public charity and that every aspect of freeCodeCamp is 100 percent free, including the courses, projects and certifications.",
+          "source": "https://www.freecodecamp.org/news/about/",
+          "asof": "2026"
+        },
+        "certification": {
+          "note": "freeCodeCamp's own About page says learners earn free verified certifications through project-based learning, with each certification taking around 300 hours of self-paced work; these are freeCodeCamp's own certifications and are not listed as ACE-recommended college credit.",
+          "source": "https://www.freecodecamp.org/news/about/",
+          "asof": "2026"
+        },
+        "labor": {
+          "note": "freeCodeCamp's own contributor recognition page describes the curriculum, codebase and articles as built by thousands of volunteers, who are thanked with annual recognition such as invitations and merchandise rather than direct payment for their contributions.",
+          "source": "https://www.freecodecamp.org/news/freecodecamp-top-contributors/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.freecodecamp.org/" },
+        { "label": "GitHub curriculum", "url": "https://github.com/freeCodeCamp/freeCodeCamp" }
+      ],
+      "region": ["global"],
+      "focuses": ["Free", "Nonprofit", "Volunteer-built"]
+    },
+    {
+      "code": "straighterline",
+      "name": "StraighterLine",
+      "brand": "StraighterLine",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A low-cost online course provider built around transferring credit into a degree at a partner college, with courses individually reviewed by the American Council on Education and no refunds once purchased.",
+      "scores": {
+        "certification": 80,
+        "buyer_protection": 15
+      },
+      "provenance": {
+        "certification": {
+          "note": "StraighterLine's ACE National Guide organization listing states StraighterLine has conducted over 30 ACE Reviews of its courses and that students who complete approved courses receive credit when they enroll with a school in its network of regionally accredited partner colleges and through the ACE Credit transcription system, though each college still decides whether to accept the credit.",
+          "source": "https://www.acenet.edu/National-Guide/Pages/Organization.aspx?oid=80099b28-9016-e811-810f-5065f38bf0e1",
+          "asof": "2026"
+        },
+        "buyer_protection": {
+          "note": "StraighterLine's Terms of Use state that purchases of memberships and course enrollment fees are non-refundable and all sales are final, with a refund available only if a purchased product becomes unavailable.",
+          "source": "https://www.straighterline.com/terms-of-use/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.straighterline.com/" },
+        { "label": "Credit transfer", "url": "https://www.straighterline.com/how-it-works/credit-transfer/" }
+      ],
+      "region": ["US"],
+      "focuses": ["College credit", "Low cost"]
+    },
+    {
+      "code": "sophia-learning",
+      "name": "Sophia Learning",
+      "brand": "Sophia Learning, LLC",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A monthly-membership platform of self-paced courses designed for college credit transfer, with over 75 courses carrying an American Council on Education credit recommendation.",
+      "scores": {
+        "economical": 55,
+        "certification": 80,
+        "buyer_protection": 70
+      },
+      "provenance": {
+        "economical": {
+          "note": "Sophia Learning's own subscription plans page lists the monthly membership plan at $99, billed automatically each month.",
+          "source": "https://www.sophia.org/lp/subscriptionplans/",
+          "asof": "2026"
+        },
+        "certification": {
+          "note": "Sophia Learning's ACE National Guide organization listing states Sophia has developed and launched over 75 ACE-recommended courses since 2012 and has served more than 250,000 learners.",
+          "source": "https://www.acenet.edu/National-Guide/Pages/Organization.aspx?oid=76099b28-9016-e811-810f-5065f38bf0e1",
+          "asof": "2026"
+        },
+        "buyer_protection": {
+          "note": "Sophia's own Account and Billing tutorial states that if you are not satisfied within 30 days and have not completed any courses, you may request a refund.",
+          "source": "https://app.sophia.org/tutorials/account-and-billing",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.sophia.org/" }
+      ],
+      "region": ["US"],
+      "focuses": ["College credit", "Subscription"]
+    },
+    {
+      "code": "openlearn",
+      "name": "OpenLearn",
+      "brand": "The Open University",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free learning platform run by the UK's Open University, offering Statements of Participation and digital badges rather than formal qualifications.",
+      "scores": {
+        "economical": 100,
+        "certification": 20
+      },
+      "provenance": {
+        "economical": {
+          "note": "OpenLearn's own FAQ page states OpenLearn is a free learning platform, delivered by The Open University as part of its Royal Charter commitment to support the wellbeing of the community.",
+          "source": "https://www.open.edu/openlearn/about-openlearn/frequently-asked-questions-on-openlearn",
+          "asof": "2026"
+        },
+        "certification": {
+          "note": "OpenLearn's own FAQ page states OpenLearn does not award formal qualifications; learners who complete a course can earn a Statement of Participation, and some 24-hour courses also award a digital badge, but these do not carry any formal credit towards a qualification.",
+          "source": "https://www.open.edu/openlearn/about-openlearn/frequently-asked-questions-on-openlearn",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.open.edu/openlearn/" }
+      ],
+      "region": ["UK", "global"],
+      "focuses": ["Free", "University-backed"]
+    },
+    {
+      "code": "alison",
+      "name": "Alison",
+      "brand": "Alison",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free course platform funded by advertising, where the course itself costs nothing but a digital or printed certificate of completion is an optional paid extra.",
+      "scores": {
+        "economical": 90,
+        "buyer_protection": 35
+      },
+      "provenance": {
+        "economical": {
+          "note": "Alison's own help centre article states that as a social enterprise, Alison's goal is to make education as accessible as possible, which is why courses are free of charge, and that Alison earns revenue via advertising and optional paid certificates rather than charging for the courses.",
+          "source": "https://helpcenter.alison.com/en/articles/8206668-why-do-i-have-to-pay-for-the-certificate-if-it-was-a-free-course",
+          "asof": "2026"
+        },
+        "buyer_protection": {
+          "note": "Alison's Terms and Conditions state that if the platform shows a digital certificate has been downloaded then no refund is possible, and that no refunds are available for unspent time on a monthly subscription.",
+          "source": "https://alison.com/lms/terms-and-conditions/general",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://alison.com/" }
+      ],
+      "region": ["global"],
+      "focuses": ["Free", "Paid certificate"]
+    },
+    {
+      "code": "pluralsight",
+      "name": "Pluralsight",
+      "brand": "Pluralsight, LLC",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A subscription library of technology and IT skills courses with skill assessments and hands-on labs, aimed at working developers and IT staff rather than academic credit.",
+      "scores": {
+        "economical": 40
+      },
+      "provenance": {
+        "economical": {
+          "note": "Pluralsight's own individual pricing page lists plans running from $29 to $49 a month, or $299 to $449 billed yearly, and offers a 10-day free trial that includes the full course library, Skill IQ assessments, certification prep and guided learning paths.",
+          "source": "https://www.pluralsight.com/individuals/pricing",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.pluralsight.com/" }
+      ],
+      "region": ["global"],
+      "focuses": ["Tech skills", "Subscription"]
+    },
+    {
+      "code": "public-library-online-courses",
+      "name": "Free through your public library",
+      "brand": "the commons",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Many public libraries pay for patrons to use a professional course library such as LinkedIn Learning at no cost with just a library card, though the exact catalog and provider vary by library.",
+      "scores": {
+        "economical": 100
+      },
+      "provenance": {
+        "economical": {
+          "note": "LinkedIn's own page for the LinkedIn Learning for Libraries program describes offering libraries a catalog of over 16,000 professional courses for their patrons; the Los Angeles Public Library's own page for the program confirms LinkedIn Learning is free and easy to access with your library card and PIN, with more than 3,000 courses and 150,000 videos available.",
+          "source": "https://www.lapl.org/linkedin-learning",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "LinkedIn Learning for Libraries", "url": "https://business.linkedin.com/learn/for-libraries" },
+        { "label": "Example: Los Angeles Public Library", "url": "https://www.lapl.org/linkedin-learning" }
+      ],
+      "region": ["global"],
+      "focuses": ["Free", "Library"]
+    }
+  ]
+}

@@ -196,9 +196,9 @@ function checkLedger(designTexts, auditText) {
 
 function checkVoice(designFiles, designTexts, walkText) {
   const candidates = designFiles.flatMap((rel, index) => interfaceStrings(rel, designTexts[index]));
-  // 376 as of 2026-07-20: the three-register architecture amendment added eight strings to D1
-  // (evidence / standpoint / outcome grammar). Every added string passes the voice patterns below.
-  expect(candidates.length === 376, `D1-D3: expected 376 proposed interface strings, found ${candidates.length}`);
+  // 378 as of 2026-08-14: the serial promotion receipt added one interface-facing
+  // architecture string. Every candidate still passes the voice patterns below.
+  expect(candidates.length === 378, `D1-D3: expected 378 proposed interface strings, found ${candidates.length}`);
 
   for (const candidate of candidates) {
     for (const [label, pattern] of BANNED_PATTERNS) {

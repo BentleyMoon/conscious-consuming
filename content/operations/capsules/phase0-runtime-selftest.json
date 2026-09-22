@@ -1,0 +1,65 @@
+{
+  "$schema": "../schemas/work-capsule.schema.json",
+  "kind": "cc-work-capsule",
+  "version": "1.0.0",
+  "id": "phase0-runtime-selftest",
+  "variant": "read-only-v1",
+  "state": "QUEUED",
+  "workMode": "critique-stop",
+  "priority": "P0",
+  "decision": "Can the CC operator safely inspect and route one bounded content capsule without changing content?",
+  "liveConsumer": "The CC content operator using the project content-runtime commands.",
+  "model": {
+    "id": "gpt-5.6-sol",
+    "reasoningEffort": "medium"
+  },
+  "writeAuthorized": false,
+  "scope": {
+    "ownedPaths": [],
+    "forbiddenPaths": ["app/**", "content/lenses/**", "content/guides/**", "pipeline/**"],
+    "requiresIsolatedWorktree": true
+  },
+  "gates": [
+    {
+      "id": "phase0-authorized",
+      "status": "satisfied",
+      "evidence": "The user explicitly requested beginning Phase 0 on 2026-07-15."
+    }
+  ],
+  "sourceRequirements": [],
+  "preconditions": [
+    {
+      "id": "read-only-scope",
+      "status": "satisfied",
+      "evidence": "The capsule owns no content paths and produces terminal output only."
+    },
+    {
+      "id": "operative-plan-read",
+      "status": "satisfied",
+      "evidence": "codex.md §M and the content protocols were read before implementation."
+    }
+  ],
+  "doneWhen": [
+    "Runtime configuration and all capsules validate.",
+    "Preflight returns GO without writing files.",
+    "Status reports the configured model, queue, ledger, locks, and WIP state."
+  ],
+  "stopConditions": [
+    "The command attempts to edit content or generated app artifacts.",
+    "The worktree is main/master instead of an isolated branch.",
+    "The configured model or reasoning effort differs from the capsule."
+  ],
+  "expectedArtifacts": [
+    "A deterministic preflight report printed to stdout.",
+    "A deterministic runtime status report printed to stdout."
+  ],
+  "verificationCommands": [
+    "npm run content:runtime:check",
+    "npm run content:runtime:preflight -- content/operations/capsules/phase0-runtime-selftest.json",
+    "npm run test:content-runtime"
+  ],
+  "claimBoundary": {
+    "supports": "The local Phase 0 runtime can validate, fingerprint, inspect, and fail closed for bounded capsules.",
+    "doesNotSupport": "That any Phase 1 content work is authorized, complete, or safe to publish."
+  }
+}

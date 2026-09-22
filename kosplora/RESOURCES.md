@@ -236,12 +236,16 @@ Curiosity and creativity drive learning at every age. When exploring is engaging
 
 ## Notes for the self-taught
 
-> Some "stream anything" sites pay for themselves with malware and worse. A content blocker such as uBlock Origin is the seatbelt. Learning to move safely on the open web is part of the education, not a detour from it.
+
+> For lawful free access, start with public libraries, interlibrary loan, open textbooks, public-domain collections, institutional repositories, author-posted manuscripts, and publisher audit options. Avoid deceptive download buttons and sites that hide provenance or rights.
 >
-> Hunting a free copy of a good book means meeting sketchy ads and popups. That friction teaches you to see and act carefully in cyberspace.
+> Free to read is not automatically open to copy, adapt, or redistribute. Check the license on the specific item, and preserve creator, source, and license information in anything you make.
 >
-> Opinion and error run through many of these channels. That is the point: see the range, check the sources, and let your own judgment grow. Exposure with a habit of verification beats a walled garden.
+> Opinion, error, and uneven evidence run through educational media. Label perspective, follow citations to primary material, compare serious alternatives, and record corrections instead of treating any channel as a neutral oracle.
 >
+> Health, legal, safety, and financial material can support better questions, not personalized professional decisions. Stop and seek qualified help when the stakes exceed a learning exercise.
+>
+> Watching can orient you. Durable learning usually requires retrieval, practice, feedback, a made artifact, and delayed review.
 
 ---
 
