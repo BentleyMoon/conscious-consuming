@@ -1,0 +1,938 @@
+{
+  "format": "open-values-lines",
+  "version": "0.2",
+  "updated": "2026-07-15",
+  "note": "The canonical registry of lines: checkable commitments a person can hold, plus published line-sets a person can inspect and fork. Personal lines remain opt-in. The shared floor is separate: it is default-on, readable, locally loosenable, and folds matching options instead of erasing them. Allergy rules use the EU-14 plus lactose safety vocabulary: only an explicit free claim clears a selected allergen; declarations and missing evidence fold visibly for a label check. The app reads this file through the generated app/lines.js bundle.",
+  "kinds": {
+    "allergy": "Keep only options explicitly declared free of this allergen. Declarations and missing evidence fold visibly for a label check.",
+    "diet": "Show only options that match this way of eating, in categories where the data carries it.",
+    "require": "Show only options carrying this certification or property, in categories that track it.",
+    "avoid": "Hide a company and the brands it owns. Reach is limited to the brands this line knows.",
+    "cap": "A price ceiling. Deferred: our open data has no per-item prices yet, so a cap would be silent everywhere.",
+    "lean": "A tie-breaker: when options are close, prefer one direction. Arrives in R2."
+  },
+  "portableSelection": {
+    "format": "open-values-line-selection",
+    "version": "0.1",
+    "namedConsumer": "The optional personal-lines extension in an Open Values Passport, exported and imported by the Round 7 You page.",
+    "portableKinds": [
+      "allergy",
+      "diet",
+      "require",
+      "avoid"
+    ],
+    "merge": "additive",
+    "unknownRuleIds": "report-not-apply",
+    "customAvoid": {
+      "allowed": true,
+      "fields": [
+        "id",
+        "kind",
+        "label",
+        "reads",
+        "brands",
+        "custom"
+      ]
+    },
+    "privacy": "The selection lives on the device unless the person explicitly exports the passport file. It contains rules and optional leanings, never an account identifier."
+  },
+  "sets": [
+    {
+      "format": "open-values-line-set",
+      "id": "floor:cc-shared-v1-pilot",
+      "tier": "floor",
+      "label": "The baseline",
+      "version": "0.1.2-pilot",
+      "published": "2026-07-14",
+      "status": "published",
+      "purpose": "A conservative default that folds only options already carrying a sourced, dated Poor-band claim on the named criterion. It is a starting point, not a universal moral verdict.",
+      "defaultOn": true,
+      "presentation": "fold",
+      "unknownEvidence": "keep-visible",
+      "namedConsumer": "The floor chip, filter, receipt door, per-rule local loosening, and show-anyway fold in development round 6.",
+      "bounds": {
+        "maximumRules": 10,
+        "maximumExcludedSharePerCategory": 0.25,
+        "maximumExcludedShareOverall": 0.005,
+        "minimumRemainingPerCategory": 5,
+        "minimumMatchesPerRule": 1
+      },
+      "fork": {
+        "license": "CC0-1.0",
+        "portableRuleIds": true,
+        "localRuleOverrides": true,
+        "requiredAttribution": "Keep the source receipt for every retained rule and the entry-level receipt for every match."
+      },
+      "governance": {
+        "curator": "Conscious Consuming founder",
+        "status": "published",
+        "changePath": "Fork this set now; proposals and attestations become the shared change path once real users exist.",
+        "noCapture": "No sponsor or ranked entity may pay to add, remove, or weaken a rule."
+      },
+      "changelog": [
+        {
+          "version": "0.1.2-pilot",
+          "date": "2026-07-17",
+          "changes": "Renamed the published door from 'The shared floor' to 'The baseline' under the founder-signed plain-words vocabulary; rules and matching behavior are unchanged."
+        },
+        {
+          "version": "0.1.1-pilot",
+          "date": "2026-07-14",
+          "changes": "Founder accepted the coffee and banking pilot model for Round 6; the ten rules are now readable, locally loosenable, and paired with an explicit show-anyway fold."
+        },
+        {
+          "version": "0.1.0-pilot",
+          "date": "2026-07-14",
+          "changes": "Founder-review pilot: ten category-scoped rules, sourced-criterion-only matching, explicit keep-visible behavior for missing evidence, and exclusion bounds."
+        }
+      ],
+      "rules": [
+        {
+          "id": "avoid:floor-fossil-financing-banks",
+          "kind": "avoid",
+          "tier": "floor",
+          "label": "Poor sourced climate record: banking",
+          "reads": "Fold banking options only when their environment rating is Poor and has a source and date.",
+          "effect": "fold",
+          "scope": {
+            "categories": [
+              "banking"
+            ]
+          },
+          "match": {
+            "type": "criterion-band",
+            "criterion": "environment",
+            "band": "poor",
+            "maximumExclusive": 20,
+            "requiresSource": true,
+            "requiresAsOf": true
+          },
+          "receipt": {
+            "note": "Banking on Climate Chaos 2026 reports bank fossil-fuel financing for 2025; every matched bank must still carry its own sourced, dated environment claim.",
+            "source": "https://www.ran.org/press-releases/bocc26/",
+            "asof": "2026"
+          }
+        },
+        {
+          "id": "avoid:floor-fossil-heavy-investing",
+          "kind": "avoid",
+          "tier": "floor",
+          "label": "Poor sourced climate record: investing",
+          "reads": "Fold investing options only when their environment rating is Poor and has a source and date.",
+          "effect": "fold",
+          "scope": {
+            "categories": [
+              "investing"
+            ]
+          },
+          "match": {
+            "type": "criterion-band",
+            "criterion": "environment",
+            "band": "poor",
+            "maximumExclusive": 20,
+            "requiresSource": true,
+            "requiresAsOf": true
+          },
+          "receipt": {
+            "note": "Fossil Free Funds publishes a holdings-based method for identifying fossil-fuel exposure; every match still depends on the option's own sourced, dated claim.",
+            "source": "https://fossilfreefunds.org/how-it-works",
+            "asof": "2026"
+          }
+        },
+        {
+          "id": "avoid:floor-ultrafast-fashion-environment",
+          "kind": "avoid",
+          "tier": "floor",
+          "label": "Poor sourced environmental record: clothing",
+          "reads": "Fold clothing options only when their environment rating is Poor and has a source and date.",
+          "effect": "fold",
+          "scope": {
+            "categories": [
+              "clothing"
+            ]
+          },
+          "match": {
+            "type": "criterion-band",
+            "criterion": "environment",
+            "band": "poor",
+            "maximumExclusive": 20,
+            "requiresSource": true,
+            "requiresAsOf": true
+          },
+          "receipt": {
+            "note": "Stand.earth's fashion scorecards document company climate plans, supply-chain energy targets, and emissions performance; entry-level receipts decide each match.",
+            "source": "https://stand.earth/fashion/companies/shein/scorecard/",
+            "asof": "2026"
+          }
+        },
+        {
+          "id": "avoid:floor-ultrafast-fashion-labor",
+          "kind": "avoid",
+          "tier": "floor",
+          "label": "Poor sourced labor record: clothing",
+          "reads": "Fold clothing options only when their labor rating is Poor and has a source and date.",
+          "effect": "fold",
+          "scope": {
+            "categories": [
+              "clothing"
+            ]
+          },
+          "match": {
+            "type": "criterion-band",
+            "criterion": "labor",
+            "band": "poor",
+            "maximumExclusive": 20,
+            "requiresSource": true,
+            "requiresAsOf": true
+          },
+          "receipt": {
+            "note": "The UK Parliament's 2025 correspondence with SHEIN records supplier-audit and underage-labor evidence; every folded option must carry its own labor receipt.",
+            "source": "https://committees.parliament.uk/publications/46381/documents/234383/default/",
+            "asof": "2025"
+          }
+        },
+        {
+          "id": "avoid:floor-fast-shoe-environment",
+          "kind": "avoid",
+          "tier": "floor",
+          "label": "Poor sourced environmental record: shoes",
+          "reads": "Fold shoe options only when their environment rating is Poor and has a source and date.",
+          "effect": "fold",
+          "scope": {
+            "categories": [
+              "shoes"
+            ]
+          },
+          "match": {
+            "type": "criterion-band",
+            "criterion": "environment",
+            "band": "poor",
+            "maximumExclusive": 20,
+            "requiresSource": true,
+            "requiresAsOf": true
+          },
+          "receipt": {
+            "note": "Greenpeace documents the high-volume, low-price ultra-fast-fashion model and its disposable-consumption pressure; the shoe entry's own receipt controls matching.",
+            "source": "https://www.greenpeace.org/international/story/82296/the-hidden-cost-of-fast-fashion-shein-temu-zara/",
+            "asof": "2026"
+          }
+        },
+        {
+          "id": "avoid:floor-fast-shoe-labor",
+          "kind": "avoid",
+          "tier": "floor",
+          "label": "Poor sourced labor record: shoes",
+          "reads": "Fold shoe options only when their labor rating is Poor and has a source and date.",
+          "effect": "fold",
+          "scope": {
+            "categories": [
+              "shoes"
+            ]
+          },
+          "match": {
+            "type": "criterion-band",
+            "criterion": "labor",
+            "band": "poor",
+            "maximumExclusive": 20,
+            "requiresSource": true,
+            "requiresAsOf": true
+          },
+          "receipt": {
+            "note": "Eco-Stylist's 2026 review connects ultra-low fast-fashion pricing with weak labor standards; the matched shoe entry retains the decisive source and date.",
+            "source": "https://www.eco-stylist.com/worst-fast-fashion-brands-to-avoid-at-all-costs/",
+            "asof": "2026"
+          }
+        },
+        {
+          "id": "avoid:floor-vpn-privacy",
+          "kind": "avoid",
+          "tier": "floor",
+          "label": "Poor sourced privacy record: VPNs",
+          "reads": "Fold VPN options only when their privacy rating is Poor and has a source and date.",
+          "effect": "fold",
+          "scope": {
+            "categories": [
+              "vpn"
+            ]
+          },
+          "match": {
+            "type": "criterion-band",
+            "criterion": "privacy",
+            "band": "poor",
+            "maximumExclusive": 20,
+            "requiresSource": true,
+            "requiresAsOf": true
+          },
+          "receipt": {
+            "note": "The FTC warns that some free VPN apps make money through ads or third-party information sharing; each match still requires its own current privacy receipt.",
+            "source": "https://www.ftc.gov/business-guidance/blog/2018/02/market-vpn-app",
+            "asof": "2026"
+          }
+        },
+        {
+          "id": "avoid:floor-digital-privacy",
+          "kind": "avoid",
+          "tier": "floor",
+          "label": "Poor sourced privacy record: digital services",
+          "reads": "Fold digital services only when their privacy rating is Poor and has a source and date.",
+          "effect": "fold",
+          "scope": {
+            "categories": [
+              "digital-services"
+            ]
+          },
+          "match": {
+            "type": "criterion-band",
+            "criterion": "privacy",
+            "band": "poor",
+            "maximumExclusive": 20,
+            "requiresSource": true,
+            "requiresAsOf": true
+          },
+          "receipt": {
+            "note": "The FTC's FY2026 congressional budget justification describes current privacy and children's-data enforcement; matched services keep their own policy or enforcement receipt.",
+            "source": "https://www.ftc.gov/system/files/ftc_gov/pdf/fy-2026-cbj.pdf",
+            "asof": "2026"
+          }
+        },
+        {
+          "id": "avoid:floor-digital-respect",
+          "kind": "avoid",
+          "tier": "floor",
+          "label": "Poor sourced user-respect record: digital services",
+          "reads": "Fold digital services only when their user-respect rating is Poor and has a source and date.",
+          "effect": "fold",
+          "scope": {
+            "categories": [
+              "digital-services"
+            ]
+          },
+          "match": {
+            "type": "criterion-band",
+            "criterion": "respect",
+            "band": "poor",
+            "maximumExclusive": 20,
+            "requiresSource": true,
+            "requiresAsOf": true
+          },
+          "receipt": {
+            "note": "The US Department of Justice's Google Search remedies describe default-distribution practices that reduced user choice; every match remains tied to its own cited claim.",
+            "source": "https://www.justice.gov/opa/pr/department-justice-wins-significant-remedies-against-google",
+            "asof": "2026"
+          }
+        },
+        {
+          "id": "avoid:floor-disposable-razor-waste",
+          "kind": "avoid",
+          "tier": "floor",
+          "label": "Poor sourced waste record: razors",
+          "reads": "Fold razor options only when their environment rating is Poor and has a source and date.",
+          "effect": "fold",
+          "scope": {
+            "categories": [
+              "razors"
+            ]
+          },
+          "match": {
+            "type": "criterion-band",
+            "criterion": "environment",
+            "band": "poor",
+            "maximumExclusive": 20,
+            "requiresSource": true,
+            "requiresAsOf": true
+          },
+          "receipt": {
+            "note": "Zero Waste Sonoma documents the recycling difficulty and waste volume of mixed-material razors and blades; each match still requires a product-level receipt.",
+            "source": "https://zerowastesonoma.gov/materials/razors-and-packaging",
+            "asof": "2026"
+          }
+        }
+      ]
+    }
+  ],
+  "lines": [
+    {
+      "id": "allergy:nuts",
+      "kind": "allergy",
+      "label": "Tree nuts",
+      "reads": "Keep only options explicitly declared tree-nut-free; fold declarations and missing evidence for a label check.",
+      "tag": "nuts"
+    },
+    {
+      "id": "allergy:peanut",
+      "kind": "allergy",
+      "label": "Peanuts",
+      "reads": "Keep only options explicitly declared peanut-free; fold declarations and missing evidence for a label check.",
+      "tag": "peanut"
+    },
+    {
+      "id": "allergy:soy",
+      "kind": "allergy",
+      "label": "Soy",
+      "label": "Soybeans",
+      "reads": "Keep only options explicitly declared soy-free; fold declarations and missing evidence for a label check.",
+      "tag": "soy"
+    },
+    {
+      "id": "allergy:gluten",
+      "kind": "allergy",
+      "label": "Gluten",
+      "reads": "Keep only options explicitly declared gluten-free; fold declarations and missing evidence for a label check.",
+      "tag": "gluten"
+    },
+    {
+      "id": "allergy:coconut",
+      "kind": "allergy",
+      "label": "Coconut",
+      "reads": "Keep only options explicitly declared coconut-free; fold declarations and missing evidence for a label check.",
+      "tag": "coconut"
+    },
+    {
+      "id": "allergy:crustaceans",
+      "kind": "allergy",
+      "label": "Crustaceans",
+      "reads": "Keep only options explicitly declared crustacean-free; fold declarations and missing evidence for a label check.",
+      "tag": "crustaceans"
+    },
+    {
+      "id": "allergy:eggs",
+      "kind": "allergy",
+      "label": "Eggs",
+      "reads": "Keep only options explicitly declared egg-free; fold declarations and missing evidence for a label check.",
+      "tag": "eggs"
+    },
+    {
+      "id": "allergy:fish",
+      "kind": "allergy",
+      "label": "Fish",
+      "reads": "Keep only options explicitly declared fish-free; fold declarations and missing evidence for a label check.",
+      "tag": "fish"
+    },
+    {
+      "id": "allergy:milk",
+      "kind": "allergy",
+      "label": "Milk",
+      "reads": "Keep only options explicitly declared milk-free; fold declarations and missing evidence for a label check.",
+      "tag": "milk"
+    },
+    {
+      "id": "allergy:celery",
+      "kind": "allergy",
+      "label": "Celery",
+      "reads": "Keep only options explicitly declared celery-free; fold declarations and missing evidence for a label check.",
+      "tag": "celery"
+    },
+    {
+      "id": "allergy:mustard",
+      "kind": "allergy",
+      "label": "Mustard",
+      "reads": "Keep only options explicitly declared mustard-free; fold declarations and missing evidence for a label check.",
+      "tag": "mustard"
+    },
+    {
+      "id": "allergy:sesame",
+      "kind": "allergy",
+      "label": "Sesame",
+      "reads": "Keep only options explicitly declared sesame-free; fold declarations and missing evidence for a label check.",
+      "tag": "sesame"
+    },
+    {
+      "id": "allergy:sulphites",
+      "kind": "allergy",
+      "label": "Sulphites",
+      "reads": "Keep only options explicitly declared sulphite-free; fold declarations and missing evidence for a label check.",
+      "tag": "sulphites"
+    },
+    {
+      "id": "allergy:lupin",
+      "kind": "allergy",
+      "label": "Lupin",
+      "reads": "Keep only options explicitly declared lupin-free; fold declarations and missing evidence for a label check.",
+      "tag": "lupin"
+    },
+    {
+      "id": "allergy:molluscs",
+      "kind": "allergy",
+      "label": "Molluscs",
+      "reads": "Keep only options explicitly declared mollusc-free; fold declarations and missing evidence for a label check.",
+      "tag": "molluscs"
+    },
+    {
+      "id": "allergy:lactose",
+      "kind": "allergy",
+      "label": "Lactose",
+      "reads": "Keep only options explicitly declared lactose-free; fold declarations and missing evidence for a label check.",
+      "tag": "lactose"
+    },
+    {
+      "id": "diet:vegetarian",
+      "kind": "diet",
+      "label": "Vegetarian",
+      "reads": "No meat or fish.",
+      "accept": [
+        "Vegetarian",
+        "Vegan",
+        "Plant-based"
+      ]
+    },
+    {
+      "id": "diet:vegan",
+      "kind": "diet",
+      "label": "Vegan",
+      "reads": "Nothing from an animal.",
+      "accept": [
+        "Vegan",
+        "Plant-based"
+      ]
+    },
+    {
+      "id": "require:organic",
+      "kind": "require",
+      "label": "Organic",
+      "reads": "Only certified-organic options, in categories where we track it.",
+      "accept": [
+        "Organic",
+        "Organic food"
+      ]
+    },
+    {
+      "id": "require:fair-trade",
+      "kind": "require",
+      "label": "Fair Trade",
+      "reads": "Only Fair Trade options, where we track it.",
+      "accept": [
+        "Fair Trade"
+      ]
+    },
+    {
+      "id": "require:cruelty-free",
+      "kind": "require",
+      "label": "Cruelty-free",
+      "reads": "Only options certified not tested on animals, where we track it.",
+      "accept": [
+        "Cruelty-free",
+        "Never tested on animals"
+      ]
+    },
+    {
+      "id": "require:palm-oil-free",
+      "kind": "require",
+      "label": "Palm-oil-free",
+      "reads": "Only options made without palm oil, where we track it.",
+      "accept": [
+        "Palm-oil-free"
+      ]
+    },
+    {
+      "id": "require:no-added-sugar",
+      "kind": "require",
+      "label": "No added sugar",
+      "reads": "Only options with no added sugar, where we track it.",
+      "accept": [
+        "No added sugar"
+      ]
+    },
+    {
+      "id": "require:open-source",
+      "kind": "require",
+      "label": "Open source",
+      "reads": "Only open-source tools, in categories that track it.",
+      "accept": [
+        "Open source",
+        "Open-source",
+        "Source-available"
+      ]
+    },
+    {
+      "id": "require:no-tracking",
+      "kind": "require",
+      "label": "No tracking",
+      "reads": "Only options that don't track you, where we track it.",
+      "accept": [
+        "No tracking",
+        "No telemetry",
+        "No ads"
+      ]
+    },
+    {
+      "id": "require:b-corp",
+      "kind": "require",
+      "label": "B Corp",
+      "reads": "Only certified B Corp options, in categories where we track it.",
+      "accept": [
+        "B Corp",
+        "Certified B Corporation"
+      ]
+    },
+    {
+      "id": "require:fsc",
+      "kind": "require",
+      "label": "FSC",
+      "reads": "Only FSC-certified options, in categories where we track it.",
+      "accept": [
+        "FSC",
+        "Forest Stewardship Council"
+      ]
+    },
+    {
+      "id": "require:ewg-verified",
+      "kind": "require",
+      "label": "EWG Verified",
+      "reads": "Only EWG Verified options, in categories where we track it.",
+      "accept": [
+        "EWG Verified",
+        "EWG"
+      ]
+    },
+    {
+      "id": "require:end-to-end-encrypted",
+      "kind": "require",
+      "label": "End-to-end encrypted",
+      "reads": "Only options with end-to-end encryption, in categories where we track it.",
+      "accept": [
+        "End-to-end encrypted",
+        "E2EE"
+      ]
+    },
+    {
+      "id": "require:employee-member-owned",
+      "kind": "require",
+      "label": "Employee/member-owned",
+      "reads": "Only employee-owned, member-owned, worker-owned, or cooperative options, where we track it.",
+      "accept": [
+        "Employee/member-owned",
+        "Employee-owned",
+        "Member-owned",
+        "Member-owned co-op",
+        "Worker co-op",
+        "Worker-owned",
+        "Co-op",
+        "Cooperative"
+      ]
+    },
+    {
+      "id": "avoid:nestle",
+      "kind": "avoid",
+      "label": "Nestlé",
+      "reads": "Hide Nestlé and the brands it owns.",
+      "entity": "nestle",
+      "why": "https://www.nestle.com/brands",
+      "brands": [
+        "nestle",
+        "nescafe",
+        "nescafe dolce gusto",
+        "dolce gusto",
+        "nespresso",
+        "nesquik",
+        "nido",
+        "kitkat",
+        "kit kat",
+        "smarties",
+        "aero",
+        "milkybar",
+        "maggi",
+        "garden gourmet",
+        "coffee-mate",
+        "coffee mate",
+        "purina",
+        "felix",
+        "friskies",
+        "fancy feast",
+        "gerber",
+        "san pellegrino",
+        "s.pellegrino",
+        "perrier",
+        "acqua panna",
+        "di giorno",
+        "digiorno",
+        "stouffer's",
+        "stouffers",
+        "thomy",
+        "ricore",
+        "haagen-dazs"
+      ]
+    },
+    {
+      "id": "avoid:coca-cola",
+      "kind": "avoid",
+      "label": "Coca-Cola Company",
+      "reads": "Hide The Coca-Cola Company and its brands.",
+      "entity": "coca-cola",
+      "why": "https://www.coca-colacompany.com/brands",
+      "brands": [
+        "coca-cola",
+        "coca cola",
+        "cocacola",
+        "coke",
+        "diet coke",
+        "coke zero",
+        "fanta",
+        "sprite",
+        "minute maid",
+        "dasani",
+        "smartwater",
+        "powerade",
+        "costa coffee",
+        "topo chico",
+        "bodyarmor",
+        "body armor",
+        "simply",
+        "fairlife",
+        "fuze tea",
+        "gold peak",
+        "innocent",
+        "maaza",
+        "schweppes",
+        "honest tea"
+      ]
+    },
+    {
+      "id": "avoid:pepsico",
+      "kind": "avoid",
+      "label": "PepsiCo",
+      "reads": "Hide PepsiCo and its brands.",
+      "entity": "pepsico",
+      "why": "https://www.pepsico.com/our-brands",
+      "brands": [
+        "pepsico",
+        "pepsi",
+        "pepsi max",
+        "mountain dew",
+        "gatorade",
+        "lay's",
+        "lays",
+        "walkers",
+        "doritos",
+        "cheetos",
+        "quaker",
+        "quaker oats",
+        "tostitos",
+        "ruffles",
+        "sodastream",
+        "tropicana",
+        "7up",
+        "7 up",
+        "lipton iced tea",
+        "pure leaf",
+        "brisk"
+      ]
+    },
+    {
+      "id": "avoid:unilever",
+      "kind": "avoid",
+      "label": "Unilever",
+      "reads": "Hide Unilever and its brands.",
+      "entity": "unilever",
+      "why": "https://www.unilever.com/brands/",
+      "brands": [
+        "unilever",
+        "dove",
+        "dove personal care",
+        "hellmann's",
+        "hellmanns",
+        "knorr",
+        "domestos",
+        "comfort",
+        "lifebuoy",
+        "liquid i.v.",
+        "liquid iv",
+        "lux",
+        "vaseline",
+        "sunsilk",
+        "axe",
+        "lynx",
+        "degree",
+        "rexona",
+        "omo",
+        "cif",
+        "marmite",
+        "colman's",
+        "colmans",
+        "dermalogica",
+        "nexxus",
+        "maille"
+      ]
+    },
+    {
+      "id": "avoid:amazon",
+      "kind": "avoid",
+      "label": "Amazon",
+      "reads": "Hide Amazon and the brands it owns.",
+      "entity": "amazon",
+      "why": "https://s2.q4cdn.com/299287126/files/doc_financials/2025/ar/Amazon-2024-Annual-Report.pdf",
+      "brands": [
+        "amazon",
+        "aws",
+        "prime video",
+        "kindle",
+        "amazon pharmacy",
+        "amazon music",
+        "audible",
+        "twitch",
+        "whole foods market",
+        "whole foods",
+        "ring",
+        "imdb",
+        "zappos",
+        "wondery",
+        "metro-goldwyn-mayer",
+        "metro goldwyn mayer",
+        "mgm",
+        "eero",
+        "alexa",
+        "amazon basics",
+        "presto"
+      ]
+    },
+    {
+      "id": "avoid:alphabet",
+      "kind": "avoid",
+      "label": "Alphabet / Google",
+      "reads": "Hide Alphabet/Google and the brands it owns.",
+      "entity": "alphabet",
+      "why": "https://abc.xyz/",
+      "brands": [
+        "alphabet",
+        "google",
+        "youtube",
+        "android",
+        "chrome",
+        "google cloud",
+        "deepmind",
+        "waymo",
+        "fitbit",
+        "waze",
+        "nest",
+        "verily",
+        "calico",
+        "gemini",
+        "kaggle"
+      ]
+    },
+    {
+      "id": "avoid:meta",
+      "kind": "avoid",
+      "label": "Meta",
+      "reads": "Hide Meta and the brands it owns.",
+      "entity": "meta",
+      "why": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm",
+      "brands": [
+        "meta",
+        "facebook",
+        "instagram",
+        "whatsapp",
+        "whats app",
+        "messenger",
+        "threads",
+        "meta quest",
+        "horizon worlds",
+        "reality labs"
+      ]
+    },
+    {
+      "id": "avoid:microsoft",
+      "kind": "avoid",
+      "label": "Microsoft",
+      "reads": "Hide Microsoft and the brands it owns.",
+      "entity": "microsoft",
+      "why": "https://www.microsoft.com/investor/reports/ar25/index.html",
+      "brands": [
+        "microsoft",
+        "windows",
+        "microsoft 365",
+        "office 365",
+        "azure",
+        "xbox",
+        "linkedin",
+        "github",
+        "activision blizzard",
+        "activision",
+        "blizzard",
+        "minecraft",
+        "surface",
+        "bing",
+        "copilot",
+        "skype",
+        "teams",
+        "microsoft teams",
+        "nuance",
+        "power bi"
+      ]
+    },
+    {
+      "id": "avoid:procter-and-gamble",
+      "kind": "avoid",
+      "label": "Procter & Gamble",
+      "reads": "Hide Procter & Gamble and the brands it owns.",
+      "entity": "procter-and-gamble",
+      "why": "https://us.pg.com/brands/",
+      "brands": [
+        "procter & gamble",
+        "procter and gamble",
+        "p&g",
+        "tide",
+        "pampers",
+        "gillette",
+        "oral-b",
+        "oral b",
+        "crest",
+        "always",
+        "ariel",
+        "bounce",
+        "febreze",
+        "head-and-shoulders",
+        "head and shoulders",
+        "head & shoulders",
+        "pantene",
+        "old spice",
+        "olay",
+        "vicks",
+        "swiffer",
+        "bounty",
+        "charmin",
+        "scope"
+      ]
+    },
+    {
+      "id": "avoid:loreal",
+      "kind": "avoid",
+      "label": "L'Oreal",
+      "reads": "Hide L'Oreal and the brands it owns.",
+      "entity": "loreal",
+      "why": "https://www.loreal.com/en/our-global-brands-portfolio/",
+      "brands": [
+        "loreal",
+        "l'oreal",
+        "loreal paris",
+        "l'oreal paris",
+        "garnier",
+        "maybelline",
+        "maybelline new york",
+        "nyx",
+        "nyx professional makeup",
+        "lancome",
+        "cerave",
+        "la roche-posay",
+        "la roche posay",
+        "vichy",
+        "skinceuticals",
+        "kiehls",
+        "kiehl's",
+        "urban decay",
+        "redken",
+        "matrix",
+        "essie",
+        "biolage",
+        "yves saint laurent beauty",
+        "ysl beauty",
+        "giorgio armani beauty",
+        "valentino beauty",
+        "thayers"
+      ]
+    }
+  ],
+  "caps": {
+    "status": "deferred",
+    "reason": "Open Food Facts and our curated lenses carry no per-item price, so a price cap would be silent in every category. When open price data lands, cap lines activate with no format change."
+  }
+}

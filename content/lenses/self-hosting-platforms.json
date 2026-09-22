@@ -1,0 +1,914 @@
+{
+ "meta": {
+  "id": "self-hosting-platforms",
+  "label": "Self-hosting platforms",
+  "type": "Services",
+  "primaryAxis": "openness",
+  "tradeoff": [
+   "economical",
+   "openness"
+  ],
+  "tradeoffLabels": [
+   "lowest cost",
+   "most open"
+  ],
+  "source": "Conscious Consuming (curated)",
+  "attribution": "Built from software licence files read in each project's own repository, official documentation, security-advisory and pricing pages, not from review sites. Openness reflects whether the licence lets anyone run, modify and redistribute the software without asking permission, not whether a project markets itself as open source; several platforms here are source-available, which restricts commercial use or resale even though the code is public. Accessibility covers both installability and the hardware a person of ordinary skill actually needs, as each project documents it. Transparency reflects whether update and security practice is visible in public, such as a published advisory process or security policy, not whether the software is trustworthy. Suggest changes via Contribute.",
+  "allergens": false,
+  "presets": {
+   "Balanced": {
+    "w": {
+     "openness": 3,
+     "accessibility": 3,
+     "transparency": 2,
+     "longevity": 2,
+     "economical": 2
+    },
+    "x": []
+   },
+   "Easiest to run": {
+    "w": {
+     "accessibility": 5,
+     "economical": 2,
+     "openness": 1,
+     "transparency": 1,
+     "longevity": 1
+    },
+    "x": []
+   },
+   "Most open": {
+    "w": {
+     "openness": 5,
+     "longevity": 3,
+     "transparency": 2,
+     "accessibility": 1,
+     "economical": 1
+    },
+    "x": []
+   },
+   "Cheapest": {
+    "w": {
+     "economical": 5,
+     "accessibility": 2,
+     "openness": 1,
+     "transparency": 1,
+     "longevity": 1
+    },
+    "x": []
+   }
+  }
+ },
+ "criteria": [
+  {
+   "key": "openness",
+   "label": "Open licence",
+   "source": "curated"
+  },
+  {
+   "key": "accessibility",
+   "label": "Easy to install and run",
+   "source": "curated"
+  },
+  {
+   "key": "transparency",
+   "label": "Update and security practice",
+   "source": "curated"
+  },
+  {
+   "key": "longevity",
+   "label": "What happens to your data",
+   "source": "curated"
+  },
+  {
+   "key": "economical",
+   "label": "Cost",
+   "source": "curated"
+  }
+ ],
+ "products": [
+  {
+   "code": "truenas-scale",
+   "name": "TrueNAS SCALE",
+   "brand": "iXsystems",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A Debian-based NAS and app platform built on ZFS, with an open source core and separately licensed enterprise extensions.",
+   "scores": {
+    "openness": 78,
+    "accessibility": 55,
+    "transparency": 80,
+    "longevity": 78
+   },
+   "provenance": {
+    "openness": {
+     "note": "TrueNAS SCALE's end user agreement says the software 'is made available as Open Source Software' but also 'includes Open Source components and some proprietary extensions which are available through additional licences,' naming the TrueNAS Enterprise feature set as an example users may not unlock without a licence.",
+     "source": "https://www.truenas.com/docs/scale/24.10/gettingstarted/useragreements/scaleeula/",
+     "asof": "2026-08"
+    },
+    "accessibility": {
+     "note": "TrueNAS SCALE's hardware guide sets a baseline of an x86_64 processor, 8 GB of memory, a 20 GB SSD boot device, and at least two identically sized drives to form a single storage pool.",
+     "source": "https://www.truenas.com/docs/scale/gettingstarted/tnhardwareguide/",
+     "asof": "2026-08"
+    },
+    "transparency": {
+     "note": "iXsystems runs a dedicated security-advisories site that rates each reported vulnerability's impact on TrueNAS products and lets researchers file a disclosure by email or Jira ticket; it says it does not currently pay bug bounties.",
+     "source": "https://security.truenas.com/",
+     "asof": "2026-08"
+    },
+    "longevity": {
+     "note": "TrueNAS documents importing a ZFS pool that was exported and disconnected from a system, created on another system, or reconnected after reinstalling TrueNAS, through the web UI or API.",
+     "source": "https://www.truenas.com/docs/scale/storage/pools/importpool/",
+     "asof": "2026-08"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.truenas.com/truenas-scale/"
+    },
+    {
+     "label": "Hardware guide",
+     "url": "https://www.truenas.com/docs/scale/gettingstarted/tnhardwareguide/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "NAS",
+    "Open source core"
+   ]
+  },
+  {
+   "code": "proxmox-ve",
+   "name": "Proxmox VE",
+   "brand": "Proxmox Server Solutions",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A Debian-based virtualization platform for running virtual machines and containers, free to use in full without a subscription.",
+   "scores": {
+    "openness": 88,
+    "accessibility": 40,
+    "transparency": 80,
+    "economical": 85
+   },
+   "provenance": {
+    "openness": {
+     "note": "Proxmox's own FAQ states plainly: 'Proxmox VE code is licensed under the GNU Affero General Public License, version 3.'",
+     "source": "https://pve.proxmox.com/wiki/FAQ",
+     "asof": "2026-08"
+    },
+    "accessibility": {
+     "note": "The system requirements page lists a bare minimum of 1 GB RAM plus more for guest systems, a 64-bit x86 or ARM CPU with virtualization support, one network card and a hard drive, and says this minimum is for evaluation only, not production use.",
+     "source": "https://pve.proxmox.com/wiki/System_Requirements",
+     "asof": "2026-08"
+    },
+    "transparency": {
+     "note": "Proxmox's security reporting page describes emailing security@proxmox.com, confirming receipt within one Austrian business day, and publishing past and future advisories on a public forum; it does not currently offer paid bug bounties.",
+     "source": "https://pve.proxmox.com/wiki/Security_Reporting",
+     "asof": "2026-08"
+    },
+    "economical": {
+     "note": "Proxmox VE's pricing page says every feature, including high availability, live migration, clustering, backup and software-defined storage, is available at every level including none, and that paid subscriptions add only support tickets and access to the enterprise package repository.",
+     "source": "https://www.proxmox.com/en/proxmox-virtual-environment/pricing",
+     "asof": "2026-08"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.proxmox.com/en/proxmox-virtual-environment/overview"
+    },
+    {
+     "label": "Pricing",
+     "url": "https://www.proxmox.com/en/proxmox-virtual-environment/pricing"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "Open source",
+    "Virtualization"
+   ]
+  },
+  {
+   "code": "yunohost",
+   "name": "YunoHost",
+   "brand": "YunoHost association",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A Debian-based server operating system built to make self-hosting approachable for people without a systems-administration background.",
+   "scores": {
+    "openness": 85,
+    "accessibility": 78,
+    "transparency": 40
+   },
+   "provenance": {
+    "openness": {
+     "note": "The repository's licence badge and LICENSE file mark YunoHost under the GNU AGPL v3.",
+     "source": "https://github.com/YunoHost/yunohost",
+     "asof": "2026-08"
+    },
+    "accessibility": {
+     "note": "YunoHost's install guide lists seven target hardware paths, including 'an old desktop computer or laptop, or any x86 machine,' a Raspberry Pi, other ARM boards, and rented VPS or dedicated servers.",
+     "source": "https://doc.yunohost.org/admin/get_started/install_on/",
+     "asof": "2026-08"
+    },
+    "transparency": {
+     "note": "YunoHost's security page says to contact its security team to discuss flaws, but sets out no published disclosure timeline or advisory database, and tells users to watch the forum and its Mastodon account for word of fixes.",
+     "source": "https://doc.yunohost.org/en/admin/security/",
+     "asof": "2026-08"
+    }
+   },
+   "links": [
+    {
+     "label": "Repository",
+     "url": "https://github.com/YunoHost/yunohost"
+    },
+    {
+     "label": "Install guide",
+     "url": "https://doc.yunohost.org/admin/get_started/install_on/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "Open source",
+    "Beginner-oriented"
+   ]
+  },
+  {
+   "code": "umbrel",
+   "name": "Umbrel (umbrelOS)",
+   "brand": "Umbrel",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A home-server OS and app store built first for Umbrel's own hardware, released under a noncommercial source-available licence.",
+   "scores": {
+    "openness": 42,
+    "accessibility": 60,
+    "transparency": 35,
+    "economical": 55
+   },
+   "provenance": {
+    "openness": {
+     "note": "The main Umbrel repository is licensed under PolyForm Noncommercial 1.0.0; its README says it is 'free to use, fork, modify, and redistribute Umbrel for personal and nonprofit use' and that commercial use needs a separate agreement with the Umbrel team. A companion repository that builds the OS image, umbrel-os, is separately licensed BSD-3-Clause.",
+     "source": "https://github.com/getumbrel/umbrel",
+     "asof": "2026-08"
+    },
+    "accessibility": {
+     "note": "Umbrel's README says umbrelOS is built first for its own Umbrel Home and Umbrel Pro hardware, and is 'freely available' for Raspberry Pi 5, x86 systems and Linux VMs, where core functionality works on a 'best-effort' basis because of hardware variation.",
+     "source": "https://github.com/getumbrel/umbrel",
+     "asof": "2026-08"
+    },
+    "transparency": {
+     "note": "GitHub reports that Umbrel's main repository has not set up a SECURITY.md file. The separate umbrel-os repository's release history shows infrequent updates: a patch on 17 October 2025 fixing an App Store loading bug, following a release on 22 June 2025.",
+     "source": "https://github.com/getumbrel/umbrel/security/policy",
+     "asof": "2026-08"
+    },
+    "economical": {
+     "note": "Running umbrelOS on your own hardware costs nothing beyond that hardware, but Umbrel's own device, the Umbrel Home, starts at $549 (or $137.25 a month for four months) for a unit with 512 GB to 4 TB of storage.",
+     "source": "https://umbrel.com/umbrel-home",
+     "asof": "2026-08"
+    }
+   },
+   "links": [
+    {
+     "label": "Repository",
+     "url": "https://github.com/getumbrel/umbrel"
+    },
+    {
+     "label": "Umbrel Home",
+     "url": "https://umbrel.com/umbrel-home"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "Source-available",
+    "Dedicated hardware"
+   ]
+  },
+  {
+   "code": "casaos",
+   "name": "CasaOS",
+   "brand": "IceWhale Technology",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A lightweight, Apache-licensed personal cloud OS designed to run on general-purpose and single-board hardware.",
+   "scores": {
+    "openness": 85,
+    "accessibility": 78,
+    "transparency": 55
+   },
+   "provenance": {
+    "openness": {
+     "note": "The repository's licence badge and LICENSE file mark CasaOS under Apache-2.0.",
+     "source": "https://github.com/IceWhaleTech/CasaOS",
+     "asof": "2026-08"
+    },
+    "accessibility": {
+     "note": "CasaOS's README lists official support for Debian 12, Ubuntu Server 20.04 and Raspberry Pi OS, community support for several more systems, and names ZimaBoard, Intel NUC, Raspberry Pi and general-purpose computers as compatible devices, installed with a single command.",
+     "source": "https://github.com/IceWhaleTech/CasaOS",
+     "asof": "2026-08"
+    },
+    "transparency": {
+     "note": "CasaOS's security policy gives an email contact for reporting vulnerabilities and notes the project remains in active development with limited support until it reaches version 1.0.",
+     "source": "https://github.com/IceWhaleTech/CasaOS/security/policy",
+     "asof": "2026-08"
+    }
+   },
+   "links": [
+    {
+     "label": "Repository",
+     "url": "https://github.com/IceWhaleTech/CasaOS"
+    },
+    {
+     "label": "Website",
+     "url": "https://casaos.io/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "Open source",
+    "Single-board friendly"
+   ]
+  },
+  {
+   "code": "openmediavault",
+   "name": "OpenMediaVault",
+   "brand": "OpenMediaVault plugin developers",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A GPL-licensed, Debian-based network-attached storage platform that has been maintained since 2009.",
+   "scores": {
+    "openness": 85,
+    "accessibility": 62,
+    "transparency": 62
+   },
+   "provenance": {
+    "openness": {
+     "note": "The repository's licence badge and LICENSE-GPL3 file mark OpenMediaVault under GPL-3.0.",
+     "source": "https://github.com/openmediavault/openmediavault",
+     "asof": "2026-08"
+    },
+    "accessibility": {
+     "note": "The README describes OpenMediaVault as 'the next generation network attached storage (NAS) solution based on Debian Linux' aimed at home and small-office use, with SSH, FTP, SMB/CIFS and rsync built in and a plugin system for more.",
+     "source": "https://github.com/openmediavault/openmediavault",
+     "asof": "2026-08"
+    },
+    "transparency": {
+     "note": "OpenMediaVault's security policy names a security@openmediavault.org contact, asks reporters to withhold public disclosure until a fix and security release are published, and lists what it treats as out of scope, including issues only exploitable by an already-trusted administrator.",
+     "source": "https://github.com/openmediavault/openmediavault/security/policy",
+     "asof": "2026-08"
+    }
+   },
+   "links": [
+    {
+     "label": "Repository",
+     "url": "https://github.com/openmediavault/openmediavault"
+    },
+    {
+     "label": "Website",
+     "url": "https://www.openmediavault.org/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "Open source",
+    "NAS"
+   ]
+  },
+  {
+   "code": "unraid",
+   "name": "Unraid",
+   "brand": "Lime Technology",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A paid, proprietary NAS, Docker and virtual-machine platform bought as a one-time perpetual licence rather than downloaded free.",
+   "scores": {
+    "openness": 12,
+    "accessibility": 65,
+    "transparency": 65,
+    "economical": 35,
+    "longevity": 85
+   },
+   "provenance": {
+    "openness": {
+     "note": "Unraid is not released under an open-source licence; its purchase page describes only paid Starter, Unleashed or Lifetime licences, with no free or source-available tier.",
+     "source": "https://account.unraid.net/buy",
+     "asof": "2026-08"
+    },
+    "accessibility": {
+     "note": "Unraid's own docs describe it as an embedded OS that 'can run on nearly any 64-bit x86_64 system while maintaining a minimal memory footprint,' installed by writing it to a USB flash drive that the server then boots from.",
+     "source": "https://docs.unraid.net/unraid-os/getting-started/what-is-unraid/",
+     "asof": "2026-08"
+    },
+    "transparency": {
+     "note": "Unraid's blog lists dated releases; the most recent at the time of research, 7.2.8 on 29 July 2026, is described as 'a stable, security-focused update' bringing Linux kernel and base-distro package upgrades.",
+     "source": "https://unraid.net/blog",
+     "asof": "2026-08"
+    },
+    "economical": {
+     "note": "Unraid is a one-time purchase, not a subscription: Starter is $49 for up to 6 storage devices, Unleashed is $109 for unlimited devices, and Lifetime is $249 for unlimited devices with updates for life; the first two tiers include only one year of updates.",
+     "source": "https://account.unraid.net/buy",
+     "asof": "2026-08"
+    },
+    "longevity": {
+     "note": "Unraid's docs say array disks default to XFS, with EXT4, ZFS and BTRFS also selectable, that 'Linux systems can read these file systems natively' while Windows and macOS need extra software, and that a single drive 'acts as a self-contained file system, making data recovery straightforward on any Linux system.'",
+     "source": "https://docs.unraid.net/unraid-os/using-unraid-to/manage-storage/file-systems/",
+     "asof": "2026-08"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://unraid.net/"
+    },
+    {
+     "label": "Pricing",
+     "url": "https://account.unraid.net/buy"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "Proprietary",
+    "Mainstream among enthusiasts"
+   ]
+  },
+  {
+   "code": "cloudron",
+   "name": "Cloudron",
+   "brand": "Cloudron",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A managed self-hosting platform whose app packages are open source while the core platform is source-available under a paid subscription model.",
+   "scores": {
+    "openness": 45,
+    "transparency": 50,
+    "economical": 55
+   },
+   "provenance": {
+    "openness": {
+     "note": "Cloudron's own open-source page describes the platform's code as 'source available,' distinct from open source, while saying 'all Cloudron app packages are open source' on its own GitLab instance.",
+     "source": "https://www.cloudron.io/opensource.html",
+     "asof": "2026-08"
+    },
+    "transparency": {
+     "note": "Cloudron's blog publishes dated posts covering both releases and security topics, for example a security-focused post on SSH authentication logging on 10 August.",
+     "source": "https://blog.cloudron.io/",
+     "asof": "2026-08"
+    },
+    "economical": {
+     "note": "Cloudron's pricing page offers a free tier limited to two apps, with Pro and Max paid tiers unlocking unlimited apps.",
+     "source": "https://www.cloudron.io/pricing.html",
+     "asof": "2026-08"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.cloudron.io/"
+    },
+    {
+     "label": "Open source page",
+     "url": "https://www.cloudron.io/opensource.html"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Managed",
+    "Source-available",
+    "App store"
+   ]
+  },
+  {
+   "code": "synology-dsm",
+   "name": "Synology DSM",
+   "brand": "Synology",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The proprietary operating system bundled with every Synology NAS, the mainstream easy floor most self-hosters compare against.",
+   "scores": {
+    "openness": 8,
+    "accessibility": 85,
+    "transparency": 68,
+    "longevity": 45
+   },
+   "provenance": {
+    "openness": {
+     "note": "Synology describes DSM as 'the intuitive operating system that powers every Synology NAS,' a proprietary system bundled with its own hardware rather than software installed on a machine you already own.",
+     "source": "https://www.synology.com/en-us/dsm",
+     "asof": "2026-08"
+    },
+    "accessibility": {
+     "note": "Unlike every other option here, DSM ships preinstalled on the NAS unit a buyer purchases, so there is no separate operating-system install step.",
+     "source": "https://www.synology.com/en-us/dsm",
+     "asof": "2026-08"
+    },
+    "transparency": {
+     "note": "Synology's security advisory page lists dated, rated advisories, for example Synology-SA-26:07 DSM, but states it does not publicly announce a vulnerability until a fix is available, nor release exact details before then.",
+     "source": "https://www.synology.com/en-us/security/advisory",
+     "asof": "2026-08"
+    },
+    "longevity": {
+     "note": "Synology's own migration page says 'Drive migration only works with compatible NAS models or a refreshed version of the same model,' so moving a populated array onto non-Synology hardware is not the documented path; its Migration Assistant instead copies data to a new Synology device.",
+     "source": "https://www.synology.com/en-global/dsm/feature/migration",
+     "asof": "2026-08"
+    }
+   },
+   "links": [
+    {
+     "label": "DSM overview",
+     "url": "https://www.synology.com/en-us/dsm"
+    },
+    {
+     "label": "Security advisories",
+     "url": "https://www.synology.com/en-us/security/advisory"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Proprietary",
+    "Bundled hardware",
+    "Mainstream"
+   ]
+  },
+  {
+   "code": "caprover",
+   "name": "CapRover",
+   "brand": "CapRover",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A Docker Swarm and nginx-based PaaS for deploying your own apps and databases to a VPS without hand-writing server config.",
+   "scores": {
+    "openness": 75,
+    "accessibility": 68,
+    "transparency": 62
+   },
+   "provenance": {
+    "openness": {
+     "note": "CapRover's LICENSE file is Apache-2.0 with an appendix: paid features 'cannot be modified' or redistributed without a written agreement, while 'any modifications of free features of CapRover should be distributed as free & opensource software.'",
+     "source": "https://github.com/caprover/caprover/blob/master/LICENSE",
+     "asof": "2026-08"
+    },
+    "accessibility": {
+     "note": "CapRover's getting-started guide says 512MB of RAM 'might not be enough' because the build process is memory-hungry, recommends at least 1GB, and notes most providers sell a 1GB VPS for about $5 a month; it is tested on Ubuntu 24.04 with Docker 25 or newer.",
+     "source": "https://caprover.com/docs/get-started.html",
+     "asof": "2026-08"
+    },
+    "transparency": {
+     "note": "CapRover's security policy asks that vulnerabilities be emailed rather than posted publicly, and says only the most recent release receives security patches.",
+     "source": "https://github.com/caprover/caprover/security/policy",
+     "asof": "2026-08"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://caprover.com/"
+    },
+    {
+     "label": "Repository",
+     "url": "https://github.com/caprover/caprover"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "PaaS",
+    "Open source"
+   ]
+  },
+  {
+   "code": "portainer-ce",
+   "name": "Portainer Community Edition",
+   "brand": "Portainer",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A permissively licensed management UI for a Docker, Swarm or Kubernetes setup you already have, not a full home-server OS on its own.",
+   "scores": {
+    "openness": 88,
+    "accessibility": 48,
+    "transparency": 72,
+    "economical": 78
+   },
+   "provenance": {
+    "openness": {
+     "note": "Portainer's README states the Community Edition uses the zlib licence, and describes Business Edition as building 'on the open-source base' with added features such as role-based access control and support.",
+     "source": "https://github.com/portainer/portainer",
+     "asof": "2026-08"
+    },
+    "accessibility": {
+     "note": "Portainer manages an existing container setup rather than providing one: its README describes it as a platform to 'manage Docker, Swarm, Kubernetes and ACI environments,' which assumes a container runtime is already installed.",
+     "source": "https://github.com/portainer/portainer",
+     "asof": "2026-08"
+    },
+    "transparency": {
+     "note": "Portainer's security policy directs researchers to report privately through GitHub or email, asks that public issues not be used for vulnerabilities, and says it does not run a paid bug bounty programme.",
+     "source": "https://github.com/portainer/portainer/security/policy",
+     "asof": "2026-08"
+    },
+    "economical": {
+     "note": "Portainer's pricing page says Business Edition is 'free forever for up to 3 nodes' with full features, and separately lists a Home & Student plan at $155 a year for non-commercial use covering up to 15 nodes.",
+     "source": "https://www.portainer.io/pricing",
+     "asof": "2026-08"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.portainer.io/"
+    },
+    {
+     "label": "Repository",
+     "url": "https://github.com/portainer/portainer"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "Open source",
+    "Needs existing Docker"
+   ]
+  },
+  {
+   "code": "runtipi",
+   "name": "Runtipi",
+   "brand": "Runtipi",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A GPL-licensed personal homeserver orchestrator built around a Docker app store on a single Linux box.",
+   "scores": {
+    "openness": 82,
+    "accessibility": 62,
+    "transparency": 40
+   },
+   "provenance": {
+    "openness": {
+     "note": "Runtipi's README states it is released under the GNU General Public License v3.0: 'You may copy, distribute and modify the software as long as you track changes/dates in source files.'",
+     "source": "https://github.com/runtipi/runtipi",
+     "asof": "2026-08"
+    },
+    "accessibility": {
+     "note": "Runtipi's quick-start guide asks for a 64-bit Linux server, Ubuntu 22.04 or newer recommended, or a Raspberry Pi, with a minimum of 4GB RAM and 10GB of free disk space.",
+     "source": "https://runtipi.io/docs/quick-start",
+     "asof": "2026-08"
+    },
+    "transparency": {
+     "note": "GitHub shows Runtipi has not set up a SECURITY.md file; reports go through GitHub's generic private vulnerability-advisory form instead.",
+     "source": "https://github.com/runtipi/runtipi/security/policy",
+     "asof": "2026-08"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://runtipi.io/"
+    },
+    {
+     "label": "Repository",
+     "url": "https://github.com/runtipi/runtipi"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "Open source",
+    "App store"
+   ]
+  },
+  {
+   "code": "cosmos-cloud",
+   "name": "Cosmos Cloud",
+   "brand": "Cosmos",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "An all-in-one home-server gateway combining a reverse proxy, authentication, container management and an app store, source-available under a no-resale clause.",
+   "scores": {
+    "openness": 42,
+    "accessibility": 50,
+    "transparency": 40
+   },
+   "provenance": {
+    "openness": {
+     "note": "Cosmos Server's README says it is under 'Apache 2.0 Licence with the Commons Clause 1.0': free to use, fork and redistribute, but 'not allowed to sell it, a derivative or to sell a service based on it (ex. SaaS or PaaS).'",
+     "source": "https://github.com/azukaar/Cosmos-Server",
+     "asof": "2026-08"
+    },
+    "accessibility": {
+     "note": "Cosmos's own description bundles a reverse proxy, a multi-factor authentication server, container management, an app store, VPN access, backups, monitoring and identity-provider functions into one system, more to configure than a single-purpose dashboard.",
+     "source": "https://github.com/azukaar/Cosmos-Server",
+     "asof": "2026-08"
+    },
+    "transparency": {
+     "note": "GitHub shows Cosmos-Server has not set up a SECURITY.md file; it relies on GitHub's generic private vulnerability-advisory form.",
+     "source": "https://github.com/azukaar/Cosmos-Server/security/policy",
+     "asof": "2026-08"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://cosmos-cloud.io/"
+    },
+    {
+     "label": "Repository",
+     "url": "https://github.com/azukaar/Cosmos-Server"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "Source-available",
+    "All-in-one"
+   ]
+  },
+  {
+   "code": "pikapods",
+   "name": "PikaPods",
+   "brand": "PikaPods",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Paid managed hosting of open-source apps: someone else runs the software on infrastructure you rent, and PikaPods says you can take your data and leave.",
+   "scores": {
+    "openness": 55,
+    "accessibility": 92,
+    "economical": 65,
+    "longevity": 88
+   },
+   "provenance": {
+    "openness": {
+     "note": "PikaPods hosts existing open-source applications for you rather than being software you run yourself; it says you can 'download your data anytime via SFTP. Move to another host if you prefer.'",
+     "source": "https://pikapods.com/",
+     "asof": "2026-08"
+    },
+    "accessibility": {
+     "note": "There is no install step: PikaPods is pay-as-you-go from $1.80 a month, scaling with the CPU, memory and storage a pod uses, with $5 of credit given to new accounts.",
+     "source": "https://pikapods.com/",
+     "asof": "2026-08"
+    },
+    "economical": {
+     "note": "Pricing starts at $1.80 a month and scales with the resources a pod uses rather than a flat per-app fee.",
+     "source": "https://pikapods.com/",
+     "asof": "2026-08"
+    },
+    "longevity": {
+     "note": "PikaPods says data can be downloaded any time over SFTP and moved to another host, and that backups can be configured to a user's own storage, describing itself as combining 'the privacy of running your own server with the convenience of commercial cloud services.'",
+     "source": "https://pikapods.com/",
+     "asof": "2026-08"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://pikapods.com/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Managed hosting",
+    "Open-source apps",
+    "No install"
+   ]
+  },
+  {
+   "code": "disroot",
+   "name": "Disroot",
+   "brand": "Disroot collective",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A volunteer-run, donation-funded collective offering a free account across a dozen federated and self-hosted-style FOSS services, the community route rather than a company or a platform you install.",
+   "scores": {
+    "openness": 80,
+    "accessibility": 88,
+    "economical": 92,
+    "transparency": 55
+   },
+   "provenance": {
+    "openness": {
+     "note": "Disroot describes its platform as running on '100% free and open source software' across roughly a dozen services, including Nextcloud-based cloud storage, CryptPad, XMPP messaging and Forgejo code hosting.",
+     "source": "https://disroot.org/en/about",
+     "asof": "2026-08"
+    },
+    "accessibility": {
+     "note": "Disroot's own donation page states it 'is run by volunteers and offers all the services free of charge,' requiring only a sign-up rather than any server administration.",
+     "source": "https://disroot.org/en/donate",
+     "asof": "2026-08"
+    },
+    "economical": {
+     "note": "There is no required payment; Disroot funds itself through donations, saying that if every user gave the cost of one monthly coffee, the collective could run without financial strain.",
+     "source": "https://disroot.org/en/donate",
+     "asof": "2026-08"
+    },
+    "transparency": {
+     "note": "Disroot's donation page publishes a running monthly donation total and supporter count, and its about page says the project has been maintained by an expanding volunteer core team since it was founded in 2015.",
+     "source": "https://disroot.org/en/donate",
+     "asof": "2026-08"
+    }
+   },
+   "links": [
+    {
+     "label": "About",
+     "url": "https://disroot.org/en/about"
+    },
+    {
+     "label": "Donate / transparency",
+     "url": "https://disroot.org/en/donate"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Community-run",
+    "Donation-funded",
+    "No install"
+   ]
+  },
+  {
+   "code": "big-tech-cloud",
+   "name": "Renting from Big Tech (e.g. Google One)",
+   "brand": "large cloud providers",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The mainstream floor most people already use: keep everything in a rented consumer cloud account instead of running any server yourself.",
+   "scores": {
+    "openness": 10,
+    "accessibility": 96,
+    "economical": 55,
+    "longevity": 50
+   },
+   "provenance": {
+    "openness": {
+     "note": "Google One's plans page describes tiered paid storage subscriptions bundled with Gmail, Drive, Photos and Gemini AI features; there is no source code, licence or self-hosting path on offer, only a subscription.",
+     "source": "https://one.google.com/about/plans",
+     "asof": "2026-08"
+    },
+    "accessibility": {
+     "note": "Every Google account already includes 15 GB of storage at no cost, and paid tiers add capacity starting at $1.99 a month for 100 GB, with nothing to install.",
+     "source": "https://one.google.com/about/plans",
+     "asof": "2026-08"
+    },
+    "economical": {
+     "note": "Storage is rented indefinitely rather than owned: $1.99 a month for 100 GB, $9.99 for 2 TB, $19.99 for 5 TB, with up to 16% off for paying annually, against a one-time hardware cost for the self-hosted options in this list.",
+     "source": "https://one.google.com/about/plans",
+     "asof": "2026-08"
+    },
+    "longevity": {
+     "note": "Google's support page for Takeout says a user can export email, documents, calendar, photos, YouTube videos and account activity, but warns that downloading an archive 'doesn't delete it from Google's servers,' and that the download link expires after about 7 days and 5 downloads.",
+     "source": "https://support.google.com/accounts/answer/3024190",
+     "asof": "2026-08"
+    }
+   },
+   "links": [
+    {
+     "label": "Google One plans",
+     "url": "https://one.google.com/about/plans"
+    },
+    {
+     "label": "Google Takeout support",
+     "url": "https://support.google.com/accounts/answer/3024190"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Rented",
+    "Mainstream",
+    "No self-hosting"
+   ]
+  }
+ ]
+}

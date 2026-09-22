@@ -1,0 +1,317 @@
+{
+  "format": "open-values-register-shelf",
+  "version": "1.0.0",
+  "note": "Public registers proven to work in this catalogue, with what each can populate. Built from the twenty-nine datasets the swarm produced on 2026-08-12 and 13: every lens that came out well was built on one of these, and every lens that came out badly was built on review sites instead. The shelf exists so the next agent picks a source rather than hunting for one. A register earns a place here only after a real citation from it has survived hand verification against the source page.",
+  "howToRead": {
+    "reach": "cross-cutting means one pass can add a sourced criterion to many decisions at once; single means it serves one decision or a small family.",
+    "access": "api, bulk, page. api and bulk are the ones that scale; page means a human-shaped site that must be read one record at a time.",
+    "provenanceKey": "the criterion key a pass from this register should write to, so the same fact means the same thing everywhere.",
+    "proven": "the decision ids where a citation from this register has already been verified by hand."
+  },
+  "registers": [
+    {
+      "id": "openfda-recalls",
+      "name": "FDA enforcement and recall records",
+      "publisher": "US Food and Drug Administration",
+      "access": "api",
+      "endpoint": "https://api.fda.gov/food/enforcement.json",
+      "alsoAt": ["https://api.fda.gov/device/enforcement.json", "https://api.fda.gov/drug/enforcement.json", "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts"],
+      "reach": "cross-cutting",
+      "provenanceKey": "health",
+      "populates": ["every food decision", "every pet food decision", "supplements", "medical devices", "cosmetics"],
+      "proven": ["dog-food", "cat-food", "vitamins-and-supplements", "over-the-counter-medicine"],
+      "note": "Query by firm name and by product description. An absence is a real finding here only if you name the query and the date: FDA publishes what was recalled, never what was safe.",
+      "caution": "fda.gov pages return 404 to some automated fetchers while serving 200 to a browser user agent. The API does not have this problem, which is why it is listed first."
+    },
+    {
+      "id": "cpsc-recalls",
+      "name": "Consumer product safety recalls",
+      "publisher": "US Consumer Product Safety Commission",
+      "access": "api",
+      "endpoint": "https://www.saferproducts.gov/RestWebServices/Recall?format=json",
+      "reach": "cross-cutting",
+      "provenanceKey": "safety",
+      "populates": ["appliances", "toys", "children's equipment", "electronics", "furniture", "e-bike and battery products"],
+      "proven": ["electric-toothbrushes"],
+      "note": "Searchable per brand. Turned up a live children's toothbrush battery recall nobody had noticed."
+    },
+    {
+      "id": "cfpb-complaints",
+      "name": "Consumer complaint database",
+      "publisher": "US Consumer Financial Protection Bureau",
+      "access": "api",
+      "endpoint": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/",
+      "reach": "cross-cutting",
+      "provenanceKey": "complaints",
+      "populates": ["every money decision", "credit", "insurance", "debt", "payments"],
+      "proven": ["banking", "mortgages", "credit-cards"],
+      "note": "Filter by company, product and date range. One bounded aggregate query can populate raw complaint evidence for every exact company mapping in a decision.",
+      "caution": "Complaint volume tracks customer, account, and loan exposure. The CFPB says company size and market share are necessary context and warns that low volume does not imply little or no harm. Preserve raw counts as evidence, but do not score them across firms until a compatible exposure denominator exists."
+    },
+    {
+      "id": "eprel",
+      "name": "European Product Registry for Energy Labelling",
+      "publisher": "European Commission",
+      "access": "bulk",
+      "endpoint": "https://eprel.ec.europa.eu/screen/home",
+      "reach": "cross-cutting",
+      "provenanceKey": "environment",
+      "populates": ["washing machines", "fridges", "dishwashers", "dryers", "ovens", "televisions", "lighting", "every EU-labelled appliance"],
+      "proven": ["washing-machines"],
+      "note": "Per-model energy and water figures filed by manufacturers under Regulation 2019/2014. The Product Information Sheet is a PDF per model and is the actual legal filing, not a summary."
+    },
+    {
+      "id": "france-durability",
+      "name": "Indice de durabilite",
+      "publisher": "French government open data platform",
+      "access": "bulk",
+      "endpoint": "https://www.data.gouv.fr/datasets/fichiers-consolides-des-donnees-respectant-le-schema-indice-de-durabilite-lave-linge/",
+      "reach": "cross-cutting",
+      "provenanceKey": "durability",
+      "populates": ["washing machines", "televisions", "product classes covered by a governed French durability schema"],
+      "proven": ["washing-machines"],
+      "note": "The official consolidated CSV combines producer filings that validate against the governed product schema. The overall score is out of ten and includes separately published repairability and reliability components. Preserve the exact model identifier and never widen a regional model suffix to a whole brand."
+    },
+    {
+      "id": "openfda-devices",
+      "name": "Device clearances and establishment registration",
+      "publisher": "US Food and Drug Administration",
+      "access": "api",
+      "endpoint": "https://api.fda.gov/device/510k.json",
+      "reach": "cross-cutting",
+      "provenanceKey": "certification",
+      "populates": ["menstrual products", "home health devices", "hearing aids", "thermometers", "monitors", "contraception"],
+      "proven": ["menstrual-cups-and-discs"],
+      "note": "Search by product code. The decision-relevant distinction, invisible on any brand site, is whether a brand holds its own clearance or is merely registered under someone else's device type."
+    },
+    {
+      "id": "companies-house-psc",
+      "name": "People with significant control",
+      "publisher": "UK Companies House",
+      "access": "api",
+      "endpoint": "https://api.company-information.service.gov.uk/",
+      "reach": "cross-cutting",
+      "provenanceKey": "ownership",
+      "populates": ["any decision whose options are UK companies", "organizations", "retailers", "banks", "brands"],
+      "proven": ["b-corporations"],
+      "note": "The sharpest finding of the whole swarm came from here: a fair trade brand's own page claims farmer ownership that the statutory register shows ended in 2020. Ownership claims should be checked here by default, not exceptionally."
+    },
+    {
+      "id": "sec-edgar",
+      "name": "Company filings",
+      "publisher": "US Securities and Exchange Commission",
+      "access": "api",
+      "endpoint": "https://data.sec.gov/submissions/",
+      "reach": "cross-cutting",
+      "provenanceKey": "ownership",
+      "populates": ["any decision whose options are US public companies"],
+      "proven": ["secondhand-and-resale", "clothing-rental"],
+      "caution": "sec.gov blocks fetchers without a declared user agent. data.sec.gov behaves better than the search UI."
+    },
+    {
+      "id": "dol-olms",
+      "name": "Union annual financial reports, Form LM-2",
+      "publisher": "US Department of Labor, Office of Labor-Management Standards",
+      "access": "bulk",
+      "endpoint": "https://olmsapps.dol.gov/olpdr/",
+      "reach": "single",
+      "provenanceKey": "economical",
+      "populates": ["trade unions", "worker organisations"],
+      "proven": ["trade-unions"],
+      "note": "Dues rates and political spending per member come straight off the filing. Read the line items, not a summary."
+    },
+    {
+      "id": "gca-survey",
+      "name": "Groceries Code Adjudicator annual supplier survey",
+      "publisher": "UK Groceries Code Adjudicator",
+      "access": "page",
+      "endpoint": "https://www.gov.uk/government/organisations/groceries-code-adjudicator",
+      "reach": "single",
+      "provenanceKey": "ethics",
+      "populates": ["supermarkets", "grocery retail"],
+      "proven": ["supermarkets"],
+      "note": "A statutory regulator ranking every large retailer on how it treats suppliers, by survey of the suppliers themselves. There is no better source of its kind in any sector this catalogue covers."
+    },
+    {
+      "id": "caa-punctuality",
+      "name": "Airline punctuality statistics",
+      "publisher": "UK Civil Aviation Authority",
+      "access": "bulk",
+      "endpoint": "https://www.caa.co.uk/data-and-analysis/uk-aviation-market/flight-punctuality/",
+      "reach": "single",
+      "provenanceKey": "reliability",
+      "populates": ["airlines"],
+      "proven": ["airlines"],
+      "note": "XLSX per year, per airline, covering the ten largest UK airports. Sits on caa.co.uk, not a government TLD, which is why lens_check keeps a named regulator list."
+    },
+    {
+      "id": "ofgem-derogations",
+      "name": "Price cap derogations and supplier decisions",
+      "publisher": "Ofgem",
+      "access": "page",
+      "endpoint": "https://www.ofgem.gov.uk/publications",
+      "reach": "single",
+      "provenanceKey": "environment",
+      "populates": ["electricity suppliers", "gas suppliers"],
+      "proven": ["electricity-suppliers"],
+      "note": "The one public record separating a supplier the regulator has recognised for real renewable investment from one that has bought certificates. That distinction is the entire decision."
+    },
+    {
+      "id": "citizens-advice-energy",
+      "name": "Energy supplier star ratings",
+      "publisher": "Citizens Advice, statutory consumer advocate",
+      "access": "page",
+      "endpoint": "https://www.citizensadvice.org.uk/consumer/energy/energy-supply/get-a-better-energy-deal/compare-domestic-energy-suppliers-customer-service/",
+      "reach": "single",
+      "provenanceKey": "accessibility",
+      "populates": ["electricity suppliers", "gas suppliers"],
+      "proven": ["electricity-suppliers"]
+    },
+    {
+      "id": "usp-nsf",
+      "name": "Supplement verification registers",
+      "publisher": "US Pharmacopeia and NSF",
+      "access": "page",
+      "endpoint": "https://www.quality-supplements.org/verified-products",
+      "alsoAt": ["https://www.nsfsport.com/certified-products/"],
+      "reach": "single",
+      "provenanceKey": "certification",
+      "populates": ["vitamins and supplements", "sports nutrition", "protein"],
+      "proven": ["vitamins-and-supplements"],
+      "note": "Check the certifier's register, never the seller's badge. An absence here is a finding only if you name the register and the date."
+    },
+    {
+      "id": "ecolabel-registers",
+      "name": "Nordic Swan and EU Ecolabel product registers",
+      "publisher": "Nordic Ecolabelling and European Commission",
+      "access": "page",
+      "endpoint": "https://www.svanen.se/en/find-products/",
+      "reach": "cross-cutting",
+      "provenanceKey": "certification",
+      "populates": ["cleaning products", "paper goods", "nappies", "cosmetics", "textiles"],
+      "proven": ["nappies"]
+    },
+    {
+      "id": "epa-safer-choice",
+      "name": "Safer Choice and Design for the Environment product register",
+      "publisher": "US Environmental Protection Agency",
+      "access": "api",
+      "endpoint": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
+      "alsoAt": ["https://www.epa.gov/saferchoice/products", "https://www.epa.gov/enviro/download-additional-envirofacts-datasets"],
+      "reach": "cross-cutting",
+      "provenanceKey": "certification",
+      "populates": ["cleaning products", "dish soap", "laundry products", "other Safer Choice and DfE product classes"],
+      "proven": ["dish-soap"],
+      "note": "The full official product table includes product and company names, sector, program, identifiers, fragrance-free status, and whether the company is current on its annual partnership review. Certification is product-specific, not a blanket company claim."
+    },
+    {
+      "id": "blab-directory",
+      "name": "Certified B Corporation directory",
+      "publisher": "B Lab",
+      "access": "page",
+      "endpoint": "https://www.bcorporation.net/en-us/find-a-b-corp/",
+      "reach": "cross-cutting",
+      "provenanceKey": "certification",
+      "populates": ["any decision with certified options"],
+      "proven": ["b-corporations", "mission-businesses"],
+      "note": "Standards Version 2.1 retired the single 0 to 200 score in August 2025 and phases mandatory requirements over five years. A profile reading Year 0 of 5 is not a low score, and saying so is part of the fact."
+    },
+    {
+      "id": "ifixit-repairability",
+      "name": "Repairability scores",
+      "publisher": "iFixit",
+      "access": "page",
+      "endpoint": "https://www.ifixit.com/repairability",
+      "reach": "cross-cutting",
+      "provenanceKey": "repairability",
+      "populates": ["phones", "laptops", "headphones", "tablets", "appliances"],
+      "proven": ["headphones-and-earbuds"],
+      "caution": "Methodology is published and regulators cite it, and iFixit also sells repair parts, so it has an interest in the axis it scores. Usable, and the conflict is declared in the attribution wherever it is used."
+    },
+    {
+      "id": "eur-lex",
+      "name": "EU law",
+      "publisher": "Publications Office of the European Union",
+      "access": "api",
+      "endpoint": "https://eur-lex.europa.eu/",
+      "reach": "cross-cutting",
+      "provenanceKey": "transparency",
+      "populates": ["any decision where an EU rule sets a floor: spare parts, labelling, guarantees, data"],
+      "proven": ["washing-machines"],
+      "note": "Cite the regulation for what the law requires of every option, so a reader can tell a legal minimum from a brand's favour."
+    },
+    {
+      "id": "ftc-enforcement",
+      "name": "Enforcement actions and consent orders",
+      "publisher": "US Federal Trade Commission",
+      "access": "page",
+      "endpoint": "https://www.ftc.gov/legal-library/browse/cases-proceedings",
+      "reach": "cross-cutting",
+      "provenanceKey": "transparency",
+      "populates": ["any decision with US consumer-facing options"],
+      "proven": ["used-cars", "crowdfunding-platforms", "video-streaming"],
+      "caution": "Enforcement measures who was caught, which tracks size and visibility. Never build a whole axis from it: that is why hotels became a hold."
+    },
+    {
+      "id": "data-protection-decisions",
+      "name": "Data protection authority decisions",
+      "publisher": "national DPAs, Ireland's DPC as lead for most large platforms",
+      "access": "page",
+      "endpoint": "https://www.dataprotection.ie/en/news-media/press-releases",
+      "reach": "cross-cutting",
+      "provenanceKey": "privacy",
+      "populates": ["any digital service decision"],
+      "proven": ["job-boards"]
+    },
+    {
+      "id": "nhtsa",
+      "name": "Vehicle safety, recalls and investigations",
+      "publisher": "US National Highway Traffic Safety Administration",
+      "access": "api",
+      "endpoint": "https://api.nhtsa.gov/",
+      "reach": "cross-cutting",
+      "provenanceKey": "safety",
+      "populates": ["cars", "used cars", "car seats", "tyres", "e-bike batteries"],
+      "proven": ["used-cars"]
+    },
+    {
+      "id": "ace-national-guide",
+      "name": "Credit recommendations for non-university courses",
+      "publisher": "American Council on Education",
+      "access": "page",
+      "endpoint": "https://www.acenet.edu/National-Guide/Pages/default.aspx",
+      "reach": "single",
+      "provenanceKey": "certification",
+      "populates": ["online courses", "professional certification"],
+      "proven": ["online-courses"],
+      "note": "The only checkable answer to whether a course credential is worth anything to anyone else."
+    },
+    {
+      "id": "uk-environment-agency-lca",
+      "name": "Lifecycle assessments",
+      "publisher": "UK Environment Agency",
+      "access": "page",
+      "endpoint": "https://www.gov.uk/government/publications",
+      "reach": "single",
+      "provenanceKey": "environment",
+      "populates": ["reusable nappies", "single-use versus reusable comparisons"],
+      "proven": ["reusable-nappies"],
+      "note": "Its nappy study is the reason the reusable lens scores laundering practice rather than fabric: practice drives most of the footprint, and that finding does real work across the roster."
+    }
+  ],
+  "refused": [
+    {
+      "pattern": "affiliate and review sites",
+      "examples": ["product round-up sites", "comparison sites paid by the suppliers listed", "SEO listicles"],
+      "why": "They earn money on the ranking they publish, and this catalogue's whole claim is that nobody pays to rank. One lens was rebuilt from scratch after resting forty of forty-nine cells on them."
+    },
+    {
+      "pattern": "wikis",
+      "why": "A wiki summarises a source. Cite the source. The twenty-eight-cell banking debt recorded in the 2026-08-13 handoff has since been removed; the refusal remains catalogue-wide."
+    },
+    {
+      "pattern": "search snippets",
+      "why": "The single worst defect the swarm produced was a note written from a search summary that said the opposite of the page it cited. Read the page."
+    }
+  ]
+}

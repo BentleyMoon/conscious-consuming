@@ -111,9 +111,9 @@ function productDetails(cs) {
   return cs.map(c => {
     const best = c.awards.reduce((m, a) => (a.top > m.top ? a : m), c.awards[0]);
     const rows = c.awards.map(a =>
-      '<tr><td>' + esc(a.axis) + '</td><td>' + holderLine(a) + '</td>' +
-      '<td class="n tnum">' + a.top + '/100</td>' +
-      '<td class="n tnum">' + (a.top >= HIGH ? a.high : '—'.replace('—', '0')) + '</td></tr>'
+      '<tr><td>' + esc(a.axis) + '</td><td data-th="Top mark">' + holderLine(a) + '</td>' +
+      '<td class="n tnum" data-th="Score">' + a.top + '/100</td>' +
+      '<td class="n tnum" data-th="Meet ' + HIGH + '">' + (a.top >= HIGH ? a.high : '—'.replace('—', '0')) + '</td></tr>'
     ).join('');
     return '<details class="pcat" id="' + esc(c.id) + '"><summary><span>' + esc(c.label) + '</span>' +
       '<span class="sumline"><span class="tnum">' + c.awards.length + '</span> measures awarded · best ' +
@@ -134,7 +134,7 @@ const html = `<!DOCTYPE html>
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#1d7a5a">
 <script>try{var t=localStorage.getItem('cc.theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d7a5a'/%3E%3Cpath d='M18 36c0-13 13-20 28-20-2 16-14 23-28 20z' fill='%23fff'/%3E%3Cpath d='M20 46c6-12 14-18 22-21' stroke='%231d7a5a' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="/app/icon.svg" type="image/svg+xml"><link rel="alternate icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64"><link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Values Commons: the awards ledger">
 <meta property="og:description" content="The top mark on every well-evidenced measure, with receipts. No pay-to-rank; withheld measures are listed, not hidden.">
@@ -210,6 +210,18 @@ const html = `<!DOCTYPE html>
   .pcat table{width:100%;border-collapse:collapse;font-size:.9rem}
   .pcat th{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--hint);text-align:left;font-weight:600;padding:.45rem .9rem;border-top:1px solid var(--line)}
   .pcat td{padding:.45rem .9rem;border-top:1px solid var(--line);vertical-align:top}
+  /* Four columns on a phone gave the names of the top-marked products a 95px column, and a list
+     of product names set in 95px runs to 220px for every row of every category. Below 34rem a row
+     stacks: the measure names it, and the other cells say which column they came from. */
+  @media(max-width:34rem){
+    .pcat thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+    .pcat table,.pcat tbody,.pcat tr,.pcat td{display:block;width:100%}
+    .pcat tr{padding:.5rem 0;border-top:1px solid var(--line)}
+    .pcat td{border:0;padding:.1rem .9rem}
+    .pcat td:first-child{font-weight:600}
+    .pcat td[data-th]::before{content:attr(data-th) ": ";font-family:var(--font-mono);font-size:.75rem;color:var(--hint)}
+    .pcat td.n{text-align:left}
+  }
   th.n,td.n{text-align:right}
   .withheld{border:1px solid var(--line);border-radius:4px;background:var(--band)}
   .withheld summary{cursor:pointer;list-style:none;padding:.7rem 1rem;font-family:var(--font-mono);font-size:.74rem;color:var(--muted)}

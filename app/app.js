@@ -21,7 +21,11 @@ const CAT_GUIDE={
   'ai-assistants':'ai-assistants','password-managers':'password-managers','vpn':'vpn','phones':'phones','laptops':'laptops',
   'mobile-carriers':'mobile-carriers','broadband-internet':'broadband-internet','smart-thermostats':'smart-thermostats',
   'banking':'ethical-banking','payments':'payments','investing':'investing','causes-to-support':'causes-to-support',
-  'mission-businesses':'mission-businesses'
+  'mission-businesses':'mission-businesses',
+  'credit-cards':'credit-cards','mortgages':'mortgages','washing-machines':'washing-machines',
+  'self-hosting-platforms':'self-hosting-platforms','federated-social-servers':'federated-social-servers',
+  'direct-drive-solar':'direct-drive-solar','off-grid-power-systems':'off-grid-power-systems',
+  'messaging':'private-messaging'
 };
 
 // === Release channels: 'public' (the live sites — only what's hand-reviewed) vs 'dev' (the workbench —
@@ -84,6 +88,9 @@ function renderCompare(){
   v.querySelectorAll('.cmp-x').forEach(b=>b.onclick=()=>{compareSet=compareSet.filter(x=>x.code!==b.dataset.code);updateCompareFab();renderCompare();});
 }
 const STORAGE_KEY='cc.profile.v1', SAVED_KEY='cc.saved.v1', FEEDBACK_KEY='cc.feedback.v1', TRUST_LENS_KEY='cc.trustLens.v1';
+const MAP_STATE_KEY='cc.map-state.v1';
+let homeMapState=(function(){try{const v=JSON.parse(localStorage.getItem(MAP_STATE_KEY)||'null');return v&&v.version===1?v:null;}catch(e){return null;}})();
+function saveHomeMapState(value){homeMapState=value||null;try{if(homeMapState)localStorage.setItem(MAP_STATE_KEY,JSON.stringify(homeMapState));else localStorage.removeItem(MAP_STATE_KEY);}catch(e){}}
 let DATA=null,weights={},excludes=new Set(),selected=null,sortBy='score',regionFilter='everywhere',builtCriteria='',
     viewingSaved=false,viewingFeedback=false,feedbackContext=null,savedSet=new Set(),CATALOG=[];
 let CHALLENGE_INDEX=null,CHALLENGE_INDEX_P=null;
@@ -592,18 +599,120 @@ function saveToggleEl(p,label){
 }
 // The region is one standing fact about you, set once, applied everywhere — so it lives in the
 // chrome, not buried in a per-category dropdown (the dropdown stays, synced, for in-context tweaks).
+const REGION_NAMES={everywhere:'Everywhere',US:'United States',UK:'United Kingdom',EU:'European Union'};
+// The tags the data can carry today. Naming what is missing is part of the answer: a reader
+// looking for Canada should learn that here rather than infer it from an empty result.
+const REGION_NOT_YET='Entries are tagged US, UK, EU or global today. Anywhere else, including Canada, Australia and India, is served only by the global entries until somebody sources a market.';
 function updateNavRegion(){
   const b=document.getElementById('navregion');if(!b)return;
-  b.innerHTML=CC.icon('globe')+' '+esc(regionLabel(YOU.region));
-  b.title=REGION_SCOPE+' Tap to change.';
+  b.innerHTML=CC.icon('globe')+' '+esc(regionLabel(YOU.region))+'<span class="navregion-caret" aria-hidden="true">&#9662;</span>';
+  b.title=REGION_SCOPE+' Choose a region or language.';
+  b.setAttribute('aria-haspopup','true');
+  b.setAttribute('aria-expanded',document.getElementById('regionmenu')?'true':'false');
 }
-function cycleRegion(){
-  const i=REGIONS.indexOf(YOU.region);
-  YOU.region=REGIONS[(i+1)%REGIONS.length];
-  regionFilter=YOU.region;saveYou();updateNavRegion();
-  const rg=document.getElementById('region');if(rg)rg.value=regionFilter;
-  announce('Region: '+regionFilterText(YOU.region));
-  regionRerender();
+/* Coverage counted from the live index rather than written down, so the menu cannot claim a
+   number the data stopped supporting. Each category carries a regionProfile with per-tag entry
+   counts; this sums them and also counts how many decisions carry the tag at all, because
+   "1,390 entries" and "in 53 decisions" answer different questions a reader actually has. */
+function regionCoverage(){
+  const entries={},decisions={},total={n:0,d:(CATALOG||[]).length};
+  for(const cat of (CATALOG||[])){
+    const values=((cat.regionProfile||{}).values)||{};
+    for(const tag of Object.keys(values)){
+      entries[tag]=(entries[tag]||0)+values[tag];
+      decisions[tag]=(decisions[tag]||0)+1;
+    }
+    total.n+=((cat.regionProfile||{}).entryCount)||0;
+  }
+  return {entries:entries,decisions:decisions,total:total};
+}
+function regionCoverageLine(r,cov){
+  if(r==='everywhere')return cov.total.n.toLocaleString()+' entries across '+cov.total.d+' decisions';
+  const n=cov.entries[r]||0,d=cov.decisions[r]||0;
+  if(!n)return 'nothing tagged for this market yet';
+  return n.toLocaleString()+' entries in '+d+' decision'+(d===1?'':'s')+', plus every global entry';
+}
+function localeCoverage(code){
+  const meta=(window.CC_LOCALE_META||{})[code]||{};
+  const table=(window.CC_I18N||{})[code]||{},en=(window.CC_I18N||{}).en||{};
+  const keys=Object.keys(en),have=keys.filter(k=>table[k]!=null).length;
+  return {label:meta.label||code,endonym:meta.endonym||code,covers:meta.covers||'',
+          have:have,total:keys.length,complete:meta.complete===true};
+}
+function regionMenuHTML(){
+  const cov=regionCoverage();
+  let html='<div class="rm-sec" role="group" aria-label="Region"><div class="rm-h">Region</div>';
+  for(const r of REGIONS){
+    const on=YOU.region===r;
+    html+='<button type="button" role="menuitemradio" aria-checked="'+(on?'true':'false')+'" class="rm-opt'+(on?' on':'')+'" data-region="'+esc(r)+'">'
+      +'<span class="rm-mark" aria-hidden="true">'+(on?CC.icon('check'):'')+'</span>'
+      +'<span class="rm-body"><b>'+esc(REGION_NAMES[r]||r)+'</b><small>'+esc(regionCoverageLine(r,cov))+'</small></span></button>';
+  }
+  html+='<p class="rm-note">'+esc(REGION_NOT_YET)+'</p></div>';
+  html+='<div class="rm-sec" role="group" aria-label="Language"><div class="rm-h">Language</div>';
+  for(const code of Object.keys(window.CC_LOCALE_META||{en:1})){
+    const L=localeCoverage(code),on=locale===code;
+    html+='<button type="button" role="menuitemradio" aria-checked="'+(on?'true':'false')+'" class="rm-opt'+(on?' on':'')+'" data-locale="'+esc(code)+'">'
+      +'<span class="rm-mark" aria-hidden="true">'+(on?CC.icon('check'):'')+'</span>'
+      +'<span class="rm-body"><b>'+esc(L.endonym)+(L.endonym===L.label?'':' <i>'+esc(L.label)+'</i>')+'</b>'
+      +'<small>'+esc(L.covers)+'</small></span></button>';
+  }
+  html+='<p class="rm-note">Only English is written all the way through. A language here changes the interface and nothing else unless it says so. <a href="#contribute">Help translate</a></p></div>';
+  return html;
+}
+function closeRegionMenu(refocus){
+  const m=document.getElementById('regionmenu');if(m)m.remove();
+  document.removeEventListener('keydown',regionMenuKey,true);
+  document.removeEventListener('pointerdown',regionMenuAway,true);
+  const b=document.getElementById('navregion');
+  if(b){b.setAttribute('aria-expanded','false');if(refocus)b.focus();}
+}
+function regionMenuKey(e){
+  if(e.key==='Escape'){e.stopPropagation();closeRegionMenu(true);return;}
+  const m=document.getElementById('regionmenu');if(!m)return;
+  if(e.key!=='ArrowDown'&&e.key!=='ArrowUp'&&e.key!=='Tab')return;
+  const opts=[...m.querySelectorAll('.rm-opt')];if(!opts.length)return;
+  const at=opts.indexOf(document.activeElement);
+  if(e.key==='Tab'&&at===-1)return;
+  e.preventDefault();
+  const step=(e.key==='ArrowUp'||(e.key==='Tab'&&e.shiftKey))?-1:1;
+  opts[(at+step+opts.length)%opts.length].focus();
+}
+function regionMenuAway(e){
+  const m=document.getElementById('regionmenu'),b=document.getElementById('navregion');
+  if(m&&!m.contains(e.target)&&b&&!b.contains(e.target))closeRegionMenu(false);
+}
+function chooseRegion(r){
+  if(YOU.region!==r){
+    YOU.region=r;regionFilter=r;saveYou();
+    const rg=document.getElementById('region');if(rg)rg.value=regionFilter;
+    announce('Region: '+regionFilterText(r));
+  }
+  closeRegionMenu(true);updateNavRegion();regionRerender();
+}
+function chooseLocale(code){
+  closeRegionMenu(true);
+  if(code===locale){updateNavRegion();return;}
+  announce('Language: '+localeCoverage(code).endonym);
+  setLocale(code);          // persists, re-labels the chrome and re-routes
+  updateNavRegion();
+}
+function toggleRegionMenu(){
+  if(document.getElementById('regionmenu')){closeRegionMenu(true);return;}
+  const b=document.getElementById('navregion');if(!b)return;
+  const m=el('div',{id:'regionmenu',class:'regionmenu',role:'menu','aria-label':'Region and language'});
+  m.innerHTML=regionMenuHTML();
+  b.parentNode.insertBefore(m,b.nextSibling);
+  m.addEventListener('click',e=>{
+    const opt=e.target.closest('.rm-opt');if(!opt)return;
+    if(opt.dataset.region)chooseRegion(opt.dataset.region);
+    else if(opt.dataset.locale)chooseLocale(opt.dataset.locale);
+  });
+  document.addEventListener('keydown',regionMenuKey,true);
+  document.addEventListener('pointerdown',regionMenuAway,true);
+  b.setAttribute('aria-expanded','true');
+  const first=m.querySelector('.rm-opt.on')||m.querySelector('.rm-opt');
+  if(first)first.focus();
 }
 /* Region filters the evidence itself, so every view that reads it has to be re-worked. The old guard
    re-rendered only when nothing else was on screen, so changing region on a decision page, an item,
@@ -761,9 +870,28 @@ function provenanceParts(p){
     title:'Source links are missing for this entry.'
   };
 }
+/* MARK THE EXCEPTION, NOT THE RULE.
+   This used to badge every row. On a decision page that meant "2 independent sources" printed
+   fifteen times and "3 independent sources" seven more, with not one entry falling below two. A
+   label that appears on everything distinguishes nothing: twenty-two badges all saying the
+   evidence is fine, and an eye that learns in three rows to stop reading them.
+
+   Two or more independent sources is the standard this catalogue holds itself to, so it is stated
+   once where the list begins rather than stamped on every line. What stays badged is what a reader
+   needs warning about: one source, or none. Those are rare, which is exactly why they should be
+   the thing that catches the eye. */
 function provenanceChipHTML(p){
   const x=provenanceParts(p);
-  return x?`<span class="provchip prov-${x.mode}" title="${esc(x.title)}">${esc(x.text)}</span>`:'';
+  if(!x||x.mode==='multi')return '';
+  return `<span class="provchip prov-${x.mode}" title="${esc(x.title)}">${esc(x.text)}</span>`;
+}
+/* The standard, said once. Returns nothing when some entry actually falls short, because then the
+   badges below are carrying the message and a blanket claim would contradict them. */
+function provenanceStandardHTML(list){
+  const parts=(list||[]).map(provenanceParts).filter(Boolean);
+  if(parts.length<3)return '';
+  if(parts.some(x=>x.mode!=='multi'))return '';
+  return `<p class="provstandard">Every scored fact below draws on at least two independent sources.</p>`;
 }
 function provenancePanelHTML(p){
   const ps=provenanceSummaryOf(p), x=provenanceParts(p);
@@ -830,9 +958,17 @@ function allergenLine(p){
   const parts=[];
   if((evidence.declares||[]).length)parts.push(`Declares ${(evidence.declares||[]).map(a=>ALLERGEN_LABELS[a]||a).join(', ')}.`);
   if((evidence.declaredFree||[]).length)parts.push(`Declared ${(evidence.declaredFree||[]).map(a=>(ALLERGEN_LABELS[a]||a)+'-free').join(', ')}.`);
-  return parts.length?parts.join(' '):`No allergen data — check the label.`;
+  return parts.length?parts.join(' '):`No allergen data. Check the label.`;
 }
 function algHTML(p){return DATA.meta.allergens?`<div class="alg"><span>•</span><span>${allergenLine(p)}</span></div>`:'';}
+/* A redirect replaces the entry it came from. location.hash pushes, which leaves the redirecting
+   route in history: back lands on it, it redirects again, and the reader never gets out. Every
+   route that rewrites the address on arrival must come through here. */
+function hopTo(hash){
+  const to=hash.charAt(0)==='#'?hash:'#'+hash;
+  if(location.hash===to){route();return;}
+  location.replace(location.pathname+location.search+to);
+}
 function openProduct(code){location.hash='item/'+encodeURIComponent(DATA.meta.id)+'/'+encodeURIComponent(code);}
 
 function listCard(p,s,badge,onClick){
@@ -850,7 +986,7 @@ function allergenStatusText(row){
   const label=ALLERGEN_LABELS[row.tag]||row.tag;
   if(row.status==='declares')return `Declares ${label}.`;
   if(row.status==='declared-free')return `Declared ${label}-free.`;
-  return `No ${label} data — check the label.`;
+  return `No ${label} data. Check the label.`;
 }
 function allergenSafetyFoldEl(rows){
   if(!rows||!rows.length)return null;
@@ -914,16 +1050,16 @@ function challengeReceiptLine(label,receipt){
 function challengeCaseHTML(c){
   const ov=c.oppositeView||{}, top=ov.top||{}, steel=c.steelman||{};
   const itemHref=top.code?`#item/${encodeURIComponent(c.category)}/${encodeURIComponent(top.code)}`:'';
-  const pick=top.name?`<p><b>${esc(ov.label||'Opposite view')}:</b> ${esc(top.name)}${top.brand?` <span class="challenge-muted">${esc(top.brand)}</span>`:''}${Number.isFinite(top.score)?`, ${top.score}/100 under that lens`:''}.</p>`:'';
+  const pick=top.name?`<p><b>${esc(ov.label||'Different priorities')}:</b> ${esc(top.name)}${top.brand?` <span class="challenge-muted">${esc(top.brand)}</span>`:''}${Number.isFinite(top.score)?`, ${top.score}/100 with those priorities`:''}.</p>`:'';
   const steelLine=steel.line||steel.framing||'';
-  return `<div class="challenge-k">Challenge lens</div>
-    <div class="challenge-title">${esc(c.label||'See the other side')}</div>
-    <p>${esc(c.reads||'A credible opposite view exists for this category.')}</p>
+  return `<div class="challenge-k">Different priorities</div>
+    <div class="challenge-title">${esc(c.label||'Compare another ranking')}</div>
+    <p>${esc(c.reads||'A different set of priorities produces another ranking.')}</p>
     ${pick}
-    ${steelLine?`<p><b>Steelman against the first view:</b> ${esc(steelLine)}</p>`:''}
-    ${challengeReceiptLine('Opposite receipt',ov.receipt||ov.selectedTag)}
-    ${challengeReceiptLine('Steelman receipt',steel.receipt||steel.selectedTag)}
-    ${itemHref?`<div class="challenge-actions"><a class="savebtn" href="${itemHref}">Open ${esc(top.name||'counter-pick')}</a> <span class="challenge-muted">Your sliders stay unchanged.</span></div>`:''}`;
+    ${steelLine?`<p><b>Limit of the first choice:</b> ${esc(steelLine)}</p>`:''}
+    ${challengeReceiptLine('Source for the alternative',ov.receipt||ov.selectedTag)}
+    ${challengeReceiptLine('Source for the limitation',steel.receipt||steel.selectedTag)}
+    ${itemHref?`<div class="challenge-actions"><a class="savebtn" href="${itemHref}">Open ${esc(top.name||'alternative')}</a> <span class="challenge-muted">Your sliders stay unchanged.</span></div>`:''}`;
 }
 function challengeDetailHTML(c,p){
   const ov=c.oppositeView||{}, top=ov.top||{}, user=c.userView||{}, userTop=user.top||{}, steel=c.steelman||{};
@@ -932,25 +1068,25 @@ function challengeDetailHTML(c,p){
   const isUserTop=p.code===user.expectedTop||p.code===userTop.code;
   const isOppositeTop=p.code===ov.expectedTop||p.code===top.code;
   const steelLine=steel.line||steel.framing||'';
-  if(isUserTop)return `<div class="challenge-k">Challenge this verdict</div>
-    <div class="challenge-title">${esc(c.label||'See the other side')}</div>
-    <p>${esc(c.reads||'A credible opposite view exists for this category.')}</p>
-    ${steelLine?`<p><b>Strongest counterpoint:</b> ${esc(steelLine)}</p>`:''}
-    ${top.name?`<p><b>${esc(ov.label||'Opposite view')}:</b> ${esc(top.name)}${top.brand?` <span class="challenge-muted">${esc(top.brand)}</span>`:''}${Number.isFinite(top.score)?`, ${top.score}/100 under that lens`:''}.</p>`:''}
-    ${challengeReceiptLine('Opposite receipt',ov.receipt||ov.selectedTag)}
-    ${challengeReceiptLine('Steelman receipt',steel.receipt||steel.selectedTag)}
-    ${topHref?`<div class="challenge-actions"><a class="savebtn" href="${topHref}">Open ${esc(top.name||'counter-pick')}</a> <span class="challenge-muted">Your values stay unchanged.</span></div>`:''}`;
-  if(isOppositeTop)return `<div class="challenge-k">Why this can win</div>
-    <div class="challenge-title">${esc(ov.label||'Another honest lens')}</div>
-    <p>This option is the counter-pick for this category when someone weights ${esc(ov.label||'a different set of values').toLowerCase()}.</p>
+  if(isUserTop)return `<div class="challenge-k">Check another priority</div>
+    <div class="challenge-title">${esc(c.label||'Compare another ranking')}</div>
+    <p>${esc(c.reads||'A different set of priorities produces another ranking.')}</p>
+    ${steelLine?`<p><b>Limit to check:</b> ${esc(steelLine)}</p>`:''}
+    ${top.name?`<p><b>${esc(ov.label||'Different priorities')}:</b> ${esc(top.name)}${top.brand?` <span class="challenge-muted">${esc(top.brand)}</span>`:''}${Number.isFinite(top.score)?`, ${top.score}/100 with those priorities`:''}.</p>`:''}
+    ${challengeReceiptLine('Source for the alternative',ov.receipt||ov.selectedTag)}
+    ${challengeReceiptLine('Source for the limitation',steel.receipt||steel.selectedTag)}
+    ${topHref?`<div class="challenge-actions"><a class="savebtn" href="${topHref}">Open ${esc(top.name||'alternative')}</a> <span class="challenge-muted">Your values stay unchanged.</span></div>`:''}`;
+  if(isOppositeTop)return `<div class="challenge-k">Why this ranks first</div>
+    <div class="challenge-title">${esc(ov.label||'Different priorities')}</div>
+    <p>This option ranks first when ${esc(ov.label||'a different set of priorities').toLowerCase()} receives more weight.</p>
+    ${challengeReceiptLine('Source',ov.receipt||ov.selectedTag)}
+    ${userHref?`<div class="challenge-actions"><a class="savebtn" href="${userHref}">Open ${esc(userTop.name||'the current choice')}</a> <span class="challenge-muted">Your sliders stay unchanged.</span></div>`:''}`;
+  return `<div class="challenge-k">Compare another priority</div>
+    <div class="challenge-title">${esc(c.label||'Different priorities')}</div>
+    <p>${esc(c.reads||'A different set of priorities produces another ranking.')}</p>
+    ${top.name?`<p><b>Alternative:</b> ${esc(top.name)}${top.brand?` <span class="challenge-muted">${esc(top.brand)}</span>`:''}.</p>`:''}
     ${challengeReceiptLine('Receipt',ov.receipt||ov.selectedTag)}
-    ${userHref?`<div class="challenge-actions"><a class="savebtn" href="${userHref}">Open ${esc(userTop.name||'the first-view pick')}</a> <span class="challenge-muted">Compare without changing your sliders.</span></div>`:''}`;
-  return `<div class="challenge-k">See the other side</div>
-    <div class="challenge-title">${esc(c.label||'Category challenge')}</div>
-    <p>${esc(c.reads||'A credible opposite view exists for this category.')}</p>
-    ${top.name?`<p><b>Counter-pick:</b> ${esc(top.name)}${top.brand?` <span class="challenge-muted">${esc(top.brand)}</span>`:''}.</p>`:''}
-    ${challengeReceiptLine('Receipt',ov.receipt||ov.selectedTag)}
-    ${topHref?`<div class="challenge-actions"><a class="savebtn" href="${topHref}">Open ${esc(top.name||'counter-pick')}</a> <span class="challenge-muted">Your values stay unchanged.</span></div>`:''}`;
+    ${topHref?`<div class="challenge-actions"><a class="savebtn" href="${topHref}">Open ${esc(top.name||'alternative')}</a> <span class="challenge-muted">Your values stay unchanged.</span></div>`:''}`;
 }
 function renderChallengeBox(cid,box){
   if(!box)return;
@@ -1068,6 +1204,9 @@ function renderList(){
   const res=document.getElementById('results');
   const first={}; for(const ch of res.children){const c=ch.dataset&&ch.dataset.code; if(c)first[c]=ch.getBoundingClientRect();}
   res.innerHTML='';
+  // The sourcing standard, said once at the top instead of stamped on every row below.
+  const std=provenanceStandardHTML(displayArr.map(x=>x&&x.p||x));
+  if(std)res.insertAdjacentHTML('beforeend',std);
   if(!onboarded){
     const ob=el('div',{class:'onboard'},`<b>Drag any slider and the list rearranges itself.</b> The facts stay put; your priorities do the sorting. Tap a preset if you'd rather start quick. Nothing you do here is tracked.`);
     const b=el('button',{class:'catbtn',style:'margin-top:.7rem'},'Got it');
@@ -1562,7 +1701,7 @@ function loadCategory(cat){
   }).catch(()=>{
     // a category fetch failed (offline, or a bad/missing file) — show a calm recoverable state, never a silent hang
     const r=document.getElementById('results');
-    if(r)r.innerHTML='<div class="onboard" style="border-color:var(--warn)"><b>Couldn’t load '+esc(cat.label||cat.id)+' just now.</b> Check your connection and try again, the rest of the commons still works, and nothing you’ve saved is affected.</div>';
+    if(r)r.innerHTML='<div class="onboard" style="border-color:var(--warn)"><b>Couldn’t load '+esc(cat.label||cat.id)+'.</b> Check your connection and try again. Saved preferences and lists remain on this device.</div>';
     const a=document.getElementById('attr');if(a)a.textContent='';
     const c=document.getElementById('count');if(c)c.textContent='';
     const e=document.getElementById('evcov');if(e)e.textContent='';
@@ -1660,12 +1799,37 @@ const HOME_SPOTLIGHTS=[
   {cid:'causes-to-support', q:"Where would a little giving do the most good?", s:"Sent well, a small amount goes a long way. Compare causes by transparency and the real-world good they do.", link:"Find a cause",
     proof:{intro:'Two you can back, and see exactly why',
            a:{cid:'causes-to-support',code:'givewell',band:'high',name:'GiveWell',tag:'Even publishes its own mistakes'},
-           b:{cid:'causes-to-support',code:'eff',band:'high',name:'EFF',tag:'Digital rights · open books since 1990'}}}
+           b:{cid:'causes-to-support',code:'eff',band:'high',name:'EFF',tag:'Digital rights &middot; open books since 1990'}}}
 ];
-function homeSpotlight(){
+function homeSpotlight(avoidCid){
   // Every spotlight now carries its own real, sourced proof pair, so a first-time visitor sees a concrete
   // verdict whichever one shows — which lets us rotate freely and NEVER lead with banking (Bentley's critique).
-  return HOME_SPOTLIGHTS[Math.floor(Math.random()*HOME_SPOTLIGHTS.length)];
+  const pool=HOME_SPOTLIGHTS.filter(x=>x.cid!==avoidCid);
+  const from=pool.length?pool:HOME_SPOTLIGHTS;   // one spotlight left in the file is still an answer
+  return from[Math.floor(Math.random()*from.length)];
+}
+// The wedge redraws itself rather than the page, so asking for another question keeps your scroll
+// position, the map you were pointing at, and anything typed in the search field.
+function spotlightHTML(sp){
+  return `<div class="home-question-head">
+      <h2 class="wedge-q">${esc(sp.q)}</h2>
+      <button type="button" class="wedge-again" id="wedge-again" title="Ask a different question" aria-label="Ask a different question">${CC.icon('refresh')||'&#8635;'}</button>
+    </div>
+    <p class="wedge-s">${esc(sp.s)}</p>
+    <div class="proof-intro">${esc((sp.proof&&sp.proof.intro)||'Two real options. Sources open.')}</div>
+    <div class="proof">${proofCard(sp.proof.a)}${proofCard(sp.proof.b)}</div>
+    <a class="home-question-link" href="#explore/${sp.cid}">${esc(sp.link)} &rarr;</a>`;
+}
+function wireSpotlight(sp){
+  const box=document.getElementById('home-question');if(!box)return;
+  box.dataset.cid=sp.cid;
+  const btn=document.getElementById('wedge-again');if(!btn)return;
+  btn.onclick=()=>{
+    const next=homeSpotlight(box.dataset.cid);
+    box.innerHTML=spotlightHTML(next);
+    wireSpotlight(next);
+    const q=box.querySelector('.wedge-q');if(q){q.setAttribute('tabindex','-1');q.focus({preventScroll:true});}
+  };
 }
 // One proof card: a real entry that genuinely scores in its band, linking through to the sourced verdict.
 function proofCard(c){return `<a class="proofcard ${c.band}" href="#card/${c.cid}/${encodeURIComponent(c.code)}"><span class="proof-name">${esc(c.name)}</span><span class="proof-tag">${esc(c.tag)}</span><span class="proof-see">${esc(c.see||'open the sourced verdict')} &rarr;</span></a>`;}
@@ -1704,65 +1868,236 @@ function renderHomeDemo(ds,entries){
 function renderHome(){
   const v=document.getElementById('view-home');
   const sp=homeSpotlight();
-  const hasLines=decisionActivePersonalLines().length>0;
-  const quickIds=['banking','phones','ai-assistants','clothing','coffee'];
-  const quick=(CATALOG||[]).filter(c=>quickIds.includes(c.id)).sort((a,b)=>quickIds.indexOf(a.id)-quickIds.indexOf(b.id));
-  const quickHtml=quick.map(c=>`<a href="#explore/${c.id}">${esc(c.label)}</a>`).join('');
+  /* THE FRONT PAGE IS THE TOOL.
+     Two corrections in one day. It began as seventeen blocks and seven ways to start, with the
+     tool crammed into the right half under four hundred words of instructions. I replaced that
+     with a sentence and a list of every decision by name, which fixed the clutter and lost the
+     product: a hundred and fifteen links is a wall, and a wall is not something you use.
+
+     So the tool is the page now. No slogan above it, because a headline that argues with the
+     reader is taking room from the thing they came to use, and the argument is already made
+     everywhere else on the site. A field to type into, the plate of every decision, and the
+     measures that light it. Nothing else. */
+  const total=(CATALOG||[]).length;
+  const savedMapMode=homeMapState&&homeMapState.mode==='fisheye'?'fisheye':'spatial';
+  const savedMapHelp=savedMapMode==='fisheye'
+    ?'Move away from the centre to travel; move farther to go faster. The overview marks your position.'
+    :'Zoom from eight needs to areas, kinds, decisions, and evidence.';
   v.innerHTML=`
-    <section class="home-hero" aria-labelledby="home-title">
-      <div class="home-copy">
-        <p class="home-eyebrow">A private guide for everyday choices</p>
-        <h1 id="home-title" class="hero">Choose by your values,<br>not by who pays.</h1>
-        <p class="herosub">Compare products, banks, apps, and services using sourced facts and your own priorities. Nobody pays to rank, and your choices stay on this device.</p>
-        <form class="hsearch home-search home-lead-search" id="hsearch">
-          <label for="hq">Search a product, brand, bank, app or service</label>
-          <div class="home-search-row"><input type="search" id="hq" placeholder="${tr('home.search')}" autocomplete="off"><button type="submit">${tr('home.searchBtn')}</button></div>
-        </form>
-        <div class="home-quicklinks" aria-label="Popular categories"><span class="home-quicklinks-label">Start with</span>${quickHtml}</div>
-        <div class="home-actions"><a class="valuescta home-primary" href="#map">Make a choice <span aria-hidden="true">&rarr;</span></a><a class="home-secondary" href="#you">${hasLines?'Edit my rules':'Set a rule'}</a></div>
-        <div class="home-lines"><span>${hasLines?'Your rules are set. Add another only if you mean it.':'Start with no rules, or add one you will not bend.'}</span><div class="themechips" id="starterlines"></div></div>
-        <div class="home-facts" aria-label="What you can expect">
-          <span><b>No sponsors</b> in the ranking</span>
-          <span><b>Sources</b> beside the claims</span>
-          <span><b>No account</b> required</span>
+    <section class="home-nexus" aria-labelledby="home-title">
+      <div class="nexus-titlebar">
+        <div class="nexus-titlecopy">
+          <h1 id="home-title" class="nexus-h">Your Navigation Nexus</h1>
+          <p class="nexus-sub">Vote with your dollar, steward your attention, and subvert marketing with your values.</p>
         </div>
-      </div>
-      <div class="home-start">
-        <span class="home-card-kicker">While you shop</span>
-        <h2>Check a barcode</h2>
-        <p>Scan a product barcode. If it is in the open data, you will see the facts and sources while the package is still in your hand.</p>
-        <a class="home-scan" href="#scan"><span aria-hidden="true">${CC.icon('scan')}</span><span><b>Open the scanner</b><small>Works offline, on your device</small></span><span aria-hidden="true">&rarr;</span></a>
-        <p class="home-local">Search and scanning stay on this device. Nothing is uploaded.</p>
+        <a class="home-institute" href="https://futurisminstitute.org/" target="_blank" rel="noopener">
+          <svg class="home-institute-sun" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="7.5"/><line class="sun-ray" x1="30.50" y1="20.00" x2="38.00" y2="20.00"/><line class="sun-ray sun-ray--dotted" x1="30.14" y1="22.72" x2="34.49" y2="23.88"/><line class="sun-ray" x1="29.09" y1="25.25" x2="35.59" y2="29.00"/><line class="sun-ray sun-ray--dotted" x1="27.42" y1="27.42" x2="30.61" y2="30.61"/><line class="sun-ray" x1="25.25" y1="29.09" x2="29.00" y2="35.59"/><line class="sun-ray sun-ray--dotted" x1="22.72" y1="30.14" x2="23.88" y2="34.49"/><line class="sun-ray" x1="20.00" y1="30.50" x2="20.00" y2="38.00"/><line class="sun-ray sun-ray--dotted" x1="17.28" y1="30.14" x2="16.12" y2="34.49"/><line class="sun-ray" x1="14.75" y1="29.09" x2="11.00" y2="35.59"/><line class="sun-ray sun-ray--dotted" x1="12.58" y1="27.42" x2="9.39" y2="30.61"/><line class="sun-ray" x1="10.91" y1="25.25" x2="4.41" y2="29.00"/><line class="sun-ray sun-ray--dotted" x1="9.86" y1="22.72" x2="5.51" y2="23.88"/><line class="sun-ray" x1="9.50" y1="20.00" x2="2.00" y2="20.00"/><line class="sun-ray sun-ray--dotted" x1="9.86" y1="17.28" x2="5.51" y2="16.12"/><line class="sun-ray" x1="10.91" y1="14.75" x2="4.41" y2="11.00"/><line class="sun-ray sun-ray--dotted" x1="12.58" y1="12.58" x2="9.39" y2="9.39"/><line class="sun-ray" x1="14.75" y1="10.91" x2="11.00" y2="4.41"/><line class="sun-ray sun-ray--dotted" x1="17.28" y1="9.86" x2="16.12" y2="5.51"/><line class="sun-ray" x1="20.00" y1="9.50" x2="20.00" y2="2.00"/><line class="sun-ray sun-ray--dotted" x1="22.72" y1="9.86" x2="23.88" y2="5.51"/><line class="sun-ray" x1="25.25" y1="10.91" x2="29.00" y2="4.41"/><line class="sun-ray sun-ray--dotted" x1="27.42" y1="12.58" x2="30.61" y2="9.39"/><line class="sun-ray" x1="29.09" y1="14.75" x2="35.59" y2="11.00"/><line class="sun-ray sun-ray--dotted" x1="30.14" y1="17.28" x2="34.49" y2="16.12"/></svg>
+          <span class="home-institute-copy">
+            <small>An independent commons</small>
+            <strong>Futurism Institute</strong>
+          </span>
+        </a>
       </div>
     </section>
-    <section class="home-showcase" aria-label="See how Conscious Consuming works">
-      <details class="homedemo" id="homedemo" hidden>
-        <summary>Advanced: how a close tie changes</summary><div class="homedemo-body" aria-label="Live demo, three real phones re-rank as you tap an optional close-call priority">
-        <div class="hd-eyebrow">Try a tie-break without saving it</div>
-        <div class="hd-chips" id="hd-chips"></div>
-        <div class="hd-list" id="hd-list"></div>
-        <p class="hd-status" id="hd-status" aria-live="polite"></p>
-        <p class="hd-note">The baseline and your rules still come first. This preference matters only when two options tie. <a href="#explore/phones">Open phones &rarr;</a></p></div>
+    <ul class="nexus-row">
+        <li class="nexus-item">
+          <a class="nexus-head" href="../passport/index.html">Private</a>
+          <div class="nexus-panel"><div class="nexus-panel-in">
+            <p>There is no account and nothing is tracked. Your rules and saved lists are files on this device. The values file you can export holds weights and deal-breakers, and no name attached to them.</p>
+            <ul class="nexus-links">
+              <li><a href="../passport/index.html">What is stored, and what never leaves the device</a></li>
+              <li><a href="#guide/the-anti-app">Why there is no account and no feed</a></li>
+              <li><a href="#you">Set your own rules and deal-breakers</a></li>
+            </ul>
+          </div></div>
+        </li>
+        <li class="nexus-item">
+          <a class="nexus-head" href="../assembly/index.html">Democratic</a>
+          <div class="nexus-panel"><div class="nexus-panel-in">
+            <p>Anyone can propose a change, and every proposal names the record it would alter. Discussions stay public, including the ones that reach no agreement. The governance here is an experiment and is labelled as one.</p>
+            <ul class="nexus-links">
+              <li><a href="../assembly/index.html">The assembly, where proposals are discussed</a></li>
+              <li><a href="../workshop/index.html">Update an entry yourself, with a source</a></li>
+              <li><a href="#contribute">Open a correction or a question</a></li>
+            </ul>
+          </div></div>
+        </li>
+        <li class="nexus-item">
+          <a class="nexus-head" href="#guide/how-scores-work">Transparent</a>
+          <div class="nexus-panel"><div class="nexus-panel-in">
+            <p>Every fact shows its source and the date it was checked. Scores are computed from the weights you set. Corrections keep their history and thin evidence is labelled as thin. Nobody pays to be ranked.</p>
+            <ul class="nexus-links">
+              <li><a href="#guide/how-scores-work">How a score is built, step by step</a></li>
+              <li><a href="./c/">Every verdict in the open, with its sources</a></li>
+              <li><a href="../funders/index.html">Who pays for this work</a></li>
+            </ul>
+          </div></div>
+        </li>
+        <li class="nexus-item">
+          <a class="nexus-head" href="../index.html">Evolving</a>
+          <div class="nexus-panel"><div class="nexus-panel-in">
+            <p>A working draft, changed by what readers report. It belongs to the Futurism Institute, which builds civic instruments for an age of machine abundance, and the drafts here say they are drafts.</p>
+            <ul class="nexus-links">
+              <li><a href="https://futurisminstitute.org/" target="_blank" rel="noopener">What the Futurism Institute is for</a></li>
+              <li><a href="../index.html">The rest of the Values Commons</a></li>
+              <li><a href="#contribute">Tell us what is wrong here</a></li>
+            </ul>
+          </div></div>
+        </li>
+        <li class="nexus-item nexus-item--wide">
+          <a class="nexus-head nexus-lead" href="#map">Organize anything</a>
+          <div class="nexus-panel"><div class="nexus-panel-in">
+            <p>One common explorer for the things you buy, use, watch, support, join, and depend upon.</p>
+            <p class="nexus-types">Products &middot; Services &middot; Media &middot; Organizations &middot; Initiatives</p>
+            <p>Sixteen realms, eighty-five fields, more than a thousand decisions, each with an id that stays put.</p>
+            <ul class="nexus-links">
+              <li><a href="#map">Open the explorer</a></li>
+              <li><a href="../standard/index.html">How the index works, and why the ids stay put</a></li>
+              <li><a href="./c/">The five kinds of thing, one at a time</a></li>
+            </ul>
+          </div></div>
+        </li>
+      </ul>
+    <section class="home-tool" aria-label="Search and browse decisions">
+      <form class="hsearch home-search" id="hsearch">
+        <label for="hq">What are you choosing?</label>
+        <div class="home-search-row"><input type="search" id="hq" placeholder="${tr('home.search')}" autocomplete="off"><button type="submit" class="valuescta">${tr('home.searchBtn')}</button></div>
+      </form>
+      <div class="homelens-modes">
+        <span class="homelens-mode-label">Map view</span>
+        <div class="homelens-mode-switch" role="group" aria-label="Choose how to navigate the map">
+          <button type="button" data-map-mode="spatial" aria-pressed="${savedMapMode==='spatial'}">Spatial</button>
+          <button type="button" data-map-mode="fisheye" aria-pressed="${savedMapMode==='fisheye'}">Fisheye</button>
+        </div>
+        <p id="homelens-mode-help">${savedMapHelp}</p>
+      </div>
+      <div class="homelens-trail">
+        <span aria-hidden="true">You are here</span>
+        <nav class="homelens-trail-path" id="homelens-trail-path" aria-label="Current map location"><span aria-current="location">All needs / areas</span></nav>
+        <small id="homelens-trail-hint">Choose an area to see the kinds inside.</small>
+      </div>
+      <div class="homelens-viewbar">
+        <span class="homelens-view-label">View</span>
+        <div class="homelens-viewsteps" id="homelens-viewsteps" role="group" aria-label="Choose map depth"></div>
+        <button type="button" class="homelens-reset" id="homelens-reset">Start over</button>
+      </div>
+      <div class="homelens" id="homelens" style="width:100%;max-width:1040px;height:min(660px,66vh,120vw);margin:0 auto .6rem" aria-label="Browse the catalogue map. Spatial shows built decisions; Fisheye opens the whole named map and scrolls through its categorical depth."></div>
+      <div class="homelens-lensbar" id="homelens-lenses" role="group" aria-label="Light a measure across the map"></div>
+      <p class="homelens-cap" id="homelens-cap">${total} decisions with answers, of those built so far.</p>
+      <details class="homelens-about">
+        <summary>How this map decides what gets space</summary>
+        <p>Colour identifies the need. In Spatial, cell size combines the stakes of a decision with the difference between its choices. Fisheye loads the whole named map only when opened: domains are sized by how many decisions they hold and shaded by how many have answers. Scroll moves through domains, needs, fields, families, decisions, and evidence. Open, held, and refused decisions remain visible but do not pretend to have routes. The selected view and location stay on this device.</p>
       </details>
-      <article class="home-question">
-        <span class="wedge-eyebrow">A real trade-off</span>
-        <h2 class="wedge-q">${sp.q}</h2>
-        <p class="wedge-s">${sp.s}</p>
-        <div class="proof-intro">${esc((sp.proof&&sp.proof.intro)||'Two real options. Sources open.')}</div>
-        <div class="proof">${proofCard(sp.proof.a)}${proofCard(sp.proof.b)}</div>
-        <a class="home-question-link" href="#explore/${sp.cid}">${sp.link} &rarr;</a>
-      </article>
     </section>
-    <section class="home-promises" aria-label="The Conscious Consuming promise">
-      <div class="home-promise"><b>Claims come with sources</b><span>Open the evidence behind a claim and see when it was checked.</span></div>
-      <div class="home-promise"><b>Rules filter before scores</b><span>Your rules decide what stays. Your choices rank what remains.</span></div>
-      <div class="home-promise"><b>Your data stays yours</b><span>No account, ads, or tracking. Your rules and saved choices stay local.</span></div>
-    </section>
-    <p class="contribute"><a href="#you">My rules and Advanced</a> &middot; <a href="#guide/vote-with-your-money">Read the two-minute primer</a> &middot; <a href="./c/index.html">See every verdict in the open &rarr;</a> &middot; <a href="#contribute">Suggest a category</a></p>`;
+    <article class="home-question" id="home-question">${spotlightHTML(sp)}</article>
+    <p class="contribute"><a href="#map">Browse by need</a> &middot; <a href="#you">My rules</a> &middot; <a href="#guide/vote-with-your-money">The two-minute primer</a> &middot; <a href="./c/">All verdicts and sources</a> &middot; <a href="#contribute">Suggest a decision</a></p>`;
+  wireSpotlight(sp);
   document.getElementById('hsearch').onsubmit=(e)=>{e.preventDefault();goSearch((document.getElementById('hq').value||'').trim());};
   wireSuggest(document.getElementById('hq'));
-  renderStarterLines();
-  initHomeDemo();
+  if(CC.homeLens)CC.homeLens.mount('homelens',function(){return CATALOG;});
+  (function mapModes(){
+    const buttons=[...document.querySelectorAll('[data-map-mode]')];
+    const help=document.getElementById('homelens-mode-help');
+    const path=document.getElementById('homelens-trail-path');
+    const hint=document.getElementById('homelens-trail-hint');
+    const viewsteps=document.getElementById('homelens-viewsteps');
+    const reset=document.getElementById('homelens-reset');
+    const cap=document.getElementById('homelens-cap');
+    const mapBox=document.getElementById('homelens');
+    const copy={
+      spatial:'Zoom from eight needs to areas, kinds, decisions, and evidence.',
+      fisheye:'Scroll from domains through needs, fields, families, decisions, and evidence. Move away from centre to travel.'
+    };
+    if(CC.homeLens&&CC.homeLens.restore&&homeMapState)CC.homeLens.restore(homeMapState);
+    buttons.forEach(button=>button.onclick=()=>{
+      const mode=button.dataset.mapMode;
+      if(!CC.homeLens||!CC.homeLens.setMode)return;
+      CC.homeLens.setMode(mode);
+    });
+    let crumbSignature='',scaleSignature='';
+    const titleCase=value=>String(value||'').replace(/^./,letter=>letter.toUpperCase());
+    const renderScale=detail=>{
+      if(!viewsteps)return;
+      const labels=(detail.scale||[]).filter(Boolean);
+      const signature=detail.mode+'|'+labels.join('|');
+      if(scaleSignature!==signature){
+        scaleSignature=signature;
+        viewsteps.innerHTML=labels.map((label,index)=>`<button type="button" data-map-view="${index}" aria-pressed="false">${esc(titleCase(label))}</button>`).join('');
+        viewsteps.querySelectorAll('[data-map-view]').forEach(button=>button.onclick=()=>{
+          if(CC.homeLens&&CC.homeLens.setView)CC.homeLens.setView(Number(button.dataset.mapView));
+        });
+      }
+      viewsteps.querySelectorAll('[data-map-view]').forEach(button=>button.setAttribute('aria-pressed',String(Number(button.dataset.mapView)===Number(detail.at))));
+      viewsteps.setAttribute('aria-label',detail.mode==='fisheye'?'Choose categorical depth':'Choose spatial depth');
+    };
+    const renderCrumbs=detail=>{
+      if(!path)return;
+      const crumbs=(detail.crumbs||[]).filter(crumb=>crumb&&crumb.label)
+        .filter((crumb,index,all)=>!index||crumb.label!==all[index-1].label);
+      const signature=crumbs.map(crumb=>crumb.label+'|'+crumb.level+'|'+!!crumb.current).join('>');
+      if(signature===crumbSignature)return;
+      crumbSignature=signature;
+      path.innerHTML=crumbs.map((crumb,index)=>{
+        const last=crumb.current||index===crumbs.length-1;
+        const label=esc(crumb.label);
+        const part=last?`<span aria-current="location">${label}</span>`:`<button type="button" data-map-crumb="${Number(crumb.level)||0}">${label}</button>`;
+        return (index?'<span class="homelens-trail-sep" aria-hidden="true">/</span>':'')+part;
+      }).join('');
+      path.querySelectorAll('[data-map-crumb]').forEach(button=>button.onclick=()=>{
+        if(CC.homeLens&&CC.homeLens.showLevel)CC.homeLens.showLevel(Number(button.dataset.mapCrumb));
+      });
+    };
+    const applyContext=detail=>{
+      if(!detail)return;
+      buttons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.mapMode===detail.mode)));
+      if(help)help.textContent=copy[detail.mode]||copy.spatial;
+      renderScale(detail);
+      renderCrumbs(detail);
+      if(hint)hint.textContent=detail.hint||'';
+      if(cap){
+        /* A readout, not a caption. The claims that used to live here (sources attached, no paid
+           placement, settings local) are made by the Transparent and Private cards two inches
+           above, and saying them twice on one screen makes both weaker. */
+        const here=detail.here;
+        const place=(detail.crumbs||[]).filter(c=>c&&c.label).slice(-1)[0];
+        const where=place?place.label:'The whole map';
+        if(here&&here.exact){
+          cap.textContent=`${where}. ${here.built} of ${here.named} decision${here.named===1?'':'s'} here have a sourced answer.`;
+        }else if(here){
+          cap.textContent=`${where}. ${here.built} decision${here.built===1?'':'s'} with answers, of those built so far.`;
+        }else if(mapBox&&mapBox.dataset.mapDecisions){
+          cap.textContent=`${mapBox.dataset.mapDecisions} decisions named, ${mapBox.dataset.mapBuilt||0} with answers.`;
+        }else cap.textContent=`${total} decisions have answers.`;
+      }
+      if(window._ccHomeLensSaveTimer)clearTimeout(window._ccHomeLensSaveTimer);
+      window._ccHomeLensSaveTimer=setTimeout(()=>{
+        if(CC.homeLens&&CC.homeLens.state)saveHomeMapState(CC.homeLens.state());
+      },160);
+    };
+    if(window._ccHomeLensContext)window.removeEventListener('cc:homelens-context',window._ccHomeLensContext);
+    window._ccHomeLensContext=event=>applyContext(event.detail);
+    window.addEventListener('cc:homelens-context',window._ccHomeLensContext);
+    if(reset)reset.onclick=()=>{if(CC.homeLens&&CC.homeLens.reset)CC.homeLens.reset();};
+    if(CC.homeLens&&CC.homeLens.context)applyContext(CC.homeLens.context());
+  })();
+  /* The lens measures its container at mount, and on the front page it mounts while the view is
+     still being laid out, so it sized itself to the canvas default of 300 by 150 and stayed there.
+     One resize after layout settles it. Cheap, and the alternative is teaching the lens to observe
+     its own box, which is a bigger change than this page needs today. */
+  requestAnimationFrame(()=>setTimeout(()=>window.dispatchEvent(new Event('resize')),50));
+  (function lensbar(tries){
+    const bar=document.getElementById('homelens-lenses');
+    if(!bar)return;
+    if(!CC.homeLens||!CC.homeLens.lenses){ if((tries||0)<40)setTimeout(()=>lensbar((tries||0)+1),300); return; }
+    const defs=CC.homeLens.lenses();
+    bar.innerHTML=defs.map(d=>`<button type="button" data-lens="${d.id}" aria-pressed="false">${d.label} <small>${d.count}</small></button>`).join('');
+    bar.querySelectorAll('button[data-lens]').forEach(b=>b.onclick=()=>{
+      const on=b.getAttribute('aria-pressed')==='true';
+      bar.querySelectorAll('button[data-lens]').forEach(x=>x.setAttribute('aria-pressed','false'));
+      if(on){CC.homeLens.setLens(null);}
+      else{b.setAttribute('aria-pressed','true');CC.homeLens.setLens(b.dataset.lens);}
+    });
+  })();
 }
 // The starter lines on home — draw your first line in one tap, right at the front door (Move 1).
 const STARTERS=[{kind:'diet',label:'Vegetarian'},{kind:'diet',label:'Vegan'},{kind:'avoid',id:'avoid:nestle',label:'Avoid Nestlé'},{kind:'req',label:'Open source'}];
@@ -1975,7 +2310,7 @@ function needExtensionHTML(need){
 function renderNeed(arg){
   const v=document.getElementById('view-need');if(!v)return;
   const id=decodeURIComponent(arg||''), need=needById(id);
-  if(!need){location.hash='map';return;}
+  if(!need){hopTo('#map');return;}
   const cats=(CATALOG||[]).filter(c=>c.need===id);
   const cards=cats.map(c=>`<a class="need-cat" href="#explore/${encodeURIComponent(c.id)}"><span class="need-cat-name">${esc(c.label)}</span><span class="need-cat-matters">${esc(categoryMatterLine(c))}</span></a>`).join('');
   const ont=window.CC_BUNDLE&&window.CC_BUNDLE.ontology, liveIds=new Set(cats.map(c=>c.id)), seen=new Set(), growing=[];
@@ -2006,13 +2341,29 @@ function decisionSaveDials(){try{localStorage.setItem(DECISION_DIAL_KEY,JSON.str
 function decisionSaveFloor(){try{localStorage.setItem(DECISION_FLOOR_KEY,JSON.stringify(decisionFloorState));}catch(e){}}
 function decisionSaveList(contract,query){
   const pool=decisionCandidatePool(contract,query), result=decisionRecipes(contract,pool,decisionDialValues(contract));
+  /* The saved list has to be the list on screen. Until 2026-07-31 it was rebuilt from the slider
+     apparatus, so a reader who weighed low fees most, watched Nationwide take the lead, and saved
+     it, got a file that said Triodos. The artifact contradicted the page, and the thing it dropped
+     was exactly the weighting that made the ranking theirs rather than ours. The table is the
+     ranking now, so the table is what gets saved, and the emphasis is saved beside it. */
+  const cid=contract.category, st=decisionTableState[cid];
+  let choices=result.ranked.slice(0,12).map(row=>({code:row.product.code,name:row.product.name,score:Math.round(row.score.score)}));
+  let weighedMost=[];
+  if(st){
+    const rows=decisionTableRows(cid,contract,pool);
+    if(rows.length){
+      choices=rows.slice(0,12).map(r=>({code:r.p.code,name:r.p.name,score:Math.round(r.s.score)}));
+      weighedMost=(st.emph||[]).map(k=>decisionCriterionName(k));
+    }
+  }
   const receipt={
     format:'cc-saved-decision-v1',
     category:contract.category,
     label:DATA&&DATA.meta&&DATA.meta.label||contract.category,
     route:location.hash||('#decide/'+contract.category),
     saved:new Date().toISOString(),
-    choices:result.ranked.slice(0,12).map(row=>({code:row.product.code,name:row.product.name,score:Math.round(row.score.score)})),
+    choices:choices,
+    weighedMost:weighedMost,
     dials:decisionDialValues(contract),
     baselineFolded:pool.floorFolded.length,
     personalRules:(pool.personalApplied||[]).slice()
@@ -2129,7 +2480,7 @@ function decisionAnswerCardHTML(group,contract,pool){
 }
 function decisionNextHTML(contract){
   const guide=CAT_GUIDE[contract.category], hasGuide=!!(guide&&(window.CC_GUIDES||[]).some(item=>item.slug===guide));
-  return `<section class="decision-next" aria-labelledby="decision-next-title"><div><div class="decision-kicker">Keep going, if useful</div><h2 id="decision-next-title">Read, challenge, or correct the answer</h2><p>The shortlist is a starting point. Every score stays inspectable and contestable.</p></div><nav class="decision-review-links" aria-label="Decision evidence and follow-up">${hasGuide?`<a href="#guide/${encodeURIComponent(guide)}">Read the category guide</a>`:''}<button type="button" id="decision-challenge-jump">Challenge this view</button><a href="#guide/how-scores-work">How the facts are scored</a><a href="#contribute/problem/${encodeURIComponent(contract.category)}">Suggest a sourced correction</a></nav><div id="decision-challenge" class="challengebox decision-challenge" data-cid="${esc(contract.category)}" tabindex="-1"></div></section>`;
+  return `<section class="decision-next" aria-labelledby="decision-next-title"><div><div class="decision-kicker">Check this result</div><h2 id="decision-next-title">Sources, objections, and corrections</h2><p>Open a score to see its source. Challenge the comparison or suggest a correction when a fact is wrong or missing.</p></div><nav class="decision-review-links" aria-label="Decision evidence and follow-up">${hasGuide?`<a href="#guide/${encodeURIComponent(guide)}">Read the category guide</a>`:''}<button type="button" id="decision-challenge-jump">Challenge this view</button><a href="#guide/how-scores-work">How the facts are scored</a><a href="#contribute/problem/${encodeURIComponent(contract.category)}">Suggest a sourced correction</a></nav><div id="decision-challenge" class="challengebox decision-challenge" data-cid="${esc(contract.category)}" tabindex="-1"></div></section>`;
 }
 function decisionFloorScopeLabel(rule){
   return ((rule.scope&&rule.scope.categories)||[]).map(cid=>categoryIndexMeta(cid).label||String(cid).replace(/-/g,' ')).join(', ');
@@ -2163,7 +2514,7 @@ function decisionLineContextHTML(pool,listHref,contract){
   const ordered=allRules.slice().sort((a,b)=>Number(!((a.scope&&a.scope.categories)||[]).includes(contract.category))-Number(!((b.scope&&b.scope.categories)||[]).includes(contract.category)));
   const floorBody=`<div class="decision-floor-door"><div class="decision-floor-intro"><div><b>${esc((set&&set.label)||'The baseline')}</b><span>${set?`Version ${esc(set.version)} &middot; published ${esc(set.published)}`:'Not published'}</span></div><p>${esc(context)} The baseline only folds a Poor-band claim when that exact claim has a source and date.</p>${disabled?`<button type="button" class="savebtn" id="decision-floor-restore">Restore all ${allRules.length} rules</button>`:''}</div><div class="decision-floor-rules">${ordered.map(rule=>decisionFloorRuleHTML(rule,pool,contract)).join('')}</div><p class="decision-floor-local">Loosening changes this device only. The published set stays intact and can be forked under ${esc((set&&set.fork&&set.fork.license)||'its published license')}. <a href="${esc(listHref)}">Open the full ranking</a>.</p></div>`;
   const personalStatus=personal.length?`${personal.length} active${pool.personalHidden?` &middot; ${pool.personalHidden} filtered`:''}`:'none set';
-  const personalBody=`<div class="decision-personal-door"><div class="decision-personal-intro"><div><b>My rules</b><span>Saved on this device and carried in your file</span></div><p>${personal.length?'A rule acts only where this category carries the fact it needs. The count on each rule is calculated after the baseline, so the same option is never counted twice.':'Add only the few things you genuinely refuse or require. No identity quiz is needed.'}</p><a class="savebtn" href="#you">${personal.length?'Set or edit rules':'Set a rule'}</a></div>${personal.length?`<div class="decision-personal-rules">${personal.map(decisionPersonalReceiptHTML).join('')}</div>`:'<p class="decision-personal-empty">No personal rule is filtering this decision. The baseline and the named choices below still produce an answer.</p>'}</div>`;
+  const personalBody=`<div class="decision-personal-door"><div class="decision-personal-intro"><div><b>My rules</b><span>Saved on this device and included in an exported file</span></div><p>${personal.length?'A rule acts only where this category carries the fact it needs. The count on each rule is calculated after the baseline, so the same option is never counted twice.':'Add only the few things you refuse or require. You do not need to create a profile.'}</p><a class="savebtn" href="#you">${personal.length?'Set or edit rules':'Set a rule'}</a></div>${personal.length?`<div class="decision-personal-rules">${personal.map(decisionPersonalReceiptHTML).join('')}</div>`:'<p class="decision-personal-empty">No personal rule is filtering this decision. The baseline and the named choices below still produce an answer.</p>'}</div>`;
   return `<div class="decision-context" aria-label="Decision context">
     <details class="decision-floor"><summary><span>The baseline</span><strong>${status}</strong></summary>${floorBody}</details>
     <details class="decision-personal"><summary><span class="decision-personal-summary"><b>My rules</b><span class="decision-personal-chips">${chips}</span></span><strong>${personalStatus}</strong></summary>${personalBody}</details>
@@ -2229,7 +2580,7 @@ function decisionBudgetNote(contract){
    One control, one answer. The screen is also required to state its own limits: where the values
    pole of the slider is mostly nutrition data (the auto-derived open-food lenses score Nutri-Score
    axes, not sourcing), or where moving the slider cannot change the answer at all, it says so in
-   plain words rather than letting a number imply a values verdict the evidence does not support. */
+   plain words rather than letting a number imply an overall judgment the evidence does not support. */
 
 /* Criterion keys that measure nutrition rather than sourcing or conduct. Used only to describe
    honestly what the values pole of a slider actually weighs — never to score or filter. */
@@ -2321,14 +2672,14 @@ function decisionLimitHTML(contract,pool,axis){
   const read=decisionValuesSideRead(axis), poles=decisionAxisPoles(axis), out=[];
   if(read.nutritionLed){
     const nutrition=read.nutrition.map(decisionCriterionName), values=read.values.map(decisionCriterionName);
-    out.push(`<details class="decision-limit"><summary><span>What &ldquo;${esc(poles[1])}&rdquo; measures here &mdash; and what it doesn&rsquo;t</span><strong>read this first</strong></summary>
+    out.push(`<details class="decision-limit"><summary><span>What &ldquo;${esc(poles[1])}&rdquo; measures here</span><strong>read before comparing</strong></summary>
       <p>This comparison uses open food data. That side is driven mostly by nutrition (${esc(nutrition.join(', '))})${values.length?`, with ${esc(values.join(', '))} as the non-nutrition evidence`:''}.</p>
       <p><b>Organic, fair trade, packaging, and farmer pay are not scored here yet.</b> Read this as a nutrition-led comparison, not a sourcing verdict.</p>
       <p><a href="#contribute/problem/${encodeURIComponent(contract.category)}">Suggest a sourced correction &rarr;</a></p></details>`);
   }
   const ends=decisionSliderEnds(contract,pool,axis);
   if(ends&&!ends.moves&&pool.entries.length>1){
-    out.push(`<p class="decision-limit-flat"><b>Moving this slider doesn&rsquo;t change the answer here.</b> ${esc(ends.cheap.name)} leads wherever you put it${read.nutritionLed?', and the values side is mostly nutrition data &mdash; see above.':' &mdash; it is both the cheaper option and the strongest on the values measured here.'}</p>`);
+    out.push(`<p class="decision-limit-flat"><b>Moving this slider doesn&rsquo;t change the answer here.</b> ${esc(ends.cheap.name)} leads wherever you put it${read.nutritionLed?', and the values side is mostly nutrition data. See above.':'. It is both the cheaper option and the strongest on the values measured here.'}</p>`);
   }
   return out.join('');
 }
@@ -2396,7 +2747,14 @@ function renderDecisionAnswers(cid,query){
     box.innerHTML='<div class="onboard"><b>No answer clears the baseline and your rules.</b> Loosen a rule, widen the search, or open the folded options below. Nothing was guessed to fill the gap.</div>'+decisionQuietDoorsHTML(pool,contract,query,result);
     restore();return;
   }
-  box.innerHTML=decisionOneAnswerHTML(result.groups[0],contract,pool)+decisionLimitHTML(contract,pool,axis)+decisionQuietDoorsHTML(pool,contract,query,result);
+  /* The "Your answer" card is retired here. It was computed from the sliders while the table above
+     was computed from the reader's weights, so weighing low fees put Nationwide at the top of the
+     table and left a card underneath still calling Triodos your answer. Two answers on one page,
+     and the stale one wore the label. The table is the answer, every row of it opens its working,
+     and the phase brief already settled that. What stays is what the table does not do: the limit
+     on what the data can see, and the doors onward. The full ranked list stays too, folded, because
+     the shared shell's generality receipt pins it for the other instances. */
+  box.innerHTML=decisionLimitHTML(contract,pool,axis)+decisionQuietDoorsHTML(pool,contract,query,result);
   const list=document.getElementById('decision-ranked-list');
   if(list){for(const row of result.ranked.slice(0,40))list.appendChild(listCard(row.product,row.score));if(result.ranked.length>40)list.appendChild(el('p',{class:'decision-ranked-note'},`Showing the first 40 of ${result.ranked.length} ranked options.`));}
   restore();
@@ -2418,6 +2776,23 @@ function decisionEntryLine(p){
   if(!out){const prov=p.provenance||{};
     for(const k in prov){const n=prov[k]&&prov[k].note;if(n&&n.length>out.length&&n.length<=150)out=n;}}
   out=String(out).replace(/\s+[\u2014\u2013]\s+/g,'; ');
+  /* 20,718 of 23,689 descriptions end in one of two identical clauses naming the upstream data
+     set. Identical on every row of a category, it says nothing a reader can choose between, and
+     it eats the line so the part that does distinguish, the brand, gets truncated away. The
+     sourcing is not lost: every score opens its own working with the real source and date, and
+     on the nutrition-led categories the caveat above the table names the data set outright. */
+  const trimmed=out.replace(/,?\s*scored from Open (?:Food|Beauty) Facts[^.]*\.?/ig,'').trim().replace(/[,;:]$/,'');
+  // The guard only exists to stop a description that is nothing but the clause from becoming an
+  // empty line. It was set at 24 and threw away "Deca Aqua from Malongo" at 22 characters, which
+  // left one row still carrying the boilerplate everything else had lost.
+  if(trimmed.length>=3)out=trimmed;
+  // What is left on those rows opens by repeating the name already set in bold directly above it,
+  // so the only new word is the brand. Say the brand.
+  const nm=(p.name||'').trim();
+  if(nm&&out.toLowerCase().indexOf(nm.toLowerCase())===0){
+    const rest=out.slice(nm.length).replace(/^[\s,;:.–—-]+/,'').replace(/^from\s+/i,'').trim();
+    if(rest.length>=1)out=rest; // "U" is a real French grocery brand; one letter is still a brand
+  }
   if(out.length>140){const cut=out.lastIndexOf(' ',137);out=out.slice(0,cut>80?cut:137).replace(/[,;:]$/,'')+'\u2026';}
   return out;}
 function decisionTableRows(cid,contract,pool){
@@ -2434,7 +2809,12 @@ function decisionTableRows(cid,contract,pool){
   return rows;}
 function decisionTableSentence(cid,contract,pool){
   const st=decisionTableState[cid]||{emph:[]};
-  if(!st.emph||!st.emph.length)return '';
+  // The resting sentence is the point of the whole page. Until 2026-07-31 this returned nothing
+  // until a weight had already been raised, so the one control that makes this list yours rather
+  // than ours explained itself only to readers who had already found it. Measured on the live
+  // site: the mark sat at y=457 and its only explanation at y=1912, below the whole table, with
+  // nothing but a title tooltip that no touch device fires.
+  if(!st.emph||!st.emph.length)return 'Every measure weighs the same here. Tap ○ on any column to weigh it most, and the list re-ranks.';
   const flat={};for(const c of (DATA.criteria||[]))flat[c.key]=1;
   const balanced=pool.entries.map(p=>({p:p,s:CC.engine.score(p,{criteria:DATA.criteria,weights:flat,excludes:new Set()})})).filter(r=>r.s).sort((a,b)=>b.s.score-a.s.score);
   const now=decisionTableRows(cid,contract,pool).slice().sort((a,b)=>b.s.score-a.s.score);
@@ -2462,32 +2842,95 @@ function decisionDerivationHTML(p,weights){
     +'<div class="dtx-tot">Weighted result '+(sw?Math.round(acc/sw):'0')+' / 100'
     +(ps.factCount?' \u00b7 '+ps.factCount+' sourced facts':'')
     +(ps.sourceDomainCount?' \u00b7 '+ps.sourceDomainCount+' independent source domain'+(ps.sourceDomainCount===1?'':'s'):'')+'</div></div>';}
+/* THE SHAPE OF THE CHOICE. A 291 row table is not a decision, it is a filing cabinet, and the
+   honest cut is not "the first twelve" but "the ones that could ever win". An option beaten by
+   some other option on every single measure can never come first under any weighting a reader
+   might choose, so it cannot be the answer to their question. Missing facts are skipped rather
+   than counted as zero, which is the same refusal to guess the rest of the page makes, and it
+   means an option with thin data stays in the running rather than being quietly eliminated. */
+function decisionTableFrontier(rows,crits){
+  const keys=crits.map(c=>c.key);
+  const vec=r=>keys.map(k=>r.p.scores?r.p.scores[k]:null);
+  const cache=rows.map(r=>({r:r,v:vec(r)}));
+  const beats=(a,b)=>{let strict=false;
+    for(let i=0;i<keys.length;i++){const x=a.v[i],y=b.v[i];
+      if(x==null||y==null)continue;
+      if(x<y)return false;
+      if(x>y)strict=true;}
+    return strict;};
+  const keep=new Set();
+  for(const b of cache){if(!cache.some(a=>a!==b&&beats(a,b)))keep.add(b.r.p.code);}
+  return keep;}
+function decisionTableShapeSentence(total,front,shown){
+  if(total<=shown)return '';
+  const dominated=total-front;
+  let out='Showing '+shown+' of '+total+'. ';
+  out+=front+' of them can come first depending on what you weigh';
+  if(dominated>0)out+='; the other '+dominated+' are beaten by one of those on every measure';
+  return out+'.';}
 function decisionTableHTML(cid,contract,pool){
-  const st=decisionTableState[cid]=decisionTableState[cid]||{emph:[],sort:'score',dir:-1,open:null};
+  const st=decisionTableState[cid]=decisionTableState[cid]||{emph:[],sort:'score',dir:-1,open:null,show:'top'};
   const crits=decisionTableCrits(contract);
-  const rows=decisionTableRows(cid,contract,pool);
+  const allRows=decisionTableRows(cid,contract,pool);
+  // A list only needs cutting when it is a wall. Banking's 19 rows read fine whole; coffee's 276
+  // do not, and truncating both would be carrying a fix forward on the strength of it having
+  // worked somewhere else. Measured per category, which is the rule.
+  const TOP=12, WALL=26;
+  const frontier=decisionTableFrontier(allRows,decisionTableCrits(contract));
+  const rows=allRows.length<WALL?allRows
+    :st.show==='all'?allRows
+    :st.show==='frontier'?allRows.filter(r=>frontier.has(r.p.code))
+    :allRows.slice(0,TOP);
   const weights=decisionTableWeights(cid);
   const best={};for(const c of crits){let m=-1;for(const r of rows){const v=r.p.scores?r.p.scores[c.key]:null;if(v!=null&&v>m)m=v;}best[c.key]=m;}
   const sent=decisionTableSentence(cid,contract,pool);
   const arrow=k=>st.sort===k?(st.dir<0?' \u2193':' \u2191'):'';
   let h='<div class="dtable-wrap">';
   if(sent)h+='<p class="dtable-sent" aria-live="polite">'+esc(sent)+'</p>';
-  h+='<div class="dtable-scroll"><table class="dtable"><thead><tr><th class="dt-name">'+rows.length+' compared</th>';
+  /* The app has always known when a category's values side is really nutrition data. It said so
+     inside a collapsed disclosure, which then ended up nested inside the collapsed controls when
+     those moved below the table, so the caveat sat two clicks and a screen away from the ranking
+     it qualifies. On coffee that ranking recommends instant coffee because processing scores well.
+     A limit that a reader has to go looking for is not a disclosure. It goes above the table. */
+  // Test the columns the reader is actually looking at, not the contract axis. The axis read is
+  // about one slider; the table is the whole answer, and on coffee its columns are processing,
+  // protein and low sugar. If most of what is on screen is nutrition, the page says so on screen.
+  const nutCols=crits.filter(c=>DECISION_NUTRITION_KEYS.has(c.key));
+  if(nutCols.length&&nutCols.length>=crits.length/2){
+    const nut=nutCols.map(c=>decisionCriterionLabel(c)).join(', ');
+    h+='<p class="dtable-caveat">Scored from open food data, so most of what is compared here is nutrition ('
+      +esc(nut)+'). Organic, fair trade, packaging and farmer pay are not scored yet. Read this as a nutrition comparison, not a sourcing verdict.</p>';
+  }
+  h+='<div class="dtable-scroll"><table class="dtable"><thead><tr><th class="dt-name">'+allRows.length+' compared</th>';
   for(const c of crits){const on=st.emph.indexOf(c.key)>=0;
     h+='<th class="dt-c"><button type="button" class="dt-sort" data-sort="'+esc(c.key)+'">'+esc(decisionCriterionLabel(c))+arrow(c.key)+'</button>'
-      +'<button type="button" class="dt-w'+(on?' on':'')+'" data-emph="'+esc(c.key)+'" aria-pressed="'+on+'" title="Weigh this most">'+(on?'\u25cf':'\u25cb')+'</button></th>';}
+      +'<button type="button" class="dt-w'+(on?' on':'')+'" data-emph="'+esc(c.key)+'" aria-pressed="'+on+'" aria-label="Weigh '+esc(decisionCriterionLabel(c))+' most" title="Weigh '+esc(decisionCriterionLabel(c))+' most">'+(on?'\u25cf':'\u25cb')+'</button></th>';}
   h+='<th class="dt-s"><button type="button" class="dt-sort" data-sort="score">For you'+arrow('score')+'</button></th></tr></thead><tbody>';
   for(const r of rows){
     const line=decisionEntryLine(r.p);
     h+='<tr class="dt-row"><td class="dt-name"><a href="#item/'+encodeURIComponent(cid)+'/'+encodeURIComponent(r.p.code)+'">'+esc(r.p.name)+'</a>'
       +(line?'<span class="dt-line">'+esc(line)+'</span>':'')+'</td>';
     for(const c of crits){const v=r.p.scores?r.p.scores[c.key]:null;
-      h+= v==null?'<td class="dt-c dt-null">&mdash;</td>'
+      h+= v==null?'<td class="dt-c dt-null">&ndash;</td>'
         :'<td class="dt-c'+(v===best[c.key]?' dt-best':'')+(st.emph.indexOf(c.key)>=0?' dt-emph':'')+'" style="--w:'+v+'%">'+v+'</td>';}
     h+='<td class="dt-s"><button type="button" class="dt-open" data-open="'+esc(r.p.code)+'" title="Show the working">'+r.s.score+'</button></td></tr>';
     if(st.open===r.p.code)h+='<tr class="dtx"><td colspan="'+(crits.length+2)+'">'+decisionDerivationHTML(r.p,weights)+'</td></tr>';
   }
-  h+='</tbody></table></div><p class="dtable-note">Tap a score to see its working. Tap \u25cb on a column to weigh it most; the list re-ranks and says why.</p></div>';
+  // The weighting instruction moved up into the caption, where it is in the first screen. What is
+  // left below the table is the one thing a reader only needs once they are reading a row.
+  h+='</tbody></table></div>';
+  const shape=decisionTableShapeSentence(allRows.length,frontier.size,rows.length);
+  if(shape){
+    h+='<p class="dtable-shape">'+esc(shape)+'</p><p class="dtable-more">';
+    if(st.show!=='frontier'&&frontier.size>rows.length)
+      h+='<button type="button" class="dt-show" data-show="frontier">Show the '+frontier.size+' that can come first</button>';
+    if(st.show!=='all')
+      h+='<button type="button" class="dt-show" data-show="all">Show all '+allRows.length+'</button>';
+    if(st.show!=='top')
+      h+='<button type="button" class="dt-show" data-show="top">Back to the top '+TOP+'</button>';
+    h+='</p>';
+  }
+  h+='<p class="dtable-note">Tap any score to see its working.</p></div>';
   return h;}
 function wireDecisionTable(cid,facet,contract){
   const v=document.getElementById('view-decide');if(!v)return;
@@ -2496,11 +2939,15 @@ function wireDecisionTable(cid,facet,contract){
     if(i>=0)st.emph.splice(i,1);else st.emph.push(k);
     renderContractDecision(cid,facet,contract);
     const sent=decisionTableSentence(cid,contract,decisionCandidatePool(contract,String(facet||'').trim()));
-    announce(sent||'Balanced again; every measure counts the same.');};});
+    announce(sent||'Every measure weighs the same again.');};});
   v.querySelectorAll('.dt-sort').forEach(function(b){b.onclick=function(){
     const st=decisionTableState[cid];const k=b.dataset.sort;
     if(st.sort===k)st.dir=-st.dir;else{st.sort=k;st.dir=-1;}
     renderContractDecision(cid,facet,contract);};});
+  v.querySelectorAll('.dt-show').forEach(function(b){b.onclick=function(){
+    const st=decisionTableState[cid];st.show=b.dataset.show;
+    renderContractDecision(cid,facet,contract);
+    announce(b.textContent.trim());};});
   v.querySelectorAll('.dt-open').forEach(function(b){b.onclick=function(){
     const st=decisionTableState[cid];st.open=st.open===b.dataset.open?null:b.dataset.open;
     renderContractDecision(cid,facet,contract);};});
@@ -3073,6 +3520,27 @@ function indexTreeHTML(){
   };
   return `${lightRail}<div class="needs-map index-tree">${needs.map(needBranch).join('')}</div>`;
 }
+function mountNeedsRose(){
+  const B=window.CC_BUNDLE, needs=(B&&B.ontology&&B.ontology.needs)||[];
+  if(!needs.length||!CC.needsRose)return;
+  const byNeed={};for(const c of (CATALOG||[]))byNeed[c.need||'other']=(byNeed[c.need||'other']||0)+1;
+  CC.needsRose.mount('needsrose',
+    needs.map(n=>({id:n.id,label:n.label,count:byNeed[n.id]||0})),
+    function(n){
+      // open the chosen need in the chart below, and let the rest dim: the page's own rule
+      document.querySelectorAll('#index-tree-box .need-branch').forEach(d=>{
+        const mine=d.dataset.need===n.id;
+        d.open=mine;d.classList.toggle('rose-dim',!mine);
+      });
+      // No scroll: the chosen branch sits directly under the rose, and scrolling slid the dial
+      // beneath the fixed header, where its centre could no longer be tapped to bring things back.
+      announce(String(n.label||n.id)+' open below.');
+    },
+    function(){
+      document.querySelectorAll('#index-tree-box .need-branch').forEach(d=>{d.classList.remove('rose-dim');});
+      announce('Every need shown again.');
+    });
+}
 function renderIndexTree(){
   const box=document.getElementById('index-tree-box');if(!box)return;
   const openNeeds=new Set([...box.querySelectorAll('.need-branch[open]')].map(d=>d.dataset.need));
@@ -3091,19 +3559,119 @@ function wireIndexLights(){
   });
   const c=document.getElementById('index-lights-clear');if(c)c.onclick=()=>{indexLights={measure:new Set(),price:false};renderIndexTree();announce('All lights off; the whole index is bright.');};
 }
+// THE PORTALS (the browse door, second-pass explore design in docs/design/EXPLORE-PLATE.md).
+// One large hexagon per need, in the need's own hue, standing on an unsurveyed grid. The face
+// carries the mini-honeycomb: every decision of that need from the whole map, lit if answered,
+// tinted if named and open. Counts come from app/data/map.json, fetched only when Explore opens,
+// never at boot. Doors are editorial picks recorded here so the choice is versioned; labels
+// resolve from the catalogue at render time so they can never go stale.
+const PORTAL_HUES={nourish:'#6b8f3d',move:'#2f9e83',connect:'#2f7fa6',protect:'#5560b0',
+  learn:'#8455a8',care:'#b05c72','give-and-act':'#c06544','keep-a-home':'#a87a2f'};
+const PORTAL_DOORS={
+  nourish:['coffee','eggs','plant-based-milk'],
+  care:['toothpaste','shampoo','period-products'],
+  'keep-a-home':['cleaning-products','washing-machines','direct-drive-solar'],
+  connect:['phones','broadband-internet','self-hosting-platforms'],
+  move:['bicycles','used-cars','airlines'],
+  learn:['books','news-sources','ai-assistants'],
+  'give-and-act':['causes-to-support','volunteering','mission-businesses'],
+  protect:['banking','password-managers','vpn']
+};
+let WHOLE_MAP=null,WHOLE_MAP_P=null;
+function wholeMap(){
+  if(WHOLE_MAP)return Promise.resolve(WHOLE_MAP);
+  if(WHOLE_MAP_P)return WHOLE_MAP_P;
+  WHOLE_MAP_P=fetch('./data/map.json').then(r=>r.ok?r.json():null).then(j=>{WHOLE_MAP=j;return j;}).catch(()=>null);
+  return WHOLE_MAP_P;
+}
+function portalTitle(id,label){
+  // The ontology labels shout in capitals for the rose; a portal title reads in serif case.
+  const words=String(label||id).toLowerCase().replace(/&/g,'and');
+  return words.replace(/^./,ch=>ch.toUpperCase());
+}
+// The mini-honeycomb: the need's whole ground drawn small, domains in authored order so they
+// read as districts. Below six-pixel cells the hatch reduces to a tint, per the reduction rule
+// in the design document; the full four marks belong to the fisheye's deeper rungs.
+function portalHoneycombSVG(needId,mapDoc){
+  if(!mapDoc)return '';
+  const rows=[];
+  for(const realm of mapDoc.realms||[]){
+    for(const field of realm.fields||[])for(const fam of field.families||[])for(const dec of fam.decisions||[]){
+      if(dec.need===needId)rows.push(dec.state);
+    }
+  }
+  if(!rows.length)return '';
+  const R=4,SQ3=Math.sqrt(3),cols=Math.max(8,Math.ceil(Math.sqrt(rows.length*1.9)));
+  const w=Math.ceil(cols*R*SQ3+R*2),h=Math.ceil(Math.ceil(rows.length/cols)*R*1.5+R*2);
+  let cells='';
+  rows.forEach((state,i)=>{
+    const row=Math.floor(i/cols),col=i%cols;
+    const cx=R+col*R*SQ3+(row%2)*R*SQ3/2,cy=R+row*R*1.5;
+    let pts='';
+    for(let k=0;k<6;k++){const a=(60*k-30)*Math.PI/180;pts+=(cx+(R-0.6)*Math.cos(a)).toFixed(1)+','+(cy+(R-0.6)*Math.sin(a)).toFixed(1)+' ';}
+    cells+=state==='built'
+      ?`<polygon points="${pts}" fill="#fff" fill-opacity="0.92"/>`
+      :`<polygon points="${pts}" fill="#fff" fill-opacity="0.14" stroke="#fff" stroke-opacity="0.28" stroke-width="0.6"/>`;
+  });
+  return `<svg class="portal-ground" viewBox="0 0 ${w} ${h}" role="img" aria-label="Every decision under this need: bright cells have a sourced answer, faint cells are named and open">${cells}</svg>`;
+}
+function portalReceipt(needId,mapDoc){
+  if(!mapDoc)return '';
+  let named=0,answered=0;
+  for(const realm of mapDoc.realms||[])for(const field of realm.fields||[])for(const fam of field.families||[])for(const dec of fam.decisions||[]){
+    if(dec.need!==needId)continue;named+=1;if(dec.state==='built')answered+=1;
+  }
+  return `${named} decisions · ${answered} answered`;
+}
+function portalsHTML(needs){
+  const live={};(CATALOG||[]).forEach(cat=>{live[cat.id]=cat;});
+  return needs.map(n=>{
+    const doors=(PORTAL_DOORS[n.id]||[]).map(cid=>live[cid]).filter(Boolean)
+      .map(cat=>`<li><a href="#explore/${encodeURIComponent(cat.id)}">${esc(cat.label)}</a></li>`).join('');
+    return `<li class="portal need-${esc(n.id)}" style="--portal:${PORTAL_HUES[n.id]||'#666'}">
+      <a class="portal-face" href="#need/${encodeURIComponent(n.id)}">
+        <span class="portal-band"><b>${esc(portalTitle(n.id,n.label))}</b>
+        <small class="portal-receipt" data-portal-receipt="${esc(n.id)}"></small></span>
+        <span class="portal-map" data-portal-map="${esc(n.id)}" aria-hidden="true"></span>
+      </a>
+      <ul class="portal-doors">${doors}</ul>
+    </li>`;
+  }).join('');
+}
+function firePortals(){
+  wholeMap().then(mapDoc=>{
+    if(!mapDoc)return;
+    document.querySelectorAll('[data-portal-map]').forEach(box=>{box.innerHTML=portalHoneycombSVG(box.dataset.portalMap,mapDoc);});
+    document.querySelectorAll('[data-portal-receipt]').forEach(el=>{el.textContent=portalReceipt(el.dataset.portalReceipt,mapDoc);});
+  });
+  // Stellar parallax: the portals are the near layer and shift a few pixels against the grid
+  // behind them, which is how nearby stars actually move against far ones. Pointer-driven with
+  // no animation loop, so nothing moves unless the reader does; coarse pointers and
+  // reduced-motion are switched off in the stylesheet, not here.
+  const field=document.querySelector('.map-door');
+  if(field&&!field.dataset.plx){
+    field.dataset.plx='1';
+    field.addEventListener('pointermove',e=>{
+      const r=field.getBoundingClientRect();
+      field.style.setProperty('--plx',((e.clientX-r.left)/r.width-0.5).toFixed(3));
+      field.style.setProperty('--ply',((e.clientY-r.top)/r.height-0.5).toFixed(3));
+    });
+    field.addEventListener('pointerleave',()=>{field.style.setProperty('--plx','0');field.style.setProperty('--ply','0');});
+  }
+}
 function renderMap(){
   const v=document.getElementById('view-map');if(!v)return;
   const B=window.CC_BUNDLE;if(!B){v.innerHTML='<p class="sectionsub">Loading&hellip;</p>';return;}
   const needs=(B.ontology&&B.ontology.needs)||[];
-  let html=`<header class="explore-head"><h2 class="sectionh">Explore the commons</h2><p class="sectionsub">One index, unfolding. The baseline is already on; my rules carry everywhere; trade-offs happen inside each decision.</p></header>`;
+  let html=`<header class="explore-head"><h2 class="sectionh">Explore</h2><p class="sectionsub">Search by name, browse eight everyday needs, or start with a task. The baseline and any rules you set apply inside each comparison.</p></header>`;
   html+=`<section class="explore-door ask-door" data-door="ask" aria-labelledby="door-ask"><h3 id="door-ask" class="ask-title">Know what you&rsquo;re after?</h3><form class="askbig" id="mapask"><span class="askbig-i" aria-hidden="true">?</span><input type="search" id="maskq" placeholder="Try &ldquo;switch banks&rdquo; or &ldquo;coffee&rdquo;" autocomplete="off" aria-label="Ask about a product, brand, category, or decision"><button type="submit">Ask</button></form><div class="ask-examples" aria-label="Example questions"><span>Try</span><a href="#search/coffee">coffee</a><a href="#search/switch%20banks">switch banks</a><a href="#search/repairable%20phone">repairable phone</a></div></section>`;
-  html+=`<section class="explore-door map-door" data-door="map" aria-labelledby="door-map"><div class="door-kicker">The index</div><h3 id="door-map">Eight needs, one commons</h3><p class="atlas-sub">Everything below unfolds in place: a need opens to its decisions, a decision opens to its actions and the values measured there, and every value leads onward. ${needs.length?'':''}</p><div id="index-tree-box">${indexTreeHTML()}</div></section>`;
-  html+=`<section class="explore-door decide-door" data-door="decide" aria-labelledby="door-decide"><div class="door-kicker">Or start from a task</div><h3 id="door-decide">Tasks</h3><p>Real errands string a few decisions together and end in a list you can act on.</p><div class="decision-doors" id="explore-decisions">${EXPLORE_DECISION_DOORS.map(exploreDecisionDoorHTML).join('')}</div><details class="allcats errand-more"><summary>See every task</summary><div id="explore-errands">${exploreAllErrandsHTML()}</div></details></section>`;
-  html+=`<p class="explore-quietlinks">Also here: <a href="#garden">the garden, what&rsquo;s growing</a> &middot; <a href="#indexes">your saved indexes</a></p>`;
+  html+=`<section class="explore-door map-door" data-door="map" aria-labelledby="door-map"><div class="door-kicker">Browse</div><h3 id="door-map">Eight everyday needs</h3><p class="atlas-sub">Each portal is one need. Bright cells on its face are decisions with a sourced answer; faint cells are named on the map and open for work. Open a portal for the whole need, or step through a door.</p><ul class="needs-map portals">${portalsHTML(needs)}</ul><p class="portal-key">Lit, answered. Faint, named and waiting. The grid behind is the ground the map has not named yet.</p></section>`;
+  html+=`<section class="explore-door decide-door" data-door="decide" aria-labelledby="door-decide"><div class="door-kicker">Start from a task</div><h3 id="door-decide">Tasks</h3><p>A task joins related decisions and produces a list you can save.</p><div class="decision-doors" id="explore-decisions">${EXPLORE_DECISION_DOORS.map(exploreDecisionDoorHTML).join('')}</div><details class="allcats errand-more"><summary>See every task</summary><div id="explore-errands">${exploreAllErrandsHTML()}</div></details></section>`;
+  html+=`<p class="explore-quietlinks">More views: <a href="#indexes">your saved indexes</a></p>`;
   v.innerHTML=html;
   const f=document.getElementById('mapask');if(f)f.onsubmit=e=>{e.preventDefault();goSearch((document.getElementById('maskq').value||'').trim());};
   wireSuggest(document.getElementById('maskq'));
-  wireIndexLights();
+  firePortals();
 }
 // THE GARDEN (a 4th Explore lens) — the commons as a living thing: what's built has GROWN (ranked by your
 // values); the honest frontier is SEEDLINGS, waiting to be planted. The biophilic face of "it grows at its
@@ -3255,7 +3823,7 @@ function renderRecent(){
    same commit that introduces it; checkCoreBasics pins the ones that were missed. */
 const CC_KEYS=[
   THEMES_KEY,YOU_KEY,STORAGE_KEY,SAVED_KEY,FEEDBACK_KEY,CONTRIB_KEY,DECISION_DIAL_KEY,DECISION_FLOOR_KEY,DECISION_LIST_KEY,
-  ONBOARD_KEY,TRUST_LENS_KEY,THEME_KEY,CH_KEY,FORCE_KEY,CEREM_KEY,ERRAND_KEY,
+  ONBOARD_KEY,TRUST_LENS_KEY,THEME_KEY,CH_KEY,FORCE_KEY,CEREM_KEY,ERRAND_KEY,MAP_STATE_KEY,
   'cc.locale','cc.patches','cc.indexes.v1',
   'cc.lab.v1',                                     // retired; kept so old devices still wipe it
   'cc:h10-local-evidence-v1','vc:h4-evidence:v1'   // workbench review evidence (device-local QA)
@@ -3451,7 +4019,7 @@ function renderCard(cid, code){
   const fileCode=code.replace(/[^a-zA-Z0-9._-]/g,'-');
   const served=location.protocol.indexOf('http')===0;
   const imgRel='./c/'+cid+'/'+fileCode+'.png';                                    // relative → resolves on file:// and when served
-  const shareUrl=(lensSourced&&served)?(location.origin+'/c/'+cid+'/'+fileCode+'.html'):location.href;
+  const shareUrl=(lensSourced&&served)?(location.origin+'/c/'+cid+'/'+fileCode):location.href;
   const imgRow=lensSourced?`<div class="vc-sharex"><a class="vc-dl" href="${imgRel}" download="conscious-consuming-${fileCode}.png">⤓ Save card image</a><span class="vc-sharenote">Paste the link anywhere, social, chat, Slack, and this card is the preview image.</span></div>`:'';
   const hint=!lensSourced?'Screenshot this card to share it, or copy the link.':(served?'Share the link, it previews as this card image everywhere. Or save the image to post it directly.':'Save the card image to post it anywhere, or copy the link.');
   // Provenance honesty (§E): show how independently corroborated the score is. Multi-source is a quiet
@@ -3460,10 +4028,10 @@ function renderCard(cid, code){
   const bloomHTML=valueBloom(p,116);
   v.innerHTML=`<a class="back" href="#explore/${cid}">← all ${esc(ds.meta.label)}</a>
     <div class="vcard">
-      <div class="vc-brandbar">Conscious Consuming · sourced, never sponsored</div>
+      <div class="vc-brandbar">Conscious Consuming · sources and scores</div>
       ${bloomHTML}
       <div class="vc-name">${esc(p.name)}</div>${p.brand?`<div class="vc-brand">${esc(p.brand)}</div>`:''}
-      ${s?`<div class="vc-score"><span class="vc-num">${s.score}<small>/100</small></span><span class="stier ${t[1]}">${t[0]}</span></div><div class="vc-basis">on a balanced view of all values</div>`:`<div class="vc-basis">No score under a balanced view.</div>`}
+      ${s?`<div class="vc-score"><span class="vc-num">${s.score}<small>/100</small></span><span class="stier ${t[1]}">${t[0]}</span></div><div class="vc-basis">with equal weight on the measures shown</div>`:`<div class="vc-basis">No equal-weight score is available.</div>`}
       ${reasonHTML}
       ${corrHTML}
       <div class="vc-foot">No ads · No tracking · No brand pays us</div>
@@ -3473,8 +4041,8 @@ function renderCard(cid, code){
     <p class="vc-hint">${hint}</p>`;
   const cp=document.getElementById('vc-copy'), sh=document.getElementById('vc-share');
   if(sh)sh.onclick=()=>{
-    const text=r?`${r.label}: ${r.band[0]}, ${r.note||''}`:`${ds.meta.label} · chosen by your values, never sponsored`;
-    if(navigator.share){navigator.share({title:p.name+', a values verdict',text,url:shareUrl}).catch(()=>{});}
+    const text=r?`${r.label}: ${r.band[0]}, ${r.note||''}`:`${ds.meta.label} · sources and scores`;
+    if(navigator.share){navigator.share({title:p.name+', sources and scores',text,url:shareUrl}).catch(()=>{});}
     else{const ok=()=>{sh.textContent='Link copied ✓';announce('Link copied, paste it to share');};try{navigator.clipboard.writeText(shareUrl).then(ok,ok);}catch(e){ok();}}
   };
   if(cp)cp.onclick=()=>{const done=()=>{cp.textContent='Copied ✓';announce('Link copied');};try{navigator.clipboard.writeText(shareUrl).then(done,done);}catch(e){done();}};
@@ -3599,7 +4167,7 @@ function liveLookup(code){
       if(!rec){ scanMsg('<div class="scanmiss">Open Food Facts has this product, but not enough sourced facts to score it honestly. <a href="https://world.openfoodfacts.org/product/'+esc(code)+'" target="_blank" rel="noopener">See what they have ↗</a></div>'); return; }
       renderLiveVerdict(rec);
     })
-    .catch(()=>{ scanMsg('<div class="scanmiss">Couldn’t reach Open Food Facts (you may be offline). The barcode wasn’t stored anywhere.</div>'); });
+    .catch(()=>{ scanMsg('<div class="scanmiss">Couldn’t reach Open Food Facts. Check your connection and scan again. The barcode was not saved.</div>'); });
 }
 function renderLiveVerdict(p){
   const weights=CC.engine.themeDefaults(FOOD_CRITERIA, themeWeights, CC.engine.KEY2THEME);
@@ -3760,7 +4328,7 @@ function nodeLensSection(n,box){
         if(!hits.length){row.appendChild(el('p',{class:'alts-sub'},'Nothing of theirs clears your rules in '+esc(c.label.toLowerCase())+'.'));return;}
         row.appendChild(el('div',{class:'alts-sub',style:'margin:.2rem 0 .3rem'},hits.length+' in '+esc(c.label.toLowerCase())+'. Compared with your rules and priorities:'));
         for(const h of hits.slice(0,5)){const card=el('a',{class:'dcard',href:'#item/'+cid+'/'+encodeURIComponent(h.p.code)});card.innerHTML=`<span class="dcard-n">${esc(h.p.name)}</span><span class="dcard-c">${h.s.score}/100 for you</span><span class="provline">${provenanceChipHTML(h.p)}</span>`;row.appendChild(card);}
-      }).catch(()=>{row.innerHTML='';row.appendChild(el('p',{class:'alts-sub'},'Couldn’t load that category just now.'));});
+      }).catch(()=>{row.innerHTML='';row.appendChild(el('p',{class:'alts-sub'},'Couldn’t load that category. Try again.'));});
     };
     row.appendChild(b);wrap.appendChild(row);
   }
@@ -3801,7 +4369,7 @@ function renderNode(arg){
     if(n&&n.type==='company'&&!n.line&&lineById('avoid:'+nodeSlug(n.id)))n=Object.assign({},n,{line:'avoid:'+nodeSlug(n.id)});
     if(!n&&type==='value'){const t=THEMES.find(x=>x.id===slug);if(t)n={id:'ovs:value/'+t.id,type:'value',label:t.label,reads:t.blurb};}
     const loadIssue=nodeLoadProblem();
-    if(!n&&loadIssue&&type!=='line'&&type!=='value'){v.innerHTML=`<a class="back" href="#home">← home</a><h2 class="sectionh">Company and brand index unavailable</h2><p class="sectionsub">${esc(loadIssue)} Try again after refresh, or walk the <a href="#map">category map →</a>.</p>`;return;}
+    if(!n&&loadIssue&&type!=='line'&&type!=='value'){v.innerHTML=`<a class="back" href="#home">← home</a><h2 class="sectionh">Company and brand index unavailable</h2><p class="sectionsub">${esc(loadIssue)} Refresh to retry, or <a href="#map">browse categories →</a>.</p>`;return;}
     if(!n){v.innerHTML=`<a class="back" href="#home">← home</a><h2 class="sectionh">Not a page yet</h2><p class="sectionsub">We don’t have “${esc(slug)}” as a ${esc(NTYPE_LABEL[type]||type)} yet. It may arrive as the commons grows, or <a href="#contribute/want/${encodeURIComponent(slug)}">ask for it →</a></p>`;return;}
     const L=n.line&&(typeof n.line==='object'?n.line:lineById(n.line));
     // slot 1 — what this is + every parent it lives under
@@ -3839,7 +4407,7 @@ function renderNode(arg){
       const blast=n.type==='company'?`<p class="alts-sub" style="margin-top:.35rem">We stock <b>${(n.brands||[]).length}</b> of the <b>${(n.brandNames||[]).length}</b> ${esc(n.label)} brands the ownership map knows, avoiding ${esc(n.label)} hides every one of them from your rankings. The map is young and still growing.</p>`:'';
       c4.innerHTML=`<div class="dsh">The family</div><div class="dgrid">${conn.join('')}</div>${blast}`;v.appendChild(c4);}
     // slot 5 — letters (v0: write in; publishing arrives with N3)
-    const let5=el('div',{});let5.innerHTML=`<div class="dsh">Letters</div><p class="alts-sub">Something to say about this, a fact to fix, a story, a question? <a href="mailto:bentleymoonperkins@gmail.com?subject=${encodeURIComponent('[letter] '+n.id)}">Write in ${CC.icon('mail')}</a>, good letters get published here, with your consent.</p>`;v.appendChild(let5);
+    const let5=el('div',{});let5.innerHTML=`<div class="dsh">Letters</div><p class="alts-sub">Something to say about this, a fact to fix, a story, a question? <a href="mailto:futurisminstitute@gmail.com?subject=${encodeURIComponent('[letter] '+n.id)}">Write in ${CC.icon('mail')}</a>, good letters get published here, with your consent.</p>`;v.appendChild(let5);
     // slot 6 — act
     const act=el('div',{});act.innerHTML='<div class="dsh">Act</div>';const acts=el('div',{style:'display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.3rem'});
     if(L&&L.kind==='avoid'){
@@ -5971,7 +6539,7 @@ function route(){
   }
   else if(view==='explore'){
     const segs=arg?arg.split('/'):[], cid=segs[0], facet=segs.length>1?decodeURIComponent(segs.slice(1).join('/')):'';
-    if(cid&&decisionPrimaryCategory(cid)){location.hash=decideHref(cid,facet);return;}
+    if(cid&&decisionPrimaryCategory(cid)){hopTo(decideHref(cid,facet));return;}
     const applyFacet=()=>{const qi=document.getElementById('q'); if(qi)qi.value=facet||''; if(DATA)render();};
     if(cid){const c=CATALOG.find(x=>x.id===cid);
       if(c&&(!DATA||DATA.meta.id!==cid)){setActiveCat(cid);loadCategory(c).then(applyFacet);}
@@ -6053,7 +6621,7 @@ boot().then(()=>{
   const nt=document.getElementById('navtoggle');if(nt)nt.onclick=()=>{const nav=document.querySelector('.nav');const open=nav.classList.toggle('open');nt.setAttribute('aria-expanded',String(open));nt.innerHTML=open?'&#10005;':'&#9776;';};
   const tb=document.getElementById('themebtn');if(tb)tb.onclick=cycleTheme; applyTheme();
   // the standing region control, in the chrome on every screen
-  if(tb&&!document.getElementById('navregion')){const nr=el('button',{id:'navregion',class:'navbtn navregion','aria-label':'Region coverage'});nr.onclick=cycleRegion;tb.parentNode.insertBefore(nr,tb);updateNavRegion();}
+  if(tb&&!document.getElementById('navregion')){const nr=el('button',{id:'navregion',class:'navbtn navregion','aria-label':'Region coverage'});nr.onclick=toggleRegionMenu;tb.parentNode.insertBefore(nr,tb);updateNavRegion();}
   // the workbench badge — when the internal channel is on, say so in the chrome (never a hidden mode)
   if(chDev()){const wb=el('a',{href:'#workbench',class:'wbbadge',title:'The workbench is on, you see in-progress surfaces. Tap to read or turn off.'},'workbench');const nv=document.querySelector('.navutil');if(nv)nv.insertBefore(wb,nv.firstChild);}
   if(window.matchMedia){try{window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',()=>{if(theme==='system')applyTheme();});}catch(e){}}

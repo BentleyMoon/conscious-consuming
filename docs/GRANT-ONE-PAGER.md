@@ -76,10 +76,10 @@ A focused **6-month phase** to take the working reference implementation to firs
 
 ## Who Is Behind It
 
-Built by **Bentley Moon-Perkins**, a solo maker working on humane, values-first civic technology. The current system, including the flagship app, two additional instances, shared engine, guide/content pipeline, and organizing tools, was designed and built independently.
+Built by **Bentley Moon**, a solo maker working on humane, values-first civic technology. The current system, including the flagship app, two additional instances, shared engine, guide/content pipeline, and organizing tools, was designed and built independently.
 
 ## Why Now
 
 The reference implementation works. Its evidence is strong enough to show. The public site is static and inexpensive to host. The largest remaining uncertainty is whether real people and groups will use it. A modest grant pays for that first contact without compromising the independence that makes the work worth trusting.
 
-Contact: Bentley Moon-Perkins. Current public home: https://valuescommons.org/ with Conscious Consuming at https://valuescommons.org/app/.
+Contact: Bentley Moon. Current public home: https://valuescommons.org/ with Conscious Consuming at https://valuescommons.org/app/.

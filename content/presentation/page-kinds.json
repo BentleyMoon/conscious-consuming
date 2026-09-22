@@ -1,0 +1,219 @@
+{
+  "format": "open-values-presentation-page-kinds",
+  "version": "1.0.0",
+  "updated": "2026-07-20",
+  "pageKinds": [
+    {
+      "id": "entry",
+      "label": "Entry",
+      "purpose": "Decide whether this choice fits the current task, then inspect the facts behind the answer.",
+      "mainAction": "Save this choice",
+      "sections": [
+        {"id": "safety", "heading": "Safety", "when": "applicable"},
+        {"id": "facts", "heading": "What matters here", "when": "required"},
+        {"id": "why", "heading": "Why this answer", "when": "ranked-or-filtered"},
+        {"id": "sources", "heading": "Sources", "when": "required"},
+        {"id": "ownership", "heading": "Ownership", "when": "applicable"},
+        {"id": "other-case", "heading": "The case the other way", "when": "available"},
+        {"id": "analogues", "heading": "Similar across domains", "when": "available"},
+        {"id": "connections", "heading": "Connections", "when": "required"},
+        {"id": "links-here", "heading": "What links here", "when": "required"},
+        {"id": "history", "heading": "History", "when": "required"}
+      ],
+      "stateCopy": {
+        "rich": "The supported facts are available below.",
+        "thin": "Some facts do not have a source or date. They are marked below.",
+        "notCovered": "We do not have a source-backed entry for this choice yet."
+      }
+    },
+    {
+      "id": "category",
+      "label": "Decision",
+      "purpose": "Compare the choices for one bounded decision and keep the facts behind the current answer visible.",
+      "mainAction": "Save this list",
+      "sections": [
+        {"id": "answer", "heading": "Current answer", "when": "required"},
+        {"id": "why", "heading": "Why this answer", "when": "required"},
+        {"id": "controls", "heading": "What can change the answer", "when": "available"},
+        {"id": "choices", "heading": "Compare the choices", "when": "required"},
+        {"id": "folded", "heading": "Folded choices", "when": "applicable"},
+        {"id": "other-case", "heading": "The case the other way", "when": "available"},
+        {"id": "guides", "heading": "Guides and tasks", "when": "available"},
+        {"id": "sources", "heading": "Sources", "when": "required"},
+        {"id": "links-here", "heading": "What links here", "when": "required"},
+        {"id": "history", "heading": "History", "when": "required"}
+      ],
+      "stateCopy": {
+        "rich": "The current data supports a starting answer and comparison.",
+        "thin": "One or more active facts are thin across this comparison.",
+        "notCovered": "{decision} is mapped under {parent}, but we do not have a comparison yet."
+      }
+    },
+    {
+      "id": "value",
+      "label": "Value",
+      "purpose": "Explain what this value means, how it is checked, and where its evidence stops.",
+      "mainAction": "Decide with this value",
+      "sections": [
+        {"id": "meaning", "heading": "What it means", "when": "required"},
+        {"id": "requirements", "heading": "What it requires", "when": "applicable"},
+        {"id": "verification", "heading": "Who checks it", "when": "applicable"},
+        {"id": "method", "heading": "How it is assessed", "when": "applicable"},
+        {"id": "limits", "heading": "Where it stops", "when": "required"},
+        {"id": "instance-use", "heading": "How this site reads it", "when": "required"},
+        {"id": "used-by", "heading": "Where this is used", "when": "required"},
+        {"id": "sources", "heading": "Sources", "when": "required"},
+        {"id": "history", "heading": "History", "when": "required"}
+      ],
+      "stateCopy": {
+        "rich": "A sourced explanation, method, limits, and current uses are available.",
+        "thin": "We have not yet published a sourced explanation of the requirements and limits.",
+        "notCovered": "This value is named, but a sourced explanation has not been published yet."
+      }
+    },
+    {
+      "id": "source",
+      "label": "Source",
+      "purpose": "Show who published this source, when, what it supports here, and where its limits are recorded.",
+      "mainAction": "Open original source",
+      "sections": [
+        {"id": "identity", "heading": "Source details", "when": "required"},
+        {"id": "scope", "heading": "Scope and method", "when": "required"},
+        {"id": "claims", "heading": "Claims supported here", "when": "required"},
+        {"id": "limits", "heading": "Known limits", "when": "available"},
+        {"id": "versions", "heading": "Versions", "when": "available"},
+        {"id": "links-here", "heading": "What links here", "when": "required"},
+        {"id": "history", "heading": "History", "when": "required"}
+      ],
+      "stateCopy": {
+        "rich": "Publisher, date, scope, original link, and supported claims are recorded.",
+        "thin": "The source is recorded, but its method or scope is missing.",
+        "notCovered": "This claim does not have a source page because no source was supplied."
+      }
+    },
+    {
+      "id": "company-brand",
+      "label": "Company or brand",
+      "purpose": "Answer who owns this brand or which brands this company controls, with a source and date.",
+      "mainAction": "Add a rule",
+      "sections": [
+        {"id": "ownership", "heading": "Ownership", "when": "required"},
+        {"id": "brands", "heading": "Brands", "when": "applicable"},
+        {"id": "choices", "heading": "Choices in current comparisons", "when": "available"},
+        {"id": "rule-reach", "heading": "What this rule affects", "when": "applicable"},
+        {"id": "connections", "heading": "Connections", "when": "required"},
+        {"id": "links-here", "heading": "What links here", "when": "required"},
+        {"id": "history", "heading": "History", "when": "required"}
+      ],
+      "stateCopy": {
+        "rich": "A dated source supports the ownership answer and its current comparison reach.",
+        "thin": "Known brand names exist, but none appears in current comparisons.",
+        "notCovered": "Ownership has not been established. Suggest a dated ownership source."
+      }
+    },
+    {
+      "id": "guide",
+      "label": "Guide",
+      "purpose": "Give the longer answer, explain the practical trade-offs, and return to a concrete decision.",
+      "mainAction": "Open the decision",
+      "sections": [
+        {"id": "short-answer", "heading": "The short answer", "when": "required"},
+        {"id": "what-to-compare", "heading": "What to compare", "when": "required"},
+        {"id": "traps", "heading": "Marketing traps", "when": "available"},
+        {"id": "default", "heading": "A reasonable default", "when": "available"},
+        {"id": "sources", "heading": "Sources", "when": "required"},
+        {"id": "related", "heading": "Related decisions and tasks", "when": "available"},
+        {"id": "links-here", "heading": "What links here", "when": "required"},
+        {"id": "history", "heading": "History", "when": "required"}
+      ],
+      "stateCopy": {
+        "rich": "The guide is reviewed, sourced, and linked to a working decision.",
+        "thin": "Useful text is available, but some factual passages do not have complete citations.",
+        "notCovered": "No guide is published for this choice. The decision remains available."
+      }
+    },
+    {
+      "id": "task",
+      "label": "Task",
+      "purpose": "Finish one real job by joining the few decisions it needs and saving a usable result.",
+      "mainAction": "Start with the current answer",
+      "sections": [
+        {"id": "output", "heading": "What you will have", "when": "required"},
+        {"id": "conditions", "heading": "What applies", "when": "required"},
+        {"id": "steps", "heading": "Steps", "when": "required"},
+        {"id": "result", "heading": "Your saved result", "when": "available"},
+        {"id": "sources", "heading": "Sources and limits", "when": "required"},
+        {"id": "related", "heading": "Related guides and decisions", "when": "available"},
+        {"id": "links-here", "heading": "What links here", "when": "required"},
+        {"id": "history", "heading": "History", "when": "required"}
+      ],
+      "stateCopy": {
+        "rich": "Every step resolves and keeps the evidence behind the saved result.",
+        "thin": "One step has thin evidence. The missing field is named in that step.",
+        "notCovered": "Completed steps are kept. {decision} is not covered yet."
+      }
+    },
+    {
+      "id": "file",
+      "label": "Your file",
+      "purpose": "Inspect, change, export, and carry your anonymous rules, priorities, saved choices, and receipts.",
+      "mainAction": "Download a copy",
+      "sections": [
+        {"id": "baseline", "heading": "The baseline", "when": "required"},
+        {"id": "rules", "heading": "My rules", "when": "required"},
+        {"id": "saved", "heading": "Saved choices", "when": "required"},
+        {"id": "priorities", "heading": "Close-call priorities", "when": "optional"},
+        {"id": "evidence", "heading": "Evidence bundles", "when": "available"},
+        {"id": "transfer", "heading": "What carried", "when": "available"},
+        {"id": "not-carried", "heading": "What did not carry", "when": "available"},
+        {"id": "versions", "heading": "Compare versions", "when": "available"},
+        {"id": "history", "heading": "History", "when": "required"}
+      ],
+      "stateCopy": {
+        "rich": "The contents, version, receipts, and transfer result are readable.",
+        "thin": "This file is valid, but some fields are old or unsupported. The original remains unchanged.",
+        "notCovered": "This field is not supported here. It remains unchanged in the source file."
+      }
+    },
+    {
+      "id": "changes",
+      "label": "Changes",
+      "purpose": "Show material changes to evidence, ownership, coverage, files, or published rules.",
+      "mainAction": "Filter changes",
+      "sections": [
+        {"id": "scope", "heading": "Scope and dates", "when": "required"},
+        {"id": "events", "heading": "Changes", "when": "required"},
+        {"id": "filters", "heading": "Filter changes", "when": "available"},
+        {"id": "related", "heading": "Related pages", "when": "available"},
+        {"id": "links-here", "heading": "What links here", "when": "required"},
+        {"id": "policy", "heading": "Correction and history policy", "when": "required"}
+      ],
+      "stateCopy": {
+        "rich": "The affected object, date, change kind, and source or commit are recorded.",
+        "thin": "The affected object and commit are recorded, but no field-level difference is available.",
+        "notCovered": "No history is recorded for this object yet. No creation event is inferred."
+      }
+    },
+    {
+      "id": "commons-governance",
+      "label": "Shared record",
+      "purpose": "Publish a stable proposal, format, ask, or offer with its status, sources, and history clear.",
+      "mainAction": "Read this record",
+      "sections": [
+        {"id": "record", "heading": "The record", "when": "required"},
+        {"id": "status", "heading": "Status", "when": "required"},
+        {"id": "rationale", "heading": "Rationale and scope", "when": "required"},
+        {"id": "sources", "heading": "Sources and limits", "when": "required"},
+        {"id": "responses", "heading": "Recorded responses", "when": "available"},
+        {"id": "related", "heading": "Related pages", "when": "available"},
+        {"id": "history", "heading": "History", "when": "required"},
+        {"id": "links-here", "heading": "What links here", "when": "required"}
+      ],
+      "stateCopy": {
+        "rich": "Stable text, sources, dates, status, responses, and history are recorded.",
+        "thin": "This record is missing a required source, scope, expiry, or safety limit.",
+        "notCovered": "No organization or live activity is inferred from this template."
+      }
+    }
+  ]
+}

@@ -11,8 +11,28 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const APP = path.join(ROOT, 'app');
-const ASSETS = ['styles.css', 'data.js', 'i18n.js', 'guides.js', 'engine.js', 'decision.js', 'sigil.js', 'lines.js', 'presentation.js', 'app.js'];
-const INDEX_REQUIRED = ['styles.css', 'i18n.js', 'guides.js', 'engine.js', 'decision.js', 'sigil.js', 'lines.js', 'presentation.js', 'app.js'];
+/* Discovered from the shell, never enumerated here.
+
+   This audit used to carry its own hardcoded copy of the asset list and build its match pattern
+   from it, so it could only ever confirm the list it already had. homelens.js, icons.js and
+   needsrose.js were added to index.html with a hand-written ?v=1 and left out of both this array
+   and pipeline/stamp.py, so their URLs never moved and browsers kept the first copy they had ever
+   seen. Six rewrites of the front-page map deployed correctly to the origin and reached nobody,
+   and this gate passed on every one of them, because an allowlist can confirm its own contents and
+   can never discover what is missing from them. The list now comes from the page itself. */
+function discoverShellAssets() {
+  const indexPath = path.join(APP, 'index.html');
+  if (!fs.existsSync(indexPath)) return [];
+  const found = new Set();
+  const re = /(?:src|href)=["']\.\/([A-Za-z0-9_.-]+\.(?:js|css))(?:\?[^"']*)?["']/g;
+  const html = fs.readFileSync(indexPath, 'utf8');
+  let m;
+  while ((m = re.exec(html)) !== null) if (m[1] !== 'sw.js') found.add(m[1]);
+  return [...found];
+}
+// data.js is fetched lazily rather than referenced by the shell, so it is named rather than found
+const ASSETS = [...new Set([...discoverShellAssets(), 'data.js'])].sort();
+const INDEX_REQUIRED = ASSETS.filter(a => a !== 'data.js');
 const failures = [];
 
 function rel(abs) {
@@ -190,6 +210,11 @@ function checkSourceWiring() {
   const nodesText = read(nodesPath);
   const generatedDriftText = read(generatedDriftPath);
 
+  const stampList = (stampText.match(/ASSETS\s*=\s*\(([\s\S]*?)\)/) || [])[1] || '';
+  for (const asset of ASSETS) {
+    expect(stampList.includes("'" + asset + "'"),
+      `pipeline/stamp.py: ASSETS is missing ${asset}, so its ?v= will never move and returning browsers keep the copy they have`);
+  }
   expect(/def asset_versions\(\):/.test(stampText), 'pipeline/stamp.py: should expose per-asset version calculation');
   expect(/def asset_version\(asset, versions=None\):/.test(stampText), 'pipeline/stamp.py: should expose single asset version lookup');
   expect(/versions\.get\(m\.group\(2\), bundle\)/.test(stampText), 'pipeline/stamp.py: stamp() should apply each matched asset hash');

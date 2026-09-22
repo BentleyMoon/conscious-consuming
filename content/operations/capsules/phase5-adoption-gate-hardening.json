@@ -1,0 +1,101 @@
+{
+  "$schema": "../schemas/work-capsule.schema.json",
+  "kind": "cc-work-capsule",
+  "version": "1.0.0",
+  "id": "phase5-adoption-gate-hardening",
+  "variant": "external-event-ledger-v1",
+  "state": "COMPLETE",
+  "workMode": "correctness-repair",
+  "priority": "P0",
+  "decision": "Can CC distinguish external adoption evidence from internal work receipts and keep every adoption-gated territory closed until the required real-world event is confirmed?",
+  "liveConsumer": "The founder or release operator deciding whether first-use invitations, agent, file, covenant, science, or group gates have actually fired.",
+  "model": {
+    "id": "gpt-5.6-sol",
+    "reasoningEffort": "medium"
+  },
+  "writeAuthorized": true,
+  "scope": {
+    "ownedPaths": [
+      "research/first_use_audit.js",
+      "content/operations/adoption.json",
+      "content/operations/adoption-events.jsonl",
+      "content/operations/schemas/adoption.schema.json",
+      "content/operations/schemas/adoption-event.schema.json",
+      "content/operations/templates/adoption-event.json",
+      "content/operations/ADOPTION-RUNBOOK.md",
+      "content/operations/reviews/phase5-adoption-baseline-2026-07-15.md",
+      "content/operations/results/phase5-adoption-gate-hardening.md"
+    ],
+    "forbiddenPaths": [
+      "app/**",
+      "docs/**",
+      "content/lenses/**",
+      "content/guides/**",
+      "pipeline/**",
+      "scripts/content-runtime.mjs",
+      "research/content_runtime_test.mjs",
+      "package.json"
+    ],
+    "requiresIsolatedWorktree": true
+  },
+  "gates": [
+    {
+      "id": "phase5-founder-authorization",
+      "status": "satisfied",
+      "evidence": "The founder explicitly directed Codex to begin Phase 5 on 2026-07-15."
+    },
+    {
+      "id": "adoption-is-external",
+      "status": "satisfied",
+      "evidence": "codex.md §M defines adoption events as actions caused by people or agents outside the project; internal builds, tests, capsules, and founder self-review cannot satisfy them."
+    }
+  ],
+  "sourceRequirements": [
+    "codex.md §M1 and §M3-§M8 for adoption-event gates, locked territories, failure rules, and the five-number release readout.",
+    "docs/PREVIEW-FEEDBACK-LOOP.md, docs/R1-REVIEW.md, docs/ADOPTION-KIT.md, and docs/PATH-TO-FIRST-USERS.md for the first-five, 20-50, real-decision, and learning-receipt contracts.",
+    "C:/engine/README.md for frozen scope, exact verification, result cards, and claim boundaries.",
+    "C:/consoledia/program/PROMOTION_GATES_SPEC.md and C:/consoledia/experiments/memory/README.md for recorded-versus-promoted separation, evidence packets, negative results, and explicit authorization."
+  ],
+  "preconditions": [
+    {
+      "id": "zero-external-events-measured",
+      "status": "satisfied",
+      "evidence": "The repository contains recruiting templates and founder feedback, but no completed external learning receipt, external citation, file-transfer proof, covenant adoption, replication interest, or organic-group event."
+    },
+    {
+      "id": "audit-consolidation-path",
+      "status": "satisfied",
+      "evidence": "The existing clean research/first_use_audit.js can absorb adoption-gate validation, so Phase 5 does not create another top-level audit command."
+    }
+  ],
+  "doneWhen": [
+    "A machine-readable registry names the current first-use and §M adoption gates, thresholds, accepted external event types, and unlocked territory.",
+    "An append-only JSONL ledger begins with zero adoption events and cannot count its initialization record or template as adoption.",
+    "A strict event schema requires external actor class, evidence, privacy-safe fields, claim boundary, and explicit founder/release-owner confirmation.",
+    "The existing first-use audit validates the registry and ledger, rejects internal or evidence-free events, and reports confirmed adoption events plus open and locked gate counts.",
+    "In-memory adversarial fixtures prove pending, internal, and evidence-free records do not count while a confirmed external evidence record does.",
+    "A short runbook and terminal result explain how to record future events without storing contact details or private values."
+  ],
+  "stopConditions": [
+    "Any internal capsule, test pass, founder self-review, or generated artifact would count as external adoption.",
+    "The ledger would store a tester's name, email, contact details, exact private values, or sensitive decision details.",
+    "Any gate would be marked open without enough confirmed, evidence-bearing external events.",
+    "The work would edit strategy docs, app/search code, content datasets, or the inherited-dirty Phase 0 runtime implementation.",
+    "The work would add another standalone audit instead of consolidating into first_use_audit.js."
+  ],
+  "expectedArtifacts": [
+    "An adoption-gate registry, event schema, append-only ledger initializer, and privacy-safe event template.",
+    "A consolidated first-use/adoption audit with adversarial fixture checks.",
+    "An operational runbook, frozen baseline, and terminal Phase 5 result card."
+  ],
+  "verificationCommands": [
+    "node --check research/first_use_audit.js",
+    "node research/first_use_audit.js",
+    "node scripts/content-runtime.mjs validate",
+    "git diff --check -- research/first_use_audit.js content/operations"
+  ],
+  "claimBoundary": {
+    "supports": "CC can record and count privacy-safe, externally caused adoption events without confusing them with internal work receipts, and can keep all current gates mechanically locked at zero.",
+    "doesNotSupport": "That any real adoption event has occurred, that a tester was recruited, or that any §M locked territory is authorized to open."
+  }
+}

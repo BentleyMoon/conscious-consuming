@@ -17,15 +17,15 @@
     "fallback": "Never fabricate results from a failed generated index; keep already-loaded stages usable."
   },
   "budgets": {
-    "startupBudgetBytes": 700000,
+    "startupBudgetBytes": 780000,
     "minimumHeadroomBytes": 50000,
-    "askCoreBytes": 642114,
-    "askCoreHeadroomBytes": 57886,
+    "askCoreBytes": 674945,
+    "askCoreHeadroomBytes": 105055,
     "askCoreWithinBudget": true,
     "askCoreHasHeadroom": true,
-    "fullAskBytes": 5579274,
-    "pageNodeBytes": 1540361,
-    "establishedEagerBytes": 85711
+    "fullAskBytes": 5699758,
+    "pageNodeBytes": 1581522,
+    "establishedEagerBytes": 88380
   },
   "stages": [
     {
@@ -60,7 +60,7 @@
         "Do not infer missing tag, errand, or synonym coverage from generated brand/company data."
       ],
       "failureMode": "Disable the affected helper surface rather than fabricating labels or routes.",
-      "bytes": 85711
+      "bytes": 88380
     },
     {
       "id": "startup-ask-core",
@@ -76,9 +76,9 @@
         "Preserve resolver ordering from the generated traces, including typo before loose containment."
       ],
       "failureMode": "Show a search-unavailable state or fall back to existing in-memory search; do not eagerly pull ask-index.json as a rescue path.",
-      "bytes": 642114,
-      "budgetBytes": 700000,
-      "headroomBytes": 57886,
+      "bytes": 674945,
+      "budgetBytes": 780000,
+      "headroomBytes": 105055,
       "withinBudget": true,
       "hasMinimumHeadroom": true
     },
@@ -97,7 +97,7 @@
         "If the target node is unknown, render a not-covered state instead of a blank or fabricated page."
       ],
       "failureMode": "Brand/company node pages can be unavailable while category and guide routes remain usable.",
-      "bytes": 1540361
+      "bytes": 1581522
     },
     {
       "id": "lazy-product-ask",
@@ -113,7 +113,7 @@
         "If the lazy index fails, keep core results visible and label product lookup as unavailable."
       ],
       "failureMode": "Product lookup can fail independently without breaking startup Ask or generated node pages.",
-      "bytes": 5579274
+      "bytes": 5699758
     },
     {
       "id": "dev-contracts",

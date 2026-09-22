@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "standard": "open-values-standard",
   "standardVersion": "1.0.0-draft.1",
-  "updated": "2026-07-18",
+  "updated": "2026-08-15",
   "entries": [
     {
       "id": "open-values-format-registry",
@@ -424,6 +424,419 @@
         "acceptsLegacyVersion": true,
         "notes": "Version 4 is additive: domains, groups, facets, types, and live cids remain available for old routes and consumers."
       }
+    },
+    {
+      "id": "open-values-taxonomy",
+      "version": "1.0.0",
+      "declaredVersion": "1.0.0",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "The map of every decision the catalogue intends to hold, with coverage published as a number. Distinct from the ontology, which is the navigation of what can be shown today.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-taxonomy",
+        "pathPattern": "content/taxonomy.json"
+      },
+      "schema": "app/data/standard/schemas/taxonomy.schema.json",
+      "schemaNote": "Four levels (realm, field, family, decision) with six facets crossing the tree, and a COICOP 2018 crosswalk used as an outside completeness referee.",
+      "sourceOfTruth": [
+        "content/taxonomy/",
+        "docs/TAXONOMY.md"
+      ],
+      "generatedOutputs": [
+        "content/taxonomy.json",
+        "docs/TAXONOMY-MAP.md"
+      ],
+      "builders": [
+        "pipeline/build_taxonomy.py"
+      ],
+      "audits": [
+        "npm run audit:taxonomy"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "content planning",
+        "docs/SWARM-BRIEF.md lanes",
+        "coverage reporting"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "Begins at 1.0.0. Adding realms, fields, families or decisions is additive; removing a decision id breaks any claim already filed against it."
+      }
+    },
+    {
+      "id": "open-values-register-shelf",
+      "version": "1.0.0",
+      "declaredVersion": "1.0.0",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "Public registers proven to source this catalogue, with what each populates, the criterion key it writes to, and where a citation from it has survived hand verification.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-register-shelf",
+        "pathPattern": "content/registers.json"
+      },
+      "schema": "app/data/standard/schemas/register-shelf.schema.json",
+      "schemaNote": "Core shelf shape is schema-backed; research/register_shelf_audit.js derives register counts, criterion registration, and proven decision references from the shelf and catalogue.",
+      "sourceOfTruth": [
+        "content/registers.json",
+        "docs/CONTENT-ENGINE.md",
+        "docs/LUNA-CONTENT-PROGRAM.md"
+      ],
+      "generatedOutputs": [],
+      "builders": [],
+      "audits": [
+        "npm run audit:standard",
+        "npm run audit:registers"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "content planning",
+        "register passes"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "A register earns a place only after a citation from it has been checked against the source page. Adding one is additive; removing one orphans the passes built on it."
+      }
+    },
+    {
+      "id": "open-values-register-snapshot",
+      "version": "1.0.0",
+      "declaredVersion": "1.0.0",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "A reproducible request receipt plus integrity metadata for raw bytes captured once from a public register and replayed offline by catalogue builds.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-register-snapshot",
+        "pathPattern": "pipeline/registers/raw/<register-id>/*.snapshot.json"
+      },
+      "schema": "app/data/standard/schemas/register-snapshot.schema.json",
+      "schemaNote": "Core shape is schema-backed; research/register_snapshot_audit.js derives its subject from every committed snapshot and verifies shelf membership, safe request metadata, path identity, byte counts, and payload SHA-256.",
+      "sourceOfTruth": [
+        "pipeline/registers/raw/",
+        "pipeline/registers/README.md",
+        "pipeline/registers/snapshot.py"
+      ],
+      "generatedOutputs": [],
+      "builders": [
+        "pipeline/registers/snapshot.py"
+      ],
+      "audits": [
+        "npm run audit:register-snapshots",
+        "npm run audit:standard"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "register adapters",
+        "offline register parsers",
+        "future deterministic evidence generation"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "The snapshot format begins at 1.0.0. Payload bytes are immutable; a refresh creates a new content-addressed snapshot rather than replacing an old receipt."
+      },
+      "dependencies": [
+        "open-values-register-shelf"
+      ]
+    },
+    {
+      "id": "open-values-register-entity-inventory",
+      "version": "1.0.0",
+      "declaredVersion": "1.0.0",
+      "status": "draft",
+      "kind": "generated",
+      "purpose": "Compact identity receipts for every option in every built decision, derived from the app dataset index without maintaining a second option catalogue.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-register-entity-inventory",
+        "pathPattern": "pipeline/registers/entity-inventory.json"
+      },
+      "schema": "app/data/standard/schemas/register-entity-inventory.schema.json",
+      "schemaNote": "Core shape is schema-backed; the builder check derives every decision and option from app/data/index.json and fails on stale counts, names, codes, or identity hashes.",
+      "sourceOfTruth": [
+        "app/data/index.json",
+        "app/data/<cid>.json",
+        "pipeline/registers/build_entity_inventory.py"
+      ],
+      "generatedOutputs": [
+        "pipeline/registers/entity-inventory.json"
+      ],
+      "builders": [
+        "pipeline/registers/build_entity_inventory.py"
+      ],
+      "audits": [
+        "npm run audit:register-mappings",
+        "npm run audit:standard"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "register entity map scaffolder",
+        "register entity mapping audit"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "The inventory begins at 1.0.0 and is regenerated whenever built decision identity changes."
+      },
+      "dependencies": [
+        "open-values-category-index",
+        "open-values-category-dataset"
+      ]
+    },
+    {
+      "id": "open-values-register-entity-map",
+      "version": "1.0.0",
+      "declaredVersion": "1.0.0",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "Reviewed mappings from catalogue option identities to legal entities and stable identifiers in one public register, with unresolved states kept explicit and non-claiming.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-register-entity-map",
+        "pathPattern": "content/register-mappings/<register-id>.json"
+      },
+      "schema": "app/data/standard/schemas/register-entity-map.schema.json",
+      "schemaNote": "Core shape is schema-backed; research/register_entity_mapping_audit.js derives every valid target from the current inventory and enforces status-specific evidence, identity hashes, and review receipts.",
+      "sourceOfTruth": [
+        "content/register-mappings/*.json",
+        "content/register-mappings/README.md"
+      ],
+      "generatedOutputs": [],
+      "builders": [
+        "pipeline/registers/scaffold_entity_map.py"
+      ],
+      "audits": [
+        "npm run audit:register-mappings",
+        "npm run audit:standard"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "register evidence generation",
+        "mapping review"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "The mapping format begins at 1.0.0. Only matched rows with a stable identifier, evidence, and review receipt are claim-eligible."
+      },
+      "dependencies": [
+        "open-values-register-shelf",
+        "open-values-register-entity-inventory"
+      ]
+    },
+    {
+      "id": "open-values-register-coverage-rules",
+      "version": "1.0.0",
+      "declaredVersion": "1.0.0",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "Conservative reviewed selectors that determine public-register applicability from taxonomy properties while leaving every unreviewed relationship explicitly unmapped.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-register-coverage-rules",
+        "pathPattern": "content/register-coverage-rules.json"
+      },
+      "schema": "app/data/standard/schemas/register-coverage-rules.schema.json",
+      "schemaNote": "Core shape is schema-backed; the matrix builder checks exact shelf parity, validates selector vocabulary against the current taxonomy, rejects empty selectors, and fails selectors that match no target decision.",
+      "sourceOfTruth": [
+        "content/register-coverage-rules.json",
+        "content/registers.json",
+        "content/taxonomy.json"
+      ],
+      "generatedOutputs": [
+        "pipeline/registers/coverage-matrix.json"
+      ],
+      "builders": [
+        "pipeline/registers/build_coverage_matrix.py"
+      ],
+      "audits": [
+        "npm run audit:register-coverage",
+        "npm run audit:standard"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "register pass planning",
+        "coverage reporting"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "Rules begin at 1.0.0. The default must remain unmapped; not-applicable and blocked require explicit reviewed selectors."
+      },
+      "dependencies": [
+        "open-values-register-shelf",
+        "open-values-taxonomy"
+      ]
+    },
+    {
+      "id": "open-values-register-coverage-matrix",
+      "version": "1.0.0",
+      "declaredVersion": "1.0.0",
+      "status": "draft",
+      "kind": "generated",
+      "purpose": "Complete generated status coverage for every covered or open taxonomy decision against every public register on the shelf.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-register-coverage-matrix",
+        "pathPattern": "pipeline/registers/coverage-matrix.json"
+      },
+      "schema": "app/data/standard/schemas/register-coverage-matrix.schema.json",
+      "schemaNote": "Core shape is schema-backed; research/register_coverage_audit.js derives both dimensions, verifies every relationship appears exactly once, checks criterion and shelf-proof parity, and recomputes all denominators.",
+      "sourceOfTruth": [
+        "content/taxonomy.json",
+        "content/registers.json",
+        "content/register-coverage-rules.json",
+        "pipeline/registers/build_coverage_matrix.py"
+      ],
+      "generatedOutputs": [
+        "pipeline/registers/coverage-matrix.json"
+      ],
+      "builders": [
+        "pipeline/registers/build_coverage_matrix.py"
+      ],
+      "audits": [
+        "npm run audit:register-coverage",
+        "npm run audit:standard"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "register pass planning",
+        "catalogue content coverage reporting"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "The matrix begins at 1.0.0 and is regenerated whenever the taxonomy, shelf, coverage rules, or entity inventory changes."
+      },
+      "dependencies": [
+        "open-values-register-coverage-rules",
+        "open-values-register-entity-inventory"
+      ]
+    },
+    {
+      "id": "open-values-register-observations",
+      "version": "1.0.0",
+      "declaredVersion": "1.0.0",
+      "status": "draft",
+      "kind": "generated",
+      "purpose": "Register-specific parser output containing structured scalar claims and raw-record pointers from one verified snapshot, without finished prose, scores, or criterion selection.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-register-observations",
+        "pathPattern": "pipeline/registers/observations/*.observations.json"
+      },
+      "schema": "app/data/standard/schemas/register-observations.schema.json",
+      "schemaNote": "The evidence generator verifies snapshot and parser receipts, exact matched-identifier coverage, scalar claim shape, record references, and the absence of parser-authored provenance prose.",
+      "sourceOfTruth": [
+        "pipeline/registers/raw/",
+        "pipeline/registers/observations/",
+        "pipeline/registers/evidence.py"
+      ],
+      "generatedOutputs": [
+        "pipeline/registers/observations/*.observations.json"
+      ],
+      "builders": [
+        "future register-specific parsers"
+      ],
+      "audits": [
+        "npm run audit:register-evidence",
+        "npm run audit:standard"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "deterministic register evidence generator",
+        "register review workflow"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "Observations begin at 1.0.0. They are reproducible parser output and may never contain a finished note or score."
+      },
+      "dependencies": [
+        "open-values-register-snapshot",
+        "open-values-register-entity-map"
+      ]
+    },
+    {
+      "id": "open-values-register-evidence-bundle",
+      "version": "1.0.0",
+      "declaredVersion": "1.0.0",
+      "status": "draft",
+      "kind": "generated",
+      "purpose": "Lens-ready provenance generated deterministically from verified snapshots, reviewed entity mappings, applicable coverage, and traceable observations.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-register-evidence-bundle",
+        "pathPattern": "pipeline/registers/evidence/*.evidence.json"
+      },
+      "schema": "app/data/standard/schemas/register-evidence-bundle.schema.json",
+      "schemaNote": "The build check regenerates every bundle byte for byte. It rejects stale snapshot pins, unresolved mappings, non-applicable decisions, unmatched observation sets, untraceable claims, and unsafe absence language.",
+      "sourceOfTruth": [
+        "pipeline/registers/raw/",
+        "content/register-mappings/",
+        "pipeline/registers/observations/",
+        "pipeline/registers/coverage-matrix.json",
+        "pipeline/registers/evidence.py"
+      ],
+      "generatedOutputs": [
+        "pipeline/registers/evidence/*.evidence.json"
+      ],
+      "builders": [
+        "pipeline/registers/build_evidence.py"
+      ],
+      "audits": [
+        "npm run audit:register-evidence",
+        "npm run audit:standard"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "register evidence review",
+        "future lens promotion"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "Evidence bundles begin at 1.0.0. Any changed input changes a pinned hash and requires regeneration and renewed review."
+      },
+      "dependencies": [
+        "open-values-register-snapshot",
+        "open-values-register-entity-map",
+        "open-values-register-observations",
+        "open-values-register-coverage-matrix",
+        "open-values-source"
+      ]
+    },
+    {
+      "id": "open-values-register-evidence-review",
+      "version": "1.0.0",
+      "declaredVersion": "1.0.0",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "Human mapping and source-check receipt for the deterministic sample selected by one byte-exact register evidence bundle.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-register-evidence-review",
+        "pathPattern": "content/register-reviews/*.json"
+      },
+      "schema": "app/data/standard/schemas/register-evidence-review.schema.json",
+      "schemaNote": "The evidence audit derives every receipt from the review directory, verifies its bundle SHA-256, exact deterministic sample, checked mapping and source flags, and one-receipt-per-bundle identity.",
+      "sourceOfTruth": [
+        "content/register-reviews/",
+        "pipeline/registers/evidence/"
+      ],
+      "generatedOutputs": [],
+      "builders": [],
+      "audits": [
+        "npm run audit:register-evidence",
+        "npm run audit:standard"
+      ],
+      "ownerLane": "codex-data",
+      "runtimeConsumers": [
+        "future lens promotion gate",
+        "register pass reviewers"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "Review receipts begin at 1.0.0. A stale or incomplete receipt cannot authorize publication."
+      },
+      "dependencies": [
+        "open-values-register-evidence-bundle"
+      ]
     },
     {
       "id": "open-values-category-index",
@@ -1881,7 +2294,8 @@
       ],
       "audits": [
         "node research/ownership_edges_audit.js",
-        "node research/graph_test.js"
+        "node research/graph_test.js",
+        "npm run audit:relations"
       ],
       "ownerLane": "generated",
       "runtimeConsumers": [
@@ -2170,6 +2584,44 @@
         "open-values-presentation-page-kinds",
         "open-values-presentation-fixtures",
         "open-values-presentation-source-index"
+      ]
+    },
+    {
+      "id": "open-values-map",
+      "version": "1.0.0",
+      "declaredVersion": "1.0.0",
+      "status": "draft",
+      "kind": "generated",
+      "purpose": "The whole map of decisions a catalogue names, with the state of each, so a reader can see the ground that is not covered as well as the ground that is.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-map",
+        "pathPattern": "app/data/map.json"
+      },
+      "schema": "app/data/standard/schemas/map.schema.json",
+      "schemaNote": "Shape is schema-backed; research/map_audit.js additionally proves every state, count, cid and route against content/taxonomy.json and refuses a map that hides its open ground.",
+      "sourceOfTruth": [
+        "content/taxonomy.json"
+      ],
+      "generatedOutputs": [
+        "app/data/map.json"
+      ],
+      "builders": [
+        "pipeline/build_map.js"
+      ],
+      "audits": [
+        "npm run audit:map"
+      ],
+      "ownerLane": "generated",
+      "runtimeConsumers": [
+        "app/homelens.js"
+      ],
+      "compatibility": {
+        "acceptsLegacyVersion": false,
+        "notes": "Begins at v1 with no legacy file. Additive fields only; removing a state, or publishing fewer decisions than the taxonomy names, is breaking and the audit refuses it."
+      },
+      "dependencies": [
+        "open-values-taxonomy"
       ]
     }
   ]

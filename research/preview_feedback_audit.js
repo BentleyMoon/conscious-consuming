@@ -308,7 +308,7 @@ function checkLinkedData(meta) {
     'entity JSON-LD for banking/chase',
   );
   if (verdict['@type'] !== 'Service') failures.push(`${distLabel('app/c/banking/chase.html')}: entity JSON-LD should use schema Service`);
-  const expectedVerdictUrl = `${base}/c/banking/chase.html`;
+  const expectedVerdictUrl = `${base}/c/banking/chase`;
   if (meta.mode === 'public-production' && verdict.url !== expectedVerdictUrl) {
     failures.push(`${distLabel('app/c/banking/chase.html')}: entity JSON-LD url should match package siteBase`);
   } else if (meta.mode !== 'public-production' && !/^https?:\/\//.test(String(verdict.url || ''))) {

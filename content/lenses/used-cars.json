@@ -1,0 +1,531 @@
+{
+  "meta": {
+    "id": "used-cars",
+    "label": "Used cars",
+    "type": "Products",
+    "primaryAxis": "transparency",
+    "tradeoff": [
+      "economical",
+      "transparency"
+    ],
+    "tradeoffLabels": [
+      "cheapest price",
+      "most buyer protection"
+    ],
+    "source": "Conscious Consuming (curated)",
+    "attribution": "These are not car models. They are the routes a buyer in the United States actually uses to get a used car: private sellers, marketplaces, dealer types, off-rental sales, auctions, and buying out your own lease. The core trade-off is price against protection: the cheapest routes carry the fewest guarantees about what you are getting, and the most protected routes charge for that certainty. Pricing notes describe typical patterns from published studies and company policy pages, not a guarantee for any specific car. Sourced from the FTC, state attorneys general and DMVs, the Federal Reserve, the National Consumer Law Center, Consumer Reports, Cox Automotive, iSeeCars, and company policy pages; every score links its source and date. Not financial or legal advice. Reviewed 2026-08. Dispute or correct any rating via Contribute.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": { "economical": 3, "transparency": 3, "accessibility": 3 },
+        "x": []
+      },
+      "Cheapest route": {
+        "w": { "economical": 5, "transparency": 2, "accessibility": 3 },
+        "x": []
+      },
+      "Most protected": {
+        "w": { "transparency": 5, "economical": 2, "accessibility": 2 },
+        "x": []
+      },
+      "Easiest and fastest": {
+        "w": { "accessibility": 5, "economical": 2, "transparency": 2 },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    { "key": "economical", "label": "Cheaper price", "source": "curated" },
+    { "key": "transparency", "label": "Verified condition and protection", "source": "curated" },
+    { "key": "accessibility", "label": "Easy to buy", "source": "curated" }
+  ],
+  "products": [
+    {
+      "code": "private-party-sale",
+      "name": "Private-party sale",
+      "brand": "peer to peer, no dealer",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Buying directly from the previous owner, arranged through classified ads or word of mouth. It is the largest single channel for used cars in the United States and usually the cheapest, because the price carries no dealer overhead, reconditioning markup or profit margin. Almost no consumer-protection law applies once the sale is done.",
+      "scores": { "economical": 88, "transparency": 12, "accessibility": 78 },
+      "provenance": {
+        "economical": {
+          "note": "Buyers almost always pay more at a dealer than from a private seller, because dealer prices carry inspection, reconditioning and overhead costs that a private seller does not have.",
+          "source": "https://www.iseecars.com/articles/buying-from-car-dealer-vs-private-party",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Private sellers carry none of a licensed dealer's disclosure duties. Buyers should confirm the seller actually holds the title, since an unlicensed reseller posing as a private party, known as curbstoning, is a recognized scam that leaves buyers with title problems, rolled-back odometers or hidden salvage history and minimal legal recourse.",
+          "source": "https://www.ag.state.mn.us/consumer/publications/Curbstoning.asp",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Private-party deals are the largest channel for used light-vehicle sales nationally, about 47 percent of the total, ahead of franchised dealers at 27 percent and independent dealers at 26 percent, citing NIADA's 2025 report. Selection is everywhere, but the buyer arranges their own financing, inspection and paperwork.",
+          "source": "https://www.blueandco.com/independent-auto-dealers/",
+          "asof": "2025"
+        }
+      },
+      "links": [
+        { "label": "Dealer vs. private party", "url": "https://www.iseecars.com/articles/buying-from-car-dealer-vs-private-party" },
+        { "label": "Curbstoning warning", "url": "https://www.ag.state.mn.us/consumer/publications/Curbstoning.asp" }
+      ],
+      "region": ["US"],
+      "focuses": ["Cheapest", "No protection", "Own paperwork"]
+    },
+    {
+      "code": "facebook-marketplace",
+      "name": "Facebook Marketplace",
+      "brand": "private-party platform",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "The most-used app today for finding a private-party car, with about a quarter of 18-to-34-year-olds checking it daily. Facebook connects buyer and seller and then steps back completely: it holds no funds, verifies no one's identity, and explicitly excludes vehicles from its Purchase Protection policy.",
+      "scores": { "economical": 85, "transparency": 10, "accessibility": 85 },
+      "provenance": {
+        "economical": {
+          "note": "Facebook Marketplace vehicle listings are private-party sales, so the same private-party price advantage over dealer pricing applies.",
+          "source": "https://www.iseecars.com/articles/buying-from-car-dealer-vs-private-party",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Vehicles are explicitly excluded from Facebook's Purchase Protection policy, so buyers get zero buyer protection, no escrow and no identity verification for a vehicle purchase.",
+          "source": "https://www.autoinsurance.com/faqs/facebook-marketplace-car-what-to-know/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "About 23 percent of users aged 18 to 34 use Facebook Marketplace daily, giving buyers a very large, free, local pool of listings to search.",
+          "source": "https://www.autoinsurance.com/faqs/facebook-marketplace-car-what-to-know/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "What to know before buying", "url": "https://www.autoinsurance.com/faqs/facebook-marketplace-car-what-to-know/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Cheapest", "No protection", "Local"]
+    },
+    {
+      "code": "ebay-motors",
+      "name": "eBay Motors",
+      "brand": "online marketplace with a guarantee",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "An online marketplace mixing dealer and private-party vehicle listings from across the country, usually requiring the buyer to arrange and pay for shipping separately. It is the one classifieds-style marketplace here that backs the purchase itself with a company guarantee rather than leaving protection entirely to the seller.",
+      "scores": { "transparency": 55, "accessibility": 58 },
+      "provenance": {
+        "transparency": {
+          "note": "Eligible eBay Motors vehicle purchases are automatically enrolled, at no extra charge, in Vehicle Purchase Protection covering non-delivery, a missing title, or a major undisclosed defect for up to $100,000 of the purchase price.",
+          "source": "https://pages.ebay.com/motors/buy/purchase-protection/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Listings come from sellers nationwide, which widens selection well beyond a single metro area, but most purchases still require the buyer to arrange and pay for vehicle transport on top of the price.",
+          "source": "https://www.ebay.com/motors/blog/ebay-vehicle-protection-plan/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Vehicle Purchase Protection", "url": "https://pages.ebay.com/motors/buy/purchase-protection/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Guarantee", "Ship to you"]
+    },
+    {
+      "code": "independent-used-car-dealer",
+      "name": "Independent used-car dealer",
+      "brand": "local, non-franchised lot",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A licensed dealer not tied to any single manufacturer brand. Independent lots outnumber franchised new-car dealers by a wide margin, but the inspection standard, financing terms and reconditioning are each dealer's own choice, not a documented company-wide program.",
+      "scores": { "economical": 58, "transparency": 32, "accessibility": 65 },
+      "provenance": {
+        "economical": {
+          "note": "Used-car-lot inventory is typically older and lower-priced than new-car dealership inventory, reflecting the absence of manufacturer certification and its added reconditioning cost.",
+          "source": "https://www.iseecars.com/articles/buying-from-car-dealer-vs-private-party",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Cars at an independent used-car lot are typically sold with no warranty, and inspection depends on that dealer's own practice rather than any documented brand standard.",
+          "source": "https://www.iseecars.com/articles/buying-from-car-dealer-vs-private-party",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "The US had nearly 117,000 licensed independent dealer locations in 2025, though NIADA counts only about 53,000 as 'active' dealers selling at least 50 vehicles a year, against roughly 17,000 franchised dealer rooftops.",
+          "source": "https://www.blueandco.com/independent-auto-dealers/",
+          "asof": "2025"
+        }
+      },
+      "links": [
+        { "label": "Independent dealer market data", "url": "https://www.blueandco.com/independent-auto-dealers/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Local lot", "Variable standards"]
+    },
+    {
+      "code": "franchise-dealer-noncertified",
+      "name": "Franchise dealer, non-certified used",
+      "brand": "new-car dealer's used lot",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Trade-ins and older inventory sold on a new-car dealership's used lot without the manufacturer's certified pre-owned inspection or warranty extension attached. It is the same dealer network that sells certified cars, minus the extra reconditioning, inspection points and warranty that certification requires.",
+      "scores": { "economical": 52, "transparency": 40, "accessibility": 82 },
+      "provenance": {
+        "economical": {
+          "note": "Certified pre-owned cars cost about 1.8 percent more on average than a comparable non-certified used car, so non-certified inventory from the same lot is the cheaper of the two.",
+          "source": "https://www.consumerreports.org/cars/the-truth-about-certified-pre-owned-cars-a8333898965/",
+          "asof": "2024"
+        },
+        "transparency": {
+          "note": "Regular used inventory lacks the certified pre-owned dealer inspection and reconditioning, and carries no manufacturer-backed extended warranty the way certified cars do.",
+          "source": "https://www.consumerreports.org/cars/the-truth-about-certified-pre-owned-cars-a8333898965/",
+          "asof": "2024"
+        },
+        "accessibility": {
+          "note": "Franchised dealers are a much smaller group by location count than independent dealers, roughly 17,000 rooftops, but each store is backed by a manufacturer network with standing financing relationships.",
+          "source": "https://www.blueandco.com/independent-auto-dealers/",
+          "asof": "2025"
+        }
+      },
+      "links": [
+        { "label": "CPO price premium", "url": "https://www.consumerreports.org/cars/the-truth-about-certified-pre-owned-cars-a8333898965/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Trade-ins", "No certification"]
+    },
+    {
+      "code": "manufacturer-cpo",
+      "name": "Manufacturer certified pre-owned (CPO)",
+      "brand": "franchise dealer, certified",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Late-model used cars from a franchise dealer that have passed the manufacturer's own inspection checklist and carry a factory-backed extended warranty. Toyota's version, for example, is a 160-point inspection with a 12-month, 12,000-mile comprehensive warranty and a 7-year, 100,000-mile powertrain warranty. Not every dealer 'certified' label is the manufacturer's own program, so it is worth checking which one applies.",
+      "scores": { "economical": 34, "transparency": 80, "accessibility": 78 },
+      "provenance": {
+        "economical": {
+          "note": "Certified pre-owned cars cost about 1.8 percent more on average than a comparable non-certified used car, from a few hundred to a few thousand dollars depending on the model.",
+          "source": "https://www.consumerreports.org/cars/the-truth-about-certified-pre-owned-cars-a8333898965/",
+          "asof": "2024"
+        },
+        "transparency": {
+          "note": "CPO vehicles get extensive inspection and refurbishing plus an extended factory warranty and roadside assistance; Consumer Reports' 2024 analysis of over 300,000 vehicles found CPO cars had about 14 percent fewer problems than other used cars, though some dealers create their own weaker in-house 'certified' label rather than using the automaker's program.",
+          "source": "https://www.consumerreports.org/cars/the-truth-about-certified-pre-owned-cars-a8333898965/",
+          "asof": "2024"
+        },
+        "accessibility": {
+          "note": "About 2.5 million certified pre-owned vehicles were sold in 2024, sold through the same nationwide franchise dealer networks as new cars, though supply is constrained by fewer lease returns feeding the program.",
+          "source": "https://www.coxautoinc.com/insights/certified-pre-owned-sales-retreat-underperform-the-overall-used-vehicle-market-2024/",
+          "asof": "2024"
+        }
+      },
+      "links": [
+        { "label": "The truth about CPO", "url": "https://www.consumerreports.org/cars/the-truth-about-certified-pre-owned-cars-a8333898965/" },
+        { "label": "CPO sales volume", "url": "https://www.coxautoinc.com/insights/certified-pre-owned-sales-retreat-underperform-the-overall-used-vehicle-market-2024/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Extended warranty", "Inspected"]
+    },
+    {
+      "code": "buy-here-pay-here",
+      "name": "Buy-here-pay-here (BHPH) dealer",
+      "brand": "in-house financing lot",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A dealer that finances the car itself instead of sending the loan to a bank, often collecting payments weekly at the same lot where the car was bought. It exists to say yes to buyers mainstream lenders turn down, and Federal Reserve data shows that access comes at a steep price in both interest and repossession risk.",
+      "scores": { "economical": 12, "transparency": 18, "accessibility": 78 },
+      "provenance": {
+        "economical": {
+          "note": "Buy-here-pay-here subprime loans carry an average interest rate near 25 percent, against 14.6 percent for other subprime auto financing, and roughly 5 percent of buy-here-pay-here loan balances were in active repossession in Q3 2025 versus 0.3 percent for traditional lenders.",
+          "source": "https://www.federalreserve.gov/econres/notes/feds-notes/subprime-auto-lending-trends-in-buy-here-pay-here-auto-lending-20260508.html",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "The National Consumer Law Center describes the sector as pairing high prices and high down payments for cars in poor condition with high delinquency and repossession rates, and documents vehicles being repossessed without court review, sometimes by unlicensed individuals.",
+          "source": "https://www.nclc.org/topic/buy-here-pay-here-bhph-dealers/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "78 percent of buy-here-pay-here lending goes to subprime borrowers, against 27 percent at traditional lenders, because these dealers approve buyers that banks and mainstream auto lenders decline.",
+          "source": "https://www.federalreserve.gov/econres/notes/feds-notes/subprime-auto-lending-trends-in-buy-here-pay-here-auto-lending-20260508.html",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Federal Reserve BHPH data", "url": "https://www.federalreserve.gov/econres/notes/feds-notes/subprime-auto-lending-trends-in-buy-here-pay-here-auto-lending-20260508.html" },
+        { "label": "NCLC on BHPH dealers", "url": "https://www.nclc.org/topic/buy-here-pay-here-bhph-dealers/" },
+        { "label": "CFPB on auto loan servicing abuses", "url": "https://www.consumerfinance.gov/about-us/newsroom/cfpb-takes-action-against-wrongful-auto-repossessions-and-loan-servicing-breakdowns/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Subprime", "In-house loan", "High risk"]
+    },
+    {
+      "code": "carmax",
+      "name": "CarMax",
+      "brand": "used-car superstore",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "The largest used-car retailer in the country, with 250 stores and about 790,000 vehicles sold at retail in fiscal 2025, all priced no-haggle. Every car gets a 125-point inspection, a money-back guarantee and a limited warranty, though the FTC found in 2016 that CarMax's inspection advertising did not adequately disclose which cars still had open safety recalls.",
+      "scores": { "economical": 40, "transparency": 55, "accessibility": 88 },
+      "provenance": {
+        "economical": {
+          "note": "CarMax prices vehicles at an average of 4.2 percent above market value under its no-haggle model, slightly higher than Carvana's 3.9 percent.",
+          "source": "https://www.iseecars.com/articles/carmax-vs-carvana",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "The FTC published a proposed consent order with CarMax in the Federal Register on December 22, 2016, settling allegations that CarMax's advertising of its used-vehicle inspections was an unfair or deceptive practice because it did not adequately disclose that some inspected cars still had unrepaired safety recalls, including the GM ignition-switch and Takata airbag defects; the final order requires CarMax to disclose open-recall status clearly in its advertising going forward.",
+          "source": "https://www.federalregister.gov/documents/2016/12/22/2016-30868/carmax-inc-analysis-of-proposed-consent-order-to-aid-public-comment",
+          "asof": "2016"
+        },
+        "accessibility": {
+          "note": "CarMax operates 250 stores in the United States and is described in its own investor materials as the nation's largest retailer of used autos, selling about 790,000 vehicles at retail in fiscal 2025.",
+          "source": "https://investors.carmax.com/news-and-events/news/news-details/2025/CarMax-Reports-Fourth-Quarter-and-Fiscal-Year-2025-Results/default.aspx",
+          "asof": "2025"
+        }
+      },
+      "links": [
+        { "label": "FTC consent order (Federal Register)", "url": "https://www.federalregister.gov/documents/2016/12/22/2016-30868/carmax-inc-analysis-of-proposed-consent-order-to-aid-public-comment" },
+        { "label": "Plain-language summary", "url": "https://www.fi-magazine.com/news/carmax-asbury-west-herr-automotive-settle-ftc-recall-advertising-charges" },
+        { "label": "FY2025 results", "url": "https://investors.carmax.com/news-and-events/news/news-details/2025/CarMax-Reports-Fourth-Quarter-and-Fiscal-Year-2025-Results/default.aspx" }
+      ],
+      "region": ["US"],
+      "focuses": ["No haggle", "Nationwide", "Market leader"]
+    },
+    {
+      "code": "carvana",
+      "name": "Carvana",
+      "brand": "online, vending-machine delivery",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "The largest online-only used-car retailer, selling almost 597,000 vehicles in 2025, delivered to your door or through its vending-machine towers. It backs cars with a 7-day, 400-mile return window and a 100-day, 4,189-mile limited warranty, but has repeatedly lost state dealer licenses over slow title transfers: North Carolina, Illinois and Michigan each suspended or pulled Carvana's license in 2021 to 2022 over title-delivery violations, before the January 2025 Connecticut settlement below.",
+      "scores": { "economical": 42, "transparency": 42, "accessibility": 82 },
+      "provenance": {
+        "economical": {
+          "note": "Carvana prices vehicles at an average of 3.9 percent above market value, slightly below CarMax's 4.2 percent, under its own no-haggle model.",
+          "source": "https://www.iseecars.com/articles/carmax-vs-carvana",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Connecticut's Attorney General settled with Carvana for $1.5 million in January 2025, after hundreds of complaints about months-long title and registration delays, delayed loan payoffs that left buyers paying for cars they no longer owned, and 'deceptive representations of car conditions and features.' The settlement requires Carvana to provide valid title and registration documents at the time of sale going forward and to give Connecticut a direct contact for resolving complaints.",
+          "source": "https://portal.ct.gov/ag/press-releases/2025-press-releases/attorney-general-tong-announces-settlement-with-carvana-following-hundreds-of-consumer-complaints",
+          "asof": "2025"
+        },
+        "accessibility": {
+          "note": "Carvana sold about 596,641 vehicles across the contiguous United States in 2025 and is described as the largest online-only used-car retailer, with home delivery and vending-machine pickup towers.",
+          "source": "https://www.carwhere.com/guides/is-carvana-legit",
+          "asof": "2025"
+        }
+      },
+      "links": [
+        { "label": "Connecticut settlement", "url": "https://portal.ct.gov/ag/press-releases/2025-press-releases/attorney-general-tong-announces-settlement-with-carvana-following-hundreds-of-consumer-complaints" },
+        { "label": "North Carolina suspension", "url": "https://www.wral.com/vending-machine-out-of-order-carvana-loses-license-to-sell-in-wake-co-until-2022/19820588/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Online only", "Home delivery", "Repeat license actions"]
+    },
+    {
+      "code": "autonation-usa",
+      "name": "AutoNation USA",
+      "brand": "no-haggle used-only stores",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "The country's largest auto retailer's stand-alone used-car format, launched in 2016 with centrally set 'one price' pricing shown against Kelley Blue Book value rather than negotiated per store. AutoNation briefly pledged in 2015 to stop selling any vehicle with an open safety recall, then reversed that pledge in 2016; a 2023 newspaper investigation still found unrepaired recalled trucks for sale on its lots.",
+      "scores": { "transparency": 45, "accessibility": 62 },
+      "provenance": {
+        "transparency": {
+          "note": "A November 2023 Chicago Sun-Times investigation found used Ram 3500 trucks for sale at AutoNation with open safety recalls, including a $52,399 2021 model with three unrepaired recalls, two involving potential vehicle fires; there is no federal law requiring a dealer to repair open recalls before selling a used car.",
+          "source": "https://chicago.suntimes.com/2023/11/24/23968777/used-cars-recalls-safety-carmax-autonation-carfax-carvana-nhtsa-certified-preowned",
+          "asof": "2023"
+        },
+        "accessibility": {
+          "note": "AutoNation owned and operated 245 dealership stores across 19 states as of the end of 2025, the largest store count of any auto retailer in the country, though not every store is a stand-alone AutoNation USA used-only format.",
+          "source": "https://www.tradingview.com/news/tradingview:a7d3b401ba439:0-autonation-inc-sec-10-k-report/",
+          "asof": "2025"
+        }
+      },
+      "links": [
+        { "label": "Recall investigation", "url": "https://chicago.suntimes.com/2023/11/24/23968777/used-cars-recalls-safety-carmax-autonation-carfax-carvana-nhtsa-certified-preowned" },
+        { "label": "No-haggle launch", "url": "https://www.spokesman.com/stories/2016/oct/28/autonation-targets-used-car-market-with-new-no-hag/" }
+      ],
+      "region": ["US"],
+      "focuses": ["No haggle", "Recall record disputed"]
+    },
+    {
+      "code": "enterprise-car-sales",
+      "name": "Enterprise Car Sales",
+      "brand": "ex-rental fleet, dealer network",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Enterprise's own retail arm for its retired rental cars, at 161 US dealerships as of fiscal 2024. As a rental fleet of more than 35 vehicles, Enterprise is legally barred under 49 U.S.C. 30120(i) from selling a covered vehicle until any open safety recall is remedied, generally within 24 hours of notice from the manufacturer, a protection that applies to this inventory by law rather than by company choice.",
+      "scores": { "transparency": 68, "accessibility": 62 },
+      "provenance": {
+        "transparency": {
+          "note": "Enterprise Certified vehicles pass a nine-area inspection (cosmetic, driving experience, common maintenance, exterior lighting, tires and wheels, brakes, undercarriage, interior, state inspection) by ASE-certified technicians, come with a vehicle history report, a 7-day, 1,000-mile buyback minus a $200 restocking fee, a 12-month, 12,000-mile limited powertrain warranty, and 12 months of roadside assistance.",
+          "source": "https://www.enterprisecarsales.com/certified-used-cars-for-sale/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Enterprise Car Sales opened seven new US dealerships in fiscal 2024, bringing its total to 161, with more planned for fiscal 2025, as part of Enterprise Mobility's year-end results announcement.",
+          "source": "https://www.prnewswire.com/news-releases/connecting-customers-with-mobility-solutions-drives-successful-year-for-enterprise-mobility-302285254.html",
+          "asof": "2024"
+        }
+      },
+      "links": [
+        { "label": "Certified inspection and protections", "url": "https://www.enterprisecarsales.com/certified-used-cars-for-sale/" },
+        { "label": "Dealership count, FY2024", "url": "https://www.prnewswire.com/news-releases/connecting-customers-with-mobility-solutions-drives-successful-year-for-enterprise-mobility-302285254.html" },
+        { "label": "49 U.S.C. 30120, recall remedy requirement", "url": "https://www.law.cornell.edu/uscode/text/49/30120" }
+      ],
+      "region": ["US"],
+      "focuses": ["Ex-rental", "Warranty included", "Recall law applies"]
+    },
+    {
+      "code": "hertz-car-sales",
+      "name": "Hertz Car Sales",
+      "brand": "ex-rental fleet, dealer network",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Hertz's retail channel for cars retired from its rental fleet, sold through 45 US locations with a one-year, 12,000-mile warranty and a 7-day return window, plus a 3-day Rent2Buy trial now offered in over 100 cities. The same recall law that covers Enterprise applies here, but NHTSA opened a formal investigation in December 2022 into whether Hertz had in fact rented out some vehicles without completing the required recall repairs first.",
+      "scores": { "transparency": 52, "accessibility": 45 },
+      "provenance": {
+        "transparency": {
+          "note": "NHTSA's own special order opening Audit Query AQ22-003 states that 'in late 2021, NHTSA received information suggesting that The Hertz Corporation rented vehicles to customers without having had all required safety recall repairs performed,' involving Ford Explorer and Nissan Altima vehicles, and that federal law (49 U.S.C. 30120(i)) bars a rental company from renting a recalled vehicle before the defect is remedied, with violations subject to civil penalties.",
+          "source": "https://static.nhtsa.gov/odi/inv/2022/INOT-AQ22003-89858P.pdf",
+          "asof": "2022"
+        },
+        "accessibility": {
+          "note": "A Hertz newsroom release says Hertz Car Sales operates 45 locations nationwide and has expanded its 3-day Rent2Buy test-drive-to-own program to more than 100 cities, adding that about 80 percent of people who rent through that program go on to buy the vehicle.",
+          "source": "https://newsroom.hertz.com/press-releases/press-release-details/hertz-car-sales-is-redefining-the-test-drive-and-expanding-its-rent2buy-program-to-100-cities-nationwide/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "NHTSA special order (AQ22-003)", "url": "https://static.nhtsa.gov/odi/inv/2022/INOT-AQ22003-89858P.pdf" },
+        { "label": "Plain-language summary", "url": "https://www.insurancejournal.com/news/national/2022/12/22/700442.htm" },
+        { "label": "Hertz Car Sales locations", "url": "https://newsroom.hertz.com/press-releases/press-release-details/hertz-car-sales-is-redefining-the-test-drive-and-expanding-its-rent2buy-program-to-100-cities-nationwide/" },
+        { "label": "49 U.S.C. 30120, recall remedy requirement", "url": "https://www.law.cornell.edu/uscode/text/49/30120" }
+      ],
+      "region": ["US"],
+      "focuses": ["Ex-rental", "Warranty included", "Recall compliance questioned"]
+    },
+    {
+      "code": "salvage-auto-auction",
+      "name": "Public salvage auto auction (Copart, IAA)",
+      "brand": "insurance total-loss auction",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Online auctions of insurance total-loss and damaged vehicles, open to the public with no dealer license required. Prices are steeply discounted for the damage, but everything sells 'as-is, where-is' with no warranty, and photos are not a substitute for seeing the car in person before bidding.",
+      "scores": { "economical": 85, "transparency": 22, "accessibility": 32 },
+      "provenance": {
+        "economical": {
+          "note": "Unrepaired salvage vehicles typically trade at 40 to 60 percent below clean-title actual cash value, with steeper discounts for flood and fire damage than for hail or collision damage.",
+          "source": "https://sca.auction/blog/article/how-much-is-a-salvage-title-car-worth-compared-to-clean",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "All vehicles are sold 'as-is, where-is,' with no warranties, and Copart itself advises that photos are not a substitute for an in-person inspection before bidding.",
+          "source": "https://www.salvagereseller.com/copart-how-to-buy",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "No dealer license is required to buy; a free account is available, and bidding requires a refundable security deposit, plus a transaction fee of 5 to 10 percent of the winning bid depending on membership tier.",
+          "source": "https://www.salvagereseller.com/copart-how-to-buy",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Salvage title value discount", "url": "https://sca.auction/blog/article/how-much-is-a-salvage-title-car-worth-compared-to-clean" },
+        { "label": "How to buy from Copart", "url": "https://www.salvagereseller.com/copart-how-to-buy" }
+      ],
+      "region": ["US"],
+      "focuses": ["Salvage title", "As-is", "Needs repair"]
+    },
+    {
+      "code": "gsa-fleet-auction",
+      "name": "Government fleet auction (GSA Fleet)",
+      "brand": "federal surplus vehicles",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "The federal government's own auction of vehicles retired from its executive-branch fleet, mostly sedans, SUVs and trucks used by federal employees. It is open to the public online, and every vehicle comes from the government's own fleet rather than from private individuals, repossession or the military.",
+      "scores": { "economical": 78, "transparency": 40, "accessibility": 45 },
+      "provenance": {
+        "economical": {
+          "note": "Government fleet auction vehicles, including GSA's, commonly sell 30 to 50 percent below private-party book value, with 2016-to-2020-model fleet sedans typically listed at $2,000 to $8,000.",
+          "source": "https://bidprowl.com/guides/government-vehicle-auctions",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Federal fleet vehicles are described as typically well-maintained with documented service histories, though condition still varies by vehicle type and buyers should review available condition reports rather than rely on photos alone.",
+          "source": "https://bidprowl.com/guides/government-vehicle-auctions",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "GSA directs the public to its own online marketplace, where more than 30,000 federal fleet vehicles are sold at auction each year; GSA's page lists sedans, trucks, buses and specialty vehicles across gasoline, diesel and electric fuel types.",
+          "source": "https://www.gsa.gov/buy-through-us/products-and-services/transportation-and-logistics-services/fleet-management/vehicle-leasing/sales-of-gsa-fleet-vehicles",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "GSA Fleet vehicle sales", "url": "https://www.gsa.gov/buy-through-us/products-and-services/transportation-and-logistics-services/fleet-management/vehicle-leasing/sales-of-gsa-fleet-vehicles" },
+        { "label": "Government auction pricing guide", "url": "https://bidprowl.com/guides/government-vehicle-auctions" }
+      ],
+      "region": ["US"],
+      "focuses": ["Government fleet", "As-is", "Documented use"]
+    },
+    {
+      "code": "manheim-wholesale-auction",
+      "name": "Wholesale dealer auction (Manheim)",
+      "brand": "dealer-to-dealer, licensed access",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "The wholesale auction network dealers use to restock their own lots, at prices well below what any of those same dealers later charge retail. Bidding at most locations requires a dealer license and an AuctionACCESS credential; a small number of Manheim locations run public sale lanes open to ordinary buyers.",
+      "scores": { "economical": 82, "transparency": 25, "accessibility": 15 },
+      "provenance": {
+        "economical": {
+          "note": "Dealers typically pay 25 to 40 percent less at wholesale auction than the eventual retail sticker price, with the markup varying by vehicle type, which is why wholesale access is valuable but tightly restricted.",
+          "source": "https://otdcheck.com/blog/wholesale-vs-retail-car-price-gap-2026",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Manheim's standard auctions are dealer-to-dealer wholesale transactions with no consumer disclosure framework attached; a licensed dealer or authorized representative registered under a dealership's AuctionACCESS account can attend, and Manheim separately runs a smaller number of designated public sale locations.",
+          "source": "https://dealer101.com/auctions/companies/manheim/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Only licensed dealers and representatives registered under a dealership's AuctionACCESS account, which costs about $103 a year per person, can attend Manheim's main auctions; ordinary consumers cannot bid there directly, though select locations do run public sale lanes.",
+          "source": "https://dealer101.com/auctions/companies/manheim/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Manheim access requirements", "url": "https://dealer101.com/auctions/companies/manheim/" },
+        { "label": "Wholesale-retail price gap", "url": "https://otdcheck.com/blog/wholesale-vs-retail-car-price-gap-2026" }
+      ],
+      "region": ["US"],
+      "focuses": ["Dealer only", "As-is", "Cheapest raw price"]
+    },
+    {
+      "code": "lease-buyout",
+      "name": "Lease buyout",
+      "brand": "buy the car you already have",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Buying the vehicle you are already leasing at the price fixed in your lease contract when you signed it, called the residual value. It is the closest thing on this list to the car you already own: no test drive, no stranger's disclosure to trust, since you already have months or years of first-hand experience with this exact car.",
+      "scores": { "transparency": 75, "accessibility": 62 },
+      "provenance": {
+        "transparency": {
+          "note": "The buyout price is the residual value the leasing company fixed in the contract at signing, not a negotiated market price, and a lessee already has direct, first-hand experience with that specific car's condition and history before deciding whether to buy it.",
+          "source": "https://www.experian.com/blogs/ask-experian/how-to-use-equity-at-end-of-leased-car/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "The process is a short paperwork sequence: pull the residual value from the lease contract, compare it against current market value using tools such as Kelley Blue Book or Edmunds, request a formal payoff quote, and finance the residual like any other auto loan. It is only available to the household already leasing that specific car.",
+          "source": "https://www.experian.com/blogs/ask-experian/how-to-use-equity-at-end-of-leased-car/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "How lease buyouts work", "url": "https://www.experian.com/blogs/ask-experian/how-to-use-equity-at-end-of-leased-car/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Already own", "Fixed price", "No shopping"]
+    }
+  ]
+}

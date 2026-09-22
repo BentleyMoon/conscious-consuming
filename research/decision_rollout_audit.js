@@ -284,7 +284,7 @@ function appChecks() {
   for (const cue of [
     'function decisionPrimaryCategory(cid)',
     'decision.page.primaryRoute',
-    "if(cid&&decisionPrimaryCategory(cid)){location.hash=decideHref(cid,facet);return;}",
+    "if(cid&&decisionPrimaryCategory(cid)){hopTo(decideHref(cid,facet));return;}",
     "else if(view==='rank')",
     'listHref=rankingHref(cid,query)',
     'return renderContractDecision(cid,facet,contract)',
@@ -329,8 +329,18 @@ function main() {
 
   const live = index.categories.map((category) => category.id);
   const contracts = registry.contracts || [];
-  expect(live.length === 88, `app/data/index.json: expected 88 live categories, found ${live.length}`);
-  expect(contracts.map((contract) => contract.category).join('|') === live.join('|'), 'content/decisions.json: rollout coverage must exactly match the live category index');
+  // 2026-08-14. Four register-ready energy and open-technology decisions moved
+  // through serial ontology promotion. This remains a coverage ratchet.
+  // 124 on 2026-08-26: messaging and browsers left the shared digital-services dataset, the
+  // first two of the nine-way split recorded in docs/ONTOLOGY-RESEARCH.md 4.1.
+  expect(live.length === 124, `app/data/index.json: expected 124 live categories, found ${live.length}`);
+  const contractCategories = contracts.map((contract) => contract.category);
+  const contractCategorySet = new Set(contractCategories);
+  expect(contractCategorySet.size === contractCategories.length, 'content/decisions.json: rollout categories must be unique');
+  expect(
+    live.every((category) => contractCategorySet.has(category)) && contractCategories.every((category) => live.includes(category)),
+    'content/decisions.json: rollout coverage must exactly match the live category index'
+  );
   expect(/Round 9/i.test(String(registry.consumer && registry.consumer.page || '')), 'content/decisions.json: page consumer must name Round 9');
   const certificationParityFixtures = certificationScoringContractChecks(index.certificationScoringContract);
 
@@ -413,19 +423,21 @@ function main() {
     }
   }
 
-  expect(receipt.categories === 88, `rollout: tested ${receipt.categories}/88 generated categories`);
+  expect(receipt.categories === 124, `rollout: tested ${receipt.categories}/124 generated categories`);
   expect(receipt.pilotRoutes === 2, `rollout: expected 2 founder-approved pilot routes, found ${receipt.pilotRoutes}`);
-  expect(receipt.batchRoutes === 86, `rollout: expected 86 approved batch routes, found ${receipt.batchRoutes}`);
+  // 122 on 2026-08-26: messaging and browsers joined the approved batch with their own
+  // contracts when the digital-services split gave them datasets.
+  expect(receipt.batchRoutes === 122, `rollout: expected 122 approved batch routes, found ${receipt.batchRoutes}`);
   expect(receipt.certificationPilots === 3, `rollout: expected 3 S8 certification pilots, found ${receipt.certificationPilots}`);
   expect(receipt.categoryAssignmentPaths === 24, `rollout: expected 24 category-assignment ranking paths, found ${receipt.categoryAssignmentPaths}`);
-  expect(receipt.floorFolded === 23, `rollout: shared floor should preserve its bounded 23-option receipt, found ${receipt.floorFolded}`);
+  expect(receipt.floorFolded === 22, `rollout: shared floor should preserve its bounded 22-option receipt, found ${receipt.floorFolded}`);
   appChecks();
   finish(receipt);
 }
 
 function finish(receipt) {
   console.log('Round 9 decision-page rollout audit');
-  console.log(`  primary routes: ${receipt.categories || 0}/88 (${receipt.pilotRoutes || 0} pilot + ${receipt.batchRoutes || 0} approved batch)`);
+  console.log(`  primary routes: ${receipt.categories || 0}/122 (${receipt.pilotRoutes || 0} pilot + ${receipt.batchRoutes || 0} approved batch)`);
   console.log(`  zero-setup recipes: ${receipt.zeroSetupRecipes || 0}; rendered answer cards after collapse: ${receipt.answerCards || 0}`);
   console.log(`  honest budget slots: ${receipt.budgetSlots || 0}`);
   console.log(`  shared-floor folds: ${receipt.floorFolded || 0} across ${receipt.categoriesWithFolds || 0} categories; every match retained`);

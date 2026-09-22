@@ -1,0 +1,90 @@
+{
+  "$schema": "../schemas/work-capsule.schema.json",
+  "kind": "cc-work-capsule",
+  "version": "1.0.0",
+  "id": "phase4-rural-broadband-pilot",
+  "variant": "satellite-decision-shape-preflight-v1",
+  "state": "BLOCKED",
+  "workMode": "recognition-gap-addition",
+  "priority": "P1",
+  "decision": "Should Phase 4 add a bounded rural/satellite decision shape to the live broadband lens, and can that pilot be built without crossing an inherited release gate?",
+  "liveConsumer": "A rural or constrained U.S. household using the published broadband guide and Broadband & internet explorer to compare the providers actually available at its address.",
+  "model": {
+    "id": "gpt-5.6-sol",
+    "reasoningEffort": "medium"
+  },
+  "writeAuthorized": true,
+  "scope": {
+    "ownedPaths": [
+      "research/demand_expansion_audit.js",
+      "content/operations/reviews/phase4-rural-broadband-baseline-2026-07-15.md",
+      "content/operations/results/phase4-rural-broadband-pilot.md"
+    ],
+    "forbiddenPaths": [
+      "content/lenses/broadband-internet.json",
+      "pipeline/build_datasets.py",
+      "research/provenance_summary_audit.js",
+      "research/verify_run.js",
+      "app/**",
+      "docs/CONTENT-HANDOFF.md"
+    ],
+    "requiresIsolatedWorktree": true
+  },
+  "gates": [
+    {
+      "id": "phase4-founder-authorization",
+      "status": "satisfied",
+      "evidence": "The founder directed Codex to begin Phase 4 on 2026-07-15."
+    },
+    {
+      "id": "live-rural-decision-consumer",
+      "status": "satisfied",
+      "evidence": "The published broadband guide explicitly tells users with constrained choices to compare cable, DSL, fixed wireless, or satellite, but the live 12-entry lens contains no satellite option."
+    }
+  ],
+  "sourceRequirements": [
+    "FCC National Broadband Map and Broadband Consumer Label rules for technology, availability, pricing, and disclosure boundaries.",
+    "Current first-party Starlink service-plan, fair-use, privacy, and terms pages.",
+    "Current first-party Hughesnet plan, broadband-label, priority-data, privacy, and subscriber terms.",
+    "Current first-party Viasat plan, broadband-label, network-management, privacy, and subscriber terms."
+  ],
+  "preconditions": [
+    {
+      "id": "decision-shape-gap-measured",
+      "status": "satisfied",
+      "evidence": "The broadband lens has 12 U.S. options across fiber, cable, and fixed wireless; satellite entries = 0 while the guide names satellite as a real constrained-household route."
+    },
+    {
+      "id": "research-only-until-build-green",
+      "status": "satisfied",
+      "evidence": "This capsule owns only audit and review artifacts. Phase 2 remains ledger-blocked, so the broadband lens and generated outputs are forbidden until the dataset build path is reconciled."
+    }
+  ],
+  "doneWhen": [
+    "A reproducible audit distinguishes earned decision-shape demand from category count growth.",
+    "A three-option candidate matrix names the exact primary evidence needed for all five existing broadband criteria.",
+    "The prior Phase 2 ledger state is checked before any dataset-backed content write.",
+    "No lens, pipeline, generated app, or design-owned file is edited while the build gate is closed.",
+    "A terminal result records whether the pilot is executable or blocked and the smallest safe follow-up."
+  ],
+  "stopConditions": [
+    "The pilot would add providers merely to increase roster size rather than represent a missing access technology.",
+    "Current address-level plan evidence cannot support the five existing criteria without inventing universal prices or availability.",
+    "Any content edit would require running the Phase 2-modified dataset generator against unresolved provenance verification.",
+    "The work would hand-edit generated app data or cross into search/UX code."
+  ],
+  "expectedArtifacts": [
+    "A Phase 4 demand-expansion audit.",
+    "A frozen rural-broadband evidence and candidate baseline.",
+    "A terminal result card with the exact build gate and follow-up."
+  ],
+  "verificationCommands": [
+    "node research/demand_expansion_audit.js",
+    "git diff --exit-code -- content/lenses/broadband-internet.json",
+    "node scripts/content-runtime.mjs validate"
+  ],
+  "claimBoundary": {
+    "supports": "The live broadband decision has a bounded missing satellite route and three current primary-source candidates can be prepared without editing data.",
+    "doesNotSupport": "That satellite is preferable to terrestrial broadband, universally available, uniformly priced, or safe to add before the dataset build gate is green."
+  }
+}

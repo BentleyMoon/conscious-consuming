@@ -1,0 +1,779 @@
+{
+ "meta": {
+  "id": "secondhand-marketplaces",
+  "label": "Secondhand marketplaces",
+  "type": "Services",
+  "primaryAxis": "fees",
+  "tradeoff": [
+   "fees",
+   "buyer_protection"
+  ],
+  "tradeoffLabels": [
+   "seller keeps more of the sale price",
+   "buyer is protected if something goes wrong"
+  ],
+  "source": "Conscious Consuming (curated)",
+  "attribution": "This compares general marketplaces and giving networks for secondhand goods across categories, not the clothing-specific resale apps already covered in the Clothing realm's own secondhand and resale lens. Fee and protection figures come from each platform's own published fee policy, help center article or terms of service, read directly; where a platform states a US or UK figure, other countries it operates in may set different terms. These figures change without much notice, so check the linked page before relying on a number here. Facebook Marketplace, probably the most used option in this category in the United States, is left out: its help center pages returned errors to automated requests throughout this research, so no score here would have had a real source behind it. Three routes cost nothing at all and involve no marketplace fee at any point: Freecycle, the Buy Nothing Project and, in the UK, Freegle, all of which exist only to give things away locally. Two more, Habitat for Humanity ReStore and the Salvation Army's thrift stores, sell donated goods in person with no listing or shipping step, and put the proceeds into building homes or funding community programs rather than into a marketplace's own revenue. Reviewed 2026. Not an endorsement; check the linked source page on each option for its current terms.",
+  "allergens": false,
+  "presets": {
+   "Balanced": {
+    "w": {
+     "fees": 3,
+     "buyer_protection": 3,
+     "accessibility": 2
+    },
+    "x": []
+   },
+   "Best payout for sellers": {
+    "w": {
+     "fees": 5,
+     "buyer_protection": 1,
+     "accessibility": 1
+    },
+    "x": []
+   },
+   "Safest for buyers": {
+    "w": {
+     "buyer_protection": 5,
+     "fees": 1,
+     "accessibility": 1
+    },
+    "x": []
+   },
+   "No listing, no waiting": {
+    "w": {
+     "accessibility": 5,
+     "fees": 2,
+     "buyer_protection": 1
+    },
+    "x": []
+   }
+  },
+  "n": 12,
+  "valueSignatureProfile": {
+   "entryCount": 12,
+   "signedEntries": 12,
+   "drawableEntries": 4,
+   "minimumThemesForBloom": 2,
+   "themeCounts": {
+    "people": 4,
+    "cost": 12
+   }
+  },
+  "provenanceProfile": {
+   "entryCount": 12,
+   "singleSourceEntries": 11,
+   "multiSourceEntries": 1,
+   "noSourceEntries": 0,
+   "noteOnlyEntries": 0,
+   "averageSourceDomains": 1.08,
+   "topPrimarySources": [
+    {
+     "label": "about.nextdoor.com",
+     "entries": 1
+    },
+    {
+     "label": "buynothingproject.org",
+     "entries": 1
+    },
+    {
+     "label": "cl.com",
+     "entries": 1
+    },
+    {
+     "label": "ebay.com",
+     "entries": 1
+    },
+    {
+     "label": "freecycle.org",
+     "entries": 1
+    },
+    {
+     "label": "gumtree.com",
+     "entries": 1
+    }
+   ]
+  },
+  "decision": {
+   "category": "secondhand-marketplaces",
+   "reads": {
+    "text": "Compare secondhand marketplaces by fees, buyer protection, and everyday access.",
+    "basis": [
+     {
+      "criterion": "fees",
+      "readsAs": "fees"
+     },
+     {
+      "criterion": "buyer_protection",
+      "readsAs": "buyer protection"
+     },
+     {
+      "criterion": "accessibility",
+      "readsAs": "everyday access"
+     }
+    ],
+    "signature": {
+     "by": "Conscious Consuming",
+     "on": "2026-07-15",
+     "status": "approved-batch"
+    },
+    "receipt": {
+     "dataset": "secondhand-marketplaces",
+     "entryCount": 12,
+     "criteria": [
+      {
+       "criterion": "fees",
+       "readsAs": "fees",
+       "known": 9,
+       "minimum": 85,
+       "maximum": 100,
+       "spread": 15
+      },
+      {
+       "criterion": "buyer_protection",
+       "readsAs": "buyer protection",
+       "known": 4,
+       "minimum": 72,
+       "maximum": 92,
+       "spread": 20
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access",
+       "known": 5,
+       "minimum": 80,
+       "maximum": 88,
+       "spread": 8
+      }
+     ]
+    }
+   },
+   "axes": [
+    {
+     "id": "cost-or-values",
+     "kind": "cost-values",
+     "label": "Fees or overall fit",
+     "question": "Lower fees or a stronger overall fit?",
+     "criteria": [
+      "fees",
+      "buyer_protection",
+      "accessibility"
+     ],
+     "poles": [
+      "Lower fees",
+      "Stronger overall fit"
+     ],
+     "default": 50
+    },
+    {
+     "id": "accessibility",
+     "kind": "criterion",
+     "label": "Access",
+     "question": "Do you need easier everyday access?",
+     "criteria": [
+      "accessibility"
+     ],
+     "poles": [
+      "Flexible",
+      "Easier access"
+     ],
+     "default": 50
+    }
+   ],
+   "budget": {
+    "available": true,
+    "mode": "assessed-fees-rank",
+    "criterion": "fees",
+    "minimumKnown": 5,
+    "knownEntries": 9,
+    "coverage": 0.75
+   },
+   "archetypes": [
+    "best-for-most",
+    "strictest-match",
+    "budget-honest"
+   ],
+   "page": {
+    "stage": "approved-batch",
+    "primaryRoute": true
+   },
+   "consumer": {
+    "reads": "Round 8 approved category differences reads.",
+    "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+    "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+    "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+    "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+   }
+  }
+ },
+ "criteria": [
+  {
+   "key": "fees",
+   "label": "Low seller fees, seller keeps more of the sale",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "buyer_protection",
+   "label": "Buyer protection if an item is fake, damaged or never arrives",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "accessibility",
+   "label": "Easy and immediate, without listing or shipping",
+   "source": "curated",
+   "tier": "assessed"
+  }
+ ],
+ "products": [
+  {
+   "code": "ebay",
+   "name": "eBay",
+   "brand": "general online marketplace",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "General online marketplace selling secondhand and new goods across almost every category, by auction or fixed price, shipped by the seller after the item sells.",
+   "scores": {
+    "fees": 86,
+    "buyer_protection": 92
+   },
+   "provenance": {
+    "fees": {
+     "note": "eBay's own selling fees page says eBay charges two main types of selling fees: an insertion fee when a listing is created, and a final value fee when the item sells; the general final value fee for most categories is 13.6% of the total sale amount up to $7,500 per item, plus a small per-order fee.",
+     "source": "https://www.ebay.com/help/selling/fees-credits-invoices/selling-fees?id=4364",
+     "asof": "2026"
+    },
+    "buyer_protection": {
+     "note": "eBay's Money Back Guarantee page says coverage is automatic, covers the purchase price plus original shipping on eligible purchases, and that there is no extra fee for the coverage.",
+     "source": "https://pages.ebay.com/ebay-money-back-guarantee/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Selling fees",
+     "url": "https://www.ebay.com/help/selling/fees-credits-invoices/selling-fees?id=4364"
+    },
+    {
+     "label": "Money Back Guarantee",
+     "url": "https://pages.ebay.com/ebay-money-back-guarantee/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "General marketplace",
+    "Auction and fixed price"
+   ],
+   "valueSignature": {
+    "people": 92,
+    "cost": 86
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "ebay.com",
+    "sourceLabels": [
+     "ebay.com",
+     "pages.ebay.com"
+    ]
+   }
+  },
+  {
+   "code": "mercari",
+   "name": "Mercari",
+   "brand": "shipped app marketplace",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Shipped, app-based marketplace for secondhand and new goods across most categories, with items listed, sold and shipped through the app.",
+   "scores": {
+    "fees": 90,
+    "buyer_protection": 75
+   },
+   "provenance": {
+    "fees": {
+     "note": "Mercari's own help center article on fees says a 10 percent selling fee applies to the item price plus any buyer-paid shipping, for listings created or updated on or after January 6, 2025.",
+     "source": "https://www.mercari.com/us/help_center/article/169/",
+     "asof": "2026"
+    },
+    "buyer_protection": {
+     "note": "Mercari's own Buyer Protection article says buyers get a full refund for eligible returns when an item is not as described, that the protection applies a 3.6 percent fee, and that buyers have 72 hours after confirmed delivery to report an issue before payment is automatically released to the seller.",
+     "source": "https://www.mercari.com/us/help_center/article/235/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Fees on Mercari",
+     "url": "https://www.mercari.com/us/help_center/article/169/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Shipped marketplace",
+    "App-based"
+   ],
+   "valueSignature": {
+    "people": 75,
+    "cost": 90
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "mercari.com"
+   }
+  },
+  {
+   "code": "vinted",
+   "name": "Vinted",
+   "brand": "peer-to-peer marketplace",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Peer-to-peer marketplace, mostly secondhand clothing but expanding into other categories, where sellers set their own price and keep the full sale amount while buyers pay a separate protection fee.",
+   "scores": {
+    "fees": 100,
+    "buyer_protection": 80
+   },
+   "provenance": {
+    "fees": {
+     "note": "Vinted's own how-it-works page says: 'There are no selling fees on Vinted. You keep 100% of what you earn.'",
+     "source": "https://www.vinted.com/how_it_works",
+     "asof": "2026"
+    },
+    "buyer_protection": {
+     "note": "Vinted's own price list page says the Buyer Protection fee is a fixed $0.70 plus 5 percent of the item price, and its how-it-works page says buyers are covered when they shop and pay through Vinted.",
+     "source": "https://www.vinted.com/pricelist",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "How it works",
+     "url": "https://www.vinted.com/how_it_works"
+    },
+    {
+     "label": "Price list",
+     "url": "https://www.vinted.com/pricelist"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Peer-to-peer",
+    "No seller fee"
+   ],
+   "valueSignature": {
+    "people": 80,
+    "cost": 100
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "vinted.com"
+   }
+  },
+  {
+   "code": "gumtree",
+   "name": "Gumtree",
+   "brand": "UK classifieds",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "UK classified ads site for local secondhand goods, with free basic listings and an optional in-app payment and buyer protection system.",
+   "scores": {
+    "fees": 100,
+    "buyer_protection": 72
+   },
+   "provenance": {
+    "fees": {
+     "note": "Gumtree's own help page on fees and selling costs says: 'There are no seller fees or costs when using payments on Gumtree.'",
+     "source": "https://www.gumtree.com/info/safety/p/payments/how-fees-and-selling-costs-are-charged/",
+     "asof": "2026"
+    },
+    "buyer_protection": {
+     "note": "The same Gumtree help page says the Buyer Protection fee charged to buyers at checkout is a flat 0.70 pounds plus a variable 5 to 10 percent of the item price, depending on its value and category.",
+     "source": "https://www.gumtree.com/info/safety/p/payments/how-fees-and-selling-costs-are-charged/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "How fees are charged",
+     "url": "https://www.gumtree.com/info/safety/p/payments/how-fees-and-selling-costs-are-charged/"
+    }
+   ],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "Local classifieds",
+    "No seller fee"
+   ],
+   "valueSignature": {
+    "people": 72,
+    "cost": 100
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "gumtree.com"
+   }
+  },
+  {
+   "code": "craigslist",
+   "name": "Craigslist",
+   "brand": "local classifieds",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Free local classifieds site organized by city, where buyers and sellers arrange their own pickup, payment and delivery with no built-in payment system.",
+   "scores": {
+    "fees": 90
+   },
+   "provenance": {
+    "fees": {
+     "note": "Craigslist's own fees FAQ says: 'Some types or categories of postings may have an associated fee,' and its terms of use tie any charge to specifically making a 'paid posting', which implies ordinary classified listings are free in most categories and cities.",
+     "source": "https://cl.com/about/help/faqs/fees",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Fees FAQ",
+     "url": "https://cl.com/about/help/faqs/fees"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Local classifieds",
+    "No account required"
+   ],
+   "valueSignature": {
+    "cost": 90
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "cl.com"
+   }
+  },
+  {
+   "code": "offerup",
+   "name": "OfferUp",
+   "brand": "local and shipped marketplace app",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Local and shipped marketplace app for secondhand and new goods, combining in-person meetups for local sales with an optional shipping and payment system for items sold further away.",
+   "scores": {
+    "fees": 85
+   },
+   "provenance": {
+    "fees": {
+     "note": "OfferUp's own Terms of Service say: 'You can post most items through the Services without charge. OfferUp charges a fee to post some items, for example, if you exceed your available free posts for certain types of items in certain categories.'",
+     "source": "https://offerup.com/terms",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Terms of Service",
+     "url": "https://offerup.com/terms"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Local meetup",
+    "App-based"
+   ],
+   "valueSignature": {
+    "cost": 85
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "offerup.com"
+   }
+  },
+  {
+   "code": "nextdoor",
+   "name": "Nextdoor",
+   "brand": "neighborhood app",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Neighborhood social app with a For Sale & Free section for buying, selling and giving away items locally, alongside its main neighborhood feed.",
+   "scores": {
+    "accessibility": 85
+   },
+   "provenance": {
+    "accessibility": {
+     "note": "Nextdoor's own press release says neighbors use its buy, sell and give feature, including a Free Finds tool, to find items nearby, and that Nextdoor reaches 276,000 neighborhoods including nearly 1 in 3 US households, describing it as 'your trusted neighborhood treasure map.'",
+     "source": "https://about.nextdoor.com/press-releases/nextdoor-expands-its-buy-sell-and-give-feature-with-the-launch-of-free-finds",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Press release: Free Finds",
+     "url": "https://about.nextdoor.com/press-releases/nextdoor-expands-its-buy-sell-and-give-feature-with-the-launch-of-free-finds"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Hyperlocal",
+    "Buy, sell and give"
+   ],
+   "valueSignature": {
+    "cost": 85
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "about.nextdoor.com"
+   }
+  },
+  {
+   "code": "freecycle-network",
+   "name": "The Freecycle Network",
+   "brand": "local giving groups",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Network of local giving groups where members post items they want to give away or are looking for, and arrange pickup directly with each other, for free.",
+   "scores": {
+    "fees": 100,
+    "accessibility": 85
+   },
+   "provenance": {
+    "fees": {
+     "note": "Freecycle's own about page says everything posted must be free, legal and appropriate for all ages, that membership is free, and that it is free to post messages.",
+     "source": "https://www.freecycle.org/pages/about",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "Freecycle's own about page says members post what they want to give or receive, other members reply, and 'you arrange a pickup time and location' directly with them, with no shipping step.",
+     "source": "https://www.freecycle.org/pages/about",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "About Freecycle",
+     "url": "https://www.freecycle.org/pages/about"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Free only",
+    "Local pickup"
+   ],
+   "valueSignature": {
+    "cost": 92.5
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "freecycle.org"
+   }
+  },
+  {
+   "code": "buy-nothing-project",
+   "name": "Buy Nothing Project",
+   "brand": "hyperlocal gifting network",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Hyperlocal gifting network organized into neighborhood groups, where members give away and ask for items with no money changing hands.",
+   "scores": {
+    "fees": 100,
+    "accessibility": 80
+   },
+   "provenance": {
+    "fees": {
+     "note": "The Buy Nothing Project's own homepage describes it as a 'global community for giving and getting stuff, completely for free.'",
+     "source": "https://buynothingproject.org/",
+     "asof": "2026"
+    },
+    "accessibility": {
+     "note": "The Buy Nothing Project's own homepage invites members to 'discover what your neighbors are giving away and find a new home for what you no longer need' within local groups.",
+     "source": "https://buynothingproject.org/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Buy Nothing Project",
+     "url": "https://buynothingproject.org/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Free only",
+    "Neighborhood groups"
+   ],
+   "valueSignature": {
+    "cost": 90
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "buynothingproject.org"
+   }
+  },
+  {
+   "code": "freegle",
+   "name": "Freegle",
+   "brand": "UK local giving network",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "UK network of local groups for giving away unwanted items and finding things other people are giving away, for free.",
+   "scores": {
+    "fees": 100
+   },
+   "provenance": {
+    "fees": {
+     "note": "Freegle's own homepage describes it as 'like online dating for stuff... We'll match you with someone local. All completely free.'",
+     "source": "https://www.ilovefreegle.org/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Freegle",
+     "url": "https://www.ilovefreegle.org/"
+    }
+   ],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "Free only",
+    "Local matching"
+   ],
+   "valueSignature": {
+    "cost": 100
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "ilovefreegle.org"
+   }
+  },
+  {
+   "code": "habitat-restore",
+   "name": "Habitat for Humanity ReStore",
+   "brand": "nonprofit home goods thrift store",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Nonprofit home improvement and furniture stores that resell donated goods in person; proceeds fund Habitat for Humanity's home building and repair work.",
+   "scores": {
+    "accessibility": 88
+   },
+   "provenance": {
+    "accessibility": {
+     "note": "Habitat for Humanity's own ReStores page describes them as stores that accept donations and 'sell a constantly changing inventory of diverse, high-quality merchandise to the public at a fraction of the retail price,' a walk-in purchase with no listing or shipping step.",
+     "source": "https://www.habitat.org/restores",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Habitat ReStores",
+     "url": "https://www.habitat.org/restores"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Nonprofit thrift",
+    "Funds home building"
+   ],
+   "valueSignature": {
+    "cost": 88
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "habitat.org"
+   }
+  },
+  {
+   "code": "salvation-army-thrift",
+   "name": "Salvation Army Thrift Stores",
+   "brand": "nonprofit thrift store chain",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Nonprofit thrift store chain selling donated clothing and household goods in person; proceeds fund the Salvation Army's rehabilitation centers and community programs.",
+   "scores": {
+    "accessibility": 88
+   },
+   "provenance": {
+    "accessibility": {
+     "note": "The Salvation Army's own thrift stores page describes them as a way to buy gently used clothing, household items and other goods at 'significant savings over retail prices,' across 887 stores nationwide, with proceeds funding programs including 78 rehabilitation centers.",
+     "source": "https://www.salvationarmyusa.org/thrift-stores/",
+     "asof": "2026"
+    }
+   },
+   "links": [
+    {
+     "label": "Salvation Army Thrift Stores",
+     "url": "https://www.salvationarmyusa.org/thrift-stores/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Nonprofit thrift",
+    "Funds rehabilitation programs"
+   ],
+   "valueSignature": {
+    "cost": 88
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "salvationarmyusa.org"
+   }
+  }
+ ]
+}

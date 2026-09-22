@@ -1,0 +1,593 @@
+{
+  "format": "open-values-challenge-set",
+  "version": "0.1.0",
+  "standard": "open-values-standard",
+  "updated": "2026-08-14",
+  "purpose": "C13 seed data for algorithmic anti-echo-chamber behavior: opposite-view rankings, sourced steelman facts, and instance challenge defaults.",
+  "principles": [
+    "challenge is calm and dismissible",
+    "opposite-view rankings are values-relative, not truth claims",
+    "steelman facts must use existing sourced criteria evidence",
+    "data generation alone must not decide app presentation"
+  ],
+  "algorithms": [
+    {
+      "id": "opposite-view",
+      "label": "Opposite view",
+      "summary": "Rank the same category under an explicit opposite weighting and show the strongest honest case for that result.",
+      "inputs": [
+        "category",
+        "userView.weights",
+        "oppositeView.weights"
+      ],
+      "outputs": [
+        "userView.expectedTop",
+        "oppositeView.expectedTop",
+        "oppositeView.sourceTag"
+      ],
+      "mustNot": [
+        "Do not imply the opposite pick is objectively better.",
+        "Do not store or infer a user's private values."
+      ]
+    },
+    {
+      "id": "steelman",
+      "label": "Steelman",
+      "summary": "For the user's likely top pick, surface the lowest-scoring sourced weakness on an axis the view weights at 2 or below.",
+      "inputs": [
+        "category",
+        "userView.expectedTop",
+        "steelman.axis",
+        "steelman.sourceTag"
+      ],
+      "outputs": [
+        "steelman.framing"
+      ],
+      "mustNot": [
+        "Do not frame the weakness as a gotcha.",
+        "Do not use unsourced criticism."
+      ]
+    }
+  ],
+  "instances": [
+    {
+      "id": "conscious-consuming",
+      "label": "Conscious Consuming",
+      "role": "reference-consumption-instance",
+      "challengeDefault": "available",
+      "surfaces": [
+        "verdict",
+        "category",
+        "entry"
+      ],
+      "note": "The reference app can consume these contracts later; this file does not mandate app UI."
+    },
+    {
+      "id": "kosplora",
+      "label": "Kosplora",
+      "role": "flagship-learning-instance",
+      "challengeDefault": "prominent",
+      "surfaces": [
+        "learning-result",
+        "resource-detail",
+        "pathway"
+      ],
+      "config": {
+        "preferAxes": [
+          "openness",
+          "depth",
+          "accessibility",
+          "calm"
+        ],
+        "challengePrompt": "See a credible learning path that pushes against this preference.",
+        "mustNot": [
+          "Do not gamify challenge exposure.",
+          "Do not rank controversy above evidence quality."
+        ]
+      }
+    },
+    {
+      "id": "socrates-colosseum",
+      "label": "Socrates Colosseum",
+      "role": "future-structured-dissent-instance",
+      "status": "format-seed",
+      "challengeDefault": "primary",
+      "surfaces": [
+        "position",
+        "claim",
+        "source-set"
+      ],
+      "config": {
+        "preferAxes": [
+          "source-quality",
+          "opposing-view",
+          "claim-limits"
+        ],
+        "challengePrompt": "Read the strongest sourced version of the other position.",
+        "mustNot": [
+          "Do not publish unsourced claims.",
+          "Do not count attention as agreement."
+        ]
+      }
+    }
+  ],
+  "cases": [
+    {
+      "id": "ai-assistants-open-local-vs-managed-safety",
+      "category": "ai-assistants",
+      "label": "Open/local AI assistant versus managed safety",
+      "reads": "The strongest case the other way: ChatGPT gives broad access and a managed safety program.",
+      "userView": {
+        "label": "Privacy and openness first",
+        "weights": {
+          "privacy": 5,
+          "transparency": 5,
+          "openness": 5,
+          "safety": 2,
+          "accessibility": 1
+        },
+        "expectedTop": "jan-ai"
+      },
+      "oppositeView": {
+        "label": "Managed safety and broad access first",
+        "weights": {
+          "privacy": 1,
+          "transparency": 1,
+          "openness": 1,
+          "safety": 5,
+          "accessibility": 5
+        },
+        "expectedTop": "chatgpt",
+        "sourceTag": "ai-assistants/chatgpt/accessibility"
+      },
+      "steelman": {
+        "forEntity": "jan-ai",
+        "axis": "safety",
+        "sourceTag": "ai-assistants/jan-ai/safety",
+        "framing": "The strongest counterpoint is safety: local deployments inherit safety behavior from the chosen model and user configuration."
+      }
+    },
+    {
+      "id": "learning-depth-vs-accessibility",
+      "category": "learning-resources",
+      "label": "Deep expert reference versus accessibility-first library access",
+      "reads": "The strongest case the other way: NLS is built for readers who need accessible formats.",
+      "userView": {
+        "label": "Depth and open scholarship first",
+        "weights": {
+          "educational": 5,
+          "openness": 5,
+          "depth": 5,
+          "accessibility": 1,
+          "calm": 5,
+          "economical": 3
+        },
+        "expectedTop": "sep"
+      },
+      "oppositeView": {
+        "label": "Accessibility and ease first",
+        "weights": {
+          "educational": 2,
+          "openness": 1,
+          "depth": 1,
+          "accessibility": 5,
+          "calm": 1,
+          "economical": 1
+        },
+        "expectedTop": "nls",
+        "sourceTag": "learning-resources/nls/accessibility"
+      },
+      "steelman": {
+        "forEntity": "sep",
+        "axis": "accessibility",
+        "sourceTag": "learning-resources/sep/accessibility",
+        "framing": "The strongest counterpoint is accessibility: the encyclopedia is free and structured, but its scholarly prose assumes background knowledge."
+      }
+    },
+    {
+      "id": "password-managers-local-control-vs-easy-audited-default",
+      "category": "password-managers",
+      "label": "Local control versus easier audited default",
+      "reads": "The strongest case the other way: Bitwarden is easier for most people to use and audit.",
+      "userView": {
+        "label": "Local control and open source first",
+        "weights": {
+          "privacy": 5,
+          "transparency": 4,
+          "openness": 5,
+          "security": 5,
+          "accessibility": 1
+        },
+        "expectedTop": "keepassxc"
+      },
+      "oppositeView": {
+        "label": "Ease and broad usability first",
+        "weights": {
+          "privacy": 1,
+          "transparency": 1,
+          "openness": 1,
+          "security": 2,
+          "accessibility": 5
+        },
+        "expectedTop": "bitwarden",
+        "sourceTag": "password-managers/bitwarden/security"
+      },
+      "steelman": {
+        "forEntity": "keepassxc",
+        "axis": "accessibility",
+        "sourceTag": "password-managers/keepassxc/accessibility",
+        "framing": "The strongest counterpoint is usability: manual vault sync and backup make KeePassXC less effortless than cloud managers."
+      }
+    },
+    {
+      "id": "vpn-minimal-data-vs-free-tier-access",
+      "category": "vpn",
+      "label": "Minimal data collection versus free-tier access",
+      "reads": "The strongest case the other way: Proton VPN gives people a no-cost way to start.",
+      "userView": {
+        "label": "Privacy and transparency first",
+        "weights": {
+          "privacy": 5,
+          "transparency": 5,
+          "openness": 4,
+          "jurisdiction": 4,
+          "accessibility": 1
+        },
+        "expectedTop": "mullvad"
+      },
+      "oppositeView": {
+        "label": "Ease and availability first",
+        "weights": {
+          "privacy": 1,
+          "transparency": 1,
+          "openness": 1,
+          "jurisdiction": 1,
+          "accessibility": 5
+        },
+        "expectedTop": "proton-vpn",
+        "sourceTag": "vpn/proton-vpn/accessibility"
+      },
+      "steelman": {
+        "forEntity": "mullvad",
+        "axis": "accessibility",
+        "sourceTag": "vpn/mullvad/accessibility",
+        "framing": "The strongest counterpoint is access: Mullvad is simple and privacy-preserving, but it has no free tier."
+      }
+    },
+    {
+      "id": "banking-convenience-vs-mission-banking",
+      "category": "banking",
+      "label": "Convenient everyday banking versus mission and climate banking",
+      "reads": "The strongest case the other way: Triodos publishes a fossil-fuel position, and Nationwide argues from the shape of its treasury book.",
+      "userView": {
+        "label": "Low-friction everyday banking first",
+        "weights": {
+          "environment": 1,
+          "ethics": 1,
+          "transparency": 1,
+          "fees": 5,
+          "accessibility": 5,
+          "complaints": 1
+        },
+        "expectedTop": "nationwide-bs"
+      },
+      "oppositeView": {
+        "label": "Climate and mission banking first",
+        "weights": {
+          "environment": 5,
+          "ethics": 5,
+          "transparency": 4,
+          "fees": 1,
+          "accessibility": 1,
+          "complaints": 1
+        },
+        "expectedTop": "triodos",
+        "sourceTag": "banking/triodos/environment"
+      },
+      "steelman": {
+        "forEntity": "nationwide-bs",
+        "axis": "environment",
+        "sourceTag": "banking/nationwide-bs/environment",
+        "framing": "The strongest counterpoint is what is published: Nationwide infers its low fossil-fuel exposure from what its treasury holds, rather than stating a lending exclusion."
+      }
+    },
+    {
+      "id": "news-primary-records-vs-independent-investigation",
+      "category": "news-sources",
+      "label": "Primary official records versus independent investigative reporting",
+      "reads": "The strongest case the other way: ProPublica brings independent reporting, not just records.",
+      "userView": {
+        "label": "Primary records and document depth first",
+        "weights": {
+          "independence": 0,
+          "transparency": 5,
+          "nonprofit": 0,
+          "depth": 5,
+          "accessibility": 0
+        },
+        "expectedTop": "congress-gov"
+      },
+      "oppositeView": {
+        "label": "Independent public-interest newsroom first",
+        "weights": {
+          "independence": 5,
+          "transparency": 1,
+          "nonprofit": 5,
+          "depth": 1,
+          "accessibility": 5
+        },
+        "expectedTop": "propublica",
+        "sourceTag": "news-sources/propublica/independence"
+      },
+      "steelman": {
+        "forEntity": "congress-gov",
+        "axis": "independence",
+        "sourceTag": "news-sources/congress-gov/independence",
+        "framing": "The strongest counterpoint is editorial independence: Congress.gov is authoritative primary record infrastructure, not independent journalism."
+      }
+    },
+    {
+      "id": "digital-services-open-control-vs-no-signup-ease",
+      "category": "digital-services",
+      "label": "Open user-controlled tools versus no-signup ease",
+      "reads": "The strongest case the other way: Excalidraw lets someone sketch fast without signing up.",
+      "userView": {
+        "label": "Open control and portability first",
+        "weights": {
+          "privacy": 5,
+          "openness": 5,
+          "portability": 5,
+          "respect": 5,
+          "accessibility": 1,
+          "economical": 2
+        },
+        "expectedTop": "antennapod"
+      },
+      "oppositeView": {
+        "label": "Immediate no-signup usefulness first",
+        "weights": {
+          "privacy": 1,
+          "openness": 1,
+          "portability": 1,
+          "respect": 1,
+          "accessibility": 5,
+          "economical": 5
+        },
+        "expectedTop": "excalidraw",
+        "sourceTag": "digital-services/excalidraw/accessibility"
+      },
+      "steelman": {
+        "forEntity": "antennapod",
+        "axis": "accessibility",
+        "sourceTag": "digital-services/antennapod/accessibility",
+        "framing": "The strongest counterpoint is access: AntennaPod is a strong Android client, but its official support is narrower than big cross-platform services."
+      }
+    }
+  ],
+  "contraryTags": [
+    {
+      "id": "ai-assistants/jan-ai/safety",
+      "category": "ai-assistants",
+      "entity": "jan-ai",
+      "axis": "safety",
+      "polarity": "steelman-weakness",
+      "score": 44,
+      "summary": "Local Jan deployments inherit safety behavior from the chosen model and user configuration.",
+      "source": {
+        "note": "Local Jan deployments inherit safety behavior from the chosen model and user configuration rather than a single managed safety program.",
+        "source": "https://www.jan.ai/docs/desktop/manage-models",
+        "asof": "2026"
+      }
+    },
+    {
+      "id": "ai-assistants/chatgpt/accessibility",
+      "category": "ai-assistants",
+      "entity": "chatgpt",
+      "axis": "accessibility",
+      "polarity": "opposite-view-strength",
+      "score": 94,
+      "summary": "ChatGPT makes its default Luna model available on the free tier, while paid plans add Terra and the flagship Sol tier.",
+      "source": {
+        "note": "OpenAI's GPT-5.6 Luna tier is the default model for Free and Go users, with Terra and the flagship Sol tier available on paid plans; free-tier usage remains limited and dynamic.",
+        "source": "https://help.openai.com/en/articles/11909943",
+        "asof": "2026-08"
+      }
+    },
+    {
+      "id": "learning-resources/sep/accessibility",
+      "category": "learning-resources",
+      "entity": "sep",
+      "axis": "accessibility",
+      "polarity": "steelman-weakness",
+      "score": 58,
+      "summary": "SEP is free and structured, but written in scholarly prose that assumes background knowledge.",
+      "source": {
+        "note": "The material is free and structured, but written in scholarly prose that assumes background knowledge.",
+        "source": "https://plato.stanford.edu/about.html",
+        "asof": "2026"
+      }
+    },
+    {
+      "id": "learning-resources/nls/accessibility",
+      "category": "learning-resources",
+      "entity": "nls",
+      "axis": "accessibility",
+      "polarity": "opposite-view-strength",
+      "score": 98,
+      "summary": "NLS is built for low vision, blindness, physical, perceptual, and reading disabilities.",
+      "source": {
+        "note": "NLS is built for low vision, blindness, physical, perceptual, and reading disabilities.",
+        "source": "https://www.loc.gov/nls/",
+        "asof": "2026"
+      }
+    },
+    {
+      "id": "password-managers/keepassxc/accessibility",
+      "category": "password-managers",
+      "entity": "keepassxc",
+      "axis": "accessibility",
+      "polarity": "steelman-weakness",
+      "score": 62,
+      "summary": "KeePassXC is free and cross-platform, but manual vault sync and backup make it less effortless than cloud managers.",
+      "source": {
+        "note": "KeePassXC is free and cross-platform, but manual vault sync and backup make it less effortless than cloud managers.",
+        "source": "https://keepassxc.org/",
+        "asof": "2026"
+      }
+    },
+    {
+      "id": "password-managers/bitwarden/security",
+      "category": "password-managers",
+      "entity": "bitwarden",
+      "axis": "security",
+      "polarity": "opposite-view-strength",
+      "score": 92,
+      "summary": "Bitwarden publishes annual third-party audits covering source code, apps, servers and web properties.",
+      "source": {
+        "note": "Annual third-party audits cover source code, apps, servers and web properties, with recent 2025 assessments published.",
+        "source": "https://bitwarden.com/help/is-bitwarden-audited/",
+        "asof": "2026"
+      }
+    },
+    {
+      "id": "vpn/mullvad/accessibility",
+      "category": "vpn",
+      "entity": "mullvad",
+      "axis": "accessibility",
+      "polarity": "steelman-weakness",
+      "score": 78,
+      "summary": "Mullvad uses a flat monthly price and privacy-preserving payment options, but has no free tier.",
+      "source": {
+        "note": "Mullvad uses a simple flat monthly price and supports privacy-preserving payment options, but has no free tier.",
+        "source": "https://mullvad.net/en/pricing",
+        "asof": "2026"
+      }
+    },
+    {
+      "id": "vpn/proton-vpn/accessibility",
+      "category": "vpn",
+      "entity": "proton-vpn",
+      "axis": "accessibility",
+      "polarity": "opposite-view-strength",
+      "score": 82,
+      "summary": "Proton VPN offers an unlimited free tier, with paid plans for faster servers and more locations.",
+      "source": {
+        "note": "Proton VPN offers an unlimited free tier, with paid plans for faster servers and more locations.",
+        "source": "https://protonvpn.com/free-vpn",
+        "asof": "2026"
+      }
+    },
+    {
+      "id": "banking/climate-first/environment",
+      "category": "banking",
+      "entity": "climate-first",
+      "axis": "environment",
+      "polarity": "steelman-weakness",
+      "score": 76,
+      "summary": "Climate First reports substantial solar and values-driven lending, but its impact page does not state a bank-wide fossil-fuel exclusion.",
+      "source": {
+        "note": "Climate First Bank's own impact page states it has financed over $427 million in residential solar, with 30.8 percent of that directed to low-to-moderate income communities, and that in 2025 alone it lent over $500 million into what it calls values-driven projects, including rooftop solar, affordable housing and small businesses. The page does not itself state a policy of declining to lend to fossil-fuel companies.",
+        "source": "https://www.climatefirstbank.com/our-impact",
+        "asof": "2026"
+      }
+    },
+    {
+      "id": "banking/nationwide-bs/environment",
+      "category": "banking",
+      "entity": "nationwide-bs",
+      "axis": "environment",
+      "polarity": "steelman-weakness",
+      "score": 60,
+      "summary": "Nationwide infers low fossil-fuel exposure from what its treasury holds, rather than publishing a lending exclusion.",
+      "source": {
+        "note": "Nationwide's own responsible investment page states its treasury holdings are restricted to government bonds, covered bonds and consumer-finance-backed securities, and that as a result it does not lend directly to high-emitting sectors such as the fossil-fuel industry. This describes the shape of its investment portfolio rather than an active screening policy of the kind Triodos or Beneficial State publish.",
+        "source": "https://www.nationwide.co.uk/about-us/responsible-business/policies-and-statements/responsible-investment-statement/esg-investment-approach",
+        "asof": "2026"
+      }
+    },
+    {
+      "id": "banking/monzo/ethics",
+      "category": "banking",
+      "entity": "monzo",
+      "axis": "ethics",
+      "polarity": "steelman-weakness",
+      "score": 44,
+      "summary": "Monzo is a privately held, shareholder-owned company rather than a cooperative or mutual.",
+      "source": {
+        "note": "Companies House lists Monzo Bank Holding Group Limited as the person with significant control of Monzo Bank Limited, notified 12 September 2023, owning 75 percent or more of shares and voting rights; the prior PSC was a venture-capital fund, Passion Capital FS (GP) LLP. Monzo is a privately held, shareholder-owned company, not a cooperative or mutual.",
+        "source": "https://find-and-update.company-information.service.gov.uk/company/09446231/persons-with-significant-control",
+        "asof": "2026"
+      }
+    },
+    {
+      "id": "banking/triodos/environment",
+      "category": "banking",
+      "entity": "triodos",
+      "axis": "environment",
+      "polarity": "opposite-view-strength",
+      "score": 96,
+      "summary": "Triodos was the first bank to join the Fossil Fuel Non-Proliferation Treaty initiative and is described as a leading clean-energy lender.",
+      "source": {
+        "note": "The Fossil Fuel Non-Proliferation Treaty's own list of the 25 GABV banks that endorsed the Treaty in 2024 describes Triodos as the first bank in the world to sign up to the Treaty initiative, and among the leading lenders for clean energy projects.",
+        "source": "https://www.fossilfueltreaty.org/25-banks-gabv",
+        "asof": "2026"
+      }
+    },
+    {
+      "id": "news-sources/congress-gov/independence",
+      "category": "news-sources",
+      "entity": "congress-gov",
+      "axis": "independence",
+      "polarity": "steelman-weakness",
+      "score": 64,
+      "summary": "Congress.gov is authoritative primary-record infrastructure, not editorially independent journalism.",
+      "source": {
+        "note": "Congress.gov is an official primary-record source rather than independent journalism, so it is authoritative but not editorially independent from government.",
+        "source": "https://www.loc.gov/research-centers/law-library-of-congress/researcher-resources/congress-gov/",
+        "asof": "2026"
+      }
+    },
+    {
+      "id": "news-sources/propublica/independence",
+      "category": "news-sources",
+      "entity": "propublica",
+      "axis": "independence",
+      "polarity": "opposite-view-strength",
+      "score": 92,
+      "summary": "ProPublica is a nonprofit investigative newsroom funded by donations rather than a proprietor or shareholders.",
+      "source": {
+        "note": "ProPublica is a nonprofit investigative newsroom funded by donations rather than a proprietor or shareholders.",
+        "source": "https://www.propublica.org/about/",
+        "asof": "2026"
+      }
+    },
+    {
+      "id": "digital-services/antennapod/accessibility",
+      "category": "digital-services",
+      "entity": "antennapod",
+      "axis": "accessibility",
+      "polarity": "steelman-weakness",
+      "score": 78,
+      "summary": "AntennaPod is strong on Android, but has narrower official support than big cross-platform services.",
+      "source": {
+        "note": "AntennaPod is a strong Android client, but official publishing and support are limited compared with big cross-platform services.",
+        "source": "https://antennapod.org/download/",
+        "asof": "2026"
+      }
+    },
+    {
+      "id": "digital-services/excalidraw/accessibility",
+      "category": "digital-services",
+      "entity": "excalidraw",
+      "axis": "accessibility",
+      "polarity": "opposite-view-strength",
+      "score": 94,
+      "summary": "Excalidraw is available as a no-signup web whiteboard for quick diagrams and sketches.",
+      "source": {
+        "note": "Excalidraw is available as a no-signup web whiteboard for quick diagrams and sketches.",
+        "source": "https://excalidraw.com/",
+        "asof": "2026"
+      }
+    }
+  ]
+}

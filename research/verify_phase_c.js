@@ -41,3 +41,6 @@ for (const [k, v] of Object.entries(checks)) {
   console.log((pass ? 'PASS ' : 'FAIL ') + k + ' = ' + JSON.stringify(v));
 }
 console.log(ok ? '\nALL CHECKS PASS' : '\nSOME CHECKS FAILED');
+// It said SOME CHECKS FAILED and exited 0, so a failure read as a failure and shipped anyway.
+// Branch on the verdict it already computed.
+process.exit(ok ? 0 : 1);

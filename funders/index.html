@@ -4,12 +4,11 @@
 <meta charset="utf-8">
 <script>try{var t=localStorage.getItem('cc.theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
 <title>Grant brief, Values Commons / Open Values Standard</title>
 <meta name="description" content="Values Commons is live public-interest technology for choosing with sourced facts, carrying personal rules, and making group decisions without a central platform.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#1d7a5a">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d7a5a'/%3E%3Cpath d='M18 36c0-13 13-20 28-20-2 16-14 23-28 20z' fill='%23fff'/%3E%3Cpath d='M20 46c6-12 14-18 22-21' stroke='%231d7a5a' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="/app/icon.svg" type="image/svg+xml"><link rel="alternate icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64"><link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Values Commons, grant brief">
 <meta property="og:description" content="A finished, privacy-first, uncapturable way to vote with your money and organize. The build is done; a modest grant funds first real use.">
@@ -20,8 +19,8 @@
 <meta name="twitter:description" content="A finished, privacy-first, uncapturable way to vote with your money and organize. The build is done; a modest grant funds first real use.">
 <meta name="twitter:image" content="https://valuescommons.org/funders/og-funders.png">
 <style>
-  :root{
-    --bg:#f6f8f7; --surface:#ffffff; --ink:#18211d; --muted:#566560; --hint:#8a958f;
+  :root{--shadow-sm:0 1px 2px rgba(40,34,24,.07),0 1px 1px rgba(40,34,24,.05);--shadow-md:0 2px 6px rgba(40,34,24,.09),0 10px 26px rgba(40,34,24,.07);--shadow-lg:0 6px 16px rgba(40,34,24,.12),0 22px 48px rgba(40,34,24,.10);
+    --bg:#f8f5ee; --surface:#ffffff; --ink:#18211d; --muted:#566560; --hint:#8a958f;
     --line:#e3e7e5; --accent:#1d7a5a; --accent-soft:#e9f3ee; --track:#eef1ef; --clay:#a8432f;
     --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,system-ui,sans-serif;
     --font-display:"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,ui-serif,serif;
@@ -30,7 +29,7 @@
     --e2:0 4px 16px rgba(24,38,30,.09),0 14px 36px rgba(24,38,30,.08); --ease:cubic-bezier(.2,.7,.2,1);
   }
   @media (prefers-color-scheme:dark){ :root{
-    --bg:#0f1512; --surface:#161d18; --ink:#e6ece8; --muted:#9aa8a1; --hint:#6c7a72;
+    --bg:#11140f; --surface:#161d18; --ink:#e6ece8; --muted:#9aa8a1; --hint:#6c7a72;
     --line:rgba(255,255,255,.10); --accent:#5dcaa5; --accent-soft:#16241d; --track:#1b241f; --clay:#e3a594;
     --e1:0 1px 2px rgba(0,0,0,.3),0 3px 10px rgba(0,0,0,.3); --e2:0 6px 22px rgba(0,0,0,.5); } }
   *{box-sizing:border-box}
@@ -46,70 +45,75 @@
   /* nav */
   .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:1.1rem 0;border-bottom:.5px solid var(--line);margin-bottom:2rem}
   .wordmark{font-family:var(--font-display);font-weight:600;font-size:1.12rem;color:var(--ink)}
-  .navlinks{display:flex;gap:.5rem 1rem;flex-wrap:wrap;align-items:center;font-size:.9rem}
+  .navlinks{display:flex;gap:.5rem 1rem;flex-wrap:wrap;align-items:center;font-size:0.86rem}
   .navlinks a{color:var(--muted)} .navlinks a:hover{color:var(--accent);text-decoration:none}
   .navcta{border:1px solid var(--accent);color:var(--accent);padding:.3rem .7rem;border-radius:999px}
   /* hero */
   .hero{padding:1.4rem 0 1rem;max-width:48rem}
-  .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin:0 0 1rem}
-  .hero h1{font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.04;letter-spacing:-.015em;margin:0 0 1.05rem}
-  .lede{font-size:1.14rem;color:var(--muted);margin:0 0 1.4rem}
+  .eyebrow{font-size:0.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin:0 0 1rem}
+  .hero h1{font-size:clamp(1.98rem,3.23vw,2.58rem);line-height:1.04;letter-spacing:-.015em;margin:0 0 1.05rem}
+  .lede{font-size:1.12rem;color:var(--muted);margin:0 0 1.4rem}
   .lede b{color:var(--ink);font-weight:600}
   .ask-chip{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:.5rem;background:var(--accent-soft);border:1px solid var(--accent);color:var(--accent);
-    border-radius:12px;padding:.55rem .9rem;font-size:.95rem;font-weight:600;margin:.2rem 0 1.5rem}
-  .ask-chip b{font-family:var(--font-display);font-size:1.15rem}
+    border-radius:12px;padding:.55rem .9rem;font-size:1rem;font-weight:600;margin:.2rem 0 1.5rem}
+  .ask-chip b{font-family:var(--font-display);font-size:1.12rem}
   .ask-chip span{color:var(--muted);font-weight:400}
   .cta{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center}
-  .btn{display:inline-block;font-weight:600;font-size:.95rem;padding:.6rem 1.1rem;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);transition:.15s var(--ease)}
+  .btn{display:inline-block;font-weight:600;font-size:1rem;padding:.6rem 1.1rem;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);transition:.15s var(--ease)}
   .btn:hover{text-decoration:none;border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
   .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)} .btn.primary:hover{color:#fff;box-shadow:var(--e1)}
   /* sections */
   section{padding:2.3rem 0;border-top:.5px solid var(--line)}
-  .sk{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--hint);margin:0 0 .5rem}
-  .sh{font-size:1.7rem;margin:0 0 .7rem;max-width:40rem}
+  .sk{font-size:0.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--hint);margin:0 0 .5rem}
+  .sh{font-size:1.75rem;margin:0 0 .7rem;max-width:40rem}
   .sd{color:var(--muted);max-width:44rem;margin:0 0 1.3rem}
   .sd b{color:var(--ink)}
   /* stat tiles */
   .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:.7rem;margin:1.1rem 0 .4rem}
   .stat{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:1rem 1.05rem}
-  .stat .n{font-family:var(--font-display);font-size:2.3rem;line-height:1;color:var(--accent);display:block;margin-bottom:.34rem;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
-  .stat .l{font-size:.85rem;color:var(--ink);font-weight:600;line-height:1.3}
-  .stat .c{display:block;font-size:.72rem;color:var(--hint);font-weight:400;margin-top:.3rem}
-  .stats.proof .stat .n{font-size:2rem}
+  .stat .n{font-family:var(--font-display);font-size:2.4rem;line-height:1;color:var(--accent);display:block;margin-bottom:.34rem;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+  .stat .l{font-size:0.86rem;color:var(--ink);font-weight:600;line-height:1.3}
+  .stat .c{display:block;font-size:0.75rem;color:var(--hint);font-weight:400;margin-top:.3rem}
+  .stats.proof .stat .n{font-size:1.75rem}
+  /* On a phone two tiles shared 325px, which left a numeral 121px, and "$1.1 trillion+" is 235px
+     of mono that a non-breaking space forbade from wrapping. It ran 91px out of its tile, across
+     its neighbour, and pushed the page 7px sideways. Measured at 375px on 2026-09-20. One tile per
+     row below 30rem, and the space is an ordinary one so the numeral may wrap between the two. */
+  @media(max-width:30rem){.stats{grid-template-columns:1fr}}
   /* principle cards */
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:.8rem;margin-top:.4rem}
   .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.15rem}
-  .card h3{font-size:1.08rem;margin:0 0 .3rem;color:var(--ink)}
-  .card p{font-size:.9rem;color:var(--muted);margin:0}
-  .card .phase{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:.12rem .5rem;margin:0 0 .55rem}
+  .card h3{font-size:1.12rem;margin:0 0 .3rem;color:var(--ink)}
+  .card p{font-size:0.86rem;color:var(--muted);margin:0}
+  .card .phase{display:inline-block;font-size:0.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:.12rem .5rem;margin:0 0 .55rem}
   /* the running updates log, dated entries, newest first */
   .updates{display:flex;flex-direction:column;gap:.7rem;margin-top:.7rem}
   .update{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:.75rem .95rem}
-  .update time{display:block;font-size:.72rem;font-weight:700;letter-spacing:.06em;color:var(--accent);margin-bottom:.2rem}
-  .update p{margin:0;font-size:.92rem;color:var(--muted)}
+  .update time{display:block;font-size:0.75rem;font-weight:700;letter-spacing:.06em;color:var(--accent);margin-bottom:.2rem}
+  .update p{margin:0;font-size:0.86rem;color:var(--muted)}
   .update b{color:var(--ink)}
-  .hero-foot{margin:.9rem 0 0;font-size:.86rem}
+  .hero-foot{margin:.9rem 0 0;font-size:0.86rem}
   .hero-foot a{color:var(--accent);text-decoration:none}
   .hero-foot a:hover{text-decoration:underline}
   /* the ask block */
   .askbox{background:var(--surface);border:1px solid var(--accent);border-radius:16px;padding:1.5rem 1.5rem;box-shadow:var(--e1);margin:.3rem 0 1.3rem}
-  .askbox .big{font-family:var(--font-display);font-size:2.2rem;color:var(--accent);line-height:1;margin:0 0 .25rem}
-  .askbox .sub{color:var(--muted);margin:0 0 1rem;font-size:.98rem}
+  .askbox .big{font-family:var(--font-display);font-size:2.4rem;color:var(--accent);line-height:1;margin:0 0 .25rem}
+  .askbox .sub{color:var(--muted);margin:0 0 1rem;font-size:1rem}
   .askbox .sub b{color:var(--ink)}
   ol.plan{margin:.2rem 0 0;padding-left:0;list-style:none;counter-reset:p}
-  ol.plan li{position:relative;padding:.5rem 0 .5rem 2.1rem;border-top:.5px solid var(--line);font-size:.96rem;counter-increment:p}
+  ol.plan li{position:relative;padding:.5rem 0 .5rem 2.1rem;border-top:.5px solid var(--line);font-size:1rem;counter-increment:p}
   ol.plan li:first-child{border-top:none}
   ol.plan li::before{content:counter(p);position:absolute;left:0;top:.5rem;width:1.45rem;height:1.45rem;display:grid;place-items:center;
-    background:var(--accent-soft);color:var(--accent);border-radius:50%;font-size:.8rem;font-weight:700;font-family:var(--font-sans)}
+    background:var(--accent-soft);color:var(--accent);border-radius:50%;font-size:0.75rem;font-weight:700;font-family:var(--font-sans)}
   ol.plan li b{color:var(--ink)}
-  ul.report{margin:.3rem 0 0;padding-left:1.1rem} ul.report li{font-size:.96rem;margin:.3rem 0;color:var(--muted)} ul.report li b{color:var(--ink)}
-  .pull{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;padding:.85rem 1.05rem;margin:1.1rem 0;color:var(--ink);font-family:var(--font-display);font-size:1.15rem;line-height:1.5;max-width:44rem}
+  ul.report{margin:.3rem 0 0;padding-left:1.1rem} ul.report li{font-size:1rem;margin:.3rem 0;color:var(--muted)} ul.report li b{color:var(--ink)}
+  .pull{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;padding:.85rem 1.05rem;margin:1.1rem 0;color:var(--ink);font-family:var(--font-display);font-size:1.12rem;line-height:1.5;max-width:44rem}
   .who{display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-start}
-  .sources{font-size:.78rem;color:var(--hint);margin:1rem 0 0;line-height:1.5}
+  .sources{font-size:0.75rem;color:var(--hint);margin:1rem 0 0;line-height:1.5}
   .sources a{color:var(--hint);text-decoration:underline}
-  footer{border-top:.5px solid var(--line);padding:2rem 0 3rem;color:var(--hint);font-size:.85rem}
+  footer{border-top:.5px solid var(--line);padding:2rem 0 3rem;color:var(--hint);font-size:0.86rem}
   .flinks{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;margin:.6rem 0 1rem}
-  .status{font-family:var(--font-mono);font-size:.8rem;color:var(--hint)}
+  .status{font-family:var(--font-mono);font-size:0.75rem;color:var(--hint)}
   /* calm reveal-on-scroll (animation, not transition, so it never fights hover) */
   .reveal-on .reveal,.reveal-on .card{opacity:0}
   .reveal-on .reveal.in,.reveal-on .card.in{animation:revealin .6s cubic-bezier(.2,.7,.2,1) both}
@@ -119,18 +123,18 @@
   @media(prefers-color-scheme:dark){:root{--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17)}}
   body{font-family:var(--font-display);line-height:1.6}
   .nav{border-bottom-color:var(--line-strong)}
-  .wordmark{font-weight:700;font-size:1.18rem;letter-spacing:-.015em}
-  .wordmark::after{content:"Open field guide";font-family:var(--font-mono);font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ochre);margin-left:.6rem;padding-left:.6rem;border-left:1px solid var(--line-strong)}
-  .navlinks{font-family:var(--font-mono);font-size:.75rem}
+  .wordmark{font-weight:700;font-size:1.12rem;letter-spacing:-.015em}
+  .wordmark::after{content:"Open field guide";font-family:var(--font-mono);font-weight:600;font-size:0.75rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ochre);margin-left:.6rem;padding-left:.6rem;border-left:1px solid var(--line-strong)}
+  .navlinks{font-family:var(--font-mono);font-size:0.75rem}
   .navcta{border-radius:3px}
   .eyebrow,.sk{font-family:var(--font-mono);letter-spacing:.16em}
-  .btn{font-family:var(--font-mono);font-size:.8rem;letter-spacing:.02em;border-radius:3px}
+  .btn{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:.02em;border-radius:3px}
   .btn:hover{transform:none}
   .ask-chip{border-radius:4px}
   .stat{border-radius:4px}
-  .stat .n{font-family:var(--font-mono);font-size:1.9rem;font-weight:700}
-  .stats.proof .stat .n{font-size:1.7rem}
-  .stat .c{font-family:var(--font-mono);font-size:.66rem;color:var(--ochre)}
+  .stat .n{font-family:var(--font-mono);font-size:1.75rem;font-weight:700}
+  .stats.proof .stat .n{font-size:1.75rem}
+  .stat .c{font-family:var(--font-mono);font-size:0.75rem;color:var(--ochre)}
   .card{border-radius:4px}
   .card .phase{font-family:var(--font-mono);border-radius:3px}
   .update{border-radius:0 4px 4px 0}
@@ -142,8 +146,15 @@
   .btn.primary:hover,.navcta:hover{box-shadow:var(--glow)}
   html{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--accent) 45%,var(--track)) transparent}
   a:focus-visible,button:focus-visible{box-shadow:var(--glow)}
-  :root[data-theme="dark"]{--bg:#0f1512;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.10);--accent:#5dcaa5;--accent-soft:#16241d;--track:#1b241f;--clay:#e3a594;--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17);--glow:0 0 16px rgba(93,202,165,.28);color-scheme:dark}
-  :root[data-theme="light"]{--bg:#f6f8f7;--surface:#ffffff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--accent-soft:#e9f3ee;--track:#eef1ef;--clay:#a8432f;--ochre:#8a5514;--line-strong:#cfd8d3;--glow:0 0 14px rgba(29,122,90,.2);color-scheme:light}
+  :root[data-theme="dark"]{--bg:#11140f;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.10);--accent:#5dcaa5;--accent-soft:#16241d;--track:#1b241f;--clay:#e3a594;--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17);--glow:0 0 16px rgba(93,202,165,.28);color-scheme:dark}
+  :root[data-theme="light"]{--bg:#f8f5ee;--surface:#ffffff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--accent-soft:#e9f3ee;--track:#eef1ef;--clay:#a8432f;--ochre:#8a5514;--line-strong:#cfd8d3;--glow:0 0 14px rgba(29,122,90,.2);color-scheme:light}
+
+  /* depth pass */
+  /* Containers lift off the page instead of being outlined on it, so a card, a chip and
+     a panel stop announcing themselves with the same single grey pixel. */
+  .card,.stat,.update{box-shadow:var(--shadow-md);background:var(--surface)}
+  h1{font-weight:550;letter-spacing:-0.02em}
+  h2{font-weight:550;letter-spacing:-0.01em}
 </style>
 </head>
 <body>
@@ -187,10 +198,10 @@
 
     <section class="reveal" id="problem">
     <p class="sk">The problem</p>
-    <h2 class="sh">A trillion-dollar industry reaches us before our own values do.</h2>
-    <p class="sd">Many tools that promise to help people choose are paid through advertising, affiliate commissions, brand relationships, or user data. Those incentives can work against the person making the choice. Groups face a second problem: acting together usually requires someone else's accounts, database, and off-switch.</p>
+    <h2 class="sh">Honest information about everyday choices has no business model.</h2>
+    <p class="sd">This is a funding problem before it is a villain problem. Tools that help people choose are paid through advertising, affiliate commissions, brand relationships, or user data, because those are the models that work, and each one puts a thumb somewhere near the scale. Anyone building in this space faces the same pressure, and most respond the way the incentive rewards. Groups face a second version of it: acting together usually requires someone else's accounts, database, and off-switch. What is missing is not good intentions. It is a way to pay for information that answers only to the person reading it.</p>
     <div class="stats proof">
-      <div class="stat"><span class="n">$1.1&nbsp;trillion+</span><span class="l">Global ad spending in 2025, about three-quarters of it digital.<span class="c">WARC / WPP Media, 2025</span></span></div>
+      <div class="stat"><span class="n">$1.1 trillion+</span><span class="l">Global ad spending in 2025, about three-quarters of it digital.<span class="c">WARC / WPP Media, 2025</span></span></div>
       <div class="stat"><span class="n">~9.7%</span><span class="l">The average premium shoppers say they would pay for sustainably made goods.<span class="c">PwC Voice of the Consumer, 2024 (20,000+ shoppers, 31 countries)</span></span></div>
       <div class="stat"><span class="n">53%</span><span class="l">Of environmental claims examined were vague, misleading or unfounded; 40% unsubstantiated.<span class="c">European Commission, 2020</span></span></div>
     </div>
@@ -202,15 +213,15 @@
     <h2 class="sh">The reference app is live.</h2>
     <p class="sd">Conscious Consuming lets a person set durable rules, make a practical trade-off, and compare real products, services, media, organisations, and causes. The facts keep their sources. The app is static, installable, and works offline.</p>
     <div class="stats">
-      <div class="stat"><span class="n">88</span><span class="l">decision categories across everyday life</span></div>
-      <div class="stat"><span class="n">23,689</span><span class="l">entries with visible source summaries</span></div>
-      <div class="stat"><span class="n">100</span><span class="l">published guides</span></div>
-      <div class="stat"><span class="n">2,900+</span><span class="l">shareable, sourced comparison pages</span></div>
+      <div class="stat"><span class="n">120+</span><span class="l">decision categories across everyday life</span></div>
+      <div class="stat"><span class="n">24,000+</span><span class="l">entries with visible source summaries</span></div>
+      <div class="stat"><span class="n">100+</span><span class="l">published guides</span></div>
+      <div class="stat"><span class="n">3,400+</span><span class="l">shareable, sourced comparison pages</span></div>
       <div class="stat"><span class="n">99%+</span><span class="l">of facts measured, certified, cited, or marked low-stakes</span></div>
-      <div class="stat"><span class="n">220</span><span class="l">measures we refuse to award, published as withheld until the evidence is there</span></div>
+      <div class="stat"><span class="n">312</span><span class="l">measures we refuse to award, published as withheld until the evidence is there</span></div>
       <div class="stat"><span class="n">$0</span><span class="l">taken from any brand we rate · no ads · no pay-to-rank</span></div>
     </div>
-    <p class="sd" style="margin-top:1.1rem">Where the evidence is strong we say so precisely, and where it is thin we say that too: the <a href="../awards/index.html">awards ledger</a> gives a top mark on 329 well-evidenced measures and openly lists the 220 it will not award yet. Your values and saved choices live on your own device. There is no server holding them. The same unedited engine also runs <a href="../kosplora/index.html">a learning atlas</a> and <a href="../instances/messages/index.html">a messaging-choice guide</a>, showing that another subject does not require another platform.</p>
+    <p class="sd" style="margin-top:1.1rem">Where the evidence is strong we say so precisely, and where it is thin we say that too: the <a href="../awards/index.html">awards ledger</a> gives a top mark on 374 well-evidenced measures and openly lists the 312 it will not award yet. Your values and saved choices live on your own device. There is no server holding them. The same unedited engine also runs <a href="../kosplora/index.html">a learning atlas</a> and <a href="../instances/messages/index.html">a messaging-choice guide</a>, showing that another subject does not require another platform.</p>
   </section>
 
     <section class="reveal" id="updates">
@@ -245,8 +256,7 @@
       <div class="stat"><span class="n">77%</span><span class="l">Of the world's data-centre capacity sits in high-income countries; low-income countries hold less than 0.1%.<span class="c">UNCTAD Technology and Innovation Report, 2025</span></span></div>
       <div class="stat"><span class="n">97%</span><span class="l">Of top-500 supercomputing capacity is held by high-income countries.<span class="c">UNCTAD, 2025</span></span></div>
       <div class="stat"><span class="n">50&times;</span><span class="l">More generative-AI visits per internet user in high-income countries than in low-income ones, which see under 1% of traffic.<span class="c">World Bank, 2025</span></span></div>
-      <div class="stat"><span class="n">945&nbsp;TWh</span><span class="l">Projected data-centre electricity use by 2030, more than Japan's total consumption today.<span class="c">IEA, Energy and AI, 2025</span></span></div>
-      <div class="stat"><span class="n">2.6&nbsp;billion</span><span class="l">People remain offline entirely, outside every recommendation engine and every AI assistant.<span class="c">ITU Facts and Figures, 2024</span></span></div>
+      <div class="stat"><span class="n">2.6 billion</span><span class="l">People remain offline entirely, outside every recommendation engine and every AI assistant.<span class="c">ITU Facts and Figures, 2024</span></span></div>
     </div>
     <p class="pull">Values Commons is deliberately the opposite shape: <b>static files that work offline, need no account, run from a flash drive, and can be forked by anyone</b>. It costs almost nothing to serve, nothing to join, and no data centre to own. Choice infrastructure that the excluded can hold in their own hands.</p>
   </section>
@@ -314,7 +324,7 @@
   <section class="reveal" id="who">
     <p class="sk">Who is behind it · why now</p>
     <h2 class="sh">Built independently; ready to be tested in public.</h2>
-    <p class="sd"><b>Bentley Moon-Perkins</b> is a solo maker building public-interest software. He designed and built the flagship app, two illustrative apps, the shared engine, the guides, and the group-decision tools independently.</p>
+    <p class="sd"><b>Bentley Moon</b> is a solo maker building public-interest software. He designed and built the flagship app, two illustrative apps, the shared engine, the guides, and the group-decision tools independently.</p>
     <p class="sd">The same maker runs the other half of this work in the open: an AI-evaluation lab at <a href="https://bentleymoon.com" rel="noopener">bentleymoon.com</a>, where the standard of evidence is the same one applied here. Four of its own headline results have been refuted by its own harness and the retractions are published beside the survivors. That is the practice behind the withheld column above.</p>
     <p class="pull">The app works and the evidence behind it is strong enough to show. What's still untested isn't the technology, it's whether real people and real groups will actually use it. A modest grant moves the project from a finished build to <b>infrastructure people have used in earnest</b>, without giving up the independence that makes it worth trusting.</p>
     <p class="sd"><b>To continue the conversation:</b> reply to the email that shared this preview. We're glad to give a live walkthrough, answer diligence questions, or hand over the full written brief and the deployable preview to host yourself.</p>

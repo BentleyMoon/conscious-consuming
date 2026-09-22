@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/register-evidence-review-v1.schema.json",
+  "title": "Open Values Register Evidence Review",
+  "description": "Human review receipt pinned to one byte-exact generated register evidence bundle.",
+  "type": "object",
+  "required": ["format", "version", "registerId", "snapshotId", "evidence", "evidenceSha256", "status", "reviewedBy", "reviewedOn", "samples"],
+  "additionalProperties": false,
+  "properties": {
+    "format": { "const": "open-values-register-evidence-review" },
+    "version": { "const": "1.0.0" },
+    "registerId": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "snapshotId": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}-[0-9a-f]{12}$" },
+    "evidence": { "type": "string", "pattern": "^pipeline/registers/evidence/[^/]+\\.evidence\\.json$" },
+    "evidenceSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "status": { "enum": ["approved", "rejected"] },
+    "reviewedBy": { "type": "string", "minLength": 1 },
+    "reviewedOn": { "type": "string", "format": "date" },
+    "samples": {
+      "type": "array",
+      "maxItems": 10,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "required": ["entryId", "mappingChecked", "sourceChecked", "note"],
+        "additionalProperties": false,
+        "properties": {
+          "entryId": { "type": "string", "minLength": 1 },
+          "mappingChecked": { "const": true },
+          "sourceChecked": { "const": true },
+          "note": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

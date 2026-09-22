@@ -5,7 +5,7 @@
 <script>try{var t=localStorage.getItem('cc.theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#2f7d5b">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d7a5a'/%3E%3Cpath d='M18 36c0-13 13-20 28-20-2 16-14 23-28 20z' fill='%23fff'/%3E%3Cpath d='M20 46c6-12 14-18 22-21' stroke='%231d7a5a' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="/app/icon.svg" type="image/svg+xml"><link rel="alternate icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64"><link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
 <title>Make a shared plan - Values Commons</title>
 <meta name="description" content="Turn a group's shared values and sourced facts into a list of what to support, avoid, or revisit, with reasons attached.">
 <link rel="canonical" href="https://valuescommons.org/slate/">
@@ -23,8 +23,13 @@
 <meta name="twitter:image" content="https://valuescommons.org/og-standard.png">
 <style>
   /* A SIXTH skin (a ledger / money-ballot): warm cream, forest-green for endorse, calm clay for divest. */
-  :root{ --bg:#f6f4ee; --surface:#fffdf7; --ink:#23201a; --muted:#5f5a4e; --hint:#938c7c;
+  :root{--shadow-sm:0 1px 2px rgba(40,34,24,.07),0 1px 1px rgba(40,34,24,.05);--shadow-md:0 2px 6px rgba(40,34,24,.09),0 10px 26px rgba(40,34,24,.07);--shadow-lg:0 6px 16px rgba(40,34,24,.12),0 22px 48px rgba(40,34,24,.10); --bg:#f8f5ee; --surface:#fffdf7; --ink:#23201a; --muted:#5f5a4e; --hint:#938c7c;
     --line:rgba(40,35,20,.13); --accent:#2f7d5b; --clay:#a85d3c; --track:#e8e3d6; }
+  /* Nine surfaces stated a light palette and no alternative, so a reader who asks for
+     dark was overridden on most of the commons and honoured on two of it. Same values
+     the Institute uses, so the family reads as one in either mode. */
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--shadow-sm:0 1px 2px rgba(0,0,0,.55);--shadow-md:0 2px 8px rgba(0,0,0,.6),0 12px 30px rgba(0,0,0,.45);--shadow-lg:0 8px 20px rgba(0,0,0,.65),0 28px 56px rgba(0,0,0,.5);--bg:#11140f;--surface:#181d16;--ink:#eef1e8;--muted:#c0c9bd;--hint:#8b978a;--line:#2b322a;--accent:#6fce8c;--track:#2b322a}}
+
   @media (prefers-color-scheme:dark){:root{ color-scheme:dark;
     --bg:#16150f; --surface:#1e1d16; --ink:#e8e4d8; --muted:#a39d8c; --hint:#837c6c;
     --line:rgba(255,255,255,.12); --accent:#5cc596; --clay:#d08a63; --track:#29271e; }}
@@ -34,53 +39,61 @@
   .wrap{max-width:760px;margin:0 auto;padding:2rem 1.2rem 4rem}
   .sitebar{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;margin:0 0 1.6rem;padding:0 0 .9rem;border-bottom:1px solid var(--line)}
   .sitebar .home{font-family:Georgia,"Times New Roman",serif;font-weight:700;color:var(--ink);text-decoration:none}
-  .sitebar nav{display:flex;gap:.35rem .8rem;flex-wrap:wrap;font-size:.86rem}
+  .sitebar nav{display:flex;gap:.35rem .8rem;flex-wrap:wrap;font-size:0.86rem}
   .sitebar nav a{color:var(--muted);text-decoration:none}
   .sitebar nav a[aria-current="page"]{color:var(--accent);font-weight:700}
   .sitebar nav a:hover{color:var(--accent);text-decoration:none}
-  .loopnote{font-size:.78rem;color:var(--hint);margin:-.8rem 0 1.4rem}
-  h1{font-family:Georgia,"Times New Roman",serif;font-weight:600;font-size:2.1rem;letter-spacing:-.01em;margin:.2rem 0 .3rem}
+  .loopnote{font-size:0.75rem;color:var(--hint);margin:-.8rem 0 1.4rem}
+  h1{font-family:Georgia,"Times New Roman",serif;font-weight:600;font-size:2.4rem;letter-spacing:-.01em;margin:.2rem 0 .3rem}
   .sub{color:var(--muted);margin:0 0 1.2rem}
-  .banner{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:.8rem 1rem;margin:0 0 1.4rem;font-size:.88rem;color:var(--muted)}
+  .banner{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:.8rem 1rem;margin:0 0 1.4rem;font-size:0.86rem;color:var(--muted)}
   .banner b{color:var(--ink)} .banner a{color:var(--accent)}
   .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.05rem 1.2rem;margin-bottom:1.1rem}
-  .card h2{font-size:1.05rem;margin:0 0 .7rem;font-family:Georgia,serif}
+  .card h2{font-size:1rem;margin:0 0 .7rem;font-family:Georgia,serif}
   .two{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-  .k{font-size:.7rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--hint)}
-  .v{font-weight:600;font-size:1.05rem;margin:.1rem 0 .4rem}
+  .k{font-size:0.75rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--hint)}
+  .v{font-weight:600;font-size:1rem;margin:.1rem 0 .4rem}
   .chips{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.5rem}
-  .chip{font-size:.72rem;background:var(--track);color:var(--muted);padding:.12rem .5rem;border-radius:999px}
-  .muted{color:var(--muted);font-size:.86rem}
-  .lk{display:inline-block;font-size:.82rem;font-weight:600;color:var(--accent);cursor:pointer;border:1px solid var(--accent);border-radius:7px;padding:.3rem .6rem;margin-top:.2rem}
-  #flash{min-height:1.1em;color:var(--clay);font-size:.84rem;margin:.2rem 0 0}
-  .dissent{background:#fbf3e9;border:1px solid rgba(168,93,60,.3);border-left:3px solid var(--clay);border-radius:8px;padding:.7rem .9rem;margin-bottom:1.1rem;font-size:.9rem;color:#6b4a33}
+  .chip{font-size:0.75rem;background:var(--track);color:var(--muted);padding:.12rem .5rem;border-radius:999px}
+  .muted{color:var(--muted);font-size:0.86rem}
+  .lk{display:inline-block;font-size:0.86rem;font-weight:600;color:var(--accent);cursor:pointer;border:1px solid var(--accent);border-radius:7px;padding:.3rem .6rem;margin-top:.2rem}
+  #flash{min-height:1.1em;color:var(--clay);font-size:0.86rem;margin:.2rem 0 0}
+  .dissent{background:#fbf3e9;border:1px solid rgba(168,93,60,.3);border-left:3px solid var(--clay);border-radius:8px;padding:.7rem .9rem;margin-bottom:1.1rem;font-size:0.86rem;color:#6b4a33}
   .dissent b{color:var(--clay)}
   .endorse{border-left:3px solid var(--accent)} .endorse h2{color:var(--accent)}
   .divest{border-left:3px solid var(--clay)} .divest h2{color:var(--clay)}
-  .note{font-size:.82rem;color:var(--hint);margin:-.3rem 0 .7rem} .note a{color:var(--accent)}
+  .note{font-size:0.86rem;color:var(--hint);margin:-.3rem 0 .7rem} .note a{color:var(--accent)}
   .item{display:flex;gap:.9rem;align-items:flex-start;padding:.6rem 0;border-top:1px solid var(--line)}
   .item:first-of-type{border-top:none}
-  .rk{font-family:Georgia,serif;font-size:1.3rem;color:var(--hint);min-width:1.4rem;text-align:right;line-height:1.5}
+  .rk{font-family:Georgia,serif;font-size:1.35rem;color:var(--hint);min-width:1.4rem;text-align:right;line-height:1.5}
   .bd{flex:1;min-width:0}
-  .nm{font-weight:600} .br{color:var(--hint);font-size:.84rem;font-weight:400}
-  .fit{font-size:.66rem;font-weight:700;color:var(--accent);background:rgba(47,125,91,.12);padding:.06rem .42rem;border-radius:999px;margin-left:.2rem}
-  .rsn{font-size:.86rem;color:var(--muted);margin-top:.15rem} .rsn b{color:var(--ink)} .src{color:var(--hint);font-size:.92em}
-  .sc{font-family:Georgia,serif;font-size:1.5rem;color:var(--accent);min-width:2.2rem;text-align:right}
+  .nm{font-weight:600} .br{color:var(--hint);font-size:0.86rem;font-weight:400}
+  .fit{font-size:0.75rem;font-weight:700;color:var(--accent);background:rgba(47,125,91,.12);padding:.06rem .42rem;border-radius:999px;margin-left:.2rem}
+  .rsn{font-size:0.86rem;color:var(--muted);margin-top:.15rem} .rsn b{color:var(--ink)} .src{color:var(--hint);font-size:0.86rem}
+  .sc{font-family:Georgia,serif;font-size:1.35rem;color:var(--accent);min-width:2.2rem;text-align:right}
   .sc.low{color:var(--clay)}
   .acts{display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center}
   .btn{font:inherit;font-weight:600;color:#fff;background:var(--accent);border:none;padding:.5rem .9rem;border-radius:8px;cursor:pointer}
   .flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.65rem;margin:0 0 1.2rem}
-  .flow div,.flow a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.85rem .95rem;color:var(--muted);font-size:.86rem;text-decoration:none}
+  .flow div,.flow a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.85rem .95rem;color:var(--muted);font-size:0.86rem;text-decoration:none}
   .flow a:hover{border-color:var(--accent)}
   .flow b{display:block;color:var(--ink);font-family:Georgia,"Times New Roman",serif;font-size:1rem;margin-bottom:.15rem}
-  .flow small{display:block;color:var(--hint);font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.2rem}
-  footer{margin-top:1.6rem;color:var(--hint);font-size:.82rem;border-top:1px solid var(--line);padding-top:1rem}
-  footer a{color:var(--accent)} code{background:var(--track);padding:.05rem .3rem;border-radius:4px;font-size:.85em} .err{color:#b3402f}
-  :root[data-theme="light"]{--bg:#f6f4ee;--surface:#fffdf7;--ink:#23201a;--muted:#5f5a4e;--hint:#938c7c;--line:rgba(40,35,20,.13);--accent:#2f7d5b;--clay:#a85d3c;--track:#e8e3d6;color-scheme:light}
+  .flow small{display:block;color:var(--hint);font-size:0.75rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.2rem}
+  footer{margin-top:1.6rem;color:var(--hint);font-size:0.86rem;border-top:1px solid var(--line);padding-top:1rem}
+  footer a{color:var(--accent)} code{background:var(--track);padding:.05rem .3rem;border-radius:4px;font-size:0.86rem} .err{color:#b3402f}
+  :root[data-theme="light"]{--bg:#f8f5ee;--surface:#fffdf7;--ink:#23201a;--muted:#5f5a4e;--hint:#938c7c;--line:rgba(40,35,20,.13);--accent:#2f7d5b;--clay:#a85d3c;--track:#e8e3d6;color-scheme:light}
   :root[data-theme="dark"]{--bg:#16150f;--surface:#1e1d16;--ink:#e8e4d8;--muted:#a39d8c;--hint:#837c6c;--line:rgba(255,255,255,.12);--accent:#5cc596;--clay:#d08a63;--track:#29271e;color-scheme:dark}
-</style>
+
+  /* depth pass */
+  /* Containers lift off the page instead of being outlined on it, so a card, a chip and
+     a panel stop announcing themselves with the same single grey pixel. */
+  .banner,.card{box-shadow:var(--shadow-md);background:var(--surface)}
+  h1{font-weight:550;letter-spacing:-0.02em}
+  h2{font-weight:550;letter-spacing:-0.01em}
+.skip{position:absolute;left:-999px;top:.4rem;background:#1d7a5a;color:#fff;padding:.5rem .9rem;border-radius:4px;z-index:100;text-decoration:none}.skip:focus{left:.6rem}</style>
 </head>
 <body>
+<a class="skip" href="#content">Skip to content</a>
 <div class="wrap">
   <header class="sitebar">
     <a class="home" href="../index.html">◇ Values Commons</a>
@@ -93,7 +106,7 @@
     </nav>
   </header>
   <p class="loopnote">Group values meet sourced facts here. The result is a proposal, not an order.</p>
-  <h1>Make a shared plan</h1>
+  <h1 id="content" tabindex="-1">Make a shared plan</h1>
   <p class="sub">See what the group could support, avoid, or revisit. Every suggestion keeps its reason, source trail, and visible disagreement.</p>
 
   <div class="banner">

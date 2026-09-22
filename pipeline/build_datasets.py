@@ -7,6 +7,7 @@ app/data/<id>.json (one per category) + app/data/index.json (the catalogue).
 
 Run: `python build_datasets.py`   (after fetch_raw.py or ingest_dump.py)
 """
+from decimal import Decimal, ROUND_HALF_UP
 import json, os, sys, re, subprocess
 from copy import deepcopy
 from urllib.parse import urlparse, quote
@@ -28,6 +29,14 @@ TOP_LEVEL_DATA_CONTRACT_FILES = {
     'challenge-index.json',
     'design-tokens.json',
     'index.json',
+    # Written by pipeline/build_presentation.js, not by this script. Whichever of the two ran
+    # second decided whether the build lived: when the presentation package landed first, the
+    # sweep below deleted it as an orphan and build_cards died on the missing file. An
+    # intermittent break of that shape teaches a person to rerun until green rather than to look.
+    'presentation.json',
+    # Same shape, not yet written: pipeline/build_render_receipts.js stages it here once every
+    # page kind renders. Listed now so the identical bug cannot arrive with it.
+    'presentation-renders.json',
     'proposals.json',
     'pulse.json',
 }
@@ -340,7 +349,10 @@ def attach_decision_contract(dataset):
             for product in products
             if isinstance(product.get('scores', {}).get(criterion), (int, float))
         ]
-        if values:
+        # A decision read describes a difference. One surviving value, or many
+        # identical values, provides coverage but no comparative spread and must
+        # not be serialized as if it did.
+        if len(set(values)) >= 2:
             minimum = min(values)
             maximum = max(values)
             spreads.append({
@@ -393,6 +405,30 @@ KEY2THEME = {
     "catalog": "cost", "selection": "cost",
     "local": "local", "ownership": "local",
     "portability": "privacy", "respect": "privacy", "educational": "people", "calm": "health",
+    # 2026-08-13. Six keys arrived with the swarm's first waves and carried no theme, so entries
+    # scored only on them produced no value signature at all and could not be ranked by a reader's
+    # values. No existing entry uses any of these, so mapping them can only add coverage; it cannot
+    # move a ranking that already exists.
+    #
+    # "rewards" is money coming back to you, which is the cost theme read from the other end.
+    # "complaints", "buyer_protection" and "damage_protection" are all one question: when something
+    # goes wrong, who carries it, the company or the person. That is the people theme.
+    #
+    # "reliability" and "cancellations" are the debatable pair and are flagged for review. There is
+    # no theme in this vocabulary for whether a service does what it said it would. Honesty is the
+    # closest, on the reading that a published schedule an airline does not keep is a gap between
+    # claim and delivery, but a reader looking at the honesty lens is probably thinking about
+    # disclosure rather than punctuality. If that reading is wrong the fix is a new theme, which is
+    # a decision about the reader-facing value vocabulary and belongs to a person.
+    "rewards": "cost",
+    "complaints": "people", "buyer_protection": "people", "damage_protection": "people",
+    # 2026-08-13. Permanence is whether what you pay for stays there. A media lane reused
+    # "ownership" for it to avoid the cost of a new key, which was thoughtful and wrong: that
+    # key themes to local, so a measure of vanishing catalogues would have lit the local lens.
+    # Honesty is the right home, on the same reading as reliability: a service that sells a
+    # catalogue and then removes it has a gap between claim and delivery.
+    "permanence": "honesty",
+    "reliability": "honesty", "cancellations": "honesty",
 }
 COUNTRY_LEVEL_REGION_LIMITATIONS = {
     "payments": {
@@ -654,7 +690,13 @@ def attach_provenance_summaries(ds):
         'multiSourceEntries': multi_source,
         'noSourceEntries': no_source,
         'noteOnlyEntries': note_only_entries,
-        'averageSourceDomains': round(source_domain_total / len(products), 2) if products else 0,
+        # Round half AWAY FROM ZERO, not Python's default half-to-even. The audit that checks this
+        # figure is written in JavaScript and rounds the other way, so a value landing exactly on a
+        # half disagreed across the two languages: used-cars averages 2.125 domains, Python stored
+        # 2.12, the audit expected 2.13, and a release was blocked by a hundredth. Matching JS here
+        # is the smaller change and keeps the independent re-implementation independent.
+        'averageSourceDomains': float(Decimal(str(source_domain_total / len(products)))
+                                      .quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)) if products else 0,
         'topPrimarySources': [
             {'label': label, 'entries': count}
             for label, count in sorted(primary_counts.items(), key=lambda item: (-item[1], item[0]))[:6]
@@ -1025,6 +1067,15 @@ def build_provenance_review_matrix(examples, card_example, mixed_category, cover
         not_included.append({
             "id": "no-source-entry",
             "reason": "The current generated corpus has no no-source entries; the no-source render rule remains audited but has no live fixture."
+        })
+    if coverage.get("noteOnlyEntries", 0) == 0:
+        # Banking used to supply this fixture, from cells that carried a note and no source URL.
+        # Rebuilding it on registers removed the last of them, which is the outcome the whole
+        # sourcing discipline is aiming at, so the fixture disappearing is good news that still
+        # has to be said out loud rather than left as a hole in the matrix.
+        not_included.append({
+            "id": "note-only-entry",
+            "reason": "The current generated corpus has no note-only entries; the note-only render rule remains audited but has no live fixture."
         })
     return {
         "status": "h10-provenance-preview-review-matrix",
@@ -3262,6 +3313,10 @@ def build_provenance_drain_contract(review_matrix):
     steps = []
     covered = set()
     for index, spec in enumerate(step_specs, start=1):
+        spec["scenarioIds"] = [
+            scenario_id for scenario_id in (spec.get("scenarioIds") or [])
+            if scenario_id in scenario_ids
+        ]
         for scenario_id in spec.get("scenarioIds") or []:
             covered.add(scenario_id)
         steps.append({

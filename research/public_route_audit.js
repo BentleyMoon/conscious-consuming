@@ -145,6 +145,63 @@ function checkRouteMetadataContract(files) {
   }
 }
 
+function generatedHtmlFiles(dir, out = []) {
+  if (!fs.existsSync(dir)) return out;
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) generatedHtmlFiles(full, out);
+    else if (entry.name.endsWith('.html')) out.push(full);
+  }
+  return out;
+}
+
+function checkGeneratedSeoContract() {
+  const sitemap = read('app/sitemap.xml');
+  const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
+  const listed = new Set(urls);
+  expect(urls.length === listed.size, `app/sitemap.xml: contains ${urls.length - listed.size} duplicate URL(s)`);
+  expect(urls.every(url => !/\.html(?:$|[?#])/.test(url)), 'app/sitemap.xml: public URLs must be extensionless');
+
+  const titles = new Map();
+  const canonicals = new Set();
+  const generated = [
+    ...generatedHtmlFiles(abs('app/g')),
+    ...generatedHtmlFiles(abs('app/c')),
+  ];
+  for (const file of generated) {
+    const rel = path.relative(ROOT, file).replace(/\\/g, '/');
+    const html = fs.readFileSync(file, 'utf8');
+    const title = html.match(/<title>([^<]+)<\/title>/i)?.[1] || '';
+    const canonical = html.match(/<link\b[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i)?.[1] || '';
+    expect(Boolean(title), `${rel}: title is required`);
+    expect(Boolean(canonical), `${rel}: canonical is required`);
+    expect(!/\.html(?:$|[?#])/.test(canonical), `${rel}: canonical must be extensionless (${canonical})`);
+    expect(!canonical || listed.has(canonical), `${rel}: canonical is absent from app/sitemap.xml (${canonical})`);
+    expect(!canonical || !canonicals.has(canonical), `${rel}: duplicate canonical ${canonical}`);
+    if (canonical) canonicals.add(canonical);
+    if (title) {
+      const prior = titles.get(title);
+      expect(!prior, `${rel}: duplicate title also used by ${prior || 'another generated page'} (${title})`);
+      titles.set(title, rel);
+    }
+    for (const match of html.matchAll(/\bhref=["']([^"']+)["']/gi)) {
+      const href = match[1];
+      if (!/^[a-z][a-z0-9+.-]*:/i.test(href) && !href.startsWith('//')) {
+        expect(!/\.html(?:$|[?#])/.test(href), `${rel}: internal href exposes a physical .html filename (${href})`);
+      }
+    }
+  }
+
+  for (const url of urls) {
+    const parsed = new URL(url);
+    let publicPath = parsed.pathname.replace(/^\/app\/?/, '');
+    if (!publicPath || publicPath.endsWith('/')) publicPath += 'index.html';
+    else publicPath += '.html';
+    expect(exists(`app/${publicPath}`), `app/sitemap.xml: ${url} has no generated file app/${publicPath}`);
+  }
+  return generated.length;
+}
+
 const routeFiles = [
   "index.html",
   "standard/index.html",
@@ -185,7 +242,10 @@ expectIncludes("index.html", "Doors", "homepage door index");
 expectIncludes("index.html", "Three tools, one engine", "homepage app-first path");
 expectIncludes("index.html", "How it stays honest", "homepage honesty section");
 expectIncludes("index.html", "Five parts you keep as files", "homepage civic-tools framing");
-expectIncludes("index.html", "A values file, not a profile", "homepage passport contract");
+// 2026-08-13. The phrase moved when the front page was rewritten to state its claim directly.
+// What the check is for is the promise, not the wording: the values file carries no identity and
+// needs no account. Testing the promise rather than a sentence that copy edits will keep breaking.
+expectIncludes("index.html", "No identity, no account", "homepage passport contract");
 expectIncludes("index.html", "Source before score", "homepage workshop contract");
 expectIncludes("index.html", "Commit, not command", "homepage slate contract");
 expectIncludes("index.html", "Ownership, alternatives, and look-alike choices are inspectable claims", "homepage relationship-map contract");
@@ -199,7 +259,7 @@ expectIncludes("docs/README.md", "Before the first invitations", "docs map adopt
 expectIncludes("passport/index.html", "Values Passport", "passport page title/copy");
 expectIncludes("passport/index.html", "Core files", "passport core-file navigation");
 expectIncludes("passport/index.html", "Privacy promise", "passport privacy section");
-expectIncludes("passport/index.html", "A values file, not a profile", "passport privacy contract");
+expectIncludes("passport/index.html", "No identity", "passport privacy contract");
 expectIncludes("passport/index.html", "No fake transfer", "passport honest-transfer rule");
 expectIncludes("passport/index.html", "No account required", "passport no-account portability rule");
 expectIncludes("passport/index.html", "Use this next", "passport next-use section");
@@ -258,13 +318,20 @@ expectIncludes("tour/index.html", "Choose your next move", "tour next-move choos
 expectIncludes("tour/index.html", "Correct a claim", "tour workshop route");
 expectIncludes("tour/index.html", "Trace relationships", "tour weave route");
 expectIncludes("tour/index.html", "../weave/index.html", "tour link to Weave");
-expectIncludes("kosplora/index.html", "What this instance proves", "Kosplora proof strip");
-expectIncludes("kosplora/index.html", "Decision transfer", "Kosplora decision-transfer proof");
-expectIncludes("kosplora/index.html", "../app/engine.js", "Kosplora shared engine import");
-expectIncludes("kosplora/index.html", "../app/decision.js", "Kosplora shared decision import");
+// 2026-08-18: the engine demonstration moved to kosplora/shelf/ when the door became the
+// route walker's front page; these pins follow the content they exist to protect. The door
+// gets its own pins: the routes it lists must exist and the promises must stay put.
+expectIncludes("kosplora/shelf/index.html", "What this instance proves", "Kosplora proof strip");
+expectIncludes("kosplora/shelf/index.html", "Decision transfer", "Kosplora decision-transfer proof");
+expectIncludes("kosplora/shelf/index.html", "../../app/engine.js", "Kosplora shared engine import");
+expectIncludes("kosplora/shelf/index.html", "../../app/decision.js", "Kosplora shared decision import");
+expectIncludes("kosplora/index.html", "Follow a question into the world", "Kosplora door hero");
+expectIncludes("kosplora/index.html", "route/local-ai/index.html", "Kosplora door lists the first route");
+expectIncludes("kosplora/index.html", "shelf/index.html", "Kosplora door reaches the shelf");
 expectIncludes("instances/messages/index.html", "What this instance proves", "Messages proof strip");
 expectIncludes("instances/messages/index.html", "Zero shell edits", "Messages zero-shell proof");
 expectIncludes("funders/index.html", "What support strengthens", "funder support section");
+expectNotIncludes("funders/index.html", "noindex", "funder noindex directive conflicts with its public sitemap entry");
 expectIncludes("funders/index.html", "More people can use it, check it, and adapt it.", "funder public-use framing");
 expectIncludes("funders/index.html", "What we would test", "funder test plan");
 expectIncludes("funders/index.html", "One new subject", "funder new-subject test");
@@ -316,6 +383,7 @@ expectNotIncludes(
 
 checkLocalLinks(routeFiles);
 checkRouteMetadataContract(shareMetaRouteFiles);
+const generatedSeoCount = checkGeneratedSeoContract();
 
 if (failures.length) {
   console.log("Public route audit failures:");
@@ -324,4 +392,5 @@ if (failures.length) {
 }
 
 console.log(`Public route audit: ${routeFiles.length} route files OK`);
+console.log(`Generated SEO audit: ${generatedSeoCount} guide/verdict pages OK`);
 console.log("PUBLIC ROUTE CHECKS PASS");

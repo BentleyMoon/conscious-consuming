@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/register-coverage-matrix-v1.schema.json",
+  "title": "Open Values Register Coverage Matrix",
+  "description": "Complete generated status coverage for every covered or open taxonomy decision against every register on the shelf.",
+  "type": "object",
+  "required": ["format", "version", "generatedFrom", "counts", "registers", "decisions"],
+  "additionalProperties": false,
+  "properties": {
+    "format": { "const": "open-values-register-coverage-matrix" },
+    "version": { "const": "1.0.0" },
+    "generatedFrom": {
+      "type": "object",
+      "required": ["taxonomy", "taxonomySha256", "registerShelf", "registerShelfSha256", "coverageRules", "coverageRulesSha256", "entityInventory", "entityInventorySha256"],
+      "additionalProperties": false,
+      "properties": {
+        "taxonomy": { "const": "content/taxonomy.json" },
+        "taxonomySha256": { "$ref": "#/$defs/sha256" },
+        "registerShelf": { "const": "content/registers.json" },
+        "registerShelfSha256": { "$ref": "#/$defs/sha256" },
+        "coverageRules": { "const": "content/register-coverage-rules.json" },
+        "coverageRulesSha256": { "$ref": "#/$defs/sha256" },
+        "entityInventory": { "const": "pipeline/registers/entity-inventory.json" },
+        "entityInventorySha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "counts": { "type": "object" },
+    "registers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["registerId", "criterion", "counts"],
+        "additionalProperties": false,
+        "properties": {
+          "registerId": { "$ref": "#/$defs/id" },
+          "criterion": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+          "counts": { "type": "object" }
+        }
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/decision" }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "basis": {
+      "type": "object",
+      "required": ["kind"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "enum": ["shelf-proven", "selector"] },
+        "id": { "$ref": "#/$defs/id" }
+      }
+    },
+    "resolvedCoverage": {
+      "type": "object",
+      "required": ["registerId", "criterion", "reason", "basis"],
+      "additionalProperties": false,
+      "properties": {
+        "registerId": { "$ref": "#/$defs/id" },
+        "criterion": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "reason": { "type": "string", "minLength": 1 },
+        "basis": { "$ref": "#/$defs/basis" }
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "required": ["applicable", "notApplicable", "blocked", "unmapped"],
+      "additionalProperties": false,
+      "properties": {
+        "applicable": { "type": "array", "items": { "$ref": "#/$defs/resolvedCoverage" } },
+        "notApplicable": { "type": "array", "items": { "$ref": "#/$defs/resolvedCoverage" } },
+        "blocked": { "type": "array", "items": { "$ref": "#/$defs/resolvedCoverage" } },
+        "unmapped": { "type": "array", "items": { "$ref": "#/$defs/id" } }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "required": ["id", "cid", "label", "path", "scope", "built", "realm", "field", "family", "type", "mode", "coverage"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "cid": { "type": ["string", "null"] },
+        "label": { "type": "string", "minLength": 1 },
+        "path": { "type": "string", "minLength": 1 },
+        "scope": { "enum": ["covered", "open"] },
+        "built": { "type": "boolean" },
+        "realm": { "$ref": "#/$defs/id" },
+        "field": { "$ref": "#/$defs/id" },
+        "family": { "$ref": "#/$defs/id" },
+        "type": { "enum": ["Products", "Services", "Media", "Organizations", "Initiatives"] },
+        "mode": { "type": "string", "minLength": 1 },
+        "coverage": { "$ref": "#/$defs/coverage" }
+      }
+    }
+  }
+}

@@ -13,7 +13,7 @@
         "node-load-plan.json"
       ],
       "loadHint": "eager-metadata",
-      "bytes": 6262,
+      "bytes": 6264,
       "purpose": "Discover available node indexes, byte sizes, integrity hashes, and runtime loading stages."
     },
     {
@@ -24,16 +24,16 @@
         "synonyms.json"
       ],
       "loadHint": "eager",
-      "bytes": 85711,
+      "bytes": 88380,
       "purpose": "Small node helpers for tag, errand, and everyday-phrase routing; sample.json stays out of runtime evidence."
     },
     {
       "step": 3,
       "file": "ask-core.json",
       "loadHint": "eager-search",
-      "bytes": 642114,
-      "budgetBytes": 700000,
-      "headroomBytes": 57886,
+      "bytes": 674945,
+      "budgetBytes": 780000,
+      "headroomBytes": 105055,
       "purpose": "Startup search over categories, brands, companies, tags, guides, errands, and lines."
     },
     {
@@ -43,14 +43,14 @@
         "companies.json"
       ],
       "loadHint": "defer-page-nodes",
-      "bytes": 1540361,
+      "bytes": 1581522,
       "purpose": "Full brand/company node pages and ownership context."
     },
     {
       "step": 5,
       "file": "ask-index.json",
       "loadHint": "lazy-product-search",
-      "bytes": 5579274,
+      "bytes": 5699758,
       "purpose": "Lazy product-name and barcode lookup."
     }
   ],
@@ -129,23 +129,23 @@
     "node": "#n/<type>/<slug>"
   },
   "counts": {
-    "brands": 2098,
-    "brandLongTail": 4514,
+    "brands": 2163,
+    "brandLongTail": 4833,
     "companies": 29,
-    "askCoreTokens": 2975,
-    "askCoreTargets": 2472,
-    "askTokens": 62740,
-    "askAliases": 2710,
+    "askCoreTokens": 3079,
+    "askCoreTargets": 2581,
+    "askTokens": 63851,
+    "askAliases": 2815,
     "goldenQueries": 13
   },
   "budgets": {
-    "askCoreBytes": 642114,
-    "startupBudgetBytes": 700000,
+    "askCoreBytes": 674945,
+    "startupBudgetBytes": 780000,
     "minimumHeadroomBytes": 50000,
-    "askCoreHeadroomBytes": 57886,
+    "askCoreHeadroomBytes": 105055,
     "askCoreWithinBudget": true,
     "askCoreHasHeadroom": true,
-    "fullAskBytes": 5579274,
+    "fullAskBytes": 5699758,
     "nodeLoadPlanStages": 6,
     "nodeRuntimeStateCases": 15,
     "nodePreviewScenarios": 21
@@ -343,7 +343,7 @@
           "Do not turn item counts into importance claims.",
           "Do not imply every brand product is covered."
         ],
-        "generatedCount": 2098
+        "generatedCount": 2163
       },
       {
         "id": "company-pages",
@@ -1158,14 +1158,14 @@
       "top": [
         {
           "id": "ovs:cat/banking",
-          "label": "Ethical banking",
+          "label": "Banking",
           "type": "category",
           "hash": "#explore/banking",
           "reason": "alias"
         },
         {
           "id": "ovs:guide/ethical-banking",
-          "label": "Where you bank is a climate decision",
+          "label": "Banking: fees, access, and fossil financing",
           "type": "guide",
           "hash": "#guide/ethical-banking",
           "reason": "token-containment"
@@ -1271,7 +1271,7 @@
         },
         {
           "id": "ovs:guide/password-managers",
-          "label": "Picking a password manager you can trust",
+          "label": "Password managers: security, recovery, and trust",
           "type": "guide",
           "hash": "#guide/password-managers",
           "reason": "exact"
@@ -1312,7 +1312,7 @@
       "query": "b corp toilet paper",
       "layer": "core",
       "matched": "ovs:cat/paper-goods",
-      "matchedRank": 2,
+      "matchedRank": 3,
       "ok": true,
       "top": [
         {
@@ -1323,17 +1323,17 @@
           "reason": "token-containment"
         },
         {
+          "id": "ovs:cat/b-corporations",
+          "label": "B Corporations",
+          "type": "category",
+          "hash": "#explore/b-corporations",
+          "reason": "token-containment"
+        },
+        {
           "id": "ovs:cat/paper-goods",
           "label": "Paper goods",
           "type": "category",
           "hash": "#explore/paper-goods",
-          "reason": "token-containment"
-        },
-        {
-          "id": "ovs:brand/b-corp",
-          "label": "B Corp",
-          "type": "brand",
-          "hash": "#n/brand/b-corp",
           "reason": "token-containment"
         }
       ]
@@ -1384,7 +1384,7 @@
         },
         {
           "id": "ovs:guide/phones",
-          "label": "Choosing a phone you can keep longer",
+          "label": "Phones: support life, repairability, and privacy",
           "type": "guide",
           "hash": "#guide/phones",
           "reason": "query-token"
@@ -1395,9 +1395,16 @@
       "query": "private messaging app",
       "layer": "core",
       "matched": "ovs:guide/private-messaging",
-      "matchedRank": 2,
+      "matchedRank": 3,
       "ok": true,
       "top": [
+        {
+          "id": "ovs:cat/messaging",
+          "label": "Messaging",
+          "type": "category",
+          "hash": "#explore/messaging",
+          "reason": "query-token"
+        },
         {
           "id": "ovs:tag/privacy",
           "label": "Privacy",
@@ -1407,7 +1414,7 @@
         },
         {
           "id": "ovs:guide/private-messaging",
-          "label": "Choosing a private messenger",
+          "label": "Private messaging: encryption, metadata, and reach",
           "type": "guide",
           "hash": "#guide/private-messaging",
           "reason": "query-token"

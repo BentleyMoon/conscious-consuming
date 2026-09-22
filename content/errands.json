@@ -1,0 +1,175 @@
+{
+  "format": "ovs-errand-registry",
+  "version": "0.1",
+  "updated": "2026-07-08",
+  "errands": [
+    {
+      "id": "ovs:errand/weekly-groceries",
+      "label": "Weekly groceries",
+      "aliases": ["grocery list", "weekly shop", "food shop"],
+      "reads": "A repeatable basket of ordinary staples, with enough flexibility for price, nutrition, and household habit.",
+      "output": "list",
+      "tradeoff": ["economical", "nutrition_grade"],
+      "steps": [
+        { "cat": "bread", "pick": "one", "note": "A staple the household will actually finish." },
+        { "cat": "plant-based-milk", "pick": "one", "note": "Milk for breakfast, coffee, or cooking." },
+        { "cat": "legumes", "pick": "several", "note": "Low-cost protein that can carry more than one meal." },
+        { "cat": "frozen-vegetables", "pick": "several", "note": "Vegetables that will still be there later in the week." },
+        { "cat": "pasta", "pick": "one", "note": "A reliable base for the night dinner needs to be fast." },
+        { "cat": "pasta-sauce", "pick": "one", "note": "A backup sauce for the meal that turns pasta-shaped." }
+      ]
+    },
+    {
+      "id": "ovs:errand/breakfast-reset",
+      "label": "Breakfast reset",
+      "aliases": ["better breakfast", "weekday breakfast", "breakfast staples"],
+      "reads": "A low-drama breakfast shelf that keeps mornings easy without letting sugar or packaging make every choice.",
+      "output": "list",
+      "tradeoff": ["economical", "low_sugar"],
+      "steps": [
+        { "cat": "oats", "pick": "one", "note": "A plain base for slow mornings or fast ones." },
+        { "cat": "breakfast-cereal", "pick": "one", "note": "An easy cereal for mornings that do not leave time." },
+        { "cat": "plant-based-milk", "pick": "one", "note": "Milk that works with cereal, oats, or coffee." },
+        { "cat": "yogurt", "pick": "one", "note": "A spoonable breakfast or snack when cooking is not happening." },
+        { "cat": "fruit-jam", "pick": "one", "note": "A small sweet thing where sugar and sourcing still matter." },
+        { "cat": "coffee", "pick": "one", "note": "The morning drink, if coffee is part of the house." }
+      ]
+    },
+    {
+      "id": "ovs:errand/pick-a-bank",
+      "label": "Pick a bank",
+      "aliases": ["choose a bank", "switch banks", "bank account"],
+      "reads": "Choose where everyday money should sit, with fees, fossil exposure, access, and transparency visible together.",
+      "output": "list",
+      "tradeoff": ["fees", "environment"],
+      "steps": [
+        { "cat": "banking", "pick": "one", "note": "The everyday account where pay, bills, and savings begin." }
+      ]
+    },
+    {
+      "id": "ovs:errand/move-your-subscriptions",
+      "label": "Move your subscriptions",
+      "aliases": ["subscription cleanup", "cancel subscriptions", "switch subscriptions"],
+      "reads": "A calm pass over recurring media and service spending, keeping what is worth paying for and replacing what is not.",
+      "output": "list",
+      "steps": [
+        { "cat": "music-streaming", "pick": "one", "note": "Music access that fits how you listen and how artists get paid." },
+        { "cat": "books", "pick": "one", "note": "Reading access that does not trap every book in one account." },
+        { "cat": "news-sources", "pick": "one", "note": "News worth paying attention to, and sometimes worth paying for." },
+        { "cat": "digital-services", "pick": "several", "note": "Recurring tools to keep, replace, or cancel with intent." }
+      ]
+    },
+    {
+      "id": "ovs:errand/de-google",
+      "label": "De-Google",
+      "aliases": ["leave google", "google alternatives", "reduce google"],
+      "reads": "Replace the most important Google-shaped dependencies first, without pretending every swap has to happen in one weekend.",
+      "output": "list",
+      "tradeoff": ["accessibility", "privacy"],
+      "steps": [
+        { "cat": "digital-services", "pick": "several", "note": "Pick the search, email, maps, notes, or storage habit to move first." },
+        { "cat": "password-managers", "pick": "one", "note": "Set a password home before moving accounts around." },
+        { "cat": "phones", "pick": "one", "note": "Choose a phone path if the operating system is part of the lock-in." },
+        { "cat": "ai-assistants", "pick": "one", "note": "Pick an assistant without rebuilding the old dependency." }
+      ]
+    },
+    {
+      "id": "ovs:errand/new-phone-sanely",
+      "label": "New phone, sanely",
+      "aliases": ["buy a phone", "new phone", "replace phone"],
+      "reads": "Pick a phone path around longevity, repair, privacy, and the possibility that not buying new is the best move.",
+      "output": "list",
+      "steps": [
+        { "cat": "phones", "pick": "one", "note": "Choose the phone, refurbished route, or keep-it-longer route." },
+        { "cat": "password-managers", "pick": "one", "note": "Set up passwords and authentication before migration day." },
+        { "cat": "digital-services", "pick": "several", "note": "Move default apps and services with care." }
+      ]
+    },
+    {
+      "id": "ovs:errand/clean-the-bathroom-cabinet",
+      "label": "Clean the bathroom cabinet",
+      "aliases": ["bathroom cabinet", "personal care reset", "bathroom restock"],
+      "reads": "Restock the small daily products that touch skin and water, while cutting duplicate bottles and vague clean-beauty claims.",
+      "output": "list",
+      "steps": [
+        { "cat": "toothpaste", "pick": "one", "note": "The daily item most homes run out of first." },
+        { "cat": "soap", "pick": "one", "note": "Hand or bath soap that gets used every day." },
+        { "cat": "body-wash", "pick": "one", "note": "Body wash only if a bar is not the right fit." },
+        { "cat": "shampoo", "pick": "one", "note": "Shampoo you will use enough to justify the bottle." },
+        { "cat": "deodorant", "pick": "one", "note": "Deodorant for ordinary days, not a shelf of maybes." },
+        { "cat": "razors", "pick": "one", "note": "A shaving setup with less repeat waste." },
+        { "cat": "period-products", "pick": "one", "note": "Period care that fits body, budget, and access." }
+      ]
+    },
+    {
+      "id": "ovs:errand/dinner-for-8",
+      "label": "Dinner for 8",
+      "aliases": ["feed a crowd", "group dinner", "cheap dinner"],
+      "reads": "A crowd meal that is filling, flexible, and values-aware without making the host solve every food system problem.",
+      "output": "list",
+      "tradeoff": ["economical", "nutrition_grade"],
+      "steps": [
+        { "cat": "rice", "pick": "one", "note": "A large-batch base that keeps the table fed." },
+        { "cat": "legumes", "pick": "several", "note": "Protein that scales without much cost." },
+        { "cat": "frozen-vegetables", "pick": "several", "note": "Vegetables for volume, color, and fewer last-minute trips." },
+        { "cat": "pasta-sauce", "pick": "one", "note": "Sauce if the meal turns pasta-shaped." },
+        { "cat": "salad-dressing", "pick": "one", "note": "A simple dressing if greens join the table." },
+        { "cat": "dark-chocolate", "pick": "one", "note": "A small dessert with the cocoa question visible." }
+      ]
+    },
+    {
+      "id": "ovs:errand/gift-under-20",
+      "label": "Gift under 20",
+      "aliases": ["small gift", "ethical gift", "cheap gift"],
+      "reads": "Find a modest gift that still has a story, a use, or a better ownership trail than panic-buying.",
+      "output": "list",
+      "steps": [
+        { "cat": "books", "pick": "one", "note": "A book, ebook, or reading route that can travel with the person." },
+        { "cat": "dark-chocolate", "pick": "one", "note": "A treat where cocoa sourcing is part of the choice." },
+        { "cat": "coffee", "pick": "one", "note": "Coffee if the gift is a morning ritual." },
+        { "cat": "tea", "pick": "one", "note": "Tea if the gift is a calmer ritual." },
+        { "cat": "causes-to-support", "pick": "one", "note": "A donation route when the best gift is not another object." }
+      ]
+    },
+    {
+      "id": "ovs:errand/back-to-school",
+      "label": "Back to school",
+      "aliases": ["school setup", "student setup", "study setup"],
+      "reads": "A school-year setup around learning access, repairable devices, safer accounts, and fewer one-season purchases.",
+      "output": "list",
+      "steps": [
+        { "cat": "learning-resources", "pick": "several", "note": "The subjects or skills this term will actually ask of you." },
+        { "cat": "books", "pick": "one", "note": "Reading access before buying every text new." },
+        { "cat": "laptops", "pick": "one", "note": "A computer only if a device is truly needed." },
+        { "cat": "password-managers", "pick": "one", "note": "Account safety before the year fills with logins." },
+        { "cat": "paper-goods", "pick": "one", "note": "Paper basics for the places digital still does not fit." }
+      ]
+    },
+    {
+      "id": "ovs:errand/first-apartment",
+      "label": "First apartment",
+      "aliases": ["moving out", "apartment basics", "starter home"],
+      "reads": "A first practical home kit for cleaning, dishes, laundry, paper, and a few daily-care basics.",
+      "output": "list",
+      "steps": [
+        { "cat": "cleaning-products", "pick": "several", "note": "Clean the surfaces you have before buying a cupboard of extras." },
+        { "cat": "dish-soap", "pick": "one", "note": "Dish soap for the sink you will use every day." },
+        { "cat": "laundry", "pick": "one", "note": "Detergent that fits the machine and skin in the house." },
+        { "cat": "paper-goods", "pick": "several", "note": "Toilet paper, tissues, or towels without buying blind." },
+        { "cat": "soap", "pick": "one", "note": "Hand soap for the bathroom or kitchen." },
+        { "cat": "toothpaste", "pick": "one", "note": "Toothpaste for the cabinet before the first rushed morning." }
+      ]
+    },
+    {
+      "id": "ovs:errand/switch-your-search",
+      "label": "Switch your search",
+      "aliases": ["search alternatives", "change search engine", "private search"],
+      "reads": "Try a different search default long enough to learn the tradeoff between convenience, privacy, ads, and public knowledge.",
+      "output": "list",
+      "steps": [
+        { "cat": "digital-services", "pick": "one", "note": "A search engine or search-shaped tool to try first." },
+        { "cat": "learning-resources", "pick": "one", "note": "A source-checking habit to pair with the new default." }
+      ]
+    }
+  ]
+}

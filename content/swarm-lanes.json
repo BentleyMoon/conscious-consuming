@@ -1,0 +1,171 @@
+{
+  "note": "One agent per realm file. Nobody edits content/ontology.json in a lane.",
+  "claims": {},
+  "run": {
+    "purpose": "Keep the content swarm producing. Each wave: wait for lanes to report, verify by reading cited pages, promote into navigation, move ratchets with a written reason, commit, launch the next wave.",
+    "startedAt": "2026-08-13T01:40",
+    "stopAfter": "2026-08-13T15:40",
+    "lanesPerWave": 5,
+    "wave": 7,
+    "inFlight": [],
+    "queue": [
+      {
+        "realm": "clothing",
+        "decisions": [
+          "secondhand-and-resale",
+          "clothing-rental"
+        ],
+        "why": "The catalogue argues buying new is not the only move, and has almost nothing built where that is literally the decision. Resale platforms differ on fees, authentication and who carries the loss on a fake."
+      },
+      {
+        "realm": "health",
+        "decisions": [
+          "vitamins-and-supplements",
+          "glasses-and-contact-lenses"
+        ],
+        "why": "Supplements are barely regulated for efficacy but heavily enforced for claims, so FTC and FDA warning letters are a real and citable axis.",
+        "warning": "Do not score a supplement on whether it works. Score the seller on testing, certification such as USP verification, and enforcement history."
+      },
+      {
+        "realm": "technology",
+        "decisions": [
+          "ad-and-tracker-blockers",
+          "encrypted-email-services"
+        ],
+        "why": "Both are open source or auditable, so claims can be checked against code and published audits rather than marketing."
+      },
+      {
+        "realm": "animals",
+        "decisions": [
+          "cat-food",
+          "vet-services"
+        ],
+        "why": "Cat food reuses the FDA recall method that dog food was rebuilt on, so it is cheap and consistent."
+      },
+      {
+        "realm": "media-and-culture",
+        "decisions": [
+          "video-streaming",
+          "podcast-apps-and-players"
+        ],
+        "why": "Recognisable, and artist payment terms plus tracking behaviour are both documented."
+      },
+      {
+        "realm": "personal-care",
+        "decisions": [
+          "menstrual-cups-and-discs",
+          "electric-toothbrushes"
+        ],
+        "why": "Cups are a reuse route next to an existing built decision, which is the comparison the catalogue exists to make."
+      },
+      {
+        "realm": "learning",
+        "decisions": [
+          "online-courses",
+          "language-learning"
+        ],
+        "why": "Learning has one built decision against 42 open, and course platforms differ sharply on refunds, credential value and whether teachers are paid."
+      },
+      {
+        "realm": "civic-and-giving",
+        "decisions": [
+          "crowdfunding-platforms",
+          "volunteering"
+        ],
+        "why": "Platform fees and payout terms are published, so a fee comparison is checkable and immediately useful."
+      },
+      {
+        "realm": "organizations",
+        "decisions": [
+          "b-corporations",
+          "secondhand-marketplaces"
+        ],
+        "why": "B Lab publishes a public directory with scores, which is a rare case of a certification with an open register.",
+        "warning": "The interesting fact is what certification does not cover. Say it."
+      },
+      {
+        "realm": "transport",
+        "decisions": [
+          "bicycles",
+          "e-bikes"
+        ],
+        "why": "Transport has one built decision, and a bicycle is the cheapest large emissions decision a person can make."
+      },
+      {
+        "realm": "food-and-drink",
+        "decisions": [
+          "supermarkets",
+          "food-delivery-platforms"
+        ],
+        "why": "Fifty food datasets exist and none of them says where to shop, which is the decision that sits above all of them."
+      }
+    ],
+    "perWaveChecklist": [
+      "node research/lens_check.js --all",
+      "Read 2 to 3 cited pages per new lens and confirm the note matches. Automated checks passed a fabricated claim in wave one; only reading caught it.",
+      "Add the cid to the matching gap row in content/ontology.json (do not add new rows).",
+      "python pipeline/build_datasets.py && node pipeline/build_presentation.js && python pipeline/build_taxonomy.py",
+      "Move every failing ratchet WITH a comment saying what moved and why, including ROUND9_DOMAIN_SIGNATURE in research/needs_ontology_audit.js.",
+      "node research/verify_run.js and the audit suite, then commit."
+    ],
+    "stopIf": [
+      "A lane returns a second fabricated or misquoted citation after being corrected once.",
+      "A gate fails in a way that would need a check weakened to pass.",
+      "The stopAfter time is reached."
+    ],
+    "secondPassIfLaneReturns": {
+      "family-and-care": [
+        "infant-formula",
+        "childcare"
+      ],
+      "travel": [
+        "booking-platforms",
+        "vacation-rentals"
+      ],
+      "work-and-livelihood": [
+        "freelance-and-contract-platforms",
+        "payroll-and-pay-platforms"
+      ],
+      "home": [
+        "gas-suppliers",
+        "washing-machines",
+        "solar-panels"
+      ],
+      "money": [
+        "home-insurance",
+        "pensions"
+      ]
+    },
+    "sequencingRule": "PROMOTION AND LANES DO NOT OVERLAP. A lane writes content/lenses/<cid>.json before that cid has a navigation row, and pipeline/build_datasets.py refuses a built dataset with no ontology need, which is correct and must not be weakened. So the generated rebuild can only run when no lane is working. Launch a wave, let it finish, promote and commit, then launch the next. Overlapping waves means the tree is never quiet and nothing can be committed.",
+    "promotionPending": {
+      "ontologyEdited": true,
+      "note": "content/ontology.json already carries the six promoted cids plus a new Reusable nappies row. The rebuild is blocked until the clothing, health and technology lanes finish. Then: build_datasets, build_presentation, build_taxonomy, move the ratchets with reasons, run the gates, commit.",
+      "expected": {
+        "rows": 207,
+        "livePaths": 106,
+        "datasets": 98,
+        "gaps": 101
+      },
+      "byNeed": {
+        "care": 19,
+        "keep-a-home": 7,
+        "move": 3,
+        "protect": 7,
+        "nourish": 50,
+        "connect": 5,
+        "learn": 5,
+        "give-and-act": 2
+      }
+    },
+    "blocked": [
+      "trade-unions and job-boards are built and held in content/lenses-pending: the legacy navigation has no work domain. See that directory README. Needs a design decision."
+    ],
+    "incidents": [
+      {
+        "at": "2026-08-13T10:17",
+        "what": "Two lanes, food-and-drink and home, were killed mid-build by an account session limit (reset 07:10 PDT). Not a code failure and nothing was corrupted: no partial lens files were left, the corpus passed with 65 lenses, and both lanes were released by hand. Wave six was already committed, so nothing was lost.",
+        "lesson": "A lane that dies leaves its claim behind, because release is the last step it runs. Check content/swarm-lanes.json claims against live agents before assuming a lane is busy."
+      }
+    ]
+  }
+}

@@ -13,6 +13,7 @@
 //   - Every fact travels with its source and as-of date; provenance summaries travel whole.
 
 const PROTOCOL = '2025-03-26';
+export const MCP_LIMITS = Object.freeze({ bodyBytes: 64 * 1024, batchItems: 20, queryChars: 256, idChars: 512 });
 const SERVER_INFO = {
   name: 'values-commons',
   title: 'Values Commons, open sourced values facts',
@@ -32,7 +33,7 @@ const TOOLS = [
       'Returns matches with ids to pass to fetch. Sourced, never sponsored.',
     inputSchema: {
       type: 'object',
-      properties: { query: { type: 'string', description: 'What to look for, e.g. "ethical banking" or "Nestlé".' } },
+      properties: { query: { type: 'string', maxLength: MCP_LIMITS.queryChars, description: 'What to look for, e.g. "ethical banking" or "Nestlé".' } },
       required: ['query'],
     },
   },
@@ -45,7 +46,7 @@ const TOOLS = [
       'values, computed on their device at the linked app URL.',
     inputSchema: {
       type: 'object',
-      properties: { id: { type: 'string', description: 'A Values Commons id, e.g. "ovs:cat/banking", "ovs:brand/fairphone", or "ovs:item/banking/triodos".' } },
+      properties: { id: { type: 'string', maxLength: MCP_LIMITS.idChars, description: 'A Values Commons id, e.g. "ovs:cat/banking", "ovs:brand/fairphone", or "ovs:item/banking/triodos".' } },
       required: ['id'],
     },
   },
@@ -58,6 +59,7 @@ function corsHeaders() {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type, Accept, Mcp-Session-Id, Mcp-Protocol-Version',
+    'Cache-Control': 'no-store',
   };
 }
 const json = (obj, status = 200) =>
@@ -70,6 +72,7 @@ const rpcError = (id, code, message) => ({ jsonrpc: '2.0', id: id === undefined 
 // isolate — the worker-side mirror of the app's compact-core → lazy-full pattern. Service-lens
 // entries (banks, apps) are not name-indexed yet (queued to the data lane); the honest path there
 // is category → entries, and a zero-result search says so instead of returning nothing mutely.
+let _coreIndex; // Promise<parsed ask-core.json | null>
 let _fullIndex; // Promise<parsed ask-index.json | null>
 const _lensCache = new Map(); // small per-isolate cache for lens files touched by title resolution
 async function _lens(cid, loadJson) {
@@ -91,7 +94,8 @@ function scoreTokens(tokens, q, words, scores) {
   }
 }
 async function doSearch(query, loadJson, appBase) {
-  const core = await loadJson('/app/data/nodes/ask-core.json');
+  if (!_coreIndex) _coreIndex = loadJson('/app/data/nodes/ask-core.json');
+  const core = await _coreIndex;
   if (!core || !core.tokens || !core.targets) return { results: [], note: 'index unavailable' };
   const q = fold(query).trim();
   if (!q) return { results: [] };
@@ -259,8 +263,17 @@ async function dispatch(msg, loadJson, appBase) {
       const name = params && params.name;
       const args = (params && params.arguments) || {};
       let payload;
-      if (name === 'search') payload = await doSearch(args.query, loadJson, appBase);
-      else if (name === 'fetch') payload = await doFetch(args.id, loadJson, appBase);
+      if (name === 'search') {
+        if (typeof args.query !== 'string' || args.query.length > MCP_LIMITS.queryChars) {
+          return rpcError(id, -32602, `search.query must be a string of at most ${MCP_LIMITS.queryChars} characters`);
+        }
+        payload = await doSearch(args.query, loadJson, appBase);
+      } else if (name === 'fetch') {
+        if (typeof args.id !== 'string' || args.id.length > MCP_LIMITS.idChars) {
+          return rpcError(id, -32602, `fetch.id must be a string of at most ${MCP_LIMITS.idChars} characters`);
+        }
+        payload = await doFetch(args.id, loadJson, appBase);
+      }
       else return rpcError(id, -32602, 'unknown tool: ' + name);
       const isErr = !!(payload && payload.error);
       return rpcResult(id, {
@@ -272,8 +285,29 @@ async function dispatch(msg, loadJson, appBase) {
     if (isNotification) return null;
     return rpcError(id, -32601, 'method not found: ' + method);
   } catch (e) {
-    return rpcError(id, -32603, 'internal error: ' + (e && e.message));
+    return rpcError(id, -32603, 'internal error');
   }
+}
+
+async function boundedRequestText(request) {
+  const advertised = Number(request.headers.get('content-length') || 0);
+  if (Number.isFinite(advertised) && advertised > MCP_LIMITS.bodyBytes) return null;
+  if (!request.body) return '';
+  const reader = request.body.getReader();
+  const decoder = new TextDecoder();
+  let bytes = 0;
+  let text = '';
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    bytes += value.byteLength;
+    if (bytes > MCP_LIMITS.bodyBytes) {
+      await reader.cancel();
+      return null;
+    }
+    text += decoder.decode(value, { stream: true });
+  }
+  return text + decoder.decode();
 }
 
 // The entry the worker (or a test) calls. loadJson(path) -> parsed JSON or null.
@@ -284,8 +318,12 @@ export async function handleMcp(request, loadJson, appBase) {
   }
   if (request.method !== 'POST') return json(rpcError(null, -32600, 'POST JSON-RPC to this endpoint'), 405);
   let body;
-  try { body = await request.json(); } catch (e) { return json(rpcError(null, -32700, 'parse error'), 400); }
+  const bodyText = await boundedRequestText(request);
+  if (bodyText === null) return json(rpcError(null, -32001, `request body exceeds ${MCP_LIMITS.bodyBytes} bytes`), 413);
+  try { body = JSON.parse(bodyText); } catch (e) { return json(rpcError(null, -32700, 'parse error'), 400); }
   if (Array.isArray(body)) {
+    if (body.length === 0) return json(rpcError(null, -32600, 'empty batch is invalid'), 400);
+    if (body.length > MCP_LIMITS.batchItems) return json(rpcError(null, -32001, `batch exceeds ${MCP_LIMITS.batchItems} requests`), 413);
     const out = [];
     for (const m of body) { const r = await dispatch(m, loadJson, appBase); if (r) out.push(r); }
     return out.length ? json(out) : new Response(null, { status: 202, headers: corsHeaders() });

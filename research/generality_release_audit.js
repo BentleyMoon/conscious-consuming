@@ -45,7 +45,7 @@ function main() {
   const shared = read('app/decision.js');
   const shell = read('app/shell.js');
   const appIndex = read('app/index.html');
-  const kosplora = read('kosplora/index.html');
+  const kosplora = read('kosplora/shelf/index.html');
   const review = read('docs/DECISION-REFRAME-FOUNDER-REVIEW.md');
   const verify = read('scripts/verify.mjs');
   const pkg = JSON.parse(read('package.json') || '{}');
@@ -62,7 +62,7 @@ function main() {
   expect(decision.VERSION === '1.0', `app/decision.js: expected shared component v1.0, found ${decision.VERSION}`);
   expect(!/kosplora|learning|coffee|banking/i.test(shared), 'app/decision.js: shared component contains domain-specific branching or language');
   expect(appIndex.includes('<script src="./decision.js') && appIndex.indexOf('./decision.js') < appIndex.indexOf('./app.js'), 'app/index.html: Conscious Consuming must load the shared decision component before app.js');
-  expect(kosplora.includes('<script src="../app/decision.js') && kosplora.indexOf('../app/decision.js') < kosplora.indexOf('../app/shell.js'), 'kosplora/index.html: illustrative instance must load the same decision component before the shell');
+  expect(kosplora.includes('<script src="../../app/decision.js') && kosplora.indexOf('../../app/decision.js') < kosplora.indexOf('../../app/shell.js'), 'kosplora/shelf/index.html: illustrative instance must load the same decision component before the shell');
   for (const call of ['CC.decisionPage.dialWeights', 'CC.decisionPage.recipes', 'CC.decisionPage.answerCardHTML', 'CC.decisionPage.dialHTML']) expect(app.includes(call), `app/app.js: shared component call missing (${call})`);
   for (const call of ['DECISION.recipes', 'DECISION.answerCardHTML', 'DECISION.dialHTML', 'DECISION.dialPosition']) expect(shell.includes(call), `app/shell.js: shared instance call missing (${call})`);
 
@@ -88,12 +88,28 @@ function main() {
   const poolSource = shell.slice(shell.indexOf('function candidatePool()'), shell.indexOf('function floorAndLinesHTML'));
   expect(poolSource.indexOf('floorFolded=[], afterFloor=RESOURCES.slice()') < poolSource.indexOf('for(const resource of afterFloor)'), 'app/shell.js: floor must precede personal lines');
   expect(shell.includes('filtered from the answers, not erased') && shell.includes('show anyway'), 'Kosplora lines: complete show-anyway fold missing');
-  expect(shell.includes('Equal scores only') && shell.includes('They cannot restore a filtered resource'), 'Kosplora close-call priorities: last-place tie-breaker boundary missing');
+  expect(shell.includes('Equal scores only') && shell.includes('They cannot restore a filtered option'), 'close-call priorities: last-place tie-breaker boundary missing');
 
   expect(!/how much (?:do )?you care|care about ethics|set how much each matters|value sliders?/i.test(kosplora + shell), 'Kosplora surface returned to value-identity sliders');
   expect(!/type="range"/i.test(kosplora + shell), 'Kosplora-specific files must not define a parallel range control; shared decision.js owns practical ranges');
-  expect(shell.includes('Rank all ${result.ranked.length} eligible learning resources with these choices'), 'Kosplora count: ranking scope must say what the number counts');
-  expect(shell.includes('criteria annotated') && shell.includes('folded from ${pool.base.length}') && shell.includes('eligible resources ranked'), 'Kosplora numbers: proof and precedence counts must carry meaning');
+  // Strengthened 2026-07-27: the shell used to hardcode 'learning resources', which meant the
+  // shared component named one instance's subject and read wrong on every other one. The receipt
+  // now pins the stronger property: the count says what it counts USING THE LENS'S OWN NOUN, and
+  // the shell contains no instance-specific subject at all.
+  expect(shell.includes('Rank all ${result.ranked.length} eligible ${NOUN} options with these choices'), 'count: ranking scope must say what the number counts, in the noun the lens supplies');
+  expect(/const NOUN\s*=\s*META\.noun/.test(shell), 'shell must take its subject noun from the lens, never hardcode one');
+  expect(!/learning resources?/i.test(shell), 'shared shell must not name any single instance subject');
+  // Strengthened again the same day: the noun fix above was necessary and nowhere near
+  // sufficient. The shell still hardcoded Kosplora's section heading, Kosplora's dial ids, and
+  // a proof block linking to Kosplora's founder review, all rendered on every other instance.
+  // curl could not see any of it because the shell writes this markup client-side. The receipt
+  // now pins the general property rather than one string: instance copy lives in the lens.
+  for (const leak of ['Choose somewhere to learn', 'kosplora-dial', 'Conscious Consuming and this page', 'DECISION-REFRAME-FOUNDER-REVIEW']) {
+    expect(!shell.includes(leak), `app/shell.js: instance-specific copy, id, or link leaked into the shared shell (${leak})`);
+  }
+  expect(/CONTRACT\.headline/.test(shell) && /META\.proof/.test(shell) && /META\.slug/.test(shell), 'shell must take its headline, proof block, and dial id prefix from the lens');
+  expect(!!(contract.headline && lens.meta.slug && lens.meta.proof && (lens.meta.proof.links || []).length), 'Kosplora lens must supply its own headline, slug, and proof block now that the shell supplies none');
+  expect(shell.includes('criteria annotated') && shell.includes('folded from ${pool.base.length}') && shell.includes('eligible ${NOUN} options ranked'), 'numbers: proof and precedence counts must carry meaning');
 
   for (const route of ['/app/#map', '/app/#need/learn', '/app/#decide/learning-resources', '/app/#decide/banking', '/kosplora/', '/app/#decide/coffee']) expect(review.includes(route), `founder review: missing walkthrough route ${route}`);
   expect(/Founder decision:\*\* pending human review/.test(review), 'founder review: must remain pending until a human records the decision');

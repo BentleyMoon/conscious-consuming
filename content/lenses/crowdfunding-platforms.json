@@ -1,0 +1,563 @@
+{
+  "meta": {
+    "id": "crowdfunding-platforms",
+    "label": "Crowdfunding platforms",
+    "type": "Services",
+    "primaryAxis": "fees",
+    "tradeoff": [
+      "fees",
+      "buyer_protection"
+    ],
+    "tradeoffLabels": [
+      "more of what backers give reaches the campaign",
+      "backer has recourse if a campaign fails to deliver or misuses funds"
+    ],
+    "source": "Conscious Consuming (curated)",
+    "attribution": "Fee figures come from each platform's own published fee, pricing or help-center page, read directly, plus the FTC's 2015 press release on a Kickstarter creator settlement and the SEC's Regulation Crowdfunding escrow rule, both read from the primary document rather than a summary of it. Fee figures are generally each platform's stated US rate; several vary by country, campaign type or whether a donor opts to cover the processing cost, and more than one changed its fee structure within the last year: Indiegogo moved to fixed funding and updated its fee page in October 2025, and Patreon moved creators who publish a new page to a flat 10% plan in August 2025. Check the linked page before relying on a number here. The buyer_protection score describes a guarantee, vetting process or legal escrow requirement the platform states for itself, not an independent audit of how often a claim is honored in practice; where no such statement was found, the cell is left empty rather than guessed. Reward-based platforms such as Kickstarter, Indiegogo and Experiment only collect money if a campaign reaches its funding goal, but none of them guarantee that a funded project delivers; the clearest documented case of what happens when one does not is the FTC's 2015 settlement with the creator of a failed Kickstarter board game campaign, brought against the creator, not the platform. Equity crowdfunding under SEC Regulation Crowdfunding works differently: funds must sit in escrow with a bank or broker-dealer and are released to the company only once the raise closes, and an investor can cancel for any reason up to 48 hours before the deadline. Two platforms restructure the money question itself: DonorsChoose never releases cash, it buys and ships the requested classroom materials directly, and Zeffy passes on 100% of every donation and covers its own costs from a separate voluntary tip. Giving directly to a specific charity through its own donation page, see Causes to support and Charities by cause, avoids a crowdfunding platform's cut entirely; it just is not a comparison of crowdfunding platforms, so it is not scored here. Suggest changes via Contribute.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": {
+          "fees": 3,
+          "buyer_protection": 3,
+          "accessibility": 2
+        },
+        "x": []
+      },
+      "Lowest fees": {
+        "w": {
+          "fees": 5,
+          "buyer_protection": 1,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Safest for backers": {
+        "w": {
+          "buyer_protection": 5,
+          "fees": 1,
+          "accessibility": 1
+        },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    {
+      "key": "fees",
+      "label": "Low platform and payment fees, more of what is given reaches the campaign",
+      "source": "curated"
+    },
+    {
+      "key": "buyer_protection",
+      "label": "Backer or donor has recourse if a campaign fails to deliver or misuses funds",
+      "source": "curated"
+    },
+    {
+      "key": "accessibility",
+      "label": "Easy for a backer or donor to give from where they are, without extra paperwork or limits",
+      "source": "curated"
+    }
+  ],
+  "products": [
+    {
+      "code": "kickstarter",
+      "name": "Kickstarter",
+      "brand": "reward-based crowdfunding",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A reward-based crowdfunding platform for creative and product projects. Campaigns are all-or-nothing: nobody is charged unless the funding goal is met, but once a project is funded there is no guarantee it will ship.",
+      "scores": {
+        "fees": 90,
+        "buyer_protection": 30,
+        "accessibility": 78
+      },
+      "provenance": {
+        "fees": {
+          "note": "Kickstarter's own fees page states that if a project is successfully funded, it collects Kickstarter's 5% fee plus payment processing fees of between 3% and 5%: 3% + $0.30 per pledge for standard pledges, or a discounted micropledge fee of 5% + $0.08 per pledge for pledges under $10. If funding is not successful, there are no fees.",
+          "source": "https://www.kickstarter.com/help/fees",
+          "asof": "2026"
+        },
+        "buyer_protection": {
+          "note": "Kickstarter's fees page confirms nobody is charged unless a project reaches its funding goal, but Kickstarter states no guarantee about the project itself. The clearest documented consequence of a failed delivery is the FTC's 2015 complaint and settlement with Erik Chevalier, the creator of the Kickstarter board game The Doom That Came to Atlantic City, who raised over $122,000, did not deliver the promised rewards or refunds, and spent most of the money on personal expenses. The FTC's order was against the creator, not against Kickstarter, which is the general pattern: recourse for a failed project runs against the creator.",
+          "source": "https://www.ftc.gov/news-events/news/press-releases/2015/06/crowdfunding-project-creator-settles-ftc-charges-deception",
+          "asof": "2015"
+        },
+        "accessibility": {
+          "note": "Kickstarter's help center states project creation is currently available only to eligible creators in 25 listed countries (including the US, UK, and most of the EU) and that residents outside those countries cannot launch projects. Backing a project has no such list; anyone able to pledge by card can back an eligible project.",
+          "source": "https://help.kickstarter.com/hc/en-us/articles/115005128014-When-will-Kickstarter-be-available-in-other-countries",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Fees",
+          "url": "https://www.kickstarter.com/help/fees"
+        },
+        {
+          "label": "FTC: crowdfunding project creator settles charges of deception",
+          "url": "https://www.ftc.gov/news-events/news/press-releases/2015/06/crowdfunding-project-creator-settles-ftc-charges-deception"
+        },
+        {
+          "label": "Eligible countries for creators",
+          "url": "https://help.kickstarter.com/hc/en-us/articles/115005128014-When-will-Kickstarter-be-available-in-other-countries"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Reward crowdfunding",
+        "All-or-nothing"
+      ]
+    },
+    {
+      "code": "indiegogo",
+      "name": "Indiegogo",
+      "brand": "reward-based crowdfunding",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A reward-based crowdfunding platform for products, causes and creative projects, now owned by Gamefound. Its October 2025 fee update moved new campaigns to a fixed funding model that only charges fees on successfully funded projects.",
+      "scores": {
+        "fees": 90,
+        "buyer_protection": 28
+      },
+      "provenance": {
+        "fees": {
+          "note": "Indiegogo's fees article states it charges a platform fee of 5% of the collected amount, plus payment processing of a fixed fee in the project currency plus 0.2 per transaction (about 3% + $0.20 in USD). Its own worked example shows a $10,000 raise pays a $500 platform fee and a $320 processing fee, netting a $9,180 payout, and the article states that if a project does not reach its goal, no fees at all are charged, including processing fees.",
+          "source": "https://help.indiegogo.com/article/596-fees",
+          "asof": "2025"
+        },
+        "buyer_protection": {
+          "note": "The FTC's 2020 press release states Douglas Monahan raised more than $800,000 across four crowdfunding campaigns on Indiegogo and Kickstarter for the 'iBackPack,' never delivered any promised product, and used the money for personal expenses and marketing. The settlement permanently banned Monahan from future crowdfunding, but, as with the Kickstarter case above, the FTC's order ran against the individual campaigner rather than the platforms that hosted his campaigns.",
+          "source": "https://www.ftc.gov/news-events/news/press-releases/2020/05/operator-deceptive-crowdfunding-scheme-banned-future-crowdfunding-part-ftc-settlement",
+          "asof": "2020"
+        }
+      },
+      "links": [
+        {
+          "label": "Fees",
+          "url": "https://help.indiegogo.com/article/596-fees"
+        },
+        {
+          "label": "FTC: crowdfunding scheme operator banned from future crowdfunding",
+          "url": "https://www.ftc.gov/news-events/news/press-releases/2020/05/operator-deceptive-crowdfunding-scheme-banned-future-crowdfunding-part-ftc-settlement"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Reward crowdfunding",
+        "Fixed funding"
+      ]
+    },
+    {
+      "code": "gofundme",
+      "name": "GoFundMe",
+      "brand": "personal and community fundraising",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A personal and community fundraising platform for medical bills, emergencies, memorials and causes, funded by cards and by an optional donor tip rather than a cut of the fundraiser itself.",
+      "scores": {
+        "fees": 96,
+        "buyer_protection": 55,
+        "accessibility": 85
+      },
+      "provenance": {
+        "fees": {
+          "note": "GoFundMe's pricing page states there is no fee to create or manage a fundraiser; a transaction fee of 2.9% + $0.30 applies per donation in the US, and donor tips, which support GoFundMe's operations, are optional and never required.",
+          "source": "https://www.gofundme.com/c/pricing",
+          "asof": "2026"
+        },
+        "buyer_protection": {
+          "note": "The GoFundMe Giving Guarantee page states donations to an individual's fundraiser are covered for one full year against misuse of funds based on the fundraiser's stated purpose, or failure of funds to reach the beneficiary, with GoFundMe's Trust & Safety team investigating claims and refunds processed in 3 to 10 business days. The same page states the outcome is decided in GoFundMe's 'sole and absolute discretion' and that the guarantee is explicitly 'not a warranty against fraud or any other misuse of the Platform.'",
+          "source": "https://www.gofundme.com/c/safety/gofundme-guarantee",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "GoFundMe's help center states there are 20 countries where it can send funds and lists them by name, with a fundraiser's country locked in once created; donors, by contrast, are not limited to those countries when giving by card.",
+          "source": "https://support.gofundme.com/hc/en-us/articles/360001972748-Countries-supported-on-GoFundMe",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Pricing and fees",
+          "url": "https://www.gofundme.com/c/pricing"
+        },
+        {
+          "label": "GoFundMe Giving Guarantee",
+          "url": "https://www.gofundme.com/c/safety/gofundme-guarantee"
+        },
+        {
+          "label": "Countries supported",
+          "url": "https://support.gofundme.com/hc/en-us/articles/360001972748-Countries-supported-on-GoFundMe"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Personal fundraising",
+        "Donation-based"
+      ]
+    },
+    {
+      "code": "donorschoose",
+      "name": "DonorsChoose",
+      "brand": "classroom project funding",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Lets donors fund specific project requests from US public school teachers. DonorsChoose buys and ships the requested books, supplies or equipment itself once a project is funded, rather than handing cash to the teacher.",
+      "scores": {
+        "fees": 84,
+        "buyer_protection": 92
+      },
+      "provenance": {
+        "fees": {
+          "note": "DonorsChoose's help center states a third-party payment processing fee of 1.5% of the project cost is added to every project, plus a flat Fulfillment labor & materials fee of $30.00 that covers the labor to bring a project to life and the physical costs of processing student thank-you letters. A separate 15% donation to DonorsChoose is suggested at checkout but is not required. On a typical few-hundred-dollar classroom project, the flat $30 fee alone is a meaningful share of the total.",
+          "source": "https://help.donorschoose.org/hc/en-us/articles/22895119676695-Additional-Project-Fees",
+          "asof": "2026"
+        },
+        "buyer_protection": {
+          "note": "DonorsChoose's financials page states the organization purchases the requested classroom resources directly from the vendor and ships them to the school, rather than sending cash to the teacher, so a funded project's money cannot be redirected to anything other than the listed materials.",
+          "source": "https://www.donorschoose.org/about/finance.html",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Additional project fees",
+          "url": "https://help.donorschoose.org/hc/en-us/articles/22895119676695-Additional-Project-Fees"
+        },
+        {
+          "label": "Financials",
+          "url": "https://www.donorschoose.org/about/finance.html"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Classroom funding",
+        "Goods not cash"
+      ]
+    },
+    {
+      "code": "globalgiving",
+      "name": "GlobalGiving",
+      "brand": "vetted nonprofit crowdfunding",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A crowdfunding marketplace for vetted nonprofit projects worldwide. Every listed organization goes through a due-diligence application before it can fundraise, and GlobalGiving keeps a support fee to help fund that vetting.",
+      "scores": {
+        "fees": 90,
+        "buyer_protection": 68
+      },
+      "provenance": {
+        "fees": {
+          "note": "GlobalGiving's help center states it retains a 5-12% nonprofit support fee, 5-7% for most donations, plus a 3% third-party processing fee on donations, and that this fee covers vetting costs and helps deliver additional matching and bonus funding to partner organizations.",
+          "source": "https://support.globalgiving.org/hc/en-us/articles/360033731831-What-is-GlobalGiving-s-fee",
+          "asof": "2026"
+        },
+        "buyer_protection": {
+          "note": "GlobalGiving's help center states it carefully vets every nonprofit before it can fundraise on the platform, requiring legal documentation and a compliance and due-diligence review, and conducts ongoing monitoring of reports, activity and community feedback afterward. The same article states plainly that 'no platform can guarantee outcomes.'",
+          "source": "https://support.globalgiving.org/hc/en-us/articles/360026413511-How-can-I-be-sure-a-project-is-legitimate",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "What is GlobalGiving's fee?",
+          "url": "https://support.globalgiving.org/hc/en-us/articles/360033731831-What-is-GlobalGiving-s-fee"
+        },
+        {
+          "label": "How can I be sure a project is legitimate?",
+          "url": "https://support.globalgiving.org/hc/en-us/articles/360026413511-How-can-I-be-sure-a-project-is-legitimate"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Vetted nonprofits",
+        "Due diligence"
+      ]
+    },
+    {
+      "code": "patreon",
+      "name": "Patreon",
+      "brand": "recurring membership crowdfunding",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A recurring membership platform where supporters pay creators monthly or per piece of work for ongoing access, rather than backing a single time-bound campaign.",
+      "scores": {
+        "fees": 85
+      },
+      "provenance": {
+        "fees": {
+          "note": "Patreon's Creator fees overview states creators who publish a page after August 4, 2025 are on its standard plan, a 10% platform fee plus applicable taxes, plus payment processing of 2.9% + $0.30 per US credit card charge; creators who published on or before that date keep a legacy rate of 5%, 8% or 11% unless their page is unpublished and republished.",
+          "source": "https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Creator fees overview",
+          "url": "https://support.patreon.com/hc/en-us/articles/11111747095181-Creator-fees-overview"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Membership",
+        "Recurring support"
+      ]
+    },
+    {
+      "code": "experiment",
+      "name": "Experiment",
+      "brand": "science research crowdfunding",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "An all-or-nothing crowdfunding platform for scientific research projects, reviewed by Experiment's team before they can list, with funds released only if a project reaches its goal.",
+      "scores": {
+        "fees": 86,
+        "buyer_protection": 28,
+        "accessibility": 92
+      },
+      "provenance": {
+        "fees": {
+          "note": "Experiment's FAQ states it is free to start a project, and if a project is fully funded, Experiment charges an 8% platform fee plus payment processing fees of roughly 3% to 5%.",
+          "source": "https://experiment.com/faq",
+          "asof": "2026"
+        },
+        "buyer_protection": {
+          "note": "Experiment's FAQ states it is an all-or-nothing fundraising platform: if a project does not reach its goal, none of the backers are charged. The FAQ does not describe a guarantee or refund process for a project that is funded but does not deliver its stated research outcomes.",
+          "source": "https://experiment.com/faq",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Experiment's FAQ asks 'Who funds projects on Experiment?' and answers 'Everyone! ... it allows anyone with a credit card to bring real science to life,' while researcher eligibility to create a project is limited to the US, UK, Canada and Australia.",
+          "source": "https://experiment.com/faq",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "FAQ",
+          "url": "https://experiment.com/faq"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Science crowdfunding",
+        "All-or-nothing"
+      ]
+    },
+    {
+      "code": "justgiving",
+      "name": "JustGiving",
+      "brand": "UK charity and personal fundraising",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A UK online fundraising platform for registered charities and personal fundraising pages, charging no platform fee and covering its costs through payment processing charges and optional donor tips.",
+      "scores": {
+        "fees": 96
+      },
+      "provenance": {
+        "fees": {
+          "note": "JustGiving's fees page states it does not charge a platform fee and that it is free to set up a page. For UK charity fundraising it charges payment processing of 1.9% + £0.30 per donation on standard payment methods, rising to 2.9% + £0.35 per donation on personal and crowdfunding pages; donor tips are optional.",
+          "source": "https://www.justgiving.com/about/fees",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Fees",
+          "url": "https://www.justgiving.com/about/fees"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Charity fundraising",
+        "Personal pages"
+      ]
+    },
+    {
+      "code": "givebutter",
+      "name": "Givebutter",
+      "brand": "nonprofit fundraising platform",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A US nonprofit fundraising and events platform that reaches 0% platform fees when donors opt to cover the cost with a tip, which most donors do.",
+      "scores": {
+        "fees": 92
+      },
+      "provenance": {
+        "fees": {
+          "note": "Givebutter's pricing page states nonprofits pay a 0% platform fee, and processing fees are also waived under the Givebutter Guarantee, when donor tips are enabled. If an organization disables tips instead, a flat 3% platform fee applies on top of standard processing of 2.9% + $0.30 for cards or 1.9% + $0.30 for ACH transfers.",
+          "source": "https://givebutter.com/pricing",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Pricing",
+          "url": "https://givebutter.com/pricing"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Nonprofit fundraising",
+        "Tip-funded"
+      ]
+    },
+    {
+      "code": "fundrazr",
+      "name": "FundRazr",
+      "brand": "personal and nonprofit fundraising",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A Vancouver-based fundraising platform for personal, nonprofit and community campaigns that pays organizers directly through their own Stripe or PayPal account rather than holding funds itself.",
+      "scores": {
+        "fees": 90,
+        "buyer_protection": 15
+      },
+      "provenance": {
+        "fees": {
+          "note": "FundRazr's pricing page states its Optional Tips model charges a 0% platform fee, with only the 2.9% + $0.30 payment processing fee applying and typically covered by donor tips; its alternative Fee Recovery model charges a 1% fee for donation forms or 5% for fundraising pages, plus processing.",
+          "source": "https://fundrazr.com/pages/pricing-fees",
+          "asof": "2026"
+        },
+        "buyer_protection": {
+          "note": "FundRazr's FAQ states plainly that FundRazr does not hold funds in escrow at all: money is transferred directly to the organizer's own Stripe or PayPal account, minus fees, immediately on contribution for keep-it-all campaigns, with no platform-level review of the transfer described.",
+          "source": "https://fundrazr.com/pages/faq",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Pricing and fees",
+          "url": "https://fundrazr.com/pages/pricing-fees"
+        },
+        {
+          "label": "FAQ",
+          "url": "https://fundrazr.com/pages/faq"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Personal fundraising",
+        "Direct payout"
+      ]
+    },
+    {
+      "code": "zeffy",
+      "name": "Zeffy",
+      "brand": "nonprofit donation platform",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A donation and event platform built specifically for nonprofits, funded entirely by an optional donor contribution at checkout, so a nonprofit's payout is never reduced by a platform or processing fee.",
+      "scores": {
+        "fees": 100,
+        "accessibility": 88
+      },
+      "provenance": {
+        "fees": {
+          "note": "Zeffy's help center states it offers its technology to nonprofits '100% free of charge' and covers all processing and platform costs itself; donors are given the option to make a voluntary contribution to Zeffy at checkout, and nonprofits receive 100% of every payment regardless of whether a donor adds one.",
+          "source": "https://support.zeffy.com/how-is-zeffy-free",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Zeffy's help center states nonprofit accounts are only named for the US, Canada and the UK, but that 'Zeffy accepts credit card payments from individuals from almost anywhere in the world,' so giving is broader than the list of countries that can hold an account.",
+          "source": "https://support.zeffy.com/supported-countries-and-currencies-q0d8l",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "How is Zeffy free",
+          "url": "https://support.zeffy.com/how-is-zeffy-free"
+        },
+        {
+          "label": "Supported countries and currencies",
+          "url": "https://support.zeffy.com/supported-countries-and-currencies-q0d8l"
+        }
+      ],
+      "region": [
+        "US",
+        "UK"
+      ],
+      "focuses": [
+        "Nonprofit fundraising",
+        "Zero fee"
+      ]
+    },
+    {
+      "code": "startengine",
+      "name": "StartEngine",
+      "brand": "equity crowdfunding",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "An SEC-registered funding portal for equity crowdfunding, where people invest in early-stage companies rather than donate to them, and where federal rules require committed funds to sit in escrow until a raise closes.",
+      "scores": {
+        "fees": 88,
+        "buyer_protection": 90,
+        "accessibility": 42
+      },
+      "provenance": {
+        "fees": {
+          "note": "StartEngine's investor FAQ states many offerings are completely free for investors because StartEngine charges fees to the company raising money instead. Where a fee does apply to investors, the FAQ states it is a 3.5% processing fee shown clearly on the investment form.",
+          "source": "https://www.startengine.com/investor-faq",
+          "asof": "2026"
+        },
+        "buyer_protection": {
+          "note": "SEC Regulation Crowdfunding requires a funding portal to direct investors to transmit money to a qualified third party, a registered broker-dealer or a bank, which holds the funds and transmits them to the company only once investment commitments reach the offering's target amount; an investor may cancel a commitment for any reason until 48 hours before the offering deadline. StartEngine's own investor FAQ confirms funds are withdrawn from an investor's account only once a company has exceeded its minimum funding goal and escrow has been opened.",
+          "source": "https://www.ecfr.gov/current/title-17/chapter-II/part-227/subpart-C/section-227.303",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "The SEC's investor bulletin on Regulation Crowdfunding states a non-accredited investor's annual limit is the greater of $2,500 or 5% of the greater of their annual income or net worth if either figure is below $124,000, rising to 10% of annual income or net worth, capped at $124,000 a year, once both figures are at or above that threshold. Giving through StartEngine means calculating and staying under one of these limits, unlike a straightforward donation.",
+          "source": "https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins/updated-11",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Investor FAQ",
+          "url": "https://www.startengine.com/investor-faq"
+        },
+        {
+          "label": "Regulation Crowdfunding escrow rule, 17 CFR 227.303",
+          "url": "https://www.ecfr.gov/current/title-17/chapter-II/part-227/subpart-C/section-227.303"
+        },
+        {
+          "label": "Regulation Crowdfunding cancellation rule, 17 CFR 227.304",
+          "url": "https://www.ecfr.gov/current/title-17/chapter-II/part-227/subpart-C/section-227.304"
+        },
+        {
+          "label": "SEC investor bulletin: Regulation Crowdfunding for investors",
+          "url": "https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins/updated-11"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Equity crowdfunding",
+        "SEC escrow"
+      ]
+    }
+  ]
+}

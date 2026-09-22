@@ -1373,7 +1373,7 @@ function validateAskCoreStartupContract(value, label) {
   push(errors, value.loadHint === 'eager-search', `${label}.loadHint: must be eager-search`);
   if (!isObject(value.budget)) errors.push(`${label}.budget: missing object`);
   else {
-    push(errors, value.budget.maxBytes === 700000, `${label}.budget.maxBytes: must be 700000`);
+    push(errors, value.budget.maxBytes === 780000, `${label}.budget.maxBytes: must be 780000`);
     push(errors, Number.isInteger(value.budget.currentBytes) && value.budget.currentBytes > 0, `${label}.budget.currentBytes: must be positive integer`);
     push(errors, value.budget.minimumHeadroomBytes === 50000, `${label}.budget.minimumHeadroomBytes: must be 50000`);
     push(errors, Number.isInteger(value.budget.headroomBytes), `${label}.budget.headroomBytes: must be integer`);
@@ -3108,7 +3108,9 @@ const DESIGN_REQUIRED_TYPE = {
   meta: { size: '0.74rem', lineHeight: 1.35 }
 };
 const DESIGN_REQUIRED_SPACE = { xs: '0.35rem', md: '0.75rem', xl: '1.5rem' };
-const DESIGN_REQUIRED_RADIUS = { control: '0.25rem', card: '0.75rem', panel: '1rem', pill: '999px' };
+// 2026-08-06: the shape scale went sharp, deliberately (see research/design_tokens_audit.js for
+// the full note). One radius for everything that sits on the paper; the pill is gone as a shape.
+const DESIGN_REQUIRED_RADIUS = { control: '0.25rem', card: '0.25rem', panel: '0.25rem', pill: '3px' };
 const DESIGN_REQUIRED_DAY_CYCLE_CSS_VARS = [
   '--day-dawn-bg', '--day-dawn-surface', '--day-dawn-pill', '--day-dawn-line', '--day-dawn-ink', '--day-dawn-muted', '--day-dawn-hint', '--day-dawn-accent', '--day-dawn-warn',
   '--day-noon-bg', '--day-noon-surface', '--day-noon-pill', '--day-noon-line', '--day-noon-ink', '--day-noon-muted', '--day-noon-hint', '--day-noon-accent', '--day-noon-warn',
@@ -3995,9 +3997,77 @@ function validateConformanceVectors(value, registryIds, label = 'conformance-vec
   return errors;
 }
 
+function validateRegisterShelf(value, label = 'register-shelf') {
+  const errors = [];
+  if (!isObject(value)) return [`${label}: must be an object`];
+  push(errors, value.format === 'open-values-register-shelf', `${label}: wrong format`);
+  push(errors, value.version === '1.0.0', `${label}.version: expected 1.0.0`);
+  push(errors, isString(value.note), `${label}.note: missing note`);
+  push(errors, isObject(value.howToRead), `${label}.howToRead: missing object`);
+  if (isObject(value.howToRead)) {
+    for (const field of ['reach', 'access', 'provenanceKey', 'proven']) {
+      push(errors, isString(value.howToRead[field]), `${label}.howToRead.${field}: missing explanation`);
+    }
+  }
+  if (!Array.isArray(value.registers) || !value.registers.length) errors.push(`${label}.registers: missing non-empty array`);
+  else {
+    const ids = new Set();
+    const endpoints = new Set();
+    value.registers.forEach((register, i) => {
+      const at = `${label}.registers[${i}]`;
+      push(errors, isObject(register), `${at}: must be an object`);
+      if (!isObject(register)) return;
+      push(errors, KEBAB.test(String(register.id || '')), `${at}.id: invalid id`);
+      push(errors, !ids.has(register.id), `${at}.id: duplicate ${register.id}`);
+      ids.add(register.id);
+      push(errors, isString(register.name), `${at}.name: missing name`);
+      push(errors, isString(register.publisher), `${at}.publisher: missing publisher`);
+      push(errors, ['api', 'bulk', 'page'].includes(register.access), `${at}.access: expected api, bulk, or page`);
+      push(errors, isString(register.endpoint) && URL.test(register.endpoint), `${at}.endpoint: missing http(s) URL`);
+      push(errors, !endpoints.has(register.endpoint), `${at}.endpoint: duplicate ${register.endpoint}`);
+      endpoints.add(register.endpoint);
+      push(errors, register.reach === 'cross-cutting' || register.reach === 'single', `${at}.reach: expected cross-cutting or single`);
+      push(errors, CRITERION_KEY.test(String(register.provenanceKey || '')), `${at}.provenanceKey: invalid key`);
+      for (const field of ['populates', 'proven']) {
+        if (!Array.isArray(register[field]) || !register[field].length) errors.push(`${at}.${field}: missing non-empty array`);
+        else {
+          const seen = new Set();
+          register[field].forEach((item, j) => {
+            push(errors, isString(item), `${at}.${field}[${j}]: missing value`);
+            push(errors, !seen.has(item), `${at}.${field}[${j}]: duplicate ${item}`);
+            seen.add(item);
+          });
+        }
+      }
+      if (register.alsoAt != null) {
+        if (!Array.isArray(register.alsoAt)) errors.push(`${at}.alsoAt: must be an array`);
+        else register.alsoAt.forEach((url, j) => push(errors, isString(url) && URL.test(url), `${at}.alsoAt[${j}]: expected http(s) URL`));
+      }
+      if (register.note != null) push(errors, isString(register.note), `${at}.note: must be a non-empty string`);
+      if (register.caution != null) push(errors, isString(register.caution), `${at}.caution: must be a non-empty string`);
+    });
+  }
+  if (!Array.isArray(value.refused) || !value.refused.length) errors.push(`${label}.refused: missing non-empty array`);
+  else {
+    const patterns = new Set();
+    value.refused.forEach((refusal, i) => {
+      const at = `${label}.refused[${i}]`;
+      push(errors, isObject(refusal), `${at}: must be an object`);
+      if (!isObject(refusal)) return;
+      push(errors, isString(refusal.pattern), `${at}.pattern: missing pattern`);
+      push(errors, !patterns.has(refusal.pattern), `${at}.pattern: duplicate ${refusal.pattern}`);
+      patterns.add(refusal.pattern);
+      push(errors, isString(refusal.why), `${at}.why: missing reason`);
+      if (refusal.examples != null) push(errors, Array.isArray(refusal.examples) && refusal.examples.every(isString), `${at}.examples: expected non-empty strings`);
+    });
+  }
+  return errors;
+}
+
 const validators = {
   'open-values-format-registry': validateRegistry,
   'open-values-conformance-vectors': validateConformanceVectors,
+  'open-values-register-shelf': validateRegisterShelf,
   'open-values-source': validateSource,
   'open-values-criterion': validateCriterion,
   'open-values-rating': validateRating,

@@ -1,0 +1,431 @@
+{
+  "format": "open-values-register-evidence-bundle",
+  "version": "1.0.0",
+  "registerId": "cfpb-complaints",
+  "criterion": "complaints",
+  "snapshot": {
+    "snapshotId": "2026-08-14-a7fd1da18270",
+    "capturedAt": "2026-08-14T19:28:43Z",
+    "queryUrl": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Credit+card&size=0",
+    "scope": "CFPB credit-card complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share",
+    "payloadSha256": "8cec791a16e12fcaff2b006f74d4c307412aa38882532a9bbc213f3e21f1cf5c"
+  },
+  "generatedFrom": {
+    "snapshotManifest": "pipeline/registers/raw/cfpb-complaints/2026-08-14-a7fd1da18270.snapshot.json",
+    "snapshotManifestSha256": "3e40e969dcb1df4bebe958b3aa9848dfb1ea0386ec8cd52426be094f02ab1f1a",
+    "mapping": "content/register-mappings/cfpb-complaints.json",
+    "mappingSha256": "914e84715a6544196c7ec5f1ea41b4b019cf15a10caad3f5b71bf411ab332a92",
+    "observations": "pipeline/registers/observations/cfpb-complaints-2026-08-14-a7fd1da18270.observations.json",
+    "observationsSha256": "407f086ece8aecfe54415041045bcb44f03627dcc81e0fc37a7003896b3ec29d",
+    "coverageMatrixSha256": "5b21f894e51fd1c3bfafba6d102d8e0610fd1c80691c131ce49850209e62c62f",
+    "generatorVersion": "1.1.0"
+  },
+  "counts": {
+    "matchedMappings": 12,
+    "recordsFound": 12,
+    "scopedAbsences": 0,
+    "entries": 12
+  },
+  "reviewRequirement": {
+    "method": "lowest-sha256-of-bundle-inputs-and-entry-id",
+    "sampleSize": 10,
+    "entryIds": [
+      "credit-cards/american-express-gold",
+      "credit-cards/bank-of-america-cash-rewards-secured",
+      "credit-cards/capital-one-quicksilver",
+      "credit-cards/capital-one-venture",
+      "credit-cards/discover-it-cash-back",
+      "credit-cards/discover-it-secured",
+      "credit-cards/navy-federal-cashrewards",
+      "credit-cards/navy-federal-cashrewards-secured",
+      "credit-cards/retail-store-card",
+      "credit-cards/wells-fargo-active-cash"
+    ]
+  },
+  "entries": [
+    {
+      "entryId": "credit-cards/american-express-gold",
+      "cid": "credit-cards",
+      "entityCode": "american-express-gold",
+      "entityName": "American Express Gold Card",
+      "entityIdentitySha256": "9c12ec685eec02b537ae79df726fca586e29c29068f4c37d2a2ea9baeeb7f45c",
+      "legalName": "AMERICAN EXPRESS COMPANY",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Credit card|AMERICAN EXPRESS COMPANY"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "AMERICAN EXPRESS COMPANY",
+        "Credit card"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-1ad0f6bb91e63943",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For AMERICAN EXPRESS COMPANY, Consumer complaint database returned 1 matching record. Category complaint total: 165968; Company complaint total: 8664; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Credit card. Search terms: AMERICAN EXPRESS COMPANY, Credit card. Scope: CFPB credit-card complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Credit+card&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "credit-cards/bank-of-america-cash-rewards-secured",
+      "cid": "credit-cards",
+      "entityCode": "bank-of-america-cash-rewards-secured",
+      "entityName": "Bank of America Customized Cash Rewards Secured",
+      "entityIdentitySha256": "d0f42f82d91a6af74eee927b08a13427728e910cc3e3c74852f81a3822c5cb6f",
+      "legalName": "BANK OF AMERICA, NATIONAL ASSOCIATION",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Credit card|BANK OF AMERICA, NATIONAL ASSOCIATION"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "BANK OF AMERICA, NATIONAL ASSOCIATION",
+        "Credit card"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-8cf0a2d4cf13a390",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For BANK OF AMERICA, NATIONAL ASSOCIATION, Consumer complaint database returned 1 matching record. Category complaint total: 165968; Company complaint total: 7523; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Credit card. Search terms: BANK OF AMERICA, NATIONAL ASSOCIATION, Credit card. Scope: CFPB credit-card complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Credit+card&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "credit-cards/capital-one-quicksilver",
+      "cid": "credit-cards",
+      "entityCode": "capital-one-quicksilver",
+      "entityName": "Capital One Quicksilver",
+      "entityIdentitySha256": "f9b279c01977c5ef56c3c54fd1ec932b515d97d531c72120fc9eaa6028bba1a6",
+      "legalName": "CAPITAL ONE FINANCIAL CORPORATION",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Credit card|CAPITAL ONE FINANCIAL CORPORATION"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "CAPITAL ONE FINANCIAL CORPORATION",
+        "Credit card"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-f7e2bfaa6d1be149",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For CAPITAL ONE FINANCIAL CORPORATION, Consumer complaint database returned 1 matching record. Category complaint total: 165968; Company complaint total: 16981; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Credit card. Search terms: CAPITAL ONE FINANCIAL CORPORATION, Credit card. Scope: CFPB credit-card complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Credit+card&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "credit-cards/capital-one-venture",
+      "cid": "credit-cards",
+      "entityCode": "capital-one-venture",
+      "entityName": "Capital One Venture",
+      "entityIdentitySha256": "5240f870fa17d9048b0f3339161bd135506e03ba65b0d96ba739c864ec735fd9",
+      "legalName": "CAPITAL ONE FINANCIAL CORPORATION",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Credit card|CAPITAL ONE FINANCIAL CORPORATION"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "CAPITAL ONE FINANCIAL CORPORATION",
+        "Credit card"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-f7e2bfaa6d1be149",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For CAPITAL ONE FINANCIAL CORPORATION, Consumer complaint database returned 1 matching record. Category complaint total: 165968; Company complaint total: 16981; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Credit card. Search terms: CAPITAL ONE FINANCIAL CORPORATION, Credit card. Scope: CFPB credit-card complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Credit+card&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "credit-cards/chase-freedom-unlimited",
+      "cid": "credit-cards",
+      "entityCode": "chase-freedom-unlimited",
+      "entityName": "Chase Freedom Unlimited",
+      "entityIdentitySha256": "25aceca5a6e6d17c91c106ce74b6aba378a84a813ab7162ba14b22591c40aa32",
+      "legalName": "JPMORGAN CHASE & CO.",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Credit card|JPMORGAN CHASE & CO."
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "Credit card",
+        "JPMORGAN CHASE & CO."
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-b4fb607f70b54933",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For JPMORGAN CHASE & CO., Consumer complaint database returned 1 matching record. Category complaint total: 165968; Company complaint total: 11227; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Credit card. Search terms: Credit card, JPMORGAN CHASE & CO.. Scope: CFPB credit-card complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Credit+card&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "credit-cards/citi-double-cash",
+      "cid": "credit-cards",
+      "entityCode": "citi-double-cash",
+      "entityName": "Citi Double Cash",
+      "entityIdentitySha256": "f24be463cb46c010e819c9275a58e58838f4cee745833413cd57efee575db144",
+      "legalName": "CITIBANK, N.A.",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Credit card|CITIBANK, N.A."
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "CITIBANK, N.A.",
+        "Credit card"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-e438d2750a7aaf3c",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For CITIBANK, N.A., Consumer complaint database returned 1 matching record. Category complaint total: 165968; Company complaint total: 15305; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Credit card. Search terms: CITIBANK, N.A., Credit card. Scope: CFPB credit-card complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Credit+card&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "credit-cards/discover-it-cash-back",
+      "cid": "credit-cards",
+      "entityCode": "discover-it-cash-back",
+      "entityName": "Discover it Cash Back",
+      "entityIdentitySha256": "e1339fd4068aa8c42da6ce21c388a39e18698b0f6015491602d082b35cf4fee5",
+      "legalName": "DISCOVER BANK",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Credit card|DISCOVER BANK"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "Credit card",
+        "DISCOVER BANK"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-368b67da2a12cc59",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For DISCOVER BANK, Consumer complaint database returned 1 matching record. Category complaint total: 165968; Company complaint total: 5132; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Credit card. Search terms: Credit card, DISCOVER BANK. Scope: CFPB credit-card complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Credit+card&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "credit-cards/discover-it-secured",
+      "cid": "credit-cards",
+      "entityCode": "discover-it-secured",
+      "entityName": "Discover it Secured",
+      "entityIdentitySha256": "207d17d9b256c053ac1926cba94301bdf2c388a1827d365ae3c088f2e3c61e95",
+      "legalName": "DISCOVER BANK",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Credit card|DISCOVER BANK"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "Credit card",
+        "DISCOVER BANK"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-368b67da2a12cc59",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For DISCOVER BANK, Consumer complaint database returned 1 matching record. Category complaint total: 165968; Company complaint total: 5132; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Credit card. Search terms: Credit card, DISCOVER BANK. Scope: CFPB credit-card complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Credit+card&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "credit-cards/navy-federal-cashrewards",
+      "cid": "credit-cards",
+      "entityCode": "navy-federal-cashrewards",
+      "entityName": "Navy Federal cashRewards",
+      "entityIdentitySha256": "a37af180c3f924993ae9b55d73bb23f35cbba42e5cb72ed1a3b131b304c87635",
+      "legalName": "NAVY FEDERAL CREDIT UNION",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Credit card|NAVY FEDERAL CREDIT UNION"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "Credit card",
+        "NAVY FEDERAL CREDIT UNION"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-3766592d60273daa",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For NAVY FEDERAL CREDIT UNION, Consumer complaint database returned 1 matching record. Category complaint total: 165968; Company complaint total: 2200; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Credit card. Search terms: Credit card, NAVY FEDERAL CREDIT UNION. Scope: CFPB credit-card complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Credit+card&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "credit-cards/navy-federal-cashrewards-secured",
+      "cid": "credit-cards",
+      "entityCode": "navy-federal-cashrewards-secured",
+      "entityName": "Navy Federal cashRewards Secured",
+      "entityIdentitySha256": "bf00a1c6e0e315af5880234821398b9deee864e23617a7b92d907ffee4dfa75a",
+      "legalName": "NAVY FEDERAL CREDIT UNION",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Credit card|NAVY FEDERAL CREDIT UNION"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "Credit card",
+        "NAVY FEDERAL CREDIT UNION"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-3766592d60273daa",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For NAVY FEDERAL CREDIT UNION, Consumer complaint database returned 1 matching record. Category complaint total: 165968; Company complaint total: 2200; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Credit card. Search terms: Credit card, NAVY FEDERAL CREDIT UNION. Scope: CFPB credit-card complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Credit+card&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "credit-cards/retail-store-card",
+      "cid": "credit-cards",
+      "entityCode": "retail-store-card",
+      "entityName": "Store or retail credit card",
+      "entityIdentitySha256": "4fa713c329ef2b89063da280939fab9033c1bbf2b3027ecd537793988b770e84",
+      "legalName": "SYNCHRONY FINANCIAL",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Credit card|SYNCHRONY FINANCIAL"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "Credit card",
+        "SYNCHRONY FINANCIAL"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-00762576f67fea5e",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For SYNCHRONY FINANCIAL, Consumer complaint database returned 1 matching record. Category complaint total: 165968; Company complaint total: 11871; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Credit card. Search terms: Credit card, SYNCHRONY FINANCIAL. Scope: CFPB credit-card complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Credit+card&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "credit-cards/wells-fargo-active-cash",
+      "cid": "credit-cards",
+      "entityCode": "wells-fargo-active-cash",
+      "entityName": "Wells Fargo Active Cash",
+      "entityIdentitySha256": "3be781b4836cb2bbc2cc1ea20a562195d3491d88de97098a16fc59fbc314d908",
+      "legalName": "WELLS FARGO & COMPANY",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Credit card|WELLS FARGO & COMPANY"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "Credit card",
+        "WELLS FARGO & COMPANY"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-94ed30e3f3bccac5",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For WELLS FARGO & COMPANY, Consumer complaint database returned 1 matching record. Category complaint total: 165968; Company complaint total: 4856; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Credit card. Search terms: Credit card, WELLS FARGO & COMPANY. Scope: CFPB credit-card complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Credit+card&size=0",
+        "asof": "2026"
+      }
+    }
+  ]
+}

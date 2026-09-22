@@ -1,0 +1,913 @@
+{
+  "meta": {
+    "id": "encrypted-email-services",
+    "label": "Encrypted email services",
+    "type": "Services",
+    "primaryAxis": "privacy",
+    "tradeoff": [
+      "accessibility",
+      "privacy"
+    ],
+    "tradeoffLabels": [
+      "easiest to use",
+      "strongest encryption"
+    ],
+    "source": "Conscious Consuming",
+    "attribution": "Scores are drawn from each maker's own documentation, source code repositories and, where a service has one, its own transparency or audit page. \"Encrypts your mail\" is not one thing: some services encrypt messages end-to-end between their own users by default, some only encrypt messages you choose to protect with PGP, and some only encrypt the connection to their server while holding a readable copy themselves. The note under each score says which of these applies. \"Jurisdiction\" reflects the country a service is legally based in and, where documented, what has happened when a government asked that service for data; it does not apply to the two do-it-yourself tools, which work through whatever email account you already have. Roster covers hosted services and two free, open-source tools that add PGP encryption to an existing email address. Not audited by us. Suggest changes via Contribute.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": {
+          "privacy": 3,
+          "transparency": 2,
+          "openness": 2,
+          "jurisdiction": 2,
+          "accessibility": 3
+        },
+        "x": []
+      },
+      "Strongest encryption": {
+        "w": {
+          "privacy": 5,
+          "jurisdiction": 3,
+          "transparency": 2,
+          "openness": 2,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Open source only": {
+        "w": {
+          "openness": 5,
+          "privacy": 3,
+          "transparency": 2,
+          "jurisdiction": 1,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Favourable jurisdiction": {
+        "w": {
+          "jurisdiction": 5,
+          "privacy": 3,
+          "transparency": 2,
+          "openness": 1,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Free and easy": {
+        "w": {
+          "accessibility": 5,
+          "privacy": 2,
+          "transparency": 1,
+          "openness": 1,
+          "jurisdiction": 1
+        },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    {
+      "key": "privacy",
+      "label": "Encrypts your mail",
+      "source": "curated"
+    },
+    {
+      "key": "transparency",
+      "label": "Transparent about audits and requests",
+      "source": "curated"
+    },
+    {
+      "key": "openness",
+      "label": "Open source",
+      "source": "curated"
+    },
+    {
+      "key": "jurisdiction",
+      "label": "Privacy-favourable jurisdiction",
+      "source": "curated"
+    },
+    {
+      "key": "accessibility",
+      "label": "Easy to start, and affordable",
+      "source": "curated"
+    }
+  ],
+  "products": [
+    {
+      "code": "proton-mail",
+      "name": "Proton Mail",
+      "brand": "privacy company",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A Swiss email service that end-to-end encrypts messages between Proton Mail users by default and supports PGP for outside recipients, with open-source, independently audited apps and a usable free plan.",
+      "scores": {
+        "privacy": 92,
+        "transparency": 90,
+        "openness": 95,
+        "jurisdiction": 85,
+        "accessibility": 85
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Proton's own page says messages sent to other Proton Mail accounts are always end-to-end encrypted, encrypted on the sender's device before reaching Proton's servers, and that Proton \"has no way to read your messages.\"",
+          "source": "https://proton.me/security/end-to-end-encryption",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Proton's own open-source page says its apps \"have been independently audited and verified by third-party experts,\" and links published audit reports for Mail, Drive, VPN, Pass, Calendar and Meet.",
+          "source": "https://proton.me/community/open-source",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Proton's own page says \"All Proton apps are open source,\" including the web, iOS, Android and Bridge clients, with code and audit reports published on GitHub.",
+          "source": "https://proton.me/community/open-source",
+          "asof": "2026"
+        },
+        "jurisdiction": {
+          "note": "Proton Mail's own encryption page describes Proton as a Switzerland-based service; Swiss data protection sits outside the EU and outside the Five Eyes intelligence-sharing group, though Proton still has to comply with Swiss legal orders.",
+          "source": "https://proton.me/security/end-to-end-encryption",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Proton's own how-it-works page describes built-in OpenPGP support and a Password-protected Emails feature for reaching non-Proton recipients, and Proton Mail offers a free plan alongside paid tiers.",
+          "source": "https://proton.me/blog/encrypted-email",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "End-to-end encryption",
+          "url": "https://proton.me/security/end-to-end-encryption"
+        },
+        {
+          "label": "Open source and audits",
+          "url": "https://proton.me/community/open-source"
+        }
+      ],
+      "region": [
+        "EU",
+        "global"
+      ],
+      "focuses": [
+        "End-to-end",
+        "Open source",
+        "Audited",
+        "Free tier"
+      ]
+    },
+    {
+      "code": "tuta",
+      "name": "Tuta",
+      "brand": "privacy company",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A German email service that automatically end-to-end encrypts email between Tuta users, including subject lines and the address book, with open-source clients and a free plan. External recipients need a shared password to decrypt a message.",
+      "scores": {
+        "privacy": 90,
+        "openness": 92,
+        "jurisdiction": 78,
+        "accessibility": 85
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Tuta's own page says that when both parties use Tuta, all emails are automatically end-to-end encrypted, and that Tuta \"automatically encrypts not only the content and attachments of your emails, but also the subject lines and your entire address book\"; a one-time shared password protects mail to external recipients.",
+          "source": "https://tuta.com/encryption",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Tuta's own page says \"all client-side code is open source and available on GitHub for public audit,\" linking to its repository.",
+          "source": "https://tuta.com/encryption",
+          "asof": "2026"
+        },
+        "jurisdiction": {
+          "note": "Tuta is run by Tutao GmbH, founded in Hannover, Germany, according to its own encryption page; Germany applies GDPR but remains part of European intelligence-sharing arrangements, a weaker jurisdiction claim than a non-EU, non-Five-Eyes country.",
+          "source": "https://tuta.com/encryption",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Tuta's own homepage advertises free, private, secure and encrypted email, with paid plans for more storage and features.",
+          "source": "https://tuta.com/secure-email",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Encryption",
+          "url": "https://tuta.com/encryption"
+        },
+        {
+          "label": "Source",
+          "url": "https://github.com/tutao/tutanota"
+        }
+      ],
+      "region": [
+        "EU",
+        "global"
+      ],
+      "focuses": [
+        "End-to-end",
+        "Open source",
+        "Free tier"
+      ]
+    },
+    {
+      "code": "mailbox-org",
+      "name": "Mailbox.org",
+      "brand": "privacy-respecting host",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A German email host built on open-source mail software (Postfix, Dovecot, Open-Xchange) with an integrated PGP tool called Guard, but without end-to-end encryption on by default and without publishing its own backend code.",
+      "scores": {
+        "privacy": 65,
+        "openness": 35,
+        "jurisdiction": 78,
+        "accessibility": 78
+      },
+      "provenance": {
+        "privacy": {
+          "note": "mailbox.org's own security page describes Guard, \"PGP in the webmail client, without the need for additional software,\" which automatically creates encrypted guest mailboxes for recipients who do not use PGP; encryption is a feature to turn on rather than the default state of every message.",
+          "source": "https://mailbox.org/en/security/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "mailbox.org's own about page says it relies on Linux and open-source software and supports the Tor network and the Free Software Foundation Europe, but a user-forum discussion the company participates in describes its Glue backend, internal API server and abuse-detection systems as not open source.",
+          "source": "https://mailbox.org/en/about-us/",
+          "asof": "2026"
+        },
+        "jurisdiction": {
+          "note": "mailbox.org's own homepage says data is stored in certified German data centres with redundant storage, placing the service under German and EU data protection law.",
+          "source": "https://mailbox.org/en/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "mailbox.org's own homepage lists Light at 1 euro a month, Standard at 4 euros a month and Premium at 12 euros a month, with no permanent free tier.",
+          "source": "https://mailbox.org/en/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Security",
+          "url": "https://mailbox.org/en/security/"
+        },
+        {
+          "label": "About us",
+          "url": "https://mailbox.org/en/about-us/"
+        }
+      ],
+      "region": [
+        "EU"
+      ],
+      "focuses": [
+        "PGP",
+        "Affordable"
+      ]
+    },
+    {
+      "code": "startmail",
+      "name": "StartMail",
+      "brand": "privacy company",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A Dutch email service from the team behind Startpage, built around one-click PGP encryption handled on the server rather than in the browser, with no permanent free tier.",
+      "scores": {
+        "privacy": 78,
+        "openness": 15,
+        "jurisdiction": 80,
+        "accessibility": 65
+      },
+      "provenance": {
+        "privacy": {
+          "note": "StartMail's own homepage says \"With just one click, you can encrypt your email with PGP and ensure that only the intended recipients can read your message,\" describing one-click PGP rather than encryption that is on for every message by default.",
+          "source": "https://www.startmail.com/en/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "StartMail's homepage and documentation do not describe its apps or server code as open source; no public source repository for StartMail was found.",
+          "source": "https://www.startmail.com/en/",
+          "asof": "2026"
+        },
+        "jurisdiction": {
+          "note": "StartMail's own homepage says \"We are in the Netherlands, meaning your emails and data are protected by Dutch privacy legislation and GDPR,\" and that its servers are located there too.",
+          "source": "https://www.startmail.com/en/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "StartMail's own homepage offers a 7-day free trial with no permanent free plan; a subscription is required afterward.",
+          "source": "https://www.startmail.com/en/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.startmail.com/en/"
+        }
+      ],
+      "region": [
+        "EU"
+      ],
+      "focuses": [
+        "PGP"
+      ]
+    },
+    {
+      "code": "kolab-now",
+      "name": "Kolab Now",
+      "brand": "open-source groupware host",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A Swiss email and groupware service built on the open-source Kolab software, offering PGP encryption in its webclient with the caveat that the user, not Kolab Now, is responsible for managing and backing up their own encryption keys.",
+      "scores": {
+        "privacy": 62,
+        "openness": 80,
+        "jurisdiction": 85,
+        "accessibility": 55
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Kolab Now's own knowledge base explains its webclient lets users enable \"Encrypt This Message\" using imported PGP keys, but warns users to \"MAKE SURE TO BACK UP THESE KEY FILES\" because \"Kolab Now is not responsible for the encryption keys.\"",
+          "source": "https://kb.kolabnow.com/documentation/encryption",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Kolab Now is built on the Kolab Groupware project; Kolab's own site documents PGP email encryption as part of the open-source Kolab platform.",
+          "source": "https://kolab.org/e-mail-encryption-with-pgp/",
+          "asof": "2026"
+        },
+        "jurisdiction": {
+          "note": "Kolab Now's own knowledge base describes its services as hosted in Switzerland.",
+          "source": "https://kb.kolabnow.com/faq/what-is-the-price-for-a-kolab-now-subscription",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Kolab Now's own knowledge base says a mailbox costs 5 Swiss francs a month, groupware features add 4.90 francs, and \"All Kolab Now accounts are free for the first month.\"",
+          "source": "https://kb.kolabnow.com/faq/what-is-the-price-for-a-kolab-now-subscription",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Pricing FAQ",
+          "url": "https://kb.kolabnow.com/faq/what-is-the-price-for-a-kolab-now-subscription"
+        },
+        {
+          "label": "Encryption documentation",
+          "url": "https://kb.kolabnow.com/documentation/encryption"
+        }
+      ],
+      "region": [
+        "EU",
+        "global"
+      ],
+      "focuses": [
+        "Open source",
+        "PGP"
+      ]
+    },
+    {
+      "code": "posteo",
+      "name": "Posteo",
+      "brand": "privacy-respecting host",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A German email service built around anonymity rather than end-to-end encryption by default: no personal information is required to sign up, IP addresses are not stored, and payment can be made anonymously by post, for 1 euro a month.",
+      "scores": {
+        "privacy": 45,
+        "jurisdiction": 78,
+        "accessibility": 88
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Posteo's own privacy page says accounts do not need any personal information to sign up, IP addresses are not stored, and it deletes any IP address entries local email clients add to message headers; the page describes transport encryption and an optional password-protected mailbox rather than end-to-end encryption on by default.",
+          "source": "https://posteo.de/en/site/privacy",
+          "asof": "2026"
+        },
+        "jurisdiction": {
+          "note": "Posteo's own privacy page describes its data centres and computers as located in Germany, placing it under German and EU data protection law.",
+          "source": "https://posteo.de/en/site/privacy",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Posteo's own homepage says an account costs 1 euro a month, including 4 GB of storage and 3 alias addresses, with no separate free trial.",
+          "source": "https://posteo.de/en",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Privacy",
+          "url": "https://posteo.de/en/site/privacy"
+        },
+        {
+          "label": "Website",
+          "url": "https://posteo.de/en"
+        }
+      ],
+      "region": [
+        "EU"
+      ],
+      "focuses": [
+        "Anonymous",
+        "Affordable"
+      ]
+    },
+    {
+      "code": "riseup-email",
+      "name": "Riseup",
+      "brand": "activist collective",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free, donation-funded email service run by an activist tech collective for movement groups, using invite codes instead of personal information. Mail is encrypted at rest with your password but is not end-to-end encrypted unless you add PGP yourself, and Riseup has disclosed complying with sealed FBI warrants in the past.",
+      "scores": {
+        "privacy": 40,
+        "transparency": 75,
+        "openness": 55,
+        "jurisdiction": 35,
+        "accessibility": 65
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Riseup's own email page says \"Unless you use the Mailvelope browser plugin, or your own OpenPGP solution, our e-mail system is not end-to-end encrypted or client-encrypted,\" though it adds that mail is \"encrypted individually on our servers, and can only be unlocked and read using your password.\"",
+          "source": "https://riseup.net/en/email",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Riseup's own canary statement says it \"chose to comply with two sealed warrants from the FBI, rather than facing contempt of court,\" and explains that a gag order was the reason it could not update its warrant canary until after the fact.",
+          "source": "https://riseup.net/en/about-us/press/canary-statement",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Riseup Labs describes itself as contributing to the Free Software movement and providing free servers and technical support to allied projects, and publishes some of its own tools, such as RiseupVPN, as open source.",
+          "source": "https://github.com/RiseupVPN/",
+          "asof": "2026"
+        },
+        "jurisdiction": {
+          "note": "Riseup is a US-based collective; its own canary statement documents that it received and, after exhausting legal options, complied with sealed FBI warrants under a gag order in 2016.",
+          "source": "https://riseup.net/en/about-us/press/canary-statement",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Riseup's own email page says it does not require sign-up with a phone number or personal information and instead relies on invite codes, and the service is free and funded by donations.",
+          "source": "https://riseup.net/en/email",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Email",
+          "url": "https://riseup.net/en/email"
+        },
+        {
+          "label": "Canary statement",
+          "url": "https://riseup.net/en/about-us/press/canary-statement"
+        }
+      ],
+      "region": [
+        "US",
+        "global"
+      ],
+      "focuses": [
+        "Free",
+        "Activist",
+        "Invite only"
+      ]
+    },
+    {
+      "code": "disroot-email",
+      "name": "Disroot",
+      "brand": "nonprofit collective",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free, donation-funded email service from an Amsterdam-based collective built on free and open-source software, encrypting the connection to its server and encouraging but not defaulting to PGP for message content.",
+      "scores": {
+        "privacy": 42,
+        "openness": 70,
+        "jurisdiction": 78,
+        "accessibility": 82
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Disroot's own email page says the connection to its mail server is encrypted with SSL and outgoing mail is sent over TLS when the recipient supports it, and that it encourages users \"to make use of GPG end-to-end encryption\" rather than applying it automatically.",
+          "source": "https://disroot.org/en/services/email",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Disroot's own mission statement says it supports \"free (libre) and open source software\" and aims to \"contribute to sponsoring the development of Libre and Open Source software.\"",
+          "source": "https://disroot.org/en/mission-statement",
+          "asof": "2026"
+        },
+        "jurisdiction": {
+          "note": "Disroot is based in Amsterdam according to widely available project information reflected in its own mission statement, placing it under Dutch and EU data protection law.",
+          "source": "https://disroot.org/en/mission-statement",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Disroot's own mission statement says it declines to put a price on its services because that would limit users' autonomy, and instead relies on donations, with paid \"perks\" available for those who want to contribute financially.",
+          "source": "https://disroot.org/en/mission-statement",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Email service",
+          "url": "https://disroot.org/en/services/email"
+        },
+        {
+          "label": "Mission statement",
+          "url": "https://disroot.org/en/mission-statement"
+        }
+      ],
+      "region": [
+        "EU",
+        "global"
+      ],
+      "focuses": [
+        "Free",
+        "Nonprofit"
+      ]
+    },
+    {
+      "code": "countermail",
+      "name": "CounterMail",
+      "brand": "PGP webmail",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A Swedish PGP webmail service using 4096-bit OpenPGP keys and a stated no-IP-logging policy, with a smaller, less modern interface than most competitors and no published free trial.",
+      "scores": {
+        "privacy": 78,
+        "jurisdiction": 70,
+        "accessibility": 50
+      },
+      "provenance": {
+        "privacy": {
+          "note": "CounterMail's own homepage says \"We are using a strong encryption protocol called OpenPGP, with 4096 bits encryption keys to protect your data,\" and its own privacy page states \"No IP-logging, our server does not log IP-addresses.\"",
+          "source": "https://countermail.com/",
+          "asof": "2026"
+        },
+        "jurisdiction": {
+          "note": "CounterMail's own about page says \"CounterMail's secure servers are located in Sweden,\" placing the service under Swedish and EU data protection law.",
+          "source": "https://countermail.com/?p=about",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "CounterMail's own homepage links out to its services page for prices rather than listing them directly, and no free trial is advertised on the homepage.",
+          "source": "https://countermail.com/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://countermail.com/"
+        },
+        {
+          "label": "Privacy",
+          "url": "https://countermail.com/?p=privacy"
+        }
+      ],
+      "region": [
+        "EU"
+      ],
+      "focuses": [
+        "PGP"
+      ]
+    },
+    {
+      "code": "hushmail",
+      "name": "Hushmail",
+      "brand": "PGP webmail",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A long-running Canadian PGP webmail service, now marketed mainly at healthcare practices, with a smaller Personal plan still available for 59.99 US dollars a year and no free tier.",
+      "scores": {
+        "privacy": 68,
+        "jurisdiction": 55,
+        "accessibility": 78
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Hushmail's own homepage advertises \"TLS and OpenPGP Encypted\" mail with \"Easy 1-click encryption out of the box.\"",
+          "source": "https://www.hushmail.com/",
+          "asof": "2026"
+        },
+        "jurisdiction": {
+          "note": "Hushmail's own homepage says it is \"Built for Canadian providers to meet PIPEDA and provincial privacy laws\" and that customer data \"stays in servers on Canadian soil.\"",
+          "source": "https://www.hushmail.com/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Hushmail's own Personal plan page lists the price as $59.99 per year with 15 GB of storage and a 60-day money-back guarantee, and says the plan is not intended for healthcare professionals.",
+          "source": "https://www.hushmail.com/plans/personal",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.hushmail.com/"
+        },
+        {
+          "label": "Personal plan",
+          "url": "https://www.hushmail.com/plans/personal"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "PGP"
+      ]
+    },
+    {
+      "code": "fastmail",
+      "name": "Fastmail",
+      "brand": "independent host",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "An Australian email host that does not sell data or show ads and lets users search, sync and recover their mail, which means it holds the keys to decrypt it rather than encrypting it end-to-end by default. Fastmail has publicly opposed Australia's law compelling technical assistance to law enforcement.",
+      "scores": {
+        "privacy": 30,
+        "transparency": 82,
+        "openness": 10,
+        "jurisdiction": 45,
+        "accessibility": 90
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Fastmail's own blog post about Australia's Assistance and Access law explains that it \"securely encrypts all data, but holds the keys to decrypt that data\" so users can search their mail and recover access if they lose a password, and that only PGP encryption set up by the user would put content beyond Fastmail's own reach.",
+          "source": "https://www.fastmail.com/blog/aabill-and-fastmail/",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Fastmail's own blog explains in detail how the Assistance and Access Bill could compel companies to modify their services, and separately says the law \"does not directly impact\" its technology or policies while criticising the legislation's effect on trust in Australian tech companies.",
+          "source": "https://www.fastmail.com/blog/aabill-and-fastmail/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Fastmail's apps and server software are not published as open source; no public source repository for the Fastmail service was found.",
+          "source": "https://www.fastmail.com/",
+          "asof": "2026"
+        },
+        "jurisdiction": {
+          "note": "Fastmail is based in Australia; its own blog post describes the 2018 Assistance and Access Bill, which \"allows law enforcement to compel companies to modify their services and intercept data from their customers in its unencrypted form,\" and says a Fastmail CEO wrote publicly that the law's passage \"creates a perception that Australia has changed.\"",
+          "source": "https://www.fastmail.com/blog/aabill-and-fastmail/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Fastmail's own pricing page offers a free trial of up to 30 days with no permanent free tier, and lists an Individual plan starting at 6 US dollars a month.",
+          "source": "https://www.fastmail.com/pricing/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Pricing",
+          "url": "https://www.fastmail.com/pricing/"
+        },
+        {
+          "label": "AABill statement",
+          "url": "https://www.fastmail.com/blog/aabill-and-fastmail/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "No ads",
+        "Mainstream alternative"
+      ]
+    },
+    {
+      "code": "gmail",
+      "name": "Gmail",
+      "brand": "mainstream, not encrypted by default",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "The email service most people already use. Google encrypts messages in transit with TLS but reads message content on its own servers; Google stopped scanning personal Gmail content for ad personalisation in 2017 but content is not end-to-end encrypted, and Google can be compelled to hand over data under US law.",
+      "scores": {
+        "privacy": 20,
+        "transparency": 70,
+        "openness": 5,
+        "jurisdiction": 30,
+        "accessibility": 98
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Google's own Gmail help page says \"All Gmail messages use TLS automatically,\" describing transport encryption rather than end-to-end encryption, and that optional S/MIME encryption is available only for work or school accounts.",
+          "source": "https://support.google.com/mail/answer/6330403?hl=en",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Google's own transparency report help pages say its goal is \"to present a comprehensive data set encompassing all demands we receive from government agencies for user information,\" covering requests from all countries and reporting them publicly.",
+          "source": "https://support.google.com/transparencyreport/answer/9713961?hl=en",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Gmail is proprietary software; Google does not publish the Gmail client or server source code.",
+          "source": "https://support.google.com/mail/answer/6330403?hl=en",
+          "asof": "2026"
+        },
+        "jurisdiction": {
+          "note": "Google's own transparency help pages describe US government use of National Security Letters and FISA orders to compel disclosure of stored content, including Gmail, without the requirement always being a public court order.",
+          "source": "https://support.google.com/transparencyreport/answer/9713961?hl=en",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Gmail is free, requires only a Google account, and is already the email service billions of people use.",
+          "source": "https://support.google.com/mail/answer/6330403?hl=en",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "How Gmail encrypts mail",
+          "url": "https://support.google.com/mail/answer/6330403?hl=en"
+        },
+        {
+          "label": "Transparency report",
+          "url": "https://support.google.com/transparencyreport/answer/9713961?hl=en"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Mainstream",
+        "Free"
+      ]
+    },
+    {
+      "code": "outlook-com",
+      "name": "Outlook.com",
+      "brand": "mainstream, not encrypted by default",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Microsoft's free mainstream email service. Mail is encrypted in transit but not end-to-end; Microsoft says it does not analyse personal messages to target ads, though in some regions it may analyse commercial or brand emails if a user opts in, and Microsoft can be compelled to hand over data under US law.",
+      "scores": {
+        "privacy": 25,
+        "transparency": 68,
+        "openness": 5,
+        "jurisdiction": 30,
+        "accessibility": 95
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Microsoft's own support page on ads in Outlook says \"We do not analyze the content of emails from your friends, family, or other individuals to personalize your ads,\" but that in some geographies Outlook \"may also use the email you receive to identify the brands and businesses you prefer and shop with\"; the page describes ad targeting, not end-to-end message encryption.",
+          "source": "https://support.microsoft.com/en-us/office/about-ads-in-outlook-426f5993-75d8-4898-8f27-9ee0008692a0",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Microsoft's own government-requests report says it \"reviews every legal demand to ensure it is valid,\" requires a warrant or local equivalent for content data, and reported 27,412 law enforcement requests for consumer services in the second half of 2025.",
+          "source": "https://www.microsoft.com/en-us/corporate-responsibility/reports/government-requests/customer-data",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Outlook.com is proprietary software; Microsoft does not publish its source code.",
+          "source": "https://support.microsoft.com/en-us/office/about-ads-in-outlook-426f5993-75d8-4898-8f27-9ee0008692a0",
+          "asof": "2026"
+        },
+        "jurisdiction": {
+          "note": "Microsoft is a US company; its own government-requests report describes complying with legal demands from law enforcement worldwide, including national security requests, under US law.",
+          "source": "https://www.microsoft.com/en-us/corporate-responsibility/reports/government-requests/customer-data",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Outlook.com is free, requires only a Microsoft account, and is one of the two email services most people already have.",
+          "source": "https://support.microsoft.com/en-us/office/about-ads-in-outlook-426f5993-75d8-4898-8f27-9ee0008692a0",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "About ads in Outlook",
+          "url": "https://support.microsoft.com/en-us/office/about-ads-in-outlook-426f5993-75d8-4898-8f27-9ee0008692a0"
+        },
+        {
+          "label": "Government requests report",
+          "url": "https://www.microsoft.com/en-us/corporate-responsibility/reports/government-requests/customer-data"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Mainstream",
+        "Free"
+      ]
+    },
+    {
+      "code": "thunderbird-openpgp",
+      "name": "Thunderbird with built-in OpenPGP",
+      "brand": "free, open-source tool",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free, open-source desktop email program with OpenPGP encryption built in since version 78, so you can add real end-to-end encryption to the email address you already have rather than switching providers. Protection depends on the people you write to also using PGP.",
+      "scores": {
+        "privacy": 85,
+        "transparency": 78,
+        "openness": 96,
+        "accessibility": 60
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Thunderbird's own blog says Thunderbird 78 has built-in OpenPGP support, letting users encrypt and sign messages using the OpenPGP standard directly in the mail client, with any email account.",
+          "source": "https://blog.thunderbird.net/2020/09/openpgp-in-thunderbird-78/",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Thunderbird's own blog says the RNP software chosen as Thunderbird's core OpenPGP engine was reviewed in a security audit funded through the Mozilla Open Source Support program.",
+          "source": "https://blog.thunderbird.net/2020/09/openpgp-in-thunderbird-78/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Thunderbird's own homepage says \"Thunderbird is open source,\" funded by donations, and states it does not collect personal data, sell ads in the inbox, or use private conversations to train AI.",
+          "source": "https://www.thunderbird.net/en-US/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Thunderbird is free to download; using OpenPGP well requires generating and managing a key pair and getting a correspondent to do the same for a message to be end-to-end encrypted.",
+          "source": "https://www.thunderbird.net/en-US/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "OpenPGP in Thunderbird 78",
+          "url": "https://blog.thunderbird.net/2020/09/openpgp-in-thunderbird-78/"
+        },
+        {
+          "label": "Website",
+          "url": "https://www.thunderbird.net/en-US/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Free",
+        "Open source",
+        "DIY",
+        "PGP"
+      ]
+    },
+    {
+      "code": "mailvelope",
+      "name": "Mailvelope",
+      "brand": "free, open-source tool",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free, open-source browser extension that adds OpenPGP encryption to existing webmail such as Gmail, Outlook.com or Yahoo, so the email provider never sees the unencrypted message. Development of a webform feature and a security audit were funded by the German federal cybersecurity agency BSI.",
+      "scores": {
+        "privacy": 85,
+        "transparency": 80,
+        "openness": 90,
+        "accessibility": 62
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Mailvelope's own GitHub repository describes it as \"a browser extension for Google Chrome and Firefox that allows secure email communication based on the OpenPGP standard,\" configurable to work with any webmail provider, so encryption happens in the browser before a message reaches the provider.",
+          "source": "https://github.com/mailvelope/mailvelope",
+          "asof": "2026"
+        },
+        "transparency": {
+          "note": "Germany's federal cybersecurity agency BSI says its own project extended Mailvelope from January 2018, involving two independent service providers and security audits by SEC-Consult.",
+          "source": "https://www.bsi.bund.de/EN/Themen/Unternehmen-und-Organisationen/Informationen-und-Empfehlungen/Freie-Software/E-Mail-Verschluesselung/Mailvelope/mailvelope_node.html",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Mailvelope's own GitHub repository is published under the GNU Affero General Public License.",
+          "source": "https://github.com/mailvelope/mailvelope",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Mailvelope is a free browser extension available for Chrome and Firefox; using it well still requires generating a PGP key and getting the people you write to to use PGP as well.",
+          "source": "https://mailvelope.com/en",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Source",
+          "url": "https://github.com/mailvelope/mailvelope"
+        },
+        {
+          "label": "BSI project page",
+          "url": "https://www.bsi.bund.de/EN/Themen/Unternehmen-und-Organisationen/Informationen-und-Empfehlungen/Freie-Software/E-Mail-Verschluesselung/Mailvelope/mailvelope_node.html"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Free",
+        "Open source",
+        "DIY",
+        "PGP"
+      ]
+    }
+  ]
+}

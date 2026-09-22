@@ -1,0 +1,950 @@
+{
+ "meta": {
+  "id": "b-corporations",
+  "label": "B Corporations",
+  "type": "Organizations",
+  "primaryAxis": "certification",
+  "tradeoff": [
+   "ownership",
+   "certification"
+  ],
+  "tradeoffLabels": [
+   "most independently owned",
+   "most rigorously verified"
+  ],
+  "source": "Conscious Consuming (curated)",
+  "attribution": "Every option here is a Certified B Corporation, checked against B Lab's own public register at bcorporation.net rather than against a company's own claim. Certification assesses a company's governance, workers, community, environment and customer stewardship through the B Impact Assessment, which the company completes itself and B Lab then verifies through document review and audit. It does not certify a specific product, and it does not require a company's parent to be certified too. Until August 2025 it asked only for an overall score of 80 out of 200 or higher, with no published minimum in any single impact area, so a company could score weakly on environment and still pass on governance and community alone. Since B Lab's Standards Version 2.1, released August 2025, recertifying and newly certifying companies stop receiving that single score at all and instead work through mandatory requirements phased in over five years, so a company's current certification year says more about how far into that cycle it is than a score would. The certification figure below is each company's own B Lab register score halved to fit this catalogue's 0 to 100 scale; where a company has already moved to the new standard, the note says so and gives its last score under the old one for reference, since the two are not directly comparable. Ownership is scored separately because certification travels with the legal entity that applied, not with whoever owns it: several companies below are wholly owned subsidiaries of multinationals that are not themselves B Corps. Reviewed 2026 against each company's current bcorporation.net listing. Not an endorsement; certifications lapse and standards change, so check the register directly before buying.",
+  "allergens": false,
+  "presets": {
+   "Balanced": {
+    "w": {
+     "certification": 3,
+     "ownership": 3,
+     "economical": 2
+    },
+    "x": []
+   },
+   "Most independently owned": {
+    "w": {
+     "ownership": 5,
+     "certification": 2,
+     "economical": 1
+    },
+    "x": []
+   },
+   "Highest verified score": {
+    "w": {
+     "certification": 5,
+     "ownership": 1,
+     "economical": 1
+    },
+    "x": []
+   },
+   "Most affordable": {
+    "w": {
+     "economical": 5,
+     "certification": 2,
+     "ownership": 1
+    },
+    "x": []
+   }
+  },
+  "n": 13,
+  "valueSignatureProfile": {
+   "entryCount": 13,
+   "signedEntries": 13,
+   "drawableEntries": 12,
+   "minimumThemesForBloom": 2,
+   "themeCounts": {
+    "honesty": 13,
+    "cost": 4,
+    "local": 11
+   }
+  },
+  "provenanceProfile": {
+   "entryCount": 13,
+   "singleSourceEntries": 2,
+   "multiSourceEntries": 11,
+   "noSourceEntries": 0,
+   "noteOnlyEntries": 0,
+   "averageSourceDomains": 2.0,
+   "topPrimarySources": [
+    {
+     "label": "B Lab",
+     "entries": 13
+    }
+   ]
+  },
+  "decision": {
+   "category": "b-corporations",
+   "reads": {
+    "text": "Compare b corporations by certification, ownership, and cost.",
+    "basis": [
+     {
+      "criterion": "certification",
+      "readsAs": "certification"
+     },
+     {
+      "criterion": "ownership",
+      "readsAs": "ownership"
+     },
+     {
+      "criterion": "economical",
+      "readsAs": "cost"
+     }
+    ],
+    "signature": {
+     "by": "Conscious Consuming",
+     "on": "2026-07-15",
+     "status": "approved-batch"
+    },
+    "receipt": {
+     "dataset": "b-corporations",
+     "entryCount": 13,
+     "criteria": [
+      {
+       "criterion": "certification",
+       "readsAs": "certification",
+       "known": 13,
+       "minimum": 25,
+       "maximum": 83,
+       "spread": 58
+      },
+      {
+       "criterion": "ownership",
+       "readsAs": "ownership",
+       "known": 11,
+       "minimum": 5,
+       "maximum": 95,
+       "spread": 90
+      },
+      {
+       "criterion": "economical",
+       "readsAs": "cost",
+       "known": 4,
+       "minimum": 55,
+       "maximum": 80,
+       "spread": 25
+      }
+     ]
+    }
+   },
+   "axes": [
+    {
+     "id": "ownership-or-certification",
+     "kind": "tradeoff",
+     "label": "Ownership or certification",
+     "question": "Independently owned, or more rigorously verified?",
+     "criteria": [
+      "ownership",
+      "certification"
+     ],
+     "poles": [
+      "Independently owned",
+      "More verified"
+     ],
+     "default": 50
+    },
+    {
+     "id": "economical",
+     "kind": "criterion",
+     "label": "Cost",
+     "question": "Does lower cost matter more?",
+     "criteria": [
+      "economical"
+     ],
+     "poles": [
+      "Flexible",
+      "Lower cost"
+     ],
+     "default": 50
+    }
+   ],
+   "budget": {
+    "available": false,
+    "mode": "none",
+    "knownEntries": 0,
+    "coverage": 0
+   },
+   "archetypes": [
+    "best-for-most",
+    "strictest-match"
+   ],
+   "page": {
+    "stage": "approved-batch",
+    "primaryRoute": true
+   },
+   "consumer": {
+    "reads": "Round 8 approved category differences reads.",
+    "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+    "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+    "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+    "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+   }
+  }
+ },
+ "criteria": [
+  {
+   "key": "certification",
+   "label": "B Corp score",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "ownership",
+   "label": "Ownership",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "economical",
+   "label": "Economical",
+   "source": "curated",
+   "tier": "assessed"
+  }
+ ],
+ "products": [
+  {
+   "code": "patagonia",
+   "name": "Patagonia",
+   "brand": "apparel & outdoor gear",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 83,
+    "ownership": 95
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Patagonia as certified since December 2011 under Standards Version 1.6, with an overall B Impact Score of 166.0; the same page marks 80 as qualifying for certification and puts the median assessed business at 50.9.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/patagonia-inc/",
+     "asof": "2026"
+    },
+    "ownership": {
+     "note": "Patagonia's own press release says the Patagonia Purpose Trust owns all voting stock, 2 percent of the total, and the nonprofit Holdfast Collective owns all nonvoting stock, 98 percent, receiving profit not reinvested in the business.",
+     "source": "https://www.patagoniaworks.com/press/2022/9/14/patagonias-next-chapter-earth-is-now-our-only-shareholder",
+     "asof": "2026"
+    }
+   },
+   "description": "Outdoor apparel and gear company. Ownership sits with the Patagonia Purpose Trust, which holds the voting stock, and the Holdfast Collective, a nonprofit that holds the nonvoting stock and receives the profit that is not reinvested in the business.",
+   "focuses": [
+    "Steward-owned",
+    "B Corp"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.patagonia.com/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "$$$"
+   },
+   "valueSignature": {
+    "honesty": 83,
+    "local": 95
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "patagoniaworks.com"
+    ]
+   }
+  },
+  {
+   "code": "ben-and-jerrys",
+   "name": "Ben & Jerry's",
+   "brand": "ice cream",
+   "allergens": [
+    "milk"
+   ],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 48,
+    "ownership": 15
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Ben & Jerry's Homemade, Inc. as certified since September 2012 under Standards Version 1.6, with an overall B Impact Score of 96.0, against a median assessed business score of 50.9.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/ben-and-jerrys/",
+     "asof": "2026"
+    },
+    "ownership": {
+     "note": "A 2000 SEC filing shows Unilever's Conopco, Inc. and Unilever N.V. made a tender offer for Ben & Jerry's Homemade, Inc. that the Ben & Jerry's board approved, valuing the deal at $326 million; Unilever's chairmen said in the same release they were welcoming Ben & Jerry's into the Unilever family.",
+     "source": "https://www.sec.gov/Archives/edgar/data/0000768384/000095015700000169/0000950157-00-000169.txt",
+     "asof": "2026"
+    }
+   },
+   "description": "Vermont ice cream maker acquired by Unilever in 2000 for $326 million. B Lab's register lists the certified entity, Ben & Jerry's Homemade, Inc., as operating in the United States.",
+   "focuses": [
+    "Unilever subsidiary",
+    "B Corp"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.benjerry.com/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "price": {
+    "tier": "$$"
+   },
+   "valueSignature": {
+    "honesty": 48,
+    "local": 15
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "sec.gov"
+    ]
+   }
+  },
+  {
+   "code": "tonys-chocolonely",
+   "name": "Tony's Chocolonely",
+   "brand": "chocolate",
+   "allergens": [
+    "milk",
+    "soy",
+    "nuts"
+   ],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 63,
+    "ownership": 65
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Tony's Chocolonely as certified since December 2013 under Standards Version 1.6, with an overall B Impact Score of 125.0, against a median assessed business score of 50.9.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/tonys-chocolonely/",
+     "asof": "2026"
+    },
+    "ownership": {
+     "note": "Tony's Chocolonely's own site says that after investors Verlinvest and JamJar bought in, 51 percent of voting rights stayed with co-founder Henk Jan Beltman and 15 percent of shares stayed with 'Team Tony's', with Verlinvest and JamJar taking board seats.",
+     "source": "https://nl.tonyschocolonely.com/en/blogs/mission/verlinvest-and-jamjar-invest-in-our-mission",
+     "asof": "2026"
+    }
+   },
+   "description": "Dutch chocolate company built around ending exploitation in cocoa supply chains. Its own site says the co-founder kept majority voting control after outside investors bought minority stakes.",
+   "focuses": [
+    "Founder-controlled",
+    "Fair sourcing"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://tonyschocolonely.com/"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "price": {
+    "tier": "$$"
+   },
+   "valueSignature": {
+    "honesty": 63,
+    "local": 65
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "nl.tonyschocolonely.com"
+    ]
+   }
+  },
+  {
+   "code": "seventh-generation",
+   "name": "Seventh Generation",
+   "brand": "household & personal care",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 50,
+    "ownership": 15
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Seventh Generation as certified since May 2007 under Standards Version 1.6, with an overall B Impact Score of 100.6, against a median assessed business score of 50.9.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/seventh-generation/",
+     "asof": "2026"
+    },
+    "ownership": {
+     "note": "Seventh Generation's own site tells US visitors that the site is directed at consumers 'for products and services of Unilever United States.'",
+     "source": "https://www.seventhgeneration.com/about-us",
+     "asof": "2026"
+    }
+   },
+   "description": "Household and personal care brand, one of B Lab's founding certifications in 2007. Its own site now identifies it as part of Unilever United States.",
+   "focuses": [
+    "Unilever subsidiary",
+    "Founding B Corp"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.seventhgeneration.com/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "price": {
+    "tier": "$$"
+   },
+   "valueSignature": {
+    "honesty": 50,
+    "local": 15
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "seventhgeneration.com"
+    ]
+   }
+  },
+  {
+   "code": "warby-parker",
+   "name": "Warby Parker",
+   "brand": "eyewear",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 49,
+    "ownership": 45,
+    "economical": 65
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Warby Parker as certified since May 2011 under Standards Version 1.6, with an overall B Impact Score of 98.0, against a median assessed business score of 50.9.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/warby-parker/",
+     "asof": "2026"
+    },
+    "ownership": {
+     "note": "SEC EDGAR lists Warby Parker Inc. (CIK 0001504776) as a reporting company that files annual 10-K reports, consistent with a publicly traded company rather than a privately or family held one.",
+     "source": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001504776&type=10-K&dateb=&owner=include&count=40",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Warby Parker's own site lists prescription eyeglasses starting at $95 for a complete pair, with progressive lenses starting at $295.",
+     "source": "https://www.warbyparker.com/eyeglasses",
+     "asof": "2026"
+    }
+   },
+   "description": "Direct-to-consumer eyewear retailer that went public on the NYSE in 2021. SEC filings confirm it now trades as a public company rather than staying privately held.",
+   "focuses": [
+    "Publicly traded",
+    "Direct-to-consumer"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.warbyparker.com/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "price": {
+    "tier": "$$"
+   },
+   "valueSignature": {
+    "honesty": 49,
+    "cost": 65,
+    "local": 45
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "sec.gov",
+     "warbyparker.com"
+    ]
+   }
+  },
+  {
+   "code": "danone-usa",
+   "name": "Danone USA",
+   "brand": "dairy & plant-based food",
+   "allergens": [
+    "milk",
+    "soy"
+   ],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 52,
+    "ownership": 20
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists the certified entity as Danone USA PBC, certified since April 2018 under Standards Version 1.6, with an overall B Impact Score of 103.3, against a median assessed business score of 50.9.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/danone-north-america/",
+     "asof": "2026"
+    },
+    "ownership": {
+     "note": "A company press release describes Danone North America as 'a Certified B Corporation business unit of Danone', formed from the merged Danone US dairy and WhiteWave businesses and representing about twenty percent of Danone's global business.",
+     "source": "https://www.prnewswire.com/news-releases/achieving-certification-as-largest-b-corp-in-the-world-and-unveiling-new-name-danone-north-america-celebrates-first-anniversary-with-two-major-milestones-300628797.html",
+     "asof": "2026"
+    }
+   },
+   "description": "US dairy and plant-based food business tracing back to Dannon Milk Products, founded in the Bronx in 1942. Its own press material describes it as a business unit of the multinational Danone group, not a stand-alone company.",
+   "focuses": [
+    "Multinational subsidiary",
+    "Large B Corp"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.danonenorthamerica.com/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "price": {
+    "tier": "$"
+   },
+   "valueSignature": {
+    "honesty": 52,
+    "local": 20
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "prnewswire.com"
+    ]
+   }
+  },
+  {
+   "code": "eileen-fisher",
+   "name": "Eileen Fisher",
+   "brand": "apparel",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 55
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Eileen Fisher as certified since December 2015 under Standards Version 1.6, with an overall B Impact Score of 109.4, against a median assessed business score of 50.9.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/eileen-fisher-inc/",
+     "asof": "2026"
+    }
+   },
+   "description": "Women's apparel company. B Lab's own register description says Eileen Fisher takes back its clothing to resell through a program called Renew or remake it through a program called Waste No More.",
+   "focuses": [
+    "Take-back program",
+    "B Corp"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.eileenfisher.com/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "price": {
+    "tier": "$$$$"
+   },
+   "valueSignature": {
+    "honesty": 55
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "B Lab"
+   }
+  },
+  {
+   "code": "king-arthur-baking",
+   "name": "King Arthur Baking Company",
+   "brand": "flour & baking",
+   "allergens": [
+    "gluten"
+   ],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 58,
+    "ownership": 92,
+    "economical": 80
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists King Arthur Baking Company as certified since May 2007 under Standards Version 1.6, with an overall B Impact Score of 116.4, against a median assessed business score of 50.9.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/king-arthur-baking-company/",
+     "asof": "2026"
+    },
+    "ownership": {
+     "note": "King Arthur Baking's own site says: 'As a 100% employee-owned company, we cultivate a shared sense of pride and an engaged, transparent approach to leadership and business.'",
+     "source": "https://www.kingarthurbaking.com/impact/who-we-are",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "King Arthur's own shop lists a 5 pound bag of unbleached all-purpose flour at $6.95.",
+     "source": "https://shop.kingarthurbaking.com/items/king-arthur-unbleached-all-purpose-flour-5-lb",
+     "asof": "2026"
+    }
+   },
+   "description": "Vermont flour and baking company, one of the first seven companies B Lab certified in 2007. Its own site says it is 100 percent employee-owned.",
+   "focuses": [
+    "Employee-owned",
+    "Founding B Corp"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.kingarthurbaking.com/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "price": {
+    "tier": "$"
+   },
+   "valueSignature": {
+    "honesty": 58,
+    "cost": 80,
+    "local": 92
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "kingarthurbaking.com",
+     "shop.kingarthurbaking.com"
+    ]
+   }
+  },
+  {
+   "code": "divine-chocolate",
+   "name": "Divine Chocolate",
+   "brand": "chocolate",
+   "allergens": [
+    "milk",
+    "soy"
+   ],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 57,
+    "ownership": 38
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Divine Chocolate Ltd as certified since October 2016 under Standards Version 1.6, with an overall B Impact Score of 114.9, against a median assessed business score of 50.9.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/divine-chocolate-ltd/",
+     "asof": "2026"
+    },
+    "ownership": {
+     "note": "UK Companies House lists Papa Paa GmbH, a holding vehicle for German manufacturer Ludwig Weinrich, as holding 75 percent or more of Divine Chocolate's shares and voting rights, and shows the Kuapa Kokoo Farmers Union ceased being a person with significant control on 29 May 2020. A trade press report from the same period says Weinrich took an 80 percent stake and Kuapa Kokoo's fell to 20 percent. Divine Chocolate's own marketing pages still describe a larger, pre-2020 farmer stake.",
+     "source": "https://find-and-update.company-information.service.gov.uk/company/03433202/persons-with-significant-control",
+     "asof": "2026"
+    }
+   },
+   "description": "Chocolate company founded by and long associated with the Kuapa Kokoo cocoa farmer cooperative in Ghana. The UK's official ownership register shows a German manufacturer became majority owner in 2020 and the farmer cooperative's stake fell to a minority holding.",
+   "focuses": [
+    "Fairtrade",
+    "Ownership changed 2020"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.divinechocolate.com/"
+    }
+   ],
+   "region": [
+    "UK",
+    "US"
+   ],
+   "price": {
+    "tier": "$$"
+   },
+   "valueSignature": {
+    "honesty": 57,
+    "local": 38
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "find-and-update.company-information.service.gov.uk"
+    ]
+   }
+  },
+  {
+   "code": "klean-kanteen",
+   "name": "Klean Kanteen",
+   "brand": "drinkware",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 55,
+    "ownership": 80,
+    "economical": 55
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Klean Kanteen as certified since September 2012 under Standards Version 1.6, with an overall B Impact Score of 110.9, against a median assessed business score of 50.9.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/klean-kanteen/",
+     "asof": "2026"
+    },
+    "ownership": {
+     "note": "B Lab's own register description of Klean Kanteen calls it 'a family-owned B Corp with distribution in 40-plus countries globally.'",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/klean-kanteen/",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Klean Kanteen's own site lists its 18oz Classic water bottle with Flip Seal Sport Cap at $19.95.",
+     "source": "https://www.kleankanteen.com/collections/water-bottles",
+     "asof": "2026"
+    }
+   },
+   "description": "California maker of stainless steel bottles and food canisters. B Lab's register describes it as family-owned.",
+   "focuses": [
+    "Family-owned",
+    "B Corp"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.kleankanteen.com/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "price": {
+    "tier": "$$"
+   },
+   "valueSignature": {
+    "honesty": 55,
+    "cost": 55,
+    "local": 80
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "kleankanteen.com"
+    ]
+   }
+  },
+  {
+   "code": "guayaki",
+   "name": "Guayaki Yerba Mate",
+   "brand": "beverages",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 55,
+    "ownership": 60
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists the certified entity as Guayaki Yerba Mate SPC, certified since March 2011 under Standards Version 1.6, with an overall B Impact Score of 110.3, against a median assessed business score of 50.9.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/guayaki-sustainable-rainforest-products/",
+     "asof": "2026"
+    },
+    "ownership": {
+     "note": "B Lab's register names the certified entity 'Guayaki Yerba Mate SPC'; SPC denotes a Social Purpose Corporation, a legal structure some US states offer to companies that formally commit to a public benefit purpose alongside profit.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/guayaki-sustainable-rainforest-products/",
+     "asof": "2026"
+    }
+   },
+   "description": "Yerba mate beverage company registered under its state's Social Purpose Corporation statute, a legal form that writes a public benefit purpose into the company's own charter.",
+   "focuses": [
+    "Social Purpose Corporation",
+    "B Corp"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://yerbamadre.com/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "price": {
+    "tier": "$$"
+   },
+   "valueSignature": {
+    "honesty": 55,
+    "local": 60
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "B Lab"
+   }
+  },
+  {
+   "code": "numi",
+   "name": "Numi Organic Tea",
+   "brand": "tea",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 60,
+    "economical": 55
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Numi as certified since December 2007 under Standards Version 1.6, with an overall B Impact Score of 120.3, against a median assessed business score of 50.9.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/numi-organic-tea/",
+     "asof": "2026"
+    },
+    "economical": {
+     "note": "Numi's own site prices an 18 bag box of Aged Earl Grey tea at $7.99.",
+     "source": "https://numitea.com/products/aged-earl-grey",
+     "asof": "2026"
+    }
+   },
+   "description": "Organic tea company and one of B Lab's founding certifications. Its B Lab register description says it sources directly from Fair Trade certified gardens.",
+   "focuses": [
+    "Fair Trade sourcing",
+    "Founding B Corp"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://numitea.com/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "price": {
+    "tier": "$$"
+   },
+   "valueSignature": {
+    "honesty": 60,
+    "cost": 55
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "numitea.com"
+    ]
+   }
+  },
+  {
+   "code": "nespresso-global",
+   "name": "Nespresso",
+   "brand": "coffee",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 25,
+    "ownership": 5
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Nespresso Global as certified under Standards Version 2.2, at certification year 'Year 0' of a five-year phased set of mandatory requirements; the same page says companies on the new standard meet Foundation Requirements first and add further requirements at the three and five year marks, and that Version 2.1 was released in August 2025. The register's previous-certification data shows Nespresso's last score under the retired single-score system was 105.4 in 2025 and 84.3 at first certification in 2022; those numbers are not comparable to the halved scores used elsewhere in this table.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/nespresso-global/",
+     "asof": "2026"
+    },
+    "ownership": {
+     "note": "Nestle Nespresso's own history factsheet says: 'Founded as a company wholly owned by Nestle SA, Nespresso introduced its first machines' in 1986, and it has stayed a Nestle-owned operating unit since.",
+     "source": "https://nestle-nespresso.com/sites/site.prod.nestle-nespresso.com/files/Nespresso%20-%20History%20Factsheet(1).pdf",
+     "asof": "2026"
+    }
+   },
+   "description": "Portioned coffee brand wholly owned by Nestle since its founding in 1986. It is one of the first large companies certified under B Lab's revised standard, which replaces a single comparable score with requirements phased in over five years.",
+   "focuses": [
+    "Nestle subsidiary",
+    "New standard"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.nespresso.com/"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "price": {
+    "tier": "$$$"
+   },
+   "valueSignature": {
+    "honesty": 25,
+    "local": 5
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "nestle-nespresso.com"
+    ]
+   }
+  }
+ ]
+}

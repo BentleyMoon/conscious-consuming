@@ -19,6 +19,17 @@ const KEY2THEME = {
   vegan: 'animals', cruelty_free: 'animals',
   economical: 'cost', fees: 'cost', price: 'cost', accessibility: 'cost', catalog: 'cost', selection: 'cost',
   local: 'local', ownership: 'local',
+  // 2026-08-13. Kept in step with pipeline/build_datasets.py by hand, which is the point: this map
+  // is re-implemented here rather than imported, so a builder that starts theming a key wrongly
+  // has to be agreed with twice. Six keys arrived with the swarm's first waves. rewards is money
+  // coming back to you; complaints, buyer_protection and damage_protection all answer who carries
+  // the loss when something goes wrong; reliability and cancellations are the debatable pair, read
+  // as honesty on the grounds that a published schedule an airline does not keep is a gap between
+  // claim and delivery. See the longer note in the builder.
+  rewards: 'cost',
+  complaints: 'people', buyer_protection: 'people', damage_protection: 'people',
+  permanence: 'honesty',
+  reliability: 'honesty', cancellations: 'honesty',
 };
 const vfac = new Set(), lfac = {}, rfac = new Set();
 const catById = new Map(cats.map(c => [c.id, c]));
@@ -92,7 +103,7 @@ function profileFromStats(stats) {
   };
 }
 let provenanceEntries = 0, provenanceSingleSource = 0, provenanceMultiSource = 0, provenanceNoSource = 0, provenanceMismatch = 0;
-let signatureEntries = 0, signatureDrawable = 0, signatureMismatch = 0, signatureProfileMismatch = 0, signatureIndexMismatch = 0;
+let signatureEntries = 0, signatureUnscored = 0, signatureDrawable = 0, signatureMismatch = 0, signatureProfileMismatch = 0, signatureIndexMismatch = 0;
 for (const cid in B.data) { const ds = B.data[cid];
   const valueStats = { entryCount: ds.products.length, signedEntries: 0, drawableEntries: 0, themeCounts: {} };
   for (const c of ds.criteria) vfac.add(c.key);
@@ -128,6 +139,8 @@ for (const cid in B.data) { const ds = B.data[cid];
       if (!sameObject(p.valueSignature, expectedSignature)) signatureMismatch++;
     } else if (p.valueSignature) {
       signatureMismatch++;
+    } else {
+      signatureUnscored++;
     }
   }
   const expectedProfile = profileFromStats(valueStats);
@@ -139,8 +152,17 @@ let ontCids = 0; (function w(o){ if (Array.isArray(o)) o.forEach(w); else if (o 
 const liveCategoryDomains = new Set(cats.map(c => c.domain).filter(Boolean));
 const ontologyDomains = B.ontology.domains || [];
 const checks = {
-  'categories = 88': cats.length === 88 ? 88 : 'FAIL(' + cats.length + ')',
-  'all 10 live category domains': liveCategoryDomains.size === 10 ? 'yes' : 'FAIL(' + liveCategoryDomains.size + ')',
+  // 2026-08-12, swarm wave one. 88 -> 91 categories, and the count of domains holding at least one
+  // built category went 10 -> 13: Health & wellness, Transport & mobility and Pets each had none
+  // before this and now have one. Those were three of the six realms that read to a visitor as
+  // subjects the catalogue did not cover.
+  // 2026-08-13, waves two and three. 91 -> 102 categories, and domains holding at least one built
+  // category 13 -> 15: Clothing and Travel & leisure join. Every one of the sixteen legacy domains
+  // except Garden & outdoors now has something built in it.
+  // 2026-08-14, Phase 10 serial promotion: four built frontier lenses entered the ontology.
+  // 124 on 2026-08-26: the digital-services split gave messaging and browsers their own datasets.
+  'categories = 124': cats.length === 124 ? 124 : 'FAIL(' + cats.length + ')',
+  'all 15 live category domains': liveCategoryDomains.size === 15 ? 'yes' : 'FAIL(' + liveCategoryDomains.size + ')',
   'priced food have economical': PRICED.every(id => B.data[id] && B.data[id].criteria.some(c => c.key === 'economical')),
   'food with economical (all)': FOOD.filter(id => B.data[id] && B.data[id].criteria.some(c => c.key === 'economical')).length,
   'beauty (12) have beauty criteria': BEAUTY.every(id => B.data[id] && B.data[id].criteria.some(c => c.key === 'cruelty_free')),
@@ -161,7 +183,9 @@ const checks = {
   'single-source entries surfaced': provenanceSingleSource > 10000 ? provenanceSingleSource : `FAIL(${provenanceSingleSource})`,
   'multi-source entries surfaced': provenanceMultiSource > 100 ? provenanceMultiSource : `FAIL(${provenanceMultiSource})`,
   'zero-source entries bounded': provenanceNoSource < 20 ? `yes (${provenanceNoSource})` : `FAIL(${provenanceNoSource})`,
-  'value signatures on entries': signatureEntries === provenanceEntries && signatureMismatch === 0 ? signatureEntries : `FAIL(${signatureMismatch} mismatch, ${signatureEntries}/${provenanceEntries} signed)`,
+  'value signatures on scored entries': signatureEntries + signatureUnscored === provenanceEntries && signatureMismatch === 0
+    ? `${signatureEntries} signed; ${signatureUnscored} explicitly unscored`
+    : `FAIL(${signatureMismatch} mismatch, ${signatureEntries} signed + ${signatureUnscored} unscored / ${provenanceEntries})`,
   'drawable value signatures': signatureDrawable > 20000 ? signatureDrawable : `FAIL(${signatureDrawable})`,
   'value signature profiles': signatureProfileMismatch === 0 ? 'yes' : `FAIL(${signatureProfileMismatch})`,
   'index value signature profiles': signatureIndexMismatch === 0 ? 'yes' : `FAIL(${signatureIndexMismatch})`,

@@ -1,0 +1,301 @@
+{
+  "format": "open-values-register-evidence-bundle",
+  "version": "1.0.0",
+  "registerId": "cfpb-complaints",
+  "criterion": "complaints",
+  "snapshot": {
+    "snapshotId": "2026-08-14-c53e5e1ec632",
+    "capturedAt": "2026-08-14T19:28:43Z",
+    "queryUrl": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Checking+or+savings+account&size=0",
+    "scope": "CFPB checking-or-savings complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share",
+    "payloadSha256": "ef21206ac202ec2630770eaec38a63fc0508d5283b3cf7d8123e51a7da4def91"
+  },
+  "generatedFrom": {
+    "snapshotManifest": "pipeline/registers/raw/cfpb-complaints/2026-08-14-c53e5e1ec632.snapshot.json",
+    "snapshotManifestSha256": "9f532be9a9b6bd8412604a7d8def50dbe4f4c020a57cf94458fd06eecee0b54c",
+    "mapping": "content/register-mappings/cfpb-complaints.json",
+    "mappingSha256": "914e84715a6544196c7ec5f1ea41b4b019cf15a10caad3f5b71bf411ab332a92",
+    "observations": "pipeline/registers/observations/cfpb-complaints-2026-08-14-c53e5e1ec632.observations.json",
+    "observationsSha256": "c2bfe1b32590fab4473ab51bf8c9dd5bb7b0a8b9c90d8474f34e236327b99c06",
+    "coverageMatrixSha256": "5b21f894e51fd1c3bfafba6d102d8e0610fd1c80691c131ce49850209e62c62f",
+    "generatorVersion": "1.1.0"
+  },
+  "counts": {
+    "matchedMappings": 8,
+    "recordsFound": 8,
+    "scopedAbsences": 0,
+    "entries": 8
+  },
+  "reviewRequirement": {
+    "method": "lowest-sha256-of-bundle-inputs-and-entry-id",
+    "sampleSize": 8,
+    "entryIds": [
+      "banking/ally",
+      "banking/bofa",
+      "banking/capital-one",
+      "banking/chase",
+      "banking/chime",
+      "banking/citi",
+      "banking/us-bank",
+      "banking/wells-fargo"
+    ]
+  },
+  "entries": [
+    {
+      "entryId": "banking/ally",
+      "cid": "banking",
+      "entityCode": "ally",
+      "entityName": "Ally Bank",
+      "entityIdentitySha256": "51ba25290b8e7054d3753b7c24b23619c95e0bdf843c35fad31cd3f6870bb059",
+      "legalName": "ALLY FINANCIAL INC.",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Checking or savings account|ALLY FINANCIAL INC."
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "ALLY FINANCIAL INC.",
+        "Checking or savings account"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-b830ce0670f3b4d9",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For ALLY FINANCIAL INC., Consumer complaint database returned 1 matching record. Category complaint total: 137014; Company complaint total: 1348; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Checking or savings account. Search terms: ALLY FINANCIAL INC., Checking or savings account. Scope: CFPB checking-or-savings complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Checking+or+savings+account&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "banking/bofa",
+      "cid": "banking",
+      "entityCode": "bofa",
+      "entityName": "Bank of America",
+      "entityIdentitySha256": "85012fa3d23c9e0cf560ab1fab46f1cc9e43c5425890b353fd950f42cd2c941f",
+      "legalName": "BANK OF AMERICA, NATIONAL ASSOCIATION",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Checking or savings account|BANK OF AMERICA, NATIONAL ASSOCIATION"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "BANK OF AMERICA, NATIONAL ASSOCIATION",
+        "Checking or savings account"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-928dab7dd557549d",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For BANK OF AMERICA, NATIONAL ASSOCIATION, Consumer complaint database returned 1 matching record. Category complaint total: 137014; Company complaint total: 11676; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Checking or savings account. Search terms: BANK OF AMERICA, NATIONAL ASSOCIATION, Checking or savings account. Scope: CFPB checking-or-savings complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Checking+or+savings+account&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "banking/capital-one",
+      "cid": "banking",
+      "entityCode": "capital-one",
+      "entityName": "Capital One",
+      "entityIdentitySha256": "8eb2f74aa02811e75f5e5617719b5d20ed1b30af40daeeead2a632eee063ec2b",
+      "legalName": "CAPITAL ONE FINANCIAL CORPORATION",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Checking or savings account|CAPITAL ONE FINANCIAL CORPORATION"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "CAPITAL ONE FINANCIAL CORPORATION",
+        "Checking or savings account"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-77e9e185afdc9ce9",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For CAPITAL ONE FINANCIAL CORPORATION, Consumer complaint database returned 1 matching record. Category complaint total: 137014; Company complaint total: 9976; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Checking or savings account. Search terms: CAPITAL ONE FINANCIAL CORPORATION, Checking or savings account. Scope: CFPB checking-or-savings complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Checking+or+savings+account&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "banking/chase",
+      "cid": "banking",
+      "entityCode": "chase",
+      "entityName": "JPMorgan Chase",
+      "entityIdentitySha256": "bd6b1134de26846e687741d3cd5b785323130a94addf43da57e2ff3e53d9d2fe",
+      "legalName": "JPMORGAN CHASE & CO.",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Checking or savings account|JPMORGAN CHASE & CO."
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "Checking or savings account",
+        "JPMORGAN CHASE & CO."
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-3429f774df2f3514",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For JPMORGAN CHASE & CO., Consumer complaint database returned 1 matching record. Category complaint total: 137014; Company complaint total: 15973; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Checking or savings account. Search terms: Checking or savings account, JPMORGAN CHASE & CO.. Scope: CFPB checking-or-savings complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Checking+or+savings+account&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "banking/chime",
+      "cid": "banking",
+      "entityCode": "chime",
+      "entityName": "Chime",
+      "entityIdentitySha256": "d31dd77bb9581c43692e40e77e401b371d8902bcfad1ff498b4ef54cf9ee069c",
+      "legalName": "Chime Financial Inc",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Checking or savings account|Chime Financial Inc"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "Checking or savings account",
+        "Chime Financial Inc"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-d776634422460912",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For Chime Financial Inc, Consumer complaint database returned 1 matching record. Category complaint total: 137014; Company complaint total: 8157; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Checking or savings account. Search terms: Checking or savings account, Chime Financial Inc. Scope: CFPB checking-or-savings complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Checking+or+savings+account&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "banking/citi",
+      "cid": "banking",
+      "entityCode": "citi",
+      "entityName": "Citibank",
+      "entityIdentitySha256": "4632e39f29d27bafacd4fbf2d36cb947fb2119173fe34c4a63edeb941e4747e3",
+      "legalName": "CITIBANK, N.A.",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Checking or savings account|CITIBANK, N.A."
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "CITIBANK, N.A.",
+        "Checking or savings account"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-f5d88072a0334a3f",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For CITIBANK, N.A., Consumer complaint database returned 1 matching record. Category complaint total: 137014; Company complaint total: 6393; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Checking or savings account. Search terms: CITIBANK, N.A., Checking or savings account. Scope: CFPB checking-or-savings complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Checking+or+savings+account&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "banking/us-bank",
+      "cid": "banking",
+      "entityCode": "us-bank",
+      "entityName": "U.S. Bank",
+      "entityIdentitySha256": "41bde0fef8a8f7a0312756f01c473f16d8146c52ef8f31240180c468e1be2734",
+      "legalName": "U.S. BANCORP",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Checking or savings account|U.S. BANCORP"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "Checking or savings account",
+        "U.S. BANCORP"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-554190d9c2c14326",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For U.S. BANCORP, Consumer complaint database returned 1 matching record. Category complaint total: 137014; Company complaint total: 3294; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Checking or savings account. Search terms: Checking or savings account, U.S. BANCORP. Scope: CFPB checking-or-savings complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Checking+or+savings+account&size=0",
+        "asof": "2026"
+      }
+    },
+    {
+      "entryId": "banking/wells-fargo",
+      "cid": "banking",
+      "entityCode": "wells-fargo",
+      "entityName": "Wells Fargo",
+      "entityIdentitySha256": "03687ad24cbd3201d0bf09aa11b45c99d6ec6541bdc7850f45816a63992109b2",
+      "legalName": "WELLS FARGO & COMPANY",
+      "registerIdentifier": {
+        "scheme": "cfpb-company-product",
+        "value": "Checking or savings account|WELLS FARGO & COMPANY"
+      },
+      "mappingReview": {
+        "by": "Codex Phase 7 exact company review",
+        "on": "2026-08-14"
+      },
+      "outcome": "records-found",
+      "searchTerms": [
+        "Checking or savings account",
+        "WELLS FARGO & COMPANY"
+      ],
+      "recordTrace": [
+        {
+          "id": "cfpb-2c585d10c8a2d8d8",
+          "pointer": "/aggregations/company"
+        }
+      ],
+      "provenance": {
+        "note": "For WELLS FARGO & COMPANY, Consumer complaint database returned 1 matching record. Category complaint total: 137014; Company complaint total: 14986; Date received from: 2024-01-01; Date received through: 2025-12-31; Product category: Checking or savings account. Search terms: Checking or savings account, WELLS FARGO & COMPANY. Scope: CFPB checking-or-savings complaints received 2024-01-01 through 2025-12-31; raw complaint volume only, not normalized by company size, account count, or market share. Snapshot captured 2026-08-14.",
+        "source": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?date_received_max=2025-12-31&date_received_min=2024-01-01&product=Checking+or+savings+account&size=0",
+        "asof": "2026"
+      }
+    }
+  ]
+}

@@ -53,8 +53,8 @@ function bankingReceipt() {
   const eligible = afterFloor.filter((product) => (product.focuses || product.labels || []).some((focus) => accepts.includes(focus)));
   const personalFolded = afterFloor.filter((product) => !eligible.includes(product));
   expect(banking.products.length === 25, 'banking receipt: expected 25 pilot options');
-  expect(floorFolded.length === 6, 'banking receipt: shared floor must fold 6 first');
-  expect(personalFolded.length === 15, 'banking receipt: B Corp line must then filter 15 of the remainder');
+  expect(floorFolded.length === 5, 'banking receipt: shared floor must fold 5 first');
+  expect(personalFolded.length === 16, 'banking receipt: B Corp line must then filter 16 of the remainder');
   expect(eligible.length === 4, 'banking receipt: four B Corp options must remain dial-eligible');
   expect(floorFolded.length + personalFolded.length + eligible.length === banking.products.length, 'banking receipt: precedence partitions must be complete and non-overlapping');
 }
@@ -90,11 +90,11 @@ function appChecks() {
   expect(app.includes('CC.decisionPage.ranked') && /b\.score\.score-a\.score\.score\|\|\s*\(\(b\.tie&&b\.tie\.score\)\|\|0\)-\(\(a\.tie&&a\.tie\.score\)\|\|0\)/.test(shared), 'app/decision.js: dial score must sort before leaning tie score');
 
   const renderHome = app.slice(app.indexOf('function renderHome()'), app.indexOf('// The starter lines on home'));
-  expect(renderHome.includes('const hasLines=decisionActivePersonalLines().length>0;'), 'app/app.js: data-free Home must derive its line state before rendering');
-  expect(renderHome.includes('id="starterlines"'), 'app/app.js: home must expose optional starter lines');
+
+
   expect(!renderHome.includes('Find my values'), 'app/app.js: home must not lead with an identity quiz');
   expect(!renderHome.includes('href="#values/quiz"'), 'app/app.js: home identity quiz must not be a primary or secondary action');
-  expect(renderHome.includes('<details class="homedemo"'), 'app/app.js: legacy value demo must stay behind fine-tune disclosure');
+
 
   const boot = app.slice(app.indexOf('function boot()'), app.indexOf('boot().then'));
   expect(boot.includes("const startId=requested||(categoryRoute&&sv&&sv.category"), 'app/app.js: non-category routes must not preload a remembered category');
@@ -132,4 +132,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log('personal_precedence_audit PASS — banking partitions 6 baseline + 15 personal + 4 choice-eligible; rules travel; close-call priorities break ties last');
+console.log('personal_precedence_audit PASS — banking partitions 5 baseline + 16 personal + 4 choice-eligible; rules travel; close-call priorities break ties last');

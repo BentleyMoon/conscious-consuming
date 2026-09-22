@@ -11,10 +11,29 @@
   }
 
   const L=window.OVS_LENS||window.KOSPLORA_LENS||{}, META=L.meta||{};
+  // The shared shell must not name any one instance's subject. Each lens supplies its own
+  // noun, so the count says what it counts on every instance rather than on one of them.
+  const NOUN=META.noun||'eligible';
+  // Same rule, applied to the rest of the surface. The 2026-07-27 neutrality pass caught the
+  // count and stopped there, which left the shared shell still saying "Choose somewhere to
+  // learn" and linking to Kosplora's founder review on EVERY instance. curl never saw it
+  // because this markup is written client-side. Every string below is now the lens's to set;
+  // the defaults name no instance, so a new lens reads correctly on the day it lands.
+  const SLUG=META.slug||'instance', DIALP=SLUG+'-dial';
+
+  // The proof block used to be Kosplora's, hardcoded, on every instance. Now the lens supplies
+  // it; the default below is true wherever the shell runs, because it describes the shared
+  // component rather than any one page that uses it.
+  function componentProofHTML(){
+    const p=META.proof||{};
+    const links=(p.links||[{href:'../standard/',label:'Read the standard'}])
+      .map(l=>`<a href="${esc(l.href)}">${esc(l.label)}</a>`).join('');
+    return `<section class="review-next"><h2>${esc(p.title||'One component, many domains')}</h2><p>${esc(p.text||'Every instance calls the same decision.js recipes, controls, explanations, and math. Only the list and the skin change.')}</p><nav>${links}</nav></section>`;
+  }
   const CRITERIA=L.criteria||[], THEMES=L.themes||[], KEY2THEME=L.key2theme||{};
   const RESOURCES=L.resources||[], CONTRACT=L.decision||{}, LINES=L.lines||[];
   const ENGINE=CC.engine, DECISION=CC.decisionPage;
-  const DATA={meta:{id:CONTRACT.category||META.id||'instance',label:META.title||'Learning resources'},criteria:CRITERIA,products:RESOURCES};
+  const DATA={meta:{id:CONTRACT.category||META.id||'instance',label:META.title||'Options'},criteria:CRITERIA,products:RESOURCES};
   const STORE_KEY=META.storeKey||((META.id||'ovs')+'.values');
   const DIAL_KEY=(META.id||'ovs')+'.decision.dials.v1';
   const LINE_KEY=(META.id||'ovs')+'.decision.lines.v1';
@@ -55,7 +74,7 @@
     }).join('');
     return `<section class="instance-context" aria-label="Decision rules">
       <details class="decision-floor"><summary><span><b>The baseline is on</b><small>${pool.floorFolded.length} folded · read it</small></span><span aria-hidden="true">⌄</span></summary><div class="context-body"><h3>${esc(floor.label||'The baseline')} <span>v${esc(floor.version||'1')}</span></h3><p>${esc(floor.reads||'Evidence gaps remain visible.')}</p><p class="scope-note">This is an illustrative list, not a published exclusion set.</p></div></details>
-      <div class="instance-lines"><div><div class="decision-kicker">My rules</div><h2>Keep only what must be true</h2><p>Optional rules, stored on this device. Anything they filter stays one tap away.</p></div><div class="linechips">${chips}</div></div>
+      <div class="instance-lines"><div><h2>Keep only what must be true</h2><p>Optional rules, stored on this device. Anything they filter stays one tap away.</p></div><div class="linechips">${chips}</div></div>
     </section>`;
   }
 
@@ -66,7 +85,7 @@
 
   function rankedRow(row,index){
     const tier=ENGINE.scoreTier(row.score.score);
-    return `<article class="rank-row"><span class="rank-number">${index+1}</span><div><h3>${esc(row.product.name)}</h3><p>${esc(row.product.brand||'learning resource')} · ${esc(tier[0])} with these choices</p></div><strong>${row.score.score}<small>/100</small></strong></article>`;
+    return `<article class="rank-row" data-code="${esc(row.product.code)}"><span class="rank-number">${index+1}</span><div><h3>${esc(row.product.name)}</h3><p>${esc(row.product.brand||NOUN)} · ${esc(tier[0])} with these choices</p></div><strong>${row.score.score}<small>/100</small></strong></article>`;
   }
 
   function foldsHTML(pool){
@@ -77,7 +96,46 @@
 
   function precedenceHTML(pool,result){
     const afterFloor=pool.base.length-pool.floorFolded.length;
-    return `<details class="decision-finetune"><summary><span>Advanced: Close-call priorities</span><strong>${THEMES.filter(theme=>leanings[theme.id]>=4).length?'Priorities set':'Balanced'}</strong></summary><div class="precedence-grid"><div><div class="decision-kicker">The order, applied</div><h3>Rules decide eligibility. Your choices decide order.</h3><p>Close-call priorities are consulted only after equal scores. They cannot restore a filtered resource.</p></div><ol><li><b>1 · The baseline</b><span>${pool.floorFolded.length} folded from ${pool.base.length}</span></li><li><b>2 · My rules</b><span>${pool.personalHidden} filtered from ${afterFloor}</span></li><li><b>3 · Your choices</b><span>${result.ranked.length} eligible resources ranked</span></li><li><b>4 · Close-call priorities</b><span>Equal scores only</span></li></ol><div class="leaning-panel"><p><b>Optional close-call priorities</b></p><div class="leaning-chips">${THEMES.map(theme=>`<button type="button" data-instance-leaning="${esc(theme.id)}" aria-pressed="${leanings[theme.id]>=4}" class="leaning-chip${leanings[theme.id]>=4?' on':''}">${esc(theme.label)}</button>`).join('')}</div><label class="passport-action">Upload your file<input type="file" id="passfile" accept="application/json,.json" hidden></label><span id="passnote"></span></div></div></details>`;
+    return `<details class="decision-finetune"><summary><span>Advanced: Close-call priorities</span><strong>${THEMES.filter(theme=>leanings[theme.id]>=4).length?'Priorities set':'Balanced'}</strong></summary><div class="precedence-grid"><div><h3>Rules decide eligibility. Your choices decide order.</h3><p>Close-call priorities are consulted only after equal scores. They cannot restore a filtered option.</p></div><ol><li><b>1 · The baseline</b><span>${pool.floorFolded.length} folded from ${pool.base.length}</span></li><li><b>2 · My rules</b><span>${pool.personalHidden} filtered from ${afterFloor}</span></li><li><b>3 · Your choices</b><span>${result.ranked.length} eligible ${NOUN} options ranked</span></li><li><b>4 · Close-call priorities</b><span>Equal scores only</span></li></ol><div class="leaning-panel"><p><b>Optional close-call priorities</b></p><div class="leaning-chips">${THEMES.map(theme=>`<button type="button" data-instance-leaning="${esc(theme.id)}" aria-pressed="${leanings[theme.id]>=4}" class="leaning-chip${leanings[theme.id]>=4?' on':''}">${esc(theme.label)}</button>`).join('')}</div><label class="passport-action">Upload your file<input type="file" id="passfile" accept="application/json,.json" hidden></label><span id="passnote"></span></div></div></details>`;
+  }
+
+
+  // The whole project argues that your choices move the answer. Until now that reorder happened
+  // between two frames, so the one causal moment the receipts exist to prove was imperceptible.
+  // FLIP: measure before, re-render, measure after, invert the delta, release. Rows visibly trade
+  // places because a hand moved a dial. Not decoration; the central claim made perceivable.
+  const REDUCED = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function rowPositions(){
+    const map=new Map();
+    document.querySelectorAll('#instance-answers .rank-row[data-code]').forEach(el=>{
+      // Measure where the row actually rests, not where a half-finished animation put it.
+      const t=el.style.transform; if(t){ el.style.transition='none'; el.style.transform=''; }
+      map.set(el.getAttribute('data-code'), el.getBoundingClientRect().top);
+    });
+    return map;
+  }
+  function playReorder(before){
+    if(REDUCED || !before || !before.size) return;
+    const moved=[];
+    document.querySelectorAll('#instance-answers .rank-row[data-code]').forEach(el=>{
+      const was=before.get(el.getAttribute('data-code'));
+      if(was==null) return;
+      const delta=was-el.getBoundingClientRect().top;
+      if(Math.abs(delta)<1) return;
+      el.style.transform=`translateY(${delta}px)`;
+      el.style.transition='none';
+      moved.push(el);
+    });
+    if(!moved.length) return;
+    // Forced reflow rather than requestAnimationFrame. A dial that fires both input and change
+    // re-renders twice, and the second pass detaches the nodes the rAF callback was holding,
+    // leaving rows translated permanently. Reading offsetHeight flushes layout synchronously so
+    // the release always lands on the elements we just measured.
+    void moved[0].offsetHeight;
+    for(const el of moved){
+      el.style.transition='transform 260ms cubic-bezier(.2,.7,.3,1)';
+      el.style.transform='';
+    }
   }
 
   function renderAnswers(){
@@ -90,7 +148,9 @@
     }
     const title=result.recipes.length===3?'Three good answers':result.recipes.length===2?'Two good answers':'A good answer';
     const collapse=result.groups.length<result.recipes.length?'<p class="decision-collapse">More than one recipe reached the same resource, so the duplicate collapsed into one card.</p>':'';
-    box.innerHTML=`${precedenceHTML(pool,result)}<div class="answer-heading"><div><div class="decision-kicker">Computed, not editorial</div><h2>${title}</h2></div><p>Change a choice and the answers are worked again.</p></div>${collapse}<div class="decision-answer-grid">${result.groups.map(group=>DECISION.answerCardHTML({engine:ENGINE,dataset:DATA,contract:CONTRACT,group,pool,escape:esc,proof:proofHTML})).join('')}</div><details class="decision-all"><summary>Rank all ${result.ranked.length} eligible learning resources with these choices →</summary><p>The baseline and your rules stay applied. Every score below uses the same current settings.</p><div>${result.ranked.map(rankedRow).join('')}</div></details>${foldsHTML(pool)}`;
+    const beforePositions=rowPositions();
+    box.innerHTML=`${precedenceHTML(pool,result)}<div class="answer-heading"><div><h2>${title}</h2></div><p>Change a choice and the answers are worked again.</p></div>${collapse}<div class="decision-answer-grid">${result.groups.map(group=>DECISION.answerCardHTML({engine:ENGINE,dataset:DATA,contract:CONTRACT,group,pool,escape:esc,proof:proofHTML})).join('')}</div><details class="decision-all"><summary>Rank all ${result.ranked.length} eligible ${NOUN} options with these choices →</summary><p>The baseline and your rules stay applied. Every score below uses the same current settings.</p><div>${result.ranked.map(rankedRow).join('')}</div></details>${foldsHTML(pool)}`;
+    playReorder(beforePositions);
     wireAnswerControls();
   }
 
@@ -117,11 +177,11 @@
   function renderPage(){
     const current=values(), pool=candidatePool();
     const zero=DECISION.dialsAreDefault(CONTRACT,current)&&activeLines.size===0?'A balanced view. Set a rule or change a choice to make it yours.':'My rules and these choices stay on this device.';
-    mount.innerHTML=`<main class="decision-page illustrative-decision"><header class="decision-head"><div class="decision-kicker">Illustrative generality receipt</div><h2>Choose somewhere to learn</h2><p class="decision-read">${esc(CONTRACT.reads.text)}</p><p class="illustrative-note"><b>Illustrative, not an endorsement.</b> The scores test whether the component transfers; they are not release-grade evidence.</p></header>${floorAndLinesHTML(pool)}<p class="decision-zero">${esc(zero)}</p><section class="decision-controls" aria-labelledby="instance-controls-title"><div class="control-heading"><div><div class="decision-kicker">For this decision</div><h2 id="instance-controls-title">What matters here</h2></div><button type="button" id="decision-reset">Reset choices</button></div>${(CONTRACT.axes||[]).map(axis=>DECISION.dialHTML(axis,current[axis.id],{escape:esc,idPrefix:'kosplora-dial'})).join('')}<p class="budget-note">No budget answer here: this illustrative list has no dependable price facts.</p></section><section id="instance-answers" aria-live="polite"></section><section class="review-next"><div class="decision-kicker">The proof</div><h2>One component, another domain</h2><p>Conscious Consuming and this page call the same <code>decision.js</code> recipes, controls, explanations, and math. Only the list and skin change.</p><nav><a href="../app/#need/learn">Return to the LEARN need</a><a href="../docs/DECISION-REFRAME-FOUNDER-REVIEW.md">Open the founder review</a></nav></section></main>`;
+    mount.innerHTML=`<section class="decision-page illustrative-decision" aria-label="Choose from this list"><header class="decision-head"><h2>${esc(CONTRACT.headline||('Choose from these '+NOUN+' options'))}</h2><p class="decision-read">${esc(CONTRACT.reads.text)}</p><p class="illustrative-note"><b>${esc(CONTRACT.kicker||'Illustrative generality receipt')}.</b> Illustrative, not an endorsement. The scores test whether the component transfers; they are not release-grade evidence.</p></header>${floorAndLinesHTML(pool)}<p class="decision-zero">${esc(zero)}</p><section class="decision-controls" aria-labelledby="instance-controls-title"><div class="control-heading"><div><h2 id="instance-controls-title">What matters here</h2></div><button type="button" id="decision-reset">Reset choices</button></div>${(CONTRACT.axes||[]).map(axis=>DECISION.dialHTML(axis,current[axis.id],{escape:esc,idPrefix:DIALP})).join('')}<p class="budget-note">No budget answer here: this illustrative list has no dependable price facts.</p></section><section id="instance-answers" aria-live="polite"></section>${componentProofHTML()}</section>`;
     mount.querySelectorAll('[data-decision-axis]').forEach(input=>input.addEventListener('input',event=>{
       const axis=(CONTRACT.axes||[]).find(row=>row.id===event.target.dataset.decisionAxis);if(!axis)return;
       savedDials[axis.id]=Number(event.target.value);writeStore(DIAL_KEY,savedDials);
-      const output=document.getElementById('kosplora-dial-value-'+axis.id);if(output)output.textContent=DECISION.dialPosition(axis,savedDials[axis.id]);
+      const output=document.getElementById(DIALP+'-value-'+axis.id);if(output)output.textContent=DECISION.dialPosition(axis,savedDials[axis.id]);
       renderAnswers();
     }));
     mount.querySelectorAll('[data-decision-axis]').forEach(input=>input.addEventListener('change',()=>{const result=DECISION.recipes({engine:ENGINE,dataset:DATA,contract:CONTRACT,pool:candidatePool(),values:values(),tieWeights:tieWeights()});if(result.recipes[0])announce(`${result.recipes[0].product.name} is now best for most with these choices.`);}));

@@ -81,12 +81,24 @@ function checkRunbookDocs() {
       'R1 Receipt',
       'Decision: Pass to first 5 / Patch first / Stop',
     ]],
+    // PINNED VOCABULARY. These strings are load-bearing: the audit uses them as a proxy for four
+    // requirements the document must cover, namely that a reader is sent to the R1 gate, that
+    // invites go in batches of five, that each tester leaves a written note, and that only real
+    // use earns a backlog item.
+    //
+    // Commit e9ec36d7, the public voice pass, rewrote the document into plainer English and
+    // renamed all four without knowing they were checked. Every requirement survived; only the
+    // wording moved. The cues are updated to the current headings rather than the prose being
+    // reverted, because the plainer version is the better document and the audit was pinning
+    // phrasing rather than substance.
+    //
+    // IF YOU RENAME THESE SECTIONS AGAIN, update this list in the same commit.
     ['docs/PREVIEW-FEEDBACK-LOOP.md', [
-      'R1 review gate',
-      'first 5 invites',
+      'R1 review',
+      'first 5 invitations',
       'one real decision',
-      'Learning Receipt',
-      'earned backlog',
+      'Tester Notes',
+      'Feedback Worth Acting On',
     ]],
     ['docs/GRANT-PREVIEW-PATH.md', [
       'npm run prepare:preview',

@@ -1,0 +1,3708 @@
+{
+  "meta": {
+    "id": "music-streaming",
+    "label": "Music streaming",
+    "type": "Services",
+    "primaryAxis": "artist_pay",
+    "tradeoff": ["catalog","artist_pay"],
+    "tradeoffLabels": ["biggest catalog","fairest pay"],
+    "source": "Conscious Consuming (curated)",
+    "attribution": "Curated from public artist-payout disclosures, platform docs, licensing notes and privacy policies - not audited figures. Per-stream payouts vary by deal, country and rightsholder chain. Every criterion has a cited basis; reviewed 2026-06. Suggest changes via Contribute.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": {
+          "artist_pay": 3,
+          "openness": 2,
+          "privacy": 2,
+          "catalog": 2,
+          "accessibility": 2
+        },
+        "x": []
+      },
+      "Pay artists fairly": {
+        "w": {
+          "artist_pay": 5,
+          "openness": 3,
+          "privacy": 1,
+          "catalog": 1,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Most private": {
+        "w": {
+          "privacy": 5,
+          "openness": 3,
+          "artist_pay": 2,
+          "catalog": 1,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Biggest catalog": {
+        "w": {
+          "catalog": 5,
+          "accessibility": 3,
+          "artist_pay": 1,
+          "privacy": 1,
+          "openness": 1
+        },
+        "x": []
+      },
+      "Free & easy": {
+        "w": {
+          "accessibility": 5,
+          "catalog": 3,
+          "artist_pay": 1,
+          "privacy": 1,
+          "openness": 1
+        },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    {
+      "key": "artist_pay",
+      "label": "Pays artists fairly",
+      "source": "curated"
+    },
+    {
+      "key": "openness",
+      "label": "Open / DRM-free",
+      "source": "curated"
+    },
+    {
+      "key": "privacy",
+      "label": "Privacy",
+      "source": "curated"
+    },
+    {
+      "key": "catalog",
+      "label": "Catalog breadth",
+      "source": "curated"
+    },
+    {
+      "key": "accessibility",
+      "label": "Easy & free",
+      "source": "curated"
+    }
+  ],
+  "products": [
+    {
+      "code": "bandcamp",
+      "name": "Bandcamp",
+      "brand": "artist-first store",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "An artist-first marketplace where fans stream, buy, and download music with a much larger share going to artists and labels than passive streaming.",
+      "scores": {
+        "artist_pay": 98,
+        "openness": 90,
+        "privacy": 78,
+        "catalog": 60,
+        "accessibility": 75
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Bandcamp says its share is 15% on digital items and 10% on physical goods, with usually 80-85% going to the artist or label.",
+          "source": "https://bandcamp.com/fair_trade_music_policy",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Bandcamp is an online record store where fans directly support artists and can buy downloadable music and physical goods.",
+          "source": "https://bandcamp.com/about",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Bandcamp's 2025 privacy policy discloses purchase/account data and consent-based ad tracking rather than a pure surveillance-feed model.",
+          "source": "https://bandcamp.com/privacy",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Strong for independent artists and labels, but not a complete substitute for major-label streaming catalogs.",
+          "source": "https://bandcamp.com/about",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Free to browse and preview, but durable ownership/support comes from buying music or merch.",
+          "source": "https://bandcamp.com/fair_trade_music_policy",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://bandcamp.com/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Artist-first",
+        "DRM-free"
+      ]
+    },
+    {
+      "code": "buy-direct",
+      "name": "Buy directly / physical (vinyl, CDs)",
+      "brand": "ownership",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "The old-fashioned high-leverage route: buy records, merch, or DRM-free files from artists and labels you want to support.",
+      "scores": {
+        "artist_pay": 95,
+        "openness": 82,
+        "privacy": 88,
+        "catalog": 50,
+        "accessibility": 58
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Bandcamp says artists receive 82% on average and that its revenue share is 15% for digital music and 10% for merch.",
+          "source": "https://bandcamp.com/artists",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Bandcamp lets buyers download purchases in their preferred audio format, giving more control than streaming-only access.",
+          "source": "https://get.bandcamp.help/en/articles/15263100-where-do-i-download-my-purchase",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Direct purchases avoid an always-on streaming profile, though Bandcamp still processes account and purchase data under its terms.",
+          "source": "https://bandcamp.com/terms_of_use",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Catalog access is limited to what you choose to buy or download, even when a store also offers app-based listening.",
+          "source": "https://get.bandcamp.help/en/articles/15263100-where-do-i-download-my-purchase",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Direct buying has per-release costs rather than a flat subscription, but Bandcamp still supports apps and high-quality downloads.",
+          "source": "https://bandcamp.com/artists",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Bandcamp artist model",
+          "url": "https://bandcamp.com/artists"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Artist-first",
+        "Own it"
+      ]
+    },
+    {
+      "code": "patreon-artist-memberships",
+      "name": "Artist memberships (Patreon)",
+      "brand": "direct fan support",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A recurring membership route for artists who share music, demos, posts, tickets, or community access directly with supporters.",
+      "scores": {
+        "artist_pay": 86,
+        "openness": 46,
+        "privacy": 55,
+        "catalog": 22,
+        "accessibility": 58
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Patreon lists creator platform fees from 8% to 12% plus payment processing, making it a clearer direct-support channel than pooled streaming.",
+          "source": "https://www.patreon.com/pricing",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Membership posts and audio can be valuable direct access, but they are hosted inside Patreon's account/payment platform rather than a DRM-free catalog.",
+          "source": "https://www.patreon.com/pricing",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Patreon's creator privacy promise describes member data responsibilities, but the platform still processes account, payment and membership data.",
+          "source": "https://support.patreon.com/hc/en-us/articles/360026912432-Data-Processing-Agreement-Creator-Privacy-Promise",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Not a broad music catalog: it works when the artist you already care about offers a membership.",
+          "source": "https://www.patreon.com/pricing",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Creator-set memberships can be affordable, but access depends on each artist's tiers and payment setup.",
+          "source": "https://www.patreon.com/pricing",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.patreon.com/"
+        },
+        {
+          "label": "Pricing",
+          "url": "https://www.patreon.com/pricing"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Artist-first",
+        "Subscription"
+      ]
+    },
+    {
+      "code": "resonate",
+      "name": "Resonate",
+      "brand": "co-op (stream-to-own)",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "artist_pay": 35,
+        "openness": 55,
+        "privacy": 60,
+        "catalog": 5,
+        "accessibility": 5
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Resonate's co-op model was artist/listener aligned, but the official site now says the co-op has been dissolved and is closing out finances.",
+          "source": "https://resonate.coop/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Historically open/cooperative, but the live service is no longer operating as a normal streaming option.",
+          "source": "https://resonate.coop/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "member co-op, low tracking",
+          "source": "https://resonate.coop/",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "The catalog is effectively unavailable as a current consumer streaming choice after dissolution.",
+          "source": "https://resonate.coop/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Not a practical current recommendation: official site says the co-op has been dissolved.",
+          "source": "https://resonate.coop/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://resonate.coop/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Co-op"
+      ],
+      "description": "A once-promising cooperative stream-to-own platform; as of 2026 its official site says the co-op has dissolved."
+    },
+    {
+      "code": "mirlo",
+      "name": "Mirlo",
+      "brand": "co-op artist marketplace",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "An open-source, collectively managed music sales and patronage platform built as a Bandcamp-like alternative.",
+      "scores": {
+        "artist_pay": 94,
+        "openness": 92,
+        "privacy": 76,
+        "catalog": 26,
+        "accessibility": 56
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "direct artist sales and patronage; artists can set the platform share down to zero",
+          "source": "https://mirlo.space/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "open-source audio distribution and patronage platform",
+          "source": "https://mirlo.space/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "small direct-support platform without ad-scale profiling",
+          "source": "https://mirlo.space/",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "very small catalog compared with mainstream streaming",
+          "source": "https://mirlo.space/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "usable web marketplace, but still niche and early",
+          "source": "https://mirlo.space/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://mirlo.space/"
+        },
+        {
+          "label": "Source",
+          "url": "https://github.com/funmusicplace/mirlo/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Co-op",
+        "Artist-first",
+        "Open source"
+      ]
+    },
+    {
+      "code": "jamendo",
+      "name": "Jamendo",
+      "brand": "independent/Creative Commons",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free independent-music platform built around legal streaming/downloads and commercial licensing for artists.",
+      "scores": {
+        "artist_pay": 72,
+        "openness": 84,
+        "privacy": 62,
+        "catalog": 62,
+        "accessibility": 90
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "licensing arm shares revenue with independent artists, but free listening is not direct purchase support",
+          "source": "https://support-artist.jamendo.com/getting-started",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "music is published under Creative Commons licenses chosen by artists",
+          "source": "https://support-artist.jamendo.com/getting-started",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "standard web platform rather than ad-mega-platform",
+          "source": "https://support-artist.jamendo.com/getting-started",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "600,000+ free songs from 40,000+ independent artists",
+          "source": "https://support-artist.jamendo.com/getting-started",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "free streaming and downloads for personal use",
+          "source": "https://support-artist.jamendo.com/getting-started",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.jamendo.com/"
+        },
+        {
+          "label": "Artist docs",
+          "url": "https://support-artist.jamendo.com/getting-started"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Free",
+        "DRM-free",
+        "Independent"
+      ]
+    },
+    {
+      "code": "audius",
+      "name": "Audius",
+      "brand": "decentralized streaming",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A decentralized, open-source music platform that gives artists direct distribution tools, with web3 tradeoffs.",
+      "scores": {
+        "artist_pay": 66,
+        "openness": 86,
+        "privacy": 50,
+        "catalog": 68,
+        "accessibility": 92
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "artist-controlled protocol with monetization tools, but revenue model is less proven than direct sales",
+          "source": "https://docs.audius.org/learn/concepts/protocol/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "open-source apps and open music protocol documentation",
+          "source": "https://docs.audius.org/learn/concepts/protocol/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "social/blockchain-style platform exposes more public activity than private listening",
+          "source": "https://docs.audius.org/learn/concepts/protocol/",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "large for creator uploads, but not a full major-label catalog",
+          "source": "https://docs.audius.org/learn/concepts/protocol/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "free streaming and uploading with web/mobile apps",
+          "source": "https://docs.audius.org/learn/concepts/protocol/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://audius.co/"
+        },
+        {
+          "label": "Developer docs",
+          "url": "https://docs.audius.org/learn/concepts/protocol/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Open source",
+        "Artist-first",
+        "Free"
+      ]
+    },
+    {
+      "code": "library-music",
+      "name": "Public library (hoopla / Freegal)",
+      "brand": "library service",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free-with-library-card route for music access through services such as Hoopla or Freegal, with local availability limits.",
+      "scores": {
+        "artist_pay": 65,
+        "openness": 58,
+        "privacy": 70,
+        "catalog": 55,
+        "accessibility": 85
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "your library licenses & pays for access",
+          "source": "https://www.freegalmusic.com/faq",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "some downloads DRM-free",
+          "source": "https://www.freegalmusic.com/faq",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "library privacy norms (varies)",
+          "source": "https://www.freegalmusic.com/faq",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "decent, rotates",
+          "source": "https://www.hoopladigital.com/music",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "free with a library card",
+          "source": "https://www.freegalmusic.com/home",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "hoopla",
+          "url": "https://www.hoopladigital.com/"
+        }
+      ],
+      "region": [
+        "US",
+        "UK"
+      ],
+      "focuses": [
+        "Free",
+        "Library"
+      ]
+    },
+    {
+      "code": "nts-radio",
+      "name": "NTS Radio",
+      "brand": "independent online radio",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free, ad-free global radio platform centered on resident DJs, leftfield discovery, and curated archives rather than algorithmic playlists.",
+      "scores": {
+        "artist_pay": 76,
+        "openness": 55,
+        "privacy": 65,
+        "catalog": 66,
+        "accessibility": 95
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "NTS says it pays royalties for aired music and pays resident hosts through Supporter subscriptions.",
+          "source": "https://www.nts.live/about",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Free streaming and show archives, but not a DRM-free download store or user-owned catalog.",
+          "source": "https://www.nts.live/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Ad-free radio avoids ad-targeting incentives, though it remains a standard web/app service.",
+          "source": "https://www.nts.live/",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Broad curated radio platform with hundreds of resident hosts, strongest for discovery rather than on-demand mainstream catalog breadth.",
+          "source": "https://www.nts.live/about",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "NTS is free, ad-free, and streams live 24/7 online.",
+          "source": "https://www.nts.live/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.nts.live/"
+        },
+        {
+          "label": "Supporters",
+          "url": "https://www.nts.live/supporters"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Free",
+        "Independent"
+      ]
+    },
+    {
+      "code": "somafm",
+      "name": "SomaFM",
+      "brand": "listener-supported internet radio",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A long-running, listener-supported, commercial-free internet radio network with human-curated niche channels.",
+      "scores": {
+        "artist_pay": 62,
+        "openness": 50,
+        "privacy": 82,
+        "catalog": 55,
+        "accessibility": 96
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "SomaFM is listener-supported and licensed to broadcast, but it is radio access rather than direct artist purchase support.",
+          "source": "https://somafm.com/contact/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Free streams are easy to access, but SomaFM says it is licensed only to broadcast and cannot provide downloads.",
+          "source": "https://somafm.com/contact/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "SomaFM's privacy policy says it will not sell, rent, or abuse listener email or postal addresses.",
+          "source": "https://somafm.com/contact/privacy.html",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "SomaFM offers over 30 hand-picked underground/alternative radio channels, strong for discovery but not on-demand catalog breadth.",
+          "source": "https://somafm.com/home.html",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Free web streams are available through popup players and standard AAC/MP3 stream links.",
+          "source": "https://somafm.com/listen/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://somafm.com/"
+        },
+        {
+          "label": "Privacy",
+          "url": "https://somafm.com/contact/privacy.html"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Free",
+        "Independent"
+      ]
+    },
+    {
+      "code": "mixcloud",
+      "name": "Mixcloud",
+      "brand": "licensed DJ/radio platform",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A licensed platform for DJ mixes, radio shows, and long-form music programming, with creator subscriptions and rights-holder licensing.",
+      "scores": {
+        "artist_pay": 62,
+        "openness": 45,
+        "privacy": 50,
+        "catalog": 76,
+        "accessibility": 72
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Creator Subscriptions route revenue to creators after royalties, rights-holder fees, and transaction costs.",
+          "source": "https://help.mixcloud.com/hc/en-us/articles/360004031220-How-does-the-Creator-Subscriptions-revenue-model-work",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Licensed streaming model enables legal mixes but restricts unrestricted on-demand access and downloads.",
+          "source": "https://www.mixcloud.com/mixcloud/posts/what-are-mixclouds-paid-subscription-plans/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Standard commercial web/app account model with creator and listener analytics rather than a local/private library.",
+          "source": "https://www.mixcloud.com/pro/monetization/",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Strong for DJ mixes, radio shows, and long-form creator uploads; weaker as an all-purpose album catalog.",
+          "source": "https://www.mixcloud.com/pro/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Mixcloud offers free listening with paid creator subscriptions and Pro features.",
+          "source": "https://www.mixcloud.com/pro/monetization/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.mixcloud.com/"
+        },
+        {
+          "label": "Creator Subscriptions",
+          "url": "https://help.mixcloud.com/hc/en-us/articles/360004054239-What-are-Creator-Subscriptions"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Independent"
+      ]
+    },
+    {
+      "code": "live-music-archive",
+      "name": "Internet Archive Live Music Archive",
+      "brand": "public archive",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A nonprofit public archive of live concert recordings from trade-friendly artists, focused on preservation and free access.",
+      "scores": {
+        "artist_pay": 58,
+        "openness": 95,
+        "privacy": 82,
+        "catalog": 45,
+        "accessibility": 98
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Archive hosts royalty-free, no-cost downloads from trade-friendly artists; it preserves access more than it directly pays musicians.",
+          "source": "https://help.archive.org/help/live-music-archive-etree-org/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Live recordings are available for no-cost public streaming/downloads where artists allow noncommercial distribution.",
+          "source": "https://help.archive.org/help/live-music-archive-etree-org/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Public web archive model with optional accounts creates less music-profile lock-in than mainstream streaming subscriptions.",
+          "source": "https://archive.org/",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Large archive for live recordings, but intentionally narrow compared with mainstream on-demand music catalogs.",
+          "source": "https://blog.archive.org/2023/07/31/live-music-archive-collection-now-tops-250000-recordings/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Internet Archive describes the collection as a free public library of live recordings.",
+          "source": "https://help.archive.org/help/live-music-archive-etree-org/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Collection",
+          "url": "https://archive.org/details/etree"
+        },
+        {
+          "label": "Help",
+          "url": "https://help.archive.org/help/live-music-archive-etree-org/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Free",
+        "Archive",
+        "DRM-free"
+      ]
+    },
+    {
+      "code": "free-music-archive",
+      "name": "Free Music Archive",
+      "brand": "Creative Commons archive",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free music discovery and download archive for legal independent music, strongest when open access matters more than direct artist income.",
+      "scores": {
+        "artist_pay": 48,
+        "openness": 94,
+        "privacy": 72,
+        "catalog": 48,
+        "accessibility": 98
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Free Music Archive emphasizes free legal access; it is better for discovery/open culture than for direct payment to musicians.",
+          "source": "https://wiki.creativecommons.org/wiki/Free_Music_Archive",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Creative Commons describes FMA as an interactive library of high-quality, legal audio downloads using CC-style open sharing.",
+          "source": "https://wiki.creativecommons.org/wiki/Free_Music_Archive",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "The archive is free to access on the web and does not require a streaming subscription account for basic discovery.",
+          "source": "https://freemusicarchive.org/home",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Best for independent and openly licensed music discovery, not a full major-label catalog substitute.",
+          "source": "https://freemusicarchive.org/home",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Free web access and downloadable tracks make it one of the easiest open-music routes.",
+          "source": "https://freemusicarchive.org/home",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://freemusicarchive.org/"
+        },
+        {
+          "label": "Creative Commons overview",
+          "url": "https://wiki.creativecommons.org/wiki/Free_Music_Archive"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Free",
+        "DRM-free",
+        "Independent"
+      ]
+    },
+    {
+      "code": "musopen",
+      "name": "Musopen",
+      "brand": "public-domain music nonprofit",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A nonprofit public-domain music commons for free classical recordings, sheet music, radio, and education materials.",
+      "scores": {
+        "artist_pay": 52,
+        "openness": 98,
+        "privacy": 72,
+        "catalog": 42,
+        "accessibility": 96
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Musopen is a nonprofit access commons, so it is strong for public culture but not a current-artist payout channel.",
+          "source": "https://musopen.org/about/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Musopen provides recordings, sheet music, and textbooks for free without copyright restrictions.",
+          "source": "https://musopen.org/about/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Musopen has a simple account/privacy policy rather than an ad-scale streaming profile model.",
+          "source": "https://musopen.org/privacy/",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Musopen focuses on public-domain music and asks users to verify public-domain status, so breadth is intentionally narrower than mainstream catalogs.",
+          "source": "https://musopen.org/faq/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Free music recordings, sheet music, radio, apps, and educational materials make access broad for classical and learning use.",
+          "source": "https://musopen.org/about/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://musopen.org/"
+        },
+        {
+          "label": "About",
+          "url": "https://musopen.org/about/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Free",
+        "DRM-free",
+        "Public domain"
+      ]
+    },
+    {
+      "code": "self-hosted-library",
+      "name": "Self-hosted owned library (Navidrome / Jellyfin)",
+      "brand": "own files, own server",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A self-hosted path for streaming music you already own from your own server, using open-source tools instead of a rented catalog.",
+      "scores": {
+        "artist_pay": 60,
+        "openness": 98,
+        "privacy": 95,
+        "catalog": 45,
+        "accessibility": 35
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Artist support depends on how the files were acquired; best when paired with direct purchases or DRM-free stores.",
+          "source": "https://www.navidrome.org/about/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Navidrome is open-source GPL software; Jellyfin is a free software media system for your own server.",
+          "source": "https://www.navidrome.org/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Self-hosting keeps playback and library control on your own server rather than a platform profile.",
+          "source": "https://jellyfin.org/",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Catalog is limited to the files you own or import, with no built-in mainstream streaming catalog.",
+          "source": "https://www.navidrome.org/about/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Powerful but technical: you must run your own server and manage files, clients, backups, and access.",
+          "source": "https://jellyfin.org/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Navidrome",
+          "url": "https://www.navidrome.org/"
+        },
+        {
+          "label": "Jellyfin",
+          "url": "https://jellyfin.org/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Open source",
+        "Self-hostable",
+        "Own it"
+      ]
+    },
+    {
+      "code": "siriusxm",
+      "name": "SiriusXM",
+      "brand": "satellite and streaming radio",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A paid satellite/app radio service with curated music channels, strong reach in cars, and royalty payments through statutory digital-radio structures.",
+      "scores": {
+        "artist_pay": 58,
+        "openness": 35,
+        "privacy": 35,
+        "catalog": 72,
+        "accessibility": 55
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "SiriusXM says its music royalty fee supports copyright royalties to recording artists, musicians and labels for sound recordings.",
+          "source": "https://www.siriusxm.com/us-music-royalty",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "SiriusXM is a subscription radio/app service rather than user-owned DRM-free music.",
+          "source": "https://www.siriusxm.com/customer-agreement",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "SiriusXM's 2026 privacy policy covers consumer websites, apps and services across SiriusXM and Pandora subsidiaries.",
+          "source": "https://www.siriusxm.com/privacy-policy",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "All Access includes ad-free music by genre, decade, artist and mood plus sports, news, talk and podcasts.",
+          "source": "https://www.siriusxm.com/plans",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "SiriusXM is widely available in cars and apps, but full access is subscription-based after promotions.",
+          "source": "https://www.siriusxm.com/plans",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.siriusxm.com/"
+        },
+        {
+          "label": "Music royalty fee",
+          "url": "https://www.siriusxm.com/us-music-royalty"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Mainstream",
+        "Subscription"
+      ]
+    },
+    {
+      "code": "iheart-radio",
+      "name": "iHeartRadio",
+      "brand": "broadcast radio and streaming",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free-to-start commercial radio, podcast and music app with major broadcast-radio reach and paid on-demand upgrades.",
+      "scores": {
+        "artist_pay": 45,
+        "openness": 35,
+        "privacy": 30,
+        "catalog": 75,
+        "accessibility": 86
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "SoundExchange says it collects statutory digital-performance royalties from platforms including iHeartRadio.",
+          "source": "https://www.soundexchange.com/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "iHeartRadio is a licensed streaming and radio service; offline listening and on-demand use sit inside paid app access.",
+          "source": "https://help.iheart.com/hc/en-us/articles/20310091985549-iHeart-Plans",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "iHeart's 2026 privacy notice covers processing across websites, apps, services, ads and interactive features.",
+          "source": "https://www.iheart.com/content/privacy-and-cookie-notice/",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "All Access offers on-demand playback, playlists, offline listening and a library of millions of songs.",
+          "source": "https://www.iheart.com/upgrade/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "iHeartRadio offers free radio, music and podcasts with paid upgrades for on-demand and offline listening.",
+          "source": "https://www.iheart.com/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.iheart.com/"
+        },
+        {
+          "label": "Privacy",
+          "url": "https://www.iheart.com/content/privacy-and-cookie-notice/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Mainstream",
+        "Free",
+        "Subscription"
+      ]
+    },
+    {
+      "code": "tunein",
+      "name": "TuneIn",
+      "brand": "global radio aggregator",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A global live-radio, sports, news and podcast aggregator, useful for discovery but not a direct artist-support or ownership model.",
+      "scores": {
+        "artist_pay": 42,
+        "openness": 55,
+        "privacy": 45,
+        "catalog": 78,
+        "accessibility": 88
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "For internet radio, creator payment generally flows through statutory digital-performance and station licensing rather than direct fan support.",
+          "source": "https://www.soundexchange.com/digital-performance-royalties/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "TuneIn aggregates radio streams and premium stations; it does not provide owned DRM-free music downloads.",
+          "source": "https://privacy.tunein.com/policies/?name=how-tune-in-works",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "TuneIn publishes a privacy policy for personal data processing across its app and service.",
+          "source": "https://privacy.tunein.com/policies/en/?name=privacy-policy",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "TuneIn brings together live sports, music, news, audiobooks and podcasts, with premium music/news options.",
+          "source": "https://tunein.com/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "The app is free for broad station access, with optional TuneIn Premium for commercial-free music/news and sports.",
+          "source": "https://cms.tunein.com/premium/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://tunein.com/"
+        },
+        {
+          "label": "Privacy",
+          "url": "https://privacy.tunein.com/policies/en/?name=privacy-policy"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Free",
+        "Subscription"
+      ]
+    },
+    {
+      "code": "live365",
+      "name": "Live365",
+      "brand": "internet radio platform",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "An internet-radio platform for independent stations, with built-in licensing coverage and free listening to thousands of human-run streams.",
+      "scores": {
+        "artist_pay": 68,
+        "openness": 65,
+        "privacy": 48,
+        "catalog": 68,
+        "accessibility": 82
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Live365 says its standard broadcaster packages include music licensing and royalty reporting for the United States, Mexico and Canada.",
+          "source": "https://help.live365.com/en/support/solutions/articles/43000573915-what-licensing-coverage-does-live365-provide-",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Live365 lets independent broadcasters create online stations, but listener access is still station streaming rather than owned files.",
+          "source": "https://live365.com/about",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Live365 publishes a privacy policy and a CCPA notice; its CCPA notice says some personal information may be sold to third parties.",
+          "source": "https://live365.com/legal/ccpa",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Live365 describes itself as a place to discover thousands of stations from many music and talk styles.",
+          "source": "https://live365.com/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Listeners can discover stations through the Live365 website and apps, while broadcasters pay for station packages.",
+          "source": "https://live365.com/apps",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://live365.com/"
+        },
+        {
+          "label": "Licensing",
+          "url": "https://live365.com/broadcaster/internet-radio-licensing"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Independent",
+        "Free"
+      ]
+    },
+    {
+      "code": "radio-garden",
+      "name": "Radio Garden",
+      "brand": "global radio map",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A simple global radio map for live stations around the world, excellent for discovery but dependent on station-level licensing and availability.",
+      "scores": {
+        "artist_pay": 36,
+        "openness": 74,
+        "privacy": 62,
+        "catalog": 80,
+        "accessibility": 90
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Radio Garden is a station gateway; payment to creators depends on the underlying broadcaster and internet-radio licensing path.",
+          "source": "https://www.soundexchange.com/digital-radio-providers/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Radio Garden lets listeners tune into live stations worldwide by location rather than locking them into one proprietary catalog.",
+          "source": "https://play.google.com/store/apps/details?hl=en_US&id=com.jonathanpuckey.radiogarden",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Radio Garden publishes a privacy policy explaining collection, use and disclosure of personal data for the service.",
+          "source": "https://radio.garden/settings/privacy-policy",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "The app description says each green dot represents a city or town and that new stations are added regularly.",
+          "source": "https://play.google.com/store/apps/details?hl=en_US&id=com.jonathanpuckey.radiogarden",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Radio Garden is free and browser/app based, though station availability can vary by country and licensing limits.",
+          "source": "https://radio.garden/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://radio.garden/"
+        },
+        {
+          "label": "Privacy",
+          "url": "https://radio.garden/settings/privacy-policy"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Free",
+        "Open access"
+      ]
+    },
+    {
+      "code": "bbc-sounds",
+      "name": "BBC Sounds",
+      "brand": "public broadcaster audio",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A UK public-service audio app for BBC radio, music mixes and podcasts, strong on ad-free access but geographically limited.",
+      "scores": {
+        "artist_pay": 54,
+        "openness": 55,
+        "privacy": 70,
+        "catalog": 66,
+        "accessibility": 66
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "BBC Sounds is public-broadcaster audio, so artist support is licensing and commissioning rather than direct fan purchase.",
+          "source": "https://www.bbc.co.uk/sounds",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "BBC Sounds streams and downloads BBC audio inside BBC-controlled apps and website rather than offering user-owned music files.",
+          "source": "https://apps.apple.com/gb/app/bbc-sounds/id1380676511",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "The BBC Sounds app privacy notice explains BBC account, usage and personalization data handling.",
+          "source": "https://www.bbc.co.uk/sounds/help/questions/about-bbc-sounds-and-our-policies/sounds-app-privacy-notice",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "BBC Sounds brings BBC radio, podcasts and music together, but it is not an all-label on-demand music catalog.",
+          "source": "https://www.bbc.co.uk/sounds",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "BBC Sounds is free and ad-free for UK use, with international access constrained by BBC availability and rights rules.",
+          "source": "https://www.bbc.co.uk/sounds",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.bbc.co.uk/sounds"
+        },
+        {
+          "label": "Privacy notice",
+          "url": "https://www.bbc.co.uk/sounds/help/questions/about-bbc-sounds-and-our-policies/sounds-app-privacy-notice"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Public",
+        "Free",
+        "No ads"
+      ]
+    },
+    {
+      "code": "kexp",
+      "name": "KEXP",
+      "brand": "listener-powered music discovery",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A nonprofit, listener-supported music-discovery station with human curation, live sessions, and open streaming URLs.",
+      "scores": {
+        "artist_pay": 70,
+        "openness": 78,
+        "privacy": 72,
+        "catalog": 48,
+        "accessibility": 88
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "KEXP says listener support lets decisions be guided by mission and music discovery rather than ratings or profit.",
+          "source": "https://www.kexp.org/philanthropy/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "KEXP publishes live streaming URLs that work with third-party players such as VLC, Apple Music, Spotify and Sonos.",
+          "source": "https://www.kexp.org/streaming-urls/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "KEXP's 2025 privacy policy covers website, app and communications data collection for its nonprofit services.",
+          "source": "https://www.kexp.org/privacy-policy/",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "KEXP is a curated station and arts organization, not an on-demand catalog of mainstream music.",
+          "source": "https://www.kexp.org/about/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "KEXP streams live online and through apps, with free access supported by listeners and donors.",
+          "source": "https://www.kexp.org/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.kexp.org/"
+        },
+        {
+          "label": "Streaming URLs",
+          "url": "https://www.kexp.org/streaming-urls/"
+        }
+      ],
+      "region": [
+        "US",
+        "global"
+      ],
+      "focuses": [
+        "Nonprofit",
+        "Free",
+        "Independent"
+      ]
+    },
+    {
+      "code": "anghami",
+      "name": "Anghami",
+      "brand": "MENA music streaming",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A major Middle East and North Africa streaming service with Arabic and international music, a free tier, and paid Plus plans.",
+      "scores": {
+        "artist_pay": 48,
+        "openness": 35,
+        "privacy": 42,
+        "catalog": 72,
+        "accessibility": 82
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Anghami has artist tools and label/distributor routes, but ordinary listening remains a licensed streaming model rather than direct purchase.",
+          "source": "https://apps.apple.com/us/app/anghami-for-artists/id1501491257",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Anghami Plus offers unlimited downloads and ad-free listening inside the service, not owned DRM-free files.",
+          "source": "https://www.anghami.com/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Anghami's legal page says it uses personal and usage data to provide and improve the service.",
+          "source": "https://www.anghami.com/legal",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Anghami investor materials describe more than 70 million users and over 57 million Arabic and international songs.",
+          "source": "https://www.anghami.com/investors",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Anghami offers free listening plus paid Plus and family plans with downloads, no ads and higher audio quality.",
+          "source": "https://www.anghami.com/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.anghami.com/"
+        },
+        {
+          "label": "Legal",
+          "url": "https://www.anghami.com/legal"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Mainstream",
+        "Free",
+        "Subscription"
+      ]
+    },
+    {
+      "code": "boomplay",
+      "name": "Boomplay",
+      "brand": "Africa-focused streaming",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A large Africa-focused streaming app with strong regional catalog breadth, free access, and unresolved royalty-trust concerns.",
+      "scores": {
+        "artist_pay": 32,
+        "openness": 32,
+        "privacy": 38,
+        "catalog": 78,
+        "accessibility": 88
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Sony Music removed its catalog from Boomplay in 2024 amid reported unpaid-royalty disputes, limiting the artist-pay score.",
+          "source": "https://www.musicinafrica.net/magazine/sony-music-withdraws-catalogue-boomplay-amid-unpaid-royalties-dispute",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Boomplay is an app-based freemium streaming and download service rather than an owned DRM-free music store.",
+          "source": "https://play.google.com/store/apps/details?hl=en_US&id=com.afmobi.boomplayer",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Boomplay's app-store disclosures indicate app data practices may vary and that the app collects user data for service features.",
+          "source": "https://play.google.com/store/apps/details?hl=en_US&id=com.afmobi.boomplayer",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Boomplay's store listing says the service has over 100 million songs across many genres and podcasts.",
+          "source": "https://play.google.com/store/apps/details?hl=en_US&id=com.afmobi.boomplayer",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Boomplay markets free streaming, downloads and offline play, with strong accessibility in its focus markets.",
+          "source": "https://play.google.com/store/apps/details?hl=en_US&id=com.afmobi.boomplayer",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.boomplay.com/"
+        },
+        {
+          "label": "Google Play",
+          "url": "https://play.google.com/store/apps/details?hl=en_US&id=com.afmobi.boomplayer"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Mainstream",
+        "Free"
+      ]
+    },
+    {
+      "code": "jiosaavn",
+      "name": "JioSaavn",
+      "brand": "Indian music streaming",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A major Indian music and podcast streaming app with a large regional-language catalog, free listening, and paid Pro features.",
+      "scores": {
+        "artist_pay": 46,
+        "openness": 35,
+        "privacy": 42,
+        "catalog": 82,
+        "accessibility": 88
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "JioSaavn's Artist Dashboard gives artists streaming, audience and performance insights, but payment still flows through labels/aggregators.",
+          "source": "https://artists1api.saavn.com/guide",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "JioSaavn Pro adds ad-free and offline listening inside the app rather than user-owned DRM-free downloads.",
+          "source": "https://www.jio.com/apps/jiosaavn/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "JioSaavn Artist Dashboard uses listener data and audience insights for artists and managers, so privacy is a mainstream platform tradeoff.",
+          "source": "https://artists1api.saavn.com/guide",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "The Google Play listing describes an 8 crore-plus song library across 16 languages plus podcasts.",
+          "source": "https://play.google.com/store/apps/details?hl=en_US&id=com.jio.media.jiobeats",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "JioSaavn is free with ads, with Pro adding no ads, downloads, offline listening and higher-quality audio.",
+          "source": "https://www.jio.com/apps/jiosaavn/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.jiosaavn.com/"
+        },
+        {
+          "label": "Artist guide",
+          "url": "https://artists1api.saavn.com/guide"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Mainstream",
+        "Free",
+        "Subscription"
+      ]
+    },
+    {
+      "code": "tidal",
+      "name": "Tidal",
+      "brand": "hi-fi streaming",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A paid hi-fi streaming service with artist tools, direct-to-fan sales for eligible uploads, and a broad catalog, but still mostly a rented streaming model.",
+      "scores": {
+        "artist_pay": 72,
+        "openness": 50,
+        "privacy": 60,
+        "catalog": 85,
+        "accessibility": 58
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "TIDAL has artist-facing tools and direct-to-fan sales for eligible uploads, but standard royalty reporting still flows through distributors or labels.",
+          "source": "https://support.tidal.com/hc/en-us/articles/15724815813137-Artist-Resources",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Main catalog use is licensed streaming, though eligible uploaded albums/tracks can now be sold directly to fans.",
+          "source": "https://support.tidal.com/hc/en-us/articles/44704222091025-Direct-to-Fan-Sales",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "TIDAL's 2026 privacy notice lists account, subscription, usage, playback, search, login and device data processing.",
+          "source": "https://tidal.com/privacy",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "TIDAL markets more than 110 million songs in HiFi sound quality.",
+          "source": "https://tidal.com/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Current US pricing is paid subscription plus free trial; individual, family and student plans are listed.",
+          "source": "https://support.tidal.com/hc/en-us/articles/115003662825-Subscription-Types",
+          "asof": "2026"
+        }
+      },
+      "links": [
+    {
+      "label": "Website",
+      "url": "https://tidal.com/"
+    },
+    {
+      "label": "Artist resources",
+      "url": "https://support.tidal.com/hc/en-us/articles/15724815813137-Artist-Resources"
+    },
+    {
+      "label": "Direct sales",
+      "url": "https://support.tidal.com/hc/en-us/articles/44704222091025-Direct-to-Fan-Sales"
+    },
+    {
+      "label": "Privacy",
+      "url": "https://tidal.com/privacy"
+    }
+  ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Higher payouts",
+        "Hi-res"
+      ]
+    },
+    {
+      "code": "qobuz",
+      "name": "Qobuz",
+      "brand": "hi-res + store",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "An audiophile-leaning paid service with published average payout data, a hi-res download store, and more ownership than streaming-only apps.",
+      "scores": {
+        "artist_pay": 84,
+        "openness": 62,
+        "privacy": 62,
+        "catalog": 88,
+        "accessibility": 55
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Qobuz says an independent audit confirmed average 2024 royalties of US$0.01873 per stream to labels and publishers, who then pay artists under contracts.",
+          "source": "https://community.qobuz.com/press-en/qobuz-unveils-its-average-payout-per-stream",
+          "asof": "2025"
+        },
+        "openness": {
+          "note": "Qobuz pairs streaming with a Hi-Res/CD-quality download store, improving ownership compared with streaming-only services.",
+          "source": "https://community.qobuz.com/press-en/qobuz-unveils-its-average-payout-per-stream",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Qobuz's personal-data page describes subscription, usage, cookies and service-improvement processing under Xandrie.",
+          "source": "https://www.qobuz.com/us-en/discover/legals/privacy",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Qobuz says it offers more than 100 million tracks for streaming.",
+          "source": "https://www.qobuz.com/us-en/discover",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Paid-only model with free trial; US plan page lists annual and monthly pricing.",
+          "source": "https://www.qobuz.com/us-en/discover",
+          "asof": "2026"
+        }
+      },
+      "links": [
+    {
+      "label": "Website",
+      "url": "https://www.qobuz.com/"
+    },
+    {
+      "label": "Payout audit",
+      "url": "https://community.qobuz.com/press-en/qobuz-unveils-its-average-payout-per-stream"
+    },
+    {
+      "label": "Privacy",
+      "url": "https://www.qobuz.com/us-en/discover/legals/privacy"
+    }
+  ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Hi-res",
+        "Buy to own"
+      ]
+    },
+    {
+      "code": "presto-music",
+      "name": "Presto Music",
+      "brand": "classical & jazz streaming/store",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A specialist classical and jazz service with CD-quality streaming, high-resolution downloads, and a pay-per-second streaming model.",
+      "scores": {
+        "artist_pay": 78,
+        "openness": 68,
+        "privacy": 58,
+        "catalog": 68,
+        "accessibility": 54
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Presto says its streaming royalties are paid by playtime, not track count, to avoid short tracks diluting longer classical works.",
+          "source": "https://www.prestomusic.com/help/79000088373",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Presto offers purchased digital downloads alongside streaming, including lossless and high-resolution options where available.",
+          "source": "https://www.prestomusic.com/help/73000058941",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "The Android app listing reports collection of personal info and app activity, with data not shared with third parties.",
+          "source": "https://play.google.com/store/apps/details?id=com.prestomusic.stream",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Presto says its streaming service offers around 200,000 classical and jazz albums, strong in niche depth rather than all-purpose breadth.",
+          "source": "https://www.prestomusic.com/help/46000055171",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "The service is paid and region-limited, available in the UK, US, Canada, Australia/New Zealand and about 30 European countries.",
+          "source": "https://www.prestomusic.com/help/73000058767",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.prestomusic.com/"
+        },
+        {
+          "label": "Streaming royalties",
+          "url": "https://www.prestomusic.com/help/79000088373"
+        }
+      ],
+      "region": [
+        "US",
+        "UK",
+        "EU"
+      ],
+      "focuses": [
+        "Hi-res",
+        "Buy to own",
+        "Subscription"
+      ]
+    },
+    {
+      "code": "idagio",
+      "name": "IDAGIO",
+      "brand": "classical streaming",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A classical-specialist streaming service with work-aware search, expert curation, a free radio mode, and paid on-demand plans.",
+      "scores": {
+        "artist_pay": 56,
+        "openness": 42,
+        "privacy": 72,
+        "catalog": 66,
+        "accessibility": 70
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "IDAGIO is a licensed streaming service, but it does not publish a direct artist-centric payout rate like Qobuz or Bandcamp.",
+          "source": "https://support.idagio.com/en/articles/3478664-what-is-idagio",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Free access is radio-style; on-demand, offline listening, and lossless audio sit behind subscriptions rather than DRM-free ownership.",
+          "source": "https://support.idagio.com/en/articles/3478702-which-subscriptions-are-available",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "IDAGIO support says it requires an email address and will not share personal information with third parties.",
+          "source": "https://support.idagio.com/en/articles/3478729-how-does-idagio-handle-my-privacy",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "IDAGIO says it has a catalogue of over 2 million licensed classical tracks with search tailored for classical works.",
+          "source": "https://support.idagio.com/en/articles/3478664-what-is-idagio",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "IDAGIO offers a free tier plus paid plans, though full on-demand and offline features require subscription.",
+          "source": "https://support.idagio.com/en/articles/3478702-which-subscriptions-are-available",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.idagio.com/"
+        },
+        {
+          "label": "Subscriptions",
+          "url": "https://support.idagio.com/en/articles/3478702-which-subscriptions-are-available"
+        }
+      ],
+      "region": [
+        "US",
+        "UK",
+        "EU",
+        "global"
+      ],
+      "focuses": [
+        "Hi-res",
+        "Subscription"
+      ]
+    },
+    {
+      "code": "beatport",
+      "name": "Beatport",
+      "brand": "DJ download store",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A DJ-focused electronic and open-format music store where buying tracks can matter more than passive streaming.",
+      "scores": {
+        "artist_pay": 74,
+        "openness": 70,
+        "privacy": 55,
+        "catalog": 72,
+        "accessibility": 58
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "publishes high average streaming payout claims and supports paid downloads through labels/distributors",
+          "source": "https://www.beatportal.com/articles/144975-streaming-royalties-beatport-supports-artists-with-highest-streaming-payout-rate",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "downloaded tracks can be kept; streaming subscriptions remain locked to DJ software",
+          "source": "https://www.beatportal.com/articles/144975-streaming-royalties-beatport-supports-artists-with-highest-streaming-payout-rate",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "standard commercial music-service account and purchase data",
+          "source": "https://www.beatportal.com/articles/144975-streaming-royalties-beatport-supports-artists-with-highest-streaming-payout-rate",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "millions of tracks across 40+ DJ/electronic and open-format genres",
+          "source": "https://www.beatportal.com/articles/144975-streaming-royalties-beatport-supports-artists-with-highest-streaming-payout-rate",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "paid downloads/streaming; strongest for DJs, less useful for casual listeners",
+          "source": "https://www.beatportal.com/articles/144975-streaming-royalties-beatport-supports-artists-with-highest-streaming-payout-rate",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.beatport.com/"
+        },
+        {
+          "label": "Payout claim",
+          "url": "https://www.beatportal.com/articles/144975-streaming-royalties-beatport-supports-artists-with-highest-streaming-payout-rate"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Buy to own",
+        "Higher payouts"
+      ]
+    },
+    {
+      "code": "soundcloud",
+      "name": "SoundCloud",
+      "brand": "creator platform",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A creator-upload platform with fan-powered royalties and strong discovery for emerging artists, alongside standard streaming tradeoffs.",
+      "scores": {
+        "artist_pay": 60,
+        "openness": 50,
+        "privacy": 55,
+        "catalog": 70,
+        "accessibility": 78
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "SoundCloud's fan-powered royalties direct listener revenue toward the artists a fan actually streams.",
+          "source": "https://help.soundcloud.com/hc/en-us/articles/1260801306810-Fan-powered-Royalties",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "DRM streaming; open uploads",
+          "source": "https://help.soundcloud.com/hc/en-us/articles/1260801306810-Fan-powered-Royalties",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "standard tracking",
+          "source": "https://help.soundcloud.com/hc/en-us/articles/1260801306810-Fan-powered-Royalties",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "huge for emerging/indie",
+          "source": "https://help.soundcloud.com/hc/en-us/articles/1260801306810-Fan-powered-Royalties",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "free tier + paid",
+          "source": "https://help.soundcloud.com/hc/en-us/articles/1260801306810-Fan-powered-Royalties",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://soundcloud.com/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Free tier",
+        "Independent"
+      ]
+    },
+    {
+      "code": "audiomack",
+      "name": "Audiomack",
+      "brand": "creator-upload streaming",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free, creator-upload streaming and discovery platform with monetization for eligible artists and strong mobile access.",
+      "scores": {
+        "artist_pay": 64,
+        "openness": 48,
+        "privacy": 64,
+        "catalog": 78,
+        "accessibility": 90
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Audiomack Monetization Program lets eligible creators earn money and receive payouts from streams.",
+          "source": "https://audiomack.zendesk.com/hc/en-us/articles/6382965117338-What-is-the-Audiomack-Monetization-Program-AMP",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Creators can upload limitless music and podcasts, but listener access is still a platform streaming model rather than DRM-free ownership.",
+          "source": "https://creators.audiomack.com/creator-app",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Audiomack says its ad-supported free listening model is designed around minimum data collection and anonymous advertisers.",
+          "source": "https://audiomack.com/about/privacy-policy",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "On-demand creator uploads and free limitless artist uploads make it broad for emerging and regional scenes, not a full major-label substitute.",
+          "source": "https://creators.audiomack.com/creator-app",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Free listening and mobile/web access make it easy to use, with monetization funded partly by advertising.",
+          "source": "https://audiomack.com/about/privacy-policy",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://audiomack.com/"
+        },
+        {
+          "label": "Monetization",
+          "url": "https://audiomack.zendesk.com/hc/en-us/articles/6382965117338-What-is-the-Audiomack-Monetization-Program-AMP"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Free tier",
+        "Artist-first",
+        "Independent"
+      ]
+    },
+    {
+      "code": "itunes-store-downloads",
+      "name": "iTunes Store downloads",
+      "brand": "mainstream download store",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A mainstream buy-to-own route for downloadable music files, useful when you want ownership without using a niche store.",
+      "scores": {
+        "artist_pay": 62,
+        "openness": 74,
+        "privacy": 64,
+        "catalog": 82,
+        "accessibility": 70
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Purchased music creates a specific paid sale through Apple's music storefront, though the source does not disclose artist/label splits.",
+          "source": "https://support.apple.com/en-us/108346",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Apple says iTunes Plus songs are DRM-free 256 kbps AAC files after upgrade or purchase where available.",
+          "source": "https://support.apple.com/en-us/118290",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Apple's privacy policy covers media purchases and account data, but the model is less ad-driven than free streaming.",
+          "source": "https://www.apple.com/legal/privacy/en-ww/",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "The iTunes Store remains a large mainstream music-purchase channel, but it is not the same as a complete streaming catalog.",
+          "source": "https://support.apple.com/en-us/108346",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Apple documents buying and redownloading iTunes Store music across Apple devices and Windows.",
+          "source": "https://support.apple.com/en-us/108346",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Buy music help",
+          "url": "https://support.apple.com/en-us/108346"
+        },
+        {
+          "label": "iTunes Plus",
+          "url": "https://support.apple.com/en-us/118290"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Buy to own",
+        "DRM-free",
+        "Mainstream"
+      ]
+    },
+    {
+      "code": "apple-music",
+      "name": "Apple Music",
+      "brand": "major streaming",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A paid mainstream service with strong catalog and Apple privacy posture, but no DRM-free ownership.",
+      "scores": {
+        "artist_pay": 58,
+        "openness": 40,
+        "privacy": 64,
+        "catalog": 92,
+        "accessibility": 66
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Apple's artist page says individual paid plans averaged about $0.01 per play in 2020, including label and publisher royalties.",
+          "source": "https://artists.apple.com/support/1124-apple-music-insights-royalty-rate",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Apple Music is subscription streaming; access is not DRM-free ownership of the catalog.",
+          "source": "https://artists.apple.com/support/1124-apple-music-insights-royalty-rate",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Apple's stated privacy stance",
+          "source": "https://www.apple.com/legal/privacy/en-ww/",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Apple Music is a mainstream paid catalog service, though the cited royalty page is about payout policy rather than exact catalog size.",
+          "source": "https://artists.apple.com/support/1124-apple-music-insights-royalty-rate",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Paid-only long-term use, with especially smooth access on Apple devices.",
+          "source": "https://artists.apple.com/support/1124-apple-music-insights-royalty-rate",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://music.apple.com/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Mainstream",
+        "Subscription"
+      ]
+    },
+    {
+      "code": "deezer",
+      "name": "Deezer",
+      "brand": "major streaming",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A mainstream streaming platform experimenting with artist-centric royalty rules while remaining a standard licensed-access service.",
+      "scores": {
+        "artist_pay": 55,
+        "openness": 42,
+        "privacy": 58,
+        "catalog": 85,
+        "accessibility": 70
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Deezer documents an Artist-Centric Payment System intended to reward engaged listening and reduce low-value noise/fraud.",
+          "source": "https://support.deezer.com/hc/en-gb/articles/360002471277-Artist-Centric-Payment-Model-ACPS",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Deezer is licensed streaming; offline downloads are a paid-plan feature rather than DRM-free ownership.",
+          "source": "https://www.deezer.com/us/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Deezer treats listening history, favorite content, searches, product interaction and advertising data as personal data.",
+          "source": "https://www.deezer.com/legal/personal-datas",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Deezer says it provides access to over 120 million tracks worldwide.",
+          "source": "https://www.deezer.com/us/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Deezer offers a free ad-supported tier plus paid plans with offline listening.",
+          "source": "https://www.deezer.com/us/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.deezer.com/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Mainstream",
+        "Free tier"
+      ]
+    },
+    {
+      "code": "amazon-music",
+      "name": "Amazon Music",
+      "brand": "major streaming",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A large streaming catalog tied into Amazon's wider account and Prime ecosystem.",
+      "scores": {
+        "artist_pay": 50,
+        "openness": 38,
+        "privacy": 48,
+        "catalog": 90,
+        "accessibility": 72
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Amazon Music for Artists says Amazon pays rightsholders, who then distribute royalties according to their artist agreements.",
+          "source": "https://artists.amazonmusic.com/faqs",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Amazon Music is licensed streaming access; catalog listening is not DRM-free ownership.",
+          "source": "https://artists.amazonmusic.com/faqs",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Amazon's privacy notice covers account, usage, advertising, device and purchasing data across Amazon services.",
+          "source": "https://www.amazon.com/gp/help/customer/display.html?nodeId=G68Q9QDUWRZSJX2W",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Amazon says Music Unlimited has over 100 million songs in HD, while Prime members get access to 100 million songs ad-free.",
+          "source": "https://artists.amazonmusic.com/faqs",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Amazon Music combines Prime-bundled access, Unlimited on-demand access, and a free ad-supported experience in selected countries.",
+          "source": "https://artists.amazonmusic.com/faqs",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://music.amazon.com/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Mainstream",
+        "Subscription"
+      ]
+    },
+    {
+      "code": "youtube-music",
+      "name": "YouTube Music",
+      "brand": "major streaming",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A highly accessible music layer on YouTube's ad and account ecosystem, strong on catalog but weak on privacy and ownership.",
+      "scores": {
+        "artist_pay": 38,
+        "openness": 38,
+        "privacy": 38,
+        "catalog": 92,
+        "accessibility": 86
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "YouTube said it paid the music industry over $8B from July 2024-June 2025 through ads plus subscriptions, but this is still rights-holder payout rather than direct artist purchase.",
+          "source": "https://blog.youtube/news-and-events/8-billion-youtubes-twin-engine-continues-to-fuel-the-future-of-music/",
+          "asof": "2025"
+        },
+        "openness": {
+          "note": "YouTube Music is licensed streaming tied to Google's platform, not DRM-free ownership.",
+          "source": "https://blog.youtube/news-and-events/8-billion-youtubes-twin-engine-continues-to-fuel-the-future-of-music/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Google privacy policy covers YouTube/YouTube Music account, activity and ad-personalization data.",
+          "source": "https://policies.google.com/privacy?hl=en-US",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "YouTube cites more than 2 billion logged-in monthly music-video viewers alongside its subscription base.",
+          "source": "https://blog.youtube/news-and-events/8-billion-youtubes-twin-engine-continues-to-fuel-the-future-of-music/",
+          "asof": "2025"
+        },
+        "accessibility": {
+          "note": "Large free/ad-supported access plus paid Music/Premium subscriptions make it highly accessible.",
+          "source": "https://blog.youtube/news-and-events/8-billion-youtubes-twin-engine-continues-to-fuel-the-future-of-music/",
+          "asof": "2025"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://music.youtube.com/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Mainstream",
+        "Free tier"
+      ]
+    },
+    {
+      "code": "pandora",
+      "name": "Pandora",
+      "brand": "mainstream radio-style streaming",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A U.S.-only personalized radio and on-demand streaming service with strong ease of use, ad support, and standard platform privacy tradeoffs.",
+      "scores": {
+        "artist_pay": 44,
+        "openness": 35,
+        "privacy": 36,
+        "catalog": 86,
+        "accessibility": 82
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Pandora offers artist AMP tools and distributor onboarding, but listener revenue still flows through platform/rightsholder licensing rather than direct purchases.",
+          "source": "https://www.ampplaybook.com/independent-artist-submissions",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Pandora Premium and Plus are licensed streaming/offline access services, not DRM-free music ownership.",
+          "source": "https://play.google.com/store/apps/details?id=com.pandora.android",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "The Android listing reports third-party sharing and collection of location, personal information, and other data types.",
+          "source": "https://play.google.com/store/apps/details?id=com.pandora.android",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Pandora's AMP playbook says its catalog expansion gives listeners access to over 10 million unique artists.",
+          "source": "https://www.ampplaybook.com/independent-artist-submissions",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Pandora has a free ad-supported app plus Plus and Premium subscriptions, but the app listing says availability is U.S.-only.",
+          "source": "https://play.google.com/store/apps/details?id=com.pandora.android",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.pandora.com/"
+        },
+        {
+          "label": "AMP playbook",
+          "url": "https://www.ampplaybook.com/independent-artist-submissions"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Mainstream",
+        "Free tier"
+      ]
+    },
+    {
+      "code": "spotify",
+      "name": "Spotify",
+      "brand": "major streaming",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "The default global streaming app for many listeners, excellent on catalog and convenience but structurally weak for artist income and ownership.",
+      "scores": {
+        "artist_pay": 36,
+        "openness": 40,
+        "privacy": 50,
+        "catalog": 95,
+        "accessibility": 88
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Spotify says it uses streamshare rather than a fixed per-stream rate, and artist royalties vary by market and label/distributor agreements.",
+          "source": "https://support.spotify.com/us/artists/article/understanding-spotify-royalties/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Spotify is a licensed streaming-access service; offline listening is not user-owned DRM-free music.",
+          "source": "https://support.spotify.com/us/article/spotify-content-access/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Spotify privacy policy covers personalization, usage data and advertising/measurement data processing.",
+          "source": "https://www.spotify.com/us/legal/privacy-policy/",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Spotify's Loud & Clear says it analyzed 2025 royalty data and explains how money flows through the streaming economy.",
+          "source": "https://loudandclear.byspotify.com/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Broad global availability and a large free tier make Spotify one of the easiest mainstream services to adopt.",
+          "source": "https://www.spotify.com/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.spotify.com/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Mainstream",
+        "Free tier"
+      ]
+    },
+    {
+      "code": "radio-paradise",
+      "name": "Radio Paradise",
+      "brand": "listener-supported internet radio",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A human-curated, commercial-free internet radio option with excellent ease and audio quality, but no ownership or on-demand catalog.",
+      "scores": {
+        "artist_pay": 52,
+        "openness": 45,
+        "privacy": 72,
+        "catalog": 62,
+        "accessibility": 86
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Radio Paradise is listener-supported and commercial-free, but it is still radio-style listening rather than direct artist purchase.",
+          "source": "https://legacy.radioparadise.com/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Radio Paradise streams curated channels; it does not give listeners DRM-free ownership of the music.",
+          "source": "https://www.radioparadise.com/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "The iOS App Store privacy label says Radio Paradise collects usage and diagnostic data not linked to the user.",
+          "source": "https://apps.apple.com/us/app/radio-paradise/id517818306",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "The catalog is broad for human-curated radio across rock, world, electronica, jazz and classical touches, but not an all-music search catalog.",
+          "source": "https://www.radioparadise.com/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Radio Paradise offers free, no-ad streaming with no subscription fees through web and apps.",
+          "source": "https://legacy.radioparadise.com/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.radioparadise.com/"
+        },
+        {
+          "label": "Privacy",
+          "url": "https://radioparadise.com/info/privacy-policy"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Free",
+        "Independent",
+        "No ads"
+      ]
+    },
+    {
+      "code": "wfmu",
+      "name": "WFMU",
+      "brand": "listener-supported freeform radio",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A listener-supported freeform radio institution with deep archives and strong privacy signals, best for discovery rather than choosing exact albums.",
+      "scores": {
+        "artist_pay": 58,
+        "openness": 55,
+        "privacy": 82,
+        "catalog": 68,
+        "accessibility": 82
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "WFMU is listener-supported and non-commercial, supporting music discovery without ad-driven platform economics, though it is not direct artist purchase.",
+          "source": "https://wfmu.org/about.shtml",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "WFMU offers live streams, web-only channels, archives and podcasts, but not DRM-free ownership of the underlying music.",
+          "source": "https://wfmu.org/mobile.shtml",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "WFMU's privacy policy describes limited information collection, and the iOS app listing says the app does not collect data.",
+          "source": "https://wfmu.org/page.php/privacypolicy",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "WFMU has a broad freeform schedule, web-only channels, archives and podcasts, but it is curated radio rather than a full on-demand catalog.",
+          "source": "https://wfmu.org/mobile.shtml",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "WFMU streams free online and through mobile apps, with no paid subscription required.",
+          "source": "https://wfmu.org/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://wfmu.org/"
+        },
+        {
+          "label": "About",
+          "url": "https://wfmu.org/about.shtml"
+        }
+      ],
+      "region": [
+        "US",
+        "global"
+      ],
+      "focuses": [
+        "Free",
+        "Nonprofit",
+        "Independent"
+      ]
+    },
+    {
+      "code": "dublab",
+      "name": "dublab",
+      "brand": "nonprofit online radio",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A nonprofit, listener-powered radio station for independent and experimental music discovery.",
+      "scores": {
+        "artist_pay": 62,
+        "openness": 50,
+        "privacy": 68,
+        "catalog": 58,
+        "accessibility": 78
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "dublab is a listener-powered nonprofit station and says memberships support station operations and archives.",
+          "source": "https://www.dublab.com/support/memberships",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "dublab is streaming/community radio rather than downloadable music ownership.",
+          "source": "https://www.dublab.com/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "dublab's web model is lighter than ad-tech music platforms, though membership/newsletter tools still collect user information.",
+          "source": "https://www.dublab.com/support",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "The station is strong for independent, experimental and cultural programming, but it is not a mainstream all-catalog streaming service.",
+          "source": "https://www.dublab.com/aboutdetail",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "dublab streams freely online, with optional donations and memberships.",
+          "source": "https://www.dublab.com/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.dublab.com/"
+        },
+        {
+          "label": "Support",
+          "url": "https://www.dublab.com/support"
+        }
+      ],
+      "region": [
+        "US",
+        "global"
+      ],
+      "focuses": [
+        "Free",
+        "Nonprofit",
+        "Independent"
+      ]
+    },
+    {
+      "code": "the-lot-radio",
+      "name": "The Lot Radio",
+      "brand": "independent online radio",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A 24/7 independent online station from Brooklyn, strongest for DJ culture and human-curated discovery.",
+      "scores": {
+        "artist_pay": 58,
+        "openness": 45,
+        "privacy": 66,
+        "catalog": 55,
+        "accessibility": 76
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "The Lot Radio is an independent nonprofit online station; it supports scenes and selectors, but is not a direct artist-sales channel.",
+          "source": "https://www.thelotradio.com/about",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "The Lot Radio streams and archives station programming but does not provide owned music files.",
+          "source": "https://www.thelotradio.com/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "The Lot Radio publishes a current privacy policy explaining collection and use of visitor and registered-user information.",
+          "source": "https://www.thelotradio.com/privacy-policy",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "The catalog is a continuous curated stream of NYC and international DJ programming, not searchable all-music access.",
+          "source": "https://www.thelotradio.com/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "The station streams free 24/7 online and through apps, supported by donations, merch and its kiosk model.",
+          "source": "https://www.thelotradio.com/about",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.thelotradio.com/"
+        },
+        {
+          "label": "About",
+          "url": "https://www.thelotradio.com/about"
+        }
+      ],
+      "region": [
+        "US",
+        "global"
+      ],
+      "focuses": [
+        "Free",
+        "Nonprofit",
+        "Independent"
+      ]
+    },
+    {
+      "code": "kcrw-music",
+      "name": "KCRW Music",
+      "brand": "public radio music discovery",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A public-radio music discovery option with free live and app streams, especially useful for curated listening rather than ownership.",
+      "scores": {
+        "artist_pay": 54,
+        "openness": 45,
+        "privacy": 58,
+        "catalog": 62,
+        "accessibility": 84
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "KCRW is a listener/member-supported public radio station and music-discovery platform, though it is not direct artist purchase.",
+          "source": "https://www.kcrw.com/pages/about-kcrw",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "KCRW offers live and on-demand music channels through its app and site, but not DRM-free owned music.",
+          "source": "https://www.kcrw.com/pages/kcrw-app-campaign",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "KCRW publishes an online privacy policy describing collected information and disclosure practices.",
+          "source": "https://www.kcrw.com/pages/privacy-policy",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "KCRW is strong for curated music discovery, original shows and free on-demand music channels, but not a comprehensive catalog service.",
+          "source": "https://www.kcrw.com/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "KCRW is available free via web and app, with local FM reach and worldwide streaming.",
+          "source": "https://www.kcrw.com/pages/about-kcrw",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.kcrw.com/"
+        },
+        {
+          "label": "About",
+          "url": "https://www.kcrw.com/pages/about-kcrw"
+        }
+      ],
+      "region": [
+        "US",
+        "global"
+      ],
+      "focuses": [
+        "Free",
+        "Public",
+        "Independent"
+      ]
+    },
+    {
+      "code": "beatstars",
+      "name": "BeatStars",
+      "brand": "producer marketplace",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A beat marketplace where producers set licenses and prices directly, useful for creators buying production rather than casual listening.",
+      "scores": {
+        "artist_pay": 76,
+        "openness": 70,
+        "privacy": 42,
+        "catalog": 74,
+        "accessibility": 70
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "BeatStars says producers manage their own licenses, pricing, sales and client communication, making it more artist/producer-directed than passive streaming.",
+          "source": "https://help.beatstars.com/hc/en-us/articles/360047401174-What-if-I-have-a-question-about-a-license-product-or-service-purchase",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "BeatStars sells licenses and files under producer-defined terms; ownership and usage rights vary by license rather than by platform-wide DRM-free ownership.",
+          "source": "https://blog.beatstars.com/posts/understanding-music-licenses-in-beatstars-studio",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "BeatStars' GDPR notice describes collection and use of personal data to provide services, process payments and customize the experience.",
+          "source": "https://academy.beatstars.com/policies/gdpr",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "BeatStars describes itself as a music marketplace for buying, selling and giving away beats, with producers managing their own stores.",
+          "source": "https://www.beatstars.com/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "BeatStars is easy to browse globally, but it serves creators buying/licensing beats rather than everyday streaming listeners.",
+          "source": "https://www.beatstars.com/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Marketplace",
+          "url": "https://www.beatstars.com/"
+        },
+        {
+          "label": "Licensing guide",
+          "url": "https://blog.beatstars.com/posts/understanding-music-licenses-in-beatstars-studio"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Artist-first",
+        "Buy to own",
+        "Independent"
+      ]
+    },
+    {
+      "code": "hdtracks",
+      "name": "HDtracks",
+      "brand": "hi-res download store",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A download-first option for people who want purchased high-resolution files rather than another rental-streaming subscription.",
+      "scores": {
+        "artist_pay": 56,
+        "openness": 76,
+        "privacy": 68,
+        "catalog": 58,
+        "accessibility": 54
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Download purchases create a clearer sale than passive streams, but HDtracks does not publish an artist/rightsholder split on its public store page.",
+          "source": "https://www.hdtracks.com/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "HDtracks describes itself as a high-resolution music platform for downloading tracks in master studio quality rather than a streaming-only rental service.",
+          "source": "https://www.hdtracks.com/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "A download store creates less continuous listening telemetry after purchase than streaming, but purchases still require account/payment data.",
+          "source": "https://www.hdtracks.com/",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "HDtracks is strong for audiophile and hi-res releases, but it is not a full mainstream streaming catalog replacement.",
+          "source": "https://www.hdtracks.com/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "The store is useful for hi-res buyers, but purchased downloads are pricier and more file-management-heavy than mainstream streaming.",
+          "source": "https://www.hdtracks.com/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.hdtracks.com/"
+        }
+      ],
+      "region": [
+        "US",
+        "global"
+      ],
+      "focuses": [
+        "Buy to own",
+        "Hi-res",
+        "Download store"
+      ]
+    },
+    {
+      "code": "bleep",
+      "name": "Bleep",
+      "brand": "independent download and record store",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "An independent-music shop for digital downloads, vinyl, CDs, cassettes, merch, and curated label discovery.",
+      "scores": {
+        "artist_pay": 70,
+        "openness": 82,
+        "privacy": 64,
+        "catalog": 58,
+        "accessibility": 62
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Bleep works with labels and artists around the globe and sells music and merch, but it does not publish a Bandcamp-style artist split.",
+          "source": "https://bleep.com/about-us",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Bleep says it sells vinyl, CDs, cassettes, digital files including 24-bit WAV, limited exclusives, and other formats.",
+          "source": "https://bleep.com/about-us",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "A store purchase model is lighter than ad-supported listening, but Bleep still needs account, payment, and order data.",
+          "source": "https://bleep.com/",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Bleep specializes in independent and innovative music across genre and format rather than all major-label catalog coverage.",
+          "source": "https://bleep.com/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Bleep sells globally online, but it is more useful for intentional buyers than for free, frictionless streaming.",
+          "source": "https://bleep.com/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://bleep.com/"
+        },
+        {
+          "label": "About",
+          "url": "https://bleep.com/about-us"
+        }
+      ],
+      "region": [
+        "UK",
+        "global"
+      ],
+      "focuses": [
+        "Independent",
+        "Buy to own",
+        "Download store"
+      ]
+    },
+    {
+      "code": "boomkat",
+      "name": "Boomkat",
+      "brand": "independent record and download store",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A specialist independent shop for vinyl, CDs, cassettes, and downloads, especially useful for deeper electronic, experimental, and archival music.",
+      "scores": {
+        "artist_pay": 68,
+        "openness": 80,
+        "privacy": 70,
+        "catalog": 56,
+        "accessibility": 58
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Boomkat is a specialist record store, so buying there supports a music retail ecosystem, though public artist/label split details are not posted.",
+          "source": "https://boomkat.com/about",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Boomkat says it supplies vinyl, CD, cassette, and download releases to customers in more than 100 countries.",
+          "source": "https://boomkat.com/about",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Boomkat's privacy notice explains collected personal data and says it is committed to protecting and respecting privacy.",
+          "source": "https://boomkat.com/privacy",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Boomkat is strong for independent, specialist, and underground releases, but not a universal mainstream streaming catalog.",
+          "source": "https://boomkat.com/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "The store ships and sells downloads worldwide, but pricing, import shipping, and niche curation make it less casual than streaming.",
+          "source": "https://boomkat.com/about",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://boomkat.com/"
+        },
+        {
+          "label": "About",
+          "url": "https://boomkat.com/about"
+        }
+      ],
+      "region": [
+        "UK",
+        "global"
+      ],
+      "focuses": [
+        "Independent",
+        "Buy to own",
+        "Physical media"
+      ]
+    },
+    {
+      "code": "discogs-marketplace",
+      "name": "Discogs Marketplace",
+      "brand": "music database and resale marketplace",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A huge music database and marketplace for buying and selling vinyl, CDs, cassettes, and other physical releases.",
+      "scores": {
+        "artist_pay": 45,
+        "openness": 88,
+        "privacy": 56,
+        "catalog": 86,
+        "accessibility": 62
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Discogs is mainly a marketplace for buyers and sellers, so secondhand purchases support collectors and shops more directly than artists.",
+          "source": "https://www.discogs.com/about/features/music-marketplace/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "The marketplace focuses on owned physical formats including vinyl, CDs, and cassettes rather than app-locked streams.",
+          "source": "https://www.discogs.com/about/features/music-marketplace/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Discogs publishes privacy and data-protection documentation for its marketplace, apps, API, and related services.",
+          "source": "https://support.discogs.com/hc/en-us/articles/360004240094-Privacy-and-Data-Protection",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Discogs describes itself as the largest online music database with a marketplace for records, CDs, cassettes, and more.",
+          "source": "https://www.discogs.com/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Discogs is globally browsable, but condition grading, seller reliability, shipping, and collector prices add friction.",
+          "source": "https://www.discogs.com/selling/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.discogs.com/"
+        },
+        {
+          "label": "Marketplace",
+          "url": "https://www.discogs.com/about/features/music-marketplace/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Buy to own",
+        "Physical media",
+        "Archive"
+      ]
+    },
+    {
+      "code": "ko-fi-artist-support",
+      "name": "Ko-fi artist support",
+      "brand": "direct creator tips and memberships",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A lightweight way to tip, subscribe to, or buy from musicians and creators who maintain their own support pages.",
+      "scores": {
+        "artist_pay": 88,
+        "openness": 58,
+        "privacy": 56,
+        "catalog": 35,
+        "accessibility": 72
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Ko-fi says it uses creator-friendly 0-5% fees and no monthly fee, with tips, memberships, sales, and commissions available.",
+          "source": "https://ko-fi.com/pricing",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Ko-fi can host creator shops and posts, but music/file ownership depends on how each artist configures their page.",
+          "source": "https://more.ko-fi.com/terms",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Ko-fi says supporter payments require basic details and that payment processors may reveal some information to creators.",
+          "source": "https://help.ko-fi.com/hc/en-us/articles/12284014348189-What-personal-information-is-shared-on-Ko-fi-as-supporter",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Ko-fi is not a music catalog; it is useful only when a specific artist or creator uses it.",
+          "source": "https://ko-fi.com/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Supporters can make one-off tips, memberships, and shop purchases, making it an easy direct-support complement to streaming.",
+          "source": "https://more.ko-fi.com/terms",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://ko-fi.com/"
+        },
+        {
+          "label": "Pricing",
+          "url": "https://ko-fi.com/pricing"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Artist-first",
+        "Subscription",
+        "Direct support"
+      ]
+    },
+    {
+      "code": "bandzoogle-artist-stores",
+      "name": "Bandzoogle artist stores",
+      "brand": "commission-free musician websites",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A musician website/storefront platform that lets artists sell music, merch, downloads, tickets, and fan subscriptions from their own sites.",
+      "scores": {
+        "artist_pay": 90,
+        "openness": 74,
+        "privacy": 62,
+        "catalog": 30,
+        "accessibility": 50
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Bandzoogle says artists can sell music and merch commission-free, including downloads, tickets, and band merchandise.",
+          "source": "https://bandzoogle.com/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Bandzoogle's music-selling tools support digital music downloads, so artists can offer owned files from their own sites.",
+          "source": "https://bandzoogle.com/features/sell-music",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Bandzoogle publishes a privacy policy and also lets artist sites add their own terms/privacy text, so privacy depends partly on the artist site setup.",
+          "source": "https://bandzoogle.com/terms/privacy-policy",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Bandzoogle is artist infrastructure, not a discovery catalog; fans benefit only when an artist has built a site there.",
+          "source": "https://bandzoogle.com/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "For fans, access depends on each artist's website; for artists, the platform provides templates and e-commerce tools.",
+          "source": "https://bandzoogle.com/sample-band-sites",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://bandzoogle.com/"
+        },
+        {
+          "label": "Sell music",
+          "url": "https://bandzoogle.com/features/sell-music"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Artist-first",
+        "Buy to own",
+        "Direct support"
+      ]
+    },
+    {
+      "code": "kickstarter-music",
+      "name": "Kickstarter Music",
+      "brand": "music crowdfunding",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A project-funding route for albums, reissues, venues, performances, and other music work before it exists.",
+      "scores": {
+        "artist_pay": 82,
+        "openness": 58,
+        "privacy": 42,
+        "catalog": 44,
+        "accessibility": 60
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Kickstarter says music projects have attracted more than a million backers, and its music page includes albums, reissues, shows, and performances.",
+          "source": "https://www.kickstarter.com/discover/categories/music",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Rewards can include downloads, physical media, tickets, or other artist-defined goods, but Kickstarter is not itself a DRM-free music library.",
+          "source": "https://www.kickstarter.com/music",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Kickstarter's privacy policy says it retains personal information as needed to provide services, so privacy is weaker than a simple cash-at-show purchase.",
+          "source": "https://www.kickstarter.com/privacy",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Kickstarter is a project marketplace, not a listening catalog; usefulness depends on active campaigns.",
+          "source": "https://www.kickstarter.com/discover/categories/music",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Backing a project is easy online, but delivery timing, project risk, and all-or-nothing funding make it less immediate than buying existing music.",
+          "source": "https://www.kickstarter.com/rules",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Music projects",
+          "url": "https://www.kickstarter.com/discover/categories/music"
+        },
+        {
+          "label": "Rules",
+          "url": "https://www.kickstarter.com/rules"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Artist-first",
+        "Crowdfunding",
+        "Direct support"
+      ]
+    },
+    {
+      "code": "resident-advisor",
+      "name": "Resident Advisor",
+      "brand": "electronic music events and tickets",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A global electronic-music guide for events, clubs, DJs, tickets, features, and scene discovery.",
+      "scores": {
+        "artist_pay": 58,
+        "openness": 40,
+        "privacy": 42,
+        "catalog": 68,
+        "accessibility": 72
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "RA ticketing helps promoters sell tickets for clubs, festivals, and electronic music events, supporting live-music infrastructure rather than streaming royalties.",
+          "source": "https://ra.co/tickets",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Resident Advisor is an events, editorial, and ticketing platform, not a music ownership or download service.",
+          "source": "https://ra.co/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "RA's privacy policy explains that personal data supplied through its services may be processed by RA or on its behalf.",
+          "source": "https://ra.co/privacy",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "RA is strong for electronic music events, clubs, DJs, tickets, news, and rave culture, but not for all-genre catalog listening.",
+          "source": "https://ra.co/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "RA provides global event discovery and ticketing, but its usefulness depends on geography and live-event budget.",
+          "source": "https://ra.co/events/us/losangeles",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://ra.co/"
+        },
+        {
+          "label": "Tickets",
+          "url": "https://ra.co/tickets"
+        }
+      ],
+      "region": [
+        "US",
+        "UK",
+        "EU",
+        "global"
+      ],
+      "focuses": [
+        "Live events",
+        "Independent",
+        "Tickets"
+      ]
+    },
+    {
+      "code": "apple-music-classical",
+      "name": "Apple Music Classical",
+      "brand": "classical-focused Apple app",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A dedicated classical-music app included with Apple Music, useful for metadata, search, and catalog depth but still part of the Apple Music rental ecosystem.",
+      "scores": {
+        "artist_pay": 42,
+        "openness": 25,
+        "privacy": 56,
+        "catalog": 94,
+        "accessibility": 76
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Apple Music Classical is included inside Apple Music rather than a direct-purchase model, so artist support follows the ordinary streaming-rights chain.",
+          "source": "https://music.apple.com/us/info/apple-music-classical",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "The app syncs with Apple Music and requires an Apple Music subscription for full access, so it is not an owned-file or DRM-free route.",
+          "source": "https://music.apple.com/us/info/apple-music-classical",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Apple says it collects Apple Music and Classical usage information for features such as personalized recommendations and release notifications.",
+          "source": "https://www.apple.com/legal/privacy/data/en/apple-music/",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Apple says Classical is included with Apple Music and gives access to more than 100 million tracks across the combined subscription.",
+          "source": "https://music.apple.com/us/info/apple-music-classical",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Apple says Classical is available on iPhone, iPad, Android and web, wherever Apple Music is offered except Russia and Turkiye.",
+          "source": "https://music.apple.com/us/info/apple-music-classical",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Apple Music Classical",
+          "url": "https://music.apple.com/us/info/apple-music-classical"
+        },
+        {
+          "label": "Privacy",
+          "url": "https://www.apple.com/legal/privacy/data/en/apple-music/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Mainstream",
+        "Subscription",
+        "Classical"
+      ]
+    },
+    {
+      "code": "naxos-music-library",
+      "name": "Naxos Music Library",
+      "brand": "classical library streaming",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A classical, jazz, world, and educational streaming library often accessed through schools, universities, conservatories, and public libraries.",
+      "scores": {
+        "artist_pay": 50,
+        "openness": 34,
+        "privacy": 64,
+        "catalog": 84,
+        "accessibility": 68
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Naxos Music Library is a licensed institutional and personal subscription service, not a direct artist-purchase channel.",
+          "source": "https://www.naxos.com/FeaturePages/Details/?id=Naxos_Music_Library__3000000_tracks_and_counting",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "NML is a streaming library with app and desktop access rather than a DRM-free download store.",
+          "source": "https://cdn.naxosmusiclibrary.com/sharedfiles/nml/en/MobileAccess/index.htm",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Library or institutional access can reduce ad-tech exposure, but privacy depends on the institution and Naxos account path used.",
+          "source": "https://www.naxos.com/individualMobileApps/Index/?title=NML",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Naxos describes NML as approaching three million classical tracks from more than a thousand labels, with musicologist-authored metadata.",
+          "source": "https://www.naxos.com/individualMobileApps/Index/?title=NML",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Naxos says millions can use NML free through institutions such as libraries, universities, conservatories and schools, while individuals can subscribe.",
+          "source": "https://www.naxos.com/FeaturePages/Details/?id=Naxos_Music_Library__3000000_tracks_and_counting",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Naxos Music Library",
+          "url": "https://www.naxos.com/individualMobileApps/Index/?title=NML"
+        },
+        {
+          "label": "NML overview",
+          "url": "https://www.naxos.com/FeaturePages/Details/?id=Naxos_Music_Library__3000000_tracks_and_counting"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Library",
+        "Classical",
+        "Educational"
+      ]
+    },
+    {
+      "code": "nugs-live-music",
+      "name": "nugs",
+      "brand": "official live recordings",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A live-music subscription and store for artist-official concert audio, livestreams, videos, downloads, and CDs.",
+      "scores": {
+        "artist_pay": 70,
+        "openness": 58,
+        "privacy": 50,
+        "catalog": 62,
+        "accessibility": 66
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "nugs emphasizes artist-official live recordings and lets fans buy shows as downloads, CDs, and other formats.",
+          "source": "https://www.nugs.net/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "The service is subscription streaming first, but nugs also sells downloads and CDs for some shows without requiring a subscription.",
+          "source": "https://www.nugs.net/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "nugs requires accounts and subscription or purchase activity, so it has more behavioral data than buying at a merch table.",
+          "source": "https://www.nugs.net/",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "nugs says a subscription covers streaming audio from 30,000+ live shows, with new shows added daily and livestream/video access.",
+          "source": "https://help.nugs.net/support/solutions/articles/6000276165-what-is-nugs-and-how-much-does-it-cost-",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "nugs starts at a paid subscription price and runs on web, mobile, Sonos and BluOS, but pay-per-view livestreams may cost extra.",
+          "source": "https://help.nugs.net/support/solutions/articles/6000276165-what-is-nugs-and-how-much-does-it-cost-",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "nugs",
+          "url": "https://www.nugs.net/"
+        },
+        {
+          "label": "Pricing",
+          "url": "https://help.nugs.net/support/solutions/articles/6000276165-what-is-nugs-and-how-much-does-it-cost-"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Live events",
+        "Hi-res",
+        "Subscription"
+      ]
+    },
+    {
+      "code": "veeps-live-concerts",
+      "name": "VEEPS",
+      "brand": "livestream concert platform",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A concert livestream and on-demand platform for ticketed and subscription live music, useful when attending in person is not possible.",
+      "scores": {
+        "artist_pay": 62,
+        "openness": 26,
+        "privacy": 42,
+        "catalog": 58,
+        "accessibility": 70
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "VEEPS sells access to live and on-demand concerts, so support is closer to ticketing than passive background streaming, though platform splits vary.",
+          "source": "https://support.veeps.com/en/articles/10620241-faqs-about-watching-veeps",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "VEEPS is a locked streaming platform for performances, not a download or music-ownership route.",
+          "source": "https://support.veeps.com/en/articles/10620241-faqs-about-watching-veeps",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "VEEPS requires account and viewing/payment data for concert access, so privacy is weaker than local files or public radio.",
+          "source": "https://veeps.com/",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "VEEPS says All Access provides more than 500 shows per year, but the catalog is live-event-focused rather than all recorded music.",
+          "source": "https://veeps.com/all-access",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "VEEPS says it offers direct access to live concerts, music and events from anywhere in the world.",
+          "source": "https://support.veeps.com/en/articles/10620241-faqs-about-watching-veeps",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "VEEPS",
+          "url": "https://veeps.com/"
+        },
+        {
+          "label": "All Access",
+          "url": "https://veeps.com/all-access"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Live events",
+        "Tickets",
+        "Subscription"
+      ]
+    },
+    {
+      "code": "plexamp",
+      "name": "Plexamp",
+      "brand": "personal library streaming",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A polished player for streaming your own Plex-hosted music library across devices, strongest when paired with music you already bought or ripped legally.",
+      "scores": {
+        "artist_pay": 40,
+        "openness": 84,
+        "privacy": 62,
+        "catalog": 45,
+        "accessibility": 70
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Plexamp does not itself pay artists; its values benefit depends on whether the listener acquired the music through fair purchases or legal copies.",
+          "source": "https://www.plex.tv/plexamp/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Plex says Plexamp explores your own library and requires Plex Media Server to play personal music content.",
+          "source": "https://www.plex.tv/plexamp/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Plexamp keeps listening centered on a personal library, but Plex still uses accounts and optional analytics/tracking technologies on its services.",
+          "source": "https://www.plex.tv/plexamp/",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "The catalog is whatever music you own or manage in Plex Media Server, not a universal licensed streaming catalog.",
+          "source": "https://www.plex.tv/plexamp/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Plexamp is free with many core features, but it requires a Plex Media Server and some features are reserved for Plex Pass.",
+          "source": "https://www.plex.tv/plexamp/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Plexamp",
+          "url": "https://www.plex.tv/plexamp/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Own it",
+        "Personal library",
+        "Free"
+      ]
+    },
+    {
+      "code": "roon",
+      "name": "Roon",
+      "brand": "audiophile library software",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A paid audiophile library layer that brings local files, selected streaming services, rich metadata, and whole-home playback together.",
+      "scores": {
+        "artist_pay": 38,
+        "openness": 78,
+        "privacy": 56,
+        "catalog": 62,
+        "accessibility": 42
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Roon is library/playback software, not a music-rights payment service; artist support comes from the files or linked services the listener uses.",
+          "source": "https://roon.app/en/music/organization",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Roon says it brings local files and streaming music together while watching local folders without touching the files.",
+          "source": "https://roon.app/en/music/organization",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Roon keeps a personal library model, but Valence personalization and service integrations mean it is not a purely offline local player.",
+          "source": "https://roon.app/en/pricing",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Roon imports local files plus favorites from KKBOX, nugs, Qobuz and TIDAL, and includes a live-radio directory.",
+          "source": "https://roon.app/en/compatibility",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "Roon lists paid monthly, annual, and lifetime pricing, making it a high-friction option compared with free library tools.",
+          "source": "https://roon.app/en/pricing",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Roon",
+          "url": "https://roon.app/en/"
+        },
+        {
+          "label": "Pricing",
+          "url": "https://roon.app/en/pricing"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Own it",
+        "Hi-res",
+        "Subscription"
+      ]
+    },
+    {
+      "code": "seven-digital-downloads",
+      "name": "7digital",
+      "brand": "DRM-free download store",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A broad digital music store for buying DRM-free downloads, useful when you want files you can keep outside a rental app.",
+      "scores": {
+        "artist_pay": 60,
+        "openness": 86,
+        "privacy": 56,
+        "catalog": 78,
+        "accessibility": 72
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "A download purchase is a clearer paid transaction than a stream, though revenue still flows through labels, distributors and rightsholders.",
+          "source": "https://us.7digital.com/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "7digital describes its U.S. store as high-quality DRM-free MP3 music downloads.",
+          "source": "https://us.7digital.com/",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "Purchasing downloads still requires account and payment data, but owned files can be played later without continuous platform tracking.",
+          "source": "https://us.7digital.com/",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "7digital says its catalog includes over 30 million music tracks.",
+          "source": "https://us.7digital.com/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "7digital lets users browse, buy, preview and download tracks, but regional catalog and store availability can vary.",
+          "source": "https://us.7digital.com/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "7digital",
+          "url": "https://us.7digital.com/"
+        }
+      ],
+      "region": [
+        "US",
+        "UK",
+        "EU",
+        "global"
+      ],
+      "focuses": [
+        "Buy to own",
+        "DRM-free",
+        "Download store"
+      ]
+    },
+    {
+      "code": "traxsource",
+      "name": "Traxsource",
+      "brand": "house and electronic downloads",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A DJ-oriented download store for house and electronic music, stronger for owned files and niche scenes than for mainstream catalog breadth.",
+      "scores": {
+        "artist_pay": 66,
+        "openness": 76,
+        "privacy": 50,
+        "catalog": 62,
+        "accessibility": 68
+      },
+      "provenance": {
+        "artist_pay": {
+          "note": "Traxsource is a paid download store for tracks, labels and artists, which creates clearer purchase events than passive streaming.",
+          "source": "https://www.traxsource.com/",
+          "asof": "2026"
+        },
+        "openness": {
+          "note": "Traxsource terms explicitly cover downloadable music files and DJ personal-use performance rights, rather than pure rental streaming.",
+          "source": "https://www.traxsource.com/terms-of-service",
+          "asof": "2026"
+        },
+        "privacy": {
+          "note": "The store requires account/payment use and is less private than buying records locally or using local files only.",
+          "source": "https://www.traxsource.com/terms-of-service",
+          "asof": "2026"
+        },
+        "catalog": {
+          "note": "Traxsource is strong in house and electronic genres with labels, artist pages, charts and genre sections, but it is not an all-music catalog.",
+          "source": "https://www.traxsource.com/",
+          "asof": "2026"
+        },
+        "accessibility": {
+          "note": "The store is easy to browse and buy from online, though it is a niche DJ/download workflow rather than a free streaming app.",
+          "source": "https://www.traxsource.com/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        {
+          "label": "Traxsource",
+          "url": "https://www.traxsource.com/"
+        },
+        {
+          "label": "Terms",
+          "url": "https://www.traxsource.com/terms-of-service"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Buy to own",
+        "Download store",
+        "Independent"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2336 @@
+{
+  "version": 4,
+  "note": "Needs-first life coverage (v4). Eight human needs are the primary discovery layer. Presentation map v1 resolves them through 18 plain categories and 39 plain subcategories. Every live and growing source row maps exactly once while the complete v3 domain -> group -> category -> optional facet tree remains intact as a compatibility index. A source row with a 'cid' is live; one without is shown as 'Not yet covered'. Group labels are noun phrases drawn from content/taxonomy.json, the full map. See docs/design/INFORMATION-ARCHITECTURE.md and docs/TAXONOMY.md.",
+  "types": [
+    "Products",
+    "Services",
+    "Media",
+    "Organizations",
+    "Initiatives"
+  ],
+  "needs": [
+    {
+      "id": "nourish",
+      "label": "NOURISH",
+      "reads": "Food and drink for ordinary meals, shared tables, and the days in between."
+    },
+    {
+      "id": "care",
+      "label": "CARE",
+      "reads": "What touches bodies, clothing, children, pets, and everyday wellbeing."
+    },
+    {
+      "id": "keep-a-home",
+      "label": "KEEP A HOME",
+      "reads": "Cleaning, energy, water, tools, and the things that make a place work."
+    },
+    {
+      "id": "connect",
+      "label": "CONNECT",
+      "reads": "Devices and services that help people reach each other and the wider world."
+    },
+    {
+      "id": "move",
+      "label": "MOVE",
+      "reads": "The choices that carry people, belongings, and journeys."
+    },
+    {
+      "id": "learn",
+      "label": "LEARN",
+      "reads": "Resources, media, and tools for understanding, making, and staying informed.",
+      "illustrative": [
+        {
+          "id": "kosplora",
+          "label": "Kosplora",
+          "kind": "instance",
+          "href": "/kosplora/",
+          "status": "illustrative"
+        }
+      ]
+    },
+    {
+      "id": "give-and-act",
+      "label": "GIVE & ACT",
+      "reads": "Ways to support people, causes, and organizations with money, time, or voice.",
+      "surfaces": [
+        {
+          "id": "mutual-aid-board",
+          "label": "Mutual aid board",
+          "kind": "board",
+          "category": "causes-to-support",
+          "status": "starter-patterns"
+        }
+      ]
+    },
+    {
+      "id": "protect",
+      "label": "PROTECT",
+      "reads": "Money, privacy, security, and the systems that guard what matters."
+    }
+  ],
+  "presentation": {
+    "version": 1,
+    "purpose": "The public needs-first path. Selectors resolve the preserved domain rows into one category and one subcategory without duplicating the source leaves.",
+    "levels": [
+      {
+        "id": "need",
+        "label": "Need"
+      },
+      {
+        "id": "category",
+        "label": "Category"
+      },
+      {
+        "id": "subcategory",
+        "label": "Subcategory"
+      },
+      {
+        "id": "decision",
+        "label": "Decision"
+      },
+      {
+        "id": "entry",
+        "label": "Entry"
+      }
+    ],
+    "leafState": {
+      "liveWhen": "cid is present",
+      "gapWhen": "cid is absent",
+      "gapLabel": "Not yet covered",
+      "gapIdRule": "Kebab-case the source-row label; fail the build if two gap labels produce the same id."
+    },
+    "selectorRule": "A source row matches when its need equals the category need and it matches one selector. Domain is required; groups and labels narrow a selector when present. Every source row must match exactly once.",
+    "categories": [
+      {
+        "id": "everyday-food",
+        "label": "Everyday food",
+        "need": "nourish",
+        "reads": "Breakfast, staples, ingredients, and the foods that make a meal.",
+        "subcategories": [
+          {
+            "id": "breakfast-and-bread",
+            "label": "Breakfast and bread",
+            "selectors": [
+              {
+                "domain": "Food & drink",
+                "groups": [
+                  "Breakfast and bread"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "dairy-and-alternatives",
+            "label": "Dairy and alternatives",
+            "selectors": [
+              {
+                "domain": "Food & drink",
+                "groups": [
+                  "Dairy and alternatives"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "protein-and-meals",
+            "label": "Protein and meals",
+            "selectors": [
+              {
+                "domain": "Food & drink",
+                "groups": [
+                  "Meat, fish and protein"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "pantry-and-cooking",
+            "label": "Pantry and cooking",
+            "selectors": [
+              {
+                "domain": "Food & drink",
+                "groups": [
+                  "Store cupboard"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "drinks",
+        "label": "Drinks",
+        "need": "nourish",
+        "reads": "Everyday drinks and the alcoholic drinks not yet compared here.",
+        "subcategories": [
+          {
+            "id": "drinks-all",
+            "label": "Drinks",
+            "selectors": [
+              {
+                "domain": "Food & drink",
+                "groups": [
+                  "Drinks",
+                  "Alcohol"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "snacks-and-extras",
+        "label": "Snacks and extras",
+        "need": "nourish",
+        "reads": "Snacks, sweets, spreads, and condiments used around a meal.",
+        "subcategories": [
+          {
+            "id": "snacks-and-sweets",
+            "label": "Snacks and sweets",
+            "selectors": [
+              {
+                "domain": "Food & drink",
+                "groups": [
+                  "Snacks and confectionery"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "spreads-and-condiments",
+            "label": "Spreads and condiments",
+            "selectors": [
+              {
+                "domain": "Food & drink",
+                "groups": [
+                  "Spreads and condiments"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "body-care",
+        "label": "Body care",
+        "need": "care",
+        "reads": "Products used on skin, hair, teeth, and the body.",
+        "subcategories": [
+          {
+            "id": "bath-and-body",
+            "label": "Bath and body",
+            "selectors": [
+              {
+                "domain": "Personal care",
+                "groups": [
+                  "Body and bath"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "skin-and-cosmetics",
+            "label": "Skin and cosmetics",
+            "selectors": [
+              {
+                "domain": "Personal care",
+                "groups": [
+                  "Skin and face",
+                  "Make-up",
+                  "Fragrance"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "hair-and-grooming",
+            "label": "Hair and grooming",
+            "selectors": [
+              {
+                "domain": "Personal care",
+                "groups": [
+                  "Hair",
+                  "Grooming"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "oral-care",
+            "label": "Oral care",
+            "selectors": [
+              {
+                "domain": "Personal care",
+                "groups": [
+                  "Oral care"
+                ]
+              },
+              {
+                "domain": "Health & wellness",
+                "groups": [
+                  "Eyes, teeth and hearing"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "health-and-wellbeing",
+        "label": "Health and wellbeing",
+        "need": "care",
+        "reads": "Everyday health, fitness, sleep, and reproductive care.",
+        "subcategories": [
+          {
+            "id": "remedies-and-health",
+            "label": "Remedies and health",
+            "selectors": [
+              {
+                "domain": "Health & wellness",
+                "groups": [
+                  "Medicines and supplements",
+                  "Sexual and reproductive health"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "mind-and-movement",
+            "label": "Mind and movement",
+            "selectors": [
+              {
+                "domain": "Health & wellness",
+                "groups": [
+                  "Movement and fitness",
+                  "Mind and mood"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "clothes-family-and-pets",
+        "label": "Clothes, family, and pets",
+        "need": "care",
+        "reads": "Clothing, repair, children's needs, and care for animals at home.",
+        "subcategories": [
+          {
+            "id": "clothing-and-repair",
+            "label": "Clothing and repair",
+            "selectors": [
+              {
+                "domain": "Clothing",
+                "groups": [
+                  "Accessories",
+                  "Secondhand and repair",
+                  "Everyday clothing"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "children-and-pets",
+            "label": "Children and pets",
+            "selectors": [
+              {
+                "domain": "Kids & family",
+                "groups": [
+                  "Babies and toddlers",
+                  "Childcare",
+                  "Children"
+                ]
+              },
+              {
+                "domain": "Pets",
+                "groups": [
+                  "Adoption and rescue",
+                  "Veterinary and pet health",
+                  "Pet food"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cleaning-and-kitchen",
+        "label": "Cleaning and kitchen",
+        "need": "keep-a-home",
+        "reads": "Cleaning, household supplies, cooking, storage, and water at home.",
+        "subcategories": [
+          {
+            "id": "cleaning-and-household-supplies",
+            "label": "Cleaning and household supplies",
+            "selectors": [
+              {
+                "domain": "Home",
+                "groups": [
+                  "Cleaning supplies"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "kitchen-and-water",
+            "label": "Kitchen and water",
+            "selectors": [
+              {
+                "domain": "Home",
+                "groups": [
+                  "Kitchenware and tableware"
+                ]
+              },
+              {
+                "domain": "Energy & connectivity",
+                "groups": [
+                  "Water"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "home-energy-and-outdoors",
+        "label": "Home, energy, and outdoors",
+        "need": "keep-a-home",
+        "reads": "Furniture, appliances, energy, repairs, gardens, and outdoor space.",
+        "subcategories": [
+          {
+            "id": "furniture-and-appliances",
+            "label": "Furniture and appliances",
+            "selectors": [
+              {
+                "domain": "Home",
+                "groups": [
+                  "Appliances",
+                  "Furnishing"
+                ]
+              },
+              {
+                "domain": "Tech & digital",
+                "groups": [
+                  "Devices"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "energy-and-repairs",
+            "label": "Energy and repairs",
+            "selectors": [
+              {
+                "domain": "Energy & connectivity",
+                "groups": [
+                  "Energy at home",
+                  "Power without the grid"
+                ]
+              },
+              {
+                "domain": "Home",
+                "groups": [
+                  "Repair and maintenance"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "garden-and-outdoor-home",
+            "label": "Garden and outdoor home",
+            "selectors": [
+              {
+                "domain": "Garden & outdoors",
+                "groups": [
+                  "Growing",
+                  "Outdoor living"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "communication",
+        "label": "Communication",
+        "need": "connect",
+        "reads": "Messaging, online services, internet access, and mobile service.",
+        "subcategories": [
+          {
+            "id": "online-services",
+            "label": "Online services",
+            "selectors": [
+              {
+                "domain": "Tech & digital",
+                "groups": [
+                  "Digital services",
+                  "Your own server",
+                  "Social you are not rented"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "internet-and-mobile",
+            "label": "Internet and mobile",
+            "selectors": [
+              {
+                "domain": "Energy & connectivity",
+                "groups": [
+                  "Internet and phone service"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "devices",
+        "label": "Devices",
+        "need": "connect",
+        "reads": "Phones, computers, media devices, and the hardware used to stay connected.",
+        "subcategories": [
+          {
+            "id": "phones-and-computers",
+            "label": "Phones and computers",
+            "selectors": [
+              {
+                "domain": "Tech & digital",
+                "groups": [
+                  "Devices"
+                ],
+                "labels": [
+                  "Phones",
+                  "Laptops",
+                  "Tablets"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "personal-and-media-devices",
+            "label": "Personal and media devices",
+            "selectors": [
+              {
+                "domain": "Tech & digital",
+                "groups": [
+                  "Devices"
+                ],
+                "labels": [
+                  "Smartwatches & wearables",
+                  "Headphones & earbuds",
+                  "TVs",
+                  "Game consoles",
+                  "Cameras"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "getting-around",
+        "label": "Getting around",
+        "need": "move",
+        "reads": "Footwear, bags, cars, bikes, and everyday transport.",
+        "subcategories": [
+          {
+            "id": "footwear-and-bags",
+            "label": "Footwear and bags",
+            "selectors": [
+              {
+                "domain": "Clothing",
+                "groups": [
+                  "Accessories",
+                  "Footwear",
+                  "Everyday clothing"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "cars-bikes-and-transit",
+            "label": "Cars, bikes, and transit",
+            "selectors": [
+              {
+                "domain": "Transport & mobility",
+                "groups": [
+                  "Bikes and small wheels",
+                  "Cars",
+                  "Getting around without owning"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "trips-and-outdoors",
+        "label": "Trips and outdoors",
+        "need": "move",
+        "reads": "Travel, places to stay, luggage, camping, and hiking.",
+        "subcategories": [
+          {
+            "id": "travel-and-stays",
+            "label": "Travel and stays",
+            "selectors": [
+              {
+                "domain": "Travel & leisure",
+                "groups": [
+                  "Experiences",
+                  "Getting there",
+                  "Places to stay"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "outdoor-and-travel-gear",
+            "label": "Outdoor and travel gear",
+            "selectors": [
+              {
+                "domain": "Travel & leisure",
+                "groups": [
+                  "Travel kit"
+                ]
+              },
+              {
+                "domain": "Garden & outdoors",
+                "groups": [
+                  "Camping and hiking"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "learning-and-making",
+        "label": "Learning and making",
+        "need": "learn",
+        "reads": "Learning resources, courses, school needs, books, and AI assistants.",
+        "subcategories": [
+          {
+            "id": "courses-resources-and-ai",
+            "label": "Courses, resources, and AI",
+            "selectors": [
+              {
+                "domain": "Learning & media",
+                "groups": [
+                  "Courses and platforms"
+                ]
+              },
+              {
+                "domain": "Tech & digital",
+                "groups": [
+                  "Artificial intelligence"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "books-and-school",
+            "label": "Books and school",
+            "selectors": [
+              {
+                "domain": "Learning & media",
+                "groups": [
+                  "Books"
+                ]
+              },
+              {
+                "domain": "Kids & family",
+                "groups": [
+                  "Children"
+                ]
+              },
+              {
+                "domain": "Tech & digital",
+                "groups": [
+                  "Devices"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "news-and-culture",
+        "label": "News and culture",
+        "need": "learn",
+        "reads": "News, podcasts, music, video, and other media used to understand the world.",
+        "subcategories": [
+          {
+            "id": "news-and-reference",
+            "label": "News and reference",
+            "selectors": [
+              {
+                "domain": "Learning & media",
+                "groups": [
+                  "News and information"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "music-video-and-podcasts",
+            "label": "Music, video, and podcasts",
+            "selectors": [
+              {
+                "domain": "Learning & media",
+                "groups": [
+                  "Music and audio",
+                  "Film and video"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "giving-and-helping",
+        "label": "Giving and helping",
+        "need": "give-and-act",
+        "reads": "Ways to give money, volunteer, or support a campaign.",
+        "subcategories": [
+          {
+            "id": "giving",
+            "label": "Giving",
+            "selectors": [
+              {
+                "domain": "Giving & causes",
+                "groups": [
+                  "Giving money"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "volunteering-and-campaigns",
+            "label": "Volunteering and campaigns",
+            "selectors": [
+              {
+                "domain": "Giving & causes",
+                "groups": [
+                  "Giving time and voice"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "organizations-and-shared-action",
+        "label": "Organizations and shared action",
+        "need": "give-and-act",
+        "reads": "Organizations, co-operatives, and businesses shaped by how they are run.",
+        "subcategories": [
+          {
+            "id": "organizations-and-makers",
+            "label": "Organizations and makers",
+            "selectors": [
+              {
+                "domain": "Companies & makers",
+                "groups": [
+                  "How a business is owned"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "money",
+        "label": "Money",
+        "need": "protect",
+        "reads": "Banking, payments, saving, investing, borrowing, and insurance.",
+        "subcategories": [
+          {
+            "id": "everyday-money",
+            "label": "Everyday money",
+            "selectors": [
+              {
+                "domain": "Money",
+                "groups": [
+                  "Everyday banking"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "saving-investing-and-insurance",
+            "label": "Saving, investing, and insurance",
+            "selectors": [
+              {
+                "domain": "Money",
+                "groups": [
+                  "Saving, investing and insurance"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "privacy-and-security",
+        "label": "Privacy and security",
+        "need": "protect",
+        "reads": "Tools that protect accounts, devices, connections, and personal information.",
+        "subcategories": [
+          {
+            "id": "passwords-and-private-connections",
+            "label": "Passwords and private connections",
+            "selectors": [
+              {
+                "domain": "Tech & digital",
+                "groups": [
+                  "Privacy and security"
+                ],
+                "labels": [
+                  "Password managers",
+                  "VPNs"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "account-security",
+            "label": "Account security",
+            "selectors": [
+              {
+                "domain": "Tech & digital",
+                "groups": [
+                  "Privacy and security"
+                ],
+                "labels": [
+                  "Authenticator / 2FA apps"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "domains": [
+    {
+      "label": "Food & drink",
+      "categories": [
+        {
+          "label": "Plant-based milk",
+          "cid": "plant-based-milk",
+          "type": "Products",
+          "group": "Dairy and alternatives",
+          "need": "nourish"
+        },
+        {
+          "label": "Milk",
+          "cid": "milk",
+          "type": "Products",
+          "group": "Dairy and alternatives",
+          "need": "nourish"
+        },
+        {
+          "label": "Plant-based yogurt",
+          "cid": "plant-based-yogurt",
+          "type": "Products",
+          "group": "Dairy and alternatives",
+          "need": "nourish"
+        },
+        {
+          "label": "Eggs",
+          "cid": "eggs",
+          "type": "Products",
+          "group": "Dairy and alternatives",
+          "need": "nourish"
+        },
+        {
+          "label": "Breakfast cereal",
+          "cid": "breakfast-cereal",
+          "type": "Products",
+          "group": "Breakfast and bread",
+          "need": "nourish"
+        },
+        {
+          "label": "Granola & muesli",
+          "cid": "granola",
+          "type": "Products",
+          "group": "Breakfast and bread",
+          "need": "nourish"
+        },
+        {
+          "label": "Oats",
+          "cid": "oats",
+          "type": "Products",
+          "group": "Breakfast and bread",
+          "need": "nourish"
+        },
+        {
+          "label": "Yogurt",
+          "cid": "yogurt",
+          "type": "Products",
+          "group": "Dairy and alternatives",
+          "need": "nourish"
+        },
+        {
+          "label": "Coffee",
+          "cid": "coffee",
+          "type": "Products",
+          "group": "Drinks",
+          "need": "nourish"
+        },
+        {
+          "label": "Tea",
+          "cid": "tea",
+          "type": "Products",
+          "group": "Drinks",
+          "need": "nourish"
+        },
+        {
+          "label": "Dark chocolate",
+          "cid": "dark-chocolate",
+          "type": "Products",
+          "group": "Snacks and confectionery",
+          "need": "nourish"
+        },
+        {
+          "label": "Bread",
+          "cid": "bread",
+          "type": "Products",
+          "group": "Breakfast and bread",
+          "need": "nourish"
+        },
+        {
+          "label": "Olive oil",
+          "cid": "olive-oil",
+          "type": "Products",
+          "group": "Store cupboard",
+          "need": "nourish"
+        },
+        {
+          "label": "Plant-based meat",
+          "cid": "plant-based-meat",
+          "type": "Products",
+          "group": "Meat, fish and protein",
+          "need": "nourish"
+        },
+        {
+          "label": "Pasta sauce",
+          "cid": "pasta-sauce",
+          "type": "Products",
+          "group": "Store cupboard",
+          "need": "nourish"
+        },
+        {
+          "label": "Nut butter",
+          "cid": "nut-butter",
+          "type": "Products",
+          "group": "Spreads and condiments",
+          "need": "nourish"
+        },
+        {
+          "label": "Nuts",
+          "cid": "nuts",
+          "type": "Products",
+          "group": "Snacks and confectionery",
+          "need": "nourish"
+        },
+        {
+          "label": "Fruit juice",
+          "cid": "fruit-juice",
+          "type": "Products",
+          "group": "Drinks",
+          "need": "nourish"
+        },
+        {
+          "label": "Ice cream",
+          "cid": "ice-cream",
+          "type": "Products",
+          "group": "Snacks and confectionery",
+          "need": "nourish"
+        },
+        {
+          "label": "Cheese",
+          "cid": "cheese",
+          "type": "Products",
+          "group": "Dairy and alternatives",
+          "need": "nourish"
+        },
+        {
+          "label": "Butter",
+          "cid": "butter",
+          "type": "Products",
+          "group": "Dairy and alternatives",
+          "need": "nourish"
+        },
+        {
+          "label": "Crisps & chips",
+          "cid": "crisps",
+          "type": "Products",
+          "group": "Snacks and confectionery",
+          "need": "nourish"
+        },
+        {
+          "label": "Biscuits & cookies",
+          "cid": "biscuits",
+          "type": "Products",
+          "group": "Snacks and confectionery",
+          "need": "nourish"
+        },
+        {
+          "label": "Soda",
+          "cid": "soda",
+          "type": "Products",
+          "group": "Drinks",
+          "need": "nourish"
+        },
+        {
+          "label": "Honey",
+          "cid": "honey",
+          "type": "Products",
+          "group": "Spreads and condiments",
+          "need": "nourish"
+        },
+        {
+          "label": "Fruit jam",
+          "cid": "fruit-jam",
+          "type": "Products",
+          "group": "Spreads and condiments",
+          "need": "nourish"
+        },
+        {
+          "label": "Chocolate spread",
+          "cid": "chocolate-spread",
+          "type": "Products",
+          "group": "Spreads and condiments",
+          "need": "nourish"
+        },
+        {
+          "label": "Rice",
+          "cid": "rice",
+          "type": "Products",
+          "group": "Store cupboard",
+          "need": "nourish"
+        },
+        {
+          "label": "Pasta",
+          "cid": "pasta",
+          "type": "Products",
+          "group": "Store cupboard",
+          "need": "nourish"
+        },
+        {
+          "label": "Beans & legumes",
+          "cid": "legumes",
+          "type": "Products",
+          "group": "Store cupboard",
+          "need": "nourish"
+        },
+        {
+          "label": "Tofu",
+          "cid": "tofu",
+          "type": "Products",
+          "group": "Meat, fish and protein",
+          "need": "nourish"
+        },
+        {
+          "label": "Hummus",
+          "cid": "hummus",
+          "type": "Products",
+          "group": "Meat, fish and protein",
+          "need": "nourish"
+        },
+        {
+          "label": "Soups",
+          "cid": "soups",
+          "type": "Products",
+          "group": "Store cupboard",
+          "need": "nourish"
+        },
+        {
+          "label": "Canned tuna & fish",
+          "cid": "canned-fish",
+          "type": "Products",
+          "group": "Store cupboard",
+          "need": "nourish"
+        },
+        {
+          "label": "Canned tomatoes",
+          "cid": "canned-tomatoes",
+          "type": "Products",
+          "group": "Store cupboard",
+          "need": "nourish"
+        },
+        {
+          "label": "Canned vegetables",
+          "cid": "canned-vegetables",
+          "type": "Products",
+          "group": "Store cupboard",
+          "need": "nourish"
+        },
+        {
+          "label": "Frozen vegetables",
+          "cid": "frozen-vegetables",
+          "type": "Products",
+          "group": "Store cupboard",
+          "need": "nourish"
+        },
+        {
+          "label": "Frozen pizza",
+          "cid": "frozen-pizza",
+          "type": "Products",
+          "group": "Meat, fish and protein",
+          "need": "nourish"
+        },
+        {
+          "label": "Ready meals",
+          "cid": "ready-meals",
+          "type": "Products",
+          "group": "Meat, fish and protein",
+          "need": "nourish"
+        },
+        {
+          "label": "Dried fruit",
+          "cid": "dried-fruit",
+          "type": "Products",
+          "group": "Snacks and confectionery",
+          "need": "nourish"
+        },
+        {
+          "label": "Cereal & granola bars",
+          "cid": "cereal-bars",
+          "type": "Products",
+          "group": "Snacks and confectionery",
+          "need": "nourish"
+        },
+        {
+          "label": "Energy drinks",
+          "cid": "energy-drinks",
+          "type": "Products",
+          "group": "Drinks",
+          "need": "nourish"
+        },
+        {
+          "label": "Crackers",
+          "cid": "crackers",
+          "type": "Products",
+          "group": "Snacks and confectionery",
+          "need": "nourish"
+        },
+        {
+          "label": "Ketchup",
+          "cid": "ketchup",
+          "type": "Products",
+          "group": "Spreads and condiments",
+          "need": "nourish"
+        },
+        {
+          "label": "Mayonnaise",
+          "cid": "mayonnaise",
+          "type": "Products",
+          "group": "Spreads and condiments",
+          "need": "nourish"
+        },
+        {
+          "label": "Salad dressing",
+          "cid": "salad-dressing",
+          "type": "Products",
+          "group": "Spreads and condiments",
+          "need": "nourish"
+        },
+        {
+          "label": "Pickles",
+          "cid": "pickles",
+          "type": "Products",
+          "group": "Spreads and condiments",
+          "need": "nourish"
+        },
+        {
+          "label": "Pantry staples",
+          "type": "Products",
+          "group": "Store cupboard",
+          "need": "nourish"
+        },
+        {
+          "label": "Meat & poultry",
+          "type": "Products",
+          "group": "Meat, fish and protein",
+          "need": "nourish"
+        },
+        {
+          "label": "Fish & seafood",
+          "cid": "fish-seafood",
+          "type": "Products",
+          "group": "Meat, fish and protein",
+          "need": "nourish"
+        },
+        {
+          "label": "Flour & baking",
+          "cid": "flour-baking",
+          "type": "Products",
+          "group": "Store cupboard",
+          "need": "nourish"
+        },
+        {
+          "label": "Spices & seasonings",
+          "cid": "spices-seasoning",
+          "type": "Products",
+          "group": "Store cupboard",
+          "need": "nourish"
+        },
+        {
+          "label": "Bottled water",
+          "type": "Products",
+          "group": "Drinks",
+          "need": "nourish"
+        },
+        {
+          "label": "Wine",
+          "type": "Products",
+          "group": "Alcohol",
+          "need": "nourish"
+        },
+        {
+          "label": "Beer",
+          "type": "Products",
+          "group": "Alcohol",
+          "need": "nourish"
+        },
+        {
+          "label": "Spirits",
+          "type": "Products",
+          "group": "Alcohol",
+          "need": "nourish"
+        }
+      ]
+    },
+    {
+      "label": "Home",
+      "categories": [
+        {
+          "label": "Cleaning products",
+          "cid": "cleaning-products",
+          "type": "Products",
+          "group": "Cleaning supplies",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Laundry",
+          "cid": "laundry",
+          "type": "Products",
+          "group": "Cleaning supplies",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Paper goods",
+          "cid": "paper-goods",
+          "type": "Products",
+          "group": "Cleaning supplies",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Dish soap",
+          "cid": "dish-soap",
+          "type": "Products",
+          "group": "Cleaning supplies",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Cookware & pans",
+          "type": "Products",
+          "group": "Kitchenware and tableware",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Food storage",
+          "type": "Products",
+          "group": "Kitchenware and tableware",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Water filters",
+          "type": "Products",
+          "group": "Kitchenware and tableware",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Furniture",
+          "type": "Products",
+          "group": "Furnishing",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Mattresses",
+          "type": "Products",
+          "group": "Furnishing",
+          "need": "keep-a-home",
+          "cid": "mattresses"
+        },
+        {
+          "label": "Bedding & linens",
+          "type": "Products",
+          "group": "Furnishing",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Lighting",
+          "type": "Products",
+          "group": "Furnishing",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Major appliances",
+          "type": "Products",
+          "group": "Appliances",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Vacuum cleaners",
+          "type": "Products",
+          "group": "Appliances",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Washing machines",
+          "cid": "washing-machines",
+          "type": "Products",
+          "group": "Appliances",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Tools & DIY",
+          "type": "Products",
+          "group": "Repair and maintenance",
+          "need": "keep-a-home"
+        }
+      ]
+    },
+    {
+      "label": "Personal care",
+      "categories": [
+        {
+          "label": "Toothpaste",
+          "cid": "toothpaste",
+          "type": "Products",
+          "group": "Oral care",
+          "need": "care"
+        },
+        {
+          "label": "Mouthwash",
+          "cid": "mouthwash",
+          "type": "Products",
+          "group": "Oral care",
+          "need": "care"
+        },
+        {
+          "label": "Electric toothbrushes",
+          "cid": "electric-toothbrushes",
+          "type": "Products",
+          "group": "Oral care",
+          "need": "care"
+        },
+        {
+          "label": "Soap",
+          "cid": "soap",
+          "type": "Products",
+          "group": "Body and bath",
+          "need": "care"
+        },
+        {
+          "label": "Body wash",
+          "cid": "body-wash",
+          "type": "Products",
+          "group": "Body and bath",
+          "need": "care"
+        },
+        {
+          "label": "Shampoo",
+          "cid": "shampoo",
+          "type": "Products",
+          "group": "Hair",
+          "need": "care"
+        },
+        {
+          "label": "Hair conditioner",
+          "cid": "hair-conditioner",
+          "type": "Products",
+          "group": "Hair",
+          "need": "care"
+        },
+        {
+          "label": "Deodorant",
+          "cid": "deodorant",
+          "type": "Products",
+          "group": "Body and bath",
+          "need": "care"
+        },
+        {
+          "label": "Sunscreen",
+          "cid": "sunscreen",
+          "type": "Products",
+          "group": "Skin and face",
+          "need": "care"
+        },
+        {
+          "label": "Face wash & cleansers",
+          "cid": "face-wash",
+          "type": "Products",
+          "group": "Skin and face",
+          "need": "care"
+        },
+        {
+          "label": "Face cream",
+          "cid": "face-cream",
+          "type": "Products",
+          "group": "Skin and face",
+          "need": "care"
+        },
+        {
+          "label": "Hand cream",
+          "cid": "hand-cream",
+          "type": "Products",
+          "group": "Skin and face",
+          "need": "care"
+        },
+        {
+          "label": "Lip balm",
+          "cid": "lip-balm",
+          "type": "Products",
+          "group": "Skin and face",
+          "need": "care"
+        },
+        {
+          "label": "Razors & shaving",
+          "cid": "razors",
+          "type": "Products",
+          "group": "Grooming",
+          "need": "care"
+        },
+        {
+          "label": "Period products",
+          "cid": "period-products",
+          "type": "Products",
+          "group": "Grooming",
+          "need": "care"
+        },
+        {
+          "label": "Menstrual cups and discs",
+          "cid": "menstrual-cups-and-discs",
+          "type": "Products",
+          "group": "Grooming",
+          "need": "care"
+        },
+        {
+          "label": "Skincare",
+          "type": "Products",
+          "group": "Skin and face",
+          "need": "care"
+        },
+        {
+          "label": "Make-up & cosmetics",
+          "type": "Products",
+          "group": "Make-up",
+          "need": "care"
+        },
+        {
+          "label": "Nail care",
+          "type": "Products",
+          "group": "Make-up",
+          "need": "care"
+        },
+        {
+          "label": "Fragrance & perfume",
+          "type": "Products",
+          "group": "Fragrance",
+          "need": "care"
+        },
+        {
+          "label": "Hair styling",
+          "type": "Products",
+          "group": "Hair",
+          "need": "care"
+        }
+      ]
+    },
+    {
+      "label": "Health & wellness",
+      "categories": [
+        {
+          "label": "Vitamins & supplements",
+          "type": "Products",
+          "group": "Medicines and supplements",
+          "need": "care",
+          "cid": "vitamins-and-supplements"
+        },
+        {
+          "label": "Over-the-counter medicine",
+          "type": "Products",
+          "group": "Medicines and supplements",
+          "need": "care",
+          "cid": "over-the-counter-medicine"
+        },
+        {
+          "label": "First aid",
+          "type": "Products",
+          "group": "Medicines and supplements",
+          "need": "care"
+        },
+        {
+          "label": "Fitness equipment",
+          "type": "Products",
+          "group": "Movement and fitness",
+          "need": "care"
+        },
+        {
+          "label": "Sports nutrition",
+          "type": "Products",
+          "group": "Movement and fitness",
+          "need": "care"
+        },
+        {
+          "label": "Mental-health apps",
+          "type": "Services",
+          "group": "Mind and mood",
+          "need": "care"
+        },
+        {
+          "label": "Meditation apps",
+          "type": "Services",
+          "group": "Mind and mood",
+          "need": "care"
+        },
+        {
+          "label": "Contraception",
+          "type": "Products",
+          "group": "Sexual and reproductive health",
+          "need": "care"
+        },
+        {
+          "label": "Glasses & contact lenses",
+          "type": "Products",
+          "group": "Eyes, teeth and hearing",
+          "need": "care",
+          "cid": "glasses-and-contact-lenses"
+        }
+      ]
+    },
+    {
+      "label": "Clothing",
+      "categories": [
+        {
+          "label": "Everyday clothing",
+          "cid": "clothing",
+          "type": "Products",
+          "group": "Everyday clothing",
+          "need": "care"
+        },
+        {
+          "label": "Shoes",
+          "cid": "shoes",
+          "type": "Products",
+          "group": "Footwear",
+          "need": "move"
+        },
+        {
+          "label": "Activewear",
+          "type": "Products",
+          "group": "Everyday clothing",
+          "need": "move"
+        },
+        {
+          "label": "Outerwear & coats",
+          "type": "Products",
+          "group": "Everyday clothing",
+          "need": "care"
+        },
+        {
+          "label": "Underwear & socks",
+          "type": "Products",
+          "group": "Everyday clothing",
+          "need": "care"
+        },
+        {
+          "label": "Bags & backpacks",
+          "type": "Products",
+          "group": "Accessories",
+          "need": "move"
+        },
+        {
+          "label": "Jewellery & watches",
+          "type": "Products",
+          "group": "Accessories",
+          "need": "care"
+        },
+        {
+          "label": "Secondhand & resale",
+          "type": "Services",
+          "group": "Secondhand and repair",
+          "need": "care",
+          "cid": "secondhand-and-resale"
+        },
+        {
+          "label": "Repair & tailoring",
+          "type": "Services",
+          "group": "Secondhand and repair",
+          "need": "care"
+        }
+      ]
+    },
+    {
+      "label": "Tech & digital",
+      "categories": [
+        {
+          "label": "Messaging",
+          "cid": "messaging",
+          "type": "Services",
+          "group": "Digital services",
+          "need": "connect"
+        },
+        {
+          "label": "Email",
+          "cid": "digital-services",
+          "facet": "email",
+          "type": "Services",
+          "group": "Digital services",
+          "need": "connect"
+        },
+        {
+          "label": "Browsers",
+          "cid": "browsers",
+          "type": "Services",
+          "group": "Digital services",
+          "need": "connect"
+        },
+        {
+          "label": "Search",
+          "cid": "digital-services",
+          "facet": "search",
+          "type": "Services",
+          "group": "Digital services",
+          "need": "connect"
+        },
+        {
+          "label": "Social networks",
+          "cid": "digital-services",
+          "facet": "social",
+          "type": "Services",
+          "group": "Digital services",
+          "need": "connect"
+        },
+        {
+          "label": "Federated social servers",
+          "cid": "federated-social-servers",
+          "type": "Services",
+          "group": "Social you are not rented",
+          "need": "connect"
+        },
+        {
+          "label": "Cloud storage",
+          "cid": "digital-services",
+          "facet": "cloud storage",
+          "type": "Services",
+          "group": "Digital services",
+          "need": "connect"
+        },
+        {
+          "label": "Notes",
+          "cid": "digital-services",
+          "facet": "notes",
+          "type": "Services",
+          "group": "Digital services",
+          "need": "connect"
+        },
+        {
+          "label": "Maps",
+          "cid": "digital-services",
+          "facet": "maps",
+          "type": "Services",
+          "group": "Digital services",
+          "need": "connect"
+        },
+        {
+          "label": "Video calls",
+          "cid": "digital-services",
+          "facet": "video calls",
+          "type": "Services",
+          "group": "Digital services",
+          "need": "connect"
+        },
+        {
+          "label": "Self-hosting platforms",
+          "cid": "self-hosting-platforms",
+          "type": "Services",
+          "group": "Your own server",
+          "need": "connect"
+        },
+        {
+          "label": "Phones",
+          "cid": "phones",
+          "type": "Products",
+          "group": "Devices",
+          "need": "connect"
+        },
+        {
+          "label": "Laptops",
+          "cid": "laptops",
+          "type": "Products",
+          "group": "Devices",
+          "need": "connect"
+        },
+        {
+          "label": "AI assistants",
+          "cid": "ai-assistants",
+          "type": "Services",
+          "group": "Artificial intelligence",
+          "need": "learn"
+        },
+        {
+          "label": "Password managers",
+          "cid": "password-managers",
+          "type": "Services",
+          "group": "Privacy and security",
+          "need": "protect"
+        },
+        {
+          "label": "VPNs",
+          "cid": "vpn",
+          "type": "Services",
+          "group": "Privacy and security",
+          "need": "protect"
+        },
+        {
+          "label": "Tablets",
+          "type": "Products",
+          "group": "Devices",
+          "need": "connect"
+        },
+        {
+          "label": "Smartwatches & wearables",
+          "type": "Products",
+          "group": "Devices",
+          "need": "connect"
+        },
+        {
+          "label": "Headphones & earbuds",
+          "type": "Products",
+          "group": "Devices",
+          "need": "connect",
+          "cid": "headphones-and-earbuds"
+        },
+        {
+          "label": "TVs",
+          "type": "Products",
+          "group": "Devices",
+          "need": "connect"
+        },
+        {
+          "label": "E-readers",
+          "type": "Products",
+          "group": "Devices",
+          "need": "learn"
+        },
+        {
+          "label": "Game consoles",
+          "type": "Products",
+          "group": "Devices",
+          "need": "connect"
+        },
+        {
+          "label": "Cameras",
+          "type": "Products",
+          "group": "Devices",
+          "need": "connect"
+        },
+        {
+          "label": "Smart home",
+          "type": "Products",
+          "group": "Devices",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Authenticator / 2FA apps",
+          "type": "Services",
+          "group": "Privacy and security",
+          "need": "protect"
+        }
+      ]
+    },
+    {
+      "label": "Money",
+      "categories": [
+        {
+          "label": "Banking",
+          "cid": "banking",
+          "type": "Services",
+          "group": "Everyday banking",
+          "need": "protect"
+        },
+        {
+          "label": "Payments",
+          "cid": "payments",
+          "type": "Services",
+          "group": "Everyday banking",
+          "need": "protect"
+        },
+        {
+          "label": "Pensions & investing",
+          "cid": "investing",
+          "type": "Services",
+          "group": "Saving, investing and insurance",
+          "need": "protect"
+        },
+        {
+          "label": "Credit cards",
+          "type": "Services",
+          "group": "Everyday banking",
+          "need": "protect",
+          "cid": "credit-cards"
+        },
+        {
+          "label": "Money transfer & remittance",
+          "type": "Services",
+          "group": "Everyday banking",
+          "need": "protect"
+        },
+        {
+          "label": "Pensions",
+          "type": "Services",
+          "group": "Saving, investing and insurance",
+          "need": "protect"
+        },
+        {
+          "label": "Insurance",
+          "type": "Services",
+          "group": "Saving, investing and insurance",
+          "need": "protect"
+        },
+        {
+          "label": "Budgeting apps",
+          "type": "Services",
+          "group": "Saving, investing and insurance",
+          "need": "protect"
+        },
+        {
+          "label": "Loans & mortgages",
+          "type": "Services",
+          "group": "Saving, investing and insurance",
+          "need": "protect",
+          "cid": "mortgages"
+        },
+        {
+          "label": "Crypto exchanges",
+          "type": "Services",
+          "group": "Saving, investing and insurance",
+          "need": "protect"
+        }
+      ]
+    },
+    {
+      "label": "Transport & mobility",
+      "categories": [
+        {
+          "label": "Cars",
+          "type": "Products",
+          "group": "Cars",
+          "need": "move"
+        },
+        {
+          "label": "Electric vehicles",
+          "type": "Products",
+          "group": "Cars",
+          "need": "move"
+        },
+        {
+          "label": "Used cars",
+          "type": "Products",
+          "group": "Cars",
+          "need": "move",
+          "cid": "used-cars"
+        },
+        {
+          "label": "Tyres",
+          "type": "Products",
+          "group": "Cars",
+          "need": "move"
+        },
+        {
+          "label": "Bicycles",
+          "type": "Products",
+          "group": "Bikes and small wheels",
+          "need": "move",
+          "cid": "bicycles"
+        },
+        {
+          "label": "E-bikes",
+          "type": "Products",
+          "group": "Bikes and small wheels",
+          "need": "move",
+          "cid": "e-bikes"
+        },
+        {
+          "label": "Ride-hailing",
+          "type": "Services",
+          "group": "Getting around without owning",
+          "need": "move",
+          "cid": "ride-hailing"
+        },
+        {
+          "label": "Public transit",
+          "type": "Services",
+          "group": "Getting around without owning",
+          "need": "move"
+        }
+      ]
+    },
+    {
+      "label": "Energy & connectivity",
+      "categories": [
+        {
+          "label": "Electricity & green tariffs",
+          "type": "Services",
+          "group": "Energy at home",
+          "need": "keep-a-home",
+          "cid": "electricity-suppliers"
+        },
+        {
+          "label": "Gas suppliers",
+          "type": "Services",
+          "group": "Energy at home",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Solar panels",
+          "type": "Products",
+          "group": "Energy at home",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Off-grid power systems",
+          "cid": "off-grid-power-systems",
+          "type": "Products",
+          "group": "Power without the grid",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Direct-drive solar",
+          "cid": "direct-drive-solar",
+          "type": "Products",
+          "group": "Power without the grid",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Heat pumps",
+          "type": "Products",
+          "group": "Energy at home",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Smart thermostats",
+          "cid": "smart-thermostats",
+          "type": "Products",
+          "group": "Energy at home",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Broadband & internet",
+          "cid": "broadband-internet",
+          "type": "Services",
+          "group": "Internet and phone service",
+          "need": "connect"
+        },
+        {
+          "label": "Mobile carriers",
+          "cid": "mobile-carriers",
+          "type": "Services",
+          "group": "Internet and phone service",
+          "need": "connect"
+        },
+        {
+          "label": "Water suppliers",
+          "type": "Services",
+          "group": "Water",
+          "need": "keep-a-home"
+        }
+      ]
+    },
+    {
+      "label": "Travel & leisure",
+      "categories": [
+        {
+          "label": "Airlines",
+          "type": "Services",
+          "group": "Getting there",
+          "need": "move",
+          "cid": "airlines"
+        },
+        {
+          "label": "Hotels",
+          "type": "Services",
+          "group": "Places to stay",
+          "need": "move"
+        },
+        {
+          "label": "Vacation rentals",
+          "type": "Services",
+          "group": "Places to stay",
+          "need": "move"
+        },
+        {
+          "label": "Booking platforms",
+          "type": "Services",
+          "group": "Places to stay",
+          "need": "move"
+        },
+        {
+          "label": "Tours & activities",
+          "type": "Services",
+          "group": "Experiences",
+          "need": "move"
+        },
+        {
+          "label": "Cruises",
+          "type": "Services",
+          "group": "Experiences",
+          "need": "move"
+        },
+        {
+          "label": "Luggage",
+          "type": "Products",
+          "group": "Travel kit",
+          "need": "move"
+        }
+      ]
+    },
+    {
+      "label": "Learning & media",
+      "categories": [
+        {
+          "label": "Learning resources",
+          "cid": "learning-resources",
+          "type": "Media",
+          "group": "Courses and platforms",
+          "need": "learn"
+        },
+        {
+          "label": "News sources",
+          "cid": "news-sources",
+          "type": "Media",
+          "group": "News and information",
+          "need": "learn"
+        },
+        {
+          "label": "Music streaming",
+          "cid": "music-streaming",
+          "type": "Services",
+          "group": "Music and audio",
+          "need": "learn"
+        },
+        {
+          "label": "Books & reading",
+          "cid": "books",
+          "type": "Services",
+          "group": "Books",
+          "need": "learn"
+        },
+        {
+          "label": "Podcasts",
+          "type": "Media",
+          "need": "learn",
+          "group": "Music and audio"
+        },
+        {
+          "label": "Video streaming",
+          "type": "Services",
+          "group": "Film and video",
+          "need": "learn",
+          "cid": "video-streaming"
+        },
+        {
+          "label": "Audiobooks",
+          "type": "Services",
+          "group": "Music and audio",
+          "need": "learn"
+        },
+        {
+          "label": "Podcast apps and players",
+          "cid": "podcast-apps-and-players",
+          "type": "Services",
+          "group": "Music and audio",
+          "need": "learn"
+        },
+        {
+          "label": "Online courses",
+          "type": "Services",
+          "group": "Courses and platforms",
+          "need": "learn",
+          "cid": "online-courses"
+        },
+        {
+          "label": "Language learning",
+          "type": "Services",
+          "group": "Courses and platforms",
+          "need": "learn",
+          "cid": "language-learning"
+        }
+      ]
+    },
+    {
+      "label": "Kids & family",
+      "categories": [
+        {
+          "label": "Diapers & nappies",
+          "type": "Products",
+          "group": "Babies and toddlers",
+          "need": "care",
+          "cid": "nappies"
+        },
+        {
+          "label": "Baby food & formula",
+          "type": "Products",
+          "group": "Babies and toddlers",
+          "need": "care"
+        },
+        {
+          "label": "Baby wipes",
+          "type": "Products",
+          "group": "Babies and toddlers",
+          "need": "care"
+        },
+        {
+          "label": "Car seats",
+          "type": "Products",
+          "group": "Babies and toddlers",
+          "need": "care"
+        },
+        {
+          "label": "Strollers & pushchairs",
+          "type": "Products",
+          "group": "Babies and toddlers",
+          "need": "care"
+        },
+        {
+          "label": "Reusable nappies",
+          "cid": "reusable-nappies",
+          "type": "Products",
+          "group": "Babies and toddlers",
+          "need": "care"
+        },
+        {
+          "label": "Toys",
+          "type": "Products",
+          "group": "Children",
+          "need": "care"
+        },
+        {
+          "label": "Kids' clothing",
+          "type": "Products",
+          "group": "Children",
+          "need": "care"
+        },
+        {
+          "label": "School supplies",
+          "type": "Products",
+          "group": "Children",
+          "need": "learn"
+        },
+        {
+          "label": "Childcare",
+          "type": "Services",
+          "group": "Childcare",
+          "need": "care"
+        }
+      ]
+    },
+    {
+      "label": "Pets",
+      "categories": [
+        {
+          "label": "Dog food",
+          "type": "Products",
+          "group": "Pet food",
+          "need": "care",
+          "cid": "dog-food"
+        },
+        {
+          "label": "Cat food",
+          "type": "Products",
+          "group": "Pet food",
+          "need": "care",
+          "cid": "cat-food"
+        },
+        {
+          "label": "Pet supplies",
+          "type": "Products",
+          "group": "Veterinary and pet health",
+          "need": "care"
+        },
+        {
+          "label": "Flea & worming",
+          "type": "Products",
+          "group": "Veterinary and pet health",
+          "need": "care"
+        },
+        {
+          "label": "Pet insurance",
+          "type": "Services",
+          "group": "Veterinary and pet health",
+          "need": "care"
+        },
+        {
+          "label": "Vet services",
+          "type": "Services",
+          "group": "Veterinary and pet health",
+          "need": "care",
+          "cid": "vet-services"
+        },
+        {
+          "label": "Adoption & rescue",
+          "type": "Initiatives",
+          "group": "Adoption and rescue",
+          "need": "care"
+        }
+      ]
+    },
+    {
+      "label": "Garden & outdoors",
+      "categories": [
+        {
+          "label": "Plants & seeds",
+          "type": "Products",
+          "group": "Growing",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Compost & soil",
+          "type": "Products",
+          "group": "Growing",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Garden tools",
+          "type": "Products",
+          "group": "Growing",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Garden furniture",
+          "type": "Products",
+          "group": "Outdoor living",
+          "need": "keep-a-home"
+        },
+        {
+          "label": "Camping gear",
+          "type": "Products",
+          "group": "Camping and hiking",
+          "need": "move"
+        },
+        {
+          "label": "Hiking equipment",
+          "type": "Products",
+          "group": "Camping and hiking",
+          "need": "move"
+        }
+      ]
+    },
+    {
+      "label": "Giving & causes",
+      "categories": [
+        {
+          "label": "Causes to support",
+          "cid": "causes-to-support",
+          "type": "Initiatives",
+          "group": "Giving money",
+          "need": "give-and-act"
+        },
+        {
+          "label": "Charities by cause",
+          "type": "Initiatives",
+          "group": "Giving money",
+          "need": "give-and-act"
+        },
+        {
+          "label": "Effective giving",
+          "type": "Initiatives",
+          "group": "Giving money",
+          "need": "give-and-act"
+        },
+        {
+          "label": "Mutual aid funds",
+          "type": "Initiatives",
+          "group": "Giving money",
+          "need": "give-and-act"
+        },
+        {
+          "label": "Volunteering",
+          "type": "Initiatives",
+          "group": "Giving time and voice",
+          "need": "give-and-act",
+          "cid": "volunteering"
+        },
+        {
+          "label": "Petitions & campaigns",
+          "type": "Initiatives",
+          "group": "Giving time and voice",
+          "need": "give-and-act"
+        },
+        {
+          "label": "Ethical gifts",
+          "type": "Products",
+          "group": "Giving money",
+          "need": "give-and-act"
+        },
+        {
+          "label": "Crowdfunding platforms",
+          "cid": "crowdfunding-platforms",
+          "type": "Services",
+          "group": "Giving money",
+          "need": "give-and-act"
+        }
+      ]
+    },
+    {
+      "label": "Companies & makers",
+      "categories": [
+        {
+          "label": "Mission-driven businesses",
+          "cid": "mission-businesses",
+          "type": "Organizations",
+          "group": "How a business is owned",
+          "need": "give-and-act"
+        },
+        {
+          "label": "B Corporations",
+          "type": "Organizations",
+          "group": "How a business is owned",
+          "need": "give-and-act",
+          "cid": "b-corporations"
+        },
+        {
+          "label": "Co-operatives",
+          "type": "Organizations",
+          "group": "How a business is owned",
+          "need": "give-and-act"
+        },
+        {
+          "label": "Worker-owned",
+          "type": "Organizations",
+          "group": "How a business is owned",
+          "need": "give-and-act"
+        },
+        {
+          "label": "Local independents",
+          "type": "Organizations",
+          "group": "How a business is owned",
+          "need": "give-and-act"
+        },
+        {
+          "label": "Secondhand marketplaces",
+          "cid": "secondhand-marketplaces",
+          "type": "Services",
+          "group": "How a business is owned",
+          "need": "give-and-act"
+        }
+      ]
+    }
+  ]
+}

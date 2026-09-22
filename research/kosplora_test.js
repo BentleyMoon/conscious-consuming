@@ -56,3 +56,6 @@ console.log('\nDistinct #1 picks across ' + tops.length + ' learners: ' + distin
 console.log(distinct >= 2
   ? 'PASS — different values yield different top picks (and the whole list reorders) from the SAME engine and SAME\n       facts, via a vocabulary the engine never knew. The substrate transfers.\n       (Finding: the 3↔5 weighting is intentionally mild — as in CC, a broadly-excellent option resists single-axis\n        prioritization, so not every value flips the #1. The one abstraction the test forced: Standard v0.1 makes the\n        value vocabulary injectable — themeDefaults(criteria, passport, KEY2THEME).)'
   : 'FAIL — values did not move the ranking; investigate.');
+// Printed FAIL and exited 0 until 2026-07-31, so a run where values stopped moving the ranking
+// would have read as a failure in the log and still passed the chain into a deploy.
+process.exit(distinct >= 2 ? 0 : 1);

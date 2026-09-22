@@ -1,0 +1,415 @@
+{
+  "meta": {
+    "id": "job-boards",
+    "label": "Job boards",
+    "type": "Services",
+    "primaryAxis": "privacy",
+    "tradeoff": [
+      "privacy",
+      "selection"
+    ],
+    "tradeoffLabels": [
+      "least data collected about you",
+      "widest reach of listings"
+    ],
+    "source": "Conscious Consuming (curated)",
+    "attribution": "Read from each service's own privacy policy or CCPA disclosure, from regulator decisions where one exists, and from each service's own published reach or scale figures. Almost all of these are free to search as a job seeker; only LinkedIn's optional paid tier is scored here, because it is the one this file could confirm from LinkedIn's own pricing page. A privacy policy describes what a company says it does, not an audit of what it actually does; where a regulator has ruled on the practice, that is noted separately. Suggest changes via Contribute.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": {
+          "privacy": 3,
+          "selection": 3,
+          "economical": 2
+        },
+        "x": []
+      },
+      "Most private": {
+        "w": {
+          "privacy": 5,
+          "selection": 2,
+          "economical": 1
+        },
+        "x": []
+      },
+      "Widest reach": {
+        "w": {
+          "selection": 5,
+          "privacy": 2,
+          "economical": 1
+        },
+        "x": []
+      },
+      "Free only": {
+        "w": {
+          "economical": 5,
+          "privacy": 2,
+          "selection": 2
+        },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    {
+      "key": "privacy",
+      "label": "Data privacy",
+      "source": "curated"
+    },
+    {
+      "key": "selection",
+      "label": "Reach and selection",
+      "source": "curated"
+    },
+    {
+      "key": "economical",
+      "label": "Free to job seekers",
+      "source": "curated"
+    }
+  ],
+  "products": [
+    {
+      "code": "linkedin",
+      "name": "LinkedIn",
+      "brand": "professional network and job search",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A professional networking platform with an attached job board, built around a persistent public profile rather than an anonymous search.",
+      "scores": {
+        "privacy": 35,
+        "selection": 95,
+        "economical": 70
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Ireland's Data Protection Commission fined LinkedIn Ireland Unlimited Company 310 million euros on October 24, 2024, finding it had no valid legal basis under GDPR Article 6 for behavioral analysis and targeted advertising of people who created LinkedIn profiles, and that it failed to meet the Article 5 fairness and Article 13/14 transparency requirements.",
+          "source": "https://www.dataprotection.ie/en/news-media/press-releases/irish-data-protection-commission-fines-linkedin-ireland-eu310-million",
+          "asof": "2024"
+        },
+        "selection": {
+          "note": "LinkedIn describes itself as the world's largest professional network, with more than 1 billion members in more than 200 countries and territories.",
+          "source": "https://about.linkedin.com/",
+          "asof": "2026"
+        },
+        "economical": {
+          "note": "Searching, building a profile and applying to jobs is free. LinkedIn's own pricing page lists Premium Career, an optional paid tier with extra visibility and insight features, starting at $39.99 a month.",
+          "source": "https://premium.linkedin.com/careers/career",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Privacy policy", "url": "https://www.linkedin.com/legal/privacy-policy" },
+        { "label": "Website", "url": "https://www.linkedin.com/" }
+      ],
+      "region": ["global"],
+      "focuses": ["Professional network", "Algorithmic feed"]
+    },
+    {
+      "code": "indeed",
+      "name": "Indeed",
+      "brand": "job listing aggregator",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "An aggregator that pulls job postings from employer sites and other boards into one search, alongside its own direct postings.",
+      "scores": {
+        "privacy": 30,
+        "selection": 96
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Indeed's own CCPA disclosure states that personal data is 'sold' when provided to a third party for monetary or other consideration, and lists identifiers, commercial information, internet activity, geolocation, and employment and education information among the categories it transfers to employers, affiliates and marketers to optimize advertising.",
+          "source": "https://www.indeed.com/legal/ccpa-dns",
+          "asof": "2026"
+        },
+        "selection": {
+          "note": "Indeed's own about page reports 665 million job seeker profiles and more than 3.5 million employers using the site, and describes itself as the world's number one job site.",
+          "source": "https://www.indeed.com/about",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Privacy FAQ", "url": "https://www.indeed.com/legal/privacyfaq" },
+        { "label": "Website", "url": "https://www.indeed.com/" }
+      ],
+      "region": ["global"],
+      "focuses": ["Aggregator", "Market leader"]
+    },
+    {
+      "code": "ziprecruiter",
+      "name": "ZipRecruiter",
+      "brand": "job matching marketplace",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A job marketplace that distributes listings to partner sites and uses matching to suggest jobs to candidates.",
+      "scores": {
+        "privacy": 68
+      },
+      "provenance": {
+        "privacy": {
+          "note": "ZipRecruiter's California privacy notice, last updated June 25, 2024, states 'your privacy is our priority, and we do not monetize your personal information by selling it to third parties,' but also discloses that it may sell or share categories of personal information in the limited context of showing ads about its own services, and does not sell or share sensitive personal information.",
+          "source": "https://www.ziprecruiter.com/assets/static/pdf/legal/california-privacy-notice-en-2024-06-25.pdf",
+          "asof": "2024"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.ziprecruiter.com/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Matching", "Aggregator"]
+    },
+    {
+      "code": "glassdoor",
+      "name": "Glassdoor",
+      "brand": "job listings with company reviews",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Combines job listings with employee-written company reviews and salary reports. Owned by Recruit Holdings, the same parent company as Indeed.",
+      "scores": {
+        "privacy": 40
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Public radio station WUNC reported that in March 2024 Glassdoor began requiring users to provide their name, employer and job title to access all site features, information that is linked to their account on the back end even though individual reviews are still published anonymously.",
+          "source": "https://www.wunc.org/2024-03-20/glassdoors-new-privacy-policy-stirs-fear-that-anonymous-posts-may-not-stay-anonymous",
+          "asof": "2024"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.glassdoor.com/" }
+      ],
+      "region": ["global"],
+      "focuses": ["Company reviews", "Salary data"]
+    },
+    {
+      "code": "monster",
+      "name": "Monster",
+      "brand": "legacy job board and resume database",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "One of the original online job boards, now operating jointly with CareerBuilder under the same parent company.",
+      "scores": {
+        "privacy": 25,
+        "selection": 55
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Monster's privacy notice, filed under 'MCB Puerto Rico LLC and its subsidiaries and divisions,' states that contact details, employment history and browsing information are both 'shared' for cross-contextual behavioral advertising and 'sold' to third-party advertisers and analytics providers in exchange for monetary or other consideration.",
+          "source": "https://www.monster.com/inside/privacy-notice",
+          "asof": "2026"
+        },
+        "selection": {
+          "note": "Monster's own recruiter page advertises a resume database of more than 10 million resumes.",
+          "source": "https://hiring.monster.com/products/resume-search/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.monster.com/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Legacy board", "Resume database"]
+    },
+    {
+      "code": "careerbuilder",
+      "name": "CareerBuilder",
+      "brand": "legacy job board",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A long-running job board now under the same corporate parent as Monster, sharing the same privacy notice.",
+      "scores": {
+        "privacy": 25
+      },
+      "provenance": {
+        "privacy": {
+          "note": "CareerBuilder's own privacy page redirects to Monster's Data Privacy Center, and Monster's privacy notice is filed under 'MCB Puerto Rico LLC,' the joint parent of both brands; that notice states data is both shared for behavioral advertising and sold to third parties.",
+          "source": "https://www.monster.com/inside/privacy-notice",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.careerbuilder.com/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Legacy board"]
+    },
+    {
+      "code": "dice",
+      "name": "Dice",
+      "brand": "technology jobs",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A job board focused on technology roles, run by DHI Group.",
+      "scores": {
+        "privacy": 55
+      },
+      "provenance": {
+        "privacy": {
+          "note": "DHI Group's privacy policy, which covers Dice, states 'DHI does not sell or trade your personal data to third parties,' while also disclosing that it shares personal information with business partners for marketing and uses analytics to track behavior across its sites.",
+          "source": "https://www.dhigroup.com/legal-and-compliance/privacy-policy",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.dice.com/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Technology roles"]
+    },
+    {
+      "code": "we-work-remotely",
+      "name": "We Work Remotely",
+      "brand": "remote-only job board",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A job board limited to remote positions, smaller and more narrowly scoped than the general aggregators.",
+      "scores": {
+        "privacy": 78,
+        "selection": 60
+      },
+      "provenance": {
+        "privacy": {
+          "note": "We Work Remotely's privacy policy states it shares personal information only with named operational service providers, listed as Mailchimp, Typeform, Hubspot, Amazon Web Services, Stripe, RDS and Sendgrid, and does not describe selling data or sharing it with ad networks or data brokers.",
+          "source": "https://weworkremotely.com/privacy",
+          "asof": "2026"
+        },
+        "selection": {
+          "note": "We Work Remotely's own homepage describes itself as 'the largest job board for remote jobs' and 'the largest remote work community.'",
+          "source": "https://weworkremotely.com/",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://weworkremotely.com/" }
+      ],
+      "region": ["global"],
+      "focuses": ["Remote work"]
+    },
+    {
+      "code": "wellfound",
+      "name": "Wellfound",
+      "brand": "startup jobs (formerly AngelList Talent)",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A job board focused on startups, where a job seeker's profile and activity are generally visible to the employers using the platform.",
+      "scores": {
+        "privacy": 45
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Wellfound's privacy policy states that a job seeker's information is generally publicly available to employers, and that personal data is shared with employers and recruiters, service providers, advertisers, and researchers; it does not use the word 'sell' but does describe data transfer if the company itself is sold or merged.",
+          "source": "https://wellfound.com/privacy",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://wellfound.com/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Startups"]
+    },
+    {
+      "code": "idealist",
+      "name": "Idealist",
+      "brand": "nonprofit and social-impact jobs",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A nonprofit-run board for jobs, internships and volunteer opportunities at nonprofits and social-impact organizations.",
+      "scores": {
+        "privacy": 85,
+        "selection": 65
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Idealist's privacy policy states plainly, 'we do not sell any personal information to third parties,' and lists the organizations you apply to, vetting and risk-management agencies, legal advisers and service providers as the categories of recipients it does share with.",
+          "source": "https://www.idealist.org/en/privacy-policy",
+          "asof": "2026"
+        },
+        "selection": {
+          "note": "Idealist's about page says it connects 15 million people a year with more than 200,000 organizations in 180 countries, and has posted over 1.2 million jobs and 200,000 internships to date. Idealist operates as a 501(c)(3) nonprofit.",
+          "source": "https://www.idealist.org/en/about",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.idealist.org/" }
+      ],
+      "region": ["global"],
+      "focuses": ["Nonprofit", "Social impact"]
+    },
+    {
+      "code": "usajobs",
+      "name": "USAJOBS",
+      "brand": "official US federal government jobs",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "The US government's own site for federal job openings, run by the Office of Personnel Management. Free, and the required posting location for most federal vacancies.",
+      "scores": {
+        "privacy": 92,
+        "selection": 70
+      },
+      "provenance": {
+        "privacy": {
+          "note": "OPM's Privacy Act System of Records Notice for recruiting, examining and placement records (OPM/GOVT-5) lists the permitted routine uses of applicant data: referring applicants to federal, state and local government employers, responding to law enforcement or litigation, and sharing with contractors or grantees working on a federal contract. It does not list advertisers, data brokers or commercial marketers among the recipients.",
+          "source": "https://www.opm.gov/privacy/sorn/opm-sorn-govt-5.pdf",
+          "asof": "2015"
+        },
+        "selection": {
+          "note": "OPM's Federal Register notice renewing the USAJOBS Resume Builder and Application Profile information collection reports 25,725,380 resumes built and 3,013,003 profiles created in one year.",
+          "source": "https://www.federalregister.gov/documents/2025/06/03/2025-09979/submission-for-review-usajobs-resume-builder-and-application-profile-omb-control-no-3206-0219",
+          "asof": "2025"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.usajobs.gov/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Federal jobs", "Government"]
+    },
+    {
+      "code": "careeronestop",
+      "name": "CareerOneStop",
+      "brand": "US Department of Labor jobs and career resources",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free jobs and career-resources site sponsored by the US Department of Labor, linking to state job banks and local American Job Centers as well as its own job search.",
+      "scores": {
+        "privacy": 94
+      },
+      "provenance": {
+        "privacy": {
+          "note": "CareerOneStop's privacy page states 'we collect no personal information about you when you visit any of our websites unless you choose to provide that information to us, nor will we share that information with any other party except as described,' and that individual-level data is never shared with other organizations or entities. The site is sponsored by the US Department of Labor Employment and Training Administration.",
+          "source": "https://www.careeronestop.org/Site/site-privacy.aspx",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.careeronestop.org/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Government", "Career resources"]
+    },
+    {
+      "code": "craigslist",
+      "name": "Craigslist",
+      "brand": "local classifieds job postings",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A local classifieds site with a jobs section, city by city, without profiles, algorithmic matching or ranking.",
+      "scores": {
+        "privacy": 88
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Craigslist's privacy policy states 'we do not sell your data to third parties,' and that voluntarily submitted information is disclosed to no one except payment processors when a fee is paid for a post, phone-verification providers, and fraud-prevention service providers.",
+          "source": "https://www.craigslist.org/about/privacy",
+          "asof": "2026"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.craigslist.org/" }
+      ],
+      "region": ["US"],
+      "focuses": ["Local", "Classifieds"]
+    }
+  ]
+}

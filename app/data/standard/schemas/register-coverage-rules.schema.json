@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/register-coverage-rules-v1.schema.json",
+  "title": "Open Values Register Coverage Rules",
+  "description": "Conservative reviewed selectors that map taxonomy decisions to public-register applicability states.",
+  "type": "object",
+  "required": ["format", "version", "updated", "note", "statusDefinitions", "registers"],
+  "additionalProperties": false,
+  "properties": {
+    "format": { "const": "open-values-register-coverage-rules" },
+    "version": { "const": "1.0.0" },
+    "updated": { "type": "string", "format": "date" },
+    "note": { "type": "string", "minLength": 1 },
+    "statusDefinitions": {
+      "type": "object",
+      "required": ["applicable", "not-applicable", "blocked", "unmapped"],
+      "additionalProperties": false,
+      "properties": {
+        "applicable": { "type": "string", "minLength": 1 },
+        "not-applicable": { "type": "string", "minLength": 1 },
+        "blocked": { "type": "string", "minLength": 1 },
+        "unmapped": { "type": "string", "minLength": 1 }
+      }
+    },
+    "registers": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/registerRule" }
+    }
+  },
+  "$defs": {
+    "match": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "realms": { "$ref": "#/$defs/values" },
+        "fields": { "$ref": "#/$defs/values" },
+        "families": { "$ref": "#/$defs/values" },
+        "types": { "$ref": "#/$defs/values" },
+        "modes": { "$ref": "#/$defs/values" },
+        "scopes": { "$ref": "#/$defs/values" },
+        "decisionIds": { "$ref": "#/$defs/values" },
+        "cids": { "$ref": "#/$defs/values" }
+      }
+    },
+    "values": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "selector": {
+      "type": "object",
+      "required": ["id", "priority", "status", "reason", "match"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "priority": { "type": "integer", "minimum": 1, "maximum": 999 },
+        "status": { "enum": ["applicable", "not-applicable", "blocked"] },
+        "reason": { "type": "string", "minLength": 1 },
+        "match": { "$ref": "#/$defs/match" }
+      }
+    },
+    "registerRule": {
+      "type": "object",
+      "required": ["registerId", "default", "selectors"],
+      "additionalProperties": false,
+      "properties": {
+        "registerId": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "default": {
+          "type": "object",
+          "required": ["status", "reason"],
+          "additionalProperties": false,
+          "properties": {
+            "status": { "const": "unmapped" },
+            "reason": { "type": "string", "minLength": 1 }
+          }
+        },
+        "selectors": { "type": "array", "items": { "$ref": "#/$defs/selector" } }
+      }
+    }
+  }
+}

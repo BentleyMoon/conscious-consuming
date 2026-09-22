@@ -40,17 +40,88 @@ const EXPECTED_DOMAINS = [
   'Giving & causes',
   'Companies & makers',
 ];
+/* 2026-08-12, swarm wave one. CARE 15 -> 17 (over-the-counter medicine, dog food) and MOVE 1 -> 2
+   (used cars). MOVE had exactly one live category before this, which is why the front page showed
+   a single cell for the whole of getting around. */
+/* 2026-08-13, swarm waves two and three. CARE 17 -> 23 (nappies, reusable nappies, mattresses,
+   vitamins and supplements, glasses and contact lenses, secondhand and resale, clothing rental,
+   less the ones already counted), KEEP A HOME 5 -> 7 (electricity suppliers, mattresses), MOVE
+   2 -> 3 (airlines), PROTECT 5 -> 7 (mortgages, credit cards). NOURISH is untouched at 50, which
+   is the point: the catalogue stopped being a grocery list tonight. */
 const EXPECTED_LIVE_BY_NEED = {
   nourish: 50,
-  care: 15,
-  'keep-a-home': 5,
-  connect: 5,
-  move: 1,
-  learn: 5,
-  'give-and-act': 2,
-  protect: 5,
+  care: 26,
+  'keep-a-home': 10,
+  connect: 10,  // 2026-08-26: messaging and browsers gained their own datasets in the split
+  move: 6,
+  learn: 9,
+  'give-and-act': 6,
+  protect: 7,
 };
-const ROUND9_DOMAIN_SIGNATURE = 'c655f023c5888b64ff2985e132b0328d6cc8b1f2e7053a85cec042a41002b51d';
+/* The compatibility index is pinned by hash so it cannot drift by accident. Moving this constant
+   is meant to be an act somebody performs on purpose and explains, which is what this comment is.
+
+   2026-08-12, c655f023 -> 60f61692. Group labels only. No domain, category, cid, facet or type
+   moved, and the row count is unchanged at 206. Forty-seven group labels were rewritten from a
+   verb-and-ampersand register ("Bank & spend", "Give time & voice", "Stay informed", "Wear") into
+   the noun phrases used by content/taxonomy.json, so the middle rung of the home lens reads like a
+   reference work instead of a programme of activities. The rename also separated two groups that
+   were both called "Care", one meaning childcare and one meaning veterinary care: they share the
+   CARE need, and the lens groups by label within a need, so the front page had been merging them
+   into a single row. The one row that carried no group at all, Podcasts, joined "Music and audio",
+   and the label selector that used to reach it was removed so it is not matched twice.
+
+   2026-08-12, 60f61692 -> 6f4e7a0a. Swarm wave one. Three rows gained a cid and nothing else
+   changed: Over-the-counter medicine, Used cars and Dog food were gaps and are now built. No row
+   was added, removed, relabelled or regrouped, so the projection moved by exactly three cid
+   fields. Each dataset was checked against its sources by hand before promotion; the dog food
+   lens was rejected once and rebuilt on FDA records after a note was found that did not match the
+   page it cited.
+
+   2026-08-13, 6f4e7a0a -> 4c57a2a7. Waves two and three. Ten rows gained a cid, and two rows were
+   added: Reusable nappies under Kids & family, and Clothing rental under Clothing, each being the
+   reuse route beside the thing it replaces. Nothing was relabelled or regrouped. Each dataset was
+   read against its sources by hand before promotion; hotels was refused in writing rather than
+   published, and four datasets are built but held out of the navigation because the legacy tree has
+   nowhere to put them. See content/lenses-pending/README.md.
+
+   2026-08-13, 4c57a2a7 -> 096ae098. Clothing rental was promoted and then withdrawn in the same
+   session. Two of its twelve options were Australia-only, and the Open Values region vocabulary
+   has only US, UK, EU and global, so marking them global would have told a reader elsewhere they
+   could rent from them. Dropping both left the roster at ten, below the floor of twelve, so the
+   row came back out and the dataset waits in content/lenses-pending. Nine rows promoted this
+   round, one row added, Reusable nappies.
+
+   2026-08-13, 096ae098 -> d282b563. Wave four. Six decisions promoted and three rows added for
+   decisions the legacy tree had never named at all: Electric toothbrushes, Menstrual cups and
+   discs, and Podcast apps and players. Each sits in a group already reached by a selector with no
+   label narrowing, so it places itself. Nothing relabelled or regrouped.
+
+   2026-08-13, d282b563 -> 60a73c1d. Wave five. Online courses, language learning and volunteering
+   filled gap rows that were already waiting; crowdfunding platforms needed a new row under Giving
+   & causes. GIVE & ACT doubles from two built decisions to four, which matters because it was the
+   thinnest need on the map and the one the catalogue's own argument leans on hardest.
+
+   2026-08-13, 60a73c1d -> 5be94bb2. Wave six. Bicycles, e-bikes, B Corporations and a new row for
+   secondhand marketplaces. MOVE 3 -> 5 and GIVE & ACT 4 -> 6. The B Corporations lens carries the
+   night's sharpest finding: Divine Chocolate's own page still says Ghanaian farmers hold 45 per
+   cent, and the UK statutory register shows the cooperative ceased being a person with significant
+   control on 29 May 2020, with a German holding vehicle now at 75 per cent or more. Verified
+   against Companies House directly before promotion.
+
+   2026-08-13, 5be94bb2 -> b4c539c5. Wave seven, aimed at the three thinnest needs rather than the
+   easiest wins. Washing machines needed a new row under Home / Appliances; headphones and earbuds
+   and ride-hailing filled gap rows already waiting. KEEP A HOME 7 -> 8, CONNECT 5 -> 6, MOVE 5 -> 6.
+   Washing machines is the best-sourced lens in the catalogue at 93 per cent institutional, built on
+   the EU energy label register and France mandatory durability index.
+
+   2026-08-14, b4c539c5 -> 94c56b56. Phase 10 serial promotion added four source rows for four
+   already-built decisions: off-grid power systems and direct-drive solar under KEEP A HOME, plus
+   self-hosting platforms and federated social servers under CONNECT. Existing rows did not move. */
+// Re-pinned 2026-08-26: messaging and browsers flipped from digital-services facets to their
+// own cids in the split. The signature moves with the recorded change; it exists to catch
+// silent drift, and a cid flip carried by a commit with written reasons is the opposite.
+const ROUND9_DOMAIN_SIGNATURE = '9cd9e68334531993fc23d5cc1de44990bdd2cab0a0c434aecb70f9b06416501f';
 
 function read(rel) {
   try {
@@ -129,10 +200,14 @@ function main() {
     }
   }
 
-  expect(rows === 206, `content/ontology.json: expected 206 category rows, found ${rows}`);
-  expect(liveRows === 96, `content/ontology.json: expected 96 live rows including facets, found ${liveRows}`);
-  expect(facets === 9, `content/ontology.json: expected 9 preserved facets, found ${facets}`);
-  expect(cidRecords.size === 88, `content/ontology.json: expected 88 unique live categories, found ${cidRecords.size}`);
+  expect(rows === 217, `content/ontology.json: expected 217 category rows, found ${rows}`);
+  expect(liveRows === 130, `content/ontology.json: expected 130 live rows including facets, found ${liveRows}`);
+  // Moved 2026-08-26: messaging and browsers flipped from digital-services facets to their own
+  // datasets, the first two of the nine-way split in docs/ONTOLOGY-RESEARCH.md 4.1.
+  expect(facets === 7, `content/ontology.json: expected 7 preserved facets, found ${facets}`);
+  // 124 on 2026-08-26: messaging and browsers left the shared digital-services dataset, the
+  // first two of the nine-way split recorded in docs/ONTOLOGY-RESEARCH.md 4.1.
+  expect(cidRecords.size === 124, `content/ontology.json: expected 124 unique live categories, found ${cidRecords.size}`);
   for (const id of validNeeds) {
     expect(rowCounts[id] > 0, `content/ontology.json: ${id} is an orphan need`);
     expect(liveSets[id].size === EXPECTED_LIVE_BY_NEED[id], `content/ontology.json: ${id} expected ${EXPECTED_LIVE_BY_NEED[id]} live categories, found ${liveSets[id].size}`);
@@ -147,7 +222,7 @@ function main() {
   expect(board.category === 'causes-to-support', 'content/ontology.json: GIVE & ACT must attach the mutual-aid board to causes-to-support');
   expect(/function asksOffersBoardHTML/.test(read('app/app.js')), 'app/app.js: existing mutual-aid board consumer missing');
 
-  expect(Array.isArray(index.categories) && index.categories.length === 88, `app/data/index.json: expected 88 live categories, found ${(index.categories || []).length}`);
+  expect(Array.isArray(index.categories) && index.categories.length === 124, `app/data/index.json: expected 124 live categories, found ${(index.categories || []).length}`);
   expect(JSON.stringify(index.ontology) === JSON.stringify(ontology), 'app/data/index.json: embedded ontology differs from content/ontology.json');
   const generatedIds = new Set();
   for (const category of index.categories || []) {

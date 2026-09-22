@@ -1,0 +1,43 @@
+{
+  "format": "open-values-register-snapshot",
+  "version": "1.0.0",
+  "snapshotId": "2026-08-14-eb5d39d9bc22",
+  "registerId": "cpsc-recalls",
+  "access": "api",
+  "capturedAt": "2026-08-14T19:20:49Z",
+  "request": {
+    "method": "GET",
+    "url": "https://www.saferproducts.gov/RestWebServices/Recall",
+    "query": {
+      "ProductName": [
+        "toothbrush"
+      ],
+      "format": [
+        "json"
+      ]
+    },
+    "scope": "CPSC recall records whose product name contains toothbrush",
+    "headers": {
+      "Accept": "application/json, application/*+json;q=0.9, */*;q=0.1",
+      "User-Agent": "ConsciousConsuming/1.0 register-snapshot"
+    },
+    "secretHeaderNames": []
+  },
+  "response": {
+    "status": 200,
+    "finalUrl": "https://www.saferproducts.gov/RestWebServices/Recall?ProductName=toothbrush&format=json",
+    "mediaType": "application/json",
+    "bytes": 13803,
+    "sha256": "b53e1873406764b4db38e765f26d5337c55e07feb39479b95aaa1a7f8e69c44d",
+    "payload": "2026-08-14-eb5d39d9bc22.payload.json",
+    "fetchMode": "network"
+  },
+  "license": {
+    "url": "https://www.cpsc.gov/About-CPSC/Policies-Statements-and-Directives/Open-Government",
+    "note": "United States CPSC public recall data; scope is the API product-name search, not all consumer products."
+  },
+  "parser": {
+    "id": "cpsc-recalls-parser",
+    "version": "1.0.0"
+  }
+}

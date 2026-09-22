@@ -15,6 +15,7 @@ const DATA = path.join(APP, 'data');
 const CARDS = path.join(APP, 'c');
 const ODBL = 'https://opendatacommons.org/licenses/odbl/1-0/';
 const BAND_VALUES = new Set(['Strong', 'Good', 'Fair', 'Limited', 'Poor']);
+const EVIDENCE_VALUES = new Set([...BAND_VALUES, 'Not scored']);
 const failures = [];
 const warnings = [];
 
@@ -176,7 +177,7 @@ function checkEntity(item) {
     if (byKey.has(key)) failures.push(`${item.cid}/${item.code}: duplicate PropertyValue for ${key}`);
     byKey.set(key, prop);
     if (prop['@type'] !== 'PropertyValue') failures.push(`${item.cid}/${item.code}.${key}: should be PropertyValue`);
-    if (!BAND_VALUES.has(prop.value)) failures.push(`${item.cid}/${item.code}.${key}: should export a band value, found ${prop.value || '(missing)'}`);
+    if (!EVIDENCE_VALUES.has(prop.value)) failures.push(`${item.cid}/${item.code}.${key}: should export a band or Not scored, found ${prop.value || '(missing)'}`);
   }
 
   let cited = 0;
@@ -202,6 +203,27 @@ function checkEntity(item) {
       }
       if (prov.note && prop.description !== prov.note) failures.push(`${item.cid}/${item.code}.${key}: provenance note did not round-trip`);
     }
+  }
+
+  for (const [key, prov] of Object.entries(item.product.provenance || {})) {
+    if (key === 'price' || (item.product.scores && item.product.scores[key] != null)) continue;
+    if (!prov || typeof prov !== 'object' || !(prov.note || prov.source || prov.asof)) continue;
+    const prop = byKey.get(key);
+    if (!prop) {
+      failures.push(`${item.cid}/${item.code}.${key}: missing unscored evidence export`);
+      continue;
+    }
+    if (prop.value !== 'Not scored') failures.push(`${item.cid}/${item.code}.${key}: unscored evidence must not export a score band`);
+    if (prov.source) {
+      cited += 1;
+      if (prop.citation !== prov.source) failures.push(`${item.cid}/${item.code}.${key}: citation URL did not round-trip`);
+      if (!citations.has(prov.source)) failures.push(`${item.cid}/${item.code}.${key}: top-level citation list missing source`);
+    }
+    if (prov.asof) {
+      dated += 1;
+      if (String(prop.dateModified || '') !== String(prov.asof)) failures.push(`${item.cid}/${item.code}.${key}: asof date did not round-trip`);
+    }
+    if (prov.note && prop.description !== prov.note) failures.push(`${item.cid}/${item.code}.${key}: provenance note did not round-trip`);
   }
 
   return { props: props.length, cited, dated, dataset: hasDataset };
@@ -236,7 +258,7 @@ function main() {
   const lensCount = new Set(expected.map(item => item.cid)).size;
   console.log(`  lenses: ${lensCount}`);
   console.log(`  entity cards: ${expected.length}`);
-  console.log(`  band properties: ${properties}`);
+  console.log(`  evidence properties: ${properties}`);
   console.log(`  cited properties: ${cited}`);
   console.log(`  dated properties: ${dated}`);
   console.log(`  Dataset nodes: ${datasetNodes}`);
@@ -244,12 +266,39 @@ function main() {
   for (const warning of warnings.slice(0, 20)) console.log(`  WARN ${warning}`);
   if (warnings.length > 20) console.log(`  ... ${warnings.length - 20} more warnings omitted`);
 
+  /* Edge emission on the verdict cards, added 2026-08-26 with the relation layer. Every
+     made-by instance must point at a brand node that exists, and the four authored banking
+     alternatives must reach their cards; both were emitted zero times before this date because
+     the cards passed an empty edge list to the serializer. The floor is deliberately the
+     current truth, not a target, so a regression to zero fails while healthy growth passes. */
+  (function checkCardEdges() {
+    const brandIds = new Set();
+    const brandsFile = readJson(path.join(ROOT, 'app', 'data', 'nodes', 'brands.json'), 'brands.json');
+    for (const n of (brandsFile && brandsFile.nodes) || []) brandIds.add(n.id);
+    let made = 0, badTargets = 0, altCards = 0;
+    const cdir = path.join(ROOT, 'app', 'c');
+    for (const cat of fs.readdirSync(cdir, { withFileTypes: true })) {
+      if (!cat.isDirectory()) continue;
+      for (const f of fs.readdirSync(path.join(cdir, cat.name))) {
+        if (!f.endsWith('.html')) continue;
+        const html = fs.readFileSync(path.join(cdir, cat.name, f), 'utf8');
+        const m = html.match(/"made-by":\[\{"@id":"(ovs:brand\/[^"]+)"/);
+        if (m) { made += 1; if (!brandIds.has(m[1])) { badTargets += 1; failures.push(`${cat.name}/${f}: made-by points at ${m[1]}, which has no brand node`); } }
+        if (/"alternative-to":\[/.test(html)) altCards += 1;
+      }
+    }
+    if (made < 700) failures.push(`card edges: only ${made} cards carry made-by; the floor is 700 and zero means the serializer went blind again`);
+    if (altCards < 4) failures.push(`card edges: only ${altCards} cards carry an alternative-to instance; the four authored banking alternatives must reach their cards`);
+    console.log(`  card edges: ${made} made-by (targets all resolve: ${badTargets === 0}), ${altCards} alternative-to instances`);
+  })();
+
   if (failures.length) {
     console.log(`  failures: ${failures.length}`);
     for (const failure of failures.slice(0, 80)) console.log(`  FAIL ${failure}`);
     if (failures.length > 80) console.log(`  ... ${failures.length - 80} more failures omitted`);
     process.exit(1);
   }
+
 
   console.log('LINKED-DATA EXPORT CHECKS PASS');
 }

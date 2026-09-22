@@ -11,14 +11,25 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
+// Counts move only when a decision is promoted from gap to live, and the move is recorded here.
+// 2026-08-13, swarm waves two and three. Two rows added, Reusable nappies and Clothing rental, both being the reuse route beside the thing it replaces, which is the comparison this catalogue exists to make. Ten decisions promoted from gap to live across health, transport, travel, money, home, family and clothing. 206 -> 208 rows, 96 -> 110 live paths, 88 -> 102 datasets, 110 -> 98 gaps.
+// 2026-08-12, swarm wave one: over-the-counter medicine, used cars and dog food went live. Rows
+// and subcategories unchanged; the three simply crossed from gaps to live.
+// 2026-08-13, swarm wave four. Six decisions promoted (cat food, vet services, video streaming, podcast apps, menstrual cups and discs, electric toothbrushes) and three rows added for the ones the legacy tree had never named. 207 -> 210 rows, 109 -> 115 live, 101 -> 107 datasets, 98 -> 95 gaps. CARE 22 -> 26, LEARN 5 -> 7.
+// 2026-08-13, swarm wave five. Four decisions promoted: online courses, language learning, volunteering and crowdfunding platforms, the last needing a new row. 210 -> 211 rows, 115 -> 119 live, 107 -> 111 datasets, 95 -> 92 gaps. LEARN 7 -> 9, GIVE & ACT 2 -> 4.
+// 2026-08-13, swarm wave six. Bicycles, e-bikes, B Corporations and secondhand marketplaces. 211 -> 212 rows, 119 -> 123 live, 111 -> 115 datasets, 92 -> 89 gaps. MOVE 3 -> 5, GIVE & ACT 4 -> 6.
+// 2026-08-13, wave seven. Washing machines, headphones and earbuds, ride-hailing: one each for the three thinnest needs. 212 -> 213 rows, 123 -> 126 live, 115 -> 118 datasets.
+// 2026-08-14, Phase 10 serial promotion. Four already-built decisions gained new rows: off-grid power systems and direct-drive solar under KEEP A HOME; self-hosting platforms and federated social servers under CONNECT. 213 -> 217 rows, 126 -> 130 live paths, 118 -> 122 datasets; gaps remain 87.
 const EXPECTED = {
   needs: 8,
   categories: 18,
   subcategories: 39,
-  rows: 206,
-  livePaths: 96,
-  liveDatasets: 88,
-  gaps: 110,
+  rows: 217,
+  livePaths: 130,
+  // 124 on 2026-08-26: messaging and browsers flipped from digital-services facets to their
+  // own datasets, the first two of the nine-way split. Rows stay 217, live paths stay 130.
+  liveDatasets: 124,
+  gaps: 87,
 };
 
 function readJson(rel) {

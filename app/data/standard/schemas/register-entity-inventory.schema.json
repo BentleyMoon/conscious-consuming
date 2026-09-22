@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/register-entity-inventory-v1.schema.json",
+  "title": "Open Values Register Entity Inventory",
+  "description": "Compact identity receipts for every option in every built decision.",
+  "type": "object",
+  "required": ["format", "version", "generatedFrom", "counts", "catalogueIdentitySha256", "decisions"],
+  "additionalProperties": false,
+  "properties": {
+    "format": { "const": "open-values-register-entity-inventory" },
+    "version": { "const": "1.0.0" },
+    "generatedFrom": {
+      "type": "object",
+      "required": ["index", "indexSha256"],
+      "additionalProperties": false,
+      "properties": {
+        "index": { "const": "app/data/index.json" },
+        "indexSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      }
+    },
+    "counts": {
+      "type": "object",
+      "required": ["decisions", "entities", "missingCodes", "missingNames", "duplicateCodesWithinDecision"],
+      "additionalProperties": false,
+      "properties": {
+        "decisions": { "type": "integer", "minimum": 1 },
+        "entities": { "type": "integer", "minimum": 1 },
+        "missingCodes": { "const": 0 },
+        "missingNames": { "const": 0 },
+        "duplicateCodesWithinDecision": { "const": 0 }
+      }
+    },
+    "catalogueIdentitySha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "decisions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["cid", "label", "dataset", "entityField", "entityCount", "identitySha256"],
+        "additionalProperties": false,
+        "properties": {
+          "cid": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+          "label": { "type": "string", "minLength": 1 },
+          "dataset": { "type": "string", "pattern": "^app/data/[a-z0-9-]+\\.json$" },
+          "entityField": { "enum": ["products", "resources"] },
+          "entityCount": { "type": "integer", "minimum": 1 },
+          "identitySha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        }
+      }
+    }
+  }
+}

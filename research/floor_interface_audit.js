@@ -111,7 +111,8 @@ function bankingReceipt(floor) {
   const activeAfterLoosening = rules.filter((rule) => !disabled.has(rule.id));
   const loosened = products.filter((product) => activeAfterLoosening.some((rule) => floorMatches(product, rule, 'banking')));
   expect(rules.length === 1, `banking: expected one applicable floor rule, found ${rules.length}`);
-  expect(folded.length === 6, `banking: expected six default floor folds, found ${folded.length}`);
+  // The current BOCC evidence puts five banks below the published <20 boundary.
+  expect(folded.length === 5, `banking: expected five default floor folds, found ${folded.length}`);
   expect(loosened.length === 0, 'banking: disabling the applicable rule must remove every floor fold');
   expect(products.length - folded.length >= floor.bounds.minimumRemainingPerCategory, 'banking: floor leaves too few visible options');
   return { total: products.length, folded: folded.length, loosened: loosened.length, publishedRules: (floor.rules || []).length };

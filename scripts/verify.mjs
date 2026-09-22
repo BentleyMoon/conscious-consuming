@@ -8,6 +8,8 @@ const ROOT = process.cwd();
 const full = process.argv.includes("--full");
 
 const jsSyntaxFiles = [
+  "mcp.js",
+  "worker.js",
   "app/app.js",
   "app/commons-config.js",
   "app/engine.js",
@@ -34,6 +36,7 @@ const jsSyntaxFiles = [
   "pipeline/build_tags.js",
   "research/a11y_audit.js",
   "research/cache_bust_audit.js",
+  "research/route_protocol_audit.js",
   "research/contrast_audit.js",
   "research/ci_config_audit.js",
   "research/citation_bundle_audit.js",
@@ -50,7 +53,11 @@ const jsSyntaxFiles = [
   "research/presentation_acceptance_audit.js",
   "research/explore_three_doors_audit.js",
   "research/generality_release_audit.js",
+  "research/kosplora_curriculum_audit.js",
+  "research/instance_contract_audit.js",
+  "research/inline_script_audit.js",
   "research/design_tokens_audit.js",
+  "research/gate_falsifiability_audit.js",
   "research/governance_audit.js",
   "research/ask_readiness_audit.js",
   "research/content_readiness_audit.js",
@@ -109,6 +116,8 @@ const jsSyntaxFiles = [
 ];
 
 const nodeTests = [
+  "scripts/mcp-selftest.mjs",
+  "scripts/worker-selftest.mjs",
   "research/instances_test.js",
   "research/federation_test.js",
   "research/lens_federation_test.js",
@@ -270,6 +279,9 @@ const coreAudits = [
   ["research/presentation_acceptance_audit.js", "--contract"],
   ["research/explore_three_doors_audit.js"],
   ["research/generality_release_audit.js"],
+  ["research/kosplora_curriculum_audit.js"],
+  ["research/instance_contract_audit.js"],
+  ["research/inline_script_audit.js"],
   ["research/floor_interface_audit.js"],
   ["research/personal_precedence_audit.js"],
   ["research/guide_voice_audit.js"],
@@ -303,6 +315,7 @@ const fullOnlyAudits = [
 for (const audit of coreAudits) run("node", audit);
 if (full) for (const audit of fullOnlyAudits) run("node", audit);
 if (full) {
+  run("node", ["scripts/register-pass-check.mjs"]);
   run("node", ["research/content_readiness_audit.js"]);
   run("node", ["research/citation_bundle_audit.js"]);
   run("node", ["research/validate_lens.js"]);

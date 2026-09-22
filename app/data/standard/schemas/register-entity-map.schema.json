@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/register-entity-map-v1.schema.json",
+  "title": "Open Values Register Entity Map",
+  "description": "Reviewed mappings from catalogue options to stable identities in one public register.",
+  "type": "object",
+  "required": ["format", "version", "registerId", "updated", "note", "mappings"],
+  "additionalProperties": false,
+  "properties": {
+    "format": { "const": "open-values-register-entity-map" },
+    "version": { "const": "1.0.0" },
+    "registerId": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "updated": { "type": "string", "format": "date" },
+    "note": { "type": "string", "minLength": 1 },
+    "mappings": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/mapping" }
+    }
+  },
+  "$defs": {
+    "identifier": {
+      "type": "object",
+      "required": ["scheme", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "scheme": { "type": "string", "minLength": 1 },
+        "value": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "pattern": "^https?://" }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["source", "note", "accessed"],
+      "additionalProperties": false,
+      "properties": {
+        "source": { "type": "string", "pattern": "^https?://" },
+        "note": { "type": "string", "minLength": 1 },
+        "accessed": { "type": "string", "format": "date" }
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": ["by", "on"],
+      "additionalProperties": false,
+      "properties": {
+        "by": { "type": "string", "minLength": 1 },
+        "on": { "type": "string", "format": "date" }
+      }
+    },
+    "candidate": {
+      "type": "object",
+      "required": ["legalName", "jurisdiction", "registerIdentifier", "matchEvidence"],
+      "additionalProperties": false,
+      "properties": {
+        "legalName": { "type": "string", "minLength": 1 },
+        "jurisdiction": { "type": "string", "minLength": 1 },
+        "registerIdentifier": { "$ref": "#/$defs/identifier" },
+        "matchEvidence": { "$ref": "#/$defs/evidence" }
+      }
+    },
+    "mapping": {
+      "type": "object",
+      "required": ["cid", "entityCode", "entityName", "entityIdentitySha256", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "cid": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "entityCode": { "type": "string", "minLength": 1 },
+        "entityName": { "type": "string", "minLength": 1 },
+        "entityIdentitySha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "status": { "enum": ["matched", "ambiguous", "unmatched", "not-applicable", "unreviewed"] },
+        "legalName": { "type": "string", "minLength": 1 },
+        "aliases": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "jurisdiction": { "type": "string", "minLength": 1 },
+        "registerIdentifier": { "$ref": "#/$defs/identifier" },
+        "matchEvidence": { "$ref": "#/$defs/evidence" },
+        "candidates": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/candidate" } },
+        "reason": { "type": "string", "minLength": 1 },
+        "review": { "$ref": "#/$defs/review" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "status": { "const": "matched" } }, "required": ["status"] },
+          "then": { "required": ["legalName", "aliases", "jurisdiction", "registerIdentifier", "matchEvidence", "review"] }
+        },
+        {
+          "if": { "properties": { "status": { "const": "ambiguous" } }, "required": ["status"] },
+          "then": { "required": ["candidates", "reason", "review"] }
+        },
+        {
+          "if": { "properties": { "status": { "enum": ["unmatched", "not-applicable"] } }, "required": ["status"] },
+          "then": { "required": ["reason", "matchEvidence", "review"] }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "$schema": "./schemas/adoption.schema.json",
+  "kind": "cc-adoption-gate-registry",
+  "version": "1.0.0",
+  "updated": "2026-07-15",
+  "definition": "An adoption event is an evidenced action caused by a person, group, agent, builder, or researcher outside the project. Internal work, founder self-review, plans, invitations, page views, builds, tests, and capsule receipts are not adoption.",
+  "strategySources": [
+    "codex.md#M1",
+    "codex.md#M3-M8",
+    "docs/MASTERPLAN.md#the-forward-plan-gates-not-dates",
+    "docs/PREVIEW-FEEDBACK-LOOP.md#send-rule",
+    "docs/PREVIEW-FEEDBACK-LOOP.md#learning-receipt",
+    "docs/R1-REVIEW.md#r1-gate-questions",
+    "docs/ADOPTION-KIT.md#report-back"
+  ],
+  "eventLedger": "content/operations/adoption-events.jsonl",
+  "excludedSignals": [
+    "an internal capsule, commit, build, test, audit, or verification pass",
+    "founder self-review or founder-authored product feedback",
+    "an invitation sent without a completed external use attempt",
+    "a page view, download, impression, soft compliment, or anonymous analytics event",
+    "a template, draft, synthetic fixture, or proposed future use",
+    "an event without retained evidence and explicit founder or release-owner confirmation"
+  ],
+  "privacy": {
+    "storeContactDetails": false,
+    "storePrivateValues": false,
+    "subjectIdentity": "Use a stable pseudonymous receipt key. Never store a name, email, phone number, account identifier, exact address, or exported values file.",
+    "evidenceBoundary": "A private receipt may be referenced by a non-identifying receipt ID; the ledger must not contain the private receipt body."
+  },
+  "gates": [
+    {
+      "id": "r1-first-five-learning-receipts",
+      "front": "phase-a-first-real-use",
+      "threshold": 5,
+      "distinctBy": "subjectKey",
+      "eventTypes": ["real-decision-receipt"],
+      "unlocks": "Rerun the R1 review gate and decide whether to send the next five invitations after trust breaks and dead ends are patched.",
+      "source": "docs/PREVIEW-FEEDBACK-LOOP.md#send-rule"
+    },
+    {
+      "id": "phase-a-one-real-group",
+      "front": "phase-a-first-real-use",
+      "threshold": 1,
+      "distinctBy": "subjectKey",
+      "eventTypes": ["real-group-decision"],
+      "unlocks": "Claim evidence that the Common Ground to Pact organizing loop has survived one real external group.",
+      "source": "docs/MASTERPLAN.md#the-forward-plan-gates-not-dates"
+    },
+    {
+      "id": "agents-external-citation",
+      "front": "agents",
+      "threshold": 1,
+      "distinctBy": "subjectKey",
+      "eventTypes": ["external-agent-citation"],
+      "unlocks": "Public dataset drop, PROV lineage, and the scoped grounded helper described in codex.md §M3.",
+      "source": "codex.md#M3"
+    },
+    {
+      "id": "file-external-transfer",
+      "front": "the-file",
+      "threshold": 1,
+      "distinctBy": "subjectKey",
+      "eventTypes": ["external-file-transfer"],
+      "unlocks": "Consent-directive ambitions and a helper that reads the person-file, as bounded by codex.md §M4.",
+      "source": "codex.md#M4"
+    },
+    {
+      "id": "covenant-external-adoption",
+      "front": "the-covenant",
+      "threshold": 1,
+      "distinctBy": "subjectKey",
+      "eventTypes": ["external-covenant-adoption"],
+      "unlocks": "Covenant-compliance certification and adoption tooling described in codex.md §M5.",
+      "source": "codex.md#M5"
+    },
+    {
+      "id": "science-external-interest",
+      "front": "the-science",
+      "threshold": 1,
+      "distinctBy": "subjectKey",
+      "eventTypes": ["external-science-citation", "external-replication-interest"],
+      "unlocks": "The next science-front move explicitly authorized by the research program after external citation or replication interest.",
+      "source": "codex.md#M6"
+    },
+    {
+      "id": "three-organic-groups",
+      "front": "locked-territory-ledger",
+      "threshold": 3,
+      "distinctBy": "subjectKey",
+      "eventTypes": ["organic-group-use"],
+      "unlocks": "Values-clearing, groups, and political-use exploration bounded by codex.md §M7.",
+      "source": "codex.md#M7"
+    }
+  ]
+}

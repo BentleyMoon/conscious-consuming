@@ -8,7 +8,7 @@
 <meta name="description" content="A portable, nameless file that keeps your values on your device and lets compatible tools rank choices without an account.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#1d7a5a">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d7a5a'/%3E%3Cpath d='M18 36c0-13 13-20 28-20-2 16-14 23-28 20z' fill='%23fff'/%3E%3Cpath d='M20 46c6-12 14-18 22-21' stroke='%231d7a5a' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="/app/icon.svg" type="image/svg+xml"><link rel="alternate icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64"><link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
 <link rel="canonical" href="https://valuescommons.org/passport/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://valuescommons.org/passport/">
@@ -23,40 +23,45 @@
 <meta name="twitter:description" content="A portable, nameless file that keeps your values on your device and lets compatible tools rank choices without an account.">
 <meta name="twitter:image" content="https://valuescommons.org/og-standard.png">
 <style>
-  :root{--bg:#f6f8f7;--surface:#fff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--soft:#e9f3ee;--track:#eef1ef;--max:1040px;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,system-ui,sans-serif;--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,ui-serif,serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-  @media(prefers-color-scheme:dark){:root{--bg:#0f1512;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.1);--accent:#5dcaa5;--soft:#16241d;--track:#1b241f}}
-  *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}.wrap{max-width:var(--max);margin:0 auto;padding:0 1.25rem}.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:1.05rem 0;border-bottom:1px solid var(--line)}.brand{font-family:var(--serif);font-weight:600;color:var(--ink);font-size:1.12rem}.links{display:flex;gap:.45rem 1rem;flex-wrap:wrap;font-size:.92rem}.links a{color:var(--muted)}.links a:hover{color:var(--accent);text-decoration:none}.cta{border:1px solid var(--accent);border-radius:999px;padding:.28rem .68rem;color:var(--accent)!important}.hero{padding:4.2rem 0 3rem}.kicker{font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 .9rem}h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.12;text-wrap:balance}h1{font-size:clamp(2.3rem,6vw,4.4rem);margin:0 0 1rem}h2{font-size:1.75rem;margin:0 0 .6rem}h3{font-size:1.15rem;margin:0 0 .35rem}.lede{max-width:45rem;color:var(--muted);font-size:1.16rem;margin:0}.actions{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1.45rem}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:2.65rem;padding:.58rem 1rem;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:650}.btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn.primary:hover{color:#fff}.band{border-top:1px solid var(--line);padding:2.5rem 0}.intro{color:var(--muted);max-width:44rem;margin:0 0 1.2rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:.85rem}.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1rem}.card p{margin:.35rem 0 0;color:var(--muted);font-size:.93rem}.tag{display:inline-block;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--accent);background:var(--soft);border-radius:999px;padding:.12rem .5rem;margin-bottom:.55rem}.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(19rem,.75fr);gap:1rem;align-items:start}pre{margin:0;background:var(--track);border-radius:8px;padding:1rem;overflow:auto;font-family:var(--mono);font-size:.86rem;line-height:1.45}table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden}th,td{padding:.68rem .75rem;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}th{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--hint)}tr:last-child td{border-bottom:0}.route{display:block;color:var(--ink);border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:1rem}.route:hover{border-color:var(--accent);text-decoration:none}.route p{margin:.25rem 0 0;color:var(--muted);font-size:.92rem}.primitivebar{display:flex;align-items:center;gap:.42rem;flex-wrap:wrap;margin:1rem 0 0;font-size:.82rem;color:var(--hint)}.primitivebar a{color:var(--muted);border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:.2rem .58rem}.primitivebar a:hover,.primitivebar a[aria-current="page"]{border-color:var(--accent);color:var(--accent);text-decoration:none}.primitive-note{margin:.55rem 0 0;color:var(--muted);font-size:.9rem}.ladder{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.65rem}.ladder .card{min-height:8.4rem}footer{border-top:1px solid var(--line);padding:1.7rem 0 2.7rem;color:var(--hint);font-size:.88rem}.footlinks{display:flex;gap:.4rem 1rem;flex-wrap:wrap;margin-top:.45rem}@media(max-width:760px){.split{grid-template-columns:1fr}.hero{padding:3.2rem 0 2.4rem}}
+  :root{--shadow-sm:0 1px 2px rgba(40,34,24,.07),0 1px 1px rgba(40,34,24,.05);--shadow-md:0 2px 6px rgba(40,34,24,.09),0 10px 26px rgba(40,34,24,.07);--shadow-lg:0 6px 16px rgba(40,34,24,.12),0 22px 48px rgba(40,34,24,.10);--bg:#f8f5ee;--surface:#fff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--soft:#e9f3ee;--track:#eef1ef;--max:1040px;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,system-ui,sans-serif;--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,ui-serif,serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  /* Nine surfaces stated a light palette and no alternative, so a reader who asks for
+     dark was overridden on most of the commons and honoured on two of it. Same values
+     the Institute uses, so the family reads as one in either mode. */
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--shadow-sm:0 1px 2px rgba(0,0,0,.55);--shadow-md:0 2px 8px rgba(0,0,0,.6),0 12px 30px rgba(0,0,0,.45);--shadow-lg:0 8px 20px rgba(0,0,0,.65),0 28px 56px rgba(0,0,0,.5);--bg:#11140f;--surface:#181d16;--ink:#eef1e8;--muted:#c0c9bd;--hint:#8b978a;--line:#2b322a;--accent:#6fce8c;--soft:#1b2a20;--track:#2b322a}}
+
+  @media(prefers-color-scheme:dark){:root{--bg:#11140f;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.1);--accent:#5dcaa5;--soft:#16241d;--track:#1b241f}}
+  *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}.wrap{max-width:var(--max);margin:0 auto;padding:0 1.25rem}.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:1.05rem 0;border-bottom:1px solid var(--line)}.brand{font-family:var(--serif);font-weight:600;color:var(--ink);font-size:1.12rem}.links{display:flex;gap:.45rem 1rem;flex-wrap:wrap;font-size:0.86rem}.links a{color:var(--muted)}.links a:hover{color:var(--accent);text-decoration:none}.cta{border:1px solid var(--accent);border-radius:999px;padding:.28rem .68rem;color:var(--accent)!important}.hero{padding:4.2rem 0 3rem}.kicker{font-size:0.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 .9rem}h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.12;text-wrap:balance}h1{font-size:clamp(2.0rem,3.25vw,2.6rem);margin:0 0 1rem}h2{font-size:1.75rem;margin:0 0 .6rem}h3{font-size:1.12rem;margin:0 0 .35rem}.lede{max-width:45rem;color:var(--muted);font-size:1.12rem;margin:0}.actions{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1.45rem}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:2.65rem;padding:.58rem 1rem;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:650}.btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn.primary:hover{color:#fff}.band{border-top:1px solid var(--line);padding:2.5rem 0}.intro{color:var(--muted);max-width:44rem;margin:0 0 1.2rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:.85rem}.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1rem}.card p{margin:.35rem 0 0;color:var(--muted);font-size:1rem}.tag{display:inline-block;font-size:0.75rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--accent);background:var(--soft);border-radius:999px;padding:.12rem .5rem;margin-bottom:.55rem}.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(19rem,.75fr);gap:1rem;align-items:start}pre{margin:0;background:var(--track);border-radius:8px;padding:1rem;overflow:auto;font-family:var(--mono);font-size:0.86rem;line-height:1.45}table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden}th,td{padding:.68rem .75rem;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}th{font-size:0.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--hint)}tr:last-child td{border-bottom:0}.route{display:block;color:var(--ink);border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:1rem}.route:hover{border-color:var(--accent);text-decoration:none}.route p{margin:.25rem 0 0;color:var(--muted);font-size:0.86rem}.primitivebar{display:flex;align-items:center;gap:.42rem;flex-wrap:wrap;margin:1rem 0 0;font-size:0.86rem;color:var(--hint)}.primitivebar a{color:var(--muted);border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:.2rem .58rem}.primitivebar a:hover,.primitivebar a[aria-current="page"]{border-color:var(--accent);color:var(--accent);text-decoration:none}.primitive-note{margin:.55rem 0 0;color:var(--muted);font-size:0.86rem}.ladder{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.65rem}.ladder .card{min-height:8.4rem}footer{border-top:1px solid var(--line);padding:1.7rem 0 2.7rem;color:var(--hint);font-size:0.86rem}.footlinks{display:flex;gap:.4rem 1rem;flex-wrap:wrap;margin-top:.45rem}@media(max-width:760px){.split{grid-template-columns:1fr}.hero{padding:3.2rem 0 2.4rem}}
   /* The specimen: the file itself, line by line, inspectable */
   .specimen{border:1px solid var(--line);border-radius:8px;background:var(--surface);overflow:hidden}
   .spec-tabs{display:flex;border-bottom:1px solid var(--line)}
-  .spec-tab{flex:1;background:none;border:0;border-right:1px solid var(--line);padding:.5rem .6rem;font-family:var(--mono);font-size:.72rem;color:var(--muted);cursor:pointer}
+  .spec-tab{flex:1;background:none;border:0;border-right:1px solid var(--line);padding:.5rem .6rem;font-family:var(--mono);font-size:0.75rem;color:var(--muted);cursor:pointer}
   .spec-tab:last-child{border-right:0}
   .spec-tab[aria-selected="true"]{color:var(--accent);background:var(--soft)}
-  .spec-code{margin:0;padding:.9rem 1rem;font-family:var(--mono);font-size:.83rem;line-height:1.62;overflow:auto;background:var(--track)}
+  .spec-code{margin:0;padding:.9rem 1rem;font-family:var(--mono);font-size:0.86rem;line-height:1.62;overflow:auto;background:var(--track)}
   .spec-code .ln{display:block;cursor:pointer;border-radius:4px;padding:0 .35rem;border:0;background:none;font:inherit;color:inherit;text-align:left;width:100%}
   .spec-code .ln:hover,.spec-code .ln.active{background:var(--soft)}
   .spec-code .ln:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
   .spec-code .absent{color:var(--hint)}
   .spec-code .absent b{color:var(--hint);font-weight:600;text-decoration:line-through}
-  .spec-note{border-top:1px solid var(--line);padding:.6rem 1rem;font-size:.85rem;color:var(--muted);min-height:2.6rem;margin:0}
+  .spec-note{border-top:1px solid var(--line);padding:.6rem 1rem;font-size:0.86rem;color:var(--muted);min-height:2.6rem;margin:0}
   /* Field-guide register, shared with the landing: serif argues, mono measures */
   :root{--ochre:#8a5514;--line-strong:#cfd8d3}
   @media(prefers-color-scheme:dark){:root{--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17)}}
   body{font-family:var(--serif);line-height:1.58}
   .nav{border-bottom-color:var(--line-strong)}
-  .brand{font-weight:700;font-size:1.18rem;letter-spacing:-.015em}
-  .brand::after{content:"Open field guide";font-family:var(--mono);font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ochre);margin-left:.6rem;padding-left:.6rem;border-left:1px solid var(--line-strong)}
-  .links{font-family:var(--mono);font-size:.75rem}
+  .brand{font-weight:700;font-size:1.12rem;letter-spacing:-.015em}
+  .brand::after{content:"Open field guide";font-family:var(--mono);font-weight:600;font-size:0.75rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ochre);margin-left:.6rem;padding-left:.6rem;border-left:1px solid var(--line-strong)}
+  .links{font-family:var(--mono);font-size:0.75rem}
   .cta{border-radius:3px}
-  .primitivebar{font-family:var(--mono);font-size:.68rem;letter-spacing:.03em}
+  .primitivebar{font-family:var(--mono);font-size:0.75rem;letter-spacing:.03em}
   .primitivebar a{border-radius:3px}
-  .kicker{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;color:var(--muted)}
-  h1{font-size:clamp(2.2rem,5vw,3.2rem);letter-spacing:-.015em}
-  .btn{font-family:var(--mono);font-size:.8rem;letter-spacing:.02em;font-weight:600;border-radius:3px}
+  .kicker{font-family:var(--mono);font-size:0.75rem;letter-spacing:.16em;color:var(--muted)}
+  h1{font-size:clamp(1.85rem,3.06vw,2.45rem);letter-spacing:-.015em}
+  .btn{font-family:var(--mono);font-size:0.75rem;letter-spacing:.02em;font-weight:600;border-radius:3px}
   .tag{font-family:var(--mono);border-radius:3px}
   .card,.route,.note,.build,.edgemap,.specimen{border-radius:4px}
   pre,table{border-radius:4px}
-  footer{font-size:.85rem}
+  footer{font-size:0.86rem}
   /* Professional futurism: light spent on the living and the chosen */
   :root{--glow:0 0 14px rgba(29,122,90,.2)}
   @media(prefers-color-scheme:dark){:root{--glow:0 0 16px rgba(93,202,165,.28)}}
@@ -65,10 +70,17 @@
   .btn.primary:hover,.cta:hover{box-shadow:var(--glow)}
   html{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--accent) 45%,var(--track)) transparent}
   a:focus-visible,button:focus-visible{box-shadow:var(--glow)}
-  :root[data-theme="dark"]{--bg:#0f1512;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.1);--accent:#5dcaa5;--soft:#16241d;--track:#1b241f;--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17);--glow:0 0 16px rgba(93,202,165,.28);color-scheme:dark}
-  :root[data-theme="light"]{--bg:#f6f8f7;--surface:#fff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--soft:#e9f3ee;--track:#eef1ef;--ochre:#8a5514;--line-strong:#cfd8d3;--glow:0 0 14px rgba(29,122,90,.2);color-scheme:light}
+  :root[data-theme="dark"]{--bg:#11140f;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.1);--accent:#5dcaa5;--soft:#16241d;--track:#1b241f;--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17);--glow:0 0 16px rgba(93,202,165,.28);color-scheme:dark}
+  :root[data-theme="light"]{--bg:#f8f5ee;--surface:#fff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--soft:#e9f3ee;--track:#eef1ef;--ochre:#8a5514;--line-strong:#cfd8d3;--glow:0 0 14px rgba(29,122,90,.2);color-scheme:light}
   .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.55rem .9rem;border-radius:0 0 8px 0;z-index:20}
   .skip:focus{left:0}
+
+  /* depth pass */
+  /* Containers lift off the page instead of being outlined on it, so a card, a chip and
+     a panel stop announcing themselves with the same single grey pixel. */
+  .card,.route,.specimen{box-shadow:var(--shadow-md);background:var(--surface)}
+  h1{font-weight:550;letter-spacing:-0.02em}
+  h2{font-weight:550;letter-spacing:-0.01em}
 </style>
 </head>
 <body>
@@ -109,8 +121,8 @@
 
     <section class="band">
       <p class="kicker">Privacy promise</p>
-      <h2>A values file, not a profile</h2>
-      <p class="intro">It contains your rules and priorities, not the personal history a platform could use to profile you.</p>
+      <h2>Weights and rules, no identity</h2>
+      <p class="intro">It contains your rules and priorities. There is no personal history in it for a platform to profile.</p>
       <div class="grid">
         <div class="card"><span class="tag">Minimal</span><h3>Only values travel</h3><p>Weights, vetoes, and compatibility hints are enough. Identity, history, and tracking IDs stay out.</p></div>
         <div class="card"><span class="tag">Owned</span><h3>Your file, your copy</h3><p>Keep it on your device, move it by any channel, duplicate it, edit it, or delete it.</p></div>
@@ -139,7 +151,7 @@
             <button class="spec-tab" id="tab-file" role="tab" aria-selected="true" aria-controls="spec-file" type="button">The whole file</button>
             <button class="spec-tab" id="tab-profile" role="tab" aria-selected="false" aria-controls="spec-profile" type="button">What a profile would carry</button>
           </div>
-          <pre class="spec-code" id="spec-file" role="tabpanel"><code><button class="ln" type="button" data-note="The opening brace. Everything the file is fits on one screen; that is the point.">{</button><button class="ln" type="button" data-note="Says what the file is, so any tool can recognize it. It says nothing about who you are.">  "kind": "values-passport",</button><button class="ln" type="button" data-note="A compatibility hint, so tools can migrate old files honestly instead of guessing.">  "version": "0.1",</button><button class="ln" type="button" data-note="How much each value matters to you. Numbers you set, on a scale you can see.">  "weights": {</button><button class="ln" type="button" data-note="One number. Not your donation history, not your search terms, not an inference.">    "environment": 4,</button><button class="ln" type="button" data-note="Your call, not a segment a platform guessed you into.">    "privacy": 5,</button><button class="ln" type="button" data-note="Low is honest too. The file records trade-offs, not virtue.">    "cost": 2,</button><button class="ln" type="button" data-note="One number again. The pattern holds for every value.">    "labor": 4</button><button class="ln" type="button" data-note="End of the weights. That was all of them.">  },</button><button class="ln" type="button" data-note="Hard lines. A veto excludes an option outright; it is never quietly down-weighted.">  "vetoes": ["pay_to_rank"]</button><button class="ln" type="button" data-note="That is the entire file. No identity, no history, no tracking surface.">}</button></code></pre>
+          <pre class="spec-code" id="spec-file" role="tabpanel"><code><button class="ln" type="button" data-note="The opening brace. Everything the file is fits on one screen.">{</button><button class="ln" type="button" data-note="Says what the file is, so any tool can recognize it. It says nothing about who you are.">  "kind": "values-passport",</button><button class="ln" type="button" data-note="A compatibility hint, so tools can migrate old files honestly instead of guessing.">  "version": "0.1",</button><button class="ln" type="button" data-note="How much each value matters to you. Numbers you set, on a scale you can see.">  "weights": {</button><button class="ln" type="button" data-note="One number. No donation history, no search terms, no inference.">    "environment": 4,</button><button class="ln" type="button" data-note="You set it. No platform guessed it.">    "privacy": 5,</button><button class="ln" type="button" data-note="Low is honest too. The file records trade-offs.">    "cost": 2,</button><button class="ln" type="button" data-note="One number again. The pattern holds for every value.">    "labor": 4</button><button class="ln" type="button" data-note="End of the weights. That was all of them.">  },</button><button class="ln" type="button" data-note="Hard lines. A veto excludes an option outright; it is never quietly down-weighted.">  "vetoes": ["pay_to_rank"]</button><button class="ln" type="button" data-note="That is the entire file. No identity, no history, no tracking surface.">}</button></code></pre>
           <pre class="spec-code absent" id="spec-profile" role="tabpanel" hidden><code>{
   <b>"name"</b>:             never carried
   <b>"email"</b>:            never carried
