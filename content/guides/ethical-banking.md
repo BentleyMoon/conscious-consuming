@@ -49,6 +49,7 @@ The alternative isn't a worse bank, it's a differently-*owned* one. The stronges
 - **"Carbon-neutral operations" ≠ "doesn't finance fossil fuels."** A bank can run its offices on solar and still pour billions into oil and gas. Operations are a rounding error; **lending** is the whole story.
 - **A lapsed net-zero pledge is not a policy.** After the 2025 walkout, "we aim for net zero by 2050" means very little. Look for an explicit, current, *no-fossil-fuel* lending policy.
 - **"We plant a tree for every…"** is pleasant, and tiny next to where the bank lends the rest of your balance.
+- **A complaint count is not a complaint rate.** For the US banks it covers, the explorer shows what the CFPB [Consumer Complaint Database](https://www.consumerfinance.gov/data-research/consumer-complaints/) returns, with the search and its date. The largest banks have the most customers, so they will always lead a raw count, and a small bank can show none because few people have filed under its exact name. Without a denominator such as account numbers or market share, the count cannot tell you how likely you are to have a problem, which is why the complaint score is left unknown rather than ranked.
 
 ## How to actually start
 

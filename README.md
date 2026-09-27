@@ -35,6 +35,12 @@ npm run verify:full        # the full audit suite
 python pipeline/build_site.py --public --site-base https://example.org/app
 ```
 
+The same suite runs on every push and pull request (`.github/workflows/verify.yml`), with no
+credentials and no deploy step. A handful of audits also check the working notes that this copy
+does not carry, such as that a runbook still names the commands it documents. Here those checks are
+skipped rather than failed, and every skip names the document it needed; the list is in
+`research/public_copy.js`, and nothing outside it is excused.
+
 Two sets of files are generated rather than stored, to keep a clone small. Rebuild them if you
 want them:
 

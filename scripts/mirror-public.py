@@ -39,7 +39,8 @@ print('public top level:', ' '.join(sorted(pub_top)))
 
 # Anything that is internal stays internal, named here rather than inferred.
 NEVER = {'.claude', 'AGENTS.md', 'CLAUDE.md', 'CODEX-AUTOMATION.md', 'WEBSITES-AGENT.md', 'RUN.md',
-         'codex.md', 'cchandoff', 'ontologystudy', 'kiz.txt', 'run.py', 'run.cmd', 'dist', 'build.log'}
+         'codex.md', 'cchandoff', 'ontologystudy', 'kiz.txt', 'run.py', 'run.cmd', 'dist', 'build.log',
+         '.public-copy'}
 
 # The public repository's front page is written for a stranger arriving cold, and the private
 # repository's README is a working note. The public one is maintained at docs/README-public.md,
@@ -149,8 +150,17 @@ print('%d file(s) to publish after the privacy read' % len(copy))
 if '--write' not in sys.argv:
     sys.exit(0)
 
+# THE MARKER. The public copy carries .public-copy and the working repository never does: it is how
+# the audits know that a missing working note is expected here and not a fault (research/public_copy.js).
+MARKER = '.public-copy'
+MARKER_TEXT = '''This is the public copy of the Values Commons working repository, written by
+scripts/mirror-public.py. It carries the engine, the data, the audits and the published documents,
+not the working notes. Audits that read a working note skip that check by name here instead of
+failing (research/public_copy.js). The working repository never carries this file.
+'''
+
 # Replace the tracked contents wholesale: files that vanished from the private tree must vanish here.
-published = {RENAME.get(c, c) for c in copy}
+published = {RENAME.get(c, c) for c in copy} | {MARKER}
 for rel in sorted(subprocess.run(['git', 'ls-files'], cwd=PUB, capture_output=True, text=True, encoding='utf-8').stdout.replace('\\', '/').split('\n')):
     if rel.strip() and rel.strip() not in published:
         p = os.path.join(PUB, rel.strip())
@@ -168,4 +178,6 @@ for rel in copy:
             continue
     shutil.copy2(src, dst)
     written += 1
+with io.open(os.path.join(PUB, MARKER), 'w', encoding='utf-8', newline='\n') as fh:
+    fh.write(MARKER_TEXT)
 print('copied %d changed file(s) into the mirror' % written)

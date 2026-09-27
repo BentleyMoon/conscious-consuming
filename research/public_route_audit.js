@@ -7,6 +7,7 @@
 */
 const fs = require("fs");
 const path = require("path");
+const publicCopy = require("./public_copy.js");
 
 const ROOT = path.join(__dirname, "..");
 const failures = [];
@@ -397,6 +398,7 @@ checkLocalLinks(routeFiles);
 checkRouteMetadataContract(shareMetaRouteFiles);
 const generatedSeoCount = checkGeneratedSeoContract();
 
+failures.splice(0, failures.length, ...publicCopy.dropPrivateFailures(failures));
 if (failures.length) {
   console.log("Public route audit failures:");
   for (const failure of failures) console.log(`  FAIL ${failure}`);

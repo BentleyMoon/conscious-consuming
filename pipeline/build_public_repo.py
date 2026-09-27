@@ -128,6 +128,11 @@ def main():
             shutil.copy2(src, os.path.join(out, 'content', name))
             content.append(name)
 
+    # The marker that tells the audits this is the public copy (research/public_copy.js).
+    with open(os.path.join(out, '.public-copy'), 'w', encoding='utf-8', newline='\n') as fh:
+        fh.write('This is the public copy of the Values Commons working repository. Audits that read a\n'
+                 'working note skip that check by name here instead of failing (research/public_copy.js).\n')
+
     # A last, blunt check. If any of these ever appear in the export, something has gone wrong
     # in the lists above and the export should not be published.
     leaked = []
