@@ -24,6 +24,10 @@ anyone who dislikes how it is run can take the whole thing and run their own.
 - **`kosplora/`, `instances/`** the same unmodified engine running different subjects, which is the
   evidence that this is a standard rather than one app.
 - **`docs/STANDARD-v0.md`** the standard itself.
+- **`mcp.js`** a read-only [Model Context Protocol](https://modelcontextprotocol.io) server, live at
+  `https://valuescommons.org/mcp`, so an AI agent can search the commons and fetch sourced facts
+  instead of scraping pages. Two tools, `search` and `fetch`; every fact returns with its source and
+  as-of date; no overall score is computed there, and no query is logged.
 
 ## Running it
 
@@ -90,6 +94,7 @@ That is the most useful thing you can send, and it does not need an account.
   [valuescommons.org/workshop/](https://valuescommons.org/workshop/) produces a small JSON patch in
   your browser. Send the file to the same address. Nothing is uploaded from that page by itself.
 - **A pull request**: against this repository, for anything in the engine, the audits or the data.
+  [CONTRIBUTING.md](CONTRIBUTING.md) says what a good fact looks like and where each thing lives.
 
 Corrections keep their history, including the ones that turn out to be wrong.
 

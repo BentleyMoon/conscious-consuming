@@ -187,7 +187,7 @@ separate domains yet — it fragments the story and multiplies DNS setup. The wh
 - **You don't strictly need a custom domain for the grant preview** — a `*.netlify.app` URL is fine and free.
 - **Use `valuescommons.org` as the main home.** It names the public ecosystem and best fits the home-first story.
 - **Use `openvaluesstandard.org` as the spec citation domain.** For now, redirect it to `https://valuescommons.org/standard/`; later it can serve a dedicated technical spec shell if outside implementers need it.
-- **Keep `consciousconsuming.org` as the flagship alias if desired.** Values Commons lives at the root, and Conscious Consuming lives at `/app`.
+- **`consciousconsuming.org` is the app's own front door.** `worker.js` serves Conscious Consuming at its root and sends old `/app/*` links there with a 301. The canonical address of every app page stays `https://valuescommons.org/app/…`, so search engines index one copy.
 
 ### 3a · Cloudflare host → domain allocation (the concrete map)
 
@@ -196,7 +196,7 @@ separate domains yet — it fragments the story and multiplies DNS setup. The wh
 | Domain | Role | Cloudflare mechanism |
 |---|---|---|
 | `valuescommons.org` (+ `www`) | **Canonical home** — `/` = Values Commons, `/app` = Conscious Consuming | **Custom Domain** on the Worker (already in `wrangler.toml`) |
-| `consciousconsuming.org` (+ `www`) | Serving **alias** — same bundle | **Custom Domain** (already in `wrangler.toml`) |
+| `consciousconsuming.org` (+ `www`) | The app **at its root**: `worker.js` rewrites `/` to `/app/`, 301s `/app/*` to the clean path, and 301s ecosystem sections to `valuescommons.org`. Canonical tags still name `valuescommons.org/app/` | **Custom Domain** (already in `wrangler.toml`) |
 | `valuescommons.com` | Alias | **Redirect Rule** → `https://valuescommons.org/$1` (301, preserve path) |
 | `openvaluesstandard.org` | Spec citation | **Redirect Rule** → `https://valuescommons.org/standard/` (301) |
 | `consciousconsuming.net` (if held) | Legacy alias | **Redirect Rule** → `https://consciousconsuming.org/$1` |

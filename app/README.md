@@ -12,7 +12,7 @@ A "wikipedia of conscious consuming": pick anything across **five entry types** 
 
 - `#home` — masthead, search, doors, the commons map, principles.
 - `#explore[/cid[/facet]]` — the values tool: presets + sliders + sort + region, with the **living ranking** (cards glide as you change weights).
-- `#guides` / `#guide/<slug>` — readable, sourced explainers (8 guides).
+- `#guides` / `#guide/<slug>` — readable, sourced explainers (108 guides).
 - `#browse` — the fundamental-category **ontology** (live vs honestly "growing").
 - `#discover[/value|label|region/<key>]` — the **faceted index**: slice the whole commons by a value (Vegan, Cruelty-free, Economical, Privacy…), label (Organic, Fair Trade…), or region.
 - `#contribute` — local-first suggestions (export → send).
