@@ -499,7 +499,7 @@
   }
 
   const engine = {
-    VERSION: '0.10', MIN_COVERAGE: MIN_COVERAGE, THEMES: THEMES, KEY2THEME: KEY2THEME,
+    VERSION: '0.11', MIN_COVERAGE: MIN_COVERAGE, THEMES: THEMES, KEY2THEME: KEY2THEME,
     themeDefaults: themeDefaults, score: score, scoreTier: scoreTier, weakestAxis: weakestAxis,
     allergenStatus: allergenStatus, allergenDecision: allergenDecision,
     band: band, bandFill: bandFill, provOf: provOf,

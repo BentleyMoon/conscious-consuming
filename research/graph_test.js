@@ -20,7 +20,7 @@ const edges = { format: 'open-values-edges', version: '0.1', edges: [
   { from: 'ovs:phones/fairphone', rel: 'alternative-to', to: 'ovs:phones/flagship', source: 'test' },
 ]};
 
-ok('engine is v0.10 (the Weave)', e.VERSION === '0.10');
+ok('engine is v0.11 (the Weave, v0.10, plus the certified-tier cap rule)', e.VERSION === '0.11');
 
 const G = e.buildGraph({ lenses: [phones, clothing], ontology: ont, edges: [edges] });
 
