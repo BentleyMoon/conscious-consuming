@@ -1325,6 +1325,10 @@ footer a{color:var(--accent)}
 .challenge-receipt a{color:var(--accent);text-decoration:none}
 .challenge-receipt a:hover{text-decoration:underline}
 .challenge-actions{display:flex;align-items:center;flex-wrap:wrap;gap:.55rem;margin-top:.55rem}
+/* A suggestion's name is the button label, and some are long ("Open National Library Service for the
+   Blind and Print Disabled"). Unwrapped, it set the grid track's minimum and pushed learning-resources
+   55px past a 390px phone. */
+.challenge-actions .savebtn{white-space:normal;max-width:100%}
 .challenge-muted{color:var(--hint);font-size:0.75rem}
 .aoboard{margin:0 0 1.15rem}
 .ao-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin:.2rem 0 .8rem}
