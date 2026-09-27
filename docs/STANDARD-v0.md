@@ -166,7 +166,7 @@ The reference engine (`app/engine.js`) is a pure function of (entities, criteria
 }
 ```
 
-The formula, fixed in v0.1: `round( (Σ wᵢ·sᵢ / Σ wᵢ)·coverage + 50·(1−coverage) )`, where `coverage = Σ(weighted axes with data) / Σ(weighted axes)`; results below `MIN_COVERAGE` (0.25) are withheld (unknown, not faked); an axis you weight ≥4 that scores ≤20 **caps** the fit at 49 (a non-compensatory veto, so a dealbreaker can't be averaged away). `assessed` sub-scores display as bands (`Strong/Good/Fair/Limited/Poor`), `measured` ones precisely.
+The formula, fixed in v0.1: `round( (Σ wᵢ·sᵢ / Σ wᵢ)·coverage + 50·(1−coverage) )`, where `coverage = Σ(weighted axes with data) / Σ(weighted axes)`; results below `MIN_COVERAGE` (0.25) are withheld (unknown, not faked); an axis you weight ≥4 that scores ≤20 **caps** the fit at 49 (a non-compensatory veto, so a dealbreaker can't be averaged away). A `certified` axis never caps (amended 2026-09-27): its low score records that no matching certification was found, which is an absence of paperwork rather than evidence of harm, so it counts in the mean but cannot act as a veto. An unknown axis never caps either. `assessed` sub-scores display as bands (`Strong/Good/Fair/Limited/Poor`), `measured` ones precisely.
 
 ---
 

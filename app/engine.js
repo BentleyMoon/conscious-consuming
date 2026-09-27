@@ -75,7 +75,9 @@
   function score(p, ctx) {
     const criteria = ctx.criteria, weights = ctx.weights || {}, excludes = ctx.excludes;
     const minCov = (ctx.minCoverage == null) ? MIN_COVERAGE : ctx.minCoverage;
-    if (excludes && excludes.size && !allergenDecision(p, excludes).eligible) return null;
+    // A Set (the app) or an array (a passport, a JSON config) must both exclude: reading only .size let an
+    // array of allergies pass every product through unfiltered.
+    if (excludes && (excludes.size || excludes.length) && !allergenDecision(p, excludes).eligible) return null;
     let num = 0, ws = 0, all = 0, c = [], nF = 0, nW = 0, cap = null;
     for (const cr of criteria) {
       const w = weights[cr.key] || 0; if (w > 0) { all += w; nW++; }
@@ -84,7 +86,11 @@
         num += w * s; ws += w; nF++; c.push([cr.label, w * s]);
         // Non-compensatory veto: an axis YOU weight heavily (≥4) scoring catastrophically low (≤20) caps the fit,
         // so a fully-compensatory mean can't average a dealbreaker away. Only your OWN priorities can cap.
-        if (w >= 4 && s <= 20 && (cap == null || s < cap.v)) cap = { label: cr.label, v: s };
+        // A `certified` axis cannot cap. Its 0 means no matching label was found: an absence of paperwork,
+        // not evidence of harm. On the open-data food lenses, 10,702 of 14,945 ethics scores were 0 that way
+        // in September 2026, and letting that veto the fit turned a disclosed proxy into a verdict. It still
+        // counts, fully weighted, in the mean.
+        if (w >= 4 && s <= 20 && cr.tier !== 'certified' && (cap == null || s < cap.v)) cap = { label: cr.label, v: s };
       }
     }
     if (!ws || !all) return null;

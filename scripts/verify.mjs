@@ -91,6 +91,7 @@ const jsSyntaxFiles = [
   "research/route_context_audit.js",
   "research/validate_lens.js",
   "research/standard_audit.js",
+  "research/engine_score_test.js",
   "research/two_fields_audit.js",
   "research/value_signature_audit.js",
   "research/value_editorial_audit.js",
@@ -116,6 +117,7 @@ const jsSyntaxFiles = [
 ];
 
 const nodeTests = [
+  "research/engine_score_test.js",
   "scripts/mcp-selftest.mjs",
   "scripts/worker-selftest.mjs",
   "research/instances_test.js",

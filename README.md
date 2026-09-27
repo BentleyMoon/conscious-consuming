@@ -13,7 +13,9 @@ anyone who dislikes how it is run can take the whole thing and run their own.
   facts are sourced and dated, the weights belong to the reader, and a score is the transparent
   product of the two. Missing data is renormalised rather than guessed, an option below a coverage
   floor is withheld rather than ranked, and an axis you weight heavily that scores catastrophically
-  low caps the result, so a single dealbreaker cannot be averaged away.
+  low caps the result, so a single dealbreaker cannot be averaged away. A certification axis cannot
+  cap: a missing label is an absence of paperwork, not evidence of harm, so it lowers the average
+  but never acts as a veto. `research/engine_score_test.js` pins each of these rules.
 - **`app/data/`** 124 datasets, 24,198 entries, each rating carrying a source and an as-of date.
 - **`research/`** 96 audit scripts, and the reason to trust anything else here. They pin sentences,
   gate claims on receipts, check contrast and accessibility, and fail the build when a number

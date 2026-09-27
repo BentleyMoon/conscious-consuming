@@ -110,7 +110,7 @@ There is no build step, no backend, no account, no key. It runs from a flash dri
 - **Live re-ranking** as the visitor moves the sliders (with a smooth FLIP animation).
 - **A transparent verdict view** per entity — the decisive reason, every axis banded, the math shown.
 - **Confidence withholding** — below 25% coverage of a visitor's weighted axes, the engine declines to fake a score.
-- **The non-compensatory veto** — an axis a visitor weights heavily that scores catastrophically low caps the fit.
+- **The non-compensatory veto** — an axis a visitor weights heavily that scores catastrophically low caps the fit. A `certified` axis cannot cap, because a missing certificate is not evidence of harm: if one of your axes is a label check, give it that tier.
 - **Portable values** — a visitor can import an Open Values Passport exported from *any other instance*, and the
   values that span both domains carry over. Your instance is born federated.
 
