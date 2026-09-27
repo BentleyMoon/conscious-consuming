@@ -57,6 +57,9 @@ yarn-error.log*
 !.claude/agents/
 # local reference copy of a published paper (copyrighted; cite, don't ship)
 kiz.txt
+# the private-name list scripts/mirror-public.py reads before publishing; it names what must not be
+# published, so it is never tracked (see the comment in that script)
+.mirror-private-words
 
 # ── Built, regenerable deployable ────────────────────────────────────────────────
 # Rebuild any time with:  python pipeline/build_site.py

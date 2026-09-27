@@ -47,6 +47,11 @@ NEVER = {'.claude', 'AGENTS.md', 'CLAUDE.md', 'CODEX-AUTOMATION.md', 'WEBSITES-A
 RENAME = {'docs/README-public.md': 'README.md'}
 NEVER.add('README.md')
 
+# Single files inside otherwise-public directories that are not this project's to publish.
+# research/handoff-extract.txt is a text extract of an unrelated research brief: nothing reads it,
+# and it reached the public copy only because research/ publishes wholesale.
+NEVER_PATHS = {'research/handoff-extract.txt'}
+
 # docs/ IS SELECTIVE, and says so on its own front page: "It does not carry working notes, drafts,
 # and planning material." The rest of the tree is engine, data and audits, which publish wholesale.
 # So under docs/ only what is already published is refreshed, and a new document is published by
@@ -66,7 +71,7 @@ GENERATED = ('app/c/',)
 copy, skipped = [], []
 for rel in tracked:
     top = rel.split('/')[0]
-    if top in NEVER or top not in pub_top:
+    if top in NEVER or rel in NEVER_PATHS or top not in pub_top:
         skipped.append(rel)
         continue
     if top == 'docs' and rel not in pub_docs and rel not in PUBLISH_ANYWAY:
@@ -82,14 +87,41 @@ held_top = sorted({s.split('/')[0] for s in skipped})
 print('held back:', ' '.join(held_top))
 
 # A last read of every text file that is about to be published, for the archive's own names.
-PRIVATE_WORDS = re.compile(r'(?!)', re.I)  # the private names are not published
+#
+# THE NAMES THEMSELVES ARE NOT WRITTEN HERE. This script is published, so a list of private names
+# kept in it publishes those names: the earlier version exempted itself from its own read for exactly
+# that reason, and the mirror carried the archive's names and a personal address as a result. The
+# names now live in .mirror-private-words at the root of the working repository: untracked, ignored
+# by .gitignore, one regular expression per line, # for comments. Only tracked files are published,
+# so the list can never ride along. Without it the read cannot be done, and --write refuses.
+#
+# The generic patterns below name nobody and stay here: a home-directory path from any machine, and
+# a personal webmail address other than the project's published contact. They are not applied to the
+# sourced data, where a small maker's webmail contact is a published fact, not a leak, and where a
+# match would hold back a whole category.
+PUBLIC_CONTACTS = {'futurisminstitute@gmail.com'}
+GENERIC_WORDS = [
+    r'\b[A-Za-z]:[\\/]+Users[\\/]+[^\\/\s"\']+',
+    r'(?<![\w.])/Users/[A-Za-z0-9._-]+/',
+    r'(?<![\w.])/home/[a-z][a-z0-9._-]*/',
+    r'\b[A-Za-z0-9._%+-]+@(?:gmail|googlemail|outlook|hotmail|live|icloud|me|yahoo|proton|protonmail)\.[a-z.]+',
+]
+WORDS_FILE = os.path.join(PRIV, '.mirror-private-words')
+private_words = []
+if os.path.isfile(WORDS_FILE):
+    for line in io.open(WORDS_FILE, encoding='utf-8'):
+        line = line.strip()
+        if line and not line.startswith('#'):
+            private_words.append(line)
+else:
+    print('\nWARNING: %s is missing, so the private-name read cannot run.' % WORDS_FILE)
+    if '--write' in sys.argv:
+        sys.exit('Refusing to --write without the private-name list. Create it (see the comment above).')
+PRIVATE_WORDS = re.compile('|'.join('(?:%s)' % w for w in private_words) or r'(?!)', re.I)
+GENERIC = re.compile('|'.join('(?:%s)' % w for w in GENERIC_WORDS), re.I)
+DATA_PREFIXES = ('app/data/', 'content/lenses/', 'content/lenses-pending/', 'pipeline/raw', 'pipeline/prices/')
 leaks = []
-# This file names the archive because it is the rule that keeps the archive out, so it would
-# otherwise hold itself back and the rules would stay unpublished.
-SELF = os.path.relpath(os.path.abspath(__file__), PRIV).replace(chr(92), '/')
 for rel in copy:
-    if rel == SELF:
-        continue
     path = os.path.join(PRIV, rel)
     if os.path.getsize(path) > 4_000_000:
         continue
@@ -97,7 +129,10 @@ for rel in copy:
         text = io.open(path, encoding='utf-8').read()
     except Exception:
         continue
-    for m in PRIVATE_WORDS.finditer(text):
+    matches = list(PRIVATE_WORDS.finditer(text))
+    if not rel.startswith(DATA_PREFIXES):
+        matches += [m for m in GENERIC.finditer(text) if m.group(0).lower() not in PUBLIC_CONTACTS]
+    for m in matches:
         leaks.append('%s: %s' % (rel, text[max(0, m.start() - 40):m.end() + 40].replace('\n', ' ')))
         break
 # A file that names the private archive is held back rather than edited: these are internal design

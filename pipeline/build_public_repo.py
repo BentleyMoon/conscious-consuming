@@ -42,7 +42,7 @@ PUBLIC_DIRS = [
 ]
 
 # Files at the root.
-PUBLIC_FILES = ['index.html', 'llms.txt', 'LICENSE', 'LICENSING.md', 'og-standard.png',
+PUBLIC_FILES = ['index.html', 'llms.txt', 'LICENSE', 'LICENSING.md', 'og-standard.png', 'favicon.ico',
                 'package.json', 'package-lock.json', '.gitignore', 'wrangler.toml', 'worker.js', 'mcp.js']
 
 # Only the docs already rendered publicly by build_site.py. This list is deliberately the same
@@ -65,6 +65,7 @@ NEVER = {'node_modules', 'dist', '.git', '__pycache__', '.wrangler', '.env'}
 #   app/data.js      the 40MB single-file fallback      -> already omitted from public production
 #   pipeline/raw     raw intermediate scrape data       -> not needed to build or verify anything
 DERIVED = {
+    os.path.join('research', 'handoff-extract.txt'),  # an unrelated research brief, not this project's
     os.path.join('app', 'c'),
     os.path.join('app', 'data.js'),
     os.path.join('pipeline', 'raw'),
