@@ -218,6 +218,16 @@ def _build_well_known_manifest(generated_at, rendered_docs, lens_rows):
             'pattern': SITE_ORIGIN + '/stacks/lens/{id}/{sha256}.json',
             'hash': 'sha256',
         },
+        'agents': {
+            'llms': SITE_ORIGIN + '/llms.txt',
+            'mcp': {
+                'url': SITE_ORIGIN + '/mcp',
+                'transport': 'streamable-http',
+                'tools': ['search', 'fetch'],
+                'readOnly': True,
+                'logsQueries': False,
+            },
+        },
         'lenses': lenses,
     }
 

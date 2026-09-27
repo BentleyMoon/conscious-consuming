@@ -18,6 +18,9 @@ import { handleMcp } from './mcp.js';
 // Ecosystem sections that live on valuescommons.org, not inside the app.
 const VC_SECTIONS = /^\/(assembly|citation-bundles|docs|funders|instances|kosplora|passport|slate|stacks|standard|tour|weave|workshop)(\/|$)/;
 
+// Files that live at the root of every host, never under /app/.
+const ROOT_FILES = new Set(['/robots.txt', '/llms.txt', '/favicon.ico']);
+
 async function fetchAsset(env, request) {
   const response = await env.ASSETS.fetch(request);
   if (!(response.headers.get('content-type') || '').includes('text/html')) return response;
@@ -69,8 +72,11 @@ export default {
       if (VC_SECTIONS.test(url.pathname)) {
         return Response.redirect('https://valuescommons.org' + url.pathname + url.search, 301);
       }
-      // Everything else IS the app: serve /app/* at the root, invisibly.
-      if (url.pathname !== '/robots.txt' && !url.pathname.startsWith('/.well-known/')) {
+      // Everything else IS the app: serve /app/* at the root, invisibly. The few root files every
+      // host is asked for by name stay at the root: robots.txt, llms.txt for AI readers, the ICO a
+      // browser requests without being told, and the well-known door. Rewritten into /app/ they
+      // were 404s on the app's own domain.
+      if (!ROOT_FILES.has(url.pathname) && !url.pathname.startsWith('/.well-known/')) {
         const rewritten = new URL(url);
         rewritten.pathname = '/app' + url.pathname;
         return fetchAsset(env, new Request(rewritten, request));

@@ -41,6 +41,15 @@ expect(oldAppPath.status === 301 && oldAppPath.headers.get('location') === 'http
 const ecosystem = await get('https://consciousconsuming.org/funders/?from=app');
 expect(ecosystem.status === 301 && ecosystem.headers.get('location') === 'https://valuescommons.org/funders/?from=app', 'ecosystem-only section redirects to Values Commons');
 
+const llms = await get('https://consciousconsuming.org/llms.txt');
+expect(llms.status === 200 && seen.at(-1) === '/llms.txt', 'llms.txt on the app domain is the root file, not an /app/ 404');
+
+const favicon = await get('https://consciousconsuming.org/favicon.ico');
+expect(favicon.status === 200 && seen.at(-1) === '/favicon.ico', 'favicon.ico on the app domain is the root file');
+
+const robots = await get('https://consciousconsuming.org/robots.txt');
+expect(robots.status === 200 && seen.at(-1) === '/robots.txt', 'robots.txt on the app domain is the root file');
+
 const standard = await get('https://openvaluesstandard.org/anything');
 expect(standard.status === 301 && standard.headers.get('location') === 'https://valuescommons.org/standard/', 'standard domain has one canonical destination');
 
