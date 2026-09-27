@@ -82,6 +82,19 @@ export default {
         return fetchAsset(env, new Request(rewritten, request));
       }
     }
+    // THE SCHEMA IDS. Every Open Values schema names itself https://openvaluesstandard.org/schema/…,
+    // and several $ref one another by that address, so a validator follows these URLs. The build
+    // publishes each schema at its $id path (pipeline/build_site.py); here they are served on any
+    // host, readable cross-origin, and typed as JSON Schema.
+    if (url.pathname.startsWith('/schema/')) {
+      const response = await env.ASSETS.fetch(new Request(url.origin + url.pathname));
+      if (!response.ok) return response;
+      const headers = new Headers(response.headers);
+      headers.set('Content-Type', 'application/schema+json; charset=utf-8');
+      headers.set('Access-Control-Allow-Origin', '*');
+      headers.set('Cache-Control', 'public, max-age=3600');
+      return new Response(response.body, { status: response.status, headers });
+    }
     if (host === 'openvaluesstandard.org') {
       return Response.redirect('https://valuescommons.org/standard/', 301);
     }

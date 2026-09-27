@@ -50,6 +50,11 @@ expect(favicon.status === 200 && seen.at(-1) === '/favicon.ico', 'favicon.ico on
 const robots = await get('https://consciousconsuming.org/robots.txt');
 expect(robots.status === 200 && seen.at(-1) === '/robots.txt', 'robots.txt on the app domain is the root file');
 
+const schema = await get('https://openvaluesstandard.org/schema/lens-v0.1.schema.json');
+expect(schema.status === 200 && seen.at(-1) === '/schema/lens-v0.1.schema.json', 'a schema $id URL is served, not redirected');
+expect((schema.headers.get('content-type') || '').startsWith('application/schema+json'), 'schemas are typed as JSON Schema');
+expect(schema.headers.get('access-control-allow-origin') === '*', 'schemas are readable cross-origin, for validators in a browser');
+
 const standard = await get('https://openvaluesstandard.org/anything');
 expect(standard.status === 301 && standard.headers.get('location') === 'https://valuescommons.org/standard/', 'standard domain has one canonical destination');
 

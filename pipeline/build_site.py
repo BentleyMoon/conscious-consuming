@@ -231,6 +231,29 @@ def _build_well_known_manifest(generated_at, rendered_docs, lens_rows):
         'lenses': lenses,
     }
 
+SCHEMA_BASE = 'https://openvaluesstandard.org/schema/'
+
+def _write_schema_ids():
+    """Publish each schema at the path its $id names, so the ids and the $refs between them resolve.
+
+    The ids live under openvaluesstandard.org/schema/; worker.js serves /schema/* on that host (and
+    on every other) from here. research/schema_ids_audit.js checks that the ids are unique and that
+    every cross-schema $ref names one of them."""
+    src_dir = os.path.join(ROOT, 'app', 'data', 'standard', 'schemas')
+    out_dir = os.path.join(DIST, 'schema')
+    os.makedirs(out_dir, exist_ok=True)
+    count = 0
+    for fn in sorted(os.listdir(src_dir)):
+        if not fn.endswith('.schema.json'):
+            continue
+        with open(os.path.join(src_dir, fn), encoding='utf-8') as fh:
+            schema_id = json.load(fh).get('$id', '')
+        if not schema_id.startswith(SCHEMA_BASE):
+            continue
+        shutil.copy2(os.path.join(src_dir, fn), os.path.join(out_dir, schema_id[len(SCHEMA_BASE):]))
+        count += 1
+    return count
+
 def _write_stack_files(generated_at, lens_rows):
     stack_root = os.path.join(DIST, 'stacks')
     stack_lens_root = os.path.join(stack_root, 'lens')
@@ -620,6 +643,7 @@ def main():
     open(os.path.join(DIST, 'build-meta.json'), 'w', encoding='utf-8').write(json.dumps(build_meta, indent=2) + '\n')
     lens_rows = _published_lens_rows()
     _write_stack_files(generated_at, lens_rows)
+    schema_count = _write_schema_ids()
     well_known_dir = os.path.join(DIST, '.well-known')
     os.makedirs(well_known_dir, exist_ok=True)
     open(os.path.join(well_known_dir, 'open-values.json'), 'w', encoding='utf-8').write(
@@ -638,6 +662,7 @@ def main():
     print('flash-drive README:', 'yes' if os.path.exists(os.path.join(DIST, 'README-FLASH-DRIVE.txt')) else 'no')
     print('funding ledger:', 'yes' if os.path.exists(os.path.join(DIST, 'funding-ledger.json')) else 'no')
     print('citation bundles:', 'yes' if os.path.isdir(os.path.join(DIST, 'citation-bundles')) else 'no')
+    print('schemas at their $id paths:', schema_count)
     print('well-known door:', 'yes' if os.path.exists(os.path.join(DIST, '.well-known', 'open-values.json')) else 'no')
     print('stacks:', 'yes' if os.path.exists(os.path.join(DIST, 'stacks', 'index.json')) else 'no')
     print('dangling .md links:', ', '.join(sorted(leftover)) if leftover else 'none')

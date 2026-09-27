@@ -186,7 +186,7 @@ separate domains yet — it fragments the story and multiplies DNS setup. The wh
 
 - **You don't strictly need a custom domain for the grant preview** — a `*.netlify.app` URL is fine and free.
 - **Use `valuescommons.org` as the main home.** It names the public ecosystem and best fits the home-first story.
-- **Use `openvaluesstandard.org` as the spec citation domain.** For now, redirect it to `https://valuescommons.org/standard/`; later it can serve a dedicated technical spec shell if outside implementers need it.
+- **Use `openvaluesstandard.org` as the spec citation domain.** Every schema `$id` lives under `https://openvaluesstandard.org/schema/`, and the schemas `$ref` one another by those addresses, so the domain must serve `/schema/*` rather than redirect it. `worker.js` already does: it serves each schema at its `$id` path and sends every other path to `https://valuescommons.org/standard/`. To switch it on, delete the Redirect Rule for the domain and add it to `wrangler.toml` as a Custom Domain like the others.
 - **`consciousconsuming.org` is the app's own front door.** `worker.js` serves Conscious Consuming at its root and sends old `/app/*` links there with a 301. The canonical address of every app page stays `https://valuescommons.org/app/…`, so search engines index one copy.
 
 ### 3a · Cloudflare host → domain allocation (the concrete map)
@@ -198,7 +198,7 @@ separate domains yet — it fragments the story and multiplies DNS setup. The wh
 | `valuescommons.org` (+ `www`) | **Canonical home** — `/` = Values Commons, `/app` = Conscious Consuming | **Custom Domain** on the Worker (already in `wrangler.toml`) |
 | `consciousconsuming.org` (+ `www`) | The app **at its root**: `worker.js` rewrites `/` to `/app/`, 301s `/app/*` to the clean path, and 301s ecosystem sections to `valuescommons.org`. Canonical tags still name `valuescommons.org/app/` | **Custom Domain** (already in `wrangler.toml`) |
 | `valuescommons.com` | Alias | **Redirect Rule** → `https://valuescommons.org/$1` (301, preserve path) |
-| `openvaluesstandard.org` | Spec citation | **Redirect Rule** → `https://valuescommons.org/standard/` (301) |
+| `openvaluesstandard.org` | Spec citation: `/schema/*` serves the JSON Schemas at their `$id` paths, everything else 301s to `https://valuescommons.org/standard/` | **Custom Domain** on the Worker (replace the old Redirect Rule, which would run first and redirect the schema paths too) |
 | `consciousconsuming.net` (if held) | Legacy alias | **Redirect Rule** → `https://consciousconsuming.org/$1` |
 
 **Canonical is a build-time decision, not just a DNS one.** The site base baked into every share-card, `og:*`, sitemap, and `<link rel=canonical>` must be exactly one home. `npm run build` defaults to `https://valuescommons.org/app`; keep it that way so the baked links match the canonical host. (To lead with the Conscious Consuming brand instead, build with `CC_SITE_BASE=https://consciousconsuming.org/app` and point the redirects the other way.)

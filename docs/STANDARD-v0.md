@@ -231,7 +231,7 @@ The audit compares every stack copy with the packaged `app/data/*.json` source a
 
 ## 9. Validator path
 
-The repo-local validator now lives at `research/validate_lens.js`, with JSON Schema drafts in `research/schema/`.
+The repo-local validator now lives at `research/validate_lens.js`. The JSON Schemas live in `app/data/standard/schemas/`, one file per `$id`, and each is served at the address its `$id` names (`https://openvaluesstandard.org/schema/<name>-v<version>.schema.json`, and the same path on valuescommons.org), so a validator can follow the cross-schema `$ref`s. `research/schema_ids_audit.js` holds that contract.
 Run:
 
 ```bash
