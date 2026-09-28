@@ -112,7 +112,10 @@ function checkBrandIndex(index, cats, companies) {
   expect(index.format === 'ovs-node-index', 'app/data/nodes/brands.json: wrong format');
   expect(index.type === 'brand', 'app/data/nodes/brands.json: wrong type');
   expect(index.minItems === 2, 'app/data/nodes/brands.json: minItems should be 2');
-  expect((index.nodes || []).length >= 2000, `app/data/nodes/brands.json: expected at least 2000 brands, found ${(index.nodes || []).length}`);
+  // 1900, not 2000, since 2026-09-23: 195 of the 2163 nodes were descriptors such as "private
+  // messenger" and "mainstream earbuds", not makers, and content/non-brand-values.json withholds them.
+  // research/descriptor_brand_audit.js keeps them out; this floor only catches a collapse.
+  expect((index.nodes || []).length >= 1900, `app/data/nodes/brands.json: expected at least 1900 brands, found ${(index.nodes || []).length}`);
   expect(index.longTail >= 4000, `app/data/nodes/brands.json: expected a visible singleton long tail, found ${index.longTail}`);
 
   const ids = new Set();

@@ -123,7 +123,9 @@
       accent: read('--accent', '#1d7a5a'), ink: read('--ink', '#16170f'),
       muted: read('--muted', '#566560'), hint: read('--hint', '#96948a'),
       line: read('--line', '#d8d4c8'), surface: read('--surface', '#fbfaf6'),
-      bg: read('--bg', '#F7F3EA'), font: getComputedStyle(el).fontFamily || 'serif'
+      bg: read('--bg', '#F7F3EA'), font: getComputedStyle(el).fontFamily || 'serif',
+      // The rails name a domain in the display serif and state its receipt in mono (EXPLORE-PLATE 3.4).
+      display: read('--font-display', 'Georgia, serif'), mono: read('--font-mono', 'ui-monospace, monospace')
     };
   }
 
@@ -327,6 +329,9 @@
       var node = {
         id: key, mapKey: key, label: decision.label, kind: 'decision', state: decision.state,
         cid: decision.cid || null, route: decision.cid ? '#explore/' + decision.cid : null,
+        // Open ground is somewhere to ask for a survey, not a dead end (docs/design/EXPLORE-PLATE.md 3.5):
+        // the same request the garden's seedlings made, now on the cell itself.
+        request: decision.state === 'open' ? '#contribute/want/' + encodeURIComponent(decision.label) : null,
         need: decision.need, needLabel: needNames[decision.need] || decision.need,
         color: NEED_COLORS[decision.need] || null,
         realmId: realm.id, realmLabel: realm.label, fieldId: field.id, fieldLabel: field.label,
@@ -500,6 +505,16 @@
     var kbd = false, raf = 0, last = 0, press = null, wheelAcc = 0, depthLockUntil = 0;
     var coarse = !!(global.matchMedia && global.matchMedia('(pointer: coarse)').matches);
     var lastContextSig = '';
+    /* The rail (docs/design/EXPLORE-PLATE.md 3.4 and 11). At the two wide rungs of the whole map the
+       cells carry no text: each one is drawn as its decisions, lit where there is an answer, and a
+       rail at the right margin names it in serif, states its receipt in mono, and runs a hairline
+       to its ground. Below NARROW_PLATE pixels there is no margin to spare, so those rungs become
+       stacked bands instead (3.7), one per domain, each wide enough to carry its whole name. */
+    var NARROW_PLATE = 560;
+    var railW = 0, rails = [], railHover = -1;
+    // The one-pane view: its header, its band height, and the strips that page a long list.
+    var ACC_HEAD = 36, ACC_BAND = 32, ACC_MORE = 28;
+    var accHeader = null, accCtl = [], paneBands = [], paneHover = -1, paneWin = [null, null];
 
     /* The words drawn on the breadcrumb. "Groups" was build vocabulary leaking onto the page:
        the information architecture contract has banned it, with domain, selector and ontology,
@@ -602,12 +617,15 @@
       var spatial = 'Spatial map of the catalogue. It opens at the areas inside eight needs. ' +
         'Point to inspect. Select or scroll to move from needs to areas, kinds, decisions, and the evidence inside one. ' +
         'At the outer depth edges the wheel scrolls the page. Keyboard: arrows move, Enter descends or opens, ' +
-        'plus and minus change depth, and Escape climbs out.';
+        'plus and minus change depth, and Escape climbs out. On a narrow screen the deeper views open one need at a ' +
+        'time; the left and right arrows move between them.';
       var fish = 'Fisheye view of the whole catalogue map. Move away from the centre to travel; ' +
         'farther moves faster, and stopping enlarges the focused choice. Scroll moves through domains, needs, fields, ' +
-        'families, decisions, and evidence. Open decisions remain visible but do not open a route. At the outer depth ' +
+        'families, decisions, and evidence. At the two widest depths a list at the right names every domain; select a ' +
+        'name to go into it. An open decision opens a request for it. At the outer depth ' +
         'edges the wheel scrolls the page. Keyboard: arrows move, Enter descends or opens, plus and minus change depth, ' +
-        'and Escape climbs out.';
+        'and Escape climbs out. On a narrow screen the deeper views open one domain at a time; the left and right ' +
+        'arrows move between them.';
       canvas.setAttribute('aria-label', mode === 'fisheye' ? fish : spatial);
       canvas.style.cursor = coarse ? 'grab' : (mode === 'fisheye' ? 'crosshair' : 'pointer');
       box.dataset.mode = mode;
@@ -627,6 +645,59 @@
       return list[clamp(Math.round(u * (list.length - 1)), 0, list.length - 1)];
     }
     function colorOf(row) { return row.color || TH.accent; }
+
+    function narrowPlate() { return W > 0 && W < NARROW_PLATE; }
+    // The two wide rungs of the whole map: sixteen domains, then eight needs.
+    function fishWide() { return mode === 'fisheye' && !!wide && wideStatus === 'ready' && fishDepth <= 1; }
+    /* Stacked bands replace side-by-side cells where names would not fit: the wide rungs of the
+       whole map, and the areas rung of Spatial, which is what a phone opens on. */
+    function stackedNow() {
+      return narrowPlate() && ((mode === 'fisheye' && fishWide()) || (mode === 'spatial' && level === 1));
+    }
+    /* Below the wide rungs a phone gets one working pane at a time (EXPLORE-PLATE 3.7 and 13): the
+       domain or need in focus opens as a list of whole-named bands, and its neighbours are one tap
+       or swipe away in the pane's header instead of being squeezed into cells too narrow to name. */
+    function accordionNow() {
+      if (!narrowPlate() || stackedNow()) return false;
+      return mode === 'fisheye' ? (!!wide && wideStatus === 'ready' && fishDepth >= 2) : level >= 2;
+    }
+    /* On a wider plate the same pane docks at the right, where the rail stands at the wide rungs:
+       the plate keeps the overview and the pane names every item of the open domain or need. */
+    function sidePaneNow() {
+      if (narrowPlate()) return false;
+      return mode === 'fisheye' ? (!!wide && wideStatus === 'ready' && fishDepth >= 2) : level >= 2;
+    }
+    function fullPane() { return !!accHeader && !accHeader.side; }
+    function receiptOf(c) { return plural(c.totalCount || 0, 'decision') + ', ' + (c.builtCount || 0) + ' answered'; }
+    /* Wide enough for the longest name and receipt it must hold, measured in the fonts it draws
+       with: a fixed share of the width clipped "165 decisions, 10 answered" at 700 px. */
+    function railWidth() {
+      if (sidePaneNow()) return clamp(Math.round(W * 0.27), 250, 320);
+      if (!fishWide() || narrowPlate()) return 0;
+      var mctx = canvas.getContext('2d'), need = 0;
+      fishRows(fishDepth).forEach(function (r) {
+        r.cells.forEach(function (c) {
+          mctx.font = (fishDepth === 0 ? '10.5px ' : '600 11px ') + TH.mono;
+          need = Math.max(need, mctx.measureText(receiptOf(c)).width);
+          if (fishDepth === 0) { mctx.font = '700 13px ' + TH.display; need = Math.max(need, mctx.measureText(c.label).width); }
+        });
+      });
+      return clamp(Math.round(Math.max(W * 0.22, need + 30)), 170, 300);
+    }
+    function plotW() { return Math.max(40, W - GUTTER - railW); }
+    function bandList(row) { return mode === 'fisheye' ? row.cells : itemsOf(row, level); }
+    function isDark() { return lum(rgbOf(TH.bg)) < 0.2; }
+
+    /* In stacked bands the arrows walk the bands in reading order, one domain or area at a time,
+       instead of jumping by row: down the page is the only direction a band list has. */
+    function stepBand(dir) {
+      var rows = activeRows(), r = clamp(Math.round(focusR), 0, Math.max(0, rows.length - 1));
+      var n = bandList(rows[r]).length, j = clamp(Math.round(focusU * Math.max(0, n - 1)), 0, Math.max(0, n - 1)) + dir;
+      if (j >= n && r < rows.length - 1) { r += 1; j = 0; }
+      else if (j < 0 && r > 0) { r -= 1; j = bandList(rows[r]).length - 1; }
+      n = bandList(rows[r]).length; j = clamp(j, 0, Math.max(0, n - 1));
+      focusR = r; focusU = n > 1 ? j / (n - 1) : 0;
+    }
 
     /* What is under the reader right now, counted at the rung they are on. Fisheye holds the
        whole map, so it can say "10 of 165"; Spatial holds only what is built, so it reports a
@@ -655,21 +726,33 @@
           named += 1;
           if (d.state === 'built') built += 1;
         }
+        // One decision is described, not counted ("1 of 1 decision here have" was the readout).
+        if (fishDepth >= 4) return { state: at.state, options: at.count || 0, where: at.label };
         return { built: built, named: named, exact: true };
       }
       var row = rowAt(shownR);
       if (!row) return null;
       var list = itemsOf(row, level);
       if (!list || !list.length) return null;
+      /* Say where the count is taken and count exactly that. With nothing in focus this used to
+         report the first need's 50 decisions under the rung's name ("areas. 50 decisions"), while
+         the catalogue holds 126 (seen 2026-09-27). */
       var cell = (eng > 0.05 || kbd) ? cellAt(shownR, shownU, level) : null;
-      var group = cell && cell.members ? cell.members : (cell ? [cell] : null);
-      var total = 0;
-      if (group) total = group.length;
-      else list.forEach(function (item) { total += item.members ? item.members.length : 1; });
-      return { built: total, named: 0, exact: false };
+      if (!cell) {
+        var all = 0;
+        world.forEach(function (r) { all += r.cells.length; });
+        return { built: all, named: 0, exact: false, where: 'All needs' };
+      }
+      if (level === 0) return { built: row.cells.length, named: 0, exact: false, where: row.label };
+      if (!cell.members) return { single: true, options: cell.count || 0, where: cell.label };
+      return { built: cell.members.length, named: 0, exact: false, where: cell.label };
     }
 
     function contextState() {
+      /* Bring the anchor up to the focus before counting: counted first, the readout named the
+         decision the reader had just left ("Breakfast cereal" under a focused "Granola"), and kept
+         naming it, because nothing re-sends a path that has not changed (seen 2026-09-27). */
+      if (mode === 'fisheye' && wide) { var focusNow = cellAt(focusR, focusU); if (focusNow) syncFishAnchor(focusNow); }
       var here = hereCounts();
       var row = rowAt(mode === 'fisheye' ? focusR : shownR);
       if (!row) return { here: here, mode: mode, level: level, path: ['All needs'], crumbs: [],
@@ -701,8 +784,10 @@
           scale: FISH_DEPTHS.slice(), at: fishDepth,
           hint: wideStatus === 'loading' ? 'The whole map is loaded only when this view is opened.'
               : wideStatus === 'error' ? 'The built catalogue remains available in Spatial.'
-              : fishDepth === 0 ? 'Sixteen domains, sized by how many decisions they hold and shaded by how many have answers.'
-              : fishDepth === 1 ? 'Need crosses the domain tree; colour keeps it visible on every deeper rung.'
+              : fishDepth <= 1 && narrowPlate() ? (fishDepth === 0 ? 'Sixteen domains' : 'Eight needs') +
+                ', each band lit as far as its decisions have a sourced answer.'
+              : fishDepth <= 1 ? (fishDepth === 0 ? 'Sixteen domains' : 'Eight needs') +
+                '. Each square is a decision: filled has a sourced answer, outlined is open, a dash is held back, dotted is out of scope.'
               : fishDepth === 2 ? 'Fields are shown inside their actual domain, not under an invented parent.'
               : fishDepth === 3 ? 'Families keep the map’s authored grouping.'
               : fishDepth === 4 ? 'Built decisions are lit. Open, held, and refused ground stays visible.'
@@ -751,8 +836,111 @@
     }
 
     function layout() {
-      if (mode === 'fisheye') layoutFisheye();
+      railW = railWidth();
+      accHeader = null; accCtl = []; paneBands = [];
+      if (stackedNow()) layoutStacked(activeRows());
+      else if (accordionNow()) layoutAccordion(activeRows(), 0, W, false);
+      else if (mode === 'fisheye') layoutFisheye();
       else layoutSpatial();
+      if (sidePaneNow()) layoutAccordion(activeRows(), W - railW, railW, true);
+    }
+
+    /* One band per domain (or area), full plot width, grouped under its need in the gutter. The
+       bands are equal and never magnify, so the pointer maps to a band by its height alone: the
+       stable focus mapping this lens has kept since version seven. */
+    function layoutStacked(rows) {
+      laid = []; rowBoxes = [];
+      var innerW = plotW(), innerH = Math.max(40, H - HEAD), total = 0, i, j;
+      for (i = 0; i < rows.length; i++) total += Math.max(1, bandList(rows[i]).length);
+      var bh = innerH / Math.max(1, total), y = HEAD;
+      var fi = clamp(Math.round(focusR), 0, Math.max(0, rows.length - 1));
+      for (i = 0; i < rows.length; i++) {
+        var list = bandList(rows[i]), k = Math.max(1, list.length);
+        var fj = clamp(Math.round(focusU * Math.max(0, list.length - 1)), 0, Math.max(0, list.length - 1));
+        rowBoxes.push({ row: rows[i], y: y, h: k * bh, i: i });
+        for (j = 0; j < list.length; j++) {
+          laid.push({ cell: list[j], row: rows[i], ri: i, ci: j, stacked: true,
+                      x: GUTTER + 1, y: y + j * bh + 1, w: innerW - 2, h: bh - 2,
+                      isFocus: i === fi && j === fj });
+        }
+        y += k * bh;
+      }
+    }
+
+    /* The one-pane view. The open row's items are full-width bands under a header that names the
+       row and pages to its neighbours. A list longer than the pane shows a window around the focus,
+       with a strip above and below saying how many more there are; each strip pages the window.
+       Inside one decision on Spatial, the focused band opens to show its published measures. */
+    function layoutAccordion(rows, px0, pw, side) {
+      var into = side ? paneBands : laid;
+      if (!side) { laid = []; rowBoxes = []; into = laid; }
+      if (!rows.length) return;
+      var r = clamp(Math.round(focusR), 0, rows.length - 1), row = rows[r], list = bandList(row), n = list.length;
+      var headH = side ? ACC_HEAD + 10 : ACC_HEAD;       // the docked header gives its position a line of its own
+      accHeader = { row: row, r: r, n: rows.length, y: HEAD, h: headH, x: px0, w: pw, side: side };
+      if (!side) rowBoxes.push({ row: row, y: HEAD, h: H - HEAD, i: r });
+      if (!n) return;
+      var fj = clamp(Math.round(focusU * Math.max(0, n - 1)), 0, n - 1);
+      var y0 = HEAD + headH, avail = H - y0;
+      var open = list[fj], extra = 0;
+      if (mode === 'spatial' && level >= 4 && open && open.receipt && open.receipt.length) {
+        extra = Math.min(open.receipt.length, 6) * 17 + 24;
+      }
+      var room = Math.max(1, Math.floor((avail - extra) / ACC_BAND)), start = 0, end = n;
+      if (n > room) {
+        // Room for the window with a strip at both ends, or with one when it touches an end of the list.
+        var both = Math.max(1, Math.floor((avail - extra - 2 * ACC_MORE) / ACC_BAND));
+        var one = Math.max(1, Math.floor((avail - extra - ACC_MORE) / ACC_BAND));
+        /* The window holds still while the focus stays inside it, so a band does not move out from
+           under the pointer between the click that looks and the click that opens (Gutwin's hunting
+           problem; seen 2026-09-28 when a second click landed on a different decision). */
+        var prev = paneWin[side ? 1 : 0];
+        var keep = prev && prev.row === row.id && prev.n === n && fj >= prev.start && fj < prev.end;
+        start = keep ? prev.start : clamp(fj - Math.floor(both / 2), 0, Math.max(0, n - both));
+        end = start + both; room = both;
+        if (start === 0) { end = Math.min(n, one); room = one; }
+        else if (end >= n) { end = n; start = Math.max(0, n - one); room = one; }
+        if (fj < start || fj >= end) { start = clamp(fj - Math.floor(room / 2), 0, Math.max(0, n - room)); end = Math.min(n, start + room); }
+      }
+      paneWin[side ? 1 : 0] = { row: row.id, n: n, start: start, end: end };
+      var y = y0;
+      if (start > 0) { accCtl.push({ dir: -1, y: y, h: ACC_MORE, count: start, step: room }); y += ACC_MORE; }
+      for (var j = start; j < end; j++) {
+        var h = ACC_BAND + (j === fj ? extra : 0);
+        into.push({ cell: list[j], row: row, ri: r, ci: j, stacked: true, acc: true,
+                    x: px0 + 1, y: y + 1, w: pw - 2, h: h - 2, isFocus: j === fj });
+        y += h;
+      }
+      // "More below" sits at the foot of the pane, where a thumb expects it, whatever the list left above.
+      if (end < n) accCtl.push({ dir: 1, y: H - ACC_MORE, h: ACC_MORE, count: n - end, step: room });
+    }
+
+    // Labels that arrive in capitals (the needs) or all lower case (a measure) read in sentence case.
+    function sentence(t) { t = String(t || ''); return /[a-z]/.test(t) ? t.charAt(0).toUpperCase() + t.slice(1) : t.charAt(0) + t.slice(1).toLowerCase(); }
+
+    function rowNoun(n) {
+      if (mode === 'spatial') return n === 1 ? 'need' : 'needs';
+      return fishDepth >= 5 ? (n === 1 ? 'decision' : 'decisions') : (n === 1 ? 'domain' : 'domains');
+    }
+
+    // Move the open pane to the neighbouring row, landing on its first item.
+    function pageRow(dir) {
+      var rows = activeRows(), from = clamp(Math.round(focusR), 0, Math.max(0, rows.length - 1));
+      var r = clamp(from + dir, 0, Math.max(0, rows.length - 1));
+      if (r === from) return false;
+      focusR = shownR = r; focusU = shownU = 0; eng = engTarget = 1;
+      if (mode === 'fisheye') syncFishAnchor(bandList(rows[r])[0]);
+      say(rows[r].label + ', ' + (r + 1) + ' of ' + rows.length + ' ' + rowNoun(rows.length) + '.');
+      layout(); draw(); return true;
+    }
+
+    // Page the band window of the open row by one screenful.
+    function pageBands(dir, step) {
+      var rows = activeRows(), r = clamp(Math.round(focusR), 0, Math.max(0, rows.length - 1));
+      var n = bandList(rows[r]).length, j = clamp(Math.round(focusU * Math.max(0, n - 1)) + dir * step, 0, Math.max(0, n - 1));
+      focusU = shownU = n > 1 ? j / (n - 1) : 0; eng = engTarget = 1;
+      if (mode === 'fisheye') syncFishAnchor(bandList(rows[r])[j]);
+      layout(); draw();
     }
 
     /* The fisheye is a second projection over the same world. Ontological distance drives size,
@@ -760,7 +948,7 @@
     function layoutFisheye() {
       laid = []; rowBoxes = [];
       var rows = fishRows(fishDepth);
-      var innerW = Math.max(40, W - GUTTER), innerH = Math.max(40, H - HEAD);
+      var innerW = plotW(), innerH = Math.max(40, H - HEAD), wideRail = railW && fishWide();
       var kRow = FISH_K_ROW * (1 - 0.42 * flat);
       var kCell = FISH_K_CELL * (1 - 0.42 * flat);
       var cellBase = clamp(innerW / 3.6, 74, 108);
@@ -768,10 +956,17 @@
 
       for (i = 0; i < rows.length; i++) {
         var dR = (i - focusR) / FISH_S_ROW;
-        var h = FISH_ROW_BASE * (0.62 + kRow * Math.exp(-dR * dR));
-        heights.push(Math.max(FISH_ROW_MIN, h)); total += heights[i];
+        /* With a rail, a row is as tall as the names it hands the rail, plus the focus swell: Care
+           names five domains and needs room for five entries level with their own ground, or their
+           hairlines have to run diagonally and merge. Every row stays on screen at these rungs. */
+        var h = wideRail ? Math.max(1, rows[i].cells.length) + 1.2 * Math.exp(-dR * dR)
+                         : FISH_ROW_BASE * (0.62 + kRow * Math.exp(-dR * dR));
+        heights.push(wideRail ? h : Math.max(FISH_ROW_MIN, h)); total += heights[i];
       }
-      if (total < innerH && total > 0) {
+      if (wideRail && total > 0) {
+        for (i = 0; i < heights.length; i++) heights[i] *= innerH / total;
+        total = innerH;
+      } else if (total < innerH && total > 0) {
         var gy = innerH / total;
         for (i = 0; i < heights.length; i++) heights[i] *= gy;
         total = innerH;
@@ -807,7 +1002,7 @@
         offX = clamp(offX, GUTTER + Math.min(0, innerW - tw), GUTTER);
         for (j = 0; j < n; j++) {
           var x = xAt[j] + offX;
-          if (x + widths[j] < GUTTER - 2 || x > W) continue;
+          if (x + widths[j] < GUTTER - 2 || x > W - railW) continue;
           laid.push({ cell: row.cells[j], row: row, ri: i, ci: j,
                       x: x, y: y + 1, w: widths[j] - 2, h: h2 - 2,
                       isFocus: i === fi && j === fj });
@@ -817,7 +1012,7 @@
 
     function layoutSpatial() {
       laid = []; rowBoxes = [];
-      var innerW = Math.max(40, W - GUTTER), innerH = Math.max(40, H - HEAD);
+      var innerW = plotW(), innerH = Math.max(40, H - HEAD);
       var n = world.length, i, j;
       var inDepth = clamp(levelShown - 3, 0, 1);            // 0 at decisions, 1 at evidence
       var atNeeds = clamp(1 - levelShown, 0, 1);            // 1 at needs, 0 from groups down
@@ -920,7 +1115,7 @@
       if (!cell) return '';
       if (cell.kind === 'evidence') return cell.scent || '';
       if (cell.kind === 'decision') {
-        if (cell.state !== 'built') return cell.state === 'open' ? 'open; no answer yet'
+        if (cell.state !== 'built') return cell.state === 'open' ? 'open; no answer yet, choose it to ask for one'
           : cell.state === 'held' ? 'held deliberately'
           : cell.state === 'refused' ? 'outside this catalogue' : cell.state;
         return plural(cell.count || 0, 'option') + '; ' + Math.round((cell.checkable || 0) * 100) + '% second-sourced';
@@ -948,6 +1143,351 @@
       if (info === 'stakes') return 'stakes ' + c.stakes + ' of 5';
       if (info === 'differ') return 'options differ ' + Math.round(c.spread * 100) + ' of 100';
       return '';
+    }
+
+    /* THE LIGHT PASS (EXPLORE-PLATE 3.3): the geometry is the same in both themes and only the light
+       changes. A decision with a sourced answer is a lit mark; on paper it is the need's hue pooled
+       a quarter of the way toward the ink, and on the dark plate the same hue lifted a quarter of the
+       way toward white, so coverage is the light on the page. Measured against the open ground it
+       sits on, the lit mark clears 3:1 for all eight hues in both themes (lowest: move on paper,
+       3.91; the plain hue there was 2.81). */
+    /* The numbers of the light, named so research/contrast_audit.js can hold them: how far a lit mark
+       moves toward the ink (paper) or white (dark), and the alpha of open ground and of a band's lit
+       run, each as [light theme, dark theme]. */
+    var PLATE_LIGHT = { lit: 0.25, ground: [0.08, 0.1], bandLit: [0.3, 0.42] };
+    var markCache = {};
+    function markColor(col) {
+      var key = col + '|' + TH.bg;
+      if (markCache[key]) return markCache[key];
+      var a = rgbOf(col), t = isDark() ? [255, 255, 255] : rgbOf(TH.ink);
+      var m = [0, 1, 2].map(function (i) { return Math.round(a[i] * (1 - PLATE_LIGHT.lit) + t[i] * PLATE_LIGHT.lit); });
+      return (markCache[key] = 'rgb(' + m.join(',') + ')');
+    }
+
+    /* A wide-rung cell drawn as what it holds: one small square per decision in the map's authored
+       order, lit if built, an outline if open, a dash inside if held, a dotted outline if refused.
+       It is the surveyor's plate of 3.1 at the size a cell allows, and it carries no text, because
+       its name and receipt are on the rail. Where a square would drop under 3 px the same fact is
+       drawn as a proportion instead. */
+    function drawPlateCell(ctx, L, c, col, isFocus, dim) {
+      var dark = isDark(), keys = c.memberKeys || [], n = keys.length, pad = 5;
+      ctx.globalAlpha = dim ? 0.03 : PLATE_LIGHT.ground[dark ? 1 : 0];
+      ctx.fillStyle = col; ctx.fillRect(L.x, L.y, L.w, L.h);
+      var iw = L.w - pad * 2, ih = L.h - pad * 2, lit = markColor(col);
+      if (n && iw > 4 && ih > 4) {
+        var s = Math.floor(Math.sqrt(iw * ih / n)), cols = 1;
+        while (s >= 3) {
+          cols = Math.max(1, Math.floor(iw / s));
+          if (Math.ceil(n / cols) * s <= ih) break;
+          s -= 1;
+        }
+        if (s >= 3) {
+          var gap = s >= 9 ? 2 : 1, m = s - gap, openA = dim ? 0.15 : (dark ? 0.5 : 0.55);
+          ctx.lineWidth = 1;
+          for (var q = 0; q < n; q++) {
+            var d = wide.decisions[keys[q]], st = d ? d.state : 'open';
+            var qx = L.x + pad + (q % cols) * s, qy = L.y + pad + Math.floor(q / cols) * s;
+            if (st === 'built') {
+              ctx.globalAlpha = dim ? 0.25 : 1; ctx.fillStyle = lit; ctx.fillRect(qx, qy, m, m);
+              continue;
+            }
+            ctx.globalAlpha = openA; ctx.strokeStyle = col;
+            if (st === 'refused' && m >= 6) ctx.setLineDash([1, 2]);
+            ctx.strokeRect(qx + 0.5, qy + 0.5, m - 1, m - 1);
+            if (st === 'refused' && m >= 6) ctx.setLineDash([]);
+            if (st === 'held' && m >= 6) {
+              ctx.beginPath(); ctx.moveTo(qx + 2, qy + m / 2); ctx.lineTo(qx + m - 2, qy + m / 2); ctx.stroke();
+            }
+          }
+        } else {
+          ctx.globalAlpha = dim ? 0.25 : 1; ctx.fillStyle = lit;
+          ctx.fillRect(L.x + pad, L.y + pad, Math.max(0, iw * (c.coverage || 0)), ih);
+        }
+      }
+      ctx.globalAlpha = 1;
+      var hovered = railHover >= 0 && rails[railHover] && rails[railHover].L && rails[railHover].L.cell === c;
+      if (isFocus || hovered) {
+        ctx.strokeStyle = TH.ink; ctx.lineWidth = isFocus ? 2 : 1.25;
+        ctx.strokeRect(L.x + 1, L.y + 1, L.w - 2, L.h - 2);
+      } else if (L.w > 3) {
+        ctx.strokeStyle = TH.bg; ctx.lineWidth = 1;
+        ctx.strokeRect(L.x + 0.5, L.y + 0.5, L.w - 1, L.h - 1);
+      }
+    }
+
+    /* A stacked band: the reduction of 3.7. The whole name on the left, the count on the right, and
+       for the whole map the band is lit from the left as far as its decisions have answers. Text
+       sits on at most 0.42 of a hue over the page, and its ink is chosen against that composite. */
+    /* What a band says about itself, in words, and how far it is lit. On the whole map a band is lit
+       by the share of its decisions with an answer, a single decision is lit whole or not at all, and
+       a published measure by how far apart the options sit on it. Spatial holds only built
+       decisions, so there the band keeps its stakes fill and lit is null. */
+    function bandFacts(c) {
+      if (mode === 'fisheye') {
+        if (c.kind === 'decision') {
+          return { lit: c.state === 'built' ? 1 : 0, state: c.state,
+                   count: c.state === 'built' ? plural(c.count || 0, 'option')
+                        : c.state === 'open' ? 'open, ask for it' : c.state === 'held' ? 'held back' : 'out of scope' };
+        }
+        if (c.kind === 'evidence') {
+          return { lit: c.state === 'built' ? clamp((c.spread || 0) / 100, 0, 1) : 0,
+                   count: c.state === 'built' ? 'options differ ' + Math.round(c.spread || 0) + ' of 100' : '' };
+        }
+        if (c.kind === 'status') return { lit: 0, count: '' };
+        return { lit: c.coverage || 0, count: (c.builtCount || 0) + ' of ' + (c.totalCount || 0) + ' answered' };
+      }
+      return { lit: null, count: c.members ? plural(c.members.length, 'decision') : plural(c.count || 0, 'option') };
+    }
+
+    function drawBand(ctx, L, c, col, isFocus, dim) {
+      var dark = isDark(), f = bandFacts(c), lit = f.lit !== null;
+      var ground = dim ? 0.03 : PLATE_LIGHT.ground[dark ? 1 : 0], litA = PLATE_LIGHT.bandLit[dark ? 1 : 0], litEnd = L.x;
+      var bandA = lit ? ground : (dim ? 0.05 : clamp(0.09 + 0.34 * (c.apiNorm || 0) + (isFocus ? 0.1 : 0), 0, 0.55));
+      var lineH = L.acc ? ACC_BAND - 2 : L.h;             // an opened band keeps its name on the first line
+      ctx.globalAlpha = bandA; ctx.fillStyle = col; ctx.fillRect(L.x, L.y, L.w, L.h);
+      if (lit) {
+        litEnd = L.x + L.w * f.lit;
+        ctx.globalAlpha = dim ? 0.08 : litA; ctx.fillRect(L.x, L.y, litEnd - L.x, lineH);
+      }
+      ctx.globalAlpha = 1;
+      if (isFocus) {
+        ctx.strokeStyle = TH.ink; ctx.lineWidth = 2;
+        ctx.strokeRect(L.x + 1, L.y + 1, L.w - 2, L.h - 2);
+      } else {
+        ctx.strokeStyle = TH.bg; ctx.lineWidth = 1;
+        ctx.strokeRect(L.x + 0.5, L.y + 0.5, L.w - 1, L.h - 1);
+      }
+      // the map's marks for a decision without an answer: dashed if open, long dash if held, dotted if refused
+      if (f.state && f.state !== 'built') {
+        ctx.save(); ctx.setLineDash(f.state === 'open' ? [3, 3] : f.state === 'held' ? [8, 4] : [1, 3]);
+        ctx.globalAlpha = 0.7; ctx.strokeStyle = col; ctx.lineWidth = 1;
+        ctx.strokeRect(L.x + 3.5, L.y + 3.5, Math.max(0, L.w - 7), Math.max(0, lineH - 7));
+        ctx.restore();
+      }
+      if (L.h < 12) return;
+      var litMix = 1 - (1 - bandA) * (1 - litA);
+      var count = f.count;
+      var fsz = clamp(Math.round(lineH * 0.5), 10, 13), cy = L.y + lineH / 2;
+      ctx.textBaseline = 'middle';
+      ctx.font = '11px ' + TH.mono;
+      var cw = count ? ctx.measureText(count).width : 0, cx0 = L.x + L.w - 6 - cw;
+      ctx.font = (isFocus ? '700 ' : '650 ') + fsz + 'px ' + TH.font;
+      // At the needs rung the band is the need, and the gutter already names it.
+      var needsRung = mode === 'fisheye' && fishDepth === 1;
+      var label = c.kind === 'evidence' ? sentence(c.label) : c.label;
+      var name = needsRung ? '' : (whole(ctx, label, cx0 - L.x - 22) ? label : '');
+      var showCount = !!count && (needsRung || !!name);
+      if (!name && !needsRung) name = whole(ctx, label, L.w - 12);      // the name outranks the count
+      if (name) {
+        ctx.textAlign = 'left';
+        ctx.fillStyle = inkOn(lit && litEnd > L.x + 6 ? litMix : bandA, col);
+        ctx.fillText(name, L.x + 6, cy);
+      }
+      if (showCount) {
+        ctx.font = '11px ' + TH.mono; ctx.textAlign = 'left';
+        ctx.fillStyle = inkOn(lit && litEnd > cx0 ? litMix : bandA, col);
+        ctx.globalAlpha = 0.85; ctx.fillText(count, cx0, cy); ctx.globalAlpha = 1;
+      }
+      /* Opened inside one decision: each published measure in the reader's words, with how far apart
+         the options sit on it as a length, the number beside it, and what a second tap does. */
+      if (L.acc && isFocus && L.h > lineH + 20 && c.receipt && c.receipt.length) {
+        var ink = inkOn(bandA, col), bx = L.x + 10, bw = L.w - 20, ry = L.y + lineH + 6;
+        var rows = Math.min(c.receipt.length, 6);
+        ctx.fillStyle = ink; ctx.font = '11px ' + TH.font;
+        for (var k = 0; k < rows; k++, ry += 17) {
+          var cr = c.receipt[k], crName = sentence(cr.name), mlabel = whole(ctx, crName, bw * 0.5) || fit(ctx, crName, bw * 0.5);
+          ctx.globalAlpha = 0.9; ctx.textAlign = 'left'; ctx.fillText(mlabel, bx, ry + 6);
+          ctx.globalAlpha = 0.22; ctx.fillRect(bx + bw * 0.52, ry + 3, bw * 0.36, 6);
+          ctx.globalAlpha = 0.9; ctx.fillRect(bx + bw * 0.52, ry + 3, bw * 0.36 * clamp((cr.spread || 0) / 100, 0, 1), 6);
+          ctx.textAlign = 'right'; ctx.fillText(String(Math.round(cr.spread || 0)), bx + bw, ry + 6);
+        }
+        ctx.globalAlpha = 0.8; ctx.textAlign = 'left'; ctx.font = '600 11px ' + TH.font;
+        ctx.fillText(plural(c.count || 0, 'option') + '. Tap again to open the comparison.', bx, ry + 6);
+        ctx.globalAlpha = 1;
+      }
+      ctx.textBaseline = 'alphabetic';
+    }
+    /* The rail: every domain (or need) of the rung, named in serif with its receipt in mono, placed
+       as near its own ground as the others allow, and tied to it by a hairline. At the needs rung
+       the name is already in the gutter, so the rail carries only the receipt. */
+    function drawRail(ctx) {
+      rails = [];
+      var x0 = W - railW, tx = x0 + 18, depth0 = fishDepth === 0;
+      ctx.strokeStyle = TH.line; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(x0 + 0.5, HEAD); ctx.lineTo(x0 + 0.5, H); ctx.stroke();
+      var ent = [], i, j;
+      for (i = 0; i < rowBoxes.length; i++) {
+        var RB = rowBoxes[i], cells = RB.row.cells || [];
+        for (j = 0; j < cells.length; j++) {
+          var box = null;
+          for (var k = 0; k < laid.length; k++) if (laid[k].ri === RB.i && laid[k].ci === j) { box = laid[k]; break; }
+          ent.push({ cell: cells[j], L: box, ri: RB.i, ci: j, want: RB.y + (j + 0.5) * RB.h / cells.length });
+        }
+      }
+      if (!ent.length) return;
+      var top = HEAD + 8, bottom = H - 8, eh = depth0 ? 32 : 18;
+      if (ent.length > 1) eh = Math.min(eh, (bottom - top) / ent.length);
+      for (i = 0; i < ent.length; i++) ent[i].y = clamp(ent[i].want, top + eh / 2, bottom - eh / 2);
+      for (i = 1; i < ent.length; i++) ent[i].y = Math.max(ent[i].y, ent[i - 1].y + eh);
+      if (ent[ent.length - 1].y > bottom - eh / 2) {
+        ent[ent.length - 1].y = bottom - eh / 2;
+        for (i = ent.length - 2; i >= 0; i--) ent[i].y = Math.min(ent[i].y, ent[i + 1].y - eh);
+      }
+      // hairlines first, so the names sit on top of them
+      for (i = 0; i < ent.length; i++) {
+        var E = ent[i], B = E.L;
+        if (!B) continue;
+        var on = B.isFocus || railHover === i;
+        var ax = Math.min(B.x + B.w - 7, x0 - 10), ay = clamp(E.y, B.y + 6, B.y + B.h - 6);
+        // a halo in the page colour lifts the hairline off the squares it crosses
+        for (var pass = 0; pass < 2; pass++) {
+          ctx.globalAlpha = pass ? (on ? 0.9 : 0.6) : 0.85;
+          ctx.strokeStyle = pass ? (on ? TH.ink : TH.muted) : TH.bg;
+          ctx.lineWidth = pass ? (on ? 1.25 : 1) : 3;
+          ctx.beginPath(); ctx.moveTo(ax, ay);
+          if (Math.abs(ay - E.y) > 0.5) ctx.lineTo(x0 - 4, ay);
+          ctx.lineTo(x0 + 9, E.y); ctx.stroke();
+        }
+        ctx.strokeStyle = on ? TH.ink : TH.muted;
+        ctx.globalAlpha = 1; ctx.fillStyle = TH.bg; ctx.lineWidth = 1.25;
+        ctx.beginPath(); ctx.arc(ax, ay, 2.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      }
+      ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+      for (i = 0; i < ent.length; i++) {
+        var R = ent[i], c = R.cell, onR = (R.L && R.L.isFocus) || railHover === i;
+        var receipt = receiptOf(c);
+        ctx.globalAlpha = onR ? 0.95 : 0.55; ctx.fillStyle = c.color || TH.accent;
+        ctx.fillRect(x0 + 10, R.y - eh / 2 + 4, 3, Math.max(4, eh - 8));
+        ctx.globalAlpha = 1;
+        if (depth0) {
+          ctx.font = (onR ? '700 ' : '600 ') + '13px ' + TH.display; ctx.fillStyle = TH.ink;
+          ctx.fillText(whole(ctx, c.label, railW - 26) || c.label, tx, R.y - 7);
+          ctx.font = '10.5px ' + TH.mono; ctx.fillStyle = TH.muted;
+          ctx.fillText(receipt, tx, R.y + 8);
+        } else {
+          ctx.font = (onR ? '600 ' : '400 ') + '11px ' + TH.mono; ctx.fillStyle = onR ? TH.ink : TH.muted;
+          ctx.fillText(receipt, tx, R.y);
+        }
+        rails.push({ y: R.y - eh / 2, h: eh, L: R.L || { ri: R.ri, ci: R.ci, cell: c } });
+      }
+      ctx.textBaseline = 'alphabetic';
+    }
+    /* The pane's header names the open row and where it sits among its neighbours, with a door to each
+       side 56 px wide; the strips above and below a long list say how many more there are. */
+    function drawPaneChrome(ctx) {
+      var A = accHeader, col = colorOf(A.row), x = A.x, w = A.w, y = A.y, h = A.h, mid = y + h / 2;
+      var door = A.side ? 40 : 56;
+      if (A.side) {
+        ctx.fillStyle = TH.bg; ctx.fillRect(x, HEAD, w, H - HEAD);
+        ctx.strokeStyle = TH.line; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(x + 0.5, HEAD); ctx.lineTo(x + 0.5, H); ctx.stroke();
+      }
+      ctx.fillStyle = TH.bg; ctx.fillRect(x, y, w, h);
+      ctx.globalAlpha = isDark() ? 0.16 : 0.12; ctx.fillStyle = col; ctx.fillRect(x, y, w, h - 1);
+      ctx.globalAlpha = 1; ctx.fillRect(x, y, 4, h - 1);
+      ctx.strokeStyle = TH.line; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(x, y + h - 0.5); ctx.lineTo(x + w, y + h - 0.5); ctx.stroke();
+      var hasPrev = A.r > 0, hasNext = A.r < A.n - 1;
+      ctx.textBaseline = 'middle'; ctx.textAlign = 'center'; ctx.font = '700 22px ' + TH.font;
+      ctx.fillStyle = hasPrev ? TH.ink : TH.line; ctx.fillText('\u2039', x + door / 2 - 4, mid);
+      ctx.fillStyle = hasNext ? TH.ink : TH.line; ctx.fillText('\u203a', x + w - door / 2 + 4, mid);
+      var pos = A.n > 1 ? (A.r + 1) + ' of ' + A.n + ' ' + rowNoun(A.n) : '';
+      var rowName = sentence(A.row.label);
+      ctx.textAlign = 'left'; ctx.fillStyle = TH.ink; ctx.font = '700 13px ' + TH.font;
+      if (A.side) {
+        // Docked, the pane is narrow: the name takes the first line and its position the second.
+        var roomS = w - door * 2;
+        ctx.fillText(whole(ctx, rowName, roomS) || fit(ctx, rowName, roomS), x + door, pos ? mid - 7 : mid);
+        if (pos) { ctx.font = '11px ' + TH.mono; ctx.fillStyle = TH.muted; ctx.fillText(pos, x + door, mid + 9); }
+      } else {
+        ctx.font = '11px ' + TH.mono; var pw = pos ? ctx.measureText(pos).width + 10 : 0;
+        ctx.font = '700 13px ' + TH.font;
+        var room = w - door * 2 - pw;
+        ctx.fillText(whole(ctx, rowName, room) || fit(ctx, rowName, room), x + door, mid);
+        if (pos) { ctx.font = '11px ' + TH.mono; ctx.fillStyle = TH.muted; ctx.textAlign = 'right'; ctx.fillText(pos, x + w - door, mid); }
+      }
+      for (var k = 0; k < accCtl.length; k++) {
+        var S = accCtl[k];
+        ctx.fillStyle = TH.bg; ctx.fillRect(x, S.y, w, S.h);
+        ctx.strokeStyle = TH.line; ctx.beginPath();
+        var ly = S.dir < 0 ? S.y + S.h - 0.5 : S.y + 0.5; ctx.moveTo(x + 8, ly); ctx.lineTo(x + w - 8, ly); ctx.stroke();
+        ctx.textAlign = 'center'; ctx.fillStyle = TH.muted; ctx.font = '600 12px ' + TH.font;
+        ctx.fillText((S.dir < 0 ? '\u2191 ' : '\u2193 ') + S.count + ' more ' + (S.dir < 0 ? 'above' : 'below'), x + w / 2, S.y + S.h / 2);
+      }
+      ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+    }
+
+    /* The docked pane's bands, and one hairline from the band in focus (or under the pointer) to its
+       ground on the plate, so the list and the map stay visibly one thing. */
+    function drawSidePane(ctx) {
+      drawPaneChrome(ctx);
+      var tie = null;
+      for (var i = 0; i < paneBands.length; i++) {
+        var B = paneBands[i], c = B.cell, hot = B.isFocus || paneHover === i;
+        drawBand(ctx, B, c, c.color || colorOf(B.row), B.isFocus, dimmedBy(c));
+        if (paneHover === i && !B.isFocus) {
+          ctx.strokeStyle = TH.ink; ctx.lineWidth = 1.25; ctx.globalAlpha = 0.7;
+          ctx.strokeRect(B.x + 1, B.y + 1, B.w - 2, B.h - 2); ctx.globalAlpha = 1;
+        }
+        if (hot && (!tie || paneHover === i)) tie = B;
+      }
+      if (!tie) return;
+      var ground = null;
+      for (var k = 0; k < laid.length; k++) if (laid[k].ri === tie.ri && laid[k].ci === tie.ci) { ground = laid[k]; break; }
+      if (!ground || ground.x + ground.w < GUTTER || ground.x > W - railW) return;
+      var ax = Math.min(ground.x + ground.w - 6, W - railW - 8), ay = ground.y + ground.h / 2, by = tie.y + Math.min(tie.h, ACC_BAND) / 2;
+      for (var pass = 0; pass < 2; pass++) {
+        ctx.globalAlpha = pass ? 0.85 : 0.85; ctx.strokeStyle = pass ? TH.ink : TH.bg; ctx.lineWidth = pass ? 1.25 : 3;
+        ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(W - railW - 4, ay); ctx.lineTo(W - railW + 2, by); ctx.stroke();
+      }
+      ctx.globalAlpha = 1; ctx.fillStyle = TH.bg; ctx.strokeStyle = TH.ink; ctx.lineWidth = 1.25;
+      ctx.beginPath(); ctx.arc(ax, ay, 2.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    }
+    function paneBandAt(py) {
+      for (var i = 0; i < paneBands.length; i++) if (py >= paneBands[i].y - 1 && py <= paneBands[i].y + paneBands[i].h + 1) return i;
+      return -1;
+    }
+
+    /* A tap inside the pane. The header's doors page between rows, the strips page the list, and a
+       band behaves as its cell always has: on the whole map it goes a rung deeper or opens the
+       decision; on Spatial the first tap looks and the second opens. */
+    function paneTap(px, py) {
+      var A = accHeader, door = A.side ? 40 : 56, bands = A.side ? paneBands : laid;
+      if (py >= A.y && py < A.y + A.h) {
+        if (px < A.x + door) pageRow(-1); else if (px > A.x + A.w - door) pageRow(1);
+        return true;
+      }
+      for (var k = 0; k < accCtl.length; k++) {
+        if (py >= accCtl[k].y && py < accCtl[k].y + accCtl[k].h) { pageBands(accCtl[k].dir, accCtl[k].step); return true; }
+      }
+      for (var b = 0; b < bands.length; b++) {
+        var B = bands[b], c = B.cell;
+        if (py < B.y - 1 || py > B.y + B.h + 1) continue;
+        var n = bandList(B.row).length, already = !!B.isFocus;
+        focusR = shownR = B.ri; focusU = shownU = n > 1 ? B.ci / (n - 1) : 0; eng = engTarget = 1;
+        if (mode === 'fisheye') {
+          syncFishAnchor(c);
+          if (fishDepth < 4) { setFishDepth(fishDepth + 1); return true; }
+          if (c.route) { location.hash = c.route; return true; }
+          if (c.request) { location.hash = c.request; return true; }
+          say(c.label + '. ' + String(mapLine(c) || '').replace(/[.!?]+$/, '') + '.');
+          layout(); draw(); return true;
+        }
+        if (level === 2 && c.kind === 'family') {
+          var kindName = c.label; descendLevel();
+          say(kindName + '. ' + plural((c.members || []).length, 'decision') + '.');
+          return true;
+        }
+        if (already && c.route) { location.hash = c.route; return true; }
+        say(c.label + (c.scent ? '. ' + c.scent : '') + '. Tap again to open.');
+        layout(); draw(); return true;
+      }
+      return true;
+    }
+
+    function railAt(py) {
+      for (var i = 0; i < rails.length; i++) if (py >= rails[i].y && py < rails[i].y + rails[i].h) return i;
+      return -1;
     }
 
     function draw() {
@@ -994,10 +1534,16 @@
           ctx.globalAlpha = 1;
         }
       } else {
+        // Nothing drawn for the plate may spill into the rail or under the gutter.
+        var plateX = fullPane() ? 0 : GUTTER;
+        ctx.save(); ctx.beginPath(); ctx.rect(plateX, HEAD, W - plateX - railW, H - HEAD); ctx.clip();
+        var plateNow = fishWide() && !narrowPlate();
         for (i = 0; i < laid.length; i++) {
           var L = laid[i], c = L.cell, col2 = c.color || colorOf(L.row);
           var isFocus = mode === 'fisheye' ? !!L.isFocus : (focused && L.ri === fRow && c === focused);
           var dim = dimmedBy(c);
+          if (L.stacked) { drawBand(ctx, L, c, col2, isFocus, dim); continue; }
+          if (plateNow) { drawPlateCell(ctx, L, c, col2, isFocus, dim); continue; }
           var a = mode === 'fisheye' && wide ? mapAlpha(c, isFocus, dim)
                 : (dim ? 0.05 : clamp(0.09 + 0.34 * c.apiNorm + (isFocus ? 0.1 : 0), 0, 0.55));
           var ink = inkOn(a, dim ? TH.hint : col2);
@@ -1023,17 +1569,21 @@
 
           if (L.w < 20 || L.h < 13) continue;
           if (dim && !isFocus) continue;          // stepped back: present, placed, quiet
+          /* The words go in the part of the cell that shows. A cell running under the names column or
+             the pane kept its words at its own edge, so readers saw "uying a car" (700px, 2026-09-28). */
+          var tx = Math.max(L.x, plateX), tw = Math.min(L.x + L.w, W - railW) - tx;
+          if (tw < 20) continue;
           ctx.fillStyle = ink;
-          var fs = clamp(Math.round(Math.min(L.h / 2.6, L.w / 6.2, 14)), 8, 14);
+          var fs = clamp(Math.round(Math.min(L.h / 2.6, tw / 6.2, 14)), 8, 14);
           ctx.font = '650 ' + fs + 'px ' + TH.font;
           ctx.textAlign = 'left'; ctx.textBaseline = 'top';
-          var name = whole(ctx, c.label, L.w - 10);
-          var nameLines = name ? [name] : (isFocus ? wrap(ctx, c.label, L.w - 10, 2) : []);
+          var name = whole(ctx, c.label, tw - 10);
+          var nameLines = name ? [name] : (isFocus ? wrap(ctx, c.label, tw - 10, 2) : []);
           /* A focused name may wrap, but it may not be shortened. The header also carries it, yet
              leaving the centre cell blank on a phone makes the focus look like a rendering bug. */
           if (!nameLines.length || nameLines.join(' ') !== c.label) continue;
           for (var nl = 0; nl < nameLines.length; nl++) {
-            ctx.fillText(nameLines[nl], L.x + 5, L.y + 4 + nl * (fs + 1));
+            ctx.fillText(nameLines[nl], tx + 5, L.y + 4 + nl * (fs + 1));
           }
           var below = L.y + 6 + nameLines.length * (fs + 1);
 
@@ -1063,12 +1613,14 @@
             ctx.globalAlpha = 1;
           } else {
             var showScent = isFocus || (mode === 'fisheye' && fishDepthShown > 0.35 && fishDepth < 4);
-            if (showScent && c.scent && L.w > 104 && L.h > fs + 24) {
+            var scentDrawn = '';
+            if (showScent && c.scent && tw > 104 && L.h > fs + 24) {
+              scentDrawn = c.scent;
               ctx.globalAlpha = mode === 'fisheye' && !isFocus
                 ? clamp((fishDepthShown - 0.35) / 0.5, 0, 1) * 0.8 : 0.85;
               ctx.font = Math.max(9, fs - 3) + 'px ' + TH.font;
-              var lines = wrap(ctx, c.scent, L.w - 10, L.h > fs + 50 ? 3 : 2);
-              for (var q = 0; q < lines.length; q++) ctx.fillText(lines[q], L.x + 5, below + q * (fs - 1));
+              var lines = wrap(ctx, c.scent, tw - 10, L.h > fs + 50 ? 3 : 2);
+              for (var q = 0; q < lines.length; q++) ctx.fillText(lines[q], tx + 5, below + q * (fs - 1));
               below += lines.length * (fs - 1) + 2;
               ctx.globalAlpha = 1;
             }
@@ -1076,7 +1628,10 @@
             var stat = mode === 'fisheye' && wide ? ((isFocus || fishEvidence) ? mapLine(c) : '')
                      : info ? infoLine(c)
                      : ((isFocus || fishEvidence) ? c.count + ' options · ' + Math.round(c.checkable * 100) + '% second-sourced' : '');
-            if (stat && L.w > 64 && L.h > 28) {
+            // A wide-rung cell's scent is often the same counts mapLine gives ("133 decisions; 50
+            // answered"), and the focused domain printed it twice. Say it once.
+            if (stat && stat === scentDrawn) stat = '';
+            if (stat && tw > 64 && L.h > 28) {
               ctx.globalAlpha = 0.9;
               ctx.font = '600 10px ' + TH.font;
               var alt = mode === 'fisheye' && wide ? (c.kind === 'decision' ? c.state : String(c.builtCount || 0) + '/' + String(c.totalCount || 0))
@@ -1085,19 +1640,34 @@
                       : info === 'stakes' ? c.stakes + '/5'
                       : info === 'differ' ? String(Math.round(c.spread * 100))
                       : c.count + ' · ' + Math.round(c.checkable * 100) + '%';
-              var line = ctx.measureText(stat).width <= L.w - 10 ? stat
-                       : (ctx.measureText(alt).width <= L.w - 10 ? alt : '');
-              if (line) ctx.fillText(line, L.x + 5, Math.min(below, L.y + L.h - 14));
+              /* A short form is only allowed where it is still words: a chosen info chip already says
+                 what its bare number measures, and a decision's state is a word. Otherwise a stat
+                 that does not fit wraps whole onto two lines or is left out, because "1569 · 27%"
+                 and "45/79" are codes, not sentences (seen on a phone 2026-09-23). */
+              var statW = tw - 10, statLines = [];
+              if (ctx.measureText(stat).width <= statW) statLines = [stat];
+              else if ((info || (mode === 'fisheye' && c.kind === 'decision')) && ctx.measureText(alt).width <= statW) statLines = [alt];
+              else if (L.y + L.h - below >= 26) {
+                var statWrap = wrap(ctx, stat, statW, 2);
+                if (statWrap.join(' ') === stat) statLines = statWrap;
+              }
+              for (var sl = 0; sl < statLines.length; sl++) {
+                ctx.fillText(statLines[sl], tx + 5, Math.min(below + sl * 12, L.y + L.h - 14 - (statLines.length - 1 - sl) * 12));
+              }
               ctx.globalAlpha = 1;
             }
           }
         }
+        ctx.restore();
+        if (railW && fishWide()) drawRail(ctx);
+        if (fullPane()) drawPaneChrome(ctx);
+        else if (accHeader) drawSidePane(ctx);
       }
 
-      if (mode === 'fisheye') {
+      if (mode === 'fisheye' && !stackedNow() && !fullPane()) {
         /* The reticle reports velocity as well as centre: a larger halo and directional spoke mean
            faster travel. At rest it collapses back to the quiet reading point. */
-        var mx = GUTTER + (W - GUTTER) / 2, my = HEAD + (H - HEAD) / 2;
+        var mx = GUTTER + plotW() / 2, my = HEAD + (H - HEAD) / 2;
         var steerSpeed = clamp(Math.hypot(velX, velY), 0, 1);
         ctx.globalAlpha = 0.72; ctx.strokeStyle = TH.accent; ctx.lineWidth = 1;
         ctx.beginPath(); ctx.arc(mx, my, 10 + steerSpeed * 8, 0, Math.PI * 2); ctx.stroke();
@@ -1111,47 +1681,42 @@
           ctx.beginPath(); ctx.moveTo(mx, my);
           ctx.lineTo(mx + velX * 28, my + velY * 28); ctx.stroke();
         }
-
-        /* A persistent miniature overview keeps fast travel from erasing location. Each rail is
-           a row on the current rung: needs on the broad rungs, domains on the deep ones. */
-        var ovW = clamp((W - GUTTER) * 0.13, 76, 112), ovH = rowsNow.length * 4 + 10;
-        var ovX = W - ovW - 8, ovY = H - ovH - 8;
-        ctx.globalAlpha = 0.88; ctx.fillStyle = TH.bg; ctx.fillRect(ovX, ovY, ovW, ovH);
-        ctx.globalAlpha = 1; ctx.strokeStyle = TH.line; ctx.lineWidth = 1;
-        ctx.strokeRect(ovX + 0.5, ovY + 0.5, ovW - 1, ovH - 1);
-        for (var oi = 0; oi < rowsNow.length; oi++) {
-          var oy = ovY + 5 + oi * 4;
-          ctx.globalAlpha = oi === fRow ? 0.9 : 0.42;
-          ctx.fillStyle = colorOf(rowsNow[oi]);
-          ctx.fillRect(ovX + 5, oy, ovW - 10, oi === fRow ? 3 : 2);
-        }
-        ctx.globalAlpha = 1; ctx.fillStyle = TH.bg; ctx.strokeStyle = TH.ink; ctx.lineWidth = 1.5;
-        var dotX = ovX + 5 + focusU * (ovW - 10), dotY = ovY + 6 + fRow * 4;
-        ctx.beginPath(); ctx.arc(dotX, dotY, 3, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-        ctx.globalAlpha = 1;
       }
 
-      // the gutter: pinned need or domain names, whichever owns the current rung
-      ctx.fillStyle = TH.bg; ctx.fillRect(0, HEAD, GUTTER, H - HEAD);
-      ctx.strokeStyle = TH.line; ctx.lineWidth = 1;
-      ctx.beginPath(); ctx.moveTo(GUTTER - 0.5, HEAD); ctx.lineTo(GUTTER - 0.5, H); ctx.stroke();
-      for (i = 0; i < rowBoxes.length; i++) {
-        var R = rowBoxes[i];
-        var onG = i === fRow && (eng > 0.05 || kbd);
-        ctx.fillStyle = onG ? colorOf(R.row) : TH.hint;
-        var rf = clamp(Math.round(Math.min(R.h / 2.4, 12)), 8, 12);
-        ctx.font = (onG ? '700 ' : '600 ') + rf + 'px ' + TH.font;
-        ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
-        var cy = clamp(R.y + R.h / 2, HEAD + 8, H - 8);
-        var gl = (R.h > rf * 2 + 1) ? wrap(ctx, R.row.label, GUTTER - 12, 2) : [fit(ctx, R.row.label, GUTTER - 12)];
-        for (var gk = 0; gk < gl.length; gk++) {
-          ctx.fillText(gl[gk], 8, cy + (gk - (gl.length - 1) / 2) * (rf + 1));
+      /* The miniature overview that stood here retired on 2026-09-28. It sat on top of the plate's
+         bottom right on a desktop and on a domain on a phone, and every rung below the wide two now has
+         a pane whose header says where the reader is among the rows ("3 of 16 domains"). */
+
+      // the gutter: pinned need or domain names, whichever owns the current rung (the one-pane view names its row in its header)
+      if (!fullPane()) {
+        ctx.fillStyle = TH.bg; ctx.fillRect(0, HEAD, GUTTER, H - HEAD);
+        ctx.strokeStyle = TH.line; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(GUTTER - 0.5, HEAD); ctx.lineTo(GUTTER - 0.5, H); ctx.stroke();
+        for (i = 0; i < rowBoxes.length; i++) {
+          var R = rowBoxes[i];
+          /* A row pushed off the plate by the fisheye has no label to give. Clamping it into view
+             piled five names into the last few pixels of a phone's fields rung (seen 2026-09-23). */
+          var seenH = Math.min(R.y + R.h, H) - Math.max(R.y, HEAD);
+          if (seenH <= 0) continue;
+          var onG = i === fRow && (eng > 0.05 || kbd);
+          ctx.fillStyle = onG ? colorOf(R.row) : TH.hint;
+          var rf = clamp(Math.round(Math.min(R.h / 2.4, 12)), 8, 12);
+          ctx.font = (onG ? '700 ' : '600 ') + rf + 'px ' + TH.font;
+          ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+          var cy = clamp(R.y + R.h / 2, HEAD + 8, H - 8);
+          var gl = (R.h > rf * 2 + 1) ? wrap(ctx, R.row.label, GUTTER - 12, 2) : [fit(ctx, R.row.label, GUTTER - 12)];
+          if (seenH >= rf + 2) {
+            for (var gk = 0; gk < gl.length; gk++) {
+              ctx.fillText(gl[gk], 8, cy + (gk - (gl.length - 1) / 2) * (rf + 1));
+            }
+          }
+          // the swatch ties gutter to plate even when the row is thin
+          ctx.globalAlpha = onG ? 0.9 : 0.45;
+          ctx.fillStyle = colorOf(R.row);
+          ctx.fillRect(GUTTER - 6, R.y + 1, 3, Math.max(2, R.h - 2));
+          ctx.globalAlpha = 1;
         }
-        // the swatch ties gutter to plate even when the row is thin
-        ctx.globalAlpha = onG ? 0.9 : 0.45;
-        ctx.fillStyle = colorOf(R.row);
-        ctx.fillRect(GUTTER - 6, R.y + 1, 3, Math.max(2, R.h - 2));
-        ctx.globalAlpha = 1;
+
       }
 
       // the header: where you are on the ontological scale, and what is focused
@@ -1190,7 +1755,7 @@
       }
       if (mode === 'fisheye' && focused) {
         ctx.fillStyle = TH.hint; ctx.font = '10px ' + TH.font;
-        ctx.fillText(fit(ctx, '; ' + mapLine(focused), cx - lw - 26), lw + 14, HEAD / 2);
+        ctx.fillText(fit(ctx, '; ' + mapLine(focused), cx - lw - 20), 8 + lw, HEAD / 2);
       }
       ctx.textBaseline = 'alphabetic';
       emitContext();
@@ -1231,17 +1796,28 @@
     function kick() { if (!raf) raf = requestAnimationFrame(tick); }
 
     function focusFromPoint(px, py) {
-      var innerW = Math.max(40, W - GUTTER), innerH = Math.max(40, H - HEAD);
+      var innerW = plotW(), innerH = Math.max(40, H - HEAD);
       var rows = activeRows();
+      if (stackedNow() || fullPane()) {
+        for (var b = 0; b < laid.length; b++) {
+          var S = laid[b];
+          if (py >= S.y - 1 && py <= S.y + S.h + 1) {
+            var sn = bandList(S.row).length;
+            focusR = S.ri; focusU = sn > 1 ? S.ci / (sn - 1) : 0;
+            return;
+          }
+        }
+        return;
+      }
       var r = (py - HEAD) / innerH * rows.length - 0.5;
       focusR = clamp(r, 0, Math.max(0, rows.length - 1));
       focusU = clamp((px - GUTTER) / innerW, 0, 1);
     }
 
     function deflect(px, py) {
-      var mx = GUTTER + (W - GUTTER) / 2;
+      var mx = GUTTER + plotW() / 2;
       var my = HEAD + (H - HEAD) / 2;
-      var nx = (px - mx) / Math.max(1, (W - GUTTER) / 2);
+      var nx = (px - mx) / Math.max(1, plotW() / 2);
       var ny = (py - my) / Math.max(1, (H - HEAD) / 2);
       var mag = Math.hypot(nx, ny);
       if (mag < FISH_DEAD) { velX = velY = 0; return; }
@@ -1498,8 +2074,9 @@
           velX = velY = 0; pointerIn = false; return;
         }
         if (dragging) {
+          if (fullPane()) return;          // a swipe in the pane pages rows on release
           var dragRows = fishRows(fishDepth);
-          focusU = clamp(dragging.u - (px - dragging.x) / Math.max(120, W - GUTTER) * 1.6, 0, 1);
+          focusU = clamp(dragging.u - (px - dragging.x) / Math.max(120, plotW()) * 1.6, 0, 1);
           if (e.pointerType !== 'touch') {
             focusR = clamp(dragging.r - (py - dragging.y) / Math.max(120, H - HEAD) * dragRows.length * 0.8,
                            0, Math.max(0, dragRows.length - 1));
@@ -1507,12 +2084,34 @@
           velX = velY = 0; flat = 0.55; shownR = focusR; shownU = focusU;
           layout(); draw(); return;
         }
-        if (reduced) {
+        // The rail and the docked pane are for reading, not steering: over them the plate holds still.
+        if (railW && px >= W - railW) {
+          velX = velY = 0;
+          if (accHeader) {
+            var overBand = paneBandAt(py);
+            canvas.style.cursor = overBand >= 0 || py < accHeader.y + accHeader.h ? 'pointer' : 'default';
+            if (overBand !== paneHover) { paneHover = overBand; draw(); }
+            return;
+          }
+          var over = railAt(py);
+          canvas.style.cursor = over >= 0 ? 'pointer' : 'default';
+          if (over !== railHover) { railHover = over; draw(); }
+          return;
+        }
+        if (railHover !== -1 || paneHover !== -1) { railHover = -1; paneHover = -1; canvas.style.cursor = coarse ? 'grab' : 'crosshair'; }
+        if (reduced || stackedNow() || fullPane()) {
           focusFromPoint(px, py); shownR = focusR; shownU = focusU; layout(); draw(); return;
         }
         deflect(px, py); kbd = false; kick(); return;
       }
-      if (px < GUTTER || py < HEAD) return;
+      if (accHeader && accHeader.side && px >= W - railW) {
+        var overS = paneBandAt(py);
+        canvas.style.cursor = overS >= 0 || py < accHeader.y + accHeader.h ? 'pointer' : 'default';
+        if (overS !== paneHover) { paneHover = overS; draw(); }
+        return;
+      }
+      if (paneHover !== -1) { paneHover = -1; draw(); }
+      if ((px < GUTTER && !fullPane()) || py < HEAD) return;
       focusFromPoint(px, py);
       engTarget = 1; kbd = false;
       kick();
@@ -1522,7 +2121,9 @@
     });
     canvas.addEventListener('pointerleave', function (e) {
       if (mode === 'fisheye') {
-        pointerIn = false; velX = velY = 0; dragging = null; flat = 0; kick(); return;
+        pointerIn = false; velX = velY = 0; dragging = null; flat = 0;
+        if (railHover !== -1) { railHover = -1; draw(); }
+        kick(); return;
       }
       if (e.pointerType === 'touch') return;   // a lifted finger is not a departed reader
       if (!kbd) engTarget = 0;
@@ -1545,13 +2146,28 @@
       if (mode === 'fisheye') {
         var fishMoved = dragging ? Math.hypot(px - dragging.x, py - dragging.y) : 99;
         var fishQuick = dragging && Date.now() - dragging.t < 700;
+        var swipeX = dragging ? px - dragging.x : 0, swipeY = dragging ? py - dragging.y : 0;
         dragging = null; flat = 0;
+        if (fullPane() && Math.abs(swipeX) > 40 && Math.abs(swipeX) > Math.abs(swipeY) * 1.5) { pageRow(swipeX < 0 ? 1 : -1); return; }
         if (fishMoved > 8 || !fishQuick) { kick(); return; }
         if (py < HEAD) {
           for (var fh = 0; fh < headCtls.length; fh++) {
             if (px >= headCtls[fh].x && px <= headCtls[fh].x + headCtls[fh].w) {
               setFishDepth(headCtls[fh].depth); return;
             }
+          }
+          return;
+        }
+        if (accHeader && (fullPane() || px >= W - railW) && paneTap(px, py)) return;
+        // A name on the rail is a door to its domain, exactly as its ground is.
+        if (railW && fishWide() && px >= W - railW) {
+          var ra = railAt(py);
+          if (ra >= 0) {
+            var RL = rails[ra].L, railRow = fishRows(fishDepth)[RL.ri];
+            focusR = shownR = RL.ri;
+            focusU = shownU = railRow && railRow.cells.length > 1 ? RL.ci / (railRow.cells.length - 1) : 0;
+            syncFishAnchor(RL.cell); railHover = -1;
+            setFishDepth(fishDepth + 1);
           }
           return;
         }
@@ -1574,6 +2190,7 @@
             syncFishAnchor(hit.cell);
             if (fishDepth < 4) { setFishDepth(fishDepth + 1); return; }
             if (hit.cell.route) { location.hash = hit.cell.route; return; }
+            if (hit.cell.request) { location.hash = hit.cell.request; return; }
             var stateText = hit.cell.kind === 'evidence' ? hit.cell.scent : mapLine(hit.cell);
             say(hit.cell.label + '. ' + String(stateText || '').replace(/[.!?]+$/, '') + '.');
             layout(); draw(); return;
@@ -1583,7 +2200,9 @@
       }
       var moved = press ? Math.hypot(px - press.x, py - press.y) : 99;
       var was = press && press.was, pressLevel = press ? press.level : level;
+      var swipeSX = press ? px - press.x : 0, swipeSY = press ? py - press.y : 0;
       press = null;
+      if (fullPane() && Math.abs(swipeSX) > 40 && Math.abs(swipeSX) > Math.abs(swipeSY) * 1.5) { pageRow(swipeSX < 0 ? 1 : -1); return; }
       if (moved > 8) return;
       if (py < HEAD) {
         for (var i = 0; i < headCtls.length; i++) {
@@ -1591,6 +2210,7 @@
         }
         return;
       }
+      if (accHeader && (fullPane() || px >= W - railW) && paneTap(px, py)) return;
       if (px < GUTTER) {
         for (var g = 0; g < rowBoxes.length; g++) {
           if (py >= rowBoxes[g].y && py <= rowBoxes[g].y + rowBoxes[g].h) { location.hash = rowBoxes[g].row.route; return; }
@@ -1646,7 +2266,9 @@
       if (mode === 'fisheye') {
         var fishRowsNow = fishRows(fishDepth), fishRow = rowAt(focusR), fishN = fishRow ? fishRow.cells.length : 1;
         var fishStep = 1 / Math.max(1, fishN - 1);
-        if (e.key === 'ArrowRight') focusU = clamp(focusU + fishStep, 0, 1);
+        if (fullPane() && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) { e.preventDefault(); pageRow(e.key === 'ArrowRight' ? 1 : -1); return; }
+        if ((stackedNow() || fullPane()) && /^Arrow/.test(e.key)) stepBand(e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : -1);
+        else if (e.key === 'ArrowRight') focusU = clamp(focusU + fishStep, 0, 1);
         else if (e.key === 'ArrowLeft') focusU = clamp(focusU - fishStep, 0, 1);
         else if (e.key === 'ArrowDown') focusR = clamp(Math.round(focusR) + 1, 0, Math.max(0, fishRowsNow.length - 1));
         else if (e.key === 'ArrowUp') focusR = clamp(Math.round(focusR) - 1, 0, Math.max(0, fishRowsNow.length - 1));
@@ -1657,6 +2279,7 @@
           var fishCell = cellAt(focusR, focusU); syncFishAnchor(fishCell);
           if (fishDepth < 4) { setFishDepth(fishDepth + 1); return; }
           if (fishCell && fishCell.route) location.hash = fishCell.route;
+          else if (fishCell && fishCell.request) location.hash = fishCell.request;
           else if (fishCell) say(fishCell.label + '. ' + String(mapLine(fishCell) || '').replace(/[.!?]+$/, '') + '.');
           return;
         } else if (e.key === 'Escape') {
@@ -1673,7 +2296,9 @@
       }
       var row = rowAt(focusR), m = row ? itemsOf(row, level).length : 1;
       var step = 1 / Math.max(1, m - 1);
-      if (e.key === 'ArrowRight') focusU = clamp(focusU + step, 0, 1);
+      if (fullPane() && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) { e.preventDefault(); pageRow(e.key === 'ArrowRight' ? 1 : -1); return; }
+      if ((stackedNow() || fullPane()) && /^Arrow/.test(e.key)) stepBand(e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : -1);
+      else if (e.key === 'ArrowRight') focusU = clamp(focusU + step, 0, 1);
       else if (e.key === 'ArrowLeft') focusU = clamp(focusU - step, 0, 1);
       else if (e.key === 'ArrowDown') focusR = clamp(Math.round(focusR) + 1, 0, world.length - 1);
       else if (e.key === 'ArrowUp') focusR = clamp(Math.round(focusR) - 1, 0, world.length - 1);
@@ -1700,6 +2325,9 @@
       var r = box.getBoundingClientRect();
       W = Math.round(r.width); H = Math.round(r.height);
       if (!W || !H) { requestAnimationFrame(function () { resize(); }); return; }
+      // Read again on every resize: a window dragged to another screen, or a phone that reports its
+      // density late, otherwise keeps the first ratio and draws soft text at 2x and 3x.
+      DPR = Math.max(1, global.devicePixelRatio || 1);
       canvas.width = W * DPR; canvas.height = H * DPR;
       canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
       layout(); draw();

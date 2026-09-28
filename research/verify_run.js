@@ -161,7 +161,8 @@ const checks = {
   // except Garden & outdoors now has something built in it.
   // 2026-08-14, Phase 10 serial promotion: four built frontier lenses entered the ontology.
   // 124 on 2026-08-26: the digital-services split gave messaging and browsers their own datasets.
-  'categories = 124': cats.length === 124 ? 124 : 'FAIL(' + cats.length + ')',
+  // 126 on 2026-09-23: the same split gave email and search their own datasets.
+  'categories = 126': cats.length === 126 ? 126 : 'FAIL(' + cats.length + ')',
   'all 15 live category domains': liveCategoryDomains.size === 15 ? 'yes' : 'FAIL(' + liveCategoryDomains.size + ')',
   'priced food have economical': PRICED.every(id => B.data[id] && B.data[id].criteria.some(c => c.key === 'economical')),
   'food with economical (all)': FOOD.filter(id => B.data[id] && B.data[id].criteria.some(c => c.key === 'economical')).length,

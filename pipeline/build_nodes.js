@@ -46,47 +46,14 @@ const ASK_STOP = new Set([
   'ethical', 'okay', 'ok', 'what', 'which', 'how', 'buy', 'get', 'find'
 ]);
 
-const NON_BRAND_VALUES = new Set([
-  '2fa authenticator',
-  'browser',
-  'browser defense',
-  'browsing',
-  'coding agent',
-  'cloud storage',
-  'commercial',
-  'data broker removal',
-  'email',
-  'email aliases',
-  'encrypted cloud storage',
-  'file transfer',
-  'generic',
-  'local',
-  'local first',
-  'local-first',
-  'mainstream',
-  'major streaming',
-  'maps',
-  'messaging',
-  'none',
-  'not applicable',
-  'official repair route',
-  'open source',
-  'open-source',
-  'open-source coding agent',
-  'open weights',
-  'open web',
-  'public library',
-  'reusable',
-  'reuse os',
-  'search',
-  'security-suite vpn',
-  'self hosted',
-  'self-hosted',
-  'share',
-  'unknown',
-  'various',
-  'workflow automation'
-]);
+// Values in a brand field that are not a brand. The list is data (content/non-brand-values.json)
+// and is normalized here with the same normalizeLoose that brand text goes through: the inline
+// list this replaced held hyphenated entries such as 'open-source coding agent' that could never
+// match, because normalization turns every hyphen into a space before the lookup.
+const NON_BRAND_SRC = path.join(ROOT, 'content', 'non-brand-values.json');
+const NON_BRAND_VALUES = new Set(
+  Object.values(readJson(NON_BRAND_SRC).groups || {}).flat().map(normalizeLoose).filter(Boolean)
+);
 
 const COMPANY_LABELS = new Map([
   ['alphabet', 'Alphabet / Google'],

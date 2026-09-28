@@ -63,12 +63,12 @@ edge: Devices, the connections they run on, and the software and services used t
 
 ### Talking and writing
 - Messaging | cid: messaging | aka: messaging apps
-- Email | cid: digital-services | facet: email
+- Email | cid: email
 - Video calls | cid: digital-services | facet: video calls
 
 ### Finding and going
 - Browsers | cid: browsers | aka: web browsers
-- Search | cid: digital-services | facet: search | aka: search engines
+- Search | cid: search | aka: search engines
 - Maps | cid: digital-services | facet: maps
 
 ### Keeping and sharing

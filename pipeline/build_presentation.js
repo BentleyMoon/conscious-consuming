@@ -324,7 +324,9 @@ function resolvedTaxonomy(ontology, index) {
   assert(live.length === 130, `taxonomy: expected 130 live paths, found ${live.length}`);
   // 124 on 2026-08-26: messaging and browsers left the shared digital-services dataset and
   // gained their own, the first two of the nine-way split in docs/ONTOLOGY-RESEARCH.md 4.1.
-  assert(liveIds.size === 124, `taxonomy: expected 124 live datasets, found ${liveIds.size}`);
+  // 126 on 2026-09-23: email and search left the shared digital-services dataset in the same
+  // split, the next two of the nine-way division.
+  assert(liveIds.size === 126, `taxonomy: expected 126 live datasets, found ${liveIds.size}`);
   assert(gaps.length === 87, `taxonomy: expected 87 gaps, found ${gaps.length}`);
   assert(duplicateValues(decisions.map((decision) => decision.id)).length === 0, 'taxonomy: duplicate decision id');
   assert(duplicateValues(decisions.map((decision) => decision.route)).length === 0, 'taxonomy: duplicate decision route');

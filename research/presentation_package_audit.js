@@ -114,7 +114,9 @@ function main() {
   expect(actual.taxonomy && actual.taxonomy.counts.livePaths === 130, 'taxonomy live path count changed');
   // 124 on 2026-08-26: messaging and browsers left the shared digital-services dataset, the
   // first two of the nine-way split recorded in docs/ONTOLOGY-RESEARCH.md 4.1.
-  expect(actual.taxonomy && actual.taxonomy.counts.liveDatasets === 124, 'taxonomy live dataset count changed');
+  // 126 on 2026-09-23: email and search left the shared digital-services dataset in the same
+  // split, the next two of the nine-way division.
+  expect(actual.taxonomy && actual.taxonomy.counts.liveDatasets === 126, 'taxonomy live dataset count changed');
   expect(actual.taxonomy && actual.taxonomy.counts.notYetCovered === 87, 'taxonomy gap count changed');
 
   const decisions = actual.taxonomy && actual.taxonomy.decisions || [];

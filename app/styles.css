@@ -382,15 +382,25 @@ h1[tabindex],h2[tabindex],.sectionh[tabindex]{outline:none}
 .home-question-head{display:flex;align-items:flex-start;gap:.6rem;justify-content:space-between}
 .home-question .wedge-q{margin:.05rem 0 .45rem}
 /* Asking for another question is a small, quiet control, not a call to action: it sits beside the
-   question rather than under it, and it is the same size as the text it changes. */
-.wedge-again{flex:none;margin-top:.15rem;width:1.9rem;height:1.9rem;display:grid;place-items:center;
-  padding:0;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg);
+   question rather than under it, and it is the same size as the text it changes. It carries one
+   word beside its arrow since 2026-09-27: an unlabelled arrow asked the reader to guess. */
+.wedge-again{flex:none;margin-top:.15rem;min-width:1.9rem;height:1.9rem;display:inline-flex;align-items:center;gap:.3rem;
+  font:600 .75rem/1 var(--font-sans);padding:0 .5rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg);
   color:var(--muted);cursor:pointer;transition:color .15s ease,border-color .15s ease,transform .25s ease}
 .wedge-again:hover,.wedge-again:focus-visible{color:var(--accent);border-color:var(--accent);outline:none}
 .wedge-again:hover .ic,.wedge-again:focus-visible .ic{transform:rotate(-90deg)}
 .wedge-again .ic{width:1.05rem;height:1.05rem;transition:transform .25s ease}
 @media (prefers-reduced-motion:reduce){.wedge-again .ic{transition:none}}
 .home-question .wedge-s{margin:0 0 .8rem}
+/* Why this question is here, in the same quiet voice as the proof line below it. */
+.home-question .wedge-why{margin:-.25rem 0 .6rem;color:var(--hint);font-size:.75rem}
+/* New since the reader last looked: one line under the search, gone once they say so. */
+.home-news{margin:.45rem 0 .1rem;color:var(--muted);font-size:.82rem;line-height:1.5}
+.home-news a{color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.home-news-done{margin-left:.35rem;min-height:24px;padding:.1rem .55rem;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--bg);color:var(--muted);font:600 .75rem/1 var(--font-sans);cursor:pointer}
+.home-news-done:hover,.home-news-done:focus-visible{color:var(--ink);border-color:var(--ink);outline:none}
+@media (pointer:coarse){.home-news-done{min-height:44px}}
 .proof-intro{color:var(--hint);font-size:0.75rem;margin-top:auto;margin-bottom:.45rem}
 .home-question .proof{max-width:none;margin:0 0 .75rem}
 .home-question-link{align-self:flex-start;color:var(--accent);font-size:0.86rem;font-weight:650;text-decoration:none}

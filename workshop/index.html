@@ -115,7 +115,7 @@
   <p class="sub">Correct a score, add a missing option, or inspect someone else's change. Every edit keeps its source and can be exported as a small file.</p>
 
   <div class="banner">
-    <b>You can change a claim. The trust rule stays fixed.</b> Correct a score or add an option, then hand someone the change with its author and source attached. They can inspect it before accepting it. Nothing is uploaded. <a href="../docs/FEDERATION.md">How file-sharing works →</a>
+    <b>You can change a claim. The trust rule stays fixed.</b> Correct a score or add an option, then hand someone the change with its author and source attached. They can inspect it before accepting it. Nothing is uploaded. To offer a change to this commons, email the file to <a href="mailto:futurisminstitute@gmail.com?subject=Correction">futurisminstitute@gmail.com</a> or open a pull request on <a href="https://github.com/BentleyMoon/conscious-consuming">the public repository</a>. <a href="../docs/FEDERATION.md">How file-sharing works →</a>
   </div>
 
   <section class="flow" aria-label="How the files move">
@@ -191,14 +191,14 @@
       '<div class="hint">Currently: <span class="curval" id="cs_cur">–</span></div>'+
       '<div class="actions"><button class="btn" id="cs_add">+ Add correction</button><span class="hint" id="cs_note"></span></div>'+
       '<div class="sub2">Add an option</div>'+
-      '<div class="grid2"><label class="fl">Name<input id="ae_name"></label><label class="fl">Brand / kind<input id="ae_brand"></label></div>'+
+      '<div class="grid2"><label class="fl">Name<input id="ae_name"></label><label class="fl">Maker<input id="ae_brand" placeholder="who makes or runs it, not what kind it is"></label></div>'+
       '<div class="gradegrid">'+grid+'</div>'+
       '<div class="grid2"><label class="fl">Source<input id="ae_src" placeholder="where these facts come from"></label></div>'+
       '<div class="actions"><button class="btn" id="ae_add">+ Add option</button><span class="hint" id="ae_note"></span></div>'+
       '<div class="sub2">Your change file <span class="hint" style="font-weight:400">· '+ops.length+' change'+(ops.length===1?'':'s')+'</span></div>'+
       '<div class="grid2"><label class="fl">Your name (optional)<input id="p_by" placeholder="a label, no account needed"></label><label class="fl">Change note<input id="p_note" placeholder="why these changes"></label></div>'+
       '<ul class="oplist">'+(ops.length?ops.map(function(o,i){return '<li><span>'+esc(opDesc(o))+'</span><button class="x" data-i="'+i+'" aria-label="remove">✕</button></li>';}).join(''):'<li style="justify-content:flex-start;color:var(--hint)">No changes yet.</li>')+'</ul>'+
-      '<div class="actions"><button class="btn" id="p_exp"'+(ops.length?'':' disabled')+'>⤓ Export change file</button></div>';
+      '<div class="actions"><button class="btn" id="p_exp"'+(ops.length?'':' disabled')+'>⤓ Export change file</button><span class="hint">Then email it to <a href="mailto:futurisminstitute@gmail.com?subject=Correction">futurisminstitute@gmail.com</a>, or open a pull request on <a href="https://github.com/BentleyMoon/conscious-consuming">the public repository</a>.</span></div>';
 
     var ent=document.getElementById('cs_ent'), crit=document.getElementById('cs_crit'), cur=document.getElementById('cs_cur');
     function upd(){ var r=lens.resources.find(function(x){return x.code===ent.value;}); var v=r&&r.scores?r.scores[crit.value]:null; cur.textContent=(v==null?'no value yet':v+' / 100')+' · '+clabel(crit.value); }

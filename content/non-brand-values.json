@@ -1,0 +1,77 @@
+{
+  "format": "ovs-non-brand-values",
+  "version": "1.0.0",
+  "updated": "2026-09-23",
+  "purpose": "Values found in a product's brand field that are not a brand. pipeline/build_nodes.js makes no brand node from them, so no card claims to be made by them. The product keeps the text; only the brand node and its made-by edge are withheld.",
+  "matching": "Each value is compared after the same normalization the builder applies to brand text: accents stripped, & read as 'and', apostrophes dropped, every other run of non-alphanumerics read as one space, lowercase. 'open-source coding agent' and 'open source coding agent' are the same entry.",
+  "why": "The hand-built datasets often put the kind of thing in the brand field ('private messenger', 'mainstream earbuds', 'repair-first route'). Naming each product's real maker instead would add a made-by claim nobody has sourced, so the builder withholds the node rather than guessing. research/descriptor_brand_audit.js fails when a descriptor reaches the brand index, including one this list has not met yet.",
+  "groups": {
+    "placeholders": [
+      "generic", "local", "mainstream", "none", "not applicable", "unknown", "various", "commercial"
+    ],
+    "kinds of software and service": [
+      "2fa authenticator", "ai app builder", "ai code review", "ai music generator", "ai video avatar platform",
+      "android email client", "android local vault", "app platform", "app store", "assistant", "breach alerts",
+      "browser", "browser defense", "browser subscription", "browsing", "built-in screen time controls",
+      "calendar", "chat and communities", "cloud secrets vault", "cloud storage", "coding agent",
+      "coding assistant", "collaborative whiteboard", "community forum", "computer backup",
+      "data broker removal", "developer secrets", "device-native assistant", "dns filtering", "e-signature",
+      "email", "email aliases", "email-based messenger", "encrypted calendar", "encrypted cloud storage",
+      "enterprise vault", "file transfer", "firefox-based browser", "form builder", "frontend hosting",
+      "frontier lab", "hardware security key", "hardware-backed authenticator", "identity masking",
+      "kagi webkit browser", "library ebook app", "maps", "meeting assistant", "messaging",
+      "messaging and social app", "messaging and super app", "notes", "online pdf tools",
+      "open backend platform", "open source teams", "open workspace", "open-source backup",
+      "open-source coding agent", "open-source e-signature", "open-source keepass client",
+      "peer-to-peer messenger", "platform built-in", "privacy browser", "privacy-hardened firefox fork",
+      "private messenger", "project management", "public dns resolver", "scheduling", "scheduling polls",
+      "search", "secure messenger", "security-suite built-in", "security-suite vpn",
+      "self-hosted ai interface", "self-hosted team chat", "share", "signal-compatible android messenger",
+      "social", "social network and messaging", "static site hosting", "universal chat inbox",
+      "video calls", "vpn replacement ztna", "website builder", "work management", "workflow automation"
+    ],
+    "kinds of network, money and news": [
+      "african mobile money", "big bank retail lender", "business newspaper", "buy-now-pay-later",
+      "commercial broadcast news", "commercial cable/digital news", "commercial vpn", "device wallet",
+      "digital remittance", "digital wallet", "employer earned-wage access", "federal guaranty program",
+      "global bank (us)", "high-street bank (uk)", "india payments app", "independent online radio",
+      "listener-supported internet radio", "mainstream budget", "mainstream robo-advisor",
+      "major cable isp", "major carrier", "member-owned", "national bank (us)", "neobank (uk)",
+      "nonprofit newsroom", "p2p app", "politics and policy news", "privacy infrastructure", "privacy-first",
+      "public media", "reloadable prepaid card", "reward-based crowdfunding", "state nonprofit newsroom",
+      "super-app wallet", "additionality-recognized independent", "large independent supplier"
+    ],
+    "kinds of goods, tiers and routes": [
+      "b corp", "b corp disposable", "b corp reusable", "b corp reusable cup", "brand repair service",
+      "budget mainstream", "business workstation", "carrier pre-owned route", "chocolate", "circular",
+      "circular denim", "closed-loop refill", "clothing rental", "concentrated powder", "consumer mainstream",
+      "costco private label", "detergent sheets", "durability filing only, no matched eu label",
+      "ewg-verified", "ex-rental fleet, dealer network", "fairtrade vegan sneakers", "fast fashion",
+      "general online marketplace", "general resale marketplace", "german pump manufacturer",
+      "gig-platform app, independent-contractor drivers", "app that books an already-licensed taxi",
+      "global sportswear", "ice cream", "in-store chain, glasses", "independent (uk)",
+      "installable de-googled os", "linux laptops", "local classifieds", "luxury resale",
+      "mainstream basics", "mainstream denim", "mainstream earbuds", "mainstream over-ear",
+      "mainstream reusable underwear", "mainstream safety razor", "mainstream sportswear",
+      "major streaming", "mall fashion footwear", "marketplace private label", "marketplace refurbished",
+      "microfiber capture", "minimal shoes", "mobile linux reuse", "national brand, multivitamin", "natural",
+      "official refurbished", "official refurbished business laptop", "official repair route",
+      "online only, glasses", "organic disposable", "organic mattresses", "peer-to-peer marketplace",
+      "peer-to-peer resale", "plant-based", "plant-based cleaners", "powder cleanser",
+      "premium safety razor", "recycled paper", "refill-by-mail", "refurbished marketplace",
+      "reusable", "reusable metal safety razor", "reusable swimwear", "reuse os", "running shoes",
+      "safer choice mainstream", "social resale marketplace", "store brand", "subscription cartridge",
+      "target private label", "tea", "transparency leader", "ultra-fast fashion", "walmart private label",
+      "walmart, target and similar general retailers", "factory-refurbished, sold through trekbikes.com",
+      "example: citi bike, new york city"
+    ],
+    "not buying, or not a product": [
+      "free, no purchase", "habit", "maintenance habit", "no-purchase baseline", "not a chain",
+      "not a manufactured product", "public library", "repair-first route", "reusable habit", "the commons",
+      "digital rights"
+    ],
+    "openness and hosting, not a maker": [
+      "local first", "open source", "open weights", "open web", "self hosted"
+    ]
+  }
+}

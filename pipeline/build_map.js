@@ -22,6 +22,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { execFileSync } = require('child_process');
 
 const ROOT = path.join(__dirname, '..');
 const SRC = path.join(ROOT, 'content', 'taxonomy.json');
@@ -30,6 +31,20 @@ const OUT = path.join(ROOT, 'app', 'data', 'map.json');
 // Scope words as the reader meets them. "covered" is build vocabulary; a person reading the map
 // wants to know whether there is an answer here, not which internal state the compiler used.
 const STATE = { covered: 'built', open: 'open', hold: 'held', out: 'refused' };
+
+// The map changes only when the taxonomy does, so its date is the taxonomy's last commit. Today's
+// date made the tracked file differ on every build, and 83faaacec dropped it from git without a
+// word in its message. An uncommitted taxonomy edit, or no git at all, falls back to today.
+function sourceDate() {
+  const today = new Date().toISOString().slice(0, 10);
+  try {
+    const git = (args) => execFileSync('git', args, { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
+    if (git(['status', '--porcelain', '--', 'content/taxonomy.json'])) return today;
+    return git(['log', '-1', '--format=%cs', '--', 'content/taxonomy.json']) || today;
+  } catch (_) {
+    return today;
+  }
+}
 
 function main() {
   const taxonomy = JSON.parse(fs.readFileSync(SRC, 'utf8'));
@@ -66,7 +81,7 @@ function main() {
   const doc = {
     format: 'open-values-map',
     version: '1.0.0',
-    built: taxonomy.built || new Date().toISOString().slice(0, 10),
+    built: taxonomy.built || sourceDate(),
     purpose: 'The whole map, for the spatial view: every decision the catalogue names, built or not.',
     consumer: 'app/homelens.js wide rungs; lazily fetched, never part of the boot payload.',
     source: 'content/taxonomy.json',

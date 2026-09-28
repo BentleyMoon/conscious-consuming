@@ -52,7 +52,9 @@ const EXPECTED_LIVE_BY_NEED = {
   nourish: 50,
   care: 26,
   'keep-a-home': 10,
-  connect: 10,  // 2026-08-26: messaging and browsers gained their own datasets in the split
+  // 12 on 2026-09-23: email and search left the shared digital-services dataset in the split,
+  // the same kind of move as messaging and browsers on 2026-08-26.
+  connect: 12,
   move: 6,
   learn: 9,
   'give-and-act': 6,
@@ -121,7 +123,10 @@ const EXPECTED_LIVE_BY_NEED = {
 // Re-pinned 2026-08-26: messaging and browsers flipped from digital-services facets to their
 // own cids in the split. The signature moves with the recorded change; it exists to catch
 // silent drift, and a cid flip carried by a commit with written reasons is the opposite.
-const ROUND9_DOMAIN_SIGNATURE = '9cd9e68334531993fc23d5cc1de44990bdd2cab0a0c434aecb70f9b06416501f';
+// Re-pinned 2026-09-23: email and search left the shared digital-services dataset in the split,
+// the same kind of move. Two facet fields dropped from the Email and Search rows and their cid
+// values changed from digital-services to email and search; nothing else in the projection moved.
+const ROUND9_DOMAIN_SIGNATURE = '5ad70582b91bed4ab14fff6baf7175da204e124aa059d962bd4ee8f1fd3953fd';
 
 function read(rel) {
   try {
@@ -204,10 +209,14 @@ function main() {
   expect(liveRows === 130, `content/ontology.json: expected 130 live rows including facets, found ${liveRows}`);
   // Moved 2026-08-26: messaging and browsers flipped from digital-services facets to their own
   // datasets, the first two of the nine-way split in docs/ONTOLOGY-RESEARCH.md 4.1.
-  expect(facets === 7, `content/ontology.json: expected 7 preserved facets, found ${facets}`);
+  // Moved again 2026-09-23: email and search flipped the same way, the next two of the nine-way
+  // split. 7 -> 5 preserved facets (social, cloud storage, notes, maps, video calls remain).
+  expect(facets === 5, `content/ontology.json: expected 5 preserved facets, found ${facets}`);
   // 124 on 2026-08-26: messaging and browsers left the shared digital-services dataset, the
   // first two of the nine-way split recorded in docs/ONTOLOGY-RESEARCH.md 4.1.
-  expect(cidRecords.size === 124, `content/ontology.json: expected 124 unique live categories, found ${cidRecords.size}`);
+  // 126 on 2026-09-23: email and search left the shared digital-services dataset in the same
+  // split, the next two of the nine-way division.
+  expect(cidRecords.size === 126, `content/ontology.json: expected 126 unique live categories, found ${cidRecords.size}`);
   for (const id of validNeeds) {
     expect(rowCounts[id] > 0, `content/ontology.json: ${id} is an orphan need`);
     expect(liveSets[id].size === EXPECTED_LIVE_BY_NEED[id], `content/ontology.json: ${id} expected ${EXPECTED_LIVE_BY_NEED[id]} live categories, found ${liveSets[id].size}`);
@@ -222,7 +231,9 @@ function main() {
   expect(board.category === 'causes-to-support', 'content/ontology.json: GIVE & ACT must attach the mutual-aid board to causes-to-support');
   expect(/function asksOffersBoardHTML/.test(read('app/app.js')), 'app/app.js: existing mutual-aid board consumer missing');
 
-  expect(Array.isArray(index.categories) && index.categories.length === 124, `app/data/index.json: expected 124 live categories, found ${(index.categories || []).length}`);
+  // 126 on 2026-09-23: email and search left the shared digital-services dataset in the split,
+  // 2026-09-23.
+  expect(Array.isArray(index.categories) && index.categories.length === 126, `app/data/index.json: expected 126 live categories, found ${(index.categories || []).length}`);
   expect(JSON.stringify(index.ontology) === JSON.stringify(ontology), 'app/data/index.json: embedded ontology differs from content/ontology.json');
   const generatedIds = new Set();
   for (const category of index.categories || []) {

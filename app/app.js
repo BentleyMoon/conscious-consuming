@@ -1784,7 +1784,7 @@ function commonsMapHTML(){
 // homeSpotlight() rotates uniformly, so proof shows whichever question appears AND we never lead with
 // banking (Bentley's critique). Every code below is verified to resolve and to score in its stated band.
 const HOME_SPOTLIGHTS=[
-  {cid:'banking', q:"Does your bank fund fossil fuels?", s:"JPMorgan Chase financed about <b>$58&nbsp;billion</b> in fossil fuels in 2025. See where your bank stands, and where to move your money.", link:"See the banks",
+  {cid:'banking', q:"Does your bank fund fossil fuels?", s:"JPMorgan Chase financed about $58\u00a0billion in fossil fuels in 2025. See where your bank stands, and where to move your money.", link:"See the banks",
     proof:{a:{cid:'banking',code:'chase',band:'low',name:'JPMorgan Chase',tag:"World's #1 fossil-fuel financier"},
            b:{cid:'banking',code:'triodos',band:'high',name:'Triodos Bank',tag:'Publishes every loan it makes'}}},
   {cid:'phones', q:"Is your phone built to last, or to be replaced?", s:"Repairability and longevity vary hugely between makers, and the phone you can fix is the greenest one you'll ever own.", link:"Compare phones",
@@ -1810,11 +1810,13 @@ function homeSpotlight(avoidCid){
 }
 // The wedge redraws itself rather than the page, so asking for another question keeps your scroll
 // position, the map you were pointing at, and anything typed in the search field.
+function countWord(n){return ['no','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve'][n]||String(n);}
 function spotlightHTML(sp){
   return `<div class="home-question-head">
       <h2 class="wedge-q">${esc(sp.q)}</h2>
-      <button type="button" class="wedge-again" id="wedge-again" title="Ask a different question" aria-label="Ask a different question">${CC.icon('refresh')||'&#8635;'}</button>
+      <button type="button" class="wedge-again" id="wedge-again" title="Ask another question" aria-label="Ask another question">${CC.icon('refresh')||'&#8635;'}<span>Another</span></button>
     </div>
+    <p class="wedge-why">One of ${countWord(HOME_SPOTLIGHTS.length)} questions, picked at random each time this page opens.</p>
     <p class="wedge-s">${esc(sp.s)}</p>
     <div class="proof-intro">${esc((sp.proof&&sp.proof.intro)||'Two real options. Sources open.')}</div>
     <div class="proof">${proofCard(sp.proof.a)}${proofCard(sp.proof.b)}</div>
@@ -1963,6 +1965,7 @@ function renderHome(){
         <label for="hq">What are you choosing?</label>
         <div class="home-search-row"><input type="search" id="hq" placeholder="${tr('home.search')}" autocomplete="off"><button type="submit" class="valuescta">${tr('home.searchBtn')}</button></div>
       </form>
+      <p class="home-news" id="home-news" hidden></p>
       <div class="homelens-modes">
         <span class="homelens-mode-label">Map view</span>
         <div class="homelens-mode-switch" role="group" aria-label="Choose how to navigate the map">
@@ -1992,6 +1995,7 @@ function renderHome(){
     <article class="home-question" id="home-question">${spotlightHTML(sp)}</article>
     <p class="contribute"><a href="#map">Browse by need</a> &middot; <a href="#you">My rules</a> &middot; <a href="#guide/vote-with-your-money">The two-minute primer</a> &middot; <a href="./c/">All verdicts and sources</a> &middot; <a href="#contribute">Suggest a decision</a></p>`;
   wireSpotlight(sp);
+  renderHomeNews();
   document.getElementById('hsearch').onsubmit=(e)=>{e.preventDefault();goSearch((document.getElementById('hq').value||'').trim());};
   wireSuggest(document.getElementById('hq'));
   if(CC.homeLens)CC.homeLens.mount('homelens',function(){return CATALOG;});
@@ -2060,11 +2064,18 @@ function renderHome(){
            above, and saying them twice on one screen makes both weaker. */
         const here=detail.here;
         const place=(detail.crumbs||[]).filter(c=>c&&c.label).slice(-1)[0];
-        const where=place?place.label:'The whole map';
-        if(here&&here.exact){
-          cap.textContent=`${where}. ${here.built} of ${here.named} decision${here.named===1?'':'s'} here have a sourced answer.`;
+        const where=(here&&here.where)||(place?place.label:'The whole map');
+        if(here&&here.state){
+          cap.textContent=`${where}: `+(here.state==='built'?`answered, ${here.options} option${here.options===1?'':'s'} compared on sourced facts.`
+            :here.state==='open'?'open, no answer yet. Choose it to ask for one.'
+            :here.state==='held'?'held back on purpose, with the reason in the map.'
+            :'outside this catalogue.');
+        }else if(here&&here.exact){
+          cap.textContent=`${where}: ${here.built} of ${here.named} decision${here.named===1?'':'s'} here ${here.built===1?'has':'have'} a sourced answer.`;
+        }else if(here&&here.single){
+          cap.textContent=`${where}: ${here.options} option${here.options===1?'':'s'} compared on sourced facts.`;
         }else if(here){
-          cap.textContent=`${where}. ${here.built} decision${here.built===1?'':'s'} with answers, of those built so far.`;
+          cap.textContent=`${where}: ${here.built} decision${here.built===1?'':'s'} with sourced answers.`;
         }else if(mapBox&&mapBox.dataset.mapDecisions){
           cap.textContent=`${mapBox.dataset.mapDecisions} decisions named, ${mapBox.dataset.mapBuilt||0} with answers.`;
         }else cap.textContent=`${total} decisions have answers.`;
@@ -2181,6 +2192,46 @@ function initPulseStrip(){
   };
   if(PULSE){paint();return;}
   fetch('./data/pulse.json').then(r=>r.ok?r.json():null).then(j=>{PULSE=j||{entries:[]};paint();}).catch(()=>{PULSE={entries:[]};});
+}
+/* WHAT IS NEW, SAID ONCE AND IN WORDS (WEB-STANDARDS 15). Only additions a reader can use, a new
+   comparison or a new guide, taken from the dated pulse feed; its correction lines ("Browsers had 1
+   data rebuild, source: 29262f48") stay on the workbench, where the voice bar put them. The date this
+   device has already seen is kept on this device, and "Got it" moves it forward, so the line comes
+   back only when something newer arrives. With no date kept, it shows the last thirty days. */
+const SEEN_KEY='cc.seenThrough';
+function newsItems(pulse,since){
+  const out=[];
+  for(const e of (pulse&&pulse.entries)||[]){
+    if(e.kind!=='added'||!e.date||e.date<=since)continue;
+    const what=String(e.what||'').replace(/, source: [0-9a-f]+\.?$/,'');
+    const m=what.match(/^Added 1 (category page|guide): (.+)$/);
+    const href=m&&idToHash(e.node);
+    if(!href)continue;
+    out.push({date:e.date,kind:m[1]==='guide'?'guide':'comparison',name:m[2].split(':')[0].trim(),href});
+  }
+  return out;
+}
+function joinWords(list){return list.length<2?list.join(''):list.slice(0,-1).join(', ')+' and '+list[list.length-1];}
+function dayWords(iso){try{return new Date(iso+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long'});}catch(e){return iso;}}
+function renderHomeNews(){
+  const box=document.getElementById('home-news');if(!box)return;
+  const paint=()=>{
+    let seen=null;try{seen=localStorage.getItem(SEEN_KEY);}catch(e){}
+    const monthAgo=new Date(Date.now()-30*864e5).toISOString().slice(0,10);
+    const found=newsItems(PULSE,seen||monthAgo), items=found.slice(0,6), rest=found.length-items.length;
+    if(!items.length){box.hidden=true;box.innerHTML='';return;}
+    const newest=found.reduce((a,i)=>i.date>a?i.date:a,'');
+    const links=list=>joinWords(list.map(i=>`<a href="${esc(i.href)}">${esc(i.name)}</a>`));
+    const comps=items.filter(i=>i.kind==='comparison'), guides=items.filter(i=>i.kind==='guide'), parts=[];
+    if(comps.length)parts.push((comps.length===1?'a comparison of ':'comparisons of ')+links(comps));
+    if(guides.length)parts.push((guides.length===1?'a guide to ':'guides to ')+links(guides));
+    const lead=seen?`New since ${esc(dayWords(seen))}:`:`New on ${esc(dayWords(newest))}:`;
+    box.innerHTML=`${lead} ${joinWords(parts)}${rest>0?`, and ${rest} more`:''}. <button type="button" class="home-news-done">Got it</button>`;
+    box.hidden=false;
+    box.querySelector('.home-news-done').onclick=()=>{try{localStorage.setItem(SEEN_KEY,newest);}catch(e){}box.hidden=true;};
+  };
+  if(PULSE){paint();return;}
+  fetch('./data/pulse.json').then(r=>r.ok?r.json():null).then(j=>{PULSE=j||{entries:[]};paint();}).catch(()=>{});
 }
 // Guides as a learning path: Start here → Foundations (cross-cutting literacy) → By category → Community.
 const PRIMER_SLUG='vote-with-your-money';

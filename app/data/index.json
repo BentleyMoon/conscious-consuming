@@ -20765,6 +20765,241 @@
    }
   },
   {
+   "id": "email",
+   "label": "Email",
+   "file": "email.json",
+   "n": 12,
+   "type": "Services",
+   "criteria": [
+    {
+     "key": "privacy",
+     "label": "Encrypted, not read by the provider"
+    },
+    {
+     "key": "openness",
+     "label": "Open source"
+    },
+    {
+     "key": "portability",
+     "label": "Standards-based, easy to export"
+    },
+    {
+     "key": "respect",
+     "label": "No advertising business model"
+    },
+    {
+     "key": "accessibility",
+     "label": "Easy to set up and use with ordinary mail apps"
+    },
+    {
+     "key": "economical",
+     "label": "Economical"
+    }
+   ],
+   "domain": "Tech & digital",
+   "need": "connect",
+   "group": "Digital services",
+   "regionProfile": {
+    "entryCount": 12,
+    "regionTagged": 12,
+    "missingRegion": 0,
+    "values": {
+     "global": 12
+    },
+    "filterValues": [],
+    "globalEntries": 12,
+    "unknownRegionValues": {},
+    "countryLevelNeeded": false,
+    "countryLevelLimitationCount": 0,
+    "strictCurrentEnumSafe": true
+   },
+   "provenanceProfile": {
+    "entryCount": 12,
+    "singleSourceEntries": 4,
+    "multiSourceEntries": 8,
+    "noSourceEntries": 0,
+    "noteOnlyEntries": 0,
+    "averageSourceDomains": 1.92,
+    "topPrimarySources": [
+     {
+      "label": "fastmail.com",
+      "entries": 1
+     },
+     {
+      "label": "google.com",
+      "entries": 1
+     },
+     {
+      "label": "mail.yahoo.com",
+      "entries": 1
+     },
+     {
+      "label": "mailbox.org",
+      "entries": 1
+     },
+     {
+      "label": "mailfence.com",
+      "entries": 1
+     },
+     {
+      "label": "microsoft.com",
+      "entries": 1
+     }
+    ]
+   },
+   "valueSignatureProfile": {
+    "entryCount": 12,
+    "signedEntries": 12,
+    "drawableEntries": 12,
+    "minimumThemesForBloom": 2,
+    "themeCounts": {
+     "privacy": 12,
+     "cost": 12
+    }
+   },
+   "decision": {
+    "category": "email",
+    "reads": {
+     "text": "Compare email by privacy, everyday access, openness, and data portability.",
+     "basis": [
+      {
+       "criterion": "privacy",
+       "readsAs": "privacy"
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access"
+      },
+      {
+       "criterion": "openness",
+       "readsAs": "openness"
+      },
+      {
+       "criterion": "portability",
+       "readsAs": "data portability"
+      }
+     ],
+     "signature": {
+      "by": "Conscious Consuming",
+      "on": "2026-07-15",
+      "status": "approved-batch"
+     },
+     "receipt": {
+      "dataset": "email",
+      "entryCount": 12,
+      "criteria": [
+       {
+        "criterion": "privacy",
+        "readsAs": "privacy",
+        "known": 12,
+        "minimum": 30,
+        "maximum": 95,
+        "spread": 65
+       },
+       {
+        "criterion": "accessibility",
+        "readsAs": "everyday access",
+        "known": 12,
+        "minimum": 68,
+        "maximum": 92,
+        "spread": 24
+       },
+       {
+        "criterion": "openness",
+        "readsAs": "openness",
+        "known": 12,
+        "minimum": 20,
+        "maximum": 80,
+        "spread": 60
+       },
+       {
+        "criterion": "portability",
+        "readsAs": "data portability",
+        "known": 12,
+        "minimum": 52,
+        "maximum": 88,
+        "spread": 36
+       }
+      ]
+     }
+    },
+    "axes": [
+     {
+      "id": "cost-or-values",
+      "kind": "cost-values",
+      "label": "Cost or overall fit",
+      "question": "Lower cost or a stronger overall fit?",
+      "criteria": [
+       "economical",
+       "privacy",
+       "accessibility",
+       "openness",
+       "portability",
+       "respect"
+      ],
+      "poles": [
+       "Lower cost",
+       "Stronger overall fit"
+      ],
+      "default": 50
+     },
+     {
+      "id": "access-or-privacy",
+      "kind": "tradeoff",
+      "label": "Access or privacy",
+      "question": "Easier access or less data exposure?",
+      "criteria": [
+       "accessibility",
+       "privacy"
+      ],
+      "poles": [
+       "Easier access",
+       "Less exposure"
+      ],
+      "default": 50
+     },
+     {
+      "id": "openness",
+      "kind": "criterion",
+      "label": "Openness",
+      "question": "Does openness matter more?",
+      "criteria": [
+       "openness"
+      ],
+      "poles": [
+       "Flexible",
+       "More open"
+      ],
+      "default": 50
+     }
+    ],
+    "budget": {
+     "available": true,
+     "mode": "assessed-affordability-rank",
+     "criterion": "economical",
+     "minimumKnown": 5,
+     "knownEntries": 12,
+     "coverage": 1.0
+    },
+    "archetypes": [
+     "best-for-most",
+     "strictest-match",
+     "budget-honest"
+    ],
+    "page": {
+     "stage": "approved-batch",
+     "primaryRoute": true
+    },
+    "consumer": {
+     "reads": "Round 8 approved category differences reads.",
+     "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+     "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+     "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+     "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+    }
+   }
+  },
+  {
    "id": "federated-social-servers",
    "label": "Federated social servers",
    "file": "federated-social-servers.json",
@@ -23858,6 +24093,241 @@
      "minimumKnown": 5,
      "knownEntries": 5,
      "coverage": 0.3846
+    },
+    "archetypes": [
+     "best-for-most",
+     "strictest-match",
+     "budget-honest"
+    ],
+    "page": {
+     "stage": "approved-batch",
+     "primaryRoute": true
+    },
+    "consumer": {
+     "reads": "Round 8 approved category differences reads.",
+     "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+     "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+     "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+     "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+    }
+   }
+  },
+  {
+   "id": "search",
+   "label": "Search",
+   "file": "search.json",
+   "n": 18,
+   "type": "Services",
+   "criteria": [
+    {
+     "key": "privacy",
+     "label": "Doesn't build an ad profile from your searches"
+    },
+    {
+     "key": "openness",
+     "label": "Open source"
+    },
+    {
+     "key": "portability",
+     "label": "Easy to switch or self-host"
+    },
+    {
+     "key": "respect",
+     "label": "No surveillance advertising business model"
+    },
+    {
+     "key": "accessibility",
+     "label": "Easy to use, with complete results"
+    },
+    {
+     "key": "economical",
+     "label": "Economical"
+    }
+   ],
+   "domain": "Tech & digital",
+   "need": "connect",
+   "group": "Digital services",
+   "regionProfile": {
+    "entryCount": 18,
+    "regionTagged": 18,
+    "missingRegion": 0,
+    "values": {
+     "global": 18
+    },
+    "filterValues": [],
+    "globalEntries": 18,
+    "unknownRegionValues": {},
+    "countryLevelNeeded": false,
+    "countryLevelLimitationCount": 0,
+    "strictCurrentEnumSafe": true
+   },
+   "provenanceProfile": {
+    "entryCount": 18,
+    "singleSourceEntries": 8,
+    "multiSourceEntries": 10,
+    "noSourceEntries": 0,
+    "noteOnlyEntries": 0,
+    "averageSourceDomains": 1.72,
+    "topPrimarySources": [
+     {
+      "label": "GitHub",
+      "entries": 1
+     },
+     {
+      "label": "bing.com",
+      "entries": 1
+     },
+     {
+      "label": "brave.com",
+      "entries": 1
+     },
+     {
+      "label": "docs.searxng.org",
+      "entries": 1
+     },
+     {
+      "label": "duckduckgo.com",
+      "entries": 1
+     },
+     {
+      "label": "google.com",
+      "entries": 1
+     }
+    ]
+   },
+   "valueSignatureProfile": {
+    "entryCount": 18,
+    "signedEntries": 18,
+    "drawableEntries": 18,
+    "minimumThemesForBloom": 2,
+    "themeCounts": {
+     "privacy": 18,
+     "cost": 18
+    }
+   },
+   "decision": {
+    "category": "search",
+    "reads": {
+     "text": "Compare search by privacy, everyday access, openness, and data portability.",
+     "basis": [
+      {
+       "criterion": "privacy",
+       "readsAs": "privacy"
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access"
+      },
+      {
+       "criterion": "openness",
+       "readsAs": "openness"
+      },
+      {
+       "criterion": "portability",
+       "readsAs": "data portability"
+      }
+     ],
+     "signature": {
+      "by": "Conscious Consuming",
+      "on": "2026-07-15",
+      "status": "approved-batch"
+     },
+     "receipt": {
+      "dataset": "search",
+      "entryCount": 18,
+      "criteria": [
+       {
+        "criterion": "privacy",
+        "readsAs": "privacy",
+        "known": 17,
+        "minimum": 12,
+        "maximum": 92,
+        "spread": 80
+       },
+       {
+        "criterion": "accessibility",
+        "readsAs": "everyday access",
+        "known": 18,
+        "minimum": 40,
+        "maximum": 94,
+        "spread": 54
+       },
+       {
+        "criterion": "openness",
+        "readsAs": "openness",
+        "known": 18,
+        "minimum": 6,
+        "maximum": 100,
+        "spread": 94
+       },
+       {
+        "criterion": "portability",
+        "readsAs": "data portability",
+        "known": 17,
+        "minimum": 32,
+        "maximum": 84,
+        "spread": 52
+       }
+      ]
+     }
+    },
+    "axes": [
+     {
+      "id": "cost-or-values",
+      "kind": "cost-values",
+      "label": "Cost or overall fit",
+      "question": "Lower cost or a stronger overall fit?",
+      "criteria": [
+       "economical",
+       "privacy",
+       "accessibility",
+       "openness",
+       "portability",
+       "respect"
+      ],
+      "poles": [
+       "Lower cost",
+       "Stronger overall fit"
+      ],
+      "default": 50
+     },
+     {
+      "id": "access-or-privacy",
+      "kind": "tradeoff",
+      "label": "Access or privacy",
+      "question": "Easier access or less data exposure?",
+      "criteria": [
+       "accessibility",
+       "privacy"
+      ],
+      "poles": [
+       "Easier access",
+       "Less exposure"
+      ],
+      "default": 50
+     },
+     {
+      "id": "openness",
+      "kind": "criterion",
+      "label": "Openness",
+      "question": "Does openness matter more?",
+      "criteria": [
+       "openness"
+      ],
+      "poles": [
+       "Flexible",
+       "More open"
+      ],
+      "default": 50
+     }
+    ],
+    "budget": {
+     "available": true,
+     "mode": "assessed-affordability-rank",
+     "criterion": "economical",
+     "minimumKnown": 5,
+     "knownEntries": 17,
+     "coverage": 0.9444
     },
     "archetypes": [
      "best-for-most",
@@ -27279,8 +27749,7 @@
      },
      {
       "label": "Email",
-      "cid": "digital-services",
-      "facet": "email",
+      "cid": "email",
       "type": "Services",
       "group": "Digital services",
       "need": "connect"
@@ -27294,8 +27763,7 @@
      },
      {
       "label": "Search",
-      "cid": "digital-services",
-      "facet": "search",
+      "cid": "search",
       "type": "Services",
       "group": "Digital services",
       "need": "connect"
@@ -28271,7 +28739,7 @@
   ],
   "missingLimitationEntries": [],
   "coverage": {
-   "categoryCount": 124,
+   "categoryCount": 126,
    "categoriesWithRegionControls": 57,
    "limitationCategories": 1,
    "countryLevelLimitationEntries": 15,
@@ -28367,7 +28835,7 @@
   "appOwnedDecision": "Decide final app/footer/header wording against these names; do not change generated data to compensate for app-side IA copy.",
   "drainRule": "H3 can drain when app-owned wordmark, footer, route metadata, and methodology links use the three-name stack consistently or document an explicit exception.",
   "coverage": {
-   "categoryCount": 124,
+   "categoryCount": 126,
    "canonicalNameCount": 3,
    "copyRuleCount": 4,
    "appOwnedTargetCount": 5
@@ -28386,10 +28854,10 @@
    "noteOnlyFactCount"
   ],
   "coverage": {
-   "categoryCount": 124,
-   "entryCount": 24198,
-   "singleSourceEntries": 18179,
-   "multiSourceEntries": 6015,
+   "categoryCount": 126,
+   "entryCount": 24228,
+   "singleSourceEntries": 18191,
+   "multiSourceEntries": 6033,
    "noSourceEntries": 4,
    "noteOnlyEntries": 0
   },
