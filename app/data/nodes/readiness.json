@@ -24,16 +24,16 @@
         "synonyms.json"
       ],
       "loadHint": "eager",
-      "bytes": 88380,
+      "bytes": 88802,
       "purpose": "Small node helpers for tag, errand, and everyday-phrase routing; sample.json stays out of runtime evidence."
     },
     {
       "step": 3,
       "file": "ask-core.json",
       "loadHint": "eager-search",
-      "bytes": 674945,
+      "bytes": 619947,
       "budgetBytes": 780000,
-      "headroomBytes": 105055,
+      "headroomBytes": 160053,
       "purpose": "Startup search over categories, brands, companies, tags, guides, errands, and lines."
     },
     {
@@ -43,14 +43,14 @@
         "companies.json"
       ],
       "loadHint": "defer-page-nodes",
-      "bytes": 1581522,
+      "bytes": 1463610,
       "purpose": "Full brand/company node pages and ownership context."
     },
     {
       "step": 5,
       "file": "ask-index.json",
       "loadHint": "lazy-product-search",
-      "bytes": 5699758,
+      "bytes": 5677509,
       "purpose": "Lazy product-name and barcode lookup."
     }
   ],
@@ -129,23 +129,23 @@
     "node": "#n/<type>/<slug>"
   },
   "counts": {
-    "brands": 2163,
-    "brandLongTail": 4833,
+    "brands": 1969,
+    "brandLongTail": 4851,
     "companies": 29,
-    "askCoreTokens": 3079,
-    "askCoreTargets": 2581,
-    "askTokens": 63851,
-    "askAliases": 2815,
+    "askCoreTokens": 2897,
+    "askCoreTargets": 2389,
+    "askTokens": 63697,
+    "askAliases": 2632,
     "goldenQueries": 13
   },
   "budgets": {
-    "askCoreBytes": 674945,
+    "askCoreBytes": 619947,
     "startupBudgetBytes": 780000,
     "minimumHeadroomBytes": 50000,
-    "askCoreHeadroomBytes": 105055,
+    "askCoreHeadroomBytes": 160053,
     "askCoreWithinBudget": true,
     "askCoreHasHeadroom": true,
-    "fullAskBytes": 5699758,
+    "fullAskBytes": 5677509,
     "nodeLoadPlanStages": 6,
     "nodeRuntimeStateCases": 15,
     "nodePreviewScenarios": 21
@@ -343,7 +343,7 @@
           "Do not turn item counts into importance claims.",
           "Do not imply every brand product is covered."
         ],
-        "generatedCount": 2163
+        "generatedCount": 1969
       },
       {
         "id": "company-pages",

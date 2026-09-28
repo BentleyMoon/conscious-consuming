@@ -199,9 +199,11 @@ function checkVoice(designFiles, designTexts, walkText) {
   const candidates = designFiles.flatMap((rel, index) => interfaceStrings(rel, designTexts[index]));
   // 378 as of 2026-08-14: the serial promotion receipt added one interface-facing
   // architecture string. Every candidate still passes the voice patterns below.
+  // 379 as of 2026-09-23: the email/search split's amendment paragraph in
+  // docs/design/INFORMATION-ARCHITECTURE.md added one bold "Amended ..." heading string.
   // The strings are drawn from the design documents, so without them the count says nothing.
   if (!designFiles.some(publicCopy.isAbsentPrivateDoc)) {
-    expect(candidates.length === 378, `D1-D3: expected 378 proposed interface strings, found ${candidates.length}`);
+    expect(candidates.length === 379, `D1-D3: expected 379 proposed interface strings, found ${candidates.length}`);
   }
 
   for (const candidate of candidates) {

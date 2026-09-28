@@ -1,0 +1,484 @@
+{
+  "meta": {
+    "id": "search",
+    "label": "Search",
+    "type": "Services",
+    "primaryAxis": "privacy",
+    "tradeoff": ["accessibility", "privacy"],
+    "tradeoffLabels": ["easiest", "most private"],
+    "source": "Conscious Consuming (curated)",
+    "attribution": "Built from search providers' own privacy and transparency documentation, source repositories where published, a corporate SEC filing and pricing pages, not measured data. Search privacy practices and defaults change, so check current documentation yourself before relying on any of these. Privacy reflects whether a search is used to build an advertising profile of the person searching, not just whether the connection is encrypted; openness reflects whether the search engine's own code is published and under what licence, not just whether it draws on an open web index; portability reflects how easily a person can add or drop the engine as a browser default, or run an instance themselves; respect reflects the funding model behind the results, including ownership by an advertising company, and any market-power findings against the operator; accessibility reflects how complete and familiar the results feel for ordinary use. Compared here are general web search engines a person types a question into. Reverse image search, scholarly search, fact-check search, certificate search and dedicated research managers are a different task and are not compared here. Perplexity, You.com and WolframAlpha build an AI chat answer or a computational result rather than a ranked results page from a general web index; You.com's own homepage now markets itself as a developer search API rather than a consumer search engine, so none of the three are compared here. Suggest changes via Contribute.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": { "privacy": 3, "openness": 3, "portability": 3, "respect": 3, "accessibility": 3 },
+        "x": []
+      },
+      "Most private": {
+        "w": { "privacy": 5, "respect": 4, "openness": 2, "portability": 2, "accessibility": 1 },
+        "x": []
+      },
+      "Open and portable": {
+        "w": { "openness": 5, "portability": 4, "privacy": 3, "respect": 2, "accessibility": 1 },
+        "x": []
+      },
+      "Escape surveillance": {
+        "w": { "respect": 5, "privacy": 4, "openness": 3, "portability": 1, "accessibility": 1 },
+        "x": []
+      },
+      "Easiest, free": {
+        "w": { "accessibility": 5, "economical": 4, "privacy": 2, "respect": 1, "openness": 1 },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    { "key": "privacy", "label": "Doesn't build an ad profile from your searches", "source": "curated" },
+    { "key": "openness", "label": "Open source", "source": "curated" },
+    { "key": "portability", "label": "Easy to switch or self-host", "source": "curated" },
+    { "key": "respect", "label": "No surveillance advertising business model", "source": "curated" },
+    { "key": "accessibility", "label": "Easy to use, with complete results", "source": "curated" },
+    { "key": "economical", "label": "Economical", "source": "curated" }
+  ],
+  "products": [
+    {
+      "code": "duckduckgo",
+      "name": "DuckDuckGo",
+      "brand": "DuckDuckGo",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 90, "openness": 40, "portability": 78, "respect": 82, "accessibility": 85, "economical": 100 },
+      "provenance": {
+        "privacy": { "note": "DuckDuckGo says it does not save or share a user's search, chat or browsing history, and has no way to tie search activity to who performed it.", "source": "https://duckduckgo.com/privacy", "asof": "2026-09" },
+        "openness": { "note": "DuckDuckGo publishes its Android app, Apple browsers, privacy browser extension and tracker-blocking configuration files on GitHub, but the core search index and ranking service are not among the published repositories.", "source": "https://github.com/duckduckgo", "asof": "2026-09" },
+        "portability": { "note": "No account is required to use DuckDuckGo, which keeps switching in or out low-friction, though there is little personal search data to export in the first place.", "source": "https://duckduckgo.com/privacy", "asof": "2026-09" },
+        "respect": { "note": "DuckDuckGo says search ads are based on the keywords in a search rather than a profile built from a person's search, browsing or purchase history.", "source": "https://duckduckgo.com/privacy", "asof": "2026-09" },
+        "accessibility": { "note": "DuckDuckGo's privacy page describes search with no account and no way to build a history, which matches the no-signup, type-and-search experience most people already expect.", "source": "https://duckduckgo.com/privacy", "asof": "2026-09" },
+        "economical": { "note": "DuckDuckGo search is free.", "source": "https://duckduckgo.com/privacy", "asof": "2026-09" }
+      },
+      "links": [
+        { "label": "Website", "url": "https://duckduckgo.com/" },
+        { "label": "Privacy", "url": "https://duckduckgo.com/privacy" },
+        { "label": "Source", "url": "https://github.com/duckduckgo" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "A private-search brand that says it cannot tie a search to the person who made it and uses keyword-based rather than profile-based ads, though the core search index itself is not published as open source.",
+      "focuses": ["Private search", "No tracking", "Free", "Ads"]
+    },
+    {
+      "code": "startpage",
+      "name": "Startpage",
+      "brand": "System1",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "openness": 20, "respect": 40, "accessibility": 70 },
+      "provenance": {
+        "openness": { "note": "System1's 2024 annual report (Form 10-K) lists Startpage.com among roughly 40 websites it owns and operates; there is no published client or server source, and the filing does not describe Startpage's data-retention practices separately from the rest of the portfolio.", "source": "https://www.sec.gov/Archives/edgar/data/1805833/000162828025011690/sst-20241231.htm", "asof": "2026-09" },
+        "respect": { "note": "The same SEC filing describes Startpage as one of System1's 'owned and operated' properties monetized through its RAMP advertising-optimization platform, the same system that runs System1's other search and utility sites; the filing calls Startpage 'the world's most private search engine' as its own marketing description.", "source": "https://www.sec.gov/Archives/edgar/data/1805833/000162828025011690/sst-20241231.htm", "asof": "2026-09" },
+        "accessibility": { "note": "System1 describes Startpage.com as one of its 'leading search engines,' alongside info.com, implying broad public reach as a mainstream web-search product.", "source": "https://www.sec.gov/Archives/edgar/data/1805833/000162828025011690/sst-20241231.htm", "asof": "2026-09" }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.startpage.com/" },
+        { "label": "System1 2024 Form 10-K", "url": "https://www.sec.gov/Archives/edgar/data/1805833/000162828025011690/sst-20241231.htm" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "Startpage's own site could not be reached to check its privacy and no-tracking claims directly. Its owner System1's 2024 SEC filing describes Startpage as one of about 40 owned-and-operated websites monetized through System1's advertising-optimization platform, which is worth weighing against the 'most private search engine' description System1 itself uses to market it.",
+      "focuses": ["Search", "Owned by an ad-tech company"]
+    },
+    {
+      "code": "kagi",
+      "name": "Kagi",
+      "brand": "Kagi",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 92, "openness": 25, "portability": 68, "respect": 94, "accessibility": 72, "economical": 40 },
+      "provenance": {
+        "privacy": { "note": "Kagi says it does not load analytics or telemetry, does not track which result a person clicks, and does not build a profile from API queries tied to an account.", "source": "https://kagi.com/privacy", "asof": "2026-09" },
+        "openness": { "note": "Kagi is not published as an open-source search engine, though some related tools are public.", "source": "https://kagi.com/privacy", "asof": "2026-09" },
+        "portability": { "note": "Kagi is a hosted paid service with account-based settings rather than a portable, self-run search stack.", "source": "https://help.kagi.com/kagi/getting-started/", "asof": "2026-09" },
+        "respect": { "note": "Kagi says user data is only a liability to it and that it does not need or want it, funding itself entirely through subscriptions as a Public Benefit Corporation rather than advertising.", "source": "https://kagi.com/privacy", "asof": "2026-09" },
+        "accessibility": { "note": "Kagi requires a paid account to use beyond a limited free trial, which is a real barrier compared with free search engines.", "source": "https://kagi.com/pricing", "asof": "2026-09" },
+        "economical": { "note": "After a 100-search free trial, Kagi costs 5 US dollars a month for 300 searches, 10 dollars a month for unlimited search, or 25 dollars a month for unlimited search plus premium AI models.", "source": "https://kagi.com/pricing", "asof": "2026-09" }
+      },
+      "links": [
+        { "label": "Website", "url": "https://kagi.com/" },
+        { "label": "Privacy", "url": "https://kagi.com/privacy" },
+        { "label": "Pricing", "url": "https://kagi.com/pricing" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "paid$$" },
+      "description": "A subscription search engine with no ads and no analytics on the site, funded entirely by its users rather than advertisers. There is no permanent free tier, only a limited free trial.",
+      "focuses": ["Paid", "No ads", "Private search"]
+    },
+    {
+      "code": "google-search",
+      "name": "Google Search",
+      "brand": "Google",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 26, "openness": 18, "portability": 46, "respect": 20, "accessibility": 94, "economical": 100 },
+      "provenance": {
+        "privacy": { "note": "Google's privacy policy describes collecting search terms, ad interactions and identifiers that persist a person's activity across sessions.", "source": "https://policies.google.com/privacy?hl=en-US", "asof": "2026-09" },
+        "openness": { "note": "Google Search is a closed ranking and index service with no published source.", "source": "https://www.google.com/search/howsearchworks/", "asof": "2026-09" },
+        "portability": { "note": "Google Takeout allows exporting account data, but the search index, ranking signals and interaction history are not portable to another provider.", "source": "https://support.google.com/accounts/answer/3024190?hl=en", "asof": "2026-09" },
+        "respect": { "note": "The Department of Justice says Google entered a series of exclusionary distribution agreements that locked up the primary ways users access online search, and its remedy bars Google from exclusive contracts for the distribution of Search, Chrome, Assistant and the Gemini app.", "source": "https://www.justice.gov/opa/pr/department-justice-wins-significant-remedies-against-google", "asof": "2026-09" },
+        "accessibility": { "note": "Google says billions of people use Search, and that it does not charge anyone to be in its index or accept payment for rankings, funding itself through ads instead.", "source": "https://www.google.com/search/howsearchworks/", "asof": "2026-09" },
+        "economical": { "note": "Search is free to use, funded by advertising rather than a fee to searchers or to be indexed.", "source": "https://www.google.com/search/howsearchworks/", "asof": "2026-09" }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.google.com/" },
+        { "label": "How Search works", "url": "https://www.google.com/search/howsearchworks/" },
+        { "label": "Privacy", "url": "https://policies.google.com/privacy?hl=en-US" },
+        { "label": "DOJ remedies", "url": "https://www.justice.gov/opa/pr/department-justice-wins-significant-remedies-against-google" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "The most accessible search engine, used by billions of people for free, and also the engine the Department of Justice found had locked up default distribution to maintain its monopoly, with a 2026 remedy barring exclusive placement deals.",
+      "focuses": ["Google", "Ads", "Closed source", "Free"]
+    },
+    {
+      "code": "ecosia",
+      "name": "Ecosia",
+      "brand": "Ecosia",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 68, "openness": 22, "portability": 45, "respect": 72, "accessibility": 84, "economical": 100 },
+      "provenance": {
+        "privacy": { "note": "Ecosia says it does not create personal profiles based on search history, does not use external tracking tools, and internally anonymizes a searcher's IP address after a maximum of 7 days, though search partners Microsoft and Google keep IP-linked data for 6 and 9 months respectively.", "source": "https://support.ecosia.org/article/377-ip-addresses", "asof": "2026-09" },
+        "openness": { "note": "Ecosia relies on partner search infrastructure (Bing, Google and, in France, EUSP) rather than publishing its own open search index.", "source": "https://support.ecosia.org/article/579-search-results-providers", "asof": "2026-09" },
+        "portability": { "note": "A person can adjust their market or, where available, their search-provider preference in Ecosia's settings, but Ecosia says it may still use other providers depending on availability, so results are not a fully portable personal index.", "source": "https://support.ecosia.org/article/579-search-results-providers", "asof": "2026-09" },
+        "respect": { "note": "Ecosia says it does not sell data to advertisers and does not create personal search profiles, and it is a steward-owned company whose profits from search ads fund tree planting rather than being extracted by outside shareholders.", "source": "https://blog.ecosia.org/ecosia-privacy-data/", "asof": "2026-09" },
+        "accessibility": { "note": "Ecosia works as an ordinary web search engine and browser default, with results supplied by Bing, Google or EUSP depending on a person's location, device and settings.", "source": "https://support.ecosia.org/article/579-search-results-providers", "asof": "2026-09" },
+        "economical": { "note": "Ecosia is free to use, funded by search advertising.", "source": "https://support.ecosia.org/article/579-search-results-providers", "asof": "2026-09" }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.ecosia.org/" },
+        { "label": "IP address handling", "url": "https://support.ecosia.org/article/377-ip-addresses" },
+        { "label": "Search result providers", "url": "https://support.ecosia.org/article/579-search-results-providers" },
+        { "label": "How Ecosia protects your privacy", "url": "https://blog.ecosia.org/ecosia-privacy-data/" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "A climate-mission search engine that says it does not sell data or build personal profiles and anonymizes IP addresses within 7 days, but its results actually come from Bing, Google or a French partner depending on where a person is, so the partner's own data practices still apply.",
+      "focuses": ["Private", "Free", "Ads", "Non-profit-purpose"]
+    },
+    {
+      "code": "brave-search",
+      "name": "Brave Search",
+      "brand": "Brave",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 86, "openness": 45, "portability": 76, "respect": 82, "accessibility": 90, "economical": 90 },
+      "provenance": {
+        "privacy": { "note": "Brave says Search does not profile users, and that it is impossible for it to share, sell or lose personal data it does not collect in the first place.", "source": "https://brave.com/search/", "asof": "2026-09" },
+        "openness": { "note": "Brave Search runs on Brave's own independent web index rather than a published open-source ranking system, though Brave's browser source is separately public.", "source": "https://brave.com/search/api/", "asof": "2026-09" },
+        "portability": { "note": "Brave Search works as an ordinary web search engine in any browser and also exposes a commercial API for developers.", "source": "https://brave.com/search/api/", "asof": "2026-09" },
+        "respect": { "note": "Brave says its independent crawler and index, covering over 30 billion pages, mean Search would keep working even if the big platforms it does not rely on went down.", "source": "https://brave.com/search/api/", "asof": "2026-09" },
+        "accessibility": { "note": "Brave Search is free on the public web and is the default for many Brave browser users.", "source": "https://search.brave.com/", "asof": "2026-09" },
+        "economical": { "note": "Brave Search is free for ordinary web search; a commercial API is priced separately at around 5 dollars per 1,000 search requests.", "source": "https://brave.com/search/api/", "asof": "2026-09" }
+      },
+      "links": [
+        { "label": "Website", "url": "https://search.brave.com/" },
+        { "label": "About", "url": "https://brave.com/search/" },
+        { "label": "API pricing", "url": "https://brave.com/search/api/" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "freemium" },
+      "description": "A mainstream-feeling private search option built on Brave's own independent web index rather than reselling another engine's results, useful for moving away from Google Search without losing everyday ease.",
+      "focuses": ["Search", "Independent index", "Private", "Freemium"]
+    },
+    {
+      "code": "mojeek",
+      "name": "Mojeek",
+      "brand": "Mojeek",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 90, "openness": 45, "portability": 74, "respect": 88, "accessibility": 76, "economical": 100 },
+      "provenance": {
+        "privacy": { "note": "Mojeek says it does not implement any kind of user tracking, at the time of a visit or afterward through standard logs, and states plainly that it does not track its users.", "source": "https://www.mojeek.com/about/privacy/", "asof": "2026-09" },
+        "openness": { "note": "Mojeek emphasizes that its results are 100 per cent independent, coming from its own crawler and index, but does not present its ranking technology as open source.", "source": "https://www.mojeek.com/about/why-mojeek", "asof": "2026-09" },
+        "portability": { "note": "Mojeek can be used directly on the web or added to a browser as a search provider.", "source": "https://www.mojeek.com/", "asof": "2026-09" },
+        "respect": { "note": "Mojeek is operated by Mojeek Limited in the UK and describes its purpose as providing a true alternative in search rather than reselling or optimizing against another engine's index.", "source": "https://www.mojeek.com/about/why-mojeek", "asof": "2026-09" },
+        "accessibility": { "note": "Mojeek is simple to try in a browser, though its own crawler-built index may feel less complete than the dominant search engines for some queries.", "source": "https://www.mojeek.com/", "asof": "2026-09" },
+        "economical": { "note": "Mojeek's public search page is free to use.", "source": "https://www.mojeek.com/", "asof": "2026-09" }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.mojeek.com/" },
+        { "label": "Privacy", "url": "https://www.mojeek.com/about/privacy/" },
+        { "label": "Why Mojeek", "url": "https://www.mojeek.com/about/why-mojeek" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "A UK independent search engine with its own crawler and index and a plain no-tracking policy, built to be a true alternative rather than a front end on someone else's results.",
+      "focuses": ["Search", "Independent index", "No tracking", "Free"]
+    },
+    {
+      "code": "qwant",
+      "name": "Qwant",
+      "brand": "Qwant",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 82, "openness": 25, "portability": 72, "respect": 78, "accessibility": 86, "economical": 100 },
+      "provenance": {
+        "privacy": { "note": "Qwant says it does not retain a user's search data.", "source": "https://www.qwant.com/?l=en", "asof": "2026-09" },
+        "openness": { "note": "Qwant publishes privacy commitments and offers public search access, but it is not an open-source or self-hostable search engine.", "source": "https://www.qwant.com/?l=en", "asof": "2026-09" },
+        "portability": { "note": "Qwant can be used from the web as a browser search engine, but it does not provide user-owned or exportable search infrastructure.", "source": "https://www.qwant.com/?l=en", "asof": "2026-09" },
+        "respect": { "note": "Qwant says it does not sell personal data, describing itself as a French search engine hosted in Europe.", "source": "https://www.qwant.com/?l=en", "asof": "2026-09" },
+        "accessibility": { "note": "Qwant presents a mainstream-feeling search page with instant answers and ordinary web results.", "source": "https://www.qwant.com/?l=en", "asof": "2026-09" },
+        "economical": { "note": "Qwant's public search engine is free to use.", "source": "https://www.qwant.com/?l=en", "asof": "2026-09" }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.qwant.com/?l=en" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "A French search engine that says it does not retain search data or sell personal data, hosted in Europe, with a familiar search experience.",
+      "focuses": ["Search", "EU", "Private", "Free"]
+    },
+    {
+      "code": "metager",
+      "name": "MetaGer",
+      "brand": "SUMA-EV",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 88, "openness": 82, "portability": 72, "respect": 92, "accessibility": 72, "economical": 90 },
+      "provenance": {
+        "privacy": { "note": "MetaGer presents itself as privacy-protected search run by a nonprofit association.", "source": "https://metager.org/", "asof": "2026-09" },
+        "openness": { "note": "MetaGer says it was published as open source under the GNU AGPL license in August 2016.", "source": "https://metager.org/about", "asof": "2026-09" },
+        "portability": { "note": "MetaGer works as a web metasearch engine, but results depend on MetaGer's hosted service and the upstream sources it queries.", "source": "https://metager.org/", "asof": "2026-09" },
+        "respect": { "note": "MetaGer was transferred on 1 October 2012 to the nonprofit association SUMA-EV, Association for Free Access to Knowledge, and is supported through membership and donations rather than an advertising business built around the operator's own profit.", "source": "https://metager.org/about", "asof": "2026-09" },
+        "accessibility": { "note": "MetaGer is available on the public web, though its metasearch and privacy-forward design may feel less familiar than a default mainstream search engine.", "source": "https://metager.org/", "asof": "2026-09" },
+        "economical": { "note": "MetaGer offers free public search access, supported by SUMA-EV membership and donations.", "source": "https://metager.org/", "asof": "2026-09" }
+      },
+      "links": [
+        { "label": "Website", "url": "https://metager.org/" },
+        { "label": "About", "url": "https://metager.org/about" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "freemium" },
+      "description": "A German nonprofit metasearch engine, run by the association SUMA-EV since 2012, with open-source code and a privacy-forward operating model funded by membership and donations.",
+      "focuses": ["Search", "Nonprofit", "Open source", "EU"]
+    },
+    {
+      "code": "searxng",
+      "name": "SearXNG",
+      "brand": "",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 88, "openness": 100, "portability": 70, "respect": 90, "accessibility": 52, "economical": 100 },
+      "provenance": {
+        "privacy": { "note": "SearXNG's documentation says it provides basic privacy by mixing a person's queries with searches on other platforms without storing search data, and that it does not share anything with a third party.", "source": "https://docs.searxng.org/user/about.html", "asof": "2026-09" },
+        "openness": { "note": "SearXNG is an AGPL-licensed open-source metasearch engine.", "source": "https://github.com/searxng/searxng", "asof": "2026-09" },
+        "portability": { "note": "Because SearXNG is self-hostable and instance-based, a person can run their own copy or move between public instances, but settings and history are not a simple account export.", "source": "https://docs.searxng.org/user/about.html", "asof": "2026-09" },
+        "respect": { "note": "SearXNG's documentation says it doesn't care what a person searches for and does not build a profile of its users, which rules out an advertising-profile business by design.", "source": "https://docs.searxng.org/user/about.html", "asof": "2026-09" },
+        "accessibility": { "note": "Public instances and self-hosting both exist, but picking a trustworthy public instance, or running one, is more work than opening a mainstream search engine.", "source": "https://searxng.org/", "asof": "2026-09" },
+        "economical": { "note": "SearXNG is free software, though self-hosting an instance carries ordinary hosting costs.", "source": "https://github.com/searxng/searxng", "asof": "2026-09" }
+      },
+      "links": [
+        { "label": "Website", "url": "https://searxng.org/" },
+        { "label": "About", "url": "https://docs.searxng.org/user/about.html" },
+        { "label": "Source", "url": "https://github.com/searxng/searxng" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "An open-source, self-hostable metasearch engine that mixes a person's queries across other search platforms rather than storing them, at the cost of more setup than opening a mainstream search box.",
+      "focuses": ["Open source", "Self-hostable", "Private", "Free"]
+    },
+    {
+      "code": "bing-search",
+      "name": "Bing",
+      "brand": "Microsoft",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 28, "openness": 12, "portability": 55, "respect": 30, "accessibility": 92, "economical": 92 },
+      "provenance": {
+        "privacy": { "note": "Microsoft says it uses Bing search history, aggregated with other people's history, to give better results, and separately uses signals like location and Bing web searches for ad personalization, though not the content of email, chat or documents.", "source": "https://www.microsoft.com/en-us/privacy/privacy-in-our-products", "asof": "2026-09" },
+        "openness": { "note": "Bing is a proprietary Microsoft search service rather than open-source or self-hostable search infrastructure.", "source": "https://www.microsoft.com/en-us/privacy/privacystatement", "asof": "2026-09" },
+        "portability": { "note": "Microsoft's privacy dashboard lets a person view and clear search history, but the ranking system and index behind Bing are proprietary.", "source": "https://www.microsoft.com/en-us/privacy/privacy-in-our-products", "asof": "2026-09" },
+        "respect": { "note": "Bing's own search results carry no separate price, but Microsoft's privacy documentation describes using search history for ad personalization, and its homepage is built as an entry point into the wider Microsoft 365 and MSN ecosystem rather than a standalone product.", "source": "https://www.bing.com/", "asof": "2026-09" },
+        "accessibility": { "note": "Bing's homepage links directly to Outlook, Word, Excel, PowerPoint, OneNote, OneDrive and Calendar, making it a mainstream, tightly integrated entry point for Microsoft users.", "source": "https://www.bing.com/", "asof": "2026-09" },
+        "economical": { "note": "Bing's homepage lists no price for search; it is a free consumer product funded through advertising.", "source": "https://www.bing.com/", "asof": "2026-09" }
+      },
+      "links": [
+        { "label": "Bing", "url": "https://www.bing.com/" },
+        { "label": "Microsoft privacy in our products", "url": "https://www.microsoft.com/en-us/privacy/privacy-in-our-products" },
+        { "label": "Privacy statement", "url": "https://www.microsoft.com/en-us/privacy/privacystatement" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "A major, free search engine tightly integrated with Microsoft 365 and MSN. Microsoft's own documentation describes using search history for ad personalization, and the search service itself is closed.",
+      "focuses": ["Search", "Mainstream", "Microsoft", "Ads", "Free"]
+    },
+    {
+      "code": "yahoo-search",
+      "name": "Yahoo Search",
+      "brand": "Yahoo",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 22, "openness": 8, "portability": 46, "respect": 24, "accessibility": 78, "economical": 92 },
+      "provenance": {
+        "privacy": { "note": "Yahoo's search-services privacy notice says it collects search queries and may share query, IP address and depersonalized browser or app information with search partners.", "source": "https://legal.yahoo.com/in/en/yahoo/privacy/products/searchservices/index.html", "asof": "2026-09" },
+        "openness": { "note": "Yahoo Search is a proprietary product built with third-party providers powering search and sponsored results.", "source": "https://legal.yahoo.com/in/en/yahoo/privacy/products/searchservices/index.html", "asof": "2026-09" },
+        "portability": { "note": "Yahoo documents a search-history tool, but the underlying search product and partner stack are proprietary.", "source": "https://legal.yahoo.com/in/en/yahoo/privacy/products/searchservices/index.html", "asof": "2026-09" },
+        "respect": { "note": "Yahoo Search is free, but its policy describes sponsored search and data sharing with partners built around search behavior.", "source": "https://legal.yahoo.com/in/en/yahoo/privacy/products/searchservices/index.html", "asof": "2026-09" },
+        "accessibility": { "note": "Yahoo Search's homepage is a feature-rich portal, with an AI-generated answer tool called Yahoo Scout, trending-topic summaries, and quick links to Mail, News, Finance and Sports alongside the search box.", "source": "https://search.yahoo.com/", "asof": "2026-09" },
+        "economical": { "note": "Yahoo Search is free to use, monetized through advertising and partner search services.", "source": "https://legal.yahoo.com/in/en/yahoo/privacy/products/searchservices/index.html", "asof": "2026-09" }
+      },
+      "links": [
+        { "label": "Yahoo Search", "url": "https://search.yahoo.com/" },
+        { "label": "Search privacy", "url": "https://legal.yahoo.com/in/en/yahoo/privacy/products/searchservices/index.html" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "A recognizable older search engine, now a feature-rich portal with an AI answer tool and trending content around the search box, powered by partner search infrastructure with weak openness or privacy values.",
+      "focuses": ["Search", "Mainstream", "Ads", "Closed source", "Free"]
+    },
+    {
+      "code": "yandex-search",
+      "name": "Yandex Search",
+      "brand": "",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 16, "openness": 8, "portability": 40, "respect": 20, "accessibility": 68, "economical": 92 },
+      "provenance": {
+        "privacy": { "note": "Yandex's privacy policy lists search history, cookies, IP addresses, location and cross-service activity among the data its services, including search, collect.", "source": "https://yandex.com/legal/confidential/en/", "asof": "2026-09" },
+        "openness": { "note": "Yandex Search is proprietary and part of a closed Yandex service ecosystem.", "source": "https://yandex.com/legal/confidential/en/", "asof": "2026-09" },
+        "portability": { "note": "Yandex offers some account data-management controls, but search ranking and data systems are closed.", "source": "https://yandex.com/legal/confidential/en/", "asof": "2026-09" },
+        "respect": { "note": "Yandex's international parent, then Yandex N.V., completed the sale of all of its Russia-based businesses, which include Yandex Search, to a Russian buyer consortium in 2024; the announcement did not name the consortium's members, so who now controls the search business behind this brand is not fully transparent.", "source": "https://nebius.com/newsroom/ynv-announces-successful-completion-of-the-divestment-of-its-russia-based-businesses", "asof": "2026-09" },
+        "accessibility": { "note": "Yandex Search is available on the web and remains a recognizable search engine in markets where Yandex services are common.", "source": "https://yandex.com/legal/confidential/en/", "asof": "2026-09" },
+        "economical": { "note": "Yandex Search is free to use.", "source": "https://yandex.com/legal/confidential/en/", "asof": "2026-09" }
+      },
+      "links": [
+        { "label": "Yandex Search", "url": "https://yandex.com/search/" },
+        { "label": "Privacy policy", "url": "https://yandex.com/legal/confidential/en/" },
+        { "label": "Divestment announcement", "url": "https://nebius.com/newsroom/ynv-announces-successful-completion-of-the-divestment-of-its-russia-based-businesses" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "A major non-Western search engine, free and broad in reach, but proprietary and data-intensive, and now controlled by a Russian buyer consortium after its former Amsterdam-based parent sold off the Russian business, including search, in 2024.",
+      "focuses": ["Search", "Mainstream", "Ads", "Closed source", "Free"]
+    },
+    {
+      "code": "baidu-search",
+      "name": "Baidu Search",
+      "brand": "Baidu",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 12, "openness": 6, "portability": 32, "respect": 18, "accessibility": 64, "economical": 90 },
+      "provenance": {
+        "privacy": { "note": "Baidu's privacy notice says it may share personal information with affiliates, service providers and other parties, and may transfer data to China, the United States or other jurisdictions where Baidu or its service providers operate.", "source": "https://usa.baidu.com/privacy", "asof": "2026-09" },
+        "openness": { "note": "Baidu Search is a proprietary search service within Baidu's closed ecosystem.", "source": "https://usa.baidu.com/privacy", "asof": "2026-09" },
+        "portability": { "note": "The public search interface is easy to reach, but the index, ranking and account ecosystem are not portable or open.", "source": "https://usa.baidu.com/privacy", "asof": "2026-09" },
+        "respect": { "note": "Baidu's privacy notice says it shares information with other brands it owns or controls and with other parties whose products or services it believes may interest a user.", "source": "https://usa.baidu.com/privacy", "asof": "2026-09" },
+        "accessibility": { "note": "Baidu is a major search engine, especially for Chinese-language search, though it is less familiar and less accessible for people searching mainly in other languages.", "source": "https://usa.baidu.com/privacy", "asof": "2026-09" },
+        "economical": { "note": "Baidu Search is free to use, monetized through advertising and Baidu's wider ecosystem.", "source": "https://usa.baidu.com/privacy", "asof": "2026-09" }
+      },
+      "links": [
+        { "label": "Baidu", "url": "https://www.baidu.com/" },
+        { "label": "Privacy", "url": "https://usa.baidu.com/privacy" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "A major search engine for Chinese-language discovery, free to use, with a privacy notice that allows broad sharing with affiliates and other companies and cross-border data transfer.",
+      "focuses": ["Search", "Mainstream", "Ads", "Closed source", "Free"]
+    },
+    {
+      "code": "swisscows",
+      "name": "Swisscows",
+      "brand": "Swisscows",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 88, "openness": 20, "portability": 46, "respect": 82, "accessibility": 78, "economical": 92 },
+      "provenance": {
+        "privacy": { "note": "Swisscows says it does not use cookies or other tracking technologies to identify users, does not build profiles from search history, and does not use tracking pixels or browser fingerprinting.", "source": "https://swisscows.com/en/privacy", "asof": "2026-09" },
+        "openness": { "note": "Swisscows is operated by Swisscows AG as a closed search service rather than a published open-source project.", "source": "https://swisscows.com/en", "asof": "2026-09" },
+        "portability": { "note": "Swisscows can be added as a search engine in common browsers, but the service itself is not portable or self-hostable.", "source": "https://swisscows.com/en", "asof": "2026-09" },
+        "respect": { "note": "Swisscows says it builds neutral, non-personalized results without a profiling-based search history, which is a different design from advertising models built on tracked behavior.", "source": "https://swisscows.com/en/privacy", "asof": "2026-09" },
+        "accessibility": { "note": "Swisscows is a family-friendly web search service, though less familiar to most people than mainstream search engines.", "source": "https://swisscows.com/en", "asof": "2026-09" },
+        "economical": { "note": "Swisscows search is free to use.", "source": "https://swisscows.com/en", "asof": "2026-09" }
+      },
+      "links": [
+        { "label": "Swisscows", "url": "https://swisscows.com/en" },
+        { "label": "Privacy", "url": "https://swisscows.com/en/privacy" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "A Swiss-operated search alternative that says it uses no tracking cookies, profiling or fingerprinting, but is still a closed hosted service run by Swisscows AG rather than an open one.",
+      "focuses": ["Search", "Private search", "Family safety", "Closed source", "Free"]
+    },
+    {
+      "code": "yacy",
+      "name": "YaCy",
+      "brand": "",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 92, "openness": 96, "portability": 84, "respect": 86, "accessibility": 40, "economical": 100 },
+      "provenance": {
+        "privacy": { "note": "YaCy can run locally on a person's own machine or across a peer-to-peer network, avoiding a single hosted provider seeing every search.", "source": "https://yacy.net/", "asof": "2026-09" },
+        "openness": { "note": "YaCy describes itself as free software for running your own search engine.", "source": "https://yacy.net/", "asof": "2026-09" },
+        "portability": { "note": "Because a person can run their own YaCy Search Server, control over indexing and deployment is much stronger than with a hosted search engine.", "source": "https://yacy.net/", "asof": "2026-09" },
+        "respect": { "note": "YaCy's peer-to-peer mode has many independently run devices contribute to a shared search index, so no single company or server controls the network; the project says it has no central entity controlling it, though the YaCy brand itself is held by a private company.", "source": "https://yacy.net/", "asof": "2026-09" },
+        "accessibility": { "note": "Installing and running YaCy, or joining its peer-to-peer network, is documented but far more technical than opening a mainstream search box.", "source": "https://yacy.net/", "asof": "2026-09" },
+        "economical": { "note": "YaCy is free software, though running it yourself costs setup time and hosting resources.", "source": "https://yacy.net/", "asof": "2026-09" }
+      },
+      "links": [
+        { "label": "YaCy", "url": "https://yacy.net/" },
+        { "label": "Source", "url": "https://github.com/yacy/yacy_search_server" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "A free, decentralized search engine a person or a group can run themselves instead of relying on a hosted provider. It takes real technical setup, and gives up the completeness of a mainstream index in exchange.",
+      "focuses": ["Search", "Open source", "Self-hostable", "Decentralized", "Free"]
+    },
+    {
+      "code": "marginalia-search",
+      "name": "Marginalia Search",
+      "brand": "",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 90, "openness": 92, "portability": 66, "respect": 90, "accessibility": 62, "economical": 100 },
+      "provenance": {
+        "privacy": { "note": "Marginalia says it filters out tracking, shares no data with third parties, and keeps IP-address-containing access logs for up to 24 hours before anonymizing them for debugging.", "source": "https://marginalia-search.com/", "asof": "2026-09" },
+        "openness": { "note": "Marginalia's search engine is published under the AGPL license with its code available in a public Git repository.", "source": "https://marginalia-search.com/", "asof": "2026-09" },
+        "portability": { "note": "The source is public and the ranking approach is documented, but for most people it remains a specialized hosted service rather than something they run themselves.", "source": "https://marginalia-search.com/", "asof": "2026-09" },
+        "respect": { "note": "Marginalia is principally developed and operated by an independent Swedish developer, Viktor Lofgren, who says the project has no loans and no investors, and runs on roughly 200 US dollars a month funded by donations, grants and commercial API agreements rather than ads.", "source": "https://about.marginalia-search.com/", "asof": "2026-09" },
+        "accessibility": { "note": "Marginalia is easy to try in a browser, but it deliberately favors independent and older web content over commercial sites, so it complements rather than replaces a mainstream search engine.", "source": "https://about.marginalia-search.com/", "asof": "2026-09" },
+        "economical": { "note": "Marginalia Search is free to use.", "source": "https://marginalia-search.com/", "asof": "2026-09" }
+      },
+      "links": [
+        { "label": "Marginalia Search", "url": "https://marginalia-search.com/" },
+        { "label": "About", "url": "https://about.marginalia-search.com/" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "An independent, one-person, open-source search engine that favors non-commercial and older web pages over mainstream results. It is a deliberate complement to Google or Bing rather than a full replacement.",
+      "focuses": ["Search", "Open source", "Independent", "Small web", "Free"]
+    },
+    {
+      "code": "stract",
+      "name": "Stract",
+      "brand": "",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 74, "openness": 92, "portability": 74, "respect": 84, "accessibility": 52, "economical": 100 },
+      "provenance": {
+        "privacy": { "note": "Stract's open-source code makes its search stack inspectable in a way closed search engines are not, though privacy in practice still depends on how the hosted stract.com instance is run.", "source": "https://github.com/StractOrg/stract", "asof": "2026-09" },
+        "openness": { "note": "Stract is published under the AGPL-3.0 license and describes itself as an open-source web search engine hosted at stract.com.", "source": "https://github.com/StractOrg/stract", "asof": "2026-09" },
+        "portability": { "note": "The public source and independent index let a person inspect, fork or self-host Stract instead of depending on one company's closed search stack.", "source": "https://github.com/StractOrg/stract", "asof": "2026-09" },
+        "respect": { "note": "Stract's development was funded through NGI0 Entrust, a fund established by NLnet with financial support from the European Commission's Next Generation Internet programme, rather than an advertising or venture-capital model.", "source": "https://github.com/StractOrg/stract", "asof": "2026-09" },
+        "accessibility": { "note": "Stract is usable on the web today, but it is a smaller, less mature project aimed more at technical users than at replacing a mainstream search engine.", "source": "https://github.com/StractOrg/stract", "asof": "2026-09" },
+        "economical": { "note": "Stract is open-source software, free to use at stract.com, with ordinary hosting costs if a person runs it themselves.", "source": "https://github.com/StractOrg/stract", "asof": "2026-09" }
+      },
+      "links": [
+        { "label": "Stract", "url": "https://stract.com/" },
+        { "label": "Source", "url": "https://github.com/StractOrg/stract" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "An open-source search engine funded by a public-interest European research grant rather than advertising, useful for technical users who want to inspect or self-host the stack behind their search results.",
+      "focuses": ["Search", "Open source", "Independent index", "Free"]
+    }
+  ]
+}

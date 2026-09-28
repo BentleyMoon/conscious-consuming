@@ -1,0 +1,1363 @@
+{
+ "meta": {
+  "id": "email",
+  "label": "Email",
+  "type": "Services",
+  "primaryAxis": "privacy",
+  "tradeoff": [
+   "accessibility",
+   "privacy"
+  ],
+  "tradeoffLabels": [
+   "easiest",
+   "most private"
+  ],
+  "source": "Conscious Consuming (curated)",
+  "attribution": "Built from providers' own encryption and privacy documentation, source repositories where published, and pricing pages, not measured data. Email policies and defaults change, so check the current documentation yourself before relying on any of these. Privacy reflects whether the provider can read the contents of an ordinary email, not just whether the connection is encrypted in transit; openness reflects whether client or server code is published and under what licence; portability reflects whether a mailbox uses IMAP or another standard protocol that lets a person move to another provider or client without losing mail; respect reflects whether the business model runs on advertising or reading message content rather than a subscription or donations; accessibility covers how easy a mailbox is to set up and use, including with ordinary mail apps. Compared here are mailbox services a person sends and receives mail from. Alias and forwarding services (SimpleLogin, addy.io, Firefox Relay, DuckDuckGo Email Protection, Hide My Email), separate mail client apps (Thunderbird, K-9 Mail, FairEmail), Delta Chat, and mailbox reputation or blacklist checkers do a different job and are not compared here. Suggest changes via Contribute.",
+  "allergens": false,
+  "presets": {
+   "Balanced": {
+    "w": {
+     "privacy": 3,
+     "openness": 3,
+     "portability": 3,
+     "respect": 3,
+     "accessibility": 3
+    },
+    "x": []
+   },
+   "Most private": {
+    "w": {
+     "privacy": 5,
+     "respect": 4,
+     "openness": 2,
+     "portability": 2,
+     "accessibility": 1
+    },
+    "x": []
+   },
+   "Open and portable": {
+    "w": {
+     "openness": 5,
+     "portability": 4,
+     "privacy": 3,
+     "respect": 2,
+     "accessibility": 1
+    },
+    "x": []
+   },
+   "Escape surveillance": {
+    "w": {
+     "respect": 5,
+     "privacy": 4,
+     "openness": 3,
+     "portability": 1,
+     "accessibility": 1
+    },
+    "x": []
+   },
+   "Easiest, free": {
+    "w": {
+     "accessibility": 5,
+     "economical": 4,
+     "privacy": 2,
+     "respect": 1,
+     "openness": 1
+    },
+    "x": []
+   }
+  },
+  "n": 12,
+  "valueSignatureProfile": {
+   "entryCount": 12,
+   "signedEntries": 12,
+   "drawableEntries": 12,
+   "minimumThemesForBloom": 2,
+   "themeCounts": {
+    "privacy": 12,
+    "cost": 12
+   }
+  },
+  "provenanceProfile": {
+   "entryCount": 12,
+   "singleSourceEntries": 4,
+   "multiSourceEntries": 8,
+   "noSourceEntries": 0,
+   "noteOnlyEntries": 0,
+   "averageSourceDomains": 1.92,
+   "topPrimarySources": [
+    {
+     "label": "fastmail.com",
+     "entries": 1
+    },
+    {
+     "label": "google.com",
+     "entries": 1
+    },
+    {
+     "label": "mail.yahoo.com",
+     "entries": 1
+    },
+    {
+     "label": "mailbox.org",
+     "entries": 1
+    },
+    {
+     "label": "mailfence.com",
+     "entries": 1
+    },
+    {
+     "label": "microsoft.com",
+     "entries": 1
+    }
+   ]
+  },
+  "decision": {
+   "category": "email",
+   "reads": {
+    "text": "Compare email by privacy, everyday access, openness, and data portability.",
+    "basis": [
+     {
+      "criterion": "privacy",
+      "readsAs": "privacy"
+     },
+     {
+      "criterion": "accessibility",
+      "readsAs": "everyday access"
+     },
+     {
+      "criterion": "openness",
+      "readsAs": "openness"
+     },
+     {
+      "criterion": "portability",
+      "readsAs": "data portability"
+     }
+    ],
+    "signature": {
+     "by": "Conscious Consuming",
+     "on": "2026-07-15",
+     "status": "approved-batch"
+    },
+    "receipt": {
+     "dataset": "email",
+     "entryCount": 12,
+     "criteria": [
+      {
+       "criterion": "privacy",
+       "readsAs": "privacy",
+       "known": 12,
+       "minimum": 30,
+       "maximum": 95,
+       "spread": 65
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access",
+       "known": 12,
+       "minimum": 68,
+       "maximum": 92,
+       "spread": 24
+      },
+      {
+       "criterion": "openness",
+       "readsAs": "openness",
+       "known": 12,
+       "minimum": 20,
+       "maximum": 80,
+       "spread": 60
+      },
+      {
+       "criterion": "portability",
+       "readsAs": "data portability",
+       "known": 12,
+       "minimum": 52,
+       "maximum": 88,
+       "spread": 36
+      }
+     ]
+    }
+   },
+   "axes": [
+    {
+     "id": "cost-or-values",
+     "kind": "cost-values",
+     "label": "Cost or overall fit",
+     "question": "Lower cost or a stronger overall fit?",
+     "criteria": [
+      "economical",
+      "privacy",
+      "accessibility",
+      "openness",
+      "portability",
+      "respect"
+     ],
+     "poles": [
+      "Lower cost",
+      "Stronger overall fit"
+     ],
+     "default": 50
+    },
+    {
+     "id": "access-or-privacy",
+     "kind": "tradeoff",
+     "label": "Access or privacy",
+     "question": "Easier access or less data exposure?",
+     "criteria": [
+      "accessibility",
+      "privacy"
+     ],
+     "poles": [
+      "Easier access",
+      "Less exposure"
+     ],
+     "default": 50
+    },
+    {
+     "id": "openness",
+     "kind": "criterion",
+     "label": "Openness",
+     "question": "Does openness matter more?",
+     "criteria": [
+      "openness"
+     ],
+     "poles": [
+      "Flexible",
+      "More open"
+     ],
+     "default": 50
+    }
+   ],
+   "budget": {
+    "available": true,
+    "mode": "assessed-affordability-rank",
+    "criterion": "economical",
+    "minimumKnown": 5,
+    "knownEntries": 12,
+    "coverage": 1.0
+   },
+   "archetypes": [
+    "best-for-most",
+    "strictest-match",
+    "budget-honest"
+   ],
+   "page": {
+    "stage": "approved-batch",
+    "primaryRoute": true
+   },
+   "consumer": {
+    "reads": "Round 8 approved category differences reads.",
+    "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+    "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+    "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+    "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+   }
+  }
+ },
+ "criteria": [
+  {
+   "key": "privacy",
+   "label": "Encrypted, not read by the provider",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "openness",
+   "label": "Open source",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "portability",
+   "label": "Standards-based, easy to export",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "respect",
+   "label": "No advertising business model",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "accessibility",
+   "label": "Easy to set up and use with ordinary mail apps",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "economical",
+   "label": "Economical",
+   "source": "curated",
+   "tier": "assessed"
+  }
+ ],
+ "products": [
+  {
+   "code": "proton-mail",
+   "name": "Proton Mail",
+   "brand": "Proton",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 95,
+    "openness": 78,
+    "portability": 70,
+    "respect": 90,
+    "accessibility": 78,
+    "economical": 82
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Proton says zero-access encryption means it never sees the inbox on any plan, and that not even Proton can read a user's emails.",
+     "source": "https://proton.me/mail",
+     "asof": "2026-09"
+    },
+    "openness": {
+     "note": "Proton publishes open-source client and security-audit material for its apps on GitHub, though the mail server stack itself is not published.",
+     "source": "https://github.com/ProtonMail",
+     "asof": "2026-09"
+    },
+    "portability": {
+     "note": "Proton documents import and export tools for moving mail in and out of an account, though moving between encrypted-mail providers has more friction than ordinary IMAP mail.",
+     "source": "https://proton.me/support/export-emails-import-export-app",
+     "asof": "2026-09"
+    },
+    "respect": {
+     "note": "Proton says it does not sell ads and funds itself through paid privacy services rather than advertising.",
+     "source": "https://proton.me/",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "Proton Mail has web and mobile apps and a free tier, though its encrypted workflow is a different pattern from plain webmail.",
+     "source": "https://proton.me/mail",
+     "asof": "2026-09"
+    },
+    "economical": {
+     "note": "The free plan gives 1 GB of storage and one address; paid Mail Plus and Proton Unlimited plans add storage, more addresses and custom domains.",
+     "source": "https://proton.me/mail/pricing",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://proton.me/mail"
+    },
+    {
+     "label": "Export",
+     "url": "https://proton.me/support/export-emails-import-export-app"
+    },
+    {
+     "label": "Source",
+     "url": "https://github.com/ProtonMail"
+    },
+    {
+     "label": "Pricing",
+     "url": "https://proton.me/mail/pricing"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "freemium"
+   },
+   "description": "An encrypted mailbox that says it cannot read a user's email on any plan, with open-source clients and a permanent free tier alongside paid storage upgrades.",
+   "focuses": [
+    "Encrypted",
+    "Open source",
+    "Freemium",
+    "Swiss"
+   ],
+   "valueSignature": {
+    "privacy": 83.25,
+    "cost": 80
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "proton.me",
+    "sourceLabels": [
+     "proton.me",
+     "GitHub"
+    ]
+   }
+  },
+  {
+   "code": "tuta",
+   "name": "Tuta",
+   "brand": "Tutao",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 92,
+    "openness": 80,
+    "portability": 62,
+    "respect": 90,
+    "accessibility": 76,
+    "economical": 84
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Tuta says it end-to-end encrypts emails including subject lines and attachments, entire calendars including event metadata, and the full address book; sender and recipient addresses stay unencrypted because the email protocol requires them.",
+     "source": "https://tuta.com/encryption",
+     "asof": "2026-09"
+    },
+    "openness": {
+     "note": "Tuta publishes its app source code publicly on GitHub.",
+     "source": "https://github.com/tutao/tutanota",
+     "asof": "2026-09"
+    },
+    "portability": {
+     "note": "Because Tuta encrypts subject lines and does not use standard IMAP, mail cannot be read through an ordinary external mail client the way unencrypted IMAP mail can.",
+     "source": "https://tuta.com/encryption",
+     "asof": "2026-09"
+    },
+    "respect": {
+     "note": "Tuta presents itself as ad-free privacy software funded by paying users rather than advertising.",
+     "source": "https://tuta.com/",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "The free Basic plan includes 1 GB of storage, one calendar and encryption by default, but the encrypted-by-default design is a different workflow from ordinary webmail.",
+     "source": "https://tuta.com/pricing",
+     "asof": "2026-09"
+    },
+    "economical": {
+     "note": "The Basic plan is free; paid Revolutionary and Legend plans add storage, custom domains and calendar sharing, with extra family members priced separately.",
+     "source": "https://tuta.com/pricing",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://tuta.com/"
+    },
+    {
+     "label": "Encryption",
+     "url": "https://tuta.com/encryption"
+    },
+    {
+     "label": "Source",
+     "url": "https://github.com/tutao/tutanota"
+    },
+    {
+     "label": "Pricing",
+     "url": "https://tuta.com/pricing"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "freemium"
+   },
+   "description": "A German encrypted mailbox that end-to-end encrypts subject lines and attachments as well as message bodies, with open-source clients and a permanent free tier.",
+   "focuses": [
+    "Encrypted",
+    "Open source",
+    "Freemium",
+    "Private"
+   ],
+   "valueSignature": {
+    "privacy": 81,
+    "cost": 80
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "tuta.com",
+    "sourceLabels": [
+     "tuta.com",
+     "GitHub"
+    ]
+   }
+  },
+  {
+   "code": "fastmail",
+   "name": "Fastmail",
+   "brand": "Fastmail",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 62,
+    "openness": 55,
+    "portability": 82,
+    "respect": 80,
+    "accessibility": 85,
+    "economical": 55
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Fastmail's privacy policy does not describe end-to-end encryption; it says data is protected with SSL/TLS encryption during transmission, and that IP logs are kept for up to a year to monitor for fraud.",
+     "source": "https://www.fastmail.com/privacy/",
+     "asof": "2026-09"
+    },
+    "openness": {
+     "note": "Fastmail supports open mail standards including IMAP, SMTP, CardDAV and CalDAV, though the hosted service itself is proprietary.",
+     "source": "https://www.fastmail.help/hc/en-us/articles/360060591153",
+     "asof": "2026-09"
+    },
+    "portability": {
+     "note": "Standard-protocol support and documented export tools make it straightforward to use Fastmail with an external mail client or move data elsewhere.",
+     "source": "https://www.fastmail.help/hc/en-us/articles/360060591153",
+     "asof": "2026-09"
+    },
+    "respect": {
+     "note": "Fastmail's privacy policy says it does not sell personal information and has never trained AI on customer data.",
+     "source": "https://www.fastmail.com/privacy/",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "Fastmail's apps and standard-client compatibility are polished, but there is no permanent free tier, only a 30-day free trial.",
+     "source": "https://www.fastmail.com/pricing/",
+     "asof": "2026-09"
+    },
+    "economical": {
+     "note": "Individual plans start at 6 US dollars a month with 60 GB of storage after a 30-day free trial; there is no free consumer tier.",
+     "source": "https://www.fastmail.com/pricing/",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.fastmail.com/"
+    },
+    {
+     "label": "Privacy",
+     "url": "https://www.fastmail.com/privacy/"
+    },
+    {
+     "label": "Pricing",
+     "url": "https://www.fastmail.com/pricing/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "paid$"
+   },
+   "description": "A paid, standards-friendly mailbox that supports ordinary IMAP clients and says it does not sell data, but is not end-to-end encrypted and has no permanent free tier.",
+   "focuses": [
+    "Paid",
+    "Portable",
+    "No ads"
+   ],
+   "valueSignature": {
+    "privacy": 69.75,
+    "cost": 70
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fastmail.com",
+    "sourceLabels": [
+     "fastmail.com",
+     "fastmail.help"
+    ]
+   }
+  },
+  {
+   "code": "gmail",
+   "name": "Gmail",
+   "brand": "Google",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 42,
+    "openness": 25,
+    "portability": 72,
+    "respect": 34,
+    "accessibility": 92,
+    "economical": 100
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Google's privacy policy says it does not show personalized ads based on content from Gmail, Drive or Photos, though Gmail content is still processed as part of a broader Google account.",
+     "source": "https://policies.google.com/privacy?hl=en-US",
+     "asof": "2026-09"
+    },
+    "openness": {
+     "note": "Gmail is a closed Google service; there is no published client or server source, though it supports standard mail protocols in third-party apps.",
+     "source": "https://www.google.com/gmail/about/",
+     "asof": "2026-09"
+    },
+    "portability": {
+     "note": "Google Takeout lets a user export Gmail messages, preserving labels in a special header in the downloaded file.",
+     "source": "https://support.google.com/accounts/answer/3024190?hl=en",
+     "asof": "2026-09"
+    },
+    "respect": {
+     "note": "Google says it does not personalize ads from Gmail content, but Gmail sits inside the same account used for search, YouTube and location data that do feed ad personalization elsewhere.",
+     "source": "https://policies.google.com/privacy?hl=en-US",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "Gmail is free, with a polished web and mobile interface, spam filtering and broad third-party integration.",
+     "source": "https://www.google.com/gmail/about/",
+     "asof": "2026-09"
+    },
+    "economical": {
+     "note": "Consumer Gmail is free, with paid storage and Google Workspace upgrades.",
+     "source": "https://www.google.com/gmail/about/",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.google.com/gmail/about/"
+    },
+    {
+     "label": "Privacy",
+     "url": "https://policies.google.com/privacy?hl=en-US"
+    },
+    {
+     "label": "Takeout",
+     "url": "https://support.google.com/accounts/answer/3024190?hl=en"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "free"
+   },
+   "description": "The dominant free mailbox: an easy, familiar interface and portable export tools, but built inside Google's wider advertising and account ecosystem.",
+   "focuses": [
+    "Google",
+    "Free",
+    "Closed source",
+    "Portable"
+   ],
+   "valueSignature": {
+    "privacy": 43.25,
+    "cost": 96
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "google.com",
+    "sourceLabels": [
+     "google.com",
+     "policies.google.com",
+     "support.google.com"
+    ]
+   }
+  },
+  {
+   "code": "outlook-mail",
+   "name": "Outlook.com Mail",
+   "brand": "Microsoft",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 40,
+    "openness": 20,
+    "portability": 52,
+    "respect": 34,
+    "accessibility": 90,
+    "economical": 92
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Microsoft's privacy statement says a person can download their Outlook.com email through their privacy settings, and that Microsoft does not use email content to target ads.",
+     "source": "https://www.microsoft.com/en-us/privacy/privacystatement",
+     "asof": "2026-09"
+    },
+    "openness": {
+     "note": "Outlook.com is a proprietary Microsoft service, though Outlook apps can connect to standard mail accounts.",
+     "source": "https://www.microsoft.com/en-us/microsoft-365/outlook/email-and-calendar-software-microsoft-outlook",
+     "asof": "2026-09"
+    },
+    "portability": {
+     "note": "Exporting an Outlook.com mailbox to a .pst file requires installing desktop Outlook rather than a simple web download; Mac users need legacy Outlook for Mac and an .olm file.",
+     "source": "https://support.microsoft.com/en-us/outlook/export-your-outlook-com-mailbox",
+     "asof": "2026-09"
+    },
+    "respect": {
+     "note": "Microsoft's privacy statement says it does not use what a person writes in email to target ads, but the free tier of Outlook.com still shows inbox ads unless a person pays for Microsoft 365.",
+     "source": "https://www.microsoft.com/en-us/privacy/privacystatement",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "A mature web and mobile app, a widely held Microsoft account, and Office integration make Outlook.com easy for many people to adopt.",
+     "source": "https://www.microsoft.com/en-us/microsoft-365/outlook/email-and-calendar-software-microsoft-outlook",
+     "asof": "2026-09"
+    },
+    "economical": {
+     "note": "The basic mailbox is free; ad-free use, more storage and advanced security need a paid Microsoft 365 plan.",
+     "source": "https://www.microsoft.com/en-us/microsoft-365/outlook/email-and-calendar-software-microsoft-outlook",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.microsoft.com/en-us/microsoft-365/outlook/email-and-calendar-software-microsoft-outlook"
+    },
+    {
+     "label": "Privacy",
+     "url": "https://www.microsoft.com/en-us/privacy/privacystatement"
+    },
+    {
+     "label": "Export",
+     "url": "https://support.microsoft.com/en-us/outlook/export-your-outlook-com-mailbox"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "freemium"
+   },
+   "description": "A highly accessible mainstream mailbox with strong Microsoft integration, but closed, ad-supported on free accounts, and exportable only through desktop Outlook software.",
+   "focuses": [
+    "Microsoft",
+    "Free",
+    "Closed source",
+    "Portable"
+   ],
+   "valueSignature": {
+    "privacy": 36.5,
+    "cost": 91
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "microsoft.com",
+    "sourceLabels": [
+     "microsoft.com",
+     "support.microsoft.com"
+    ]
+   }
+  },
+  {
+   "code": "yahoo-mail",
+   "name": "Yahoo Mail",
+   "brand": "Yahoo",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 30,
+    "openness": 20,
+    "portability": 65,
+    "respect": 28,
+    "accessibility": 84,
+    "economical": 100
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Yahoo's privacy policy says it analyzes email content, specifically emails from retailers and other organizations rather than personal emails between individuals, to build advertising interest profiles, and that people can opt out through privacy settings.",
+     "source": "https://legal.yahoo.com/us/en/yahoo/privacy/index.html",
+     "asof": "2026-09"
+    },
+    "openness": {
+     "note": "Yahoo Mail is a proprietary hosted email service.",
+     "source": "https://mail.yahoo.com/",
+     "asof": "2026-09"
+    },
+    "portability": {
+     "note": "Yahoo documents downloading mailbox content through IMAP into third-party email apps.",
+     "source": "https://help.yahoo.com/kb/download-email-yahoo-mail-third-party-sln28681.html",
+     "asof": "2026-09"
+    },
+    "respect": {
+     "note": "The SEC found in 2018 that Yahoo, by then renamed Altaba, concealed from investors for more than two years a 2014 breach in which hackers stole usernames, email addresses, phone numbers, birth dates, encrypted passwords and security questions for hundreds of millions of accounts, and it paid a 35 million dollar penalty.",
+     "source": "https://www.sec.gov/newsroom/press-releases/2018-71",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "Yahoo Mail is free, web-based and broadly available, though less central to most people's daily workflow than Gmail or Outlook.",
+     "source": "https://mail.yahoo.com/",
+     "asof": "2026-09"
+    },
+    "economical": {
+     "note": "Yahoo Mail is free, with paid upgrades for more features and fewer ads.",
+     "source": "https://mail.yahoo.com/",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://mail.yahoo.com/"
+    },
+    {
+     "label": "Privacy",
+     "url": "https://legal.yahoo.com/us/en/yahoo/privacy/index.html"
+    },
+    {
+     "label": "IMAP export",
+     "url": "https://help.yahoo.com/kb/download-email-yahoo-mail-third-party-sln28681.html"
+    },
+    {
+     "label": "SEC order on breach concealment",
+     "url": "https://www.sec.gov/newsroom/press-releases/2018-71"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "free"
+   },
+   "description": "A free, familiar mailbox that is a useful floor for comparison: its own privacy policy describes analyzing commercial email to build ad-interest profiles, and the SEC found its operator concealed a massive breach from investors for two years.",
+   "focuses": [
+    "Free",
+    "Closed source",
+    "Ads",
+    "Portable"
+   ],
+   "valueSignature": {
+    "privacy": 35.75,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 4,
+    "singleSource": false,
+    "primarySource": "mail.yahoo.com",
+    "sourceLabels": [
+     "mail.yahoo.com",
+     "help.yahoo.com",
+     "legal.yahoo.com",
+     "sec.gov"
+    ]
+   }
+  },
+  {
+   "code": "icloud-mail",
+   "name": "iCloud Mail",
+   "brand": "Apple",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 62,
+    "openness": 20,
+    "portability": 74,
+    "respect": 74,
+    "accessibility": 80,
+    "economical": 100
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Apple's security overview says iCloud Mail does not use end-to-end encryption because of the need to interoperate with the global email system, and that Apple holds the keys.",
+     "source": "https://support.apple.com/en-us/102651",
+     "asof": "2026-09"
+    },
+    "openness": {
+     "note": "iCloud Mail is a proprietary Apple service; Apple's own guide says a person must sign in with an Apple Account to create or use an iCloud Mail address.",
+     "source": "https://support.apple.com/guide/icloud/what-you-can-do-with-icloud-mail-mmaae54a2288/icloud",
+     "asof": "2026-09"
+    },
+    "portability": {
+     "note": "Apple Mail can export mailboxes as .mbox packages, and iCloud Mail also works through standard mail clients.",
+     "source": "https://support.apple.com/guide/mail/import-or-export-mailboxes-mlhlp1030/mac",
+     "asof": "2026-09"
+    },
+    "respect": {
+     "note": "iCloud Mail carries no ads and is bundled with a free Apple ID, though it is built to keep a person inside Apple devices and paid iCloud storage rather than as an independent product.",
+     "source": "https://support.apple.com/guide/icloud/set-up-mail-mmdd8d1d47/icloud",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "For Apple users, Mail is built into every device and available at iCloud.com; it is less useful for anyone using other platforms day to day.",
+     "source": "https://support.apple.com/guide/icloud/set-up-mail-mmdd8d1d47/icloud",
+     "asof": "2026-09"
+    },
+    "economical": {
+     "note": "The mailbox is included with a free Apple ID, though heavy use requires paid iCloud storage.",
+     "source": "https://support.apple.com/guide/icloud/set-up-mail-mmdd8d1d47/icloud",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Mail setup",
+     "url": "https://support.apple.com/guide/icloud/set-up-mail-mmdd8d1d47/icloud"
+    },
+    {
+     "label": "Security",
+     "url": "https://support.apple.com/en-us/102651"
+    },
+    {
+     "label": "Export",
+     "url": "https://support.apple.com/guide/mail/import-or-export-mailboxes-mlhlp1030/mac"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "free"
+   },
+   "description": "A bundled, ad-free Apple mailbox with decent standards support, but Apple's own security overview says it is not end-to-end encrypted and that Apple holds the keys.",
+   "focuses": [
+    "Apple",
+    "Free",
+    "Closed source",
+    "Portable"
+   ],
+   "valueSignature": {
+    "privacy": 57.5,
+    "cost": 90
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "support.apple.com"
+   }
+  },
+  {
+   "code": "zoho-mail",
+   "name": "Zoho Mail",
+   "brand": "Zoho",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 74,
+    "openness": 25,
+    "portability": 76,
+    "respect": 84,
+    "accessibility": 76,
+    "economical": 90
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Zoho says it does not sell data to third parties and restricts employee access to customer data to a small, monitored group.",
+     "source": "https://www.zoho.com/mail/data-privacy.html",
+     "asof": "2026-09"
+    },
+    "openness": {
+     "note": "Zoho Mail is a proprietary hosted service, though it supports conventional mail administration and client workflows.",
+     "source": "https://www.zoho.com/mail/",
+     "asof": "2026-09"
+    },
+    "portability": {
+     "note": "Zoho documents ZIP and PST export options for administrators and per-folder export for users.",
+     "source": "https://www.zoho.com/mail/help/adminconsole/email-backup.html",
+     "asof": "2026-09"
+    },
+    "respect": {
+     "note": "Zoho says no ads are displayed in Zoho Mail and that it will never sell user data, which is a paid-business rather than advertising model.",
+     "source": "https://www.zoho.com/mail/data-privacy.html",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "The free Forever plan covers up to five users with 5 GB of storage each and one custom domain, aimed more at small organizations than casual personal email.",
+     "source": "https://www.zoho.com/mail/zohomail-pricing.html",
+     "asof": "2026-09"
+    },
+    "economical": {
+     "note": "Zoho Mail has a permanent free plan for up to five users, with low-cost paid Mail Lite and Mail Premium tiers for more storage.",
+     "source": "https://www.zoho.com/mail/zohomail-pricing.html",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.zoho.com/mail/"
+    },
+    {
+     "label": "Privacy",
+     "url": "https://www.zoho.com/mail/data-privacy.html"
+    },
+    {
+     "label": "Pricing",
+     "url": "https://www.zoho.com/mail/zohomail-pricing.html"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "freemium"
+   },
+   "description": "A business-friendly ad-free mailbox with a permanent free tier and a stated no-data-sale policy, but proprietary and aimed more at small organizations than casual personal email.",
+   "focuses": [
+    "No ads",
+    "Portable",
+    "Closed source",
+    "Freemium"
+   ],
+   "valueSignature": {
+    "privacy": 64.75,
+    "cost": 83
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "zoho.com"
+   }
+  },
+  {
+   "code": "mailbox-org",
+   "name": "Mailbox.org",
+   "brand": "Heinlein Hosting",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 86,
+    "openness": 45,
+    "portability": 88,
+    "respect": 92,
+    "accessibility": 72,
+    "economical": 80
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Mailbox.org advertises ad-free, GDPR-compliant email protected with Transport Layer Security for all messages, with optional PGP or S/MIME end-to-end encryption in its webmail client.",
+     "source": "https://mailbox.org/en/product/mail/",
+     "asof": "2026-09"
+    },
+    "openness": {
+     "note": "The hosted service is proprietary, but supports open protocols including IMAP, POP3 and SMTP.",
+     "source": "https://mailbox.org/en/prices/",
+     "asof": "2026-09"
+    },
+    "portability": {
+     "note": "Mailbox.org offers a data-export feature covering email, calendars, contacts, files and tasks in open formats.",
+     "source": "https://mailbox.org/en/news/data-export-touch-button-whats-new-after-recent-update/",
+     "asof": "2026-09"
+    },
+    "respect": {
+     "note": "Mailbox.org markets itself as no advertising, no tracking and hosted in Germany; it was spun out of its parent Heinlein Support GmbH into the separate company Heinlein Hosting GmbH in 2021.",
+     "source": "https://mailbox.org/en/news/spin-out-mailboxorg-separate-limited-liability-company-gmbh/",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "It offers webmail and standard-client support, but is less polished for casual users than the big free providers, and there is no permanent free plan, only a 30-day trial.",
+     "source": "https://mailbox.org/en/prices/",
+     "asof": "2026-09"
+    },
+    "economical": {
+     "note": "Private plans start at 1 euro a month for the Light tier, after a 30-day free trial.",
+     "source": "https://mailbox.org/en/prices/",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://mailbox.org/en/"
+    },
+    {
+     "label": "Mail",
+     "url": "https://mailbox.org/en/product/mail/"
+    },
+    {
+     "label": "Prices",
+     "url": "https://mailbox.org/en/prices/"
+    },
+    {
+     "label": "Spin-off announcement",
+     "url": "https://mailbox.org/en/news/spin-out-mailboxorg-separate-limited-liability-company-gmbh/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "paid$"
+   },
+   "description": "A strong paid privacy mailbox: ad-free, standards-friendly and export-conscious, hosted in Germany, but with no permanent free tier and less beginner hand-holding than the biggest free providers.",
+   "focuses": [
+    "No ads",
+    "Portable",
+    "German",
+    "Paid"
+   ],
+   "valueSignature": {
+    "privacy": 77.75,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "mailbox.org"
+   }
+  },
+  {
+   "code": "posteo",
+   "name": "Posteo",
+   "brand": "Posteo",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 90,
+    "openness": 50,
+    "portability": 80,
+    "respect": 94,
+    "accessibility": 68,
+    "economical": 84
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Posteo says signup needs no personal information, its website does not save IP addresses or use tracking tools, and it supports S/MIME or OpenPGP encryption.",
+     "source": "https://posteo.de/en/site/features",
+     "asof": "2026-09"
+    },
+    "openness": {
+     "note": "Posteo is not a fully open-source hosted service, but supports open protocols including IMAP, POP3, CalDAV, CardDAV, PGP and S/MIME.",
+     "source": "https://posteo.de/en/site/features",
+     "asof": "2026-09"
+    },
+    "portability": {
+     "note": "Standard-protocol support lets a person use Posteo through an external mail client, though it is not a one-click export product.",
+     "source": "https://posteo.de/en/site/features",
+     "asof": "2026-09"
+    },
+    "respect": {
+     "note": "Posteo has no permanent free plan; every account is paid from the start, at 1 euro a month, funding an ad-free, tracking-free design rather than an advertising or freemium model.",
+     "source": "https://posteo.de/en/site/features",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "It offers webmail and client support, but there is no free account at all, and the anonymous signup and encryption options are less familiar than mainstream webmail.",
+     "source": "https://posteo.de/en/site/features",
+     "asof": "2026-09"
+    },
+    "economical": {
+     "note": "A Posteo account costs 1 euro a month, with small add-ons for more storage, extra aliases and calendars.",
+     "source": "https://posteo.de/en/site/features",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://posteo.de/en"
+    },
+    {
+     "label": "Features",
+     "url": "https://posteo.de/en/site/features"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "paid$"
+   },
+   "description": "A lean privacy mailbox with anonymous signup and no free tier at all: every account is paid from day one, at 1 euro a month, which is what funds its no-tracking design.",
+   "focuses": [
+    "No ads",
+    "Portable",
+    "German",
+    "Paid"
+   ],
+   "valueSignature": {
+    "privacy": 78.5,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "posteo.de"
+   }
+  },
+  {
+   "code": "startmail",
+   "name": "StartMail",
+   "brand": "StartMail",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 84,
+    "openness": 30,
+    "portability": 75,
+    "respect": 84,
+    "accessibility": 72,
+    "economical": 66
+   },
+   "provenance": {
+    "privacy": {
+     "note": "StartMail says privacy was its objective from the start, and it encrypts stored email and blocks remote content by default.",
+     "source": "https://www.startmail.com/privacy",
+     "asof": "2026-09"
+    },
+    "openness": {
+     "note": "StartMail is a proprietary hosted email service rather than an open-source mailbox platform.",
+     "source": "https://www.startmail.com/",
+     "asof": "2026-09"
+    },
+    "portability": {
+     "note": "StartMail supports IMAP access through a trusted-device password, so external mail clients and migration are practical.",
+     "source": "https://support.startmail.com/hc/en-us/articles/360006536217-Configure-a-trusted-device-IMAP-password",
+     "asof": "2026-09"
+    },
+    "respect": {
+     "note": "StartMail is operated by StartMail B.V. in Zeist, the Netherlands, and is a paid privacy product with aliases and encryption rather than an advertising-funded free mailbox.",
+     "source": "https://www.startmail.com/privacy",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "It works through webmail and standard clients, but there is only a short free trial and a smaller support ecosystem than mainstream mail.",
+     "source": "https://support.startmail.com/hc/en-us/articles/360006841958-Account-types-features-and-pricing",
+     "asof": "2026-09"
+    },
+    "economical": {
+     "note": "StartMail offers a short free trial; ongoing personal use is billed monthly or annually.",
+     "source": "https://support.startmail.com/hc/en-us/articles/360006841958-Account-types-features-and-pricing",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.startmail.com/"
+    },
+    {
+     "label": "Privacy",
+     "url": "https://www.startmail.com/privacy"
+    },
+    {
+     "label": "Pricing",
+     "url": "https://support.startmail.com/hc/en-us/articles/360006841958-Account-types-features-and-pricing"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "paid$"
+   },
+   "description": "A paid Dutch privacy mailbox with aliases and IMAP support, useful for escaping ad-funded mail, but with only a short free trial and a smaller ecosystem than mainstream providers.",
+   "focuses": [
+    "No ads",
+    "Portable",
+    "Encrypted",
+    "Paid"
+   ],
+   "valueSignature": {
+    "privacy": 68.25,
+    "cost": 69
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "startmail.com",
+    "sourceLabels": [
+     "startmail.com",
+     "support.startmail.com"
+    ]
+   }
+  },
+  {
+   "code": "mailfence",
+   "name": "Mailfence",
+   "brand": "ContactOffice Group",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "privacy": 82,
+    "openness": 35,
+    "portability": 76,
+    "respect": 84,
+    "accessibility": 76,
+    "economical": 80
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Mailfence says it offers browser-based end-to-end encrypted email with no ads or trackers.",
+     "source": "https://mailfence.com/en/private-email.jsp",
+     "asof": "2026-09"
+    },
+    "openness": {
+     "note": "Mailfence is operated by ContactOffice Group sa, a Belgian company registered in Brussels, and uses interoperable mail standards, but the hosted platform itself is not published as open source.",
+     "source": "https://mailfence.com/en/company.jsp",
+     "asof": "2026-09"
+    },
+    "portability": {
+     "note": "Mailfence documents backup and export tools and recommends IMAP clients for large backups, though full email backup is not available on the free tier.",
+     "source": "https://kb.mailfence.com/kb/how-to-export-data-from-mailfence-account/",
+     "asof": "2026-09"
+    },
+    "respect": {
+     "note": "Mailfence says it has no ads, trackers or targeted-ad data commercialization, and runs on infrastructure it controls in Belgium rather than a foreign parent's cloud.",
+     "source": "https://mailfence.com/en/private-email.jsp",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "It offers a free entry tier and a full email suite, but PGP-based encrypted workflows are less familiar than mainstream webmail.",
+     "source": "https://mailfence.com/",
+     "asof": "2026-09"
+    },
+    "economical": {
+     "note": "A free tier gives 500 MB of email storage; paid tiers add more storage, aliases and backup capability.",
+     "source": "https://mailfence.com/",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://mailfence.com/"
+    },
+    {
+     "label": "Company",
+     "url": "https://mailfence.com/en/company.jsp"
+    },
+    {
+     "label": "Export",
+     "url": "https://kb.mailfence.com/kb/how-to-export-data-from-mailfence-account/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "freemium"
+   },
+   "description": "A Belgian privacy-mail suite operated by ContactOffice Group, with a free entry tier, a no-ad stance and PGP-based encryption, balanced by proprietary hosting and export limits on the free tier.",
+   "focuses": [
+    "No ads",
+    "Encrypted",
+    "Portable",
+    "Freemium"
+   ],
+   "valueSignature": {
+    "privacy": 69.25,
+    "cost": 78
+   },
+   "provenanceSummary": {
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "mailfence.com",
+    "sourceLabels": [
+     "mailfence.com",
+     "kb.mailfence.com"
+    ]
+   }
+  }
+ ]
+}
