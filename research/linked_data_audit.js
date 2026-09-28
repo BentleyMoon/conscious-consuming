@@ -287,7 +287,11 @@ function main() {
         if (/"alternative-to":\[/.test(html)) altCards += 1;
       }
     }
-    if (made < 700) failures.push(`card edges: only ${made} cards carry made-by; the floor is 700 and zero means the serializer went blind again`);
+    /* 340, not 700, since 2026-09-23. Of the 827 cards that carried made-by that day, 483 named a
+       descriptor as the maker ("private messenger", "mainstream earbuds"); content/non-brand-values.json
+       now withholds those nodes, and research/descriptor_brand_audit.js keeps them out. 344 true
+       made-by edges remain, so the floor is that truth again. */
+    if (made < 340) failures.push(`card edges: only ${made} cards carry made-by; the floor is 340 and zero means the serializer went blind again`);
     if (altCards < 4) failures.push(`card edges: only ${altCards} cards carry an alternative-to instance; the four authored banking alternatives must reach their cards`);
     console.log(`  card edges: ${made} made-by (targets all resolve: ${badTargets === 0}), ${altCards} alternative-to instances`);
   })();

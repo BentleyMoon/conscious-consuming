@@ -15,6 +15,11 @@
  * So this check ties the promise to the data. While any note-only record exists, the home page must
  * qualify the claim. If someone later sources all 50, the absolute becomes true and this check says
  * so rather than silently permitting either wording.
+ *
+ * 2026-09-23: that happened. Commit 730b94644 (14 Aug) dropped the 50 unsourced banking cells rather
+ * than patching them, the count reached 0 of 122,354, and this check, which nothing ran, had been
+ * failing on the qualified wording since. The home page now states the absolute, and scripts/verify.mjs
+ * runs this check, so a single note-only record turns it red again.
  */
 
 const fs = require('fs');

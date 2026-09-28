@@ -20,6 +20,8 @@ const ROOT = path.resolve(__dirname, '..');
 // 2026-08-13, swarm wave six. Bicycles, e-bikes, B Corporations and secondhand marketplaces. 211 -> 212 rows, 119 -> 123 live, 111 -> 115 datasets, 92 -> 89 gaps. MOVE 3 -> 5, GIVE & ACT 4 -> 6.
 // 2026-08-13, wave seven. Washing machines, headphones and earbuds, ride-hailing: one each for the three thinnest needs. 212 -> 213 rows, 123 -> 126 live, 115 -> 118 datasets.
 // 2026-08-14, Phase 10 serial promotion. Four already-built decisions gained new rows: off-grid power systems and direct-drive solar under KEEP A HOME; self-hosting platforms and federated social servers under CONNECT. 213 -> 217 rows, 126 -> 130 live paths, 118 -> 122 datasets; gaps remain 87.
+// 2026-09-23: email and search left the shared digital-services dataset in the split, the same
+// kind of move as messaging and browsers on 2026-08-26. Rows stay 217, live paths stay 130.
 const EXPECTED = {
   needs: 8,
   categories: 18,
@@ -28,7 +30,8 @@ const EXPECTED = {
   livePaths: 130,
   // 124 on 2026-08-26: messaging and browsers flipped from digital-services facets to their
   // own datasets, the first two of the nine-way split. Rows stay 217, live paths stay 130.
-  liveDatasets: 124,
+  // 126 on 2026-09-23: email and search flipped the same way, the next two of the split.
+  liveDatasets: 126,
   gaps: 87,
 };
 

@@ -126,6 +126,29 @@ function inspectConsumer(source) {
   if (!/if \(hit\.cell\.route\)/.test(source)) {
     say('consumer code: clicks are not gated by whether a decision has a route');
   }
+  if (!/request: decision\.state === 'open' \? '#contribute\/want\/'/.test(source) || !/if \(hit\.cell\.request\)/.test(source)) {
+    say('consumer code: open ground is a dead end; an open cell must offer the request route');
+  }
+  // EXPLORE-PLATE 3.4 and 3.7, built 2026-09-23: the wide rungs name every domain on a rail, and a
+  // plate too narrow for a rail stacks them into bands wide enough for whole names.
+  if (!source.includes('if (railW && fishWide()) drawRail(ctx);') || !/function drawRail\(/.test(source)) {
+    say('consumer code: the wide rungs lost their rail');
+  }
+  if (!/cells = RB\.row\.cells/.test(source)) {
+    say('consumer code: the rail names only the domains it could lay out, not every domain');
+  }
+  if (!source.includes("narrowPlate() && ((mode === 'fisheye' && fishWide()) || (mode === 'spatial' && level === 1))")) {
+    say('consumer code: a narrow plate no longer stacks its wide rungs into named bands');
+  }
+  // 2026-09-27: below the wide rungs a narrow plate opens one pane at a time, every item a named band.
+  if (!source.includes("mode === 'fisheye' ? (!!wide && wideStatus === 'ready' && fishDepth >= 2) : level >= 2") ||
+      !source.includes('else if (accordionNow()) layoutAccordion(activeRows(), 0, W, false);')) {
+    say('consumer code: a narrow plate no longer opens its deeper rungs one pane at a time');
+  }
+  // 2026-09-28: on a wider plate the same pane docks at the right, beside the overview.
+  if (!source.includes('if (sidePaneNow()) layoutAccordion(activeRows(), W - railW, railW, true);')) {
+    say('consumer code: the deeper rungs on a wide plate lost their docked pane of named items');
+  }
   return errors;
 }
 
@@ -167,7 +190,19 @@ const CONSUMER_BITES = [
   { what: 'made refused decisions visually indistinguishable', pattern: /refused ground has no visual state/,
     break: (s) => s.replaceAll("cell.state === 'refused'", "cell.state === 'out-of-scope'") },
   { what: 'let unbuilt decisions pretend to be links', pattern: /clicks are not gated/,
-    break: (s) => s.replace('if (hit.cell.route)', 'if (true)') }
+    break: (s) => s.replace('if (hit.cell.route)', 'if (true)') },
+  { what: 'left open ground as a dead end', pattern: /open ground is a dead end/,
+    break: (s) => s.replace('if (hit.cell.request)', 'if (false)') },
+  { what: 'dropped the rail from the wide rungs', pattern: /wide rungs lost their rail/,
+    break: (s) => s.replace('if (railW && fishWide()) drawRail(ctx);', '') },
+  { what: 'let the rail skip a domain it could not lay out', pattern: /names only the domains it could lay out/,
+    break: (s) => s.replace('cells = RB.row.cells', 'cells = laid') },
+  { what: 'unstacked the wide rungs on a narrow plate', pattern: /no longer stacks its wide rungs/,
+    break: (s) => s.replace("(mode === 'spatial' && level === 1)", 'false') },
+  { what: 'squeezed the deeper rungs back into cells on a narrow plate', pattern: /one pane at a time/,
+    break: (s) => s.replace('else if (accordionNow()) layoutAccordion(activeRows(), 0, W, false);', '') },
+  { what: 'undocked the pane from the deeper rungs on a wide plate', pattern: /lost their docked pane/,
+    break: (s) => s.replace('if (sidePaneNow()) layoutAccordion(activeRows(), W - railW, railW, true);', '') }
 ];
 
 function main() {

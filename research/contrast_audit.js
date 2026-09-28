@@ -281,10 +281,62 @@ function checkStaticAccessibility(css) {
   return buttons;
 }
 
+/* The map's light (app/homelens.js, PLATE_LIGHT, 2026-09-23). A decision with an answer is a lit
+   mark: its need's hue moved a fraction toward the ink on paper, or toward white on the dark plate.
+   As a graphical object it must stand at 3:1 against the open ground it sits on (WCAG 1.4.11). On a
+   phone the same fact is a band lit from the left, and the band's words sit on the lit run or the
+   ground, in whichever of ink and surface reads better; they must reach 4.5:1. The plain hue was the
+   first draft and failed at 2.81 for move on paper, which is what the bite below re-runs. */
+function toHex(c) { return '#' + c.map(v => Math.round(Math.max(0, Math.min(255, v))).toString(16).padStart(2, '0')).join(''); }
+function hexRgb(hex) { const c = rgb(hex); return c ? c.map(v => v * 255) : [0, 0, 0]; }
+function mixHex(a, b, t) { const x = hexRgb(a), y = hexRgb(b); return toHex(x.map((v, i) => v * (1 - t) + y[i] * t)); }
+
+function lensLightFailures(themes, light, hues) {
+  const out = [];
+  let checked = 0;
+  themes.forEach(([themeName, theme], ti) => {
+    for (const [need, hue] of Object.entries(hues)) {
+      const ground = mixHex(theme.bg, hue, light.ground[ti]);
+      const lit = mixHex(hue, ti ? '#ffffff' : theme.ink, light.lit);
+      const markRatio = contrastRatio(lit, ground);
+      checked += 1;
+      if (markRatio < 3) out.push(`app/homelens.js: ${themeName} lit mark for ${need} is ${markRatio.toFixed(2)}:1 on its ground; 3:1 is the floor`);
+      const litRun = mixHex(ground, hue, light.bandLit[ti]);
+      for (const [where, under] of [['lit run', litRun], ['ground', ground]]) {
+        const best = Math.max(contrastRatio(theme.ink, under), contrastRatio(theme.surface, under));
+        checked += 1;
+        if (best < 4.5) out.push(`app/homelens.js: ${themeName} band text on the ${where} of ${need} reaches only ${best.toFixed(2)}:1`);
+      }
+    }
+  });
+  return { out, checked };
+}
+
+function checkLensLight(css) {
+  const src = read('app/homelens.js');
+  const lightMatch = src.match(/var PLATE_LIGHT = (\{[^;]*\});/);
+  const huesMatch = src.match(/var NEED_COLORS = \{([\s\S]*?)\};/);
+  expect(Boolean(lightMatch), 'app/homelens.js: PLATE_LIGHT is missing, so the map light cannot be checked');
+  expect(Boolean(huesMatch), 'app/homelens.js: NEED_COLORS is missing, so the map light cannot be checked');
+  if (!lightMatch || !huesMatch) return 0;
+  const light = Function(`return (${lightMatch[1]});`)();
+  const hues = {};
+  for (const m of huesMatch[1].matchAll(/'?([a-z-]+)'?\s*:\s*'(#[0-9a-f]{6})'/gi)) hues[m[1]] = m[2];
+  expect(Object.keys(hues).length === 8, `app/homelens.js: expected eight need hues, found ${Object.keys(hues).length}`);
+  const themes = themeVars(css);
+  const { out, checked } = lensLightFailures(themes, light, hues);
+  out.forEach(f => failures.push(f));
+  // The bite: the plain hue, the first draft, must fail.
+  const bite = lensLightFailures(themes, { ...light, lit: 0 }, hues);
+  expect(bite.out.some(f => /light lit mark for move is 2\.8/.test(f)),
+    'contrast audit: the map light check no longer catches the plain hue it was written against (move on paper, 2.81)');
+  return checked;
+}
+
 function main() {
   console.log('CSS contrast audit');
   const css = read('app/styles.css');
-  const checkedPairs = checkContrast(css) + checkHomepageContrast(read('index.html'));
+  const checkedPairs = checkContrast(css) + checkHomepageContrast(read('index.html')) + checkLensLight(css);
   const checkedButtons = checkStaticAccessibility(css);
 
   if (warnings.length) {

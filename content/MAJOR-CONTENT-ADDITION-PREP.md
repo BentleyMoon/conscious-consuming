@@ -41,7 +41,7 @@ The 2026-06-27 critique changed the operating system for content work:
 1. Work in small batches: 1-2 curated lenses, one guide cluster, or one generated-data category family per round.
 2. Start with a stop/go audit. If no concrete first-user, preview, source-quality, or publishability gap is visible, do a critique pass instead of adding content.
 3. Add entries only when they make the category more recognizable to a normal user, fill a clear values niche, preserve an honest floor, or improve a real demo/task.
-4. Every new or edited curated score gets object provenance: `{ "note": "...", "source": "https://...", "asof": "2026" }`.
+4. Every new or edited curated score gets object provenance: `{ "note": "...", "source": "https://...", "asof": "2026-09" }`, with `asof` dated at least to the month (a year alone keeps the verdict page out of search).
 5. Use current primary or near-primary sources when the fact may have changed: official policy pages, annual/sustainability reports, methodology pages, certifications, ToS/privacy policies, regulator actions, and reputable nonprofit scorecards.
 6. Preserve the honest floor. If adding high-scoring alternatives, also make sure the mainstream option people already use is present and sourced.
 7. Do not add new categories unless a category is launch-critical or user-demanded. Breadth is now demand-driven.

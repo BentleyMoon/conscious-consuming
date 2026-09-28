@@ -187,6 +187,27 @@ function brandSlug(value) {
     .replace(/^-+|-+$/g, '')
     .replace(/-+/g, '-');
 }
+/* A kind of thing in the brand field ("private messenger") is not a brand, and schema.org's brand
+   tells a search engine it is one. The card still prints the text under the name, where it reads
+   as a kind; the JSON-LD withholds it. The list is content/non-brand-values.json, matched after the
+   same normalization build_nodes.js applies to brand text. */
+const NON_BRAND = (() => {
+  let values = null;
+  const norm = (v) => stripMarksForBrand(v)
+    .replace(/&/g, ' and ')
+    .replace(/[''`]/g, '')
+    .replace(/[^a-zA-Z0-9]+/g, ' ')
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .trim();
+  return function isNonBrand(raw) {
+    if (values === null) {
+      const doc = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'content', 'non-brand-values.json'), 'utf8'));
+      values = new Set(Object.values(doc.groups || {}).flat().map(norm).filter(Boolean));
+    }
+    return values.has(norm(raw));
+  };
+})();
 const BRAND_EDGE = (() => {
   let brandIds = null, authored = null;
   return function edgesFor(nodeId, rawBrand) {
@@ -240,7 +261,7 @@ function entityJSONLD(p, ds, cid, cd) {
   out['@type'] = schemaType(ds.meta && ds.meta.type);
   out['@context'] = linkedDataContext(out['@context']);
   out.name = p.name || code;
-  if (p.brand) out.brand = p.brand;
+  if (p.brand && !NON_BRAND(p.brand)) out.brand = p.brand;
   out.url = url;
   out.image = img;
   out.isPartOf = { '@type': 'WebApplication', name: 'Conscious Consuming', url: SITE_BASE + '/' };

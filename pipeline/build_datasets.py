@@ -39,6 +39,11 @@ TOP_LEVEL_DATA_CONTRACT_FILES = {
     'presentation-renders.json',
     'proposals.json',
     'pulse.json',
+    # Written by pipeline/build_map.js. Missing from this list, the sweep deleted it whenever this
+    # script ran without the full build after it, and a commit of app/data then recorded the
+    # deletion: that is how 83faaacec dropped it from git on 2026-08-26. Found 2026-09-23 when a
+    # promote run deleted it again.
+    'map.json',
 }
 DECISIONS_PATH = os.path.normpath(os.path.join(HERE, '..', 'content', 'decisions.json'))
 VALUE_EDITORIAL_PATH = os.path.normpath(os.path.join(HERE, '..', 'content', 'value-editorial.json'))
