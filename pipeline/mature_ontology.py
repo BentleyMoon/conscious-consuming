@@ -6,7 +6,7 @@ WHAT IT DOES (and does NOT do):
   - Keeps the domain tree as a compatibility index while making needs the human entry layer.
   - Retains the v3 maturation rules for groups and the honest growing frontier.
   - Fabricates NO scored data. Every addition is honestly "growing" (no cid) — the navigable map of where
-    the commons is going. Turning a growing branch into a live one (a sourced lens) is Codex's content lane.
+    the commons is going. Turning a growing branch into a live one (a sourced lens) is the data lane's work.
 
 Idempotent: re-running yields the same file (dup-guarded adds, version/note/order are set, not appended).
 Not part of the build; run manually when the ontology's *shape* changes. After running: rebuild with

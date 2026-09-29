@@ -1,9 +1,9 @@
-// The Values Commons MCP server (Season 2, codex.md §I): the commons as a first-class connector
+// The Values Commons MCP server (Season 2, BUILD-PLAN.md §I): the commons as a first-class connector
 // for AI agents. Two read-only tools, search + fetch, over the SAME static JSON the app ships —
 // no database, no accounts, no query logging, no state about any person. Facts, never profiles.
 //
 // Transport: MCP streamable HTTP (JSON-RPC 2.0 over POST /mcp, JSON response mode; no SSE in v1;
-// stateless, so no session ids). Works as a remote connector in Claude, ChatGPT, and any MCP client.
+// stateless, so no session ids). Works as a remote connector in any MCP client.
 //
 // Honesty rules carried into the protocol surface:
 //   - No overall score is computed here. Per-criterion sourced facts are data; a ranking depends on

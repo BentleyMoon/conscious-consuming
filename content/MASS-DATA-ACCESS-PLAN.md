@@ -68,7 +68,7 @@ The first 2,000 rows include large directly useful sectors: laundry detergents (
 
 1. Build `pipeline/fetch_safer_choice.py` for EPA Envirofacts.
    - Status: Part 1/5 implemented the first generated category, `dish-soap`, from EPA Safer Choice / Envirofacts.
-   - Consider `safer-choice-cleaners` or enrichment of `cleaning-products` only after Claude/product agrees whether certification-only datasets should sit beside curated rosters.
+   - Consider `safer-choice-cleaners` or enrichment of `cleaning-products` only after the app lane agrees whether certification-only datasets should sit beside curated rosters.
    - Criteria can reuse existing keys: `certification`, `health`, `environment`, `transparency`, `accessibility`.
 
 2. Add Open Food Facts frontier categories in small batches.

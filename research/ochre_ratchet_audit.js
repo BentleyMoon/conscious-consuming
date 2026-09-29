@@ -27,7 +27,7 @@ const ROOT = path.resolve(__dirname, '..');
 
 // Authored surfaces only. Generated pages (app/c, app/g, dist) inherit from these; audits and docs
 // quote the token without using it.
-const SKIP_DIRS = new Set(['.git', '.claude', 'node_modules', 'dist', 'docs', 'research', 'content',
+const SKIP_DIRS = new Set(['node_modules', 'dist', 'docs', 'research', 'content',
   'screenshots', 'tmp']);
 const SKIP_PATHS = new Set(['app/c', 'app/g']);
 const EXT = /\.(html|css|js|mjs)$/i;
@@ -69,7 +69,8 @@ function walk(rel, out) {
   for (const entry of fs.readdirSync(abs, { withFileTypes: true })) {
     const child = rel ? `${rel}/${entry.name}` : entry.name;
     if (entry.isDirectory()) {
-      if (SKIP_DIRS.has(entry.name) || SKIP_PATHS.has(child)) continue;
+      // Dot-directories (.git, editor and tool state) are never shipped styles.
+      if (entry.name.startsWith('.') || SKIP_DIRS.has(entry.name) || SKIP_PATHS.has(child)) continue;
       walk(child, out);
     } else if (entry.isFile() && EXT.test(entry.name)) {
       const counts = countUses(fs.readFileSync(path.join(ROOT, child), 'utf8'));

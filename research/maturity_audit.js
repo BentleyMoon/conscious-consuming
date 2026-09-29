@@ -161,7 +161,7 @@ const currentDocs = [
   'docs/MASTERPLAN.md',
   'content/MAJOR-CONTENT-ADDITION-PREP.md',
   'docs/GRANT-ONE-PAGER.md',
-  'docs/CODEX-CONTENT-BRIEF.md'
+  'docs/CONTENT-BRIEF.md'
 ];
 const stalePatterns = [
   /~57 categories/,

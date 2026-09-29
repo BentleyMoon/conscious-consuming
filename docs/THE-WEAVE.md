@@ -95,7 +95,7 @@ sourced edge for every entity. Fast-follows, not v0.
   dedupe, provenance, `baseHash` flag), the JSON-LD `@context` + `toJSONLD` (a node exports as web-citable
   linked data), the seed `app/edges.json` (banking alternatives + a sourced ownership edge), and the panel's
   graceful org-target rendering — all proven in `graph_test.js` (21/21). *(Expanding the edge DATA across
-  categories = Codex's content lane; the format + merge + context = the standard, shipped.)*
+  categories = the data lane; the format + merge + context = the standard, shipped.)*
 - **G3 — the Connections panel.** The graph's first visible, calm, sourced payoff on the detail view.
 - **G4 — the metaphor, shareable.** ✅ `CC.analogyCard` — a self-contained "X is the Y of Z" card carrying the
   *shape of values the two share* (drawn as the sigil), with a "Save as a card" button on the top Resembles
@@ -109,7 +109,7 @@ sourced edge for every entity. Fast-follows, not v0.
   the spine into another instance, returning its values-twin there; surfaced in the Connections panel as
   "Through the standard." Proven: *Triodos Bank's twin in the world of learning is the Stanford Encyclopedia of
   Philosophy*, via people + openness). The deeper rhizome is now real end-to-end; what remains is **deploy** (a
-  second *live* instance makes wormholes a walkable journey) and **Codex** edge/lens data population.
+  second *live* instance makes wormholes a walkable journey) and the data lane's edge/lens population.
 
 ## Naming (owned by principle)
 **The Rhizome** = the architecture. **The Weave** = the sourced edge-graph (`open-values-edges`). User-facing,

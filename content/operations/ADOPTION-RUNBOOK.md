@@ -1,6 +1,6 @@
 # Adoption event runbook
 
-This runbook records real-world gate evidence without turning tester identity or private values into project data. The strategy stays in `codex.md` §M and the existing first-user documents. This file only explains the operational record.
+This runbook records real-world gate evidence without turning tester identity or private values into project data. The strategy stays in `BUILD-PLAN.md` §M and the existing first-user documents. This file only explains the operational record.
 
 ## What counts
 

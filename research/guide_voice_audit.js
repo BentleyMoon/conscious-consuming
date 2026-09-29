@@ -2,7 +2,7 @@
 /* Audit the C8 guide voice guardrails.
 
    This is intentionally narrow. It protects the concrete D2 cleanup work that
-   already landed: no em dashes in guide copy, no obvious LLM tell-words, and
+   already landed: no em dashes in guide copy, no obvious stock tell-words, and
    no loose "honest" seasoning outside the signed guide blockquote convention
    or the anti-app's product-contract language.
 */
@@ -40,7 +40,7 @@ const BANNED = [
   ['curated as adjective', /\bcurated\b/i],
   ['dive into', /\bdive into\b/i],
   ["it's worth noting", /\bit'?s worth noting\b/i],
-  // The second wave of LLM tells, banned while their count is zero.
+  // The second wave of stock tells, banned while their count is zero.
   ["it's important to note", /\bit'?s important to (?:note|remember|understand)\b/i],
   ["in today's", /\bin today'?s\b/i],
   ['fast-paced', /\bfast-paced\b/i],
@@ -83,7 +83,7 @@ const BANNED = [
   ['comprehensive suite', /\bcomprehensive suite\b/i]
 ];
 
-// The public site surfaces hold the same voice line as the guides: no LLM
+// The public site surfaces hold the same voice line as the guides: no stock
 // tell-words, and no em dashes in copy (a data placeholder is an en dash).
 const SITE_FILES = [
   'index.html',
@@ -272,7 +272,7 @@ function main() {
 
       for (const [label, re] of SHAPES) {
         shapeChecks += 1;
-        if (re.test(visible)) failures.push(`${rel}:${idx + 1}: LLM shape (${label})`);
+        if (re.test(visible)) failures.push(`${rel}:${idx + 1}: stock shape (${label})`);
       }
 
       const unapprovedHonest = stripAllowedHonest(slug, visible).match(/\bhonest(?:ly|y)?\b/i);
@@ -306,7 +306,7 @@ function main() {
 
       for (const [label, re] of SHAPES) {
         siteChecks += 1;
-        if (re.test(line)) failures.push(`${rel}:${idx + 1}: LLM shape (${label})`);
+        if (re.test(line)) failures.push(`${rel}:${idx + 1}: stock shape (${label})`);
       }
 
       // THE HEADLINE LAYER, and the gap that let the front page keep its slop.
@@ -345,7 +345,7 @@ function main() {
       }
       for (const [label, re] of SHAPES) {
         appChecks += 1;
-        if (re.test(line)) failures.push(`${rel}:${idx + 1}: LLM shape (${label})`);
+        if (re.test(line)) failures.push(`${rel}:${idx + 1}: stock shape (${label})`);
       }
       // The app shell has its own lane, and that is how the second one got missed. The site lane
       // above never sees app/index.html, so when the front page h1 was fixed the app's <title> and
@@ -384,7 +384,7 @@ function main() {
   console.log(`  distinct guide openings: ${introOpenings.size}`);
   console.log(`  honest-answer labels: ${honestLabels}`);
   console.log(`  banned-copy checks: ${bannedChecks}`);
-  console.log(`  LLM shape checks: ${shapeChecks}`);
+  console.log(`  stock shape checks: ${shapeChecks}`);
   console.log(`  site surfaces checked: ${SITE_FILES.length} (${siteChecks} checks)`);
   console.log(`  instance lens files checked: ${LENS_FILES.length} (${LENS_FILES.join(', ')})`);
   console.log(`  app surfaces checked: ${APP_HTML.length + APP_JS.length} (${appChecks} checks on reader-facing copy)`);

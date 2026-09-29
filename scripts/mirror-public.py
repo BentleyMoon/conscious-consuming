@@ -38,9 +38,8 @@ pub_top = {p.split('/')[0] for p in pub_top if p.strip()}
 print('public top level:', ' '.join(sorted(pub_top)))
 
 # Anything that is internal stays internal, named here rather than inferred.
-NEVER = {'.claude', 'AGENTS.md', 'CLAUDE.md', 'CODEX-AUTOMATION.md', 'WEBSITES-AGENT.md', 'RUN.md',
-         'codex.md', 'cchandoff', 'ontologystudy', 'kiz.txt', 'run.py', 'run.cmd', 'dist', 'build.log',
-         '.public-copy'}
+NEVER = {'AUTOMATION.md', 'WEBSITES-AGENT.md', 'RUN.md', 'BUILD-PLAN.md', 'ontologystudy', 'kiz.txt',
+         'run.py', 'run.cmd', 'dist', 'build.log', '.public-copy'}
 
 # The public repository's front page is written for a stranger arriving cold, and the private
 # repository's README is a working note. The public one is maintained at docs/README-public.md,
@@ -52,6 +51,20 @@ NEVER.add('README.md')
 # research/handoff-extract.txt is a text extract of an unrelated research brief: nothing reads it,
 # and it reached the public copy only because research/ publishes wholesale.
 NEVER_PATHS = {'research/handoff-extract.txt'}
+
+# More of the same, kept in .mirror-private-paths beside .mirror-private-words and for the same
+# reason: some of these names are themselves not for publishing (editor and tool configuration,
+# maintainer tooling bound to a paid service). One entry per line, # for comments: a bare name
+# holds back a top-level path, a path with a slash holds back that one file. Untracked, ignored,
+# and required by --write, so the exclusions cannot silently lapse.
+PATHS_FILE = os.path.join(PRIV, '.mirror-private-paths')
+if os.path.isfile(PATHS_FILE):
+    for line in io.open(PATHS_FILE, encoding='utf-8'):
+        line = line.strip().replace(chr(92), '/')
+        if line and not line.startswith('#'):
+            (NEVER_PATHS if '/' in line else NEVER).add(line)
+elif '--write' in sys.argv:
+    sys.exit('Refusing to --write without ' + PATHS_FILE + ' (see the comment above it in this script).')
 
 # docs/ IS SELECTIVE, and says so on its own front page: "It does not carry working notes, drafts,
 # and planning material." The rest of the tree is engine, data and audits, which publish wholesale.
@@ -167,16 +180,33 @@ for rel in sorted(subprocess.run(['git', 'ls-files'], cwd=PUB, capture_output=Tr
         if os.path.isfile(p):
             os.remove(p)
 
+# A PUBLISHED COMMAND MUST NOT POINT AT AN UNPUBLISHED FILE. package.json is published, and a
+# script entry that runs a held-back file would fail for every reader who tries it, so such entries
+# are dropped from the published copy. Nothing else in the file changes.
+held_paths = set(skipped)
+def published_bytes(rel, raw):
+    if rel != 'package.json':
+        return raw
+    import json
+    pkg = json.loads(raw.decode('utf-8'))
+    scripts = pkg.get('scripts') or {}
+    for name in list(scripts):
+        command = scripts[name].replace(chr(92), '/')
+        if any(h in command for h in held_paths if '/' in h):
+            del scripts[name]
+    return (json.dumps(pkg, indent=2, ensure_ascii=False) + '\n').encode('utf-8')
+
 written = 0
 for rel in copy:
     src, dst = os.path.join(PRIV, rel), os.path.join(PUB, RENAME.get(rel, rel))
     os.makedirs(os.path.dirname(dst), exist_ok=True)
-    if os.path.isfile(dst) and os.path.getsize(dst) == os.path.getsize(src):
-        a = hashlib.sha1(open(src, 'rb').read()).hexdigest()
-        b = hashlib.sha1(open(dst, 'rb').read()).hexdigest()
-        if a == b:
-            continue
-    shutil.copy2(src, dst)
+    data = published_bytes(rel, open(src, 'rb').read())
+    if os.path.isfile(dst) and open(dst, 'rb').read() == data:
+        continue
+    if data == open(src, 'rb').read():
+        shutil.copy2(src, dst)
+    else:
+        open(dst, 'wb').write(data)
     written += 1
 with io.open(os.path.join(PUB, MARKER), 'w', encoding='utf-8', newline='\n') as fh:
     fh.write(MARKER_TEXT)

@@ -1,6 +1,6 @@
 # Major content addition prep
 
-*Prepared 2026-06-25 for the next content-building rounds. Updated 2026-06-27 after the 20-part digital-literacy expansion and critique pass. This is a working queue for Codex-side content work; app UX, theme mapping, and guide banner wiring still go through `docs/CONTENT-HANDOFF.md`.*
+*Prepared 2026-06-25 for the next content-building rounds. Updated 2026-06-27 after the 20-part digital-literacy expansion and critique pass. This is a working queue for data-lane content work; app UX, theme mapping, and guide banner wiring still go through `docs/CONTENT-HANDOFF.md`.*
 
 ## Current state
 
@@ -9,7 +9,7 @@
 - Guides: 97 source guides; all 97 are published.
 - Share/verdict cards in the app build: 2,883 plus the gallery page.
 - Verification gate: `node research/verify_run.js` currently ends with `ALL CHECKS PASS`.
-- Evidence gate: `node research/evidence_audit.js` currently reports `20058/20058` curated claims sourced. `banking` remains the read-only reference category and is Claude/design-owned.
+- Evidence gate: `node research/evidence_audit.js` currently reports `20058/20058` curated claims sourced. `banking` remains the read-only reference category and is owned by the app lane.
 - Content readiness gate: `npm run audit:content` reports 63 generated/open-data categories steady, 21 of 22 curated lenses presentation-ready, no honest-floor or guide queue, and one design-owned banking focus-label polish item.
 
 The older "thin lens" backlog is obsolete. Curated categories are no longer 7-14 item sketches; the smallest live rosters are now `banking` 25 (design-owned), `dish-soap` 52, `hair-conditioner` 59, `music-streaming` 61, `laptops` 68, `phones` 70, `razors` 75, `vpn` 77, `face-wash` 80, `investing`/`payments` 81, and `clothing`/`paper-goods`/`period-products` 82. Major additions should therefore improve first-user recognition, demo usefulness, freshness, and source quality, not simply inflate counts.
@@ -21,9 +21,9 @@ Comparable consumer-rating products point to the same lesson: trust comes from t
 Use this rule for future content rounds:
 
 1. **First-demo relevance beats roster size.** Prefer entries that make the grant/preview route or first-user wedge more recognizable: banking, investing, clothing, AI/privacy, payments, VPN, phones/laptops, and the everyday recurring staples.
-2. **Freshness beats novelty.** Upgrade old-but-important sources before adding a long tail of niche options. Current flagged stale clusters: `clothing` (11 older citations), `investing` (3), `password-managers` (2), plus one each in `phones`, `payments`, `causes-to-support`, and `banking` (banking stays Claude-owned).
+2. **Freshness beats novelty.** Upgrade old-but-important sources before adding a long tail of niche options. Current flagged stale clusters: `clothing` (11 older citations), `investing` (3), `password-managers` (2), plus one each in `phones`, `payments`, `causes-to-support`, and `banking` (banking stays with the app lane).
 3. **Source portfolio matters.** A green evidence meter only proves a source exists. For contested axes, prefer independent reports, public-interest scorecards, regulator actions, certification directories, methodology pages, or primary policies over marketing pages when both are available.
-4. **Add only if it improves a real decision.** New entries should fill a mainstream-recognition gap, a values niche, or an honest floor. If an entry mostly proves that Codex can find another brand, skip it.
+4. **Add only if it improves a real decision.** New entries should fill a mainstream-recognition gap, a values niche, or an honest floor. If an entry mostly proves that a search can find another brand, skip it.
 5. **Generated-data breadth stays frozen.** Food and beauty already provide bulk coverage. Add or refresh generated categories only when a real user or demo need justifies it.
 
 ## Critique findings now incorporated
@@ -67,7 +67,7 @@ Start with:
 npm run audit:content
 ```
 
-If the audit reports no Codex-actionable content queue, do not add entries by default; switch to critique, launch testing, or a user-requested gap.
+If the audit reports no actionable data-lane content queue, do not add entries by default; switch to critique, launch testing, or a user-requested gap.
 
 - `clothing`: highest freshness debt. Refresh older WRAP, resale-market, brand transparency, and fast-fashion forced-labor sources where 2024-2026 evidence exists.
 - `investing`: refresh older fund/ESG-proposition sources and check that fossil-exposure evidence is still current.

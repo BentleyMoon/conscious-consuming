@@ -20,9 +20,9 @@ const ROOT = path.resolve(__dirname, '..');
 const IS_PUBLIC_COPY = fs.existsSync(path.join(ROOT, '.public-copy'));
 
 const PRIVATE_DOCS = new Set([
-  'AGENTS.md', 'CLAUDE.md', 'codex.md',
-  'docs/AGENTS-HOW-THIS-WENT-WRONG.md', 'docs/BETA-SELF-TEST.md', 'docs/CODEX-CLAUDE-PARALLEL.md',
-  'docs/CODEX-CONTENT-BRIEF.md', 'docs/CONTENT-HANDOFF.md', 'docs/CRITERIA-STANDARD.md',
+  'BUILD-PLAN.md',
+  'docs/AGENTS-HOW-THIS-WENT-WRONG.md', 'docs/BETA-SELF-TEST.md', 'docs/PARALLEL-LANES.md',
+  'docs/CONTENT-BRIEF.md', 'docs/CONTENT-HANDOFF.md', 'docs/CRITERIA-STANDARD.md',
   'docs/DECISION-PILOT-REVIEW.md', 'docs/MASTERPLAN.md', 'docs/MATURITY-PROGRAM.md',
   'docs/ONTOLOGY-RESEARCH.md', 'docs/ONTOLOGY.md', 'docs/PATH-TO-FIRST-USERS.md',
   'docs/PROJECT-STATUS.md', 'docs/README-public.md', 'docs/README.md', 'docs/REGISTER-FRESHNESS-QUEUE.md',
