@@ -1,0 +1,17 @@
+name: Something is broken
+description: A page, a ranking, the engine, an audit or the MCP server does not behave as it says.
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what you expected
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: How to see it
+      description: The page address and the weights you set, or the command you ran and its output.
+    validations:
+      required: true

@@ -10,7 +10,9 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const LENS_DIR = path.join(ROOT, 'content', 'lenses');
-const SCHEMA_DIR = path.join(ROOT, 'research', 'schema');
+// The published schemas, the ones their $id URLs serve. research/schema/ held older drafts that
+// claimed the same ids with different contents; research/schema_ids_audit.js now forbids that.
+const SCHEMA_DIR = path.join(ROOT, 'app', 'data', 'standard', 'schemas');
 const failures = [];
 const warnings = [];
 

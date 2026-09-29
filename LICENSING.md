@@ -21,7 +21,7 @@ proprietary product. The license is the "uncapturable" principle, enforced.
 The food/beauty facts come from **[Open Food Facts](https://world.openfoodfacts.org/) /
 Open Beauty Facts**, which are ODbL. Matching it keeps the data flowing both ways and honours
 their share-alike terms. Open Food/Beauty Facts source data remains under **its own** ODbL terms
-and attribution. Curated-lens facts additionally carry their own **per-claim sources**.
+and attribution. Hand-checked lens facts additionally carry their own **per-claim sources**.
 
 ## Why CC BY-SA for the writing
 Guides and docs are prose, so Creative Commons is the natural fit; share-alike keeps improvements open.

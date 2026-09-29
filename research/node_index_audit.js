@@ -1158,7 +1158,7 @@ function checkNodePreviewMatrix(matrix, outputs) {
   expect(/private-preview run contract/i.test(run.purpose || ''), 'app/data/nodes/node-preview-matrix.json: runContract missing private-preview purpose');
   expect(run.status === 'pending-app-integration', 'app/data/nodes/node-preview-matrix.json: runContract should remain pending app integration');
   expect(run.h4DrainableFromDataAlone === false, 'app/data/nodes/node-preview-matrix.json: runContract should not drain H4 from data alone');
-  expect(/Claude H4/i.test(run.namedConsumer || ''), 'app/data/nodes/node-preview-matrix.json: runContract should name Claude H4 consumer');
+  expect(/App H4/i.test(run.namedConsumer || ''), 'app/data/nodes/node-preview-matrix.json: runContract should name App H4 consumer');
   expect(/H4 drains only after/i.test(run.drainRule || ''), 'app/data/nodes/node-preview-matrix.json: runContract drain rule should be explicit');
   expect(Array.isArray(run.evidenceRequired) && run.evidenceRequired.length >= 3, 'app/data/nodes/node-preview-matrix.json: runContract needs evidence requirements');
   expect(Array.isArray(run.exitCriteria) && run.exitCriteria.length >= 3, 'app/data/nodes/node-preview-matrix.json: runContract needs exit criteria');
@@ -1249,7 +1249,7 @@ function checkNodePreviewMatrix(matrix, outputs) {
 
 function checkPublicGates(publicGates, label, outputs) {
   expect(publicGates?.status === 'ready-for-app-public-gates', `${label}: public gates status mismatch`);
-  expect(/Claude I5/i.test(publicGates?.namedConsumer || ''), `${label}: public gates should name Claude I5 consumer`);
+  expect(/App I5/i.test(publicGates?.namedConsumer || ''), `${label}: public gates should name App I5 consumer`);
   expect(/c8-voice-pass-status/i.test(publicGates?.voiceSource || ''), `${label}: public gates should point to C8 voice signoff`);
   expect((publicGates?.appOwnedBeforePublic || []).length >= 3, `${label}: public gates need app-owned pre-public rules`);
   const surfaces = publicGates?.surfaces || [];
@@ -1265,7 +1265,7 @@ function checkPublicGates(publicGates, label, outputs) {
     expect(surface.status === 'voice-signed-app-gate', `${id}: public gate status mismatch`);
     expect(Array.isArray(surface.sourceFiles) && surface.sourceFiles.length >= 3, `${id}: public gate needs source files`);
     expect(surface.voice?.signedAt === '2026-07-08', `${id}: public gate signed date mismatch`);
-    expect(/codex\.md#c8-voice-pass-status/i.test(surface.voice?.signoffBlock || ''), `${id}: public gate should point to C8 signoff`);
+    expect(/BUILD-PLAN\.md#c8-voice-pass-status/i.test(surface.voice?.signoffBlock || ''), `${id}: public gate should point to C8 signoff`);
     expect(typeof surface.appOwnedGate === 'string' && surface.appOwnedGate.trim(), `${id}: public gate missing app-owned release note`);
     expect((surface.mustNot || []).length >= 2, `${id}: public gate needs must-not rules`);
   }
@@ -1273,7 +1273,7 @@ function checkPublicGates(publicGates, label, outputs) {
   const release = publicGates?.releaseContract || {};
   expect(/public release contract/i.test(release.purpose || ''), `${label}: release contract should name public release purpose`);
   expect(release.status === 'ready-for-app-public-gates', `${label}: release contract status mismatch`);
-  expect(/Claude I5/i.test(release.namedConsumer || ''), `${label}: release contract should name Claude I5 consumer`);
+  expect(/App I5/i.test(release.namedConsumer || ''), `${label}: release contract should name App I5 consumer`);
   expect(/one surface/i.test(release.releaseRule || ''), `${label}: release contract should require one-surface release`);
   expect(release.voiceSource === publicGates?.voiceSource, `${label}: release contract voice source should mirror public gates`);
   expect((release.sharedEvidenceRequired || []).length >= 3, `${label}: release contract needs shared evidence requirements`);
@@ -1322,7 +1322,7 @@ function checkH4DrainContract(contract, label, outputs, phases, publicGates) {
   expect(/H4 drain/i.test(contract?.purpose || ''), `${label}: H4 drain contract should name H4 drain purpose`);
   expect(contract?.status === 'pending-app-integration', `${label}: H4 drain contract status mismatch`);
   expect(contract?.activeHandoff === 'H4', `${label}: H4 drain contract should point to H4`);
-  expect(/Claude H4/i.test(contract?.namedConsumer || ''), `${label}: H4 drain contract should name Claude H4 consumer`);
+  expect(/App H4/i.test(contract?.namedConsumer || ''), `${label}: H4 drain contract should name App H4 consumer`);
   expect(contract?.h4DrainableFromDataAlone === false, `${label}: H4 drainable-from-data-alone should be false`);
   expect(/app-owned/i.test(contract?.drainRule || '') && /generated data alone/i.test(contract?.drainRule || ''), `${label}: H4 drain rule should name app-owned/data-alone boundary`);
 

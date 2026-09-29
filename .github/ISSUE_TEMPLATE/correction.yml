@@ -1,0 +1,47 @@
+name: A fact is wrong
+description: A rating, source, date or claim that the evidence does not support.
+title: "Correction: "
+labels: [correction]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        One sharp correction beats a long list. Corrections keep their history, including the ones
+        that turn out to be wrong, so say what you know and how you know it.
+  - type: input
+    id: where
+    attributes:
+      label: Where
+      description: The category and entry, or the page address, e.g. "banking / chase" or a /app/c/ link.
+    validations:
+      required: true
+  - type: textarea
+    id: wrong
+    attributes:
+      label: What it says now, and what it should say
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source
+      description: A link anyone can open. The seller's own page counts, but an independent one counts for more.
+    validations:
+      required: true
+  - type: input
+    id: asof
+    attributes:
+      label: As of
+      description: When the source says this was true, to the month if you can.
+  - type: dropdown
+    id: interest
+    attributes:
+      label: Your connection to it
+      description: Makers and sellers are welcome to correct their own entries; this is recorded, not held against you.
+      options:
+        - None
+        - I work for or with the maker or seller
+        - I work for or with a competitor
+        - Other (say below)
+    validations:
+      required: true

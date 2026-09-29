@@ -8,6 +8,7 @@
 */
 const fs = require('fs');
 const path = require('path');
+const publicCopy = require('./public_copy.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const failures = [];
@@ -375,6 +376,12 @@ function checkDist() {
     warnings.push(`${DIST_LABEL}/ missing; run npm run build:preview or npm run build before sharing.`);
     return;
   }
+  // npm run audit:release-modes builds in a temporary directory and leaves only its receipts in
+  // dist/, so a dist/ with receipts and no site is not a build to check. An explicit --dist-dir is.
+  if (!DIST_ARG && !existsDist('index.html') && !existsDist('build-meta.json')) {
+    warnings.push(`${DIST_LABEL}/ holds release receipts but no built site; run npm run build:preview or npm run build before sharing.`);
+    return;
+  }
 
   for (const rel of [
     'index.html',
@@ -526,6 +533,7 @@ function main() {
   console.log(`  warnings: ${warnings.length}`);
   for (const warning of warnings) console.log(`  WARN ${warning}`);
 
+  failures.splice(0, failures.length, ...publicCopy.dropPrivateFailures(failures));
   if (failures.length) {
     console.log(`  failures: ${failures.length}`);
     for (const failure of failures) console.log(`  FAIL ${failure}`);

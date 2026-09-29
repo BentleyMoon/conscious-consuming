@@ -6,6 +6,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const publicCopy = require('./public_copy.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const failures = [];
@@ -123,7 +124,11 @@ function main() {
   if (!floor) return finish(null);
   appChecks(floor);
   const receipt = bankingReceipt(floor);
-  expect(read('docs/DECISION-PILOT-REVIEW.md').includes('Founder decision: approved'), 'docs/DECISION-PILOT-REVIEW.md: approval receipt missing');
+  if (publicCopy.isAbsentPrivateDoc('docs/DECISION-PILOT-REVIEW.md')) {
+    console.log('  SKIP 1 check(s) on working documents the public copy does not carry: docs/DECISION-PILOT-REVIEW.md');
+  } else {
+    expect(read('docs/DECISION-PILOT-REVIEW.md').includes('Founder decision: approved'), 'docs/DECISION-PILOT-REVIEW.md: approval receipt missing');
+  }
   finish(receipt);
 }
 

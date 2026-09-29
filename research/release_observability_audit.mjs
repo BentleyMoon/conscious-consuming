@@ -11,6 +11,7 @@ import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
+import publicCopy from "./public_copy.js";
 import {
   formatPackageFingerprint,
   formatPackageModeFingerprints,
@@ -139,7 +140,16 @@ function checkPublicReceipt({ receipt, modeCheck, status, releaseOutput, publicS
 function main() {
   console.log("Release observability audit");
 
-  const status = readText("docs/PROJECT-STATUS.md");
+  // In the public copy the status document is a working note that is not carried, and a fresh clone
+  // has no dist/ receipts until npm run audit:release-modes writes them. The receipts are still
+  // checked against release:status whenever they exist.
+  const statusIsPrivate = publicCopy.isAbsentPrivateDoc("docs/PROJECT-STATUS.md");
+  if (statusIsPrivate && !exists("dist/package-mode-check.json")) {
+    console.log("  SKIP no dist/ receipts yet (run npm run audit:release-modes), and docs/PROJECT-STATUS.md is a working document the public copy does not carry");
+    console.log("RELEASE OBSERVABILITY CHECKS PASS");
+    return;
+  }
+  const status = statusIsPrivate ? "" : readText("docs/PROJECT-STATUS.md");
   const modeCheck = readJson("dist/package-mode-check.json");
   const r1Receipt = readJsonIfExists("dist/r1-preflight-check.json");
   const publicReceipt = readJsonIfExists("dist/release-preflight-check.json");
@@ -149,6 +159,7 @@ function main() {
   const r1 = checkR1Receipt({ receipt: r1Receipt, modeCheck, status, releaseOutput, privateShort: packageMode.privateShort });
   const pub = checkPublicReceipt({ receipt: publicReceipt, modeCheck, status, releaseOutput, publicShort: packageMode.publicShort });
 
+  failures.splice(0, failures.length, ...publicCopy.dropPrivateFailures(failures));
   if (failures.length) {
     console.log(`  failures: ${failures.length}`);
     for (const failure of failures) console.log(`  FAIL ${failure}`);

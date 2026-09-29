@@ -3042,7 +3042,7 @@ function buildNodePreviewMatrix(askTracesIndex, askPresentationIndex, nodeWalkth
       purpose: 'App-owned private-preview run contract for generated node and Ask integration.',
       status: 'pending-app-integration',
       h4DrainableFromDataAlone: false,
-      namedConsumer: 'Claude H4 private-preview and generated-node integration QA.',
+      namedConsumer: 'App H4 private-preview and generated-node integration QA.',
       drainRule: 'H4 drains only after the app-owned implementation walks this run order or records equivalent coverage for every scenario group.',
       evidenceRequired: [
         'Running-app behavior, screenshot, or manual QA note for each runOrder group.',
@@ -3095,7 +3095,7 @@ function buildWorkbenchPublicGates(brandIndex, companyIndex) {
   const signedVoice = {
     status: 'signed',
     signedAt: '2026-07-08',
-    signoffBlock: 'codex.md#c8-voice-pass-status',
+    signoffBlock: 'BUILD-PLAN.md#c8-voice-pass-status',
     pilotSamples: 5
   };
 
@@ -3104,11 +3104,11 @@ function buildWorkbenchPublicGates(brandIndex, companyIndex) {
       'brand-pages',
       'Brand pages',
       'minimal-generated-copy',
-      ['app/data/nodes/brands.json', 'app/data/nodes/node-page-contracts.json', 'pipeline/build_nodes.js', 'codex.md'],
+      ['app/data/nodes/brands.json', 'app/data/nodes/node-page-contracts.json', 'pipeline/build_nodes.js', 'BUILD-PLAN.md'],
       {
         status: 'minimal-generated-copy',
         signedAt: '2026-07-08',
-        signoffBlock: 'codex.md#c8-voice-pass-status',
+        signoffBlock: 'BUILD-PLAN.md#c8-voice-pass-status',
         pilotSamples: 0,
         note: 'Brand nodes expose labels, categories, owners, and top examples; app copy must name coverage without adding a fabricated brand read.'
       },
@@ -3123,7 +3123,7 @@ function buildWorkbenchPublicGates(brandIndex, companyIndex) {
       'company-pages',
       'Company pages',
       'company-reads',
-      ['app/data/nodes/companies.json', 'app/data/nodes/node-page-contracts.json', 'pipeline/build_nodes.js', 'codex.md'],
+      ['app/data/nodes/companies.json', 'app/data/nodes/node-page-contracts.json', 'pipeline/build_nodes.js', 'BUILD-PLAN.md'],
       signedVoice,
       (companyIndex.nodes || []).length,
       'A company page can go public when its signed read, owned brands, visible-shelf count, and ownership receipts render together.',
@@ -3136,7 +3136,7 @@ function buildWorkbenchPublicGates(brandIndex, companyIndex) {
       'tag-pages',
       'Tag pages',
       'tag-reads',
-      ['app/data/nodes/tags.json', 'content/tags.json', 'pipeline/build_tags.js', 'codex.md'],
+      ['app/data/nodes/tags.json', 'content/tags.json', 'pipeline/build_tags.js', 'BUILD-PLAN.md'],
       signedVoice,
       null,
       'A tag page can go public when certification reads name who checks the claim and property tags do not pretend to be certifications.',
@@ -3149,7 +3149,7 @@ function buildWorkbenchPublicGates(brandIndex, companyIndex) {
       'errand-pages',
       'Errand pages',
       'errand-step-notes',
-      ['app/data/nodes/errands.json', 'content/errands.json', 'pipeline/build_errands.js', 'codex.md'],
+      ['app/data/nodes/errands.json', 'content/errands.json', 'pipeline/build_errands.js', 'BUILD-PLAN.md'],
       signedVoice,
       12,
       'An errand can go public when every step ends in a list-ready choice and the runner keeps output:list visible.',
@@ -3162,7 +3162,7 @@ function buildWorkbenchPublicGates(brandIndex, companyIndex) {
       'pulse-strip',
       'Pulse strip',
       'pulse-ledger-lines',
-      ['app/data/pulse.json', 'pipeline/build_pulse.js', 'codex.md'],
+      ['app/data/pulse.json', 'pipeline/build_pulse.js', 'BUILD-PLAN.md'],
       signedVoice,
       null,
       'The pulse strip can go public when entries read as a maintenance ledger: what changed, the count, and the source.',
@@ -3184,7 +3184,7 @@ function buildWorkbenchPublicGates(brandIndex, companyIndex) {
       sourceFiles: item?.sourceFiles || [],
       evidenceRequired: [
         'Running-app route or surface evidence that the named generated files are consumed or an equivalent merge path is documented.',
-        'Voice check against codex.md#c8-voice-pass-status.',
+        'Voice check against BUILD-PLAN.md#c8-voice-pass-status.',
         'A pass/fail note for each appOwnedGate and mustNot clause before public release.'
       ],
       releaseWhen: [
@@ -3198,8 +3198,8 @@ function buildWorkbenchPublicGates(brandIndex, companyIndex) {
 
   return {
     status: 'ready-for-app-public-gates',
-    namedConsumer: 'Claude I5 workbench graduation',
-    voiceSource: 'codex.md#c8-voice-pass-status',
+    namedConsumer: 'App I5 workbench graduation',
+    voiceSource: 'BUILD-PLAN.md#c8-voice-pass-status',
     rule: 'Move one surface public at a time only after the app renders the generated file or documents equivalent coverage.',
     appOwnedBeforePublic: [
       'Render the surface from generated data or document an equivalent app-owned merge path.',
@@ -3209,9 +3209,9 @@ function buildWorkbenchPublicGates(brandIndex, companyIndex) {
     releaseContract: {
       purpose: 'App-owned public release contract for graduating workbench surfaces one at a time.',
       status: 'ready-for-app-public-gates',
-      namedConsumer: 'Claude I5 workbench graduation',
+      namedConsumer: 'App I5 workbench graduation',
       releaseRule: 'Release one surface at a time, after app-owned rendering evidence satisfies that surface gate and the shared pre-public rules.',
-      voiceSource: 'codex.md#c8-voice-pass-status',
+      voiceSource: 'BUILD-PLAN.md#c8-voice-pass-status',
       releaseOrder,
       sharedEvidenceRequired: [
         'The surface renders from generated data or a documented equivalent app-owned merge path.',
@@ -3413,7 +3413,7 @@ function buildH4DrainContract(phases, publicGates, nodePreviewMatrixIndex) {
       ],
       [
         'The final decision records either H4 drained by app/design or the exact remaining app-owned blocker.',
-        'No Codex data-only change is treated as sufficient to drain H4.'
+        'No data-only change is treated as sufficient to drain H4.'
       ],
       [
         'Do not mark H4 drained from data generation alone.',
@@ -3428,7 +3428,7 @@ function buildH4DrainContract(phases, publicGates, nodePreviewMatrixIndex) {
     purpose: 'App-owned H4 drain contract for generated node and Ask integration.',
     status: 'pending-app-integration',
     activeHandoff: 'H4',
-    namedConsumer: 'Claude H4 generated-node integration drain pass',
+    namedConsumer: 'App H4 generated-node integration drain pass',
     h4DrainableFromDataAlone: false,
     drainRule: 'H4 drains only after app-owned implementation evidence covers every step here or documents equivalent coverage; generated data alone is insufficient.',
     steps,
@@ -3795,7 +3795,7 @@ function buildNodeIntegrationChecklist(brandIndex, companyIndex, askIndex, askCo
     phase(
       'workbench-public-gates',
       'Graduate workbench surfaces one at a time',
-      ['brands.json', 'companies.json', 'tags.json', 'errands.json', 'app/data/pulse.json', 'codex.md'],
+      ['brands.json', 'companies.json', 'tags.json', 'errands.json', 'app/data/pulse.json', 'BUILD-PLAN.md'],
       [
         'Use publicGates.surfaces as the release checklist for brand, company, tag, errand, and pulse surfaces.',
         'Move a surface public only after app-owned rendering consumes the named generated files or documents equivalent coverage.',

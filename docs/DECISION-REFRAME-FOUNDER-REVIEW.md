@@ -1,10 +1,10 @@
-# Decision reframe — founder release review
+# Decision reframe: founder release review
 
 **Program:** Development Rounds 1–12
 **Machine preflight:** required before review
 **Founder decision:** pending human review
 
-This is the release gate for the complete floor → lines → dials → leanings reframe. It is intentionally short: review the journey as a chooser, then record one decision. A passing audit proves structure and computation; it does not decide whether the product feels calm, credible, or ready to put in front of people.
+This is the release gate for the complete floor → lines → dials → leanings reframe. It is intentionally short: review the flow as a chooser, then record one decision. A passing audit proves structure and computation; it does not decide whether the product feels calm, credible, or ready to put in front of people.
 
 ## §M Round 2: S2 plain-words pilot
 
@@ -102,12 +102,12 @@ Five-number release receipt: current coined-term baseline **8; pilot copy 0; bat
 This walk checks the approved vocabulary in the product. It does not authorize deployment.
 
 1. Open `/app/#home`: the secondary action says **Set a rule** or **Edit my rules**.
-2. Open `/app/#map`: the second door says **Tasks**; no chooser-facing “errand” label leads the journey.
+2. Open `/app/#map`: the second door says **Tasks**; no chooser-facing “errand” label leads the flow.
 3. Open `/app/#decide/banking`: confirm **The baseline**, **My rules**, and **What matters here** appear in that order.
 4. Open Advanced once: **Close-call priorities** are last, closed by default, and cannot restore a filtered option.
 5. Open `/app/#you`: confirm **Download your file** and **Upload a file**; no sigil, card download, or public workbench control appears.
 
-Round 3 receipt: coined product terms on the primary journey **≤3** · document-file delta **0** · audit-file delta **0** · founder walk target **under 2 minutes** · adoption events **0, unchanged**.
+Round 3 receipt: coined product terms on the primary flow **≤3** · document-file delta **0** · audit-file delta **0** · founder walk target **under 2 minutes** · adoption events **0, unchanged**.
 
 ## §M Round 6: S3 safety-grade allergy walk
 
@@ -141,7 +141,7 @@ This walk checks one practical cost choice and the honest absence state. It does
    becomes Best for most and the position reads **Strongly toward lower observed price**.
 3. Press **Reset choices**. Confirm the range returns to **Balanced** and **café corsé** returns.
 4. Open `/app/#decide/phones`. Confirm there is no cost range and the page says exactly
-   **No price data yet — ranked by values alone.**
+   `No price data yet — ranked by values alone.`
 5. Repeat Coffee at a 390px-class width. Confirm the two pole labels remain readable and the page
    does not scroll sideways.
 
@@ -162,8 +162,8 @@ canonical root. It does not authorize a merge or deployment.
 1. Open `/app/#decide/coffee`. Confirm **Cost or values** is first and begins at **Balanced**.
 2. Move it fully toward lower observed price. Confirm the answer changes from **café corsé** to
    **Café soluble lyophilisé**, then use **Reset choices** and confirm the original answer returns.
-3. Open `/app/#decide/phones`. Confirm there is no cost slider and the page says **No price data yet
-   — ranked by values alone.**
+3. Open `/app/#decide/phones`. Confirm there is no cost slider and the page says
+   `No price data yet — ranked by values alone.`
 4. Open one source receipt in each category. Confirm the source and date remain visible and neither
    page claims that missing price data means cheap.
 5. Confirm this release records **0 adoption events** and does not open F1 or any locked territory.
@@ -182,7 +182,7 @@ This walk confirms that the approved adoption gates are executable and remain cl
 record an adoption event, send an invitation, or authorize deployment.
 
 1. Open `content/operations/adoption.json`. Confirm it defines seven gates, each with an external
-   event type, a distinct-subject threshold, and a named unlock.
+   event type, a distinct-subject threshold, and a named `unlocks` entry.
 2. Open `content/operations/adoption-events.jsonl`. Confirm it contains exactly one
    `cc-adoption-ledger-init` record and no `cc-adoption-event` record.
 3. Open `content/operations/templates/adoption-event.json`. Confirm its kind is

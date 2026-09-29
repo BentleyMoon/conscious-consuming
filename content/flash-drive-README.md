@@ -75,4 +75,4 @@ npm run release:preflight
 
 ## License And Attribution
 
-Code, data, guides, and docs carry their own licenses in `LICENSE` and `LICENSING.md`. Food and beauty data come from Open Food Facts and Open Beauty Facts under ODbL; curated lenses carry their own per-claim sources.
+Code, data, guides, and docs carry their own licenses in `LICENSE` and `LICENSING.md`. Food and beauty data come from Open Food Facts and Open Beauty Facts under ODbL; hand-checked lenses carry their own per-claim sources.

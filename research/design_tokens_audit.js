@@ -288,7 +288,7 @@ function checkDayCycle(profile, label) {
   expect(isObject(dayCycle), `${label}.tokens.dayCycle: missing H2 day-cycle variants`);
   if (!isObject(dayCycle)) return;
   expect(dayCycle.status === 'h2-token-substrate', `${label}.tokens.dayCycle.status: expected h2-token-substrate`);
-  expect(/Claude H2/i.test(String(dayCycle.consumer || '')), `${label}.tokens.dayCycle.consumer: should name Claude H2 consumer`);
+  expect(/App H2/i.test(String(dayCycle.consumer || '')), `${label}.tokens.dayCycle.consumer: should name App H2 consumer`);
   expect(dayCycle.defaultMode === 'noon', `${label}.tokens.dayCycle.defaultMode: expected noon`);
   expect(isObject(dayCycle.variants), `${label}.tokens.dayCycle.variants: missing variants`);
   if (isObject(dayCycle.variants)) {
@@ -380,7 +380,7 @@ function checkMateriality(profile, label) {
   expect(isObject(materiality), `${label}.tokens.materiality: missing H5 materiality contract`);
   if (!isObject(materiality)) return;
   expect(materiality.status === 'h5-token-substrate', `${label}.tokens.materiality.status: expected h5-token-substrate`);
-  expect(/Claude H5/i.test(String(materiality.consumer || '')), `${label}.tokens.materiality.consumer: should name Claude H5 consumer`);
+  expect(/App H5/i.test(String(materiality.consumer || '')), `${label}.tokens.materiality.consumer: should name App H5 consumer`);
   const grain = materiality.paperGrain;
   expect(isObject(grain), `${label}.tokens.materiality.paperGrain: missing object`);
   if (isObject(grain)) {
@@ -431,7 +431,7 @@ function checkMotion(profile, label) {
   expect(JSON.stringify(motion.mustNot || []).toLowerCase().includes('not'), `${label}.tokens.motion.mustNot: should state explicit prohibitions`);
   if (profile.id !== 'quiet-commons') return;
   expect(motion.status === 'h3-token-substrate', `${label}.tokens.motion.status: expected h3-token-substrate`);
-  expect(/Claude H3/i.test(String(motion.consumer || '')), `${label}.tokens.motion.consumer: should name Claude H3 consumer`);
+  expect(/App H3/i.test(String(motion.consumer || '')), `${label}.tokens.motion.consumer: should name App H3 consumer`);
   expect(isObject(motion.curves), `${label}.tokens.motion.curves: missing H3 curves`);
   if (isObject(motion.curves)) {
     for (const id of REQUIRED_MOTION_CURVES) {
@@ -568,10 +568,10 @@ function checkContrastRemediationContract(contract, label) {
   expect(isObject(contract), `${label}: missing object`);
   if (!isObject(contract)) return;
   expect(contract.status === 'h9-app-owned-remediation', `${label}.status: must be h9-app-owned-remediation`);
-  expect(/Claude H9/i.test(String(contract.consumer || '')), `${label}.consumer: should name Claude H9 consumer`);
+  expect(/App H9/i.test(String(contract.consumer || '')), `${label}.consumer: should name App H9 consumer`);
   expect(contract.sourceAudit === 'research/contrast_audit.js', `${label}.sourceAudit: should point to contrast audit`);
   expect(contract.appOwnedFile === 'app/styles.css', `${label}.appOwnedFile: should point to app/styles.css`);
-  expect(/Codex supplies tokens/i.test(String(contract.rule || '')), `${label}.rule: should preserve Codex/app boundary`);
+  expect(/data lane supplies tokens/i.test(String(contract.rule || '')), `${label}.rule: should preserve the data/app boundary`);
   const steps = contract.steps || [];
   expect(Array.isArray(steps) && steps.length === REQUIRED_CONTRAST_REMEDIATION_STEPS.length, `${label}.steps: expected five H9 remediation steps`);
   const byId = new Map();
@@ -612,7 +612,7 @@ function checkValueBloom(value, label) {
   expect(isObject(value), `${label}: missing H4 value-bloom contract`);
   if (!isObject(value)) return;
   expect(value.status === 'h4-token-substrate', `${label}.status: expected h4-token-substrate`);
-  expect(/Claude H4/i.test(String(value.consumer || '')), `${label}.consumer: should name Claude H4 consumer`);
+  expect(/App H4/i.test(String(value.consumer || '')), `${label}.consumer: should name App H4 consumer`);
   expect(String(value.sourceFunction || '').includes('CC.engine.signature'), `${label}.sourceFunction: should use CC.engine.signature`);
   expect(value.minimumThemesForBloom === 2, `${label}.minimumThemesForBloom: expected 2`);
   expect(sameArray(value.order, REQUIRED_BLOOM_THEMES), `${label}.order: must match CC theme order`);
@@ -648,7 +648,7 @@ function checkSkinReadiness(value, label, index) {
   expect(isObject(value), `${label}: missing object`);
   if (!isObject(value)) return;
   expect(value.status === 'substrate-ready', `${label}.status: expected substrate-ready`);
-  expect(/Claude biophilic skin pass/i.test(String(value.consumer || '')), `${label}.consumer: should name Claude skin pass`);
+  expect(/App biophilic skin pass/i.test(String(value.consumer || '')), `${label}.consumer: should name the app skin pass`);
   expect(value.sourceProfile === 'quiet-commons', `${label}.sourceProfile: expected quiet-commons`);
   expect(value.dataOnlyDrain === false, `${label}.dataOnlyDrain: must be false`);
   expect(nonEmpty(value.appOwnedNext), `${label}.appOwnedNext: missing app-owned next step`);

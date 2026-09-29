@@ -251,7 +251,7 @@ function ownershipEl(p,ds){
 // --- R1 increment 2 · the ERRAND SLIDER + honest default sorts. A category can declare its point
 // (meta.primaryAxis: the criterion that IS what the category is about) and its one real tension
 // (meta.tradeoff: two criterion keys, meta.tradeoffLabels: plain pole words). Until the data pass (CQ in
-// codex.md) stamps those onto every lens, AXIS_SEED covers the flagships — data wins over seed the moment
+// BUILD-PLAN.md) stamps those onto every lens, AXIS_SEED covers the flagships — data wins over seed the moment
 // it lands, and every key is validated against the live criteria so a wrong entry no-ops instead of lying.
 const AXIS_SEED={
   'learning-resources':{primary:'educational'},
@@ -3258,7 +3258,7 @@ function renderSearch(query){
   }
   html+=`<p class="sectionsub">${q?`Results for “${esc(query)}”, ${guides.length} guide${guides.length!==1?'s':''}, ${prods.length} entr${prods.length!==1?'ies':'y'}${prods.length>30?' (showing 30)':''}`:'Search across guides and everything in the commons.'}</p>`;
   if(q&&!guides.length&&!prods.length){
-    // the designed miss — honest scope, nearest doors, one-tap request; never a bare zero (codex.md §5)
+    // the designed miss — honest scope, nearest doors, one-tap request; never a bare zero (BUILD-PLAN.md §5)
     const near=askEntries().filter(e=>e.type==='category').filter((e,i,a)=>a.findIndex(x=>x.hash===e.hash)===i)
       .map(e=>({e:e,hit:e.k.split(' ').some(t=>q.split(/\s+/).some(t2=>t&&t2&&(_dist1(t,t2)||t.includes(t2)||t2.includes(t))))}))
       .filter(x=>x.hit).slice(0,4);
@@ -4269,7 +4269,7 @@ function renderScan(){
   if(st)st.onclick=()=>{st.hidden=true;startScan();};
 }
 
-// ══ N1 · THE NODE SYSTEM (codex.md §4) — everything is a node; every node gets the same six-slot page;
+// ══ N1 · THE NODE SYSTEM (BUILD-PLAN.md §4) — everything is a node; every node gets the same six-slot page;
 //    #n/<type>/<slug> is the address. The engine already speaks this id space (ovs:…); this makes it walkable.
 //    Runtime node data comes from the generated indexes. sample.json remains a schema example only.
 //    Lines come straight from the registry; categories/guides/items redirect to their existing (richer) pages. ══
@@ -4480,7 +4480,7 @@ function renderNode(arg){
     act.appendChild(acts);v.appendChild(act);
   });
 }
-// ── ASK (codex.md §5) — the spine: one box that resolves a name, a barcode, a question-shaped phrase, or a
+// ── ASK (BUILD-PLAN.md §5) — the spine: one box that resolves a name, a barcode, a question-shaped phrase, or a
 //    typo to the right page, honestly. Falls through to full search; a miss is a designed screen, never a zero. ──
 const ASK_STOP=new Set(['is','are','the','a','an','best','good','bad','cheapest','most','more','should','i','my','me','for','to','of','in','on','near','ethical','okay','ok','what','which','how','buy','get','find']);
 const ASK_SYN={'pop':'soda','soft drink':'soda','soft drinks':'soda','sneakers':'shoes','trainers':'shoes','cell phone':'phones','mobile phone':'phones','mobile':'phones','washing up liquid':'dish-soap','cereal':'breakfast-cereal','chocolate':'dark-chocolate','search engine':'digital-services'};

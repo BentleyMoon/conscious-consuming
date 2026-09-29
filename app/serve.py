@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Tiny static server that sends no-store headers, so a data rebuild is never
-served from a stale browser cache. Used by .claude/launch.json for the preview,
+served from a stale browser cache. Used by the editor's launch config for the preview,
 and by the "Run Conscious Consuming" launcher (which passes --open to pop a browser
 once the server is bound -- race-free).
 

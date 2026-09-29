@@ -11,6 +11,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const publicCopy = require('./public_copy.js');
 const engine = require('../app/engine.js');
 
 const ROOT = path.resolve(__dirname, '..');
@@ -232,6 +233,7 @@ function finish(receipts) {
     if (receipt.changed) console.log(`    changed to ${receipt.changed.product.name} in ${receipt.changed.touches} dial move(s): ${moves}`);
   }
   console.log('  machine boundary: interaction path only; founder continuation records the human pilot approval');
+  failures.splice(0, failures.length, ...publicCopy.dropPrivateFailures(failures));
   if (failures.length) {
     console.log(`  failures: ${failures.length}`);
     for (const failure of failures) console.log(`  FAIL ${failure}`);

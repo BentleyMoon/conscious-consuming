@@ -68,7 +68,7 @@ The first 2,000 rows include large directly useful sectors: laundry detergents (
 
 1. Build `pipeline/fetch_safer_choice.py` for EPA Envirofacts.
    - Status: Part 1/5 implemented the first generated category, `dish-soap`, from EPA Safer Choice / Envirofacts.
-   - Consider `safer-choice-cleaners` or enrichment of `cleaning-products` only after Claude/product agrees whether certification-only datasets should sit beside curated rosters.
+   - Consider `safer-choice-cleaners` or enrichment of `cleaning-products` only after the app lane agrees whether certification-only datasets should sit beside hand-checked rosters.
    - Criteria can reuse existing keys: `certification`, `health`, `environment`, `transparency`, `accessibility`.
 
 2. Add Open Food Facts frontier categories in small batches.
@@ -89,7 +89,7 @@ The first 2,000 rows include large directly useful sectors: laundry detergents (
 5. Build a digital app scorer later.
    - F-Droid can supply open-source, license, anti-feature, source-code and update fields.
    - Exodus Privacy can supply tracker/permission reports.
-   - This should generate a distinct category such as `android-privacy-apps` or enrich `digital-services`, not overwrite the current hand-curated digital services lens.
+   - This should generate a distinct category such as `android-privacy-apps` or enrich `digital-services`, not overwrite the current hand-checked digital services lens.
 
 ## Sources to avoid for bulk ingestion
 

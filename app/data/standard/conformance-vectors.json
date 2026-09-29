@@ -486,7 +486,7 @@
             "generatedOutputs": [],
             "builders": [],
             "audits": [],
-            "ownerLane": "codex-data",
+            "ownerLane": "data-lane",
             "runtimeConsumers": [],
             "compatibility": {
               "acceptsLegacyVersion": false
@@ -524,7 +524,7 @@
             "generatedOutputs": [],
             "builders": [],
             "audits": [],
-            "ownerLane": "codex-data",
+            "ownerLane": "data-lane",
             "runtimeConsumers": [],
             "compatibility": {
               "acceptsLegacyVersion": false
@@ -562,7 +562,7 @@
             "generatedOutputs": [],
             "builders": [],
             "audits": [],
-            "ownerLane": "codex-data",
+            "ownerLane": "data-lane",
             "runtimeConsumers": [],
             "compatibility": {
               "acceptsLegacyVersion": true
@@ -599,7 +599,7 @@
             "generatedOutputs": [],
             "builders": [],
             "audits": [],
-            "ownerLane": "codex-data",
+            "ownerLane": "data-lane",
             "runtimeConsumers": [],
             "compatibility": {
               "acceptsLegacyVersion": false
@@ -2424,8 +2424,8 @@
         ],
         "publicGates": {
           "status": "ready-for-app-public-gates",
-          "namedConsumer": "Claude I5 workbench graduation",
-          "voiceSource": "codex.md#c8-voice-pass-status",
+          "namedConsumer": "App I5 workbench graduation",
+          "voiceSource": "BUILD-PLAN.md#c8-voice-pass-status",
           "rule": "Move one surface public at a time after app-owned rendering consumes generated files.",
           "appOwnedBeforePublic": [
             "Render from generated data.",
@@ -2434,9 +2434,9 @@
           "releaseContract": {
             "purpose": "App-owned public release contract.",
             "status": "ready-for-app-public-gates",
-            "namedConsumer": "Claude I5 workbench graduation",
+            "namedConsumer": "App I5 workbench graduation",
             "releaseRule": "Release one surface at a time after app-owned evidence.",
-            "voiceSource": "codex.md#c8-voice-pass-status",
+            "voiceSource": "BUILD-PLAN.md#c8-voice-pass-status",
             "releaseOrder": [
               {
                 "step": 1,
@@ -2445,7 +2445,7 @@
                 "voiceStatus": "signed",
                 "sourceFiles": [
                   "app/data/nodes/companies.json",
-                  "codex.md"
+                  "BUILD-PLAN.md"
                 ],
                 "evidenceRequired": [
                   "Rendering evidence."
@@ -2481,12 +2481,12 @@
               "proseClass": "company-reads",
               "sourceFiles": [
                 "app/data/nodes/companies.json",
-                "codex.md"
+                "BUILD-PLAN.md"
               ],
               "voice": {
                 "status": "signed",
                 "signedAt": "2026-07-08",
-                "signoffBlock": "codex.md#c8-voice-pass-status",
+                "signoffBlock": "BUILD-PLAN.md#c8-voice-pass-status",
                 "pilotSamples": 5
               },
               "generatedCount": 1,
@@ -2501,7 +2501,7 @@
           "purpose": "App-owned H4 drain contract.",
           "status": "pending-app-integration",
           "activeHandoff": "H4",
-          "namedConsumer": "Claude H4 generated-node integration drain pass",
+          "namedConsumer": "App H4 generated-node integration drain pass",
           "h4DrainableFromDataAlone": false,
           "drainRule": "H4 drains only after app-owned implementation evidence; generated data alone is insufficient.",
           "steps": [
@@ -2596,8 +2596,8 @@
         ],
         "publicGates": {
           "status": "ready-for-app-public-gates",
-          "namedConsumer": "Claude I5 workbench graduation",
-          "voiceSource": "codex.md#c8-voice-pass-status",
+          "namedConsumer": "App I5 workbench graduation",
+          "voiceSource": "BUILD-PLAN.md#c8-voice-pass-status",
           "rule": "Move one surface public at a time after app-owned rendering consumes generated files.",
           "appOwnedBeforePublic": [
             "Render from generated data.",
@@ -2606,9 +2606,9 @@
           "releaseContract": {
             "purpose": "App-owned public release contract.",
             "status": "ready-for-app-public-gates",
-            "namedConsumer": "Claude I5 workbench graduation",
+            "namedConsumer": "App I5 workbench graduation",
             "releaseRule": "Release one surface at a time after app-owned evidence.",
-            "voiceSource": "codex.md#c8-voice-pass-status",
+            "voiceSource": "BUILD-PLAN.md#c8-voice-pass-status",
             "releaseOrder": [
               {
                 "step": 1,
@@ -2617,7 +2617,7 @@
                 "voiceStatus": "signed",
                 "sourceFiles": [
                   "app/data/nodes/companies.json",
-                  "codex.md"
+                  "BUILD-PLAN.md"
                 ],
                 "evidenceRequired": [
                   "Rendering evidence."
@@ -2653,12 +2653,12 @@
               "proseClass": "company-reads",
               "sourceFiles": [
                 "app/data/nodes/companies.json",
-                "codex.md"
+                "BUILD-PLAN.md"
               ],
               "voice": {
                 "status": "signed",
                 "signedAt": "2026-07-08",
-                "signoffBlock": "codex.md#c8-voice-pass-status",
+                "signoffBlock": "BUILD-PLAN.md#c8-voice-pass-status",
                 "pilotSamples": 5
               },
               "generatedCount": 1,
@@ -2673,7 +2673,7 @@
           "purpose": "App-owned H4 drain contract.",
           "status": "pending-app-integration",
           "activeHandoff": "H4",
-          "namedConsumer": "Claude H4 generated-node integration drain pass",
+          "namedConsumer": "App H4 generated-node integration drain pass",
           "h4DrainableFromDataAlone": false,
           "drainRule": "H4 drains only after app-owned implementation evidence; generated data alone is insufficient.",
           "steps": [
@@ -3331,7 +3331,7 @@
           "purpose": "App-owned private-preview run contract for generated nodes.",
           "status": "pending-app-integration",
           "h4DrainableFromDataAlone": false,
-          "namedConsumer": "Claude H4 preview QA.",
+          "namedConsumer": "App H4 preview QA.",
           "drainRule": "H4 drains only after app-owned preview behavior is checked.",
           "evidenceRequired": [
             "Manual QA note."
@@ -3413,7 +3413,7 @@
           "purpose": "App-owned private-preview run contract for generated nodes.",
           "status": "pending-app-integration",
           "h4DrainableFromDataAlone": false,
-          "namedConsumer": "Claude H4 preview QA.",
+          "namedConsumer": "App H4 preview QA.",
           "drainRule": "H4 drains only after app-owned preview behavior is checked.",
           "evidenceRequired": [
             "Manual QA note."
@@ -3512,8 +3512,8 @@
         ],
         "publicGates": {
           "status": "ready-for-app-public-gates",
-          "namedConsumer": "Claude I5 workbench graduation",
-          "voiceSource": "codex.md#c8-voice-pass-status",
+          "namedConsumer": "App I5 workbench graduation",
+          "voiceSource": "BUILD-PLAN.md#c8-voice-pass-status",
           "rule": "Move one surface public at a time after app-owned rendering consumes generated files.",
           "appOwnedBeforePublic": [
             "Render from generated data.",
@@ -3522,9 +3522,9 @@
           "releaseContract": {
             "purpose": "App-owned public release contract.",
             "status": "ready-for-app-public-gates",
-            "namedConsumer": "Claude I5 workbench graduation",
+            "namedConsumer": "App I5 workbench graduation",
             "releaseRule": "Release one surface at a time after app-owned evidence.",
-            "voiceSource": "codex.md#c8-voice-pass-status",
+            "voiceSource": "BUILD-PLAN.md#c8-voice-pass-status",
             "releaseOrder": [
               {
                 "step": 1,
@@ -3533,7 +3533,7 @@
                 "voiceStatus": "signed",
                 "sourceFiles": [
                   "app/data/nodes/companies.json",
-                  "codex.md"
+                  "BUILD-PLAN.md"
                 ],
                 "evidenceRequired": [
                   "Rendering evidence."
@@ -3569,12 +3569,12 @@
               "proseClass": "company-reads",
               "sourceFiles": [
                 "app/data/nodes/companies.json",
-                "codex.md"
+                "BUILD-PLAN.md"
               ],
               "voice": {
                 "status": "signed",
                 "signedAt": "2026-07-08",
-                "signoffBlock": "codex.md#c8-voice-pass-status",
+                "signoffBlock": "BUILD-PLAN.md#c8-voice-pass-status",
                 "pilotSamples": 5
               },
               "generatedCount": 1,
@@ -3589,7 +3589,7 @@
           "purpose": "App-owned H4 drain contract.",
           "status": "pending-app-integration",
           "activeHandoff": "H4",
-          "namedConsumer": "Claude H4 generated-node integration drain pass",
+          "namedConsumer": "App H4 generated-node integration drain pass",
           "h4DrainableFromDataAlone": false,
           "drainRule": "H4 drains only after app-owned implementation evidence; generated data alone is insufficient.",
           "steps": [
@@ -3665,7 +3665,7 @@
           {
             "id": "startup-ask",
             "label": "Startup Ask",
-            "owner": "codex-data",
+            "owner": "data-lane",
             "status": "pending-app-integration",
             "sourceFiles": [
               "ask-core.json"
@@ -3678,8 +3678,8 @@
         ],
         "publicGates": {
           "status": "ready-for-app-public-gates",
-          "namedConsumer": "Claude I5 workbench graduation",
-          "voiceSource": "codex.md#c8-voice-pass-status",
+          "namedConsumer": "App I5 workbench graduation",
+          "voiceSource": "BUILD-PLAN.md#c8-voice-pass-status",
           "rule": "Move one surface public at a time after app-owned rendering consumes generated files.",
           "appOwnedBeforePublic": [
             "Render from generated data.",
@@ -3688,9 +3688,9 @@
           "releaseContract": {
             "purpose": "App-owned public release contract.",
             "status": "ready-for-app-public-gates",
-            "namedConsumer": "Claude I5 workbench graduation",
+            "namedConsumer": "App I5 workbench graduation",
             "releaseRule": "Release one surface at a time after app-owned evidence.",
-            "voiceSource": "codex.md#c8-voice-pass-status",
+            "voiceSource": "BUILD-PLAN.md#c8-voice-pass-status",
             "releaseOrder": [
               {
                 "step": 1,
@@ -3699,7 +3699,7 @@
                 "voiceStatus": "signed",
                 "sourceFiles": [
                   "app/data/nodes/companies.json",
-                  "codex.md"
+                  "BUILD-PLAN.md"
                 ],
                 "evidenceRequired": [
                   "Rendering evidence."
@@ -3735,12 +3735,12 @@
               "proseClass": "company-reads",
               "sourceFiles": [
                 "app/data/nodes/companies.json",
-                "codex.md"
+                "BUILD-PLAN.md"
               ],
               "voice": {
                 "status": "signed",
                 "signedAt": "2026-07-08",
-                "signoffBlock": "codex.md#c8-voice-pass-status",
+                "signoffBlock": "BUILD-PLAN.md#c8-voice-pass-status",
                 "pilotSamples": 5
               },
               "generatedCount": 1,
@@ -3755,7 +3755,7 @@
           "purpose": "App-owned H4 drain contract.",
           "status": "pending-app-integration",
           "activeHandoff": "H4",
-          "namedConsumer": "Claude H4 generated-node integration drain pass",
+          "namedConsumer": "App H4 generated-node integration drain pass",
           "h4DrainableFromDataAlone": false,
           "drainRule": "H4 drains only after app-owned implementation evidence; generated data alone is insufficient.",
           "steps": [
@@ -5576,7 +5576,7 @@
         ],
         "valueBloom": {
           "status": "h4-token-substrate",
-          "consumer": "Claude H4 fixture consumer",
+          "consumer": "App H4 fixture consumer",
           "sourceFunction": "CC.engine.signature(entity, key2theme)",
           "minimumThemesForBloom": 2,
           "scoreScale": "0..100 mean score per carried theme; omitted themes stay absent",
@@ -5825,9 +5825,9 @@
         ],
         "cssVariableMapping": {
           "status": "i3-review-table",
-          "consumer": "Claude I3 styles.css token injection",
+          "consumer": "App I3 styles.css token injection",
           "sourceProfile": "quiet-commons",
-          "note": "Review table only: Codex owns the data tokens; app/design owns the eventual styles.css injection diff.",
+          "note": "Review table only: the data lane owns the data tokens; app/design owns the eventual styles.css injection diff.",
           "rows": [
             {
               "token": "color.background",
@@ -6504,7 +6504,7 @@
         ],
         "valueBloom": {
           "status": "h4-token-substrate",
-          "consumer": "Claude H4 fixture consumer",
+          "consumer": "App H4 fixture consumer",
           "sourceFunction": "CC.engine.signature(entity, key2theme)",
           "minimumThemesForBloom": 2,
           "scoreScale": "0..100 mean score per carried theme; omitted themes stay absent",
@@ -6686,7 +6686,7 @@
         },
         "skinReadiness": {
           "status": "substrate-ready",
-          "consumer": "Claude biophilic skin pass",
+          "consumer": "App biophilic skin pass",
           "sourceProfile": "sample-skin",
           "generatedFrom": [
             "content/design/tokens.json",
@@ -6699,7 +6699,7 @@
               "id": "h1-palette",
               "label": "H1 enriched palette and mode aliases",
               "status": "ready",
-              "consumer": "Claude H1 enriched biophilic palette pass",
+              "consumer": "App H1 enriched biophilic palette pass",
               "paths": [
                 "profiles.sample-skin.colorRamps",
                 "profiles.sample-skin.colorModes"
@@ -6713,7 +6713,7 @@
               "id": "h2-day-cycle",
               "label": "H2 dawn/noon/dusk/night variants",
               "status": "ready",
-              "consumer": "Claude H2 day-cycle skin pass",
+              "consumer": "App H2 day-cycle skin pass",
               "paths": [
                 "profiles.sample-skin.dayCycle.variants"
               ],
@@ -6726,7 +6726,7 @@
               "id": "h3-motion",
               "label": "H3 nature-paced motion intents",
               "status": "ready",
-              "consumer": "Claude H3 nature-paced motion skin pass",
+              "consumer": "App H3 nature-paced motion skin pass",
               "paths": [
                 "profiles.sample-skin.motion"
               ],
@@ -6739,7 +6739,7 @@
               "id": "h4-value-bloom",
               "label": "H4 value-bloom colors and signed vectors",
               "status": "ready",
-              "consumer": "Claude H4 values-bloom verdict card prototype",
+              "consumer": "App H4 values-bloom verdict card prototype",
               "paths": [
                 "valueBloom.themes",
                 "valueBloom.signatureCoverage"
@@ -6753,7 +6753,7 @@
               "id": "h5-materiality",
               "label": "H5 paper grain and warm materiality",
               "status": "ready",
-              "consumer": "Claude H5 materiality skin pass",
+              "consumer": "App H5 materiality skin pass",
               "paths": [
                 "profiles.sample-skin.materiality"
               ],
@@ -6911,7 +6911,7 @@
             "colorModes": {},
             "dayCycle": {
               "status": "h2-token-substrate",
-              "consumer": "Claude H2 fixture consumer",
+              "consumer": "App H2 fixture consumer",
               "defaultMode": "noon",
               "variants": {
                 "dawn": {
@@ -7179,7 +7179,7 @@
             },
             "materiality": {
               "status": "h5-token-substrate",
-              "consumer": "Claude H5 fixture consumer",
+              "consumer": "App H5 fixture consumer",
               "paperGrain": {
                 "opacity": 0.035,
                 "scalePx": 180,
@@ -7226,9 +7226,9 @@
         ],
         "cssVariableMapping": {
           "status": "i3-review-table",
-          "consumer": "Claude I3 styles.css token injection",
+          "consumer": "App I3 styles.css token injection",
           "sourceProfile": "quiet-commons",
-          "note": "Review table only: Codex owns the data tokens; app/design owns the eventual styles.css injection diff.",
+          "note": "Review table only: the data lane owns the data tokens; app/design owns the eventual styles.css injection diff.",
           "rows": [
             {
               "token": "color.background",

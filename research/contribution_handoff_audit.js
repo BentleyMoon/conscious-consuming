@@ -2,11 +2,12 @@
 /* Contribution + handoff audit for Values Commons.
 
    This keeps the collaboration surface legible: contributors should know what
-   a useful suggestion contains, and Claude/Codex handoff items should be
+   a useful suggestion contains, and app/data lane handoff items should be
    structured enough to drain instead of becoming invisible debt.
 */
 const fs = require('fs');
 const path = require('path');
+const publicCopy = require('./public_copy.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const failures = [];
@@ -192,8 +193,8 @@ function checkRegionIA() {
 
 function checkProtocolDocs() {
   for (const [rel, needles] of [
-    ['docs/CODEX-CLAUDE-PARALLEL.md', ['npm run audit:handoff', '[H# active/<owner>]', 'Do not use the handoff as a backlog dump']],
-    ['docs/CODEX-CONTENT-BRIEF.md', ['npm run audit:handoff', '[H# active/<owner>]']],
+    ['docs/PARALLEL-LANES.md', ['npm run audit:handoff', '[H# active/<owner>]', 'Do not use the handoff as a backlog dump']],
+    ['docs/CONTENT-BRIEF.md', ['npm run audit:handoff', '[H# active/<owner>]']],
     ['docs/MATURITY-PROGRAM.md', ['Contribution And Handoff Gate', 'npm run audit:handoff']],
     ['docs/README.md', ['npm run audit:handoff']]
   ]) {
@@ -211,6 +212,7 @@ function main() {
   console.log(`  warnings: ${warnings.length}`);
   for (const warning of warnings) console.log(`  WARN ${warning}`);
 
+  failures.splice(0, failures.length, ...publicCopy.dropPrivateFailures(failures));
   if (failures.length) {
     console.log(`  failures: ${failures.length}`);
     for (const failure of failures) console.log(`  FAIL ${failure}`);

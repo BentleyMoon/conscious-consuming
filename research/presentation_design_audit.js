@@ -8,6 +8,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const publicCopy = require('./public_copy.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const DESIGN_FILES = [
@@ -200,7 +201,10 @@ function checkVoice(designFiles, designTexts, walkText) {
   // architecture string. Every candidate still passes the voice patterns below.
   // 379 as of 2026-09-23: the email/search split's amendment paragraph in
   // docs/design/INFORMATION-ARCHITECTURE.md added one bold "Amended ..." heading string.
-  expect(candidates.length === 379, `D1-D3: expected 379 proposed interface strings, found ${candidates.length}`);
+  // The strings are drawn from the design documents, so without them the count says nothing.
+  if (!designFiles.some(publicCopy.isAbsentPrivateDoc)) {
+    expect(candidates.length === 379, `D1-D3: expected 379 proposed interface strings, found ${candidates.length}`);
+  }
 
   for (const candidate of candidates) {
     for (const [label, pattern] of BANNED_PATTERNS) {
@@ -266,6 +270,7 @@ function main() {
   console.log('  A4: 17 familiar affordances; 5 adopt + 10 adapt + 2 waive');
   console.log('  A5: 10 timed steps; 0:00 -> 2:00; narrow and keyboard replay specified');
 
+  failures.splice(0, failures.length, ...publicCopy.dropPrivateFailures(failures));
   if (failures.length) {
     console.log(`PRESENTATION DESIGN AUDIT FAILED (${failures.length})`);
     for (const failure of failures) console.log(`  FAIL ${failure}`);

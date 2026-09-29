@@ -42,7 +42,7 @@ PUBLIC_DIRS = [
 ]
 
 # Files at the root.
-PUBLIC_FILES = ['index.html', 'llms.txt', 'LICENSE', 'LICENSING.md', 'og-standard.png',
+PUBLIC_FILES = ['index.html', 'llms.txt', 'LICENSE', 'LICENSING.md', 'og-standard.png', 'favicon.ico',
                 'package.json', 'package-lock.json', '.gitignore', 'wrangler.toml', 'worker.js', 'mcp.js']
 
 # Only the docs already rendered publicly by build_site.py. This list is deliberately the same
@@ -65,6 +65,7 @@ NEVER = {'node_modules', 'dist', '.git', '__pycache__', '.wrangler', '.env'}
 #   app/data.js      the 40MB single-file fallback      -> already omitted from public production
 #   pipeline/raw     raw intermediate scrape data       -> not needed to build or verify anything
 DERIVED = {
+    os.path.join('research', 'handoff-extract.txt'),  # an unrelated research brief, not this project's
     os.path.join('app', 'c'),
     os.path.join('app', 'data.js'),
     os.path.join('pipeline', 'raw'),
@@ -126,6 +127,11 @@ def main():
         elif os.path.isfile(src):
             shutil.copy2(src, os.path.join(out, 'content', name))
             content.append(name)
+
+    # The marker that tells the audits this is the public copy (research/public_copy.js).
+    with open(os.path.join(out, '.public-copy'), 'w', encoding='utf-8', newline='\n') as fh:
+        fh.write('This is the public copy of the Values Commons working repository. Audits that read a\n'
+                 'working note skip that check by name here instead of failing (research/public_copy.js).\n')
 
     # A last, blunt check. If any of these ever appear in the export, something has gone wrong
     # in the lists above and the export should not be published.
