@@ -3,9 +3,15 @@ import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
+import publicCopy from "../research/public_copy.js";
 
 const ROOT = process.cwd();
 const full = process.argv.includes("--full");
+// The public copy carries a .public-copy marker written by scripts/mirror-public.py. There, the
+// working documents it does not carry are skipped by name (research/public_copy.js), and the
+// verdict pages, which the public copy generates rather than stores, are built first.
+const PUBLIC_COPY = fs.existsSync(path.join(ROOT, ".public-copy"));
+const PRIVATE_LINK_FILES = new Set(["docs/README.md", "docs/MATURITY-PROGRAM.md", "docs/STATE-OF-THE-BUILD.md"]);
 
 const jsSyntaxFiles = [
   "mcp.js",
@@ -94,6 +100,10 @@ const jsSyntaxFiles = [
   "research/route_context_audit.js",
   "research/validate_lens.js",
   "research/standard_audit.js",
+  "research/engine_score_test.js",
+  "research/public_copy.js",
+  "research/public_numbers_audit.js",
+  "research/schema_ids_audit.js",
   "research/two_fields_audit.js",
   "research/value_signature_audit.js",
   "research/value_editorial_audit.js",
@@ -119,6 +129,7 @@ const jsSyntaxFiles = [
 ];
 
 const nodeTests = [
+  "research/engine_score_test.js",
   "scripts/mcp-selftest.mjs",
   "scripts/worker-selftest.mjs",
   "research/instances_test.js",
@@ -221,6 +232,10 @@ function checkLocalLinks(files) {
   const htmlLink = /\b(?:href|src)=["']([^"']+)["']/g;
 
   for (const file of files) {
+    if (PUBLIC_COPY && PRIVATE_LINK_FILES.has(file) && !exists(file)) {
+      console.log(`  SKIP link check of ${file}, a working document the public copy does not carry`);
+      continue;
+    }
     if (!exists(file)) {
       failures.push(`${file}: file listed for link check is missing`);
       continue;
@@ -234,6 +249,10 @@ function checkLocalLinks(files) {
       const target = stripTarget(raw);
       if (shouldSkipTarget(target)) continue;
       const abs = resolveLocalTarget(file, target);
+      if (abs.startsWith(ROOT) && publicCopy.isAbsentPrivateDoc(path.relative(ROOT, abs))) {
+        console.log(`  SKIP ${file} links ${raw}, a working document the public copy does not carry`);
+        continue;
+      }
       if (!abs.startsWith(ROOT) || !localTargetExists(abs)) {
         failures.push(`${file}: missing local link ${raw}`);
       }
@@ -248,7 +267,11 @@ function checkLocalLinks(files) {
   console.log(`\nLocal link check: ${files.length} source files OK`);
 }
 
-console.log(`Values Commons verification (${full ? "full" : "standard"})`);
+console.log(`Values Commons verification (${full ? "full" : "standard"}${PUBLIC_COPY ? ", public copy" : ""})`);
+if (PUBLIC_COPY && !exists("app/c")) {
+  console.log("\nThe public copy generates the verdict pages rather than storing them; building them first.");
+  run("node", ["pipeline/build_cards.js"]);
+}
 
 for (const file of jsSyntaxFiles) {
   if (exists(file)) run("node", ["--check", file]);
@@ -263,6 +286,8 @@ const coreAudits = [
   ["research/verify_run.js"],
   ["research/standard_audit.js"],
   ["research/provenance_summary_audit.js"],
+  ["research/public_numbers_audit.js"],
+  ["research/schema_ids_audit.js"],
   ["research/value_theme_map_audit.js"],
   ["research/value_signature_audit.js"],
   ["research/value_editorial_audit.js"],
@@ -338,4 +363,4 @@ if (full) {
 
 checkLocalLinks(linkCheckFiles);
 
-console.log(`\nVERIFY PASS (${full ? "full" : "standard"})`);
+console.log(`\nVERIFY PASS (${full ? "full" : "standard"}${PUBLIC_COPY ? ", public copy: checks on working documents it does not carry are skipped by name above" : ""})`);

@@ -201,10 +201,20 @@ def main() -> None:
     parser.add_argument("--check", action="store_true", help="Fail if the committed queue is stale or not reproducible")
     args = parser.parse_args()
 
+    public_copy_without_queue = args.check and (ROOT / ".public-copy").exists() and not OUTPUT.exists()
     try:
-        as_of = pinned_as_of() if args.check and not args.as_of else parse_date(args.as_of or datetime.now(timezone.utc).date().isoformat())
+        as_of = pinned_as_of() if args.check and not args.as_of and not public_copy_without_queue else parse_date(args.as_of or datetime.now(timezone.utc).date().isoformat())
     except ValueError as exc:
         raise SystemExit(str(exc)) from exc
+
+    if args.check and (ROOT / ".public-copy").exists() and not OUTPUT.exists():
+        # The committed queue is a working document the public copy does not carry (see
+        # research/public_copy.js). The queue must still render from the published registers.
+        render(datetime.now(timezone.utc).date())
+        print("Register freshness queue audit")
+        print(f"  SKIP {OUTPUT.relative_to(ROOT).as_posix()} is a working document the public copy does not carry; the queue renders")
+        print("REGISTER FRESHNESS QUEUE CHECKS PASS")
+        return
 
     if args.check:
         age = (datetime.now(timezone.utc).date() - as_of).days

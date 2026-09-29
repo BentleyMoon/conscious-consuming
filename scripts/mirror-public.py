@@ -38,14 +38,33 @@ pub_top = {p.split('/')[0] for p in pub_top if p.strip()}
 print('public top level:', ' '.join(sorted(pub_top)))
 
 # Anything that is internal stays internal, named here rather than inferred.
-NEVER = {'.claude', 'AGENTS.md', 'CLAUDE.md', 'CODEX-AUTOMATION.md', 'WEBSITES-AGENT.md', 'RUN.md',
-         'codex.md', 'cchandoff', 'ontologystudy', 'kiz.txt', 'run.py', 'run.cmd', 'dist', 'build.log'}
+NEVER = {'AUTOMATION.md', 'WEBSITES-AGENT.md', 'RUN.md', 'BUILD-PLAN.md', 'ontologystudy', 'kiz.txt',
+         'run.py', 'run.cmd', 'dist', 'build.log', '.public-copy'}
 
 # The public repository's front page is written for a stranger arriving cold, and the private
 # repository's README is a working note. The public one is maintained at docs/README-public.md,
 # where the work happens, and is published as README.md.
 RENAME = {'docs/README-public.md': 'README.md'}
 NEVER.add('README.md')
+
+# Single files inside otherwise-public directories that are not this project's to publish.
+# research/handoff-extract.txt is a text extract of an unrelated research brief: nothing reads it,
+# and it reached the public copy only because research/ publishes wholesale.
+NEVER_PATHS = {'research/handoff-extract.txt'}
+
+# More of the same, kept in .mirror-private-paths beside .mirror-private-words and for the same
+# reason: some of these names are themselves not for publishing (editor and tool configuration,
+# maintainer tooling bound to a paid service). One entry per line, # for comments: a bare name
+# holds back a top-level path, a path with a slash holds back that one file. Untracked, ignored,
+# and required by --write, so the exclusions cannot silently lapse.
+PATHS_FILE = os.path.join(PRIV, '.mirror-private-paths')
+if os.path.isfile(PATHS_FILE):
+    for line in io.open(PATHS_FILE, encoding='utf-8'):
+        line = line.strip().replace(chr(92), '/')
+        if line and not line.startswith('#'):
+            (NEVER_PATHS if '/' in line else NEVER).add(line)
+elif '--write' in sys.argv:
+    sys.exit('Refusing to --write without ' + PATHS_FILE + ' (see the comment above it in this script).')
 
 # docs/ IS SELECTIVE, and says so on its own front page: "It does not carry working notes, drafts,
 # and planning material." The rest of the tree is engine, data and audits, which publish wholesale.
@@ -66,7 +85,7 @@ GENERATED = ('app/c/',)
 copy, skipped = [], []
 for rel in tracked:
     top = rel.split('/')[0]
-    if top in NEVER or top not in pub_top:
+    if top in NEVER or rel in NEVER_PATHS or top not in pub_top:
         skipped.append(rel)
         continue
     if top == 'docs' and rel not in pub_docs and rel not in PUBLISH_ANYWAY:
@@ -82,22 +101,68 @@ held_top = sorted({s.split('/')[0] for s in skipped})
 print('held back:', ' '.join(held_top))
 
 # A last read of every text file that is about to be published, for the archive's own names.
-PRIVATE_WORDS = re.compile(r'(?!)', re.I)  # the private names are not published
+#
+# THE NAMES THEMSELVES ARE NOT WRITTEN HERE. This script is published, so a list of private names
+# kept in it publishes those names: the earlier version exempted itself from its own read for exactly
+# that reason, and the mirror carried the archive's names and a personal address as a result. The
+# names now live in .mirror-private-words at the root of the working repository: untracked, ignored
+# by .gitignore, one regular expression per line, # for comments. Only tracked files are published,
+# so the list can never ride along. Without it the read cannot be done, and --write refuses.
+#
+# The generic patterns below name nobody and stay here: a home-directory path from any machine, and
+# a personal webmail address other than the project's published contact. They are not applied to the
+# sourced data, where a small maker's webmail contact is a published fact, not a leak, and where a
+# match would hold back a whole category.
+PUBLIC_CONTACTS = {'futurisminstitute@gmail.com'}
+GENERIC_WORDS = [
+    r'\b[A-Za-z]:[\\/]+Users[\\/]+[^\\/\s"\']+',
+    r'(?<![\w.])/Users/[A-Za-z0-9._-]+/',
+    r'(?<![\w.])/home/[a-z][a-z0-9._-]*/',
+    r'\b[A-Za-z0-9._%+-]+@(?:gmail|googlemail|outlook|hotmail|live|icloud|me|yahoo|proton|protonmail)\.(?:[a-z]+\.)*[a-z]+',
+]
+WORDS_FILE = os.path.join(PRIV, '.mirror-private-words')
+private_words = []
+if os.path.isfile(WORDS_FILE):
+    for line in io.open(WORDS_FILE, encoding='utf-8'):
+        line = line.strip()
+        if line and not line.startswith('#'):
+            private_words.append(line)
+else:
+    print('\nWARNING: %s is missing, so the private-name read cannot run.' % WORDS_FILE)
+    if '--write' in sys.argv:
+        sys.exit('Refusing to --write without the private-name list. Create it (see the comment above).')
+PRIVATE_WORDS = re.compile('|'.join('(?:%s)' % w for w in private_words) or r'(?!)', re.I)
+GENERIC = re.compile('|'.join('(?:%s)' % w for w in GENERIC_WORDS), re.I)
+# A PUBLISHED COMMAND MUST NOT POINT AT AN UNPUBLISHED FILE. package.json is published, and a
+# script entry that runs a held-back file would fail for every reader who tries it, so such entries
+# are dropped from the published copy. Nothing else in the file changes. The privacy read below
+# reads the published form, because that is what leaves the building.
+def published_bytes(rel, raw, held_paths):
+    if rel != 'package.json':
+        return raw
+    import json
+    pkg = json.loads(raw.decode('utf-8'))
+    scripts = pkg.get('scripts') or {}
+    for name in list(scripts):
+        command = scripts[name].replace(chr(92), '/')
+        if any(h in command for h in held_paths if '/' in h):
+            del scripts[name]
+    return (json.dumps(pkg, indent=2, ensure_ascii=False) + '\n').encode('utf-8')
+
+DATA_PREFIXES = ('app/data/', 'content/lenses/', 'content/lenses-pending/', 'pipeline/raw', 'pipeline/prices/')
 leaks = []
-# This file names the archive because it is the rule that keeps the archive out, so it would
-# otherwise hold itself back and the rules would stay unpublished.
-SELF = os.path.relpath(os.path.abspath(__file__), PRIV).replace(chr(92), '/')
 for rel in copy:
-    if rel == SELF:
-        continue
     path = os.path.join(PRIV, rel)
     if os.path.getsize(path) > 4_000_000:
         continue
     try:
-        text = io.open(path, encoding='utf-8').read()
+        text = published_bytes(rel, open(path, 'rb').read(), set(skipped)).decode('utf-8')
     except Exception:
         continue
-    for m in PRIVATE_WORDS.finditer(text):
+    matches = list(PRIVATE_WORDS.finditer(text))
+    if not rel.startswith(DATA_PREFIXES):
+        matches += [m for m in GENERIC.finditer(text) if m.group(0).lower() not in PUBLIC_CONTACTS]
+    for m in matches:
         leaks.append('%s: %s' % (rel, text[max(0, m.start() - 40):m.end() + 40].replace('\n', ' ')))
         break
 # A file that names the private archive is held back rather than edited: these are internal design
@@ -114,23 +179,36 @@ print('%d file(s) to publish after the privacy read' % len(copy))
 if '--write' not in sys.argv:
     sys.exit(0)
 
+# THE MARKER. The public copy carries .public-copy and the working repository never does: it is how
+# the audits know that a missing working note is expected here and not a fault (research/public_copy.js).
+MARKER = '.public-copy'
+MARKER_TEXT = '''This is the public copy of the Values Commons working repository, written by
+scripts/mirror-public.py. It carries the engine, the data, the audits and the published documents,
+not the working notes. Audits that read a working note skip that check by name here instead of
+failing (research/public_copy.js). The working repository never carries this file.
+'''
+
 # Replace the tracked contents wholesale: files that vanished from the private tree must vanish here.
-published = {RENAME.get(c, c) for c in copy}
+published = {RENAME.get(c, c) for c in copy} | {MARKER}
 for rel in sorted(subprocess.run(['git', 'ls-files'], cwd=PUB, capture_output=True, text=True, encoding='utf-8').stdout.replace('\\', '/').split('\n')):
     if rel.strip() and rel.strip() not in published:
         p = os.path.join(PUB, rel.strip())
         if os.path.isfile(p):
             os.remove(p)
 
+held_paths = set(skipped)
 written = 0
 for rel in copy:
     src, dst = os.path.join(PRIV, rel), os.path.join(PUB, RENAME.get(rel, rel))
     os.makedirs(os.path.dirname(dst), exist_ok=True)
-    if os.path.isfile(dst) and os.path.getsize(dst) == os.path.getsize(src):
-        a = hashlib.sha1(open(src, 'rb').read()).hexdigest()
-        b = hashlib.sha1(open(dst, 'rb').read()).hexdigest()
-        if a == b:
-            continue
-    shutil.copy2(src, dst)
+    data = published_bytes(rel, open(src, 'rb').read(), held_paths)
+    if os.path.isfile(dst) and open(dst, 'rb').read() == data:
+        continue
+    if data == open(src, 'rb').read():
+        shutil.copy2(src, dst)
+    else:
+        open(dst, 'wb').write(data)
     written += 1
+with io.open(os.path.join(PUB, MARKER), 'w', encoding='utf-8', newline='\n') as fh:
+    fh.write(MARKER_TEXT)
 print('copied %d changed file(s) into the mirror' % written)

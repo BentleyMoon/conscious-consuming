@@ -55,7 +55,7 @@ Use this order for a 7-10 minute walkthrough.
 - Do not claim the optional Community layer is serverless.
 - Do not claim the non-CC instances are fully sourced public ratings.
 - Do not claim the app saves people money in categories where price data is absent or partial.
-- Do not imply that barcode live lookup is fully offline; the curated barcode set is local, while the optional miss lookup contacts Open Food Facts with the barcode only.
+- Do not imply that barcode live lookup is fully offline; the hand-checked barcode set is local, while the optional miss lookup contacts Open Food Facts with the barcode only.
 
 ## Build And Deploy
 

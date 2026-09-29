@@ -36,7 +36,7 @@ Set these once and the whole commons re-ranks for you. A category's own sliders 
 ## Two honest rules about the weights
 
 - **Weights are trade-offs, not wishes.** Sliding "Planet" up means you'll *accept a little less* on the other things to get it. You can't max everything, that's not a bug, it's what choosing means.
-- **A high overall can still hide one weak axis.** Because the score is a weighted average, a great result can mask a terrible single fact. So we flag the weakest axis, and if you weight something heavily *and* an option scores catastrophically low on it, we **cap** the score (a dealbreaker can't be bought back by good fees).
+- **A high overall can still hide one weak axis.** Because the score is a weighted average, a great result can mask a terrible single fact. So we flag the weakest axis, and if you weight something heavily *and* an option scores catastrophically low on it, we **cap** the score (a dealbreaker can't be bought back by good fees). The one exception is a certification check: "no Fair Trade label found" lowers the score, but it can't cap it, because a missing label is missing paperwork, not proof of harm.
 
 ## Where each fact comes from, the three tiers
 

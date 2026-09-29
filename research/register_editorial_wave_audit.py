@@ -63,7 +63,11 @@ def main() -> None:
             criteria_by_cid.setdefault(entry["cid"], set()).add(criterion)
             evidence_cells += 1
 
-    handoff = (ROOT / "docs" / "CONTENT-HANDOFF.md").read_text(encoding="utf-8")
+    # The handoff note is a working document the public copy does not carry. It only ever excused
+    # the banking guide's missing denominator boundary, which the guide now states, so its absence
+    # changes nothing here.
+    handoff_path = ROOT / "docs" / "CONTENT-HANDOFF.md"
+    handoff = handoff_path.read_text(encoding="utf-8") if handoff_path.exists() else ""
     for cid in sorted(criteria_by_cid):
         slug, body = read_guide(cid)
         lower = body.lower()

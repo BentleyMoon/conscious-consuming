@@ -12,7 +12,7 @@ let p = 0, f = 0; const ok = (L, c) => { c ? p++ : f++; console.log((c ? 'PASS '
 const CC_MAP = { planet:'planet', people:'people', health:'wellbeing', honesty:'openness', privacy:'autonomy', animals:'animals', cost:'access', local:'community' };
 const K = loadLens('../kosplora/lens.js');
 
-ok('engine is v0.10 (transparent transfer + the Weave)', e.VERSION === '0.10');
+ok('engine is v0.11 (transparent transfer + the Weave + the certified-tier cap rule)', e.VERSION === '0.11');
 
 // A CC visitor who prioritises Honesty, People (fairness) and Planet; the rest neutral (3).
 const ccThemes = { planet:5, people:5, health:3, honesty:5, privacy:3, animals:3, cost:3, local:3 };

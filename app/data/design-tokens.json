@@ -7,7 +7,7 @@
   "generatedFrom": {
     "path": "content/design/tokens.json",
     "updated": "2026-07-10",
-    "sha256": "bbd1c221a721642321fe7062051dded16a5318cf4f4ee0e2caebc50d0ac3d55d"
+    "sha256": "ebbe1dc259d530a6932dca2cf613c9185f0a734633210d1b0f34db96352e7f1f"
   },
   "principles": [
     "beauty must not farm attention",
@@ -25,7 +25,7 @@
   ],
   "valueBloom": {
     "status": "h4-token-substrate",
-    "consumer": "Claude H4 values-bloom verdict card prototype",
+    "consumer": "App H4 values-bloom verdict card prototype",
     "sourceFunction": "CC.engine.signature(entity, key2theme)",
     "minimumThemesForBloom": 2,
     "scoreScale": "0..100 mean score per carried theme; omitted themes stay absent, never zero-filled",
@@ -210,9 +210,9 @@
   },
   "cssVariableMapping": {
     "status": "i3-review-table",
-    "consumer": "Claude I3 styles.css token injection",
+    "consumer": "App I3 styles.css token injection",
     "sourceProfile": "quiet-commons",
-    "note": "Review table only: Codex owns the data tokens; app/design owns the eventual styles.css injection diff.",
+    "note": "Review table only: the data lane owns the data tokens; app/design owns the eventual styles.css injection diff.",
     "rows": [
       {
         "token": "color.background",
@@ -728,10 +728,10 @@
   },
   "contrastRemediationContract": {
     "status": "h9-app-owned-remediation",
-    "consumer": "Claude H9 contrast cleanup in app/styles.css",
+    "consumer": "App H9 contrast cleanup in app/styles.css",
     "sourceAudit": "research/contrast_audit.js",
     "appOwnedFile": "app/styles.css",
-    "rule": "Use this as an app-owned remediation checklist; Codex supplies tokens and warnings but does not edit app CSS.",
+    "rule": "Use this as an app-owned remediation checklist; the data lane supplies tokens and warnings but does not edit app CSS.",
     "steps": [
       {
         "id": "wire-accent-text-token",
@@ -871,7 +871,7 @@
   },
   "skinReadiness": {
     "status": "substrate-ready",
-    "consumer": "Claude biophilic skin pass",
+    "consumer": "App biophilic skin pass",
     "sourceProfile": "quiet-commons",
     "generatedFrom": [
       "content/design/tokens.json",
@@ -884,7 +884,7 @@
         "id": "h1-palette",
         "label": "H1 enriched palette and mode aliases",
         "status": "ready",
-        "consumer": "Claude H1 enriched biophilic palette pass",
+        "consumer": "App H1 enriched biophilic palette pass",
         "paths": [
           "profiles.quiet-commons.colorRamps",
           "profiles.quiet-commons.colorModes",
@@ -910,7 +910,7 @@
         "id": "h2-day-cycle",
         "label": "H2 dawn/noon/dusk/night variants",
         "status": "ready",
-        "consumer": "Claude H2 day-cycle skin pass",
+        "consumer": "App H2 day-cycle skin pass",
         "paths": [
           "profiles.quiet-commons.dayCycle.variants"
         ],
@@ -967,7 +967,7 @@
         "id": "h3-motion",
         "label": "H3 nature-paced motion intents",
         "status": "ready",
-        "consumer": "Claude H3 nature-paced motion skin pass",
+        "consumer": "App H3 nature-paced motion skin pass",
         "paths": [
           "profiles.quiet-commons.motion.curves",
           "profiles.quiet-commons.motion.settleDurations",
@@ -1007,7 +1007,7 @@
         "id": "h4-value-bloom",
         "label": "H4 value-bloom colors and signed vectors",
         "status": "ready",
-        "consumer": "Claude H4 values-bloom verdict card prototype",
+        "consumer": "App H4 values-bloom verdict card prototype",
         "paths": [
           "valueBloom.themes",
           "valueBloom.signatureCoverage",
@@ -1055,7 +1055,7 @@
         "id": "h5-materiality",
         "label": "H5 paper grain and warm materiality",
         "status": "ready",
-        "consumer": "Claude H5 materiality skin pass",
+        "consumer": "App H5 materiality skin pass",
         "paths": [
           "profiles.quiet-commons.materiality.paperGrain",
           "profiles.quiet-commons.materiality.shadow",
@@ -1459,7 +1459,7 @@
       },
       "motion": {
         "status": "h3-token-substrate",
-        "consumer": "Claude H3 nature-paced motion skin pass",
+        "consumer": "App H3 nature-paced motion skin pass",
         "durationFast": 120,
         "durationBase": 150,
         "durationSlow": 150,
@@ -1753,7 +1753,7 @@
       ],
       "dayCycle": {
         "status": "h2-token-substrate",
-        "consumer": "Claude H2 day-cycle skin pass",
+        "consumer": "App H2 day-cycle skin pass",
         "defaultMode": "noon",
         "variants": {
           "dawn": {
@@ -1929,7 +1929,7 @@
       },
       "materiality": {
         "status": "h5-token-substrate",
-        "consumer": "Claude H5 materiality skin pass",
+        "consumer": "App H5 materiality skin pass",
         "paperGrain": {
           "opacity": 0.035,
           "scalePx": 180,

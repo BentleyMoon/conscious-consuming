@@ -31,7 +31,7 @@ const groups = [
       ["audit:commands", "npm scripts and docs agree"],
       ["audit:ci", "CI remains verification-only"],
       ["audit:cache-bust", "per-asset cache-busting remains history-legible"],
-      ["audit:handoff", "Claude/Codex handoff is structured"],
+      ["audit:handoff", "App/data lane handoff is structured"],
     ],
   },
   {

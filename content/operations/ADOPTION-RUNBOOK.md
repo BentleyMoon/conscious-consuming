@@ -1,6 +1,6 @@
 # Adoption event runbook
 
-This runbook records real-world gate evidence without turning tester identity or private values into project data. The strategy stays in `codex.md` §M and the existing first-user documents. This file only explains the operational record.
+This runbook records real-world gate evidence without turning tester identity or private values into project data. The strategy stays in `BUILD-PLAN.md` §M and the existing first-user documents. This file only explains the operational record.
 
 ## What counts
 
@@ -24,7 +24,7 @@ Internal work never counts: capsules, commits, builds, tests, audits, founder se
 - Pending or rejected records remain visible but never count.
 - Internal actor classes, missing evidence, unknown event types, contact-like evidence references, duplicate event IDs, or privacy flags that are not explicitly false fail the audit.
 - Multiple records for the same `subjectKey` and gate count once.
-- Crossing a threshold means the named gate fired. It does not promote unrelated claims or unlock a different territory.
+- Crossing a threshold means the named gate fired. It does not promote unrelated claims or open a different territory.
 - A negative learning receipt is still valuable external evidence. Its `claimBoundary` must preserve the negative result instead of converting it into traction.
 
 ## Current state

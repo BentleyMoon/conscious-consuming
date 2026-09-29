@@ -146,6 +146,45 @@
         }
       }
     },
+    "agents": {
+      "type": "object",
+      "description": "Optional. How an AI agent should read this commons: a plain-language summary, and a read-only Model Context Protocol server.",
+      "properties": {
+        "llms": {
+          "type": "string",
+          "format": "uri"
+        },
+        "mcp": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "transport": {
+              "type": "string"
+            },
+            "tools": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "readOnly": {
+              "type": "boolean"
+            },
+            "logsQueries": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "url",
+            "transport",
+            "tools"
+          ]
+        }
+      }
+    },
     "lenses": {
       "type": "array",
       "minItems": 1,

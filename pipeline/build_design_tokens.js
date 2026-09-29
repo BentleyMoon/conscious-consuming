@@ -324,7 +324,7 @@ function buildSkinReadiness(profiles, valueBloom, bloomProjection, cssVariableMa
     skinReadinessItem({
       id: 'h1-palette',
       label: 'H1 enriched palette and mode aliases',
-      consumer: 'Claude H1 enriched biophilic palette pass',
+      consumer: 'App H1 enriched biophilic palette pass',
       paths: [
         `profiles.${sourceProfile}.colorRamps`,
         `profiles.${sourceProfile}.colorModes`,
@@ -343,7 +343,7 @@ function buildSkinReadiness(profiles, valueBloom, bloomProjection, cssVariableMa
     skinReadinessItem({
       id: 'h2-day-cycle',
       label: 'H2 dawn/noon/dusk/night variants',
-      consumer: 'Claude H2 day-cycle skin pass',
+      consumer: 'App H2 day-cycle skin pass',
       paths: [`profiles.${sourceProfile}.dayCycle.variants`],
       evidence: {
         variants: dayCycleVariants,
@@ -358,7 +358,7 @@ function buildSkinReadiness(profiles, valueBloom, bloomProjection, cssVariableMa
     skinReadinessItem({
       id: 'h3-motion',
       label: 'H3 nature-paced motion intents',
-      consumer: 'Claude H3 nature-paced motion skin pass',
+      consumer: 'App H3 nature-paced motion skin pass',
       paths: [
         `profiles.${sourceProfile}.motion.curves`,
         `profiles.${sourceProfile}.motion.settleDurations`,
@@ -381,7 +381,7 @@ function buildSkinReadiness(profiles, valueBloom, bloomProjection, cssVariableMa
     skinReadinessItem({
       id: 'h4-value-bloom',
       label: 'H4 value-bloom colors and signed vectors',
-      consumer: 'Claude H4 values-bloom verdict card prototype',
+      consumer: 'App H4 values-bloom verdict card prototype',
       paths: [
         'valueBloom.themes',
         'valueBloom.signatureCoverage',
@@ -410,7 +410,7 @@ function buildSkinReadiness(profiles, valueBloom, bloomProjection, cssVariableMa
     skinReadinessItem({
       id: 'h5-materiality',
       label: 'H5 paper grain and warm materiality',
-      consumer: 'Claude H5 materiality skin pass',
+      consumer: 'App H5 materiality skin pass',
       paths: [
         `profiles.${sourceProfile}.materiality.paperGrain`,
         `profiles.${sourceProfile}.materiality.shadow`,
@@ -432,7 +432,7 @@ function buildSkinReadiness(profiles, valueBloom, bloomProjection, cssVariableMa
 
   return {
     status: ready === items.length ? 'substrate-ready' : 'blocked',
-    consumer: 'Claude biophilic skin pass',
+    consumer: 'App biophilic skin pass',
     sourceProfile,
     generatedFrom: [
       rel(SOURCE),
