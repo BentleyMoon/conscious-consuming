@@ -37,7 +37,7 @@ The rules are in [the standard](docs/STANDARD-v0.md), sections 1 to 3. In short:
 
 | To change | Edit | Then run |
 | --- | --- | --- |
-| A curated category (banking, AI assistants, …) | `content/lenses/<id>.json` | `python pipeline/build_datasets.py` |
+| A hand-checked category (banking, AI assistants, …) | `content/lenses/<id>.json` | `python pipeline/build_datasets.py` |
 | A guide | `content/guides/<slug>.md` | `python pipeline/build_guides.py` |
 | The engine | `app/engine.js` | `node research/engine_score_test.js` |
 | The standard | `docs/STANDARD-v0.md` | `npm run audit:standard` |

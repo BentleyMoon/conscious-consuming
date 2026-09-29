@@ -1,10 +1,10 @@
-# The Open Values Standard — v0.1
+# The Open Values Standard, v0.1
 
-*The formal protocol beneath **Values Commons**: the data contract at the heart of [the Values Layer](THE-VALUES-LAYER.md). This is not a new design — it is the **written, versioned specification of what Conscious Consuming already implies**, so a second site can share it. CC's `content/lenses/*.json`, the `app/engine.js` library, and the "You" export are the **reference implementation**. Protocol status: v0.1 (draft-but-shipping). Reference engine: `app/engine.js` v0.10. 2026-06-20; naming canon updated 2026-07-02.*
+*The formal protocol beneath **Values Commons**: the data contract at the heart of [the Values Layer](THE-VALUES-LAYER.md). This is the **written, versioned specification of what Conscious Consuming already implies**, so a second site can share it. It is not a new design. CC's `content/lenses/*.json`, the `app/engine.js` library, and the "You" export are the **reference implementation**. Protocol status: v0.1 (draft-but-shipping). Reference engine: `app/engine.js` v0.10. 2026-06-20; naming canon updated 2026-07-02.*
 
 > **Naming.** **Values Commons** is the public ecosystem. **The Open Values Standard** is this protocol. **Conscious Consuming** is the first real instance.
 
-> **Why this exists.** The substrate's keystone is one honest answer to: *"what is an entity, a criterion, a value, and a provenance?"* Everything else — the portable identity, the skinnable shells, the second instance, and the future decentralized commons — composes on this one contract. Writing it down costs little, commits to nothing irreversible, and makes CC itself cleaner today.
+> **Why this exists.** The substrate's keystone is one honest answer to: *"what is an entity, a criterion, a value, and a provenance?"* Everything else (the portable identity, the skinnable shells, the second instance, and the future decentralized commons) composes on this one contract. Writing it down costs little, commits to nothing irreversible, and makes CC itself cleaner today.
 
 > **Spec posture.** v0.1 is normative for the data shapes, invariants, and conformance rules below. The engine version is separate: the protocol changes when the contract changes; the reference engine changes when implementation primitives are added.
 
@@ -34,7 +34,7 @@ An implementation of the Open Values Standard v0.1 should be able to:
 
 ---
 
-## 1. `Criterion` — a single axis of value
+## 1. `Criterion`: a single axis of value
 
 ```jsonc
 {
@@ -46,12 +46,12 @@ An implementation of the Open Values Standard v0.1 should be able to:
 ```
 
 - **`tier`** is the trust contract:
-  - `measured` — an objective open-data fact (a Nutri-Score, a price). Shown precisely.
-  - `certified` — a third-party certification (B Corp, Fair Trade).
-  - `assessed` — a researched judgement. **Rendered as a coarse band, never a false 2-digit number**, and every claim must cite (§3).
+  - `measured`: an objective open-data fact (a Nutri-Score, a price). Shown precisely.
+  - `certified`: a third-party certification (B Corp, Fair Trade).
+  - `assessed`: a researched judgement. **Rendered as a coarse band, never a false 2-digit number**, and every claim must cite (§3).
 - **`key`** is the interoperability primitive: reusing a key (`environment`, `privacy`, `ethics`…) auto-joins an entity to the Discover facets *and* the Values theme map (§4). New keys are a deliberate act.
 
-## 2. `Entity` — a thing being weighed
+## 2. `Entity`: a thing being weighed
 
 ```jsonc
 {
@@ -67,10 +67,10 @@ An implementation of the Open Values Standard v0.1 should be able to:
 }
 ```
 
-- `scores` keys MUST be a subset of the lens's `Criterion.key`s. **A missing key means "unknown" — never 0.**
+- `scores` keys MUST be a subset of the lens's `Criterion.key`s. **A missing key means "unknown", never 0.**
 - Domain extensions are allowed as extra fields (e.g. food adds `allergens`, `allergensDeclared`); consumers ignore unknown fields.
 
-## 3. `Provenance` — how we know a score
+## 3. `Provenance`: how we know a score
 
 A provenance value is **either** a legacy plain string (a bare note) **or** a citation object:
 
@@ -88,7 +88,7 @@ A provenance value is **either** a legacy plain string (a bare note) **or** a ci
 - For any `assessed` criterion, the citation object (`note` + `source` + `asof`) is the bar. Low-controversy axes (ease, fees) may stay plain notes.
 - The engine renders an `asof`-dated **source↗** link per claim and exposes a **dispute** path. Provenance is meant to be *contested*, not trusted blindly.
 
-## 4. `Values` — the portable identity (the "Values Passport")
+## 4. `Values`: the portable identity (the "Values Passport")
 
 The standard separates the **universal passport vocabulary** from each instance's **local theme map**.
 
@@ -115,11 +115,11 @@ A person's values are local-first, user-owned, exportable, and portable across i
 - A passport's `values` map universal value ids to weights 0-5. `3` is neutral.
 - `passportApply(passport, universalToLocal, base)` projects the passport into a receiving instance's local themes, reporting carried and dropped values honestly.
 - `themeDefaults(criteria, localWeights, key2theme)` projects local theme weights onto lens criteria, producing the per-criterion weights the engine ranks by. **Set your values once; they travel everywhere.**
-- A full export is the user's whole local state (`cc.themes`, profile, saved, notes, contributions) — a file they carry, the privacy-preserving answer to "sync."
+- A full export is the user's whole local state (`cc.themes`, profile, saved, notes, contributions): a file they carry, the privacy-preserving answer to "sync."
 
-## 5. `Lens` — a domain, as a config file
+## 5. `Lens`: a domain, as a config file
 
-A lens is one ranked domain. It is *data*, not code — adding one is adding a file.
+A lens is one ranked domain. It is *data*, not code; adding one is adding a file.
 
 ```jsonc
 {
@@ -152,7 +152,7 @@ A lens is one ranked domain. It is *data*, not code — adding one is adding a f
 
 Citation-ready public lenses should use provenance objects for assessed claims. Legacy plain-string provenance remains readable for backward compatibility.
 
-## 6. The engine contract — `Ranking`
+## 6. The engine contract: `Ranking`
 
 The reference engine (`app/engine.js`) is a pure function of (entities, criteria, passport-derived weights). It returns, per entity:
 
@@ -256,12 +256,12 @@ apply to the surface.
 
 ## 10. What is *not* in v0.1 (deliberately deferred)
 
-- **The future decentralized commons layer** — contribution, signing, content-addressing, federation, governance. That is the Values-Layer L5 layer, gated on real use. v0.1 is the *read* contract; the *write/merge* contract is a later version.
+- **The future decentralized commons layer**: contribution, signing, content-addressing, federation, governance. That is the Values-Layer L5 layer, gated on real use. v0.1 is the *read* contract; the *write/merge* contract is a later version.
 - **A published validator package.** v0.1 now has repo-local JSON Schemas and a validator, but a package such as `open-values-validator` earns its place when outside implementers need it.
 - **Cross-instance trust/discovery.** How a passport decides which commons to trust is an L5 concern.
 
 ## 11. Versioning
 
-This protocol is **v0.1**. v0.1 was forced by exactly the event this section anticipated: the second instance (**Kosplora**) consumed v0 and revealed one real revision — **the value vocabulary (`THEMES` / `KEY2THEME`) must be instance-injectable, not baked into the engine** — so `themeDefaults(criteria, passport, k2t)` now takes the key→theme map as an optional parameter. See [INSTANCE-2-KOSPLORA.md](INSTANCE-2-KOSPLORA.md) §9.
+This protocol is **v0.1**. v0.1 was forced by exactly the event this section anticipated: the second instance (**Kosplora**) consumed v0 and revealed one real revision: **the value vocabulary (`THEMES` / `KEY2THEME`) must be instance-injectable, not baked into the engine**. So `themeDefaults(criteria, passport, k2t)` now takes the key→theme map as an optional parameter. See [INSTANCE-2-KOSPLORA.md](INSTANCE-2-KOSPLORA.md) §9.
 
 The reference engine is currently `VERSION: '0.11'`. 0.11 (2026-09-27) changed one behaviour: a `certified` axis no longer triggers the dealbreaker cap (§6), and an array of allergen exclusions now excludes as a Set does. The worked citation bundle was re-run under 0.11 and reproduced its ranking exactly. That implementation version can advance for engine primitives, Weave helpers, or test coverage without necessarily changing the protocol. The protocol version changes when the data contract, passport contract, or conformance requirements change. v1 is cut when more instances force more revisions. Breaking changes bump the major; the reference implementation (CC) always tracks head.

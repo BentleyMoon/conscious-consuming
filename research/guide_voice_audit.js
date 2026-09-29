@@ -203,6 +203,23 @@ function proseStringsInLine(line) {
   return out;
 }
 
+// The documents a reader meets outside the app and the site pages. The public README is kept at
+// docs/README-public.md in the working repository and published as README.md, so it is read from
+// whichever is here. The rendered docs are the ones pipeline/build_site.py publishes, read from its
+// own list so the two cannot disagree; a listed doc this checkout does not carry is not checked.
+function publicDocFiles() {
+  const out = [];
+  const add = (rel) => { if (fs.existsSync(path.join(ROOT, rel)) && !out.includes(rel)) out.push(rel); };
+  add(fs.existsSync(path.join(ROOT, 'docs', 'README-public.md')) ? 'docs/README-public.md' : 'README.md');
+  for (const rel of ['llms.txt', 'CONTRIBUTING.md', 'SECURITY.md', 'LICENSING.md', 'app/README.md', 'pipeline/README.md']) add(rel);
+  const site = fs.readFileSync(path.join(ROOT, 'pipeline', 'build_site.py'), 'utf8');
+  const listed = (site.match(/PUBLIC_DOCS\s*=\s*\[([^\]]*)\]/) || [])[1] || '';
+  for (const m of listed.matchAll(/'([A-Za-z0-9-]+)'/g)) add(`docs/${m[1]}.md`);
+  const essays = path.join(ROOT, 'content', 'essays');
+  if (fs.existsSync(essays)) for (const f of fs.readdirSync(essays).sort()) if (f.endsWith('.md')) add(`content/essays/${f}`);
+  return out;
+}
+
 function guideFiles() {
   return fs.readdirSync(GUIDES_DIR)
     .filter(name => name.endsWith('.md'))
@@ -374,6 +391,29 @@ function main() {
     }
   }
 
+  // THE DOCUMENT LANE, added 2026-09-29. The published documents (the README, llms.txt, the
+  // contribution and security notes, the docs the site renders, the two essays) held about 380
+  // em dashes and stock words while every surface around them was held to this line. They are
+  // held to it now. Code fences and inline code are not prose and are skipped.
+  let docChecks = 0;
+  const docFiles = publicDocFiles();
+  for (const rel of docFiles) {
+    let inFence = false;
+    for (const [idx, raw] of fs.readFileSync(path.join(ROOT, rel), 'utf8').split(/\r?\n/).entries()) {
+      if (/^\s*```/.test(raw)) { inFence = !inFence; continue; }
+      if (inFence) continue;
+      const line = visibleMarkdown(raw.replace(/`[^`]*`/g, ''));
+      for (const [label, re] of SITE_BANNED) {
+        docChecks += 1;
+        if (re.test(line)) failures.push(`${rel}:${idx + 1}: banned document tell (${label})`);
+      }
+      for (const [label, re] of SHAPES) {
+        docChecks += 1;
+        if (re.test(line)) failures.push(`${rel}:${idx + 1}: stock shape (${label})`);
+      }
+    }
+  }
+
   if (failures.length) {
     console.log(`  failures: ${failures.length}`);
     for (const failure of failures) console.log(`  FAIL ${failure}`);
@@ -388,6 +428,7 @@ function main() {
   console.log(`  site surfaces checked: ${SITE_FILES.length} (${siteChecks} checks)`);
   console.log(`  instance lens files checked: ${LENS_FILES.length} (${LENS_FILES.join(', ')})`);
   console.log(`  app surfaces checked: ${APP_HTML.length + APP_JS.length} (${appChecks} checks on reader-facing copy)`);
+  console.log(`  published documents checked: ${docFiles.length} (${docChecks} checks)`);
   console.log('GUIDE VOICE AUDIT PASS');
 }
 

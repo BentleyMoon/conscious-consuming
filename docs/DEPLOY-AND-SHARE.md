@@ -1,4 +1,4 @@
-# Deploy & share — the whole standard, one deploy
+# Deploy & share: the whole standard, one deploy
 
 > **Status 2026-07-02.** The project is now a root Values Commons home plus the static app, instances, tour,
 > organizing tools, funder path, and rendered docs. `npm run build` packages them into a clean, Cloudflare-ready
@@ -45,18 +45,18 @@ npm run verify          # core local gate; pulse drift warns here
 npm run verify:full     # health gate before sharing a preview or deploy
 ```
 
-`dist/` contains **one site, sorted by path** (no subdomains — one story, one drag):
+`dist/` contains **one site, sorted by path** (no subdomains: one story, one drag):
 
 | Path | What |
 |------|------|
-| `/` | **Values Commons** — the home / front door |
-| `/app/` | **Conscious Consuming** — instance #1, the flagship |
+| `/` | **Values Commons**: the home / front door |
+| `/app/` | **Conscious Consuming**: instance #1, the flagship |
 | `/kosplora/` · `/instances/messages/` | instances #2 and #3 |
-| `/standard/` | **Open Values Standard** — protocol/specification front door |
-| `/passport/` | **Values Passport** — the portable-values explainer |
-| `/instances/` | **Instances** — live proofs and instance #4 creation path |
-| `/contribute/` | **Contribute** — fact, lens, spec, instance, and funding paths |
-| `/weave/` | **The Weave** — relationships, alternatives, ownership, and analogies |
+| `/standard/` | **Open Values Standard**: protocol/specification front door |
+| `/passport/` | **Values Passport**: the portable-values explainer |
+| `/instances/` | **Instances**: live proofs and instance #4 creation path |
+| `/contribute/` | **Contribute**: fact, lens, spec, instance, and funding paths |
+| `/weave/` | **The Weave**: relationships, alternatives, ownership, and analogies |
 | `/tour/` | the two-minute proof path |
 | `/assembly/` · `/workshop/` · `/slate/` | the organizing tools (values · facts · action) |
 | `/funders/` | private-review and funder credibility path |
@@ -157,7 +157,7 @@ deploy health gate, `dist/release-preflight-check.json`, and a final durable sta
 The `npm run wrangler:dry-run` command uses the same guard before
 asking Wrangler for a dry run.
 
-## 2 · Host — pick one
+## 2 · Host: pick one
 
 1. **Cloudflare Git deploy - production.** The GitHub-connected Worker should use:
    - Build command: `npm run prepare:public`
@@ -166,42 +166,42 @@ asking Wrangler for a dry run.
    - Config source: `wrangler.toml` (`dist/` assets, custom domains for `valuescommons.org`, `www.valuescommons.org`, and Conscious Consuming aliases)
    - Add a Cloudflare Redirect Rule for `openvaluesstandard.org` to `https://valuescommons.org/standard/` until a host-aware Worker script exists.
    - Before any manual production upload, run `npm run audit:deploy`.
-2. **Netlify Drop — quick private preview.** Go to
+2. **Netlify Drop: quick private preview.** Go to
    [app.netlify.com/drop](https://app.netlify.com/drop) and drag the **`dist/` folder** onto the page. You get a
    live HTTPS URL immediately; use `npm run build:preview` first so the noindex config applies. Send *that URL* to the grant reviewers.
    The random `*.netlify.app` name is effectively unlisted, and noindex keeps it off search engines.
-3. **Cloudflare Pages + Access — if you want to restrict to named people.** Free tier: upload `dist/`, then add a
+3. **Cloudflare Pages + Access: if you want to restrict to named people.** Free tier: upload `dist/`, then add a
    Cloudflare **Access** policy allowing only the reviewers' email addresses. True gating; a little more setup.
-4. **GitHub Pages — skip for now.** Needs a public repo (or a paid plan for private) and adds more friction than
+4. **GitHub Pages: skip for now.** Needs a public repo (or a paid plan for private) and adds more friction than
    the Cloudflare Worker path.
 
 Any of them gives **HTTPS**, which makes Conscious Consuming **installable + fully offline** via its service
-worker — a nice thing to demo on a phone.
+worker, a nice thing to demo on a phone.
 
-## 3 · Domain — optional for the grant; here's how to think about it
+## 3 · Domain: optional for the grant, and how to think about it
 
 **Serve everything under ONE domain** (root = the Values Commons home, CC at `/app`). Don't split instances into
-separate domains yet — it fragments the story and multiplies DNS setup. The whole point of the home is that the
+separate domains yet; it fragments the story and multiplies DNS setup. The whole point of the home is that the
 *commons* is the thing; the standard is the protocol underneath it, and the instances hang off both.
 
-- **You don't strictly need a custom domain for the grant preview** — a `*.netlify.app` URL is fine and free.
+- **You don't strictly need a custom domain for the grant preview**: a `*.netlify.app` URL is fine and free.
 - **Use `valuescommons.org` as the main home.** It names the public ecosystem and best fits the home-first story.
 - **Use `openvaluesstandard.org` as the spec citation domain.** Every schema `$id` lives under `https://openvaluesstandard.org/schema/`, and the schemas `$ref` one another by those addresses, so the domain must serve `/schema/*` rather than redirect it. `worker.js` already does: it serves each schema at its `$id` path and sends every other path to `https://valuescommons.org/standard/`. To switch it on, delete the Redirect Rule for the domain and add it to `wrangler.toml` as a Custom Domain like the others.
 - **`consciousconsuming.org` is the app's own front door.** `worker.js` serves Conscious Consuming at its root and sends old `/app/*` links there with a 301. The canonical address of every app page stays `https://valuescommons.org/app/…`, so search engines index one copy.
 
 ### 3a · Cloudflare host → domain allocation (the concrete map)
 
-**One model:** *one* `dist/` build, *one* Cloudflare Worker, *many* hostnames — some **serve** the bundle, the rest **301-redirect** into it. No second project, no per-instance subdomains.
+**One model:** *one* `dist/` build, *one* Cloudflare Worker, *many* hostnames. Some **serve** the bundle, the rest **301-redirect** into it. No second project, no per-instance subdomains.
 
 | Domain | Role | Cloudflare mechanism |
 |---|---|---|
-| `valuescommons.org` (+ `www`) | **Canonical home** — `/` = Values Commons, `/app` = Conscious Consuming | **Custom Domain** on the Worker (already in `wrangler.toml`) |
+| `valuescommons.org` (+ `www`) | **Canonical home**: `/` = Values Commons, `/app` = Conscious Consuming | **Custom Domain** on the Worker (already in `wrangler.toml`) |
 | `consciousconsuming.org` (+ `www`) | The app **at its root**: `worker.js` rewrites `/` to `/app/`, 301s `/app/*` to the clean path, and 301s ecosystem sections to `valuescommons.org`. Canonical tags still name `valuescommons.org/app/` | **Custom Domain** (already in `wrangler.toml`) |
 | `valuescommons.com` | Alias | **Redirect Rule** → `https://valuescommons.org/$1` (301, preserve path) |
 | `openvaluesstandard.org` | Spec citation: `/schema/*` serves the JSON Schemas at their `$id` paths, everything else 301s to `https://valuescommons.org/standard/` | **Custom Domain** on the Worker (replace the old Redirect Rule, which would run first and redirect the schema paths too) |
 | `consciousconsuming.net` (if held) | Legacy alias | **Redirect Rule** → `https://consciousconsuming.org/$1` |
 
-**Canonical is a build-time decision, not just a DNS one.** The site base baked into every share-card, `og:*`, sitemap, and `<link rel=canonical>` must be exactly one home. `npm run build` defaults to `https://valuescommons.org/app`; keep it that way so the baked links match the canonical host. (To lead with the Conscious Consuming brand instead, build with `CC_SITE_BASE=https://consciousconsuming.org/app` and point the redirects the other way.)
+**Canonical is a build-time decision as well as a DNS one.** The site base baked into every share-card, `og:*`, sitemap, and `<link rel=canonical>` must be exactly one home. `npm run build` defaults to `https://valuescommons.org/app`; keep it that way so the baked links match the canonical host. (To lead with the Conscious Consuming brand instead, build with `CC_SITE_BASE=https://consciousconsuming.org/app` and point the redirects the other way.)
 
 **Setup, per domain:**
 1. **Nameservers → Cloudflare** (registrar → the two NS Cloudflare assigns). Wait for the zone to read *Active*.
@@ -209,13 +209,13 @@ separate domains yet — it fragments the story and multiplies DNS setup. The wh
 3. **Redirect domains** (`valuescommons.com`, `openvaluesstandard.org`, `.net`): do **not** add to `wrangler.toml`. In each zone, add one **proxied** placeholder DNS record (e.g. `AAAA @ 100::`, orange-cloud) so traffic hits the edge, then **Rules → Redirect Rules → Create** matching the hostname → 301 to the target above. For `.com`, use a dynamic redirect `concat("https://valuescommons.org", http.request.uri.path)` to preserve the path.
 4. **SSL/TLS = Full (strict)**, **Always Use HTTPS = On**. Optional: a `www → apex` redirect so the apex stays canonical.
 
-Keep the Worker (don't switch to Pages) — it's already wired; Pages would just mean re-doing the custom-domain bindings.
+Keep the Worker (don't switch to Pages): it's already wired; Pages would just mean re-doing the custom-domain bindings.
 
-## 4 · After the grant — going public
+## 4 · After the grant: going public
 
 `npm run build` is the public path: it sets `CC_SITE_BASE=https://valuescommons.org/app` unless overridden,
-rebuilds cards and guides, emits public robots, and packages the Cloudflare-safe `dist/`. The privacy promise is unchanged either way
-— a static host serves files; it cannot see what anyone does with them.
+rebuilds cards and guides, emits public robots, and packages the Cloudflare-safe `dist/`. The privacy promise is unchanged either way:
+a static host serves files; it cannot see what anyone does with them.
 
 ## 5 · Then: invite, don't launch (Phase B)
 

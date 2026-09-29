@@ -1,8 +1,8 @@
 # Guide Production Playbook
 
-> How to make a Conscious Consuming curated guide that's genuinely useful, fully sourced, calm, and **repeatable**. Proven on the first guide ([plant-based-milk](guides/plant-based-milk.md)); this is the process to repeat for guides #2–5.
+> How to make a Conscious Consuming hand-checked guide that's genuinely useful, fully sourced, calm, and **repeatable**. Proven on the first guide ([plant-based-milk](guides/plant-based-milk.md)); this is the process to repeat for guides #2–5.
 
-The whole point of a guide: help someone make a values-aligned choice in a few minutes, by laying out **honest trade-offs** and letting *them* weigh what matters — never by declaring a single winner or selling a brand.
+The whole point of a guide: help someone make a values-aligned choice in a few minutes, by laying out **honest trade-offs** and letting *them* weigh what matters, never by declaring a single winner or selling a brand.
 
 ---
 
@@ -19,15 +19,15 @@ The whole point of a guide: help someone make a values-aligned choice in a few m
 
 ## The template (section by section)
 
-- **Title** — "Choosing a [thing], honestly" (calm, not clickbait).
-- **Opening** — name the truth that there's no single best; promise trade-offs, not a verdict.
-- **The honest one-paragraph answer** — the TL;DR a busy person can act on.
-- **Weigh what you care about** — one short block per value axis, each with its sourced fact and the real trade-off.
-- **Quick picks — "if you care most about…"** — a table mapping a priority → a choice → why. Include an explicit "there is no 'best overall'" line.
-- **How to read the [label/package]** — a 30-second practical checklist.
-- **What we're *not* telling you** — taste is personal; averages ≠ specific products; what we deliberately don't score yet (e.g. cost); defer to professionals on safety-critical calls.
-- **How we made this** — the no-money-from-brands disclosure, the sources relied on, and the correction invite.
-- **Sources** — full list with links.
+- **Title**: "Choosing a [thing], honestly" (calm, not clickbait).
+- **Opening**: name the truth that there's no single best; promise trade-offs, not a verdict.
+- **The honest one-paragraph answer**: the TL;DR a busy person can act on.
+- **Weigh what you care about**: one short block per value axis, each with its sourced fact and the real trade-off.
+- **Quick picks, "if you care most about…"**: a table mapping a priority → a choice → why. Include an explicit "there is no 'best overall'" line.
+- **How to read the [label/package]**: a 30-second practical checklist.
+- **What we're *not* telling you**: taste is personal; averages ≠ specific products; what we deliberately don't score yet (e.g. cost); defer to professionals on safety-critical calls.
+- **How we made this**: the no-money-from-brands disclosure, the sources relied on, and the correction invite.
+- **Sources**: full list with links.
 
 ---
 
@@ -36,7 +36,7 @@ The whole point of a guide: help someone make a values-aligned choice in a few m
 - **Calm, warm, plain.** Second person. No urgency, no hype, no fear.
 - **Never salesy. Never sponsored.** State plainly that no brand pays us.
 - **Admit uncertainty out loud.** "We don't know" and "it depends" are features.
-- **Respect the reader's values** — present trade-offs; don't moralize or pick for them.
+- **Respect the reader's values**: present trade-offs; don't moralize or pick for them.
 - **Safety-critical = defer.** Allergies, infant nutrition, medical needs → point to the physical label and a professional.
 
 ---
@@ -56,7 +56,7 @@ The whole point of a guide: help someone make a values-aligned choice in a few m
 
 ## Pipeline (first five guides)
 
-1. ✅ Plant-based milk *(done — R&D-1.3)*
+1. ✅ Plant-based milk *(done, R&D-1.3)*
 2. Breakfast cereal *(strong data; high "hidden sugar / processing" value story)*
 3. — *(pick from audited categories)*
 4. —

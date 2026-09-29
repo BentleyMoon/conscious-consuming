@@ -5,14 +5,14 @@
 ## Current state
 
 - Live categories: 85 built datasets across 9 domains.
-- Live entries: 24,585 generated app-data entries, including open-data food/beauty and curated lenses.
+- Live entries: 24,585 generated app-data entries, including open-data food/beauty and hand-checked lenses.
 - Guides: 97 source guides; all 97 are published.
 - Share/verdict cards in the app build: 2,883 plus the gallery page.
 - Verification gate: `node research/verify_run.js` currently ends with `ALL CHECKS PASS`.
 - Evidence gate: `node research/evidence_audit.js` currently reports `20058/20058` curated claims sourced. `banking` remains the read-only reference category and is owned by the app lane.
 - Content readiness gate: `npm run audit:content` reports 63 generated/open-data categories steady, 21 of 22 curated lenses presentation-ready, no honest-floor or guide queue, and one design-owned banking focus-label polish item.
 
-The older "thin lens" backlog is obsolete. Curated categories are no longer 7-14 item sketches; the smallest live rosters are now `banking` 25 (design-owned), `dish-soap` 52, `hair-conditioner` 59, `music-streaming` 61, `laptops` 68, `phones` 70, `razors` 75, `vpn` 77, `face-wash` 80, `investing`/`payments` 81, and `clothing`/`paper-goods`/`period-products` 82. Major additions should therefore improve first-user recognition, demo usefulness, freshness, and source quality, not simply inflate counts.
+The older "thin lens" backlog is obsolete. Hand-checked categories are no longer 7-14 item sketches; the smallest live rosters are now `banking` 25 (design-owned), `dish-soap` 52, `hair-conditioner` 59, `music-streaming` 61, `laptops` 68, `phones` 70, `razors` 75, `vpn` 77, `face-wash` 80, `investing`/`payments` 81, and `clothing`/`paper-goods`/`period-products` 82. Major additions should therefore improve first-user recognition, demo usefulness, freshness, and source quality, not simply inflate counts.
 
 ## R&D correction after the 15-part expansion
 
@@ -38,10 +38,10 @@ The 2026-06-27 critique changed the operating system for content work:
 
 ## Rules for the next content rounds
 
-1. Work in small batches: 1-2 curated lenses, one guide cluster, or one generated-data category family per round.
+1. Work in small batches: 1-2 hand-checked lenses, one guide cluster, or one generated-data category family per round.
 2. Start with a stop/go audit. If no concrete first-user, preview, source-quality, or publishability gap is visible, do a critique pass instead of adding content.
 3. Add entries only when they make the category more recognizable to a normal user, fill a clear values niche, preserve an honest floor, or improve a real demo/task.
-4. Every new or edited curated score gets object provenance: `{ "note": "...", "source": "https://...", "asof": "2026-09" }`, with `asof` dated at least to the month (a year alone keeps the verdict page out of search).
+4. Every new or edited hand-checked score gets object provenance: `{ "note": "...", "source": "https://...", "asof": "2026-09" }`, with `asof` dated at least to the month (a year alone keeps the verdict page out of search).
 5. Use current primary or near-primary sources when the fact may have changed: official policy pages, annual/sustainability reports, methodology pages, certifications, ToS/privacy policies, regulator actions, and reputable nonprofit scorecards.
 6. Preserve the honest floor. If adding high-scoring alternatives, also make sure the mainstream option people already use is present and sourced.
 7. Do not add new categories unless a category is launch-critical or user-demanded. Breadth is now demand-driven.

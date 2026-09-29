@@ -22,7 +22,7 @@ Current working state:
 - **24,228 entries**, including open-data food and beauty products plus hand-checked comparisons for choices such as banking, investing, AI assistants, payments, VPNs, clothing, news, and causes.
 - **108 guides** and **3,458 shareable comparison pages**.
 - **An honest sourcing count**: 6,033 of those entries rest on more than one independent source domain; the rest rest on one, often the seller's own site. The gap is published, not hidden.
-- **100% curated evidence coverage** by the app's evidence meter: shown facts are measured, certified, cited, or clearly marked as low-stakes convenience notes.
+- **100% hand-checked evidence coverage** by the app's evidence meter: shown facts are measured, certified, cited, or clearly marked as low-stakes convenience notes.
 - Static, local-first, installable, and offline-capable. Values and saved choices live on the user's own device.
 
 **The larger public good is Values Commons.** It is a commons for values, not one common set of values: people bring their own priorities, inspect the evidence, and fork the decision process instead of surrendering it to a platform.

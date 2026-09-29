@@ -8,10 +8,10 @@
 
 | Layer | File | Who owns it | You edit it? |
 |------|------|-------------|--------------|
-| **L1 — the engine** (the math: scoring, bands, the verdict, the passport) | [`app/engine.js`](../app/engine.js) | the Open Values Standard | **No.** Never. It is shared and unedited across every instance. |
-| **L2 — the shell** (the experience: live ranking, sliders, the detail/verdict view, passport import) | [`app/shell.js`](../app/shell.js) | the Open Values Standard | **No.** Shared, unedited. |
-| **L3 — the skin** (colours, type, layout) | your `index.html` `<style>` | **you** | Yes — make it look like nothing else. |
-| **The lens / manifest** (your domain: entities, criteria, value vocabulary, the passport map) | your `lens.js` | **you** | Yes — this *is* your instance. |
+| **L1: the engine** (the math: scoring, bands, the verdict, the passport) | [`app/engine.js`](../app/engine.js) | the Open Values Standard | **No.** Never. It is shared and unedited across every instance. |
+| **L2: the shell** (the experience: live ranking, sliders, the detail/verdict view, passport import) | [`app/shell.js`](../app/shell.js) | the Open Values Standard | **No.** Shared, unedited. |
+| **L3: the skin** (colours, type, layout) | your `index.html` `<style>` | **you** | Yes. Make it look like nothing else. |
+| **The lens / manifest** (your domain: entities, criteria, value vocabulary, the passport map) | your `lens.js` | **you** | Yes. This *is* your instance. |
 
 An **instance = a manifest (`lens.js`) + a skin (an `index.html`) + three `<script>` tags.** Nothing more.
 
@@ -33,7 +33,7 @@ Before you write code, fill this in. A good instance starts as a scoped public d
 If the brief is still fuzzy, do not start with a custom interface. Start with the lens: options, criteria, source notes,
 and the passport bridge. The skin can come after the decision is clear.
 
-## Step 1 — write your manifest (`lens.js`)
+## Step 1: write your manifest (`lens.js`)
 
 It assigns one global, `window.OVS_LENS`:
 
@@ -75,7 +75,7 @@ window.OVS_LENS = {
 
 Those are the fields the shared shell reads: `meta`, `criteria`, `themes`, `key2theme`, `universalToLocal`, and `resources`.
 
-## Step 2 — write your skin (`index.html`)
+## Step 2: write your skin (`index.html`)
 
 Copy any existing instance's `index.html` as a starting point ([Kosplora](../kosplora/index.html) or
 [Where to Message](../instances/messages/index.html)), change the `<style>` to taste, keep these mount points,
@@ -100,7 +100,7 @@ and end with the three script tags:
 
 (Adjust the `../app/…` paths to wherever you place your folder relative to `app/`.)
 
-## Step 3 — open it
+## Step 3: open it
 
 Serve the folder over any static host (or open it through a local server so the `../app/*.js` paths resolve).
 There is no build step, no backend, no account, no key. It runs from a flash drive.
@@ -108,10 +108,10 @@ There is no build step, no backend, no account, no key. It runs from a flash dri
 ## What you get for free, by doing nothing
 
 - **Live re-ranking** as the visitor moves the sliders (with a smooth FLIP animation).
-- **A transparent verdict view** per entity — the decisive reason, every axis banded, the math shown.
-- **Confidence withholding** — below 25% coverage of a visitor's weighted axes, the engine declines to fake a score.
-- **The non-compensatory veto** — an axis a visitor weights heavily that scores catastrophically low caps the fit. A `certified` axis cannot cap, because a missing certificate is not evidence of harm: if one of your axes is a label check, give it that tier.
-- **Portable values** — a visitor can import an Open Values Passport exported from *any other instance*, and the
+- **A transparent verdict view** per entity: the decisive reason, every axis banded, the math shown.
+- **Confidence withholding**: below 25% coverage of a visitor's weighted axes, the engine declines to fake a score.
+- **The non-compensatory veto**: an axis a visitor weights heavily that scores catastrophically low caps the fit. A `certified` axis cannot cap, because a missing certificate is not evidence of harm: if one of your axes is a label check, give it that tier.
+- **Portable values**: a visitor can import an Open Values Passport exported from *any other instance*, and the
   values that span both domains carry over. Your instance is born federated.
 
 ## Before you share it publicly
@@ -136,10 +136,10 @@ you send the URL:
 ## The rules of the standard (so instances stay trustworthy)
 
 1. **Never edit `engine.js` or `shell.js`.** If your domain needs something they can't express, that is a
-   proposal to the *standard* (open an issue / fork the core for everyone) — not a private patch. A private
+   proposal to the *standard* (open an issue / fork the core for everyone), not a private patch. A private
    patch is how a standard dies.
 2. **Show your sources.** Use `provenance` honestly; mark `tier:'measured'` only for facts.
-3. **No pay-to-rank, no ads, no tracking, no account.** The visitor's values decide the order — nothing else.
+3. **No pay-to-rank, no ads, no tracking, no account.** The visitor's values decide the order; nothing else does.
    This is the one line that, if crossed, makes it not an instance of *this* standard.
 
 Build the next app when the decision and starter facts are ready. You do not need permission.
