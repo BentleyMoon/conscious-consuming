@@ -133,6 +133,22 @@ else:
         sys.exit('Refusing to --write without the private-name list. Create it (see the comment above).')
 PRIVATE_WORDS = re.compile('|'.join('(?:%s)' % w for w in private_words) or r'(?!)', re.I)
 GENERIC = re.compile('|'.join('(?:%s)' % w for w in GENERIC_WORDS), re.I)
+# A PUBLISHED COMMAND MUST NOT POINT AT AN UNPUBLISHED FILE. package.json is published, and a
+# script entry that runs a held-back file would fail for every reader who tries it, so such entries
+# are dropped from the published copy. Nothing else in the file changes. The privacy read below
+# reads the published form, because that is what leaves the building.
+def published_bytes(rel, raw, held_paths):
+    if rel != 'package.json':
+        return raw
+    import json
+    pkg = json.loads(raw.decode('utf-8'))
+    scripts = pkg.get('scripts') or {}
+    for name in list(scripts):
+        command = scripts[name].replace(chr(92), '/')
+        if any(h in command for h in held_paths if '/' in h):
+            del scripts[name]
+    return (json.dumps(pkg, indent=2, ensure_ascii=False) + '\n').encode('utf-8')
+
 DATA_PREFIXES = ('app/data/', 'content/lenses/', 'content/lenses-pending/', 'pipeline/raw', 'pipeline/prices/')
 leaks = []
 for rel in copy:
@@ -140,7 +156,7 @@ for rel in copy:
     if os.path.getsize(path) > 4_000_000:
         continue
     try:
-        text = io.open(path, encoding='utf-8').read()
+        text = published_bytes(rel, open(path, 'rb').read(), set(skipped)).decode('utf-8')
     except Exception:
         continue
     matches = list(PRIVATE_WORDS.finditer(text))
@@ -180,27 +196,12 @@ for rel in sorted(subprocess.run(['git', 'ls-files'], cwd=PUB, capture_output=Tr
         if os.path.isfile(p):
             os.remove(p)
 
-# A PUBLISHED COMMAND MUST NOT POINT AT AN UNPUBLISHED FILE. package.json is published, and a
-# script entry that runs a held-back file would fail for every reader who tries it, so such entries
-# are dropped from the published copy. Nothing else in the file changes.
 held_paths = set(skipped)
-def published_bytes(rel, raw):
-    if rel != 'package.json':
-        return raw
-    import json
-    pkg = json.loads(raw.decode('utf-8'))
-    scripts = pkg.get('scripts') or {}
-    for name in list(scripts):
-        command = scripts[name].replace(chr(92), '/')
-        if any(h in command for h in held_paths if '/' in h):
-            del scripts[name]
-    return (json.dumps(pkg, indent=2, ensure_ascii=False) + '\n').encode('utf-8')
-
 written = 0
 for rel in copy:
     src, dst = os.path.join(PRIV, rel), os.path.join(PUB, RENAME.get(rel, rel))
     os.makedirs(os.path.dirname(dst), exist_ok=True)
-    data = published_bytes(rel, open(src, 'rb').read())
+    data = published_bytes(rel, open(src, 'rb').read(), held_paths)
     if os.path.isfile(dst) and open(dst, 'rb').read() == data:
         continue
     if data == open(src, 'rb').read():
