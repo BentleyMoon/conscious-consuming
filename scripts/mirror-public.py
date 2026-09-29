@@ -118,7 +118,7 @@ GENERIC_WORDS = [
     r'\b[A-Za-z]:[\\/]+Users[\\/]+[^\\/\s"\']+',
     r'(?<![\w.])/Users/[A-Za-z0-9._-]+/',
     r'(?<![\w.])/home/[a-z][a-z0-9._-]*/',
-    r'\b[A-Za-z0-9._%+-]+@(?:gmail|googlemail|outlook|hotmail|live|icloud|me|yahoo|proton|protonmail)\.[a-z.]+',
+    r'\b[A-Za-z0-9._%+-]+@(?:gmail|googlemail|outlook|hotmail|live|icloud|me|yahoo|proton|protonmail)\.(?:[a-z]+\.)*[a-z]+',
 ]
 WORDS_FILE = os.path.join(PRIV, '.mirror-private-words')
 private_words = []
