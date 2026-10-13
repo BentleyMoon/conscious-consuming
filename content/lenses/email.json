@@ -7,7 +7,7 @@
     "tradeoff": ["accessibility", "privacy"],
     "tradeoffLabels": ["easiest", "most private"],
     "source": "Conscious Consuming (curated)",
-    "attribution": "Built from providers' own encryption and privacy documentation, source repositories where published, and pricing pages, not measured data. Email policies and defaults change, so check the current documentation yourself before relying on any of these. Privacy reflects whether the provider can read the contents of an ordinary email, not just whether the connection is encrypted in transit; openness reflects whether client or server code is published and under what licence; portability reflects whether a mailbox uses IMAP or another standard protocol that lets a person move to another provider or client without losing mail; respect reflects whether the business model runs on advertising or reading message content rather than a subscription or donations; accessibility covers how easy a mailbox is to set up and use, including with ordinary mail apps. Compared here are mailbox services a person sends and receives mail from. Alias and forwarding services (SimpleLogin, addy.io, Firefox Relay, DuckDuckGo Email Protection, Hide My Email), separate mail client apps (Thunderbird, K-9 Mail, FairEmail), Delta Chat, and mailbox reputation or blacklist checkers do a different job and are not compared here. Suggest changes via Contribute.",
+    "attribution": "Built from providers' own encryption and privacy documentation, source repositories where published, pricing pages, and, where cited, Ethical Consumer's independent email guide and regulator records, not measured data. Email policies and defaults change, so check the current documentation yourself before relying on any of these. Privacy reflects whether the provider can read the contents of an ordinary email, not just whether the connection is encrypted in transit; openness reflects whether client or server code is published and under what licence; portability reflects whether a mailbox uses IMAP or another standard protocol that lets a person move to another provider or client without losing mail; respect reflects whether the business model runs on advertising or reading message content rather than a subscription or donations; accessibility covers how easy a mailbox is to set up and use, including with ordinary mail apps. Compared here are mailbox services a person sends and receives mail from. Alias and forwarding services (SimpleLogin, addy.io, Firefox Relay, DuckDuckGo Email Protection, Hide My Email), separate mail client apps (Thunderbird, K-9 Mail, FairEmail), Delta Chat, and mailbox reputation or blacklist checkers do a different job and are not compared here. Suggest changes via Contribute.",
     "allergens": false,
     "presets": {
       "Balanced": {
@@ -343,6 +343,318 @@
       "price": { "tier": "freemium" },
       "description": "A Belgian privacy-mail suite operated by ContactOffice Group, with a free entry tier, a no-ad stance and PGP-based encryption, balanced by proprietary hosting and export limits on the free tier.",
       "focuses": ["No ads", "Encrypted", "Portable", "Freemium"]
+    },
+    {
+      "code": "hey",
+      "name": "HEY",
+      "brand": "37signals",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 60, "openness": 20, "portability": 48, "respect": 88, "accessibility": 70, "economical": 45 },
+      "provenance": {
+        "privacy": {"note": "HEY's FAQ says the email database is encrypted at rest, but that 'HEY is not end-to-end encrypted (we still hold the keys)'; staff decryption is logged and reviewed weekly by a separate team.", "source": "https://www.hey.com/faqs/", "asof": "2026-10"},
+        "openness": {"note": "HEY only works through its own web, Mac, Windows, iOS and Android apps; its FAQ says off-the-shelf third-party email apps won't work with it, and HEY's pages describe no published source code.", "source": "https://www.hey.com/faqs/", "asof": "2026-10"},
+        "portability": {"note": "HEY's FAQ says 'HEY doesn't support IMAP or POP' and does not import old mail, but a user can export all mail as an MBOX file and contacts as a vCard at any time, and paid users can forward their address elsewhere forever.", "source": "https://www.hey.com/faqs/", "asof": "2026-10"},
+        "respect": {"note": "The 37signals privacy policy, updated September 2026, says 'We never sell your data', that no human looks at content except with express permission, and that its products do not use customer content to train AI models.", "source": "https://37signals.com/policies/privacy", "asof": "2026-10"},
+        "accessibility": {"note": "HEY has polished apps on every major platform and a 30-day trial with no card required, but no free plan, no IMAP for ordinary mail apps, and a deliberately different screen-first workflow.", "source": "https://www.hey.com/pricing/", "asof": "2026-10"},
+        "economical": {"note": "HEY for You costs 99 US dollars a year, billed annually only; HEY for Domains is 12 dollars per user a month, and a family plan for up to five people is 179 dollars a year.", "source": "https://www.hey.com/pricing/", "asof": "2026-10"}
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.hey.com/" },
+        { "label": "FAQ", "url": "https://www.hey.com/faqs/" },
+        { "label": "Pricing", "url": "https://www.hey.com/pricing/" },
+        { "label": "Privacy", "url": "https://37signals.com/policies/privacy" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "paid$" },
+      "description": "A paid, ad-free mailbox from the makers of Basecamp that screens first-time senders, but holds the encryption keys, works only in its own apps with no IMAP, and has no free tier.",
+      "focuses": ["Paid", "No ads", "Closed source"]
+    },
+    {
+      "code": "gmx-mail",
+      "name": "GMX Mail",
+      "brand": "1&1 Mail & Media",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 40, "openness": 22, "portability": 70, "respect": 30, "accessibility": 84, "economical": 100 },
+      "provenance": {
+        "privacy": {"note": "GMX's privacy policy says inventory and content data are used for analyses to optimize products if a user has given consent, and points users to settings for interest-based advertising; mail is not end-to-end encrypted unless a user opts in to PGP.", "source": "https://www.gmx.com/company/privacypolicy/", "asof": "2026-10"},
+        "openness": {"note": "GMX is a proprietary hosted service run by 1&1 Mail & Media GmbH; its optional encryption uses the open OpenPGP standard through the Mailvelope browser extension.", "source": "https://www.gmx.com/security/encryption/", "asof": "2026-10"},
+        "portability": {"note": "GMX's help centre publishes IMAP and SMTP server settings (imap.gmx.com, port 993) for syncing a GMX mailbox with third-party mail programs such as Thunderbird, Outlook and Apple Mail.", "source": "https://support.gmx.com/pop-imap/imap/server.html", "asof": "2026-10"},
+        "respect": {"note": "GMX's privacy policy describes interest-based online advertising on the free service, which users have to revoke through its permission settings.", "source": "https://www.gmx.com/company/privacypolicy/", "asof": "2026-10"},
+        "accessibility": {"note": "GMX offers a free account with 65 GB of email storage, up to 10 alias addresses, 50 MB attachments and mobile apps for Android and iOS.", "source": "https://www.gmx.com/mail/", "asof": "2026-10"},
+        "economical": {"note": "The basic GMX mailbox is free, with 65 GB of email storage.", "source": "https://www.gmx.com/mail/", "asof": "2026-10"}
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.gmx.com/mail/" },
+        { "label": "Privacy", "url": "https://www.gmx.com/company/privacypolicy/" },
+        { "label": "Encryption", "url": "https://www.gmx.com/security/encryption/" },
+        { "label": "IMAP settings", "url": "https://support.gmx.com/pop-imap/imap/server.html" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "A large free German-run mailbox with generous storage and standard IMAP access, funded by advertising, with optional PGP encryption through a browser extension rather than by default.",
+      "focuses": ["Free", "Ads", "Closed source", "Portable"]
+    },
+    {
+      "code": "aol-mail",
+      "name": "AOL Mail",
+      "brand": "AOL (Bending Spoons)",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 30, "openness": 20, "portability": 62, "respect": 22, "accessibility": 80, "economical": 100 },
+      "provenance": {
+        "privacy": {"note": "AOL's privacy policy, updated September 2026, lists 'the content of incoming and outgoing emails and attachments' among the data it processes for smart email features such as automatically identifying travel bookings, on the basis of consent or legitimate interest depending on jurisdiction.", "source": "https://legal.aol.com/privacy/index.html", "asof": "2026-10"},
+        "openness": {"note": "AOL Mail is a proprietary hosted service from AOL Media LLC; Bending Spoons lists AOL among the companies it acquired, in January 2026.", "source": "https://bendingspoons.com/", "asof": "2026-10"},
+        "portability": {"note": "AOL Help publishes a guide to using POP or IMAP to sync AOL Mail on a third-party app or download a copy of a mailbox.", "source": "https://help.aol.com/articles/how-do-i-use-other-email-applications-to-send-and-receive-my-aol-mail", "asof": "2026-10"},
+        "respect": {"note": "AOL's privacy policy says it processes data to show personalized advertising, including by installing third-party tracking technologies, and shares data with advertising networks.", "source": "https://legal.aol.com/privacy/index.html", "asof": "2026-10"},
+        "accessibility": {"note": "AOL Mail is free, with web access, an iOS and Android app, support in over 70 languages and phone experts available around the clock.", "source": "https://mail.aol.com/", "asof": "2026-10"},
+        "economical": {"note": "AOL says it is quick and easy to sign up for a free AOL account that includes AOL Mail.", "source": "https://mail.aol.com/", "asof": "2026-10"}
+      },
+      "links": [
+        { "label": "Website", "url": "https://mail.aol.com/" },
+        { "label": "Privacy", "url": "https://legal.aol.com/privacy/index.html" },
+        { "label": "POP and IMAP", "url": "https://help.aol.com/articles/how-do-i-use-other-email-applications-to-send-and-receive-my-aol-mail" },
+        { "label": "Ethical Consumer email guide", "url": "https://www.ethicalconsumer.org/technology/shopping-guide/ethical-email-providers" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "A long-running free mailbox, now owned by Bending Spoons, that supports IMAP but whose privacy policy covers processing email content for smart features and tracking-based personalized advertising.",
+      "focuses": ["Free", "Ads", "Closed source", "Portable"]
+    },
+    {
+      "code": "infomaniak-mail",
+      "name": "Infomaniak Mail",
+      "brand": "Infomaniak",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 78, "openness": 58, "portability": 80, "respect": 88, "accessibility": 78, "economical": 95 },
+      "provenance": {
+        "privacy": {"note": "Infomaniak's guide says optional encryption, switched on per message, encrypts mail and attachments on its servers with OpenPGP keys that are stored in Infomaniak's data centres and unlocked automatically by Infomaniak login, so it is not zero-access; mail not sent this way is not covered.", "source": "https://www.infomaniak.com/en/support/faq/1582/secure-an-email-sending-with-an-encryption-key", "asof": "2026-10"},
+        "openness": {"note": "Infomaniak publishes its Android Mail app on GitHub under the GPL-3.0 licence; the hosted mail service itself is not published.", "source": "https://github.com/Infomaniak/android-kMail", "asof": "2026-10"},
+        "portability": {"note": "Infomaniak's guide gives standard IMAP (mail.infomaniak.com, port 993) and SMTP settings and set-up guides for Outlook, Apple Mail, Thunderbird, Gmail and Android mail apps, using a generated per-device password.", "source": "https://www.infomaniak.com/en/support/faq/2427/manually-configure-your-emails-contacts-and-calendars-on-your-devices", "asof": "2026-10"},
+        "respect": {"note": "Infomaniak lists 'No advertising' among the features of my kSuite and says it does not finance its free services by selling personal data; services are developed and hosted in Switzerland.", "source": "https://www.infomaniak.com/en/ksuite/myksuite", "asof": "2026-10"},
+        "accessibility": {"note": "The free my kSuite plan gives one @ik.me, @etik.com or @ikmail.com address with 20 GB of mail storage, web and mobile apps and a set-up wizard for common mail apps, though signup needs a phone number from a listed country.", "source": "https://www.infomaniak.com/en/ksuite/myksuite", "asof": "2026-10"},
+        "economical": {"note": "my kSuite is free for life with 20 GB of mail storage and 15 GB of cloud storage; the paid tier with unlimited mail storage starts at 1.60 Swiss francs a month.", "source": "https://www.infomaniak.com/en/ksuite/myksuite", "asof": "2026-10"}
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.infomaniak.com/en/ksuite/myksuite" },
+        { "label": "Encryption", "url": "https://www.infomaniak.com/en/support/faq/1582/secure-an-email-sending-with-an-encryption-key" },
+        { "label": "IMAP settings", "url": "https://www.infomaniak.com/en/support/faq/2427/manually-configure-your-emails-contacts-and-calendars-on-your-devices" },
+        { "label": "Source", "url": "https://github.com/Infomaniak/android-kMail" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "freemium" },
+      "description": "A Swiss ad-free mailbox with a generous free tier, standard IMAP and open-source mobile apps, whose optional encryption keeps keys on Infomaniak's own servers rather than with the user.",
+      "focuses": ["No ads", "Swiss", "Freemium", "Portable"]
+    },
+    {
+      "code": "disroot",
+      "name": "Disroot",
+      "brand": "Disroot.org",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 72, "openness": 92, "portability": 85, "respect": 94, "accessibility": 58, "economical": 96 },
+      "provenance": {
+        "privacy": {"note": "Disroot's privacy policy says all emails, unless encrypted by the user with GnuPG/PGP, are stored unencrypted on its servers, which use full disk encryption, and that it does not analyse behaviour to build profiles.", "source": "https://disroot.org/en/privacy_policy", "asof": "2026-10"},
+        "openness": {"note": "Disroot says it uses '100% free and open source software', meaning its source code is publicly accessible and can be audited.", "source": "https://disroot.org/en/about", "asof": "2026-10"},
+        "portability": {"note": "Disroot publishes IMAP, POP and SMTP settings and suggests clients including Thunderbird, K-9 Mail, FairEmail and the iOS Mail app.", "source": "https://disroot.org/en/services/email", "asof": "2026-10"},
+        "respect": {"note": "Disroot's privacy policy says it has 'no advertisements or business relationships with advertisers' and does not sell data; the project is run by volunteers in Amsterdam and relies on community donations.", "source": "https://disroot.org/en/privacy_policy", "asof": "2026-10"},
+        "accessibility": {"note": "Accounts work through Roundcube webmail or any desktop or mobile client, but the mailbox is capped at 1 GB and the service is run by a small volunteer team.", "source": "https://disroot.org/en/services/email", "asof": "2026-10"},
+        "economical": {"note": "The 1 GB mailbox is free; extra storage is paid, and a custom domain is offered as a perk for donors.", "source": "https://disroot.org/en/services/email", "asof": "2026-10"}
+      },
+      "links": [
+        { "label": "Website", "url": "https://disroot.org/en/services/email" },
+        { "label": "About", "url": "https://disroot.org/en/about" },
+        { "label": "Privacy", "url": "https://disroot.org/en/privacy_policy" },
+        { "label": "Roundcube", "url": "https://roundcube.net/about/" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "A volunteer-run, donation-funded Dutch mailbox built entirely on free software, with standard IMAP and no advertising, but a 1 GB limit and mail stored unencrypted unless users add PGP.",
+      "focuses": ["Open source", "No ads", "Free", "Portable"]
+    },
+    {
+      "code": "runbox",
+      "name": "Runbox",
+      "brand": "Runbox Solutions",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 76, "openness": 55, "portability": 86, "respect": 92, "accessibility": 70, "economical": 82 },
+      "provenance": {
+        "privacy": {"note": "Ethical Consumer's February 2025 email guide placed Runbox in its 70 to 80 out of 100 band for privacy, with a highest-privacy jurisdiction and essential-only data sharing, but did not list it among providers with end-to-end encryption as standard.", "source": "https://www.ethicalconsumer.org/technology/shopping-guide/ethical-email-providers", "asof": "2025-02"},
+        "openness": {"note": "Runbox publishes its Runbox 7 webmail on GitHub under GPLv3 or later, but the README says the full Runbox backend 'is not yet open source'.", "source": "https://github.com/runbox/runbox7", "asof": "2026-10"},
+        "portability": {"note": "Runbox supports access through the web, POP, IMAP and SMTP, with CardDAV contacts and CalDAV calendars.", "source": "https://runbox.com/", "asof": "2026-10"},
+        "respect": {"note": "Runbox's privacy policy says 'We do not use any advertisements', that it does not scan email to display ads, uses no third-party tracking, and will not sell user data.", "source": "https://runbox.com/about/privacy-policy/", "asof": "2026-10"},
+        "accessibility": {"note": "Every plan has a 30-day free trial with no card required and a 60-day money-back guarantee, but there is no permanent free plan.", "source": "https://runbox.com/pricing/", "asof": "2026-10"},
+        "economical": {"note": "The smallest Micro plan is 19.95 euros a year for 2 GB of mail; the Mini plan is 34.95 euros a year for 10 GB, with cheaper subaccounts for family members.", "source": "https://runbox.com/pricing/", "asof": "2026-10"}
+      },
+      "links": [
+        { "label": "Website", "url": "https://runbox.com/" },
+        { "label": "Privacy", "url": "https://runbox.com/about/privacy-policy/" },
+        { "label": "Pricing", "url": "https://runbox.com/pricing/" },
+        { "label": "Source", "url": "https://github.com/runbox/runbox7" },
+        { "label": "Company register", "url": "https://data.brreg.no/enhetsregisteret/api/enheter/996877027" },
+        { "label": "Ethical Consumer email guide", "url": "https://www.ethicalconsumer.org/technology/shopping-guide/ethical-email-providers" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "paid$" },
+      "description": "A paid Norwegian mailbox running on hydropower, with full IMAP and DAV support, an open-source webmail and a no-ads, no-scanning policy, but no permanent free plan.",
+      "focuses": ["No ads", "Portable", "Paid", "Norwegian"]
+    },
+    {
+      "code": "kolab-now",
+      "name": "Kolab Now",
+      "brand": "Apheleia IT",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 84, "openness": 85, "portability": 86, "respect": 92, "accessibility": 66, "economical": 52 },
+      "provenance": {
+        "privacy": {"note": "Ethical Consumer's February 2025 email guide gave Kolab Now 100 out of 100 for privacy and listed it among providers with a highest-privacy jurisdiction and essential-only data sharing.", "source": "https://www.ethicalconsumer.org/technology/shopping-guide/ethical-email-providers", "asof": "2025-02"},
+        "openness": {"note": "Kolab Now says there are 'No proprietary components on our systems. Everything we do is Open Source (FOSS) and open standards'.", "source": "https://kb.kolabnow.com/documentation/why-kolab-now-is-the-right-thing-for-you", "asof": "2024-06"},
+        "portability": {"note": "Kolab Now publishes standard IMAP (imap.kolabnow.com, port 993) and SMTP settings for any generic client, and says open standards mean users are not affected by vendor lock-in.", "source": "https://kb.kolabnow.com/documentation/generic-imap-client-setup-guide", "asof": "2026-10"},
+        "respect": {"note": "Kolab Now says no data broker gets access to user data, that data is not sold, and that it takes no venture capital investment; it is paid for by subscriptions.", "source": "https://kb.kolabnow.com/documentation/why-kolab-now-is-the-right-thing-for-you", "asof": "2024-06"},
+        "accessibility": {"note": "Any standard desktop or mobile client can connect, and new customers get a free four-week trial, but there is no permanent free plan.", "source": "https://kb.kolabnow.com/documentation/why-kolab-now-is-the-right-thing-for-you", "asof": "2024-06"},
+        "economical": {"note": "Kolab Now's pricing page lists the Just Email plan at 5.00 Swiss francs a month with 5 GB of storage, and Full Kolab with calendar, files and document editing at 9.90 francs a month; the first 30 days are free.", "source": "https://kolabnow.com/pricing", "asof": "2026-10"}
+      },
+      "links": [
+        { "label": "Website", "url": "https://kolabnow.com/" },
+        { "label": "Why Kolab Now", "url": "https://kb.kolabnow.com/documentation/why-kolab-now-is-the-right-thing-for-you" },
+        { "label": "IMAP settings", "url": "https://kb.kolabnow.com/documentation/generic-imap-client-setup-guide" },
+        { "label": "Pricing", "url": "https://kolabnow.com/pricing" },
+        { "label": "Ethical Consumer email guide", "url": "https://www.ethicalconsumer.org/technology/shopping-guide/ethical-email-providers" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "paid$" },
+      "description": "A Swiss paid mail and groupware service built entirely on open-source software and open standards, rated top for privacy by Ethical Consumer, but with no free tier and relatively high per-user prices.",
+      "focuses": ["Open source", "Swiss", "Paid", "Portable"]
+    },
+    {
+      "code": "hushmail",
+      "name": "Hushmail",
+      "brand": "Hush Communications",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 66, "openness": 25, "portability": 72, "respect": 80, "accessibility": 62, "economical": 58 },
+      "provenance": {
+        "privacy": {"note": "Hushmail's privacy policy says encrypted email is stored encrypted but unencrypted email is stored unencrypted, and it logs sender and recipient addresses and subjects.", "source": "https://www.hushmail.com/privacy/", "asof": "2026-10"},
+        "openness": {"note": "Hushmail uses the open OpenPGP standard for encryption, but it is a proprietary hosted service and its pages describe no published source code for the current service.", "source": "https://www.hushmail.com/plans/personal", "asof": "2026-10"},
+        "portability": {"note": "The Personal plan can be used with Apple Mail or Microsoft Outlook over POP or IMAP, as well as on the web and an iPhone app.", "source": "https://www.hushmail.com/plans/personal", "asof": "2026-10"},
+        "respect": {"note": "Hushmail's privacy policy says 'We do not analyze the email in your account for the purpose of displaying advertisements' and will never sell personal information, though it may share non-identifying data to support its own marketing.", "source": "https://www.hushmail.com/privacy/", "asof": "2026-10"},
+        "accessibility": {"note": "Hushmail now mainly targets healthcare and legal practices; the Personal plan offers one-click OpenPGP encryption and support by chat, email and phone, but no free tier and no custom domains.", "source": "https://www.hushmail.com/plans/personal", "asof": "2026-10"},
+        "economical": {"note": "Hushmail for Personal Use costs 59.99 US dollars a year, with a 60-day money-back guarantee and no free plan.", "source": "https://www.hushmail.com/plans/personal", "asof": "2026-10"}
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.hushmail.com/" },
+        { "label": "Personal plan", "url": "https://www.hushmail.com/plans/personal" },
+        { "label": "Privacy", "url": "https://www.hushmail.com/privacy/" },
+        { "label": "Wired on 2007 court order", "url": "https://www.wired.com/2007/11/encrypted-e-mai/" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "paid$" },
+      "description": "A veteran Canadian encrypted-email service, now aimed mainly at healthcare practices, with a paid personal plan and IMAP access, but plain mail stored unencrypted and a record of handing decrypted mail to authorities under court order.",
+      "focuses": ["Encrypted", "Paid", "No ads", "Closed source"]
+    },
+    {
+      "code": "greennet",
+      "name": "GreenNet",
+      "brand": "GreenNet",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 78, "openness": 50, "portability": 84, "respect": 92, "accessibility": 60, "economical": 45 },
+      "provenance": {
+        "privacy": {"note": "Ethical Consumer's February 2025 email guide listed GreenNet among providers offering end-to-end encryption as standard, with essential-only data sharing, and placed it in its 70 to 80 out of 100 privacy band.", "source": "https://www.ethicalconsumer.org/technology/shopping-guide/ethical-email-providers", "asof": "2025-02"},
+        "openness": {"note": "GreenNet's webmail runs on Roundcube, an open-source webmail project, though Ethical Consumer did not list GreenNet among providers with open-source code.", "source": "https://www.greennet.org.uk/internet-services/email", "asof": "2026-10"},
+        "portability": {"note": "The Just Email plan includes IMAP, POP and SMTP access alongside Roundcube webmail.", "source": "https://www.greennet.org.uk/internet-services/email", "asof": "2026-10"},
+        "respect": {"note": "Ethical Consumer describes GreenNet as not-for-profit and scored it 88 out of 100 overall, the highest in its email guide.", "source": "https://www.ethicalconsumer.org/technology/shopping-guide/ethical-email-providers", "asof": "2025-02"},
+        "accessibility": {"note": "GreenNet offers Roundcube webmail and standard-client access with telephone and email support on weekdays, but no free plan, and its offer is shaped around activists and campaigning groups.", "source": "https://www.greennet.org.uk/internet-services/email", "asof": "2026-10"},
+        "economical": {"note": "The Just Email plan costs 60 pounds a year including VAT for one account with up to four extra aliases.", "source": "https://www.greennet.org.uk/internet-services/email", "asof": "2026-10"}
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.greennet.org.uk/internet-services/email" },
+        { "label": "Ethical Consumer email guide", "url": "https://www.ethicalconsumer.org/technology/shopping-guide/ethical-email-providers" },
+        { "label": "Companies House", "url": "https://find-and-update.company-information.service.gov.uk/company/02070438" }
+      ],
+      "region": ["UK"],
+      "price": { "tier": "paid$" },
+      "description": "A long-standing London ethical internet provider that Ethical Consumer rates top of its email guide, with standard IMAP access and built-in encryption, at a higher yearly price than most privacy mailboxes.",
+      "focuses": ["No ads", "Paid", "Portable", "Not-for-profit"]
+    },
+    {
+      "code": "mail-coop",
+      "name": "mail.coop",
+      "brand": "Innovation Cooperative",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 66, "openness": 80, "portability": 82, "respect": 94, "accessibility": 64, "economical": 74 },
+      "provenance": {
+        "privacy": {"note": "Ethical Consumer's February 2025 email guide rated mail.coop 50 out of 100 for privacy, 'Reasonably good', and did not list it among providers with end-to-end encryption as standard.", "source": "https://www.ethicalconsumer.org/technology/shopping-guide/ethical-email-providers", "asof": "2025-02"},
+        "openness": {"note": "mail.coop says it is built on '100% Open Source' software.", "source": "https://mail.coop/", "asof": "2026-10"},
+        "portability": {"note": "Both plans include syncing across devices with IMAP and POP3 as well as webmail.", "source": "https://mail.coop/", "asof": "2026-10"},
+        "respect": {"note": "mail.coop is cooperatively owned and run by three UK worker cooperatives, and says 'we never sell your data or read your mail', with no advertising or data profiling.", "source": "https://mail.coop/about", "asof": "2026-10"},
+        "accessibility": {"note": "It offers webmail, standard-client access and telephone support, but no free plan, and mostly serves UK users including former Phone Coop customers.", "source": "https://mail.coop/", "asof": "2026-10"},
+        "economical": {"note": "The Basic plan is 24 pounds a year including VAT for one mailbox with 5 GB; Premium is 50 pounds a year for five mailboxes sharing 25 GB.", "source": "https://mail.coop/", "asof": "2026-10"}
+      },
+      "links": [
+        { "label": "Website", "url": "https://mail.coop/" },
+        { "label": "About", "url": "https://mail.coop/about" },
+        { "label": "Ethical Consumer email guide", "url": "https://www.ethicalconsumer.org/technology/shopping-guide/ethical-email-providers" }
+      ],
+      "region": ["UK"],
+      "price": { "tier": "paid$" },
+      "description": "The UK's cooperative email provider: ad-free, built on open-source software and cheap at 24 pounds a year, but not end-to-end encrypted and without a free tier.",
+      "focuses": ["Co-op", "Open source", "No ads", "Paid"]
+    },
+    {
+      "code": "migadu",
+      "name": "Migadu",
+      "brand": "Migadu-Mail",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 58, "openness": 40, "portability": 90, "respect": 90, "accessibility": 45, "economical": 78 },
+      "provenance": {
+        "privacy": {"note": "Migadu's current drawbacks documentation, re-read in October 2026 and last revised in June 2020, says plainly that mail is 'Not encrypted' at rest and recommends users apply end-to-end tools such as GPG themselves; its servers are in France, under a Swiss company.", "source": "https://www.migadu.com/procon/", "asof": "2026-10"},
+        "openness": {"note": "Migadu says it has invested in a new open-source webmail and bases its spam filtering on open-source tools, but the hosted service itself is not published.", "source": "https://www.migadu.com/pricing/", "asof": "2026-10"},
+        "portability": {"note": "Migadu's current drawbacks documentation, re-read in October 2026, says it does not offer addresses on its own domains, saying it refuses to lock users in, so mail lives on a domain the user owns and is reached over standard IMAP, POP and SMTP.", "source": "https://www.migadu.com/procon/", "asof": "2026-10"},
+        "respect": {"note": "Migadu's privacy policy, updated December 2024, says it uses no tracking or analytics cookies and collects no behavioural analytics; it is funded by flat-rate subscriptions rather than advertising.", "source": "https://www.migadu.com/privacy/", "asof": "2024-12"},
+        "accessibility": {"note": "Migadu's current drawbacks documentation, re-read in October 2026, says it requires a user's own domain name, has an English-only interface and offers no telephone support, which suits people comfortable with DNS more than beginners.", "source": "https://www.migadu.com/procon/", "asof": "2026-10"},
+        "economical": {"note": "The Micro plan costs 19 US dollars a year with unlimited addresses on an account; Mini is 90 dollars a year, and a domain name must be bought separately.", "source": "https://www.migadu.com/pricing/", "asof": "2026-10"}
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.migadu.com/" },
+        { "label": "Pricing", "url": "https://www.migadu.com/pricing/" },
+        { "label": "Drawbacks", "url": "https://www.migadu.com/procon/" },
+        { "label": "Privacy", "url": "https://www.migadu.com/privacy/" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "paid$" },
+      "description": "A Swiss custom-domain mail host that is unusually candid about its limits: cheap, standards-based and free of tracking, but not encrypted at rest and only usable with a domain you own.",
+      "focuses": ["Portable", "No ads", "Paid", "Custom domain"]
+    },
+    {
+      "code": "purelymail",
+      "name": "Purelymail",
+      "brand": "Add Rabbit LLC",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 76, "portability": 88, "respect": 90, "accessibility": 55, "economical": 92 },
+      "provenance": {
+        "privacy": {"note": "Purelymail's security page says email content is encrypted at rest with the user's password, so even Purelymail cannot read it if password reset is disabled, though search indexes may hold partial content and IMAP decryption happens on its servers; it does not offer end-to-end encryption.", "source": "https://purelymail.com/docs/security", "asof": "2026-10"},
+        "portability": {"note": "Purelymail supports IMAP, POP3 and SMTP with any mail client, unlimited custom domains, and a mail-transfer tool for moving in.", "source": "https://purelymail.com/docs/features", "asof": "2026-10"},
+        "respect": {"note": "Purelymail's privacy policy says selling information or violating privacy are 'NOT part of our business model', and its security page says it will never sell or monetize user data.", "source": "https://purelymail.com/privacy", "asof": "2026-10"},
+        "accessibility": {"note": "Purelymail's own site lists its weak points: no 24/7 support, occasional blocking by obscure servers, and a UI that 'isn't always the most intuitive'.", "source": "https://purelymail.com/", "asof": "2026-10"},
+        "economical": {"note": "Simple pricing is 10 US dollars a year with no hard limits on users, domains or storage; heavy users may need pay-per-use advanced pricing.", "source": "https://purelymail.com/pricing", "asof": "2026-10"}
+      },
+      "links": [
+        { "label": "Website", "url": "https://purelymail.com/" },
+        { "label": "Security", "url": "https://purelymail.com/docs/security" },
+        { "label": "Privacy", "url": "https://purelymail.com/privacy" },
+        { "label": "Pricing", "url": "https://purelymail.com/pricing" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "paid$" },
+      "description": "A very cheap, no-frills paid mailbox at 10 dollars a year with standard IMAP and password-encrypted storage, run by a small US company with limited support and a less polished interface.",
+      "focuses": ["Paid", "Portable", "No ads", "Custom domain"]
     }
   ]
 }

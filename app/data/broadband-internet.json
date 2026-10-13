@@ -13,7 +13,7 @@
    "best local availability"
   ],
   "source": "Conscious Consuming (curated)",
-  "attribution": "Curated from public broadband labels, provider privacy policies, plan terms, network-management pages, and provider disclosures. Availability and pricing are address-specific; check your exact address, plan label, fees, and cancellation terms before switching. Suggest changes via Contribute.",
+  "attribution": "Built from public broadband labels, provider privacy policies, plan terms, network-management pages, and provider disclosures, cross-checked where possible against regulator, attorney-general and city records (FCC, New Jersey BPU, Washington AG, West Point City), SEC filings for ownership and footprint, Open Terms Archive, and local reporting. Availability and pricing are address-specific; check your exact address, plan label, fees, and cancellation terms before switching. Suggest changes via Contribute.",
   "allergens": false,
   "presets": {
    "Balanced": {
@@ -67,29 +67,37 @@
     "x": []
    }
   },
-  "n": 12,
+  "n": 24,
   "valueSignatureProfile": {
-   "entryCount": 12,
-   "signedEntries": 12,
-   "drawableEntries": 12,
+   "entryCount": 24,
+   "signedEntries": 24,
+   "drawableEntries": 24,
    "minimumThemesForBloom": 2,
    "themeCounts": {
-    "people": 12,
-    "honesty": 12,
-    "privacy": 12,
-    "cost": 12
+    "people": 24,
+    "honesty": 24,
+    "privacy": 24,
+    "cost": 24
    }
   },
   "provenanceProfile": {
-   "entryCount": 12,
-   "singleSourceEntries": 7,
-   "multiSourceEntries": 5,
+   "entryCount": 24,
+   "singleSourceEntries": 11,
+   "multiSourceEntries": 13,
    "noSourceEntries": 0,
    "noteOnlyEntries": 0,
-   "averageSourceDomains": 1.5,
+   "averageSourceDomains": 1.75,
    "topPrimarySources": [
     {
+     "label": "astound.com",
+     "entries": 1
+    },
+    {
      "label": "att.com",
+     "entries": 1
+    },
+    {
+     "label": "brightspeed.com",
      "entries": 1
     },
     {
@@ -102,14 +110,6 @@
     },
     {
      "label": "fiber.google.com",
-     "entries": 1
-    },
-    {
-     "label": "frontier.com",
-     "entries": 1
-    },
-    {
-     "label": "internet.ting.com",
      "entries": 1
     }
    ]
@@ -143,39 +143,39 @@
     },
     "receipt": {
      "dataset": "broadband-internet",
-     "entryCount": 12,
+     "entryCount": 24,
      "criteria": [
       {
        "criterion": "transparency",
        "readsAs": "disclosure",
-       "known": 12,
-       "minimum": 70,
+       "known": 24,
+       "minimum": 58,
        "maximum": 92,
-       "spread": 22
+       "spread": 34
       },
       {
        "criterion": "fees",
        "readsAs": "fees",
-       "known": 12,
-       "minimum": 50,
+       "known": 24,
+       "minimum": 30,
        "maximum": 88,
-       "spread": 38
+       "spread": 58
       },
       {
        "criterion": "accessibility",
        "readsAs": "everyday access",
-       "known": 12,
-       "minimum": 42,
+       "known": 24,
+       "minimum": 38,
        "maximum": 88,
-       "spread": 46
+       "spread": 50
       },
       {
        "criterion": "privacy",
        "readsAs": "privacy",
-       "known": 12,
-       "minimum": 36,
+       "known": 24,
+       "minimum": 28,
        "maximum": 94,
-       "spread": 58
+       "spread": 66
       }
      ]
     }
@@ -219,7 +219,7 @@
     "mode": "assessed-fees-rank",
     "criterion": "fees",
     "minimumKnown": 5,
-    "knownEntries": 12,
+    "knownEntries": 24,
     "coverage": 1.0
    },
    "archetypes": [
@@ -1177,6 +1177,990 @@
     "sourceDomainCount": 1,
     "singleSource": true,
     "primarySource": "cox.com"
+   }
+  },
+  {
+   "code": "starlink",
+   "name": "Starlink",
+   "brand": "satellite internet",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "SpaceX's satellite internet service, sold as high-speed internet 'no matter how remote', with unlimited data but a privacy policy that moved toward AI training and partner sharing in 2026.",
+   "scores": {
+    "privacy": 30,
+    "fees": 66,
+    "transparency": 66,
+    "accessibility": 88,
+    "ethics": 34
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Open Terms Archive recorded a January 2026 privacy-policy change letting Starlink use personal information 'to train our machine learning or artificial intelligence models', adding undefined 'third-party collaborators', and removing the line that it was 'not knowingly selling user information'.",
+     "source": "https://opentermsarchive.org/en/memos/starlink-allows-third-party-collaborators-to-use-personal-information-globally-for-training-ai-models-and-removes-mentions-of-not-selling-user-data/",
+     "asof": "2026-01"
+    },
+    "fees": {
+     "note": "Starlink's residential page lists service starting at $55/mo for 100 Mbps, $85/mo for 200 Mbps and $130/mo for Max, all with unlimited data, and says there is no upfront hardware cost only in select areas.",
+     "source": "https://www.starlink.com/residential",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Prices are shown as 'starting at' and the page says speeds 'are maximum available speeds, are not guaranteed, and will be slower during times of congestion'; the exact plan and hardware cost depend on the address.",
+     "source": "https://www.starlink.com/residential",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Starlink says it serves 160+ countries and markets, including places where wired internet is 'too expensive, unreliable, or entirely unavailable', though some plans and the no-upfront-hardware offer are limited to select areas.",
+     "source": "https://www.starlink.com/residential",
+     "asof": "2026-10"
+    },
+    "ethics": {
+     "note": "Open Terms Archive notes Starlink is a SpaceX service controlled by Elon Musk and that users must now opt out of AI training by third-party collaborators, a weak public-accountability fit despite rural reach.",
+     "source": "https://opentermsarchive.org/en/memos/starlink-allows-third-party-collaborators-to-use-personal-information-globally-for-training-ai-models-and-removes-mentions-of-not-selling-user-data/",
+     "asof": "2026-01"
+    }
+   },
+   "links": [
+    {
+     "label": "Residential plans",
+     "url": "https://www.starlink.com/residential"
+    },
+    {
+     "label": "Privacy change memo (Open Terms Archive)",
+     "url": "https://opentermsarchive.org/en/memos/starlink-allows-third-party-collaborators-to-use-personal-information-globally-for-training-ai-models-and-removes-mentions-of-not-selling-user-data/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Satellite",
+    "No data caps",
+    "Rural"
+   ],
+   "valueSignature": {
+    "people": 34,
+    "honesty": 66,
+    "privacy": 30,
+    "cost": 77
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "starlink.com",
+    "sourceLabels": [
+     "starlink.com",
+     "opentermsarchive.org"
+    ]
+   }
+  },
+  {
+   "code": "optimum",
+   "name": "Optimum Internet",
+   "brand": "major cable ISP",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The cable and fiber ISP formerly run as Altice USA (now Optimum Communications), with no data caps on current plans but a state regulator finding that it billed departing customers for service they did not receive.",
+   "scores": {
+    "privacy": 36,
+    "fees": 58,
+    "transparency": 62,
+    "accessibility": 74,
+    "ethics": 30
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Optimum's privacy policy says it may disclose information to advertising and analytics partners, shows advertising tailored to customers' interests on other companies' sites and apps, and that some marketing and analytics tools 'could be considered a “sale” or “sharing”' under certain state privacy laws.",
+     "source": "https://www.optimum.com/terms-of-service/privacy/Customer-Privacy/optimum-customer-privacy-policy",
+     "asof": "2026-10"
+    },
+    "fees": {
+     "note": "Optimum's internet page advertises no data caps and fiber plans from $35-$55/mo with autopay, but the 1-year price lock 'Requires maintenance of Internet service and SecureWifi+', service auto-renews, and taxes, fees and installation charges are extra.",
+     "source": "https://www.optimum.com/internet",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Key conditions such as the price-lock add-on requirement and network-congestion slowdowns sit in tooltip and footnote fine print on the plans page rather than in the headline price.",
+     "source": "https://www.optimum.com/internet",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "A September 2026 New Jersey BPU settlement requires Optimum to offer a $15/month, 100 Mbps Optimum Advantage Internet plan across its New Jersey footprint for at least four years 'with no eligibility verification required'.",
+     "source": "https://www.nj.gov/bpu/pdf/boardorders/2026/20260909/4A%20ORDER%20Altice%20Proration.pdf",
+     "asof": "2026-09"
+    },
+    "ethics": {
+     "note": "The New Jersey Board of Public Utilities found Optimum stopped prorating bills for departing customers from 2016 in violation of state rules, issued a 2019 cease-and-desist order, and in September 2026 approved a settlement of $37 refunds per eligible former subscriber.",
+     "source": "https://www.nj.gov/bpu/pdf/boardorders/2026/20260909/4A%20ORDER%20Altice%20Proration.pdf",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Internet plans",
+     "url": "https://www.optimum.com/internet"
+    },
+    {
+     "label": "Privacy policy",
+     "url": "https://www.optimum.com/terms-of-service/privacy/Customer-Privacy/optimum-customer-privacy-policy"
+    },
+    {
+     "label": "NJ BPU settlement order",
+     "url": "https://www.nj.gov/bpu/pdf/boardorders/2026/20260909/4A%20ORDER%20Altice%20Proration.pdf"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Mainstream",
+    "Cable",
+    "No data caps",
+    "Honest floor"
+   ],
+   "valueSignature": {
+    "people": 30,
+    "honesty": 62,
+    "privacy": 36,
+    "cost": 66
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "optimum.com",
+    "sourceLabels": [
+     "optimum.com",
+     "nj.gov"
+    ]
+   }
+  },
+  {
+   "code": "mediacom",
+   "name": "Mediacom Xtream Internet",
+   "brand": "regional cable ISP",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A cable and fixed-wireless ISP whose service includes FCC rural-subsidy areas, now advertising unlimited data, with one of the most data-hungry privacy policies in this list.",
+   "scores": {
+    "privacy": 28,
+    "fees": 60,
+    "transparency": 72,
+    "accessibility": 70,
+    "ethics": 34
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Mediacom's privacy notice lists collection of browsing/search history and DNS lookups, says it uses AI and machine-learning models to predict 'likelihood to switch providers' and tailor individualized offers or prices, and discloses that it has 'sold' or 'shared' inferences with advertising networks.",
+     "source": "https://mediacomcable.com/legal/privacy-notice",
+     "asof": "2026-10"
+    },
+    "fees": {
+     "note": "Mediacom says all internet plans are commitment-free with unlimited data and 'No data caps', but a footnote says upstream use over 1 TB may cut upload speed by up to 50%, and the $30 promo excludes a $75 installation fee and $25 activation fee.",
+     "source": "https://mediacomcable.com/",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Mediacom publishes broadband disclosures with advertised versus average measured speeds per plan and links machine-readable Broadband Consumer Disclosure Labels.",
+     "source": "https://mediacomcable.com/legal/internet-broadband-disclosures/",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Mediacom's disclosures cover wired cable plans plus Bolt fixed wireless, including FCC Rural Digital Opportunity Fund areas offered 100/20 Mbps service with a 2,000 GB monthly allowance.",
+     "source": "https://mediacomcable.com/legal/internet-broadband-disclosures/",
+     "asof": "2026-10"
+    },
+    "ethics": {
+     "note": "Using inferred switching likelihood to set individualized prices, and selling or sharing inferences, weighs heavily against consumer fairness even with unlimited home data.",
+     "source": "https://mediacomcable.com/legal/privacy-notice",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Internet plans",
+     "url": "https://mediacomcable.com/"
+    },
+    {
+     "label": "Broadband disclosures",
+     "url": "https://mediacomcable.com/legal/internet-broadband-disclosures/"
+    },
+    {
+     "label": "Privacy notice",
+     "url": "https://mediacomcable.com/legal/privacy-notice"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Cable",
+    "No data caps",
+    "Rural",
+    "Honest floor"
+   ],
+   "valueSignature": {
+    "people": 34,
+    "honesty": 72,
+    "privacy": 28,
+    "cost": 65
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "mediacomcable.com"
+   }
+  },
+  {
+   "code": "wow",
+   "name": "WOW! Internet",
+   "brand": "regional cable and fiber ISP",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A regional cable-and-fiber ISP with no contracts, no introductory-rate cliff and unlimited data, taken private by infrastructure investors at the end of 2025.",
+   "scores": {
+    "privacy": 36,
+    "fees": 72,
+    "transparency": 80,
+    "accessibility": 60,
+    "ethics": 46
+   },
+   "provenance": {
+    "privacy": {
+     "note": "WOW!'s privacy notice says it may share information about customers 'with third parties for their own marketing and advertising purposes', and that those parties may pass it on to others for their own advertising use.",
+     "source": "https://assets.ctfassets.net/8kj4n9zmpxu3/cIYnG1em21wEf0VAVhcGx/0f4025c5e627496421031101f85454d3/Bill-Ad-Pg_Privacy_Notice_062426.pdf",
+     "asof": "2026-10"
+    },
+    "fees": {
+     "note": "WOW!'s machine-readable labels list all 232 residential plans as month-to-month with unlimited data and no intro rate, but also a $4 monthly paper-statement fee on every plan and $99 professional installation on many; Price Lock for Life costs $5/mo extra.",
+     "source": "https://broadband-labels.wowway.com/residential.csv",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "WOW! publishes every residential Broadband Facts label as a downloadable CSV and says plans have 'No introductory pricing. No rate hikes after year one.' It also keeps a separate 'Network Enhancement Fee' policy page, so check the bill.",
+     "source": "https://www.wowway.com/internet",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "WOW! describes itself as serving over 400,000 customers in regional markets and asks users to check address availability, so it is a regional rather than national option.",
+     "source": "https://www.wowway.com/internet",
+     "asof": "2026-10"
+    },
+    "ethics": {
+     "note": "DigitalBridge and Crestview Partners completed a $1.5 billion take-private of WOW! on 31 December 2025; public-company reporting ends, though the buyers say they will fund fiber expansion.",
+     "source": "https://www.digitalbridge.com/news/2025-12-31-digitalbridge-and-crestview-partners-complete-take-private-acquisition-of-wideopenwest-wow",
+     "asof": "2025-12"
+    }
+   },
+   "links": [
+    {
+     "label": "Internet plans",
+     "url": "https://www.wowway.com/internet"
+    },
+    {
+     "label": "Broadband labels (CSV)",
+     "url": "https://broadband-labels.wowway.com/residential.csv"
+    },
+    {
+     "label": "Privacy notice",
+     "url": "https://assets.ctfassets.net/8kj4n9zmpxu3/cIYnG1em21wEf0VAVhcGx/0f4025c5e627496421031101f85454d3/Bill-Ad-Pg_Privacy_Notice_062426.pdf"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Cable",
+    "Fiber",
+    "No contract",
+    "No data caps",
+    "Broadband labels"
+   ],
+   "valueSignature": {
+    "people": 46,
+    "honesty": 80,
+    "privacy": 36,
+    "cost": 66
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 4,
+    "singleSource": false,
+    "primarySource": "wowway.com",
+    "sourceLabels": [
+     "wowway.com",
+     "assets.ctfassets.net",
+     "broadband-labels.wowway.com",
+     "digitalbridge.com"
+    ]
+   }
+  },
+  {
+   "code": "kinetic",
+   "name": "Kinetic",
+   "brand": "rural telecom and fiber",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Windstream's consumer brand, now part of Uniti, building fiber across rural and suburban markets while still running older DSL in much of its footprint.",
+   "scores": {
+    "privacy": 40,
+    "fees": 74,
+    "transparency": 74,
+    "accessibility": 64,
+    "ethics": 50
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Kinetic's privacy policy lists Internet Usage Information, including browsing history, search history, web-based location and IP address, among data it collects, and says sharing with advertising or analytics partners may count as a sale or sharing under some state laws.",
+     "source": "https://www.gokinetic.com/about/legal/privacy-policy",
+     "asof": "2026-10"
+    },
+    "fees": {
+     "note": "Kinetic says there are 'no annual contracts to sign or data limits', with free professional installation, and higher fiber tiers carry 2- or 3-year price guarantees; a $100 fee applies to some copper-line customers choosing professional install.",
+     "source": "https://www.gokinetic.com/",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Kinetic's Broadband Network Statement says it 'does not block or throttle lawful content or traffic' by application or class, and spells out which technologies (DSL, fixed wireless, cable, fiber) it uses by market.",
+     "source": "https://www.gokinetic.com/about/legal/broadband-network-statement",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Uniti's July 2026 results say Kinetic built a record 141,000 fiber premises in the quarter and is on track to pass 3.5 million homes with fiber by end-2029, meaning many addresses still rely on legacy service for now.",
+     "source": "https://www.sec.gov/Archives/edgar/data/2020795/000162828026050813/unit-ex9912q26.htm",
+     "asof": "2026-07"
+    },
+    "ethics": {
+     "note": "No-data-limit plans and a clear no-throttling statement help, but Kinetic is now one unit of investor-owned Uniti Group, which is funding the build through asset securitizations.",
+     "source": "https://www.sec.gov/Archives/edgar/data/2020795/000162828026050813/unit-ex9912q26.htm",
+     "asof": "2026-07"
+    }
+   },
+   "links": [
+    {
+     "label": "Plans",
+     "url": "https://www.gokinetic.com/"
+    },
+    {
+     "label": "Broadband network statement",
+     "url": "https://www.gokinetic.com/about/legal/broadband-network-statement"
+    },
+    {
+     "label": "Privacy policy",
+     "url": "https://www.gokinetic.com/about/legal/privacy-policy"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Fiber",
+    "No contract",
+    "No data caps",
+    "Rural"
+   ],
+   "valueSignature": {
+    "people": 50,
+    "honesty": 74,
+    "privacy": 40,
+    "cost": 69
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "gokinetic.com",
+    "sourceLabels": [
+     "gokinetic.com",
+     "sec.gov"
+    ]
+   }
+  },
+  {
+   "code": "quantum-fiber",
+   "name": "Quantum Fiber",
+   "brand": "major telecom fiber",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Lumen's former consumer fiber brand, sold to AT&T in February 2026 and still marketed under its own name with no annual contract and unlimited data.",
+   "scores": {
+    "privacy": 40,
+    "fees": 70,
+    "transparency": 74,
+    "accessibility": 56,
+    "ethics": 38
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Quantum Fiber's disclosure says it monitors traffic characteristics and, in limited circumstances, looks into content such as 'the specific websites being visited' for fraud and abuse purposes; it links customers to AT&T's privacy notice for the full policy.",
+     "source": "https://www.quantumfiber.com/internet-service-disclosure.html",
+     "asof": "2026-10"
+    },
+    "fees": {
+     "note": "Quantum Fiber advertises no annual contract, unlimited data and 360 WiFi at no extra cost; the 1 Gig offer is $50/mo after a $25 new-customer discount and $5 bank-autopay credit off an $80 standard rate, with taxes and fees extra.",
+     "source": "https://www.quantumfiber.com/",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Quantum Fiber's internet service disclosure states it 'does not currently place data usage limits on fiber internet customers' and does not block or degrade traffic by application except for security, and links a machine-readable broadband label catalog.",
+     "source": "https://www.quantumfiber.com/internet-service-disclosure.html",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Lumen's closing release says the business sold to AT&T covers eleven states, serving more than 1 million fiber customers and reaching more than 4 million enabled fiber locations.",
+     "source": "https://www.sec.gov/Archives/edgar/data/18926/000119312526032635/d25850dex991.htm",
+     "asof": "2026-02"
+    },
+    "ethics": {
+     "note": "Quantum Fiber is now owned by AT&T, which the FCC fined $57,265,625 in 2024 for failing to protect wireless customers' location data; that parent-company record weighs on accountability.",
+     "source": "https://docs.fcc.gov/public/attachments/FCC-24-40A1.pdf",
+     "asof": "2024-04"
+    }
+   },
+   "links": [
+    {
+     "label": "Plans",
+     "url": "https://www.quantumfiber.com/"
+    },
+    {
+     "label": "Internet service disclosure",
+     "url": "https://www.quantumfiber.com/internet-service-disclosure.html"
+    },
+    {
+     "label": "Sale to AT&T (SEC filing)",
+     "url": "https://www.sec.gov/Archives/edgar/data/18926/000119312526032635/d25850dex991.htm"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Fiber",
+    "No contract",
+    "No data caps",
+    "Mainstream"
+   ],
+   "valueSignature": {
+    "people": 38,
+    "honesty": 74,
+    "privacy": 40,
+    "cost": 63
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "quantumfiber.com",
+    "sourceLabels": [
+     "quantumfiber.com",
+     "docs.fcc.gov",
+     "sec.gov"
+    ]
+   }
+  },
+  {
+   "code": "ziply-fiber",
+   "name": "Ziply Fiber",
+   "brand": "regional fiber",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A Pacific Northwest fiber ISP with symmetric plans, free installation and a no-throttling network policy, owned by Canada's BCE since 2025.",
+   "scores": {
+    "privacy": 56,
+    "fees": 78,
+    "transparency": 84,
+    "accessibility": 50,
+    "ethics": 60
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Ziply's privacy policy says it uses customer information to 'deliver relevant advertising', does not respond to Do Not Track signals, and does not disclose CPNI to third parties other than affiliates or agents without consent.",
+     "source": "https://ziplyfiber.com/corporate/privacy-policy",
+     "asof": "2026-10"
+    },
+    "fees": {
+     "note": "Ziply lists fiber from $35/mo with free professional installation (a $90 value), a WiFi router included on most plans, no annual contract and unlimited data; intro pricing reverts to standard rates after 12 months.",
+     "source": "https://ziplyfiber.com/",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Ziply's network-management page says it 'does not block, throttle, or inhibit any specific applications', does not restrict devices and does not engage in paid prioritization; each plan card has a plain fine-print panel.",
+     "source": "https://ziplyfiber.com/corporate/network-management",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Ziply's service and new-fiber pages cover Washington, Oregon, Idaho and Montana, so it is a strong option only inside that four-state footprint.",
+     "source": "https://ziplyfiber.com/",
+     "asof": "2026-10"
+    },
+    "ethics": {
+     "note": "BCE (Bell Canada) completed its C$5.0 billion acquisition of Ziply Fiber on 1 August 2025, keeping it as a separate business headquartered in Kirkland, Washington; consumer terms are clean but ownership is a large foreign telecom.",
+     "source": "https://www.sec.gov/Archives/edgar/data/718940/000119312525171297/d812800dex991.htm",
+     "asof": "2025-08"
+    }
+   },
+   "links": [
+    {
+     "label": "Plans",
+     "url": "https://ziplyfiber.com/"
+    },
+    {
+     "label": "Network management",
+     "url": "https://ziplyfiber.com/corporate/network-management"
+    },
+    {
+     "label": "Privacy policy",
+     "url": "https://ziplyfiber.com/corporate/privacy-policy"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Fiber",
+    "No contract",
+    "No data caps",
+    "Local"
+   ],
+   "valueSignature": {
+    "people": 60,
+    "honesty": 84,
+    "privacy": 56,
+    "cost": 64
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "ziplyfiber.com",
+    "sourceLabels": [
+     "ziplyfiber.com",
+     "sec.gov"
+    ]
+   }
+  },
+  {
+   "code": "astound",
+   "name": "Astound Broadband",
+   "brand": "regional cable ISP",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The combined RCN, Wave and Grande cable ISP, with long promotional rates but a heavy stack of monthly provider fees and data allowances on lower tiers.",
+   "scores": {
+    "privacy": 36,
+    "fees": 36,
+    "transparency": 62,
+    "accessibility": 62,
+    "ethics": 28
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Astound's privacy policy says it may sell or share certain personal information as state law defines those terms and lists browsing history and search history from use of its Internet services among the data it collects.",
+     "source": "https://www.astound.com/policies-disclaimers/privacy-policy/",
+     "asof": "2026-10"
+    },
+    "fees": {
+     "note": "Astound's machine-readable labels show intro rates on most plans plus monthly provider fees such as a 'Network Access and Maintenance Fee' (often $12.97-$21.85 a month) and, in some areas, a 'Municipal Construction Surcharge' of about $3-$6, with installation/activation fees of $99.95 and $14.99.",
+     "source": "https://www.astound.com/labels/export-all?go",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Astound publishes labels and a plain data-transfer page, which shows allowances from 100 GB to 1 TB below gig tiers and overage charges of $6.50 per extra 1-25 GB; only 1000 Mbps and higher is unlimited.",
+     "source": "https://www.astound.com/policies-disclaimers/data-transfer-usage/",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Astound's policies page lists operating entities and tariffs in California, Texas, Illinois, Indiana, Pennsylvania, Massachusetts, Maryland, New York and Washington DC, so it is a multi-metro regional option.",
+     "source": "https://www.astound.com/policies-disclaimers/",
+     "asof": "2026-10"
+    },
+    "ethics": {
+     "note": "Astound's current labels still add provider-set monthly fees to the plan price, including a 'Regulator Administration Fee' on 12,321 of 113,076 plan rows and a 'Network Access and Maintenance Fee' up to $21.85. History: in 2021 Washington's Attorney General made Wave (now an Astound operating entity) pay $900,000 over hidden fees, including a 'Regulatory Recovery Fee' the AG said 'Wave made up'.",
+     "source": "https://www.astound.com/labels/export-all?go",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Internet plans",
+     "url": "https://www.astound.com/"
+    },
+    {
+     "label": "Broadband labels (CSV)",
+     "url": "https://www.astound.com/labels/export-all?go"
+    },
+    {
+     "label": "Data transfer usage",
+     "url": "https://www.astound.com/policies-disclaimers/data-transfer-usage/"
+    },
+    {
+     "label": "Privacy policy",
+     "url": "https://www.astound.com/policies-disclaimers/privacy-policy/"
+    },
+    {
+     "label": "WA AG Wave settlement",
+     "url": "https://www.atg.wa.gov/news/news-releases/ag-ferguson-wave-pay-900000-tens-thousands-customers-over-hidden-fee"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Cable",
+    "Mainstream",
+    "Honest floor"
+   ],
+   "valueSignature": {
+    "people": 28,
+    "honesty": 62,
+    "privacy": 36,
+    "cost": 49
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "astound.com"
+   }
+  },
+  {
+   "code": "brightspeed",
+   "name": "Brightspeed",
+   "brand": "rural telecom and fiber",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The ISP that took over former CenturyLink customers in 20 states, building fiber while many rural customers remain on aging copper lines.",
+   "scores": {
+    "privacy": 46,
+    "fees": 68,
+    "transparency": 66,
+    "accessibility": 54,
+    "ethics": 40
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Brightspeed's July 2026 privacy notice says advertising and analytics partners collect data through cookies, pixels and SDKs, which may count as a 'sale' under state law; it says it does not otherwise sell data for money and honors Global Privacy Control.",
+     "source": "https://www.brightspeed.com/privacy-notice/",
+     "asof": "2026-07"
+    },
+    "fees": {
+     "note": "Brightspeed fiber plans list 'No annual contracts or termination fees' from $29.99/mo with autopay; its 12-month price lock covers only the plan rate, and 'Taxes, fees, discounts, equipment charges, and any additional services are not included'.",
+     "source": "https://www.brightspeed.com/aboutus/legal/consumer/brightspeed-fiber-plan-terms-launch/",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Brightspeed posts its offer terms publicly, including installation qualification rules, but pricing 'excludes taxes, fees & surcharges' and varies by area.",
+     "source": "https://www.brightspeed.com/aboutus/legal/consumer/brightspeed-fiber-plan-terms-launch/",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Brightspeed serves rural and suburban communities in 20 states, but WNDU reported Indiana customers without landline or internet for more than a month in 2025 as the company worked through a copper repair backlog.",
+     "source": "https://www.wndu.com/2025/09/25/brightspeed-responds-outage-reports-st-joseph-county/",
+     "asof": "2025-09"
+    },
+    "ethics": {
+     "note": "Brightspeed told WNDU its copper lines are 'outdated and easily damaged' and costly to maintain; fiber build is underway, but legacy-line reliability for rural customers weighs on accountability.",
+     "source": "https://www.wndu.com/2025/09/25/brightspeed-responds-outage-reports-st-joseph-county/",
+     "asof": "2025-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Plans",
+     "url": "https://www.brightspeed.com/"
+    },
+    {
+     "label": "Fiber offer terms",
+     "url": "https://www.brightspeed.com/aboutus/legal/consumer/brightspeed-fiber-plan-terms-launch/"
+    },
+    {
+     "label": "Privacy notice",
+     "url": "https://www.brightspeed.com/privacy-notice/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Fiber",
+    "No contract",
+    "Rural"
+   ],
+   "valueSignature": {
+    "people": 40,
+    "honesty": 66,
+    "privacy": 46,
+    "cost": 61
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "brightspeed.com",
+    "sourceLabels": [
+     "brightspeed.com",
+     "wndu.com"
+    ]
+   }
+  },
+  {
+   "code": "hughesnet",
+   "name": "Hughesnet",
+   "brand": "satellite internet",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "EchoStar's satellite internet service for rural America, available almost anywhere but tied to term commitments, steep termination fees and deprioritized data.",
+   "scores": {
+    "privacy": 38,
+    "fees": 30,
+    "transparency": 58,
+    "accessibility": 68,
+    "ethics": 32
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Hughes's January 2026 privacy notice says it sells or shares certain categories of personal information as the CCPA defines those terms and uses third-party analytics to serve 'more targeted advertising to you across the Internet'.",
+     "source": "https://legal.hughesnet.com/PrivacyPolicy.cfm",
+     "asof": "2026-01"
+    },
+    "fees": {
+     "note": "Hughesnet terms for subscribers from July 2025 require a 12- or 24-month commitment with a termination fee of up to $400, plus $300-$500 unreturned-equipment fees for leased gear.",
+     "source": "https://legal.hughesnet.com/node/811",
+     "asof": "2025-07"
+    },
+    "transparency": {
+     "note": "Hughesnet keeps dated termination-fee terms for every sign-up period on its legal site, but home pricing is shown only after an address check and 'unlimited' Standard Data 'may be slower than other traffic during high-traffic periods'.",
+     "source": "https://www.hughesnet.com/",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EchoStar's Q2 2026 filing reports 622,000 Hughesnet broadband subscribers, down 24% year on year, and cites 'increased competition from satellite-based competitors'; service still reaches places beyond cable and fiber.",
+     "source": "https://www.sec.gov/Archives/edgar/data/1415404/000110465926089370/sats-20260630x10q.htm",
+     "asof": "2026-08"
+    },
+    "ethics": {
+     "note": "Long commitments with termination fees of up to $400 for a service many rural households have no wired alternative to make Hughesnet a weak consumer-fairness fit.",
+     "source": "https://legal.hughesnet.com/node/811",
+     "asof": "2025-07"
+    }
+   },
+   "links": [
+    {
+     "label": "Plans",
+     "url": "https://www.hughesnet.com/"
+    },
+    {
+     "label": "Termination fees and terms",
+     "url": "https://legal.hughesnet.com/node/811"
+    },
+    {
+     "label": "Privacy notice",
+     "url": "https://legal.hughesnet.com/PrivacyPolicy.cfm"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Satellite",
+    "Rural",
+    "Honest floor"
+   ],
+   "valueSignature": {
+    "people": 32,
+    "honesty": 58,
+    "privacy": 38,
+    "cost": 49
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "legal.hughesnet.com",
+    "sourceLabels": [
+     "legal.hughesnet.com",
+     "hughesnet.com",
+     "sec.gov"
+    ]
+   }
+  },
+  {
+   "code": "viasat",
+   "name": "Viasat Home Internet",
+   "brand": "satellite internet",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A satellite ISP with no-contract unlimited plans for rural homes, but promotional pricing that steps up sharply after a year and equipment lease fees.",
+   "scores": {
+    "privacy": 44,
+    "fees": 42,
+    "transparency": 68,
+    "accessibility": 68,
+    "ethics": 40
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Viasat's January 2026 privacy notice says data may be shared with service providers and business partners, and that cookies support online advertising 'including retargeting'; it offers a do-not-sell-or-share option.",
+     "source": "https://www.viasat.com/privacy/",
+     "asof": "2026-01"
+    },
+    "fees": {
+     "note": "Viasat's plans start at $39.99/mo for 12 months, then $69.99; Unleashed rises from $69.99 to $99.99 and Unleashed Max from $109.99 to $179.99, and Essentials includes only 150 GB of high-speed data.",
+     "source": "https://www.viasat.com/satellite-internet/plans/",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Viasat's label explainer shows a $3.49 Administrative Cost Recovery Fee, a $15/mo lease (or $250 lifetime lease), no early termination fee on the sample plan, and says typical speeds are updated quarterly.",
+     "source": "https://www.viasat.com/satellite-internet/broadband-label/",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Viasat markets service to rural and remote areas where cable and fiber may not be an option, with free standard installation, though 'Service is not available in all areas'.",
+     "source": "https://www.viasat.com/satellite-internet/plans/",
+     "asof": "2026-10"
+    },
+    "ethics": {
+     "note": "Unlimited plans can be deprioritized when usage trends above the 'typical usage' of 70% of customers, and steep post-promo increases weaken consumer fairness for households with few alternatives.",
+     "source": "https://www.viasat.com/satellite-internet/plans/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Plans",
+     "url": "https://www.viasat.com/satellite-internet/plans/"
+    },
+    {
+     "label": "Broadband label explainer",
+     "url": "https://www.viasat.com/satellite-internet/broadband-label/"
+    },
+    {
+     "label": "Privacy",
+     "url": "https://www.viasat.com/privacy/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Satellite",
+    "Rural",
+    "Broadband labels"
+   ],
+   "valueSignature": {
+    "people": 40,
+    "honesty": 68,
+    "privacy": 44,
+    "cost": 55
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "viasat.com"
+   }
+  },
+  {
+   "code": "utopia-fiber",
+   "name": "UTOPIA Fiber",
+   "brand": "open-access municipal fiber",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A Utah fiber network owned by its member cities, where residents pick from 18+ competing ISPs over the same public fiber.",
+   "scores": {
+    "privacy": 70,
+    "fees": 70,
+    "transparency": 90,
+    "accessibility": 38,
+    "ethics": 90
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Internet traffic is handled by the retail ISP each household chooses, so privacy depends on that ISP; UTOPIA's own privacy policy covers its site and says mobile information is not shared with third parties for marketing.",
+     "source": "https://www.utopiafiber.com/privacy-policy/",
+     "asof": "2026-10"
+    },
+    "fees": {
+     "note": "UTOPIA bills in two parts: the chosen ISP's price (most 250 Mbps tiers about $34-$41/mo) plus a $30/mo month-to-month UTOPIA fiber connection fee, with no money down.",
+     "source": "https://www.utopiafiber.com/residential-pricing/",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "UTOPIA's pricing page lists every ISP's internet prices side by side, explains the separate connection fee, and links each ISP's terms and broadband labels.",
+     "source": "https://www.utopiafiber.com/residential-pricing/",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "UTOPIA says it was founded by 11 Utah cities in 2004 and now includes 20 Utah cities; service is limited to built-out addresses in those communities.",
+     "source": "https://www.utopiafiber.com/about-utopia-fiber/",
+     "asof": "2026-10"
+    },
+    "ethics": {
+     "note": "UTOPIA and its sister Utah Infrastructure Agency are run by boards of member-city officials whose meetings are 'open to the public' under Utah's open-meetings law, live streamed, with signed 2026 minutes and a public hearing on new revenue bonds (the agency reports $268,075,000 of revenue-secured bonds outstanding). Earlier history: a 2020 West Point City FAQ said member cities backstop bond debt only if subscribers fall short.",
+     "source": "https://www.utopiafiber.com/board-meeting-schedule/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Residential pricing",
+     "url": "https://www.utopiafiber.com/residential-pricing/"
+    },
+    {
+     "label": "About the network",
+     "url": "https://www.utopiafiber.com/about-utopia-fiber/"
+    },
+    {
+     "label": "Board meetings and minutes",
+     "url": "https://www.utopiafiber.com/board-meeting-schedule/"
+    },
+    {
+     "label": "June 2026 board minutes",
+     "url": "https://www.utopiafiber.com/wp-content/uploads/2026/10/06.08.2026-UTOPIA-Board-Meeting-Minutes-SIGNED.pdf"
+    },
+    {
+     "label": "Sept 2026 bond hearing notice",
+     "url": "https://www.utopiafiber.com/wp-content/uploads/2026/09/Notice-of-Public-Hearing-and-Bonds-to-Be-Issued-09-08-2026.pdf"
+    },
+    {
+     "label": "West Point City FAQ (2020)",
+     "url": "https://www.westpointutah.gov/DocumentCenter/View/311/West-Point-City-Fiber-Project-with-UTOPIA-Fiber---FAQs-PDF"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Public ownership",
+    "Open access",
+    "Local",
+    "Fiber"
+   ],
+   "valueSignature": {
+    "people": 90,
+    "honesty": 90,
+    "privacy": 70,
+    "cost": 54
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "utopiafiber.com"
    }
   }
  ]
