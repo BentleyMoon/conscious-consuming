@@ -16,7 +16,7 @@ own.
   low caps the result, so a single dealbreaker cannot be averaged away. A certification axis cannot
   cap, because a missing label only means no paperwork was found; it lowers the average and stops
   there. `research/engine_score_test.js` pins each of these rules.
-- **`app/data/`** 126 category datasets, 24,228 entries, each rating carrying a source and an as-of date.
+- **`app/data/`** 126 category datasets, 24,229 entries, each rating carrying a source and an as-of date.
 - **`research/`** 96 audit scripts, and the reason to trust anything else here. They pin sentences,
   gate claims on receipts, check contrast and accessibility, and fail the build when a number
   drifts from the source it came from.
@@ -49,7 +49,7 @@ Two sets of files are generated on demand, to keep a clone small. Rebuild them i
 want them:
 
 ```bash
-node pipeline/build_cards.js     # the shareable comparison pages, 3,458 of them
+node pipeline/build_cards.js     # the shareable comparison pages, 3,459 of them
 node pipeline/build_awards.js    # the awards ledger
 ```
 
@@ -61,14 +61,14 @@ into your own work, copy that one.
 
 ## How good is the sourcing, exactly
 
-Counted on 28 September 2026, from the data in this repository:
+Counted on 13 October 2026, from the data in this repository:
 
 | Measure | Count | How to recount it |
 | --- | --- | --- |
-| Entries | 24,228 | every `products` entry in `app/data/*.json` |
-| Entries resting on more than one independent source domain | 6,033 | `provenanceSummary.sourceDomainCount > 1` |
-| Verdict pages built | 3,458 | `node pipeline/build_cards.js` |
-| Verdict pages offered to search engines | 211 | more than one source domain and a check dated to the month, `verdictIsIndexable` in `pipeline/build_cards.js` |
+| Entries | 24,229 | every `products` entry in `app/data/*.json` |
+| Entries resting on more than one independent source domain | 6,034 | `provenanceSummary.sourceDomainCount > 1` |
+| Verdict pages built | 3,459 | `node pipeline/build_cards.js` |
+| Verdict pages offered to search engines | 216 | more than one source domain and a check dated to the month, `verdictIsIndexable` in `pipeline/build_cards.js` |
 
 The gap between the second row and the first is the real state of this corpus: three quarters of
 the entries rest on a single source, and that source is often the seller's own website. Pages under
