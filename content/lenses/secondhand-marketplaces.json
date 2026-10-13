@@ -13,7 +13,7 @@
       "buyer is protected if something goes wrong"
     ],
     "source": "Conscious Consuming (curated)",
-    "attribution": "This compares general marketplaces and giving networks for secondhand goods across categories, not the clothing-specific resale apps already covered in the Clothing realm's own secondhand and resale lens. Fee and protection figures come from each platform's own published fee policy, help center article or terms of service, read directly; where a platform states a US or UK figure, other countries it operates in may set different terms. These figures change without much notice, so check the linked page before relying on a number here. Facebook Marketplace, probably the most used option in this category in the United States, is left out: its help center pages returned errors to automated requests throughout this research, so no score here would have had a real source behind it. Three routes cost nothing at all and involve no marketplace fee at any point: Freecycle, the Buy Nothing Project and, in the UK, Freegle, all of which exist only to give things away locally. Two more, Habitat for Humanity ReStore and the Salvation Army's thrift stores, sell donated goods in person with no listing or shipping step, and put the proceeds into building homes or funding community programs rather than into a marketplace's own revenue. Reviewed 2026. Not an endorsement; check the linked source page on each option for its current terms.",
+    "attribution": "This compares general marketplaces and giving networks for secondhand goods across categories, not the clothing-specific resale apps already covered in the Clothing realm's own secondhand and resale lens. Fee and protection figures come from each platform's own published fee policy, help center article or terms of service, read directly; where a platform states a US or UK figure, other countries it operates in may set different terms. These figures change without much notice, so check the linked page before relying on a number here. Facebook Marketplace, probably the most used option in this category in the United States, was left out of the first pass because its help center returned errors to automated requests; it was added in October 2026 once its fee and Purchase Protection pages could be read directly. Its protection, like Gumtree's, only covers purchases paid through its own checkout, and Craigslist has no payment system or protection at all. Three routes cost nothing at all and involve no marketplace fee at any point: Freecycle, the Buy Nothing Project and, in the UK, Freegle, all of which exist only to give things away locally. Two more, Habitat for Humanity ReStore and the Salvation Army's thrift stores, sell donated goods in person with no listing or shipping step, and put the proceeds into building homes or funding community programs rather than into a marketplace's own revenue. Reviewed 2026. Not an endorsement; check the linked source page on each option for its current terms.",
     "allergens": false,
     "presets": {
       "Balanced": {
@@ -178,20 +178,58 @@
       "allergensDeclared": true,
       "description": "Free local classifieds site organized by city, where buyers and sellers arrange their own pickup, payment and delivery with no built-in payment system.",
       "scores": {
-        "fees": 90
+        "fees": 90,
+        "buyer_protection": 5
       },
       "provenance": {
         "fees": {
-          "note": "Craigslist's own fees FAQ says: 'Some types or categories of postings may have an associated fee,' and its terms of use tie any charge to specifically making a 'paid posting', which implies ordinary classified listings are free in most categories and cities.",
-          "source": "https://cl.com/about/help/faqs/fees",
-          "asof": "2026"
+          "note": "Craigslist's own fees FAQ says: 'Some types or categories of postings may have an associated fee.' Its US table lists For Sale by Owner postings at $0-5, with cars and trucks, motorcycles and RVs at $5, and states 'Publishing your posting is a one time charge. craigslist does not have any subscription fees, or additional charges.' There is no commission on the sale price, since Craigslist never handles the payment.",
+          "source": "https://www.craigslist.org/about/help/faqs/fees",
+          "asof": "2026-10"
+        },
+        "buyer_protection": {
+          "note": "Craigslist has no payment system and no buyer protection of any kind. Its terms of use say Craigslist provides the site 'AS IS' and 'any risk of using CL is assumed by you,' and disclaim 'any liability or responsibility for acts, omissions, or conduct of you or any party in connection with CL.' Its own avoiding-scams page offers one rule instead, 'Deal locally, face-to-face,' and warns buyers to beware of '\"guaranteed\" transactions or payment processing services' and that 'requests to use an escrow service can be a scam.' If an item turns out fake or broken after a cash handover, there is no platform to claim against.",
+          "source": "https://www.craigslist.org/about/terms.of.use",
+          "asof": "2026-10"
         }
       },
       "links": [
-        { "label": "Fees FAQ", "url": "https://cl.com/about/help/faqs/fees" }
+        { "label": "Fees FAQ", "url": "https://www.craigslist.org/about/help/faqs/fees" },
+        { "label": "Terms of use", "url": "https://www.craigslist.org/about/terms.of.use" },
+        { "label": "Avoiding scams", "url": "https://www.craigslist.org/about/help/safety/scams/avoiding" }
       ],
       "region": ["US"],
       "focuses": ["Local classifieds", "No account required"]
+    },
+    {
+      "code": "facebook-marketplace",
+      "name": "Facebook Marketplace",
+      "brand": "social network classifieds",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Meta's classifieds section inside Facebook, used mostly for local pickup deals arranged in Messenger and paid in person, with an optional shipping and checkout system for sales across the continental US.",
+      "scores": {
+        "fees": 90,
+        "buyer_protection": 55
+      },
+      "provenance": {
+        "fees": {
+          "note": "Facebook's own help article on shipping says that for an item sold with shipping and checkout, 'A selling fee of 10% (or $0.80 minimum) will be deducted from the amount of the purchase,' the same rate as Mercari's. None of the Facebook help pages read for this entry lists any fee for a local pickup sale, which is paid between buyer and seller directly and never passes through Facebook.",
+          "source": "https://www.facebook.com/help/796066857221106",
+          "asof": "2026-10"
+        },
+        "buyer_protection": {
+          "note": "Facebook's Purchase Protection article says protection is free and automatic for eligible orders bought with shipping or checkout, and lets the buyer request a full refund of price and shipping if the order never arrived, arrived damaged or different than described, or the seller broke their own refund policy. The same article says 'Purchases made through third-party sites, local pickups, Messenger transactions, or through other messaging services don't qualify for Purchase Protection,' and the shipping article repeats 'Local pickup items aren't covered by Purchase Protection.' The score sits well below eBay's automatic guarantee because the local, in-person sale that most Marketplace listings are arranged as has no platform recourse at all.",
+          "source": "https://www.facebook.com/help/228307904608701",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        { "label": "How Purchase Protection works", "url": "https://www.facebook.com/help/228307904608701" },
+        { "label": "About shipping on Marketplace", "url": "https://www.facebook.com/help/796066857221106" }
+      ],
+      "region": ["US"],
+      "focuses": ["Local pickup", "Optional shipping and checkout"]
     },
     {
       "code": "offerup",
