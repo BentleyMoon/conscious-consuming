@@ -176,6 +176,8 @@ edge: The place itself, what it runs on, what is in it, and what keeps it standi
 ### Cleaning supplies | cadence: monthly
 - Cleaning products | cid: cleaning-products | aka: surface cleaner, multipurpose cleaner
 - Dish soap | cid: dish-soap | aka: washing up liquid
+- Floor cleaners | cid: floor-cleaners | aka: floor cleaner, mopping solution
+- Carpet cleaners | cid: carpet-cleaners | aka: carpet shampoo, rug cleaner
 - Dishwasher tablets and salt
 - Laundry | cid: laundry | aka: laundry detergent, washing powder
 - Fabric conditioner and stain removers

@@ -26,13 +26,14 @@ const EXPECTED = {
   needs: 8,
   categories: 18,
   subcategories: 39,
-  rows: 217,
-  livePaths: 130,
+  // 2026-10-14: four generated decisions (bottled water, fragrance, floor and carpet cleaners). 217 -> 219 rows, 130 -> 134 live paths, 126 -> 130 datasets.
+  rows: 219,
+  livePaths: 134,
   // 124 on 2026-08-26: messaging and browsers flipped from digital-services facets to their
   // own datasets, the first two of the nine-way split. Rows stay 217, live paths stay 130.
   // 126 on 2026-09-23: email and search flipped the same way, the next two of the split.
-  liveDatasets: 126,
-  gaps: 87,
+  liveDatasets: 130,
+  gaps: 85, // 87 -> 85 on 2026-10-14: Bottled water and Fragrance & perfume became live.
 };
 
 function readJson(rel) {

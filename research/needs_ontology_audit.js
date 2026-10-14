@@ -49,9 +49,11 @@ const EXPECTED_DOMAINS = [
    2 -> 3 (airlines), PROTECT 5 -> 7 (mortgages, credit cards). NOURISH is untouched at 50, which
    is the point: the catalogue stopped being a grocery list tonight. */
 const EXPECTED_LIVE_BY_NEED = {
-  nourish: 50,
-  care: 26,
-  'keep-a-home': 10,
+  // 2026-10-14: NOURISH 50 -> 51 (bottled water), CARE 26 -> 27 (fragrance), KEEP A HOME 10 -> 12
+  // (floor cleaners, carpet cleaners).
+  nourish: 51,
+  care: 27,
+  'keep-a-home': 12,
   // 12 on 2026-09-23: email and search left the shared digital-services dataset in the split,
   // the same kind of move as messaging and browsers on 2026-08-26.
   connect: 12,
@@ -126,7 +128,11 @@ const EXPECTED_LIVE_BY_NEED = {
 // Re-pinned 2026-09-23: email and search left the shared digital-services dataset in the split,
 // the same kind of move. Two facet fields dropped from the Email and Search rows and their cid
 // values changed from digital-services to email and search; nothing else in the projection moved.
-const ROUND9_DOMAIN_SIGNATURE = '5ad70582b91bed4ab14fff6baf7175da204e124aa059d962bd4ee8f1fd3953fd';
+// Re-pinned 2026-10-14: Bottled water (Food & drink) and Fragrance & perfume (Personal care) gained
+// cids bottled-water and fragrance, and two rows, Floor cleaners and Carpet cleaners, were added to
+// Home under Cleaning supplies with their own cids. Four generated datasets from vetted bulk sources
+// (Open Food Facts, Open Beauty Facts, EPA Safer Choice); nothing else in the projection moved.
+const ROUND9_DOMAIN_SIGNATURE = '4bc7e3ebb7f6ac48b1717a1189207eb0876155144f9097bb21806534dd1cb300';
 
 function read(rel) {
   try {
@@ -205,8 +211,9 @@ function main() {
     }
   }
 
-  expect(rows === 217, `content/ontology.json: expected 217 category rows, found ${rows}`);
-  expect(liveRows === 130, `content/ontology.json: expected 130 live rows including facets, found ${liveRows}`);
+  // 2026-10-14: floor-cleaners and carpet-cleaners added two rows; bottled-water and fragrance turned two gap rows live.
+  expect(rows === 219, `content/ontology.json: expected 219 category rows, found ${rows}`);
+  expect(liveRows === 134, `content/ontology.json: expected 134 live rows including facets, found ${liveRows}`);
   // Moved 2026-08-26: messaging and browsers flipped from digital-services facets to their own
   // datasets, the first two of the nine-way split in docs/ONTOLOGY-RESEARCH.md 4.1.
   // Moved again 2026-09-23: email and search flipped the same way, the next two of the nine-way
@@ -216,7 +223,7 @@ function main() {
   // first two of the nine-way split recorded in docs/ONTOLOGY-RESEARCH.md 4.1.
   // 126 on 2026-09-23: email and search left the shared digital-services dataset in the same
   // split, the next two of the nine-way division.
-  expect(cidRecords.size === 126, `content/ontology.json: expected 126 unique live categories, found ${cidRecords.size}`);
+  expect(cidRecords.size === 130, `content/ontology.json: expected 130 unique live categories, found ${cidRecords.size}`);
   for (const id of validNeeds) {
     expect(rowCounts[id] > 0, `content/ontology.json: ${id} is an orphan need`);
     expect(liveSets[id].size === EXPECTED_LIVE_BY_NEED[id], `content/ontology.json: ${id} expected ${EXPECTED_LIVE_BY_NEED[id]} live categories, found ${liveSets[id].size}`);
@@ -233,7 +240,7 @@ function main() {
 
   // 126 on 2026-09-23: email and search left the shared digital-services dataset in the split,
   // 2026-09-23.
-  expect(Array.isArray(index.categories) && index.categories.length === 126, `app/data/index.json: expected 126 live categories, found ${(index.categories || []).length}`);
+  expect(Array.isArray(index.categories) && index.categories.length === 130, `app/data/index.json: expected 130 live categories, found ${(index.categories || []).length}`);
   expect(JSON.stringify(index.ontology) === JSON.stringify(ontology), 'app/data/index.json: embedded ontology differs from content/ontology.json');
   const generatedIds = new Set();
   for (const category of index.categories || []) {

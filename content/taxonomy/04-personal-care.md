@@ -120,7 +120,7 @@ edge: What goes on a body to keep it clean, comfortable and presentable. Medicin
 ## Fragrance | aka: fragrance and perfume, perfume
 
 ### Wearing a scent
-- Perfume and cologne | cadence: yearly
+- Perfume and cologne | cid: fragrance | cadence: yearly | aka: perfume, cologne, eau de toilette
 - Body sprays and mists
 - Solid and refillable fragrance
 - Essential oils for personal use

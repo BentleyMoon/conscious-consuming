@@ -2239,7 +2239,8 @@ function main() {
 
   // 124 on 2026-08-26: the digital-services split gave messaging and browsers their own datasets.
   // 126 on 2026-09-23: the same split gave email and search their own datasets.
-  expect(categories.length === 126, `app/data/index.json: expected 126 categories, found ${categories.length}`);
+  // 130 on 2026-10-14: four generated categories from vetted bulk sources.
+  expect(categories.length === 130, `app/data/index.json: expected 130 categories, found ${categories.length}`);
   expect(entries > 20000, `app/data: expected broad entry coverage, found ${entries}`);
   expect(singleSource > 10000, `app/data: expected visible single-source population, found ${singleSource}`);
   expect(multiSource > 100, `app/data: expected visible multi-source population, found ${multiSource}`);

@@ -16,7 +16,7 @@ own.
   low caps the result, so a single dealbreaker cannot be averaged away. A certification axis cannot
   cap, because a missing label only means no paperwork was found; it lowers the average and stops
   there. `research/engine_score_test.js` pins each of these rules.
-- **`app/data/`** 126 category datasets, 24,228 entries, each rating carrying a source and an as-of date.
+- **`app/data/`** 130 category datasets, 29,693 entries, each rating carrying a source and an as-of date.
 - **`research/`** 96 audit scripts, and the reason to trust anything else here. They pin sentences,
   gate claims on receipts, check contrast and accessibility, and fail the build when a number
   drifts from the source it came from.

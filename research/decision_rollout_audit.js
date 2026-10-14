@@ -21,11 +21,11 @@ const CATEGORY_ASSIGNMENT_GUARDS = {
   },
   'fruit-jam': {
     minimumEntries: 200,
-    name: /\b(?:jams?|confiture|marmalade|marmellata|doce|fruit\s+spread|preserves?)\b/i,
+    name: /\b(?:jams?|confiture|confettura|marmalade|marmellata|doce|fruit\s+spread|preserves?)\b/i,
   },
   honey: {
     minimumEntries: 300,
-    name: /\b(?:honey|miel|honig|miele|mel|miod|med|mez)\b/i,
+    name: /\b(?:honey|miel|honig|honing|miele|mel|miod|med|mez)\b/i,
   },
   'pasta-sauce': {
     minimumEntries: 250,
@@ -49,9 +49,10 @@ const CATEGORY_ASSIGNMENT_GUARDS = {
   },
 };
 const CERTIFICATION_PILOTS = {
-  coffee: { entries: 291, known: 225, organic: 41, fair_trade: 27, rainforest_alliance: 39 },
-  'dark-chocolate': { entries: 391, known: 364, organic: 140, fair_trade: 129, rainforest_alliance: 47 },
-  tea: { entries: 344, known: 271, organic: 101, fair_trade: 37, rainforest_alliance: 59 },
+  // 2026-10-14: recounted after the food caches deepened from 400 to 500 Open Food Facts records.
+  coffee: { entries: 356, known: 272, organic: 48, fair_trade: 34, rainforest_alliance: 48 },
+  'dark-chocolate': { entries: 490, known: 455, organic: 174, fair_trade: 156, rainforest_alliance: 56 },
+  tea: { entries: 434, known: 338, organic: 132, fair_trade: 46, rainforest_alliance: 74 },
 };
 const CERTIFICATION_KEYS = ['organic', 'fair_trade', 'rainforest_alliance'];
 const CERTIFICATION_TAGS = {
@@ -335,7 +336,8 @@ function main() {
   // first two of the nine-way split recorded in docs/ONTOLOGY-RESEARCH.md 4.1.
   // 126 on 2026-09-23: email and search left the shared digital-services dataset in the same
   // split, the next two of the nine-way division.
-  expect(live.length === 126, `app/data/index.json: expected 126 live categories, found ${live.length}`);
+  // 130 on 2026-10-14: bottled-water, fragrance, floor-cleaners and carpet-cleaners from vetted bulk sources.
+  expect(live.length === 130, `app/data/index.json: expected 130 live categories, found ${live.length}`);
   const contractCategories = contracts.map((contract) => contract.category);
   const contractCategorySet = new Set(contractCategories);
   expect(contractCategorySet.size === contractCategories.length, 'content/decisions.json: rollout categories must be unique');
@@ -425,13 +427,14 @@ function main() {
     }
   }
 
-  expect(receipt.categories === 126, `rollout: tested ${receipt.categories}/126 generated categories`);
+  expect(receipt.categories === 130, `rollout: tested ${receipt.categories}/130 generated categories`);
   expect(receipt.pilotRoutes === 2, `rollout: expected 2 founder-approved pilot routes, found ${receipt.pilotRoutes}`);
   // 122 on 2026-08-26: messaging and browsers joined the approved batch with their own
   // contracts when the digital-services split gave them datasets.
   // 124 on 2026-09-23: email and search joined the approved batch with their own contracts
   // when the same split gave them datasets.
-  expect(receipt.batchRoutes === 124, `rollout: expected 124 approved batch routes, found ${receipt.batchRoutes}`);
+  // 128 on 2026-10-14: bottled-water, fragrance, floor-cleaners and carpet-cleaners joined the batch.
+  expect(receipt.batchRoutes === 128, `rollout: expected 128 approved batch routes, found ${receipt.batchRoutes}`);
   expect(receipt.certificationPilots === 3, `rollout: expected 3 S8 certification pilots, found ${receipt.certificationPilots}`);
   expect(receipt.categoryAssignmentPaths === 24, `rollout: expected 24 category-assignment ranking paths, found ${receipt.categoryAssignmentPaths}`);
   expect(receipt.floorFolded === 22, `rollout: shared floor should preserve its bounded 22-option receipt, found ${receipt.floorFolded}`);

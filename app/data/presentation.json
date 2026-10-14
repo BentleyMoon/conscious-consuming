@@ -47,10 +47,10 @@
       "needs": 8,
       "categories": 18,
       "subcategories": 39,
-      "decisions": 217,
-      "livePaths": 130,
-      "liveDatasets": 126,
-      "notYetCovered": 87
+      "decisions": 219,
+      "livePaths": 134,
+      "liveDatasets": 130,
+      "notYetCovered": 85
     },
     "needs": [
       {
@@ -210,7 +210,7 @@
                   "skincare",
                   "make-up-and-cosmetics",
                   "nail-care",
-                  "fragrance-and-perfume"
+                  "fragrance"
                 ]
               },
               {
@@ -324,7 +324,9 @@
                   "cleaning-products",
                   "laundry",
                   "paper-goods",
-                  "dish-soap"
+                  "dish-soap",
+                  "floor-cleaners",
+                  "carpet-cleaners"
                 ]
               },
               {
@@ -1157,14 +1159,15 @@
       {
         "id": "bottled-water",
         "label": "Bottled water",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/bottled-water",
+        "state": "live",
+        "route": "#decide/bottled-water",
         "need": "nourish",
         "category": "drinks",
         "subcategory": "drinks-all",
         "type": "Products",
         "sourceDomain": "Food & drink",
-        "sourceGroup": "Drinks"
+        "sourceGroup": "Drinks",
+        "cid": "bottled-water"
       },
       {
         "id": "wine",
@@ -1551,16 +1554,17 @@
         "sourceGroup": "Make-up"
       },
       {
-        "id": "fragrance-and-perfume",
+        "id": "fragrance",
         "label": "Fragrance & perfume",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/fragrance-and-perfume",
+        "state": "live",
+        "route": "#decide/fragrance",
         "need": "care",
         "category": "body-care",
         "subcategory": "skin-and-cosmetics",
         "type": "Products",
         "sourceDomain": "Personal care",
-        "sourceGroup": "Fragrance"
+        "sourceGroup": "Fragrance",
+        "cid": "fragrance"
       },
       {
         "id": "shampoo",
@@ -2111,6 +2115,32 @@
         "sourceDomain": "Home",
         "sourceGroup": "Cleaning supplies",
         "cid": "dish-soap"
+      },
+      {
+        "id": "floor-cleaners",
+        "label": "Floor cleaners",
+        "state": "live",
+        "route": "#decide/floor-cleaners",
+        "need": "keep-a-home",
+        "category": "cleaning-and-kitchen",
+        "subcategory": "cleaning-and-household-supplies",
+        "type": "Products",
+        "sourceDomain": "Home",
+        "sourceGroup": "Cleaning supplies",
+        "cid": "floor-cleaners"
+      },
+      {
+        "id": "carpet-cleaners",
+        "label": "Carpet cleaners",
+        "state": "live",
+        "route": "#decide/carpet-cleaners",
+        "need": "keep-a-home",
+        "category": "cleaning-and-kitchen",
+        "subcategory": "cleaning-and-household-supplies",
+        "type": "Products",
+        "sourceDomain": "Home",
+        "sourceGroup": "Cleaning supplies",
+        "cid": "carpet-cleaners"
       },
       {
         "id": "cookware-and-pans",
@@ -5378,5 +5408,5 @@
       }
     ]
   },
-  "checksum": "sha256:97bf3f3b3ce4e6a945ed57fd5ed7eed43d81b4f7540fdffa3acc030bb7824f21"
+  "checksum": "sha256:58cfb74ca88d50dcf1174fe783002a960a5c33f9ff80b57a3a9c78a4a21ec906"
 }

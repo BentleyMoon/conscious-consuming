@@ -138,7 +138,31 @@ function readJson(file) {
   return JSON.parse(fs.readFileSync(file, 'utf8'));
 }
 
+// 2026-10-14. The full Ask index is written one token per line instead of one posting per line.
+// Pretty-printing put every item id on its own indented line, so about a fifth of the file was
+// indentation; this layout keeps git diffs line-per-token and parses to the identical object.
+// Honest accounting: gzip already removed most of that whitespace in transit, so the saving is
+// in raw bytes, parse work and the repository, not much in transfer. The 6 MB budget stays.
+// research/node_index_audit.js carries the same function and must stay in step.
+function formatAskIndex(value) {
+  const keys = Object.keys(value);
+  const lines = ['{'];
+  keys.forEach((key, i) => {
+    const comma = i === keys.length - 1 ? '' : ',';
+    const field = value[key];
+    if ((key === 'tokens' || key === 'aliases') && field && typeof field === 'object' && !Array.isArray(field)) {
+      const entries = Object.keys(field).map(k => JSON.stringify(k) + ':' + JSON.stringify(field[k]));
+      lines.push(`  ${JSON.stringify(key)}: {` + (entries.length ? '\n' + entries.join(',\n') + '\n  }' : '}') + comma);
+    } else {
+      lines.push(`  ${JSON.stringify(key)}: ` + JSON.stringify(field, null, 2).replace(/\n/g, '\n  ') + comma);
+    }
+  });
+  lines.push('}');
+  return lines.join('\n') + '\n';
+}
+
 function formatJson(value) {
+  if (value && value.format === 'ovs-ask-index') return formatAskIndex(value);
   return JSON.stringify(value, null, 2) + '\n';
 }
 
@@ -162,7 +186,7 @@ function withAskIndexBudget(index) {
       maxBytes: ASK_INDEX_MAX_BYTES,
       currentBytes: 0,
       withinBudget: false,
-      measurement: 'UTF-8 bytes of the generated pretty JSON file',
+      measurement: 'UTF-8 bytes of the generated file as written (one token per line)',
       actionWhenExceeded: 'Shard the token and alias tables before app-owned code treats this as a single lazy fetch.'
     },
     shards: {
