@@ -7,7 +7,7 @@
     "tradeoff": ["accessibility", "privacy"],
     "tradeoffLabels": ["easiest", "most private"],
     "source": "Conscious Consuming (curated)",
-    "attribution": "Built from search providers' own privacy and transparency documentation, source repositories where published, a corporate SEC filing and pricing pages, not measured data. Search privacy practices and defaults change, so check current documentation yourself before relying on any of these. Privacy reflects whether a search is used to build an advertising profile of the person searching, not just whether the connection is encrypted; openness reflects whether the search engine's own code is published and under what licence, not just whether it draws on an open web index; portability reflects how easily a person can add or drop the engine as a browser default, or run an instance themselves; respect reflects the funding model behind the results, including ownership by an advertising company, and any market-power findings against the operator; accessibility reflects how complete and familiar the results feel for ordinary use. Compared here are general web search engines a person types a question into. Reverse image search, scholarly search, fact-check search, certificate search and dedicated research managers are a different task and are not compared here. Perplexity, You.com and WolframAlpha build an AI chat answer or a computational result rather than a ranked results page from a general web index; You.com's own homepage now markets itself as a developer search API rather than a consumer search engine, so none of the three are compared here. Suggest changes via Contribute.",
+    "attribution": "Built from search providers' own privacy and transparency documentation, source repositories where published, corporate SEC filings, pricing pages, browser add-on and app-store listings, and a competition-policy tracker's record of a court case, not measured data. Search privacy practices and defaults change, so check current documentation yourself before relying on any of these. Privacy reflects whether a search is used to build an advertising profile of the person searching, not just whether the connection is encrypted; openness reflects whether the search engine's own code is published and under what licence, not just whether it draws on an open web index; portability reflects how easily a person can add or drop the engine as a browser default, or run an instance themselves; respect reflects the funding model behind the results, including ownership by an advertising company, and any market-power findings against the operator; accessibility reflects how complete and familiar the results feel for ordinary use. Compared here are general web search engines a person types a question into. Reverse image search, scholarly search, fact-check search, certificate search and dedicated research managers are a different task and are not compared here. Perplexity, You.com and WolframAlpha build an AI chat answer or a computational result rather than a ranked results page from a general web index; You.com's own homepage now markets itself as a developer search API rather than a consumer search engine, so none of the three are compared here. Ask.com closed on 1 May 2026, AOL Search now redirects to Yahoo Search, Mullvad's Leta search proxy shut down in November 2025 and Whoogle stopped returning results in July 2026, so none of those are listed. Suggest changes via Contribute.",
     "allergens": false,
     "presets": {
       "Balanced": {
@@ -479,6 +479,185 @@
       "price": { "tier": "free" },
       "description": "An open-source search engine funded by a public-interest European research grant rather than advertising, useful for technical users who want to inspect or self-host the stack behind their search results.",
       "focuses": ["Search", "Open source", "Independent index", "Free"]
+    },
+    {
+      "code": "dogpile",
+      "name": "Dogpile",
+      "brand": "System1",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 24, "openness": 8, "portability": 50, "respect": 22, "accessibility": 70, "economical": 92 },
+      "provenance": {
+        "privacy": { "note": "Dogpile's footer names it as run by Infospace Holdings LLC, a System1 company, and links to System1's privacy policy, which says third parties on its services may collect information about a person's activity across websites over time and use it for interest-based (behavioral or retargeted) advertising, and that some services carry advertising or tracking technologies from Microsoft Bing and Yahoo.", "source": "https://system1.com/terms/privacy-policy", "asof": "2026-10" },
+        "openness": { "note": "Dogpile is a proprietary metasearch service; Dogpile's own pages point to no published source code, only to browser extensions, apps and a developer search offering.", "source": "https://www.dogpile.com/about", "asof": "2026-10" },
+        "portability": { "note": "Dogpile publishes step-by-step instructions for making it the default search engine in Chrome, Firefox, Safari and Edge, and no account is needed, so it is easy to switch in or out.", "source": "https://www.dogpile.com/about", "asof": "2026-10" },
+        "respect": { "note": "System1's 2025 annual report (Form 10-K) describes a business that delivers 'high-intent customers to our advertising partners' and calls the first-party intent data it captures from its owned and operated search and media sites a differentiated element of its platform; Dogpile's own footer names it as a System1 company.", "source": "https://www.sec.gov/Archives/edgar/data/1805833/000180583326000014/sst-20251231.htm", "asof": "2026-03" },
+        "accessibility": { "note": "Dogpile is a metasearch engine that combines results from Google, Yahoo and others into one page; it says it offers classic links to real websites with no presumptive overviews and no forced chat, and has browser extensions and Android and iOS apps.", "source": "https://www.dogpile.com/about", "asof": "2026-10" },
+        "economical": { "note": "Dogpile search is free to use, funded by advertising through System1.", "source": "https://www.dogpile.com/about", "asof": "2026-10" }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.dogpile.com/" },
+        { "label": "About", "url": "https://www.dogpile.com/about" },
+        { "label": "Privacy (System1)", "url": "https://system1.com/terms/privacy-policy" },
+        { "label": "System1 10-K 2025", "url": "https://www.sec.gov/Archives/edgar/data/1805833/000180583326000014/sst-20251231.htm" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "A long-running metasearch engine that blends results from Google, Yahoo and other engines rather than keeping its own index, now owned by the ad-tech company System1, which also owns Startpage and whose privacy policy allows third-party behavioral advertising.",
+      "focuses": ["Search", "Metasearch", "Owned by an ad-tech company", "Ads", "Free"]
+    },
+    {
+      "code": "naver-search",
+      "name": "Naver Search",
+      "brand": "NAVER",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 20, "openness": 10, "portability": 36, "respect": 24, "accessibility": 64, "economical": 92 },
+      "provenance": {
+        "privacy": { "note": "NAVER's privacy policy says it uses cookies, advertising identifiers (ADID/IDFA) and automatically collected behavioral information to offer tailored services, including advertisements, based on users' preferences and interests, and that personal information is also used for AI technology development.", "source": "https://policy.naver.com/policy/privacy_en.html", "asof": "2026-10" },
+        "openness": { "note": "NAVER Search is a closed hosted service; NAVER's GitHub organisation lists 287 repositories led by research code and libraries such as DUSt3R and billboard.js, but does not present the search engine as open source.", "source": "https://github.com/naver", "asof": "2026-10" },
+        "portability": { "note": "NAVER's privacy policy says users may request access, correction, deletion or suspension of processing of their personal information and can review a Personal Information Usage Status page, but search runs inside NAVER's own account ecosystem rather than as something a person can take elsewhere or run themselves.", "source": "https://policy.naver.com/policy/privacy_en.html", "asof": "2026-10" },
+        "respect": { "note": "Digital Policy Alert records that Korea's Fair Trade Commission sanctioned NAVER in October 2020 over alleged search-ranking manipulation favouring its own shopping service, that the Seoul High Court upheld the sanction in December 2022, and that the Supreme Court quashed that ruling and sent it back for retrial on 16 October 2025, so the finding is still contested. NAVER's own privacy policy describes personalised advertising built on behavioral information.", "source": "https://digitalpolicyalert.org/event/35221-supreme-court-overturned-seoul-high-court-ruling-against-naver-regarding-alleged-abuse-of-dominant-market-position", "asof": "2025-10" },
+        "accessibility": { "note": "NAVER is a Korean-language portal whose results page leads with an AI briefing alongside blog, cafe, knowledge Q&A, shopping and news tabs; familiar in South Korea, but not an everyday option for most readers outside it.", "source": "https://search.naver.com/search.naver?query=climate", "asof": "2026-10" },
+        "economical": { "note": "NAVER Search is free to use, funded by advertising across NAVER's services.", "source": "https://policy.naver.com/policy/privacy_en.html", "asof": "2026-10" }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.naver.com/" },
+        { "label": "Privacy", "url": "https://policy.naver.com/policy/privacy_en.html" },
+        { "label": "KFTC case (Digital Policy Alert)", "url": "https://digitalpolicyalert.org/event/35221-supreme-court-overturned-seoul-high-court-ruling-against-naver-regarding-alleged-abuse-of-dominant-market-position" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "A Korean-language search portal from NAVER, with an AI briefing at the top of results, funded by personalised advertising, and the subject of a 2020 competition sanction over favouring its own shopping service that Korea's Supreme Court sent back for retrial in 2025.",
+      "focuses": ["Search", "Mainstream", "Ads", "Closed source", "Free"]
+    },
+    {
+      "code": "seznam-search",
+      "name": "Seznam Search",
+      "brand": "Seznam.cz",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 55, "openness": 12, "portability": 42, "respect": 38, "accessibility": 58, "economical": 90 },
+      "provenance": {
+        "privacy": { "note": "Seznam's search privacy notice says search works the same way for everyone and does not personalise the ranking of organic results even when signed in, using only an anonymised IP address to run search; its wider consent page says Seznam's services are funded by advertising targeted with personal data unless a person pays for the no-targeting option.", "source": "https://o-seznam.cz/pravni-informace/ochrana-udaju/vyhledavani/", "asof": "2026-10" },
+        "openness": { "note": "Seznam.cz publishes around 135 repositories on its GitHub organisation, mostly web libraries and developer tools, but does not publish its search engine as open source.", "source": "https://github.com/seznam", "asof": "2026-10" },
+        "portability": { "note": "Seznam search needs no account and does not personalise organic results, so there is little to lose by switching, but it is a Czech-language hosted service that cannot be self-hosted.", "source": "https://o-seznam.cz/pravni-informace/ochrana-udaju/vyhledavani/", "asof": "2026-10" },
+        "respect": { "note": "Seznam's consent page says its free services are funded by advertising revenue that needs consent to personal data for targeting, and offers 'Seznam bez cílené reklamy' (Seznam without targeted advertising) for 49 Kč a month; even the paid ad-free tier still shows ads in search results.", "source": "https://o-seznam.cz/pravni-informace/ochrana-udaju/souhlas/", "asof": "2026-10" },
+        "accessibility": { "note": "Seznam says it runs more than 30 services from its own data centres, with search at the centre of its portal; it is a familiar default in the Czech Republic but its interface and results are aimed at Czech speakers.", "source": "https://o-seznam.cz/", "asof": "2026-10" },
+        "economical": { "note": "Seznam search is free; paying 49 Kč a month removes targeted advertising, and a separate ad-free tier costs 179 Kč a month or 1,500 Kč a year.", "source": "https://o-seznam.cz/pravni-informace/ochrana-udaju/souhlas/", "asof": "2026-10" }
+      },
+      "links": [
+        { "label": "Website", "url": "https://search.seznam.cz/" },
+        { "label": "Search privacy (Czech)", "url": "https://o-seznam.cz/pravni-informace/ochrana-udaju/vyhledavani/" },
+        { "label": "Consent and pricing (Czech)", "url": "https://o-seznam.cz/pravni-informace/ochrana-udaju/souhlas/" },
+        { "label": "GitHub", "url": "https://github.com/seznam" }
+      ],
+      "region": ["EU"],
+      "price": { "tier": "freemium" },
+      "description": "The Czech Republic's home-grown search engine and portal, which says it does not personalise organic results, though the wider Seznam portal is funded by targeted advertising unless a person pays to opt out.",
+      "focuses": ["Search", "EU", "Mainstream", "Ads", "Free"]
+    },
+    {
+      "code": "lilo",
+      "name": "Lilo",
+      "brand": "Qwant",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 74, "openness": 15, "portability": 60, "respect": 74, "accessibility": 78, "economical": 100 },
+      "provenance": {
+        "privacy": { "note": "Lilo's privacy policy, which names Qwant as the company operating the Lilo brand, says it shows contextual advertising based only on the keywords typed, with no targeted advertising, but passes pseudonymised query data (keywords, browser details, the first three bytes of the IP address, approximate location) to Microsoft to fetch results and ads, and uses Piwik Pro analytics that builds user profiles from browsing on the site.", "source": "https://www.lilo.org/votre-vie-privee-avec-lilo", "asof": "2026-10" },
+        "openness": { "note": "Lilo is a closed hosted service rather than its own index; its FAQ says results come from a partnership with Microsoft Bing and Pages Jaunes, with a tab to check Google's results, and no source code is published.", "source": "https://www.lilo.org/faq", "asof": "2026-10" },
+        "portability": { "note": "Lilo works without an account in any browser, and Lilo's site links to pages for configuring it as the browser search engine, using it on mobile and an optional account.", "source": "https://www.lilo.org/en", "asof": "2026-10" },
+        "respect": { "note": "Lilo says it gives 80% of its profits to the associations its users choose, with more than 5 million euros donated so far, funded by the search ads shown with results.", "source": "https://www.lilo.org/en", "asof": "2026-10" },
+        "accessibility": { "note": "Lilo's Android app has more than 100,000 downloads and a 4.7-star rating from about 13,100 reviews on Google Play, though the service and its site are French-first.", "source": "https://play.google.com/store/apps/details?id=org.lilo.mobile.android2020&hl=en_US", "asof": "2026-10" },
+        "economical": { "note": "Lilo is free to use; it is funded by the search ads shown alongside results.", "source": "https://www.lilo.org/en", "asof": "2026-10" }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.lilo.org/en" },
+        { "label": "Privacy (French)", "url": "https://www.lilo.org/votre-vie-privee-avec-lilo" },
+        { "label": "FAQ (French)", "url": "https://www.lilo.org/faq" },
+        { "label": "Android app", "url": "https://play.google.com/store/apps/details?id=org.lilo.mobile.android2020&hl=en_US" }
+      ],
+      "region": ["EU"],
+      "price": { "tier": "free" },
+      "description": "A French charity search engine, now operated by Qwant, that shows Microsoft Bing results with keyword-only ads and passes 80% of its profits to causes its users pick; it does not keep its own index.",
+      "focuses": ["Search", "EU", "Charity", "Ads", "Free"]
+    },
+    {
+      "code": "mwmbl",
+      "name": "Mwmbl",
+      "brand": "",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 86, "openness": 95, "portability": 70, "respect": 92, "accessibility": 40, "economical": 100 },
+      "provenance": {
+        "privacy": { "note": "Mwmbl's privacy policy says IP addresses are not stored on disk, it keeps no record of searches linked to a person or account, and it uses only essential login cookies, but that queries are forwarded without identifying details to third-party sources, including EUSP and TypeSafe AI for the logged-in Seed Search feature.", "source": "https://mwmbl.org/privacy/", "asof": "2026-10" },
+        "openness": { "note": "Mwmbl's code is public on GitHub under the AGPL-3.0 licence, with more than 1,600 commits and active recent work.", "source": "https://github.com/mwmbl/mwmbl", "asof": "2026-10" },
+        "portability": { "note": "Mwmbl publishes guides for local installation and for building your own index, though most people will use the hosted mwmbl.org.", "source": "https://book.mwmbl.org/", "asof": "2026-10" },
+        "respect": { "note": "The Book of Mwmbl says there are no adverts, that its mission is guided by community instead of profit, and that a Mwmbl Foundation is needed to manage it.", "source": "https://book.mwmbl.org/", "asof": "2026-10" },
+        "accessibility": { "note": "Mwmbl works on the public web, but its privacy policy says the broader Seed Search mode needs an account and has a monthly usage limit.", "source": "https://mwmbl.org/privacy/", "asof": "2026-10" },
+        "economical": { "note": "Mwmbl is free to use, with no adverts.", "source": "https://book.mwmbl.org/", "asof": "2026-10" }
+      },
+      "links": [
+        { "label": "Website", "url": "https://mwmbl.org/" },
+        { "label": "Privacy", "url": "https://mwmbl.org/privacy/" },
+        { "label": "The Book of Mwmbl", "url": "https://book.mwmbl.org/" },
+        { "label": "Source", "url": "https://github.com/mwmbl/mwmbl" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "A small open-source, ad-free search engine building its own community-guided index, run on non-profit lines; strong on values, but its results are still thin next to a mainstream engine.",
+      "focuses": ["Search", "Open source", "Independent index", "Nonprofit", "Free"]
+    },
+    {
+      "code": "4get",
+      "name": "4get",
+      "brand": "",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 86, "openness": 96, "portability": 78, "respect": 88, "accessibility": 44, "economical": 100 },
+      "provenance": {
+        "privacy": { "note": "4get's about page says it does not log IP addresses or user agents, keeps only encrypted next-page tokens in memory for up to 15 minutes, and shares only the search query and filters with the engine being scraped, with no ads, third-party scripts or trackers.", "source": "https://4get.ca/about", "asof": "2026-10" },
+        "openness": { "note": "4get's full source is published on its maintainer's own git server under the AGPLv3-only licence, with commits as recent as October 2026.", "source": "https://git.lolcat.ca/lolcat/4get", "asof": "2026-10" },
+        "portability": { "note": "4get's source repository includes a Dockerfile and docker-compose setup for running your own instance, and 4get.ca links to a browser of other public instances.", "source": "https://git.lolcat.ca/lolcat/4get", "asof": "2026-10" },
+        "respect": { "note": "4get says it carries no ads and no trackers and is supported by donations to its maintainer through Ko-fi.", "source": "https://4get.ca/about", "asof": "2026-10" },
+        "accessibility": { "note": "4get describes itself as a metasearch engine that gets results from other engines, with minimal, optional JavaScript; it is a one-person hobby project whose about page is written in a deliberately crude tone, so it suits technical users more than everyday searchers.", "source": "https://4get.ca/about", "asof": "2026-10" },
+        "economical": { "note": "4get is free to use and free software to self-host.", "source": "https://4get.ca/about", "asof": "2026-10" }
+      },
+      "links": [
+        { "label": "Website", "url": "https://4get.ca/" },
+        { "label": "About", "url": "https://4get.ca/about" },
+        { "label": "Source", "url": "https://git.lolcat.ca/lolcat/4get" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "An open-source, self-hostable metasearch proxy that fetches results from other engines and strips tracking, with no ads, logs or accounts; a one-person hobby project for technical users rather than an index of its own.",
+      "focuses": ["Search", "Open source", "Self-hostable", "Metasearch", "Free"]
+    },
+    {
+      "code": "gibiru",
+      "name": "Gibiru",
+      "brand": "Gibiru",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": { "privacy": 70, "openness": 8, "portability": 44, "respect": 56, "accessibility": 60, "economical": 92 },
+      "provenance": {
+        "privacy": { "note": "Gibiru's privacy policy says it sets no cookies, keeps no search logs and has no data about a person to sell, but it does not name the company that runs it, and there is no independent audit of those claims.", "source": "https://gibiru.com/privacy-policy/", "asof": "2026-10" },
+        "openness": { "note": "Gibiru's own Firefox add-on is listed under an All Rights Reserved licence, and the search service itself publishes no source code.", "source": "https://addons.mozilla.org/en-US/firefox/addon/gibiru/", "asof": "2026-10" },
+        "portability": { "note": "Gibiru can be set as the default search engine with a browser add-on, but the Firefox add-on was last updated in June 2019 and has about 1,400 users.", "source": "https://addons.mozilla.org/en-US/firefox/addon/gibiru/", "asof": "2026-10" },
+        "respect": { "note": "Gibiru says it earns money strictly on a commission basis when users buy something, rather than by selling search logs, and its homepage recommends a partner VPN through a referral link.", "source": "https://gibiru.com/", "asof": "2026-10" },
+        "accessibility": { "note": "Gibiru returns an ordinary-looking ranked results page with web, image, video and news tabs plus a separate censored-content tab, but it is little known.", "source": "https://gibiru.com/results.html?q=climate+change", "asof": "2026-10" },
+        "economical": { "note": "Gibiru search is free to use.", "source": "https://gibiru.com/", "asof": "2026-10" }
+      },
+      "links": [
+        { "label": "Website", "url": "https://gibiru.com/" },
+        { "label": "Privacy", "url": "https://gibiru.com/privacy-policy/" },
+        { "label": "Firefox add-on", "url": "https://addons.mozilla.org/en-US/firefox/addon/gibiru/" }
+      ],
+      "region": ["global"],
+      "price": { "tier": "free" },
+      "description": "A small 'uncensored' private-search site that says it keeps no logs or cookies and earns affiliate commissions instead of profiling, but it is closed, does not name its operator, and its claims are unaudited.",
+      "focuses": ["Search", "Private search", "Closed source", "Free"]
     }
   ]
 }

@@ -13,7 +13,7 @@
       "most private"
     ],
     "source": "Conscious Consuming (curated)",
-    "attribution": "Built from providers' own encryption and privacy documentation, open-source client and server repositories, published security research and app pricing pages, not measured data. Messaging privacy settings change, so check the current documentation yourself before relying on any of these. Privacy reflects whether ordinary chats are end-to-end encrypted by default and what the provider says it can see; openness reflects whether client and server code is published and under what licence, not whether a company markets itself as private; portability reflects whether a chat history or identity can leave the provider's network; respect reflects whether the business model runs on advertising or data-driven profiling rather than user payment or donations; accessibility covers both how easily a person can start using the service and how likely the people they already talk to are on it. Suggest changes via Contribute.",
+    "attribution": "Built from providers' own encryption and privacy documentation, open-source client and server repositories, published security research, regulators' decisions, app-store listings and app pricing pages, not measured data. Messaging privacy settings change, so check the current documentation yourself before relying on any of these. Privacy reflects whether ordinary chats are end-to-end encrypted by default and what the provider says it can see; openness reflects whether client and server code is published and under what licence, not whether a company markets itself as private; portability reflects whether a chat history or identity can leave the provider's network; respect reflects whether the business model runs on advertising or data-driven profiling rather than user payment or donations; accessibility covers both how easily a person can start using the service and how likely the people they already talk to are on it. Suggest changes via Contribute.",
     "allergens": false,
     "presets": {
       "Balanced": {
@@ -1496,6 +1496,717 @@
         "Matrix",
         "Open source",
         "Freemium"
+      ]
+    },
+    {
+      "code": "google-messages",
+      "name": "Google Messages (RCS)",
+      "brand": "messaging",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 60,
+        "openness": 28,
+        "portability": 62,
+        "respect": 42,
+        "accessibility": 92,
+        "economical": 100
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Google's help page says 'RCS conversations between Google Messages users default to end-to-end encryption', with keys that exist only on the two devices and are not shared with Google. The same page says SMS/MMS messages are not end-to-end encrypted, nor is RCS when the other person's messaging app does not support it, and that a conversation drops back to unencrypted SMS when either person loses data or Wi-Fi.",
+          "source": "https://support.google.com/messages/answer/10262381?hl=en",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "Google Play lists Google Messages as a Google LLC app. It runs on RCS, which its listing calls the industry standard for texting that replaces SMS and MMS, but the Messages app itself is proprietary, with no published source.",
+          "source": "https://play.google.com/store/apps/details?id=com.google.android.apps.messaging&hl=en_US",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "Apple's support page says RCS messages can be sent between iPhones and non-Apple devices and that Apple's implementation is based on the industry standard. So a Google Messages user is reached by an ordinary phone number on a carrier standard that other phones and apps also speak, not by a Google-only account. End-to-end encryption across platforms is narrower: Apple says encrypted RCS needs iOS 26.5 (in beta) and carriers on both sides that support it.",
+          "source": "https://support.apple.com/en-us/104972",
+          "asof": "2026-10"
+        },
+        "respect": {
+          "note": "Google's privacy policy says that, depending on your settings, Google may show you personalized ads based on your interests and activity across Google services, though it says it does not use content from Drive, Gmail or Photos for ad personalization. Messages is a free app from an advertising-funded company rather than a product paid for by its users.",
+          "source": "https://policies.google.com/privacy?hl=en-US",
+          "asof": "2026-10"
+        },
+        "accessibility": {
+          "note": "Google Play lists more than 10 billion downloads of Google Messages. Its listing says it works with other RCS users, including iPhone users, and as a texting app it can reach anyone with a phone number, falling back to SMS.",
+          "source": "https://play.google.com/store/apps/details?id=com.google.android.apps.messaging&hl=en_US",
+          "asof": "2026-10"
+        },
+        "economical": {
+          "note": "Google Messages is a free download on Google Play; its listing notes that RCS availability varies by carrier and that a data plan may be required.",
+          "source": "https://play.google.com/store/apps/details?id=com.google.android.apps.messaging&hl=en_US",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Encryption help",
+          "url": "https://support.google.com/messages/answer/10262381?hl=en"
+        },
+        {
+          "label": "Google Play listing",
+          "url": "https://play.google.com/store/apps/details?id=com.google.android.apps.messaging&hl=en_US"
+        },
+        {
+          "label": "Apple: iMessage, RCS and SMS",
+          "url": "https://support.apple.com/en-us/104972"
+        },
+        {
+          "label": "Google privacy policy",
+          "url": "https://policies.google.com/privacy?hl=en-US"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "free"
+      },
+      "description": "Google's texting app for Android, built on the RCS carrier standard. Chats between Google Messages users are end-to-end encrypted by default, but texts to other apps or over SMS often are not, and the app is closed source from an advertising company.",
+      "focuses": [
+        "Mainstream",
+        "Encrypted",
+        "Closed source",
+        "Android",
+        "Phone number"
+      ]
+    },
+    {
+      "code": "microsoft-teams-free",
+      "name": "Microsoft Teams (free)",
+      "brand": "messaging",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 30,
+        "openness": 18,
+        "portability": 52,
+        "respect": 50,
+        "accessibility": 72,
+        "economical": 90
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Microsoft's Teams (free) page lists 'Data encryption for meetings, chats, calls, and files' among its features, not end-to-end encryption. Microsoft's separate end-to-end encryption help page applies to the work, education and small-business editions of Teams, covers one-to-one calls only, and needs an IT admin to enable it.",
+          "source": "https://www.microsoft.com/en-us/microsoft-teams/free",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "Google Play lists Microsoft Teams as a Microsoft Corporation app, with more than 500 million downloads across its work and personal uses; it is proprietary software, with no published client or server source.",
+          "source": "https://play.google.com/store/apps/details?id=com.microsoft.teams&hl=en_US",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "Microsoft's help page for Teams for personal use describes exporting activity data as an archive from the Microsoft account privacy page and exporting contacts as a CSV file, but the account and contacts stay on Microsoft's Teams network rather than an interoperable protocol.",
+          "source": "https://support.microsoft.com/en-us/teams/free/settings/export-or-delete-your-data-in-microsoft-teams-free",
+          "asof": "2026-10"
+        },
+        "respect": {
+          "note": "Microsoft's privacy statement says it collects usage data and information about your Teams communications, including the time and date and who took part. It says Microsoft 'does not use what you say in email, human-to-human chat, video calls or voice mail' to target ads, but it also describes personalized advertising across Microsoft products, and the free tier is a route into paid Microsoft 365 subscriptions.",
+          "source": "https://www.microsoft.com/en-us/privacy/privacystatement",
+          "asof": "2026-10"
+        },
+        "accessibility": {
+          "note": "Microsoft retired Skype on 5 May 2025 and says Skype users can move to Microsoft Teams Free, signing in with their Skype credentials so that their contacts and chats transfer automatically. Teams is free to join with an email address or phone number, though few people use it for personal chat.",
+          "source": "https://support.microsoft.com/en-us/skype/skype-is-retiring-in-may-2025-what-you-need-to-know-2a7d2501-427f-485e-8be0-2068a9f90472",
+          "asof": "2026-10"
+        },
+        "economical": {
+          "note": "Microsoft's Teams (free) page lists free one-to-one calls of up to 30 hours, group meetings of up to 60 minutes with up to 100 people, and 5 GB of cloud storage. Teams Essentials costs $4.00 per user per month, paid yearly.",
+          "source": "https://www.microsoft.com/en-us/microsoft-teams/free",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Teams (free)",
+          "url": "https://www.microsoft.com/en-us/microsoft-teams/free"
+        },
+        {
+          "label": "Export your data",
+          "url": "https://support.microsoft.com/en-us/teams/free/settings/export-or-delete-your-data-in-microsoft-teams-free"
+        },
+        {
+          "label": "Microsoft privacy statement",
+          "url": "https://www.microsoft.com/en-us/privacy/privacystatement"
+        },
+        {
+          "label": "Skype retirement",
+          "url": "https://support.microsoft.com/en-us/skype/skype-is-retiring-in-may-2025-what-you-need-to-know-2a7d2501-427f-485e-8be0-2068a9f90472"
+        },
+        {
+          "label": "Google Play listing",
+          "url": "https://play.google.com/store/apps/details?id=com.microsoft.teams&hl=en_US"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "freemium"
+      },
+      "description": "Microsoft's free personal edition of Teams, where Skype users were sent when Skype closed in May 2025. It is free and easy to join, but chats are not end-to-end encrypted, it is closed source, and it leads into paid Microsoft 365 plans.",
+      "focuses": [
+        "Mainstream",
+        "Closed source",
+        "Freemium",
+        "Workplace chat"
+      ]
+    },
+    {
+      "code": "slack",
+      "name": "Slack",
+      "brand": "chat and communities",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 28,
+        "openness": 15,
+        "portability": 40,
+        "respect": 55,
+        "accessibility": 62,
+        "economical": 70
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Slack's security page says 'customer data is encrypted at rest and in transit by default', which is not end-to-end encryption: Slack can read the content it stores. Its export help page says workspace owners on Business+ and Enterprise plans can apply to export private channels and direct messages, so a workspace's owner, not just its members, controls what happens to messages.",
+          "source": "https://slack.com/trust/security",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "Slack is a closed, hosted service; its privacy policy describes the service, and there is no published client or server source.",
+          "source": "https://slack.com/trust/privacy/privacy-policy",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "Slack's export help page says Free and Pro workspaces can export only messages and file links from public channels, in JSON, and that Free workspaces can export only links to files from the last 90 days; exporting private channels and direct messages needs a Business+ or Enterprise plan and an application.",
+          "source": "https://slack.com/help/articles/201658943-Export-your-workspace-data",
+          "asof": "2026-10"
+        },
+        "respect": {
+          "note": "Slack is funded by paid per-user plans rather than in-app ads. Its privacy policy says Slack does not sell personal information but may share identifiers and internet activity information with third-party advertisers to target ads on non-Slack websites, apps and services.",
+          "source": "https://slack.com/trust/privacy/privacy-policy",
+          "asof": "2026-10"
+        },
+        "accessibility": {
+          "note": "Google Play lists more than 50 million downloads of Slack, but it is organized around workspaces you have to be invited to, so it suits work and communities rather than reaching friends and family.",
+          "source": "https://play.google.com/store/apps/details?id=com.Slack&hl=en_US",
+          "asof": "2026-10"
+        },
+        "economical": {
+          "note": "Slack's pricing page lists a free plan that keeps messages saved and searchable for 90 days, and a Pro plan at $7.25 per user per month billed annually ($8.75 monthly) for unlimited history.",
+          "source": "https://slack.com/pricing",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Pricing",
+          "url": "https://slack.com/pricing"
+        },
+        {
+          "label": "Security",
+          "url": "https://slack.com/trust/security"
+        },
+        {
+          "label": "Export your workspace data",
+          "url": "https://slack.com/help/articles/201658943-Export-your-workspace-data"
+        },
+        {
+          "label": "Privacy policy",
+          "url": "https://slack.com/trust/privacy/privacy-policy"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "freemium"
+      },
+      "description": "The best-known workplace and community chat app. It is easy to set up and free to start, but messages are not end-to-end encrypted, the free plan hides history after 90 days, and exports of private messages are limited to higher paid plans.",
+      "focuses": [
+        "Mainstream",
+        "Closed source",
+        "Workplace chat",
+        "Freemium"
+      ]
+    },
+    {
+      "code": "instagram-direct",
+      "name": "Instagram (Direct messages)",
+      "brand": "social network and messaging",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 25,
+        "openness": 18,
+        "portability": 45,
+        "respect": 18,
+        "accessibility": 90,
+        "economical": 100
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Instagram's help center says end-to-end encrypted messaging on Instagram has not been supported since 8 May 2026, tells people with affected chats how to download them, and points to WhatsApp for Meta's other end-to-end encrypted option. Instagram DMs are therefore readable by Meta. The page is rendered with JavaScript and was read in a headless browser.",
+          "source": "https://help.instagram.com/491565145294150",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "Instagram is a closed Meta service covered by Meta's privacy policy, with no published client or server source.",
+          "source": "https://www.facebook.com/privacy/policy/",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "Instagram's help center says you can export a copy of your Instagram information from Accounts Center, either to your device or to an external service, but your contacts and conversations stay on Meta's network. The page is rendered with JavaScript and was read in a headless browser.",
+          "source": "https://help.instagram.com/181231772500920",
+          "asof": "2026-10"
+        },
+        "respect": {
+          "note": "In April 2025 the European Commission found that Meta breached the Digital Markets Act with the consent-or-pay advertising model it offered EU users of Facebook and Instagram between March and November 2024, and fined Meta 200 million euros. Under that model, users could either consent to their personal data being combined for personalized advertising or pay for an ad-free service.",
+          "source": "https://ec.europa.eu/commission/presscorner/detail/en/ip_25_1085",
+          "asof": "2025-04"
+        },
+        "accessibility": {
+          "note": "Google Play lists more than 5 billion downloads of Instagram, so for many people the person they want to message is already there.",
+          "source": "https://play.google.com/store/apps/details?id=com.instagram.android&hl=en_US",
+          "asof": "2026-10"
+        },
+        "economical": {
+          "note": "Instagram is a free download on Google Play, where it is labeled as containing ads.",
+          "source": "https://play.google.com/store/apps/details?id=com.instagram.android&hl=en_US",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "End-to-end encryption on Instagram",
+          "url": "https://help.instagram.com/491565145294150"
+        },
+        {
+          "label": "Export your information",
+          "url": "https://help.instagram.com/181231772500920"
+        },
+        {
+          "label": "Meta privacy policy",
+          "url": "https://www.facebook.com/privacy/policy/"
+        },
+        {
+          "label": "European Commission DMA decision",
+          "url": "https://ec.europa.eu/commission/presscorner/detail/en/ip_25_1085"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "free"
+      },
+      "description": "The direct-message inbox inside Instagram. Almost everyone is reachable there, but Meta withdrew its optional end-to-end encryption in May 2026, so DMs are readable by Meta, and the service is funded by personalized advertising.",
+      "focuses": [
+        "Meta",
+        "Mainstream",
+        "Closed source",
+        "Not encrypted",
+        "Ads"
+      ]
+    },
+    {
+      "code": "snapchat",
+      "name": "Snapchat",
+      "brand": "social network and messaging",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 38,
+        "openness": 15,
+        "portability": 45,
+        "respect": 25,
+        "accessibility": 85,
+        "economical": 100
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Snap's privacy policy says 'our systems are designed to delete Chats you send within 24 hours after your friend reads it' unless the default settings are changed or the Chat is saved. Deleting by default limits what Snap keeps, but Snap's own privacy pages describe encryption only for the password-protected My Eyes Only folder and do not say that Chats are end-to-end encrypted.",
+          "source": "https://values.snap.com/privacy/privacy-policy",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "Snapchat is a closed Snap Inc. app; Snap's privacy-by-product pages describe its features, and no client or server source is published.",
+          "source": "https://values.snap.com/privacy/privacy-by-product",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "Snapchat's support page describes a My Data tool, in the app's settings or on the web, that emails you a link to download the data you choose, though friends and conversations stay inside Snapchat.",
+          "source": "https://help.snapchat.com/hc/en-us/articles/7012305371156-How-do-I-download-my-data-from-Snapchat",
+          "asof": "2026-10"
+        },
+        "respect": {
+          "note": "Snap's privacy policy says it processes your information to show you content and more relevant advertisements, and that you can change your ad settings in the app for a less personalized experience. Snapchat is funded by advertising.",
+          "source": "https://values.snap.com/privacy/privacy-policy",
+          "asof": "2026-10"
+        },
+        "accessibility": {
+          "note": "Google Play lists Snapchat as 'Snapchat: Chat with Friends' with more than 1 billion downloads, which makes it one of the most widely installed chat apps.",
+          "source": "https://play.google.com/store/apps/details?id=com.snapchat.android&hl=en_US",
+          "asof": "2026-10"
+        },
+        "economical": {
+          "note": "Snapchat is a free download on Google Play, where it is labeled as containing ads.",
+          "source": "https://play.google.com/store/apps/details?id=com.snapchat.android&hl=en_US",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Privacy policy",
+          "url": "https://values.snap.com/privacy/privacy-policy"
+        },
+        {
+          "label": "Privacy by product",
+          "url": "https://values.snap.com/privacy/privacy-by-product"
+        },
+        {
+          "label": "Download my data",
+          "url": "https://help.snapchat.com/hc/en-us/articles/7012305371156-How-do-I-download-my-data-from-Snapchat"
+        },
+        {
+          "label": "Google Play listing",
+          "url": "https://play.google.com/store/apps/details?id=com.snapchat.android&hl=en_US"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "free"
+      },
+      "description": "A camera-first messaging and social app with more than a billion downloads on Android. Chats are deleted from Snap's servers by default soon after they are read, but Snap does not say they are end-to-end encrypted, and the app is closed and ad-funded.",
+      "focuses": [
+        "Mainstream",
+        "Closed source",
+        "Ads",
+        "Disappearing messages"
+      ]
+    },
+    {
+      "code": "kakaotalk",
+      "name": "KakaoTalk",
+      "brand": "messaging",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 45,
+        "openness": 15,
+        "portability": 38,
+        "respect": 38,
+        "accessibility": 80,
+        "economical": 100
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Kakao's help center says 'Secret Chat uses end-to-end encryption', with messages encrypted using a key held only by the chat's participants, and that 'Secret Chat is currently available for 1:1 and group chatrooms'. It is a separate mode you start from a chatroom's menu, and it lacks free calling, polls, events and the chatroom album. Kakao does not describe ordinary chats as end-to-end encrypted.",
+          "source": "https://cs.kakao.com/helps_html/1073183324?locale=en",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "Google Play lists KakaoTalk as a Kakao Corp. app. It is proprietary, with no published client or server source.",
+          "source": "https://play.google.com/store/apps/details?id=com.kakao.talk&hl=en_US",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "Kakao's help center says the Windows app can save the messages shown in a chatroom as a .txt file. A separate help article says a chat-history backup can be restored only within 14 days. Both stay within KakaoTalk rather than an open protocol.",
+          "source": "https://cs.kakao.com/helps_html/1073181291?locale=en",
+          "asof": "2026-10"
+        },
+        "respect": {
+          "note": "Kakao's privacy policy says personal information is used for marketing and advertising, describes its Bizboard ad shown at the very top of KakaoTalk's chat list tab, and says users can allow or block personalized advertising and that children under 14 do not get it. The policy page is rendered with JavaScript and was read in a headless browser.",
+          "source": "https://privacy.kakao.com/policy?lang=en",
+          "asof": "2026-10"
+        },
+        "accessibility": {
+          "note": "Google Play lists more than 100 million downloads of KakaoTalk, so it is easy to start using and widely used, though its reach outside Korean-speaking circles is narrower than WhatsApp's.",
+          "source": "https://play.google.com/store/apps/details?id=com.kakao.talk&hl=en_US",
+          "asof": "2026-10"
+        },
+        "economical": {
+          "note": "KakaoTalk is a free download on Google Play, where it is labeled as containing ads.",
+          "source": "https://play.google.com/store/apps/details?id=com.kakao.talk&hl=en_US",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Kakao: KakaoTalk",
+          "url": "https://www.kakaocorp.com/page/service/service/KakaoTalk?lang=en"
+        },
+        {
+          "label": "What is a Secret Chat?",
+          "url": "https://cs.kakao.com/helps_html/1073183324?locale=en"
+        },
+        {
+          "label": "Privacy policy",
+          "url": "https://privacy.kakao.com/policy?lang=en"
+        },
+        {
+          "label": "Restoring chat history",
+          "url": "https://cs.kakao.com/helps_html/1073184110?locale=en"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "free"
+      },
+      "description": "South Korea's default messenger. Free and widely used, with an opt-in end-to-end encrypted Secret Chat mode, but ordinary chats are not described as end-to-end encrypted, it shows ads in the chat list, and it is closed source.",
+      "focuses": [
+        "Mainstream",
+        "Closed source",
+        "Ads",
+        "Opt-in encryption"
+      ]
+    },
+    {
+      "code": "conversations-xmpp",
+      "name": "Conversations (XMPP)",
+      "brand": "private messenger",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 86,
+        "openness": 92,
+        "portability": 88,
+        "respect": 92,
+        "accessibility": 40,
+        "economical": 95
+      },
+      "provenance": {
+        "privacy": {
+          "note": "F-Droid's listing describes Conversations as 'End-to-end encrypted by default', using OMEMO or OpenPGP, with encrypted audio and video calls. The project's own site adds that client-to-server and server-to-server traffic is TLS-encrypted, so the server you choose still sees who you talk to, as with any federated service.",
+          "source": "https://f-droid.org/en/packages/eu.siacs.conversations/",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "Conversations' site says its entire source code is publicly available on Codeberg under the GPLv3, so anyone can review or modify it.",
+          "source": "https://conversations.im/",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "XMPP's own overview says the protocol was formalized as a standard at the IETF and works like email: anyone can run their own server, so a Conversations user can pick or change a server and still talk to people on other servers and other XMPP apps.",
+          "source": "https://xmpp.org/about/technology-overview/",
+          "asof": "2026-10"
+        },
+        "respect": {
+          "note": "Conversations has no advertising; its site says buying the app on Google Play supports its development, and its maintainer sells professional support for setting up XMPP servers.",
+          "source": "https://conversations.im/",
+          "asof": "2026-10"
+        },
+        "accessibility": {
+          "note": "Conversations is Android-only (Android 6.0 and later) and needs an XMPP account on a server of your choosing; Google Play lists more than 100,000 downloads, so few of the people a new user already knows will be on XMPP.",
+          "source": "https://play.google.com/store/apps/details?id=eu.siacs.conversations&hl=en_US",
+          "asof": "2026-10"
+        },
+        "economical": {
+          "note": "F-Droid offers Conversations as a free download; on Google Play it is a paid app, which the project's site presents as the more convenient way to get updates and to support development.",
+          "source": "https://f-droid.org/en/packages/eu.siacs.conversations/",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://conversations.im/"
+        },
+        {
+          "label": "F-Droid",
+          "url": "https://f-droid.org/en/packages/eu.siacs.conversations/"
+        },
+        {
+          "label": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=eu.siacs.conversations&hl=en_US"
+        },
+        {
+          "label": "About XMPP",
+          "url": "https://xmpp.org/about/technology-overview/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "free"
+      },
+      "description": "A well-regarded Android app for XMPP (Jabber), the open, email-like chat standard. It is end-to-end encrypted by default, open source and not tied to one company's server, but it is Android-only and few people's existing contacts use XMPP.",
+      "focuses": [
+        "Private",
+        "Open source",
+        "Federated",
+        "Encrypted",
+        "Android"
+      ]
+    },
+    {
+      "code": "jami",
+      "name": "Jami",
+      "brand": "peer-to-peer messenger",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 92,
+        "openness": 95,
+        "portability": 58,
+        "respect": 95,
+        "accessibility": 48,
+        "economical": 100
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Jami's site says 'All communications are peer-to-peer and end-to-end encrypted', that Jami does not need a server to relay data between users, and that no personal information is needed to create an account.",
+          "source": "https://jami.net/",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "Jami's site says Jami is a GNU project backed by the Free Software Foundation and licensed under GNU GPLv3 or later.",
+          "source": "https://jami.net/",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "Jami's FAQ says an account can be backed up by linking another device or by exporting the account archive, so the identity is a key you hold rather than an account on a company's server, but it works only within the Jami network.",
+          "source": "https://docs.jami.net/en_US/user/faq.html",
+          "asof": "2026-10"
+        },
+        "respect": {
+          "note": "Jami's site says 'There will never be advertising on Jami.' Its FAQ says the project is financed by donations, customization contracts and services sold by Savoir-faire Linux, the consulting company that develops it.",
+          "source": "https://jami.net/",
+          "asof": "2026-10"
+        },
+        "accessibility": {
+          "note": "Jami has apps for Linux, Android, Windows, macOS and iOS, but Google Play lists only around 500,000 downloads, and its FAQ says messages to offline contacts arrive only once a device holding them is reachable again, which can be less reliable than server-based apps.",
+          "source": "https://play.google.com/store/apps/details?id=cx.ring&hl=en_US",
+          "asof": "2026-10"
+        },
+        "economical": {
+          "note": "Jami's site describes it as free as in free beer and as in freedom, without restrictions on file size, features or number of accounts.",
+          "source": "https://jami.net/",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://jami.net/"
+        },
+        {
+          "label": "FAQ",
+          "url": "https://docs.jami.net/en_US/user/faq.html"
+        },
+        {
+          "label": "F-Droid",
+          "url": "https://f-droid.org/en/packages/cx.ring/"
+        },
+        {
+          "label": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=cx.ring&hl=en_US"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "free"
+      },
+      "description": "A free GNU peer-to-peer messenger for chat and calls, with no central server, no ads and no personal details needed to sign up. Delivery depends on devices being online, and few people already use it.",
+      "focuses": [
+        "Private",
+        "Open source",
+        "Peer-to-peer",
+        "No ads",
+        "Free"
+      ]
+    },
+    {
+      "code": "zulip",
+      "name": "Zulip",
+      "brand": "self-hosted team chat",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 55,
+        "openness": 95,
+        "portability": 85,
+        "respect": 88,
+        "accessibility": 50,
+        "economical": 85
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Zulip's security page says that on Zulip Cloud 'All customer data is encrypted in transit and at rest', and that self-hosters can encrypt the database, uploads and backups on infrastructure they control. Messages are not end-to-end encrypted, though push-notification content is: the server operator can read chats, but an organization can choose to be that operator.",
+          "source": "https://zulip.com/security/",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "Zulip's developer documentation says Zulip is distributed under the Apache 2.0 license, and its values page commits to keeping Zulip 100% open source rather than holding back features for a paid edition.",
+          "source": "https://zulip.readthedocs.io/en/latest/overview/readme.html",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "Zulip's help center says it has export tools for moving an organization between Zulip Cloud and a self-hosted server, with an export of public data or, with members' consent, private channels and direct messages too; it also documents importers from Slack, Microsoft Teams, Mattermost and Rocket.Chat.",
+          "source": "https://zulip.com/help/export-your-organization",
+          "asof": "2026-10"
+        },
+        "respect": {
+          "note": "Zulip's team page says the project is stewarded by the Zulip Foundation, which fully owns Kandra Labs, the company that hosts and supports Zulip. The business runs on paid cloud and self-hosting plans rather than advertising.",
+          "source": "https://zulip.com/team/",
+          "asof": "2026-10"
+        },
+        "accessibility": {
+          "note": "Zulip has desktop and mobile apps (Google Play lists more than 100,000 downloads), but it is built around topic-threaded organizations that you join or set up, which suits teams and communities better than chatting with family.",
+          "source": "https://play.google.com/store/apps/details?id=com.zulipmobile&hl=en_US",
+          "asof": "2026-10"
+        },
+        "economical": {
+          "note": "Zulip's plans page lists a free Cloud plan with 10,000 messages of search history, Cloud Standard at $6.67 per user per month billed annually, a free self-hosted edition with all features, and free Standard hosting for many open-source, research, non-profit and community groups.",
+          "source": "https://zulip.com/plans/",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Plans and pricing",
+          "url": "https://zulip.com/plans/"
+        },
+        {
+          "label": "Security",
+          "url": "https://zulip.com/security/"
+        },
+        {
+          "label": "Export your organization",
+          "url": "https://zulip.com/help/export-your-organization"
+        },
+        {
+          "label": "Team and Zulip Foundation",
+          "url": "https://zulip.com/team/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "freemium"
+      },
+      "description": "An open-source, topic-threaded team chat app that an organization can host itself or rent from Zulip Cloud, with real export tools to move between the two. Messages are not end-to-end encrypted, and it suits teams and communities rather than personal chat.",
+      "focuses": [
+        "Open source",
+        "Self-hostable",
+        "Workplace chat",
+        "Freemium",
+        "Portable"
       ]
     }
   ]
