@@ -361,7 +361,7 @@ def normalize_packaged_app_site_base():
     if not old_bases:
         return
     targets = []
-    for rel_root in ['app/c', 'app/g']:
+    for rel_root in ['app/c', 'app/g', 'app/browse']:
         root = os.path.join(DIST, rel_root)
         if os.path.isdir(root):
             targets.extend(os.path.join(dp, fn) for dp, _, fs in os.walk(root) for fn in fs if fn.endswith(('.html', '.xml', '.txt')))

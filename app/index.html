@@ -21,7 +21,7 @@
 <link rel="icon" href="./icon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="./icon.ico" sizes="16x16 32x32 48x48 64x64">
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
-<link rel="stylesheet" href="./styles.css?v=6953a5e8">
+<link rel="stylesheet" href="./styles.css?v=91f7b935">
 <style>
   /* Development state, disclosed above the fold. The stage alone would be a hedge;
      the sentence after it is the checkable part. */
@@ -41,13 +41,25 @@
     <span class="navback"><button id="backbtn" class="navbtn" aria-label="Go back" disabled><svg class="ic ic-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg></button><a href="#recent" class="navbtn" aria-label="Recently viewed" title="Recently viewed"><svg class="ic ic-recent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9.5A8 8 0 1 1 4 13M4.5 9.5h4M4.5 9.5v-4M12 8.5V12l2.6 1.8"/></svg></a></span>
     <span class="wordmark-stack"><a href="#home" class="wordmark">Conscious Consuming</a><a class="wordmark-of" href="../index.html">a Values&nbsp;Commons app</a></span>
     <button id="navtoggle" class="navtoggle" aria-expanded="false" aria-controls="navlinks" aria-label="Menu"><svg class="ic ic-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <form class="navsearch" id="navsearch" role="search" action="#search"><label class="sr-only" for="navq">Search categories, products, services and brands</label><input type="search" id="navq" placeholder="Search categories, products, brands…" autocomplete="off"><button type="submit" class="navbtn" aria-label="Search"><svg class="ic ic-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 4a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM15.2 15.2 20 20"/></svg></button></form>
     <span class="navlinks" id="navlinks">
-      <a href="#home" data-nav="home">Home</a>
-      <a href="#map" data-nav="explore">Explore</a>
+      <a href="#browse" data-nav="browse">Browse</a>
       <a href="#guides" data-nav="guides">Guides</a>
-      <a href="#scan" data-nav="scan">Scan</a>
+      <a href="#you" data-nav="you" title="You: my rules and data">My rules</a>
     </span>
-    <span class="navutil"><a href="#you" id="navvalues" class="navvalues" aria-label="Advanced: close-call priorities" title="Advanced: close-call priorities"></a><button id="themebtn" class="navbtn themebtn" aria-label="Theme" title="Theme"><svg class="ic ic-theme" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17ZM12 3.5v17"/></svg></button><a href="#you" class="navyou" data-nav="you" title="You: my rules and data" aria-label="You: my rules and data"><span class="navyou-av" aria-hidden="true"></span>You</a><!-- Language switcher removed until a locale reaches real coverage (ES was chrome-only). The i18n framework + es seed stay in i18n.js for the future contribution surface. --></span>
+    <span class="navutil"><details class="navmore" id="navmore"><summary class="navbtn navmore-btn">More<span class="navmore-caret" aria-hidden="true">▾</span></summary><div class="navmore-menu">
+      <a href="#map">Explore by everyday need</a>
+      <a href="#mapview">Map view of every category</a>
+      <a href="#scan">Scan a barcode</a>
+      <a href="#compare">Compare side by side</a>
+      <a href="#recent">Recently viewed</a>
+      <a href="#you" id="navvalues" aria-label="Advanced: close-call priorities" title="Advanced: close-call priorities">Advanced: close-call priorities</a>
+      <a href="./browse/">Plain list of every category</a>
+      <a href="#contribute">Suggest a correction</a>
+      <a href="./community.html">Community</a>
+      <a href="../index.html">About the Values Commons</a>
+      <a href="https://futurisminstitute.org/" target="_blank" rel="noopener">Futurism Institute</a>
+    </div></details><button id="themebtn" class="navbtn themebtn" aria-label="Theme" title="Theme"><svg class="ic ic-theme" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17ZM12 3.5v17"/></svg></button><!-- Language switcher removed until a locale reaches real coverage (ES was chrome-only). The i18n framework + es seed stay in i18n.js for the future contribution surface. --></span>
   </nav>
   <aside class="devnotice" aria-label="Version status">
     <span class="stage">Draft</span>
@@ -57,7 +69,7 @@
 
   <nav id="crumbs" class="crumbs" aria-label="Breadcrumb" hidden></nav>
   <main id="main" tabindex="-1">
-  <section id="view-home" class="view"><noscript><h1>Choose by your own values.</h1><p>An open, honest, private guide to voting with your money: sourced, never sponsored, no tracking. The interactive tool needs JavaScript; meanwhile, browse the <a href="./g/">full guides library →</a></p></noscript></section>
+  <section id="view-home" class="view"><noscript><h1>Choose by your own values.</h1><p>An open, honest, private guide to voting with your money: sourced, never sponsored, no tracking. The interactive tool needs JavaScript; meanwhile, read the <a href="./browse/">index of every category, A to Z</a> or the <a href="./g/">full guides library →</a></p></noscript></section>
   <section id="view-recent" class="view"></section>
   <section id="view-guides" class="view"></section>
   <section id="view-guide" class="view"></section>
@@ -78,6 +90,8 @@
   <section id="view-indexes" class="view"></section>
   <section id="view-node" class="view"></section>
   <section id="view-workbench" class="view"></section>
+  <section id="view-browse" class="view"></section>
+  <section id="view-mapview" class="view"></section>
 
   <section id="view-explore" class="view">
     <div id="exptoggle" class="exptoggle"></div>
@@ -113,31 +127,31 @@
   </main>
 
   <footer>
-    <nav class="footlinks"><a href="#map">Explore</a><a href="#contribute">Contribute</a><a href="#you">You</a><a href="./community.html">Community</a></nav>
+    <nav class="footlinks" aria-label="Site"><a href="./browse/">All categories A–Z</a><a href="#guides">Guides</a><a href="#mapview">Map view</a><a href="#contribute">Suggest a correction</a><a href="./community.html">Community</a><a href="https://futurisminstitute.org/" target="_blank" rel="noopener">Futurism Institute</a></nav>
     <a href="https://valuescommons.org/">Part of Values Commons</a> · Conscious Consuming is the first working instance · <a href="https://valuescommons.org/standard/">Built on the Open Values Standard</a> · weighted to your values, not ours · no brand pays us<br>
     Facts from <a href="https://world.openfoodfacts.org/" target="_blank" rel="noopener">Open Food Facts</a> (ODbL) ·
     always confirm allergens on the physical label
   </footer>
   <nav class="tabbar" aria-label="Primary navigation">
     <a href="#home" data-nav="home" class="tab"><span class="tab-i" aria-hidden="true"><svg class="ic ic-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11.2 12 4l8.5 7.2M6 9.6V20h4.2v-5.2h3.6V20H18V9.6"/></svg></span><span class="tab-l">Home</span></a>
-    <a href="#map" data-nav="explore" class="tab"><span class="tab-i" aria-hidden="true"><svg class="ic ic-explore" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17ZM15.3 8.7l-1.6 4.6-4.6 1.6 1.6-4.6z"/></svg></span><span class="tab-l">Explore</span></a>
-    <a href="#scan" data-nav="scan" class="tab"><span class="tab-i" aria-hidden="true"><svg class="ic ic-scan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5.6A1.6 1.6 0 0 1 5.6 4H8M16 4h2.4A1.6 1.6 0 0 1 20 5.6V8M20 16v2.4a1.6 1.6 0 0 1-1.6 1.6H16M8 20H5.6A1.6 1.6 0 0 1 4 18.4V16M7.5 12h9"/></svg></span><span class="tab-l">Scan</span></a>
+    <a href="#browse" data-nav="browse" class="tab"><span class="tab-i" aria-hidden="true"><svg class="ic ic-browse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4.5h14M5 9.5h14M5 14.5h14M5 19.5h9"/></svg></span><span class="tab-l">Browse</span></a>
+    <a href="#search" data-nav="search" class="tab"><span class="tab-i" aria-hidden="true"><svg class="ic ic-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 4a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM15.2 15.2 20 20"/></svg></span><span class="tab-l">Search</span></a>
     <a href="#guides" data-nav="guides" class="tab"><span class="tab-i" aria-hidden="true"><svg class="ic ic-guides" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.4C10.6 5.2 8.8 4.6 6 4.6c-.9 0-1.6.1-2 .2v13c.4-.1 1.1-.2 2-.2 2.8 0 4.6.6 6 1.8M12 6.4c1.4-1.2 3.2-1.8 6-1.8.9 0 1.6.1 2 .2v13c-.4-.1-1.1-.2-2-.2-2.8 0-4.6.6-6 1.8M12 6.4v13"/></svg></span><span class="tab-l">Guides</span></a>
     <a href="#you" data-nav="you" class="tab"><span class="tab-i" aria-hidden="true"><svg class="ic ic-you" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 11.4a3.4 3.4 0 1 0 0-6.8 3.4 3.4 0 0 0 0 6.8ZM5.5 19.6c.7-3.1 3.3-5 6.5-5s5.8 1.9 6.5 5"/></svg></span><span class="tab-l">You</span></a>
   </nav>
 </div>
 <!-- data.js (the full ~5MB bundle) is NOT loaded here — served mode lazy-loads ./data/index.json + per-category JSON.
      boot() injects data.js only as a file:// fallback (where fetch is blocked). -->
-<script src="./icons.js?v=b594fe01"></script>
-<script src="./homelens.js?v=94571e5d"></script>
+<script src="./icons.js?v=e36c3e0a"></script>
+<script src="./homelens.js?v=de793b06"></script>
 <script src="./needsrose.js?v=40423732"></script>
 <script src="./i18n.js?v=91dfb44b"></script>
-<script defer src="./guides.js?v=e6fb48fa"></script>
+<script defer src="./guides.js?v=22426ce3"></script>
 <script src="./engine.js?v=e4b697e9"></script>
 <script src="./decision.js?v=134be91d"></script>
 <script src="./sigil.js?v=d35540c5"></script>
 <script src="./lines.js?v=238eb67b"></script>
-<script src="./presentation.js?v=0dc79001"></script>
-<script src="./app.js?v=52d5cc9a"></script>
+<script src="./presentation.js?v=7ec6dfe1"></script>
+<script src="./app.js?v=2828a3d4"></script>
 </body>
 </html>

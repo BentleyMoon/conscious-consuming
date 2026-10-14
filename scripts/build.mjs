@@ -50,6 +50,7 @@ run("node", ["pipeline/build_proposals.js"]);
 run("node", ["pipeline/build_initiatives.js"]);
 run("node", ["pipeline/build_design_tokens.js"]);
 run("node", ["pipeline/build_cards.js"]);
+run("node", ["pipeline/build_browse.js"]);
 run("node", ["pipeline/build_map.js"]);
 runPython("pipeline/build_guides.py");
 runPython("pipeline/build_site.py", [preview ? "--preview" : "--public", "--site-base", siteBase]);
