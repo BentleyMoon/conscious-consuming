@@ -13,7 +13,7 @@
       "least data exposure"
     ],
     "source": "Conscious Consuming (curated)",
-    "attribution": "These are the ways a person in the United States gets a ride without owning a car or waiting for a bus: the two national gig-platform apps, two apps that book an already-licensed taxi instead of a gig driver, a taxi hailed on the street or called directly with no app at all, two driver-owned cooperatives, a company that employs its own drivers, a service built for children and other dependents, a service built for disabled and older riders, a phone-only service for people without a smartphone, a shared shuttle run with public transit agencies, and a fully driverless service. Public transit itself, meaning buses, trains and transit passes, is a separate decision on this site; this one covers on-demand, door-to-door rides. The core trade-off is price against how much of your data and history a company collects: the cheapest and most convenient routes are run by platforms that share ride data with advertising partners and, in Uber's case, paid a nine-figure settlement over a covered-up data breach, while the more private and driver-owned routes usually mean a smaller network and less company infrastructure behind you if something goes wrong. Sourced from company safety and privacy pages, the California legislature, New York City's Taxi and Limousine Commission, and the Utah Attorney General; every score links its source and date. Not legal advice. Reviewed 2026-08. Dispute or correct any rating via Contribute.",
+    "attribution": "These are the ways a person in the United States gets a ride without owning a car or waiting for a bus: the two national gig-platform apps, two apps that book an already-licensed taxi instead of a gig driver, a taxi hailed on the street or called directly with no app at all, two driver-owned cooperatives, a company that employs its own drivers, a service built for children and other dependents, two services built for disabled and older riders, a phone-only service for people without a smartphone, a shared shuttle run with public transit agencies, a transit agency's own on-demand zone, a free electric shuttle paid for by cities and advertisers, two public entitlements (ADA paratransit for riders with disabilities and Medicaid rides to medical care), and three driverless services. Public transit itself, meaning buses, trains and transit passes, is a separate decision on this site; this one covers on-demand, door-to-door rides. The core trade-off is price against how much of your data and history a company collects: the cheapest and most convenient routes are run by platforms that share ride data with advertising partners and, in Uber's case, paid a nine-figure settlement over a covered-up data breach, while the more private and driver-owned routes usually mean a smaller network and less company infrastructure behind you if something goes wrong. Sourced from company safety and privacy pages, the California legislature, New York City's Taxi and Limousine Commission, the Utah Attorney General, NHTSA's crash reports, recall register and exemption notices, federal transit and Medicaid regulations, CMS, the New York State Department of Health, and the transit agencies and cities that run these services; every score links its source and date. Not legal advice. Reviewed 2026-10. Dispute or correct any rating via Contribute.",
     "allergens": false,
     "presets": {
       "Balanced": {
@@ -121,8 +121,13 @@
       "allergens": [],
       "allergensDeclared": true,
       "description": "An app that books and pays for an already-licensed taxi instead of dispatching a gig driver. A rider can also use it to pay a driver they are already riding with, without having booked through the app first.",
-      "scores": { "safety": 60 },
+      "scores": { "safety": 60, "accessibility": 60 },
       "provenance": {
+        "accessibility": {
+          "note": "In New York City, the Taxi and Limousine Commission lists Curb among the three TLC-licensed taxi e-hail apps, alongside Arro and Myle, and says 'TLC-licensed taxi E-hail app companies must offer an accessible option.' Riders can book a wheelchair-accessible yellow or green taxi in the app or by calling 646-599-9999, and TLC says drivers are trained and required to help riders in and out and secure their mobility devices. This is a New York City licensing rule, so it does not show what Curb offers in other cities.",
+          "source": "https://www.nyc.gov/site/tlc/passengers/find-an-accessible-ride.page",
+          "asof": "2026-10"
+        },
         "safety": {
           "note": "Curb says every ride is with 'a fully licensed, insured driver' and that it connects riders with 'professionally licensed drivers who undergo background checks, vehicle inspections, and insurance requirements mandated by local taxi commissions,' standards set by each city's regulator rather than by Curb itself.",
           "source": "https://www.gocurb.com/",
@@ -133,7 +138,8 @@
         {
           "label": "Curb",
           "url": "https://www.gocurb.com/"
-        }
+        },
+        { "label": "NYC TLC: find an accessible ride", "url": "https://www.nyc.gov/site/tlc/passengers/find-an-accessible-ride.page" }
       ],
       "region": ["US"],
       "focuses": ["Books a licensed taxi", "City-set driver standards", "Also pays for a hailed cab"]
@@ -145,8 +151,13 @@
       "allergens": [],
       "allergensDeclared": true,
       "description": "A second app that books an already-licensed taxi, in six US metro areas, with a specific no-surge guarantee and a small flat service fee on top of the city-set meter fare.",
-      "scores": { "economical": 58, "safety": 58 },
+      "scores": { "economical": 58, "safety": 58, "accessibility": 60 },
       "provenance": {
+        "accessibility": {
+          "note": "In New York City, the Taxi and Limousine Commission lists Arro among the three TLC-licensed taxi e-hail apps, alongside Curb and Myle, and says 'TLC-licensed taxi E-hail app companies must offer an accessible option.' Riders can book a wheelchair-accessible yellow or green taxi in the app or by calling 646-599-9999, and TLC says drivers are trained and required to help riders in and out and secure their mobility devices. This is a New York City licensing rule, so it does not show what Arro offers in other cities.",
+          "source": "https://www.nyc.gov/site/tlc/passengers/find-an-accessible-ride.page",
+          "asof": "2026-10"
+        },
         "economical": {
           "note": "Arro says 'prices do not increase, regardless of weather, demand or conditions' because 'rates are set by the municipal jurisdiction in which the taxi company operates and not by Arro,' and adds a service fee of up to $2.00 for a ride booked through the app, which it says may be waived in some circumstances.",
           "source": "https://www.ridearro.com/faq/",
@@ -159,7 +170,8 @@
         }
       },
       "links": [
-        { "label": "Arro cities served", "url": "https://www.ridearro.com/about/" }
+        { "label": "Arro cities served", "url": "https://www.ridearro.com/about/" },
+        { "label": "NYC TLC: find an accessible ride", "url": "https://www.nyc.gov/site/tlc/passengers/find-an-accessible-ride.page" }
       ],
       "region": ["US"],
       "focuses": ["No surge pricing", "Small flat service fee", "Six US metro areas"]
@@ -411,6 +423,348 @@
       ],
       "region": ["US"],
       "focuses": ["Wheelchair-accessible vehicles", "Booked through a partner program", "Disability-specific driver training"]
+    },
+    {
+      "code": "zoox",
+      "name": "Zoox",
+      "brand": "Zoox",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A driverless robotaxi built from scratch with no steering wheel or pedals, run by Amazon's Zoox. It charges for rides on and around the Las Vegas Strip under a federal safety-standard exemption granted in July 2026, and gives free rides from a waitlist in San Francisco.",
+      "scores": {
+        "privacy": 40,
+        "safety": 50
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Zoox's privacy notice, last updated August 3, 2026, says it is not in the business of selling rider data, but it may use personal information for interest-based ads and works with third-party ad networks, sharing cookie and mobile ad identifiers and hashed identifiers; it says it does not share a rider's name or other directly identifying details with ad companies. It also lists in-cabin video, images and voice recordings among the data it collects. That is less than Uber shares (trip information goes to ad intermediaries there) but more than an operator that uses no ad identifiers at all. Riders can opt out of targeted advertising, including through Global Privacy Control.",
+          "source": "https://zoox.com/privacy",
+          "asof": "2026-10"
+        },
+        "safety": {
+          "note": "NHTSA's Standing General Order crash file lists 64 crashes reported by Zoox from June 2025 to July 2026, in California, Nevada, Texas and Florida. Most caused property damage only, and nine alleged a minor injury. Because Zoox publishes no mileage, these cannot be turned into a rate the way Waymo's figures can. NHTSA's recall register also lists five Zoox software recalls since March 2025, the latest (26E044, July 2026) because its software may fail to detect heavy smoke. On July 31, 2026 NHTSA exempted the Zoox robotaxi from parts of eight federal safety standards for up to 2,500 vehicles, with continuing operational oversight.",
+          "source": "https://static.nhtsa.gov/odi/ffdd/sgo-2021-01/SGO-2021-01_Incident_Reports_ADS.csv",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Zoox in Las Vegas",
+          "url": "https://zoox.com/las-vegas"
+        },
+        {
+          "label": "Federal Register: NHTSA grants Zoox exemption (July 2026)",
+          "url": "https://www.govinfo.gov/content/pkg/FR-2026-07-31/pdf/2026-15485.pdf"
+        },
+        {
+          "label": "NHTSA recall 26E044 (Zoox)",
+          "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=26E044"
+        },
+        {
+          "label": "Zoox privacy notice",
+          "url": "https://zoox.com/privacy"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "No human driver",
+        "Las Vegas paid rides",
+        "Federal safety exemption"
+      ]
+    },
+    {
+      "code": "tesla-robotaxi",
+      "name": "Tesla Robotaxi",
+      "brand": "Tesla",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Tesla's driverless ride service, booked in its own Robotaxi app and run mostly with Model Y cars plus the two-seat Cybercab, which has no steering wheel or pedals. Tesla says it now offers rides in Austin, Dallas, Houston, Miami, Orlando and Tampa.",
+      "scores": {
+        "safety": 40,
+        "accessibility": 30
+      },
+      "provenance": {
+        "safety": {
+          "note": "NHTSA's Standing General Order crash file lists 26 crashes reported by Tesla for its driverless service from July 2025 to July 2026, all in Texas. Most caused property damage only, two alleged a minor injury, and eight involved hitting a fixed object. Tesla publishes no robotaxi mileage or crash-rate data to compare with Waymo's. In September 2026 NHTSA also opened an audit (AQ26002) into how Tesla self-certified that the Cybercab meets federal safety standards (see the linked TechCrunch report).",
+          "source": "https://static.nhtsa.gov/odi/ffdd/sgo-2021-01/SGO-2021-01_Incident_Reports_ADS.csv",
+          "asof": "2026-10"
+        },
+        "accessibility": {
+          "note": "Tesla says its Robotaxi vehicles are designed to support various accessibility needs, with space for service animals and room in the trunk for some wheelchairs and other assistive devices, and that the app works with screen readers in 29 languages. There is no ramp-equipped vehicle for riders who stay in a wheelchair, and a smartphone app is the only way to book.",
+          "source": "https://www.tesla.com/robotaxi",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Tesla Robotaxi",
+          "url": "https://www.tesla.com/robotaxi"
+        },
+        {
+          "label": "TechCrunch: NHTSA opens Cybercab investigation (Sept 2026)",
+          "url": "https://techcrunch.com/2026/09/04/feds-launch-investigation-into-teslas-cybercab-deployment/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "No human driver",
+        "Six Texas and Florida metros",
+        "Under NHTSA audit"
+      ]
+    },
+    {
+      "code": "circuit",
+      "name": "Circuit",
+      "brand": "Circuit",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Small all-electric shuttles that a city, transit agency or property owner pays Circuit to run inside a set zone, with advertising on the cars covering much of the cost. In most of its 40-plus US markets the ride itself is free. Riders book in the Circuit app, and in some places can wave one down or call.",
+      "scores": {
+        "economical": 92,
+        "privacy": 60,
+        "labor": 70,
+        "accessibility": 65
+      },
+      "provenance": {
+        "economical": {
+          "note": "Circuit says cities, transport partners and advertisers subsidise the service 'so it's either an affordable fare or free', and that 'In most markets, Circuit is free thanks to our sponsors on the interior and exterior of our cars.' Some locations charge a small fare, and tips are optional.",
+          "source": "https://www.ridecircuit.com/faq",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Circuit's privacy policy, version dated May 11, 2026, says 'We do not use mobile advertising identifiers (such as IDFA/AAID) for app tracking or advertising purposes.' It collects trip details and precise location, may record video and, where the law allows, audio inside its vehicles, and shares data with payment processors and other service providers. The service is paid for by ads printed on the cars rather than by targeting riders through ad networks.",
+          "source": "https://www.ridecircuit.com/privacy",
+          "asof": "2026-10"
+        },
+        "labor": {
+          "note": "Circuit hires its drivers as employees through its own payroll: an October 2026 posting for a part-time Driver Ambassador in Redmond, Washington offers an hourly base rate of $20 plus tips, with medical, dental and vision coverage only for full-time employees. That is a wage rather than per-trip contractor pay, but many posted shifts are part-time.",
+          "source": "https://recruiting.paylocity.com/Recruiting/Jobs/Details/4577932",
+          "asof": "2026-10"
+        },
+        "accessibility": {
+          "note": "In Redmond, Washington, the city runs Circuit as RedLink, a free pilot that connects to light rail. Riders who need wheelchair access select it in the app, and 'An ADA-accessible vehicle will be used to complete your ride', though the city notes the accessible vehicle was out for repair. Circuit's own FAQ says call-in booking and flagging down a car are offered in some locations, but service covers only small zones and riders must be over 16 to travel alone in Redmond.",
+          "source": "https://www.redmond.gov/2423/RedLink",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Circuit locations",
+          "url": "https://www.ridecircuit.com/all-locations"
+        },
+        {
+          "label": "City of Redmond: RedLink",
+          "url": "https://www.redmond.gov/2423/RedLink"
+        },
+        {
+          "label": "City of Pompano Beach: Pompano Circuit",
+          "url": "https://www.pompanobeachfl.gov/residents/pompano-circuit"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Free in most markets",
+        "Ad- and city-funded",
+        "Hourly-paid drivers"
+      ]
+    },
+    {
+      "code": "dart-golink",
+      "name": "Transit agency on-demand zone (example: DART GoLink, Dallas)",
+      "brand": "Dallas Area Rapid Transit",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Some transit agencies run their own on-demand rides inside set zones, booked by app or phone and paid with an ordinary transit fare. Dallas Area Rapid Transit's GoLink is used here as the example: it carries riders curb to curb within a zone or to a rail station, and now sometimes sends a Lyft or Uber car at no extra cost.",
+      "scores": {
+        "economical": 88,
+        "accessibility": 72
+      },
+      "provenance": {
+        "economical": {
+          "note": "DART says GoLink costs nothing beyond a regular transit fare: 'your valid contactless DART fare covers everything', including when the agency dispatches a Lyft or Uber car. DART's fares page lists a local 3-hour pass at $3.00 and a local day pass at $6.00, with daily and monthly fare capping in its GoPass app.",
+          "source": "https://www.dart.org/guide/transit-and-use/golink",
+          "asof": "2026-10"
+        },
+        "accessibility": {
+          "note": "DART says 'GoLink is available from 5 a.m. to midnight, 7 days a week' in most zones, can be booked in its app or by calling 214-515-7272, and that riders who need a wheelchair-accessible vehicle should request one when booking. Rides stay inside a designated zone or go to a rail station or transit center, so it does not cover cross-town trips.",
+          "source": "https://www.dart.org/guide/transit-and-use/golink",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "DART GoLink",
+          "url": "https://www.dart.org/guide/transit-and-use/golink"
+        },
+        {
+          "label": "DART fares",
+          "url": "https://www.dart.org/fare/general-fares-and-overview/fares"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Transit fare",
+        "Book by phone or app",
+        "Zone-limited"
+      ]
+    },
+    {
+      "code": "ada-paratransit",
+      "name": "ADA paratransit (example: Access-A-Ride, New York City)",
+      "brand": "public transit agency, required by federal law",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Every public transit agency that runs fixed bus or rail routes must also run a door-to-door shared ride for people whose disability stops them using those routes, at a capped fare. New York's Access-A-Ride is used here as the example. Riders must apply and be found eligible, and trips are usually booked a day or two ahead.",
+      "scores": {
+        "economical": 88,
+        "accessibility": 85
+      },
+      "provenance": {
+        "economical": {
+          "note": "Federal rules say the fare for ADA complementary paratransit 'shall not exceed twice the fare that would be charged to an individual paying full fare' for a similar bus or rail trip, and 'A personal care attendant shall not be charged for complementary paratransit service.'",
+          "source": "https://www.law.cornell.edu/cfr/text/49/37.131",
+          "asof": "2026-10"
+        },
+        "accessibility": {
+          "note": "The MTA says Access-A-Ride 'provides public transportation for eligible customers with disabilities that prevent them from using the public buses and subways', across all five boroughs and nearby parts of Nassau and Westchester, '24 hours a day, seven days a week, including holidays'. It is a shared ride, and riders must first qualify. The MTA booking page says trips are reserved one or two days ahead.",
+          "source": "https://www.mta.info/accessibility/access-a-ride",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "49 CFR 37.131: paratransit service criteria",
+          "url": "https://www.law.cornell.edu/cfr/text/49/37.131"
+        },
+        {
+          "label": "MTA Access-A-Ride",
+          "url": "https://www.mta.info/accessibility/access-a-ride"
+        },
+        {
+          "label": "Access-A-Ride: book and manage trips",
+          "url": "https://www.mta.info/accessibility/access-a-ride/book-and-manage-trips"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Fare capped by federal law",
+        "Eligibility required",
+        "Book a day ahead"
+      ]
+    },
+    {
+      "code": "medicaid-nemt",
+      "name": "Medicaid ride to medical appointments (NEMT)",
+      "brand": "state Medicaid program",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Every state's Medicaid program must make sure members with no other way to get there can reach covered medical care, usually through a broker that books a van, taxi, rideshare or transit trip. It only covers trips to medical appointments, and usually has to be booked days in advance. New York's program is used here for the rider-side details.",
+      "scores": {
+        "economical": 95,
+        "accessibility": 75,
+        "safety": 50
+      },
+      "provenance": {
+        "economical": {
+          "note": "New York's Department of Health says its Medicaid Transportation program gets members to and from medical appointments 'at no cost to them', through a broker, Medical Answering Services. It adds 'We do not provide trips to non-medical locations like pharmacies, gyms, schools, or grocery stores' and that members should request a ride 'at least 72 hours in advance of the appointment'.",
+          "source": "https://www.health.ny.gov/health_care/medicaid/members/medtrans_overview.htm",
+          "asof": "2026-10"
+        },
+        "accessibility": {
+          "note": "CMS says federal regulations require every state Medicaid agency to 'assure necessary transportation for clients to and from providers', a requirement Congress wrote into the Medicaid statute in 2021, and that agencies must also help children in the EPSDT program with transportation. CMS's coverage guide describes this as a guarantee for members with no other way to reach covered care rather than a ride for every trip.",
+          "source": "https://www.medicaid.gov/medicaid/benefits/assurance-of-transportation",
+          "asof": "2026-10"
+        },
+        "safety": {
+          "note": "Since 2021, federal law requires state Medicaid plans to ensure that every transport provider and driver, including rideshare companies, is not excluded from federal health programs, that each driver has a valid driver's license that providers have a process for drug-law violations, and that they disclose each driver's driving history to the state. That is a floor set by CMS; states and brokers can require more.",
+          "source": "https://www.medicaid.gov/medicaid/benefits/assurance-of-transportation",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Medicaid.gov: Assurance of Transportation",
+          "url": "https://www.medicaid.gov/medicaid/benefits/assurance-of-transportation"
+        },
+        {
+          "label": "42 CFR 431.53: assurance of transportation",
+          "url": "https://www.law.cornell.edu/cfr/text/42/431.53"
+        },
+        {
+          "label": "New York State Medicaid Transportation",
+          "url": "https://www.health.ny.gov/health_care/medicaid/members/medtrans_overview.htm"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Free for Medicaid members",
+        "Medical trips only",
+        "Book days ahead"
+      ]
+    },
+    {
+      "code": "silverride",
+      "name": "SilverRide",
+      "brand": "SilverRide",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "An assisted ride service for older adults and people with disabilities whose drivers can escort a rider from inside the door to inside the destination. Most rides are arranged through transit agencies, PACE programs and health plans, but families can also book directly by phone or online.",
+      "scores": {
+        "accessibility": 85,
+        "safety": 80,
+        "labor": 35
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "SilverRide says it is 'licensed in 21 states and operating in more than 35 major metro areas', offers 'Sedan, SUV, and wheelchair-accessible vehicle options', and provides levels of help up to 'Door-Through-Door: an escort from inside the pickup location to inside the destination.' It runs supplemental ADA paratransit for transit agencies, and a family can book directly by calling 1-800-618-1246. A May 2026 trade report of its own press release gave 15 states rather than 21.",
+          "source": "https://silverride.com/",
+          "asof": "2026-10"
+        },
+        "safety": {
+          "note": "SilverRide says 'all drivers undergo extensive background checks with the FBI and the Department of Justice', that 'Drivers are also fingerprinted and must have a clean driving record with the DMV', and that all drivers are drug and alcohol tested under Federal Transit Administration guidelines and trained to physically assist riders.",
+          "source": "https://silverride.com/safety/",
+          "asof": "2026-10"
+        },
+        "labor": {
+          "note": "SilverRide tells drivers they work 'As an independent contractor in the gig economy', choosing trips and discussing rates, the same classification as Uber and Lyft drivers. It says drivers typically earn more than at other rideshare companies and lists the minimum-earnings guarantees that California and Seattle require for contractors.",
+          "source": "https://silverride.com/drivers/",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "SilverRide",
+          "url": "https://silverride.com/"
+        },
+        {
+          "label": "Schedule a SilverRide",
+          "url": "https://silverride.com/schedule-a-ride/"
+        },
+        {
+          "label": "Busline: SilverRide King County Metro paratransit contract (May 2026)",
+          "url": "https://buslinemag.com/news-headlines/silverride-expands-with-king-county-metro-paratransit-contract-in-partnership-with-mv/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Door-through-door help",
+        "Wheelchair-accessible vehicles",
+        "Contractor drivers"
+      ]
     }
   ]
 }

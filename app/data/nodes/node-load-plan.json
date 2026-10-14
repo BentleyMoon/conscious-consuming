@@ -19,12 +19,12 @@
   "budgets": {
     "startupBudgetBytes": 780000,
     "minimumHeadroomBytes": 50000,
-    "askCoreBytes": 630083,
-    "askCoreHeadroomBytes": 149917,
+    "askCoreBytes": 629803,
+    "askCoreHeadroomBytes": 150197,
     "askCoreWithinBudget": true,
     "askCoreHasHeadroom": true,
-    "fullAskBytes": 5748171,
-    "pageNodeBytes": 1488020,
+    "fullAskBytes": 5758426,
+    "pageNodeBytes": 1487470,
     "establishedEagerBytes": 89194
   },
   "stages": [
@@ -76,9 +76,9 @@
         "Preserve resolver ordering from the generated traces, including typo before loose containment."
       ],
       "failureMode": "Show a search-unavailable state or fall back to existing in-memory search; do not eagerly pull ask-index.json as a rescue path.",
-      "bytes": 630083,
+      "bytes": 629803,
       "budgetBytes": 780000,
-      "headroomBytes": 149917,
+      "headroomBytes": 150197,
       "withinBudget": true,
       "hasMinimumHeadroom": true
     },
@@ -97,7 +97,7 @@
         "If the target node is unknown, render a not-covered state instead of a blank or fabricated page."
       ],
       "failureMode": "Brand/company node pages can be unavailable while category and guide routes remain usable.",
-      "bytes": 1488020
+      "bytes": 1487470
     },
     {
       "id": "lazy-product-ask",
@@ -113,7 +113,7 @@
         "If the lazy index fails, keep core results visible and label product lookup as unavailable."
       ],
       "failureMode": "Product lookup can fail independently without breaking startup Ask or generated node pages.",
-      "bytes": 5748171
+      "bytes": 5758426
     },
     {
       "id": "dev-contracts",
