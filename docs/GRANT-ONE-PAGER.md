@@ -19,9 +19,9 @@ The collective version is no better. When a group wants to act on shared values,
 Current working state:
 
 - **126 categories** across food, personal care, home, clothing, learning and media, technology, money, giving, and mission-led businesses.
-- **24,389 entries**, including open-data food and beauty products plus hand-checked comparisons for choices such as banking, investing, AI assistants, payments, VPNs, clothing, news, and causes.
-- **108 guides** and **3,619 shareable comparison pages**.
-- **An honest sourcing count**: 6,145 of those entries rest on more than one independent source domain; the rest rest on one, often the seller's own site. The gap is published, not hidden.
+- **24,477 entries**, including open-data food and beauty products plus hand-checked comparisons for choices such as banking, investing, AI assistants, payments, VPNs, clothing, news, and causes.
+- **108 guides** and **3,707 shareable comparison pages**.
+- **An honest sourcing count**: 6,221 of those entries rest on more than one independent source domain; the rest rest on one, often the seller's own site. The gap is published, not hidden.
 - **100% hand-checked evidence coverage** by the app's evidence meter: shown facts are measured, certified, cited, or clearly marked as low-stakes convenience notes.
 - Static, local-first, installable, and offline-capable. Values and saved choices live on the user's own device.
 

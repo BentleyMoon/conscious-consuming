@@ -7011,6 +7011,22 @@
       },
       "axes": [
         {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "certification",
+            "ownership"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
           "id": "ownership-or-certification",
           "kind": "tradeoff",
           "label": "Ownership or certification",
@@ -7024,29 +7040,18 @@
             "More verified"
           ],
           "default": 50
-        },
-        {
-          "id": "economical",
-          "kind": "criterion",
-          "label": "Cost",
-          "question": "Does lower cost matter more?",
-          "criteria": [
-            "economical"
-          ],
-          "poles": [
-            "Flexible",
-            "Lower cost"
-          ],
-          "default": 50
         }
       ],
       "budget": {
-        "available": false,
-        "mode": "none"
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
       },
       "archetypes": [
         "best-for-most",
-        "strictest-match"
+        "strictest-match",
+        "budget-honest"
       ],
       "page": {
         "stage": "approved-batch",

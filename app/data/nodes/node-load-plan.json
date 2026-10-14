@@ -19,13 +19,13 @@
   "budgets": {
     "startupBudgetBytes": 780000,
     "minimumHeadroomBytes": 50000,
-    "askCoreBytes": 625209,
-    "askCoreHeadroomBytes": 154791,
+    "askCoreBytes": 627571,
+    "askCoreHeadroomBytes": 152429,
     "askCoreWithinBudget": true,
     "askCoreHasHeadroom": true,
-    "fullAskBytes": 5710796,
-    "pageNodeBytes": 1476530,
-    "establishedEagerBytes": 88991
+    "fullAskBytes": 5730671,
+    "pageNodeBytes": 1481740,
+    "establishedEagerBytes": 89158
   },
   "stages": [
     {
@@ -60,7 +60,7 @@
         "Do not infer missing tag, errand, or synonym coverage from generated brand/company data."
       ],
       "failureMode": "Disable the affected helper surface rather than fabricating labels or routes.",
-      "bytes": 88991
+      "bytes": 89158
     },
     {
       "id": "startup-ask-core",
@@ -76,9 +76,9 @@
         "Preserve resolver ordering from the generated traces, including typo before loose containment."
       ],
       "failureMode": "Show a search-unavailable state or fall back to existing in-memory search; do not eagerly pull ask-index.json as a rescue path.",
-      "bytes": 625209,
+      "bytes": 627571,
       "budgetBytes": 780000,
-      "headroomBytes": 154791,
+      "headroomBytes": 152429,
       "withinBudget": true,
       "hasMinimumHeadroom": true
     },
@@ -97,7 +97,7 @@
         "If the target node is unknown, render a not-covered state instead of a blank or fabricated page."
       ],
       "failureMode": "Brand/company node pages can be unavailable while category and guide routes remain usable.",
-      "bytes": 1476530
+      "bytes": 1481740
     },
     {
       "id": "lazy-product-ask",
@@ -113,7 +113,7 @@
         "If the lazy index fails, keep core results visible and label product lookup as unavailable."
       ],
       "failureMode": "Product lookup can fail independently without breaking startup Ask or generated node pages.",
-      "bytes": 5710796
+      "bytes": 5730671
     },
     {
       "id": "dev-contracts",
