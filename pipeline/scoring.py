@@ -180,12 +180,12 @@ CATEGORY_MEMBERSHIP = {
     },
     'fruit-jam': {
         'tags': {'en:fruit-jams', 'en:strawberry-jams', 'en:jams'},
-        'name': re.compile(r'\b(?:jams?|confiture|marmalade|marmellata|doce|fruit\s+spread|preserves?)\b'),
+        'name': re.compile(r'\b(?:jams?|confiture|confettura|marmalade|marmellata|doce|fruit\s+spread|preserves?)\b'),
         'reject': re.compile(r'\b(?:tomat\w*|houmous|hummus)\b'),
     },
     'honey': {
         'tags': {'en:honeys'},
-        'name': re.compile(r'\b(?:honey|miel|honig|miele|mel|miod|med|mez)\b'),
+        'name': re.compile(r'\b(?:honey|miel|honig|honing|miele|mel|miod|med|mez)\b'),
         'reject': re.compile(r'\b(?:houmous|hummus|barrette|granola|cereal|snack\s+bar)\b'),
     },
     # Part 9's five-sample continuation stays deliberately narrow: each rule

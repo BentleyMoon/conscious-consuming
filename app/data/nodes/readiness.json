@@ -13,7 +13,7 @@
         "node-load-plan.json"
       ],
       "loadHint": "eager-metadata",
-      "bytes": 6264,
+      "bytes": 6262,
       "purpose": "Discover available node indexes, byte sizes, integrity hashes, and runtime loading stages."
     },
     {
@@ -24,16 +24,16 @@
         "synonyms.json"
       ],
       "loadHint": "eager",
-      "bytes": 89194,
+      "bytes": 89568,
       "purpose": "Small node helpers for tag, errand, and everyday-phrase routing; sample.json stays out of runtime evidence."
     },
     {
       "step": 3,
       "file": "ask-core.json",
       "loadHint": "eager-search",
-      "bytes": 629803,
+      "bytes": 727066,
       "budgetBytes": 780000,
-      "headroomBytes": 150197,
+      "headroomBytes": 52934,
       "purpose": "Startup search over categories, brands, companies, tags, guides, errands, and lines."
     },
     {
@@ -43,14 +43,14 @@
         "companies.json"
       ],
       "loadHint": "defer-page-nodes",
-      "bytes": 1487470,
+      "bytes": 1788750,
       "purpose": "Full brand/company node pages and ownership context."
     },
     {
       "step": 5,
       "file": "ask-index.json",
       "loadHint": "lazy-product-search",
-      "bytes": 5758426,
+      "bytes": 5614231,
       "purpose": "Lazy product-name and barcode lookup."
     }
   ],
@@ -129,23 +129,23 @@
     "node": "#n/<type>/<slug>"
   },
   "counts": {
-    "brands": 2007,
-    "brandLongTail": 4964,
+    "brands": 2437,
+    "brandLongTail": 5562,
     "companies": 29,
-    "askCoreTokens": 2933,
-    "askCoreTargets": 2427,
-    "askTokens": 64535,
-    "askAliases": 2669,
+    "askCoreTokens": 3360,
+    "askCoreTargets": 2861,
+    "askTokens": 78641,
+    "askAliases": 3107,
     "goldenQueries": 13
   },
   "budgets": {
-    "askCoreBytes": 629803,
+    "askCoreBytes": 727066,
     "startupBudgetBytes": 780000,
     "minimumHeadroomBytes": 50000,
-    "askCoreHeadroomBytes": 150197,
+    "askCoreHeadroomBytes": 52934,
     "askCoreWithinBudget": true,
     "askCoreHasHeadroom": true,
-    "fullAskBytes": 5758426,
+    "fullAskBytes": 5614231,
     "nodeLoadPlanStages": 6,
     "nodeRuntimeStateCases": 15,
     "nodePreviewScenarios": 21
@@ -343,7 +343,7 @@
           "Do not turn item counts into importance claims.",
           "Do not imply every brand product is covered."
         ],
-        "generatedCount": 2007
+        "generatedCount": 2437
       },
       {
         "id": "company-pages",
@@ -1202,7 +1202,7 @@
         },
         {
           "id": "ovs:brand/coles",
-          "label": "coles",
+          "label": "Coles",
           "type": "brand",
           "hash": "#n/brand/coles",
           "reason": "fuzzy-1"

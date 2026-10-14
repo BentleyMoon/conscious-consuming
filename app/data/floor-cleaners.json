@@ -1,0 +1,4994 @@
+{
+ "meta": {
+  "id": "floor-cleaners",
+  "label": "Floor cleaners",
+  "type": "Products",
+  "primaryAxis": "health",
+  "tradeoff": [
+   "accessibility",
+   "health"
+  ],
+  "tradeoffLabels": [
+   "easiest to identify",
+   "strongest safer-chemistry signal"
+  ],
+  "source": "EPA Safer Choice / Envirofacts",
+  "attribution": "Data from EPA Safer Choice / Envirofacts. Certification status and product metadata are public EPA data.",
+  "allergens": false,
+  "presets": {
+   "Balanced": {
+    "w": {
+     "certification": 3,
+     "health": 3,
+     "environment": 3,
+     "transparency": 2,
+     "accessibility": 2
+    },
+    "x": []
+   },
+   "Safer chemistry": {
+    "w": {
+     "health": 5,
+     "certification": 4,
+     "environment": 3,
+     "transparency": 2,
+     "accessibility": 1
+    },
+    "x": []
+   },
+   "Fragrance-sensitive": {
+    "w": {
+     "health": 5,
+     "transparency": 3,
+     "certification": 3,
+     "environment": 2,
+     "accessibility": 1
+    },
+    "x": []
+   },
+   "Most identifiable": {
+    "w": {
+     "accessibility": 5,
+     "transparency": 4,
+     "certification": 2,
+     "health": 1,
+     "environment": 1
+    },
+    "x": []
+   }
+  },
+  "license": "US public data",
+  "productBase": "https://www.epa.gov/saferchoice/products",
+  "n": 64,
+  "valueSignatureProfile": {
+   "entryCount": 64,
+   "signedEntries": 64,
+   "drawableEntries": 64,
+   "minimumThemesForBloom": 2,
+   "themeCounts": {
+    "planet": 64,
+    "health": 64,
+    "honesty": 64,
+    "cost": 64
+   }
+  },
+  "provenanceProfile": {
+   "entryCount": 64,
+   "singleSourceEntries": 64,
+   "multiSourceEntries": 0,
+   "noSourceEntries": 0,
+   "noteOnlyEntries": 0,
+   "averageSourceDomains": 1.0,
+   "topPrimarySources": [
+    {
+     "label": "epa.gov",
+     "entries": 64
+    }
+   ]
+  },
+  "decision": {
+   "category": "floor-cleaners",
+   "reads": {
+    "text": "Compare floor cleaners by body safety, everyday access, certification, and environmental impact.",
+    "basis": [
+     {
+      "criterion": "health",
+      "readsAs": "body safety"
+     },
+     {
+      "criterion": "accessibility",
+      "readsAs": "everyday access"
+     },
+     {
+      "criterion": "certification",
+      "readsAs": "certification"
+     },
+     {
+      "criterion": "environment",
+      "readsAs": "environmental impact"
+     }
+    ],
+    "signature": {
+     "by": "Conscious Consuming",
+     "on": "2026-07-15",
+     "status": "approved-batch"
+    },
+    "receipt": {
+     "dataset": "floor-cleaners",
+     "entryCount": 64,
+     "criteria": [
+      {
+       "criterion": "health",
+       "readsAs": "body safety",
+       "known": 64,
+       "minimum": 80,
+       "maximum": 96,
+       "spread": 16
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access",
+       "known": 64,
+       "minimum": 76,
+       "maximum": 92,
+       "spread": 16
+      },
+      {
+       "criterion": "certification",
+       "readsAs": "certification",
+       "known": 64,
+       "minimum": 72,
+       "maximum": 100,
+       "spread": 28
+      },
+      {
+       "criterion": "environment",
+       "readsAs": "environmental impact",
+       "known": 64,
+       "minimum": 80,
+       "maximum": 88,
+       "spread": 8
+      }
+     ]
+    }
+   },
+   "axes": [
+    {
+     "id": "access-or-safety",
+     "kind": "tradeoff",
+     "label": "Access or safety record",
+     "question": "Cheaper and easier to find, or a cleaner safety record?",
+     "criteria": [
+      "accessibility",
+      "health"
+     ],
+     "poles": [
+      "Easier to find",
+      "Cleaner record"
+     ],
+     "default": 50
+    },
+    {
+     "id": "certification",
+     "kind": "criterion",
+     "label": "Certification",
+     "question": "Do you want stronger certification?",
+     "criteria": [
+      "certification"
+     ],
+     "poles": [
+      "Flexible",
+      "Stronger certification"
+     ],
+     "default": 50
+    }
+   ],
+   "budget": {
+    "available": false,
+    "mode": "none",
+    "knownEntries": 0,
+    "coverage": 0
+   },
+   "archetypes": [
+    "best-for-most",
+    "strictest-match"
+   ],
+   "page": {
+    "stage": "approved-batch",
+    "primaryRoute": true
+   },
+   "consumer": {
+    "reads": "Round 8 approved category differences reads.",
+    "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+    "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+    "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+    "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+   }
+  }
+ },
+ "criteria": [
+  {
+   "key": "certification",
+   "label": "Safer Choice certification",
+   "source": "EPA Safer Choice",
+   "tier": "certified"
+  },
+  {
+   "key": "health",
+   "label": "Safer chemistry",
+   "source": "EPA Safer Choice",
+   "tier": "certified"
+  },
+  {
+   "key": "environment",
+   "label": "Environmental criteria",
+   "source": "EPA Safer Choice",
+   "tier": "certified"
+  },
+  {
+   "key": "transparency",
+   "label": "Public listing",
+   "source": "EPA Envirofacts",
+   "tier": "measured"
+  },
+  {
+   "key": "accessibility",
+   "label": "Identifiable product",
+   "source": "EPA Envirofacts",
+   "tier": "measured"
+  }
+ ],
+ "products": [
+  {
+   "code": "powerplus-hardwood-floor-deep-cleaner-ready-to-use-ad7536c7",
+   "name": "PowerPlus Hardwood Floor Deep Cleaner Ready-to-Use",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "PowerPlus Hardwood Floor Deep Cleaner Ready-to-Use from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 96,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists PowerPlus Hardwood Floor Deep Cleaner Ready-to-Use by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006hxM0AAI",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006hxM0AAI",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006hxM0AAI",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t0000006hxM0AAI"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Fragrance-free",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 96,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "powerplus-hardwood-floor-deep-cleaner-ready-to-use-refill-e82cd7c2",
+   "name": "PowerPlus Hardwood Floor Deep Cleaner Ready-to-Use Refill",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "PowerPlus Hardwood Floor Deep Cleaner Ready-to-Use Refill from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 96,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists PowerPlus Hardwood Floor Deep Cleaner Ready-to-Use Refill by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000007gDtPAAU",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000007gDtPAAU",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000007gDtPAAU",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t0000007gDtPAAU"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Fragrance-free",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 96,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "consolideck-dailyklean-e42ebc05",
+   "name": "Consolideck® DailyKlean",
+   "brand": "Prosoco Inc.",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Consolideck® DailyKlean from Prosoco Inc., listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 96,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Consolideck® DailyKlean by Prosoco Inc. in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000002r6yMAAQ",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000002r6yMAAQ",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000002r6yMAAQ",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t0000002r6yMAAQ"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Fragrance-free",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 96,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "consolideck-dailyklean-ultra-15-af1d7a83",
+   "name": "Consolideck® DailyKlean ULTRA 15",
+   "brand": "Prosoco Inc.",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Consolideck® DailyKlean ULTRA 15 from Prosoco Inc., listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 96,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Consolideck® DailyKlean ULTRA 15 by Prosoco Inc. in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000002r7JJAAY",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000002r7JJAAY",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000002r7JJAAY",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t0000002r7JJAAY"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Fragrance-free",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 96,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "consolideck-dailyklean-ultra-30-d7036554",
+   "name": "Consolideck® DailyKlean ULTRA 30",
+   "brand": "Prosoco Inc.",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Consolideck® DailyKlean ULTRA 30 from Prosoco Inc., listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 96,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Consolideck® DailyKlean ULTRA 30 by Prosoco Inc. in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000002r7ZeAAI",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000002r7ZeAAI",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000002r7ZeAAI",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t0000002r7ZeAAI"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Fragrance-free",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 96,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "bissell-crosswave-multi-surface-free-clear-c4d0d3db",
+   "name": "BISSELL CrossWave Multi-Surface Free & Clear",
+   "brand": "BISSELL Homecare, Inc.",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "BISSELL CrossWave Multi-Surface Free & Clear from BISSELL Homecare, Inc., listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists BISSELL CrossWave Multi-Surface Free & Clear by BISSELL Homecare, Inc. in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ00000Kd3vNYAR",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ00000Kd3vNYAR",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ00000Kd3vNYAR",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04SJ00000Kd3vNYAR"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "bissell-pet-multi-surface-b0d15042",
+   "name": "BISSELL Pet Multi-Surface",
+   "brand": "BISSELL Homecare, Inc.",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "BISSELL Pet Multi-Surface from BISSELL Homecare, Inc., listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists BISSELL Pet Multi-Surface by BISSELL Homecare, Inc. in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000005UwumAAC",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000005UwumAAC",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000005UwumAAC",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000005UwumAAC"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "multi-surface-spring-breeze-scent-d4d25bb4",
+   "name": "Multi-Surface, Spring Breeze Scent",
+   "brand": "BISSELL Homecare, Inc.",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Multi-Surface, Spring Breeze Scent from BISSELL Homecare, Inc., listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Multi-Surface, Spring Breeze Scent by BISSELL Homecare, Inc. in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t00000098fvwAAA",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t00000098fvwAAA",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t00000098fvwAAA",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t00000098fvwAAA"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "simply-multi-surface-citrus-fresh-7c800bcb",
+   "name": "Simply Multi-Surface, Citrus Fresh",
+   "brand": "BISSELL Homecare, Inc.",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Simply Multi-Surface, Citrus Fresh from BISSELL Homecare, Inc., listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Simply Multi-Surface, Citrus Fresh by BISSELL Homecare, Inc. in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006p7NeAAI",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006p7NeAAI",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006p7NeAAI",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t0000006p7NeAAI"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "wood-floor-cleaner-lemon-scent-29643a56",
+   "name": "Wood Floor Cleaner, Lemon Scent",
+   "brand": "BISSELL Homecare, Inc.",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Wood Floor Cleaner, Lemon Scent from BISSELL Homecare, Inc., listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Wood Floor Cleaner, Lemon Scent by BISSELL Homecare, Inc. in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000009vdz4AAA",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000009vdz4AAA",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000009vdz4AAA",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t0000009vdz4AAA"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "neutral-plus-e440696e",
+   "name": "Neutral Plus",
+   "brand": "Biochem Supply",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Neutral Plus from Biochem Supply, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Neutral Plus by Biochem Supply in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t00000035lRyAAI",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t00000035lRyAAI",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t00000035lRyAAI",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t00000035lRyAAI"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "bona-hard-surface-floor-cleaner-rtu-8ddd8281",
+   "name": "Bona Hard-Surface Floor Cleaner RTU",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Bona Hard-Surface Floor Cleaner RTU from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Bona Hard-Surface Floor Cleaner RTU by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001EOdkAAG",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001EOdkAAG",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001EOdkAAG",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000001EOdkAAG"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "bona-hard-surface-floor-cleaner-rtu-lemon-mint-a16289f2",
+   "name": "Bona Hard-Surface Floor Cleaner RTU - Lemon Mint",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Bona Hard-Surface Floor Cleaner RTU - Lemon Mint from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Bona Hard-Surface Floor Cleaner RTU - Lemon Mint by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001EOnwAAG",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001EOnwAAG",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001EOnwAAG",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000001EOnwAAG"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "bona-hard-surface-floor-cleaner-refill-de460c4e",
+   "name": "Bona Hard-Surface Floor Cleaner Refill",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Bona Hard-Surface Floor Cleaner Refill from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Bona Hard-Surface Floor Cleaner Refill by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001SKVYAA4",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001SKVYAA4",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001SKVYAA4",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000001SKVYAA4"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "bona-hard-surface-floor-cleaner-refill-lemon-mint-2ba3ced0",
+   "name": "Bona Hard-Surface Floor Cleaner Refill - Lemon Mint",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Bona Hard-Surface Floor Cleaner Refill - Lemon Mint from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Bona Hard-Surface Floor Cleaner Refill - Lemon Mint by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001SKZ1AAO",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001SKZ1AAO",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001SKZ1AAO",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000001SKZ1AAO"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "bona-hardwood-floor-cleaner-rtu-62f89d95",
+   "name": "Bona Hardwood Floor Cleaner RTU",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Bona Hardwood Floor Cleaner RTU from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Bona Hardwood Floor Cleaner RTU by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001EOZnAAO",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001EOZnAAO",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001EOZnAAO",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000001EOZnAAO"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "bona-hardwood-floor-cleaner-rtu-cedar-wood-5e40757e",
+   "name": "Bona Hardwood Floor Cleaner RTU - Cedar Wood",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Bona Hardwood Floor Cleaner RTU - Cedar Wood from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Bona Hardwood Floor Cleaner RTU - Cedar Wood by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001EOjoAAG",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001EOjoAAG",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001EOjoAAG",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000001EOjoAAG"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "bona-hardwood-floor-cleaner-rtu-lavender-thyme-9237b92e",
+   "name": "Bona Hardwood Floor Cleaner RTU - Lavender Thyme",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Bona Hardwood Floor Cleaner RTU - Lavender Thyme from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Bona Hardwood Floor Cleaner RTU - Lavender Thyme by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000003g3TiAAI",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000003g3TiAAI",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000003g3TiAAI",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000003g3TiAAI"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "bona-hardwood-floor-cleaner-refill-6583bdaa",
+   "name": "Bona Hardwood Floor Cleaner Refill",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Bona Hardwood Floor Cleaner Refill from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Bona Hardwood Floor Cleaner Refill by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001SKULAA4",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001SKULAA4",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001SKULAA4",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000001SKULAA4"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "bona-hardwood-floor-cleaner-refill-cedar-wood-90439cae",
+   "name": "Bona Hardwood Floor Cleaner Refill - Cedar Wood",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Bona Hardwood Floor Cleaner Refill - Cedar Wood from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Bona Hardwood Floor Cleaner Refill - Cedar Wood by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001SKXKAA4",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001SKXKAA4",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001SKXKAA4",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000001SKXKAA4"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "bona-pro-series-hard-surface-floor-cleaner-fa7eea0d",
+   "name": "Bona Pro Series Hard Surface Floor Cleaner",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Bona Pro Series Hard Surface Floor Cleaner from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Bona Pro Series Hard Surface Floor Cleaner by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t00000099uZ1AAI",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t00000099uZ1AAI",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t00000099uZ1AAI",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t00000099uZ1AAI"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "bona-professional-series-hardwood-floor-cleaner-89ffbb23",
+   "name": "Bona Professional Series Hardwood Floor Cleaner",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Bona Professional Series Hardwood Floor Cleaner from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Bona Professional Series Hardwood Floor Cleaner by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t00000099uZ0AAI",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t00000099uZ0AAI",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t00000099uZ0AAI",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t00000099uZ0AAI"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "hard-surface-fresh-eucalyptus-cleaner-22-oz-0a7945ef",
+   "name": "Hard Surface Fresh Eucalyptus Cleaner 22 oz",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Hard Surface Fresh Eucalyptus Cleaner 22 oz from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Hard Surface Fresh Eucalyptus Cleaner 22 oz by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ00000POowXYAT",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ00000POowXYAT",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ00000POowXYAT",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04SJ00000POowXYAT"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "hard-surface-fresh-eucalyptus-cleaner-refill-64-oz-98efdd98",
+   "name": "Hard Surface Fresh Eucalyptus Cleaner Refill 64 oz",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Hard Surface Fresh Eucalyptus Cleaner Refill 64 oz from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Hard Surface Fresh Eucalyptus Cleaner Refill 64 oz by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ00000POoJpYAL",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ00000POoJpYAL",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ00000POoJpYAL",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04SJ00000POoJpYAL"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "hard-surface-floor-cleaner-1-oz-concentrate-lemon-mint-6902f0f8",
+   "name": "Hard-Surface Floor Cleaner 1 oz Concentrate Lemon Mint",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Hard-Surface Floor Cleaner 1 oz Concentrate Lemon Mint from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Hard-Surface Floor Cleaner 1 oz Concentrate Lemon Mint by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000004jenkAAA",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000004jenkAAA",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000004jenkAAA",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000004jenkAAA"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "hardwood-floor-cleaner-1-oz-concentrate-cedarwood-99dd5a72",
+   "name": "Hardwood Floor Cleaner 1 oz Concentrate Cedarwood",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Hardwood Floor Cleaner 1 oz Concentrate Cedarwood from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Hardwood Floor Cleaner 1 oz Concentrate Cedarwood by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000004jejGAAQ",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000004jejGAAQ",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000004jejGAAQ",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000004jejGAAQ"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "hardwood-floor-cleaner-1oz-concentrate-lavender-thyme-bfa7b381",
+   "name": "Hardwood Floor Cleaner 1oz Concentrate - Lavender Thyme",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Hardwood Floor Cleaner 1oz Concentrate - Lavender Thyme from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Hardwood Floor Cleaner 1oz Concentrate - Lavender Thyme by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000003jg1QAAQ",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000003jg1QAAQ",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000003jg1QAAQ",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000003jg1QAAQ"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "multi-surface-floor-cleaner-dog-formulation-46c49556",
+   "name": "Multi-Surface Floor Cleaner, Dog Formulation",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Multi-Surface Floor Cleaner, Dog Formulation from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Multi-Surface Floor Cleaner, Dog Formulation by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d0000011i2XAAQ",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d0000011i2XAAQ",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d0000011i2XAAQ",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d0000011i2XAAQ"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "powerplus-wood-surface-deep-cleaner-ba8679d3",
+   "name": "PowerPlus Wood Surface Deep Cleaner",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "PowerPlus Wood Surface Deep Cleaner from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists PowerPlus Wood Surface Deep Cleaner by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000007hsscAAA",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000007hsscAAA",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000007hsscAAA",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t0000007hsscAAA"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "professional-series-luxury-vinyl-floor-cleaner-3053e75f",
+   "name": "Professional Series Luxury Vinyl Floor Cleaner",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Professional Series Luxury Vinyl Floor Cleaner from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Professional Series Luxury Vinyl Floor Cleaner by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000002gpKIAAY",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000002gpKIAAY",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000002gpKIAAY",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000002gpKIAAY"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "professional-series-natural-oil-floor-cleaner-b670dee3",
+   "name": "Professional Series Natural Oil Floor Cleaner",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Professional Series Natural Oil Floor Cleaner from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Professional Series Natural Oil Floor Cleaner by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000002gp8BAAQ",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000002gp8BAAQ",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000002gp8BAAQ",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000002gp8BAAQ"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "jaws-hardwood-floor-cleaner-lemon-lime-scent-ff016bb9",
+   "name": "JAWS Hardwood Floor Cleaner (Lemon Lime Scent)",
+   "brand": "Canberra Corporation",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "JAWS Hardwood Floor Cleaner (Lemon Lime Scent) from Canberra Corporation, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists JAWS Hardwood Floor Cleaner (Lemon Lime Scent) by Canberra Corporation in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006ZlunAAC",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006ZlunAAC",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006ZlunAAC",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t0000006ZlunAAC"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "quick-shine-concentrated-floor-cleaner-5245ce23",
+   "name": "Quick Shine Concentrated Floor Cleaner",
+   "brand": "Holloway House, Inc.",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Quick Shine Concentrated Floor Cleaner from Holloway House, Inc., listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Quick Shine Concentrated Floor Cleaner by Holloway House, Inc. in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04i000000WupvlAAB",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04i000000WupvlAAB",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04i000000WupvlAAB",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04i000000WupvlAAB"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "quick-shine-daily-care-hardwood-floor-cleaner-db6f1d63",
+   "name": "Quick Shine Daily Care Hardwood Floor Cleaner",
+   "brand": "Holloway House, Inc.",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Quick Shine Daily Care Hardwood Floor Cleaner from Holloway House, Inc., listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Quick Shine Daily Care Hardwood Floor Cleaner by Holloway House, Inc. in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000009v5jpAAA",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000009v5jpAAA",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000009v5jpAAA",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t0000009v5jpAAA"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "quick-shine-daily-multi-surface-floor-cleaner-d78ae9d6",
+   "name": "Quick Shine Daily Multi-Surface Floor Cleaner",
+   "brand": "Holloway House, Inc.",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Quick Shine Daily Multi-Surface Floor Cleaner from Holloway House, Inc., listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Quick Shine Daily Multi-Surface Floor Cleaner by Holloway House, Inc. in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04i000000WuqWqAAJ",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04i000000WuqWqAAJ",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04i000000WuqWqAAJ",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04i000000WuqWqAAJ"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "quick-shine-floor-cleaner-pet-d4266992",
+   "name": "Quick Shine Floor Cleaner Pet",
+   "brand": "Holloway House, Inc.",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Quick Shine Floor Cleaner Pet from Holloway House, Inc., listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Quick Shine Floor Cleaner Pet by Holloway House, Inc. in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000003eFluAAE",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000003eFluAAE",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000003eFluAAE",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000003eFluAAE"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "quick-shine-hardwood-floor-cleaner-917e54af",
+   "name": "Quick Shine Hardwood Floor Cleaner",
+   "brand": "Holloway House, Inc.",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Quick Shine Hardwood Floor Cleaner from Holloway House, Inc., listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Quick Shine Hardwood Floor Cleaner by Holloway House, Inc. in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000009v5jkAAA",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000009v5jkAAA",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000009v5jkAAA",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t0000009v5jkAAA"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "quick-shine-multi-surface-floor-cleaner-60fd31b3",
+   "name": "Quick Shine Multi-Surface Floor Cleaner",
+   "brand": "Holloway House, Inc.",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Quick Shine Multi-Surface Floor Cleaner from Holloway House, Inc., listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Quick Shine Multi-Surface Floor Cleaner by Holloway House, Inc. in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04i000000WupvmAAB",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04i000000WupvmAAB",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04i000000WupvmAAB",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04i000000WupvmAAB"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "stainmaster-hard-surface-floor-cleaner-283456bf",
+   "name": "STAINMASTER Hard-Surface Floor Cleaner",
+   "brand": "Lowe's",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "STAINMASTER Hard-Surface Floor Cleaner from Lowe's, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists STAINMASTER Hard-Surface Floor Cleaner by Lowe's in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ00000CVSsMYAX",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ00000CVSsMYAX",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ00000CVSsMYAX",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04SJ00000CVSsMYAX"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "enviro-klean-all-purpose-cleaner-70ae011a",
+   "name": "Enviro Klean® All Purpose Cleaner",
+   "brand": "Prosoco Inc.",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Enviro Klean® All Purpose Cleaner from Prosoco Inc., listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Enviro Klean® All Purpose Cleaner by Prosoco Inc. in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d0000011EtaAAE",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d0000011EtaAAE",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d0000011EtaAAE",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d0000011EtaAAE"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "green-carpet-stain-soil-remover-rtu-3e96e45c",
+   "name": "Green Carpet Stain & Soil Remover-RTU",
+   "brand": "Shaw Industries, Inc.",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Green Carpet Stain & Soil Remover-RTU from Shaw Industries, Inc., listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Green Carpet Stain & Soil Remover-RTU by Shaw Industries, Inc. in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006bsqHAAQ",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006bsqHAAQ",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006bsqHAAQ",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t0000006bsqHAAQ"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "green-hard-surface-cleaner-rtu-a82cba12",
+   "name": "Green Hard Surface Cleaner- RTU",
+   "brand": "Shaw Industries, Inc.",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Green Hard Surface Cleaner- RTU from Shaw Industries, Inc., listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Green Hard Surface Cleaner- RTU by Shaw Industries, Inc. in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006bss3AAA",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006bss3AAA",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006bss3AAA",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t0000006bss3AAA"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "green-hard-surface-flooring-cleaner-rtu-548afe47",
+   "name": "Green Hard Surface Flooring Cleaner-RTU",
+   "brand": "Shaw Industries, Inc.",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Green Hard Surface Flooring Cleaner-RTU from Shaw Industries, Inc., listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Green Hard Surface Flooring Cleaner-RTU by Shaw Industries, Inc. in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006bsryAAA",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006bsryAAA",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006bsryAAA",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t0000006bsryAAA"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "great-value-hard-floor-cleaner-ee1d07aa",
+   "name": "Great Value Hard Floor Cleaner",
+   "brand": "Walmart Inc.",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Great Value Hard Floor Cleaner from Walmart Inc., listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Great Value Hard Floor Cleaner by Walmart Inc. in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ0000067k2fYAA",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ0000067k2fYAA",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ0000067k2fYAA",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04SJ0000067k2fYAA"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 97.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "the-clean-vet-power-cleaner-d14028a0",
+   "name": "The Clean Vet Power Cleaner",
+   "brand": "The Clean Company Brands LLC",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The Clean Vet Power Cleaner from The Clean Company Brands LLC, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 96,
+    "environment": 88,
+    "transparency": 85,
+    "accessibility": 76
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists The Clean Vet Power Cleaner by The Clean Company Brands LLC in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000009eUmkAAE",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000009eUmkAAE",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product, but without a UPC/GTIN/MPN identifier in this row.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000009eUmkAAE",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t0000009eUmkAAE"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Fragrance-free",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 96,
+    "honesty": 92.5,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "the-clean-vet-power-cleaner-concentrate-ce6ec95d",
+   "name": "The Clean Vet Power Cleaner Concentrate",
+   "brand": "The Clean Company Brands LLC",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The Clean Vet Power Cleaner Concentrate from The Clean Company Brands LLC, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 96,
+    "environment": 88,
+    "transparency": 85,
+    "accessibility": 76
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists The Clean Vet Power Cleaner Concentrate by The Clean Company Brands LLC in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000009eUmeAAE",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000009eUmeAAE",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product, but without a UPC/GTIN/MPN identifier in this row.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000009eUmeAAE",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t0000009eUmeAAE"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Fragrance-free",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 96,
+    "honesty": 92.5,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "bona-pet-system-hard-surface-floor-deep-cleaner-17c01391",
+   "name": "Bona (Pet system) Hard-Surface Floor Deep Cleaner",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Bona (Pet system) Hard-Surface Floor Deep Cleaner from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 85,
+    "accessibility": 76
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Bona (Pet system) Hard-Surface Floor Deep Cleaner by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000004MLfIAAW",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000004MLfIAAW",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product, but without a UPC/GTIN/MPN identifier in this row.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000004MLfIAAW",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000004MLfIAAW"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 92.5,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "bona-hard-surface-floor-cleaner-machine-formulation-lemon-mint-77d5900e",
+   "name": "Bona Hard-Surface Floor Cleaner Machine Formulation Lemon Mi",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Bona Hard-Surface Floor Cleaner Machine Formulation Lemon Mint from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 85,
+    "accessibility": 76
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Bona Hard-Surface Floor Cleaner Machine Formulation Lemon Mint by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001gsRNAAY",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001gsRNAAY",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product, but without a UPC/GTIN/MPN identifier in this row.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001gsRNAAY",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000001gsRNAAY"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 92.5,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "bona-hardwood-floor-cleaner-machine-formulation-cedar-wood-abc3c11e",
+   "name": "Bona Hardwood Floor Cleaner Machine Formulation Cedar Wood",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Bona Hardwood Floor Cleaner Machine Formulation Cedar Wood from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 85,
+    "accessibility": 76
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Bona Hardwood Floor Cleaner Machine Formulation Cedar Wood by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001gsVmAAI",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001gsVmAAI",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product, but without a UPC/GTIN/MPN identifier in this row.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001gsVmAAI",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000001gsVmAAI"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 92.5,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "bona-oxypower-hard-surface-floor-deep-cleaner-f03a27fc",
+   "name": "Bona OxyPower Hard-Surface Floor Deep Cleaner",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Bona OxyPower Hard-Surface Floor Deep Cleaner from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 85,
+    "accessibility": 76
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Bona OxyPower Hard-Surface Floor Deep Cleaner by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000004eq7NAAQ",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000004eq7NAAQ",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product, but without a UPC/GTIN/MPN identifier in this row.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000004eq7NAAQ",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000004eq7NAAQ"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 92.5,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "bona-oxypower-wood-floor-deep-cleaner-e3a22085",
+   "name": "Bona OxyPower Wood Floor Deep Cleaner",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Bona OxyPower Wood Floor Deep Cleaner from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 85,
+    "accessibility": 76
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Bona OxyPower Wood Floor Deep Cleaner by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000004eq7OAAQ",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000004eq7OAAQ",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product, but without a UPC/GTIN/MPN identifier in this row.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000004eq7OAAQ",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000004eq7OAAQ"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 92.5,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "hard-surface-cleaner-2c0ea4f3",
+   "name": "Hard-Surface Cleaner",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Hard-Surface Cleaner from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 85,
+    "accessibility": 76
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Hard-Surface Cleaner by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ000007tUcXYAU",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ000007tUcXYAU",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product, but without a UPC/GTIN/MPN identifier in this row.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ000007tUcXYAU",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04SJ000007tUcXYAU"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 92.5,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "hard-surface-floor-cleaner-1oz-concentrate-bca62b73",
+   "name": "Hard-Surface Floor Cleaner 1oz Concentrate",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Hard-Surface Floor Cleaner 1oz Concentrate from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 85,
+    "accessibility": 76
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Hard-Surface Floor Cleaner 1oz Concentrate by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001zfu8AAA",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001zfu8AAA",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product, but without a UPC/GTIN/MPN identifier in this row.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001zfu8AAA",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000001zfu8AAA"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 92.5,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "hard-surface-floor-cleaner-degreaser-formulation-6babd36a",
+   "name": "Hard-Surface Floor Cleaner Degreaser Formulation",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Hard-Surface Floor Cleaner Degreaser Formulation from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 85,
+    "accessibility": 76
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Hard-Surface Floor Cleaner Degreaser Formulation by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000004jdVwAAI",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000004jdVwAAI",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product, but without a UPC/GTIN/MPN identifier in this row.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000004jdVwAAI",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000004jdVwAAI"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 92.5,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "hardwood-floor-cleaner-1oz-concentrate-5688f61e",
+   "name": "Hardwood Floor Cleaner 1oz Concentrate",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Hardwood Floor Cleaner 1oz Concentrate from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 85,
+    "accessibility": 76
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Hardwood Floor Cleaner 1oz Concentrate by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001zfdOAAQ",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001zfdOAAQ",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product, but without a UPC/GTIN/MPN identifier in this row.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001zfdOAAQ",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000001zfdOAAQ"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 92.5,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "wood-floor-cleaner-def6edf9",
+   "name": "Wood Floor Cleaner",
+   "brand": "Bona US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Wood Floor Cleaner from Bona US, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 85,
+    "accessibility": 76
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Wood Floor Cleaner by Bona US in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ000007qTY9YAM",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ000007qTY9YAM",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product, but without a UPC/GTIN/MPN identifier in this row.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ000007qTY9YAM",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04SJ000007qTY9YAM"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 92.5,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "floor-cleaner-degreaser-0d10cb5d",
+   "name": "Floor Cleaner & Degreaser",
+   "brand": "Diversified Chemical Technologies, Inc.",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Floor Cleaner & Degreaser from Diversified Chemical Technologies, Inc., listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 85,
+    "accessibility": 76
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Floor Cleaner & Degreaser by Diversified Chemical Technologies, Inc. in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d0000050TgoAAE",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d0000050TgoAAE",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product, but without a UPC/GTIN/MPN identifier in this row.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d0000050TgoAAE",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d0000050TgoAAE"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 92.5,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "essentials-floor-and-stone-cleaner-4ec7c875",
+   "name": "Essentials Floor and Stone Cleaner",
+   "brand": "Merry Maids",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Essentials Floor and Stone Cleaner from Merry Maids, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 85,
+    "accessibility": 76
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Essentials Floor and Stone Cleaner by Merry Maids in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000004nyUxAAI",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000004nyUxAAI",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product, but without a UPC/GTIN/MPN identifier in this row.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000004nyUxAAI",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t0000004nyUxAAI"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 92.5,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "hard-surface-floor-cleaner-4889294f",
+   "name": "Hard Surface Floor Cleaner",
+   "brand": "Natureal, LLC dba Bioesque Solutions",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Hard Surface Floor Cleaner from Natureal, LLC dba Bioesque Solutions, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 85,
+    "accessibility": 76
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Hard Surface Floor Cleaner by Natureal, LLC dba Bioesque Solutions in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ00000BeEcDYAV",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ00000BeEcDYAV",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product, but without a UPC/GTIN/MPN identifier in this row.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ00000BeEcDYAV",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04SJ00000BeEcDYAV"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 92.5,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "multi-surface-floor-cleaner-713be69b",
+   "name": "Multi-Surface Floor Cleaner",
+   "brand": "Natureal, LLC dba Bioesque Solutions",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Multi-Surface Floor Cleaner from Natureal, LLC dba Bioesque Solutions, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 85,
+    "accessibility": 76
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Multi-Surface Floor Cleaner by Natureal, LLC dba Bioesque Solutions in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ000009qkMXYAY",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ000009qkMXYAY",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product, but without a UPC/GTIN/MPN identifier in this row.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04SJ000009qkMXYAY",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04SJ000009qkMXYAY"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 92.5,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "krud-kutter-pro-low-foam-floor-cleaner-89930772",
+   "name": "Krud Kutter Pro Low Foam Floor Cleaner",
+   "brand": "Rust-Oleum Corporation",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Krud Kutter Pro Low Foam Floor Cleaner from Rust-Oleum Corporation, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 85,
+    "accessibility": 76
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Krud Kutter Pro Low Foam Floor Cleaner by Rust-Oleum Corporation in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001zxwfAAA",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001zxwfAAA",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product, but without a UPC/GTIN/MPN identifier in this row.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a043d000001zxwfAAA",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a043d000001zxwfAAA"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 92.5,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "green-hard-surfaces-flooring-cleaner-concentrate-317ca600",
+   "name": "Green Hard Surfaces Flooring Cleaner Concentrate",
+   "brand": "Shaw Industries, Inc.",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Green Hard Surfaces Flooring Cleaner Concentrate from Shaw Industries, Inc., listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 100,
+    "health": 88,
+    "environment": 88,
+    "transparency": 85,
+    "accessibility": 76
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Green Hard Surfaces Flooring Cleaner Concentrate by Shaw Industries, Inc. in the Safer Choice program; company good-standing status is true.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006cIjMAAU",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006cIjMAAU",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product, but without a UPC/GTIN/MPN identifier in this row.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000006cIjMAAU",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t0000006cIjMAAU"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner",
+    "Good standing"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 88,
+    "honesty": 92.5,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "weiman-hardwood-cleaner-445ad44e",
+   "name": "Weiman Hardwood Cleaner",
+   "brand": "PurposeBuilt Brands",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Weiman Hardwood Cleaner from PurposeBuilt Brands, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 72,
+    "health": 80,
+    "environment": 80,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Weiman Hardwood Cleaner by PurposeBuilt Brands in the Safer Choice program; company good-standing status is false.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000004nqT1AAI",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000004nqT1AAI",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000004nqT1AAI",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t0000004nqT1AAI"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner"
+   ],
+   "valueSignature": {
+    "planet": 80,
+    "health": 80,
+    "honesty": 83.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  },
+  {
+   "code": "weiman-stone-tile-cleaner-d9952ed0",
+   "name": "Weiman Stone & Tile Cleaner",
+   "brand": "PurposeBuilt Brands",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Weiman Stone & Tile Cleaner from PurposeBuilt Brands, listed by EPA Safer Choice in Floor Care Products : Floor Cleaners.",
+   "scores": {
+    "certification": 72,
+    "health": 80,
+    "environment": 80,
+    "transparency": 95,
+    "accessibility": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "EPA Envirofacts lists Weiman Stone & Tile Cleaner by PurposeBuilt Brands in the Safer Choice program; company good-standing status is false.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000005KkqOAAS",
+     "asof": "2026-10"
+    },
+    "health": {
+     "note": "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
+     "source": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
+     "source": "https://www.epa.gov/saferchoice/standard",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "EPA Envirofacts publishes product, company, sector and identifier fields for this Floor Care Products : Floor Cleaners listing.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000005KkqOAAS",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "EPA lists this as a consumer product with UPC/GTIN/MPN identifiers.",
+     "source": "https://www.epa.gov/saferchoice/products#search=a04t0000005KkqOAAS",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA product listing",
+     "url": "https://www.epa.gov/saferchoice/products#search=a04t0000005KkqOAAS"
+    },
+    {
+     "label": "Safer Choice label",
+     "url": "https://www.epa.gov/saferchoice/learn-about-safer-choice-label"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "EPA Safer Choice",
+    "Certified",
+    "Floor cleaner"
+   ],
+   "valueSignature": {
+    "planet": 80,
+    "health": 80,
+    "honesty": 83.5,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "epa.gov"
+   }
+  }
+ ],
+ "links": [
+  {
+   "label": "EPA Safer Choice products",
+   "url": "https://www.epa.gov/saferchoice/products"
+  },
+  {
+   "label": "EPA Envirofacts dataset",
+   "url": "https://www.epa.gov/enviro/download-additional-envirofacts-datasets"
+  }
+ ]
+}

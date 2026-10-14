@@ -179,7 +179,8 @@ function main() {
   // 124 on 2026-08-26: messaging and browsers authored their own contracts in the split.
   // 126 on 2026-09-23: email and search left the shared digital-services dataset in the same
   // split, authoring their own contracts.
-  if (contracts.length !== 126) failures.push(`${decisionRel}: expected 126 decision contracts, found ${contracts.length}`);
+  // 130 on 2026-10-14: four generated categories from vetted bulk sources.
+  if (contracts.length !== 130) failures.push(`${decisionRel}: expected 130 decision contracts, found ${contracts.length}`);
   for (const contract of contracts) {
     const label = contract.category || '(unknown category)';
     const summary = contract.reads && contract.reads.text || '';
