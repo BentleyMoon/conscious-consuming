@@ -1729,7 +1729,7 @@ function categoryMatterLine(category){
     if(label&&!labels.includes(label))labels.push(label);
     if(labels.length===3)break;
   }
-  return labels.length?'What matters: '+labels.join(' · '):'Open the decision to see what differs';
+  return labels.length?'What matters: '+labels.join(' · '):'Open the comparison to see what differs';
 }
 function domainDifferencesSentence(categories){
   const frequency=new Map(), firstSeen=new Map(), seenCategories=new Set();let order=0;
@@ -1743,7 +1743,7 @@ function domainDifferencesSentence(categories){
     }
   }
   const labels=[...frequency].sort((a,b)=>(b[1]-a[1])||(firstSeen.get(a[0])-firstSeen.get(b[0]))).slice(0,3).map(x=>x[0]);
-  return labels.length?'Choices here differ on '+decisionList(labels)+'.':'Open a decision to see what differs and why.';
+  return labels.length?'Choices here differ on '+decisionList(labels)+'.':'Open a comparison to see what differs and why.';
 }
 function needRegistry(){
   const ont=window.CC_BUNDLE&&window.CC_BUNDLE.ontology;
@@ -1867,137 +1867,161 @@ function renderHomeDemo(ds,entries){
   const st=document.getElementById('hd-status');
   if(st){const chip=HOME_DEMO.chips.find(c=>c.th===demoTheme);st.textContent=chip?`${chip.label} weighs more now. Same facts, new order.`:'All three values weigh the same right now. Tap one.';}
 }
+/* PLAIN WORDS AND FAMILIAR PATHS (2026-10, docs/design-review/NAVIGATION-2026-10.md).
+   The front page used to be the map itself, under a title that named the page's own machinery,
+   with five hover panels above it. A first-time visitor met "decisions", "portals", "needs" and
+   "fisheye" before they had found one thing to compare. The front page is now a search box, the
+   catalogue as plain links, one worked question, and four sentences on how the site works. The map
+   is kept, whole and unchanged, one click away at #mapview. */
+function sectionName(need){return need?(typeof displayNeed==='function'?displayNeed(need.label):portalTitle(need.id,need.label)):'';}
+function catalogueTotals(){
+  const cats=CATALOG||[];
+  return {categories:cats.length,entries:cats.reduce((n,c)=>n+(Number(c.n)||0),0)};
+}
+function fmtCount(n){return Number(n||0).toLocaleString('en-GB');}
+function compareLabel(c){return c&&c.n?`Compare ${fmtCount(c.n)} ${String(c.label||'').toLowerCase()}`:`Compare ${String(c&&c.label||'').toLowerCase()}`;}
+/* Where a category sits, for breadcrumbs and the browse list: section (one of the eight everyday
+   needs, by its plain display name) and area, read from the presentation package so the app and the
+   static index under ./browse/ say the same thing. */
+function categoryPlace(cid){
+  const pkg=CC.presentation&&CC.presentation.current&&CC.presentation.current();
+  const tax=pkg&&pkg.taxonomy, row=tax&&(tax.decisions||[]).find(d=>d.cid===cid);
+  const cat=(CATALOG||[]).find(c=>c.id===cid), need=needById((row&&row.need)||(cat&&cat.need));
+  let area=null;
+  if(row&&tax){const n=(tax.needs||[]).find(x=>x.id===row.need);area=n&&(n.categories||[]).find(x=>x.id===row.category)||null;}
+  return {need,section:sectionName(need),area:area?{id:area.id,label:area.label}:null};
+}
 function renderHome(){
   const v=document.getElementById('view-home');
   const sp=homeSpotlight();
-  /* THE FRONT PAGE IS THE TOOL.
-     Two corrections in one day. It began as seventeen blocks and seven ways to start, with the
-     tool crammed into the right half under four hundred words of instructions. I replaced that
-     with a sentence and a list of every decision by name, which fixed the clutter and lost the
-     product: a hundred and fifteen links is a wall, and a wall is not something you use.
-
-     So the tool is the page now. No slogan above it, because a headline that argues with the
-     reader is taking room from the thing they came to use, and the argument is already made
-     everywhere else on the site. A field to type into, the plate of every decision, and the
-     measures that light it. Nothing else. */
+  const t=catalogueTotals(), needs=needRegistry();
+  const live={};(CATALOG||[]).forEach(c=>{live[c.id]=c;});
+  const sections=needs.map(n=>{
+    const cats=(CATALOG||[]).filter(c=>c.need===n.id);
+    if(!cats.length)return '';
+    const picks=(PORTAL_DOORS[n.id]||[]).map(id=>live[id]).filter(Boolean);
+    for(const c of cats.slice().sort((a,b)=>(Number(b.n)||0)-(Number(a.n)||0))){if(picks.length>=5)break;if(!picks.includes(c))picks.push(c);}
+    return `<section class="home-need"><h3><a href="#need/${encodeURIComponent(n.id)}">${esc(sectionName(n))}</a></h3><p class="home-need-reads">${esc(n.reads||'')}</p><ul class="home-need-cats">${picks.map(c=>`<li><a href="#decide/${encodeURIComponent(c.id)}">${esc(c.label)}</a></li>`).join('')}<li class="home-need-all"><a href="#need/${encodeURIComponent(n.id)}">All ${cats.length} &rarr;</a></li></ul></section>`;
+  }).join('');
+  v.innerHTML=`
+    <section class="home-intro" aria-labelledby="home-title">
+      <h1 id="home-title" class="home-h">Compare everyday choices by your own values</h1>
+      <p class="home-sub">Banks, phones, food, clothes and more: ${fmtCount(t.categories)} categories and ${fmtCount(t.entries)} products, services and brands. Every fact shows its source. Nobody pays to be ranked.</p>
+      <form class="hsearch home-search" id="hsearch" role="search">
+        <label for="hq">Search for a category, product, service or brand</label>
+        <div class="home-search-row"><input type="search" id="hq" placeholder="${tr('home.search')}" autocomplete="off"><button type="submit" class="valuescta">${tr('home.searchBtn')}</button></div>
+      </form>
+      <p class="home-news" id="home-news" hidden></p>
+      <p class="home-quick"><a href="#browse">Browse all ${fmtCount(t.categories)} categories, A to Z</a><a href="#scan">Scan a barcode</a><a href="#guides">Read a guide</a></p>
+    </section>
+    <section class="home-browse" aria-labelledby="home-browse-h">
+      <h2 id="home-browse-h" class="home-browse-h">Browse by everyday need</h2>
+      <div class="home-needs">${sections}</div>
+      <p class="home-browse-more"><a href="#browse">Every category, A to Z &rarr;</a> <a href="#mapview">See them all as a map &rarr;</a></p>
+    </section>
+    <article class="home-question" id="home-question">${spotlightHTML(sp)}</article>
+    <section class="home-how" aria-labelledby="home-how-h">
+      <h2 id="home-how-h" class="home-browse-h">How this works</h2>
+      <ul class="home-how-list">
+        <li><b>Private.</b> No account and no tracking. Your settings stay on this device. <a href="../passport/index.html">What is stored</a></li>
+        <li><b>Sourced.</b> Every fact shows where it came from and when it was checked. <a href="#guide/how-scores-work">How a score is built</a></li>
+        <li><b>Open to correction.</b> Anyone can propose a fix, with a source. <a href="#contribute">Suggest a correction</a></li>
+        <li><b>Run in the open.</b> A working draft from the Futurism Institute, part of the Values Commons. <a href="https://futurisminstitute.org/" target="_blank" rel="noopener">Futurism Institute</a> <a href="../funders/index.html">Who pays for this work</a></li>
+      </ul>
+    </section>`;
+  wireSpotlight(sp);
+  renderHomeNews();
+  document.getElementById('hsearch').onsubmit=(e)=>{e.preventDefault();goSearch((document.getElementById('hq').value||'').trim());};
+  wireSuggest(document.getElementById('hq'));
+}
+/* THE BROWSE PAGE: the catalogue as a reference index. A to Z by default, or by everyday need,
+   every category a plain link to its comparison. The same list is written as static HTML under
+   ./browse/ by pipeline/build_browse.js, for readers without JavaScript and for search engines. */
+function renderBrowse(arg){
+  const v=document.getElementById('view-browse');if(!v)return;
+  const mode=arg==='needs'?'needs':'az';
+  const t=catalogueTotals();
+  const cats=(CATALOG||[]).slice().sort((a,b)=>a.label.localeCompare(b.label));
+  const row=c=>{const pl=categoryPlace(c.id);return `<li data-browse-name="${esc(c.label.toLowerCase())}"><a href="#decide/${encodeURIComponent(c.id)}">${esc(c.label)}</a> <span class="browse-n">${fmtCount(c.n)} ${c.n===1?'entry':'entries'}</span>${pl.section?` <span class="browse-where">${esc(pl.section)}${pl.area?' &rsaquo; '+esc(pl.area.label):''}</span>`:''}</li>`;};
+  let body='';
+  if(mode==='az'){
+    const by={};for(const c of cats){const L=(c.label[0]||'#').toUpperCase();(by[L]=by[L]||[]).push(c);}
+    const letters=Object.keys(by).sort();
+    body=`<nav class="browse-letters" aria-label="Jump to a letter">${letters.map(L=>`<button type="button" data-browse-letter="${esc(L)}">${esc(L)}</button>`).join('')}</nav>`
+      +letters.map(L=>`<section class="browse-letter" id="browse-letter-${esc(L)}"><h3>${esc(L)}</h3><ul class="browse-list">${by[L].map(row).join('')}</ul></section>`).join('');
+  }else{
+    const pkg=CC.presentation&&CC.presentation.current&&CC.presentation.current(), tax=pkg&&pkg.taxonomy;
+    const live={};for(const c of cats)live[c.id]=c;
+    body=needRegistry().map(n=>{
+      const tn=tax&&(tax.needs||[]).find(x=>x.id===n.id);
+      const placed=new Set();
+      const areas=((tn&&tn.categories)||[]).map(a=>{
+        const ids=[];for(const s of (a.subcategories||[]))for(const id of (s.decisionIds||[])){const d=(tax.decisions||[]).find(x=>x.id===id);const cid=d&&d.cid;if(cid&&live[cid]&&!placed.has(cid)){placed.add(cid);ids.push(cid);}}
+        if(!ids.length)return '';
+        return `<h4>${esc(a.label)}</h4><ul class="browse-list">${ids.map(id=>live[id]).sort((x,y)=>x.label.localeCompare(y.label)).map(row).join('')}</ul>`;
+      }).join('');
+      const rest=cats.filter(c=>c.need===n.id&&!placed.has(c.id));
+      const restHTML=rest.length?`<ul class="browse-list">${rest.map(row).join('')}</ul>`:'';
+      if(!areas&&!restHTML)return '';
+      return `<section class="browse-need"><h3><a href="#need/${encodeURIComponent(n.id)}">${esc(sectionName(n))}</a></h3><p class="browse-need-reads">${esc(n.reads||'')}</p>${areas}${restHTML}</section>`;
+    }).join('');
+  }
+  v.innerHTML=`<header class="browse-head"><h2 class="sectionh">Browse every category</h2>
+      <p class="sectionsub">${fmtCount(t.categories)} categories, ${fmtCount(t.entries)} products, services and brands. Open a category to compare its options by your values.</p></header>
+    <div class="browse-tools">
+      <div class="browse-modes" role="group" aria-label="Order the list"><a href="#browse" aria-current="${mode==='az'}">A to Z</a><a href="#browse/needs" aria-current="${mode==='needs'}">By everyday need</a><a href="#mapview">As a map</a></div>
+      <label class="browse-filter"><span class="sr-only">Filter this list by name</span><input type="search" id="browse-filter" placeholder="Filter categories…" autocomplete="off"></label>
+    </div>
+    <div class="browse-body">${body}</div>
+    <p class="browse-empty" id="browse-empty" hidden>No category matches. <a href="#search">Search every product and brand instead</a>.</p>
+    <p class="browse-plain">A plain version of this page, which works without JavaScript, is at <a href="./browse/">the category index</a>. Something missing? <a href="#contribute">Ask for a category</a>.</p>`;
+  v.querySelectorAll('[data-browse-letter]').forEach(b=>b.onclick=()=>{const s=document.getElementById('browse-letter-'+b.dataset.browseLetter);if(s)s.scrollIntoView({behavior:prefersReduced()?'auto':'smooth',block:'start'});});
+  const f=document.getElementById('browse-filter');
+  if(f)f.oninput=()=>{
+    const q=f.value.trim().toLowerCase();let shown=0;
+    v.querySelectorAll('[data-browse-name]').forEach(li=>{const on=!q||li.dataset.browseName.includes(q);li.hidden=!on;if(on)shown++;});
+    v.querySelectorAll('.browse-letter,.browse-need').forEach(sec=>{sec.hidden=!!q&&!sec.querySelector('[data-browse-name]:not([hidden])');});
+    const empty=document.getElementById('browse-empty');if(empty)empty.hidden=shown>0;
+  };
+}
+/* THE MAP VIEW. What used to be the front page, unchanged in behaviour: every category drawn as a
+   cell, sized by what is at stake, with a zoom lens for the whole named map. */
+function renderMapView(){
+  const v=document.getElementById('view-mapview');
   const total=(CATALOG||[]).length;
   const savedMapMode=homeMapState&&homeMapState.mode==='fisheye'?'fisheye':'spatial';
   const savedMapHelp=savedMapMode==='fisheye'
     ?'Move away from the centre to travel; move farther to go faster. The overview marks your position.'
-    :'Zoom from eight needs to areas, kinds, decisions, and evidence.';
+    :'Zoom from eight everyday needs to areas, types, comparisons, and their evidence.';
   v.innerHTML=`
-    <section class="home-nexus" aria-labelledby="home-title">
-      <div class="nexus-titlebar">
-        <div class="nexus-titlecopy">
-          <h1 id="home-title" class="nexus-h">Your Navigation Nexus</h1>
-          <p class="nexus-sub">Vote with your dollar, steward your attention, and subvert marketing with your values.</p>
-        </div>
-        <a class="home-institute" href="https://futurisminstitute.org/" target="_blank" rel="noopener">
-          <svg class="home-institute-sun" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="7.5"/><line class="sun-ray" x1="30.50" y1="20.00" x2="38.00" y2="20.00"/><line class="sun-ray sun-ray--dotted" x1="30.14" y1="22.72" x2="34.49" y2="23.88"/><line class="sun-ray" x1="29.09" y1="25.25" x2="35.59" y2="29.00"/><line class="sun-ray sun-ray--dotted" x1="27.42" y1="27.42" x2="30.61" y2="30.61"/><line class="sun-ray" x1="25.25" y1="29.09" x2="29.00" y2="35.59"/><line class="sun-ray sun-ray--dotted" x1="22.72" y1="30.14" x2="23.88" y2="34.49"/><line class="sun-ray" x1="20.00" y1="30.50" x2="20.00" y2="38.00"/><line class="sun-ray sun-ray--dotted" x1="17.28" y1="30.14" x2="16.12" y2="34.49"/><line class="sun-ray" x1="14.75" y1="29.09" x2="11.00" y2="35.59"/><line class="sun-ray sun-ray--dotted" x1="12.58" y1="27.42" x2="9.39" y2="30.61"/><line class="sun-ray" x1="10.91" y1="25.25" x2="4.41" y2="29.00"/><line class="sun-ray sun-ray--dotted" x1="9.86" y1="22.72" x2="5.51" y2="23.88"/><line class="sun-ray" x1="9.50" y1="20.00" x2="2.00" y2="20.00"/><line class="sun-ray sun-ray--dotted" x1="9.86" y1="17.28" x2="5.51" y2="16.12"/><line class="sun-ray" x1="10.91" y1="14.75" x2="4.41" y2="11.00"/><line class="sun-ray sun-ray--dotted" x1="12.58" y1="12.58" x2="9.39" y2="9.39"/><line class="sun-ray" x1="14.75" y1="10.91" x2="11.00" y2="4.41"/><line class="sun-ray sun-ray--dotted" x1="17.28" y1="9.86" x2="16.12" y2="5.51"/><line class="sun-ray" x1="20.00" y1="9.50" x2="20.00" y2="2.00"/><line class="sun-ray sun-ray--dotted" x1="22.72" y1="9.86" x2="23.88" y2="5.51"/><line class="sun-ray" x1="25.25" y1="10.91" x2="29.00" y2="4.41"/><line class="sun-ray sun-ray--dotted" x1="27.42" y1="12.58" x2="30.61" y2="9.39"/><line class="sun-ray" x1="29.09" y1="14.75" x2="35.59" y2="11.00"/><line class="sun-ray sun-ray--dotted" x1="30.14" y1="17.28" x2="34.49" y2="16.12"/></svg>
-          <span class="home-institute-copy">
-            <small>An independent commons</small>
-            <strong>Futurism Institute</strong>
-          </span>
-        </a>
-      </div>
-    </section>
-    <ul class="nexus-row">
-        <li class="nexus-item">
-          <a class="nexus-head" href="../passport/index.html">Private</a>
-          <div class="nexus-panel"><div class="nexus-panel-in">
-            <p>There is no account and nothing is tracked. Your rules and saved lists are files on this device. The values file you can export holds weights and deal-breakers, and no name attached to them.</p>
-            <ul class="nexus-links">
-              <li><a href="../passport/index.html">What is stored, and what never leaves the device</a></li>
-              <li><a href="#guide/the-anti-app">Why there is no account and no feed</a></li>
-              <li><a href="#you">Set your own rules and deal-breakers</a></li>
-            </ul>
-          </div></div>
-        </li>
-        <li class="nexus-item">
-          <a class="nexus-head" href="../assembly/index.html">Democratic</a>
-          <div class="nexus-panel"><div class="nexus-panel-in">
-            <p>Anyone can propose a change, and every proposal names the record it would alter. Discussions stay public, including the ones that reach no agreement. The governance here is an experiment and is labelled as one.</p>
-            <ul class="nexus-links">
-              <li><a href="../assembly/index.html">The assembly, where proposals are discussed</a></li>
-              <li><a href="../workshop/index.html">Update an entry yourself, with a source</a></li>
-              <li><a href="#contribute">Open a correction or a question</a></li>
-            </ul>
-          </div></div>
-        </li>
-        <li class="nexus-item">
-          <a class="nexus-head" href="#guide/how-scores-work">Transparent</a>
-          <div class="nexus-panel"><div class="nexus-panel-in">
-            <p>Every fact shows its source and the date it was checked. Scores are computed from the weights you set. Corrections keep their history and thin evidence is labelled as thin. Nobody pays to be ranked.</p>
-            <ul class="nexus-links">
-              <li><a href="#guide/how-scores-work">How a score is built, step by step</a></li>
-              <li><a href="./c/">Every verdict in the open, with its sources</a></li>
-              <li><a href="../funders/index.html">Who pays for this work</a></li>
-            </ul>
-          </div></div>
-        </li>
-        <li class="nexus-item">
-          <a class="nexus-head" href="../index.html">Evolving</a>
-          <div class="nexus-panel"><div class="nexus-panel-in">
-            <p>A working draft, changed by what readers report. It belongs to the Futurism Institute, which builds civic instruments for an age of machine abundance, and the drafts here say they are drafts.</p>
-            <ul class="nexus-links">
-              <li><a href="https://futurisminstitute.org/" target="_blank" rel="noopener">What the Futurism Institute is for</a></li>
-              <li><a href="../index.html">The rest of the Values Commons</a></li>
-              <li><a href="#contribute">Tell us what is wrong here</a></li>
-            </ul>
-          </div></div>
-        </li>
-        <li class="nexus-item nexus-item--wide">
-          <a class="nexus-head nexus-lead" href="#map">Organize anything</a>
-          <div class="nexus-panel"><div class="nexus-panel-in">
-            <p>One common explorer for the things you buy, use, watch, support, join, and depend upon.</p>
-            <p class="nexus-types">Products &middot; Services &middot; Media &middot; Organizations &middot; Initiatives</p>
-            <p>Sixteen realms, eighty-five fields, more than a thousand decisions, each with an id that stays put.</p>
-            <ul class="nexus-links">
-              <li><a href="#map">Open the explorer</a></li>
-              <li><a href="../standard/index.html">How the index works, and why the ids stay put</a></li>
-              <li><a href="./c/">The five kinds of thing, one at a time</a></li>
-            </ul>
-          </div></div>
-        </li>
-      </ul>
-    <section class="home-tool" aria-label="Search and browse decisions">
-      <form class="hsearch home-search" id="hsearch">
-        <label for="hq">What are you choosing?</label>
-        <div class="home-search-row"><input type="search" id="hq" placeholder="${tr('home.search')}" autocomplete="off"><button type="submit" class="valuescta">${tr('home.searchBtn')}</button></div>
-      </form>
-      <p class="home-news" id="home-news" hidden></p>
+    <header class="browse-head"><h2 class="sectionh">Map view</h2><p class="sectionsub">Every category drawn as a map, coloured by everyday need. Choose an area to zoom in. Prefer a list? <a href="#browse">Browse A to Z</a>.</p></header>
+    <section class="home-tool" aria-label="Map of every category">
       <div class="homelens-modes">
-        <span class="homelens-mode-label">Map view</span>
-        <div class="homelens-mode-switch" role="group" aria-label="Choose how to navigate the map">
-          <button type="button" data-map-mode="spatial" aria-pressed="${savedMapMode==='spatial'}">Spatial</button>
-          <button type="button" data-map-mode="fisheye" aria-pressed="${savedMapMode==='fisheye'}">Fisheye</button>
+        <span class="homelens-mode-label">Style</span>
+        <div class="homelens-mode-switch" role="group" aria-label="Choose how to move around the map">
+          <button type="button" data-map-mode="spatial" aria-pressed="${savedMapMode==='spatial'}">Grid</button>
+          <button type="button" data-map-mode="fisheye" aria-pressed="${savedMapMode==='fisheye'}">Zoom lens</button>
         </div>
         <p id="homelens-mode-help">${savedMapHelp}</p>
       </div>
       <div class="homelens-trail">
         <span aria-hidden="true">You are here</span>
         <nav class="homelens-trail-path" id="homelens-trail-path" aria-label="Current map location"><span aria-current="location">All needs / areas</span></nav>
-        <small id="homelens-trail-hint">Choose an area to see the kinds inside.</small>
+        <small id="homelens-trail-hint">Choose an area to see the types inside.</small>
       </div>
       <div class="homelens-viewbar">
-        <span class="homelens-view-label">View</span>
+        <span class="homelens-view-label">Zoom</span>
         <div class="homelens-viewsteps" id="homelens-viewsteps" role="group" aria-label="Choose map depth"></div>
         <button type="button" class="homelens-reset" id="homelens-reset">Start over</button>
       </div>
-      <div class="homelens" id="homelens" style="width:100%;max-width:1040px;height:min(660px,66vh,120vw);margin:0 auto .6rem" aria-label="Browse the catalogue map. Spatial shows built decisions; Fisheye opens the whole named map and scrolls through its categorical depth."></div>
+      <div class="homelens" id="homelens" style="width:100%;max-width:1040px;height:min(660px,66vh,120vw);margin:0 auto .6rem" aria-label="Map of every category. Grid shows the categories with comparisons; Zoom lens opens the whole named map and moves through its levels."></div>
       <div class="homelens-lensbar" id="homelens-lenses" role="group" aria-label="Light a measure across the map"></div>
-      <p class="homelens-cap" id="homelens-cap">${total} decisions with answers, of those built so far.</p>
+      <p class="homelens-cap" id="homelens-cap">${total} comparisons with answers, of those built so far.</p>
       <details class="homelens-about">
         <summary>How this map decides what gets space</summary>
-        <p>Colour identifies the need. In Spatial, cell size combines the stakes of a decision with the difference between its choices. Fisheye loads the whole named map only when opened: domains are sized by how many decisions they hold and shaded by how many have answers. Scroll moves through domains, needs, fields, families, decisions, and evidence. Open, held, and refused decisions remain visible but do not pretend to have routes. The selected view and location stay on this device.</p>
+        <p>Colour identifies the everyday need. In Grid, cell size combines what is at stake in a choice with how much its options differ. Zoom lens loads the whole named map only when opened: sections are sized by how many comparisons they hold and shaded by how many have answers. Scrolling moves through sections, needs, fields, families, comparisons, and evidence. Comparisons that are open, held back, or refused stay visible but do not pretend to have pages. The selected style and location stay on this device.</p>
       </details>
-    </section>
-    <article class="home-question" id="home-question">${spotlightHTML(sp)}</article>
-    <p class="contribute"><a href="#map">Browse by need</a> &middot; <a href="#you">My rules</a> &middot; <a href="#guide/vote-with-your-money">The two-minute primer</a> &middot; <a href="./c/">All verdicts and sources</a> &middot; <a href="#contribute">Suggest a decision</a></p>`;
-  wireSpotlight(sp);
-  renderHomeNews();
-  document.getElementById('hsearch').onsubmit=(e)=>{e.preventDefault();goSearch((document.getElementById('hq').value||'').trim());};
-  wireSuggest(document.getElementById('hq'));
+    </section>`;
   if(CC.homeLens)CC.homeLens.mount('homelens',function(){return CATALOG;});
   (function mapModes(){
     const buttons=[...document.querySelectorAll('[data-map-mode]')];
@@ -2009,8 +2033,8 @@ function renderHome(){
     const cap=document.getElementById('homelens-cap');
     const mapBox=document.getElementById('homelens');
     const copy={
-      spatial:'Zoom from eight needs to areas, kinds, decisions, and evidence.',
-      fisheye:'Scroll from domains through needs, fields, families, decisions, and evidence. Move away from centre to travel.'
+      spatial:'Zoom from eight everyday needs to areas, types, comparisons, and their evidence.',
+      fisheye:'Scroll from sections through needs, fields, families, comparisons, and evidence. Move away from the centre to travel.'
     };
     if(CC.homeLens&&CC.homeLens.restore&&homeMapState)CC.homeLens.restore(homeMapState);
     buttons.forEach(button=>button.onclick=()=>{
@@ -2032,7 +2056,7 @@ function renderHome(){
         });
       }
       viewsteps.querySelectorAll('[data-map-view]').forEach(button=>button.setAttribute('aria-pressed',String(Number(button.dataset.mapView)===Number(detail.at))));
-      viewsteps.setAttribute('aria-label',detail.mode==='fisheye'?'Choose categorical depth':'Choose spatial depth');
+      viewsteps.setAttribute('aria-label',detail.mode==='fisheye'?'Choose how far to zoom the lens':'Choose how far to zoom the grid');
     };
     const renderCrumbs=detail=>{
       if(!path)return;
@@ -2071,14 +2095,14 @@ function renderHome(){
             :here.state==='held'?'held back on purpose, with the reason in the map.'
             :'outside this catalogue.');
         }else if(here&&here.exact){
-          cap.textContent=`${where}: ${here.built} of ${here.named} decision${here.named===1?'':'s'} here ${here.built===1?'has':'have'} a sourced answer.`;
+          cap.textContent=`${where}: ${here.built} of ${here.named} comparison${here.named===1?'':'s'} here ${here.built===1?'has':'have'} a sourced answer.`;
         }else if(here&&here.single){
           cap.textContent=`${where}: ${here.options} option${here.options===1?'':'s'} compared on sourced facts.`;
         }else if(here){
-          cap.textContent=`${where}: ${here.built} decision${here.built===1?'':'s'} with sourced answers.`;
+          cap.textContent=`${where}: ${here.built} comparison${here.built===1?'':'s'} with sourced answers.`;
         }else if(mapBox&&mapBox.dataset.mapDecisions){
-          cap.textContent=`${mapBox.dataset.mapDecisions} decisions named, ${mapBox.dataset.mapBuilt||0} with answers.`;
-        }else cap.textContent=`${total} decisions have answers.`;
+          cap.textContent=`${mapBox.dataset.mapDecisions} comparisons named, ${mapBox.dataset.mapBuilt||0} with answers.`;
+        }else cap.textContent=`${total} comparisons have answers.`;
       }
       if(window._ccHomeLensSaveTimer)clearTimeout(window._ccHomeLensSaveTimer);
       window._ccHomeLensSaveTimer=setTimeout(()=>{
@@ -2370,11 +2394,11 @@ function renderNeed(arg){
     const key=(row.cid||'')+'|'+row.label;if(seen.has(key))continue;seen.add(key);growing.push(row);
   }
   let frontier='';
-  if(growing.length)frontier=`<details class="allcats need-frontier"><summary>Mapped next &middot; ask what should grow</summary>${growingGridHTML(growing)}</details>`;
-  v.innerHTML=`<a class="back" href="#map">&larr; all needs</a>
-    <header class="need-head"><div class="door-kicker">A human need</div><h2 class="sectionh">${esc(need.label)}</h2><p class="need-read">${esc(need.reads)}</p><p class="need-differences">${esc(domainDifferencesSentence(cats))}</p></header>
+  if(growing.length)frontier=`<details class="allcats need-frontier"><summary>Not covered yet &middot; ask for one</summary>${growingGridHTML(growing)}</details>`;
+  v.innerHTML=`<a class="back" href="#browse/needs">&larr; all everyday needs</a>
+    <header class="need-head"><div class="door-kicker">Everyday need</div><h2 class="sectionh">${esc(sectionName(need))}</h2><p class="need-read">${esc(need.reads)}</p><p class="need-differences">${esc(domainDifferencesSentence(cats))}</p></header>
     ${needExtensionHTML(need)}
-    <div class="need-section-label">Decisions ready now</div><div class="need-cats">${cards}</div>${frontier}`;
+    <div class="need-section-label">Ready to compare</div><div class="need-cats">${cards}</div>${frontier}`;
 }
 // ── THE DECISION COMPANION ── design backwards from the last screen: turn the live ranking into a decisive, sourced
 //    ANSWER — the pick · the one reason · an honest confidence read · the runner-up · what to avoid · your next step.
@@ -2565,7 +2589,7 @@ function decisionLineContextHTML(pool,listHref,contract){
   const ordered=allRules.slice().sort((a,b)=>Number(!((a.scope&&a.scope.categories)||[]).includes(contract.category))-Number(!((b.scope&&b.scope.categories)||[]).includes(contract.category)));
   const floorBody=`<div class="decision-floor-door"><div class="decision-floor-intro"><div><b>${esc((set&&set.label)||'The baseline')}</b><span>${set?`Version ${esc(set.version)} &middot; published ${esc(set.published)}`:'Not published'}</span></div><p>${esc(context)} The baseline only folds a Poor-band claim when that exact claim has a source and date.</p>${disabled?`<button type="button" class="savebtn" id="decision-floor-restore">Restore all ${allRules.length} rules</button>`:''}</div><div class="decision-floor-rules">${ordered.map(rule=>decisionFloorRuleHTML(rule,pool,contract)).join('')}</div><p class="decision-floor-local">Loosening changes this device only. The published set stays intact and can be forked under ${esc((set&&set.fork&&set.fork.license)||'its published license')}. <a href="${esc(listHref)}">Open the full ranking</a>.</p></div>`;
   const personalStatus=personal.length?`${personal.length} active${pool.personalHidden?` &middot; ${pool.personalHidden} filtered`:''}`:'none set';
-  const personalBody=`<div class="decision-personal-door"><div class="decision-personal-intro"><div><b>My rules</b><span>Saved on this device and included in an exported file</span></div><p>${personal.length?'A rule acts only where this category carries the fact it needs. The count on each rule is calculated after the baseline, so the same option is never counted twice.':'Add only the few things you refuse or require. You do not need to create a profile.'}</p><a class="savebtn" href="#you">${personal.length?'Set or edit rules':'Set a rule'}</a></div>${personal.length?`<div class="decision-personal-rules">${personal.map(decisionPersonalReceiptHTML).join('')}</div>`:'<p class="decision-personal-empty">No personal rule is filtering this decision. The baseline and the named choices below still produce an answer.</p>'}</div>`;
+  const personalBody=`<div class="decision-personal-door"><div class="decision-personal-intro"><div><b>My rules</b><span>Saved on this device and included in an exported file</span></div><p>${personal.length?'A rule acts only where this category carries the fact it needs. The count on each rule is calculated after the baseline, so the same option is never counted twice.':'Add only the few things you refuse or require. You do not need to create a profile.'}</p><a class="savebtn" href="#you">${personal.length?'Set or edit rules':'Set a rule'}</a></div>${personal.length?`<div class="decision-personal-rules">${personal.map(decisionPersonalReceiptHTML).join('')}</div>`:'<p class="decision-personal-empty">No personal rule is filtering this comparison. The baseline and the named choices below still produce an answer.</p>'}</div>`;
   return `<div class="decision-context" aria-label="Decision context">
     <details class="decision-floor"><summary><span>The baseline</span><strong>${status}</strong></summary>${floorBody}</details>
     <details class="decision-personal"><summary><span class="decision-personal-summary"><b>My rules</b><span class="decision-personal-chips">${chips}</span></span><strong>${personalStatus}</strong></summary>${personalBody}</details>
@@ -3011,8 +3035,8 @@ function renderContractDecision(cid,facet,contract){
     ? 'A balanced view. Set a rule or change a choice to make it yours.'
     : 'My rules and these choices stay on this device.';
   const slider=axis
-    ? `<section class="decision-slider" aria-labelledby="decision-controls-title"><div class="ds-name"><div class="decision-kicker">For this decision</div><h2 id="decision-controls-title">What matters here</h2></div>${decisionDialHTML(axis,values[axis.id])}<p class="ds-note">${esc(decisionBudgetNote(contract))}</p><button class="ds-reset" id="decision-reset" type="button"${dirty?'':' hidden'}>Reset choices</button></section>`
-    : `<section class="decision-slider decision-noaxis" aria-labelledby="decision-controls-title"><div class="ds-name"><div class="decision-kicker">For this decision</div><h2 id="decision-controls-title">What matters here</h2></div><p class="ds-note">${esc(decisionNoAxisNote(contract))}</p></section>`;
+    ? `<section class="decision-slider" aria-labelledby="decision-controls-title"><div class="ds-name"><div class="decision-kicker">For this comparison</div><h2 id="decision-controls-title">What matters here</h2></div>${decisionDialHTML(axis,values[axis.id])}<p class="ds-note">${esc(decisionBudgetNote(contract))}</p><button class="ds-reset" id="decision-reset" type="button"${dirty?'':' hidden'}>Reset choices</button></section>`
+    : `<section class="decision-slider decision-noaxis" aria-labelledby="decision-controls-title"><div class="ds-name"><div class="decision-kicker">For this comparison</div><h2 id="decision-controls-title">What matters here</h2></div><p class="ds-note">${esc(decisionNoAxisNote(contract))}</p></section>`;
   const more=secondary.length
     ? `<details class="decision-more" id="decision-more"><summary>More controls (${secondary.length})</summary><div class="decision-more-body">${secondary.map(item=>decisionDialHTML(item,values[item.id])).join('')}${!axis&&dirty?'<button class="savebtn" id="decision-reset" type="button">Reset choices</button>':''}</div></details>`
     : '';
@@ -3251,21 +3275,24 @@ function renderSearch(query){
   prods.forEach(r=>{r.sameType=(r.type===(DATA&&DATA.meta.type));r.s=r.sameType?score(r.p):null;});
   prods.sort((a,b)=>((b.s?b.s.score:-1)-(a.s?a.s.score:-1)));
   const shown=prods.slice(0,30);
-  let html=`<form class="hsearch" id="ssearch" style="margin-bottom:1.25rem"><input type="search" id="sq" placeholder="Search products, brands, guides…" autocomplete="off"><button type="submit">Search</button></form>`;
+  const words=q.split(/\s+/).filter(Boolean);
+  const catHits=q?(CATALOG||[]).filter(c=>{const hay=(c.label+' '+c.id.replace(/-/g,' ')).toLowerCase();return hay.includes(q)||words.every(w=>hay.includes(w));}).slice(0,12):[];
+  let html=`<h2 class="sectionh">Search</h2><form class="hsearch" id="ssearch" role="search" style="margin-bottom:1.25rem"><label class="sr-only" for="sq">Search categories, products, services, brands and guides</label><input type="search" id="sq" placeholder="Search categories, products, brands, guides…" autocomplete="off"><button type="submit">Search</button></form>`;
   // Ask found places this could mean — offer them first, as places, not results
   if(window._askQ===query&&window._askHits&&window._askHits.length){
     html+=`<div class="facet-h" style="margin-top:0">Places this could mean</div><div class="facets" style="margin-bottom:1rem">${window._askHits.map(h=>`<a class="facet" href="${esc(h.hash)}">${esc(h.label)} <span class="fc">${esc(h.type)}</span></a>`).join('')}</div>`;
   }
-  html+=`<p class="sectionsub">${q?`Results for “${esc(query)}”, ${guides.length} guide${guides.length!==1?'s':''}, ${prods.length} entr${prods.length!==1?'ies':'y'}${prods.length>30?' (showing 30)':''}`:'Search across guides and everything in the commons.'}</p>`;
-  if(q&&!guides.length&&!prods.length){
+  html+=`<p class="sectionsub">${q?`Results for “${esc(query)}”: ${catHits.length} categor${catHits.length!==1?'ies':'y'}, ${guides.length} guide${guides.length!==1?'s':''}, ${prods.length} product${prods.length!==1?'s':''} and brand${prods.length!==1?'s':''}${prods.length>30?' (showing 30)':''}`:`Find any category, product, service, brand or guide by name. Or <a href="#browse">browse every category A to Z</a>, or <a href="#scan">scan a barcode</a>.`}</p>`;
+  if(catHits.length) html+=`<div class="alts-h">Categories</div><ul class="browse-list search-cats">${catHits.map(c=>`<li><a href="#decide/${encodeURIComponent(c.id)}">${esc(c.label)}</a> <span class="browse-n">${esc(compareLabel(c))}</span></li>`).join('')}</ul>`;
+  if(q&&!catHits.length&&!guides.length&&!prods.length){
     // the designed miss — honest scope, nearest doors, one-tap request; never a bare zero (BUILD-PLAN.md §5)
     const near=askEntries().filter(e=>e.type==='category').filter((e,i,a)=>a.findIndex(x=>x.hash===e.hash)===i)
       .map(e=>({e:e,hit:e.k.split(' ').some(t=>q.split(/\s+/).some(t2=>t&&t2&&(_dist1(t,t2)||t.includes(t2)||t2.includes(t))))}))
       .filter(x=>x.hit).slice(0,4);
-    html+=`<div class="card" style="border-left:3px solid var(--accent)"><b>We don’t cover “${esc(query)}” yet.</b><p class="alts-sub" style="margin:.4rem 0 0">Coverage grows from specific requests. <a href="#contribute/want/${encodeURIComponent(query)}">Request this →</a>${near.length?`</p><div class="facet-h" style="margin-top:.7rem">Closest doors we do have</div><div class="facets">${near.map(x=>`<a class="facet" href="${esc(x.e.hash)}">${esc(x.e.label)}</a>`).join('')}</div><p class="alts-sub" style="margin:.5rem 0 0">`:''}Or walk the <a href="#map">full map →</a></p></div>`;
+    html+=`<div class="card" style="border-left:3px solid var(--accent)"><b>We don’t cover “${esc(query)}” yet.</b><p class="alts-sub" style="margin:.4rem 0 0">Coverage grows from specific requests. <a href="#contribute/want/${encodeURIComponent(query)}">Request this →</a>${near.length?`</p><div class="facet-h" style="margin-top:.7rem">Closest categories we do have</div><div class="facets">${near.map(x=>`<a class="facet" href="${esc(x.e.hash)}">${esc(x.e.label)}</a>`).join('')}</div><p class="alts-sub" style="margin:.5rem 0 0">`:''}Or <a href="#browse">browse every category →</a></p></div>`;
   }
   if(guides.length) html+=`<div class="alts-h">Guides</div>`+guides.map(g=>`<a class="guidecard" href="#guide/${g.slug}"><div class="gt">${esc(g.title)}</div>${g.category?`<div class="gc">${esc(g.category)}</div>`:''}<p class="gs">${esc(g.summary)}</p></a>`).join('');
-  if(shown.length) html+=`<div class="alts-h">Entries</div><div id="sresults"></div>`;
+  if(shown.length) html+=`<div class="alts-h">Products, services and brands</div><div id="sresults"></div>`;
   v.innerHTML=html;
   if(shown.length){const sr=document.getElementById('sresults');for(const r of shown){
     if(r.sameType){sr.appendChild(listCard(r.p,r.s,r.catLabel,()=>openProductFromSearch(r.catId,r.p.code)));}
@@ -3297,7 +3324,7 @@ const CONTRIB_KINDS=[
 const CONTRIB_HINTS={
   'Correct a sourced claim':'Include the category, item, what should change, a source URL, and an as-of date.',
   'Add a missing option':'Name the category and option, why it is mainstream / a values niche / an honest floor, region, and source URLs.',
-  'Request a category':'Name the decision, who needs it, 5-10 recognizable options, and any open datasets or trusted sources.',
+  'Request a category':'Name the category, who needs it, 5-10 recognizable options, and any open datasets or trusted sources.',
   'Suggest a guide':'Name the category or values question, the tension people face, and the sources a guide should lean on.',
   'Build an instance':'Name the domain, likely users, starter lens source, license posture, and how the Values Passport should carry over.',
   'Report a bug':'Say what happened, what you expected, the route or category, browser/device, and steps to repeat it.'
@@ -3406,7 +3433,7 @@ const DOMAIN_FACE={
 let mapLens='all'; // kept for back-compat; the canonical Explore page is now the three-door journey
 const EXPLORE_DECISION_DOORS=[
   {label:'Buying groceries',kind:'errand',id:'weekly-groceries',fallback:'Build a useful weekly basket without turning every staple into a research project.'},
-  {label:'Switching banks',kind:'errand',id:'pick-a-bank',fallback:'Put fees, access, fossil exposure, and transparency in the same decision.'},
+  {label:'Switching banks',kind:'errand',id:'pick-a-bank',fallback:'Put fees, access, fossil exposure, and transparency in the same comparison.'},
   {label:'Setting up a kitchen',kind:'need',id:'keep-a-home',fallback:'Start with the few things a working kitchen and home actually need.'},
   {label:'Learning something',kind:'need',id:'learn',fallback:'Find resources and tools for understanding, making, and staying informed.'},
   {label:'Want to help',kind:'need',id:'give-and-act',fallback:'Turn money, time, or voice toward a cause or organization.'}
@@ -3477,14 +3504,14 @@ function renderValue(key){
   const rows=cats.map(c=>{
     const go=spec.facet
       ? `<a class="value-go" href="${esc(decideHref(c.id,spec.facet))}">Decide within ${esc(spec.label)} &rarr;</a>`
-      : `<a class="value-go" href="#explore/${encodeURIComponent(c.id)}">Open the decision &rarr;</a>`;
+      : `<a class="value-go" href="#explore/${encodeURIComponent(c.id)}">Open the comparison &rarr;</a>`;
     return `<div class="value-row"><a class="value-cat" href="#explore/${encodeURIComponent(c.id)}">${esc(c.label)}</a>${go}</div>`;
   }).join('');
   const editorial=valueEditorialHTML(key);
   v.innerHTML=`<a class="back" href="#map">&larr; Explore</a>
     <header class="value-head"><div class="decision-kicker">A value in the commons</div><h1>${esc(spec.label)}</h1><p class="value-reads">${esc(reads)}</p>${labelsUsed.length?`<p class="value-aka">Appears in the standard as: ${labelsUsed.map(esc).join(' · ')}.</p>`:''}</header>
     ${editorial}
-    <section class="value-where"><h2 class="sectionh2">Where it lives</h2><p class="value-tally">${cats.length===1?'Measured in 1 of 88 decisions.':`Measured in ${cats.length} of 88 decisions.`}</p><div class="value-grid">${rows||'<p class="need-edge">No live decision measures this yet.</p>'}</div></section>
+    <section class="value-where"><h2 class="sectionh2">Where it lives</h2><p class="value-tally">${cats.length===1?'Measured in 1 of 88 comparisons.':`Measured in ${cats.length} of 88 comparisons.`}</p><div class="value-grid">${rows||'<p class="need-edge">No comparison measures this yet.</p>'}</div></section>
     ${editorial?'':`<section class="value-honesty"><b>What this page is.</b> Computed live from the standard&rsquo;s claims. Sourced editorial is not available for this value yet. <a href="#contribute">Suggest a sourced correction &rarr;</a></section>`}`;
 }
 
@@ -3664,7 +3691,7 @@ function portalHoneycombSVG(needId,mapDoc){
       ?`<polygon points="${pts}" fill="#fff" fill-opacity="0.92"/>`
       :`<polygon points="${pts}" fill="#fff" fill-opacity="0.14" stroke="#fff" stroke-opacity="0.28" stroke-width="0.6"/>`;
   });
-  return `<svg class="portal-ground" viewBox="0 0 ${w} ${h}" role="img" aria-label="Every decision under this need: bright cells have a sourced answer, faint cells are named and open">${cells}</svg>`;
+  return `<svg class="portal-ground" viewBox="0 0 ${w} ${h}" role="img" aria-label="Every comparison under this need: bright cells have a sourced answer, faint cells are named and not built yet">${cells}</svg>`;
 }
 function portalReceipt(needId,mapDoc){
   if(!mapDoc)return '';
@@ -3672,7 +3699,7 @@ function portalReceipt(needId,mapDoc){
   for(const realm of mapDoc.realms||[])for(const field of realm.fields||[])for(const fam of field.families||[])for(const dec of fam.decisions||[]){
     if(dec.need!==needId)continue;named+=1;if(dec.state==='built')answered+=1;
   }
-  return `${named} decisions · ${answered} answered`;
+  return `${named} comparisons · ${answered} ready`;
 }
 function portalsHTML(needs){
   const live={};(CATALOG||[]).forEach(cat=>{live[cat.id]=cat;});
@@ -3681,7 +3708,7 @@ function portalsHTML(needs){
       .map(cat=>`<li><a href="#explore/${encodeURIComponent(cat.id)}">${esc(cat.label)}</a></li>`).join('');
     return `<li class="portal need-${esc(n.id)}" style="--portal:${PORTAL_HUES[n.id]||'#666'}">
       <a class="portal-face" href="#need/${encodeURIComponent(n.id)}">
-        <span class="portal-band"><b>${esc(portalTitle(n.id,n.label))}</b>
+        <span class="portal-band"><b>${esc(sectionName(n))}</b>
         <small class="portal-receipt" data-portal-receipt="${esc(n.id)}"></small></span>
         <span class="portal-map" data-portal-map="${esc(n.id)}" aria-hidden="true"></span>
       </a>
@@ -3714,10 +3741,10 @@ function renderMap(){
   const v=document.getElementById('view-map');if(!v)return;
   const B=window.CC_BUNDLE;if(!B){v.innerHTML='<p class="sectionsub">Loading&hellip;</p>';return;}
   const needs=(B.ontology&&B.ontology.needs)||[];
-  let html=`<header class="explore-head"><h2 class="sectionh">Explore</h2><p class="sectionsub">Search by name, browse eight everyday needs, or start with a task. The baseline and any rules you set apply inside each comparison.</p></header>`;
-  html+=`<section class="explore-door ask-door" data-door="ask" aria-labelledby="door-ask"><h3 id="door-ask" class="ask-title">Know what you&rsquo;re after?</h3><form class="askbig" id="mapask"><span class="askbig-i" aria-hidden="true">?</span><input type="search" id="maskq" placeholder="Try &ldquo;switch banks&rdquo; or &ldquo;coffee&rdquo;" autocomplete="off" aria-label="Ask about a product, brand, category, or decision"><button type="submit">Ask</button></form><div class="ask-examples" aria-label="Example questions"><span>Try</span><a href="#search/coffee">coffee</a><a href="#search/switch%20banks">switch banks</a><a href="#search/repairable%20phone">repairable phone</a></div></section>`;
-  html+=`<section class="explore-door map-door" data-door="map" aria-labelledby="door-map"><div class="door-kicker">Browse</div><h3 id="door-map">Eight everyday needs</h3><p class="atlas-sub">Each portal is one need. Bright cells on its face are decisions with a sourced answer; faint cells are named on the map and open for work. Open a portal for the whole need, or step through a door.</p><ul class="needs-map portals">${portalsHTML(needs)}</ul><p class="portal-key">Lit, answered. Faint, named and waiting. The grid behind is the ground the map has not named yet.</p></section>`;
-  html+=`<section class="explore-door decide-door" data-door="decide" aria-labelledby="door-decide"><div class="door-kicker">Start from a task</div><h3 id="door-decide">Tasks</h3><p>A task joins related decisions and produces a list you can save.</p><div class="decision-doors" id="explore-decisions">${EXPLORE_DECISION_DOORS.map(exploreDecisionDoorHTML).join('')}</div><details class="allcats errand-more"><summary>See every task</summary><div id="explore-errands">${exploreAllErrandsHTML()}</div></details></section>`;
+  let html=`<header class="explore-head"><h2 class="sectionh">Explore by everyday need</h2><p class="sectionsub">Search by name, pick one of eight everyday needs, or start from a common job such as switching banks. Prefer a plain list? <a href="#browse">Browse every category A to Z</a>.</p></header>`;
+  html+=`<section class="explore-door ask-door" data-door="ask" aria-labelledby="door-ask"><h3 id="door-ask" class="ask-title">Know what you&rsquo;re after?</h3><form class="askbig" id="mapask"><span class="askbig-i" aria-hidden="true">?</span><input type="search" id="maskq" placeholder="Try &ldquo;switch banks&rdquo; or &ldquo;coffee&rdquo;" autocomplete="off" aria-label="Search for a product, brand, or category"><button type="submit">Ask</button></form><div class="ask-examples" aria-label="Example questions"><span>Try</span><a href="#search/coffee">coffee</a><a href="#search/switch%20banks">switch banks</a><a href="#search/repairable%20phone">repairable phone</a></div></section>`;
+  html+=`<section class="explore-door map-door" data-door="map" aria-labelledby="door-map"><div class="door-kicker">Browse</div><h3 id="door-map">Eight everyday needs</h3><p class="atlas-sub">Each tile is one everyday need. Bright cells are comparisons with a sourced answer; faint cells are named but not built yet. Open a tile for everything under that need, or pick one of the categories below it.</p><ul class="needs-map portals">${portalsHTML(needs)}</ul><p class="portal-key">Bright: a comparison is ready. Faint: named, not built yet.</p></section>`;
+  html+=`<section class="explore-door decide-door" data-door="decide" aria-labelledby="door-decide"><div class="door-kicker">Start from a common job</div><h3 id="door-decide">Tasks</h3><p>A task, such as switching banks, puts the comparisons it needs in one place and gives you a list you can save.</p><div class="decision-doors" id="explore-decisions">${EXPLORE_DECISION_DOORS.map(exploreDecisionDoorHTML).join('')}</div><details class="allcats errand-more"><summary>See every task</summary><div id="explore-errands">${exploreAllErrandsHTML()}</div></details></section>`;
   html+=`<p class="explore-quietlinks">More views: <a href="#indexes">your saved indexes</a></p>`;
   v.innerHTML=html;
   const f=document.getElementById('mapask');if(f)f.onsubmit=e=>{e.preventDefault();goSearch((document.getElementById('maskq').value||'').trim());};
@@ -3759,11 +3786,12 @@ function renderGarden(){
 // D2 — the ambient lens: a persistent, tappable read of your active values in the chrome (the constitution: values are felt everywhere, never a buried setting).
 function updateNavValues(){
   const n=document.getElementById('navvalues');if(!n)return;
-  n.innerHTML='<span class="nv-lbl">Advanced</span>';
+  // Now a line in the More menu (docs/design-review/NAVIGATION-2026-10.md); its words are in the
+  // markup and stay as written.
   n.setAttribute('title','Advanced: close-call priorities');
 }
 function primaryNavSection(name){
-  const sections={home:'home',map:'explore',need:'explore',browse:'explore',discover:'explore',domain:'explore',garden:'explore',explore:'explore',rank:'explore',decide:'explore',card:'explore',node:'explore',search:'explore',guides:'guides',guide:'guides',scan:'scan',you:'you',values:'you'};
+  const sections={home:'home',map:'browse',mapview:'browse',need:'browse',browse:'browse',discover:'browse',domain:'browse',garden:'browse',explore:'browse',rank:'browse',decide:'browse',card:'browse',node:'browse',search:'search',guides:'guides',guide:'guides',you:'you',values:'you'};
   return sections[name]||'';
 }
 function setNavActive(name){
@@ -3786,21 +3814,23 @@ function facetLabel(cid,fv){
 function crumbTrail(){
   const parts=(location.hash.slice(1)||'home').split('/'), v=parts[0], here=location.hash||'#home';
   const catOf=cid=>(CATALOG||[]).find(c=>c.id===cid);
-  const H={label:'Home',href:'#home'}, EX={label:'Explore',href:'#map'};
+  const H={label:'Home',href:'#home'}, EX={label:'Browse',href:'#browse'};
   switch(v){
     case 'home': return [];
-    case 'map': return [H,{label:'Explore',href:here}];
-    case 'need':{const n=needById(decodeURIComponent(parts[1]||''));return [H,EX,{label:n?n.label:'Need',href:here}];}
+    case 'map': return [H,EX,{label:'By everyday need',href:here}];
+    case 'browse': return [H,{label:'Browse',href:here}];
+    case 'mapview': return [H,EX,{label:'Map view',href:here}];
+    case 'need':{const n=needById(decodeURIComponent(parts[1]||''));return [H,EX,{label:n?sectionName(n):'Everyday need',href:here}];}
     case 'discover': return [H,EX,{label:'Across the commons',href:here}];
     case 'garden': return [H,EX,{label:'Garden',href:here}];
     case 'indexes': return [H,EX,{label:'Your indexes',href:here}];
     case 'domain': return [H,EX,{label:decodeURIComponent(parts[1]||'Area'),href:here}];
-    case 'decide':{const c=catOf(parts[1]),n=needForCategory(c),T=[H,EX];if(n)T.push({label:n.label,href:'#need/'+encodeURIComponent(n.id)});if(c)T.push({label:c.label,href:'#explore/'+parts[1]});T.push({label:'Decide',href:here});return T;}
+    case 'decide':{const c=catOf(parts[1]),n=needForCategory(c),T=[H,EX];if(n)T.push({label:n.label,href:'#need/'+encodeURIComponent(n.id)});if(c)T.push({label:c.label,href:'#explore/'+parts[1]});T.push({label:'Compare',href:here});return T;}
     case 'not-yet-covered': return [];
     case 'explore':
     case 'rank':{const c=catOf(parts[1]),n=needForCategory(c);let fv='';try{fv=parts[2]?decodeURIComponent(parts[2]):'';}catch(e){fv=parts[2]||'';}const T=[H,EX];if(n)T.push({label:n.label,href:'#need/'+encodeURIComponent(n.id)});const base=v==='rank'?rankingHref(parts[1]):('#explore/'+parts[1]);T.push({label:c?c.label:'Category',href:fv?base:here});if(fv)T.push({label:facetLabel(parts[1],fv),href:here});return T;}
     case 'item':{const cid=parts[1],c=catOf(cid),n=needForCategory(c),T=[H,EX];if(n)T.push({label:n.label,href:'#need/'+encodeURIComponent(n.id)});if(c)T.push({label:c.label,href:'#explore/'+cid});const p=DATA&&DATA.products&&DATA.products.find(x=>x.code===selected);T.push({label:p?p.name:'Entry',href:here});return T;}
-    case 'card':{const cid=parts[1],c=catOf(cid),n=needForCategory(c),T=[H,EX];if(n)T.push({label:n.label,href:'#need/'+encodeURIComponent(n.id)});if(c)T.push({label:c.label,href:'#explore/'+cid});T.push({label:'Verdict card',href:here});return T;}
+    case 'card':{const cid=parts[1],c=catOf(cid),n=needForCategory(c),T=[H,EX];if(n)T.push({label:n.label,href:'#need/'+encodeURIComponent(n.id)});if(c)T.push({label:c.label,href:'#explore/'+cid});T.push({label:'Summary card',href:here});return T;}
     case 'guides': return [H,{label:'Guides',href:here}];
     case 'guide':{const g=(window.CC_GUIDES||[]).find(x=>x.slug===parts.slice(1).join('/'));return [H,{label:'Guides',href:'#guides'},{label:g?g.title:'Guide',href:here}];}
     case 'values': return [H,{label:'Your values',href:here}];
@@ -3824,8 +3854,8 @@ function renderCrumbs(){
   box.hidden=false;
   box.innerHTML=trail.map((c,i)=>i===trail.length-1?`<span class="crumb cur" aria-current="page">${esc(c.label)}</span>`:`<a class="crumb" href="${esc(c.href)}">${esc(c.label)}</a>`).join('<span class="crumb-sep" aria-hidden="true">›</span>');
 }
-function closeNavMenu(){const nav=document.querySelector('.nav');if(nav&&nav.classList.contains('open')){nav.classList.remove('open');const nt=document.getElementById('navtoggle');if(nt){nt.setAttribute('aria-expanded','false');nt.innerHTML='&#9776;';}}}
-function showView(name){['home','guides','guide','discover','search','contribute','explore','compare','recent','map','you','card','values','need','domain','scan','decide','garden','indexes','node','workbench','value'].forEach(v=>{const e=document.getElementById('view-'+v);if(e)e.style.display=(v===name)?'':'none';});setNavActive(name==='guide'?'guides':name);updateNavValues();}
+function closeNavMenu(){const more=document.getElementById('navmore');if(more&&more.open)more.open=false;const nav=document.querySelector('.nav');if(nav&&nav.classList.contains('open')){nav.classList.remove('open');const nt=document.getElementById('navtoggle');if(nt){nt.setAttribute('aria-expanded','false');nt.innerHTML='&#9776;';}}}
+function showView(name){['home','browse','mapview','guides','guide','discover','search','contribute','explore','compare','recent','map','you','card','values','need','domain','scan','decide','garden','indexes','node','workbench','value'].forEach(v=>{const e=document.getElementById('view-'+v);if(e)e.style.display=(v===name)?'':'none';});setNavActive(name==='guide'?'guides':name);updateNavValues();}
 
 // --- in-app navigation history: a browser-grade back button + a "recently viewed" trail (device-only) ---
 const navTrail=[];
@@ -3835,12 +3865,13 @@ function navLabel(h){
   const B=window.CC_BUNDLE;
   if(v==='item'){const ds=B&&B.data[parts[1]], p=ds&&ds.products.find(x=>x.code===dec(parts[2])); return p?p.name:'Entry';}
   if(v==='card'){const ds=B&&B.data[parts[1]], p=ds&&ds.products.find(x=>x.code===dec(parts[2])); return p?(p.name+' · verdict'):'Verdict card';}
-  if(v==='explore'||v==='rank'){const ds=parts[1]&&B&&B.data[parts[1]];const base=ds?ds.meta.label:'Explore';let fv='';try{fv=parts[2]?dec(parts[2]):'';}catch(e){fv=parts[2]||'';}return fv?(base+' · '+facetLabel(parts[1],fv)):base;}
-  if(v==='need'){const n=needById(dec(parts[1]));return n?n.label:'Need';}
+  if(v==='explore'||v==='rank'){const ds=parts[1]&&B&&B.data[parts[1]];const base=ds?ds.meta.label:'Browse';let fv='';try{fv=parts[2]?dec(parts[2]):'';}catch(e){fv=parts[2]||'';}return fv?(base+' · '+facetLabel(parts[1],fv)):base;}
+  if(v==='need'){const n=needById(dec(parts[1]));return n?sectionName(n):'Everyday need';}
+  if(v==='decide'){const c=(CATALOG||[]).find(x=>x.id===parts[1]);return c?('Compare '+c.label.toLowerCase()):'Compare';}
   if(v==='guide'){const g=(window.CC_GUIDES||[]).find(x=>x.slug===dec(parts[1])); return g?g.title:'Guide';}
   if(v==='discover'&&parts[2])return 'Discover · '+dec(parts[2]);
   if(v==='search')return 'Search · '+dec(parts[1]);
-  return {home:'Home',guides:'Guides',browse:'Browse',discover:'Discover',contribute:'Contribute',lab:'Lab',compare:'Compare',saved:'Saved',notes:'Notes',recent:'Recent',you:'You'}[v]||'Home';
+  return {home:'Home',guides:'Guides',browse:'Browse',mapview:'Map view',map:'By everyday need',scan:'Scan',discover:'Discover',contribute:'Contribute',lab:'Lab',compare:'Compare',saved:'Saved',notes:'Notes',recent:'Recent',you:'You'}[v]||'Home';
 }
 function recordNav(){
   const h=location.hash||'#home'; if(h.slice(1)==='recent')return;
@@ -3908,7 +3939,7 @@ function renderYou(){
   const regOpts=REGIONS.map(r=>`<option value="${r}"${YOU.region===r?' selected':''}>${regionLabel(r)}</option>`).join('');
   v.innerHTML=`
     <h2 class="sectionh">You</h2>
-    <p class="sectionsub">This page lives <b>only on this device</b>. Rules filter decisions; Advanced priorities break only exact ties. There is no account, email, or automatic upload.</p>
+    <p class="sectionsub">This page lives <b>only on this device</b>. Rules filter what each comparison shows; Advanced priorities break only exact ties. There is no account, email, or automatic upload.</p>
     <figure class="imgslot art" data-slot="4" aria-hidden="true"><svg viewBox="0 0 540 150" width="420" height="117" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
       <g style="stroke:var(--hint)"><path d="M196 118c-18-4-30-14-30-30l6-48c40-14 96-14 136 0l6 48c0 16-12 26-30 30"/><path d="M226 70h88v48c0 6-4 10-10 10h-68c-6 0-10-4-10-10z"/></g>
       <g style="stroke:var(--accent)"><circle cx="270" cy="96" r="12"/><path d="M270 84v24M258 96h24" opacity=".7"/><path d="M410 64c8-8 20-10 28-8-4 10-14 16-28 8z"/></g>
@@ -6567,8 +6598,9 @@ function route(){
   selected=null;viewingSaved=false;viewingFeedback=false;if(scanState)stopScan();
   if(view==='guide'){renderGuide(arg);showView('guide');}
   else if(view==='guides'){renderGuidesList();showView('guides');}
-  else if(view==='browse'){location.replace('#map');return;}
-  else if(view==='search'){showView('search');document.getElementById('view-search').innerHTML='<p class="sectionsub">Searching the full commons…</p>';loadAllCategories().then(()=>renderSearch(decodeURIComponent(arg||'')));}
+  else if(view==='browse'){renderBrowse(arg);showView('browse');}
+  else if(view==='mapview'){renderMapView();showView('mapview');}
+  else if(view==='search'){showView('search');if(!arg){renderSearch('');const si=document.getElementById('sq');if(si)setTimeout(()=>si.focus(),0);}else{document.getElementById('view-search').innerHTML='<p class="sectionsub">Searching every category…</p>';loadAllCategories().then(()=>renderSearch(decodeURIComponent(arg||'')));}}
   else if(view==='contribute'){renderContribute(arg);showView('contribute');}
   else if(view==='discover'){if(!arg){location.replace('#map');return;}showView('discover');document.getElementById('view-discover').innerHTML='<p class="sectionsub">Loading the full commons…</p>';loadAllCategories().then(()=>renderDiscover(arg));}
   else if(view==='compare'){renderCompare();showView('compare');}
@@ -6669,6 +6701,8 @@ boot().then(()=>{
   applyNavI18n();
   const ls=document.getElementById('locale');if(ls)ls.addEventListener('change',e=>setLocale(e.target.value));
   const bb=document.getElementById('backbtn');if(bb)bb.onclick=goBack;
+  const ns=document.getElementById('navsearch'),nq=document.getElementById('navq');if(ns&&nq){ns.onsubmit=e=>{e.preventDefault();const q=(nq.value||'').trim();if(q){goSearch(q);nq.value='';nq.blur();}else location.hash='search';};wireSuggest(nq);}
+  const nm=document.getElementById('navmore');if(nm){document.addEventListener('click',e=>{if(nm.open&&!nm.contains(e.target))nm.open=false;});nm.addEventListener('keydown',e=>{if(e.key==='Escape'&&nm.open){nm.open=false;const sm=nm.querySelector('summary');if(sm)sm.focus();}});}
   const nt=document.getElementById('navtoggle');if(nt)nt.onclick=()=>{const nav=document.querySelector('.nav');const open=nav.classList.toggle('open');nt.setAttribute('aria-expanded',String(open));nt.innerHTML=open?'&#10005;':'&#9776;';};
   const tb=document.getElementById('themebtn');if(tb)tb.onclick=cycleTheme; applyTheme();
   // the standing region control, in the chrome on every screen
@@ -6680,7 +6714,7 @@ boot().then(()=>{
   window.addEventListener('scroll',()=>{const e=document.getElementById('totop');if(e)e.classList.toggle('show',window.scrollY>500);},{passive:true});
   document.addEventListener('keydown',e=>{
     const t=e.target||{}, typing=/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName||'')||t.isContentEditable;
-    if(e.key==='/'&&!typing){const v=['hq','q'].map(id=>document.getElementById(id)).filter(Boolean).find(el=>el.offsetParent!==null);if(v){e.preventDefault();v.focus();if(v.select)v.select();}}
+    if(e.key==='/'&&!typing){const v=['hq','sq','q','navq'].map(id=>document.getElementById(id)).filter(Boolean).find(el=>el.offsetParent!==null);if(v){e.preventDefault();v.focus();if(v.select)v.select();}}
     else if(e.key==='Escape'&&typing&&t.type==='search'){t.value='';t.blur();}
   });
   window.addEventListener('hashchange',route);route();

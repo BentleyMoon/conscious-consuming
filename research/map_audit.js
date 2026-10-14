@@ -114,7 +114,7 @@ function inspectConsumer(source) {
   const mountAt = source.indexOf('function mount(');
   if (fetchAt < 0) say('consumer code: the whole map is never fetched');
   else if (mountAt < 0 || fetchAt < mountAt) say('consumer code: map.json entered the boot path');
-  if (!/FISH_DEPTHS\s*=\s*\['domains', 'needs', 'fields', 'families', 'decisions', 'evidence'\]/.test(source)) {
+  if (!/FISH_DEPTHS\s*=\s*\['sections', 'needs', 'fields', 'families', 'comparisons', 'evidence'\]/.test(source)) {
     say('consumer code: fisheye categorical rungs drifted');
   }
   if (!/fishDepth\s*>=\s*5/.test(source) || !/clamp\(v, 0, 5\)/.test(source)) {
@@ -186,7 +186,7 @@ const CONSUMER_BITES = [
   { what: 'loaded no whole-map source', pattern: /whole map is never fetched/,
     break: (s) => s.replace("global.fetch('./data/map.json')", "global.fetch('./data/missing.json')") },
   { what: 'collapsed the categorical rungs back to presentation detail', pattern: /categorical rungs drifted/,
-    break: (s) => s.replace("['domains', 'needs', 'fields', 'families', 'decisions', 'evidence']", "['names', 'evidence']") },
+    break: (s) => s.replace("['sections', 'needs', 'fields', 'families', 'comparisons', 'evidence']", "['names', 'evidence']") },
   { what: 'made refused decisions visually indistinguishable', pattern: /refused ground has no visual state/,
     break: (s) => s.replaceAll("cell.state === 'refused'", "cell.state === 'out-of-scope'") },
   { what: 'let unbuilt decisions pretend to be links', pattern: /clicks are not gated/,

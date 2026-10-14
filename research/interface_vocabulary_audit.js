@@ -53,6 +53,7 @@ const PAGES = ['app/index.html', 'index.html'];
 const SAMPLE_DIRS = [
   { dir: 'app/g', take: 12 },
   { dir: 'app/c', take: 8, nested: true },
+  { dir: 'app/browse', take: 12 },
 ];
 
 /* TWO CLASSES OF WORD, because one rule for both produces a gate nobody can keep.
