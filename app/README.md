@@ -10,14 +10,18 @@ A "wikipedia of conscious consuming": pick anything across **five entry types** 
 
 ## The views (hash-routed)
 
-- `#home`: masthead, search, doors, the commons map, principles.
-- `#explore[/cid[/facet]]`: the values tool: presets + sliders + sort + region, with the **living ranking** (cards glide as you change weights).
+The top bar carries one search box and three links (Browse · Guides · My rules), with everything else
+in a **More** menu; on a phone the tab bar is Home · Browse · Search · Guides · You. See
+[`docs/design-review/NAVIGATION-2026-10.md`](../docs/design-review/NAVIGATION-2026-10.md).
+
+- `#home`: a search box, the catalogue by everyday need as plain links, one worked question, and how the site works.
+- `#search[/query]`: one box that finds categories, products, services, brands and guides by name.
+- `#browse[/needs]`: every category A to Z (or by everyday need), each a link to its comparison.
+- `#decide/<cid>`: the comparison for one category (the older `#explore/<cid>` still works and redirects here).
 - `#guides` / `#guide/<slug>`: readable, sourced explainers (108 guides).
-- `#browse`: the fundamental-category **ontology** (live vs honestly "growing").
-- `#discover[/value|label|region/<key>]`: the **faceted index**: slice the whole commons by a value (Vegan, Cruelty-free, Economical, Privacy…), label (Organic, Fair Trade…), or region.
-- `#contribute`: local-first suggestions (export → send).
-- `#lab`: experimental features behind flags (values fingerprint · "if you pick one" · explain-the-score · posture buttons · compare).
-- `#compare`: pin up to 4 entries side by side.
+- `#you`: my rules and data, all on this device.
+- In the More menu: `#map` (explore by everyday need), `#mapview` (the zoomable map of every category, formerly the front page), `#scan`, `#compare`, `#recent`, `#contribute`.
+- `./browse/` (static, built by `pipeline/build_browse.js`): the same index as plain HTML, one page per category listing every entry, linked to its verdict page under `./c/` where one exists.
 
 ## Structure
 

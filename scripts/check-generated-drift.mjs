@@ -14,6 +14,7 @@ const GENERATED_TARGETS = [
   "app/guides.js",
   "app/g",
   "app/c",
+  "app/browse",
   "app/og-home.png",
   "app/sitemap.xml",
   "app/robots.txt",
@@ -413,6 +414,7 @@ run("node", ["pipeline/build_proposals.js"]);
 run("node", ["pipeline/build_initiatives.js"]);
 run("node", ["pipeline/build_design_tokens.js"]);
 run("node", ["pipeline/build_cards.js"]);
+run("node", ["pipeline/build_browse.js"]);
 run("node", ["pipeline/build_map.js"]);
 runPython("pipeline/build_guides.py");
 const after = snapshot();

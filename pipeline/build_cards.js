@@ -307,6 +307,43 @@ function verdictIsIndexable(p, cd) {
   return /^\d{4}-\d{2}/.test(asof) && Boolean(cd.r.source);
 }
 
+
+// WHERE A CARD SITS, said as breadcrumbs: Home > everyday need > area > category, with the entry's
+// own name as the heading just below rather than repeated in the trail. The
+// category links to its plain index page (pipeline/build_browse.js), so a reader can walk from any
+// verdict to every other entry in the category with ordinary links and no script.
+const PLACE = (() => {
+  const out = new Map();
+  try {
+    const src = fs.readFileSync(path.join(APP, 'presentation.js'), 'utf8');
+    const m = /const DISPLAY_NEED=(\{[^}]*\});/.exec(src);
+    const display = m ? JSON.parse(m[1].replace(/'/g, '"')) : {};
+    const index = JSON.parse(fs.readFileSync(path.join(DATA, 'index.json'), 'utf8'));
+    const tax = JSON.parse(fs.readFileSync(path.join(DATA, 'presentation.json'), 'utf8')).taxonomy || {};
+    const needs = (index.ontology && index.ontology.needs) || [];
+    for (const d of tax.decisions || []) {
+      if (!d.cid || out.has(d.cid)) continue;
+      const need = needs.find(x => x.id === d.need);
+      const tn = (tax.needs || []).find(x => x.id === d.need);
+      const area = tn && (tn.categories || []).find(x => x.id === d.category);
+      out.set(d.cid, {
+        need: need ? { id: need.id, label: display[String(need.label).toUpperCase()] || need.label } : null,
+        area: area ? { id: area.id, label: area.label } : null,
+      });
+    }
+  } catch (_) { /* no package yet: cards still build, without the middle crumbs */ }
+  return out;
+})();
+const crumbSlug = s => String(s).toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+function cardCrumbsHTML(cid, label) {
+  const p = PLACE.get(cid) || {};
+  const parts = ['<a class="crumb" href="../../">Home</a>'];
+  if (p.need) parts.push(`<a class="crumb" href="../../browse/#${attr(p.need.id)}">${attr(p.need.label)}</a>`);
+  if (p.area) parts.push(`<a class="crumb" href="../../browse/#${attr(crumbSlug(p.area.id))}">${attr(p.area.label)}</a>`);
+  parts.push(`<a class="crumb" href="../../browse/${attr(cid)}">${attr(label)}</a>`);
+  return `<nav class="crumbs" aria-label="Breadcrumb">${parts.join('<span class="crumb-sep" aria-hidden="true">›</span>')}</nav>`;
+}
+
 function cardHTML(p, ds, cid, cd, titleName = p.name) {
   const { s, t, r } = cd;
   const code = safe(p.code);
@@ -337,9 +374,10 @@ ${ld}
 <link rel="icon" href="${FAVICON}">
 <link rel="stylesheet" href="../../styles.css?v=${STYLE_VERSION}">
 </head><body><a class="skip" href="#main">Skip to content</a><div class="wrap">
-<nav class="nav"><a href="../../" class="wordmark">Conscious Consuming</a><span class="navlinks"><a href="../../#explore/${cid}">Compare ${attr(ds.meta.label)}</a><a href="../">All verdicts</a><a href="../../#guides">Guides</a></span></nav>
+<nav class="nav nav-static" aria-label="Site"><a href="../../" class="wordmark">Conscious Consuming</a><span class="navlinks"><a href="../../browse/">All categories</a><a href="../../#explore/${cid}">Compare ${attr(ds.meta.label)}</a><a href="../../#guides">Guides</a></span></nav>
+${cardCrumbsHTML(cid, ds.meta.label)}
 <main id="main">
-<a class="back" href="../../#explore/${cid}">← all ${attr(ds.meta.label)}</a>
+<a class="back" href="../../browse/${cid}">← every entry in ${attr(ds.meta.label)}</a>
 <div class="vcard">
   <div class="vc-brandbar">Conscious Consuming · sourced, never sponsored</div>
   <h1 class="vc-name">${attr(p.name)}</h1>${p.brand ? `<div class="vc-brand">${attr(p.brand)}</div>` : ''}
@@ -379,10 +417,10 @@ function galleryHTML(manifest) {
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The wall of verdicts: every sourced judgment · Conscious Consuming</title>
-<meta name="description" content="Every sourced verdict in Conscious Consuming: ${total} honest judgments across ${lensCount} lenses, each with its decisive reason and source. No ads, no tracking, no brand pays us.">
+<meta name="description" content="Every sourced verdict in Conscious Consuming: ${total} honest judgments across ${lensCount} categories, each with its decisive reason and source. No ads, no tracking, no brand pays us.">
 <link rel="canonical" href="${attr(SITE_BASE + '/c/')}">
 <meta property="og:type" content="website"><meta property="og:title" content="The wall of verdicts · Conscious Consuming">
-<meta property="og:description" content="${total} sourced verdicts across ${lensCount} lenses. Choose by your values, not by who pays.">
+<meta property="og:description" content="${total} sourced verdicts across ${lensCount} categories. Choose by your values, not by who pays.">
 <meta property="og:image" content="${attr(SITE_BASE + '/og-home.png')}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="${attr(SITE_BASE + '/og-home.png')}">
 <meta name="color-scheme" content="light dark">
@@ -391,11 +429,11 @@ function galleryHTML(manifest) {
 <script>try{var _t=localStorage.getItem('cc.theme');if(_t==='dark'||_t==='light')document.documentElement.setAttribute('data-theme',_t);}catch(e){}</script>
 <link rel="stylesheet" href="../styles.css?v=${STYLE_VERSION}">
 </head><body><a class="skip" href="#main">Skip to content</a><div class="wrap">
-<nav class="nav"><a href="../" class="wordmark">Conscious Consuming</a><span class="navlinks"><a href="../#guides">Guides</a><a href="../#home">Open the app</a></span></nav>
+<nav class="nav nav-static" aria-label="Site"><a href="../" class="wordmark">Conscious Consuming</a><span class="navlinks"><a href="../browse/">All categories</a><a href="../#guides">Guides</a><a href="../#home">Open the app</a></span></nav>
 <main id="main">
 <header class="ghead">
   <h1>The wall of verdicts</h1>
-  <p class="ghead-sub">Every sourced judgment we've made: <b>${total}</b> verdicts across <b>${lensCount}</b> lenses, each with the single most decisive reason and where it comes from. No ads, no tracking, no brand pays us.</p>
+  <p class="ghead-sub">Every sourced judgment we've made: <b>${total}</b> verdicts across <b>${lensCount}</b> categories, each with the single most decisive reason and where it comes from. No ads, no tracking, no brand pays us.</p>
   <p class="ghead-bar"><b>${offered}</b> of these ${total} rest on more than one independent source and carry a check dated to the month. Those are the ones offered to search engines. The rest are here, readable, and marked as not yet: most of them rest on a single source, and often that source is the maker's own website.</p>
   <nav class="gnav">${nav}</nav>
 </header>

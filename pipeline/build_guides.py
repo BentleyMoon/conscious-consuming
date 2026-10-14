@@ -182,9 +182,9 @@ SITE_BASE = os.environ.get('CC_SITE_BASE', 'https://valuescommons.org/app').rstr
 FAVICON = ('data:image/svg+xml,' +
     quote(open(os.path.join(APP, 'icon.svg'), encoding='utf-8').read().strip(),
           safe="!~*'()"))
-NAV = ('<nav class="nav"><a href="../" class="wordmark">Conscious Consuming</a>'
-       '<span class="navlinks"><a href="../#home">Home</a><a href="./">Guides</a>'
-       '<a href="../#explore">Explore</a><a href="../#browse">Browse</a></span></nav>')
+NAV = ('<nav class="nav nav-static" aria-label="Site"><a href="../" class="wordmark">Conscious Consuming</a>'
+       '<span class="navlinks"><a href="../browse/">All categories</a><a href="./">Guides</a>'
+       '<a href="../#search">Search</a></span></nav>')
 FOOTER = ('<footer>A guide to consuming by your values. Sourced, private, never sponsored.<br>'
           '<a href="../">Open the interactive app →</a></footer>')
 W, H = 1200, 630
@@ -505,6 +505,12 @@ def build_static_pages(guides, ver):
                   + ' verdict pages carry more than one independent source and a dated check')
         except Exception:
             pass
+    # the plain category index (pipeline/build_browse.js runs before this step): every page in it
+    # asks to be indexed, so every page is listed
+    browse_dir = os.path.join(APP, 'browse')
+    if os.path.isdir(browse_dir):
+        urls.append(SITE_BASE + '/browse/')
+        urls += [SITE_BASE + '/browse/' + f[:-5] for f in sorted(os.listdir(browse_dir)) if f.endswith('.html') and f != 'index.html']
     sm = ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
           + ''.join('  <url><loc>' + u + '</loc></url>\n' for u in urls) + '</urlset>\n')
     write_text(os.path.join(APP, 'sitemap.xml'), sm)

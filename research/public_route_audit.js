@@ -168,6 +168,7 @@ function checkGeneratedSeoContract() {
   const generated = [
     ...generatedHtmlFiles(abs('app/g')),
     ...generatedHtmlFiles(abs('app/c')),
+    ...generatedHtmlFiles(abs('app/browse')),
   ];
   for (const file of generated) {
     const rel = path.relative(ROOT, file).replace(/\\/g, '/');
