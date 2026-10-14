@@ -51,9 +51,9 @@
             "file": "node-load-plan.json",
             "type": "node-load-plan",
             "loadHint": "eager-metadata",
-            "bytes": 6264,
-            "sha256": "31637d06446797acf8ff1ff81cc0efd61c3710dfd9fb8879c9ccce6f706fe673",
-            "cacheKey": "node-load-plan.json:31637d06446797acf8ff1ff81cc0efd61c3710dfd9fb8879c9ccce6f706fe673"
+            "bytes": 6262,
+            "sha256": "77db67e25f96c77691198651bd83cf4587c2ab6b50e480e8452a212e7f582de4",
+            "cacheKey": "node-load-plan.json:77db67e25f96c77691198651bd83cf4587c2ab6b50e480e8452a212e7f582de4"
           }
         ]
       },
@@ -65,15 +65,15 @@
         "runtime": true,
         "trigger": "Startup, using the existing small node files already produced by other pipelines.",
         "failureMode": "Disable the affected helper surface rather than fabricating labels or routes.",
-        "bytes": 88802,
+        "bytes": 89176,
         "files": [
           {
             "file": "tags.json",
             "type": "tag",
             "loadHint": "eager",
-            "bytes": 58082,
-            "sha256": "a3500501ff341c45fdee0c5c4a3213aa8be2293dbf96677d9430a4b2cdab2871",
-            "cacheKey": "tags.json:a3500501ff341c45fdee0c5c4a3213aa8be2293dbf96677d9430a4b2cdab2871"
+            "bytes": 58456,
+            "sha256": "31ebda6c904f819993d168ecbe51e28f64f390334482454c255c75a1421c6979",
+            "cacheKey": "tags.json:31ebda6c904f819993d168ecbe51e28f64f390334482454c255c75a1421c6979"
           },
           {
             "file": "errands.json",
@@ -101,15 +101,15 @@
         "runtime": true,
         "trigger": "Startup search box, command palette, or any first-use Ask entry point.",
         "failureMode": "Show a search-unavailable state or fall back to existing in-memory search; do not eagerly pull ask-index.json as a rescue path.",
-        "bytes": 619947,
+        "bytes": 717398,
         "files": [
           {
             "file": "ask-core.json",
             "type": "ask-core",
             "loadHint": "eager-search",
-            "bytes": 619947,
-            "sha256": "55563fad697fc1d382c87e7f9700572ffe17d301072e37592bbaf76ded447e1f",
-            "cacheKey": "ask-core.json:55563fad697fc1d382c87e7f9700572ffe17d301072e37592bbaf76ded447e1f"
+            "bytes": 717398,
+            "sha256": "93093d0567d79f28bb2cedb6f339f8cf2be57101363838474a7ddee9b9f512ac",
+            "cacheKey": "ask-core.json:93093d0567d79f28bb2cedb6f339f8cf2be57101363838474a7ddee9b9f512ac"
           }
         ]
       },
@@ -121,23 +121,23 @@
         "runtime": true,
         "trigger": "First visit to a brand or company node page, ownership view, or flagship walkthrough that needs full node context.",
         "failureMode": "Brand/company node pages can be unavailable while category and guide routes remain usable.",
-        "bytes": 1463610,
+        "bytes": 1765399,
         "files": [
           {
             "file": "brands.json",
             "type": "brand",
             "loadHint": "defer-page-nodes",
-            "bytes": 1357012,
-            "sha256": "cf2583272be59311de3cf94416f94c9ddbbb28795a5d7cca2a9c1a8a8cb42461",
-            "cacheKey": "brands.json:cf2583272be59311de3cf94416f94c9ddbbb28795a5d7cca2a9c1a8a8cb42461"
+            "bytes": 1657934,
+            "sha256": "f259affc01a9f35284d593b2328b7567e3facfd3f8ebbc2040a41aea7bf4edba",
+            "cacheKey": "brands.json:f259affc01a9f35284d593b2328b7567e3facfd3f8ebbc2040a41aea7bf4edba"
           },
           {
             "file": "companies.json",
             "type": "company",
             "loadHint": "defer-page-nodes",
-            "bytes": 106598,
-            "sha256": "fcabec7661be31ba64a8e947b0e18bacae2d54faa4064d800c939178460006b1",
-            "cacheKey": "companies.json:fcabec7661be31ba64a8e947b0e18bacae2d54faa4064d800c939178460006b1"
+            "bytes": 107465,
+            "sha256": "d3f0968acb45d047443cb269e4894100ad2a88a7986cec5bc7927f749759826c",
+            "cacheKey": "companies.json:d3f0968acb45d047443cb269e4894100ad2a88a7986cec5bc7927f749759826c"
           }
         ]
       },
@@ -149,15 +149,15 @@
         "runtime": true,
         "trigger": "Product-name search, barcode lookup, or an explicit deeper-results action.",
         "failureMode": "Product lookup can fail independently without breaking startup Ask or generated node pages.",
-        "bytes": 5677509,
+        "bytes": 5548292,
         "files": [
           {
             "file": "ask-index.json",
             "type": "ask",
             "loadHint": "lazy-product-search",
-            "bytes": 5677509,
-            "sha256": "19acdeefb092dd635cfda902eccb7b14d4f81c6f1ca680fdc959c13c5f28f5ee",
-            "cacheKey": "ask-index.json:19acdeefb092dd635cfda902eccb7b14d4f81c6f1ca680fdc959c13c5f28f5ee"
+            "bytes": 5548292,
+            "sha256": "138d9f925ac96fff635442f82a098749696b75e0762ef0c7b37ff6edf735d9e0",
+            "cacheKey": "ask-index.json:138d9f925ac96fff635442f82a098749696b75e0762ef0c7b37ff6edf735d9e0"
           }
         ]
       },
@@ -183,8 +183,8 @@
             "type": "ask-traces",
             "loadHint": "dev-contract",
             "bytes": 19399,
-            "sha256": "8d6769ad169b80b85272539f6d06af8ecce07c04274b3e755953646f52a74d31",
-            "cacheKey": "ask-traces.json:8d6769ad169b80b85272539f6d06af8ecce07c04274b3e755953646f52a74d31"
+            "sha256": "5568ec6d3375cf366d2bd0f002540653eb5e3c40fa299d2134475d8e7fc9be18",
+            "cacheKey": "ask-traces.json:5568ec6d3375cf366d2bd0f002540653eb5e3c40fa299d2134475d8e7fc9be18"
           },
           {
             "file": "ask-presentation.json",
@@ -198,17 +198,17 @@
             "file": "node-walkthroughs.json",
             "type": "node-walkthroughs",
             "loadHint": "dev-contract",
-            "bytes": 26798,
-            "sha256": "de4c7efca87808ab19c40672a8ab6c4114e78253e48bd53152104cb67859073b",
-            "cacheKey": "node-walkthroughs.json:de4c7efca87808ab19c40672a8ab6c4114e78253e48bd53152104cb67859073b"
+            "bytes": 28514,
+            "sha256": "299c3d957b69383eb2a46bfb09a6d699bcaf76466792b093c4db476338d10c81",
+            "cacheKey": "node-walkthroughs.json:299c3d957b69383eb2a46bfb09a6d699bcaf76466792b093c4db476338d10c81"
           },
           {
             "file": "node-page-contracts.json",
             "type": "node-page-contracts",
             "loadHint": "dev-contract",
             "bytes": 8511,
-            "sha256": "996073182ce7164f06e022b71f0399a1ac8b7d09c0fb42eb9727f8d72ef85c8d",
-            "cacheKey": "node-page-contracts.json:996073182ce7164f06e022b71f0399a1ac8b7d09c0fb42eb9727f8d72ef85c8d"
+            "sha256": "e69f9de6335a0863b34ad938338d675c85b08cfa84b7ccf330a53ca7d484b866",
+            "cacheKey": "node-page-contracts.json:e69f9de6335a0863b34ad938338d675c85b08cfa84b7ccf330a53ca7d484b866"
           },
           {
             "file": "node-route-fixtures.json",
@@ -246,9 +246,9 @@
             "file": "node-integration-checklist.json",
             "type": "node-integration-checklist",
             "loadHint": "dev-contract",
-            "bytes": 49097,
-            "sha256": "bd8134dbb50ec05c295c98532bf2f092c956dc2f29ba9ab2ac63c7185630da13",
-            "cacheKey": "node-integration-checklist.json:bd8134dbb50ec05c295c98532bf2f092c956dc2f29ba9ab2ac63c7185630da13"
+            "bytes": 49096,
+            "sha256": "59f161b6ab56be1e1b2074d8aa8e942a1c776988960426fbefbd640d34071294",
+            "cacheKey": "node-integration-checklist.json:59f161b6ab56be1e1b2074d8aa8e942a1c776988960426fbefbd640d34071294"
           }
         ]
       }
@@ -277,8 +277,8 @@
       "format": "ovs-node-index",
       "version": "0.1",
       "built": "2026-07-07",
-      "bytes": 58082,
-      "sha256": "a3500501ff341c45fdee0c5c4a3213aa8be2293dbf96677d9430a4b2cdab2871",
+      "bytes": 58456,
+      "sha256": "31ebda6c904f819993d168ecbe51e28f64f390334482454c255c75a1421c6979",
       "loadHint": "eager",
       "nodes": 105
     },
@@ -299,11 +299,11 @@
       "format": "ovs-node-index",
       "version": "0.1",
       "built": "2026-07-15",
-      "bytes": 1357012,
-      "sha256": "cf2583272be59311de3cf94416f94c9ddbbb28795a5d7cca2a9c1a8a8cb42461",
+      "bytes": 1657934,
+      "sha256": "f259affc01a9f35284d593b2328b7567e3facfd3f8ebbc2040a41aea7bf4edba",
       "loadHint": "defer-page-nodes",
-      "nodes": 1969,
-      "longTail": 4851
+      "nodes": 2400,
+      "longTail": 5448
     },
     {
       "type": "company",
@@ -311,8 +311,8 @@
       "format": "ovs-node-index",
       "version": "0.1",
       "built": "2026-07-15",
-      "bytes": 106598,
-      "sha256": "fcabec7661be31ba64a8e947b0e18bacae2d54faa4064d800c939178460006b1",
+      "bytes": 107465,
+      "sha256": "d3f0968acb45d047443cb269e4894100ad2a88a7986cec5bc7927f749759826c",
       "loadHint": "defer-page-nodes",
       "nodes": 29
     },
@@ -334,12 +334,12 @@
       "format": "ovs-ask-core-index",
       "version": "0.1",
       "built": "2026-07-15",
-      "bytes": 619947,
-      "sha256": "55563fad697fc1d382c87e7f9700572ffe17d301072e37592bbaf76ded447e1f",
+      "bytes": 717398,
+      "sha256": "93093d0567d79f28bb2cedb6f339f8cf2be57101363838474a7ddee9b9f512ac",
       "loadHint": "eager-search",
-      "tokens": 2897,
-      "aliases": 2632,
-      "targets": 2389
+      "tokens": 3325,
+      "aliases": 3071,
+      "targets": 2824
     },
     {
       "type": "ask",
@@ -347,12 +347,12 @@
       "format": "ovs-ask-index",
       "version": "0.1",
       "built": "2026-07-15",
-      "bytes": 5677509,
-      "sha256": "19acdeefb092dd635cfda902eccb7b14d4f81c6f1ca680fdc959c13c5f28f5ee",
+      "bytes": 5548292,
+      "sha256": "138d9f925ac96fff635442f82a098749696b75e0762ef0c7b37ff6edf735d9e0",
       "loadHint": "lazy-product-search",
-      "tokens": 63697,
-      "aliases": 2632,
-      "barcodeLikeItems": 20718
+      "tokens": 77804,
+      "aliases": 3071,
+      "barcodeLikeItems": 26051
     },
     {
       "type": "avoid-token",
@@ -385,7 +385,7 @@
       "version": "0.1",
       "built": "2026-07-15",
       "bytes": 19399,
-      "sha256": "8d6769ad169b80b85272539f6d06af8ecce07c04274b3e755953646f52a74d31",
+      "sha256": "5568ec6d3375cf366d2bd0f002540653eb5e3c40fa299d2134475d8e7fc9be18",
       "loadHint": "dev-contract",
       "traces": 13
     },
@@ -406,8 +406,8 @@
       "format": "ovs-node-walkthroughs",
       "version": "0.1",
       "built": "2026-07-15",
-      "bytes": 26798,
-      "sha256": "de4c7efca87808ab19c40672a8ab6c4114e78253e48bd53152104cb67859073b",
+      "bytes": 28514,
+      "sha256": "299c3d957b69383eb2a46bfb09a6d699bcaf76466792b093c4db476338d10c81",
       "loadHint": "dev-contract",
       "walkthroughs": 3
     },
@@ -418,7 +418,7 @@
       "version": "0.1",
       "built": "2026-07-15",
       "bytes": 8511,
-      "sha256": "996073182ce7164f06e022b71f0399a1ac8b7d09c0fb42eb9727f8d72ef85c8d",
+      "sha256": "e69f9de6335a0863b34ad938338d675c85b08cfa84b7ccf330a53ca7d484b866",
       "loadHint": "dev-contract",
       "contracts": 8
     },
@@ -474,8 +474,8 @@
       "format": "ovs-node-integration-checklist",
       "version": "0.1",
       "built": "2026-07-15",
-      "bytes": 49097,
-      "sha256": "bd8134dbb50ec05c295c98532bf2f092c956dc2f29ba9ab2ac63c7185630da13",
+      "bytes": 49096,
+      "sha256": "59f161b6ab56be1e1b2074d8aa8e942a1c776988960426fbefbd640d34071294",
       "loadHint": "dev-contract",
       "phases": 10
     },
@@ -485,8 +485,8 @@
       "format": "ovs-node-load-plan",
       "version": "0.1",
       "built": "2026-07-15",
-      "bytes": 6264,
-      "sha256": "31637d06446797acf8ff1ff81cc0efd61c3710dfd9fb8879c9ccce6f706fe673",
+      "bytes": 6262,
+      "sha256": "77db67e25f96c77691198651bd83cf4587c2ab6b50e480e8452a212e7f582de4",
       "loadHint": "eager-metadata",
       "stages": 6
     },
@@ -496,19 +496,19 @@
       "format": "ovs-node-readiness",
       "version": "0.1",
       "built": "2026-07-15",
-      "bytes": 52381,
-      "sha256": "48dd35ca95dc0aed60956d8e47ae673fef39653f4d55e0801d06eae8e6787b4d",
+      "bytes": 52379,
+      "sha256": "574a86b036f63239f9cb7c314bf7dbbc6b25155a74eb3b5ab7eb09af54ed5ca7",
       "loadHint": "dev-contract",
       "status": "ready-for-app-integration"
     }
   ],
   "totals": {
-    "generatedPageNodes": 2115,
-    "askCoreTokens": 2897,
-    "askCoreTargets": 2389,
-    "askTokens": 63697,
-    "askAliases": 2632,
-    "askBarcodeLikeItems": 20718,
+    "generatedPageNodes": 2546,
+    "askCoreTokens": 3325,
+    "askCoreTargets": 2824,
+    "askTokens": 77804,
+    "askAliases": 3071,
+    "askBarcodeLikeItems": 26051,
     "avoidTokenFamilies": 10,
     "avoidTokens": 208,
     "avoidUniqueTokens": 208,

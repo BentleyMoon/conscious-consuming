@@ -674,26 +674,26 @@
         "receipt": {
           "source": "Open Food Facts labels",
           "asOf": "2026",
-          "entryCount": 291,
+          "entryCount": 356,
           "missingRule": "No labels means unknown (null); labels present without a matching certification tag means absent (0).",
           "criteria": {
             "organic": {
-              "known": 225,
-              "positive": 41,
-              "knownCoverage": 0.7732,
-              "positiveCoverage": 0.1409
+              "known": 272,
+              "positive": 48,
+              "knownCoverage": 0.764,
+              "positiveCoverage": 0.1348
             },
             "fair_trade": {
-              "known": 225,
-              "positive": 27,
-              "knownCoverage": 0.7732,
-              "positiveCoverage": 0.0928
+              "known": 272,
+              "positive": 34,
+              "knownCoverage": 0.764,
+              "positiveCoverage": 0.0955
             },
             "rainforest_alliance": {
-              "known": 225,
-              "positive": 39,
-              "knownCoverage": 0.7732,
-              "positiveCoverage": 0.134
+              "known": 272,
+              "positive": 48,
+              "knownCoverage": 0.764,
+              "positiveCoverage": 0.1348
             }
           }
         }
@@ -796,26 +796,26 @@
         "receipt": {
           "source": "Open Food Facts labels",
           "asOf": "2026",
-          "entryCount": 391,
+          "entryCount": 490,
           "missingRule": "No labels means unknown (null); labels present without a matching certification tag means absent (0).",
           "criteria": {
             "organic": {
-              "known": 364,
-              "positive": 140,
-              "knownCoverage": 0.9309,
-              "positiveCoverage": 0.3581
+              "known": 455,
+              "positive": 174,
+              "knownCoverage": 0.9286,
+              "positiveCoverage": 0.3551
             },
             "fair_trade": {
-              "known": 364,
-              "positive": 129,
-              "knownCoverage": 0.9309,
-              "positiveCoverage": 0.3299
+              "known": 455,
+              "positive": 156,
+              "knownCoverage": 0.9286,
+              "positiveCoverage": 0.3184
             },
             "rainforest_alliance": {
-              "known": 364,
-              "positive": 47,
-              "knownCoverage": 0.9309,
-              "positiveCoverage": 0.1202
+              "known": 455,
+              "positive": 56,
+              "knownCoverage": 0.9286,
+              "positiveCoverage": 0.1143
             }
           }
         }
@@ -1318,26 +1318,26 @@
         "receipt": {
           "source": "Open Food Facts labels",
           "asOf": "2026",
-          "entryCount": 344,
+          "entryCount": 434,
           "missingRule": "No labels means unknown (null); labels present without a matching certification tag means absent (0).",
           "criteria": {
             "organic": {
-              "known": 271,
-              "positive": 101,
-              "knownCoverage": 0.7878,
-              "positiveCoverage": 0.2936
+              "known": 338,
+              "positive": 132,
+              "knownCoverage": 0.7788,
+              "positiveCoverage": 0.3041
             },
             "fair_trade": {
-              "known": 271,
-              "positive": 37,
-              "knownCoverage": 0.7878,
-              "positiveCoverage": 0.1076
+              "known": 338,
+              "positive": 46,
+              "knownCoverage": 0.7788,
+              "positiveCoverage": 0.106
             },
             "rainforest_alliance": {
-              "known": 271,
-              "positive": 59,
-              "knownCoverage": 0.7878,
-              "positiveCoverage": 0.1715
+              "known": 338,
+              "positive": 74,
+              "knownCoverage": 0.7788,
+              "positiveCoverage": 0.1705
             }
           }
         }
@@ -4140,6 +4140,77 @@
       }
     },
     {
+      "category": "bottled-water",
+      "reads": {
+        "text": "Compare bottled water by processing, nutrition, protein, and sugar.",
+        "basis": [
+          {
+            "criterion": "processing",
+            "readsAs": "processing"
+          },
+          {
+            "criterion": "nutrition_grade",
+            "readsAs": "nutrition"
+          },
+          {
+            "criterion": "protein",
+            "readsAs": "protein"
+          },
+          {
+            "criterion": "low_sugar",
+            "readsAs": "sugar"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "processing",
+          "kind": "criterion",
+          "label": "Processing",
+          "question": "Does simpler processing matter more?",
+          "criteria": [
+            "processing"
+          ],
+          "poles": [
+            "Flexible",
+            "Simpler processing"
+          ],
+          "default": 50
+        },
+        {
+          "id": "nutrition-grade",
+          "kind": "criterion",
+          "label": "Nutrition",
+          "question": "Does stronger nutrition matter more?",
+          "criteria": [
+            "nutrition_grade"
+          ],
+          "poles": [
+            "Flexible",
+            "Stronger nutrition"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": false,
+        "mode": "none"
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
       "category": "toothpaste",
       "reads": {
         "text": "Compare toothpaste by disclosure, vegan formulas, and palm-oil signals.",
@@ -4960,6 +5031,69 @@
       }
     },
     {
+      "category": "fragrance",
+      "reads": {
+        "text": "Compare fragrance & perfume by disclosure and palm-oil signals.",
+        "basis": [
+          {
+            "criterion": "transparency",
+            "readsAs": "disclosure"
+          },
+          {
+            "criterion": "palm_oil",
+            "readsAs": "palm-oil signals"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "transparency",
+          "kind": "criterion",
+          "label": "Disclosure",
+          "question": "Does stronger disclosure matter more?",
+          "criteria": [
+            "transparency"
+          ],
+          "poles": [
+            "Flexible",
+            "Stronger disclosure"
+          ],
+          "default": 50
+        },
+        {
+          "id": "palm-oil",
+          "kind": "criterion",
+          "label": "Palm-oil signals",
+          "question": "Do you need palm-oil-free evidence?",
+          "criteria": [
+            "palm_oil"
+          ],
+          "poles": [
+            "Flexible",
+            "Palm-oil-free"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": false,
+        "mode": "none"
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
       "category": "razors",
       "reads": {
         "text": "Compare razors & shaving by durability, cost, environmental impact, and labor and sourcing.",
@@ -5187,6 +5321,150 @@
       "category": "dish-soap",
       "reads": {
         "text": "Compare dish soap by body safety, everyday access, certification, and environmental impact.",
+        "basis": [
+          {
+            "criterion": "health",
+            "readsAs": "body safety"
+          },
+          {
+            "criterion": "accessibility",
+            "readsAs": "everyday access"
+          },
+          {
+            "criterion": "certification",
+            "readsAs": "certification"
+          },
+          {
+            "criterion": "environment",
+            "readsAs": "environmental impact"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "access-or-safety",
+          "kind": "tradeoff",
+          "label": "Access or safety record",
+          "question": "Cheaper and easier to find, or a cleaner safety record?",
+          "criteria": [
+            "accessibility",
+            "health"
+          ],
+          "poles": [
+            "Easier to find",
+            "Cleaner record"
+          ],
+          "default": 50
+        },
+        {
+          "id": "certification",
+          "kind": "criterion",
+          "label": "Certification",
+          "question": "Do you want stronger certification?",
+          "criteria": [
+            "certification"
+          ],
+          "poles": [
+            "Flexible",
+            "Stronger certification"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": false,
+        "mode": "none"
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "floor-cleaners",
+      "reads": {
+        "text": "Compare floor cleaners by body safety, everyday access, certification, and environmental impact.",
+        "basis": [
+          {
+            "criterion": "health",
+            "readsAs": "body safety"
+          },
+          {
+            "criterion": "accessibility",
+            "readsAs": "everyday access"
+          },
+          {
+            "criterion": "certification",
+            "readsAs": "certification"
+          },
+          {
+            "criterion": "environment",
+            "readsAs": "environmental impact"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "access-or-safety",
+          "kind": "tradeoff",
+          "label": "Access or safety record",
+          "question": "Cheaper and easier to find, or a cleaner safety record?",
+          "criteria": [
+            "accessibility",
+            "health"
+          ],
+          "poles": [
+            "Easier to find",
+            "Cleaner record"
+          ],
+          "default": 50
+        },
+        {
+          "id": "certification",
+          "kind": "criterion",
+          "label": "Certification",
+          "question": "Do you want stronger certification?",
+          "criteria": [
+            "certification"
+          ],
+          "poles": [
+            "Flexible",
+            "Stronger certification"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": false,
+        "mode": "none"
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "carpet-cleaners",
+      "reads": {
+        "text": "Compare carpet cleaners by body safety, everyday access, certification, and environmental impact.",
         "basis": [
           {
             "criterion": "health",

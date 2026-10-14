@@ -5,12 +5,23 @@ M-data: acquire OFF data for our lead categories into a LOCAL raw cache.
 This is the "own your data" step: paginate the API once into pipeline/raw/<id>.jsonl,
 so the build step (build_datasets.py) never touches the network. Re-run to refresh.
 Robust to the flaky API (retry/backoff; tries multiple category tags; saves partial
-progress). For the full catalogue, use ingest_dump.py instead (OFF bulk dump).
+progress; never shrinks a cache). For the full catalogue, use ingest_dump.py instead
+(OFF bulk dump).
 
-Run: `python fetch_raw.py`            (default categories, ~6 pages each)
-     `python fetch_raw.py 12`         (override max pages per category)
+Politeness. Open Food Facts documents a limit of 10 search requests per minute per client
+(https://openfoodfacts.github.io/openfoodfacts-server/api/#rate-limits) and asks API users to
+send a descriptive User-Agent. Every search request here waits SEARCH_INTERVAL seconds after
+the previous one, retries back off on top of that, and the User-Agent names the project.
+
+Run: `python fetch_raw.py`                      fetch NEW categories only (cached ones skipped)
+     `python fetch_raw.py --deepen`             grow every cache to the cap, append-only: existing
+                                                records are kept byte-for-byte and new codes are
+                                                added behind them in OFF's own order
+     `python fetch_raw.py --only bottled-water` restrict to named category ids
+     `python fetch_raw.py --cap 800`            override the per-category cap
+     `python fetch_raw.py --refresh`            refetch and replace (still never shrinks)
 """
-import urllib.request, json, time, os, sys
+import argparse, urllib.error, urllib.request, json, time, os, sys
 from tracked_io import open_text
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -21,11 +32,18 @@ try:
 except Exception:
     pass
 
-UA = 'ConsciousConsuming/0.1 (Ring-0 local cache; Open Food Facts ODbL)'
+UA = ('ConsciousConsuming/0.2 (+https://valuescommons.org; build-time local cache, '
+      'throttled under 10 search requests per minute; Open Food Facts ODbL)')
 BASE = 'https://world.openfoodfacts.org/api/v2/search'
 FIELDS_LITE = ('code,product_name,brands,nutriscore_grade,nova_group,ecoscore_grade,'
                'environmental_score_grade,labels_tags,categories_tags,ingredients_text,allergens_tags,traces_tags')
 FIELDS_FULL = FIELDS_LITE + ',nutriments'
+SEARCH_INTERVAL = 6.5   # seconds between search requests: under OFF's documented 10 per minute
+PAGE_SIZE = 100
+# 2026-10-14. Raised from 400 (8 pages of 50) after measuring what each extra product costs the
+# lazy Ask index, the per-category JSON and the committed file:// bundle. The measurements and
+# the reasoning are in content/MASS-DATA-ACCESS-PLAN.md under "Deepening the food caches".
+DEFAULT_CAP = 500
 
 CATEGORIES = [
     {'id': 'plant-based-milk', 'label': 'Plant-based milk',
@@ -128,31 +146,56 @@ CATEGORIES = [
      'tags': ['chocolate-spreads', 'hazelnut-spreads']},
     {'id': 'spices-seasoning', 'label': 'Spices & seasonings',
      'tags': ['spices', 'seasonings', 'herbs-and-spices']},
+    {'id': 'bottled-water', 'label': 'Bottled water',
+     'tags': ['waters', 'mineral-waters', 'bottled-waters']},
 ]
-MAX_PAGES = int(sys.argv[1]) if len(sys.argv) > 1 else 8
+_last_request = [0.0]
 
 
 def fetch(url, retries=5):
     last = None
     for i in range(retries):
+        wait = SEARCH_INTERVAL - (time.monotonic() - _last_request[0])
+        if wait > 0:
+            time.sleep(wait)
+        _last_request[0] = time.monotonic()
         try:
             req = urllib.request.Request(url, headers={'User-Agent': UA})
-            with urllib.request.urlopen(req, timeout=45) as r:
+            with urllib.request.urlopen(req, timeout=60) as r:
                 return json.load(r)
+        except urllib.error.HTTPError as e:
+            # A refusal is an answer, not a fault: retrying a 4xx only spends OFF's capacity.
+            # (Observed 2026-10-14: anonymous search returns 401 past page 10 of 100, so the
+            # API path tops out near 1,000 products per tag; deeper needs ingest_dump.py.)
+            if 400 <= e.code < 500 and e.code != 429:
+                raise
+            last = e
+            time.sleep(5 * (i + 1))
         except Exception as e:
             last = e
-            time.sleep(2 * (i + 1))
+            time.sleep(5 * (i + 1))
     raise last
 
 
-def harvest(cat):
-    """Try each tag; for the first that yields, paginate up to MAX_PAGES. Dedup by code."""
+def harvest(cat, cap, seen=()):
+    """Try each tag; for the first that yields, paginate until `cap` products. Dedup by code.
+
+    `seen` codes (already cached) count toward the cap and are never returned again, so a
+    deepen run appends only codes the cache does not hold."""
+    seen = set(seen)
+    need = max(0, cap - len(seen))
+    if need == 0:
+        return [], None, None, True
+    max_pages = (cap + PAGE_SIZE - 1) // PAGE_SIZE + 2
+    # Skip pages the cache almost certainly already holds (OFF's order drifts a little between
+    # runs, so start one page early), which keeps a deepen run to the requests it needs.
+    first_page = max(1, len(seen) // PAGE_SIZE)
     for tag in cat['tags']:
-        for fields, ps, ftag in ((FIELDS_FULL, 50, 'full'), (FIELDS_LITE, 100, 'lite')):
+        for fields, ftag in ((FIELDS_FULL, 'full'), (FIELDS_LITE, 'lite')):
             by_code = {}
             ok = True
-            for pg in range(1, MAX_PAGES + 1):
-                url = f'{BASE}?categories_tags_en={tag}&fields={fields}&page_size={ps}&page={pg}'
+            for pg in range(first_page if tag == cat["tags"][0] else 1, max_pages + 1):
+                url = f'{BASE}?categories_tags_en={tag}&fields={fields}&page_size={PAGE_SIZE}&page={pg}'
                 try:
                     d = fetch(url)
                 except Exception as e:
@@ -161,38 +204,85 @@ def harvest(cat):
                     break
                 chunk = d.get('products', [])
                 for p in chunk:
-                    if p.get('code'):
-                        by_code[p['code']] = p
-                if len(chunk) < ps:
+                    code = p.get('code')
+                    if code and code not in seen and code not in by_code:
+                        by_code[code] = p
+                if len(by_code) >= need or len(chunk) < PAGE_SIZE:
                     break
-            if len(by_code) >= 40 or (by_code and not ok):
-                return list(by_code.values()), tag, ftag
-    return [], None, None
+            got = list(by_code.values())[:need]
+            if len(got) + len(seen) >= 40 or (got and not ok):
+                return got, tag, ftag, ok
+    return [], None, None, False
 
 
-print(f'M-data: caching up to {MAX_PAGES} pages per category into {RAW}\n')
-summary = {}
-for cat in CATEGORIES:
-    print(f'== {cat["label"]} ({cat["id"]}) ==')
-    _p = os.path.join(RAW, cat['id'] + '.jsonl')
-    if os.path.isfile(_p) and sum(1 for _ in open(_p, encoding='utf-8')) >= 40 and '--refresh' not in sys.argv:
-        print('   cached — skipping (use --refresh to refetch)\n'); summary[cat['id']] = 'cached'; continue
-    products, tag, ftag = harvest(cat)
-    if not products:
-        print('   nothing retrieved (API down?) — skipping; re-run later\n')
-        summary[cat['id']] = 0
-        continue
-    path = os.path.join(RAW, cat['id'] + '.jsonl')
-    existing = sum(1 for _ in open(path, encoding='utf-8')) if os.path.isfile(path) else 0
-    if len(products) < existing:
-        print(f'   kept existing {existing} (new fetch only {len(products)}) — not shrinking on a flaky fetch\n')
-        summary[cat['id']] = existing
-        continue
-    with open_text(path) as f:
-        for p in products:
-            f.write(json.dumps(p, ensure_ascii=False) + '\n')
-    print(f'   cached {len(products)} products (tag={tag}, fields={ftag}) → raw/{cat["id"]}.jsonl\n')
-    summary[cat['id']] = len(products)
+def read_cache(path):
+    if not os.path.isfile(path):
+        return []
+    return [line.rstrip('\n') for line in open(path, encoding='utf-8') if line.strip()]
 
-print('Done. Cache summary:', summary)
-print('Next: python build_datasets.py')
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('pages', nargs='?', type=int, help='legacy: max pages of 100 (sets cap = pages*100)')
+    ap.add_argument('--cap', type=int, default=None, help=f'products per category (default {DEFAULT_CAP})')
+    ap.add_argument('--deepen', action='store_true', help='append new codes to existing caches up to the cap')
+    ap.add_argument('--refresh', action='store_true', help='refetch and replace caches (never shrinks)')
+    ap.add_argument('--only', default='', help='comma-separated category ids')
+    args = ap.parse_args()
+    cap = args.cap or (args.pages * PAGE_SIZE if args.pages else DEFAULT_CAP)
+    only = {x.strip() for x in args.only.split(',') if x.strip()}
+
+    print(f'M-data: caching up to {cap} products per category into {RAW}\n')
+    summary = {}
+    for cat in CATEGORIES:
+        if only and cat['id'] not in only:
+            continue
+        print(f'== {cat["label"]} ({cat["id"]}) ==')
+        path = os.path.join(RAW, cat['id'] + '.jsonl')
+        lines = read_cache(path)
+        existing = len(lines)
+        if existing >= 40 and not (args.refresh or args.deepen):
+            print('   cached — skipping (use --deepen to grow or --refresh to refetch)\n')
+            summary[cat['id']] = 'cached'
+            continue
+        if args.deepen and existing:
+            if existing >= cap:
+                print(f'   already {existing}, at or over the cap of {cap} — unchanged\n')
+                summary[cat['id']] = existing
+                continue
+            seen = [json.loads(line).get('code') for line in lines]
+            products, tag, ftag, ok = harvest(cat, cap, seen)
+            if not products:
+                print(f'   nothing new retrieved — kept existing {existing}\n')
+                summary[cat['id']] = existing
+                continue
+            with open_text(path) as f:
+                for line in lines:
+                    f.write(line + '\n')
+                for p in products:
+                    f.write(json.dumps(p, ensure_ascii=False) + '\n')
+            print(f'   kept {existing}, appended {len(products)} (tag={tag}, fields={ftag}'
+                  f'{", partial" if not ok else ""}) → {existing + len(products)} in raw/{cat["id"]}.jsonl\n')
+            summary[cat['id']] = existing + len(products)
+            continue
+        products, tag, ftag, ok = harvest(cat, cap)
+        if not products:
+            print('   nothing retrieved (API down?) — skipping; re-run later\n')
+            summary[cat['id']] = existing
+            continue
+        if len(products) < existing:
+            print(f'   kept existing {existing} (new fetch only {len(products)}) — not shrinking on a flaky fetch\n')
+            summary[cat['id']] = existing
+            continue
+        with open_text(path) as f:
+            for p in products:
+                f.write(json.dumps(p, ensure_ascii=False) + '\n')
+        print(f'   cached {len(products)} products (tag={tag}, fields={ftag}) → raw/{cat["id"]}.jsonl\n')
+        summary[cat['id']] = len(products)
+
+    print('Done. Cache summary:', summary)
+    print('Next: python build_datasets.py')
+
+
+if __name__ == '__main__':
+    main()

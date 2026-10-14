@@ -5,9 +5,9 @@ eval(fs.readFileSync('app/data.js', 'utf8'));
 eval(fs.readFileSync('app/guides.js', 'utf8'));
 const B = window.CC_BUNDLE, G = window.CC_GUIDES;
 const cats = B.index.categories;
-const FOOD = ['plant-based-milk', 'milk', 'plant-based-yogurt', 'eggs', 'breakfast-cereal', 'granola', 'oats', 'coffee', 'dark-chocolate', 'yogurt', 'olive-oil', 'bread', 'flour-baking', 'plant-based-meat', 'tea', 'pasta-sauce', 'nut-butter', 'nuts', 'fruit-juice', 'ice-cream', 'cheese', 'butter', 'crisps', 'biscuits', 'soda', 'honey', 'fruit-jam', 'rice', 'pasta', 'legumes', 'tofu', 'hummus', 'soups', 'canned-fish', 'fish-seafood', 'canned-tomatoes', 'canned-vegetables', 'frozen-vegetables', 'frozen-pizza', 'ready-meals', 'dried-fruit', 'cereal-bars', 'energy-drinks', 'crackers', 'ketchup', 'mayonnaise', 'salad-dressing', 'pickles', 'chocolate-spread', 'spices-seasoning'];
+const FOOD = ['plant-based-milk', 'milk', 'plant-based-yogurt', 'eggs', 'breakfast-cereal', 'granola', 'oats', 'coffee', 'dark-chocolate', 'yogurt', 'olive-oil', 'bread', 'flour-baking', 'plant-based-meat', 'tea', 'pasta-sauce', 'nut-butter', 'nuts', 'fruit-juice', 'ice-cream', 'cheese', 'butter', 'crisps', 'biscuits', 'soda', 'honey', 'fruit-jam', 'rice', 'pasta', 'legumes', 'tofu', 'hummus', 'soups', 'canned-fish', 'fish-seafood', 'canned-tomatoes', 'canned-vegetables', 'frozen-vegetables', 'frozen-pizza', 'ready-meals', 'dried-fruit', 'cereal-bars', 'energy-drinks', 'crackers', 'ketchup', 'mayonnaise', 'salad-dressing', 'pickles', 'chocolate-spread', 'spices-seasoning', 'bottled-water'];
 const PRICED = ['plant-based-milk', 'breakfast-cereal', 'coffee', 'dark-chocolate', 'yogurt', 'olive-oil', 'bread', 'plant-based-meat', 'tea', 'pasta-sauce', 'nut-butter', 'fruit-juice', 'ice-cream'];
-const BEAUTY = ['toothpaste', 'mouthwash', 'soap', 'body-wash', 'shampoo', 'deodorant', 'sunscreen', 'face-wash', 'face-cream', 'hand-cream', 'lip-balm', 'hair-conditioner'];
+const BEAUTY = ['toothpaste', 'mouthwash', 'soap', 'body-wash', 'shampoo', 'deodorant', 'sunscreen', 'face-wash', 'face-cream', 'hand-cream', 'lip-balm', 'hair-conditioner', 'fragrance'];
 const BLOOM_THEMES = ['planet', 'people', 'health', 'honesty', 'privacy', 'animals', 'cost', 'local'];
 const BLOOM_MIN_THEMES = 2;
 const KEY2THEME = {
@@ -162,11 +162,13 @@ const checks = {
   // 2026-08-14, Phase 10 serial promotion: four built frontier lenses entered the ontology.
   // 124 on 2026-08-26: the digital-services split gave messaging and browsers their own datasets.
   // 126 on 2026-09-23: the same split gave email and search their own datasets.
-  'categories = 126': cats.length === 126 ? 126 : 'FAIL(' + cats.length + ')',
+  // 130 on 2026-10-14: four generated categories from vetted bulk sources: bottled-water (Open
+  // Food Facts), fragrance (Open Beauty Facts), floor-cleaners and carpet-cleaners (EPA Safer Choice).
+  'categories = 130': cats.length === 130 ? 130 : 'FAIL(' + cats.length + ')',
   'all 15 live category domains': liveCategoryDomains.size === 15 ? 'yes' : 'FAIL(' + liveCategoryDomains.size + ')',
   'priced food have economical': PRICED.every(id => B.data[id] && B.data[id].criteria.some(c => c.key === 'economical')),
   'food with economical (all)': FOOD.filter(id => B.data[id] && B.data[id].criteria.some(c => c.key === 'economical')).length,
-  'beauty (12) have beauty criteria': BEAUTY.every(id => B.data[id] && B.data[id].criteria.some(c => c.key === 'cruelty_free')),
+  'beauty (13) have beauty criteria': BEAUTY.every(id => B.data[id] && B.data[id].criteria.some(c => c.key === 'cruelty_free')),
   'discover value facets': vfac.size,
   'discover label facets': Object.keys(lfac).length,
   'Organic label slice': lfac['Organic'] || 0,

@@ -9,7 +9,7 @@
 
 ## Scripts
 - **`fetch_safer_choice.py`** - EPA Safer Choice / Envirofacts certified products to `raw_safer_choice/<id>.jsonl` and generated lenses such as `dish-soap`.
-- **`fetch_raw.py`**: paginate OFF for the food `CATEGORIES` → `raw/<id>.jsonl`. Resilient to 503s: retry/backoff, tag fallback, a **no-shrink guard** (never overwrite a cache with fewer products), and **skip-if-cached** (only fetch new). `python fetch_raw.py [maxPages] [--refresh]`
+- **`fetch_raw.py`**: paginate OFF for the food `CATEGORIES` → `raw/<id>.jsonl`. Resilient to 503s: retry/backoff, tag fallback, a **no-shrink guard** (never overwrite a cache with fewer products), and **skip-if-cached** (only fetch new). Throttled to OFF's documented 10 search requests per minute; `--deepen` grows caches append-only to the cap (500). `python fetch_raw.py [--deepen] [--cap N] [--only ids] [--refresh]`
 - **`fetch_beauty.py`**: same idea for Open Beauty Facts; writes generated lenses to `content/lenses/<id>.json` (the build includes them automatically). Re-scores from cache without `--refresh`.
 - **`fetch_prices.py`**: Open Prices by barcode → `prices/<id>.json` (median in a single currency, prefers EUR). `python fetch_prices.py [cap]`
 - **`scoring.py`**: the food scoring engine (Axis A) for environment / processing / nutrition / protein / low-sugar / ethics, plus derived `focuses` (Organic, Fair Trade, Vegan, Gluten-free…) for the faceted index.

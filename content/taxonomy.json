@@ -122,27 +122,27 @@
   "realms": 16,
   "fields": 85,
   "families": 231,
-  "decisions": 1068,
-  "inScope": 1065,
-  "covered": 130,
-  "open": 922,
+  "decisions": 1070,
+  "inScope": 1067,
+  "covered": 134,
+  "open": 920,
   "hold": 13,
   "out": 3,
-  "datasets": 126,
-  "coveredPercent": 12.2
+  "datasets": 130,
+  "coveredPercent": 12.6
  },
  "byNeed": {
   "nourish": {
    "inScope": 134,
-   "covered": 50
+   "covered": 51
   },
   "care": {
    "inScope": 303,
-   "covered": 27
+   "covered": 28
   },
   "keep-a-home": {
-   "inScope": 169,
-   "covered": 10
+   "inScope": 171,
+   "covered": 12
   },
   "connect": {
    "inScope": 73,
@@ -172,7 +172,7 @@
     "food-and-drink"
    ],
    "inScope": 131,
-   "covered": 50
+   "covered": 51
   },
   "02": {
    "title": "Alcoholic beverages, tobacco and narcotics",
@@ -180,7 +180,7 @@
     "food-and-drink"
    ],
    "inScope": 131,
-   "covered": 50
+   "covered": 51
   },
   "03": {
    "title": "Clothing and footwear",
@@ -195,16 +195,16 @@
    "realms": [
     "home"
    ],
-   "inScope": 165,
-   "covered": 10
+   "inScope": 167,
+   "covered": 12
   },
   "05": {
    "title": "Furnishings, household equipment and routine household maintenance",
    "realms": [
     "home"
    ],
-   "inScope": 165,
-   "covered": 10
+   "inScope": 167,
+   "covered": 12
   },
   "06": {
    "title": "Health",
@@ -254,7 +254,7 @@
     "travel"
    ],
    "inScope": 174,
-   "covered": 51
+   "covered": 52
   },
   "12": {
    "title": "Insurance and financial services",
@@ -271,7 +271,7 @@
     "family-and-care"
    ],
    "inScope": 143,
-   "covered": 18
+   "covered": 19
   },
   "14": {
    "title": "Individual consumption expenditure of non-profit institutions serving households",
@@ -1860,9 +1860,12 @@
          "mode": "buy",
          "cadence": "weekly",
          "actor": "person",
-         "scope": "open",
+         "scope": "covered",
+         "cid": "bottled-water",
          "aka": [
-          "still water"
+          "still water",
+          "mineral water",
+          "spring water"
          ]
         },
         {
@@ -4469,6 +4472,44 @@
          "cid": "dish-soap",
          "aka": [
           "washing up liquid"
+         ]
+        },
+        {
+         "id": "floor-cleaners",
+         "label": "Floor cleaners",
+         "path": "home/cleaning-and-upkeep/cleaning-supplies/floor-cleaners",
+         "realm": "home",
+         "field": "cleaning-and-upkeep",
+         "family": "cleaning-supplies",
+         "need": "keep-a-home",
+         "type": "Products",
+         "mode": "buy",
+         "cadence": "monthly",
+         "actor": "person",
+         "scope": "covered",
+         "cid": "floor-cleaners",
+         "aka": [
+          "floor cleaner",
+          "mopping solution"
+         ]
+        },
+        {
+         "id": "carpet-cleaners",
+         "label": "Carpet cleaners",
+         "path": "home/cleaning-and-upkeep/cleaning-supplies/carpet-cleaners",
+         "realm": "home",
+         "field": "cleaning-and-upkeep",
+         "family": "cleaning-supplies",
+         "need": "keep-a-home",
+         "type": "Products",
+         "mode": "buy",
+         "cadence": "monthly",
+         "actor": "person",
+         "scope": "covered",
+         "cid": "carpet-cleaners",
+         "aka": [
+          "carpet shampoo",
+          "rug cleaner"
          ]
         },
         {
@@ -7558,7 +7599,13 @@
          "mode": "buy",
          "cadence": "yearly",
          "actor": "person",
-         "scope": "open"
+         "scope": "covered",
+         "cid": "fragrance",
+         "aka": [
+          "perfume",
+          "cologne",
+          "eau de toilette"
+         ]
         },
         {
          "id": "body-sprays-and-mists",
