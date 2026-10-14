@@ -13,7 +13,7 @@
    "most transparent about who runs it"
   ],
   "source": "Conscious Consuming (curated)",
-  "attribution": "Built from software licence files, project documentation, sign-up and pricing pages read directly, and one European Commission enforcement decision, not from review sites. Openness reflects the software licence and whether the service is built on an open protocol (ActivityPub) rather than a closed one; accessibility covers both the hardware a server needs and how easily a person can sign up to use one that already exists. Transparency reflects whether a reader can find out who actually runs and funds a server. A server's software being open source does not make the people running a given instance trustworthy; only what that operator publishes about itself does. Suggest changes via Contribute.",
+  "attribution": "Built from software licence files, project documentation, sign-up and pricing pages, instances' own published site data, and operators' own pages about who runs and funds them, read directly, plus one European Commission enforcement decision, not from review sites. Openness reflects the software licence and whether the service is built on an open protocol (ActivityPub) rather than a closed one; Bluesky is included because its AT Protocol is open and supports federated hosting, but it does not speak ActivityPub, and its openness score says so; accessibility covers both the hardware a server needs and how easily a person can sign up to use one that already exists. Transparency reflects whether a reader can find out who actually runs and funds a server. A server's software being open source does not make the people running a given instance trustworthy; only what that operator publishes about itself does. Suggest changes via Contribute.",
   "allergens": false,
   "presets": {
    "Balanced": {
@@ -57,49 +57,49 @@
     "x": []
    }
   },
-  "n": 13,
+  "n": 23,
   "valueSignatureProfile": {
-   "entryCount": 13,
-   "signedEntries": 13,
-   "drawableEntries": 9,
+   "entryCount": 23,
+   "signedEntries": 23,
+   "drawableEntries": 18,
    "minimumThemesForBloom": 2,
    "themeCounts": {
-    "planet": 3,
-    "honesty": 4,
-    "privacy": 10,
-    "cost": 8
+    "planet": 7,
+    "honesty": 10,
+    "privacy": 19,
+    "cost": 17
    }
   },
   "provenanceProfile": {
-   "entryCount": 13,
-   "singleSourceEntries": 9,
-   "multiSourceEntries": 4,
+   "entryCount": 23,
+   "singleSourceEntries": 11,
+   "multiSourceEntries": 12,
    "noSourceEntries": 0,
    "noteOnlyEntries": 0,
-   "averageSourceDomains": 1.31,
+   "averageSourceDomains": 1.57,
    "topPrimarySources": [
     {
      "label": "GitHub",
      "entries": 5
     },
     {
+     "label": "raw.githubusercontent.com",
+     "entries": 2
+    },
+    {
+     "label": "activitypub.software",
+     "entries": 1
+    },
+    {
      "label": "apps.apple.com",
      "entries": 1
     },
     {
+     "label": "bsky.social",
+     "entries": 1
+    },
+    {
      "label": "codeberg.org",
-     "entries": 1
-    },
-    {
-     "label": "docs.akkoma.dev",
-     "entries": 1
-    },
-    {
-     "label": "ec.europa.eu",
-     "entries": 1
-    },
-    {
-     "label": "git.pleroma.social",
      "entries": 1
     }
    ]
@@ -133,12 +133,12 @@
     },
     "receipt": {
      "dataset": "federated-social-servers",
-     "entryCount": 13,
+     "entryCount": 23,
      "criteria": [
       {
        "criterion": "transparency",
        "readsAs": "disclosure",
-       "known": 4,
+       "known": 10,
        "minimum": 15,
        "maximum": 85,
        "spread": 70
@@ -146,15 +146,15 @@
       {
        "criterion": "accessibility",
        "readsAs": "everyday access",
-       "known": 7,
-       "minimum": 45,
+       "known": 16,
+       "minimum": 40,
        "maximum": 92,
-       "spread": 47
+       "spread": 52
       },
       {
        "criterion": "openness",
        "readsAs": "openness",
-       "known": 10,
+       "known": 19,
        "minimum": 15,
        "maximum": 90,
        "spread": 75
@@ -162,10 +162,10 @@
       {
        "criterion": "longevity",
        "readsAs": "support life",
-       "known": 3,
-       "minimum": 70,
-       "maximum": 78,
-       "spread": 8
+       "known": 7,
+       "minimum": 60,
+       "maximum": 88,
+       "spread": 28
       }
      ]
     }
@@ -924,6 +924,625 @@
     "sourceLabels": [
      "apps.apple.com",
      "engineering.fb.com"
+    ]
+   }
+  },
+  {
+   "code": "lemmy",
+   "name": "Lemmy",
+   "brand": "LemmyNet",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A Reddit-style link aggregator and forum server written in Rust, whose communities federate with each other and with the wider fediverse.",
+   "scores": {
+    "openness": 88,
+    "accessibility": 72,
+    "longevity": 60,
+    "transparency": 70
+   },
+   "provenance": {
+    "openness": {
+     "note": "Lemmy's README lists it as open source under the AGPL licence and explains that 'anyone can easily run a server, and all these servers are federated (think email)', joined to the wider fediverse.",
+     "source": "https://raw.githubusercontent.com/LemmyNet/lemmy/main/README.md",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Lemmy's user documentation says that because it is written in Rust it 'has very low hardware requirements' and 'can easily run on a Raspberry Pi or similar low-powered hardware.'",
+     "source": "https://join-lemmy.org/docs/users/07-other-features.html",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "The same page says users can download a backup of their account from the settings page and import it on another Lemmy instance. The backup covers display name, bio, settings, followed communities, saved posts and blocks. The page does not list a user's own posts or comments, and imported follows and blocks are added to the new account rather than moved.",
+     "source": "https://join-lemmy.org/docs/users/07-other-features.html",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "The README names where the money comes from: Lemmy is 'free, open-source software, meaning no advertising, monetizing, or venture capital, ever', paid for by user donations and a grant from the NLnet foundation. It does not publish accounts.",
+     "source": "https://raw.githubusercontent.com/LemmyNet/lemmy/main/README.md",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Docs: other features",
+     "url": "https://join-lemmy.org/docs/users/07-other-features.html"
+    },
+    {
+     "label": "Install with Docker",
+     "url": "https://join-lemmy.org/docs/administration/install_docker.html"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "Open source",
+    "Forums"
+   ],
+   "valueSignature": {
+    "planet": 60,
+    "honesty": 70,
+    "privacy": 88,
+    "cost": 72
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "join-lemmy.org",
+    "sourceLabels": [
+     "join-lemmy.org",
+     "raw.githubusercontent.com"
+    ]
+   }
+  },
+  {
+   "code": "lemmy-world",
+   "name": "lemmy.world",
+   "brand": "Fedihosting Foundation",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A large general-purpose Lemmy instance run by a Dutch volunteer foundation that also operates mastodon.world, a no-install way into fediverse forums.",
+   "scores": {
+    "transparency": 72,
+    "accessibility": 58
+   },
+   "provenance": {
+    "transparency": {
+     "note": "The Fedihosting Foundation's about page says it is 'a non-profit foundation based in the Netherlands', founded by two fediverse admins in December 2023, and that it runs about 20 instances including Lemmy.World. The footer gives its Dutch Chamber of Commerce (KvK) number, and the navigation links to donation pages. No financial statements are linked from the page.",
+     "source": "https://fedihosting.foundation/about-us/",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "lemmy.world's public site data shows registration set to require an application, so a new account waits for moderator approval. The instance reports about 200,000 registered users and about 12,600 active in the past month. Its sidebar warns that you cannot post or comment while connected through a VPN or Tor.",
+     "source": "https://lemmy.world/api/v3/site",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "lemmy.world",
+     "url": "https://lemmy.world/"
+    },
+    {
+     "label": "Fedihosting Foundation: about",
+     "url": "https://fedihosting.foundation/about-us/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Community-run",
+    "Nonprofit",
+    "No install"
+   ],
+   "valueSignature": {
+    "honesty": 72,
+    "cost": 58
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fedihosting.foundation",
+    "sourceLabels": [
+     "fedihosting.foundation",
+     "lemmy.world"
+    ]
+   }
+  },
+  {
+   "code": "mbin",
+   "name": "Mbin",
+   "brand": "Mbin",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A community-run fork and continuation of /kbin: a link aggregator, forum and microblogging server on ActivityPub, written in PHP.",
+   "scores": {
+    "openness": 85,
+    "accessibility": 40
+   },
+   "provenance": {
+    "openness": {
+     "note": "Mbin's README marks it AGPL-3.0 and describes 'a decentralized content aggregator, voting, discussion, and microblogging platform running on the fediverse' that talks to Mastodon, Lemmy, Pixelfed, Pleroma and PeerTube over ActivityPub. It calls itself 'a fork and continuation of' /kbin, run by community consensus.",
+     "source": "https://raw.githubusercontent.com/MbinOrg/mbin/main/README.md",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "The README's requirements list PHP 8.5 or newer, Node 24 or newer, a web server (NGINX, Apache or Caddy), PostgreSQL, RabbitMQ and Valkey, KeyDB or Redis, with Mercure optional. That is one of the heavier stacks in this roster.",
+     "source": "https://raw.githubusercontent.com/MbinOrg/mbin/main/README.md",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "README",
+     "url": "https://raw.githubusercontent.com/MbinOrg/mbin/main/README.md"
+    },
+    {
+     "label": "Documentation",
+     "url": "https://docs.joinmbin.org/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "Open source",
+    "Forums"
+   ],
+   "valueSignature": {
+    "privacy": 85,
+    "cost": 40
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "raw.githubusercontent.com"
+   }
+  },
+  {
+   "code": "sharkey",
+   "name": "Sharkey",
+   "brand": "Sharkey",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A Misskey-derived ActivityPub microblogging server that adds the Mastodon client API and sign-up approval for moderators.",
+   "scores": {
+    "openness": 85,
+    "accessibility": 45
+   },
+   "provenance": {
+    "openness": {
+     "note": "Sharkey's README describes an 'open source, decentralized social media platform' whose ActivityPub support lets users follow people on Mastodon and Pixelfed. The repository's LICENSE file is the GNU Affero General Public License v3.",
+     "source": "https://activitypub.software/TransFem-org/Sharkey/-/raw/stable/README.md",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Sharkey's install guide lists 'more than 2GB of free RAM, we recommend at least 4GB', Node.js 22.11 or later, PostgreSQL 15 or later, Redis, FFmpeg and a C build toolchain, with a Docker Compose route as the alternative. That is similar to Mastodon's footprint.",
+     "source": "https://docs.joinsharkey.org/docs/install/fresh/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Install guide",
+     "url": "https://docs.joinsharkey.org/docs/install/fresh/"
+    },
+    {
+     "label": "Licence",
+     "url": "https://activitypub.software/TransFem-org/Sharkey/-/raw/stable/LICENSE"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "Open source",
+    "ActivityPub"
+   ],
+   "valueSignature": {
+    "privacy": 85,
+    "cost": 45
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "activitypub.software",
+    "sourceLabels": [
+     "activitypub.software",
+     "docs.joinsharkey.org"
+    ]
+   }
+  },
+  {
+   "code": "iceshrimp-net",
+   "name": "Iceshrimp.NET",
+   "brand": "Iceshrimp",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A ground-up .NET rewrite of the Iceshrimp ActivityPub server, still labelled beta, with no flagship instance and commercialisation listed as an anti-goal.",
+   "scores": {
+    "openness": 85
+   },
+   "provenance": {
+    "openness": {
+     "note": "The README describes Iceshrimp as 'a decentralized and federated social networking service, implementing the ActivityPub standard' and tests its Mastodon-compatible API against common clients. The repository's LICENSE file is the European Union Public Licence 1.2, a copyleft licence. The README also says this is still beta software.",
+     "source": "https://iceshrimp.dev/iceshrimp/Iceshrimp.NET/raw/branch/dev/README.md",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "README",
+     "url": "https://iceshrimp.dev/iceshrimp/Iceshrimp.NET/raw/branch/dev/README.md"
+    },
+    {
+     "label": "Licence",
+     "url": "https://iceshrimp.dev/iceshrimp/Iceshrimp.NET/raw/branch/dev/LICENSE"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "Open source",
+    "Beta"
+   ],
+   "valueSignature": {
+    "privacy": 85
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "iceshrimp.dev"
+   }
+  },
+  {
+   "code": "writefreely",
+   "name": "WriteFreely",
+   "brand": "Musing Studio",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A minimalist blogging server written in Go, whose blogs can be followed from Mastodon and other ActivityPub software; the team also sells hosted instances through Write.as.",
+   "scores": {
+    "openness": 88,
+    "accessibility": 88,
+    "transparency": 65
+   },
+   "provenance": {
+    "openness": {
+     "note": "WriteFreely's README says it is licensed under the AGPL, copyright Musing Studio LLC and contributors. It says WriteFreely sites can connect with communities running WriteFreely, Plume or 'other ActivityPub-powered software'.",
+     "source": "https://raw.githubusercontent.com/writefreely/writefreely/develop/README.md",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "WriteFreely's homepage says it is written in Go and takes very few resources, so 'you can even run it on a Raspberry Pi'. It also says 'Installation is as easy as downloading a binary and a few supporting files, no other dependencies required.'",
+     "source": "https://writefreely.org/",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "The README names Musing Studio LLC as the copyright holder. It points to Write.as, 'a hosted service from the team behind WriteFreely', and says paying for it helps 'directly fund our free software work', which tells a reader both who builds it and how it is paid for.",
+     "source": "https://raw.githubusercontent.com/writefreely/writefreely/develop/README.md",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://writefreely.org/"
+    },
+    {
+     "label": "README",
+     "url": "https://raw.githubusercontent.com/writefreely/writefreely/develop/README.md"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "Open source",
+    "Blogging"
+   ],
+   "valueSignature": {
+    "honesty": 65,
+    "privacy": 88,
+    "cost": 88
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "raw.githubusercontent.com",
+    "sourceLabels": [
+     "raw.githubusercontent.com",
+     "writefreely.org"
+    ]
+   }
+  },
+  {
+   "code": "funkwhale",
+   "name": "Funkwhale",
+   "brand": "Funkwhale Collective",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A federated server for music libraries and podcasts, maintained by a non-profit collective, that you can join on an existing pod or run yourself.",
+   "scores": {
+    "openness": 88,
+    "accessibility": 60,
+    "transparency": 78
+   },
+   "provenance": {
+    "openness": {
+     "note": "The LICENSE file in Funkwhale's unified repository is the GNU Affero General Public License, version 3.",
+     "source": "https://dev.funkwhale.audio/funkwhale/funkwhale/-/raw/develop/LICENSE",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Funkwhale's homepage says 'The easiest way to start using Funkwhale is to register an account on one of the many available pods', while 'Running your own pod requires some system administration skills'. It names two third-party hosts, Weingärtner IT and Cloud68, for people who want a pod run for them.",
+     "source": "https://www.funkwhale.audio/",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "The homepage says Funkwhale is 'maintained by a non-profit organization called the Funkwhale Collective', credits funding support to the NLnet Foundation and links a donation page. It does not publish financial statements the way Fosstodon's foundation commits to.",
+     "source": "https://www.funkwhale.audio/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.funkwhale.audio/"
+    },
+    {
+     "label": "Install docs",
+     "url": "https://docs.funkwhale.audio/administrator/installation/index.html"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "Open source",
+    "Music and podcasts"
+   ],
+   "valueSignature": {
+    "honesty": 78,
+    "privacy": 88,
+    "cost": 60
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "funkwhale.audio",
+    "sourceLabels": [
+     "funkwhale.audio",
+     "dev.funkwhale.audio"
+    ]
+   }
+  },
+  {
+   "code": "bookwyrm",
+   "name": "BookWyrm",
+   "brand": "BookWyrm",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A federated social-reading server for tracking, reviewing and discussing books, a fediverse alternative to Goodreads, released under a licence that restricts who may use it.",
+   "scores": {
+    "openness": 55,
+    "accessibility": 50,
+    "longevity": 85
+   },
+   "provenance": {
+    "openness": {
+     "note": "BookWyrm federates over ActivityPub, but its LICENSE is the Anti-Capitalist Software License v1.4, 'released for free use by individuals and organizations that do not operate by capitalist principles'. It allows use only by individuals, non-profits, educational institutions and worker-owned organisations, and bars law enforcement and the military. That is narrower than the open-source licences elsewhere in this list.",
+     "source": "https://raw.githubusercontent.com/bookwyrm-social/bookwyrm/main/LICENSE.md",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "BookWyrm's production install guide opens with a warning: 'This project is still young and isn't, at the moment, very stable, so please proceed with caution when running in production.' It asks for a domain, firewall setup, an outside email service such as Mailgun, and Docker with docker-compose.",
+     "source": "https://docs.joinbookwyrm.com/install-prod.html",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "BookWyrm's migration guide says an account export includes profile, settings, reading goals, shelves, reading history, reviews, statuses, lists, follows and blocks, and can be imported on another BookWyrm instance. Direct messages, replies, groups and favourites are not included. Moving an account notifies followers 'including followers from non-BookWyrm servers'.",
+     "source": "https://docs.joinbookwyrm.com/user-migration.html",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Licence",
+     "url": "https://raw.githubusercontent.com/bookwyrm-social/bookwyrm/main/LICENSE.md"
+    },
+    {
+     "label": "User migration docs",
+     "url": "https://docs.joinbookwyrm.com/user-migration.html"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "Social reading",
+    "Restrictive licence"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "privacy": 55,
+    "cost": 50
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "docs.joinbookwyrm.com",
+    "sourceLabels": [
+     "docs.joinbookwyrm.com",
+     "raw.githubusercontent.com"
+    ]
+   }
+  },
+  {
+   "code": "hubzilla",
+   "name": "Hubzilla",
+   "brand": "Hubzilla Association",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A PHP community server combining social networking, cloud files, blogs, wikis and webpages, built around a portable 'nomadic' identity, with ActivityPub available as an addon.",
+   "scores": {
+    "openness": 85,
+    "accessibility": 50,
+    "longevity": 88,
+    "transparency": 62
+   },
+   "provenance": {
+    "openness": {
+     "note": "Hubzilla's LICENSE is the permissive MIT licence, granting anyone the right to 'use, copy, modify, merge, publish, distribute, sublicense, and/or sell' copies. ActivityPub support is not in the core: it comes from the PubCrawl addon in Hubzilla's separate addons repository.",
+     "source": "https://framagit.org/hubzilla/core/-/raw/master/LICENSE",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Hubzilla's install guide warns that it 'more closely resembles an email server than a web server' and that 'Not every PHP/MySQL hosting provider will be able to support Hubzilla.' It requires PHP 8.2 or later with many extensions, MySQL, MariaDB or PostgreSQL, cron, working outbound mail, and its own domain or subdomain.",
+     "source": "https://framagit.org/hubzilla/core/-/raw/master/install/INSTALL.txt",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Hubzilla's README says 'Migration and live backups of your connections, settings, and everything you publish are built-in, so you never need worry about server failure.' That covers more of an account than Mastodon's follower-only move.",
+     "source": "https://framagit.org/hubzilla/core/-/raw/master/README.md",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "The Hubzilla Association's page says it supports the development, promotion and distribution of Hubzilla and links its articles of association and an imprint. It says members discuss how funds are used in a members-only forum, so the accounts are not public.",
+     "source": "https://hubzilla.org/page/info/association",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "README",
+     "url": "https://framagit.org/hubzilla/core/-/raw/master/README.md"
+    },
+    {
+     "label": "Hubzilla Association",
+     "url": "https://hubzilla.org/page/info/association"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "Open source",
+    "Nomadic identity"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "honesty": 62,
+    "privacy": 85,
+    "cost": 50
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "framagit.org",
+    "sourceLabels": [
+     "framagit.org",
+     "hubzilla.org"
+    ]
+   }
+  },
+  {
+   "code": "bluesky",
+   "name": "Bluesky",
+   "brand": "Bluesky Social PBC",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A mainstream microblogging app built on its company's own open AT Protocol rather than ActivityPub: it supports federated hosting and account portability, but does not natively join the ActivityPub servers in this list.",
+   "scores": {
+    "accessibility": 88,
+    "openness": 70,
+    "transparency": 65,
+    "longevity": 80
+   },
+   "provenance": {
+    "accessibility": {
+     "note": "Bluesky's App Store listing shows it is free to download, with about 14,000 ratings averaging 3.9 and a #87 chart position in Social Networking. Its version history shows updates through October 2026.",
+     "source": "https://apps.apple.com/us/app/bluesky-social/id6444370199",
+     "asof": "2026-10"
+    },
+    "openness": {
+     "note": "Bluesky's FAQ says 'It is a federated network with account portability' built on the AT Protocol. It says that although Bluesky shares the term federation with Mastodon, 'the way it works is very different'. Because it does not use ActivityPub, it does not interoperate directly with the other servers in this roster, unlike Threads' opt-in bridge.",
+     "source": "https://bsky.social/about/faq",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Bluesky's own blog names the investors in its $100M Series B: it was led by Bain Capital Crypto, with Alumni Ventures, Anthos Capital, Bloomberg Beta, Knight Foundation and True Ventures. The post says founder Jay Graber moved to Chief Innovation Officer. The site states Bluesky is a Public Benefit Corporation; the post gives no revenue figures.",
+     "source": "https://bsky.social/about/blog/03-19-2026-series-b",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "The AT Protocol's migration guide describes moving an account's public repository, media and preferences to a new data server and repointing the same identity (DID and handle) at it. 'If the old PDS is inaccessible, a mirror might be available from a public relay, or a local backup might be available.' For a ready-made route the guide points to tools such as goat or the community-built PDS MOOver rather than a button in the app, and it notes some servers lock incoming migrations.",
+     "source": "https://atproto.com/guides/account-migration",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Bluesky FAQ",
+     "url": "https://bsky.social/about/faq"
+    },
+    {
+     "label": "AT Protocol licence (README)",
+     "url": "https://raw.githubusercontent.com/bluesky-social/atproto/main/README.md"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Mainstream",
+    "AT Protocol",
+    "Not ActivityPub"
+   ],
+   "valueSignature": {
+    "planet": 80,
+    "honesty": 65,
+    "privacy": 70,
+    "cost": 88
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "bsky.social",
+    "sourceLabels": [
+     "bsky.social",
+     "apps.apple.com",
+     "atproto.com"
     ]
    }
   }

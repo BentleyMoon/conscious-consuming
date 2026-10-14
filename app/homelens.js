@@ -381,7 +381,7 @@
       node.spread = members.length ? node.spread / members.length : 0;
       node.checkable = optionTotal ? checkedTotal / optionTotal : 0;
       node.coverage = node.totalCount ? node.builtCount / node.totalCount : 0;
-      node.scent = plural(node.totalCount, 'decision') + '; ' + node.builtCount + ' answered';
+      node.scent = plural(node.totalCount, 'comparison') + '; ' + node.builtCount + ' answered';
       return node;
     }
 
@@ -520,15 +520,15 @@
        the information architecture contract has banned it, with domain, selector and ontology,
        since 2026-07-20. A reader is moving between needs, the areas inside them, the decisions,
        and then inside one. */
-    var LEVEL_SAYS = ['needs', 'areas', 'kinds', 'decisions', 'evidence'];
-    var FISH_DEPTHS = ['domains', 'needs', 'fields', 'families', 'decisions', 'evidence'];
+    var LEVEL_SAYS = ['needs', 'areas', 'types', 'comparisons', 'evidence'];
+    var FISH_DEPTHS = ['sections', 'needs', 'fields', 'families', 'comparisons', 'evidence'];
 
     function loadingFishRows() {
       return [{ id: 'whole-map', label: 'Whole map', color: TH.accent, route: null, cells: [{
         id: 'whole-map-loading', label: wideStatus === 'error' ? 'The whole map could not be loaded' : 'Loading the whole map',
         kind: 'status', state: wideStatus, route: null, color: TH.accent, api: 0, apiNorm: 1,
         stakes: 0, spread: 0, count: 0, checkable: 0, receipt: [], lenses: {},
-        scent: wideStatus === 'error' ? wideError : '1,068 decisions stay off the boot path until this view is opened.',
+        scent: wideStatus === 'error' ? wideError : 'The whole map, 1,068 comparisons, loads when this view opens.',
         totalCount: 1, builtCount: 0, openCount: 0, heldCount: 0, refusedCount: 0,
         coverage: 0, memberKeys: [], builtKeys: []
       }] }];
@@ -605,7 +605,7 @@
         pendingFish = null;
         focusFishAnchor(fishDepth);
         layout(); draw(); emitContext();
-        say((wide.totals.decisions || 0) + ' decisions loaded; ' + (wide.totals.built || 0) + ' have answers.');
+        say((wide.totals.decisions || 0) + ' comparisons loaded; ' + (wide.totals.built || 0) + ' have answers.');
       }).catch(function (err) {
         wideStatus = 'error'; wideError = err && err.message ? err.message : 'Unknown error';
         box.dataset.mapState = 'error'; layout(); draw(); emitContext();
@@ -615,16 +615,16 @@
 
     function updateA11y() {
       var spatial = 'Spatial map of the catalogue. It opens at the areas inside eight needs. ' +
-        'Point to inspect. Select or scroll to move from needs to areas, kinds, decisions, and the evidence inside one. ' +
+        'Point to inspect. Select or scroll to move from needs to areas, types, comparisons, and the evidence inside one. ' +
         'At the outer depth edges the wheel scrolls the page. Keyboard: arrows move, Enter descends or opens, ' +
         'plus and minus change depth, and Escape climbs out. On a narrow screen the deeper views open one need at a ' +
         'time; the left and right arrows move between them.';
-      var fish = 'Fisheye view of the whole catalogue map. Move away from the centre to travel; ' +
-        'farther moves faster, and stopping enlarges the focused choice. Scroll moves through domains, needs, fields, ' +
-        'families, decisions, and evidence. At the two widest depths a list at the right names every domain; select a ' +
-        'name to go into it. An open decision opens a request for it. At the outer depth ' +
+      var fish = 'Zoom lens view of the whole catalogue map. Move away from the centre to travel; ' +
+        'farther moves faster, and stopping enlarges the focused choice. Scroll moves through sections, needs, fields, ' +
+        'families, comparisons, and evidence. At the two widest depths a list at the right names every section; select a ' +
+        'name to go into it. An open comparison opens a request for it. At the outer depth ' +
         'edges the wheel scrolls the page. Keyboard: arrows move, Enter descends or opens, plus and minus change depth, ' +
-        'and Escape climbs out. On a narrow screen the deeper views open one domain at a time; the left and right ' +
+        'and Escape climbs out. On a narrow screen the deeper views open one section at a time; the left and right ' +
         'arrows move between them.';
       canvas.setAttribute('aria-label', mode === 'fisheye' ? fish : spatial);
       canvas.style.cursor = coarse ? 'grab' : (mode === 'fisheye' ? 'crosshair' : 'pointer');
@@ -668,7 +668,7 @@
       return mode === 'fisheye' ? (!!wide && wideStatus === 'ready' && fishDepth >= 2) : level >= 2;
     }
     function fullPane() { return !!accHeader && !accHeader.side; }
-    function receiptOf(c) { return plural(c.totalCount || 0, 'decision') + ', ' + (c.builtCount || 0) + ' answered'; }
+    function receiptOf(c) { return plural(c.totalCount || 0, 'comparison') + ', ' + (c.builtCount || 0) + ' answered'; }
     /* Wide enough for the longest name and receipt it must hold, measured in the fonts it draws
        with: a fixed share of the width clipped "165 decisions, 10 answered" at 700 px. */
     function railWidth() {
@@ -784,15 +784,15 @@
           scale: FISH_DEPTHS.slice(), at: fishDepth,
           hint: wideStatus === 'loading' ? 'The whole map is loaded only when this view is opened.'
               : wideStatus === 'error' ? 'The built catalogue remains available in Spatial.'
-              : fishDepth <= 1 && narrowPlate() ? (fishDepth === 0 ? 'Sixteen domains' : 'Eight needs') +
-                ', each band lit as far as its decisions have a sourced answer.'
-              : fishDepth <= 1 ? (fishDepth === 0 ? 'Sixteen domains' : 'Eight needs') +
-                '. Each square is a decision: filled has a sourced answer, outlined is open, a dash is held back, dotted is out of scope.'
-              : fishDepth === 2 ? 'Fields are shown inside their actual domain, not under an invented parent.'
+              : fishDepth <= 1 && narrowPlate() ? (fishDepth === 0 ? 'Sixteen sections' : 'Eight needs') +
+                ', each band lit as far as its comparisons have a sourced answer.'
+              : fishDepth <= 1 ? (fishDepth === 0 ? 'Sixteen sections' : 'Eight needs') +
+                '. Each square is a comparison: filled has a sourced answer, outlined is open, a dash is held back, dotted is out of scope.'
+              : fishDepth === 2 ? 'Fields are shown inside their actual section, not under an invented parent.'
               : fishDepth === 3 ? 'Families keep the map’s authored grouping.'
-              : fishDepth === 4 ? 'Built decisions are lit. Open, held, and refused ground stays visible.'
-              : (anchor && anchor.state !== 'built' ? 'This decision has no published evidence; its map state is shown honestly.'
-                 : 'The focused decision is showing its published measures.')
+              : fishDepth === 4 ? 'Built comparisons are lit. Open, held, and refused ground stays visible.'
+              : (anchor && anchor.state !== 'built' ? 'This comparison has no published evidence; its map state is shown honestly.'
+                 : 'The focused comparison is showing its published measures.')
         };
       }
       var active = (eng > 0.05 || kbd) ? cellAt(shownR, shownU, level) : null;
@@ -801,7 +801,7 @@
                  crumbs: [{ label: 'All needs', level: 0 },
                            { label: LEVEL_SAYS[level], level: level, current: true }],
                  scale: LEVEL_SAYS.slice(), at: level,
-                 hint: level === 1 ? 'Choose an area to see the kinds inside.' : 'Point anywhere to begin.' };
+                 hint: level === 1 ? 'Choose an area to see the types inside.' : 'Point anywhere to begin.' };
       }
       var path = [row.label];
       var crumbs = [{ label: row.label, level: 0 }];
@@ -821,10 +821,10 @@
         mode: mode, level: level, path: path, crumbs: crumbs,
         scale: LEVEL_SAYS.slice(), at: level,
         hint: level === 0 ? 'Choose a need to see its areas.'
-            : level === 1 ? 'Choose an area to see the kinds inside.'
-            : level === 2 ? 'Choose a kind to see its decisions.'
+            : level === 1 ? 'Choose an area to see the types inside.'
+            : level === 2 ? 'Choose a type to see its comparisons.'
             : level === 3 ? 'Select again to open, or move deeper to inspect evidence.'
-            : 'The focused decision is showing its published evidence.'
+            : 'The focused comparison is showing its published evidence.'
       };
     }
 
@@ -920,7 +920,7 @@
 
     function rowNoun(n) {
       if (mode === 'spatial') return n === 1 ? 'need' : 'needs';
-      return fishDepth >= 5 ? (n === 1 ? 'decision' : 'decisions') : (n === 1 ? 'domain' : 'domains');
+      return fishDepth >= 5 ? (n === 1 ? 'comparison' : 'comparisons') : (n === 1 ? 'section' : 'sections');
     }
 
     // Move the open pane to the neighbouring row, landing on its first item.
@@ -1120,7 +1120,7 @@
           : cell.state === 'refused' ? 'outside this catalogue' : cell.state;
         return plural(cell.count || 0, 'option') + '; ' + Math.round((cell.checkable || 0) * 100) + '% second-sourced';
       }
-      return plural(cell.totalCount || 0, 'decision') + '; ' + (cell.builtCount || 0) + ' answered';
+      return plural(cell.totalCount || 0, 'comparison') + '; ' + (cell.builtCount || 0) + ' answered';
     }
 
     function mapAlpha(cell, isFocus, dim) {
@@ -1236,7 +1236,7 @@
         if (c.kind === 'status') return { lit: 0, count: '' };
         return { lit: c.coverage || 0, count: (c.builtCount || 0) + ' of ' + (c.totalCount || 0) + ' answered' };
       }
-      return { lit: null, count: c.members ? plural(c.members.length, 'decision') : plural(c.count || 0, 'option') };
+      return { lit: null, count: c.members ? plural(c.members.length, 'comparison') : plural(c.count || 0, 'option') };
     }
 
     function drawBand(ctx, L, c, col, isFocus, dim) {
@@ -1475,7 +1475,7 @@
         }
         if (level === 2 && c.kind === 'family') {
           var kindName = c.label; descendLevel();
-          say(kindName + '. ' + plural((c.members || []).length, 'decision') + '.');
+          say(kindName + '. ' + plural((c.members || []).length, 'comparison') + '.');
           return true;
         }
         if (already && c.route) { location.hash = c.route; return true; }
@@ -1524,7 +1524,7 @@
           ctx.font = '600 ' + Math.max(9, bf - 5) + 'px ' + TH.font;
           ctx.globalAlpha = 0.85;
           ctx.textAlign = 'right';
-          ctx.fillText(plural(B.row.cells.length, 'decision'), W - 8, B.y + 7);
+          ctx.fillText(plural(B.row.cells.length, 'comparison'), W - 8, B.y + 7);
           ctx.textAlign = 'left';
           if (B.row.reads && B.h > bf + 22) {
             ctx.font = Math.max(9, bf - 4) + 'px ' + TH.font;
@@ -1745,7 +1745,7 @@
                : (focused ? focused.label
                : (mode === 'spatial' && level === 1 ? 'Areas inside eight needs'
                : (mode === 'spatial' && level === 2 ? 'Kinds inside each area'
-               : (mode === 'spatial' && level === 4 ? 'Evidence inside one decision' : 'Every decision here'))));
+               : (mode === 'spatial' && level === 4 ? 'Evidence inside one comparison' : 'Every comparison here'))));
       ctx.font = '600 10px ' + TH.font; ctx.fillStyle = TH.ink;
       var lw = ctx.measureText(lead).width;
       ctx.fillText(fit(ctx, lead, cx - 20), 8, HEAD / 2);
@@ -1984,7 +1984,7 @@
       }
       updateA11y(); layout(); draw();
       if (spoken !== false) say(mode === 'fisheye'
-        ? 'Fisheye navigation. Scroll from domains through needs, fields, families, decisions, and evidence.'
+        ? 'Zoom lens. Scroll from sections through needs, fields, families, comparisons, and evidence.'
         : 'Spatial navigation. Areas inside eight needs.');
       return true;
     }
@@ -2040,7 +2040,7 @@
       focusAncestor(row, anchor, target);
       shownR = focusR; shownU = focusU; eng = engTarget = 1;
       updateA11y(); layout(); draw();
-      if (spoken !== false) say('Spatial view: ' + LEVEL_SAYS[target] + '.');
+      if (spoken !== false) say('Grid view: ' + LEVEL_SAYS[target] + '.');
       return true;
     }
 
@@ -2054,7 +2054,7 @@
         } else { focusR = shownR = 0; focusU = shownU = 0; loadWideWorld(); }
         velX = velY = 0; pointerIn = false; flat = 0; kbd = false; wheelAcc = 0;
         layout(); draw();
-        if (spoken !== false) say('Fisheye reset to domains.');
+        if (spoken !== false) say('Zoom lens reset to sections.');
         return true;
       }
       level = levelShown = 1; fishDepth = fishDepthShown = 0;
@@ -2227,12 +2227,12 @@
       var now = cellAt(focusR, focusU);
       if (pressLevel === 1 && now && now.kind === 'area') {
         var areaName = now.label; descendLevel();
-        say(areaName + '. Choose a kind inside it.');
+        say(areaName + '. Choose a type inside it.');
         return;
       }
       if (pressLevel === 2 && now && now.kind === 'family') {
         var familyName = now.label; descendLevel();
-        say(familyName + '. ' + plural(now.members.length, 'decision') + '.');
+        say(familyName + '. ' + plural(now.members.length, 'comparison') + '.');
         return;
       }
       if (was && now === was) { location.hash = now.route; return; }
@@ -2316,7 +2316,7 @@
       e.preventDefault();
       kbd = true; engTarget = 1; kick();
       var c = cellAt(focusR, focusU);
-      if (level === 0) say(rowAt(focusR).label + ', ' + plural(rowAt(focusR).cells.length, 'decision') + '. ' + (rowAt(focusR).reads || ''));
+      if (level === 0) say(rowAt(focusR).label + ', ' + plural(rowAt(focusR).cells.length, 'comparison') + '. ' + (rowAt(focusR).reads || ''));
       else if (c) say(c.label + ', in ' + rowAt(focusR).label + ', ' + STAKES_SAYS[c.stakes] +
                  (c.scent ? '. ' + c.scent : ''));
     });
@@ -2368,8 +2368,8 @@
     CC.homeLens.reset = function () { return resetView(); };
     CC.homeLens.modes = function () {
       return [
-        { id: 'spatial', label: 'Spatial', description: 'Zoom from eight needs to areas, kinds, decisions, and evidence.' },
-        { id: 'fisheye', label: 'Fisheye', description: 'Scroll through domains, needs, fields, families, decisions, and evidence. The whole map loads only when opened.' }
+        { id: 'spatial', label: 'Grid', description: 'Zoom from eight needs to areas, types, comparisons, and evidence.' },
+        { id: 'fisheye', label: 'Zoom lens', description: 'Scroll through sections, needs, fields, families, comparisons, and evidence. The whole map loads only when opened.' }
       ];
     };
 
@@ -2383,7 +2383,7 @@
         }
         var def = null;
         for (var l = 0; l < LENSES.length; l++) if (LENSES[l].id === lens) def = LENSES[l];
-        say((def ? def.label : lens) + ': ' + lit + ' decisions carry it; the rest stay in place, dimmed.');
+        say((def ? def.label : lens) + ': ' + lit + ' comparisons carry it; the rest stay in place, dimmed.');
       } else {
         say('All measures.');
       }
