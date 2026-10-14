@@ -127,7 +127,7 @@ edge: Everything eaten or drunk, where it is bought, and where it is eaten. Food
 - Kombucha and fermented drinks
 
 ### Water
-- Bottled water | aka: still water
+- Bottled water | cid: bottled-water | aka: still water, mineral water, spring water
 - Sparkling water
 - Water at home | aka: tap water, drinking water | hold: The decision here is a water supplier or a filter, and both are already decisions in Home. This line exists so the map does not imply drinking water is only something you buy in a bottle.
 

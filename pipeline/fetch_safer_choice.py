@@ -5,8 +5,16 @@ Build-time only. Caches Envirofacts rows in pipeline/raw_safer_choice and writes
 content/lenses/<id>.json so build_datasets.py can include the lens normally.
 
 Usage:
-  python pipeline/fetch_safer_choice.py
-  python pipeline/fetch_safer_choice.py --refresh --limit 5000
+  python pipeline/fetch_safer_choice.py --only floor-cleaners,carpet-cleaners
+  python pipeline/fetch_safer_choice.py --refresh --limit 10000
+
+Run with --only for new categories. dish-soap's lens has since been enriched by the register
+promotion step (pipeline/registers/promote_evidence.py), so regenerating it from this script
+would overwrite promoted provenance with the plainer notes below.
+
+Sectors probed 2026-10-14 (consumer products after merging one row per UPC into one product)
+and held below the 50-entry floor: Odor Removers 42, Automatic Dishwasher Products 17.
+All-Purpose Cleaners (121) is held as a duplicate of the hand-checked cleaning-products decision.
 """
 
 import argparse
@@ -48,9 +56,31 @@ CATEGORIES = [
         "id": "dish-soap",
         "label": "Dish soap",
         "sectors": ["Dish Soaps"],
+        "focus": "Dish soap",
+        "attribution": "Data from EPA Safer Choice / Envirofacts. Certification status and product metadata are public EPA data.",
+    },
+    {
+        "id": "floor-cleaners",
+        "label": "Floor cleaners",
+        "sectors": ["Floor Care Products : Floor Cleaners"],
+        "focus": "Floor cleaner",
+        "asof": "2026-10",
+        "attribution": "Data from EPA Safer Choice / Envirofacts. Certification status and product metadata are public EPA data.",
+    },
+    {
+        "id": "carpet-cleaners",
+        "label": "Carpet cleaners",
+        "sectors": ["Carpet Care Products : Carpet Cleaners"],
+        "focus": "Carpet cleaner",
+        "asof": "2026-10",
         "attribution": "Data from EPA Safer Choice / Envirofacts. Certification status and product metadata are public EPA data.",
     },
 ]
+# Every listing here is certified, so the decision is between certified products, not between
+# certified and uncertified ones. The tradeoff names the two signals that actually vary.
+PRIMARY_AXIS = "health"
+TRADEOFF = ["accessibility", "health"]
+TRADEOFF_LABELS = ["easiest to identify", "strongest safer-chemistry signal"]
 
 CRITERIA = [
     {"key": "certification", "label": "Safer Choice certification", "source": "EPA Safer Choice", "tier": "certified"},
@@ -68,7 +98,17 @@ PRESETS = {
 }
 
 
+_CSV = {}
+
+
 def fetch_csv(limit, retries=4):
+    """One download per run, however many categories read it."""
+    if limit not in _CSV:
+        _CSV[limit] = _fetch_csv(limit, retries)
+    return _CSV[limit]
+
+
+def _fetch_csv(limit, retries):
     url = EPA_DATA.format(limit=limit)
     last = None
     for attempt in range(retries):
@@ -150,11 +190,11 @@ def load_or_fetch(cat, args):
     return merged, "fetch"
 
 
-def prov(note, source):
-    return {"note": note, "source": source, "asof": ASOF}
+def prov(note, source, asof=ASOF):
+    return {"note": note, "source": source, "asof": asof}
 
 
-def score_row(row):
+def score_row(row, cat):
     good = truthy(row.get("company_in_good_standing"))
     has_identifier = bool(row.get("upcs") or row.get("gtins") or row.get("mpns"))
     has_url = bool(row.get("product_url"))
@@ -174,7 +214,8 @@ def score_row(row):
     program = row.get("program") or "Safer Choice"
     product = row.get("product_name") or "EPA-listed product"
     company = row.get("company_name") or "listed company"
-    sector = row.get("sector") or "Dish Soaps"
+    sector = row.get("sector") or cat["sectors"][0]
+    asof = cat.get("asof", ASOF)
 
     scores = {
         "certification": certification,
@@ -186,27 +227,27 @@ def score_row(row):
     provenance = {
         "certification": prov(
             f"EPA Envirofacts lists {product} by {company} in the {program} program; company good-standing status is {str(good).lower()}.",
-            source,
+            source, asof,
         ),
         "health": prov(
             "EPA says Safer Choice-labeled products must meet safer-chemical criteria for human health; fragrance-free status is listed separately when available.",
-            EPA_LABEL,
+            EPA_LABEL, asof,
         ),
         "environment": prov(
             "EPA says Safer Choice reviews environmental criteria such as aquatic toxicity, persistence and related safer-ingredient requirements.",
-            EPA_STANDARD,
+            EPA_STANDARD, asof,
         ),
         "transparency": prov(
             f"EPA Envirofacts publishes product, company, sector and identifier fields for this {sector} listing.",
-            source,
+            source, asof,
         ),
         "accessibility": prov(
             "EPA lists this as a consumer product" + (" with UPC/GTIN/MPN identifiers." if has_identifier else ", but without a UPC/GTIN/MPN identifier in this row."),
-            source,
+            source, asof,
         ),
     }
 
-    focuses = ["EPA Safer Choice", "Certified", "Dish soap"]
+    focuses = ["EPA Safer Choice", "Certified", cat.get("focus", cat["label"])]
     if fragrance_free:
         focuses.append("Fragrance-free")
     if outdoor_use:
@@ -235,13 +276,16 @@ def score_row(row):
 
 
 def build_lens(cat, rows):
-    products = [score_row(row) for row in rows if row.get("product_name")]
+    products = [score_row(row, cat) for row in rows if row.get("product_name")]
     products.sort(key=lambda p: (-sum(p["scores"].values()), p["brand"], p["name"]))
     return {
         "meta": {
             "id": cat["id"],
             "label": cat["label"],
             "type": "Products",
+            "primaryAxis": PRIMARY_AXIS,
+            "tradeoff": list(TRADEOFF),
+            "tradeoffLabels": list(TRADEOFF_LABELS),
             "source": "EPA Safer Choice / Envirofacts",
             "attribution": cat["attribution"],
             "allergens": False,
@@ -261,11 +305,16 @@ def build_lens(cat, rows):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--limit", type=int, default=5000, help="Envirofacts row range to request")
+    parser.add_argument("--limit", type=int, default=10000,
+                        help="Envirofacts row range to request (the register held 5,042 rows on 2026-10-14)")
     parser.add_argument("--refresh", action="store_true", help="refresh the local raw cache")
+    parser.add_argument("--only", default="", help="comma-separated category ids")
     args = parser.parse_args()
+    only = {x.strip() for x in args.only.split(",") if x.strip()}
 
     for cat in CATEGORIES:
+        if only and cat["id"] not in only:
+            continue
         print(f"== {cat['label']} ({cat['id']}) ==")
         rows, mode = load_or_fetch(cat, args)
         if len(rows) < 50:

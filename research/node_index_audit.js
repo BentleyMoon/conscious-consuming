@@ -44,7 +44,26 @@ function expect(condition, message) {
   if (!condition) failures.push(message);
 }
 
+// Kept in step with pipeline/build_nodes.js: the full Ask index is written one token per line.
+function formatAskIndex(value) {
+  const keys = Object.keys(value);
+  const lines = ['{'];
+  keys.forEach((key, i) => {
+    const comma = i === keys.length - 1 ? '' : ',';
+    const field = value[key];
+    if ((key === 'tokens' || key === 'aliases') && field && typeof field === 'object' && !Array.isArray(field)) {
+      const entries = Object.keys(field).map(k => JSON.stringify(k) + ':' + JSON.stringify(field[k]));
+      lines.push(`  ${JSON.stringify(key)}: {` + (entries.length ? '\n' + entries.join(',\n') + '\n  }' : '}') + comma);
+    } else {
+      lines.push(`  ${JSON.stringify(key)}: ` + JSON.stringify(field, null, 2).replace(/\n/g, '\n  ') + comma);
+    }
+  });
+  lines.push('}');
+  return lines.join('\n') + '\n';
+}
+
 function formatJson(value) {
+  if (value && value.format === 'ovs-ask-index') return formatAskIndex(value);
   return JSON.stringify(value, null, 2) + '\n';
 }
 

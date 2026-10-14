@@ -29,7 +29,7 @@ The rules are in [the standard](docs/STANDARD-v0.md), sections 1 to 3. In short:
   `certified` (a third-party certification) or `assessed` (a researched judgement, which must cite).
   A `certified` axis records whether a label was found, so it lowers a score but can never act as a
   dealbreaker.
-- **A second, independent source is worth more than a better sentence.** About three quarters of
+- **A second, independent source is worth more than a better sentence.** About four fifths of
   the entries rest on one source domain, often the seller's own site. Adding an independent source to
   an existing entry is among the most valuable changes you can make.
 

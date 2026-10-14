@@ -1,6 +1,6 @@
 # Mass Data Access Plan
 
-Updated: 2026-06-29
+Updated: 2026-10-14
 
 Purpose: find high-volume, source-honest ways to grow Conscious Consuming without lowering the evidence bar. Bulk sources should become generated or semi-generated content only when the source has clear public access, stable fields, licensing/attribution we can honor, and enough scorable rows to pass the roughly 50-entry floor.
 
@@ -90,6 +90,33 @@ The first 2,000 rows include large directly useful sectors: laundry detergents (
    - F-Droid can supply open-source, license, anti-feature, source-code and update fields.
    - Exodus Privacy can supply tracker/permission reports.
    - This should generate a distinct category such as `android-privacy-apps` or enrich `digital-services`, not overwrite the current hand-checked digital services lens.
+
+## Deepening the food caches (2026-10-14)
+
+The generated food categories were capped at 400 Open Food Facts records each (8 pages of 50 in `pipeline/fetch_raw.py`). Raising the cap was measured before it was changed.
+
+What a deeper cache costs, measured by fetching every food category to 1,000 records (the API ceiling, see below) and building:
+
+| Surface | Loaded | At 400 (HEAD) | At ~1,000 | Budget |
+| --- | --- | ---: | ---: | --- |
+| `app/data/nodes/ask-core.json` | eagerly, by every visitor | 619,947 B (100 KB gz) | 929,500 B | 780,000 B with 50 KB headroom (`node_index_audit.js`) |
+| `app/data/nodes/ask-index.json` | lazily, on product search | 5,677,509 B (1.07 MB gz) | 8,296,577 B (1.78 MB gz) | 6,000,000 B (`node_index_audit.js`) |
+| Largest category JSON | per category, on demand | ~0.9-1.3 MB | ~2.1 MB | none |
+| `app/data.js` (file:// fallback, committed, omitted from the public deploy) | never in served mode | 43.3 MB | 77.4 MB | GitHub warns at 50 MB, refuses at 100 MB |
+
+Category data loads per category and the service worker precaches only `index.json`, so per-category size was not the limit. The binding limit is the eager Ask core: every brand the deeper catalogue adds becomes a startup search target. At 1,000 per category it exceeded its budget by about 150 KB.
+
+What was done:
+
+- `ask-index.json` is now written one token per line instead of one posting per line. It parses to the identical object and keeps line-per-token diffs. The raw saving is about a fifth. gzip had already removed most of that whitespace in transit, so the gain is in raw bytes and parse work, not much in transfer. The 6 MB budget was not moved.
+- The cap is now 500 (`DEFAULT_CAP` in `fetch_raw.py`), fetched append-only with `--deepen`: existing records are kept byte for byte and new codes are added behind them in OFF's own order. Caches already above the cap (cheese, eggs, spices at 800) are unchanged.
+- Result: 24,228 -> 29,693 entries across 126 -> 130 categories. Ask core is at 717,398 B (62.6 KB headroom), the Ask index at 5,548,292 B (1.22 MB gz), and `app/data.js` at 52.4 MB.
+- Four new generated categories: `bottled-water` (OFF `waters`, 500 raw -> 446 scored), `fragrance` (OBF `perfumes`, 445 raw -> 120 scored, with the transparency criterion renamed "Lists ingredients" and every note saying a listed "parfum" can hide many undisclosed compounds), `floor-cleaners` (EPA Safer Choice, 64) and `carpet-cleaners` (EPA Safer Choice, 68).
+- Held: EPA Odor Removers (42 consumer products after merging one row per UPC) and Automatic Dishwasher Products (17) are below the floor. EPA All-Purpose Cleaners (121) duplicates the hand-checked `cleaning-products` decision. Alcohol, baby food and pet food stay held, as above. The 12 earlier beauty lenses were not deepened: they have been edited since generation, so regenerating them would overwrite that work.
+
+To go further, the app lane would need to lazy-load brand targets out of the startup Ask core and shard `ask-index.json`. With both done, the 1,000-record caches are one `fetch_raw.py --deepen --cap 1000` away.
+
+API limits observed. Open Food Facts documents 10 search requests a minute. The fetchers now wait 6.5 s between search requests, send a descriptive User-Agent, and do not retry 4xx answers. Anonymous search returns HTTP 401 past page 10 of 100, so the API path tops out near 1,000 records per tag. Deeper than that needs the bulk dump (`ingest_dump.py`). Intermittent 503s still happen, and the append-only deepen mode can be re-run to fill what they interrupted.
 
 ## Sources to avoid for bulk ingestion
 

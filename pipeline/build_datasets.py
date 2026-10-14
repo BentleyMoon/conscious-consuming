@@ -52,7 +52,7 @@ LABELS = {'plant-based-milk': 'Plant-based milk', 'milk': 'Milk', 'plant-based-y
           'flour-baking': 'Flour & baking',
           'canned-fish': 'Canned tuna & fish', 'fish-seafood': 'Fish & seafood',
           'frozen-pizza': 'Frozen pizza', 'ready-meals': 'Ready meals', 'dried-fruit': 'Dried fruit',
-          'spices-seasoning': 'Spices & seasonings'}
+          'spices-seasoning': 'Spices & seasonings', 'bottled-water': 'Bottled water'}
 ATTR = 'Data © Open Food Facts contributors (ODbL)'
 FOOD_PRESETS = {
     "Balanced": {"w": {"environment": 3, "processing": 3, "nutrition_grade": 3, "protein": 3, "low_sugar": 3, "ethics": 2}, "x": []},
@@ -310,6 +310,8 @@ FOOD_PRIMARY_AXIS = {
     "energy-drinks": "low_sugar",
     "ketchup": "low_sugar",
     "chocolate-spread": "low_sugar",
+    # Water's nutrition fields barely vary; the Green-Score (packaging and transport) does.
+    "bottled-water": "environment",
 }
 FOOD_TRADEOFF_LABEL = {
     "environment": "lowest-impact",
@@ -3541,7 +3543,7 @@ if os.path.isdir(LENSES):
                       'criteria': [{'key': c['key'], 'label': c.get('label', c['key'])} for c in ds.get('criteria', [])]})
         print(f'  lens {cid}: {len(ds["products"])} entries ({ds["meta"].get("type")})')
 
-ORDER = ['plant-based-milk', 'milk', 'plant-based-yogurt', 'eggs', 'breakfast-cereal', 'granola', 'oats', 'coffee', 'dark-chocolate', 'yogurt', 'olive-oil', 'bread', 'flour-baking', 'plant-based-meat', 'tea', 'pasta-sauce', 'nut-butter', 'nuts', 'fruit-juice', 'ice-cream', 'cheese', 'butter', 'crisps', 'biscuits', 'soda', 'honey', 'fruit-jam', 'rice', 'pasta', 'legumes', 'tofu', 'hummus', 'soups', 'canned-fish', 'fish-seafood', 'canned-tomatoes', 'canned-vegetables', 'frozen-vegetables', 'frozen-pizza', 'ready-meals', 'dried-fruit', 'cereal-bars', 'energy-drinks', 'crackers', 'ketchup', 'mayonnaise', 'salad-dressing', 'pickles', 'chocolate-spread', 'spices-seasoning', 'toothpaste', 'mouthwash', 'soap', 'body-wash', 'shampoo', 'deodorant', 'sunscreen', 'face-wash', 'face-cream', 'hand-cream', 'lip-balm', 'hair-conditioner', 'razors', 'period-products', 'cleaning-products', 'dish-soap', 'laundry', 'paper-goods', 'clothing', 'shoes', 'learning-resources', 'news-sources', 'music-streaming', 'books', 'digital-services', 'ai-assistants', 'password-managers', 'vpn', 'broadband-internet', 'mobile-carriers', 'smart-thermostats', 'phones', 'laptops', 'banking', 'payments', 'investing', 'causes-to-support', 'mission-businesses']
+ORDER = ['plant-based-milk', 'milk', 'plant-based-yogurt', 'eggs', 'breakfast-cereal', 'granola', 'oats', 'coffee', 'dark-chocolate', 'yogurt', 'olive-oil', 'bread', 'flour-baking', 'plant-based-meat', 'tea', 'pasta-sauce', 'nut-butter', 'nuts', 'fruit-juice', 'ice-cream', 'cheese', 'butter', 'crisps', 'biscuits', 'soda', 'honey', 'fruit-jam', 'rice', 'pasta', 'legumes', 'tofu', 'hummus', 'soups', 'canned-fish', 'fish-seafood', 'canned-tomatoes', 'canned-vegetables', 'frozen-vegetables', 'frozen-pizza', 'ready-meals', 'dried-fruit', 'cereal-bars', 'energy-drinks', 'crackers', 'ketchup', 'mayonnaise', 'salad-dressing', 'pickles', 'chocolate-spread', 'spices-seasoning', 'bottled-water', 'toothpaste', 'mouthwash', 'soap', 'body-wash', 'shampoo', 'deodorant', 'sunscreen', 'face-wash', 'face-cream', 'hand-cream', 'lip-balm', 'hair-conditioner', 'fragrance', 'razors', 'period-products', 'cleaning-products', 'dish-soap', 'floor-cleaners', 'carpet-cleaners', 'laundry', 'paper-goods', 'clothing', 'shoes', 'learning-resources', 'news-sources', 'music-streaming', 'books', 'digital-services', 'ai-assistants', 'password-managers', 'vpn', 'broadband-internet', 'mobile-carriers', 'smart-thermostats', 'phones', 'laptops', 'banking', 'payments', 'investing', 'causes-to-support', 'mission-businesses']
 # Needs-first ontology (v4) — expose the human need on every live category while preserving
 # the v3 domain/group compatibility fields and routes.
 ONT = os.path.normpath(os.path.join(HERE, '..', 'content', 'ontology.json'))

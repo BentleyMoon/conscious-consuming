@@ -342,7 +342,8 @@ function checkDecisionRegistry(index) {
   // 124 on 2026-08-26: messaging and browsers authored their own contracts in the split.
   // 126 on 2026-09-23: email and search left the shared digital-services dataset in the same
   // split, authoring their own contracts.
-  expect(contracts.length === 126, `content/decisions.json: expected 126 category contracts, found ${contracts.length}`);
+  // 130 on 2026-10-14: four generated categories from vetted bulk sources.
+  expect(contracts.length === 130, `content/decisions.json: expected 130 category contracts, found ${contracts.length}`);
   const categorySet = new Set(categories);
   expect(
     liveCategories.every((category) => categorySet.has(category)) && categories.every((category) => liveCategories.includes(category)),
