@@ -49,29 +49,33 @@
     "x": []
    }
   },
-  "n": 13,
+  "n": 30,
   "valueSignatureProfile": {
-   "entryCount": 13,
-   "signedEntries": 13,
-   "drawableEntries": 12,
+   "entryCount": 30,
+   "signedEntries": 30,
+   "drawableEntries": 29,
    "minimumThemesForBloom": 2,
    "themeCounts": {
-    "honesty": 13,
-    "cost": 4,
-    "local": 11
+    "honesty": 30,
+    "cost": 13,
+    "local": 23
    }
   },
   "provenanceProfile": {
-   "entryCount": 13,
-   "singleSourceEntries": 2,
-   "multiSourceEntries": 11,
+   "entryCount": 30,
+   "singleSourceEntries": 3,
+   "multiSourceEntries": 27,
    "noSourceEntries": 0,
    "noteOnlyEntries": 0,
-   "averageSourceDomains": 2.0,
+   "averageSourceDomains": 2.07,
    "topPrimarySources": [
     {
      "label": "B Lab",
-     "entries": 13
+     "entries": 29
+    },
+    {
+     "label": "alterecofoods.com",
+     "entries": 1
     }
    ]
   },
@@ -100,12 +104,12 @@
     },
     "receipt": {
      "dataset": "b-corporations",
-     "entryCount": 13,
+     "entryCount": 30,
      "criteria": [
       {
        "criterion": "certification",
        "readsAs": "certification",
-       "known": 13,
+       "known": 30,
        "minimum": 25,
        "maximum": 83,
        "spread": 58
@@ -113,7 +117,7 @@
       {
        "criterion": "ownership",
        "readsAs": "ownership",
-       "known": 11,
+       "known": 23,
        "minimum": 5,
        "maximum": 95,
        "spread": 90
@@ -121,15 +125,31 @@
       {
        "criterion": "economical",
        "readsAs": "cost",
-       "known": 4,
-       "minimum": 55,
+       "known": 13,
+       "minimum": 30,
        "maximum": 80,
-       "spread": 25
+       "spread": 50
       }
      ]
     }
    },
    "axes": [
+    {
+     "id": "cost-or-values",
+     "kind": "cost-values",
+     "label": "Cost or overall fit",
+     "question": "Lower cost or a stronger overall fit?",
+     "criteria": [
+      "economical",
+      "certification",
+      "ownership"
+     ],
+     "poles": [
+      "Lower cost",
+      "Stronger overall fit"
+     ],
+     "default": 50
+    },
     {
      "id": "ownership-or-certification",
      "kind": "tradeoff",
@@ -144,31 +164,20 @@
       "More verified"
      ],
      "default": 50
-    },
-    {
-     "id": "economical",
-     "kind": "criterion",
-     "label": "Cost",
-     "question": "Does lower cost matter more?",
-     "criteria": [
-      "economical"
-     ],
-     "poles": [
-      "Flexible",
-      "Lower cost"
-     ],
-     "default": 50
     }
    ],
    "budget": {
-    "available": false,
-    "mode": "none",
-    "knownEntries": 0,
-    "coverage": 0
+    "available": true,
+    "mode": "assessed-affordability-rank",
+    "criterion": "economical",
+    "minimumKnown": 5,
+    "knownEntries": 13,
+    "coverage": 0.4333
    },
    "archetypes": [
     "best-for-most",
-    "strictest-match"
+    "strictest-match",
+    "budget-honest"
    ],
    "page": {
     "stage": "approved-batch",
@@ -278,20 +287,28 @@
      "asof": "2026"
     },
     "ownership": {
-     "note": "A 2000 SEC filing shows Unilever's Conopco, Inc. and Unilever N.V. made a tender offer for Ben & Jerry's Homemade, Inc. that the Ben & Jerry's board approved, valuing the deal at $326 million; Unilever's chairmen said in the same release they were welcoming Ben & Jerry's into the Unilever family.",
-     "source": "https://www.sec.gov/Archives/edgar/data/0000768384/000095015700000169/0000950157-00-000169.txt",
-     "asof": "2026"
+     "note": "The Magnum Ice Cream Company's own brands page names Ben & Jerry's as one of its four global brands, alongside Magnum, Cornetto and Wall's. Unilever's investor page says the Magnum Ice Cream Company completed its separation from Unilever, with the demerger completed on 6 December 2025 and listing in Amsterdam, London and New York, and that Unilever kept a minority stake of under 20 percent. Ben & Jerry's was bought by Unilever in 2000 for $326 million, per a 2000 SEC filing, so it remains a subsidiary of a large listed multinational, now a different one.",
+     "source": "https://corporate.magnumicecream.com/en/brands.html",
+     "asof": "2026-10"
     }
    },
-   "description": "Vermont ice cream maker acquired by Unilever in 2000 for $326 million. B Lab's register lists the certified entity, Ben & Jerry's Homemade, Inc., as operating in the United States.",
+   "description": "Vermont ice cream maker acquired by Unilever in 2000 for $326 million and moved with Unilever's ice cream business into the separately listed Magnum Ice Cream Company when that demerger completed in December 2025. B Lab's register lists the certified entity, Ben & Jerry's Homemade, Inc., as operating in the United States.",
    "focuses": [
-    "Unilever subsidiary",
+    "Magnum Ice Cream subsidiary",
     "B Corp"
    ],
    "links": [
     {
      "label": "Website",
      "url": "https://www.benjerry.com/"
+    },
+    {
+     "label": "Unilever: Magnum Ice Cream Company demerger",
+     "url": "https://www.unilever.com/investors/the-magnum-ice-cream-company-demerger/"
+    },
+    {
+     "label": "SEC: 2000 Unilever tender offer",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000768384/000095015700000169/0000950157-00-000169.txt"
     }
    ],
    "region": [
@@ -312,7 +329,7 @@
     "primarySource": "B Lab",
     "sourceLabels": [
      "B Lab",
-     "sec.gov"
+     "corporate.magnumicecream.com"
     ]
    }
   },
@@ -943,6 +960,1083 @@
     "sourceLabels": [
      "B Lab",
      "nestle-nespresso.com"
+    ]
+   }
+  },
+  {
+   "code": "athleta",
+   "name": "Athleta",
+   "brand": "apparel",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 47,
+    "ownership": 15
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Athleta, Inc. as certified since March 2018 under Standards Version 1.6, with an overall B Impact Score of 94.5, against a median assessed business score of 50.9. Its earlier scores were 91.9 in 2022 and 84.3 in 2018, and the page lists a 2026 transparent assessment and disclosure report.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/athleta/",
+     "asof": "2026-10"
+    },
+    "ownership": {
+     "note": "Gap Inc.'s annual report on Form 10-K for fiscal 2025 says Athleta was 'Founded in 1998 and acquired by Gap Inc. in 2008' and lists it as one of Gap Inc.'s four brands, alongside Old Navy, Gap and Banana Republic. Gap Inc. is a publicly traded company that is not itself listed as a B Corp.",
+     "source": "https://www.sec.gov/Archives/edgar/data/39911/000162828026018573/gap-20260131.htm",
+     "asof": "2026-03"
+    }
+   },
+   "description": "Women's performance and lifestyle apparel brand with more than 250 stores in the United States and Canada. Gap Inc. bought it in 2008, and Gap's own filing describes it as one of the group's four brands.",
+   "focuses": [
+    "Gap Inc. subsidiary",
+    "B Corp"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://athleta.gap.com/"
+    },
+    {
+     "label": "B Lab register",
+     "url": "https://www.bcorporation.net/en-us/find-a-b-corp/company/athleta/"
+    },
+    {
+     "label": "Gap Inc. 10-K, fiscal 2025",
+     "url": "https://www.sec.gov/Archives/edgar/data/39911/000162828026018573/gap-20260131.htm"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "price": {
+    "tier": "$$$"
+   },
+   "valueSignature": {
+    "honesty": 47,
+    "local": 15
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "sec.gov"
+    ]
+   }
+  },
+  {
+   "code": "bombas",
+   "name": "Bombas",
+   "brand": "apparel",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 52,
+    "economical": 30
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Bombas LLC as certified since December 2017 under Standards Version 1.6, with an overall B Impact Score of 103.1, against a median assessed business score of 50.9. Its earlier scores were 96.6 in 2022 and 89.2 in 2017.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/bombas/",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Bombas's own home page lists an adult ankle sock 4-pack from its Sesame Street range at $74, about $18.50 a pair, and a youth calf sock 4-pack gift box at $46. That is several times the per-pair price of mainstream multipack socks.",
+     "source": "https://bombas.com/",
+     "asof": "2026-10"
+    }
+   },
+   "description": "Sock and basics brand founded in 2013. B Lab's register says the founders started it after learning that socks are the most requested clothing item at homeless shelters, and its own site says it donates on customers' behalf in the US and beyond. No primary source on its current ownership was found, so ownership is left unscored.",
+   "focuses": [
+    "Buy-one-give-one",
+    "B Corp"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://bombas.com/"
+    },
+    {
+     "label": "B Lab register",
+     "url": "https://www.bcorporation.net/en-us/find-a-b-corp/company/bombas/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "price": {
+    "tier": "$$$"
+   },
+   "valueSignature": {
+    "honesty": 52,
+    "cost": 30
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "bombas.com"
+    ]
+   }
+  },
+  {
+   "code": "cotopaxi",
+   "name": "Cotopaxi",
+   "brand": "apparel & outdoor gear",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 63,
+    "economical": 45
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Cotopaxi as certified since December 2015 under Standards Version 1.6, with an overall B Impact Score of 125.6, against a median assessed business score of 50.9. Its earlier scores were 93.6 in 2018 and 91.5 in 2015.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/cotopaxi/",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Cotopaxi's own backpack listing shows 27 backpacks priced from $60 to $255, with its Tasra 16L daypack at $90, in line with other premium outdoor brands rather than budget ones.",
+     "source": "https://www.cotopaxi.com/collections/backpacks",
+     "asof": "2026-10"
+    }
+   },
+   "description": "Utah outdoor gear company founded in 2013 as a Benefit Corporation with poverty alleviation in its charter, according to its B Lab register description. It is privately held; no current primary source on who controls it was found, so ownership is left unscored.",
+   "focuses": [
+    "Benefit Corporation",
+    "B Corp"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.cotopaxi.com/"
+    },
+    {
+     "label": "B Lab register",
+     "url": "https://www.bcorporation.net/en-us/find-a-b-corp/company/cotopaxi/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "price": {
+    "tier": "$$$"
+   },
+   "valueSignature": {
+    "honesty": 63,
+    "cost": 45
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "cotopaxi.com"
+    ]
+   }
+  },
+  {
+   "code": "grove-collaborative",
+   "name": "Grove Collaborative",
+   "brand": "household & personal care",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 50,
+    "ownership": 45
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Grove Collaborative Inc. as certified since June 2014 under Standards Version 1.6, with an overall B Impact Score of 100.9, against a median assessed business score of 50.9. Its earlier scores were 80.3 in 2020, 84.6 in 2016 and 85.4 in 2014. The register description calls it a B Corp and Public Benefit Corporation.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/grove-collaborative/",
+     "asof": "2026-10"
+    },
+    "ownership": {
+     "note": "Grove Collaborative Holdings, Inc.'s annual report on Form 10-K for 2025 lists its Class A common stock as trading under the symbol GROV on the New York Stock Exchange, and warns that the exchange may delist its securities.",
+     "source": "https://www.sec.gov/Archives/edgar/data/1841761/000184176126000010/grov-20251231.htm",
+     "asof": "2026-03"
+    }
+   },
+   "description": "Online retailer and maker of household cleaning and personal care products. It is a publicly traded Public Benefit Corporation listed on the New York Stock Exchange.",
+   "focuses": [
+    "Publicly traded",
+    "Public Benefit Corporation"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.grove.co/"
+    },
+    {
+     "label": "B Lab register",
+     "url": "https://www.bcorporation.net/en-us/find-a-b-corp/company/grove-collaborative/"
+    },
+    {
+     "label": "Grove 10-K, 2025",
+     "url": "https://www.sec.gov/Archives/edgar/data/1841761/000184176126000010/grov-20251231.htm"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "price": {
+    "tier": "$$"
+   },
+   "valueSignature": {
+    "honesty": 50,
+    "local": 45
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "sec.gov"
+    ]
+   }
+  },
+  {
+   "code": "innocent",
+   "name": "innocent",
+   "brand": "beverages",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 53,
+    "ownership": 10
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists innocent Drinks as certified since June 2018 under Standards Version 1.6, with an overall B Impact Score of 105.2, against a median assessed business score of 50.9, and says it operates in the United Kingdom, Ireland and much of Western Europe.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/innocent-drinks/",
+     "asof": "2026-10"
+    },
+    "ownership": {
+     "note": "UK Companies House lists European Refreshments, an Irish unlimited company, as holding 75 percent or more of the shares and voting rights of Fresh Trading Limited, innocent's UK company, with the right to appoint or remove directors. The Coca-Cola Company's list of subsidiaries, filed with its 2025 annual report, names both European Refreshments Unlimited Company and Fresh Trading Limited.",
+     "source": "https://find-and-update.company-information.service.gov.uk/company/03720071/persons-with-significant-control",
+     "asof": "2026-10"
+    }
+   },
+   "description": "London smoothie and juice maker founded in 1999. The UK ownership register and Coca-Cola's own filings show it is now a Coca-Cola subsidiary.",
+   "focuses": [
+    "Coca-Cola subsidiary",
+    "B Corp"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.innocentdrinks.co.uk/"
+    },
+    {
+     "label": "B Lab register",
+     "url": "https://www.bcorporation.net/en-us/find-a-b-corp/company/innocent-drinks/"
+    },
+    {
+     "label": "Coca-Cola subsidiaries list, 2025",
+     "url": "https://www.sec.gov/Archives/edgar/data/21344/000162828026010047/a20251231exhibit211.htm"
+    }
+   ],
+   "region": [
+    "UK",
+    "EU"
+   ],
+   "price": {
+    "tier": "$$"
+   },
+   "valueSignature": {
+    "honesty": 53,
+    "local": 10
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "find-and-update.company-information.service.gov.uk"
+    ]
+   }
+  },
+  {
+   "code": "natura",
+   "name": "Natura",
+   "brand": "cosmetics",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 68,
+    "ownership": 45
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Natura Cosméticos SA as certified since December 2014 under Standards Version 1.6, with an overall B Impact Score of 135.0, against a median assessed business score of 50.9. The register description says it was the first publicly traded company to certify, with renewals in 2017, 2020 and 2024.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/natura-cosmeticos-sa/",
+     "asof": "2026-10"
+    },
+    "ownership": {
+     "note": "Natura's investor relations site says Natura Cosméticos S.A. completed the incorporation of its former holding company Natura &Co in June 2025, and that from 2 July 2025 its shares trade as NATU3 on B3's Novo Mercado listing segment in Brazil. It is a publicly traded company.",
+     "source": "https://ri.natura.com.br/en/noticias/natura-completes-natura-and-co-incorporation-to-trade-as-natu3/",
+     "asof": "2025-06"
+    }
+   },
+   "description": "Brazilian cosmetics and personal care company sold mainly through direct-sales consultants. B Lab's register lists it in seven countries, six in Latin America plus France, which is the only one inside this catalogue's regions. Its former holding company, Natura &Co, was folded back into Natura Cosméticos in 2025.",
+   "focuses": [
+    "Publicly traded",
+    "B Corp"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.natura.com.br/"
+    },
+    {
+     "label": "B Lab register",
+     "url": "https://www.bcorporation.net/en-us/find-a-b-corp/company/natura-cosmeticos-sa/"
+    }
+   ],
+   "region": [
+    "EU"
+   ],
+   "price": {
+    "tier": "$$"
+   },
+   "valueSignature": {
+    "honesty": 68,
+    "local": 45
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "ri.natura.com.br"
+    ]
+   }
+  },
+  {
+   "code": "toms-of-maine",
+   "name": "Tom's of Maine",
+   "brand": "household & personal care",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 43,
+    "ownership": 10
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Tom's of Maine as certified since March 2019 under Standards Version 1.6, with an overall B Impact Score of 86.5, against a median assessed business score of 50.9 and a qualifying line of 80. Its earlier scores were 87.6 in 2023 and 93.6 in 2019, and the page lists a 2026 transparent assessment and disclosure report.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/toms-of-maine/",
+     "asof": "2026-10"
+    },
+    "ownership": {
+     "note": "Colgate-Palmolive's annual report on Form 10-K for 2025 lists Tom's of Maine among its own principal global and regional trademarks and names it among the brands under which Colgate sells toothpaste and deodorant.",
+     "source": "https://www.sec.gov/Archives/edgar/data/21665/000002166526000006/cl-20251231.htm",
+     "asof": "2026-02"
+    }
+   },
+   "description": "Natural toothpaste and deodorant brand started by Tom and Kate Chappell after they moved to Maine in 1968, according to its B Lab register description. Colgate-Palmolive's own filing lists it as a Colgate trademark.",
+   "focuses": [
+    "Colgate-Palmolive subsidiary",
+    "B Corp"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.tomsofmaine.com/"
+    },
+    {
+     "label": "B Lab register",
+     "url": "https://www.bcorporation.net/en-us/find-a-b-corp/company/toms-of-maine/"
+    },
+    {
+     "label": "Colgate-Palmolive 10-K, 2025",
+     "url": "https://www.sec.gov/Archives/edgar/data/21665/000002166526000006/cl-20251231.htm"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "price": {
+    "tier": "$$"
+   },
+   "valueSignature": {
+    "honesty": 43,
+    "local": 10
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "sec.gov"
+    ]
+   }
+  },
+  {
+   "code": "who-gives-a-crap",
+   "name": "Who Gives A Crap",
+   "brand": "household & personal care",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 63,
+    "economical": 40
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists the certified entity, Good Goods Holdings Pty Ltd, trading as Who Gives A Crap, as certified since February 2016 under Standards Version 1.6, with an overall B Impact Score of 125.5, against a median assessed business score of 50.9. Its earlier scores were 108.9 in 2018 and 101.1 in 2016.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/who-gives-a-crap/",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Who Gives A Crap's own US site lists 48 rolls of its 100% bamboo toilet paper at $75.00, about $1.56 a roll, well above typical supermarket toilet paper. The same page says the company donates 50 percent of its profits.",
+     "source": "https://us.whogivesacrap.org/pages/about-us",
+     "asof": "2026-10"
+    }
+   },
+   "description": "Australian toilet paper and tissue company selling recycled and bamboo paper by subscription. B Lab's register and its own site say it donates half its profits to sanitation and clean water work. Its ownership was not confirmed from a primary source, so ownership is left unscored.",
+   "focuses": [
+    "Profit-sharing for sanitation",
+    "B Corp"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://us.whogivesacrap.org/"
+    },
+    {
+     "label": "B Lab register",
+     "url": "https://www.bcorporation.net/en-us/find-a-b-corp/company/who-gives-a-crap/"
+    }
+   ],
+   "region": [
+    "US",
+    "UK"
+   ],
+   "price": {
+    "tier": "$$"
+   },
+   "valueSignature": {
+    "honesty": 63,
+    "cost": 40
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "us.whogivesacrap.org"
+    ]
+   }
+  },
+  {
+   "code": "triodos-bank",
+   "name": "Triodos Bank",
+   "brand": "bank",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 25,
+    "ownership": 80,
+    "economical": 40
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Triodos Bank N.V. as certified since 2015 and now under Standards Version 2.2, at certification year 'Year 0' of the five-year phased requirements; the page says Version 2.1 of the standards was released in August 2025. Its previous-certification data shows scores of 131.4 in 2022, 136.4 in 2018 and 126.7 in 2015 under the retired single-score system. As with Nespresso, the score here reflects only that the company is at Year 0 of the new standard; those old numbers are not comparable to the halved scores used elsewhere.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/triodos-bank-nv/",
+     "asof": "2026-10"
+    },
+    "ownership": {
+     "note": "The SAAT foundation's site says 'SAAT holds all shares in the capital of Triodos Bank to protect the mission and identity of Triodos Bank', issuing depository receipts in exchange, which trade on a multilateral trading platform supervised by the Dutch financial regulators.",
+     "source": "https://www.saatfoundation.com/en",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Triodos UK's own current account page says the account costs a £3 monthly fee and explains why it is not free, noting that many banks offer accounts without a monthly fee.",
+     "source": "https://www.triodos.co.uk/current-account",
+     "asof": "2026-10"
+    }
+   },
+   "description": "Dutch ethical bank operating in the Netherlands, Belgium, Germany, Spain and the UK, which its B Lab register description says connects savers and investors with entrepreneurs and sustainable companies. A mission-protecting foundation holds all its shares; investors hold depository receipts instead.",
+   "focuses": [
+    "Mission-locked ownership",
+    "New standard"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.triodos.com/"
+    },
+    {
+     "label": "B Lab register",
+     "url": "https://www.bcorporation.net/en-us/find-a-b-corp/company/triodos-bank-nv/"
+    },
+    {
+     "label": "SAAT foundation",
+     "url": "https://www.saatfoundation.com/en"
+    }
+   ],
+   "region": [
+    "UK",
+    "EU"
+   ],
+   "price": {
+    "tier": "$$"
+   },
+   "valueSignature": {
+    "honesty": 25,
+    "cost": 40,
+    "local": 80
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "saatfoundation.com",
+     "triodos.co.uk"
+    ]
+   }
+  },
+  {
+   "code": "ecosia",
+   "name": "Ecosia",
+   "brand": "search engine",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 53,
+    "ownership": 92
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Ecosia GmbH as certified since April 2014 under Standards Version 1.6, with an overall B Impact Score of 106.9, against a median assessed business score of 50.9. The register description says Ecosia dedicates 100 percent of its profits to the planet.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/ecosia-gmbh/",
+     "asof": "2026-10"
+    },
+    "ownership": {
+     "note": "The Purpose Foundation's case study says Ecosia's founders moved it to steward ownership in 2018 with a golden share model, and that 'No one in or outside the company holds economic rights to Ecosia.' Ecosia's own blog says the model means shares cannot be sold at a profit or owned by people outside the company and no profits can be taken out.",
+     "source": "https://purpose-economy.org/en/companies/ecosia/",
+     "asof": "2026-10"
+    }
+   },
+   "description": "Berlin-based search engine that funds tree planting and other climate projects from its ad revenue. It is steward-owned, so no one can take profits out or sell the company.",
+   "focuses": [
+    "Steward-owned",
+    "B Corp"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.ecosia.org/"
+    },
+    {
+     "label": "B Lab register",
+     "url": "https://www.bcorporation.net/en-us/find-a-b-corp/company/ecosia-gmbh/"
+    },
+    {
+     "label": "Ecosia: Trees, not profits",
+     "url": "https://blog.ecosia.org/trees-not-profits/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "price": {
+    "tier": "$"
+   },
+   "valueSignature": {
+    "honesty": 53,
+    "local": 92
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "purpose-economy.org"
+    ]
+   }
+  },
+  {
+   "code": "fairphone",
+   "name": "Fairphone",
+   "brand": "smartphones",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 68,
+    "economical": 50
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Fairphone as certified since April 2015 under Standards Version 1.6, with an overall B Impact Score of 136.8, against a median assessed business score of 50.9.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/fairphone/",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Fairphone's own shop lists the Fairphone (Gen. 6+) at €649 and the /e/OS version at €699, mid-range prices well below flagship phones but above budget Android handsets.",
+     "source": "https://shop.fairphone.com/",
+     "asof": "2026-10"
+    }
+   },
+   "description": "Amsterdam social enterprise making modular, repairable smartphones and audio products with fairer materials and factory wage programmes. No current primary source on its ownership was found, so ownership is left unscored.",
+   "focuses": [
+    "Repairable",
+    "B Corp"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.fairphone.com/"
+    },
+    {
+     "label": "B Lab register",
+     "url": "https://www.bcorporation.net/en-us/find-a-b-corp/company/fairphone/"
+    }
+   ],
+   "region": [
+    "EU",
+    "US"
+   ],
+   "price": {
+    "tier": "$$$"
+   },
+   "valueSignature": {
+    "honesty": 68,
+    "cost": 50
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "shop.fairphone.com"
+    ]
+   }
+  },
+  {
+   "code": "veja",
+   "name": "VEJA",
+   "brand": "footwear",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 46,
+    "economical": 35
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists VEJA as certified since December 2018 under Standards Version 1.6, with an overall B Impact Score of 92.7, against a median assessed business score of 50.9.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/veja/",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "VEJA's own US store lists its GT leather and suede sneakers at $170 a pair, a premium price for everyday sneakers.",
+     "source": "https://www.veja-store.com/en_us/",
+     "asof": "2026-10"
+    }
+   },
+   "description": "Paris sneaker brand founded in 2004, using organic and fair trade cotton and wild Amazonian rubber, according to its B Lab register description. No current primary source on its ownership was found, so ownership is left unscored.",
+   "focuses": [
+    "Fair trade materials",
+    "B Corp"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.veja-store.com/"
+    },
+    {
+     "label": "B Lab register",
+     "url": "https://www.bcorporation.net/en-us/find-a-b-corp/company/veja/"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "price": {
+    "tier": "$$$"
+   },
+   "valueSignature": {
+    "honesty": 46,
+    "cost": 35
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "veja-store.com"
+    ]
+   }
+  },
+  {
+   "code": "stonyfield",
+   "name": "Stonyfield",
+   "brand": "yogurt",
+   "allergens": [
+    "milk"
+   ],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 49,
+    "ownership": 15
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists the certified entity, Lactalis US Yogurt, Inc. d/b/a Stonyfield Farm, Inc., as certified since December 2016 under Standards Version 1.6, with an overall B Impact Score of 97.3, against a median assessed business score of 50.9; the page lists a 2026 disclosure report.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/stonyfield-farm/",
+     "asof": "2026-10"
+    },
+    "ownership": {
+     "note": "B Lab's register names the certified company 'Lactalis US Yogurt, Inc. d/b/a Stonyfield Farm, Inc.', showing that Stonyfield is operated by a US unit of Lactalis, the French dairy multinational, which is not itself listed as a B Corp.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/stonyfield-farm/",
+     "asof": "2026-10"
+    }
+   },
+   "description": "New Hampshire organic yogurt maker. B Lab's register shows the certified entity is a US subsidiary of the Lactalis dairy group.",
+   "focuses": [
+    "Lactalis subsidiary",
+    "Organic"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.stonyfield.com/"
+    },
+    {
+     "label": "B Lab register",
+     "url": "https://www.bcorporation.net/en-us/find-a-b-corp/company/stonyfield-farm/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "price": {
+    "tier": "$$"
+   },
+   "valueSignature": {
+    "honesty": 49,
+    "local": 15
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "B Lab"
+   }
+  },
+  {
+   "code": "amalgamated-bank",
+   "name": "Amalgamated Bank",
+   "brand": "bank",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 78,
+    "ownership": 50
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Amalgamated Bank as certified since January 2017 under Standards Version 1.6, with an overall B Impact Score of 155.3, against a median assessed business score of 50.9.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/amalgamated-bank/",
+     "asof": "2026-10"
+    },
+    "ownership": {
+     "note": "Amalgamated Financial Corp.'s annual report on Form 10-K for 2025 says the bank is 'no longer majority union-owned' but that Workers United, successor to the clothing workers' union that founded it in 1923, remains a significant stockholder holding approximately 38 percent of its equity as of 31 December 2025. The rest of its stock trades publicly.",
+     "source": "https://www.sec.gov/Archives/edgar/data/1823608/000182360826000048/amal-20251231.htm",
+     "asof": "2026-03"
+    }
+   },
+   "description": "New York bank founded in 1923 by the Amalgamated Clothing Workers of America. It is publicly traded, with a union-affiliated group still holding about 38 percent of its stock.",
+   "focuses": [
+    "Union-founded",
+    "Publicly traded"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.amalgamatedbank.com/"
+    },
+    {
+     "label": "B Lab register",
+     "url": "https://www.bcorporation.net/en-us/find-a-b-corp/company/amalgamated-bank/"
+    },
+    {
+     "label": "Amalgamated 10-K, 2025",
+     "url": "https://www.sec.gov/Archives/edgar/data/1823608/000182360826000048/amal-20251231.htm"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "price": {
+    "tier": "$"
+   },
+   "valueSignature": {
+    "honesty": 78,
+    "local": 50
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "sec.gov"
+    ]
+   }
+  },
+  {
+   "code": "alter-eco",
+   "name": "Alter Eco",
+   "brand": "chocolate",
+   "allergens": [
+    "milk",
+    "nuts"
+   ],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 79,
+    "ownership": 35,
+    "economical": 40
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Alter Eco LLC as certified since January 2009 under Standards Version 1.6, with an overall B Impact Score of 157.1, against a median assessed business score of 50.9, with its headquarters now in Texas.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/alter-eco/",
+     "asof": "2026-10"
+    },
+    "ownership": {
+     "note": "Alter Eco's own about page says 'Alter Eco is acquired by Trek One Capital.' A February 2024 Nosh report says Texas-based investment firm Trek One Capital closed the purchase in December 2023, buying it from the evergreen fund NextWorld Evergreen, and that Trek One was formed from family offices and investment vehicles; the founders had sold in 2017.",
+     "source": "https://www.alterecofoods.com/pages/about",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Alter Eco's own shop lists single chocolate bars, including Super Blackout, at $6.25 each, a premium price for a chocolate bar.",
+     "source": "https://www.alterecofoods.com/collections/all-products",
+     "asof": "2026-10"
+    }
+   },
+   "description": "Organic, fair trade chocolate and granola brand founded in 2004. Its founders sold it in 2017, and it has been owned by a Texas investment firm since late 2023, moving its headquarters to Houston.",
+   "focuses": [
+    "Investor-owned",
+    "Fair trade"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.alterecofoods.com/"
+    },
+    {
+     "label": "B Lab register",
+     "url": "https://www.bcorporation.net/en-us/find-a-b-corp/company/alter-eco/"
+    },
+    {
+     "label": "Nosh: Trek One acquisition",
+     "url": "https://www.nosh.com/news/2024/alter-eco-attracts-a-new-owner"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "price": {
+    "tier": "$$"
+   },
+   "valueSignature": {
+    "honesty": 79,
+    "cost": 40,
+    "local": 35
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "alterecofoods.com",
+    "sourceLabels": [
+     "alterecofoods.com",
+     "B Lab"
+    ]
+   }
+  },
+  {
+   "code": "abel-and-cole",
+   "name": "Abel & Cole",
+   "brand": "fruit & veg boxes",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 57,
+    "ownership": 70,
+    "economical": 45
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Abel & Cole as certified since August 2018 under Standards Version 1.6, with an overall B Impact Score of 113.0, against a median assessed business score of 50.9.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/abel-cole/",
+     "asof": "2026-10"
+    },
+    "ownership": {
+     "note": "UK Companies House lists William Jackson Food Group Limited as holding 75 percent or more of Abel & Cole Limited's shares and voting rights. William Jackson Food Group's own site describes the group as a sixth-generation family business that began with a Yorkshire grocery shop in 1851.",
+     "source": "https://find-and-update.company-information.service.gov.uk/company/03926343/persons-with-significant-control",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Abel & Cole's own box page lists The Organic All British Veg Box at £18.75, with other fixed-contents boxes listed at £22.50 to £32.95, priced as a premium organic delivery service.",
+     "source": "https://www.abelandcole.co.uk/fruit-veg-boxes",
+     "asof": "2026-10"
+    }
+   },
+   "description": "London organic food delivery business founded in 1988, best known for its veg boxes. The UK ownership register shows it belongs to William Jackson Food Group, a family-owned Yorkshire food company.",
+   "focuses": [
+    "Family group subsidiary",
+    "Organic"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.abelandcole.co.uk/"
+    },
+    {
+     "label": "B Lab register",
+     "url": "https://www.bcorporation.net/en-us/find-a-b-corp/company/abel-cole/"
+    },
+    {
+     "label": "William Jackson Food Group",
+     "url": "https://www.wjfg.co.uk/"
+    }
+   ],
+   "region": [
+    "UK"
+   ],
+   "price": {
+    "tier": "$$$"
+   },
+   "valueSignature": {
+    "honesty": 57,
+    "cost": 45,
+    "local": 70
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "abelandcole.co.uk",
+     "find-and-update.company-information.service.gov.uk"
+    ]
+   }
+  },
+  {
+   "code": "oddbox",
+   "name": "Oddbox",
+   "brand": "fruit & veg boxes",
+   "allergens": [],
+   "allergensDeclared": true,
+   "scores": {
+    "certification": 49,
+    "ownership": 50,
+    "economical": 60
+   },
+   "provenance": {
+    "certification": {
+     "note": "B Lab's register lists Oddbox as certified since June 2020 under Standards Version 1.6, with an overall B Impact Score of 97.7, against a median assessed business score of 50.9.",
+     "source": "https://www.bcorporation.net/en-us/find-a-b-corp/company/oddbox/",
+     "asof": "2026-10"
+    },
+    "ownership": {
+     "note": "UK Companies House shows that Oddbox Delivery Ltd's two co-founders each held between 25 and 50 percent of its shares until May 2020, and since then the company has filed that it has no registrable person or legal entity, meaning no single holder controls more than 25 percent. It is privately held with dispersed ownership.",
+     "source": "https://find-and-update.company-information.service.gov.uk/company/09638976/persons-with-significant-control",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Oddbox's own home page lists fruit and veg boxes from £11.99 and veg-only boxes from £12.99, below typical organic box prices.",
+     "source": "https://www.oddbox.co.uk/",
+     "asof": "2026-10"
+    }
+   },
+   "description": "London fruit and veg box that sells surplus and misshapen produce bought direct from growers, to cut food waste on farms.",
+   "focuses": [
+    "Food waste",
+    "B Corp"
+   ],
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.oddbox.co.uk/"
+    },
+    {
+     "label": "B Lab register",
+     "url": "https://www.bcorporation.net/en-us/find-a-b-corp/company/oddbox/"
+    }
+   ],
+   "region": [
+    "UK"
+   ],
+   "price": {
+    "tier": "$$"
+   },
+   "valueSignature": {
+    "honesty": 49,
+    "cost": 60,
+    "local": 50
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "B Lab",
+    "sourceLabels": [
+     "B Lab",
+     "find-and-update.company-information.service.gov.uk",
+     "oddbox.co.uk"
     ]
    }
   }

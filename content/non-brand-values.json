@@ -1,7 +1,7 @@
 {
   "format": "ovs-non-brand-values",
   "version": "1.0.0",
-  "updated": "2026-09-23",
+  "updated": "2026-10-14",
   "purpose": "Values found in a product's brand field that are not a brand. pipeline/build_nodes.js makes no brand node from them, so no card claims to be made by them. The product keeps the text; only the brand node and its made-by edge are withheld.",
   "matching": "Each value is compared after the same normalization the builder applies to brand text: accents stripped, & read as 'and', apostrophes dropped, every other run of non-alphanumerics read as one space, lowercase. 'open-source coding agent' and 'open source coding agent' are the same entry.",
   "why": "The hand-built datasets often put the kind of thing in the brand field ('private messenger', 'mainstream earbuds', 'repair-first route'). Naming each product's real maker instead would add a made-by claim nobody has sourced, so the builder withholds the node rather than guessing. research/descriptor_brand_audit.js fails when a descriptor reaches the brand index, including one this list has not met yet.",
@@ -42,6 +42,7 @@
       "super-app wallet", "additionality-recognized independent", "large independent supplier"
     ],
     "kinds of goods, tiers and routes": [
+      "bank", "footwear", "national brand, single vitamin", "independent brand, multivitamin", "store brand (gnc), multivitamin", "yogurt", "cosmetics", "fruit & veg boxes", "search engine", "smartphones", "wired reference", "small independent", "prepayment specialist", "volunteer-run / council scheme", "local council scheme", "resale market", "library streaming service",
       "b corp", "b corp disposable", "b corp reusable", "b corp reusable cup", "brand repair service",
       "budget mainstream", "business workstation", "carrier pre-owned route", "chocolate", "circular",
       "circular denim", "closed-loop refill", "clothing rental", "concentrated powder", "consumer mainstream",

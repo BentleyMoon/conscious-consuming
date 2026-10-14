@@ -18563,7 +18563,7 @@
    "id": "b-corporations",
    "label": "B Corporations",
    "file": "b-corporations.json",
-   "n": 13,
+   "n": 30,
    "type": "Organizations",
    "criteria": [
     {
@@ -18583,49 +18583,53 @@
    "need": "give-and-act",
    "group": "How a business is owned",
    "regionProfile": {
-    "entryCount": 13,
-    "regionTagged": 13,
+    "entryCount": 30,
+    "regionTagged": 30,
     "missingRegion": 0,
     "values": {
-     "US": 12,
-     "EU": 2,
-     "UK": 3,
-     "global": 1
+     "US": 23,
+     "EU": 7,
+     "UK": 9,
+     "global": 2
     },
     "filterValues": [
      "US",
      "EU",
      "UK"
     ],
-    "globalEntries": 1,
+    "globalEntries": 2,
     "unknownRegionValues": {},
     "countryLevelNeeded": false,
     "countryLevelLimitationCount": 0,
     "strictCurrentEnumSafe": true
    },
    "provenanceProfile": {
-    "entryCount": 13,
-    "singleSourceEntries": 2,
-    "multiSourceEntries": 11,
+    "entryCount": 30,
+    "singleSourceEntries": 3,
+    "multiSourceEntries": 27,
     "noSourceEntries": 0,
     "noteOnlyEntries": 0,
-    "averageSourceDomains": 2.0,
+    "averageSourceDomains": 2.07,
     "topPrimarySources": [
      {
       "label": "B Lab",
-      "entries": 13
+      "entries": 29
+     },
+     {
+      "label": "alterecofoods.com",
+      "entries": 1
      }
     ]
    },
    "valueSignatureProfile": {
-    "entryCount": 13,
-    "signedEntries": 13,
-    "drawableEntries": 12,
+    "entryCount": 30,
+    "signedEntries": 30,
+    "drawableEntries": 29,
     "minimumThemesForBloom": 2,
     "themeCounts": {
-     "honesty": 13,
-     "cost": 4,
-     "local": 11
+     "honesty": 30,
+     "cost": 13,
+     "local": 23
     }
    },
    "decision": {
@@ -18653,12 +18657,12 @@
      },
      "receipt": {
       "dataset": "b-corporations",
-      "entryCount": 13,
+      "entryCount": 30,
       "criteria": [
        {
         "criterion": "certification",
         "readsAs": "certification",
-        "known": 13,
+        "known": 30,
         "minimum": 25,
         "maximum": 83,
         "spread": 58
@@ -18666,7 +18670,7 @@
        {
         "criterion": "ownership",
         "readsAs": "ownership",
-        "known": 11,
+        "known": 23,
         "minimum": 5,
         "maximum": 95,
         "spread": 90
@@ -18674,15 +18678,31 @@
        {
         "criterion": "economical",
         "readsAs": "cost",
-        "known": 4,
-        "minimum": 55,
+        "known": 13,
+        "minimum": 30,
         "maximum": 80,
-        "spread": 25
+        "spread": 50
        }
       ]
      }
     },
     "axes": [
+     {
+      "id": "cost-or-values",
+      "kind": "cost-values",
+      "label": "Cost or overall fit",
+      "question": "Lower cost or a stronger overall fit?",
+      "criteria": [
+       "economical",
+       "certification",
+       "ownership"
+      ],
+      "poles": [
+       "Lower cost",
+       "Stronger overall fit"
+      ],
+      "default": 50
+     },
      {
       "id": "ownership-or-certification",
       "kind": "tradeoff",
@@ -18697,31 +18717,20 @@
        "More verified"
       ],
       "default": 50
-     },
-     {
-      "id": "economical",
-      "kind": "criterion",
-      "label": "Cost",
-      "question": "Does lower cost matter more?",
-      "criteria": [
-       "economical"
-      ],
-      "poles": [
-       "Flexible",
-       "Lower cost"
-      ],
-      "default": 50
      }
     ],
     "budget": {
-     "available": false,
-     "mode": "none",
-     "knownEntries": 0,
-     "coverage": 0
+     "available": true,
+     "mode": "assessed-affordability-rank",
+     "criterion": "economical",
+     "minimumKnown": 5,
+     "knownEntries": 13,
+     "coverage": 0.4333
     },
     "archetypes": [
      "best-for-most",
-     "strictest-match"
+     "strictest-match",
+     "budget-honest"
     ],
     "page": {
      "stage": "approved-batch",
@@ -19173,7 +19182,7 @@
    "id": "cat-food",
    "label": "Cat food",
    "file": "cat-food.json",
-   "n": 14,
+   "n": 26,
    "type": "Products",
    "criteria": [
     {
@@ -19193,11 +19202,11 @@
    "need": "care",
    "group": "Pet food",
    "regionProfile": {
-    "entryCount": 14,
-    "regionTagged": 14,
+    "entryCount": 26,
+    "regionTagged": 26,
     "missingRegion": 0,
     "values": {
-     "US": 14
+     "US": 26
     },
     "filterValues": [
      "US"
@@ -19209,20 +19218,24 @@
     "strictCurrentEnumSafe": true
    },
    "provenanceProfile": {
-    "entryCount": 14,
-    "singleSourceEntries": 9,
-    "multiSourceEntries": 5,
+    "entryCount": 26,
+    "singleSourceEntries": 10,
+    "multiSourceEntries": 16,
     "noSourceEntries": 0,
     "noteOnlyEntries": 0,
-    "averageSourceDomains": 1.36,
+    "averageSourceDomains": 1.62,
     "topPrimarySources": [
      {
       "label": "fda.gov",
-      "entries": 5
+      "entries": 12
      },
      {
       "label": "efoodalert.com",
-      "entries": 3
+      "entries": 5
+     },
+     {
+      "label": "bluebuffalo.com",
+      "entries": 1
      },
      {
       "label": "cbsnews.com",
@@ -19235,22 +19248,18 @@
      {
       "label": "foodsafetynews.com",
       "entries": 1
-     },
-     {
-      "label": "royalcanin.com",
-      "entries": 1
      }
     ]
    },
    "valueSignatureProfile": {
-    "entryCount": 14,
-    "signedEntries": 14,
-    "drawableEntries": 8,
+    "entryCount": 26,
+    "signedEntries": 26,
+    "drawableEntries": 19,
     "minimumThemesForBloom": 2,
     "themeCounts": {
-     "health": 12,
-     "honesty": 6,
-     "cost": 5
+     "health": 24,
+     "honesty": 17,
+     "cost": 7
     }
    },
    "decision": {
@@ -19278,20 +19287,20 @@
      },
      "receipt": {
       "dataset": "cat-food",
-      "entryCount": 14,
+      "entryCount": 26,
       "criteria": [
        {
         "criterion": "health",
         "readsAs": "body safety",
-        "known": 12,
+        "known": 24,
         "minimum": 28,
-        "maximum": 68,
-        "spread": 40
+        "maximum": 75,
+        "spread": 47
        },
        {
         "criterion": "accessibility",
         "readsAs": "everyday access",
-        "known": 5,
+        "known": 7,
         "minimum": 30,
         "maximum": 75,
         "spread": 45
@@ -19299,7 +19308,7 @@
        {
         "criterion": "transparency",
         "readsAs": "disclosure",
-        "known": 6,
+        "known": 17,
         "minimum": 30,
         "maximum": 85,
         "spread": 55
@@ -19943,7 +19952,7 @@
    "id": "dog-food",
    "label": "Dog food",
    "file": "dog-food.json",
-   "n": 18,
+   "n": 25,
    "type": "Products",
    "criteria": [
     {
@@ -19963,11 +19972,11 @@
    "need": "care",
    "group": "Pet food",
    "regionProfile": {
-    "entryCount": 18,
-    "regionTagged": 18,
+    "entryCount": 25,
+    "regionTagged": 25,
     "missingRegion": 0,
     "values": {
-     "US": 18
+     "US": 25
     },
     "filterValues": [
      "US"
@@ -19979,16 +19988,16 @@
     "strictCurrentEnumSafe": true
    },
    "provenanceProfile": {
-    "entryCount": 18,
+    "entryCount": 25,
     "singleSourceEntries": 7,
-    "multiSourceEntries": 11,
+    "multiSourceEntries": 18,
     "noSourceEntries": 0,
     "noteOnlyEntries": 0,
-    "averageSourceDomains": 1.78,
+    "averageSourceDomains": 1.84,
     "topPrimarySources": [
      {
       "label": "fda.gov",
-      "entries": 6
+      "entries": 10
      },
      {
       "label": "cbsnews.com",
@@ -20003,24 +20012,24 @@
       "entries": 2
      },
      {
-      "label": "championpetfoods.com",
+      "label": "bluebuffalo.com",
       "entries": 1
      },
      {
-      "label": "dvm360.com",
+      "label": "championpetfoods.com",
       "entries": 1
      }
     ]
    },
    "valueSignatureProfile": {
-    "entryCount": 18,
-    "signedEntries": 18,
-    "drawableEntries": 14,
+    "entryCount": 25,
+    "signedEntries": 25,
+    "drawableEntries": 21,
     "minimumThemesForBloom": 2,
     "themeCounts": {
-     "health": 17,
-     "honesty": 13,
-     "cost": 9
+     "health": 24,
+     "honesty": 19,
+     "cost": 12
     }
    },
    "decision": {
@@ -20048,12 +20057,12 @@
      },
      "receipt": {
       "dataset": "dog-food",
-      "entryCount": 18,
+      "entryCount": 25,
       "criteria": [
        {
         "criterion": "health",
         "readsAs": "body safety",
-        "known": 17,
+        "known": 24,
         "minimum": 15,
         "maximum": 78,
         "spread": 63
@@ -20061,7 +20070,7 @@
        {
         "criterion": "accessibility",
         "readsAs": "everyday access",
-        "known": 9,
+        "known": 12,
         "minimum": 25,
         "maximum": 78,
         "spread": 53
@@ -20069,7 +20078,7 @@
        {
         "criterion": "transparency",
         "readsAs": "disclosure",
-        "known": 13,
+        "known": 19,
         "minimum": 30,
         "maximum": 90,
         "spread": 60
@@ -21217,7 +21226,7 @@
    "id": "glasses-and-contact-lenses",
    "label": "Glasses and contact lenses",
    "file": "glasses-and-contact-lenses.json",
-   "n": 13,
+   "n": 24,
    "type": "Products",
    "criteria": [
     {
@@ -21237,11 +21246,11 @@
    "need": "care",
    "group": "Eyes, teeth and hearing",
    "regionProfile": {
-    "entryCount": 13,
-    "regionTagged": 13,
+    "entryCount": 24,
+    "regionTagged": 24,
     "missingRegion": 0,
     "values": {
-     "US": 13
+     "US": 24
     },
     "filterValues": [
      "US"
@@ -21253,12 +21262,12 @@
     "strictCurrentEnumSafe": true
    },
    "provenanceProfile": {
-    "entryCount": 13,
-    "singleSourceEntries": 12,
-    "multiSourceEntries": 1,
+    "entryCount": 24,
+    "singleSourceEntries": 18,
+    "multiSourceEntries": 6,
     "noSourceEntries": 0,
     "noteOnlyEntries": 0,
-    "averageSourceDomains": 1.08,
+    "averageSourceDomains": 1.25,
     "topPrimarySources": [
      {
       "label": "americasbest.com",
@@ -21269,6 +21278,10 @@
       "entries": 2
      },
      {
+      "label": "1800contacts.com",
+      "entries": 1
+     },
+     {
       "label": "aoa.org",
       "entries": 1
      },
@@ -21277,23 +21290,19 @@
       "entries": 1
      },
      {
-      "label": "eyeconic.com",
-      "entries": 1
-     },
-     {
-      "label": "myeyedr.com",
+      "label": "essilorluxottica.com",
       "entries": 1
      }
     ]
    },
    "valueSignatureProfile": {
-    "entryCount": 13,
-    "signedEntries": 13,
-    "drawableEntries": 11,
+    "entryCount": 24,
+    "signedEntries": 24,
+    "drawableEntries": 21,
     "minimumThemesForBloom": 2,
     "themeCounts": {
-     "honesty": 11,
-     "cost": 13
+     "honesty": 21,
+     "cost": 24
     }
    },
    "decision": {
@@ -21321,20 +21330,20 @@
      },
      "receipt": {
       "dataset": "glasses-and-contact-lenses",
-      "entryCount": 13,
+      "entryCount": 24,
       "criteria": [
        {
         "criterion": "accessibility",
         "readsAs": "everyday access",
-        "known": 13,
-        "minimum": 28,
+        "known": 24,
+        "minimum": 25,
         "maximum": 100,
-        "spread": 72
+        "spread": 75
        },
        {
         "criterion": "economical",
         "readsAs": "cost",
-        "known": 11,
+        "known": 20,
         "minimum": 38,
         "maximum": 100,
         "spread": 62
@@ -21342,7 +21351,7 @@
        {
         "criterion": "transparency",
         "readsAs": "disclosure",
-        "known": 11,
+        "known": 21,
         "minimum": 10,
         "maximum": 95,
         "spread": 85
@@ -21387,8 +21396,8 @@
      "mode": "assessed-affordability-rank",
      "criterion": "economical",
      "minimumKnown": 5,
-     "knownEntries": 11,
-     "coverage": 0.8462
+     "knownEntries": 20,
+     "coverage": 0.8333
     },
     "archetypes": [
      "best-for-most",
@@ -21636,7 +21645,7 @@
    "id": "language-learning",
    "label": "Language learning",
    "file": "language-learning.json",
-   "n": 13,
+   "n": 25,
    "type": "Services",
    "criteria": [
     {
@@ -21660,30 +21669,39 @@
    "need": "learn",
    "group": "Courses and platforms",
    "regionProfile": {
-    "entryCount": 13,
-    "regionTagged": 13,
+    "entryCount": 25,
+    "regionTagged": 25,
     "missingRegion": 0,
     "values": {
-     "global": 13
+     "US": 1,
+     "UK": 1,
+     "global": 23
     },
-    "filterValues": [],
-    "globalEntries": 13,
+    "filterValues": [
+     "US",
+     "UK"
+    ],
+    "globalEntries": 23,
     "unknownRegionValues": {},
     "countryLevelNeeded": false,
     "countryLevelLimitationCount": 0,
     "strictCurrentEnumSafe": true
    },
    "provenanceProfile": {
-    "entryCount": 13,
-    "singleSourceEntries": 10,
-    "multiSourceEntries": 3,
+    "entryCount": 25,
+    "singleSourceEntries": 14,
+    "multiSourceEntries": 11,
     "noSourceEntries": 0,
     "noteOnlyEntries": 0,
-    "averageSourceDomains": 1.23,
+    "averageSourceDomains": 1.44,
     "topPrimarySources": [
      {
       "label": "apps.apple.com",
-      "entries": 2
+      "entries": 6
+     },
+     {
+      "label": "ai.glossika.com",
+      "entries": 1
      },
      {
       "label": "apps.ankiweb.net",
@@ -21698,23 +21716,19 @@
       "entries": 1
      },
      {
-      "label": "govinfo.gov",
-      "entries": 1
-     },
-     {
-      "label": "hellotalk.com",
+      "label": "cambly.com",
       "entries": 1
      }
     ]
    },
    "valueSignatureProfile": {
-    "entryCount": 13,
-    "signedEntries": 13,
-    "drawableEntries": 4,
+    "entryCount": 25,
+    "signedEntries": 25,
+    "drawableEntries": 17,
     "minimumThemesForBloom": 2,
     "themeCounts": {
-     "people": 11,
-     "cost": 6
+     "people": 24,
+     "cost": 18
     }
    },
    "decision": {
@@ -21746,12 +21760,12 @@
      },
      "receipt": {
       "dataset": "language-learning",
-      "entryCount": 13,
+      "entryCount": 25,
       "criteria": [
        {
         "criterion": "educational",
         "readsAs": "teaching quality",
-        "known": 5,
+        "known": 12,
         "minimum": 30,
         "maximum": 70,
         "spread": 40
@@ -21759,26 +21773,26 @@
        {
         "criterion": "economical",
         "readsAs": "cost",
-        "known": 6,
-        "minimum": 40,
+        "known": 18,
+        "minimum": 30,
         "maximum": 100,
-        "spread": 60
+        "spread": 70
        },
        {
         "criterion": "buyer_protection",
         "readsAs": "buyer protection",
-        "known": 6,
-        "minimum": 45,
-        "maximum": 65,
-        "spread": 20
+        "known": 13,
+        "minimum": 20,
+        "maximum": 70,
+        "spread": 50
        },
        {
         "criterion": "labor",
         "readsAs": "labor practices",
-        "known": 2,
-        "minimum": 35,
+        "known": 4,
+        "minimum": 15,
         "maximum": 55,
-        "spread": 20
+        "spread": 40
        }
       ]
      }
@@ -21821,8 +21835,8 @@
      "mode": "assessed-affordability-rank",
      "criterion": "economical",
      "minimumKnown": 5,
-     "knownEntries": 6,
-     "coverage": 0.4615
+     "knownEntries": 18,
+     "coverage": 0.72
     },
     "archetypes": [
      "best-for-most",
@@ -22678,7 +22692,7 @@
    "id": "nappies",
    "label": "Nappies",
    "file": "nappies.json",
-   "n": 13,
+   "n": 23,
    "type": "Products",
    "criteria": [
     {
@@ -22698,17 +22712,19 @@
    "need": "care",
    "group": "Babies and toddlers",
    "regionProfile": {
-    "entryCount": 13,
-    "regionTagged": 13,
+    "entryCount": 23,
+    "regionTagged": 23,
     "missingRegion": 0,
     "values": {
-     "US": 11,
+     "US": 17,
      "EU": 1,
+     "UK": 4,
      "global": 2
     },
     "filterValues": [
      "US",
-     "EU"
+     "EU",
+     "UK"
     ],
     "globalEntries": 2,
     "unknownRegionValues": {},
@@ -22717,16 +22733,24 @@
     "strictCurrentEnumSafe": true
    },
    "provenanceProfile": {
-    "entryCount": 13,
+    "entryCount": 23,
     "singleSourceEntries": 7,
-    "multiSourceEntries": 6,
+    "multiSourceEntries": 16,
     "noSourceEntries": 0,
     "noteOnlyEntries": 0,
-    "averageSourceDomains": 1.46,
+    "averageSourceDomains": 1.7,
     "topPrimarySources": [
      {
       "label": "target.com",
       "entries": 5
+     },
+     {
+      "label": "epa.gov",
+      "entries": 2
+     },
+     {
+      "label": "aldi.co.uk",
+      "entries": 1
      },
      {
       "label": "bambonatureusa.com",
@@ -22737,28 +22761,20 @@
       "entries": 1
      },
      {
-      "label": "coterie.com",
-      "entries": 1
-     },
-     {
-      "label": "dyper.com",
-      "entries": 1
-     },
-     {
-      "label": "honest.com",
+      "label": "costco.com",
       "entries": 1
      }
     ]
    },
    "valueSignatureProfile": {
-    "entryCount": 13,
-    "signedEntries": 13,
-    "drawableEntries": 12,
+    "entryCount": 23,
+    "signedEntries": 23,
+    "drawableEntries": 22,
     "minimumThemesForBloom": 2,
     "themeCounts": {
-     "planet": 12,
-     "health": 12,
-     "cost": 10
+     "planet": 22,
+     "health": 21,
+     "cost": 17
     }
    },
    "decision": {
@@ -22786,12 +22802,12 @@
      },
      "receipt": {
       "dataset": "nappies",
-      "entryCount": 13,
+      "entryCount": 23,
       "criteria": [
        {
         "criterion": "environment",
         "readsAs": "environmental impact",
-        "known": 12,
+        "known": 22,
         "minimum": 30,
         "maximum": 90,
         "spread": 60
@@ -22799,15 +22815,15 @@
        {
         "criterion": "economical",
         "readsAs": "cost",
-        "known": 10,
-        "minimum": 28,
+        "known": 17,
+        "minimum": 22,
         "maximum": 100,
-        "spread": 72
+        "spread": 78
        },
        {
         "criterion": "health",
         "readsAs": "body safety",
-        "known": 12,
+        "known": 21,
         "minimum": 40,
         "maximum": 85,
         "spread": 45
@@ -22852,8 +22868,8 @@
      "mode": "assessed-affordability-rank",
      "criterion": "economical",
      "minimumKnown": 5,
-     "knownEntries": 10,
-     "coverage": 0.7692
+     "knownEntries": 17,
+     "coverage": 0.7391
     },
     "archetypes": [
      "best-for-most",
@@ -23702,7 +23718,7 @@
    "id": "reusable-nappies",
    "label": "Reusable nappies",
    "file": "reusable-nappies.json",
-   "n": 12,
+   "n": 20,
    "type": "Products",
    "criteria": [
     {
@@ -23722,12 +23738,12 @@
    "need": "care",
    "group": "Babies and toddlers",
    "regionProfile": {
-    "entryCount": 12,
-    "regionTagged": 12,
+    "entryCount": 20,
+    "regionTagged": 20,
     "missingRegion": 0,
     "values": {
-     "US": 4,
-     "UK": 6,
+     "US": 9,
+     "UK": 9,
      "global": 2
     },
     "filterValues": [
@@ -23741,15 +23757,19 @@
     "strictCurrentEnumSafe": true
    },
    "provenanceProfile": {
-    "entryCount": 12,
+    "entryCount": 20,
     "singleSourceEntries": 4,
-    "multiSourceEntries": 8,
+    "multiSourceEntries": 16,
     "noSourceEntries": 0,
     "noteOnlyEntries": 0,
-    "averageSourceDomains": 1.67,
+    "averageSourceDomains": 1.85,
     "topPrimarySources": [
      {
       "label": "greenmountaindiapers.com",
+      "entries": 2
+     },
+     {
+      "label": "nappyeverafter.co.uk",
       "entries": 2
      },
      {
@@ -23761,27 +23781,23 @@
       "entries": 1
      },
      {
-      "label": "assets.publishing.service.gov.uk",
+      "label": "blueberrydiapers.com",
       "entries": 1
      },
      {
       "label": "charliebanana.com",
       "entries": 1
-     },
-     {
-      "label": "closeparent.com",
-      "entries": 1
      }
     ]
    },
    "valueSignatureProfile": {
-    "entryCount": 12,
-    "signedEntries": 12,
-    "drawableEntries": 10,
+    "entryCount": 20,
+    "signedEntries": 20,
+    "drawableEntries": 17,
     "minimumThemesForBloom": 2,
     "themeCounts": {
-     "planet": 10,
-     "cost": 12
+     "planet": 17,
+     "cost": 20
     }
    },
    "decision": {
@@ -23809,28 +23825,28 @@
      },
      "receipt": {
       "dataset": "reusable-nappies",
-      "entryCount": 12,
+      "entryCount": 20,
       "criteria": [
        {
         "criterion": "accessibility",
         "readsAs": "everyday access",
-        "known": 10,
+        "known": 18,
         "minimum": 20,
-        "maximum": 78,
-        "spread": 58
+        "maximum": 88,
+        "spread": 68
        },
        {
         "criterion": "economical",
         "readsAs": "cost",
-        "known": 12,
-        "minimum": 35,
+        "known": 20,
+        "minimum": 25,
         "maximum": 95,
-        "spread": 60
+        "spread": 70
        },
        {
         "criterion": "environment",
         "readsAs": "environmental impact",
-        "known": 10,
+        "known": 17,
         "minimum": 40,
         "maximum": 88,
         "spread": 48
@@ -23875,7 +23891,7 @@
      "mode": "assessed-affordability-rank",
      "criterion": "economical",
      "minimumKnown": 5,
-     "knownEntries": 12,
+     "knownEntries": 20,
      "coverage": 1.0
     },
     "archetypes": [
@@ -25580,7 +25596,7 @@
    "id": "vitamins-and-supplements",
    "label": "Vitamins and supplements",
    "file": "vitamins-and-supplements.json",
-   "n": 13,
+   "n": 24,
    "type": "Products",
    "criteria": [
     {
@@ -25600,11 +25616,11 @@
    "need": "care",
    "group": "Medicines and supplements",
    "regionProfile": {
-    "entryCount": 13,
-    "regionTagged": 13,
+    "entryCount": 24,
+    "regionTagged": 24,
     "missingRegion": 0,
     "values": {
-     "US": 13
+     "US": 24
     },
     "filterValues": [
      "US"
@@ -25616,43 +25632,47 @@
     "strictCurrentEnumSafe": true
    },
    "provenanceProfile": {
-    "entryCount": 13,
+    "entryCount": 24,
     "singleSourceEntries": 0,
-    "multiSourceEntries": 13,
+    "multiSourceEntries": 24,
     "noSourceEntries": 0,
     "noteOnlyEntries": 0,
-    "averageSourceDomains": 2.0,
+    "averageSourceDomains": 2.04,
     "topPrimarySources": [
      {
       "label": "instacart.com",
-      "entries": 5
+      "entries": 10
      },
      {
       "label": "target.com",
       "entries": 5
      },
      {
+      "label": "gnc.com",
+      "entries": 1
+     },
+     {
+      "label": "livemomentous.com",
+      "entries": 1
+     },
+     {
+      "label": "naturemade.com",
+      "entries": 1
+     },
+     {
       "label": "nhs.uk",
-      "entries": 1
-     },
-     {
-      "label": "now.optum.com",
-      "entries": 1
-     },
-     {
-      "label": "ritual.com",
       "entries": 1
      }
     ]
    },
    "valueSignatureProfile": {
-    "entryCount": 13,
-    "signedEntries": 13,
-    "drawableEntries": 12,
+    "entryCount": 24,
+    "signedEntries": 24,
+    "drawableEntries": 23,
     "minimumThemesForBloom": 2,
     "themeCounts": {
-     "honesty": 12,
-     "cost": 13
+     "honesty": 23,
+     "cost": 24
     }
    },
    "decision": {
@@ -25680,12 +25700,12 @@
      },
      "receipt": {
       "dataset": "vitamins-and-supplements",
-      "entryCount": 13,
+      "entryCount": 24,
       "criteria": [
        {
         "criterion": "certification",
         "readsAs": "certification",
-        "known": 12,
+        "known": 23,
         "minimum": 15,
         "maximum": 95,
         "spread": 80
@@ -25693,7 +25713,7 @@
        {
         "criterion": "economical",
         "readsAs": "cost",
-        "known": 12,
+        "known": 23,
         "minimum": 6,
         "maximum": 100,
         "spread": 94
@@ -25701,7 +25721,7 @@
        {
         "criterion": "accessibility",
         "readsAs": "everyday access",
-        "known": 13,
+        "known": 24,
         "minimum": 25,
         "maximum": 100,
         "spread": 75
@@ -25746,8 +25766,8 @@
      "mode": "assessed-affordability-rank",
      "criterion": "economical",
      "minimumKnown": 5,
-     "knownEntries": 12,
-     "coverage": 0.9231
+     "knownEntries": 23,
+     "coverage": 0.9583
     },
     "archetypes": [
      "best-for-most",
@@ -28560,6 +28580,7 @@
    "email",
    "glasses-and-contact-lenses",
    "headphones-and-earbuds",
+   "language-learning",
    "mattresses",
    "menstrual-cups-and-discs",
    "mortgages",
@@ -28750,7 +28771,7 @@
   "missingLimitationEntries": [],
   "coverage": {
    "categoryCount": 126,
-   "categoriesWithRegionControls": 59,
+   "categoriesWithRegionControls": 60,
    "limitationCategories": 1,
    "countryLevelLimitationEntries": 15,
    "missingLimitationEntries": 0
@@ -28865,9 +28886,9 @@
   ],
   "coverage": {
    "categoryCount": 126,
-   "entryCount": 24389,
-   "singleSourceEntries": 18240,
-   "multiSourceEntries": 6145,
+   "entryCount": 24477,
+   "singleSourceEntries": 18252,
+   "multiSourceEntries": 6221,
    "noSourceEntries": 4,
    "noteOnlyEntries": 0
   },
