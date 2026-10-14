@@ -78,6 +78,8 @@ const REGULATORS = [
   'law.cornell.edu',        // Legal Information Institute, primary text of US statute
   'bundesgerichtshof.de',   // Germany's Federal Court of Justice
   'dataprotection.ie',      // Ireland's Data Protection Commission, lead EU regulator for big tech
+  'fca.org.uk',             // UK Financial Conduct Authority, the financial services register and handbook
+  'finra.org',              // FINRA, the SEC-overseen regulator of US broker-dealers and funding portals
 ];
 
 function readJson(file) {
