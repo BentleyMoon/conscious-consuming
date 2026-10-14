@@ -7,7 +7,7 @@
     "tradeoff": ["accessibility", "privacy"],
     "tradeoffLabels": ["easiest", "most private"],
     "source": "Conscious Consuming (curated)",
-    "attribution": "Assembled from official app pages, privacy policies, platform help centers and publishers' own store or code listings, not measured data. Podcasts themselves are almost always free; what differs between these apps is what they track, whether they lock you into one company's version of an open format, and whether the app is still running at all. Every criterion has a cited basis; reviewed 2026-08. Suggest changes via Contribute.",
+    "attribution": "Assembled from official app pages, privacy policies, platform help centers and publishers' own store or code listings, not measured data. Podcasts themselves are almost always free; what differs between these apps is what they track, whether they lock you into one company's version of an open format, and whether the app is still running at all. Every criterion has a cited basis; reviewed 2026-08, with entries added and checked 2026-10 using Apple App Store privacy labels (developer-declared, not verified by Apple), F-Droid and Flathub listings, source licences and the Podcast Index app directory. Suggest changes via Contribute.",
     "allergens": false,
     "presets": {
       "Balanced": {
@@ -225,11 +225,11 @@
       "brand": "Automattic",
       "allergens": [],
       "allergensDeclared": true,
-      "description": "A free podcast app owned by Automattic, with its Android app published as open-source software and a paid Plus tier for extra features. It is sold across iOS, Android and the web from the same account.",
+      "description": "A free podcast app owned by Automattic, with both its Android and iOS apps published as open-source software (MPL-2.0) and a paid Plus tier for extra features. It is sold across iOS, Android and the web from the same account.",
       "scores": {
         "accessibility": 85,
         "privacy": 70,
-        "openness": 80
+        "openness": 90
       },
       "provenance": {
         "accessibility": {
@@ -243,18 +243,21 @@
           "asof": "2026"
         },
         "openness": {
-          "note": "Automattic publishes the Pocket Casts Android app's source code on GitHub under the MPL-2.0 open-source license.",
-          "source": "https://github.com/Automattic/pocket-casts-android",
-          "asof": "2026"
+          "note": "Automattic publishes the source code of both Pocket Casts mobile apps on GitHub under the Mozilla Public License 2.0: the iOS repository's LICENSE.md is headed 'Mozilla Public License Version 2.0', as is the Android repository's. With both mobile clients open, it scores close to the volunteer-run open-source apps in this lens, held just below them because it is a commercial product with a paid Plus tier, and this check did not establish whether its sync and web services are open.",
+          "source": "https://raw.githubusercontent.com/Automattic/pocket-casts-ios/trunk/LICENSE.md",
+          "asof": "2026-10"
         }
       },
       "links": [
         { "label": "Website", "url": "https://pocketcasts.com/" },
         { "label": "Privacy policy", "url": "https://support.pocketcasts.com/article/privacy-policy/" },
-        { "label": "Android source code", "url": "https://github.com/Automattic/pocket-casts-android" }
+        { "label": "Android source code", "url": "https://github.com/Automattic/pocket-casts-android" },
+        { "label": "iOS source code", "url": "https://github.com/Automattic/pocket-casts-ios" },
+        { "label": "iOS licence (MPL-2.0)", "url": "https://raw.githubusercontent.com/Automattic/pocket-casts-ios/trunk/LICENSE.md" },
+        { "label": "Android licence (MPL-2.0)", "url": "https://raw.githubusercontent.com/Automattic/pocket-casts-android/main/LICENSE.md" }
       ],
       "region": ["global"],
-      "focuses": ["Free", "Open source (Android)", "Cross-platform"]
+      "focuses": ["Free", "Open source", "Cross-platform"]
     },
     {
       "code": "overcast",
@@ -288,7 +291,7 @@
     {
       "code": "castro",
       "name": "Castro",
-      "brand": "Tiny Whale, Inc.",
+      "brand": "Maple Media Apps, LLC",
       "allergens": [],
       "allergensDeclared": true,
       "description": "An independently made iOS podcast app with a free tier and a paid Castro Plus tier for playback features such as trimming silence and sideloading audio.",
@@ -495,6 +498,406 @@
       ],
       "region": ["global"],
       "focuses": ["Free", "Open standard", "No account"]
+    },
+    {
+      "code": "amazon-music",
+      "name": "Amazon Music (podcasts)",
+      "brand": "Amazon.com, Inc.",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Amazon's music app, which also carries podcasts on a free ad-supported tier and ad-free for Prime and Music Unlimited members. Amazon's own privacy notice says it uses personal information to show interest-based ads and gives ad companies information to target Amazon ads.",
+      "scores": {
+        "accessibility": 80,
+        "privacy": 35
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "Amazon Music's App Store listing says 'Listen free to music and podcasts with ads' with no credit card required, with ad-free top podcasts for Prime members and Music Unlimited subscribers; the listing covers iPhone, iPad, Apple TV and Apple Watch.",
+          "source": "https://apps.apple.com/us/app/amazon-music-songs-podcasts/id510855668",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Amazon's privacy notice (last updated June 30, 2026), which covers Amazon Music, says 'We use your personal information to display interest-based ads for features, products, and services that might be of interest to you' and 'We provide ad companies with information that allows them to serve you with more useful and relevant Amazon ads'. Its App Store privacy label lists usage data, identifiers and search history as linked to your identity and used for Amazon's own advertising.",
+          "source": "https://www.amazon.com/gp/help/customer/display.html?nodeId=GX7NJQ4ZB8MHFRNJ",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        { "label": "App Store listing and privacy label", "url": "https://apps.apple.com/us/app/amazon-music-songs-podcasts/id510855668" },
+        { "label": "Amazon privacy notice", "url": "https://www.amazon.com/gp/help/customer/display.html?nodeId=GX7NJQ4ZB8MHFRNJ" }
+      ],
+      "region": ["US", "UK", "EU"],
+      "focuses": ["Mainstream", "Free", "Subscription", "Ad-supported"]
+    },
+    {
+      "code": "youtube-music",
+      "name": "YouTube Music",
+      "brand": "Google LLC",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Google's music app, and where Google now sends former Google Podcasts listeners. It is free with ads, and lets an adult account add a show missing from YouTube by pasting its RSS feed, with some features turned off.",
+      "scores": {
+        "accessibility": 85,
+        "privacy": 20,
+        "openness": 45,
+        "catalog": 80
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "YouTube Music's App Store listing shows it as free with optional in-app purchases (a YouTube Music subscription listed at $15.99 in the US), on iPhone, iPad and Apple Watch.",
+          "source": "https://apps.apple.com/us/app/youtube-music/id1017492454",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "YouTube Music's App Store privacy label, as declared by Google, lists location, contact info, search and browsing history, identifiers and usage data as linked to your identity and used for 'Third-Party Advertising' as well as Google's own advertising and personalisation, consistent with the Google privacy policy that covers the YouTube entry in this lens.",
+          "source": "https://apps.apple.com/us/app/youtube-music/id1017492454",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "Google's help page says 'If a podcast is missing from YouTube Music, you can still save it to your library using the show’s RSS feed link', but only from 'an adult (18+) account', and RSS-added shows lose features such as sharing and captions; the app itself is proprietary, so the open feed is a side door rather than the main model.",
+          "source": "https://support.google.com/youtubemusic/answer/13946190?hl=en",
+          "asof": "2026-10"
+        },
+        "catalog": {
+          "note": "Beyond the podcasts published on YouTube, Google's help page says a listener can add any show by its RSS feed URL, so the reachable catalog covers open-feed podcasts as well as YouTube-only video shows.",
+          "source": "https://support.google.com/youtubemusic/answer/13946190?hl=en",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        { "label": "App Store listing and privacy label", "url": "https://apps.apple.com/us/app/youtube-music/id1017492454" },
+        { "label": "Add podcasts using RSS feeds", "url": "https://support.google.com/youtubemusic/answer/13946190?hl=en" },
+        { "label": "Google Podcasts closure notice", "url": "https://music.youtube.com/googlepodcasts" }
+      ],
+      "region": ["global"],
+      "focuses": ["Mainstream", "Free", "Subscription", "Video podcasts"]
+    },
+    {
+      "code": "castbox",
+      "name": "Castbox",
+      "brand": "Guru Network Limited",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free, ad-supported podcast app for iOS and Android with a paid Premium tier. Its own privacy policy says it engages in 'sales', 'sharing' and targeted advertising of personal information, with an opt-out.",
+      "scores": {
+        "accessibility": 80,
+        "privacy": 20
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "Castbox's own site says 'Listen Free, Download Free.' and lists Android, iPhone, Amazon Alexa, Google Home, CarPlay and Android Auto; its App Store listing shows a paid Castbox Premium in-app purchase.",
+          "source": "https://castbox.fm/",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Castbox's privacy policy (modified July 1, 2026) says it engages in sales, sharing and targeted advertising 'through our disclosure of certain categories of Personal Information for marketing, advertising, and analytics purposes' to partners including advertising networks, with an email or Global Privacy Control opt-out. Its App Store privacy label lists contact info, identifiers and usage data as data used to track you.",
+          "source": "https://castbox.fm/policy.html",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://castbox.fm/" },
+        { "label": "Privacy policy", "url": "https://castbox.fm/policy.html" },
+        { "label": "App Store listing and privacy label", "url": "https://apps.apple.com/us/app/podcast-app-player-castbox/id1243410543" }
+      ],
+      "region": ["global"],
+      "focuses": ["Free", "Ad-supported", "Cross-platform"]
+    },
+    {
+      "code": "player-fm",
+      "name": "Player FM",
+      "brand": "Maple Media Apps, LLC",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A long-running free podcast app with a paid Premium tier, owned since 2020 by Maple Media, a company that buys and runs mature apps (Podnews reports it also bought Castro in 2026). Its App Store privacy label declares cross-app tracking.",
+      "scores": {
+        "accessibility": 75,
+        "privacy": 30
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "Player FM's App Store listing shows it as free with optional Premium in-app purchases, sold by Maple Media Apps, LLC.",
+          "source": "https://apps.apple.com/us/app/player-fm-podcast-app/id940568467",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Player FM's App Store privacy label, as declared by Maple Media, lists contact info, identifiers and usage data under 'Data Used to Track You' across other companies' apps and websites, and purchase history, email and advertising data as linked to your identity for third-party advertising. Player FM's own site blocked automated access, so its privacy policy could not be read for this check.",
+          "source": "https://apps.apple.com/us/app/player-fm-podcast-app/id940568467",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        { "label": "App Store listing and privacy label", "url": "https://apps.apple.com/us/app/player-fm-podcast-app/id940568467" },
+        { "label": "Podnews: Maple Media's podcast apps", "url": "https://podnews.net/directory/company/maple-media" }
+      ],
+      "region": ["global"],
+      "focuses": ["Free", "Subscription", "Cross-platform"]
+    },
+    {
+      "code": "snipd",
+      "name": "Snipd",
+      "brand": "Snipd AG",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "An AI-centred podcast player that makes notes and highlights from episodes, free to start with a paid Premium tier. It shows no ads in the app, but its privacy policy says it shares advertising identifiers with ad-measurement partners to optimise its own marketing, and sends listening content to AI providers for its features.",
+      "scores": {
+        "accessibility": 65,
+        "privacy": 50
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "Snipd's App Store listing shows it as free with in-app purchases, with Snipd Premium listed at $83.90 in the US; the listing covers iPhone and Apple Watch.",
+          "source": "https://apps.apple.com/us/app/snipd-ai-podcast-player/id1557206126",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Snipd's privacy policy names AppsFlyer as a mobile measurement partner to 'Optimize our advertising, analyze user behavior, and improve the app', sharing the mobile advertising ID, IP address and usage data, and also shares data with Meta for ad measurement; AI features send questions, snips and transcripts to providers including OpenAI and Anthropic. Its App Store label lists identifiers under data used to track you. No in-app ads are described.",
+          "source": "https://www.snipd.com/privacy-policy",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://www.snipd.com/" },
+        { "label": "Privacy policy", "url": "https://www.snipd.com/privacy-policy" },
+        { "label": "App Store listing and privacy label", "url": "https://apps.apple.com/us/app/snipd-ai-podcast-player/id1557206126" }
+      ],
+      "region": ["global"],
+      "focuses": ["AI features", "Free", "Subscription"]
+    },
+    {
+      "code": "fountain",
+      "name": "Fountain",
+      "brand": "Fountain Labs Ltd",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A UK-based podcast and music app built on the open Podcasting 2.0 standards, where listeners can pay shows directly per minute or with comments through a built-in Lightning payment wallet. Listening is free; the company also sells hosting to podcasters.",
+      "scores": {
+        "accessibility": 70,
+        "privacy": 70,
+        "openness": 70,
+        "catalog": 80
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "Fountain's own listener page answers 'Is Fountain free?' with 'Yes. Listening is free on iOS and Android.' and offers Fountain Premium at $2.99 a month; signing up needs an email address and creates a payment wallet.",
+          "source": "https://fountain.fm/app",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Fountain's privacy policy (last updated 16 September 2026) says 'We do not sell your personal information.' and describes no advertising use of listening data; its App Store privacy label lists only data not linked to your identity and declares no tracking. Its social features show what you zap, comment on and clip to people who follow you.",
+          "source": "https://fountain.fm/privacy-policy",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "The Podcast Index app directory, the registry of apps supporting the open Podcasting 2.0 RSS namespace, lists Fountain with support for open elements including transcripts, chapters, value-for-value payments, remote items and live items; the app itself is not listed as open source.",
+          "source": "https://raw.githubusercontent.com/Podcastindex-org/web-ui/master/server/data/apps.json",
+          "asof": "2026-10"
+        },
+        "catalog": {
+          "note": "Fountain's own listener page says you can 'import your podcasts from Apple, Spotify or any other app via OPML', the open subscription-list format of RSS feed addresses, so its reach is the open feed ecosystem rather than a signed selection.",
+          "source": "https://fountain.fm/app",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        { "label": "Listener app", "url": "https://fountain.fm/app" },
+        { "label": "Privacy policy", "url": "https://fountain.fm/privacy-policy" },
+        { "label": "App Store listing and privacy label", "url": "https://apps.apple.com/us/app/fountain-podcast-player/id1576394424" },
+        { "label": "Podcast Index app directory (data)", "url": "https://raw.githubusercontent.com/Podcastindex-org/web-ui/master/server/data/apps.json" }
+      ],
+      "region": ["global"],
+      "focuses": ["Podcasting 2.0", "Free", "Pay creators directly"]
+    },
+    {
+      "code": "podcast-republic",
+      "name": "Podcast Republic",
+      "brand": "Podcast Republic LLC",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free, ad-supported podcast and radio app for Android and iOS, with a small one-off purchase to remove ads. Its App Store privacy label declares cross-app tracking including location.",
+      "scores": {
+        "accessibility": 70,
+        "privacy": 30
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "Podcast Republic's App Store listing shows it as free with an in-app 'Ads free license' at $3.99; its own privacy page covers its apps on Android and iOS.",
+          "source": "https://apps.apple.com/us/app/podcast-republic-podcast-app/id6443981281",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Podcast Republic's App Store privacy label, as declared by its developer, lists location, identifiers, usage data and diagnostics under 'Data Used to Track You', with coarse location, device ID and advertising data linked to your identity for third-party advertising. Its own privacy page names AdMob among the third-party services in the app.",
+          "source": "https://apps.apple.com/us/app/podcast-republic-podcast-app/id6443981281",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        { "label": "App Store listing and privacy label", "url": "https://apps.apple.com/us/app/podcast-republic-podcast-app/id6443981281" },
+        { "label": "Privacy and terms", "url": "https://www.podcastrepublic.net/privacy-terms" }
+      ],
+      "region": ["global"],
+      "focuses": ["Free", "Ad-supported", "Android and iOS"]
+    },
+    {
+      "code": "podcast-guru",
+      "name": "Podcast Guru",
+      "brand": "Really Bad Apps LLC",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A small independent podcast app for Android, iPhone and the web with no banner ads and a paid VIP tier. Its privacy policy says it does not share personal information with outside parties beyond what the app needs to work.",
+      "scores": {
+        "accessibility": 75,
+        "privacy": 75,
+        "openness": 70
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "Podcast Guru's own site says 'Podcast Guru is the simple and free podcast player.' and offers Android and iPhone apps plus a web player; its App Store listing shows optional in-app purchases.",
+          "source": "https://podcastguru.io/",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Podcast Guru's privacy policy says 'We do not share personal information with outside parties except to the extent necessary to accomplish Podcast Guru’s functionality' and 'We don’t send promotional emails.', using a Firebase account for sync. Its App Store privacy label declares no tracking and links only email, name, user ID and support content to your identity.",
+          "source": "https://podcastguru.io/privacy/",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "The Podcast Index app directory lists Podcast Guru as supporting a wide range of open Podcasting 2.0 RSS elements, including transcripts, chapters, funding, value-for-value payments, podroll and remote items, so it builds on the open feed format rather than a closed catalog; the app itself is not open source.",
+          "source": "https://raw.githubusercontent.com/Podcastindex-org/web-ui/master/server/data/apps.json",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://podcastguru.io/" },
+        { "label": "Privacy policy", "url": "https://podcastguru.io/privacy/" },
+        { "label": "App Store listing and privacy label", "url": "https://apps.apple.com/us/app/podcast-guru-app-player/id1535235039" },
+        { "label": "Podcast Index app directory (data)", "url": "https://raw.githubusercontent.com/Podcastindex-org/web-ui/master/server/data/apps.json" }
+      ],
+      "region": ["global"],
+      "focuses": ["Independent", "Free", "No banner ads", "Podcasting 2.0"]
+    },
+    {
+      "code": "podverse",
+      "name": "Podverse",
+      "brand": "Podverse LLC",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free and open-source podcast app for Android, iOS, F-Droid and the web, licensed AGPLv3, with Podcasting 2.0 features and a paid Premium tier for sync. Its mobile apps have not had a new release since spring 2024, so check it still suits your device.",
+      "scores": {
+        "accessibility": 50,
+        "privacy": 65,
+        "openness": 95,
+        "catalog": 85
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "Podverse's F-Droid listing shows its current version, 4.16.3, 'Added on May 14, 2024', and the iOS App Store version history also stops in 2024; the app remains free to install and its web player still works, but development has stalled.",
+          "source": "https://f-droid.org/en/packages/com.podverse.fdroid/",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Podverse's App Store privacy label lists only email as linked to your identity and analytics and crash data as not linked, but does declare usage data under 'Data Used to Track You'.",
+          "source": "https://apps.apple.com/us/app/podverse/id1390888454",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "Podverse's F-Droid listing says 'All Podverse software is provided under a free and open source license (AGPLv3).' and F-Droid builds and signs it from source; the Podcast Index app directory also tags it open source.",
+          "source": "https://f-droid.org/en/packages/com.podverse.fdroid/",
+          "asof": "2026-10"
+        },
+        "catalog": {
+          "note": "Podverse's own features table lists 'Add custom RSS feeds' and OPML import and export as free features, so any open podcast feed can be followed.",
+          "source": "https://podverse.fm/about",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        { "label": "About and features", "url": "https://podverse.fm/about" },
+        { "label": "F-Droid listing", "url": "https://f-droid.org/en/packages/com.podverse.fdroid/" },
+        { "label": "App Store listing and privacy label", "url": "https://apps.apple.com/us/app/podverse/id1390888454" }
+      ],
+      "region": ["global"],
+      "focuses": ["Open source", "Free", "Podcasting 2.0"]
+    },
+    {
+      "code": "gpodder",
+      "name": "gPodder",
+      "brand": "The gPodder Team",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free, open-source desktop podcast client for Windows, macOS and Linux, developed since 2005. You paste in a show's RSS feed; an account is only needed for the optional gpodder.net sync service.",
+      "scores": {
+        "accessibility": 45,
+        "privacy": 85,
+        "openness": 98,
+        "catalog": 90
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "gPodder's own site describes 'a simple, open source podcast client' with downloads for Windows, macOS and Linux (Flatpak) and Sailfish OS, but no iPhone or mainstream Android app, and the latest release listed is 3.11.5 from December 2024.",
+          "source": "https://gpodder.github.io/",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "gPodder's user manual says the sync feature is optional and that 'To use gPodder.net, you need to register for a user account first', meaning the desktop app itself works without any account.",
+          "source": "https://gpodder.github.io/docs/user-manual.html",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "gPodder's README says it is free software under the GNU General Public License, 'either version 3 of the License, or (at your option) any later version', with its source published on GitHub.",
+          "source": "https://raw.githubusercontent.com/gpodder/gpodder/master/README.md",
+          "asof": "2026-10"
+        },
+        "catalog": {
+          "note": "gPodder's user manual says to add a show you 'paste in the URL of the RSS feed', and it imports OPML subscription lists, so any public podcast feed can be followed.",
+          "source": "https://gpodder.github.io/docs/user-manual.html",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        { "label": "Website", "url": "https://gpodder.github.io/" },
+        { "label": "User manual", "url": "https://gpodder.github.io/docs/user-manual.html" },
+        { "label": "Licence (README)", "url": "https://raw.githubusercontent.com/gpodder/gpodder/master/README.md" }
+      ],
+      "region": ["global"],
+      "focuses": ["Open source", "Free", "Desktop", "No account"]
+    },
+    {
+      "code": "kasts",
+      "name": "Kasts",
+      "brand": "KDE",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free, open-source podcast app from the KDE community for Linux, Windows and Android, designed to work on both desktop and phone, with optional sync through gpodder.net or Nextcloud.",
+      "scores": {
+        "accessibility": 50,
+        "privacy": 88,
+        "openness": 95
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "KDE's app page says 'Kasts is a convergent podcast application that looks good on desktop and mobile', with installs for Linux (Flathub or distribution packages), Android and Windows and regular releases, the latest dated 2026-10-08; there is no iPhone or macOS version.",
+          "source": "https://apps.kde.org/kasts/",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "KDE's software privacy policy, which covers Kasts, says 'software produced by the KDE Community does not transmit or otherwise transfer information from end-users devices except as a result of an explicit user action'; KDE is represented by KDE e.V., a German non-profit.",
+          "source": "https://kde.org/privacypolicy-apps/",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "Flathub's metadata for Kasts lists its licence as GPL-2.0-or-later, with source code on KDE's own GitLab, and the Podcast Index app directory tags it open source.",
+          "source": "https://flathub.org/api/v2/appstream/org.kde.kasts",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        { "label": "KDE app page", "url": "https://apps.kde.org/kasts/" },
+        { "label": "Flathub listing", "url": "https://flathub.org/en/apps/org.kde.kasts" },
+        { "label": "KDE software privacy policy", "url": "https://kde.org/privacypolicy-apps/" }
+      ],
+      "region": ["global"],
+      "focuses": ["Open source", "Free", "Linux and Android", "Non-profit"]
     }
   ]
 }

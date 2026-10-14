@@ -13,7 +13,7 @@
    "most open"
   ],
   "source": "Conscious Consuming (curated)",
-  "attribution": "Built from software licence files read in each project's own repository, official documentation, security-advisory and pricing pages, not from review sites. Openness reflects whether the licence lets anyone run, modify and redistribute the software without asking permission, not whether a project markets itself as open source; several platforms here are source-available, which restricts commercial use or resale even though the code is public. Accessibility covers both installability and the hardware a person of ordinary skill actually needs, as each project documents it. Transparency reflects whether update and security practice is visible in public, such as a published advisory process or security policy, not whether the software is trustworthy. Suggest changes via Contribute.",
+  "attribution": "Built from software licence files read in each project's own repository, official documentation, security-advisory and pricing pages, not from review sites; CISA's Known Exploited Vulnerabilities catalogue is linked as context where a vendor appears in it. Openness reflects whether the licence lets anyone run, modify and redistribute the software without asking permission, not whether a project markets itself as open source; several platforms here are source-available, which restricts commercial use or resale even though the code is public. Accessibility covers both installability and the hardware a person of ordinary skill actually needs, as each project documents it. Transparency reflects whether update and security practice is visible in public, such as a published advisory process or security policy, not whether the software is trustworthy. Suggest changes via Contribute.",
   "allergens": false,
   "presets": {
    "Balanced": {
@@ -908,6 +908,432 @@
     "Rented",
     "Mainstream",
     "No self-hosting"
+   ]
+  },
+  {
+   "code": "nextcloud-aio",
+   "name": "Nextcloud (All-in-One)",
+   "brand": "Nextcloud GmbH",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The most widely known self-hosted file-sync and collaboration suite, installed here through its official All-in-One Docker setup that bundles the server, database, backups and updates.",
+   "scores": {
+    "openness": 88,
+    "accessibility": 62,
+    "longevity": 80,
+    "transparency": 85,
+    "economical": 82
+   },
+   "provenance": {
+    "openness": {
+     "note": "Nextcloud server's COPYING file is the GNU Affero General Public License version 3, and the official All-in-One installer repository carries the same licence.",
+     "source": "https://raw.githubusercontent.com/nextcloud/server/master/COPYING",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "The All-in-One README offers a 'Simple web interface included that enables easy installation and maintenance', started from a single Docker container, on x86_64 or arm64 hardware. Getting a valid certificate on the admin interface still needs ports 80 and 8443 reachable and a domain pointing at the server, or a reverse proxy you set up yourself.",
+     "source": "https://raw.githubusercontent.com/nextcloud/all-in-one/main/readme.md",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "The same README says daily BorgBackup backups can be enabled from the interface, to a local path or a remote borg repository, and that an instance can be restored from a backup archive '(you only need the archive and the password in order to restore the whole instance on a new AIO instance)'.",
+     "source": "https://raw.githubusercontent.com/nextcloud/all-in-one/main/readme.md",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Nextcloud's security page publishes its security advisories and an official CVE database, sets out responsible-disclosure guidelines, and takes vulnerability reports through a public HackerOne programme.",
+     "source": "https://nextcloud.com/security/",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Nextcloud's pricing page sells only Enterprise subscriptions, from 100 users at €71.29 per user per year for Standard, and states the product is fully open source under the AGPL. A household can therefore run the same server code without buying a plan.",
+     "source": "https://nextcloud.com/pricing/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "All-in-One README",
+     "url": "https://raw.githubusercontent.com/nextcloud/all-in-one/main/readme.md"
+    },
+    {
+     "label": "Security and advisories",
+     "url": "https://nextcloud.com/security/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "Open source",
+    "File sync and office"
+   ]
+  },
+  {
+   "code": "home-assistant-os",
+   "name": "Home Assistant OS",
+   "brand": "Open Home Foundation",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The home-automation platform's own minimal operating system, flashed onto a Raspberry Pi, a mini PC or a virtual machine, or bought preinstalled on the Home Assistant Green; it is a project of a non-profit foundation.",
+   "scores": {
+    "openness": 90,
+    "accessibility": 85,
+    "transparency": 78,
+    "longevity": 80,
+    "economical": 75
+   },
+   "provenance": {
+    "openness": {
+     "note": "The LICENSE file in the Home Assistant Operating System repository is the Apache License 2.0, a permissive licence. Home Assistant itself is also Apache 2.0.",
+     "source": "https://raw.githubusercontent.com/home-assistant/operating-system/dev/LICENSE",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Home Assistant's installation page offers the Home Assistant Green with the operating system already installed ('No assembly or flashing required.'), or flashing the OS onto a Raspberry Pi, an Odroid or an x86-64 machine you already own. It calls Home Assistant OS the recommended installation type for most people.",
+     "source": "https://www.home-assistant.io/installation/",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Home Assistant's security page asks for vulnerabilities to be reported through GitHub's private Security Advisory system. It asks reporters to give the project 'at least 90 days to release a fixed version' before going public, aims to respond within 7 days, and lists security issues it has handled in the past.",
+     "source": "https://www.home-assistant.io/security/",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Home Assistant's backup documentation says to back up regularly so that you can restore a system or migrate to new hardware. Backups are encrypted, can run automatically on a schedule, can be stored on network storage, and can be downloaded. A full backup covers the config, share, add-on, SSL and media directories.",
+     "source": "https://www.home-assistant.io/common-tasks/general/",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Home Assistant's Green page lists the ready-made box at a recommended $199 or €179, well below Umbrel's own device here. The operating system itself costs nothing when flashed onto hardware you already own.",
+     "source": "https://www.home-assistant.io/green/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Installation",
+     "url": "https://www.home-assistant.io/installation/"
+    },
+    {
+     "label": "Open Home Foundation",
+     "url": "https://www.openhomefoundation.org/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "Open source",
+    "Home automation"
+   ]
+  },
+  {
+   "code": "coolify",
+   "name": "Coolify",
+   "brand": "coolLabs",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "An open-source, self-hostable alternative to Heroku, Netlify and Vercel for deploying apps, databases and one-click services to your own servers over SSH.",
+   "scores": {
+    "openness": 88,
+    "accessibility": 65,
+    "transparency": 62,
+    "economical": 88
+   },
+   "provenance": {
+    "openness": {
+     "note": "Coolify's LICENSE file is the Apache License 2.0, and its README describes it as 'Open source & free forever'.",
+     "source": "https://raw.githubusercontent.com/coollabsio/coolify/v4.x/README.md",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Coolify's installation docs say it 'needs 2 CPU cores, 2 GB RAM, and 10 GB disk space to run', installed with a one-line script on a supported Linux server. They add that it can run on 1 CPU core and 512 MB RAM, but this is not recommended.",
+     "source": "https://coolify.io/docs/get-started/installation",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Coolify's security policy says only the 4.x line receives security updates, earlier versions are end of life, and vulnerabilities should be emailed to security@coollabs.io rather than disclosed publicly.",
+     "source": "https://raw.githubusercontent.com/coollabsio/coolify/v4.x/SECURITY.md",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Coolify's pricing page says the self-hosted edition is free forever: 'Deploy Coolify on your infrastructure without any restrictions on features.' Only the optional Coolify Cloud control plane, which still runs on servers you bring, is paid.",
+     "source": "https://coolify.io/pricing",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://coolify.io/"
+    },
+    {
+     "label": "README",
+     "url": "https://raw.githubusercontent.com/coollabsio/coolify/v4.x/README.md"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "PaaS",
+    "Open source"
+   ]
+  },
+  {
+   "code": "dokku",
+   "name": "Dokku",
+   "brand": "Dokku",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A long-running, command-line, Docker-powered 'mini-Heroku' for deploying apps to a single server you control with git push.",
+   "scores": {
+    "openness": 90,
+    "accessibility": 55,
+    "economical": 88
+   },
+   "provenance": {
+    "openness": {
+     "note": "Dokku's LICENSE file is the MIT licence, granting permission to use, copy, modify, merge, publish, distribute, sublicense and sell copies of the software.",
+     "source": "https://raw.githubusercontent.com/dokku/dokku/master/LICENSE",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Dokku's installation docs require a fresh Ubuntu 22.04, 24.04 or 26.04 or Debian 11+ server on amd64 or arm64, with '1GB of system memory, or add swap memory' for the Docker scheduler, and a domain name recommended. Setup and deploys are driven from the command line; a web dashboard is sold separately as Dokku Pro.",
+     "source": "https://dokku.com/docs/getting-started/installation/",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Dokku itself is free. Its optional web dashboard, Dokku Pro, is sold as a lifetime licence at $849 covering one production and two pre-production servers, and 'Pro is an add-on to your existing self-hosted Dokku installation', so it is not needed to run apps.",
+     "source": "https://pro.dokku.com/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Installation docs",
+     "url": "https://dokku.com/docs/getting-started/installation/"
+    },
+    {
+     "label": "README",
+     "url": "https://raw.githubusercontent.com/dokku/dokku/master/README.md"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "PaaS",
+    "Open source"
+   ]
+  },
+  {
+   "code": "freedombox",
+   "name": "FreedomBox",
+   "brand": "FreedomBox Foundation",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A Debian-based personal server aimed at non-experts, installable on cheap hardware or bought preinstalled, supported by the non-profit FreedomBox Foundation.",
+   "scores": {
+    "openness": 88,
+    "accessibility": 75,
+    "transparency": 65,
+    "longevity": 72
+   },
+   "provenance": {
+    "openness": {
+     "note": "FreedomBox's COPYING file says the FreedomBox Service (Plinth) is distributed under the GNU Affero General Public License, version 3 or later.",
+     "source": "https://salsa.debian.org/freedombox-team/freedombox/-/raw/main/COPYING.md",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "FreedomBox's homepage says it 'is a private server for non-experts: it lets you install and configure server applications with only a few clicks.' It says it 'runs on cheap hardware of your choice', and offers preinstalled home servers from its hardware partner Olimex.",
+     "source": "https://freedombox.org/",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "FreedomBox's manual says it can install security updates automatically, with nightly automatic updates on by default. Stable users mainly get security updates, and a new FreedomBox version is released every two weeks for testing users. There is no dedicated advisory database like TrueNAS's.",
+     "source": "https://salsa.debian.org/freedombox-team/freedombox/-/raw/main/doc/manual/en/Upgrades.raw.wiki",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "FreedomBox's backup manual describes a Borg-based backup of each app's data, configuration and secrets. any remote server reachable over SSH can hold the backup repository, and the backups can be encrypted. It lists gaps: shared-folder data for Samba, Syncthing and similar apps is not included, and backup of user accounts is only planned.",
+     "source": "https://salsa.debian.org/freedombox-team/freedombox/-/raw/main/doc/manual/en/Backups.raw.wiki",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://freedombox.org/"
+    },
+    {
+     "label": "Source (Debian Salsa)",
+     "url": "https://salsa.debian.org/freedombox-team/freedombox"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "Open source",
+    "Beginner-oriented"
+   ]
+  },
+  {
+   "code": "qnap-qts",
+   "name": "QNAP QTS",
+   "brand": "QNAP",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The proprietary operating system on QNAP NAS units, the main mainstream alternative to Synology; CISA's Known Exploited Vulnerabilities catalogue lists 11 QNAP flaws exploited in the wild, 9 of them in ransomware campaigns (2022 to 2023 additions).",
+   "scores": {
+    "openness": 10,
+    "transparency": 66
+   },
+   "provenance": {
+    "openness": {
+     "note": "QNAP's QTS page presents QTS as its NAS operating system, built on a Linux kernel and the ext4 file system. It offers no licence for QTS itself and no way to run it on hardware QNAP did not make. The page renders only with JavaScript and was read in a headless browser.",
+     "source": "https://www.qnap.com/en/operating-system/qts",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "QNAP's security advisory page lists dated, severity-rated advisories with CVE numbers, for example QSA-26-35, a Critical advisory for QuMagie and License Center dated 8 October 2026. It takes PGP-encrypted reports at security@qnap.com, but says it does not disclose or confirm security issues until patches are available. The list renders only with JavaScript and was read in a headless browser.",
+     "source": "https://www.qnap.com/en/security-advisories",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "QTS overview",
+     "url": "https://www.qnap.com/en/operating-system/qts"
+    },
+    {
+     "label": "Security advisories",
+     "url": "https://www.qnap.com/en/security-advisories"
+    },
+    {
+     "label": "CISA Known Exploited Vulnerabilities catalogue (data feed)",
+     "url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Proprietary",
+    "Bundled hardware",
+    "Mainstream"
+   ]
+  },
+  {
+   "code": "ubuntu-server-docker",
+   "name": "Ubuntu Server + Docker (DIY baseline)",
+   "brand": "Canonical",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The do-it-yourself baseline: a general-purpose Linux server with Docker Engine (Apache 2.0) on top, where every app, update and backup is set up by hand rather than through a home-server dashboard.",
+   "scores": {
+    "openness": 80,
+    "accessibility": 35,
+    "transparency": 85,
+    "economical": 92
+   },
+   "provenance": {
+    "openness": {
+     "note": "Canonical's intellectual property policy says Ubuntu can be downloaded, used and updated for free and modified for personal or internal use. Each package keeps its own licence, but redistributing a modified Ubuntu under its name needs a licence agreement from Canonical, a trademark restriction the fully open projects here do not carry.",
+     "source": "https://ubuntu.com/legal/intellectual-property-policy",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Ubuntu Server's system requirements give a minimum of 1.5 GB of RAM for ISO installs, a suggested 3 GB or more, and 5 GB of storage, on amd64, arm64 and other architectures. As a general-purpose server OS, it leaves Docker and each service to be installed and maintained from the command line.",
+     "source": "https://documentation.ubuntu.com/server/reference/installation/system-requirements/",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Canonical publishes Ubuntu Security Notices as a dated public feed, for example USN-8932-1 for curl and USN-8931-1 for Apache HTTP Server, both on 14 October 2026.",
+     "source": "https://ubuntu.com/security/notices",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Ubuntu is free to download, and Canonical's Ubuntu Pro page says 'Ubuntu Pro is and always will be free for personal use on up to 5 physical machines', which adds extended security maintenance at no cost to a home server.",
+     "source": "https://ubuntu.com/pro",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Ubuntu Security Notices",
+     "url": "https://ubuntu.com/security/notices"
+    },
+    {
+     "label": "Docker Engine docs and licence",
+     "url": "https://docs.docker.com/engine/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Self-hostable",
+    "DIY",
+    "Baseline"
+   ]
+  },
+  {
+   "code": "elestio",
+   "name": "Elestio",
+   "brand": "Elestio",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Paid managed hosting for more than 400 open-source applications, each on its own dedicated VM at a cloud provider you choose, with root access kept.",
+   "scores": {
+    "openness": 55,
+    "accessibility": 88,
+    "economical": 50,
+    "longevity": 85
+   },
+   "provenance": {
+    "openness": {
+     "note": "Elestio hosts existing open-source software for you rather than being software you run yourself; its pricing page offers a search across '400+ open-source software' and a choice of Hetzner, DigitalOcean, AWS Lightsail, Vultr, Linode, Scaleway or Netcup underneath.",
+     "source": "https://elest.io/pricing",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "There is no install step: Elestio's pricing page says 'Every plan includes automated backups, SSL certificates, security updates, OS patches, and 24/7 monitoring', with deployment picked from a catalogue in the browser.",
+     "source": "https://elest.io/pricing",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Elestio's pricing page says 'Plans start at $11/month for a fully managed service on a dedicated VM'. Each app is billed as its own VM, and paid support tiers cost $50 or $200 a month. That is well above PikaPods' $1.80 starting price for a small app.",
+     "source": "https://elest.io/pricing",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "The pricing FAQ says that before cancelling 'you can export all your data or download automated backups from the dashboard', and that 'Every service gives you full root access and standard data export options.'",
+     "source": "https://elest.io/pricing",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Pricing",
+     "url": "https://elest.io/pricing"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Managed hosting",
+    "Open-source apps",
+    "No install"
    ]
   }
  ]
