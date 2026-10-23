@@ -17,7 +17,8 @@ APP = os.path.normpath(os.path.join(HERE, '..', 'app'))
 # map shipped behind a URL that had not changed since the file was created. research/asset_stamp_audit.js
 # now fails the build if index.html carries a version that is not a real content hash.
 ASSETS = ('styles.css', 'data.js', 'i18n.js', 'guides.js', 'engine.js', 'decision.js', 'sigil.js',
-          'lines.js', 'presentation.js', 'icons.js', 'homelens.js', 'needsrose.js', 'app.js')
+          'lines.js', 'presentation.js', 'icons.js', 'homelens.js', 'needsrose.js', 'app.js',
+          'visitnotes.js')
 
 def asset_versions():
     versions = {}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/position-v0.1.schema.json",
+  "title": "Open Values Position v0.1",
+  "description": "One person's position on a question: where they stand, how sure they are, the strongest case against it in its holders' own words, and what would change their mind. The Socratic Hearth page makes it in the browser and the person keeps it; the Work Party can read it.",
+  "type": "object",
+  "required": ["format", "version", "recorded", "position"],
+  "additionalProperties": true,
+  "properties": {
+    "format": { "const": "open-values-position", "description": "Always \"open-values-position\". Tells a reader that this file is one person's position on a question." },
+    "version": { "type": "string", "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$", "description": "The version of the position format this file follows, 0.1." },
+    "recorded": { "type": "string", "description": "The date the browser saved the file, YYYY-MM-DD." },
+    "question": { "type": "string", "description": "The question the position answers, as the person wrote it." },
+    "position": { "type": "string", "description": "Where the person stands, in one or two sentences: the claim, not the argument for it." },
+    "confidence": { "type": "number", "description": "How firmly the position is held, as the page's slider set it." },
+    "confidence_after_case_against": { "type": "number", "description": "How firmly it is held after writing the strongest case against it. Present only if the second slider was moved." },
+    "strongest_case_against": { "type": "string", "description": "The strongest case against the position, written in words the people who hold that view would accept." },
+    "would_change_my_mind": { "type": "string", "description": "What would change the person's mind: something a person could go and check." },
+    "about_line": { "type": "string", "description": "The rule or line the question is about, copied in by the person. Present only when filled in." },
+    "what_i_know": { "type": "string", "description": "What the person knows about the question, including from their own experience. Present only when filled in." },
+    "case_against_called_fair_by": { "type": "string", "description": "The name or role of someone who disagrees and has said the case against is a fair statement of their view. Present only when filled in; nobody is contacted by the page." },
+    "proposed_wording": { "type": "string", "description": "The person's own rewording of the rule or line in about_line. Present only when filled in." },
+    "look_again_on": { "type": "string", "description": "A date to look at the position again, as YYYY-MM-DD. Present only when filled in." },
+    "answering": { "type": "object", "description": "Present only on a card written in answer to one that arrived by link: the question, position and recorded date of the card it answers.", "properties": { "question": { "type": "string" }, "position": { "type": "string" }, "recorded": { "type": "string" } } },
+    "their_case_for_you": { "type": "string", "enum": ["fair", "not fair"], "description": "On an answering card: whether the other card's version of this writer's side was fair to them. Present only when answered." },
+    "how_you_would_put_it": { "type": "string", "description": "On an answering card: how this writer would put their own side, when the other card's version misses it. Present only when filled in." }
+  }
+}

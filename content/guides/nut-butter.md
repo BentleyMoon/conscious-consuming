@@ -94,7 +94,7 @@ Ingredient purity is not the only value. A slightly less perfect jar that actual
 - **Protein halo.** Peanut butter already contains protein; a big protein claim does not cancel out added sugar or a high price.
 - **Organic tunnel vision.** Organic may matter to you, but organic sugar plus organic palm oil is still a sweetened, stabilized spread.
 - **Powdered peanut butter confusion.** It can be useful for some recipes, but it is a different product with different texture, fat, and satiety.
-- **Chocolate spread drift.** Cocoa and sugar can quietly turn nut butter into dessert spread.
+- **Chocolate spread drift.** Cocoa and sugar can turn nut butter into dessert spread.
 
 ## A practical default
 

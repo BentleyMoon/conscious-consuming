@@ -72,7 +72,7 @@ Every useful feature still has to pass the anti-app test. A feature can be conve
 | analytics | aggregate, minimal, disclosed, and non-profiling | ad pixels, cross-site tracking, or user-level surveillance |
 | AI assistance | narrow, labeled, source-aware, and privacy-scoped | hidden prompt upload or generated claims without review |
 
-This is not a ban on ambition. It is a gate that keeps useful growth from quietly becoming platform capture.
+This is not a ban on ambition. It is a gate that stops useful growth from turning into platform capture.
 
 ## How to hold us to it
 

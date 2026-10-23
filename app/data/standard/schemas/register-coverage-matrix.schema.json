@@ -2,30 +2,32 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/register-coverage-matrix-v1.schema.json",
   "title": "Open Values Register Coverage Matrix",
-  "description": "Complete generated status coverage for every covered or open taxonomy decision against every register on the shelf.",
+  "description": "A generated table that gives every open or built decision a status against every register on the shelf: applicable, not applicable, blocked, or not yet reviewed. A build script makes it from the taxonomy, the shelf and the coverage rules, and it is used to plan register passes.",
   "type": "object",
   "required": ["format", "version", "generatedFrom", "counts", "registers", "decisions"],
   "additionalProperties": false,
   "properties": {
-    "format": { "const": "open-values-register-coverage-matrix" },
-    "version": { "const": "1.0.0" },
+    "format": { "description": "Names the file format. Always open-values-register-coverage-matrix.", "const": "open-values-register-coverage-matrix" },
+    "version": { "description": "The version of this format the file follows. Always 1.0.0.", "const": "1.0.0" },
     "generatedFrom": {
+      "description": "The four files the matrix was built from, each with the SHA-256 hash of its bytes, so a stale matrix can be detected.",
       "type": "object",
       "required": ["taxonomy", "taxonomySha256", "registerShelf", "registerShelfSha256", "coverageRules", "coverageRulesSha256", "entityInventory", "entityInventorySha256"],
       "additionalProperties": false,
       "properties": {
-        "taxonomy": { "const": "content/taxonomy.json" },
-        "taxonomySha256": { "$ref": "#/$defs/sha256" },
-        "registerShelf": { "const": "content/registers.json" },
-        "registerShelfSha256": { "$ref": "#/$defs/sha256" },
-        "coverageRules": { "const": "content/register-coverage-rules.json" },
-        "coverageRulesSha256": { "$ref": "#/$defs/sha256" },
-        "entityInventory": { "const": "pipeline/registers/entity-inventory.json" },
-        "entityInventorySha256": { "$ref": "#/$defs/sha256" }
+        "taxonomy": { "description": "Path of the taxonomy file. Always content/taxonomy.json.", "const": "content/taxonomy.json" },
+        "taxonomySha256": { "description": "SHA-256 hash of the taxonomy file at build time.", "$ref": "#/$defs/sha256" },
+        "registerShelf": { "description": "Path of the register shelf. Always content/registers.json.", "const": "content/registers.json" },
+        "registerShelfSha256": { "description": "SHA-256 hash of the register shelf at build time.", "$ref": "#/$defs/sha256" },
+        "coverageRules": { "description": "Path of the coverage rules. Always content/register-coverage-rules.json.", "const": "content/register-coverage-rules.json" },
+        "coverageRulesSha256": { "description": "SHA-256 hash of the coverage rules at build time.", "$ref": "#/$defs/sha256" },
+        "entityInventory": { "description": "Path of the entity inventory. Always pipeline/registers/entity-inventory.json.", "const": "pipeline/registers/entity-inventory.json" },
+        "entityInventorySha256": { "description": "SHA-256 hash of the entity inventory at build time.", "$ref": "#/$defs/sha256" }
       }
     },
-    "counts": { "type": "object" },
+    "counts": { "description": "Totals for the whole matrix: taxonomyDecisions, targetDecisions (covered plus open), coveredDecisions, openDecisions, builtTargetDecisions, excludedHoldDecisions, excludedOutDecisions, registers, relationships (target decisions times registers) and statuses (how many relationships have each status).", "type": "object" },
     "registers": {
+      "description": "One row per register on the shelf, sorted by id, with how many decisions fall under each status.",
       "type": "array",
       "minItems": 1,
       "items": {
@@ -33,13 +35,14 @@
         "required": ["registerId", "criterion", "counts"],
         "additionalProperties": false,
         "properties": {
-          "registerId": { "$ref": "#/$defs/id" },
-          "criterion": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
-          "counts": { "type": "object" }
+          "registerId": { "description": "The register's id from the shelf.", "$ref": "#/$defs/id" },
+          "criterion": { "description": "The criterion key the register writes to, copied from its provenanceKey on the shelf.", "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+          "counts": { "description": "How many target decisions have each status for this register, keyed applicable, not-applicable, blocked and unmapped.", "type": "object" }
         }
       }
     },
     "decisions": {
+      "description": "One row per covered or open taxonomy decision, sorted by id, with its status against every register.",
       "type": "array",
       "minItems": 1,
       "items": { "$ref": "#/$defs/decision" }
@@ -53,8 +56,8 @@
       "required": ["kind"],
       "additionalProperties": false,
       "properties": {
-        "kind": { "enum": ["shelf-proven", "selector"] },
-        "id": { "$ref": "#/$defs/id" }
+        "kind": { "description": "Where the status came from. shelf-proven means the shelf records a hand-checked citation for this decision. selector means a reviewed coverage rule matched it.", "enum": ["shelf-proven", "selector"] },
+        "id": { "description": "The id of the selector that matched, when kind is selector.", "$ref": "#/$defs/id" }
       }
     },
     "resolvedCoverage": {
@@ -62,10 +65,10 @@
       "required": ["registerId", "criterion", "reason", "basis"],
       "additionalProperties": false,
       "properties": {
-        "registerId": { "$ref": "#/$defs/id" },
-        "criterion": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
-        "reason": { "type": "string", "minLength": 1 },
-        "basis": { "$ref": "#/$defs/basis" }
+        "registerId": { "description": "The register's id from the shelf.", "$ref": "#/$defs/id" },
+        "criterion": { "description": "The criterion key the register writes to.", "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "reason": { "description": "Why this status holds, copied from the winning selector or from the shelf proof.", "type": "string", "minLength": 1 },
+        "basis": { "description": "Which rule or proof set this status.", "$ref": "#/$defs/basis" }
       }
     },
     "coverage": {
@@ -73,10 +76,10 @@
       "required": ["applicable", "notApplicable", "blocked", "unmapped"],
       "additionalProperties": false,
       "properties": {
-        "applicable": { "type": "array", "items": { "$ref": "#/$defs/resolvedCoverage" } },
-        "notApplicable": { "type": "array", "items": { "$ref": "#/$defs/resolvedCoverage" } },
-        "blocked": { "type": "array", "items": { "$ref": "#/$defs/resolvedCoverage" } },
-        "unmapped": { "type": "array", "items": { "$ref": "#/$defs/id" } }
+        "applicable": { "description": "Registers whose subject covers this decision.", "type": "array", "items": { "$ref": "#/$defs/resolvedCoverage" } },
+        "notApplicable": { "description": "Registers a reviewed rule says cannot supply facts for this decision.", "type": "array", "items": { "$ref": "#/$defs/resolvedCoverage" } },
+        "blocked": { "description": "Registers that apply but have a named prerequisite stopping a pass for now.", "type": "array", "items": { "$ref": "#/$defs/resolvedCoverage" } },
+        "unmapped": { "description": "Ids of registers nobody has reviewed against this decision yet. This is the default and is not a claim that the register is irrelevant.", "type": "array", "items": { "$ref": "#/$defs/id" } }
       }
     },
     "decision": {
@@ -84,18 +87,18 @@
       "required": ["id", "cid", "label", "path", "scope", "built", "realm", "field", "family", "type", "mode", "coverage"],
       "additionalProperties": false,
       "properties": {
-        "id": { "$ref": "#/$defs/id" },
-        "cid": { "type": ["string", "null"] },
-        "label": { "type": "string", "minLength": 1 },
-        "path": { "type": "string", "minLength": 1 },
-        "scope": { "enum": ["covered", "open"] },
-        "built": { "type": "boolean" },
-        "realm": { "$ref": "#/$defs/id" },
-        "field": { "$ref": "#/$defs/id" },
-        "family": { "$ref": "#/$defs/id" },
-        "type": { "enum": ["Products", "Services", "Media", "Organizations", "Initiatives"] },
-        "mode": { "type": "string", "minLength": 1 },
-        "coverage": { "$ref": "#/$defs/coverage" }
+        "id": { "description": "The decision's id in the taxonomy.", "$ref": "#/$defs/id" },
+        "cid": { "description": "The id of the decision's built dataset, or null if it has none yet.", "type": ["string", "null"] },
+        "label": { "description": "The decision's display name.", "type": "string", "minLength": 1 },
+        "path": { "description": "The decision's place in the taxonomy: four ids joined by slashes, from the top level down to the decision.", "type": "string", "minLength": 1 },
+        "scope": { "description": "covered means the decision is built in the catalogue; open means it is open for work.", "enum": ["covered", "open"] },
+        "built": { "description": "True when the decision's cid appears in the entity inventory, meaning it has a built dataset with options.", "type": "boolean" },
+        "realm": { "description": "The id of the top-level taxonomy group the decision sits in, such as food-and-drink.", "$ref": "#/$defs/id" },
+        "field": { "description": "The field the decision sits in, the second level of the taxonomy.", "$ref": "#/$defs/id" },
+        "family": { "description": "The family the decision sits in, the level below field.", "$ref": "#/$defs/id" },
+        "type": { "description": "What kind of thing the decision compares.", "enum": ["Products", "Services", "Media", "Organizations", "Initiatives"] },
+        "mode": { "description": "How a person comes to have the thing, such as buy, rent or hire.", "type": "string", "minLength": 1 },
+        "coverage": { "description": "This decision's status against every register on the shelf. Each register appears in exactly one of the four lists.", "$ref": "#/$defs/coverage" }
       }
     }
   }

@@ -1,0 +1,36 @@
+{
+  "format": "open-values-register-snapshot",
+  "version": "1.0.0",
+  "snapshotId": "2026-10-13-353e8b8a82aa",
+  "registerId": "fueleconomy-gov-vehicles",
+  "access": "bulk",
+  "capturedAt": "2026-10-13T01:35:26Z",
+  "request": {
+    "method": "GET",
+    "url": "https://www.fueleconomy.gov/feg/epadata/vehicles.csv.zip",
+    "query": {},
+    "scope": "Every vehicle in the fueleconomy.gov database, all model years, as one zipped CSV.",
+    "headers": {
+      "Accept": "*/*",
+      "User-Agent": "ConsciousConsuming/1.0 register-snapshot"
+    },
+    "secretHeaderNames": []
+  },
+  "response": {
+    "status": 200,
+    "finalUrl": "https://www.fueleconomy.gov/feg/epadata/vehicles.csv.zip",
+    "mediaType": "application/x-zip-compressed",
+    "bytes": 2212193,
+    "sha256": "33d32caa0343cdb11c47be631e8a80b7ed7c351ee8503646a4e96485bd67b22f",
+    "payload": "2026-10-13-353e8b8a82aa.payload.zip",
+    "fetchMode": "network"
+  },
+  "license": {
+    "url": "https://edg.epa.gov/EPA_Data_License.htm",
+    "note": "US public domain: data produced by the US EPA is in the public domain by default (EPA data licence, reached through the data.gov catalogue entry)."
+  },
+  "parser": {
+    "id": "fueleconomy-vehicles-csv",
+    "version": "1.0.0"
+  }
+}

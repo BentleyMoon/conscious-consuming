@@ -2,18 +2,19 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/ask-traces-v0.1.schema.json",
   "title": "Open Values Ask Traces v0.1",
-  "description": "Deterministic Ask resolver traces for app-owned integration and visual QA.",
+  "description": "For each test search in ask-fixtures.json, the results the data build's own search gives, with scores and ranks, so the app's results can be compared against them. It is an internal file used while building the site.",
   "type": "object",
   "additionalProperties": true,
   "required": ["format", "version", "built", "source", "purpose", "resolverModel", "traces"],
   "properties": {
-    "format": { "const": "ovs-ask-traces" },
-    "version": { "$ref": "#/$defs/version" },
-    "built": { "$ref": "#/$defs/date" },
-    "source": { "$ref": "#/$defs/source" },
-    "purpose": { "$ref": "#/$defs/nonEmptyString" },
-    "resolverModel": { "$ref": "#/$defs/nonEmptyString" },
+    "format": { "description": "Names this file's format, so a reader can check it before reading the rest of the file.", "const": "ovs-ask-traces" },
+    "version": { "description": "The version of the format this file follows, such as \"0.1\".", "$ref": "#/$defs/version" },
+    "built": { "description": "The date of the source data this file was built from, as YYYY-MM-DD.", "$ref": "#/$defs/date" },
+    "source": { "description": "The script and files this file was built from, as paths in the repository.", "$ref": "#/$defs/source" },
+    "purpose": { "description": "One sentence on what this file is for.", "$ref": "#/$defs/nonEmptyString" },
+    "resolverModel": { "description": "The function that produced the traces.", "$ref": "#/$defs/nonEmptyString" },
     "traces": {
+      "description": "One trace per test query in ask-fixtures.json.",
       "type": "array",
       "minItems": 1,
       "items": { "$ref": "#/$defs/trace" }
@@ -36,14 +37,14 @@
       "additionalProperties": true,
       "required": ["id", "label", "type", "route", "hash", "score", "reason", "key"],
       "properties": {
-        "id": { "$ref": "#/$defs/ovsId" },
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "type": { "$ref": "#/$defs/nonEmptyString" },
-        "route": { "$ref": "#/$defs/nonEmptyString" },
-        "hash": { "$ref": "#/$defs/routeHash" },
-        "score": { "type": "number" },
-        "reason": { "$ref": "#/$defs/nonEmptyString" },
-        "key": { "$ref": "#/$defs/nonEmptyString" }
+        "id": { "description": "The id of the result.", "$ref": "#/$defs/ovsId" },
+        "label": { "description": "The result's name as shown to readers.", "$ref": "#/$defs/nonEmptyString" },
+        "type": { "description": "What the result is, such as \"brand\", \"category\" or \"item\".", "$ref": "#/$defs/nonEmptyString" },
+        "route": { "description": "The route family of the result's page, such as \"node\" or \"explore\".", "$ref": "#/$defs/nonEmptyString" },
+        "hash": { "description": "The route of the result's page.", "$ref": "#/$defs/routeHash" },
+        "score": { "description": "The match score; a higher score ranks first. Alias matches score 120, exact 110, a query word 95, one letter off 86, and overlapping words 76 less the difference in word count.", "type": "number" },
+        "reason": { "description": "The rule that produced the match: \"alias\" (an exact name), \"exact\" (an exact word or phrase), \"query-token\" (one word of the query), \"fuzzy-1\" (one letter off) or \"token-containment\" (the words overlap).", "$ref": "#/$defs/nonEmptyString" },
+        "key": { "description": "The word or phrase in the index that the query matched.", "$ref": "#/$defs/nonEmptyString" }
       }
     },
     "trace": {
@@ -51,22 +52,24 @@
       "additionalProperties": true,
       "required": ["query", "normalized", "layer", "expectAny", "top", "ok"],
       "properties": {
-        "query": { "$ref": "#/$defs/nonEmptyString" },
-        "normalized": { "$ref": "#/$defs/nonEmptyString" },
-        "layer": { "enum": ["core", "full"] },
-        "expectAny": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/ovsId" } },
+        "query": { "description": "The query as a person would type it.", "$ref": "#/$defs/nonEmptyString" },
+        "normalized": { "description": "The query after normalization and stop-word removal.", "$ref": "#/$defs/nonEmptyString" },
+        "layer": { "description": "Which index answered the query: \"core\" or \"full\".", "enum": ["core", "full"] },
+        "expectAny": { "description": "At least one of these ids must come back.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/ovsId" } },
         "orderingAssertions": {
+          "description": "Rules about which kind of match must rank above which, copied from the fixture.",
           "type": "array",
           "items": { "$ref": "#/$defs/orderingAssertion" }
         },
-        "matched": { "oneOf": [{ "$ref": "#/$defs/ovsId" }, { "type": "null" }] },
-        "matchedRank": { "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }] },
+        "matched": { "description": "The id of the highest-ranked result that is in expectAny, or null when none came back.", "oneOf": [{ "$ref": "#/$defs/ovsId" }, { "type": "null" }] },
+        "matchedRank": { "description": "The rank of that result, counting from 1, or null when none came back.", "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }] },
         "orderingChecks": {
+          "description": "The result of each ordering rule against the actual results.",
           "type": "array",
           "items": { "$ref": "#/$defs/orderingCheck" }
         },
-        "ok": { "type": "boolean" },
-        "top": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/hit" } }
+        "ok": { "description": "True when the matched result ranks within the fixture's limit and every ordering check passed.", "type": "boolean" },
+        "top": { "description": "The top results for the query, in rank order.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/hit" } }
       }
     },
     "orderingAssertion": {
@@ -74,12 +77,12 @@
       "additionalProperties": true,
       "required": ["id", "winnerReason", "loserReason"],
       "properties": {
-        "id": { "$ref": "#/$defs/nonEmptyString" },
-        "winnerReason": { "$ref": "#/$defs/nonEmptyString" },
-        "winnerAny": { "type": "array", "items": { "$ref": "#/$defs/ovsId" } },
-        "loserReason": { "$ref": "#/$defs/nonEmptyString" },
-        "loserAny": { "type": "array", "items": { "$ref": "#/$defs/ovsId" } },
-        "note": { "$ref": "#/$defs/nonEmptyString" }
+        "id": { "description": "A short id for the ordering rule, such as \"typo-before-loose-containment\".", "$ref": "#/$defs/nonEmptyString" },
+        "winnerReason": { "description": "The match reason that must rank higher, such as \"fuzzy-1\".", "$ref": "#/$defs/nonEmptyString" },
+        "winnerAny": { "description": "Ids the higher-ranked result must be one of. Empty or missing means any result with the winning reason counts.", "type": "array", "items": { "$ref": "#/$defs/ovsId" } },
+        "loserReason": { "description": "The match reason that must rank lower, such as \"token-containment\".", "$ref": "#/$defs/nonEmptyString" },
+        "loserAny": { "description": "Ids the lower-ranked result must be one of. Empty or missing means any result with the losing reason counts.", "type": "array", "items": { "$ref": "#/$defs/ovsId" } },
+        "note": { "description": "A plain note on why this order matters.", "$ref": "#/$defs/nonEmptyString" }
       }
     },
     "orderingCheck": {
@@ -87,13 +90,13 @@
       "additionalProperties": true,
       "required": ["id", "winnerReason", "loserReason", "ok"],
       "properties": {
-        "id": { "$ref": "#/$defs/nonEmptyString" },
-        "note": { "$ref": "#/$defs/nonEmptyString" },
-        "winnerReason": { "$ref": "#/$defs/nonEmptyString" },
-        "loserReason": { "$ref": "#/$defs/nonEmptyString" },
-        "winnerRank": { "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }] },
-        "loserRank": { "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }] },
-        "ok": { "type": "boolean" }
+        "id": { "description": "The id of the ordering rule this check tests.", "$ref": "#/$defs/nonEmptyString" },
+        "note": { "description": "A plain note on why this order matters, copied from the rule.", "$ref": "#/$defs/nonEmptyString" },
+        "winnerReason": { "description": "The match reason that must rank higher.", "$ref": "#/$defs/nonEmptyString" },
+        "loserReason": { "description": "The match reason that must rank lower.", "$ref": "#/$defs/nonEmptyString" },
+        "winnerRank": { "description": "The rank of the first result with the winning reason, counting from 1. Null when no such result came back.", "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }] },
+        "loserRank": { "description": "The rank of the first result with the losing reason, counting from 1. Null when no such result came back.", "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }] },
+        "ok": { "description": "True when a winning result came back and ranks above every losing one, or no losing result came back.", "type": "boolean" }
       }
     }
   }

@@ -2,11 +2,11 @@
 /* Single-lens preflight.
 
    WHY THIS EXISTS. The full pipeline takes minutes and rewrites every generated surface in the
-   repo. A swarm of agents cannot run it per decision: it is slow, and several agents running it at
+   repo. Several parallel build lanes cannot run it per decision: it is slow, and several agents running it at
    once fight over the same generated files. This checks one lens in about a second and touches
    nothing.
 
-   It is also where the swarm's quality rules live, because a rule that only exists in a brief is a
+   It is also where the content quality rules live, because a rule that only exists in a brief is a
    rule that gets read once. Everything here is derived from the artifacts: the criterion
    vocabulary comes from the lenses already written, the filter keys come from the home lens
    itself, and the type and label come from the map. There is no hand-maintained list of expected
@@ -78,6 +78,10 @@ const REGULATORS = [
   'law.cornell.edu',        // Legal Information Institute, primary text of US statute
   'bundesgerichtshof.de',   // Germany's Federal Court of Justice
   'dataprotection.ie',      // Ireland's Data Protection Commission, lead EU regulator for big tech
+  'cqc.org.uk',             // Care Quality Commission, England's statutory health and social care regulator
+  'rules.cityofnewyork.us', // New York City's official rules, primary text of municipal regulation
+  'pharmacyregulation.org', // General Pharmaceutical Council, statutory regulator of UK pharmacies
+  'asa.org.uk',             // Advertising Standards Authority, the primary record of UK ad rulings
 ];
 
 function readJson(file) {
@@ -366,10 +370,15 @@ function main() {
   const args = process.argv.slice(2);
   const all = args.includes('--all');
   const lax = args.includes('--lax');
-  const target = args.find((a) => !a.startsWith('--'));
+  /* --file checks a lens at an explicit path, so a generated or half-written lens can be held to
+     the whole contract while it still lives in content/lenses-drafts/. Every file in content/lenses
+     is live to the build, so nothing partial may sit there even for the length of a check. */
+  const fileIdx = args.indexOf('--file');
+  const explicit = fileIdx >= 0 ? args[fileIdx + 1] : null;
+  const target = explicit ? null : args.find((a) => !a.startsWith('--'));
 
-  if (!all && !target) {
-    console.log('usage: node research/lens_check.js <cid> [--lax] | --all');
+  if (!all && !target && !explicit) {
+    console.log('usage: node research/lens_check.js <cid> [--lax] | --all | --file <path>');
     process.exit(2);
   }
 
@@ -382,7 +391,7 @@ function main() {
     byName.set(file.replace(/\.json$/, ''), file);
     byName.set(id, file);
   }
-  const ids = all ? files : [byName.get(target)];
+  const ids = explicit ? [path.resolve(explicit)] : all ? files : [byName.get(target)];
   if (!all && !ids[0]) {
     console.log(`LENS CHECK FAILED: no lens with cid or filename "${target}" in content/lenses`);
     process.exit(1);
@@ -392,7 +401,7 @@ function main() {
   let warned = 0;
 
   for (const name of ids) {
-    const file = path.join(LENS_DIR, name);
+    const file = path.isAbsolute(name) ? name : path.join(LENS_DIR, name);
     let lens;
     try {
       lens = readJson(file);

@@ -7,8 +7,8 @@ window.OVS_LENS = {
     id: 'kosplora', storeKey: 'kosplora.values', noun: 'learning',
     slug: 'kosplora',
     proof: {
-      title: 'One component, another domain',
-      text: 'Conscious Consuming and this page call the same decision.js recipes, controls, explanations, and math. Only the list and the skin change.',
+      title: 'The same code as the other apps',
+      text: 'Conscious Consuming and this page run the same scoring code and the same page code. Only the list of places to learn and the colours are different.',
       links: [
         { href: '../app/#need/learn', label: 'Return to the LEARN need' },
         { href: '../docs/DECISION-REFRAME-FOUNDER-REVIEW.md', label: 'Open the founder review' }

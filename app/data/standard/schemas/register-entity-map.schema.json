@@ -2,17 +2,18 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/register-entity-map-v1.schema.json",
   "title": "Open Values Register Entity Map",
-  "description": "Reviewed mappings from catalogue options to stable identities in one public register.",
+  "description": "For one public register, which catalogue options have been matched to which company or record in that register, and which could not be matched. Maintainers write and review it by hand, and the evidence builder uses only the matched rows.",
   "type": "object",
   "required": ["format", "version", "registerId", "updated", "note", "mappings"],
   "additionalProperties": false,
   "properties": {
-    "format": { "const": "open-values-register-entity-map" },
-    "version": { "const": "1.0.0" },
-    "registerId": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
-    "updated": { "type": "string", "format": "date" },
-    "note": { "type": "string", "minLength": 1 },
+    "format": { "description": "Names the file format. Always open-values-register-entity-map.", "const": "open-values-register-entity-map" },
+    "version": { "description": "The version of this format the file follows. Always 1.0.0.", "const": "1.0.0" },
+    "registerId": { "description": "The id of the register these mappings point into, from content/registers.json. The file is named after it.", "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "updated": { "description": "The date the mappings were last changed, as YYYY-MM-DD. No review date in the file may be later than this.", "type": "string", "format": "date" },
+    "note": { "description": "A short paragraph on what this set of mappings covers and any limits on how its matches should be read.", "type": "string", "minLength": 1 },
     "mappings": {
+      "description": "One row per catalogue option that has been looked up, or is waiting to be looked up, in this register.",
       "type": "array",
       "minItems": 1,
       "items": { "$ref": "#/$defs/mapping" }
@@ -24,9 +25,9 @@
       "required": ["scheme", "value"],
       "additionalProperties": false,
       "properties": {
-        "scheme": { "type": "string", "minLength": 1 },
-        "value": { "type": "string", "minLength": 1 },
-        "url": { "type": "string", "pattern": "^https?://" }
+        "scheme": { "description": "The kind of identifier, named by whoever writes the map, such as cfpb-company-product.", "type": "string", "minLength": 1 },
+        "value": { "description": "The identifier itself, exactly as the register uses it.", "type": "string", "minLength": 1 },
+        "url": { "description": "A web address that shows the register's record for this identifier.", "type": "string", "pattern": "^https?://" }
       }
     },
     "evidence": {
@@ -34,9 +35,9 @@
       "required": ["source", "note", "accessed"],
       "additionalProperties": false,
       "properties": {
-        "source": { "type": "string", "pattern": "^https?://" },
-        "note": { "type": "string", "minLength": 1 },
-        "accessed": { "type": "string", "format": "date" }
+        "source": { "description": "The web address the match was checked against. It must be on one of the hosts the register declares on the shelf.", "type": "string", "pattern": "^https?://" },
+        "note": { "description": "What was checked and how, in a sentence or two.", "type": "string", "minLength": 1 },
+        "accessed": { "description": "The date the source was checked, as YYYY-MM-DD.", "type": "string", "format": "date" }
       }
     },
     "review": {
@@ -44,8 +45,8 @@
       "required": ["by", "on"],
       "additionalProperties": false,
       "properties": {
-        "by": { "type": "string", "minLength": 1 },
-        "on": { "type": "string", "format": "date" }
+        "by": { "description": "Who reviewed the row: a person's name or the name of the review pass.", "type": "string", "minLength": 1 },
+        "on": { "description": "The date of the review, as YYYY-MM-DD. It may not be later than the file's updated date.", "type": "string", "format": "date" }
       }
     },
     "candidate": {
@@ -53,10 +54,10 @@
       "required": ["legalName", "jurisdiction", "registerIdentifier", "matchEvidence"],
       "additionalProperties": false,
       "properties": {
-        "legalName": { "type": "string", "minLength": 1 },
-        "jurisdiction": { "type": "string", "minLength": 1 },
-        "registerIdentifier": { "$ref": "#/$defs/identifier" },
-        "matchEvidence": { "$ref": "#/$defs/evidence" }
+        "legalName": { "description": "The legal name of one possible match, as the register records it.", "type": "string", "minLength": 1 },
+        "jurisdiction": { "description": "Where that possible match is registered, such as US or GB.", "type": "string", "minLength": 1 },
+        "registerIdentifier": { "description": "The register's identifier for this possible match.", "$ref": "#/$defs/identifier" },
+        "matchEvidence": { "description": "Where and when this possible match was found.", "$ref": "#/$defs/evidence" }
       }
     },
     "mapping": {
@@ -64,31 +65,31 @@
       "required": ["cid", "entityCode", "entityName", "entityIdentitySha256", "status"],
       "additionalProperties": false,
       "properties": {
-        "cid": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
-        "entityCode": { "type": "string", "minLength": 1 },
-        "entityName": { "type": "string", "minLength": 1 },
-        "entityIdentitySha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-        "status": { "enum": ["matched", "ambiguous", "unmatched", "not-applicable", "unreviewed"] },
-        "legalName": { "type": "string", "minLength": 1 },
-        "aliases": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
-        "jurisdiction": { "type": "string", "minLength": 1 },
-        "registerIdentifier": { "$ref": "#/$defs/identifier" },
-        "matchEvidence": { "$ref": "#/$defs/evidence" },
-        "candidates": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/candidate" } },
-        "reason": { "type": "string", "minLength": 1 },
-        "review": { "$ref": "#/$defs/review" }
+        "cid": { "description": "The id of the catalogue decision the option belongs to. It must be a built decision in the entity inventory.", "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "entityCode": { "description": "The option's code inside that decision. Together with cid it names one option, and each option appears at most once per file.", "type": "string", "minLength": 1 },
+        "entityName": { "description": "The option's current name in the catalogue. It must match the dataset exactly.", "type": "string", "minLength": 1 },
+        "entityIdentitySha256": { "description": "The SHA-256 hash of the option's current code and name. If the option is renamed or recoded the hash no longer matches and the row must be reviewed again, so an old match is never carried over silently.", "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "status": { "description": "Where the lookup stands. matched: one reviewed legal identity was found. ambiguous: more than one defensible candidate, so nothing is claimed. unmatched: a documented search found no record. not-applicable: the option is outside the register's jurisdiction or subject. unreviewed: not yet researched. Only matched rows feed evidence.", "enum": ["matched", "ambiguous", "unmatched", "not-applicable", "unreviewed"] },
+        "legalName": { "description": "The legal name of the matched entity, as the register records it. Required when status is matched.", "type": "string", "minLength": 1 },
+        "aliases": { "description": "Other names the entity is known by, such as the brand name in the catalogue. Required when status is matched; may be empty.", "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "jurisdiction": { "description": "Where the matched entity is registered, such as US or GB. Required when status is matched.", "type": "string", "minLength": 1 },
+        "registerIdentifier": { "description": "The register's stable identifier for the matched entity. Only matched rows carry one.", "$ref": "#/$defs/identifier" },
+        "matchEvidence": { "description": "Where and when the match, or the failed search, was checked. Required when status is matched, unmatched or not-applicable.", "$ref": "#/$defs/evidence" },
+        "candidates": { "description": "The possible matches found when status is ambiguous, one entry each.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/candidate" } },
+        "reason": { "description": "Why the row is ambiguous, unmatched or not-applicable, in a sentence. Matched and unreviewed rows have none.", "type": "string", "minLength": 1 },
+        "review": { "description": "Who reviewed the row and when. Required for every status except unreviewed.", "$ref": "#/$defs/review" }
       },
       "allOf": [
         {
-          "if": { "properties": { "status": { "const": "matched" } }, "required": ["status"] },
+          "if": { "properties": { "status": { "description": "Applies the matched requirements below.", "const": "matched" } }, "required": ["status"] },
           "then": { "required": ["legalName", "aliases", "jurisdiction", "registerIdentifier", "matchEvidence", "review"] }
         },
         {
-          "if": { "properties": { "status": { "const": "ambiguous" } }, "required": ["status"] },
+          "if": { "properties": { "status": { "description": "Applies the ambiguous requirements below.", "const": "ambiguous" } }, "required": ["status"] },
           "then": { "required": ["candidates", "reason", "review"] }
         },
         {
-          "if": { "properties": { "status": { "enum": ["unmatched", "not-applicable"] } }, "required": ["status"] },
+          "if": { "properties": { "status": { "description": "Applies the unmatched and not-applicable requirements below.", "enum": ["unmatched", "not-applicable"] } }, "required": ["status"] },
           "then": { "required": ["reason", "matchEvidence", "review"] }
         }
       ]

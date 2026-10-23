@@ -1,7 +1,7 @@
 {
   "format": "open-values-register-shelf",
   "version": "1.0.0",
-  "note": "Public registers proven to work in this catalogue, with what each can populate. Built from the twenty-nine datasets the swarm produced on 2026-08-12 and 13: every lens that came out well was built on one of these, and every lens that came out badly was built on review sites instead. The shelf exists so the next agent picks a source rather than hunting for one. A register earns a place here only after a real citation from it has survived hand verification against the source page.",
+  "note": "Public registers proven to work in this catalogue, with what each can populate. Built from the twenty-nine datasets produced on 2026-08-12 and 13: every lens that came out well was built on one of these, and every lens that came out badly was built on review sites instead. The shelf exists so the next agent picks a source rather than hunting for one. A register earns a place here only after a real citation from it has survived hand verification against the source page.",
   "howToRead": {
     "reach": "cross-cutting means one pass can add a sourced criterion to many decisions at once; single means it serves one decision or a small family.",
     "access": "api, bulk, page. api and bulk are the ones that scale; page means a human-shaped site that must be read one record at a time.",
@@ -94,7 +94,7 @@
       "provenanceKey": "ownership",
       "populates": ["any decision whose options are UK companies", "organizations", "retailers", "banks", "brands"],
       "proven": ["b-corporations"],
-      "note": "The sharpest finding of the whole swarm came from here: a fair trade brand's own page claims farmer ownership that the statutory register shows ended in 2020. Ownership claims should be checked here by default, not exceptionally."
+      "note": "The sharpest finding of that work came from here: a fair trade brand's own page claims farmer ownership that the statutory register shows ended in 2020. Ownership claims should be checked here by default, not exceptionally."
     },
     {
       "id": "sec-edgar",
@@ -272,7 +272,20 @@
       "reach": "cross-cutting",
       "provenanceKey": "safety",
       "populates": ["cars", "used cars", "car seats", "tyres", "e-bike batteries"],
-      "proven": ["used-cars"]
+      "proven": ["used-cars", "electric-vehicles", "new-cars", "hybrid-and-plug-in-hybrid-cars"]
+    },
+    {
+      "id": "fueleconomy-gov-vehicles",
+      "name": "Fuel economy vehicle data (all model years)",
+      "publisher": "US EPA and US DOE (fueleconomy.gov)",
+      "access": "bulk",
+      "endpoint": "https://www.fueleconomy.gov/feg/epadata/vehicles.csv.zip",
+      "alsoAt": ["https://www.fueleconomy.gov/feg/ws/index.shtml"],
+      "reach": "cross-cutting",
+      "provenanceKey": "economical",
+      "populates": ["electric vehicles", "hybrid and plug-in hybrid cars", "new cars", "small and city cars", "vans and pickups"],
+      "proven": ["electric-vehicles", "new-cars", "hybrid-and-plug-in-hybrid-cars"],
+      "note": "Every vehicle rated for sale in the US, one row per configuration, with the EPA's annual fuel cost and electric range. The electric-vehicles, new-cars and hybrid-and-plug-in-hybrid-cars lenses are built from it by pipeline/sources/adapters/fueleconomy-vehicles.mjs."
     },
     {
       "id": "ace-national-guide",
@@ -311,7 +324,3328 @@
     },
     {
       "pattern": "search snippets",
-      "why": "The single worst defect the swarm produced was a note written from a search summary that said the opposite of the page it cited. Read the page."
+      "why": "The worst defect in that work was a note written from a search summary that said the opposite of the page it cited. Read the page."
+    }
+  ],
+  "candidatesNote": "Verified by fetching each access endpoint and reading its licence on 2026-10-12, but not yet proven: no lens has cited them, so they have not earned a place in registers above. A roster source must be a census (census true, with the reason in censusWhy); a winners list such as a certification register may only supply a measure. scripts/content-plan.mjs ranks these against the open map.",
+  "candidates": [
+    {
+      "id": "afdc-ev-stations",
+      "name": "Alternative Fuels Data Center station locator API (electric)",
+      "publisher": "US DOE, National Laboratory of the Rockies (formerly NREL)",
+      "kind": "measure",
+      "key": "company",
+      "landing": "https://afdc.energy.gov/stations/",
+      "access": "https://developer.nlr.gov/api/alt-fuel-stations/v1.json?fuel_type=ELEC&api_key=DEMO_KEY",
+      "accessVerified": true,
+      "accessNote": "A DEMO_KEY call returned 90,454 electric stations (298,440 ports). Filtering ev_network=Tesla, public and open, gave 3,280 stations with power_kw per port.",
+      "licence": "NLR Developer Network terms",
+      "licenceUrl": "https://developer.nlr.gov/terms/",
+      "licenceQuote": "may be used for any purpose whatsoever",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "US"
+      ],
+      "updates": "Continuous; stations carry date_last_confirmed.",
+      "measures": [
+        {
+          "field": "count of public stations and ports by ev_network",
+          "criterion": "NEW:coverage",
+          "meaning": "How many public chargers a network runs"
+        },
+        {
+          "field": "ev_charging_units.power_kw / ev_dc_fast_num",
+          "criterion": "NEW:charging_speed",
+          "meaning": "Share and power of DC fast ports"
+        },
+        {
+          "field": "ev_connector_types",
+          "criterion": "openness",
+          "meaning": "Whether plugs follow open standards (J1772, CCS) or one maker's own"
+        },
+        {
+          "field": "ev_pricing",
+          "criterion": "price",
+          "meaning": "Posted price text (often empty)"
+        }
+      ],
+      "decisions": [
+        "public-charging-networks"
+      ],
+      "notes": "developer.nrel.gov was retired on 29 May 2026; use developer.nlr.gov. DEMO_KEY is rate-limited; a free key needs an email signup. Includes Canadian stations (filter country=US). Network names need normalising. No attribution is required, but the terms bar using the DOE or lab names to promote anyone.",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "cdc-art-success-rates",
+      "name": "Final Assisted Reproductive Technology (ART) Success Rates, with Services and Profiles",
+      "publisher": "US Centers for Disease Control and Prevention, Division of Reproductive Health",
+      "kind": "roster",
+      "key": "facility",
+      "landing": "https://catalog.data.gov/dataset/2022-final-assisted-reproductive-technology-art-success-rates",
+      "access": "https://data.cdc.gov/resource/cchw-gdwa.json",
+      "accessVerified": true,
+      "accessNote": "count(distinct clinicid) returned 458. Rows are long format: facilityname, city, clinic_status, type, topic, question (e.g. live-birth deliveries per embryo transfer), filter, breakout, data_value, cycle_count, clinicid. data.cdc.gov metadata: rows updated 18 Dec 2024. The catalogue search shows 2020, 2021 and 2022 editions and no 2023 edition. Linked tables: Services and Profiles (ix4g-rt8v), Patient and Cycle Characteristics (wrev-kwxu), Summary (9tjt-seye).",
+      "licence": "Public Domain (data.cdc.gov); catalog.data.gov lists ODbL",
+      "licenceUrl": "https://data.cdc.gov/api/views/cchw-gdwa.json",
+      "licenceQuote": "Public Domain",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "US"
+      ],
+      "updates": "annual in principle; newest data year 2022, published Dec 2024",
+      "measures": [
+        {
+          "field": "data_value where question asks live-birth deliveries (per intended retrieval or per transfer), by age breakout",
+          "criterion": "NEW:live_birth_rate",
+          "meaning": "share of treatment starts or transfers that led to a live birth, by patient age"
+        },
+        {
+          "field": "cycle_count",
+          "criterion": "transparency",
+          "meaning": "how many cycles stand behind each rate; small counts make rates unstable"
+        }
+      ],
+      "decisions": [
+        "fertility-treatment-services"
+      ],
+      "notes": "CDC warns that comparing clinics may not be meaningful because patients differ. Show rates by age band and own versus donor eggs, never one league number. The two licence fields disagree: data.cdc.gov says Public Domain, data.gov says ODbL. Attribute either way. The data may be going stale: no year after 2022 has appeared. The Services and Profiles fields were not opened. HFEA (UK) clinic data was looked at: no bulk clinic-level file with a stated licence was found.",
+      "census": true,
+      "censusWhy": "every US fertility clinic, which must report by law",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "cdc-vessel-sanitation",
+      "name": "Vessel Sanitation Program inspection scores (Green Sheet)",
+      "publisher": "US Centers for Disease Control and Prevention",
+      "kind": "measure",
+      "key": "facility",
+      "landing": "https://wwwn.cdc.gov/InspectionQueryTool/",
+      "access": "https://wwwn.cdc.gov/InspectionQueryTool/InspectionGreenSheetRpt.aspx",
+      "accessVerified": true,
+      "accessNote": "An HTML table of 206 ships, each with its latest inspection date and score (for example 95, 99, 89). No CSV or API was seen, and the cruise line is not shown.",
+      "licence": "US public domain, with CDC attribution requested",
+      "licenceUrl": "https://www.cdc.gov/other/agencymaterials.html",
+      "licenceQuote": "is in the public domain",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "US"
+      ],
+      "updates": "After each unannounced inspection (about twice a year per ship).",
+      "measures": [
+        {
+          "field": "Score",
+          "criterion": "health",
+          "meaning": "Sanitation inspection score out of 100; 85 or lower fails"
+        }
+      ],
+      "decisions": [
+        "cruises"
+      ],
+      "notes": "The HTML has to be scraped. Only ships calling at US ports are covered. A score is a snapshot and can swing between inspections. The ship-to-line join needs the advanced search by cruise line. Credit 'Source: CDC'.",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "cfpb-complaints",
+      "name": "Consumer Complaint Database",
+      "publisher": "US Consumer Financial Protection Bureau",
+      "kind": "measure",
+      "key": "company",
+      "landing": "https://www.consumerfinance.gov/data-research/consumer-complaints/",
+      "access": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=1&no_aggs=true",
+      "accessVerified": true,
+      "accessNote": "Fetched with curl on 2026-10-12. WebFetch got a 404 because of an added &format=json. The API returned JSON with 18,354,689 complaints, _meta last_updated 2026-10-12 and is_data_stale false. Complaints received since 2025-10-01, by product: credit reporting 6.54M, debt collection 326k, credit card 96k, checking or savings 89k, money transfer/virtual currency 39k, mortgage 33k, vehicle loan or lease 25k, student loan 20k, payday/title/personal loan 18k, prepaid card 6.3k, debt or credit management 4.4k. Sub-products seen in a sample include Virtual currency (Gemini, Binance.US, Crypto.com entities), Mobile or digital wallet, International money transfer, Payday loan, Title loan, Installment loan and Earned wage access.",
+      "licence": "CC0, declared in the API's own _meta block",
+      "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "licenceQuote": "\"license\":\"CC0\"",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "US"
+      ],
+      "updates": "daily",
+      "measures": [
+        {
+          "field": "complaint count by company x product / sub_product",
+          "criterion": "complaints",
+          "meaning": "how many complaints people filed about this company for this kind of product"
+        },
+        {
+          "field": "timely",
+          "criterion": "complaints",
+          "meaning": "share of complaints the company answered on time"
+        },
+        {
+          "field": "company_response",
+          "criterion": "NEW:complaint_relief",
+          "meaning": "share of complaints closed with money or other relief for the person"
+        }
+      ],
+      "decisions": [
+        "basic-and-second-chance-accounts",
+        "car-finance",
+        "children-s-and-youth-accounts",
+        "credit-unions",
+        "crypto-exchanges",
+        "crypto-wallets",
+        "debit-and-prepaid-cards",
+        "ethical-and-values-based-banks",
+        "high-cost-and-short-term-credit",
+        "joint-and-household-accounts",
+        "money-transfer-and-remittance",
+        "overdrafts",
+        "personal-loans",
+        "remortgaging-and-switching",
+        "savings-accounts",
+        "stablecoins-and-crypto-payments"
+      ],
+      "notes": "Already on the register shelf as cfpb-complaints (2026-08-14 snapshot, 30 approved cells, catalogue reach 22). This adds reach into the open money decisions. Company names carry no ID, so they have to be matched by name to FDIC NAME/NAMEHCR or NCUA CU_NAME. Counts are not scaled to customer numbers. Divide by FDIC DEP or NCUA members (Acct_083), or show raw counts with that caveat. Consumer products only, so business-banking is out. No buy-now-pay-later sub-product turned up in the sample. For debt-collection-rights-and-complaints and debt-advice-and-support the CFPB is itself an option, not a roster.",
+      "extendsShelf": "cfpb-complaints",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "charity-commission-register",
+      "name": "Register of Charities full extract (England and Wales)",
+      "publisher": "Charity Commission for England and Wales",
+      "kind": "roster",
+      "key": "institution",
+      "landing": "https://register-of-charities.charitycommission.gov.uk/en/register/full-register-download",
+      "access": "https://ccewuksprdoneregsadata1.blob.core.windows.net/data/txt/publicextract.charity.zip",
+      "accessVerified": true,
+      "accessNote": "Download page 403 to WebFetch, 200 to curl with a browser user agent; 13 tables in JSON or tab-delimited zips, last modified 2026-10-12. Classification table: 6,558 charities carry What = Animals. Annual return part B (79,757 rows, larger charities) splits spending into raising funds and charitable activities.",
+      "licence": "Open Government Licence v3.0",
+      "licenceUrl": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "licenceQuote": "All content is available under the Open Government Licence v3.0, except where otherwise stated",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "UK"
+      ],
+      "updates": "daily extract",
+      "measures": [
+        {
+          "field": "charity registration status",
+          "criterion": "nonprofit",
+          "meaning": "a registered charity, or removed"
+        },
+        {
+          "field": "expenditure_charitable_expenditure / expenditure_total (part B)",
+          "criterion": "NEW:charitable_spend_share",
+          "meaning": "share of spending that goes on the charity's purposes"
+        },
+        {
+          "field": "expenditure_raising_funds / expenditure_total (part B)",
+          "criterion": "NEW:fundraising_cost_share",
+          "meaning": "share of spending on raising money"
+        }
+      ],
+      "decisions": [
+        "adoption-and-rescue",
+        "animal-welfare-charities",
+        "campaigning-organisations",
+        "charities-and-non-profits-that-trade",
+        "charities-by-cause",
+        "clothing-libraries",
+        "community-foundations",
+        "community-groups",
+        "cultural-memberships",
+        "donating-goods-to-charity",
+        "effective-giving",
+        "fact-checking-and-media-literacy",
+        "festivals-and-events",
+        "friends-and-patron-schemes",
+        "game-preservation-and-archives",
+        "heritage-and-conservation-memberships",
+        "instrument-hire-and-lessons",
+        "legacy-and-will-giving",
+        "literary-and-small-press-publishing",
+        "local-and-community-news",
+        "museums-and-galleries",
+        "repair-and-reuse-networks",
+        "sanctuaries-and-rehoming-organisations",
+        "secondhand-books",
+        "sports-clubs-and-teams",
+        "theatres-and-live-performance",
+        "veterinary-charities-and-low-cost-clinics",
+        "wildlife-and-conservation-charities"
+      ],
+      "notes": "Animals is one coarse purpose code; telling sanctuaries from vet charities needs the activities text and names. Wildlife charities may be coded Environment/conservation/heritage instead. The extract includes removed charities, so filter on status. Part B exists only for larger charities. England and Wales only; Scotland (OSCR) and Northern Ireland registers not checked.",
+      "census": true,
+      "censusWhy": "every registered charity in England and Wales",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "cms-doctors-clinicians-mips",
+      "name": "Doctors and Clinicians National Downloadable File, with Clinician Overall MIPS Performance",
+      "publisher": "US Centers for Medicare and Medicaid Services, Provider Data Catalog",
+      "kind": "roster",
+      "key": "facility",
+      "landing": "https://data.cms.gov/provider-data/dataset/mj5m-pzi6",
+      "access": "https://data.cms.gov/provider-data/api/1/datastore/query/mj5m-pzi6/0",
+      "accessVerified": true,
+      "accessNote": "Datastore query returned 3,388,628 rows (one per clinician, enrollment, group and address), modified 2026-08-18, next update 2026-10-15. Fields include pri_spec, telehlth, ind_assgn, facility_name, org_pac_id, city, state. pri_spec counts: FAMILY PRACTICE 196,226; PHYSICAL THERAPIST IN PRIVATE PRACTICE 132,158; OPTOMETRY 54,186; PSYCHIATRY 52,888; CHIROPRACTIC 48,241; CLINICAL PSYCHOLOGIST 39,590; PODIATRY 29,779; REGISTERED DIETITIAN OR NUTRITION PROFESSIONAL 10,691. Dataset a174-a962 (PY 2024 overall MIPS) has 520,011 rows with final_mips_score. Licence field is null on all 237 catalogue datasets.",
+      "licence": "unclear: no licence field in metadata (US federal data)",
+      "licenceUrl": "https://www.cms.gov/data-research/cms-data/data-available-everyone",
+      "licenceQuote": "These public data products are freely available on CMS' open data websites.",
+      "reuseOk": "unclear",
+      "commercialConflict": false,
+      "region": [
+        "US"
+      ],
+      "updates": "roughly monthly (next scheduled 2026-10-15); MIPS yearly",
+      "measures": [
+        {
+          "field": "final_mips_score (a174-a962)",
+          "criterion": "NEW:medicare_quality_score",
+          "meaning": "Medicare's 0 to 100 performance score for the clinician or group"
+        },
+        {
+          "field": "ind_assgn",
+          "criterion": "fees",
+          "meaning": "accepts the Medicare-approved amount as full payment"
+        },
+        {
+          "field": "telehlth",
+          "criterion": "accessibility",
+          "meaning": "offers telehealth"
+        }
+      ],
+      "decisions": [
+        "chiropractic-and-osteopathy",
+        "nutrition-and-dietetics",
+        "opticians-and-eye-tests",
+        "physiotherapy",
+        "podiatry-and-foot-health",
+        "primary-care-and-gp-services",
+        "psychiatry-and-medication-management",
+        "therapy-and-counselling"
+      ],
+      "notes": "Weakest fit in this list. Rows are individual clinicians (named people), and the catalogue compares named options, so build at group level (facility_name or org_pac_id) or by place, and do not publish individuals. MIPS is a Medicare reporting score, not patient experience, and many clinicians are exempt. Other CMS datasets (home health, hospice, dialysis, nursing homes) were checked by title but match no open decision here: care-homes and home-care-services are built from CQC (UK). Medical Equipment Suppliers (ct36-nrcq) lists shops, not products.",
+      "census": true,
+      "censusWhy": "every Medicare-enrolled clinician",
+      "overrideWhy": "No licence in the metadata, and rows are named individuals; this catalogue compares named options, so a person must not become a row without a decision about it.",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "co-operatives-uk-open-data",
+      "name": "Co-operative economy open data",
+      "publisher": "Co-operatives UK",
+      "kind": "roster",
+      "key": "institution",
+      "landing": "https://www.uk.coop/resources/open-data",
+      "access": "https://www.uk.coop/resources/open-data",
+      "accessVerified": false,
+      "accessNote": "403 to curl and WebFetch; the in-app browser showed a Cloudflare security check, which I did not try to pass. File names, columns and row counts not seen.",
+      "licence": "ODC-BY 1.0 (seen only in search-indexed text of the page)",
+      "licenceUrl": "https://opendatacommons.org/licenses/by/1-0/",
+      "licenceQuote": "released under the Open Data Commons Attribution License (ODC-by v1.0)",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "UK"
+      ],
+      "updates": "annual (Co-op Economy report), not confirmed",
+      "measures": [
+        {
+          "field": "legal form and sector (per search-indexed description)",
+          "criterion": "ownership",
+          "meaning": "member-owned co-operative in a named sector"
+        }
+      ],
+      "decisions": [
+        "community-energy-schemes",
+        "housing-co-operatives"
+      ],
+      "notes": "Search-indexed text of the page says files cover organisations, economic data, outlets and areas, with no estimated figures; a council-hosted technical appendix says inputs include FCA annual returns of registered societies and Companies House accounts. A person needs to open the page in a browser and save the organisations CSV. The FCA Mutuals Public Register (mutuals.fca.org.uk, 200) is the underlying register but no bulk export was checked. Community land trusts may be in it as community benefit societies; unconfirmed, so not mapped.",
+      "census": false,
+      "censusWhy": "co-operatives only, by definition",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "college-scorecard",
+      "name": "College Scorecard",
+      "publisher": "US Department of Education",
+      "kind": "roster",
+      "key": "institution",
+      "landing": "https://collegescorecard.ed.gov/data/",
+      "access": "https://api.data.gov/ed/collegescorecard/v1/schools?api_key=DEMO_KEY&per_page=1&fields=id,school.name,school.ownership,latest.cost.avg_net_price.overall,latest.aid.median_debt.completers.overall,latest.earnings.10_yrs_after_entry.median,latest.completion.rate_suppressed.overall",
+      "accessVerified": true,
+      "accessNote": "The API with DEMO_KEY returned JSON with a total of 6,273 institutions. Sample: Alabama A&M, net price 17,621, median debt 31,000, median earnings 10 years after entry 40,628, completion 0.263. Bulk zips need no key (most recent institution file, 23 MB, and field-of-study file, 17 MB), last updated June 10, 2026.",
+      "licence": "US federal government work, public domain (ED copyright status notice; read through the search index because ed.gov's firewall blocked a direct fetch)",
+      "licenceUrl": "https://www.ed.gov/about/ed-overview/required-notices/website-policies/copyright-status-notice",
+      "licenceQuote": "in the public domain and may be reproduced, published or otherwise used",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "US"
+      ],
+      "updates": "about yearly (last June 2026)",
+      "measures": [
+        {
+          "field": "latest.cost.avg_net_price.overall",
+          "criterion": "price",
+          "meaning": "average yearly cost after grants"
+        },
+        {
+          "field": "latest.aid.median_debt.completers.overall",
+          "criterion": "NEW:graduate_debt",
+          "meaning": "typical federal debt at graduation"
+        },
+        {
+          "field": "latest.earnings.10_yrs_after_entry.median",
+          "criterion": "NEW:graduate_earnings",
+          "meaning": "typical earnings ten years after starting"
+        },
+        {
+          "field": "latest.completion.rate_suppressed.overall",
+          "criterion": "NEW:completion_rate",
+          "meaning": "share who finish"
+        },
+        {
+          "field": "school.ownership",
+          "criterion": "ownership",
+          "meaning": "public, private nonprofit, or private for-profit"
+        }
+      ],
+      "decisions": [
+        "adult-and-community-education",
+        "universities-and-colleges",
+        "vocational-training-and-apprenticeships"
+      ],
+      "notes": "The API needs a free api.data.gov key (DEMO_KEY is rate-limited and registering is Bentley's act), so use the bulk zip for builds. Only Title IV institutions are covered, so most coding bootcamps are absent. The field-of-study file gives earnings by programme for certificate and trade courses. UK universities: the Discover Uni dataset (HESA and OfS) could not be checked; hesa.ac.uk returned 403. IMLS Public Libraries Survey FY2024 (public domain; 9,248 library systems with visits, circulation and hours; https://www.imls.gov/sites/default/files/2026-06/pls_fy2024_csv.zip) downloaded fine and could fill public-libraries if a roster of US library systems is wanted.",
+      "census": true,
+      "censusWhy": "every Title IV institution",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "cpsc-recalls",
+      "name": "CPSC recalls API",
+      "publisher": "US Consumer Product Safety Commission",
+      "kind": "measure",
+      "key": "company",
+      "landing": "https://www.cpsc.gov/Recalls/CPSC-Recalls-Application-Program-Interface-API-Information",
+      "access": "https://www.saferproducts.gov/RestWebServices/Recall?format=json",
+      "accessVerified": true,
+      "accessNote": "JSON 200, 1.34 MB for RecallDateStart 2025-01-01 to RecallDateEnd 2025-12-31: 420 recalls. Fields include Manufacturers, Importers, Distributors, Retailers, Products (Name, Model, NumberOfUnits), Injuries, Hazards, Remedies, ProductUPCs. Product Type and CategoryID were blank in the sample. No key needed.",
+      "licence": "CPSC public information",
+      "licenceUrl": "https://www.cpsc.gov/id/node/16598",
+      "licenceQuote": "You may freely copy and distribute recall notices",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "US"
+      ],
+      "updates": "continuous (recalls posted as announced)",
+      "measures": [
+        {
+          "field": "count of recalls naming the firm in Manufacturers or Importers",
+          "criterion": "safety",
+          "meaning": "how many US recalls name this company, by period"
+        },
+        {
+          "field": "Products.NumberOfUnits",
+          "criterion": "safety",
+          "meaning": "units affected by each recall"
+        },
+        {
+          "field": "Injuries, Hazards",
+          "criterion": "safety",
+          "meaning": "reported injuries and the hazard named"
+        }
+      ],
+      "decisions": [
+        "candles-and-home-fragrance",
+        "chairs-and-stools",
+        "chargers-and-cables",
+        "child-seats-and-trailers",
+        "children-s-bikes",
+        "children-s-furniture",
+        "cycle-helmets",
+        "e-scooters",
+        "fans-and-portable-cooling",
+        "generators-and-backup-power",
+        "hair-dryers-and-stylers",
+        "hedge-trimmers-and-mowers",
+        "portable-heaters",
+        "power-banks-and-portable-batteries",
+        "scooters-and-skateboards",
+        "slow-cookers-and-pressure-cookers",
+        "smoke-and-carbon-monoxide-alarms",
+        "storage-furniture"
+      ],
+      "notes": "Already on the shelf (cpsc-recalls, applicable to all home Products). With no category field, product type comes from title text (2025: 25 dresser or chest recalls, 19 power bank or power station recalls, 14 chair recalls including high chairs). Firm names carry suffixes like of China; normalise before joining to brands. A count of recalls has no sales denominator, so present it as a dated fact, not a rate. CPSC asks for credit and bars implied endorsement.",
+      "extendsShelf": "cpsc-recalls",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "cqc-care-directory-ratings",
+      "name": "CQC care directory and latest ratings",
+      "publisher": "Care Quality Commission (England)",
+      "kind": "roster",
+      "key": "facility",
+      "landing": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+      "access": "https://www.cqc.org.uk/system/files/2026-10/01_October_2026_Latest_ratings.ods",
+      "accessVerified": true,
+      "accessNote": "Downloaded the 7 Oct 2026 directory CSV (57,129 locations; service types include Doctors/GPs 18,641, Homecare agencies 14,455, Dentist 12,304, Supported living 5,049, Diagnosis/screening 1,198, Clinic 864, Urgent care centres 324) and the 1 Oct 2026 ratings ODS (columns include Location Primary Inspection Category, Domain, Latest Rating, Publication Date, Provider Name, Brand Name). Overall ratings: GP Practices 6,038 (5,487 Good, 277 Outstanding); Independent consulting doctors 898; Urgent care services and mobile doctors 68; Dentists 2,093, of which 2,087 are 'Not applicable'. The API needs authentication; the files do not.",
+      "licence": "Open Government Licence v3.0",
+      "licenceUrl": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+      "licenceQuote": "Our data is made available under the Open Government Licence.",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "UK"
+      ],
+      "updates": "directory usually weekly; ratings file usually monthly",
+      "measures": [
+        {
+          "field": "Latest Rating (Domain = Overall)",
+          "criterion": "safety",
+          "meaning": "share of a provider's or brand's locations rated Good or Outstanding, as the care-homes lens already scores it"
+        },
+        {
+          "field": "Latest Rating (Domain = Caring)",
+          "criterion": "respect",
+          "meaning": "inspectors' judgement on whether people are treated with kindness and dignity"
+        },
+        {
+          "field": "Brand Name / Provider Name",
+          "criterion": "ownership",
+          "meaning": "which group or chain runs the location"
+        }
+      ],
+      "decisions": [
+        "primary-care-and-gp-services",
+        "private-health-clinics",
+        "supported-living",
+        "urgent-and-walk-in-care"
+      ],
+      "notes": "Already the source for the built care-homes and home-care-services lenses, so the join and brand grouping exist. Join directory and ratings on Location ID. The ratings ODS is 1.09 GB of XML uncompressed, and empty cells are not emitted, so parse cells with the repeat count. CQC does not rate dentists, so dentists get a roster but no measure; it is left out of the decision list. Live-in care sits inside 'Homecare agencies' with no flag, so live-in-care is not mapped. Diagnosis/screening ratings were not confirmed. Supported living ratings sit under 'Community based adult social care services' and are joined through the directory service type. England only. Rating ages vary, so show Publication Date.",
+      "census": true,
+      "censusWhy": "every registered care location in England",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "doe-compliance-certification-database",
+      "name": "Compliance Certification Database (CCMS)",
+      "publisher": "US Department of Energy, Appliance and Equipment Standards Program",
+      "kind": "roster",
+      "key": "model",
+      "landing": "https://www.regulations.doe.gov/certification-data/",
+      "access": "https://www.regulations.doe.gov/certification-data/CCMS-4-{Product_Group}.html",
+      "accessVerified": true,
+      "accessNote": "WebFetch got 403; curl with a browser user agent got 200. Group pages state model counts: faucets 105,761; showerheads 85,537; water closets 6,591; microwave ovens 1,529; air cleaners 1,182. Static HTML carries the first 50 rows; the full file comes from the page Download button, which posts a Solr select with wt=csv. I did not resolve that to a stable machine URL.",
+      "licence": "US federal government work (public domain)",
+      "licenceUrl": "https://www.energy.gov/web-policies",
+      "licenceQuote": "Government information at DOE websites is in the public domain.",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "US"
+      ],
+      "updates": "about every two weeks (page states it); last update shown 10/09/26",
+      "measures": [
+        {
+          "field": "Maximum Water Use (gallons/minute or gallons/flush)",
+          "criterion": "environment",
+          "meaning": "certified maximum flow of a tap or shower, or water per toilet flush"
+        },
+        {
+          "field": "Average Standby Power (Watts)",
+          "criterion": "environment",
+          "meaning": "power a microwave draws while idle"
+        },
+        {
+          "field": "PM2.5 CADR and Integrated Energy Factor (air cleaners)",
+          "criterion": "NEW:clean_air_delivery",
+          "meaning": "clean air delivered and clean air per watt"
+        },
+        {
+          "field": "annual energy and efficiency fields per group",
+          "criterion": "environment",
+          "meaning": "tested energy use for refrigerators, dishwashers, dryers, dehumidifiers, room and portable ACs, ceiling fans, LED lamps, central heat pumps"
+        }
+      ],
+      "decisions": [
+        "air-conditioning",
+        "air-purifiers",
+        "dehumidifiers-and-humidifiers",
+        "dishwashers",
+        "fans-and-portable-cooling",
+        "fridges-and-freezers",
+        "heat-pumps",
+        "light-bulbs",
+        "microwaves",
+        "tumble-dryers",
+        "water-saving-fittings"
+      ],
+      "notes": "This is every model certified to the US federal minimum, not an award, so it gives the full US roster where ENERGY STAR gives only the efficient part. DOE says listing is not a finding of compliance and makes no warranty on accuracy. Brand Name is blank on some showerhead rows. Only models submitted in the past year are shown. Bot protection blocks default fetchers; capture with a browser user agent and slow requests. EPA WaterSense (lookforwatersense.epa.gov) was also checked: landing 200 with a full XLSX list button, but the data call to api.epa.gov/watersense returned 403 API_KEY_MISSING without a key (free api.data.gov key). It would add the labelled subset of taps, showers and toilets plus irrigation controllers, spray sprinkler bodies and point-of-use reverse osmosis units (water-butts-and-irrigation, water-filters); accessVerified false for WaterSense.",
+      "census": false,
+      "censusWhy": "Corrected 2026-10-13. The public database holds only certifications submitted in the past year, so it lists the recently certified market, not every model on sale: the capture listed 3 Samsung dishwashers against 22 on ENERGY STAR's certified list, 16 Samsung fridges against 101, and no Frigidaire room air conditioners. It can add a fact to a model but cannot fix a roster on its own.",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "dol-olms",
+      "name": "Union financial reports, yearly data download (LM-2, LM-3, LM-4)",
+      "publisher": "US Department of Labor, Office of Labor-Management Standards",
+      "kind": "roster",
+      "key": "institution",
+      "landing": "https://www.dol.gov/agencies/olms/public-disclosure-room",
+      "access": "https://olmsapps.dol.gov/olpdr/GetYearlyFileServlet?report=qpqf",
+      "accessVerified": true,
+      "accessNote": "A POST to /olpdr/GetYearlyDownlaodFilenamesServlet returned 27 yearly files (2026 back to 2000), last updated 2026-10-10. The 2025 file (code qpqf) downloaded as a 16.9 MB zip, but only with a Referer header from olmsapps.dol.gov; without it the server returns 'no such file'. Contents: lm_data (19,168 reports: UNION_NAME, AFF_ABBR, F_NUM, MEMBERS, TTL_RECEIPTS, TTL_DISBURSEMENTS), ar_membership, ar_rates_dues_fees (AMOUNT, UNIT), and ar_disbursements_total (REPRESENTATIONAL, POLITICAL, STRIKE_BENEFITS, TO_OFFICERS, BENEFITS).",
+      "licence": "US federal government work, public domain; DOL invites credit",
+      "licenceUrl": "https://www.dol.gov/general/aboutdol/copyright",
+      "licenceQuote": "Materials created by the federal government are generally part of the public domain",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "US"
+      ],
+      "updates": "continuous as filings arrive; yearly files",
+      "measures": [
+        {
+          "field": "ar_rates_dues_fees AMOUNT/UNIT",
+          "criterion": "price",
+          "meaning": "what membership costs in dues and fees"
+        },
+        {
+          "field": "REPRESENTATIONAL / TTL_DISBURSEMENTS",
+          "criterion": "NEW:spent_on_members",
+          "meaning": "share of spending on bargaining and representing members"
+        },
+        {
+          "field": "POLITICAL / TTL_DISBURSEMENTS",
+          "criterion": "NEW:political_spending",
+          "meaning": "share of spending on political activity and lobbying"
+        },
+        {
+          "field": "STRIKE_BENEFITS",
+          "criterion": "NEW:strike_support",
+          "meaning": "money paid to members on strike"
+        },
+        {
+          "field": "MEMBERS",
+          "criterion": "NEW:members",
+          "meaning": "how many workers it represents"
+        }
+      ],
+      "decisions": [
+        "trade-unions"
+      ],
+      "notes": "Already on the shelf as dol-olms (bulk, catalogue reach 1, no snapshot). This confirms the bulk path works without a key. Locals and internationals file separately, so roll up by AFF_ABBR to compare national unions. Private-sector and federal unions only; most public-sector-only unions do not file. The UK equivalent (Certification Officer annual returns) was not checked. Related DOL Wage and Hour enforcement data (back wages by employer) is a strong labour measure for US companies, but the API answered 401 without a free key, and registering is Bentley's act.",
+      "census": true,
+      "censusWhy": "every private-sector and federal union that files",
+      "extendsShelf": "dol-olms",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "eea-co2-new-cars",
+      "name": "Monitoring of CO2 emissions from new passenger cars (Regulation 2019/631)",
+      "publisher": "European Environment Agency",
+      "kind": "roster",
+      "key": "model",
+      "landing": "https://www.eea.europa.eu/en/datahub/datahubitem-view/fa8b1229-3db6-495d-b18e-9c9b3267c02b",
+      "access": "https://discodata.eea.europa.eu/sql?query=SELECT TOP 10 * FROM [CO2Emission].[latest].[co2cars_2025Pv31]",
+      "accessVerified": true,
+      "accessNote": "The SQL endpoint returned rows with fields Mk, Cn, Ft, Ewltp (g/km), Z (Wh/km), Fc, M (kg). Grouping by make and model for Tesla gave MODEL Y 120,940 EU registrations in 2025 (provisional data).",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://www.eea.europa.eu/en/legal-notice",
+      "licenceQuote": "EEA materials are published under the CC-BY license",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "EU"
+      ],
+      "updates": "Yearly. Provisional data in June, final data later. 2025 provisional (v31) published 25 Jun 2026.",
+      "measures": [
+        {
+          "field": "Ewltp (g/km)",
+          "criterion": "environment",
+          "meaning": "WLTP CO2 in grams per km"
+        },
+        {
+          "field": "Z (Wh/km)",
+          "criterion": "economical",
+          "meaning": "Electric energy use per km (EVs and plug-ins)"
+        },
+        {
+          "field": "Fc",
+          "criterion": "economical",
+          "meaning": "Fuel consumption, litres per 100 km"
+        }
+      ],
+      "decisions": [
+        "electric-vehicles",
+        "hybrid-and-plug-in-hybrid-cars",
+        "new-cars",
+        "small-and-city-cars"
+      ],
+      "notes": "There is one row per registered type-variant-version, so millions of rows. Aggregate by Mk plus Cn; commercial names are messy (for example 'MODEL Y     RWD'). Ft separates electric, petrol, diesel and petrol/electric (plug-in). The EEA also publishes a vans dataset, which was not fetched here, so vans are not mapped. Excluded: Euro NCAP, whose terms require written permission to republish ratings, and the UK VCA car fuel data, whose download page redirected to its home page.",
+      "census": true,
+      "censusWhy": "every new car registered in the EU",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "emsa-thetis-mrv",
+      "name": "THETIS-MRV public CO2 emission reports for ships",
+      "publisher": "European Maritime Safety Agency, for the European Commission",
+      "kind": "measure",
+      "key": "facility",
+      "landing": "https://mrv.emsa.europa.eu/#public/emission-report",
+      "access": "https://mrv.emsa.europa.eu/api/public-emission-report?reportCoverage=FULL&page=1&limit=10&orderByCol=imo&orderByType=ASC",
+      "accessVerified": true,
+      "accessNote": "The JSON API returned 107,143 emission reports with imo, name, shipType, company, totalCo2Emissions, co2EmissionsPerDistance and co2EmissionsPerTransportWork. /downloadable-files lists annual files for 2018-2025 (2025 v62 generated 9 Oct 2026). Ship types include 'Passenger ship (Cruise Passenger ship)' and 'Ro-pax ship'.",
+      "licence": "EMSA reproduction with acknowledgement (site-wide statement; no licence for this dataset)",
+      "licenceUrl": "https://emsa.europa.eu/faq/174-general/338-i-am-interested-in-using-some-material-text-images-from-your-website-or-publications-do-i-need-permission-from-you-to-do-this.html",
+      "licenceQuote": "We allow reproduction as long as the source (EMSA) is clearly acknowledged.",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "EU"
+      ],
+      "updates": "Yearly per reporting period; files are regenerated overnight when companies amend reports.",
+      "measures": [
+        {
+          "field": "co2EmissionsPerTransportWork",
+          "criterion": "environment",
+          "meaning": "CO2 per passenger-mile (cruise) or per unit of cargo and passengers (ro-pax)"
+        },
+        {
+          "field": "co2EmissionsPerDistance",
+          "criterion": "environment",
+          "meaning": "CO2 per nautical mile"
+        },
+        {
+          "field": "totalCo2Emissions",
+          "criterion": "environment",
+          "meaning": "Yearly CO2 per ship in tonnes"
+        }
+      ],
+      "decisions": [
+        "cruises",
+        "ferries-and-water-transport",
+        "sea-crossings-and-ferry-routes"
+      ],
+      "notes": "Data is per ship (IMO number). 'company' is the ship's ISM manager, not the consumer brand, so ships have to be joined to cruise lines and ferry operators by hand. Covers ships over 5,000 GT calling at EU and EEA ports. The page disclaimer says the data is published for information under Article 21 of Regulation 2015/757. Treat the licence as resting on EMSA's site-wide permission.",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "energy-star-certified-products",
+      "name": "ENERGY STAR certified product datasets",
+      "publisher": "US Environmental Protection Agency",
+      "kind": "roster",
+      "key": "model",
+      "landing": "https://data.energystar.gov/",
+      "access": "https://data.energystar.gov/resource/{dataset-id}.json",
+      "accessVerified": true,
+      "accessNote": "Socrata catalogue API returned 53 datasets, all updated 2026-10-12. SODA count(*) per dataset: residential refrigerators 4,853; freezers 671; dishwashers 761; clothes dryers 682; residential electric cooking 260; ventilating fans 1,139 (92 range hoods); dehumidifiers 559 (535 portable); room air cleaners 247; room air conditioners 570; ceiling fans 1,456; heat pumps 284,895 matched systems; water heaters 1,256 (55 solar); downlight fixtures 4,581; storm windows 30; insulation 36. There is no longer a light bulb dataset.",
+      "licence": "EPA Data License (public domain)",
+      "licenceUrl": "https://edg.epa.gov/EPA_Data_License.html",
+      "licenceQuote": "all data produced by the U.S EPA is by default in the public domain",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "US",
+        "CA"
+      ],
+      "updates": "daily (every dataset showed data_updated_at 2026-10-12)",
+      "measures": [
+        {
+          "field": "annual_energy_use_kwh_yr / annual_energy_consumption_kwh_yr",
+          "criterion": "environment",
+          "meaning": "rated electricity use per year"
+        },
+        {
+          "field": "combined_energy_efficiency_ratio_ceer, integrated_energy_factor, seer2_btu_wh, hspf2_btu_wh, uniform_energy_factor_uef, efficacy_1_cfm_w",
+          "criterion": "environment",
+          "meaning": "tested efficiency rating for the product type"
+        },
+        {
+          "field": "refrigerant_with_gwp",
+          "criterion": "NEW:refrigerant_gwp",
+          "meaning": "how much the refrigerant warms the climate if it leaks"
+        },
+        {
+          "field": "meets_most_efficient_criteria",
+          "criterion": "certification",
+          "meaning": "also meets the stricter ENERGY STAR Most Efficient bar"
+        },
+        {
+          "field": "ozone_emissions_ppb (air cleaners)",
+          "criterion": "health",
+          "meaning": "ozone the air cleaner gives off"
+        },
+        {
+          "field": "pm25_cadr (air cleaners)",
+          "criterion": "NEW:clean_air_delivery",
+          "meaning": "cubic feet of fine-particle-free air delivered per minute"
+        },
+        {
+          "field": "sound_level_sones (ventilating fans)",
+          "criterion": "NEW:noise",
+          "meaning": "how loud the fan is"
+        }
+      ],
+      "decisions": [
+        "air-conditioning",
+        "air-purifiers",
+        "ceiling-and-wall-fittings",
+        "dehumidifiers-and-humidifiers",
+        "desktop-computers",
+        "dishwashers",
+        "double-and-secondary-glazing",
+        "extractor-hoods",
+        "fans-and-portable-cooling",
+        "fridges-and-freezers",
+        "heat-pumps",
+        "home-ev-chargers",
+        "insulation",
+        "monitors",
+        "ovens-and-hobs",
+        "printers",
+        "shredders-and-scanners",
+        "solar-water-heating",
+        "tablets",
+        "tumble-dryers",
+        "tvs"
+      ],
+      "notes": "Certified models only, so it is a list of the more efficient part of the US and Canadian market; absence is not failure. Join on brand_name plus model_number; dataset 8edu-y555 maps models to UPC codes. US model numbers rarely match UK or EU models. ovens-and-hobs is electric cooktops and ranges only; extractor-hoods comes from ventilating fans with unit_type Range Hood; double-and-secondary-glazing is storm windows only (30 rows); insulation is 36 product lines, thin. For UK heat pumps the MCS product directory was checked and its terms say commercial use of its content is strictly prohibited, so it is not usable.",
+      "census": false,
+      "censusWhy": "certified models only: a winners list, so a measure",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "epa-safer-choice",
+      "name": "Safer Choice and Design for the Environment product table",
+      "publisher": "US Environmental Protection Agency",
+      "kind": "roster",
+      "key": "model",
+      "landing": "https://www.epa.gov/saferchoice/products",
+      "access": "https://data.epa.gov/efservice/t_safer_choice_and_design_for_the_environment/JSON",
+      "accessVerified": true,
+      "accessNote": "JSON 200, 2.56 MB, 5,042 products (2,669 consumer). Consumer sectors matching open decisions: Odor Removers 184; Automatic Dishwasher Products 82; Spot Removers 48; Drain Maintainers 39; Pre-Treaters 38; Toilet Bowl Cleaners 30; Laundry Boosters 16; Fabric Softeners 14; Rinse Aids 3.",
+      "licence": "EPA Data License (public domain)",
+      "licenceUrl": "https://edg.epa.gov/EPA_Data_License.html",
+      "licenceQuote": "all data produced by the U.S EPA is by default in the public domain",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "US"
+      ],
+      "updates": "continuous (Envirofacts table)",
+      "measures": [
+        {
+          "field": "program",
+          "criterion": "certification",
+          "meaning": "Safer Choice or Design for the Environment certified"
+        },
+        {
+          "field": "company_in_good_standing",
+          "criterion": "certification",
+          "meaning": "company is current on its annual partnership review"
+        },
+        {
+          "field": "fragrance_free",
+          "criterion": "NEW:fragrance_free",
+          "meaning": "meets Safer Choice fragrance-free criteria"
+        }
+      ],
+      "decisions": [
+        "air-fresheners-and-odour-control",
+        "dishwasher-tablets-and-salt",
+        "drain-and-toilet-cleaners",
+        "fabric-conditioner-and-stain-removers"
+      ],
+      "notes": "Already ingested: shelf register epa-safer-choice, parser pipeline/registers/parse_epa_safer_choice.py, approved review 2026-08-14, applied to cleaning-products, dish-soap and laundry. Adding these four ids to its coverage rule needs no new capture. Filter category = Consumer Product. Odor Removers are odour eliminators, not scented air fresheners, so say so on the page. A Pet Care Products sector (26 consumer) exists but matches no open animals id cleanly.",
+      "census": false,
+      "censusWhy": "certified products only: a winners list, so a measure",
+      "extendsShelf": "epa-safer-choice",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "epeat-registry",
+      "name": "EPEAT Registry",
+      "publisher": "Global Electronics Council",
+      "kind": "roster",
+      "key": "model",
+      "landing": "https://www.epeat.net/",
+      "access": "https://www.epeat.net/",
+      "accessVerified": true,
+      "accessNote": "The home page and registry search loaded; no bulk export or public API was found. The registry terms PDF (7 pages, last modified 18 Mar 2022) was fetched and read.",
+      "licence": "EPEAT Registry Terms of Use (all rights reserved)",
+      "licenceUrl": "https://globalelectronicscouncil.org/wp-content/uploads/epeatregistrytermsofuse.pdf",
+      "licenceQuote": "You must not reproduce, distribute, modify, create derivative works of",
+      "reuseOk": false,
+      "commercialConflict": false,
+      "region": [
+        "global"
+      ],
+      "updates": "Live registry.",
+      "measures": [
+        {
+          "field": "EPEAT tier (Bronze, Silver, Gold)",
+          "criterion": "certification",
+          "meaning": "Ecolabel level against EPEAT criteria"
+        }
+      ],
+      "decisions": [
+        "desktop-computers",
+        "monitors",
+        "printers",
+        "tablets",
+        "tvs"
+      ],
+      "notes": "Excluded. The terms also forbid robots and scraping, and allow links only to the home page. Use would need written permission from GEC. Whether manufacturers pay to register (a possible conflict with 'nobody pays to rank') was not checked.",
+      "census": false,
+      "censusWhy": "registered products only, and its terms forbid reuse",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "epoch-ai-models",
+      "name": "Epoch AI notable AI models dataset",
+      "publisher": "Epoch AI (research nonprofit)",
+      "kind": "roster",
+      "key": "model",
+      "landing": "https://epoch.ai/data/ai-models",
+      "access": "https://epoch.ai/data/notable_ai_models.csv",
+      "accessVerified": true,
+      "accessNote": "CSV, 2.26 MB, 1,078 models, updated 8 Oct 2026. Model accessibility counts: 223 Open weights (unrestricted), 66 non-commercial, 51 restricted use, 153 API access, 287 unreleased.",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://epoch.ai/data/ai-models",
+      "licenceQuote": "provided the source and authors are credited under the Creative Commons Attribution license",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "global"
+      ],
+      "updates": "Weekly automated search; major models added within about two weeks.",
+      "measures": [
+        {
+          "field": "Model accessibility",
+          "criterion": "openness",
+          "meaning": "Open weights (unrestricted, non-commercial, restricted) versus API only"
+        },
+        {
+          "field": "Training code accessibility",
+          "criterion": "openness",
+          "meaning": "Whether training code is released and on what terms"
+        },
+        {
+          "field": "Parameters",
+          "criterion": "NEW:model_size",
+          "meaning": "Parameter count, a guide to the hardware needed to run it"
+        },
+        {
+          "field": "Country (of organization)",
+          "criterion": "jurisdiction",
+          "meaning": "Where the developer is based"
+        }
+      ],
+      "decisions": [
+        "local-and-open-weight-models",
+        "open-weight-model-licences"
+      ],
+      "notes": "Models are chosen for notability, not completeness (all_ai_models.csv is broader). Licence names sit in the free-text Accessibility notes column. It is not a quality benchmark.",
+      "census": true,
+      "censusWhy": "selected for notability, open and closed alike, not by any measure shown",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "eprel",
+      "name": "European Product Registry for Energy Labelling (EPREL) public API",
+      "publisher": "European Commission (DG ENER)",
+      "kind": "roster",
+      "key": "model",
+      "landing": "https://eprel.ec.europa.eu/",
+      "access": "https://eprel.ec.europa.eu/api/products/{productGroup}",
+      "accessVerified": false,
+      "accessNote": "GET /api/product-groups returned 200 JSON listing 33 groups (including rangehoods, airconditioners, localspaceheaters, solidfuelboilers, spaceheaters, waterheatersolardevices, lightsources, refrigeratingappliances2019, dishwashers2019, tumbledryers20232534, ovens). GET /api/products/{group} returned 403 {\"message\":\"Forbidden\"} without an API key, so no product rows were seen and field names are not confirmed.",
+      "licence": "EPREL API terms and conditions (Commission licence in force from 3 June 2024)",
+      "licenceUrl": "https://ec.europa.eu/assets/move-ener/eprel/EPREL%20Public/Public%20API%20Term%20and%20Conditions/API_TERMS_AND_CONDITIONS_EN.pdf",
+      "licenceQuote": "to reproduce, share and distribute the Data for commercial and non-commercial purposes",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "EU",
+        "NI"
+      ],
+      "updates": "continuous (suppliers register models before sale)",
+      "measures": [
+        {
+          "field": "energy efficiency class (label)",
+          "criterion": "environment",
+          "meaning": "A to G energy class on the legal label"
+        },
+        {
+          "field": "annual or weighted energy consumption (label)",
+          "criterion": "environment",
+          "meaning": "kWh figure printed on the label"
+        },
+        {
+          "field": "airborne acoustical noise (label, where the group has one)",
+          "criterion": "NEW:noise",
+          "meaning": "dB(A) noise class"
+        },
+        {
+          "field": "spare part and guarantee information (2019 and later groups)",
+          "criterion": "longevity",
+          "meaning": "years spare parts are kept and minimum guarantee, per product information sheet"
+        }
+      ],
+      "decisions": [
+        "air-conditioning",
+        "dishwashers",
+        "extractor-hoods",
+        "fridges-and-freezers",
+        "heat-pumps",
+        "light-bulbs",
+        "monitors",
+        "ovens-and-hobs",
+        "solar-water-heating",
+        "tablets",
+        "tumble-dryers",
+        "tvs",
+        "tyres",
+        "wood-stoves-and-biomass-heating"
+      ],
+      "notes": "Already on the shelf as register eprel (rule covers fridges-and-freezers, tumble-dryers, dishwashers, ovens-and-hobs, light-bulbs). New ids here: extractor-hoods (rangehoods), air-conditioning (airconditioners, up to 12 kW), heat-pumps (spaceheaters), solar-water-heating (waterheatersolardevices), wood-stoves-and-biomass-heating (localspaceheaters, solidfuelboilers). Key via the Request Public API Key link on the EPREL home page; Commission supplier guides say bulk download is for whitelisted tokens only. Terms require keeping stored copies up to date, preserving attribution, not selling raw data, and allow termination without grounds. I left portable-heaters out because I could not confirm electric heaters carry the label. The US EPA Certified Wood Heater Database was also tried for wood stoves: cfpub.epa.gov returned an error page (There was a problem) to both curl and WebFetch; accessVerified false for it.",
+      "census": true,
+      "censusWhy": "every product sold under an EU energy label, A to G",
+      "extendsShelf": "eprel",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "eu-ecolabel-products",
+      "name": "EU Ecolabel product catalogue export",
+      "publisher": "European Commission, DG Environment",
+      "kind": "roster",
+      "key": "model",
+      "landing": "https://data.europa.eu/data/datasets/eu-ecolabel-products",
+      "access": "https://publicstorage.data.env.service.ec.europa.eu/ecolabel/exports/most-recent-export.csv",
+      "accessVerified": true,
+      "accessNote": "CSV 200, 17.5 MB, 91,156 rows, semicolon-delimited, extract_date 2026-10-12. Groups: decorative paints 17,892; tissue 17,195; furniture 12,355; textiles 11,657; hard surface cleaners 7,837; hard coverings 4,997; wood, cork and bamboo floors 2,333; laundry detergents 1,336; hand dish 1,246; dishwasher detergents 575; bed mattresses 88; growing media and soil improvers 52.",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenceQuote": "Creative Commons Attribution 4.0 International",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "EU"
+      ],
+      "updates": "monthly per portal metadata; the file carried that day's extract date",
+      "measures": [
+        {
+          "field": "licence_number, group_name, decision",
+          "criterion": "certification",
+          "meaning": "holds a current EU Ecolabel licence under the named criteria decision"
+        },
+        {
+          "field": "expiration_date",
+          "criterion": "certification",
+          "meaning": "date the licence lapses"
+        }
+      ],
+      "decisions": [
+        "bedding-and-linens",
+        "beds-and-bed-frames",
+        "chairs-and-stools",
+        "compost-and-soil",
+        "dishwasher-tablets-and-salt",
+        "drain-and-toilet-cleaners",
+        "fabric-conditioner-and-stain-removers",
+        "flooring",
+        "garden-and-outdoor-furniture",
+        "paint-and-decorating-supplies",
+        "paint-and-wallpaper",
+        "peat-free-growing-media",
+        "sofas-and-seating",
+        "storage-furniture",
+        "tables-and-desks",
+        "towels-and-bath-linen"
+      ],
+      "notes": "Pass or fail only, so it gives options plus a certification flag. Furniture and textiles are single groups; sorting into decisions needs multilingual name matching (rough keyword counts: chairs 1,442, tables and desks 1,046, storage 811, sofas and armchairs 238, outdoor 44, beds 44, bedding 1,465, towels 43). Paint covers paint only, not wallpaper. Laundry criteria include stain removers (about 31 named) but not fabric conditioner. Toilet and sanitary cleaners sit inside hard surface cleaners (about 787 named). Growing media is 52 products, 41 French; check criteria decision 2015/2099 text before saying peat-free. Licence holders register their own products, so the list may be incomplete. Shelf register ecolabel-registers already names the EU Ecolabel by page; this CSV is the bulk route. Checked and not usable: Green Seal directory (no export, All rights reserved), Leaping Bunny (no export, All rights reserved), FSC search (its disclaimer says bulk downloads are not allowed), Blue Angel (export only to registered retailers by IP), Nordic Swan (no open product data found).",
+      "census": false,
+      "censusWhy": "licence holders only: a winners list, so a measure",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "eu-safety-gate",
+      "name": "Safety Gate (EU rapid alert system for dangerous non-food products), weekly reports",
+      "publisher": "European Commission, DG JUST",
+      "kind": "measure",
+      "key": "brand",
+      "landing": "https://ec.europa.eu/safety-gate-alerts/screen/webReport",
+      "access": "https://ec.europa.eu/safety-gate-alerts/api/download/weeklyReport/list/xml/en",
+      "accessVerified": true,
+      "accessNote": "The list XML (no key) runs from 2005; latest Report-2026-40, 09/10/2026. Each detail XML alert has caseNumber, category, product, brand, name, type_numberOfModel, barcode, riskType, danger, measures. 26 weeks parsed: 1,814 alerts, 1,295 with a named brand. Toys 380; Cosmetics 259 (gel nail polish 132, perfume or eau de toilette about 42, hair dye 7, teeth whitening pen 2); Childcare articles 48 (baby carrier 10, car seats 5, travel cot 1).",
+      "licence": "European Commission reuse policy (CC BY 4.0 by default)",
+      "licenceUrl": "https://commission.europa.eu/legal-notice_en",
+      "licenceQuote": "reuse is allowed, provided appropriate credit is given and changes are indicated.",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "EU"
+      ],
+      "updates": "weekly (every Friday)",
+      "measures": [
+        {
+          "field": "brand + riskType + measures per alert",
+          "criterion": "safety",
+          "meaning": "an EU authority found this brand's product dangerous, with the hazard and the action taken (recall, withdrawal, sales ban)"
+        }
+      ],
+      "decisions": [
+        "air-fryers",
+        "candles-and-home-fragrance",
+        "car-seats",
+        "chargers-and-cables",
+        "children-s-furniture",
+        "cookware-and-pans",
+        "cycle-helmets",
+        "electric-vehicles",
+        "fans-and-portable-cooling",
+        "hair-colour-and-dye",
+        "hair-dryers-and-stylers",
+        "kettles",
+        "lamps-and-shades",
+        "light-bulbs",
+        "nail-polish",
+        "new-cars",
+        "perfume-and-cologne",
+        "portable-heaters",
+        "power-banks-and-portable-batteries",
+        "slings-and-carriers",
+        "storage-furniture",
+        "toasters",
+        "tools-and-diy",
+        "toys",
+        "travel-cots-and-portable-sleep",
+        "whitening-products"
+      ],
+      "notes": "This is the EU counterpart to the existing cpsc-recalls register. Many alerts name marketplace no-name brands, so match brands exactly and treat absence as no finding. No portal-specific reuse notice was found, so the Commission default applies. Product photos and logos are third-party: link to them, do not copy them. Alerts are per product model. Count alerts over a stated window, never as a lifetime score.",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "fair-wear-brand-performance",
+      "name": "Fair Wear member brands and Brand Performance Checks",
+      "publisher": "Fair Wear Foundation",
+      "kind": "roster",
+      "key": "brand",
+      "landing": "https://www.fairwear.org/",
+      "access": "https://api.fairwear.org/wp-json/wp/v2/brands?per_page=100",
+      "accessVerified": true,
+      "accessNote": "The public WordPress REST API returned HTTP 200 with X-WP-Total 217 member brands. Each brand's meta.related_resources holds its yearly Performance Check summary; for example Schoffel 2025 has a benchmarking score of 75 and is placed in the Leader category. /wp-json/wp/v2/resources returns each check with its PDF URL (e.g. Swiss Post Performance Check 2026, Hydrowear 2025). Text could not be extracted from the PDFs here.",
+      "licence": "unclear",
+      "licenceUrl": "https://www.fairwear.org/",
+      "licenceQuote": "No licence or reuse terms found on the site or in the API",
+      "reuseOk": false,
+      "commercialConflict": true,
+      "region": [
+        "EU"
+      ],
+      "updates": "annual performance check per member",
+      "measures": [
+        {
+          "field": "performance category (Leader, Good, Needs Improvement, Suspended)",
+          "criterion": "labor",
+          "meaning": "Fair Wear's yearly judgement of the brand's work on factory conditions"
+        },
+        {
+          "field": "benchmarking score",
+          "criterion": "labor",
+          "meaning": "points scored on Fair Wear's indicators, including purchasing practices and living wage steps"
+        },
+        {
+          "field": "membership itself",
+          "criterion": "certification",
+          "meaning": "the brand has signed up to independent factory checks and complaints handling"
+        }
+      ],
+      "decisions": [
+        "bags-and-backpacks",
+        "base-layers-and-thermals",
+        "chef-and-hospitality-wear",
+        "climbing-and-bouldering-equipment",
+        "cycling-clothing",
+        "fleece-and-midlayers",
+        "jeans-and-trousers",
+        "medical-and-care-uniforms",
+        "outdoor-and-technical-clothing",
+        "protective-and-high-visibility-clothing",
+        "running-and-training-kit",
+        "shirts-and-blouses",
+        "skirts-and-dresses",
+        "socks",
+        "suits-and-tailoring",
+        "t-shirts-and-tops",
+        "underwear",
+        "walking-and-hiking-boots",
+        "waterproofs-and-rainwear",
+        "workwear-and-uniforms"
+      ],
+      "notes": "Covers brands the big indexes miss: workwear (Kubler, Fristads, Mascot, Tricorp, Hydrowear, Bragard, Clinic Dress), outdoor (Jack Wolfskin, Mammut, Rab, Vaude, Haglofs, Ortovox), bags (Deuter, FOND OF, Sandqvist), jeans (Nudie, MUD), shirts and suits (Olymp, Suitsupply, van Laack) and climbing (Edelrid, Wild Country). commercialConflict is true because members pay Fair Wear annual fees, as its own membership page says. Since the site's rule is that nobody pays to rank, show this as a membership fact with its category, not as a score this site computes. The licence is unclear; ask before bulk copying the summaries. Related check: the B Lab directory, already in content/registers.json as blab-directory, has terms limiting use to personal, non-commercial use and barring further publication. Review that entry before any bulk B Corp fill.",
+      "census": false,
+      "censusWhy": "paying members only",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "fashion-checker-living-wage",
+      "name": "Fashion Checker living wage metrics",
+      "publisher": "Clean Clothes Campaign, data published on Wikirate",
+      "kind": "roster",
+      "key": "brand",
+      "landing": "https://fashionchecker.org/",
+      "access": "https://wikirate.org/Clean_Clothes_Campaign+Living_Wages_Paid_Score+Answer.csv",
+      "accessVerified": true,
+      "accessNote": "fashionchecker.org returned 200 to curl, with the footer 'All content is licensed under CC-BY-4.0'. Its JSON at /content/brand_answers.json returned 403 because of a bot check. The Wikirate CSV exports returned 200. Living Wages Paid Score has 500 answers for 2024 to 2026; in 2026, 106 brands are graded E, 3 D and 1 B, and Primark, H&M and Patagonia are all E. The Public Commitment on Living Wage and Living Wage Action Plan exports have answers from 2019 to 2026. Each metric's License.txt returns CC BY 4.0.",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenceQuote": "All content is licensed under CC-BY-4.0",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "global"
+      ],
+      "updates": "yearly research rounds; latest answers 2026",
+      "measures": [
+        {
+          "field": "Living Wages Paid Score (A to E)",
+          "criterion": "labor",
+          "meaning": "whether the brand shows evidence its suppliers' workers earn a living wage"
+        },
+        {
+          "field": "Public Commitment on Living Wage",
+          "criterion": "labor",
+          "meaning": "whether the brand has publicly committed to a full living wage across suppliers"
+        },
+        {
+          "field": "Living Wage Action Plan",
+          "criterion": "labor",
+          "meaning": "whether it has a public, time-bound plan to get there"
+        },
+        {
+          "field": "Living Wages Paid Disclosure",
+          "criterion": "transparency",
+          "meaning": "whether it publishes the share of supplier factories paying a living wage"
+        }
+      ],
+      "decisions": [
+        "activewear",
+        "bras-and-lingerie",
+        "handbags-and-totes",
+        "jeans-and-trousers",
+        "jumpers-and-sweatshirts",
+        "leggings-and-joggers",
+        "outdoor-and-technical-clothing",
+        "outerwear-and-coats",
+        "running-shoes",
+        "shirts-and-blouses",
+        "skirts-and-dresses",
+        "socks",
+        "t-shirts-and-tops",
+        "trainers-and-sneakers",
+        "underwear"
+      ],
+      "notes": "Covers about 110 large European and North American brands. The headline grade barely separates them (almost all E in 2026). The commitment, action plan and disclosure metrics separate them better, so lead with those. Join on the Wikirate brand name. Cite Clean Clothes Campaign and the Wikirate answer page. The data sits on the same Wikirate platform as the Fashion Transparency Index; the campaign researches the answers, and the public does not edit them.",
+      "census": true,
+      "censusWhy": "about 110 large brands chosen by size, not by score",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "fashion-transparency-index",
+      "name": "Fashion Transparency Index (2023 global edition and 2025 What Fuels Fashion edition)",
+      "publisher": "Fashion Revolution, data published on Wikirate",
+      "kind": "roster",
+      "key": "brand",
+      "landing": "https://www.fashionrevolution.org/fashion-transparency-index/",
+      "access": "https://wikirate.org/Fashion_Revolution+Fashion_Transparency_Index_2025+Answer.csv",
+      "accessVerified": true,
+      "accessNote": "The Wikirate CSV export returned 200 rows for 2025 on a 0 to 10 scale: H&M 7.116, Nike 2.733, Uniqlo 2.299, Primark 1.499, Shein 1.299. The 2023 export (Fashion_Revolution+Fashion_Transparency_Index+Answer.csv) returned 250 brands. Wikirate's HTML pages return 403 to WebFetch because of a bot check; the CSV exports do not.",
+      "licence": "CC BY-NC 4.0 (metric page); Wikirate licence field says CC BY 4.0",
+      "licenceUrl": "https://wikirate.org/Fashion_Revolution+Fashion_Transparency_Index_2025",
+      "licenceQuote": "The Fashion Transparency Index is licensed under a Creative Commons Attribution-NonCommercial 4.0",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "global"
+      ],
+      "updates": "yearly editions; latest global edition 2023, decarbonisation edition 2025, Brazil edition 2025",
+      "measures": [
+        {
+          "field": "Fashion Transparency Index 2023 (0 to 10, = share of 250 points)",
+          "criterion": "transparency",
+          "meaning": "how much the brand publicly discloses about suppliers, policies and impacts"
+        },
+        {
+          "field": "Fashion Transparency Index 2025, What Fuels Fashion edition (0 to 10)",
+          "criterion": "environment",
+          "meaning": "disclosure and action on decarbonisation, energy and a just transition"
+        },
+        {
+          "field": "2025 sub-scores: Decarbonisation, Accountability, Just Transition & Advocacy",
+          "criterion": "labor",
+          "meaning": "the Just Transition sub-score covers how workers are treated as the industry moves off fossil energy"
+        }
+      ],
+      "decisions": [
+        "activewear",
+        "bags-and-backpacks",
+        "boots",
+        "bras-and-lingerie",
+        "handbags-and-totes",
+        "jeans-and-trousers",
+        "jumpers-and-sweatshirts",
+        "leggings-and-joggers",
+        "occasion-and-eveningwear",
+        "outdoor-and-technical-clothing",
+        "outerwear-and-coats",
+        "running-and-training-kit",
+        "running-shoes",
+        "shirts-and-blouses",
+        "shorts",
+        "skirts-and-dresses",
+        "sleepwear-and-loungewear",
+        "socks",
+        "suits-and-tailoring",
+        "swimwear",
+        "t-shirts-and-tops",
+        "trainers-and-sneakers",
+        "underwear"
+      ],
+      "notes": "Covers the 250 largest brands by turnover: mass market, sportswear and luxury. Small ethical brands are not in it. Treat the licence as CC BY-NC 4.0, the stricter of the two statements: that is fine for this non-commercial site with credit to Fashion Revolution, but the cells cannot be reused commercially. Fashion Revolution's own website terms also bar commercial use of site content. The index scores what a brand discloses, not how it behaves: a high score means the brand publishes, not that it treats workers well. Join on the brand name as Wikirate spells it (e.g. 'Gap inc.', 'Nike Inc.'). The answers are Fashion Revolution's own research hosted on Wikirate, so cite Fashion Revolution plus the Wikirate answer URL. Remake's Fashion Accountability Report was checked and excluded: its terms allow personal use only, and its page links a 2022 report.",
+      "census": true,
+      "censusWhy": "the 250 largest brands by turnover, worst scorers included",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "fca-firm-complaints",
+      "name": "Firm-level complaints data",
+      "publisher": "UK Financial Conduct Authority",
+      "kind": "measure",
+      "key": "company",
+      "landing": "https://www.fca.org.uk/data/complaints-data/firm-level",
+      "access": "https://www.fca.org.uk/publication/data/firm-level-complaints-data-2025-h2.xlsx",
+      "accessVerified": true,
+      "accessNote": "The xlsx downloaded (114 KB) for 2025 H2, revised 15 May 2026. Sheets: Opened, Closed, Consumer Credit, Percentage within 3 days, Percentage after 3 days, Percentage upheld, Context - Intermediation, Context - Provision, Trading Names, Joint reporters. Rows are firms with Group, across product groups Banking and credit cards, Decumulation & pensions, Home finance, Insurance & pure protection and Investments.",
+      "licence": "UK Open Government Licence v3.0. FCA legal page clause 2.2 applies it to numerical datasets in the Data section",
+      "licenceUrl": "https://www.fca.org.uk/legal",
+      "licenceQuote": "numerical datasets published within the Data section of this site",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "UK"
+      ],
+      "updates": "half-yearly (around April and October; 2026 H1 due)",
+      "measures": [
+        {
+          "field": "Context - Provision (complaints per 1,000 accounts or policies)",
+          "criterion": "complaints",
+          "meaning": "complaints scaled to how many customers the firm has"
+        },
+        {
+          "field": "Percentage upheld",
+          "criterion": "NEW:complaints_upheld",
+          "meaning": "share of closed complaints the firm itself found in the customer's favour"
+        },
+        {
+          "field": "Percentage within 3 days",
+          "criterion": "complaints",
+          "meaning": "how fast the firm closes complaints"
+        }
+      ],
+      "decisions": [
+        "basic-and-second-chance-accounts",
+        "building-societies-and-mutuals",
+        "car-finance",
+        "car-insurance",
+        "contents-and-valuables-insurance",
+        "critical-illness-cover",
+        "debit-and-prepaid-cards",
+        "device-and-gadget-insurance",
+        "health-insurance",
+        "high-cost-and-short-term-credit",
+        "home-insurance",
+        "income-protection",
+        "investment-platforms",
+        "joint-and-household-accounts",
+        "life-insurance",
+        "mutual-and-co-operative-insurers",
+        "overdrafts",
+        "pension-consolidation-and-transfer",
+        "pensions",
+        "personal-loans",
+        "remortgaging-and-switching",
+        "savings-accounts",
+        "workplace-pension-schemes"
+      ],
+      "notes": "This is the UK counterpart to CFPB and is already scaled per 1,000 accounts. It only covers firms with 500+ complaints in six months or 1,000+ in a year, so small mutuals and ethical banks are absent; that is a gap to leave open, not a zero. Product groups are coarse: all insurance lines are in one group. There is no FRN column, so firms have to be matched by name or group. Do not use the Financial Ombudsman's business complaint data instead: its % upheld file is good, but its legal policy says 'You must not reproduce our copyright material' without permission.",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "fdic-bankfind",
+      "name": "BankFind Suite API (institutions, financials, locations)",
+      "publisher": "US Federal Deposit Insurance Corporation",
+      "kind": "roster",
+      "key": "institution",
+      "landing": "https://api.fdic.gov/banks/docs/",
+      "access": "https://api.fdic.gov/banks/institutions?filters=ACTIVE:1&limit=1&format=json",
+      "accessVerified": true,
+      "accessNote": "JSON returned with 4,220 active insured institutions (index built 2026-10-09). Each record has about 130 fields, including NAME, CERT, FED_RSSD, LEI, WEBADDR, ASSET, DEP, OFFICES, CB, MUTUAL, MDI_STATUS_DESC and CFPBFLAG. Filter counts: CB:1 (community bank) 3,790. MUTUAL:1 222. MDI_STATUS_DESC not NONE 156. The /financials endpoint returned ISERCHG (service charges on deposit accounts) for 2026-06-30. No API key needed.",
+      "licence": "US federal government work, public domain (17 U.S.C. 105). No licence statement on the API docs page; the quote is from the FDIC Archive copyright page",
+      "licenceUrl": "https://archive.fdic.gov/Content%20and%20Copyright",
+      "licenceQuote": "created by or for the US government on this site is within the public domain",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "US"
+      ],
+      "updates": "institution records refreshed about weekly; financials quarterly (latest 2026-06-30)",
+      "measures": [
+        {
+          "field": "CB",
+          "criterion": "local",
+          "meaning": "FDIC classes it as a community bank"
+        },
+        {
+          "field": "MDI_STATUS_DESC",
+          "criterion": "ownership",
+          "meaning": "minority depository institution and which community owns it"
+        },
+        {
+          "field": "MUTUAL",
+          "criterion": "ownership",
+          "meaning": "mutually owned by depositors rather than shareholders"
+        },
+        {
+          "field": "ISERCHG / DEP (financials)",
+          "criterion": "fees",
+          "meaning": "deposit-account service charges collected per dollar of deposits"
+        },
+        {
+          "field": "OFFICES, /locations",
+          "criterion": "accessibility",
+          "meaning": "number and places of branches"
+        }
+      ],
+      "decisions": [
+        "basic-and-second-chance-accounts",
+        "building-societies-and-mutuals",
+        "business-banking",
+        "cash-access-and-atms",
+        "children-s-and-youth-accounts",
+        "community-development-finance",
+        "ethical-and-values-based-banks",
+        "joint-and-household-accounts",
+        "overdrafts",
+        "savings-accounts"
+      ],
+      "notes": "This is the spine for US banks. FED_RSSD joins to the CDFI Fund certified list (RSSD ID, https://www.cdfifund.gov/programs-training/certification/cdfi; 1,281 certified CDFIs as of 17 Sept 2026, typed Bank or Thrift, Credit Union, Loan Fund, Venture Capital). The CDFI list adds loan funds that FDIC does not hold, and its media URL changes with each update, so the link has to be scraped from the landing page. LEI joins to GLEIF and SBTi. Product-level terms such as youth or second-chance accounts are not in this source, so it gives the real options and institution measures only.",
+      "census": true,
+      "censusWhy": "every FDIC-insured bank",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "fmti-2025",
+      "name": "Foundation Model Transparency Index, December 2025",
+      "publisher": "Stanford Center for Research on Foundation Models",
+      "kind": "measure",
+      "key": "company",
+      "landing": "https://crfm.stanford.edu/fmti/December-2025",
+      "access": "https://raw.githubusercontent.com/stanford-crfm/fmti/main/Dec2025/Dec2025_scores.csv",
+      "accessVerified": true,
+      "accessNote": "CSV of 100 indicator rows for 13 developers (AI21 Labs, Alibaba, Amazon, Anthropic, DeepSeek, Google, IBM, Meta, Midjourney, Mistral, OpenAI, Writer, xAI). There is no total row; sum the indicators.",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://github.com/stanford-crfm/fmti/blob/main/LICENSE.md",
+      "licenceQuote": "Attribution 4.0 International",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "global"
+      ],
+      "updates": "Roughly yearly (Oct 2023, May 2024, Dec 2025).",
+      "measures": [
+        {
+          "field": "sum of 100 indicators",
+          "criterion": "transparency",
+          "meaning": "How much the developer discloses about data, compute, model and use"
+        },
+        {
+          "field": "data-domain indicators",
+          "criterion": "transparency",
+          "meaning": "Disclosure about training data sources and licensing"
+        }
+      ],
+      "decisions": [
+        "ai-coding-assistants",
+        "ai-image-and-video-tools",
+        "ai-search-and-research-tools",
+        "ai-writing-tools",
+        "local-and-open-weight-models"
+      ],
+      "notes": "Scores the developer's flagship model, not the consumer product, so products have to be mapped to developers. The indicators changed in 2025, so scores are not comparable with earlier editions. The method has published critiques (for example from EleutherAI).",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "france-repairability-index",
+      "name": "Indice de reparabilite, consolidated producer filings",
+      "publisher": "data.gouv.fr (French government open data platform), from producer filings",
+      "kind": "measure",
+      "key": "model",
+      "landing": "https://www.data.gouv.fr/datasets/fichiers-consolides-des-donnees-respectant-le-schema-indice-de-reparabilite/",
+      "access": "https://www.data.gouv.fr/api/1/datasets/fichiers-consolides-des-donnees-respectant-le-schema-indice-de-reparabilite/",
+      "accessVerified": true,
+      "accessNote": "Dataset API 200 listing a daily consolidated CSV; the 2026-10-12 file (schema v0.1.2) returned 200, 4.2 MB, 4,829 rows. Categories: laptops 3,594; dishwashers 604; cordless vacuums 203; corded vacuums 196; pressure washers 76; washing machines 99; robot vacuums 18; robot lawn mowers 15; battery lawn mowers 11.",
+      "licence": "Licence Ouverte / Open Licence 2.0",
+      "licenceUrl": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0/",
+      "licenceQuote": "Le « Concédant » concède au « Réutilisateur » un droit non exclusif et gratuit de libre « Réutilisation »",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "FR"
+      ],
+      "updates": "daily consolidation",
+      "measures": [
+        {
+          "field": "note_ir",
+          "criterion": "repairability",
+          "meaning": "official French repairability score out of 10"
+        },
+        {
+          "field": "note_c1 to note_c5",
+          "criterion": "repairability",
+          "meaning": "sub-scores: documentation, disassembly, spare part availability, spare part price, product-specific"
+        },
+        {
+          "field": "nb_annees_disponibilite_piece_detachee_*",
+          "criterion": "longevity",
+          "meaning": "years each spare part stays available"
+        },
+        {
+          "field": "delai_jours_piece_detachee_*",
+          "criterion": "NEW:spare_part_delivery_days",
+          "meaning": "days to deliver each spare part"
+        }
+      ],
+      "decisions": [
+        "dishwashers",
+        "hedge-trimmers-and-mowers",
+        "robot-lawn-mowers-and-outdoor-smart-devices",
+        "robot-vacuums",
+        "vacuum-cleaners"
+      ],
+      "notes": "Different file from shelf register france-durability (durability index, washing machines and TVs). Only producers who publish in the schema appear, so coverage is partial; scores are self-declared. Category labels have encoding variants (a with grave accent sometimes stored as r with cedilla), normalise before grouping. Key on nom_metteur_sur_le_marche plus nom_modele; French model codes may differ from UK ones. Mowers are thin (26 rows).",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "fueleconomy-gov-vehicles",
+      "name": "Fuel economy vehicle data (all model years)",
+      "publisher": "US EPA and US DOE (fueleconomy.gov, run by Oak Ridge National Laboratory)",
+      "extendsShelf": "fueleconomy-gov-vehicles",
+      "kind": "roster",
+      "key": "model",
+      "landing": "https://www.fueleconomy.gov/feg/ws/index.shtml",
+      "access": "https://www.fueleconomy.gov/feg/epadata/vehicles.csv.zip",
+      "accessVerified": true,
+      "accessNote": "Zip returned HTTP 200, 2.2 MB, Last-Modified 29 Sep 2026. Unzipped CSV has 50,407 rows from 1984 to 2027. Model years 2026-27 have 1,711 rows: 492 EV, 339 hybrid, 37 plug-in hybrid.",
+      "licence": "US public domain (EPA data licence)",
+      "licenceUrl": "https://edg.epa.gov/EPA_Data_License.htm",
+      "licenceQuote": "all data produced by the U.S EPA is by default in the public domain",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "US"
+      ],
+      "updates": "Rolling, as new models are certified. File last modified 29 Sep 2026.",
+      "measures": [
+        {
+          "field": "co2TailpipeGpm",
+          "criterion": "environment",
+          "meaning": "Tailpipe CO2 in grams per mile"
+        },
+        {
+          "field": "ghgScore",
+          "criterion": "environment",
+          "meaning": "EPA greenhouse gas score, 1 to 10"
+        },
+        {
+          "field": "fuelCost08",
+          "criterion": "economical",
+          "meaning": "Estimated annual fuel cost in dollars"
+        },
+        {
+          "field": "combE",
+          "criterion": "economical",
+          "meaning": "Combined electricity use in kWh per 100 miles (EVs and plug-ins)"
+        },
+        {
+          "field": "range",
+          "criterion": "NEW:range",
+          "meaning": "EPA-rated electric range in miles"
+        }
+      ],
+      "decisions": [
+        "electric-vehicles",
+        "hybrid-and-plug-in-hybrid-cars",
+        "new-cars",
+        "small-and-city-cars",
+        "vans-and-pickups"
+      ],
+      "notes": "Filter by year. Use atvType (EV, Hybrid, Plug-in Hybrid) to split the EV and hybrid decisions. Use VClass for size: Minicompact and Subcompact Cars for small cars, Pickup Trucks and Minivan classes for vans. There is one row per powertrain configuration, not per trim. The fueleconomy.gov pages carry no licence text of their own; the EPA licence was reached through the data.gov catalogue entry. Joins to NHTSA on make, model and year, but model names differ and need normalising.",
+      "census": true,
+      "censusWhy": "every vehicle certified for sale in the US",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "gleif-lei",
+      "name": "Global LEI index with parent relationships (Level 2)",
+      "publisher": "Global Legal Entity Identifier Foundation (GLEIF)",
+      "kind": "measure",
+      "key": "company",
+      "landing": "https://www.gleif.org/en/lei-data/gleif-golden-copy",
+      "access": "https://goldencopy.gleif.org/api/v2/golden-copies/publishes/latest",
+      "accessVerified": true,
+      "accessNote": "Fetched 2026-10-12. The publish index returned the 16:00 UTC files: 3,459,313 LEI records (481 MB zip), 490,837 relationship records (23 MB zip) and 6,412,092 reporting exceptions. The live API at https://api.gleif.org/api/v1/lei-records?filter[entity.legalName]=... returned H & M Hennes & Mauritz AB (LEI 529900O5RR7R39FRDM42) and traced one subsidiary's ultimate parent to Ramsbury Invest AB. Filtering on entity.registeredAs=00453448, a UK company number, returned PRIMARK STORES LIMITED, LEI 213800FFQ6FYDFYJVN88.",
+      "licence": "CC0 1.0",
+      "licenceUrl": "https://www.gleif.org/en/meta/lei-data-terms-of-use",
+      "licenceQuote": "The data available through the Access Service are provided under the CC0 licence",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "global"
+      ],
+      "updates": "golden copy several times a day; API live",
+      "measures": [
+        {
+          "field": "ultimate-parent / direct-parent relationship records",
+          "criterion": "ownership",
+          "meaning": "which company ultimately owns this brand's legal entity"
+        },
+        {
+          "field": "entity.jurisdiction, legalAddress.country",
+          "criterion": "jurisdiction",
+          "meaning": "where the selling entity is registered"
+        },
+        {
+          "field": "reporting exception reason (e.g. NATURAL_PERSONS, NON_CONSOLIDATING)",
+          "criterion": "independence",
+          "meaning": "whether the top owner is a person or family rather than a listed group"
+        }
+      ],
+      "decisions": [
+        "book-shops",
+        "cinemas",
+        "game-stores-and-platforms",
+        "handbags-and-totes",
+        "jeans-and-trousers",
+        "magazines",
+        "newspapers",
+        "outdoor-and-technical-clothing",
+        "sports-broadcast-subscriptions",
+        "t-shirts-and-tops",
+        "trainers-and-sneakers"
+      ],
+      "notes": "Realms: every realm whose options are companies (media, clothing, food, money, housing, tech). This is the source that links the others together. SBTi rows carry an LEI on 4,206 of 15,770 rows and an ISIN on 2,970. UK registers carry the company number, which GLEIF holds as entity.registeredAs (checked with Primark Stores). Otherwise match on legal name, and record the LEI once per option. Brands are not legal entities, so each brand has to be matched to its company by hand once. When the top owner is a family or does not consolidate, GLEIF records an exception and the ownership chain stops there; the H&M group itself reports exceptions. The terms bar implying that GLEIF endorses the site. OpenCorporates was checked as the alternative: its database is ODbL with share-alike, its API returned 401 without a token, and free keys go only to journalists, NGOs and academics who show they contribute openly. GLEIF's CC0 data is the simpler way to link companies.",
+      "realms": [
+        "home",
+        "food-and-drink",
+        "technology",
+        "personal-care",
+        "health",
+        "media-and-culture",
+        "clothing",
+        "family-and-care",
+        "transport",
+        "money",
+        "learning",
+        "travel",
+        "animals",
+        "civic-and-giving",
+        "work-and-livelihood",
+        "organizations"
+      ],
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "govuk-product-safety-alerts",
+      "name": "Product safety alerts, reports and recalls (GOV.UK finder)",
+      "publisher": "Office for Product Safety and Standards (UK)",
+      "kind": "measure",
+      "key": "brand",
+      "landing": "https://www.gov.uk/product-safety-alerts-reports-recalls",
+      "access": "https://www.gov.uk/api/search.json?filter_format=product_safety_alert_report_recall",
+      "accessVerified": true,
+      "accessNote": "Search API returned total 3,767 notices with product_category, product_risk_level, product_alert_type and public_timestamp. By category: toys 773, childcare-articles-childrens-equipment 188, cosmetics 183 (notices from March 2022 to Oct 2026). Childcare titles mention stroller 24, sleeping bag 16, car seat 15, pushchair 6, baby carrier 5. Cosmetics titles are mostly skin-lightening creams.",
+      "licence": "Open Government Licence v3.0",
+      "licenceUrl": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "licenceQuote": "All content is available under the Open Government Licence v3.0, except where otherwise stated",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "UK"
+      ],
+      "updates": "as notices are issued (several a week)",
+      "measures": [
+        {
+          "field": "product_alert_type + product_risk_level (brand from title)",
+          "criterion": "safety",
+          "meaning": "a UK product recall, safety report or alert naming the brand, with the risk level"
+        }
+      ],
+      "decisions": [
+        "air-fryers",
+        "candles-and-home-fragrance",
+        "car-seats",
+        "children-s-furniture",
+        "cookware-and-pans",
+        "fans-and-portable-cooling",
+        "hair-dryers-and-stylers",
+        "kettles",
+        "lamps-and-shades",
+        "light-bulbs",
+        "portable-heaters",
+        "slings-and-carriers",
+        "storage-furniture",
+        "strollers-and-pushchairs",
+        "toasters",
+        "tools-and-diy",
+        "toys"
+      ],
+      "notes": "Brand appears only in the title text, so it has to be extracted and matched by hand or a careful parser. The facet query returned 422; use filter_product_category. The finder only reaches back to 2022. The licence line is the GOV.UK site-wide OGL statement, seen on other GOV.UK pages; it was not read on the finder page itself. Use with Safety Gate (EU) and cpsc-recalls (US) for three-region coverage.",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "irs-eo-bmf",
+      "name": "Exempt Organizations Business Master File Extract",
+      "publisher": "US Internal Revenue Service",
+      "kind": "roster",
+      "key": "institution",
+      "landing": "https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf",
+      "access": "https://www.irs.gov/pub/irs-soi/eo_{state}.csv",
+      "accessVerified": true,
+      "accessNote": "Page 200: posting date 9/8/2026, 1,964,958 records, one CSV per state plus four regional files. eo_vt.csv 200: 6,566 rows with NTEE_CD; 156 carry animal codes (D20 animal protection 106, D30 wildlife 10, D60 animal services 6, D40 veterinary 2, others).",
+      "licence": "US federal work, not subject to copyright",
+      "licenceUrl": "https://www.irs.gov/about-irs/use-of-content-from-irsgov",
+      "licenceQuote": "is not subject to copyright and may be freely copied",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "US"
+      ],
+      "updates": "periodic reposting (last posting 9/8/2026)",
+      "measures": [
+        {
+          "field": "SUBSECTION, DEDUCTIBILITY",
+          "criterion": "nonprofit",
+          "meaning": "501(c)(3) status and whether gifts are tax-deductible"
+        },
+        {
+          "field": "REVENUE_AMT, ASSET_AMT",
+          "criterion": "NEW:organisation_size",
+          "meaning": "latest reported revenue and assets"
+        }
+      ],
+      "decisions": [
+        "adoption-and-rescue",
+        "animal-welfare-charities",
+        "campaigning-organisations",
+        "charities-and-non-profits-that-trade",
+        "charities-by-cause",
+        "community-foundations",
+        "community-groups",
+        "community-knowledge-projects",
+        "digital-preservation-projects",
+        "donating-goods-to-charity",
+        "effective-giving",
+        "investigative-journalism-organisations",
+        "sanctuaries-and-rehoming-organisations",
+        "trade-unions",
+        "veterinary-charities-and-low-cost-clinics",
+        "wildlife-and-conservation-charities"
+      ],
+      "notes": "NTEE codes are coarse and sometimes wrong; D20 holds shelters, rescues and advocacy alike. No spending split here; that needs Form 990 e-file data, not checked. IRS asks for credit and bars use of its seal.",
+      "census": true,
+      "censusWhy": "every US tax-exempt organisation",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "knowthechain-apparel-footwear",
+      "name": "KnowTheChain Apparel and Footwear Benchmark 2023, full dataset",
+      "publisher": "Business & Human Rights Resource Centre (KnowTheChain)",
+      "kind": "roster",
+      "key": "company",
+      "landing": "https://www.business-humanrights.org/en/from-us/knowthechain/benchmark-data/",
+      "access": "https://www.business-humanrights.org/documents/41594/KTC-AF-2023-benchmark-data.xlsx",
+      "accessVerified": true,
+      "accessNote": "Downloaded 2026-10-12: HTTP 200, 587 KB xlsx, with sheets Overview, Scoring, Detailed scoring & research and Non-scored research. The Overview says it covers 65 apparel and footwear companies researched to mid 2023. The Scoring sheet gives total, theme and indicator scores (traceability, purchasing practices, recruitment fees, worker voice, remedy) with sources. The page also lists apparel files for 2018 and 2021, plus ICT and food files.",
+      "licence": "unclear",
+      "licenceUrl": "https://www.business-humanrights.org/en/about-us/data-usages-cookies/",
+      "licenceQuote": "No licence on the data page, the file, or the data usage page",
+      "reuseOk": false,
+      "commercialConflict": false,
+      "region": [
+        "global"
+      ],
+      "updates": "each sector every 2 to 3 years; apparel 2018, 2021, 2023",
+      "measures": [
+        {
+          "field": "Total benchmark score (0 to 100)",
+          "criterion": "labor",
+          "meaning": "how well the company addresses forced labour risk in its supply chain"
+        },
+        {
+          "field": "Theme: Purchasing Practices",
+          "criterion": "labor",
+          "meaning": "whether its buying terms leave suppliers able to pay workers properly"
+        },
+        {
+          "field": "Theme: Traceability and Risk Assessment",
+          "criterion": "transparency",
+          "meaning": "whether it names its suppliers and the raw-material countries it relies on"
+        }
+      ],
+      "decisions": [
+        "activewear",
+        "boots",
+        "handbags-and-totes",
+        "jeans-and-trousers",
+        "outdoor-and-technical-clothing",
+        "outerwear-and-coats",
+        "running-shoes",
+        "t-shirts-and-tops",
+        "trainers-and-sneakers",
+        "underwear"
+      ],
+      "notes": "The best measure found for comparing apparel companies on labour: indicator-level scores with sources. The licence is unclear: the file downloads freely but no terms are stated. Ask the Resource Centre before bulk use, or cite single company scores as facts with a link. It covers only the 65 largest companies, including Nike, Adidas, Inditex, H&M, Primark's parent and Shein. Join on company name. Brands owned by one group (VF, PVH, Tapestry) share the group's score; say so on the cell. The data is from 2023; show the year.",
+      "census": true,
+      "censusWhy": "the 65 largest companies",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "laa-directory-legal-aid-providers",
+      "name": "Directory of legal aid providers",
+      "publisher": "Legal Aid Agency (Ministry of Justice)",
+      "kind": "roster",
+      "key": "company",
+      "landing": "https://www.gov.uk/government/publications/directory-of-legal-aid-providers",
+      "access": "https://assets.publishing.service.gov.uk/media/6aaa934644ec1aa417346b5a/260915_Directory_of_provider_GOV.UK_v3.xlsx",
+      "accessVerified": true,
+      "accessNote": "Downloaded the xlsx (refreshed 15/09/2026). Sheets include '2024 Civil authorisations' (Provider Name, Office Postcode, Not For Profit Code, Category of Law, Procurement Area Name, Max Matter Starts Allocated) and '2024 Mediation Outreach'. Family has 1,551 office rows from 851 providers; mediation has 59 providers with outreach locations. The page says it is updated monthly.",
+      "licence": "Open Government Licence v3.0",
+      "licenceUrl": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "licenceQuote": "All content is available under the Open Government Licence v3.0, except where otherwise stated",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "UK"
+      ],
+      "updates": "monthly",
+      "measures": [
+        {
+          "field": "listed under Category of Law = Family, or on the mediation sheet",
+          "criterion": "accessibility",
+          "meaning": "holds a legal aid contract, so it can take publicly funded cases"
+        },
+        {
+          "field": "Not For Profit Code",
+          "criterion": "nonprofit",
+          "meaning": "Y for not-for-profit advice organisations"
+        }
+      ],
+      "decisions": [
+        "family-legal-services",
+        "mediation-services"
+      ],
+      "notes": "The roster covers only legal-aid-contracted firms, a subset of the market. The measure is binary, with no quality score. England and Wales only. Wills, probate and power of attorney are not legal aid categories. The 2024 contract year is in the sheet names. Max Matter Starts shows capacity but is not a quality signal.",
+      "census": false,
+      "censusWhy": "legal aid contract holders only, a subset of the market",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "leaping-bunny",
+      "name": "Leaping Bunny Compassionate Shopping Guide",
+      "publisher": "Leaping Bunny Program (page footer names the American Anti-Vivisection Society); Cruelty Free International in UK/EU",
+      "kind": "measure",
+      "key": "brand",
+      "landing": "https://www.leapingbunny.org/shopping-guide",
+      "access": "https://www.leapingbunny.org/shopping-guide",
+      "accessVerified": false,
+      "accessNote": "The shopping guide page loaded as a web list with 'Load More' and no PDF, CSV or API. /terms-of-use returned 404, and the Cruelty Free International terms URL tried also returned 404. No bulk or machine-readable route exists to verify.",
+      "licence": "All rights reserved",
+      "licenceUrl": "https://www.leapingbunny.org/shopping-guide",
+      "licenceQuote": "All rights reserved.",
+      "reuseOk": false,
+      "commercialConflict": false,
+      "region": [
+        "global"
+      ],
+      "updates": "n/a",
+      "measures": [
+        {
+          "field": "approved brand list",
+          "criterion": "cruelty_free",
+          "meaning": "brand certified under the Leaping Bunny standard"
+        }
+      ],
+      "decisions": [],
+      "notes": "Excluded: no reuse grant and no download. Copying the list would breach 'all rights reserved'. Per-brand checks can still be cited as a link in hand research. The bulk fallback, Open Beauty Facts label tags, is thin (13 products with en:leaping-bunny). EWG terms (ewg.org/terms-use) returned 403 and were not read. The repo's MASS-DATA-ACCESS-PLAN already lists EWG among sources to avoid. GPhC pharmacy register data was also checked and excluded: it is a paid subscription (£400 to £600 a year).",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "ncua-call-report",
+      "name": "Credit Union Quarterly Call Report Data (Form 5300)",
+      "publisher": "US National Credit Union Administration",
+      "kind": "roster",
+      "key": "institution",
+      "landing": "https://ncua.gov/analysis/credit-union-corporate-call-report-data/quarterly-data",
+      "access": "https://ncua.gov/files/publications/analysis/call-report-data-2026-06.zip",
+      "accessVerified": true,
+      "accessNote": "The June 2026 zip downloaded: 8.1 MB, 26 comma-delimited files. FOICU.txt lists 4,299 credit unions (CU_NAME, RSSD, CU_TYPE, LIMITED_INC, IsMDI, YEAR_OPENED). LIMITED_INC=1 for 2,389 and IsMDI True for 454. AcctDesc.txt confirms Acct_083 (members), Acct_131 (fee income, including overdraft and ATM fees), payday alternative loan counts and Acct_522A (PAL interest rate). It also has 'ATM Locations.txt' and 'Credit Union Branch Information.txt'.",
+      "licence": "US federal government work, public domain (17 U.S.C. 105). No statement found on the data page or on ncua.gov website policies",
+      "licenceUrl": "https://ncua.gov/about/open-government/website-policies",
+      "licenceQuote": "(none found)",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "US"
+      ],
+      "updates": "quarterly (latest June 2026)",
+      "measures": [
+        {
+          "field": "Acct_083",
+          "criterion": "NEW:members",
+          "meaning": "number of member-owners"
+        },
+        {
+          "field": "LIMITED_INC",
+          "criterion": "ethics",
+          "meaning": "NCUA low-income designation: most members are low-income"
+        },
+        {
+          "field": "IsMDI",
+          "criterion": "ownership",
+          "meaning": "minority depository institution"
+        },
+        {
+          "field": "Acct_131 / members",
+          "criterion": "fees",
+          "meaning": "fees charged to members per member, overdraft and ATM fees included"
+        },
+        {
+          "field": "Acct_031C, Acct_522A",
+          "criterion": "price",
+          "meaning": "offers capped-rate payday alternative loans, and at what interest rate"
+        },
+        {
+          "field": "ATM Locations, Branch Information",
+          "criterion": "accessibility",
+          "meaning": "where you can get cash and service"
+        }
+      ],
+      "decisions": [
+        "cash-access-and-atms",
+        "community-development-finance",
+        "credit-unions",
+        "high-cost-and-short-term-credit",
+        "overdrafts",
+        "personal-loans",
+        "savings-accounts"
+      ],
+      "notes": "RSSD joins to the CDFI Fund list and to CFPB complaints (by name). Financial fields are year-to-date, so annualise using the quarter. PAL fields cover federal credit unions only. The quarter is in the filename, so build the URL from the landing page each quarter.",
+      "census": true,
+      "censusWhy": "every federally insured credit union",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "nhtsa-vehicle-safety",
+      "name": "NHTSA 5-Star Safety Ratings, recalls and complaints",
+      "publisher": "US National Highway Traffic Safety Administration",
+      "kind": "measure",
+      "key": "model",
+      "landing": "https://www.nhtsa.gov/nhtsa-datasets-and-apis",
+      "access": "https://api.nhtsa.gov/SafetyRatings/modelyear/{year}/make/{make}/model/{model}",
+      "accessVerified": true,
+      "accessNote": "The 2024 Camry query returned 2 variants. VehicleId 19426 returned OverallRating 5, RolloverRating 5, ComplaintsCount 51, RecallsCount 1. recallsByVehicle for a 2022 Camry returned 1 campaign. Bulk files on static.nhtsa.gov returned 200 (FLAT_CMPL.zip, FLAT_RCL_POST_2010.zip, FLAT_RCL_PRE_2010.zip, RCL.txt field layout, modified 11-12 Oct 2026). FLAT_RCL.zip itself returned 404.",
+      "licence": "NHTSA terms of use: public information",
+      "licenceUrl": "https://www.nhtsa.gov/about-nhtsa/terms-use",
+      "licenceQuote": "considered public information and may be distributed or copied",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "US"
+      ],
+      "updates": "API is live. Recall and complaint flat files are refreshed daily.",
+      "measures": [
+        {
+          "field": "OverallRating",
+          "criterion": "safety",
+          "meaning": "NHTSA overall crash rating, 1 to 5 stars"
+        },
+        {
+          "field": "RolloverRating",
+          "criterion": "safety",
+          "meaning": "Rollover resistance, 1 to 5 stars"
+        },
+        {
+          "field": "RecallsCount / FLAT_RCL campaigns by MAKETXT, MODELTXT, YEARTXT",
+          "criterion": "safety",
+          "meaning": "Number of safety recall campaigns for that model year"
+        },
+        {
+          "field": "ComplaintsCount / FLAT_CMPL",
+          "criterion": "complaints",
+          "meaning": "Owner complaints filed with NHTSA (raw count, not adjusted for sales)"
+        }
+      ],
+      "decisions": [
+        "electric-vehicles",
+        "hybrid-and-plug-in-hybrid-cars",
+        "new-cars",
+        "small-and-city-cars",
+        "tyres",
+        "vans-and-pickups"
+      ],
+      "notes": "www.nhtsa.gov returns 403 to scripted fetches; the terms page was read in a browser. The api. and static. hosts serve normally. Not every model is crash-tested, and ratings are per model-year variant (FWD and AWD are separate). For tyres, use recall records with RCLTYPECD tire, keyed by brand (MFGTXT). The NHTSA UTQG tyre-grade dataset on data.transportation.gov only links elsewhere and was last updated in 2018, so it is not used.",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "nih-dsld",
+      "name": "Dietary Supplement Label Database (DSLD)",
+      "publisher": "NIH Office of Dietary Supplements",
+      "kind": "roster",
+      "key": "model",
+      "landing": "https://dsld.od.nih.gov/",
+      "access": "https://api.ods.od.nih.gov/dsld/v9/search-filter",
+      "accessVerified": true,
+      "accessNote": "search-filter?q=probiotic returned stats.count 7,277 labels. Hits carry brandName, fullName, productType, physicalState, targetGroups, claims, allIngredients, offMarket, entryDate. Full label /v9/label/{id} adds upcSku, statements (e.g. 'Formulation re: Vegetarian/Vegan', 'Formulation re: Does NOT Contain'), ingredientRows, contacts. Other counts: melatonin 3,144 (1,804 on market), prenatal 1,454, ashwagandha 3,772, elderberry 3,067. API doc page dsldapi.od.nih.gov is version 9.4.0.",
+      "licence": "CC0 1.0",
+      "licenceUrl": "https://dsldapi.od.nih.gov/",
+      "licenceQuote": "CC0 1.0 Universal (CC0 1.0)",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "US"
+      ],
+      "updates": "labels added continuously; no fixed schedule stated",
+      "measures": [
+        {
+          "field": "statements[type='Formulation re: Vegetarian/Vegan']",
+          "criterion": "vegan",
+          "meaning": "vegetarian or vegan claim as printed on the label"
+        },
+        {
+          "field": "ingredientRows / allIngredients",
+          "criterion": "transparency",
+          "meaning": "whether each ingredient's amount per serving is printed or hidden inside a blend"
+        },
+        {
+          "field": "statements[type='Formulation re: Does NOT Contain']",
+          "criterion": "health",
+          "meaning": "free-from claims such as gluten, soy, dairy, as printed"
+        },
+        {
+          "field": "offMarket",
+          "criterion": "NEW:on_market",
+          "meaning": "whether the label is still sold"
+        }
+      ],
+      "decisions": [
+        "antenatal-products-and-support",
+        "children-s-supplements",
+        "herbal-and-traditional-remedies",
+        "probiotics-and-gut-health",
+        "sleep-supplements-and-remedies"
+      ],
+      "notes": "Use targetGroups (e.g. 'Pregnant and Lactating', children) and productType (e.g. Botanical) to build rosters. Filter offMarket. Label claims are as printed, not verified. Pair with the existing usp-nsf register for third-party testing and with openfda-recalls by brand. upcSku joins to Open Food Facts and Open Prices for price. The CC0 notice is on the API documentation page. Label images and wording come from manufacturers, so publish derived fields, not label images.",
+      "census": true,
+      "censusWhy": "supplement labels collected from the market, not filtered by any measure shown",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "ofsted-childcare-providers",
+      "name": "Childcare providers and inspections: management information",
+      "publisher": "Ofsted (England)",
+      "kind": "roster",
+      "key": "facility",
+      "landing": "https://www.gov.uk/government/statistical-data-sets/childcare-providers-and-inspections-management-information",
+      "access": "https://assets.publishing.service.gov.uk/media/6a6ca4eb0c36759b5ccaa2e0/Management_information_-_childcare_providers_and_inspections_-_childcare_providers_data_as_at_30_June_2026.csv",
+      "accessVerified": true,
+      "accessNote": "Downloaded CSV, data as at 30 June 2026: 60,007 providers. Types: non-domestic premises 27,990; childminders 24,556; home childcarers 7,182. Subtype 'Out-of-school day care' 8,486 (8,132 named). Grade columns include 'EYR OEIF OOSC: Most recent: Overall effectiveness' (Met 2,729; Not met with actions 26; Not met enforcement 5) and 'CR: Compliance'. 'Registered person name' groups chains: Junior Adventures Group UK Ltd 170 sites, Explore Learning 89, CM Sports 79. 31,959 rows have the name REDACTED.",
+      "licence": "Open Government Licence v3.0",
+      "licenceUrl": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "licenceQuote": "All content is available under the Open Government Licence v3.0, except where otherwise stated",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "UK"
+      ],
+      "updates": "twice a year (data as at 31 Dec and 30 June)",
+      "measures": [
+        {
+          "field": "EYR OEIF OOSC: Most recent: Overall effectiveness / CR: Compliance",
+          "criterion": "safety",
+          "meaning": "latest inspection outcome: Met, Not met with actions, or Not met with enforcement"
+        },
+        {
+          "field": "EYR OEIF OOSC: Most recent: Safeguarding is effective?",
+          "criterion": "safety",
+          "meaning": "whether inspectors found safeguarding effective"
+        },
+        {
+          "field": "Registered person name",
+          "criterion": "ownership",
+          "meaning": "the company behind each club, for chain-level scores"
+        }
+      ],
+      "decisions": [
+        "after-school-and-holiday-clubs"
+      ],
+      "notes": "Childminders and home childcarers (nannies) have their names redacted, so childminders-and-nannies cannot get named options. A tiny 'registered childminder agencies' CSV exists but was not opened. Two CSV preamble lines precede the header. A renewed framework (REIF columns) began in November 2025, so grades from two frameworks sit side by side and must not be pooled. England only.",
+      "census": true,
+      "censusWhy": "every registered childcare provider in England",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "open-beauty-facts",
+      "name": "Open Beauty Facts",
+      "publisher": "Open Food Facts (non-profit association)",
+      "kind": "roster",
+      "key": "model",
+      "landing": "https://world.openbeautyfacts.org/",
+      "access": "https://world.openbeautyfacts.org/api/v2/search",
+      "accessVerified": true,
+      "accessNote": "Products per category with ingredients completed: perfumes 209; body-creams 271 + body-milks 109; liquid-soaps 107; anti-dandruff-shampoos 141; anti-perspirants 109; nail-polishes 109; face-masks 91; body-oils 71; baby-wipes 68; hair-dyes 66; foundations 59; whitening-toothpastes 56; hair-gels 50; cleansing-waters 41 + micellar-waters 33. Below the floor: aftershaves 47, intimate-hygiene 46, mascaras 43, lipsticks 41, bubble-baths 41, body-scrubs 30, shaving-foams 28. A perfumes sample showed ingredients_analysis_tags and labels_tags filled, with brands empty.",
+      "licence": "ODbL 1.0 (database), DbCL (contents)",
+      "licenceUrl": "https://world.openbeautyfacts.org/terms-of-use",
+      "licenceQuote": "The Open Food Facts database is available under the Open Database License.",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "global"
+      ],
+      "updates": "continuous (crowd-sourced)",
+      "measures": [
+        {
+          "field": "ingredients_analysis_tags (en:vegan, en:palm-oil-free)",
+          "criterion": "vegan",
+          "meaning": "vegan status inferred from the ingredient list"
+        },
+        {
+          "field": "ingredients_analysis_tags (palm oil)",
+          "criterion": "palm_oil",
+          "meaning": "palm-oil-free or contains palm-derived ingredients"
+        },
+        {
+          "field": "labels_tags",
+          "criterion": "certification",
+          "meaning": "printed labels such as organic, EU Ecolabel or cruelty-free marks"
+        }
+      ],
+      "decisions": [
+        "antiperspirant",
+        "baby-wipes",
+        "body-lotion-and-moisturiser",
+        "body-oils-and-butters",
+        "face-masks",
+        "foundation-and-base",
+        "hair-colour-and-dye",
+        "hair-styling",
+        "hand-wash",
+        "micellar-water-and-cleansing-balms",
+        "nail-polish",
+        "perfume-and-cologne",
+        "scalp-treatments",
+        "whitening-products"
+      ],
+      "notes": "Already ingested: pipeline/fetch_beauty.py builds 12 lenses, so new decisions only need category tags added there. The counts above are tagged products with ingredients completed, not scored rows. Scoring_beauty may keep fewer, so probe before building. micellar-water and hair-styling sit near the roughly 50-entry floor. Product names and brands are uneven and some brand fields are empty. Cruelty-free labels are thin: en:leaping-bunny 13 products, en:not-tested-on-animals 236. The OBF terms page reuses Open Food Facts wording.",
+      "census": true,
+      "censusWhy": "crowd-entered, not filtered by any score shown",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "open-food-facts-baby-foods",
+      "name": "Open Food Facts, baby-foods category",
+      "publisher": "Open Food Facts (non-profit association)",
+      "kind": "roster",
+      "key": "model",
+      "landing": "https://world.openfoodfacts.org/",
+      "access": "https://world.openfoodfacts.org/api/v2/search?categories_tags_en=baby-foods",
+      "accessVerified": true,
+      "accessNote": "categories_tags_en=baby-foods: 7,167 products worldwide, 1,064 tagged United States, 198 tagged United Kingdom. A UK sample returned nova_group 3, ecoscore_grade b, nutriscore_grade 'not-applicable', and labels_tags. Several other curl queries got 503 or bad responses during the check; WebFetch succeeded.",
+      "licence": "ODbL 1.0 (database), DbCL (contents)",
+      "licenceUrl": "https://world.openfoodfacts.org/terms-of-use",
+      "licenceQuote": "The Open Food Facts database is available under the Open Database License.",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "global",
+        "US",
+        "UK"
+      ],
+      "updates": "continuous (crowd-sourced)",
+      "measures": [
+        {
+          "field": "nova_group",
+          "criterion": "processing",
+          "meaning": "degree of processing (NOVA 1 to 4)"
+        },
+        {
+          "field": "ecoscore_grade",
+          "criterion": "environment",
+          "meaning": "Green-Score environmental grade"
+        },
+        {
+          "field": "labels_tags (en:organic)",
+          "criterion": "organic",
+          "meaning": "organic label printed on pack"
+        }
+      ],
+      "decisions": [
+        "baby-and-toddler-food"
+      ],
+      "notes": "Already ingested elsewhere through pipeline/fetch_raw.py. content/MASS-DATA-ACCESS-PLAN.md recorded 259 scored rows in a June probe and asked for not-medical-advice framing. Nutri-Score is 'not-applicable' to baby foods, so do not reuse the adult nutrition scorer. Infant formula is a separate built decision (infant-formulas tag 528). Keep the existing retry and no-shrink pattern because the API returns intermittent 503s.",
+      "census": true,
+      "censusWhy": "crowd-entered, not filtered by any score shown",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "open-pet-food-facts",
+      "name": "Open Pet Food Facts",
+      "publisher": "Open Food Facts (non-profit association)",
+      "kind": "roster",
+      "key": "model",
+      "landing": "https://world.openpetfoodfacts.org/",
+      "access": "https://static.openpetfoodfacts.org/data/openpetfoodfacts-products.jsonl.gz",
+      "accessVerified": true,
+      "accessNote": "API v2 search 200: 15,497 products. Category tags: cat food 1,653; dog food 992; dog biscuit 43; cat treats 41; bird food 35; rodent food 19; rabbit food 15; fish food 15; dog treats 2; no raw or BARF tag. Bulk JSONL (18.7 MB gz) and CSV (3.3 MB gz) returned 200, last modified 2026-10-13.",
+      "licence": "ODbL (database), DbCL (contents), CC BY-SA (images)",
+      "licenceUrl": "https://world.openpetfoodfacts.org/terms-of-use",
+      "licenceQuote": "The Open Food Facts database is available under the Open Database License.",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "global"
+      ],
+      "updates": "daily dumps",
+      "measures": [
+        {
+          "field": "labels_tags",
+          "criterion": "organic",
+          "meaning": "organic and other claims (en:organic on 114 products, MSC on 72)"
+        },
+        {
+          "field": "packaging_tags",
+          "criterion": "packaging",
+          "meaning": "packaging materials recorded"
+        },
+        {
+          "field": "ingredients_text",
+          "criterion": "NEW:ingredients",
+          "meaning": "ingredient list as printed"
+        }
+      ],
+      "decisions": [
+        "fish-and-aquarium-food",
+        "pet-bird-and-small-animal-food",
+        "pet-treats-and-chews"
+      ],
+      "notes": "Thin for these three: tens of products each, and a sampled bird food record had no ingredients. Tags are multilingual and messy. No nutrition grade exists for pet food. raw-and-fresh-pet-food is not supported. Share-alike applies to any derived database. Open Products Facts (46,838 products, ODbL) was also checked; its home categories are mostly imports from the EU Ecolabel and a few hundred cleaning products with no comparison measure, so it is not listed.",
+      "census": true,
+      "censusWhy": "crowd-entered, not filtered by any score shown",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "open-supply-hub",
+      "name": "Open Supply Hub production location data",
+      "publisher": "Open Supply Hub",
+      "kind": "roster",
+      "key": "facility",
+      "landing": "https://opensupplyhub.org/",
+      "access": "https://opensupplyhub.org/api/facilities/",
+      "accessVerified": false,
+      "accessNote": "The API returned HTTP 401 'Authentication credentials were not provided.' for facility search and for downloads, so no rows were seen. The Terms of Service were fetched and name the data licence. The Data Downloads page says registered users can download up to 5,000 production locations a year free, then pay USD 200 per 10,000, and registered non-profits can apply for free access.",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://info.opensupplyhub.org/terms-of-service",
+      "licenceQuote": "Creative Commons Attribution-Share Alike License 4.0",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "global"
+      ],
+      "updates": "continuous, as brands and others contribute lists",
+      "measures": [
+        {
+          "field": "contributor lists (brand has contributed a supplier list)",
+          "criterion": "transparency",
+          "meaning": "whether the brand publishes where its clothes are made"
+        },
+        {
+          "field": "count of facilities per contributor, with tier and number of workers",
+          "criterion": "transparency",
+          "meaning": "how complete the published supplier list is"
+        },
+        {
+          "field": "facility country",
+          "criterion": "local",
+          "meaning": "where the brand's goods are made"
+        }
+      ],
+      "decisions": [
+        "activewear",
+        "bags-and-backpacks",
+        "boots",
+        "fleece-and-midlayers",
+        "handbags-and-totes",
+        "jeans-and-trousers",
+        "jumpers-and-sweatshirts",
+        "outdoor-and-technical-clothing",
+        "outerwear-and-coats",
+        "running-shoes",
+        "shirts-and-blouses",
+        "skirts-and-dresses",
+        "socks",
+        "sports-equipment",
+        "t-shirts-and-tops",
+        "trainers-and-sneakers",
+        "underwear",
+        "workwear-and-uniforms"
+      ],
+      "notes": "The data is keyed by factory: a brand's measure comes from counting the facilities it has listed as a contributor. Share-alike means any table built from this facility data must itself be published under CC BY-SA 4.0 with attribution, so keep those cells in a separately licensed column. The terms bar building a competing registry. The free quota of 5,000 locations a year is enough for brand-level counts if filtered by contributor. KnowTheChain's 2023 data cites Open Supply Hub contributor pages as evidence, so the two can be checked against each other. Access needs an account, which Bentley would create. Also checked: Better Cotton publishes a member XLSX (2,604 members, 301 of them retailers and brands, refreshed fortnightly) but gives no measure per member; the GOTS supplier database is search-only with no export; OEKO-TEX's label check looks up one label at a time; the International Accord's list of 50 signatories is marked 'All rights reserved'.",
+      "census": false,
+      "censusWhy": "contributors only",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "openfda-ndc-otc",
+      "name": "FDA National Drug Code Directory (OTC listings), with Drug Facts labels from DailyMed",
+      "publisher": "US Food and Drug Administration (openFDA); labels from NLM DailyMed",
+      "kind": "roster",
+      "key": "model",
+      "landing": "https://open.fda.gov/apis/drug/ndc/",
+      "access": "https://api.fda.gov/drug/ndc.json",
+      "accessVerified": true,
+      "accessNote": "Query product_type:\"HUMAN OTC DRUG\" returned 57,162 listings, last_updated 2026-10-12. Fields include brand_name, labeler_name, active_ingredients, marketing_category, dosage_form, spl_id. Listings per ingredient: ibuprofen 983 (260 labelers), loratadine 415, dextromethorphan 1,956, levonorgestrel 59, carbamide peroxide 67, benzoyl peroxide 224, pyrithione zinc 342, aluminum zirconium 607, doxylamine 444. Marketing categories: OTC monograph 36,329; unapproved homeopathic 13,702; ANDA 5,060; NDA 737. DailyMed web services also checked: loratadine returned 539 SPLs, last published 9 Oct 2026. openFDA drug/label has 48,415 OTC labels carrying inactive_ingredient.",
+      "licence": "CC0 1.0 (openFDA)",
+      "licenceUrl": "https://open.fda.gov/terms/",
+      "licenceQuote": "made available with a Creative Commons CC0 1.0 Universal dedication",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "US"
+      ],
+      "updates": "daily",
+      "measures": [
+        {
+          "field": "active_ingredients (name, strength)",
+          "criterion": "NEW:active_ingredient",
+          "meaning": "the medicine and dose, so a store brand can be matched to the identical branded product"
+        },
+        {
+          "field": "marketing_category",
+          "criterion": "health",
+          "meaning": "monograph or FDA-approved application, versus unapproved homeopathic"
+        },
+        {
+          "field": "inactive_ingredient (openFDA drug/label or DailyMed SPL, joined on spl_id)",
+          "criterion": "health",
+          "meaning": "excipients such as dyes, alcohol or lactose, as printed on the Drug Facts label"
+        }
+      ],
+      "decisions": [
+        "acne-and-blemish-treatments",
+        "allergy-and-hay-fever-treatments",
+        "antiperspirant",
+        "cold-flu-and-cough-remedies",
+        "digestive-and-stomach-remedies",
+        "ear-care-and-wax-removal",
+        "emergency-contraception",
+        "pain-relief",
+        "scalp-treatments",
+        "skin-treatments-and-antiseptics",
+        "sleep-supplements-and-remedies"
+      ],
+      "notes": "The built over-the-counter-medicine lens already compares brand against store brand from DailyMed, so this is the bulk version of a method the site already uses. Price is not in the data and must come from another source. In the US, antiperspirants, dandruff shampoos and acne products are OTC drugs, so they appear here. In the UK and EU they are cosmetics and will not. Sleep aids come under the FDA nighttime sleep-aid monograph. One row is one NDC product, so pack sizes need grouping. labeler_name is the firm on the label, not necessarily the maker. Recalls join to the existing openfda-recalls register through the labeler. Bulk files are on the openFDA downloads page (not fetched).",
+      "census": true,
+      "censusWhy": "every over-the-counter drug listing filed with the FDA",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "openfda-udi-gudid",
+      "name": "Global Unique Device Identification Database (GUDID), via openFDA device/udi",
+      "publisher": "US FDA, distributed by NLM AccessGUDID",
+      "kind": "roster",
+      "key": "model",
+      "landing": "https://accessgudid.nlm.nih.gov/download",
+      "access": "https://api.fda.gov/device/udi.json",
+      "accessVerified": true,
+      "accessNote": "Product code DXN (non-invasive BP) returned 4,961 records, last_updated 2026-10-01. Fields: brand_name, company_name, version_or_model_number, is_otc, is_rx, premarket_submissions, product_codes, is_labeled_as_nrl, is_single_use, sterilization, commercial_distribution_status. OTC record counts: BP monitors 1,622; clinical electronic thermometers 1,319; OTC glucose systems 1,129; oximeters 121; OTC self-fitting hearing aids 98; OTC pregnancy tests 732; condoms 1,212; personal lubricants 1,532 (102 companies); ostomy 1,886; wheelchairs 1,062; walkers 585; bandages 4,048; LH ovulation tests 230; incontinence 1,134; nebulizers 229; insert hearing protectors 142; soft lens care (LPN) 206. The AccessGUDID download page lists a full release of 5,238,573 records (Oct 2026), plus daily, weekly and monthly increments. One guessed AccessGUDID search URL returned 404; the openFDA route worked.",
+      "licence": "CC0 1.0 (openFDA), except GMDN terms",
+      "licenceUrl": "https://open.fda.gov/terms/",
+      "licenceQuote": "made available with a Creative Commons CC0 1.0 Universal dedication",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "US"
+      ],
+      "updates": "GUDID daily increments; openFDA endpoint refreshed periodically (last 2026-10-01)",
+      "measures": [
+        {
+          "field": "premarket_submissions",
+          "criterion": "certification",
+          "meaning": "the 510(k) or PMA the model is cleared under; joins to the existing openfda-devices (510k) register"
+        },
+        {
+          "field": "is_otc / is_rx",
+          "criterion": "accessibility",
+          "meaning": "whether the model can be bought without a prescription"
+        },
+        {
+          "field": "is_labeled_as_nrl",
+          "criterion": "health",
+          "meaning": "label says the device contains natural rubber latex"
+        },
+        {
+          "field": "is_single_use",
+          "criterion": "durability",
+          "meaning": "single-use or reusable"
+        },
+        {
+          "field": "commercial_distribution_status",
+          "criterion": "NEW:on_market",
+          "meaning": "still in commercial distribution or not"
+        }
+      ],
+      "decisions": [
+        "blood-glucose-monitors-and-diabetes-supplies",
+        "blood-pressure-monitors",
+        "compression-and-support-wear",
+        "contact-lens-solutions",
+        "continence-and-stoma-supplies",
+        "contraception",
+        "earplugs-eye-masks-and-white-noise",
+        "fertility-tracking-and-tests",
+        "first-aid",
+        "hearing-aids",
+        "home-test-kits",
+        "incontinence-products",
+        "mobility-aids",
+        "pregnancy-tests",
+        "pulse-oximeters-and-heart-monitors",
+        "respiratory-equipment",
+        "sexual-wellbeing-products",
+        "thermometers",
+        "wound-care-and-dressings"
+      ],
+      "notes": "This is the model-level roster that the existing openfda-devices register (510k, a measure) lacks. Select rows by FDA product code, not GMDN term. The openFDA terms say GMDN content needs a GMDN Agency licence for alternative categorisations or mapping, so do not map the taxonomy on GMDN names. One row is one device identifier (each size, colour and pack), so de-duplicate on company_name + brand_name + version_or_model_number. Medical support stockings show 65,965 OTC rows from 29 companies for that reason. Mixed-code products can surface under a sibling code. Many OTC items are Rx-flagged clinical models. Filter on is_otc. US market only.",
+      "census": true,
+      "censusWhy": "every medical device with a unique device identifier in the US",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "orr-rail-complaints",
+      "name": "Passenger rail service complaints by operator (Table 4113 and related)",
+      "publisher": "Office of Rail and Road (GB)",
+      "kind": "measure",
+      "key": "company",
+      "landing": "https://dataportal.orr.gov.uk/statistics/passenger-experience/passenger-rail-service-complaints/",
+      "access": "https://dataportal.orr.gov.uk/media/1506/4113-complaint-rate-by-operator.ods",
+      "accessVerified": true,
+      "accessNote": "ODS, 44.7 KB. Complaints closed per 100,000 journeys for 26 GB operators (Avanti West Coast to West Midlands Trains, including Caledonian Sleeper), April 2007 to March 2026. Published 25 Jun 2026; next release 14 Jan 2027.",
+      "licence": "Open Government Licence v3.0",
+      "licenceUrl": "https://www.orr.gov.uk/terms-and-conditions",
+      "licenceQuote": "All content is available under the Open Government Licence v3.0",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "UK"
+      ],
+      "updates": "Twice a year (January and June).",
+      "measures": [
+        {
+          "field": "Complaints closed per 100,000 journeys",
+          "criterion": "complaints",
+          "meaning": "Complaint rate adjusted for passenger numbers"
+        },
+        {
+          "field": "Table 4153: share answered within 20 working days",
+          "criterion": "complaints",
+          "meaning": "How quickly the operator answers complaints"
+        }
+      ],
+      "decisions": [
+        "rail-travel"
+      ],
+      "notes": "GB operators only; journeys from April 2020 are provisional. Caledonian Sleeper has its own column and could feed sleeper-trains, but that decision is mostly non-GB options, so it is not mapped. Not fetched or covered: Eurostar. Ofcom telecoms complaints per provider would be the UK equivalent for phone and SIM plans, but every Ofcom URL hit a Cloudflare bot check (403), so it was not verified.",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "podcast-index-apps",
+      "name": "Podcast Index apps list (Podcasting 2.0 feature support)",
+      "publisher": "Podcast Index",
+      "kind": "roster",
+      "key": "model",
+      "landing": "https://podcastindex.org/apps",
+      "access": "https://raw.githubusercontent.com/Podcastindex-org/web-ui/master/server/data/apps.json",
+      "accessVerified": true,
+      "accessNote": "The raw file returned HTTP 200, 140 KB, with 143 apps. Each has appName, appType, platforms, platformLinks and supportedElements (e.g. Transcript, Person, Chapters, Value, Funding). The GitHub API reports the repository licence as MIT, last push 2026-10-07. The full podcast database dump (public.podcastindex.org/podcastindex_feeds.db.tgz) answered HEAD 200, 1.83 GB, modified 2026-10-10. The API needs a key (403 without one). The dump's licence was not verified.",
+      "licence": "MIT",
+      "licenceUrl": "https://github.com/Podcastindex-org/web-ui",
+      "licenceQuote": "Repository licence: MIT License",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "global"
+      ],
+      "updates": "continuous, by pull request from app makers",
+      "measures": [
+        {
+          "field": "supportedElements contains Value",
+          "criterion": "artist_pay",
+          "meaning": "listeners can pay creators directly from the app"
+        },
+        {
+          "field": "supportedElements contains Transcript",
+          "criterion": "accessibility",
+          "meaning": "the app shows episode transcripts"
+        },
+        {
+          "field": "count of open podcast namespace elements supported",
+          "criterion": "openness",
+          "meaning": "how much of the open podcast standard the app supports instead of a closed catalogue"
+        },
+        {
+          "field": "platforms",
+          "criterion": "portability",
+          "meaning": "which devices the app runs on"
+        }
+      ],
+      "decisions": [
+        "podcasts"
+      ],
+      "notes": "It fills only one decision, but it is the only bulk, openly licensed, comparable source found for media services. App makers list themselves, and the list leans toward apps that support the open standard. Spotify and Apple Podcasts may be missing or thin; that is itself informative but must be said plainly. Other media sources checked and excluded: IFCN signatories and JTI have no list to export and their pages say all rights reserved. Open Library dumps come out monthly but are keyed by book, carry no licence on the dumps page, and give no measure for these decisions. Media Ownership Monitor covers only Germany and Ireland among the US, UK and EU, and its licence is unclear.",
+      "census": false,
+      "censusWhy": "apps list themselves, leaning to the open standard; the big closed apps may be missing",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "ranking-digital-rights-big-tech",
+      "name": "RDR Index: Big Tech Edition 2025",
+      "publisher": "Ranking Digital Rights",
+      "kind": "measure",
+      "key": "company",
+      "landing": "https://rankingdigitalrights.org/bte25/",
+      "access": "https://rankingdigitalrights.org/bte25/companies/Alphabet",
+      "accessVerified": true,
+      "accessNote": "Pages return 406 to plain curl and 200 with a browser user agent. Each page embeds a __NEXT_DATA__ JSON block with the total ranking for 14 companies (Microsoft 50, Alphabet 49, Meta 47, Apple 44, ByteDance 43, X 40, Amazon 27 ...) and the services assessed per company (Alphabet: YouTube; ByteDance: TikTok; Meta: Facebook, Instagram; Apple: iOS). No file download was found, and /bte25/download returns 404.",
+      "licence": "CC BY 4.0 (declared by footer link only)",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/legalcode",
+      "licenceQuote": "Footer links the CC BY 4.0 legal code; no licence wording on the page",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "global"
+      ],
+      "updates": "Big Tech edition 2025, Telco Giants edition 2026; roughly every 1 to 2 years",
+      "measures": [
+        {
+          "field": "total score and category 'Privacy'",
+          "criterion": "privacy",
+          "meaning": "how well the company's policies protect users' data, measured from published policies"
+        },
+        {
+          "field": "category 'Freedom of Expression and Information'",
+          "criterion": "transparency",
+          "meaning": "how openly it explains content removal and government demands"
+        },
+        {
+          "field": "category 'Governance'",
+          "criterion": "ethics",
+          "meaning": "board oversight and human rights due diligence for users"
+        }
+      ],
+      "decisions": [
+        "creator-platforms-and-memberships",
+        "free-and-public-video-platforms",
+        "game-stores-and-platforms"
+      ],
+      "notes": "Realms: media and tech (phones, email, cloud, social), and telecoms through the Telco Giants edition. It covers only 14 companies, so the giants get scores and independents stay blank. Because scores are given per service, YouTube, TikTok and Instagram can each be scored apart from their parent companies. The licence is signalled only by the footer link; confirm with RDR before bulk reuse. The data has to be read from the page JSON because there is no file.",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "sbti-target-dashboard",
+      "name": "SBTi target dashboard, companies file",
+      "publisher": "Science Based Targets initiative",
+      "kind": "measure",
+      "key": "company",
+      "landing": "https://sciencebasedtargets.org/target-dashboard",
+      "access": "https://files.sciencebasedtargets.org/production/files/companies-excel.xlsx",
+      "accessVerified": true,
+      "accessNote": "Downloaded 2026-10-12: HTTP 200, 2.3 MB xlsx, 15,770 rows. Columns include sbti_id, company_name, isin, lei, sector, near_term_status, near_term_target_classification, net_zero_status, net_zero_year, full_target_language, status_reason and date_updated. 12,121 rows are Validated Targets, 2,148 Commitment to Set Targets and 1,501 Commitment Removed. Sectors include Textiles, Apparel, Footwear and Luxury Goods (850), Retailing (374) and Media (221). Inditex, Levi Strauss, Patagonia Works, Primark, NIKE, Netflix and Channel Four are in the file.",
+      "licence": "SBTi website terms (all rights reserved; non-commercial and editorial use with credit and link)",
+      "licenceUrl": "https://sciencebasedtargets.org/about-us/website-terms-of-use",
+      "licenceQuote": "may store these pages for research, your personal use, or other non-commercial use",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "global"
+      ],
+      "updates": "weekly (date_updated steps 7 days; latest 2026-10-08)",
+      "measures": [
+        {
+          "field": "near_term_status",
+          "criterion": "environment",
+          "meaning": "has a validated climate target, only a commitment, or a commitment removed"
+        },
+        {
+          "field": "near_term_target_classification",
+          "criterion": "environment",
+          "meaning": "whether the target is in line with 1.5C or well below 2C"
+        },
+        {
+          "field": "net_zero_status, net_zero_year",
+          "criterion": "environment",
+          "meaning": "validated net-zero target and its year"
+        }
+      ],
+      "decisions": [
+        "activewear",
+        "book-shops",
+        "free-and-public-video-platforms",
+        "handbags-and-totes",
+        "jeans-and-trousers",
+        "magazines",
+        "newspapers",
+        "outdoor-and-technical-clothing",
+        "public-service-broadcasters",
+        "running-shoes",
+        "sports-equipment",
+        "t-shirts-and-tops",
+        "trainers-and-sneakers",
+        "video-games"
+      ],
+      "notes": "Realms: all, strongest in clothing (850 apparel and footwear companies), retail and media. Join on LEI or ISIN where present, otherwise on legal name. This is not an open licence. The terms allow non-commercial and editorial use, and every citation must credit the Science Based Targets initiative and link the page, so it fits this site only while the site stays non-commercial. A validated target is a promise, not a cut in emissions, and the cell should say so. 'Commitment Removed' can be shown as a negative fact. Checked and excluded: CDP scores (terms allow only internal, non-commercial use without written consent), Net Zero Tracker (no licence stated; terms say the content is owned) and Good Jobs First's Violation Tracker (terms limit use to your own internal use).",
+      "realms": [
+        "home",
+        "food-and-drink",
+        "technology",
+        "personal-care",
+        "health",
+        "media-and-culture",
+        "clothing",
+        "family-and-care",
+        "transport",
+        "money",
+        "learning",
+        "travel",
+        "animals",
+        "civic-and-giving",
+        "work-and-livelihood",
+        "organizations"
+      ],
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "sec-form-adv",
+      "name": "Information about Registered Investment Advisers (Form ADV bulk data)",
+      "publisher": "US Securities and Exchange Commission",
+      "kind": "roster",
+      "key": "company",
+      "landing": "https://www.sec.gov/data-research/sec-markets-data/information-about-registered-investment-advisers-exempt-reporting-advisers",
+      "access": "https://www.sec.gov/files/investment/data/other/information-about-registered-investment-advisers-exempt-reporting-advisers/ia100226.zip",
+      "accessVerified": true,
+      "accessNote": "WebFetch returned the 5.7 MB zip. It holds one CSV (ia09012026.csv) with 448 columns and 17,210 SEC-registered advisers. Columns include Organization CRD#, Primary Business Name, Website Address, 5D client types, 5E(1)-(7) compensation types (5E(6) is commissions), 5F assets under management, 5G services and Item 11 disciplinary disclosures (11A-11H).",
+      "licence": "SEC website content is public information (sec.gov privacy and policy page)",
+      "licenceUrl": "https://www.sec.gov/privacy",
+      "licenceQuote": "may be copied or further distributed by users of the web site",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "US"
+      ],
+      "updates": "monthly",
+      "measures": [
+        {
+          "field": "5E(1)-5E(7)",
+          "criterion": "independence",
+          "meaning": "how the adviser is paid: percentage of assets, hourly, fixed fee, or commissions"
+        },
+        {
+          "field": "Item 11 (11A-11H)",
+          "criterion": "NEW:disciplinary_record",
+          "meaning": "adviser or its people have criminal, regulatory or civil findings"
+        },
+        {
+          "field": "5F(2)",
+          "criterion": "NEW:assets_under_management",
+          "meaning": "size of the money it manages"
+        }
+      ],
+      "decisions": [
+        "financial-advisers",
+        "investment-platforms"
+      ],
+      "notes": "Firms only. Individual advisers and small state-registered firms are on IAPD (adviserinfo.sec.gov), not in this file. Robo-advisers (for example Betterment, Wealthfront) are registered advisers, so they appear here as investment-platforms options. SEC does not let undeclared bots crawl: curl with a browser User-Agent got 403 on SEC files, and a build script needs a User-Agent with a contact address Bentley chooses.",
+      "census": true,
+      "censusWhy": "every SEC-registered investment adviser",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "sec-fund-risk-return",
+      "name": "Mutual Fund Prospectus Risk/Return Summary Data Sets",
+      "publisher": "US Securities and Exchange Commission, Division of Economic and Risk Analysis",
+      "kind": "roster",
+      "key": "model",
+      "landing": "https://www.sec.gov/data-research/sec-markets-data/mutual-fund-prospectus-riskreturn-summary-data-sets",
+      "access": "https://www.sec.gov/files/dera/data/mutual-fund-prospectus-risk/return-summary-data-sets/2026q2_rr1.zip",
+      "accessVerified": true,
+      "accessNote": "The landing page lists quarterly zips up to 2026 Q2. The 2026 Q2 file is served, but WebFetch stopped at its 10 MB cap, so the zip contents were not opened. The tag names below were checked in the SEC rr-2023.xsd taxonomy: ExpensesOverAssets, ManagementFeesOverAssets, NetExpensesOverAssets, MaximumSalesChargeImposedOnPurchasesOverOfferingPrice, and AnnualReturn1990 to AnnualReturn2025.",
+      "licence": "SEC website content is public information",
+      "licenceUrl": "https://www.sec.gov/privacy",
+      "licenceQuote": "may be copied or further distributed by users of the web site",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "US"
+      ],
+      "updates": "quarterly",
+      "measures": [
+        {
+          "field": "ExpensesOverAssets / NetExpensesOverAssets",
+          "criterion": "fees",
+          "meaning": "yearly cost of holding the fund, as a percent of your money"
+        },
+        {
+          "field": "MaximumSalesChargeImposedOnPurchasesOverOfferingPrice",
+          "criterion": "fees",
+          "meaning": "up-front sales charge when you buy"
+        },
+        {
+          "field": "AnnualReturnYYYY",
+          "criterion": "NEW:past_returns",
+          "meaning": "the fund's own reported return per calendar year"
+        }
+      ],
+      "decisions": [
+        "ethical-and-screened-funds",
+        "index-funds-and-etfs",
+        "shariah-compliant-finance"
+      ],
+      "notes": "Keyed by series and share class (CIK, series ID, class ID), which is the model level for funds. It covers funds registered under the 1940 Act (open-end funds and most ETFs). It has no ESG-screen data: ethical, Shariah and index status has to come from names or prospectus text, and that is a separate judgement. As You Sow / Invest Your Values is excluded: its terms allow 'personal, non-commercial use only' and license its data through a separate company. Field names inside the zip still need a build-time check. On the record: two verification requests to sec.gov in this session carried the user's email in their User-Agent header before that was stopped.",
+      "census": true,
+      "censusWhy": "every registered fund that files a prospectus",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "sport-england-active-places",
+      "name": "Active Places (sports facilities database)",
+      "publisher": "Sport England",
+      "kind": "roster",
+      "key": "facility",
+      "landing": "https://www.activeplacespower.com/",
+      "access": "https://services-eu1.arcgis.com/s9MgJChYyPlPX2Nk/arcgis/rest/services/GIS_Active_Places_Power_Health_and_Fitness/FeatureServer/7/query",
+      "accessVerified": true,
+      "accessNote": "ArcGIS layers owned by SportEngland_ActivePlaces. Count queries: Health and Fitness 10,767 facilities, Swimming Pools 6,598, Studios 9,662, Sites 43,755. Fields include managementgroupstr, managementtypestr, accessibilitygroupstr, accessibilitytypestr, operatorname, facstatus, ten disability* flags, changingplacestoiletsflag. Operational gyms by management group: Commercial 3,950; Education 1,859; Trust 756; Others 629; Local Authority 376. Named operators include Everyone Active 196 and GLL 89 + 63. The downloads page is JS-rendered and gave no text.",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenceQuote": "Sport England's Active Places (\"Active Places Data\") is licensed under CC BY 4.0",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "UK"
+      ],
+      "updates": "rolling; swimming pools item modified 27 July 2026",
+      "measures": [
+        {
+          "field": "managementgroupstr",
+          "criterion": "ownership",
+          "meaning": "run by a commercial chain, a leisure trust, a council or a school"
+        },
+        {
+          "field": "managementgroupstr = Trust",
+          "criterion": "nonprofit",
+          "meaning": "run by a not-for-profit leisure trust"
+        },
+        {
+          "field": "accessibilitygroupstr / accessibilitytypestr",
+          "criterion": "accessibility",
+          "meaning": "open to the public (pay and play or membership) or private"
+        },
+        {
+          "field": "disability* flags, changingplacestoiletsflag",
+          "criterion": "accessibility",
+          "meaning": "step-free access, accessible changing, Changing Places toilet"
+        }
+      ],
+      "decisions": [
+        "fitness-studios-and-classes",
+        "gyms-and-leisure-centres",
+        "swimming-pools"
+      ],
+      "notes": "Facilities join to sites on siteid. A leisure centre is one site with several facilities. operatorname is sparse: many gym chains appear only in the site name, so brand grouping needs name matching. The Sites layer includes contact names, job titles and emails; do not ingest those. England only. Max 4,000 records per query, so page the requests.",
+      "census": true,
+      "censusWhy": "every sports facility in England",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "uk-gender-pay-gap",
+      "name": "Gender pay gap reporting service, full data by year",
+      "publisher": "UK Government Equalities Office (GOV.UK)",
+      "kind": "measure",
+      "key": "company",
+      "landing": "https://gender-pay-gap.service.gov.uk/viewing/download",
+      "access": "https://gender-pay-gap.service.gov.uk/viewing/download-data/2025",
+      "accessVerified": true,
+      "accessNote": "Downloaded 2026-10-12: HTTP 200 text/csv, 4.4 MB, 11,194 employers for 2025-26, of which 9,673 have a Companies House number. The 27 columns include EmployerName, CompanyNumber, SicCodes, DiffMedianHourlyPercent, DiffMedianBonusPercent, quartile shares and SubmittedAfterTheDeadline. BBC, Cineworld Cinemas, Primark Stores, Waterstones Booksellers, Marks and Spencer and The National Trust are in the file. Files go back to 2017.",
+      "licence": "Open Government Licence v3.0",
+      "licenceUrl": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "licenceQuote": "All content is available under the Open Government Licence v3.0, except where otherwise stated",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "UK"
+      ],
+      "updates": "annual reporting year; the file grows as employers file (the 2026-27 year is already open)",
+      "measures": [
+        {
+          "field": "DiffMedianHourlyPercent",
+          "criterion": "labor",
+          "meaning": "how much less women earn per hour than men at the median"
+        },
+        {
+          "field": "FemaleTopQuartile",
+          "criterion": "labor",
+          "meaning": "share of women among the best-paid quarter of staff"
+        },
+        {
+          "field": "SubmittedAfterTheDeadline",
+          "criterion": "transparency",
+          "meaning": "whether the employer filed its legal report late"
+        }
+      ],
+      "decisions": [
+        "book-shops",
+        "cinemas",
+        "heritage-and-conservation-memberships",
+        "jeans-and-trousers",
+        "magazines",
+        "museums-and-galleries",
+        "newspapers",
+        "public-service-broadcasters",
+        "sports-broadcast-subscriptions",
+        "sports-equipment",
+        "t-shirts-and-tops",
+        "theatres-and-live-performance",
+        "trainers-and-sneakers",
+        "underwear",
+        "workwear-and-uniforms"
+      ],
+      "notes": "Realms: every realm whose options are UK employers with 250 or more staff, including public bodies and charities. Join on CompanyNumber, which links to Companies House and to GLEIF's registeredAs. Public bodies have no company number, so match them by name. One brand can file under several entities (Next Retail and Next Distribution, for example); pick the retail entity and say which one. Employers report these figures to a statutory service and they are not audited.",
+      "realms": [
+        "home",
+        "food-and-drink",
+        "technology",
+        "personal-care",
+        "health",
+        "media-and-culture",
+        "clothing",
+        "family-and-care",
+        "transport",
+        "money",
+        "learning",
+        "travel",
+        "animals",
+        "civic-and-giving",
+        "work-and-livelihood",
+        "organizations"
+      ],
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "uk-modern-slavery-registry",
+      "name": "Modern slavery statement registry, statement summaries",
+      "publisher": "UK Home Office (GOV.UK)",
+      "kind": "measure",
+      "key": "company",
+      "landing": "https://modern-slavery-statement-registry.service.gov.uk/download",
+      "access": "https://downloads.modern-slavery-statement-registry.service.gov.uk/publicdownloads/StatementSummaries2025.csv",
+      "accessVerified": true,
+      "accessNote": "Downloaded 2026-10-12: HTTP 200, 18.9 MB, 13,564 statements for 2025, of which 12,607 carry a company number. The 78 columns include StatementIncludesDueDiligence, StatementIncludesRisksAssessment, StatementIncludesGoals, SocialAudits, GrievanceMechanisms, Risk1Area, Risk1Location, Turnover and StatementURL. There are files for each year from 2020 to 2027.",
+      "licence": "Open Government Licence v3.0",
+      "licenceUrl": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "licenceQuote": "All content is available under the Open Government Licence v3.0, except where otherwise stated",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "UK"
+      ],
+      "updates": "annual statements, one file per statement year, updated as organisations submit",
+      "measures": [
+        {
+          "field": "StatementIncludesDueDiligence, StatementIncludesRisksAssessment",
+          "criterion": "labor",
+          "meaning": "whether the company says how it checks its supply chain for forced labour"
+        },
+        {
+          "field": "SocialAudits, GrievanceMechanisms",
+          "criterion": "labor",
+          "meaning": "what monitoring and complaint routes it says it uses"
+        },
+        {
+          "field": "presence of a statement for the year",
+          "criterion": "transparency",
+          "meaning": "whether the company filed its legally required statement at all"
+        }
+      ],
+      "decisions": [
+        "art-materials",
+        "bags-and-backpacks",
+        "book-shops",
+        "craft-supplies",
+        "jeans-and-trousers",
+        "musical-instruments",
+        "outerwear-and-coats",
+        "socks",
+        "sports-equipment",
+        "t-shirts-and-tops",
+        "trainers-and-sneakers",
+        "underwear",
+        "workwear-and-uniforms"
+      ],
+      "notes": "Realms: every realm with UK companies above the GBP 36m turnover threshold, plus voluntary filers. Join on CompanyNumber. These are summaries the companies write about what their own statement covers, not an assessment of its quality, so pair them with KnowTheChain or Fashion Checker where a brand appears in both. Some statements are group submissions (GroupSubmission, ParentName), so the brand's entity may be filed under a parent.",
+      "realms": [
+        "home",
+        "food-and-drink",
+        "technology",
+        "personal-care",
+        "health",
+        "media-and-culture",
+        "clothing",
+        "family-and-care",
+        "transport",
+        "money",
+        "learning",
+        "travel",
+        "animals",
+        "civic-and-giving",
+        "work-and-livelihood",
+        "organizations"
+      ],
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "uk-payment-practices",
+      "name": "Payment practices and performance reports, full export",
+      "publisher": "UK Department for Business and Trade (GOV.UK)",
+      "kind": "measure",
+      "key": "company",
+      "landing": "https://www.gov.uk/check-when-businesses-pay-invoices",
+      "access": "https://check-payment-practices.service.gov.uk/export/csv/",
+      "accessVerified": true,
+      "accessNote": "Downloaded 2026-10-12: HTTP 200 text/csv, 103 MB, 115,441 half-year reports from 10,268 company numbers, latest filing 2026-10-12. Columns include Company number, Average time to pay, % Invoices paid later than 60 days, % Invoices not paid within agreed terms, Standard payment terms and Charges have been made for remaining on supplier list. Rows for Cineworld, Picturehouse and Next Retail are in the file.",
+      "licence": "Open Government Licence v3.0",
+      "licenceUrl": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "licenceQuote": "All content is available under the Open Government Licence v3.0, except where otherwise stated",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "UK"
+      ],
+      "updates": "continuous; each large company reports every six months",
+      "measures": [
+        {
+          "field": "Average time to pay",
+          "criterion": "ethics",
+          "meaning": "days the company takes on average to pay its suppliers"
+        },
+        {
+          "field": "% Invoices not paid within agreed terms",
+          "criterion": "ethics",
+          "meaning": "share of supplier invoices paid late against the company's own terms"
+        },
+        {
+          "field": "Charges have been made for remaining on supplier list",
+          "criterion": "ethics",
+          "meaning": "whether suppliers were charged to stay on the supplier list"
+        }
+      ],
+      "decisions": [
+        "art-materials",
+        "book-shops",
+        "cinemas",
+        "craft-supplies",
+        "jeans-and-trousers",
+        "magazines",
+        "newspapers",
+        "outerwear-and-coats",
+        "sports-broadcast-subscriptions",
+        "sports-equipment",
+        "t-shirts-and-tops",
+        "tickets-and-season-passes",
+        "trainers-and-sneakers",
+        "workwear-and-uniforms"
+      ],
+      "notes": "Realms: every realm with large UK companies, since the reporting duty applies to large companies and LLPs. Join on Company number. It matters most in clothing, where paying small suppliers and makers late is a known harm. Use the latest two reports and state the period. Companies report these figures themselves to a statutory register.",
+      "realms": [
+        "home",
+        "food-and-drink",
+        "technology",
+        "personal-care",
+        "health",
+        "media-and-culture",
+        "clothing",
+        "family-and-care",
+        "transport",
+        "money",
+        "learning",
+        "travel",
+        "animals",
+        "civic-and-giving",
+        "work-and-livelihood",
+        "organizations"
+      ],
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "vmd-product-information-database",
+      "name": "Veterinary Medicines Product Information Database",
+      "publisher": "Veterinary Medicines Directorate (Defra)",
+      "kind": "roster",
+      "key": "model",
+      "landing": "https://www.vmd.defra.gov.uk/productinformationdatabase/",
+      "access": "https://www.vmd.defra.gov.uk/productinformationdatabase/downloads/VMD_ProductInformationDatabase.xlsx",
+      "accessVerified": true,
+      "accessNote": "XLSX 200, 613 KB: 5,301 currently authorised products, 16 suspended, 1,067 expired, 8 homeopathic. 4,186 current products list dogs, cats, rabbits, ferrets, birds or guinea pigs among target species; therapeutic groups include ectoparasiticide 624, antimicrobial 617, endectocide 406, NSAID 372, anthelmintic 301. XML version also offered.",
+      "licence": "Open Government Licence v3.0",
+      "licenceUrl": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "licenceQuote": "All content is available under the Open Government Licence v3.0, except where otherwise stated",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "UK"
+      ],
+      "updates": "snapshot refreshed as authorisations change (date not stated on the page)",
+      "measures": [
+        {
+          "field": "DistributionCategory",
+          "criterion": "NEW:supply_route",
+          "meaning": "POM-V needs a vet prescription; NFA-VPS and AVM-GSL can be sold over the counter"
+        },
+        {
+          "field": "ActiveSubstances",
+          "criterion": "NEW:active_substance",
+          "meaning": "the drug in the product, to join with evidence on harm to rivers or resistance"
+        },
+        {
+          "field": "sheet (current, suspended, expired)",
+          "criterion": "NEW:authorisation_status",
+          "meaning": "whether the product is legally authorised now"
+        }
+      ],
+      "decisions": [
+        "flea-and-worming-treatments",
+        "pet-medicines"
+      ],
+      "notes": "Authorised does not mean marketed. MAHolder gives the company key. Comparing flea treatments on environmental harm needs a second source on active substances in waterways; this file only names the substance. US equivalents (FDA Animal Drugs@FDA, EPA pesticide registrations for spot-ons) were not checked.",
+      "census": true,
+      "censusWhy": "every authorised veterinary medicine in the UK",
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
+    },
+    {
+      "id": "wba-benchmarks",
+      "name": "World Benchmarking Alliance benchmark data (incl. Corporate Human Rights Benchmark, Social, Nature, Digital Inclusion)",
+      "publisher": "World Benchmarking Alliance",
+      "kind": "measure",
+      "key": "company",
+      "landing": "https://data.worldbenchmarkingalliance.org",
+      "access": "https://data.worldbenchmarkingalliance.org/api/data/v1/datasets",
+      "accessVerified": false,
+      "accessNote": "The API base returned HTTP 401 {\"detail\":\"Not authenticated\"}. Data Explorer downloads (zips of CSV) and API keys both need a free registration, and approving a key can take days, so no data rows were seen. The API docs describe a benchmarks dataset with a benchmark_score_numerical column and a limit of 1 request per second.",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://www.worldbenchmarkingalliance.org/disclaimer",
+      "licenceQuote": "Our work is licensed under the Creative Commons Attribution 4.0 International License.",
+      "reuseOk": true,
+      "commercialConflict": false,
+      "region": [
+        "global"
+      ],
+      "updates": "per benchmark cycle, roughly every 1 to 3 years per sector",
+      "measures": [
+        {
+          "field": "benchmark_score_numerical (Corporate Human Rights Benchmark)",
+          "criterion": "labor",
+          "meaning": "how well the company manages human rights in its own operations and supply chain"
+        },
+        {
+          "field": "benchmark_score_numerical (Social benchmark, core social indicators)",
+          "criterion": "ethics",
+          "meaning": "baseline conduct on human rights, decent work and ethical behaviour"
+        },
+        {
+          "field": "benchmark_score_numerical (Nature benchmark)",
+          "criterion": "environment",
+          "meaning": "management of impacts on nature and biodiversity"
+        }
+      ],
+      "decisions": [
+        "activewear",
+        "free-and-public-video-platforms",
+        "game-stores-and-platforms",
+        "handbags-and-totes",
+        "jeans-and-trousers",
+        "running-shoes",
+        "sports-equipment",
+        "t-shirts-and-tops",
+        "trainers-and-sneakers"
+      ],
+      "notes": "Realms: covers the 2,000 most influential companies (WBA calls the list SDG2000), so large apparel, footwear, luxury, tech and media groups are in it and small brands are not. The Corporate Human Rights Benchmark includes an apparel sector: the 2023 data set covers 110 apparel and extractives companies, and a 2026 cycle that includes apparel has been announced. Join on company name or the WBA company id, and check whether the export carries an ISIN. The 2020 version of that benchmark's methodology carried no-alteration and non-commercial terms, so use only data published under the current CC BY 4.0 disclaimer and record the dataset year. Registering is creating an account, which Bentley would do himself.",
+      "realms": [
+        "home",
+        "food-and-drink",
+        "technology",
+        "personal-care",
+        "health",
+        "media-and-culture",
+        "clothing",
+        "family-and-care",
+        "transport",
+        "money",
+        "learning",
+        "travel",
+        "animals",
+        "civic-and-giving",
+        "work-and-livelihood",
+        "organizations"
+      ],
+      "verified": {
+        "by": "cc-content-engine source agents",
+        "on": "2026-10-12",
+        "how": "fetched the access endpoint and read the licence or terms"
+      }
     }
   ]
 }

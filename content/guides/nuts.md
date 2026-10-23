@@ -66,7 +66,7 @@ This floor leaves plenty of room for enjoyment. A small container of plain or li
 | --- | --- | --- |
 | Everyday snack | plain or lightly salted nuts | flavored coatings that make them hard to stop eating |
 | Cooking ingredient | raw or unsalted nuts | paying snack-pack prices for pantry ingredients |
-| Trail mix | nuts plus unsweetened fruit or seeds | candy pieces quietly leading the mix |
+| Trail mix | nuts plus unsweetened fruit or seeds | candy pieces making up much of the mix |
 | Lunchbox backup | allergen-safe alternatives where needed | assuming nuts are allowed in shared spaces |
 | Treat | chocolate, honey-roasted, or spiced nuts | pretending the coating is still a plain staple |
 

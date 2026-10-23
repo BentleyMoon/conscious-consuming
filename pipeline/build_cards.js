@@ -40,7 +40,7 @@ function writeFileSyncRetry(file, body, attempts = 6) {
 }
 
 function removeOrphanedCardOutputs(manifest) {
-  const expected = new Set(['_cards.json', 'index.html']);
+  const expected = new Set(['_cards.json', '_cids.json', 'index.html']);
   for (const card of manifest) {
     expected.add(`${card.cid}/${card.code}.html`);
     expected.add(`${card.cid}/${card.code}.png`);
@@ -312,23 +312,25 @@ function cardHTML(p, ds, cid, cd, titleName = p.name) {
   const code = safe(p.code);
   const url = SITE_BASE + '/c/' + cid + '/' + code;
   const img = SITE_BASE + '/c/' + cid + '/' + code + '.png';
-  const desc = (r ? (r.label + ': ' + r.band[0] + '. ' + (r.note || '')) : (ds.meta.label + ' · sourced by your values, never sponsored')).slice(0, 200);
+  // The description leads with the score and what it rests on, then the fact that moved it most, so a
+  // snippet cannot read a low score as praise.
+  const desc = (s ? `${p.name} scores ${s.score}/100 among ${ds.meta.label.toLowerCase()} with every value weighted equally.` + (r ? ` ${r.label}: ${r.band[0]}. ${r.note || ''}` : '') : `${p.name}, in ${ds.meta.label}: too few sourced facts to score.`).slice(0, 200);
   const reason = r ? `<div class="vc-reason"><span class="vc-axis">${attr(r.label)}: <b>${attr(r.band[0])}</b>.</span> ${attr(r.note || '')} <a href="${attr(r.source)}" target="_blank" rel="noopener">source↗${r.asof ? ' ' + attr(r.asof) : ''}</a></div>` : '';
   const provenance = provenanceHTML(p);
   const ld = jsonLdScript(entityJSONLD(p, ds, cid, cd));
   return `<!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${attr(titleName)} in ${attr(ds.meta.label)}: a values verdict · Conscious Consuming</title>
+<title>${attr(titleName)} in ${attr(ds.meta.label)}: score and sources · Conscious Consuming</title>
 <meta name="description" content="${attr(desc)}">${verdictIsIndexable(p, cd) ? '' : '\n<meta name="robots" content="noindex,follow">'}
 <link rel="canonical" href="${attr(url)}">
 <meta property="og:type" content="article"><meta property="og:site_name" content="Conscious Consuming">
-<meta property="og:title" content="${attr(titleName)} in ${attr(ds.meta.label)}: a values verdict">
+<meta property="og:title" content="${attr(titleName)} in ${attr(ds.meta.label)}: score and sources">
 <meta property="og:description" content="${attr(desc)}">
 <meta property="og:url" content="${attr(url)}">
 <meta property="og:image" content="${attr(img)}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="${attr(titleName)} in ${attr(ds.meta.label)}: a values verdict">
+<meta name="twitter:title" content="${attr(titleName)} in ${attr(ds.meta.label)}: score and sources">
 <meta name="twitter:description" content="${attr(desc)}">
 <meta name="twitter:image" content="${attr(img)}">
 ${ld}
@@ -349,9 +351,9 @@ ${ld}
   <div class="vc-foot">No ads · No tracking · No brand pays us</div>
 </div>
 <div class="vc-actions"><a class="catbtn" href="../../#explore/${cid}">Compare ${attr(ds.meta.label)} by <b>your</b> values →</a><a class="savebtn" href="../../#card/${cid}/${encodeURIComponent(p.code)}">Open in the app →</a></div>
-<p class="vc-hint">An honest, sourced verdict from <a href="../../">Conscious Consuming</a>. Choose by your values, not by who pays.</p>
+<p class="vc-hint">From <a href="../../">Conscious Consuming</a>. The score weighs every value equally; the app ranks by your own.</p>
 </main>
-<footer>An open, honest guide to consuming by your values: sourced, private, never sponsored.<br><a href="../../">Open the interactive app →</a></footer>
+<footer>Every fact on this page names its source and date. No ads and no tracking, and no brand pays to be listed.<br><a href="../../">Open the interactive app →</a></footer>
 </div></body></html>
 `;
 }
@@ -378,11 +380,11 @@ function galleryHTML(manifest) {
   return `<!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The wall of verdicts: every sourced judgment · Conscious Consuming</title>
-<meta name="description" content="Every sourced verdict in Conscious Consuming: ${total} honest judgments across ${lensCount} lenses, each with its decisive reason and source. No ads, no tracking, no brand pays us.">
+<title>Every comparison page, with its sources · Conscious Consuming</title>
+<meta name="description" content="Every comparison page in Conscious Consuming: ${total} options across ${lensCount} decisions, each with the fact that most moved its score and that fact's source. No ads and no tracking.">
 <link rel="canonical" href="${attr(SITE_BASE + '/c/')}">
 <meta property="og:type" content="website"><meta property="og:title" content="The wall of verdicts · Conscious Consuming">
-<meta property="og:description" content="${total} sourced verdicts across ${lensCount} lenses. Choose by your values, not by who pays.">
+<meta property="og:description" content="${total} comparison pages across ${lensCount} decisions, each with its sources.">
 <meta property="og:image" content="${attr(SITE_BASE + '/og-home.png')}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="${attr(SITE_BASE + '/og-home.png')}">
 <meta name="color-scheme" content="light dark">
@@ -400,7 +402,7 @@ function galleryHTML(manifest) {
   <nav class="gnav">${nav}</nav>
 </header>
 ${sections}
-<p class="gfoot">Scores here weigh every value equally, for honest sharing. Open the app to rank things <a href="../">by <b>your</b> values →</a></p>
+<p class="gfoot">Scores here weigh every value equally, so a shared link shows the same number to everyone. Open the app to rank things <a href="../">by <b>your</b> values →</a></p>
 </main>
 <footer>An open, honest guide to consuming by your values: sourced, private, never sponsored.<br><a href="../">Open the interactive app →</a></footer>
 </div></body></html>
@@ -436,6 +438,9 @@ for (const f of fs.readdirSync(DATA)) {
   console.log('  ' + cid + ': ' + ds.products.length + ' verdict cards');
 }
 writeFileSyncRetry(path.join(CDIR, '_cards.json'), JSON.stringify(manifest));
+// The decisions that have a static page per option, so the MCP server (mcp.js) can hand out that address
+// instead of the in-app link. Cards always cover a whole decision, so the list of ids is enough.
+writeFileSyncRetry(path.join(CDIR, '_cids.json'), JSON.stringify([...new Set(manifest.map((m) => m.cid))].sort()));
 removeOrphanedCardOutputs(manifest);
 writeFileSyncRetry(path.join(CDIR, 'index.html'), galleryHTML(manifest));   // the wall of verdicts (crawlable gallery)
 console.log('Pre-rendered ' + cards + ' shareable verdict cards + the wall-of-verdicts gallery across ' + lenses + ' sourced lenses → app/c/ (base ' + SITE_BASE + ')');

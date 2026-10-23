@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/entity-v0.1.schema.json",
   "title": "Open Values Entity v0.1",
-  "description": "A product, service, organization, media resource, initiative, or other thing weighed inside a lens.",
+  "description": "One option inside a facts file, such as a bank or a shampoo: its name, its scores from 0 to 100 on the file's criteria, and the source for each score. A score that is missing is unknown, not 0.",
   "type": "object",
   "required": [
     "code",
@@ -13,35 +13,42 @@
   "properties": {
     "code": {
       "type": "string",
-      "pattern": "^[A-Za-z0-9._:-]+(?:-[A-Za-z0-9._:-]+)*$"
+      "pattern": "^[A-Za-z0-9._:-]+(?:-[A-Za-z0-9._:-]+)*$",
+      "description": "The entry's id, unique inside its facts file and stable over time, so other files can point at it. For food and beauty items it is the product barcode."
     },
     "name": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "description": "The name shown to people, such as \"Triodos Bank\"."
     },
     "brand": {
-      "type": "string"
+      "type": "string",
+      "description": "The brand or maker, or a short kind label where there is no brand, such as \"ethical bank\"."
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "description": "One or two plain sentences saying what the entry is."
     },
     "scores": {
       "type": "object",
       "additionalProperties": {
         "$ref": "https://openvaluesstandard.org/schema/rating-v0.1.schema.json#/$defs/scoreValue"
-      }
+      },
+      "description": "The entry's score on each criterion of the facts file, from 0 to 100, keyed by the criterion's key. A criterion that is missing is unknown, not 0. Every key must be declared in the file's criteria."
     },
     "provenance": {
       "type": "object",
       "additionalProperties": {
         "$ref": "https://openvaluesstandard.org/schema/source-v0.1.schema.json"
-      }
+      },
+      "description": "How each score is known, keyed by the same criterion keys as scores. Each value is either a short note or a citation with note, source link and date."
     },
     "links": {
       "type": "array",
       "items": {
         "$ref": "#/$defs/link"
-      }
+      },
+      "description": "Links about the entry, such as its own website, each with a label and a URL."
     },
     "region": {
       "type": "array",
@@ -54,22 +61,26 @@
           "global"
         ]
       },
-      "uniqueItems": true
+      "uniqueItems": true,
+      "description": "Where the entry is available: US, UK, EU, or global. The app's region filter keeps entries for the chosen region plus the global ones."
     },
     "focuses": {
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "description": "Plain labels the entry carries, such as \"Vegan\", \"Fair Trade\" or \"B Corp\". The app matches them against the diet and preference rules a person has set, and searches them."
     },
     "allergens": {
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "description": "Allergen tags the product contains or may carry traces of, such as \"milk\" or \"gluten\". They come from the product's source data and, where that has none, from a keyword scan of the ingredients. An empty list does not mean the product is free of allergens."
     },
     "allergensDeclared": {
-      "type": "boolean"
+      "type": "boolean",
+      "description": "True when the product's source data declares its allergens. False means there was no declared allergen data, so the allergens list may be incomplete and a reader should check the label."
     }
   },
   "$defs": {
@@ -83,11 +94,13 @@
       "properties": {
         "label": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "The link text shown to people, such as \"Website\"."
         },
         "url": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "The address the link goes to."
         }
       }
     }

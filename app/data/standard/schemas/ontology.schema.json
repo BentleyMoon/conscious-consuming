@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/ontology-v0.4.schema.json",
   "title": "Open Values Ontology v0.4",
-  "description": "A needs-first taxonomy with a backward-compatible life-domain index for live and growing category nodes.",
+  "description": "The menu people browse the catalogue by: eight human needs, and the areas of life with their categories, each category tagged with a need and linked to its facts file once one is built. Conscious Consuming keeps it.",
   "type": "object",
   "required": [
     "version",
@@ -14,17 +14,20 @@
   "properties": {
     "version": {
       "type": "integer",
-      "minimum": 1
+      "minimum": 1,
+      "description": "The version of this navigation file, as a whole number. The current file is version 4."
     },
     "note": {
-      "type": "string"
+      "type": "string",
+      "description": "A paragraph for maintainers explaining how the file is organised and what changed in this version."
     },
     "types": {
       "type": "array",
       "items": {
         "$ref": "#/$defs/type"
       },
-      "uniqueItems": true
+      "uniqueItems": true,
+      "description": "The kinds of thing an entry can be: Products, Services, Media, Organizations and Initiatives. Each category names one of these."
     },
     "needs": {
       "type": "array",
@@ -32,14 +35,16 @@
       "maxItems": 8,
       "items": {
         "$ref": "#/$defs/need"
-      }
+      },
+      "description": "The eight human needs that people browse by first, such as nourish or move, each with a short sentence saying what it covers."
     },
     "domains": {
       "type": "array",
       "minItems": 1,
       "items": {
         "$ref": "#/$defs/domain"
-      }
+      },
+      "description": "The areas of life, such as \"Food & drink\", each with its list of categories. Every category appears here exactly once."
     }
   },
   "$defs": {
@@ -73,16 +78,19 @@
             "learn",
             "give-and-act",
             "protect"
-          ]
+          ],
+          "description": "The need's id: nourish, care, keep-a-home, connect, move, learn, give-and-act or protect. Categories point at it in their need field."
         },
         "label": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "The need's name as shown on the site, such as \"NOURISH\"."
         },
         "reads": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 140
+          "maxLength": 140,
+          "description": "One sentence of up to 140 characters saying what the need covers, shown under its name."
         }
       }
     },
@@ -96,13 +104,15 @@
       "properties": {
         "label": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "The area of life's name, such as \"Food & drink\"."
         },
         "categories": {
           "type": "array",
           "items": {
             "$ref": "#/$defs/category"
-          }
+          },
+          "description": "The categories in this area of life, in the order they are shown."
         }
       }
     },
@@ -117,14 +127,17 @@
       "properties": {
         "label": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "The category's name as shown to people, such as \"Plant-based milk\"."
         },
         "cid": {
           "type": "string",
-          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+          "description": "The id of the facts file for this category, such as \"plant-based-milk\". A category with a cid is live on the site. One without it is shown as \"Not yet covered\"."
         },
         "type": {
-          "$ref": "#/$defs/type"
+          "$ref": "#/$defs/type",
+          "description": "What kind of thing the category's entries are: Products, Services, Media, Organizations or Initiatives."
         },
         "need": {
           "type": "string",
@@ -137,13 +150,16 @@
             "learn",
             "give-and-act",
             "protect"
-          ]
+          ],
+          "description": "The id of the need this category is listed under, such as \"nourish\"."
         },
         "group": {
-          "type": "string"
+          "type": "string",
+          "description": "The group the category sits in inside its area of life, such as \"Dairy and alternatives\"."
         },
         "facet": {
-          "type": "string"
+          "type": "string",
+          "description": "An optional finer label under the category, the fourth level of the older area, group, category, facet tree. The current file does not use it."
         }
       }
     }

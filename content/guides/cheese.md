@@ -38,7 +38,7 @@ Cheese is delicious, nutrient-dense, salty, and impact-heavy compared with many 
 
 ## Treat cheese as concentrated dairy
 
-Cheese is milk with much of the water removed, plus culture, salt, time, and technique. That concentration is why a small amount can taste wonderful and why daily invisible cheese can quietly add saturated fat, sodium, packaging, and dairy impact.
+Cheese is milk with much of the water removed, plus culture, salt, time, and technique. That concentration is why a small amount can taste wonderful and why cheese you eat every day without noticing can add saturated fat, sodium, packaging, and dairy impact.
 
 | If cheese is... | Better values move |
 | --- | --- |

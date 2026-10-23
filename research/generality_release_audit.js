@@ -13,6 +13,7 @@ const path = require('path');
 const vm = require('vm');
 const engine = require('../app/engine.js');
 const decision = require('../app/decision.js');
+const publicCopy = require('./public_copy.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const failures = [];
@@ -46,7 +47,11 @@ function main() {
   const shell = read('app/shell.js');
   const appIndex = read('app/index.html');
   const kosplora = read('kosplora/shelf/index.html');
-  const review = read('docs/DECISION-REFRAME-FOUNDER-REVIEW.md');
+  // The founder review is a working note the public copy does not carry (2026-10-23); there its checks are skipped.
+  const reviewDoc = 'docs/DECISION-REFRAME-FOUNDER-REVIEW.md';
+  const reviewAbsent = publicCopy.isAbsentPrivateDoc(reviewDoc);
+  const review = reviewAbsent ? '' : read(reviewDoc);
+  if (reviewAbsent) console.log(`  SKIP the founder-review checks: the public copy does not carry ${reviewDoc}`);
   const verify = read('scripts/verify.mjs');
   const pkg = JSON.parse(read('package.json') || '{}');
 
@@ -67,7 +72,9 @@ function main() {
   for (const call of ['DECISION.recipes', 'DECISION.answerCardHTML', 'DECISION.dialHTML', 'DECISION.dialPosition']) expect(shell.includes(call), `app/shell.js: shared instance call missing (${call})`);
 
   expect(contract.status === 'illustrative', 'Kosplora decision must be marked illustrative in lens data');
-  expect(kosplora.includes('Illustrative learning decision') || shell.includes('Illustrative generality receipt'), 'Kosplora surface: illustrative status is not visible');
+  // The kicker became plain words on 2026-09-29 ("An example list"); the sentence after it is what
+  // tells a reader the list is illustrative, so that sentence is what this pins.
+  expect(kosplora.includes('Illustrative learning decision') || shell.includes('Illustrative, not an endorsement'), 'Kosplora surface: illustrative status is not visible');
   expect(/not (?:an endorsement|release-grade evidence)/i.test(kosplora + shell), 'Kosplora surface: evidence boundary is not plain');
   expect((contract.axes || []).length >= 1 && (contract.axes || []).length <= 3, `Kosplora decision: expected 1-3 practical axes, found ${(contract.axes || []).length}`);
   for (const axis of contract.axes || []) {
@@ -111,12 +118,15 @@ function main() {
   expect(!!(contract.headline && lens.meta.slug && lens.meta.proof && (lens.meta.proof.links || []).length), 'Kosplora lens must supply its own headline, slug, and proof block now that the shell supplies none');
   expect(shell.includes('criteria annotated') && shell.includes('folded from ${pool.base.length}') && shell.includes('eligible ${NOUN} options ranked'), 'numbers: proof and precedence counts must carry meaning');
 
+  if (!reviewAbsent) {
   for (const route of ['/app/#map', '/app/#need/learn', '/app/#decide/learning-resources', '/app/#decide/banking', '/kosplora/', '/app/#decide/coffee']) expect(review.includes(route), `founder review: missing walkthrough route ${route}`);
   expect(/Founder decision:\*\* pending human review/.test(review), 'founder review: must remain pending until a human records the decision');
   expect(review.includes('does not deploy either package') && review.includes('Public deployment remains a separate, explicit human action'), 'founder review: release/deploy boundary missing');
+  }
   for (const audit of ['decision_pilot_audit.js', 'decision_rollout_audit.js', 'floor_interface_audit.js', 'personal_precedence_audit.js', 'generality_release_audit.js']) expect(verify.includes(audit), `scripts/verify.mjs: complete kill-test gate missing ${audit}`);
   expect(pkg.scripts && pkg.scripts['audit:generality-release'] === 'node research/generality_release_audit.js', 'package.json: audit:generality-release command missing');
-  expect(read('pipeline/build_site.py').includes("'DECISION-REFRAME-FOUNDER-REVIEW'"), 'release package: founder review is not rendered into dist/docs');
+  // 2026-10-23: the founder review is an internal note; it stays in the repository and is no longer published.
+  expect(!read('pipeline/build_site.py').includes("'DECISION-REFRAME-FOUNDER-REVIEW'"), 'release package: the founder review must not be published');
 
   finish({ defaults, changed, resources: lens.resources.length, lines: lens.lines.length });
 }

@@ -13,7 +13,7 @@
    "most private"
   ],
   "source": "Conscious Consuming (curated)",
-  "attribution": "Built from public policies, model and system cards, regulator decisions and open-weight releases, not measured data. AI policies change fast, so verify current settings yourself. Privacy reflects whether the consumer product trains on your chats by default; openness reflects whether the weights can actually be downloaded and run under a licence that says so, not whether a company calls a product open. Suggest changes via Contribute.",
+  "attribution": "Built from public policies, model and system cards, regulator decisions and open-weight releases, not measured data. AI policies change fast, so verify current settings yourself. Privacy reflects whether the consumer product trains on your chats by default; openness reflects whether the weights can actually be downloaded and run under a licence that says so, not whether a company calls a product open. Suggest changes via Contribute. Good for you comes from MIT Media Lab’s ImpactBench AI Nutrition Label, an independent benchmark that grades how models treat the person using them; it is scored only for the seven products whose models it tested, and gaps under about ten points sit inside its sampling, since each behaviour rests on three to sixteen metrics judged by a language model.",
   "allergens": false,
   "presets": {
    "Balanced": {
@@ -82,11 +82,11 @@
   },
   "provenanceProfile": {
    "entryCount": 98,
-   "singleSourceEntries": 33,
-   "multiSourceEntries": 65,
+   "singleSourceEntries": 32,
+   "multiSourceEntries": 66,
    "noSourceEntries": 0,
    "noteOnlyEntries": 0,
-   "averageSourceDomains": 1.92,
+   "averageSourceDomains": 1.99,
    "topPrimarySources": [
     {
      "label": "GitHub",
@@ -262,6 +262,12 @@
   {
    "key": "accessibility",
    "label": "Easy & free",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "wellbeing",
+   "label": "Good for you",
    "source": "curated",
    "tier": "assessed"
   }
@@ -1727,7 +1733,8 @@
     "transparency": 90,
     "openness": 22,
     "safety": 92,
-    "accessibility": 80
+    "accessibility": 80,
+    "wellbeing": 60
    },
    "provenance": {
     "privacy": {
@@ -1754,6 +1761,11 @@
      "note": "Claude has free and paid consumer tiers, but high-use access is gated by subscription and usage limits.",
      "source": "https://privacy.claude.com/en/articles/10023580-is-my-data-used-for-model-training",
      "asof": "2026-08"
+    },
+    "wellbeing": {
+     "note": "MIT Media Lab's ImpactBench AI Nutrition Label (v1.0.1) tested Claude Opus 5 and Claude Sonnet 5 in simulated conversations across nine behaviours, from avoiding sycophancy and hallucination to promoting agency, learning and wellbeing. Averaged across the nine, the models pass 60% of checks with adult users and 62% with child users; it avoids sycophancy in 69% and supports the user's own agency in 29%. The benchmark scores models, not apps, so the app may route to other models, and an LLM judge from the GPT family grades the conversations.",
+     "source": "https://impactbench.media.mit.edu/nutrition",
+     "asof": "2026-09"
     }
    },
    "links": [
@@ -1769,20 +1781,21 @@
     "Training controls"
    ],
    "valueSignature": {
-    "health": 92,
+    "health": 76,
     "honesty": 90,
     "privacy": 49,
     "cost": 80
    },
    "provenanceSummary": {
-    "factCount": 5,
-    "sourcedFactCount": 5,
-    "sourceDomainCount": 2,
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 3,
     "singleSource": false,
     "primarySource": "anthropic.com",
     "sourceLabels": [
      "anthropic.com",
-     "privacy.claude.com"
+     "privacy.claude.com",
+     "impactbench.media.mit.edu"
     ]
    }
   },
@@ -1798,7 +1811,8 @@
     "transparency": 82,
     "openness": 38,
     "safety": 82,
-    "accessibility": 94
+    "accessibility": 94,
+    "wellbeing": 59
    },
    "provenance": {
     "privacy": {
@@ -1825,6 +1839,11 @@
      "note": "OpenAI's GPT-5.6 Luna tier is the default model for Free and Go users, with Terra and the flagship Sol tier available on paid plans; free-tier usage remains limited and dynamic.",
      "source": "https://help.openai.com/en/articles/11909943",
      "asof": "2026-08"
+    },
+    "wellbeing": {
+     "note": "MIT Media Lab's ImpactBench AI Nutrition Label (v1.0.1) tested GPT-5.6 Luna and GPT-5.6 Terra in simulated conversations across nine behaviours, from avoiding sycophancy and hallucination to promoting agency, learning and wellbeing. Averaged across the nine, the models pass 59% of checks with adult users and 66% with child users; it avoids sycophancy in 58% and supports the user's own agency in 34%. The benchmark scores models, not apps, so the app may route to other models, and an LLM judge from the GPT family grades the conversations.",
+     "source": "https://impactbench.media.mit.edu/nutrition",
+     "asof": "2026-09"
     }
    },
    "links": [
@@ -1853,21 +1872,22 @@
     "Training controls"
    ],
    "valueSignature": {
-    "health": 82,
+    "health": 70.5,
     "honesty": 82,
     "privacy": 46,
     "cost": 94
    },
    "provenanceSummary": {
-    "factCount": 5,
-    "sourcedFactCount": 5,
-    "sourceDomainCount": 3,
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 4,
     "singleSource": false,
     "primarySource": "deploymentsafety.openai.com",
     "sourceLabels": [
      "deploymentsafety.openai.com",
      "help.openai.com",
-     "GitHub"
+     "GitHub",
+     "impactbench.media.mit.edu"
     ]
    }
   },
@@ -1883,7 +1903,8 @@
     "transparency": 78,
     "openness": 38,
     "safety": 80,
-    "accessibility": 92
+    "accessibility": 92,
+    "wellbeing": 55
    },
    "provenance": {
     "privacy": {
@@ -1910,6 +1931,11 @@
      "note": "Gemini is broadly available through Google's consumer products, with free and paid access paths.",
      "source": "https://gemini.google.com/",
      "asof": "2026-08"
+    },
+    "wellbeing": {
+     "note": "MIT Media Lab's ImpactBench AI Nutrition Label (v1.0.1) tested Gemini 3.7 Flash in simulated conversations across nine behaviours, from avoiding sycophancy and hallucination to promoting agency, learning and wellbeing. Averaged across the nine, the model passes 55% of checks with adult users and 57% with child users; it avoids sycophancy in 56% and supports the user's own agency in 23%. The benchmark scores models, not apps, so the app may route to other models, and an LLM judge from the GPT family grades the conversations.",
+     "source": "https://impactbench.media.mit.edu/nutrition",
+     "asof": "2026-09"
     }
    },
    "links": [
@@ -1929,21 +1955,22 @@
     "Free tier"
    ],
    "valueSignature": {
-    "health": 80,
+    "health": 67.5,
     "honesty": 78,
     "privacy": 43,
     "cost": 92
    },
    "provenanceSummary": {
-    "factCount": 5,
-    "sourcedFactCount": 5,
-    "sourceDomainCount": 4,
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 5,
     "singleSource": false,
     "primarySource": "deepmind.google",
     "sourceLabels": [
      "deepmind.google",
      "ai.google.dev",
      "gemini.google.com",
+     "impactbench.media.mit.edu",
      "support.google.com"
     ]
    }
@@ -2194,7 +2221,8 @@
     "transparency": 72,
     "openness": 88,
     "safety": 62,
-    "accessibility": 72
+    "accessibility": 72,
+    "wellbeing": 49
    },
    "provenance": {
     "privacy": {
@@ -2221,6 +2249,11 @@
      "note": "Gemma weights are free to download, but practical use still depends on developer tooling and hardware.",
      "source": "https://ai.google.dev/gemma/docs/core",
      "asof": "2026"
+    },
+    "wellbeing": {
+     "note": "MIT Media Lab's ImpactBench AI Nutrition Label (v1.0.1) tested Gemma 4 31B in simulated conversations across nine behaviours, from avoiding sycophancy and hallucination to promoting agency, learning and wellbeing. Averaged across the nine, the model passes 49% of checks with adult users and 46% with child users; it avoids sycophancy in 50% and supports the user's own agency in 33%. The benchmark scores models, not apps, so the app may route to other models, and an LLM judge from the GPT family grades the conversations.",
+     "source": "https://impactbench.media.mit.edu/nutrition",
+     "asof": "2026-09"
     }
    },
    "links": [
@@ -2237,20 +2270,21 @@
     "Self-hostable"
    ],
    "valueSignature": {
-    "health": 62,
+    "health": 55.5,
     "honesty": 72,
     "privacy": 84,
     "cost": 72
    },
    "provenanceSummary": {
-    "factCount": 5,
-    "sourcedFactCount": 5,
-    "sourceDomainCount": 2,
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 3,
     "singleSource": false,
     "primarySource": "ai.google.dev",
     "sourceLabels": [
      "ai.google.dev",
-     "deepmind.google"
+     "deepmind.google",
+     "impactbench.media.mit.edu"
     ]
    }
   },
@@ -2266,7 +2300,8 @@
     "transparency": 60,
     "openness": 90,
     "safety": 44,
-    "accessibility": 84
+    "accessibility": 84,
+    "wellbeing": 38
    },
    "provenance": {
     "privacy": {
@@ -2293,6 +2328,11 @@
      "note": "DeepSeek is highly accessible through a free hosted product and downloadable weights.",
      "source": "https://www.deepseek.com/",
      "asof": "2026"
+    },
+    "wellbeing": {
+     "note": "MIT Media Lab's ImpactBench AI Nutrition Label (v1.0.1) tested DeepSeek V4 Flash in simulated conversations across nine behaviours, from avoiding sycophancy and hallucination to promoting agency, learning and wellbeing. Averaged across the nine, the model passes 38% of checks with adult users and 35% with child users; it avoids sycophancy in 56% and supports the user's own agency in 35%. The benchmark scores models, not apps, so the app may route to other models, and an LLM judge from the GPT family grades the conversations.",
+     "source": "https://impactbench.media.mit.edu/nutrition",
+     "asof": "2026-09"
     }
    },
    "links": [
@@ -2317,22 +2357,23 @@
     "Self-hostable"
    ],
    "valueSignature": {
-    "health": 44,
+    "health": 41,
     "honesty": 60,
     "privacy": 66,
     "cost": 84
    },
    "provenanceSummary": {
-    "factCount": 5,
-    "sourcedFactCount": 5,
-    "sourceDomainCount": 4,
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 5,
     "singleSource": false,
     "primarySource": "garanteprivacy.it",
     "sourceLabels": [
      "garanteprivacy.it",
      "cdn.deepseek.com",
      "deepseek.com",
-     "huggingface.co"
+     "huggingface.co",
+     "impactbench.media.mit.edu"
     ]
    }
   },
@@ -2348,7 +2389,8 @@
     "transparency": 64,
     "openness": 88,
     "safety": 50,
-    "accessibility": 76
+    "accessibility": 76,
+    "wellbeing": 50
    },
    "provenance": {
     "privacy": {
@@ -2375,6 +2417,11 @@
      "note": "Qwen weights are free to download for developers, while hosted access varies by model and platform.",
      "source": "https://github.com/QwenLM/Qwen3.6",
      "asof": "2026-08"
+    },
+    "wellbeing": {
+     "note": "MIT Media Lab's ImpactBench AI Nutrition Label (v1.0.1) tested Qwen3.8 27B in simulated conversations across nine behaviours, from avoiding sycophancy and hallucination to promoting agency, learning and wellbeing. Averaged across the nine, the model passes 50% of checks with adult users and 49% with child users; it avoids sycophancy in 56% and supports the user's own agency in 29%. The benchmark scores models, not apps, so the app may route to other models, and an LLM judge from the GPT family grades the conversations.",
+     "source": "https://impactbench.media.mit.edu/nutrition",
+     "asof": "2026-09"
     }
    },
    "links": [
@@ -2397,11 +2444,15 @@
     "cost": 76
    },
    "provenanceSummary": {
-    "factCount": 5,
-    "sourcedFactCount": 5,
-    "sourceDomainCount": 1,
-    "singleSource": true,
-    "primarySource": "GitHub"
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "GitHub",
+    "sourceLabels": [
+     "GitHub",
+     "impactbench.media.mit.edu"
+    ]
    }
   },
   {
@@ -5221,7 +5272,8 @@
     "transparency": 54,
     "openness": 56,
     "safety": 40,
-    "accessibility": 78
+    "accessibility": 78,
+    "wellbeing": 61
    },
    "provenance": {
     "privacy": {
@@ -5248,6 +5300,11 @@
      "note": "Grok has limited free and paid consumer access on mobile, web and X depending on location.",
      "source": "https://x.ai/legal/faq",
      "asof": "2026"
+    },
+    "wellbeing": {
+     "note": "MIT Media Lab's ImpactBench AI Nutrition Label (v1.0.1) tested Grok 4.6 in simulated conversations across nine behaviours, from avoiding sycophancy and hallucination to promoting agency, learning and wellbeing. Averaged across the nine, the model passes 61% of checks with adult users and 63% with child users; it avoids sycophancy in 83% and supports the user's own agency in 33%. The benchmark scores models, not apps, so the app may route to other models, and an LLM judge from the GPT family grades the conversations.",
+     "source": "https://impactbench.media.mit.edu/nutrition",
+     "asof": "2026-09"
     }
    },
    "links": [
@@ -5272,20 +5329,21 @@
     "Training controls"
    ],
    "valueSignature": {
-    "health": 40,
+    "health": 50.5,
     "honesty": 54,
     "privacy": 49,
     "cost": 78
    },
    "provenanceSummary": {
-    "factCount": 5,
-    "sourcedFactCount": 5,
-    "sourceDomainCount": 2,
+    "factCount": 6,
+    "sourcedFactCount": 6,
+    "sourceDomainCount": 3,
     "singleSource": false,
     "primarySource": "x.ai",
     "sourceLabels": [
      "x.ai",
-     "dataprotection.ie"
+     "dataprotection.ie",
+     "impactbench.media.mit.edu"
     ]
    }
   },

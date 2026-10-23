@@ -63,7 +63,8 @@ expect(ip && /Triodos/.test(ip.title), 'fetch item: triodos resolves');
 expect(ip && Array.isArray(ip.metadata.facts) && ip.metadata.facts.some((f) => f.source && f.asOf), 'item facts carry source + asOf');
 expect(ip && /independent source domains/.test(ip.text), 'item text carries the independence line');
 expect(ip && /not a ranking/.test(ip.text), 'item text states facts-not-ranking');
-expect(ip && ip.url.includes('#card/banking/triodos'), 'item url points at the verdict card');
+// 2026-10-23: an item with a static comparison page links that page, which a crawler or agent can read.
+expect(ip && ip.url.endsWith('/c/banking/triodos'), 'item url points at the static comparison page');
 
 const soap = await rpc('tools/call', { name: 'fetch', arguments: { id: 'banking/gls-bank' } });
 expect(soap.result && !soap.result.isError, 'bare cat/code id form resolves');

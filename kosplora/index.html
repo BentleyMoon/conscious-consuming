@@ -4,10 +4,38 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Kosplora: follow a question into the world</title>
-<meta name="description" content="Kosplora turns a real question into a short route through sources, people, places, and practice. Every route ends in something you make and keep.">
+<meta name="description" content="Kosplora is a free place to learn with no account. Three routes end in something you make and keep, 24 longer study routes sit on the shelf, and a route is one text file anyone can write.">
 <link rel="icon" href="/app/icon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64">
 <link rel="stylesheet" href="route.css">
+<style>
+  /* The family register, scoped to this page. route.css stays shared with the walker pages. */
+  :root{--graphite:#4d5357;--hatch:rgba(34,31,43,.36)}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--graphite:#b6bcc0;--hatch:rgba(236,233,245,.32)}}
+  .instancebar nav{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.02em}
+  h2{font-style:italic;font-weight:500}
+  .plate-id{display:flex;justify-content:space-between;align-items:baseline;gap:.25rem 1rem;flex-wrap:wrap;
+    margin:2.5rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid color-mix(in srgb,var(--ink) 55%,transparent)}
+  .plate-id+h2{margin-top:0}
+  .plate-id,.receipt{max-width:none}
+  .plate-id .pn{font-family:var(--font-mono);font-size:.75rem;font-weight:700;letter-spacing:.2em;color:var(--ink)}
+  .plate-id .fig{font-style:italic;font-size:.86rem;color:var(--muted)}
+  .receipt{display:flex;flex-wrap:wrap;gap:.25rem 1.25rem;margin:1.5rem 0 0;padding:.5rem 0;
+    border-top:1px solid color-mix(in srgb,var(--ink) 55%,transparent);
+    border-bottom:1px dotted color-mix(in srgb,var(--ink) 55%,transparent);
+    font-family:var(--font-mono);font-size:.75rem;letter-spacing:.04em;color:var(--muted)}
+  .routes p a{font-family:inherit;font-size:inherit;color:var(--accent);text-decoration:underline}
+  .promises{padding-left:1.25rem;max-width:62ch}
+  .promises li{margin:0 0 .75rem}
+  .promises b{color:var(--ink);font-weight:600}
+  .unbuilt{position:relative;padding-left:1.25rem;max-width:62ch}
+  .unbuilt::before{content:"";position:absolute;left:0;top:.25rem;bottom:.25rem;width:.5rem;
+    background:repeating-linear-gradient(-45deg,var(--hatch) 0 1px,transparent 1px 4px)}
+  .hand{font-family:"Segoe Print","Ink Free","Bradley Hand","Chalkboard SE","Marker Felt",cursive;
+    color:var(--graphite);font-size:1rem;line-height:1.4;transform:rotate(-1.4deg);transform-origin:left top;
+    margin:2rem 0 0;max-width:36ch}
+  .hand a{color:var(--graphite)}
+</style>
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -26,16 +54,18 @@
 
 <main id="content" tabindex="-1">
 <h1>Follow a question into the world.</h1>
-<p class="sub">Kosplora turns a real question into a short route through sources, people, places,
-and practice. Every route ends in something you make and keep: a design, a plan, a verified
-correction, a changed question.</p>
+<p class="sub">Kosplora is a free place to learn. You pick a question, walk a route to its end,
+and keep what you made. Nothing here grants a credential: it is a demonstration curriculum, not
+accreditation.</p>
+<p class="receipt"><span>3 walkable routes</span><span>24 study routes</span><span>173 resources, each with a checked date</span><span>Format 0.1, 18 Aug 2026</span><span>Outside walkers so far: 0</span></p>
 
+<p class="plate-id"><span class="pn">Plate I</span><span class="fig">Fig. 1. Three routes, each ending in something you make.</span></p>
 <h2>Three routes you can walk now</h2>
 <ul class="routes">
   <li>
     <a href="route/local-ai/index.html">Could local AI strengthen community without increasing surveillance?</a>
     <p class="m">understand + make &middot; 3h alone, 90m together &middot; 6 stations</p>
-    <p>Ends in a two-page design for one tiny service that works without accounts or tracking.</p>
+    <p>Ends in a two-page design for one small service that works without accounts or tracking.</p>
   </li>
   <li>
     <a href="route/gatherings/index.html">What makes a recurring gathering outlive its founder?</a>
@@ -50,28 +80,37 @@ correction, a changed question.</p>
   </li>
 </ul>
 
+<h2>Twenty-four longer study routes</h2>
+<p>The <a href="shelf/index.html">reading shelf</a> holds 24 study routes. Each one runs the same
+five stages, orient, study, practice, make and review, and ends in something another person can
+look at: a deployed website, a household emergency plan, published OpenStreetMap edits. They ask
+between 6 and 48 hours, spread over 3 to 10 weeks. Growing food asks only 20 hours and still takes
+ten weeks, because tomatoes keep their own schedule.</p>
+<p>The study routes are older than the route file format and written in a different shape, so the
+format's checks do not run on them. The same shelf ranks 18 places to learn by your own values
+file, with the source for each score.</p>
+
 <h2>What a route promises</h2>
-<p><b>A route has an end.</b> Every station is visible from the start, spaced by the time it
-actually takes, and the last one is something you make.</p>
-<p><b>Human when a human teaches better.</b> Some stations are conversations, visits, and
-practice. The page hands you to them and waits.</p>
-<p><b>Evidence you can inspect.</b> Every source carries its author and date. Every route states
-what would change it. Disagreement is a station, and it must come from a real published voice
-rather than from whatever drafted the route.</p>
-<p><b>Yours to keep.</b> Your conditions, marks, and notes live in this browser until you export
-them as files. The route itself is <a href="format/index.html">a text file in an open format</a>
-that works in any walker, including one this site did not serve.</p>
+<ul class="promises">
+  <li><b>It ends.</b> Every station is visible from the start, spaced by the time it actually
+  takes, and the last one is something you make.</li>
+  <li><b>Some stations are people and places.</b> A conversation, a visit or an hour of practice
+  teaches some things better than a page can, so the page hands you over and waits.</li>
+  <li><b>Every source shows its author and date,</b> and every route says what would change it.
+  The disagreement station has to quote a real published voice, because a model arguing with itself
+  is the same opinion asked twice.</li>
+  <li><b>What you write stays yours.</b> Your conditions, marks and notes live in this browser until
+  you export them as files. The route itself is <a href="format/index.html">a text file in an open
+  format</a>, so a walker I did not write can read it too.</li>
+</ul>
 
 <h2>Build a route</h2>
-<p>The composer does not exist yet. The <a href="format/index.html">format</a> is public and a
-route is a text file, so the current composer is a text editor, and that sentence will change
-only when the real one ships.</p>
+<p class="unbuilt">There is no composer yet. The <a href="format/index.html">format</a> is public
+and a route is one text file, so for now the composer is a text editor. This sentence changes when
+a real one ships.</p>
 
-<p class="stands">Where this honestly stands: three routes, written by the maker and drafted with
-a model, each one saying so on its face. Nobody outside this project has walked one yet; that is
-the next fact this page wants to be able to change. The <a href="shelf/index.html">reading
-shelf</a> holds twelve older ranked-source routes, labelled as reading lists by the format's own
-rule.</p>
+<p class="hand">Walk one and tell me where it broke. Nobody outside this project has walked a
+route yet, so yours would be the first report. <a href="mailto:futurisminstitute@gmail.com">Write in</a>.</p>
 
 <footer>Kosplora, a Values Commons instance. No account, no tracking; nothing you do here is
 sent anywhere.</footer>

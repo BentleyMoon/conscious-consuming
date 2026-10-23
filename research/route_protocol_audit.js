@@ -69,9 +69,9 @@ for (const slug of slugs) {
   if (!page.includes(nSources + ' sources')) {
     fail(slug + ': page does not state its source count of ' + nSources);
   }
-  if (route.drafted_with && !page.includes('drafted with')) {
-    fail(slug + ': route was drafted with a model and the page does not say so');
-  }
+  // 2026-10-13, Bentley: no AI is named as a co-author anywhere. A route's authors are people.
+  if ('drafted_with' in route) fail(slug + ': the route file names a drafting tool as a co-author (drafted_with); routes list people only');
+  if (/drafted with|language model/i.test(page)) fail(slug + ': the page names a model as a co-author');
   for (const s of st) for (const src of s.sources || []) {
     if (!page.includes(src.date)) fail(slug + ': source date ' + src.date + ' is in the file and off the page');
   }

@@ -1,0 +1,102 @@
+{
+ "format": "open-values-register-entity-map",
+ "version": "1.0.0",
+ "note": "Makes added when the fueleconomy.gov adapter grew from electric vehicles to the whole market, reviewed by the same rule as vehicle-makers.json: a make is mapped only where the EPA manufacturer code that certifies its 2026 vehicles belongs to the LEI holder's group, and the LEI was confirmed active in GLEIF. None of these makes has an electric vehicle in the 2026 or 2027 file, so the electric-vehicles lens is unchanged by this file. Still unmapped: Mazda (SBTi lists Mazda Motor Europe, a European sales company, not Mazda Motor Corporation), Kia (SBTi's record has no LEI), Honda, Subaru, Mitsubishi and the Stellantis makes (no SBTi record), and Rolls-Royce (its own EPA code under BMW).",
+ "mappings": [
+  {
+   "status": "matched",
+   "make": "Jaguar",
+   "epaManufacturerCode": "JLX",
+   "legalName": "Jaguar Land Rover Automotive PLC",
+   "jurisdiction": "GB",
+   "registerIdentifier": {
+    "scheme": "lei",
+    "value": "529900L73GEWN1O5NH84"
+   },
+   "matchEvidence": {
+    "source": "https://api.gleif.org/api/v1/lei-records/529900L73GEWN1O5NH84",
+    "note": "fueleconomy.gov lists Jaguar vehicles for 2026 under EPA manufacturer code JLX, the code also used for Land Rover. GLEIF: Jaguar Land Rover Automotive PLC, GB, entity active, LEI issued (checked 2026-10-12). SBTi lists Jaguar Land Rover Automotive plc under the same LEI."
+   },
+   "review": {
+    "by": "cc-fueleconomy-adapter",
+    "on": "2026-10-12"
+   }
+  },
+  {
+   "status": "matched",
+   "make": "Land Rover",
+   "epaManufacturerCode": "JLX",
+   "legalName": "Jaguar Land Rover Automotive PLC",
+   "jurisdiction": "GB",
+   "registerIdentifier": {
+    "scheme": "lei",
+    "value": "529900L73GEWN1O5NH84"
+   },
+   "matchEvidence": {
+    "source": "https://api.gleif.org/api/v1/lei-records/529900L73GEWN1O5NH84",
+    "note": "fueleconomy.gov lists Land Rover vehicles for 2026 under EPA manufacturer code JLX, the code also used for Jaguar. GLEIF: Jaguar Land Rover Automotive PLC, GB, entity active, LEI issued (checked 2026-10-12)."
+   },
+   "review": {
+    "by": "cc-fueleconomy-adapter",
+    "on": "2026-10-12"
+   }
+  },
+  {
+   "status": "matched",
+   "make": "Bentley",
+   "epaManufacturerCode": "VGA",
+   "legalName": "Volkswagen Aktiengesellschaft",
+   "jurisdiction": "DE",
+   "registerIdentifier": {
+    "scheme": "lei",
+    "value": "529900NNUPAGGOMPXZ31"
+   },
+   "matchEvidence": {
+    "source": "https://api.gleif.org/api/v1/lei-records/529900NNUPAGGOMPXZ31",
+    "note": "fueleconomy.gov lists Bentley vehicles for 2026 under EPA manufacturer code VGA, the code also used for Volkswagen, Audi and Lamborghini. GLEIF: Volkswagen Aktiengesellschaft, DE, entity active, LEI issued (checked 2026-10-12)."
+   },
+   "review": {
+    "by": "cc-fueleconomy-adapter",
+    "on": "2026-10-12"
+   }
+  },
+  {
+   "status": "matched",
+   "make": "Lamborghini",
+   "epaManufacturerCode": "VGA",
+   "legalName": "Volkswagen Aktiengesellschaft",
+   "jurisdiction": "DE",
+   "registerIdentifier": {
+    "scheme": "lei",
+    "value": "529900NNUPAGGOMPXZ31"
+   },
+   "matchEvidence": {
+    "source": "https://api.gleif.org/api/v1/lei-records/529900NNUPAGGOMPXZ31",
+    "note": "fueleconomy.gov lists Lamborghini vehicles for 2026 under EPA manufacturer code VGA, the code also used for Volkswagen, Audi and Bentley. GLEIF: Volkswagen Aktiengesellschaft, DE, entity active, LEI issued (checked 2026-10-12)."
+   },
+   "review": {
+    "by": "cc-fueleconomy-adapter",
+    "on": "2026-10-12"
+   }
+  },
+  {
+   "status": "matched",
+   "make": "Aston Martin",
+   "epaManufacturerCode": "ASX",
+   "legalName": "Aston Martin Lagonda Global Holdings PLC",
+   "jurisdiction": "GB",
+   "registerIdentifier": {
+    "scheme": "lei",
+    "value": "213800167WOVOK5ZC776"
+   },
+   "matchEvidence": {
+    "source": "https://api.gleif.org/api/v1/lei-records/213800167WOVOK5ZC776",
+    "note": "fueleconomy.gov lists Aston Martin vehicles for 2026 under EPA manufacturer code ASX. GLEIF: Aston Martin Lagonda Global Holdings PLC, GB, entity active, LEI issued (checked 2026-10-12). SBTi lists the same LEI. Not the Aston Martin Formula One Team, which SBTi lists separately under its own LEI."
+   },
+   "review": {
+    "by": "cc-fueleconomy-adapter",
+    "on": "2026-10-12"
+   }
+  }
+ ]
+}

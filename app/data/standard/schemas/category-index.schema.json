@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/category-index-v0.2.schema.json",
   "title": "Open Values Category Index v0.2",
-  "description": "Generated index of live category datasets with needs, compatibility domains, embedded ontology, and attribution.",
+  "description": "The list of every live category on Conscious Consuming, such as coffee or banking, with its criteria, the human need it serves, and where its data file is, plus the full category tree and the data credit line. The dataset build (pipeline/build_datasets.py) writes it to app/data/index.json, and the app reads it first to draw the browse tree and find each category's file.",
   "type": "object",
   "required": [
     "categories",
@@ -12,6 +12,7 @@
   "additionalProperties": true,
   "properties": {
     "categories": {
+      "description": "One summary per live category: its name, file, size, criteria, need and place in the site navigation.",
       "type": "array",
       "minItems": 1,
       "items": {
@@ -19,15 +20,19 @@
       }
     },
     "attribution": {
+      "description": "The credit line for data the categories reuse, such as \"Data © Open Food Facts contributors (ODbL)\".",
       "type": "string"
     },
     "ontology": {
+      "description": "The full category tree, copied from content/ontology.json: the eight needs, the domains and the categories under them.",
       "$ref": "https://openvaluesstandard.org/schema/ontology-v0.4.schema.json"
     },
     "regionDecisionContract": {
+      "description": "How the app filters entries by region, which categories have a region filter, and which entries the current region values cannot place correctly.",
       "$ref": "#/$defs/regionDecisionContract"
     },
     "namingContract": {
+      "description": "The rules for when to use each of the three project names (Values Commons, Open Values Standard, Conscious Consuming), and which parts of the app should follow them.",
       "$ref": "#/$defs/namingContract"
     }
   },
@@ -47,22 +52,27 @@
       "additionalProperties": true,
       "properties": {
         "id": {
+          "description": "The category id, such as \"plant-based-milk\".",
           "type": "string",
           "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
         },
         "label": {
+          "description": "The category name shown to readers, such as \"Plant-based milk\".",
           "type": "string",
           "minLength": 1
         },
         "file": {
+          "description": "The name of the category's data file in app/data/, such as \"plant-based-milk.json\".",
           "type": "string",
           "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*\\.json$"
         },
         "n": {
+          "description": "How many entries the category's data file holds.",
           "type": "integer",
           "minimum": 0
         },
         "type": {
+          "description": "What kind of thing the category covers: Products, Services, Media, Organizations, or Initiatives.",
           "type": "string",
           "enum": [
             "Products",
@@ -73,6 +83,7 @@
           ]
         },
         "criteria": {
+          "description": "The criteria entries in this category are scored on, so the app can show them before loading the full file.",
           "type": "array",
           "minItems": 1,
           "items": {
@@ -80,10 +91,12 @@
           }
         },
         "domain": {
+          "description": "The broad area the category sits under in the site navigation, such as \"Tech & digital\", taken from the category tree. \"Other\" when the tree does not place it.",
           "type": "string",
           "minLength": 1
         },
         "need": {
+          "description": "Which of the eight human needs the category serves, such as \"nourish\" or \"connect\", taken from the category tree.",
           "type": "string",
           "enum": [
             "nourish",
@@ -97,12 +110,15 @@
           ]
         },
         "group": {
+          "description": "The group within the domain, such as \"Digital services\", when the category tree gives one.",
           "type": "string"
         },
         "regionProfile": {
+          "description": "How the category's entries are tagged by region, and whether a region filter would be accurate.",
           "$ref": "#/$defs/regionProfile"
         },
         "decision": {
+          "description": "The category's decision page setup (an open-values-decision-contracts entry), with counts added by the dataset build.",
           "$ref": "https://openvaluesstandard.org/schema/decision-contracts-v0.2.schema.json#/$defs/decision"
         }
       }
@@ -124,18 +140,22 @@
       "additionalProperties": true,
       "properties": {
         "entryCount": {
+          "description": "How many entries the category holds.",
           "type": "integer",
           "minimum": 0
         },
         "regionTagged": {
+          "description": "How many entries have at least one region tag.",
           "type": "integer",
           "minimum": 0
         },
         "missingRegion": {
+          "description": "How many entries have no region tag.",
           "type": "integer",
           "minimum": 0
         },
         "values": {
+          "description": "How many entries carry each region tag, keyed by tag, such as { \"US\": 27, \"global\": 42 }.",
           "type": "object",
           "additionalProperties": {
             "type": "integer",
@@ -143,6 +163,7 @@
           }
         },
         "filterValues": {
+          "description": "The region filter choices worth offering for this category: each of US, EU and UK that at least one entry is tagged with.",
           "type": "array",
           "items": {
             "enum": [
@@ -153,10 +174,12 @@
           }
         },
         "globalEntries": {
+          "description": "How many entries are tagged \"global\".",
           "type": "integer",
           "minimum": 0
         },
         "unknownRegionValues": {
+          "description": "Region tags that are not one of US, EU, UK or global, with how many entries carry each. Empty when every tag is known.",
           "type": "object",
           "additionalProperties": {
             "type": "integer",
@@ -164,13 +187,16 @@
           }
         },
         "countryLevelNeeded": {
+          "description": "True when some entries serve a single country the region tags cannot name, such as a payment system used only in India.",
           "type": "boolean"
         },
         "countryLevelLimitationCount": {
+          "description": "How many entries in this category are listed as needing a country-level region.",
           "type": "integer",
           "minimum": 0
         },
         "strictCurrentEnumSafe": {
+          "description": "True when every entry has a region tag, every tag is known, and no entry needs a country-level region, so the region filter can be described as exact.",
           "type": "boolean"
         }
       }
@@ -192,12 +218,15 @@
       "additionalProperties": true,
       "properties": {
         "status": {
+          "description": "A short label for where this naming decision stands, such as \"h3-app-owned-naming-ia-contract\".",
           "type": "string"
         },
         "consumer": {
+          "description": "Which piece of work is meant to apply these rules, and in which files.",
           "type": "string"
         },
         "canonicalNames": {
+          "description": "The three project names, keyed as ecosystem, standard and instance, each with what it names and when to use it.",
           "type": "object",
           "required": [
             "ecosystem",
@@ -214,18 +243,22 @@
             "additionalProperties": true,
             "properties": {
               "name": {
+                "description": "The name, such as \"Values Commons\".",
                 "type": "string"
               },
               "role": {
+                "description": "What the name refers to, such as \"public ecosystem umbrella\".",
                 "type": "string"
               },
               "use": {
+                "description": "One sentence on where to use the name.",
                 "type": "string"
               }
             }
           }
         },
         "domainPosture": {
+          "description": "Which web address each part of the project lives at, keyed by role, such as \"standardHome\" or \"legacyDomainAlias\".",
           "type": "object",
           "required": [
             "ecosystemHome",
@@ -239,6 +272,7 @@
           }
         },
         "copyRules": {
+          "description": "One rule per name: what to use it for and what not to use it for.",
           "type": "array",
           "minItems": 3,
           "items": {
@@ -253,6 +287,7 @@
           }
         },
         "appOwnedTargets": {
+          "description": "Places in the app where a name appears, each with the wording to prefer and the wording to avoid.",
           "type": "array",
           "minItems": 1,
           "items": {
@@ -267,15 +302,19 @@
           }
         },
         "recommendation": {
+          "description": "The recommended naming, in a sentence or two.",
           "type": "string"
         },
         "appOwnedDecision": {
+          "description": "What the app side still has to decide about wording.",
           "type": "string"
         },
         "drainRule": {
+          "description": "The condition under which this naming task counts as finished.",
           "type": "string"
         },
         "coverage": {
+          "description": "Counts that describe the contract, such as how many categories, names, rules and app targets it covers.",
           "type": "object",
           "additionalProperties": {
             "type": "integer",
@@ -302,12 +341,15 @@
       "additionalProperties": true,
       "properties": {
         "status": {
+          "description": "A short label for where this region decision stands, such as \"h1-app-owned-region-decision\".",
           "type": "string"
         },
         "consumer": {
+          "description": "Which piece of work is meant to make the region decision, and in which file.",
           "type": "string"
         },
         "currentFilterValues": {
+          "description": "The choices the app's region filter offers today: everywhere, US, EU and UK.",
           "type": "array",
           "items": {
             "enum": [
@@ -319,6 +361,7 @@
           }
         },
         "currentEntryRegionValues": {
+          "description": "The region tags an entry may carry today: US, EU, UK and global.",
           "type": "array",
           "items": {
             "enum": [
@@ -330,15 +373,19 @@
           }
         },
         "currentFilterRule": {
+          "description": "How the app applies the region filter, in a sentence. Entries tagged global stay visible whichever region is chosen.",
           "type": "string"
         },
         "recommendation": {
+          "description": "The recommended handling of regions for now, in a sentence or two.",
           "type": "string"
         },
         "appOwnedDecision": {
+          "description": "What the app side still has to decide about regions.",
           "type": "string"
         },
         "categoriesWithRegionControls": {
+          "description": "The ids of categories that have at least one entry tagged US, EU or UK, so a region filter makes a difference there.",
           "type": "array",
           "items": {
             "type": "string",
@@ -346,18 +393,21 @@
           }
         },
         "countryLevelLimitations": {
+          "description": "Entries that serve a single country the current region tags cannot name, each with the country and the tag it would need.",
           "type": "array",
           "items": {
             "$ref": "#/$defs/countryLevelLimitation"
           }
         },
         "missingLimitationEntries": {
+          "description": "Entries listed as needing a country-level region that the build could not find in their category, written as category:code. Empty when all were found.",
           "type": "array",
           "items": {
             "type": "string"
           }
         },
         "coverage": {
+          "description": "Counts that describe the contract: categories in all, categories with region filters, and how many country-level limitations were found or missing.",
           "type": "object",
           "additionalProperties": {
             "type": "integer",
@@ -380,19 +430,24 @@
       "additionalProperties": true,
       "properties": {
         "category": {
+          "description": "The id of the category the entry is in, such as \"payments\".",
           "type": "string",
           "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
         },
         "code": {
+          "description": "The entry's code in that category, such as \"upi\".",
           "type": "string"
         },
         "name": {
+          "description": "The entry's name, such as \"UPI (Unified Payments Interface)\".",
           "type": "string"
         },
         "market": {
+          "description": "The country the entry serves, such as \"India\".",
           "type": "string"
         },
         "currentRegion": {
+          "description": "The region tags the entry carries now, usually \"global\" because no tag fits.",
           "type": "array",
           "items": {
             "enum": [
@@ -404,9 +459,11 @@
           }
         },
         "proposedRegionValue": {
+          "description": "The country code the entry would carry if region tags allowed countries, such as \"IN\".",
           "type": "string"
         },
         "reason": {
+          "description": "Why the entry is listed, in a sentence.",
           "type": "string"
         }
       }

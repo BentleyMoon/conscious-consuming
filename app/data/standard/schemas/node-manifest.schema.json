@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/node-manifest-v0.1.schema.json",
   "title": "Open Values Node Manifest v0.1",
-  "description": "A generated manifest for node-index files, load order, integrity hashes, and runtime loading hints.",
+  "description": "A table of contents for the generated files in app/data/nodes: each file's name, size, hash and when to load it. The data build writes it, and the app reads it first to know what to fetch. It is an internal file used while building the site.",
   "type": "object",
   "additionalProperties": true,
   "required": [
@@ -19,25 +19,31 @@
   ],
   "properties": {
     "format": {
+      "description": "Names this file's format, so a reader can check it before reading the rest of the file.",
       "const": "ovs-node-manifest"
     },
     "version": {
+      "description": "The version of the format this file follows, such as \"0.1\".",
       "type": "string",
       "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$"
     },
     "built": {
+      "description": "The date of the source data this file was built from, as YYYY-MM-DD.",
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
     },
     "source": {
+      "description": "The script that wrote this file.",
       "type": "string",
       "minLength": 1
     },
     "appLaneNote": {
+      "description": "A note on which choices this file leaves to the app code that reads it, such as fetching, layout and wording.",
       "type": "string",
       "minLength": 1
     },
     "integrity": {
+      "description": "How the hashes in this file are computed.",
       "type": "object",
       "additionalProperties": true,
       "required": [
@@ -46,15 +52,18 @@
       ],
       "properties": {
         "algorithm": {
+          "description": "The hash algorithm. Always \"sha256\".",
           "const": "sha256"
         },
         "scope": {
+          "description": "What each hash covers, in one sentence. The manifest does not hash itself.",
           "type": "string",
           "minLength": 1
         }
       }
     },
     "loadOrder": {
+      "description": "The generated file names in the order the app should load them.",
       "type": "array",
       "minItems": 1,
       "items": {
@@ -63,6 +72,7 @@
       }
     },
     "indexes": {
+      "description": "One record per generated file in app/data/nodes, with its size, hash and load hint.",
       "type": "array",
       "minItems": 1,
       "items": {
@@ -70,9 +80,11 @@
       }
     },
     "loaderPlan": {
+      "description": "The load stages from node-load-plan.json, with each file's size, hash and cache key filled in.",
       "$ref": "#/$defs/loaderPlan"
     },
     "totals": {
+      "description": "Counts across the generated files, by name, such as \"askTokens\" or \"nodeRouteFixtures\".",
       "type": "object",
       "additionalProperties": {
         "type": "integer",
@@ -96,34 +108,42 @@
       ],
       "properties": {
         "type": {
+          "description": "What the file holds, such as \"tag\", \"brand\", \"ask-core\" or \"node-load-plan\".",
           "type": "string",
           "minLength": 1
         },
         "file": {
+          "description": "The file name in app/data/nodes.",
           "type": "string",
           "pattern": "^[a-z0-9-]+\\.json$"
         },
         "format": {
+          "description": "The format name the file declares.",
           "type": "string",
           "pattern": "^(open-values|ovs)-[a-z0-9]+(?:-[a-z0-9]+)*$"
         },
         "version": {
+          "description": "The format version the file declares.",
           "type": "string",
           "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$"
         },
         "built": {
+          "description": "The built date the file declares, as YYYY-MM-DD.",
           "type": "string",
           "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
         },
         "bytes": {
+          "description": "The file's size in bytes.",
           "type": "integer",
           "minimum": 1
         },
         "sha256": {
+          "description": "The sha256 hash of the file, as 64 lowercase hex characters.",
           "type": "string",
           "pattern": "^[0-9a-f]{64}$"
         },
         "loadHint": {
+          "description": "When the app should load the file, such as \"eager\" (at startup), \"defer-page-nodes\" (when a page needs it), \"lazy-product-search\" (only for product search) or \"dev-contract\" (only in testing).",
           "type": "string",
           "minLength": 1
         }
@@ -141,12 +161,15 @@
       ],
       "properties": {
         "purpose": {
+          "description": "One sentence on what the plan is for.",
           "$ref": "#/$defs/nonEmptyString"
         },
         "source": {
+          "description": "The file the plan is copied from, app/data/nodes/node-load-plan.json.",
           "$ref": "#/$defs/nonEmptyString"
         },
         "integrity": {
+          "description": "The rules for cache keys and hash checks.",
           "type": "object",
           "additionalProperties": true,
           "required": [
@@ -158,23 +181,29 @@
           ],
           "properties": {
             "algorithm": {
+              "description": "The hash algorithm. Always \"sha256\".",
               "const": "sha256"
             },
             "cacheKey": {
+              "description": "The pattern for cache keys, \"<file>:<sha256>\".",
               "$ref": "#/$defs/nonEmptyString"
             },
             "validate": {
+              "description": "When and how to check a loaded file against its hash.",
               "$ref": "#/$defs/nonEmptyString"
             },
             "retry": {
+              "description": "What to do after a hash mismatch or a parse failure.",
               "$ref": "#/$defs/nonEmptyString"
             },
             "fallback": {
+              "description": "What to do when a file still fails after the retry.",
               "$ref": "#/$defs/nonEmptyString"
             }
           }
         },
         "stages": {
+          "description": "The load stages, in order.",
           "type": "array",
           "minItems": 1,
           "items": {
@@ -182,6 +211,7 @@
           }
         },
         "totals": {
+          "description": "How many stages there are, how many run in the app, and how many are for testing only.",
           "type": "object",
           "additionalProperties": {
             "type": "integer",
@@ -205,33 +235,42 @@
       ],
       "properties": {
         "step": {
+          "description": "The stage's place in the load order, counting from 1.",
           "type": "integer",
           "minimum": 1
         },
         "id": {
+          "description": "A short id for the stage, such as \"bootstrap-metadata\".",
           "type": "string",
           "pattern": "^[a-z0-9-]+$"
         },
         "label": {
+          "description": "A short name for the stage.",
           "$ref": "#/$defs/nonEmptyString"
         },
         "loadHint": {
+          "description": "When the files in this stage load, such as \"eager-metadata\", \"eager\" or \"dev-contract\".",
           "$ref": "#/$defs/nonEmptyString"
         },
         "runtime": {
+          "description": "True when the app loads this stage while running; false for stages used only in testing (\"dev-contract\").",
           "type": "boolean"
         },
         "trigger": {
+          "description": "What should start this stage loading.",
           "$ref": "#/$defs/nonEmptyString"
         },
         "failureMode": {
+          "description": "What the app should do when this stage fails to load.",
           "$ref": "#/$defs/nonEmptyString"
         },
         "bytes": {
+          "description": "The total size of the stage's files in bytes.",
           "type": "integer",
           "minimum": 0
         },
         "files": {
+          "description": "The files in this stage.",
           "type": "array",
           "minItems": 1,
           "items": {
@@ -251,24 +290,30 @@
       ],
       "properties": {
         "file": {
+          "description": "The file name in app/data/nodes.",
           "type": "string",
           "pattern": "^[a-z0-9-]+\\.json$"
         },
         "type": {
+          "description": "What the file holds, such as \"tag\" or \"manifest\".",
           "$ref": "#/$defs/nonEmptyString"
         },
         "loadHint": {
+          "description": "When the app should load this file.",
           "$ref": "#/$defs/nonEmptyString"
         },
         "bytes": {
+          "description": "The file's size in bytes.",
           "type": "integer",
           "minimum": 1
         },
         "sha256": {
+          "description": "The sha256 hash of the file, as 64 lowercase hex characters.",
           "type": "string",
           "pattern": "^[0-9a-f]{64}$"
         },
         "cacheKey": {
+          "description": "The key to cache the file under, \"<file>:<sha256>\". Null for manifest.json, which carries no hash of itself.",
           "oneOf": [
             {
               "$ref": "#/$defs/nonEmptyString"
@@ -279,6 +324,7 @@
           ]
         },
         "integrity": {
+          "description": "Set to \"self-unhashed\" on manifest.json to say the file has no hash of itself.",
           "$ref": "#/$defs/nonEmptyString"
         }
       }

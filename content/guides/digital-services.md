@@ -42,7 +42,7 @@ The first move is often not switching services. It is making the service you alr
 | search or browser | change defaults, reduce extensions, review sync | tracking or lock-in conflicts with the way you use it |
 | AI and automation | save important prompts and outputs outside the tool | work becomes dependent on a closed workflow you cannot retrieve |
 
-Hardening buys time. It lets you move deliberately instead of panic-migrating the account that quietly holds the rest of your life together.
+Hardening buys time. It lets you move deliberately instead of panic-migrating the account that everything else depends on.
 
 ## A service audit in five questions
 

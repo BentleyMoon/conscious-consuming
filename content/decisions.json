@@ -7220,6 +7220,146 @@
       }
     },
     {
+      "category": "cardio-machines",
+      "reads": {
+        "text": "Compare cardio machines by safety, cost, and durability.",
+        "basis": [
+          {
+            "criterion": "safety",
+            "readsAs": "safety"
+          },
+          {
+            "criterion": "economical",
+            "readsAs": "cost"
+          },
+          {
+            "criterion": "durability",
+            "readsAs": "durability"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "safety",
+            "durability"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "durability",
+          "kind": "criterion",
+          "label": "Durability",
+          "question": "Do you want a longer useful life?",
+          "criteria": [
+            "durability"
+          ],
+          "poles": [
+            "Flexible",
+            "Longer life"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "care-homes",
+      "reads": {
+        "text": "Compare care homes by safety, everyday access, and ownership.",
+        "basis": [
+          {
+            "criterion": "safety",
+            "readsAs": "safety"
+          },
+          {
+            "criterion": "accessibility",
+            "readsAs": "everyday access"
+          },
+          {
+            "criterion": "ownership",
+            "readsAs": "ownership"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "record-or-reach",
+          "kind": "tradeoff",
+          "label": "Record or reach",
+          "question": "A stronger inspection record, or easier to actually get?",
+          "criteria": [
+            "safety",
+            "accessibility"
+          ],
+          "poles": [
+            "Stronger record",
+            "Easier to get"
+          ],
+          "default": 50
+        },
+        {
+          "id": "ownership",
+          "kind": "criterion",
+          "label": "Ownership",
+          "question": "Does accountable ownership matter more?",
+          "criteria": [
+            "ownership"
+          ],
+          "poles": [
+            "Flexible",
+            "More accountable"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": false,
+        "mode": "none"
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
       "category": "cat-food",
       "reads": {
         "text": "Compare cat food by body safety, everyday access, and disclosure.",
@@ -7281,6 +7421,100 @@
       "archetypes": [
         "best-for-most",
         "strictest-match"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "cloud-storage",
+      "reads": {
+        "text": "Compare cloud storage by privacy, everyday access, openness, and data portability.",
+        "basis": [
+          {
+            "criterion": "privacy",
+            "readsAs": "privacy"
+          },
+          {
+            "criterion": "accessibility",
+            "readsAs": "everyday access"
+          },
+          {
+            "criterion": "openness",
+            "readsAs": "openness"
+          },
+          {
+            "criterion": "portability",
+            "readsAs": "data portability"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "privacy",
+            "accessibility",
+            "openness",
+            "portability",
+            "respect"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "access-or-privacy",
+          "kind": "tradeoff",
+          "label": "Access or privacy",
+          "question": "Easier access or less data exposure?",
+          "criteria": [
+            "accessibility",
+            "privacy"
+          ],
+          "poles": [
+            "Easier access",
+            "Less exposure"
+          ],
+          "default": 50
+        },
+        {
+          "id": "openness",
+          "kind": "criterion",
+          "label": "Openness",
+          "question": "Does openness matter more?",
+          "criteria": [
+            "openness"
+          ],
+          "poles": [
+            "Flexible",
+            "More open"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
       ],
       "page": {
         "stage": "approved-batch",
@@ -7707,6 +7941,78 @@
       }
     },
     {
+      "category": "electric-vehicles",
+      "reads": {
+        "text": "Compare electric vehicles by cost, everyday access, and environmental impact.",
+        "basis": [
+          {
+            "criterion": "economical",
+            "readsAs": "cost"
+          },
+          {
+            "criterion": "accessibility",
+            "readsAs": "everyday access"
+          },
+          {
+            "criterion": "environment",
+            "readsAs": "environmental impact"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "accessibility",
+            "environment"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "environment",
+          "kind": "criterion",
+          "label": "Environmental impact",
+          "question": "Does lower environmental impact matter more?",
+          "criteria": [
+            "environment"
+          ],
+          "poles": [
+            "Flexible",
+            "Lower impact"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
       "category": "electricity-suppliers",
       "reads": {
         "text": "Compare electricity suppliers by environmental impact, price, disclosure, and everyday access.",
@@ -7950,6 +8256,78 @@
       }
     },
     {
+      "category": "fitness-equipment",
+      "reads": {
+        "text": "Compare fitness equipment by safety, cost, and durability.",
+        "basis": [
+          {
+            "criterion": "safety",
+            "readsAs": "safety"
+          },
+          {
+            "criterion": "economical",
+            "readsAs": "cost"
+          },
+          {
+            "criterion": "durability",
+            "readsAs": "durability"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "safety",
+            "durability"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "durability",
+          "kind": "criterion",
+          "label": "Durability",
+          "question": "Do you want a longer useful life?",
+          "criteria": [
+            "durability"
+          ],
+          "poles": [
+            "Flexible",
+            "Longer life"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
       "category": "glasses-and-contact-lenses",
       "reads": {
         "text": "Compare glasses and contact lenses by everyday access, cost, and disclosure.",
@@ -8101,6 +8479,286 @@
       }
     },
     {
+      "category": "home-care-services",
+      "reads": {
+        "text": "Compare home care services by safety, everyday access, and disclosure.",
+        "basis": [
+          {
+            "criterion": "safety",
+            "readsAs": "safety"
+          },
+          {
+            "criterion": "accessibility",
+            "readsAs": "everyday access"
+          },
+          {
+            "criterion": "transparency",
+            "readsAs": "disclosure"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "record-or-reach",
+          "kind": "tradeoff",
+          "label": "Record or reach",
+          "question": "A stronger inspection record, or easier to actually get?",
+          "criteria": [
+            "safety",
+            "accessibility"
+          ],
+          "poles": [
+            "Stronger record",
+            "Easier to get"
+          ],
+          "default": 50
+        },
+        {
+          "id": "transparency",
+          "kind": "criterion",
+          "label": "Disclosure",
+          "question": "Does stronger disclosure matter more?",
+          "criteria": [
+            "transparency"
+          ],
+          "poles": [
+            "Flexible",
+            "Stronger disclosure"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": false,
+        "mode": "none"
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "hybrid-and-plug-in-hybrid-cars",
+      "reads": {
+        "text": "Compare hybrid and plug-in hybrid cars by cost, safety, and environmental impact.",
+        "basis": [
+          {
+            "criterion": "economical",
+            "readsAs": "cost"
+          },
+          {
+            "criterion": "safety",
+            "readsAs": "safety"
+          },
+          {
+            "criterion": "environment",
+            "readsAs": "environmental impact"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "safety",
+            "environment"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "environment",
+          "kind": "criterion",
+          "label": "Environmental impact",
+          "question": "Does lower environmental impact matter more?",
+          "criteria": [
+            "environment"
+          ],
+          "poles": [
+            "Flexible",
+            "Lower impact"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "infant-formula",
+      "reads": {
+        "text": "Compare infant formula by body safety, cost, and palm-oil signals.",
+        "basis": [
+          {
+            "criterion": "health",
+            "readsAs": "body safety"
+          },
+          {
+            "criterion": "economical",
+            "readsAs": "cost"
+          },
+          {
+            "criterion": "palm_oil",
+            "readsAs": "palm-oil signals"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "health",
+            "palm_oil"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "palm-oil",
+          "kind": "criterion",
+          "label": "Palm-oil signals",
+          "question": "Do you need palm-oil-free evidence?",
+          "criteria": [
+            "palm_oil"
+          ],
+          "poles": [
+            "Flexible",
+            "Palm-oil-free"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "insulated-and-down-jackets",
+      "reads": {
+        "text": "Compare insulated and down jackets by labor and sourcing, repairability, and labor practices.",
+        "basis": [
+          {
+            "criterion": "ethics",
+            "readsAs": "labor and sourcing"
+          },
+          {
+            "criterion": "repairability",
+            "readsAs": "repairability"
+          },
+          {
+            "criterion": "labor",
+            "readsAs": "labor practices"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "sourcing-or-repair",
+          "kind": "tradeoff",
+          "label": "Sourcing or repair",
+          "question": "Stronger down sourcing or a stronger repair service?",
+          "criteria": [
+            "ethics",
+            "repairability"
+          ],
+          "poles": [
+            "Stronger sourcing",
+            "Easier repair"
+          ],
+          "default": 50
+        },
+        {
+          "id": "labor",
+          "kind": "criterion",
+          "label": "Labor practices",
+          "question": "Do stronger labor practices matter more?",
+          "criteria": [
+            "labor"
+          ],
+          "poles": [
+            "Flexible",
+            "Stronger labor"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": false,
+        "mode": "none"
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
       "category": "language-learning",
       "reads": {
         "text": "Compare language learning by teaching quality, cost, buyer protection, and labor practices.",
@@ -8157,6 +8815,99 @@
           "poles": [
             "Flexible",
             "Stronger protection"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "maps",
+      "reads": {
+        "text": "Compare maps by privacy, everyday access, respect for attention, and openness.",
+        "basis": [
+          {
+            "criterion": "privacy",
+            "readsAs": "privacy"
+          },
+          {
+            "criterion": "accessibility",
+            "readsAs": "everyday access"
+          },
+          {
+            "criterion": "respect",
+            "readsAs": "respect for attention"
+          },
+          {
+            "criterion": "openness",
+            "readsAs": "openness"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "privacy",
+            "accessibility",
+            "respect",
+            "openness"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "access-or-privacy",
+          "kind": "tradeoff",
+          "label": "Access or privacy",
+          "question": "Easier access or less data exposure?",
+          "criteria": [
+            "accessibility",
+            "privacy"
+          ],
+          "poles": [
+            "Easier access",
+            "Less exposure"
+          ],
+          "default": 50
+        },
+        {
+          "id": "respect",
+          "kind": "criterion",
+          "label": "Respect for attention",
+          "question": "Do you want the more respectful option?",
+          "criteria": [
+            "respect"
+          ],
+          "poles": [
+            "Flexible",
+            "More respectful"
           ],
           "default": 50
         }
@@ -8548,6 +9299,172 @@
       }
     },
     {
+      "category": "new-cars",
+      "reads": {
+        "text": "Compare new cars by cost, safety, and environmental impact.",
+        "basis": [
+          {
+            "criterion": "economical",
+            "readsAs": "cost"
+          },
+          {
+            "criterion": "safety",
+            "readsAs": "safety"
+          },
+          {
+            "criterion": "environment",
+            "readsAs": "environmental impact"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "safety",
+            "environment"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "environment",
+          "kind": "criterion",
+          "label": "Environmental impact",
+          "question": "Does lower environmental impact matter more?",
+          "criteria": [
+            "environment"
+          ],
+          "poles": [
+            "Flexible",
+            "Lower impact"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "notes",
+      "reads": {
+        "text": "Compare notes by privacy, everyday access, openness, and data portability.",
+        "basis": [
+          {
+            "criterion": "privacy",
+            "readsAs": "privacy"
+          },
+          {
+            "criterion": "accessibility",
+            "readsAs": "everyday access"
+          },
+          {
+            "criterion": "openness",
+            "readsAs": "openness"
+          },
+          {
+            "criterion": "portability",
+            "readsAs": "data portability"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "privacy",
+            "accessibility",
+            "openness",
+            "portability",
+            "respect"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "access-or-privacy",
+          "kind": "tradeoff",
+          "label": "Access or privacy",
+          "question": "Easier access or less data exposure?",
+          "criteria": [
+            "accessibility",
+            "privacy"
+          ],
+          "poles": [
+            "Easier access",
+            "Less exposure"
+          ],
+          "default": 50
+        },
+        {
+          "id": "openness",
+          "kind": "criterion",
+          "label": "Openness",
+          "question": "Does openness matter more?",
+          "criteria": [
+            "openness"
+          ],
+          "poles": [
+            "Flexible",
+            "More open"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
       "category": "off-grid-power-systems",
       "reads": {
         "text": "Compare off-grid power systems by cost, durability, everyday access, and environmental impact.",
@@ -8703,6 +9620,78 @@
       }
     },
     {
+      "category": "online-pharmacies-and-prescription-delivery",
+      "reads": {
+        "text": "Compare online pharmacies and prescription delivery by safety, everyday access, body safety, and complaint record.",
+        "basis": [
+          {
+            "criterion": "safety",
+            "readsAs": "safety"
+          },
+          {
+            "criterion": "accessibility",
+            "readsAs": "everyday access"
+          },
+          {
+            "criterion": "health",
+            "readsAs": "body safety"
+          },
+          {
+            "criterion": "complaints",
+            "readsAs": "complaint record"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "record-or-reach",
+          "kind": "tradeoff",
+          "label": "Record or reach",
+          "question": "A stronger inspection record, or easier to actually get?",
+          "criteria": [
+            "safety",
+            "accessibility"
+          ],
+          "poles": [
+            "Stronger record",
+            "Easier to get"
+          ],
+          "default": 50
+        },
+        {
+          "id": "health",
+          "kind": "criterion",
+          "label": "Body safety",
+          "question": "Does body safety matter more?",
+          "criteria": [
+            "health"
+          ],
+          "poles": [
+            "Flexible",
+            "Body safety"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": false,
+        "mode": "none"
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
       "category": "over-the-counter-medicine",
       "reads": {
         "text": "Compare over-the-counter medicine by body safety, cost, and everyday access.",
@@ -8840,6 +9829,150 @@
       "archetypes": [
         "best-for-most",
         "strictest-match"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "protein-and-sports-nutrition",
+      "reads": {
+        "text": "Compare protein and sports nutrition by safety, cost, and body safety.",
+        "basis": [
+          {
+            "criterion": "safety",
+            "readsAs": "safety"
+          },
+          {
+            "criterion": "economical",
+            "readsAs": "cost"
+          },
+          {
+            "criterion": "health",
+            "readsAs": "body safety"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "safety",
+            "health"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "health",
+          "kind": "criterion",
+          "label": "Body safety",
+          "question": "Does body safety matter more?",
+          "criteria": [
+            "health"
+          ],
+          "poles": [
+            "Flexible",
+            "Body safety"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "repair-and-tailoring",
+      "reads": {
+        "text": "Compare repair and tailoring by cost, everyday access, and disclosure.",
+        "basis": [
+          {
+            "criterion": "economical",
+            "readsAs": "cost"
+          },
+          {
+            "criterion": "accessibility",
+            "readsAs": "everyday access"
+          },
+          {
+            "criterion": "transparency",
+            "readsAs": "disclosure"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "accessibility",
+            "transparency"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "transparency",
+          "kind": "criterion",
+          "label": "Disclosure",
+          "question": "Does stronger disclosure matter more?",
+          "criteria": [
+            "transparency"
+          ],
+          "poles": [
+            "Flexible",
+            "Stronger disclosure"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
       ],
       "page": {
         "stage": "approved-batch",
@@ -9313,6 +10446,150 @@
       }
     },
     {
+      "category": "shoe-repair-and-resoling",
+      "reads": {
+        "text": "Compare shoe repair and resoling by cost, everyday access, and repairability.",
+        "basis": [
+          {
+            "criterion": "economical",
+            "readsAs": "cost"
+          },
+          {
+            "criterion": "accessibility",
+            "readsAs": "everyday access"
+          },
+          {
+            "criterion": "repairability",
+            "readsAs": "repairability"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "accessibility",
+            "repairability"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "repairability",
+          "kind": "criterion",
+          "label": "Repairability",
+          "question": "Does easier repair matter more?",
+          "criteria": [
+            "repairability"
+          ],
+          "poles": [
+            "Flexible",
+            "Easier repair"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "social-networks",
+      "reads": {
+        "text": "Compare social networks by privacy, everyday access, openness, and data portability.",
+        "basis": [
+          {
+            "criterion": "privacy",
+            "readsAs": "privacy"
+          },
+          {
+            "criterion": "accessibility",
+            "readsAs": "everyday access"
+          },
+          {
+            "criterion": "openness",
+            "readsAs": "openness"
+          },
+          {
+            "criterion": "portability",
+            "readsAs": "data portability"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "access-or-privacy",
+          "kind": "tradeoff",
+          "label": "Access or privacy",
+          "question": "Easier access or less data exposure?",
+          "criteria": [
+            "accessibility",
+            "privacy"
+          ],
+          "poles": [
+            "Easier access",
+            "Less exposure"
+          ],
+          "default": 50
+        },
+        {
+          "id": "openness",
+          "kind": "criterion",
+          "label": "Openness",
+          "question": "Does openness matter more?",
+          "criteria": [
+            "openness"
+          ],
+          "poles": [
+            "Flexible",
+            "More open"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": false,
+        "mode": "none"
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
       "category": "used-cars",
       "reads": {
         "text": "Compare used cars by disclosure, cost, and everyday access.",
@@ -9446,6 +10723,98 @@
       "archetypes": [
         "best-for-most",
         "strictest-match"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "video-calls",
+      "reads": {
+        "text": "Compare video calls by privacy, everyday access, openness, and cost.",
+        "basis": [
+          {
+            "criterion": "privacy",
+            "readsAs": "privacy"
+          },
+          {
+            "criterion": "accessibility",
+            "readsAs": "everyday access"
+          },
+          {
+            "criterion": "openness",
+            "readsAs": "openness"
+          },
+          {
+            "criterion": "economical",
+            "readsAs": "cost"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "privacy",
+            "accessibility",
+            "openness"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "access-or-privacy",
+          "kind": "tradeoff",
+          "label": "Access or privacy",
+          "question": "Easier access or less data exposure?",
+          "criteria": [
+            "accessibility",
+            "privacy"
+          ],
+          "poles": [
+            "Easier access",
+            "Less exposure"
+          ],
+          "default": 50
+        },
+        {
+          "id": "openness",
+          "kind": "criterion",
+          "label": "Openness",
+          "question": "Does openness matter more?",
+          "criteria": [
+            "openness"
+          ],
+          "poles": [
+            "Flexible",
+            "More open"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
       ],
       "page": {
         "stage": "approved-batch",

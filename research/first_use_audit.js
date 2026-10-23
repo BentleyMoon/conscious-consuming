@@ -309,9 +309,17 @@ function checkAdoptionGates() {
   const registry = json('content/operations/adoption.json');
   if (!registry) return {recordedEventCount: 0, confirmedEventCount: 0, openGateCount: 0, lockedGateCount: 0, gates: []};
   for (const error of validateAdoptionRegistry(registry)) failures.push(`content/operations/adoption.json: ${error}`);
+  /* A strategy source may live outside the public repository: the mirror keeps the Institute's
+     build plan private, so a fresh clone can never hold it. Such a source is declared with the
+     private: prefix and the registry must say so in words, or the declaration is a dodge. */
+  let privateSourceCount = 0;
   for (const source of registry.strategySources || []) {
+    if (String(source).startsWith('private:')) { privateSourceCount += 1; continue; }
     const rel = String(source).split('#')[0];
     if (!exists(rel)) failures.push(`content/operations/adoption.json: missing strategy source ${rel}`);
+  }
+  if (privateSourceCount && String(registry.privateSourcesNote || '').trim().length < 24) {
+    failures.push('content/operations/adoption.json: private: sources need a written privateSourcesNote');
   }
   const gateById = new Map((registry.gates || []).map(gate => [gate.id, gate]));
   const records = jsonLines(registry.eventLedger || 'content/operations/adoption-events.jsonl');
@@ -444,7 +452,7 @@ function checkPublicHome() {
     'standard/index.html',
     'passport/index.html',
     'instances/index.html',
-    'contribute/index.html',
+  // 2026-10-13: contribute/ left the front page; Bentley asks nobody to help out or test until he says the tools are ready.
     'weave/index.html'
   ]) {
     expectIncludes('index.html', target, `first-use link to ${target}`);
@@ -604,7 +612,9 @@ function checkDecisionSurface(app) {
     'function decisionRecipes',
     'function decisionMathHTML',
     'function decisionNextHTML',
-    'Rank all ${result.ranked.length} with these choices',
+    // 2026-10-23: the full list's label says what it is and drops the arrow, which promised navigation
+    // from a control that only opens in place.
+    'Show the full ranking (${count})',
     'A balanced view. Set a rule or change a choice to make it yours.'
   ]) {
     if (!contractSurface.includes(cue)) failures.push(`app/app.js: Round 4 decision component missing ${cue}`);
@@ -796,7 +806,8 @@ function checkPlainWordsBatch(app) {
   for (const [name, source, required] of [
     ['app/decision.js', decision, ['The baseline and your rules', 'with these choices']],
     ['app/shell.js', shell, ['The baseline is on', 'My rules', 'Advanced: Close-call priorities', 'What matters here']],
-    ['app/index.html', appHTML, ['href="#you" id="navvalues"', 'Advanced: close-call priorities']],
+    // 2026-10-23: "Advanced" opens its own section on the You page instead of the top of it.
+    ['app/index.html', appHTML, ['href="#you/advanced" id="navvalues"', 'Advanced: close-call priorities']],
     ['kosplora/shelf/index.html', kosplora, ['Close-call priorities stay optional', 'The baseline and my rules']],
     ['passport/index.html', filePage, ['Your file is small, nameless, and yours to keep', 'technical format is called an Open Values Passport']]
   ]) {

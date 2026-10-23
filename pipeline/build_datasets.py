@@ -259,7 +259,7 @@ def build_certification_scoring_contract():
         })
     return {
         'status': 'h20-app-owned-certification-scoring-parity',
-        'consumer': 'Claude H20 browser-side Open Food Facts scoring in app/app.js offScore and app/engine.js',
+        'consumer': 'App H20 browser-side Open Food Facts scoring in app/app.js offScore and app/engine.js',
         'categories': sorted(CERTIFICATION_SPLIT_CATEGORIES),
         'criteria': [
             {
@@ -399,7 +399,7 @@ KEY2THEME = {
     "environment": "planet", "forest": "planet", "packaging": "planet", "palm_oil": "planet",
     "organic": "planet", "durability": "planet", "repairability": "planet", "longevity": "planet",
     "processing": "health", "nutrition_grade": "health", "protein": "health", "low_sugar": "health",
-    "health": "health", "safety": "health",
+    "health": "health", "safety": "health", "wellbeing": "health",
     "ethics": "people", "labor": "people", "artist_pay": "people", "impact": "people",
     "ways_to_help": "people",
     "transparency": "honesty", "independence": "honesty", "nonprofit": "honesty",
@@ -410,7 +410,7 @@ KEY2THEME = {
     "catalog": "cost", "selection": "cost",
     "local": "local", "ownership": "local",
     "portability": "privacy", "respect": "privacy", "educational": "people", "calm": "health",
-    # 2026-08-13. Six keys arrived with the swarm's first waves and carried no theme, so entries
+    # 2026-08-13. Six keys arrived with the first content waves and carried no theme, so entries
     # scored only on them produced no value signature at all and could not be ranked by a reader's
     # values. No existing entry uses any of these, so mapping them can only add coverage; it cannot
     # move a ranking that already exists.
@@ -799,7 +799,7 @@ def build_region_decision_contract(index, bundle):
             })
     return {
         "status": "h1-app-owned-region-decision",
-        "consumer": "Claude H1 region filter decision in app/app.js",
+        "consumer": "App H1 region filter decision in app/app.js",
         "currentFilterValues": list(REGION_FILTER_VALUES),
         "currentEntryRegionValues": list(REGION_ENTRY_VALUES),
         "currentFilterRule": "When a selected region is active, app/app.js keeps entries tagged global visible alongside entries tagged for that region.",
@@ -820,7 +820,7 @@ def build_region_decision_contract(index, bundle):
 def build_naming_contract(index):
     return {
         "status": "h3-app-owned-naming-ia-contract",
-        "consumer": "Claude H3 naming/IA copy polish in app/app.js and public route copy",
+        "consumer": "App H3 naming/IA copy polish in app/app.js and public route copy",
         "canonicalNames": {
             "ecosystem": {
                 "name": "Values Commons",
@@ -3340,7 +3340,7 @@ def build_provenance_drain_contract(review_matrix):
         "purpose": "App-owned H10 drain contract for Trust Lens and provenance display integration.",
         "status": "pending-app-integration",
         "activeHandoff": "H10",
-        "namedConsumer": "Claude H10 Trust Lens/provenance drain pass",
+        "namedConsumer": "App H10 Trust Lens/provenance drain pass",
         "h10DrainableFromDataAlone": False,
         "drainRule": "H10 drains only after app-owned implementation evidence covers every step here or documents equivalent coverage; generated data alone is insufficient.",
         "receiptContract": {
@@ -3445,7 +3445,7 @@ def build_provenance_display_contract(index, bundle):
     walkthrough = build_provenance_walkthrough(review_matrix, drain_contract, copy_contract)
     return {
         "status": "h10-app-owned-provenance-display-contract",
-        "consumer": "Claude H10 Trust Lens and provenance rendering in app/app.js, verdict cards, ranked lists, item pages, and node pages",
+        "consumer": "App H10 Trust Lens and provenance rendering in app/app.js, verdict cards, ranked lists, item pages, and node pages",
         "sourceFields": ["factCount", "sourcedFactCount", "sourceDomainCount", "singleSource", "primarySource", "sourceLabels", "noteOnlyFactCount"],
         "coverage": coverage,
         "renderRules": render_rules,
@@ -3583,6 +3583,12 @@ index_obj['namingContract'] = build_naming_contract(index)
 index_obj['provenanceDisplayContract'] = build_provenance_display_contract(index, bundle)
 index_obj['certificationScoringContract'] = build_certification_scoring_contract()
 index_obj['valueEditorial'] = build_value_editorial_contract()
+# The map's totals, so the front page can say how much is answered and how much is still open
+# at first paint. Five numbers, not the 129 KB map, which stays lazily fetched.
+_tax_counts = json.load(open(os.path.join(HERE, '..', 'content', 'taxonomy.json'), encoding='utf-8')).get('counts', {})
+index_obj['mapTotals'] = {'decisions': _tax_counts.get('decisions', 0), 'answered': _tax_counts.get('covered', 0),
+                          'open': _tax_counts.get('open', 0), 'held': _tax_counts.get('hold', 0),
+                          'refused': _tax_counts.get('out', 0)}
 write_json(os.path.join(DATA, 'index.json'), index_obj, ensure_ascii=False, indent=1)
 
 # The catalogue plus these named shared contracts are the complete top-level JSON surface.

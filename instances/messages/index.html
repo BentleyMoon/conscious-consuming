@@ -7,21 +7,22 @@
 <meta name="theme-color" content="#0f9d8a">
 <link rel="icon" href="/app/icon.svg" type="image/svg+xml"><link rel="alternate icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64"><link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
 <title>Where to Message</title>
-<meta name="description" content="Rank messengers like Signal, WhatsApp, and iMessage by your own values: privacy, openness, and reach. Every fact carries its source, and nothing here is sponsored.">
+<meta name="description" content="Rank seven messengers, Signal, WhatsApp and iMessage among them, by what you care about: privacy, openness, ease and reach. A small demo on the shared Values Commons engine. Facts are public; scores are illustrative.">
 <style>
-  /* A THIRD skin, deliberately unlike CC (warm parchment) and Kosplora (dark indigo): light "daylight",
-     teal accent, SANS display. Same shell underneath; only these tokens + class colours change (L3). */
-  :root{--shadow-sm:0 1px 2px rgba(40,34,24,.07),0 1px 1px rgba(40,34,24,.05);--shadow-md:0 2px 6px rgba(40,34,24,.09),0 10px 26px rgba(40,34,24,.07);--shadow-lg:0 6px 16px rgba(40,34,24,.12),0 22px 48px rgba(40,34,24,.10);--bg:#f8f5ee;--surface:#fffdf7;--ink:#221f2b;--muted:#4d4860;--hint:#655f7d;--line:rgba(0,0,0,.14);--accent:#5b45c9;--track:#e3ded1;--bd-hi-bg:#ece6ff;--bd-hi-fg:#3b2d8c;--bd-mid-bg:#eef1ef;--bd-mid-fg:#566b62}
-  /* The reader states a preference and the page honours it. Three sibling sites
-     already did; these two overrode it, which locked out anyone who needs light. */
-  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--shadow-sm:0 1px 2px rgba(0,0,0,.55);--shadow-md:0 2px 8px rgba(0,0,0,.6),0 12px 30px rgba(0,0,0,.45);--shadow-lg:0 8px 20px rgba(0,0,0,.65),0 28px 56px rgba(0,0,0,.5);--bg:#f5f8f6;--surface:#ffffff;--ink:#15201c;--muted:#566b62;--hint:#85978e;--line:rgba(20,45,32,.11);--accent:#0f9d8a;--track:#e7ece9;--bd-hi-bg:#d7f1ea;--bd-hi-fg:#0a6e60}}
-
-  @media (prefers-color-scheme:dark){:root{ color-scheme:dark;
-    --bg:#0f1614; --surface:#17201d; --ink:#e3ece8; --muted:#93a89f; --hint:#7c8f86;
-    --line:rgba(255,255,255,.12); --accent:#3fd0bb; --track:#212a27;
-    --bd-hi-bg:#0d3a31; --bd-hi-fg:#5fd9c4; --bd-mid-bg:#222a27; --bd-mid-fg:#93a89f; }}
+  /* The third skin: daylight teal and a sans face, unlike Conscious Consuming (parchment serif) and
+     Kosplora (night indigo). Same engine, decision page and shell underneath; only these tokens
+     and class colours are this app's own. Until 2026-09-29 the default light palette was
+     Kosplora's purple and the dark-scheme block set light colours, so the skin changed with how
+     you arrived. One palette per mode now. */
+  :root{--shadow-md:0 2px 6px rgba(40,34,24,.09),0 10px 26px rgba(40,34,24,.07);--bg:#f5f8f6;--surface:#ffffff;--ink:#15201c;--muted:#566b62;--hint:#6b7d74;--line:rgba(20,45,32,.13);--accent:#0f8a79;--track:#e7ece9;--bd-hi-bg:#d7f1ea;--bd-hi-fg:#0a6e60;--bd-mid-bg:#eef1ef;--bd-mid-fg:#566b62;--graphite:#4d5357}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--shadow-md:0 2px 8px rgba(0,0,0,.6),0 12px 30px rgba(0,0,0,.45);
+    --bg:#0f1614;--surface:#17201d;--ink:#e3ece8;--muted:#93a89f;--hint:#7c8f86;--line:rgba(255,255,255,.12);--accent:#3fd0bb;--track:#212a27;
+    --bd-hi-bg:#0d3a31;--bd-hi-fg:#5fd9c4;--bd-mid-bg:#222a27;--bd-mid-fg:#93a89f;--graphite:#b6bcc0}}
+  :root[data-theme="light"]{--shadow-md:0 2px 6px rgba(40,34,24,.09),0 10px 26px rgba(40,34,24,.07);--bg:#f5f8f6;--surface:#ffffff;--ink:#15201c;--muted:#566b62;--hint:#6b7d74;--line:rgba(20,45,32,.13);--accent:#0f8a79;--track:#e7ece9;--bd-hi-bg:#d7f1ea;--bd-hi-fg:#0a6e60;--bd-mid-bg:#eef1ef;--bd-mid-fg:#566b62;--graphite:#4d5357;color-scheme:light}
+  :root[data-theme="dark"]{--shadow-md:0 2px 8px rgba(0,0,0,.6),0 12px 30px rgba(0,0,0,.45);--bg:#0f1614;--surface:#17201d;--ink:#e3ece8;--muted:#93a89f;--hint:#7c8f86;--line:rgba(255,255,255,.12);--accent:#3fd0bb;--track:#212a27;--bd-hi-bg:#0d3a31;--bd-hi-fg:#5fd9c4;--bd-mid-bg:#222a27;--bd-mid-fg:#93a89f;--graphite:#b6bcc0;color-scheme:dark}
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;line-height:1.6}
+  a{color:var(--accent)}
   .wrap{max-width:780px;margin:0 auto;padding:2rem 1.25rem 4rem}
   .instancebar{display:flex;align-items:center;justify-content:space-between;gap:0.75rem;flex-wrap:wrap;margin:0 0 1.5rem;padding:0 0 1rem;border-bottom:1px solid var(--line)}
   .instancebar .home{font-weight:800;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
@@ -31,64 +32,46 @@
   .instancebar nav a:hover{color:var(--accent);text-decoration:none}
   .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:0.5rem 1rem;border-radius:0 0 8px 0;z-index:20}
   .skip:focus{left:0}
-  .proofstrip{border-top:1px solid var(--line);margin-top:2.25rem;padding-top:1.25rem}
-  .proofnote{font-size:0.86rem;color:var(--muted);margin:0.5rem 0 0;line-height:1.55}
   h1{font-weight:550;font-size:1.75rem;letter-spacing:-.02em;margin:0.25rem 0 0.25rem}
-  .sub{color:var(--muted);margin:0 0 1.25rem;font-size:1rem}
-  .banner{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:0.75rem 1rem;margin:0 0 1.5rem;font-size:0.86rem;color:var(--muted)}
-  .banner b{color:var(--ink)} .banner a{color:var(--accent)}
-  .vh{font-size:0.75rem;font-weight:700;letter-spacing:.08em;color:var(--hint);margin:0 0 0.5rem}
-  .summary{font-size:0.86rem;color:var(--muted);margin:0 0 1.5rem;min-height:1.2em}
-  .summary b{color:var(--accent)}
-  /* value sliders */
-  #chips{display:flex;flex-direction:column;gap:0;margin-bottom:1rem}
-  .vrow{display:grid;grid-template-columns:1fr 120px 1.4rem;align-items:center;gap:0.75rem;padding:0.5rem 0;border-bottom:1px solid var(--line)}
-  .vrow:last-child{border-bottom:none}
-  .vlab{display:flex;flex-direction:column;font-size:1rem;color:var(--ink)}
-  .vlab small{font-size:0.75rem;color:var(--hint);font-weight:400}
-  .vsl{width:100%;accent-color:var(--accent);cursor:pointer}
-  .vval{text-align:right;color:var(--muted);font-size:0.86rem}
-  /* ranked rows + FLIP */
-  .row{display:flex;gap:1rem;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1rem 1.25rem;margin-bottom:0.75rem;cursor:pointer;transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .15s}
-  .row:hover{border-color:var(--accent)}
-  .rk{font-weight:700;font-size:1.35rem;color:var(--hint);min-width:1.7rem;text-align:right;line-height:1.6}
-  .main{flex:1;min-width:0}
-  .nm{font-weight:600;font-size:1.12rem}
-  .br{color:var(--hint);font-size:0.86rem;margin-left:0.25rem}
-  .why{color:var(--muted);font-size:0.86rem;margin:0.25rem 0 0.5rem}
-  .why .tier{color:var(--accent);font-weight:600} .seemore{color:var(--accent)}
-  .bars{display:flex;flex-wrap:wrap;gap:0.25rem 0.75rem}
-  .bar{display:flex;align-items:center;gap:0.25rem;font-size:0.75rem;color:var(--hint)}
-  .bandlbl{font-size:0.64rem;font-weight:700;padding:0.25rem 0.5rem;border-radius:5px;background:var(--bd-mid-bg);color:var(--bd-mid-fg)}
-  .bandlbl.bd-hi{background:var(--bd-hi-bg);color:var(--bd-hi-fg)}
-  .sc{font-weight:700;font-size:1.35rem;color:var(--ink);min-width:2.5rem;text-align:right}
-  .sc small{font-size:0.75rem;color:var(--hint);font-weight:400}
-  /* verdict / detail */
-  .back{display:inline-block;color:var(--accent);cursor:pointer;font-size:0.86rem;margin-bottom:1rem;text-decoration:none}
-  .detail{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.25rem 1.5rem}
-  .dnm{font-size:1.35rem;font-weight:700;color:var(--ink)}
-  .dverdict{display:flex;align-items:center;gap:1rem;margin:0.75rem 0 0.5rem}
-  .dsc{font-weight:700;font-size:2.4rem;color:var(--ink);line-height:1} .dsc small{font-size:0.86rem;color:var(--hint);font-weight:400}
-  .dtier{color:var(--accent);font-weight:600} .dfor{color:var(--muted);font-weight:400}
-  .dreason{border-left:3px solid var(--accent);background:var(--bd-hi-bg);border-radius:0 8px 8px 0;padding:0.75rem 0.75rem;margin:0.5rem 0 1rem;color:var(--ink);font-size:0.86rem;line-height:1.5}
-  .dbars{display:flex;flex-direction:column;gap:0.5rem}
-  .dbar{display:flex;justify-content:space-between;gap:1.25rem;font-size:0.86rem;align-items:baseline}
-  .dbl{color:var(--ink);white-space:nowrap} .dbn{color:var(--hint);text-align:right}
-  .proofgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:0.75rem;margin:0 0 1.5rem}
-  .proofgrid div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:0.75rem 1rem;color:var(--muted);font-size:0.86rem}
-  .proofgrid b{display:block;color:var(--ink);font-weight:700;font-size:1rem;margin-bottom:0.25rem}
+  h2{font-weight:550;letter-spacing:-0.01em}
+  .sub{color:var(--muted);margin:0 0 1rem;font-size:1rem;max-width:40rem}
+  .passport-row{margin:0 0 1rem;font-size:0.86rem}
+  .passport-row label{cursor:pointer;color:var(--accent)}
+  .passport-row span{color:var(--muted)}
+  .hand{font-family:"Segoe Print","Ink Free","Bradley Hand","Chalkboard SE","Marker Felt",cursive;color:var(--graphite);font-size:1rem;line-height:1.4;transform:rotate(-1.4deg);transform-origin:left top;margin:0 0 1.5rem;max-width:36ch}
+  code{background:var(--track);padding:0 0.25rem;border-radius:5px;font-size:.85em}
+
+  /* The shared decision page, drawn by app/shell.js and app/decision.js. These rules match the
+     Kosplora shelf's, so the two demos differ in colour and face and not in layout. */
+  button,input{font:inherit}button,summary,.passport-action{cursor:pointer}
+  .decision-page h2,.decision-page h3,.decision-page h4{line-height:1.2}.decision-page h2{font-size:1.35rem;margin:0.25rem 0 0.5rem}.decision-page h3{margin:0.25rem 0 0.25rem}
+  .decision-kicker{font-size:0.75rem;font-weight:700;letter-spacing:.1em;color:var(--accent)}.decision-head{padding:1rem 0 1rem}.decision-head>h2{font-size:1.75rem;margin:0.25rem 0 0.5rem}.decision-read{font-size:1.12rem;color:var(--muted);max-width:42rem;margin:0.25rem 0 0.75rem}
+  .illustrative-note{border-left:3px solid var(--accent);padding:0.5rem 0.75rem;background:var(--bd-hi-bg);color:var(--muted);font-size:0.86rem}.illustrative-note b{color:var(--ink)}
+  .instance-context,.decision-controls,.decision-answer,.decision-finetune,.decision-all,.decision-personal-fold,.review-next{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-md)}
+  .decision-floor>summary{min-height:48px;padding:0.75rem 1rem;display:flex;align-items:center;justify-content:space-between;list-style:none}.decision-floor>summary::-webkit-details-marker{display:none}.decision-floor>summary span:first-child{display:flex;flex-direction:column}.decision-floor>summary small{color:var(--muted)}.decision-floor[open]>summary{border-bottom:1px solid var(--line)}
+  .context-body{padding:1rem 1rem}.context-body h3 span{font:inherit;color:var(--hint)}.context-body p{color:var(--muted);margin:0.25rem 0}.context-body .scope-note{font-size:0.75rem;color:var(--hint)}
+  .instance-lines{display:grid;grid-template-columns:minmax(12rem,.75fr) minmax(16rem,1.25fr);gap:1rem;padding:1rem;border-top:1px solid var(--line)}.instance-lines p{color:var(--muted);font-size:0.86rem;margin:0.25rem 0}.linechips{display:grid;gap:0.5rem}.linechip{text-align:left;min-height:48px;padding:0.75rem 0.75rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}.linechip span{display:block;font-size:0.75rem;color:var(--muted)}.linechip.on{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
+  .decision-zero{color:var(--muted);font-size:0.86rem;margin:0.75rem 0 1rem}.decision-controls{padding:1rem;margin:1rem 0}.control-heading,.answer-heading,.decision-answer-top{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start}.control-heading button{min-height:44px;border:1px solid var(--line);border-radius:8px;background:var(--track);color:var(--ink);padding:0.5rem 0.75rem}
+  .decision-dial{padding:1rem 0;border-top:1px solid var(--line)}.decision-dial-head{display:flex;justify-content:space-between;gap:1rem;align-items:baseline}.decision-dial-head label{font-weight:650}.decision-dial-head output{color:var(--accent);font-size:0.86rem}.decision-dial-control{display:grid;grid-template-columns:minmax(5.5rem,1fr) minmax(10rem,2.4fr) minmax(5.5rem,1fr);align-items:center;gap:0.75rem;color:var(--muted);font-size:0.75rem}.decision-dial-control span:last-child{text-align:right}.decision-dial-control input{width:100%;accent-color:var(--accent)}.budget-note{font-size:0.75rem;color:var(--hint);margin:0.5rem 0 0}
+  .decision-finetune{margin:0 0 1rem}.decision-finetune>summary,.decision-all>summary,.decision-personal-fold>summary{min-height:48px;padding:0.75rem 1rem;display:flex;justify-content:space-between;gap:1rem;align-items:center}.decision-finetune>summary strong{font-size:0.75rem;color:var(--accent)}
+  .precedence-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:1rem;padding:1rem;border-top:1px solid var(--line)}.precedence-grid p{color:var(--muted);font-size:0.86rem}.precedence-grid ol{list-style:none;margin:0;padding:0}.precedence-grid li{display:flex;justify-content:space-between;gap:0.75rem;padding:0.5rem 0;border-bottom:1px solid var(--line);font-size:0.75rem}.precedence-grid li span{color:var(--muted);text-align:right}
+  .leaning-panel{grid-column:1/-1;border-top:1px solid var(--line);padding-top:0.75rem}.leaning-chips{display:flex;flex-wrap:wrap;gap:0.5rem}.leaning-chip,.passport-action{min-height:44px;padding:0.5rem 0.75rem;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--muted)}.leaning-chip.on{border-color:var(--accent);color:var(--ink)}.passport-action{display:inline-flex;align-items:center;margin-top:0.75rem;color:var(--accent)}
+  .answer-heading{margin:1.5rem 0 0.75rem}.answer-heading p{max-width:18rem;color:var(--muted);font-size:0.86rem;text-align:right}.decision-collapse{color:var(--muted);font-size:0.86rem}.decision-answer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:0.75rem}.decision-answer{padding:1rem}.decision-recipe{font-size:0.75rem;letter-spacing:.08em;color:var(--accent);font-weight:700}.decision-brand{color:var(--hint);font-size:0.75rem;margin:0}
+  .decision-answer-proof{margin:0.75rem 0}.proof-chip{display:inline-flex;padding:0.25rem 0.5rem;border-radius:999px;background:transparent;color:var(--muted);border:1px solid var(--line);font-size:0.75rem}.decision-answer-why{color:var(--muted);font-size:0.86rem}.decision-merge{font-size:0.75rem;color:var(--hint)}.decision-math>summary{min-height:44px;color:var(--accent);display:flex;align-items:center}.decision-math-recipe{border-top:1px solid var(--line);padding:0.75rem 0}.decision-math-recipe p{font-size:0.75rem;color:var(--muted)}.decision-math-row{display:flex;justify-content:space-between;gap:1rem;font-size:0.75rem;padding:0.25rem 0}.decision-math-total{border-top:1px solid var(--line);padding-top:0.5rem}
+  .decision-all,.decision-personal-fold{margin-top:0.75rem}.decision-all>p,.decision-personal-fold>p{padding:0 1rem;color:var(--muted);font-size:0.86rem}.rank-row,.fold-row{display:grid;grid-template-columns:auto 1fr auto;gap:0.75rem;align-items:center;padding:0.75rem 1rem;border-top:1px solid var(--line)}.rank-row h3,.fold-row h3{font:inherit;font-weight:650;margin:0}.rank-row p,.fold-row p{margin:0;color:var(--muted);font-size:0.75rem}.rank-number{color:var(--hint);font-family:ui-monospace,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums;font-size:0.86rem}.rank-row>strong{font-family:ui-monospace,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums;letter-spacing:-.01em}.rank-row>strong small{font:inherit;color:var(--hint)}.fold-row{grid-template-columns:1fr auto}.fold-row>span{color:var(--accent);font-size:0.75rem}
+  .empty-answer{padding:1rem;background:var(--surface);border:1px solid var(--line);border-radius:14px}.empty-answer p{color:var(--muted)}.review-next{margin-top:1.5rem;padding:1rem}.review-next p{color:var(--muted)}.review-next nav{display:flex;flex-wrap:wrap;gap:0.5rem 1rem}.error{color:#c0392b}.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible,.passport-action:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* What the demo proves, in the four notes the family uses under a working figure. */
+  .proofstrip{border-top:1px solid var(--line);margin-top:2.25rem;padding-top:1.25rem}
+  .proofstrip h2{font-size:1.35rem;margin:0 0 0.75rem}
+  .notes p{margin:0 0 1rem;color:var(--ink);font-size:1rem}
+  .notes .h{font-style:italic;font-weight:650}
+  .notes .dev{padding-left:1rem;border-left:2px solid var(--graphite)}
+  .notes .fur{padding-left:1rem;border-left:2px dotted var(--line)}
   footer{margin-top:2rem;color:var(--hint);font-size:0.86rem;border-top:1px solid var(--line);padding-top:1rem}
   footer a{color:var(--accent)}
-  code{background:var(--track);padding:0.25rem 0.25rem;border-radius:5px;font-size:.85em}
-  :root[data-theme="light"]{--bg:#f5f8f6;--surface:#ffffff;--ink:#15201c;--muted:#566b62;--hint:#85978e;--line:rgba(20,45,32,.11);--accent:#0f9d8a;--track:#e7ece9;--bd-hi-bg:#d7f1ea;--bd-hi-fg:#0a6e60;--bd-mid-bg:#eef1ef;--bd-mid-fg:#566b62;color-scheme:light}
-  :root[data-theme="dark"]{--bg:#0f1614;--surface:#17201d;--ink:#e3ece8;--muted:#93a89f;--hint:#7c8f86;--line:rgba(255,255,255,.12);--accent:#3fd0bb;--track:#212a27;--bd-hi-bg:#0d3a31;--bd-hi-fg:#5fd9c4;--bd-mid-bg:#222a27;--bd-mid-fg:#93a89f;color-scheme:dark}
-
-  /* depth pass */
-  /* Containers lift off the page instead of being outlined on it, so a card, a chip and
-     a panel stop announcing themselves with the same single grey pixel. */
-  .banner,.detail,.row{box-shadow:var(--shadow-md);background:var(--surface)}
-  h1{font-weight:550;letter-spacing:-0.02em}
-  h2{font-weight:550;letter-spacing:-0.01em}
+  @media(max-width:620px){.wrap{padding:1.25rem 1rem 3rem}.decision-head>h2{font-size:1.75rem}.instance-lines,.precedence-grid{grid-template-columns:1fr}.decision-dial-head,.answer-heading{display:block}.decision-dial-head output{display:block;margin-top:0.25rem}.decision-dial-control{grid-template-columns:1fr}.decision-dial-control span:last-child{text-align:left}.answer-heading p{text-align:left}.decision-answer-grid{grid-template-columns:1fr}.rank-row{grid-template-columns:auto 1fr}.rank-row>strong{grid-column:2}.instancebar{align-items:flex-start}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}</style>
 </head>
 <body>
@@ -96,41 +79,60 @@
 <div class="wrap">
   <header class="instancebar">
     <a class="home" href="../../index.html">&#9671; Values Commons</a>
-    <nav aria-label="Instance spine">
-      <a href="../index.html">Instances</a>
-      <a href="../../passport/index.html">Passport</a>
+    <nav aria-label="Other apps and tools">
+      <a href="../index.html">The apps</a>
+      <a href="../../passport/index.html">Your values</a>
       <a href="../../kosplora/index.html">Kosplora</a>
       <a href="index.html" aria-current="page">Where to Message</a>
-      <a href="../../workshop/index.html">Workshop</a>
+      <a href="../../workshop/index.html">Fact repair</a>
     </nav>
   </header>
   <main id="main" tabindex="-1">
     <h1>Where to Message</h1>
-    <p class="sub">Pick a messenger by your own values: privacy, openness, reach. Not by who advertises hardest.</p>
+    <p class="sub">Which messenger should you and your people use? Say what matters to you and the list reorders. Seven messengers, facts as of 2026, scores illustrative. Nothing here is sponsored.</p>
 
-    <h2 class="vh">What do you value in how you message? (set how much each matters, 0&ndash;5)</h2>
-    <div id="chips"></div>
-    <p class="summary" id="summary"></p>
-
-    <div class="passport-row" style="margin:-.4rem 0 1.5rem;font-size:0.86rem">
-      <label style="cursor:pointer;color:var(--accent)">&#10498; Bring your values from another instance<input type="file" id="passfile" accept="application/json,.json" hidden></label>
-      <span id="passnote" style="color:var(--muted)"></span>
+    <div class="passport-row">
+      <label>&#10498; Bring your values file from another app<input type="file" id="passfile" accept="application/json,.json" hidden></label>
+      <span id="passnote"></span>
     </div>
+    <p class="hand">Try this: move the privacy or reach slider just past the middle, toward reach. WhatsApp becomes Best for most, and Signal stays Strictest match.</p>
 
     <div id="list"></div>
 
     <section class="proofstrip" aria-labelledby="proofh">
-      <h2 class="vh" id="proofh">What this instance proves</h2>
-      <div class="proofgrid">
-        <div><b>Engine transfer</b>The unedited shared engine ranks messengers by privacy, openness, reach, and ease.</div>
-        <div><b>Passport transfer</b>Autonomy and openness can travel in from another instance without importing identity.</div>
-        <div><b>Instance pattern</b>This page is a lens, a skin, and the shared shell. Zero shell edits.</div>
+      <h2 id="proofh">What this demo proves</h2>
+      <div class="notes">
+        <p><span class="h">What's happening.</span> Seven messengers and five criteria, ranked by the same engine and drawn by the same decision page as <a href="../../app/index.html">Conscious Consuming</a> and <a href="../../kosplora/index.html">Kosplora</a>. This app owns two things: its list, <code>lens.js</code>, and the colours on this page. The shared code that draws the page was not edited to make it.</p>
+        <p><span class="h">Why it matters.</span> It tests whether the engine is general. If a list of messengers works without any change to the shared code, so can a school's reading list. Your <a href="../../passport/index.html">values file</a> works here too. Autonomy, openness, access, community and wellbeing carry over, and the other five stay home.</p>
+        <p class="dev"><span class="h">Devil's advocate.</span> I assigned these scores from public facts, and nobody has audited them. Signal leads on four of the five criteria, so anywhere on the private half of the slider the answer is Signal. That is why there is only one slider. With three sliders, no setting of any of them changed the answer. For the fuller comparison, 19 messengers with a source on every fact, use <a href="../../app/index.html#explore/messaging">the messaging category in Conscious Consuming</a>.</p>
+        <p class="fur"><span class="h">Rabbit hole.</span> Read <a href="lens.js">lens.js</a>, all of it. Then make your own list in the <a href="../new/index.html">starter builder</a>, or read the <a href="../../standard/index.html">Open Values Standard</a> both follow.</p>
       </div>
-      <p class="proofnote">Instance #3 of the <a href="../../standard/index.html">Open Values Standard</a>: the same <code>engine.js</code> and <code>shell.js</code> that run Conscious Consuming and Kosplora, with only a lens and a skin changed. Your values travel in from any instance through a <a href="../../passport/index.html">Values Passport</a>. Facts are public; scores illustrative. <a href="../new/index.html">Build one &rarr;</a></p>
     </section>
   </main>
 
   <footer id="foot"></footer>
+  <div class="fam-after"><!-- family:start -->
+<style>
+  /* sizes, spacing and case follow research/design_system_audit.js: the eight-step scale, the 0.25rem grid, no uppercase */
+  .fam{border-top:1px solid var(--line,#e3e7e5);margin-top:1.5rem;padding-top:1.25rem;grid-column:1/-1;flex-basis:100%;width:100%}
+  .fam-foot{border-top:1px solid var(--line,#e3e7e5);padding:1.25rem 0 2.5rem}
+  .fam-foot .fam,.fam-after .fam{border-top:0;margin-top:0}
+  .fam>p{margin:0 0 1rem;font-family:var(--font-mono,ui-monospace,monospace);font-size:.75rem;color:var(--hint,var(--muted,#566560))}
+  .fam-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(10.5rem,1fr));gap:1rem 1.5rem}
+  .fam-head{margin:0 0 .5rem;font-size:.86rem;font-weight:700;color:var(--ink,#18211d)}
+  .fam ul{list-style:none;margin:0;padding:0}
+  .fam li{margin:0 0 .5rem}
+  .fam a{display:block;text-decoration:none;color:inherit;border:0;box-shadow:none}
+  .fam a:hover .fam-name{text-decoration:underline}
+  .fam-name{display:block;font-size:.86rem;font-weight:600;color:var(--accent,#1d7a5a)}
+  .fam-desc{display:block;font-size:.75rem;line-height:1.4;color:var(--muted,#566560)}
+  .fam-you{display:inline-block;margin-top:.25rem;font-family:var(--font-mono,ui-monospace,monospace);font-size:.64rem;color:var(--ink,#18211d)}
+</style>
+<nav class="fam" aria-label="The Futurism Institute family">
+  <p>The Futurism Institute family</p>
+  <div class="fam-cols"><div><p class="fam-head">Start here</p><ul><li><a href="https://futurisminstitute.org"><span class="fam-name">Futurism Institute</span><span class="fam-desc">How the projects fit together</span></a></li></ul></div><div><p class="fam-head">Research</p><ul><li><a href="https://bentleymoon.com"><span class="fam-name">Bentley Moon</span><span class="fam-desc">Research record and films</span></a></li></ul></div><div><p class="fam-head">Records</p><ul><li><a href="https://bentleymoon.com/research/checking-ai/"><span class="fam-name">Checking AI</span><span class="fam-desc">When one AI can check another</span></a></li><li class="fam-here"><a href="https://valuescommons.org/app/"><span class="fam-name">Conscious Consuming</span><span class="fam-desc">Products and services, by what you care about</span><span class="fam-you">You are here</span></a></li><li><a href="https://dignityneeds.com"><span class="fam-name">Dignity Needs</span><span class="fam-desc">What every person should be able to expect</span></a></li><li><a href="https://kosplora.org"><span class="fam-name">Kosplora</span><span class="fam-desc">Learning and research tools</span></a></li><li><a href="https://legibleai.org"><span class="fam-name">Legible AI</span><span class="fam-desc">A first road into AI safety</span></a></li><li><a href="https://legibleai.org/searches/"><span class="fam-name">AI Searches</span><span class="fam-desc">A shared record of AI answers, with their sources</span></a></li></ul></div><div><p class="fam-head">Groups</p><ul><li><a href="https://socratichearth.org"><span class="fam-name">The Socratic Hearth</span><span class="fam-desc">Talk a question through, disagreements kept</span></a></li><li><a href="https://theworkparty.org"><span class="fam-name">The Work Party</span><span class="fam-desc">What a group agreed, as a file it keeps</span></a></li></ul></div><div><p class="fam-head">Places</p><ul><li><a href="https://earthenbeings.com"><span class="fam-name">Earthen Beings</span><span class="fam-desc">Communities and land projects in the Pacific Northwest</span></a></li><li><a href="https://basicdignity.com"><span class="fam-name">Basic Dignity</span><span class="fam-desc">Draft rules for whoever holds what a person needs, from a shared house to the companies that own AI.</span></a></li></ul></div></div>
+</nav>
+<!-- family:end --></div>
 </div>
 
 <!-- The shared L1 core (the math), unedited. -->

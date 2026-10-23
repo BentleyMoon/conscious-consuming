@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/rating-v0.1.schema.json",
   "title": "Open Values Rating v0.1",
-  "description": "A sparse score on one criterion, optionally represented as an expanded record.",
+  "description": "One option's score on one criterion, from 0 to 100. It is written either as a bare number, or null for unknown, or as a small record that also carries the criterion's key and the score's source.",
   "oneOf": [
     {
       "$ref": "#/$defs/scoreValue"
@@ -30,13 +30,16 @@
       "properties": {
         "key": {
           "type": "string",
-          "pattern": "^[a-z][a-z0-9_]*$"
+          "pattern": "^[a-z][a-z0-9_]*$",
+          "description": "The key of the criterion this score is for, as declared in the facts file's criteria."
         },
         "value": {
-          "$ref": "#/$defs/scoreValue"
+          "$ref": "#/$defs/scoreValue",
+          "description": "The score, from 0 to 100. null means unknown, which is not the same as 0."
         },
         "provenance": {
-          "$ref": "https://openvaluesstandard.org/schema/source-v0.1.schema.json"
+          "$ref": "https://openvaluesstandard.org/schema/source-v0.1.schema.json",
+          "description": "How the score is known: a short note, or a citation with note, source link and date."
         }
       }
     }

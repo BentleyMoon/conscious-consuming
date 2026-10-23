@@ -2,50 +2,52 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/design-token-index-v0.1.schema.json",
   "title": "Open Values Design Token Index v0.1",
-  "description": "Generated app-readable index for Open Values design-token profiles, CSS variable maps, computed contrast results, component contracts, and SVG art tokens.",
+  "description": "A generated copy of the design tokens with CSS custom properties, computed colour contrast results, and counts of how many catalogue options can be drawn as a value bloom. A build script makes it from content/design/tokens.json, at the same time writing the token values into the app stylesheet, and the design audit reads it.",
   "type": "object",
   "additionalProperties": true,
   "required": ["format", "version", "standard", "built", "purpose", "generatedFrom", "principles", "valueBloom", "valueSignatureCoverage", "cssVariableMapping", "skinReadiness", "counts", "filters", "profiles"],
   "properties": {
-    "format": { "const": "open-values-design-token-index" },
-    "version": { "type": "string", "pattern": "^0\\.1\\.0(?:[-+].*)?$" },
-    "standard": { "const": "open-values-standard" },
-    "built": { "$ref": "#/$defs/date" },
-    "purpose": { "$ref": "#/$defs/nonEmptyString" },
+    "format": { "description": "Names the file format. Always open-values-design-token-index.", "const": "open-values-design-token-index" },
+    "version": { "description": "The version of this format the file follows. Currently 0.1.0.", "type": "string", "pattern": "^0\\.1\\.0(?:[-+].*)?$" },
+    "standard": { "description": "The standard this file belongs to. Always open-values-standard.", "const": "open-values-standard" },
+    "built": { "description": "The date of the index, as YYYY-MM-DD, copied from the updated date of the tokens file.", "$ref": "#/$defs/date" },
+    "purpose": { "description": "A sentence saying what the index is for.", "$ref": "#/$defs/nonEmptyString" },
     "generatedFrom": {
+      "description": "The tokens file the index was built from, with its date and hash, so a stale index can be detected.",
       "type": "object",
       "additionalProperties": true,
       "required": ["path", "updated", "sha256"],
       "properties": {
-        "path": { "const": "content/design/tokens.json" },
-        "updated": { "$ref": "#/$defs/date" },
-        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        "path": { "description": "Path of the tokens file. Always content/design/tokens.json.", "const": "content/design/tokens.json" },
+        "updated": { "description": "The updated date of the tokens file.", "$ref": "#/$defs/date" },
+        "sha256": { "description": "The SHA-256 hash of the tokens file's text, as 64 lowercase hex characters.", "type": "string", "pattern": "^[0-9a-f]{64}$" }
       }
     },
-    "principles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-    "references": { "type": "array", "items": { "$ref": "#/$defs/reference" } },
-    "valueBloom": { "$ref": "#/$defs/valueBloom" },
-    "valueSignatureCoverage": { "$ref": "#/$defs/valueSignatureCoverage" },
-    "cssVariableMapping": { "$ref": "#/$defs/cssVariableMapping" },
-    "contrastRemediationContract": { "$ref": "#/$defs/contrastRemediationContract" },
-    "skinReadiness": { "$ref": "#/$defs/skinReadiness" },
-    "counts": { "$ref": "#/$defs/counts" },
+    "principles": { "description": "The design rules from the tokens file, copied unchanged.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "references": { "description": "The outside documents from the tokens file, copied unchanged.", "type": "array", "items": { "$ref": "#/$defs/reference" } },
+    "valueBloom": { "description": "The value bloom section from the tokens file, plus how many catalogue options can be drawn as a bloom and three example options to preview it with.", "$ref": "#/$defs/valueBloom" },
+    "valueSignatureCoverage": { "description": "The same counts as valueBloom.signatureCoverage: how many catalogue options have theme scores and stored signatures.", "$ref": "#/$defs/valueSignatureCoverage" },
+    "cssVariableMapping": { "description": "The token to CSS custom property table from the tokens file, copied unchanged.", "$ref": "#/$defs/cssVariableMapping" },
+    "contrastRemediationContract": { "description": "The contrast fix checklist from the tokens file, copied unchanged.", "$ref": "#/$defs/contrastRemediationContract" },
+    "skinReadiness": { "description": "Whether the data the app needs for each part of the skin (palette, day cycle, motion, value bloom, materiality) is in place. Ready here means the data exists, not that the app has been checked visually.", "$ref": "#/$defs/skinReadiness" },
+    "counts": { "description": "Totals across the whole index.", "$ref": "#/$defs/counts" },
     "filters": {
+      "description": "Sorted lists of the ids that appear in the index, for building filters and checks.",
       "type": "object",
       "additionalProperties": true,
       "required": ["profiles", "roles", "bloomThemes", "drawableBloomCategories", "dayCycleVariants", "motionIntents", "skinReadiness", "artKinds"],
       "properties": {
-        "profiles": { "type": "array", "items": { "$ref": "#/$defs/slug" } },
-        "roles": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "bloomThemes": { "type": "array", "items": { "$ref": "#/$defs/themeId" } },
-        "drawableBloomCategories": { "type": "array", "items": { "$ref": "#/$defs/slug" } },
-        "dayCycleVariants": { "type": "array", "items": { "$ref": "#/$defs/slug" } },
-        "motionIntents": { "type": "array", "items": { "$ref": "#/$defs/slug" } },
-        "skinReadiness": { "type": "array", "items": { "$ref": "#/$defs/skinReadinessId" } },
-        "artKinds": { "type": "array", "items": { "enum": ["svg-line", "svg-fill"] } }
+        "profiles": { "description": "Ids of every profile.", "type": "array", "items": { "$ref": "#/$defs/slug" } },
+        "roles": { "description": "Every profile role.", "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "bloomThemes": { "description": "Ids of the eight bloom themes.", "type": "array", "items": { "$ref": "#/$defs/themeId" } },
+        "drawableBloomCategories": { "description": "Ids of the decisions the bloom preview examples come from.", "type": "array", "items": { "$ref": "#/$defs/slug" } },
+        "dayCycleVariants": { "description": "Names of the day-cycle variants used by any profile.", "type": "array", "items": { "$ref": "#/$defs/slug" } },
+        "motionIntents": { "description": "Ids of the motion intents used by any profile.", "type": "array", "items": { "$ref": "#/$defs/slug" } },
+        "skinReadiness": { "description": "Ids of the skin readiness items.", "type": "array", "items": { "$ref": "#/$defs/skinReadinessId" } },
+        "artKinds": { "description": "The kinds of SVG drawing used by any profile.", "type": "array", "items": { "enum": ["svg-line", "svg-fill"] } }
       }
     },
-    "profiles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/profile" } }
+    "profiles": { "description": "Every profile from the tokens file, flattened for the app, with the CSS custom properties it produces and its computed contrast results.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/profile" } }
   },
   "$defs": {
     "nonEmptyString": { "type": "string", "minLength": 1 },
@@ -59,9 +61,9 @@
       "additionalProperties": true,
       "required": ["label", "url", "asof"],
       "properties": {
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "url": { "type": "string", "pattern": "^https?://" },
-        "asof": { "type": "string", "pattern": "^(19|20)\\d{2}$" }
+        "label": { "description": "The document's name.", "$ref": "#/$defs/nonEmptyString" },
+        "url": { "description": "The document's web address.", "type": "string", "pattern": "^https?://" },
+        "asof": { "description": "The year the document was checked, as four digits.", "type": "string", "pattern": "^(19|20)\\d{2}$" }
       }
     },
     "counts": {
@@ -69,25 +71,25 @@
       "additionalProperties": true,
       "required": ["profiles", "colorTokens", "contrastPairs", "passingContrastPairs", "failingContrastPairs", "componentContracts", "cssVariableMappings", "bloomThemes", "valueSignatures", "drawableBloomEntries", "bloomPreviewFixtures", "dayCycleVariants", "materialitySurfaces", "motionCurves", "motionIntents", "skinReadinessItems", "artTokens", "artKinds"],
       "properties": {
-        "profiles": { "$ref": "#/$defs/nonNegativeInteger" },
-        "colorTokens": { "$ref": "#/$defs/nonNegativeInteger" },
-        "contrastPairs": { "$ref": "#/$defs/nonNegativeInteger" },
-        "passingContrastPairs": { "$ref": "#/$defs/nonNegativeInteger" },
-        "failingContrastPairs": { "$ref": "#/$defs/nonNegativeInteger" },
-        "componentContracts": { "$ref": "#/$defs/nonNegativeInteger" },
-        "cssVariableMappings": { "$ref": "#/$defs/nonNegativeInteger" },
-        "contrastRemediationSteps": { "$ref": "#/$defs/nonNegativeInteger" },
-        "bloomThemes": { "$ref": "#/$defs/nonNegativeInteger" },
-        "valueSignatures": { "$ref": "#/$defs/nonNegativeInteger" },
-        "drawableBloomEntries": { "$ref": "#/$defs/nonNegativeInteger" },
-        "bloomPreviewFixtures": { "$ref": "#/$defs/nonNegativeInteger" },
-        "dayCycleVariants": { "$ref": "#/$defs/nonNegativeInteger" },
-        "materialitySurfaces": { "$ref": "#/$defs/nonNegativeInteger" },
-        "motionCurves": { "$ref": "#/$defs/nonNegativeInteger" },
-        "motionIntents": { "$ref": "#/$defs/nonNegativeInteger" },
-        "skinReadinessItems": { "$ref": "#/$defs/nonNegativeInteger" },
-        "artTokens": { "$ref": "#/$defs/nonNegativeInteger" },
-        "artKinds": { "$ref": "#/$defs/nonNegativeInteger" }
+        "profiles": { "description": "How many profiles there are.", "$ref": "#/$defs/nonNegativeInteger" },
+        "colorTokens": { "description": "How many colour tokens there are across all profiles.", "$ref": "#/$defs/nonNegativeInteger" },
+        "contrastPairs": { "description": "How many contrast pairs were checked across all profiles.", "$ref": "#/$defs/nonNegativeInteger" },
+        "passingContrastPairs": { "description": "How many of those pairs meet their minimum ratio.", "$ref": "#/$defs/nonNegativeInteger" },
+        "failingContrastPairs": { "description": "How many of those pairs fall below their minimum ratio.", "$ref": "#/$defs/nonNegativeInteger" },
+        "componentContracts": { "description": "How many component rules there are across all profiles.", "$ref": "#/$defs/nonNegativeInteger" },
+        "cssVariableMappings": { "description": "How many rows the token to CSS custom property table has.", "$ref": "#/$defs/nonNegativeInteger" },
+        "contrastRemediationSteps": { "description": "How many steps the contrast fix checklist has.", "$ref": "#/$defs/nonNegativeInteger" },
+        "bloomThemes": { "description": "How many value bloom themes there are.", "$ref": "#/$defs/nonNegativeInteger" },
+        "valueSignatures": { "description": "How many catalogue options have a stored valueSignature.", "$ref": "#/$defs/nonNegativeInteger" },
+        "drawableBloomEntries": { "description": "How many catalogue options have scores on enough themes to draw a bloom.", "$ref": "#/$defs/nonNegativeInteger" },
+        "bloomPreviewFixtures": { "description": "How many example options were picked for previewing the bloom.", "$ref": "#/$defs/nonNegativeInteger" },
+        "dayCycleVariants": { "description": "How many day-cycle variants there are across all profiles.", "$ref": "#/$defs/nonNegativeInteger" },
+        "materialitySurfaces": { "description": "How many textured surfaces there are across all profiles.", "$ref": "#/$defs/nonNegativeInteger" },
+        "motionCurves": { "description": "How many named easing curves there are across all profiles.", "$ref": "#/$defs/nonNegativeInteger" },
+        "motionIntents": { "description": "How many motion intents there are across all profiles.", "$ref": "#/$defs/nonNegativeInteger" },
+        "skinReadinessItems": { "description": "How many skin readiness items there are.", "$ref": "#/$defs/nonNegativeInteger" },
+        "artTokens": { "description": "How many SVG drawings there are across all profiles.", "$ref": "#/$defs/nonNegativeInteger" },
+        "artKinds": { "description": "How many different kinds of SVG drawing are used.", "$ref": "#/$defs/nonNegativeInteger" }
       }
     },
     "nonNegativeInteger": { "type": "integer", "minimum": 0 },
@@ -96,9 +98,9 @@
       "additionalProperties": true,
       "required": ["id", "value", "role"],
       "properties": {
-        "id": { "$ref": "#/$defs/nonEmptyString" },
-        "value": { "$ref": "#/$defs/hex" },
-        "role": { "$ref": "#/$defs/nonEmptyString" }
+        "id": { "description": "The colour's name in the profile, such as background or accent.", "$ref": "#/$defs/nonEmptyString" },
+        "value": { "description": "The colour as a six-digit hex code, such as #1D7A5A.", "$ref": "#/$defs/hex" },
+        "role": { "description": "What the colour is used for, such as primary text or focus ring.", "$ref": "#/$defs/nonEmptyString" }
       }
     },
     "colorRamp": {
@@ -116,11 +118,12 @@
       "required": ["aliases", "contrastPairs"],
       "properties": {
         "aliases": {
+          "description": "Short colour names the app's stylesheet uses, such as bg, ink and accent, each mapped to a hex colour for this mode. At least four.",
           "type": "object",
           "minProperties": 4,
           "additionalProperties": { "$ref": "#/$defs/hex" }
         },
-        "contrastPairs": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/colorModeContrastPair" } }
+        "contrastPairs": { "description": "Text and background combinations in this mode that must meet a minimum contrast. The audit computes each ratio from the alias colours.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/colorModeContrastPair" } }
       }
     },
     "colorModeContrastPair": {
@@ -128,20 +131,20 @@
       "additionalProperties": true,
       "required": ["id", "fg", "bg", "minimum"],
       "properties": {
-        "id": { "$ref": "#/$defs/slug" },
-        "fg": { "$ref": "#/$defs/nonEmptyString" },
-        "bg": { "$ref": "#/$defs/nonEmptyString" },
-        "minimum": { "type": "number", "minimum": 3 }
+        "id": { "description": "A lowercase hyphenated id for the pair, such as ink-on-bg.", "$ref": "#/$defs/slug" },
+        "fg": { "description": "The alias name of the text colour.", "$ref": "#/$defs/nonEmptyString" },
+        "bg": { "description": "The alias name of the background colour.", "$ref": "#/$defs/nonEmptyString" },
+        "minimum": { "description": "The lowest contrast ratio allowed, at least 3. WCAG asks for 4.5 for normal text and 3 for large text and interface parts.", "type": "number", "minimum": 3 }
       }
     },
     "colorModes": {
       "type": "object",
       "additionalProperties": true,
       "properties": {
-        "status": { "$ref": "#/$defs/nonEmptyString" },
-        "pilotColors": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "light": { "$ref": "#/$defs/colorMode" },
-        "dark": { "$ref": "#/$defs/colorMode" }
+        "status": { "description": "A marker for this section's stage. The audit expects h1-pilot.", "$ref": "#/$defs/nonEmptyString" },
+        "pilotColors": { "description": "The colour tokens whose light-mode values must equal the matching light aliases: background, surface, surfaceAlt, text and accent.", "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "light": { "description": "Colours and contrast checks for light mode.", "$ref": "#/$defs/colorMode" },
+        "dark": { "description": "Colours and contrast checks for dark mode.", "$ref": "#/$defs/colorMode" }
       }
     },
     "dayCycle": {
@@ -149,21 +152,22 @@
       "additionalProperties": true,
       "required": ["status", "consumer", "defaultMode", "variants", "mustNot"],
       "properties": {
-        "status": { "const": "h2-token-substrate" },
-        "consumer": { "$ref": "#/$defs/nonEmptyString" },
-        "defaultMode": { "const": "noon" },
+        "status": { "description": "A fixed marker for this section. Always h2-token-substrate.", "const": "h2-token-substrate" },
+        "consumer": { "description": "The part of the app meant to use these colours, the App H2 day-cycle skin pass.", "$ref": "#/$defs/nonEmptyString" },
+        "defaultMode": { "description": "The variant used when none is chosen. Always noon.", "const": "noon" },
         "variants": {
+          "description": "Four palettes for different times of day: dawn, noon, dusk and night. Noon matches light mode and night matches dark mode.",
           "type": "object",
           "additionalProperties": { "$ref": "#/$defs/dayCycleVariant" },
           "required": ["dawn", "noon", "dusk", "night"],
           "properties": {
-            "dawn": { "$ref": "#/$defs/dayCycleVariant" },
-            "noon": { "$ref": "#/$defs/dayCycleVariant" },
-            "dusk": { "$ref": "#/$defs/dayCycleVariant" },
-            "night": { "$ref": "#/$defs/dayCycleVariant" }
+            "dawn": { "description": "A warm palette for the start of the day.", "$ref": "#/$defs/dayCycleVariant" },
+            "noon": { "description": "The ordinary light palette. Its colours match light mode.", "$ref": "#/$defs/dayCycleVariant" },
+            "dusk": { "description": "A low-glare palette for the evening.", "$ref": "#/$defs/dayCycleVariant" },
+            "night": { "description": "The dark palette. Its colours match dark mode.", "$ref": "#/$defs/dayCycleVariant" }
           }
         },
-        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+        "mustNot": { "description": "Things the app must not do with day-cycle colours, each starting Do not.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
       }
     },
     "dayCycleVariant": {
@@ -171,14 +175,15 @@
       "additionalProperties": true,
       "required": ["label", "role", "aliases", "contrastPairs"],
       "properties": {
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "role": { "$ref": "#/$defs/nonEmptyString" },
+        "label": { "description": "The variant's display name, such as Dawn.", "$ref": "#/$defs/nonEmptyString" },
+        "role": { "description": "When and why this palette is used, in a phrase.", "$ref": "#/$defs/nonEmptyString" },
         "aliases": {
+          "description": "Short colour names the stylesheet uses, such as bg, ink and accent, each mapped to a hex colour for this variant.",
           "type": "object",
           "minProperties": 4,
           "additionalProperties": { "$ref": "#/$defs/hex" }
         },
-        "contrastPairs": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/colorModeContrastPair" } }
+        "contrastPairs": { "description": "Text and background combinations in this variant that must meet a minimum contrast.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/colorModeContrastPair" } }
       }
     },
     "signature": {
@@ -190,16 +195,16 @@
       "additionalProperties": true,
       "required": ["status", "consumer", "sourceFunction", "minimumThemesForBloom", "scoreScale", "order", "themes", "signatureVector", "signatureCoverage", "previewFixtures"],
       "properties": {
-        "status": { "const": "h4-token-substrate" },
-        "consumer": { "$ref": "#/$defs/nonEmptyString" },
-        "sourceFunction": { "$ref": "#/$defs/nonEmptyString" },
-        "minimumThemesForBloom": { "type": "integer", "minimum": 2 },
-        "scoreScale": { "$ref": "#/$defs/nonEmptyString" },
-        "order": { "type": "array", "minItems": 8, "maxItems": 8, "items": { "$ref": "#/$defs/themeId" } },
-        "themes": { "type": "array", "minItems": 8, "maxItems": 8, "items": { "$ref": "#/$defs/valueBloomTheme" } },
-        "signatureVector": { "$ref": "#/$defs/signatureVector" },
-        "signatureCoverage": { "$ref": "#/$defs/valueSignatureCoverage" },
-        "previewFixtures": { "type": "array", "minItems": 3, "items": { "$ref": "#/$defs/bloomPreviewFixture" } }
+        "status": { "description": "A fixed marker for this section. Always h4-token-substrate.", "const": "h4-token-substrate" },
+        "consumer": { "description": "The part of the app meant to draw the bloom, the App H4 values-bloom card.", "$ref": "#/$defs/nonEmptyString" },
+        "sourceFunction": { "description": "The engine function that computes the scores the bloom draws, CC.engine.signature.", "$ref": "#/$defs/nonEmptyString" },
+        "minimumThemesForBloom": { "description": "How many themes an option needs scores for before a bloom is drawn. Currently 2.", "type": "integer", "minimum": 2 },
+        "scoreScale": { "description": "How the scores are read: a 0 to 100 average per theme, with themes that have no data left out rather than set to 0.", "$ref": "#/$defs/nonEmptyString" },
+        "order": { "description": "The eight theme ids in the order their petals are drawn.", "type": "array", "minItems": 8, "maxItems": 8, "items": { "$ref": "#/$defs/themeId" } },
+        "themes": { "description": "The eight value themes, each with its petal and centre colours.", "type": "array", "minItems": 8, "maxItems": 8, "items": { "$ref": "#/$defs/valueBloomTheme" } },
+        "signatureVector": { "description": "Rules for storing an option's theme scores as a valueSignature field, if a dataset chooses to store them.", "$ref": "#/$defs/signatureVector" },
+        "signatureCoverage": { "description": "How many catalogue options have theme scores, stored signatures, and enough themes to draw a bloom.", "$ref": "#/$defs/valueSignatureCoverage" },
+        "previewFixtures": { "description": "Three catalogue options picked to preview the bloom, from different decisions where possible.", "type": "array", "minItems": 3, "items": { "$ref": "#/$defs/bloomPreviewFixture" } }
       }
     },
     "valueBloomTheme": {
@@ -207,12 +212,12 @@
       "additionalProperties": true,
       "required": ["id", "label", "universal", "petalColor", "centerColor", "role"],
       "properties": {
-        "id": { "$ref": "#/$defs/themeId" },
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "universal": { "$ref": "#/$defs/nonEmptyString" },
-        "petalColor": { "$ref": "#/$defs/hex" },
-        "centerColor": { "$ref": "#/$defs/hex" },
-        "role": { "$ref": "#/$defs/nonEmptyString" }
+        "id": { "description": "The theme's id, such as planet or privacy.", "$ref": "#/$defs/themeId" },
+        "label": { "description": "The theme's display name.", "$ref": "#/$defs/nonEmptyString" },
+        "universal": { "description": "The matching theme in the vocabulary shared across Open Values sites, such as wellbeing for health.", "$ref": "#/$defs/nonEmptyString" },
+        "petalColor": { "description": "The petal colour for this theme, as a hex code.", "$ref": "#/$defs/hex" },
+        "centerColor": { "description": "The colour of the petal's centre for this theme, as a hex code.", "$ref": "#/$defs/hex" },
+        "role": { "description": "What the theme covers, in a phrase.", "$ref": "#/$defs/nonEmptyString" }
       }
     },
     "signatureVector": {
@@ -220,12 +225,12 @@
       "additionalProperties": true,
       "required": ["status", "field", "order", "shape", "omitMissing", "mustNot"],
       "properties": {
-        "status": { "const": "optional-materialization-contract" },
-        "field": { "const": "valueSignature" },
-        "order": { "type": "array", "minItems": 8, "maxItems": 8, "items": { "$ref": "#/$defs/themeId" } },
-        "shape": { "$ref": "#/$defs/nonEmptyString" },
-        "omitMissing": { "const": true },
-        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+        "status": { "description": "A fixed marker saying storing the vector is optional. Always optional-materialization-contract.", "const": "optional-materialization-contract" },
+        "field": { "description": "The name of the field that holds the scores on an option. Always valueSignature.", "const": "valueSignature" },
+        "order": { "description": "The eight theme ids in order. Must match the bloom order.", "type": "array", "minItems": 8, "maxItems": 8, "items": { "$ref": "#/$defs/themeId" } },
+        "shape": { "description": "A sentence describing how the stored object is laid out.", "$ref": "#/$defs/nonEmptyString" },
+        "omitMissing": { "description": "Always true: a theme with no data is left out of the object, never stored as 0.", "const": true },
+        "mustNot": { "description": "Things a dataset must not do when storing scores, each starting Do not.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
       }
     },
     "valueSignatureCoverage": {
@@ -233,15 +238,16 @@
       "additionalProperties": true,
       "required": ["categories", "entries", "scoredEntries", "signedEntries", "drawableEntries", "missingSignatureEntries", "staleSignatureEntries", "minimumThemesForBloom", "themeCounts"],
       "properties": {
-        "categories": { "$ref": "#/$defs/nonNegativeInteger" },
-        "entries": { "$ref": "#/$defs/nonNegativeInteger" },
-        "scoredEntries": { "$ref": "#/$defs/nonNegativeInteger" },
-        "signedEntries": { "$ref": "#/$defs/nonNegativeInteger" },
-        "drawableEntries": { "$ref": "#/$defs/nonNegativeInteger" },
-        "missingSignatureEntries": { "$ref": "#/$defs/nonNegativeInteger" },
-        "staleSignatureEntries": { "$ref": "#/$defs/nonNegativeInteger" },
-        "minimumThemesForBloom": { "type": "integer", "minimum": 2 },
+        "categories": { "description": "How many decision datasets were read.", "$ref": "#/$defs/nonNegativeInteger" },
+        "entries": { "description": "How many options those datasets hold.", "$ref": "#/$defs/nonNegativeInteger" },
+        "scoredEntries": { "description": "How many options have a score on at least one theme.", "$ref": "#/$defs/nonNegativeInteger" },
+        "signedEntries": { "description": "How many scored options have a stored valueSignature field.", "$ref": "#/$defs/nonNegativeInteger" },
+        "drawableEntries": { "description": "How many options have scores on at least minimumThemesForBloom themes, enough to draw a bloom.", "$ref": "#/$defs/nonNegativeInteger" },
+        "missingSignatureEntries": { "description": "How many scored options have no stored valueSignature.", "$ref": "#/$defs/nonNegativeInteger" },
+        "staleSignatureEntries": { "description": "How many scored options have a stored valueSignature that differs from what the engine computes now, including missing ones.", "$ref": "#/$defs/nonNegativeInteger" },
+        "minimumThemesForBloom": { "description": "How many themes an option needs scores for before a bloom is drawn.", "type": "integer", "minimum": 2 },
         "themeCounts": {
+          "description": "For each theme id, how many options have a score on that theme. Themes no option has are left out.",
           "type": "object",
           "additionalProperties": { "$ref": "#/$defs/nonNegativeInteger" }
         }
@@ -252,12 +258,12 @@
       "additionalProperties": true,
       "required": ["category", "code", "name", "route", "themeCount", "signature"],
       "properties": {
-        "category": { "$ref": "#/$defs/slug" },
-        "code": { "$ref": "#/$defs/nonEmptyString" },
-        "name": { "$ref": "#/$defs/nonEmptyString" },
-        "route": { "type": "string", "pattern": "^#card/" },
-        "themeCount": { "type": "integer", "minimum": 2 },
-        "signature": { "$ref": "#/$defs/signature" }
+        "category": { "description": "The id of the decision the option comes from.", "$ref": "#/$defs/slug" },
+        "code": { "description": "The option's code in that decision.", "$ref": "#/$defs/nonEmptyString" },
+        "name": { "description": "The option's name.", "$ref": "#/$defs/nonEmptyString" },
+        "route": { "description": "The in-app address of the option's card, starting with #card/.", "type": "string", "pattern": "^#card/" },
+        "themeCount": { "description": "How many themes the option has scores on.", "type": "integer", "minimum": 2 },
+        "signature": { "description": "The option's score on each theme it has data for, 0 to 100, keyed by theme id.", "$ref": "#/$defs/signature" }
       }
     },
     "typographyToken": {
@@ -265,9 +271,9 @@
       "additionalProperties": true,
       "required": ["family", "size", "lineHeight"],
       "properties": {
-        "family": { "$ref": "#/$defs/nonEmptyString" },
-        "size": { "$ref": "#/$defs/length" },
-        "lineHeight": { "type": "number", "minimum": 1, "maximum": 2 }
+        "family": { "description": "The CSS font-family list for this text style.", "$ref": "#/$defs/nonEmptyString" },
+        "size": { "description": "The font size, in rem or px.", "$ref": "#/$defs/length" },
+        "lineHeight": { "description": "The line height as a multiple of the font size.", "type": "number", "minimum": 1, "maximum": 2 }
       }
     },
     "contrastResult": {
@@ -275,15 +281,15 @@
       "additionalProperties": true,
       "required": ["id", "fg", "bg", "purpose", "foreground", "background", "minimum", "ratio", "pass"],
       "properties": {
-        "id": { "$ref": "#/$defs/slug" },
-        "fg": { "$ref": "#/$defs/nonEmptyString" },
-        "bg": { "$ref": "#/$defs/nonEmptyString" },
-        "purpose": { "$ref": "#/$defs/nonEmptyString" },
-        "foreground": { "$ref": "#/$defs/hex" },
-        "background": { "$ref": "#/$defs/hex" },
-        "minimum": { "type": "number", "minimum": 3 },
-        "ratio": { "type": "number", "minimum": 1 },
-        "pass": { "type": "boolean" }
+        "id": { "description": "The pair's id from the tokens file.", "$ref": "#/$defs/slug" },
+        "fg": { "description": "The name of the text colour token.", "$ref": "#/$defs/nonEmptyString" },
+        "bg": { "description": "The name of the background colour token.", "$ref": "#/$defs/nonEmptyString" },
+        "purpose": { "description": "What the pair is used for, such as normal-text.", "$ref": "#/$defs/nonEmptyString" },
+        "foreground": { "description": "The text colour's hex value.", "$ref": "#/$defs/hex" },
+        "background": { "description": "The background colour's hex value.", "$ref": "#/$defs/hex" },
+        "minimum": { "description": "The lowest contrast ratio allowed for this pair.", "type": "number", "minimum": 3 },
+        "ratio": { "description": "The contrast ratio computed from the two colours, rounded to two decimals.", "type": "number", "minimum": 1 },
+        "pass": { "description": "True when the ratio meets the minimum.", "type": "boolean" }
       }
     },
     "motion": {
@@ -291,26 +297,28 @@
       "additionalProperties": true,
       "required": ["durationFast", "durationBase", "durationSlow", "durationRerank", "easing", "reducedMotion", "maxMovingElements", "mustNot"],
       "properties": {
-        "status": { "const": "h3-token-substrate" },
-        "consumer": { "$ref": "#/$defs/nonEmptyString" },
-        "durationFast": { "type": "integer", "minimum": 0, "maximum": 150 },
-        "durationBase": { "type": "integer", "minimum": 0, "maximum": 150 },
-        "durationSlow": { "type": "integer", "minimum": 0, "maximum": 150 },
-        "durationRerank": { "type": "integer", "minimum": 200, "maximum": 500 },
-        "easing": { "$ref": "#/$defs/nonEmptyString" },
-        "reducedMotion": { "$ref": "#/$defs/nonEmptyString" },
-        "maxMovingElements": { "type": "integer", "minimum": 0, "maximum": 16 },
+        "status": { "description": "A fixed marker for this section. Always h3-token-substrate.", "const": "h3-token-substrate" },
+        "consumer": { "description": "The part of the app meant to use these motion rules, the App H3 motion skin pass.", "$ref": "#/$defs/nonEmptyString" },
+        "durationFast": { "description": "The shortest animation length, in milliseconds, 0 to 150.", "type": "integer", "minimum": 0, "maximum": 150 },
+        "durationBase": { "description": "The ordinary animation length, in milliseconds, 0 to 150. Not shorter than durationFast.", "type": "integer", "minimum": 0, "maximum": 150 },
+        "durationSlow": { "description": "The longest ordinary animation length, in milliseconds, 0 to 150. Not shorter than durationBase.", "type": "integer", "minimum": 0, "maximum": 150 },
+        "durationRerank": { "description": "How long the animation takes when a ranked list reorders, in milliseconds, 200 to 500. It is the one longer duration allowed.", "type": "integer", "minimum": 200, "maximum": 500 },
+        "easing": { "description": "The default CSS easing curve.", "$ref": "#/$defs/nonEmptyString" },
+        "reducedMotion": { "description": "What happens when the reader has asked their device for reduced motion, such as opacity-or-instant.", "$ref": "#/$defs/nonEmptyString" },
+        "maxMovingElements": { "description": "The most elements allowed to move at once, up to 16.", "type": "integer", "minimum": 0, "maximum": 16 },
         "curves": {
+          "description": "Named CSS easing curves, such as breathe and settle, each a cubic-bezier value.",
           "type": "object",
           "additionalProperties": { "$ref": "#/$defs/nonEmptyString" }
         },
         "settleDurations": {
+          "description": "Named animation lengths in milliseconds, such as micro, hover, reveal, rerank and bloom, in rising order.",
           "type": "object",
           "additionalProperties": { "type": "integer", "minimum": 0, "maximum": 600 }
         },
-        "intents": { "type": "array", "items": { "$ref": "#/$defs/motionIntent" } },
-        "reducedMotionPolicy": { "$ref": "#/$defs/reducedMotionPolicy" },
-        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+        "intents": { "description": "The kinds of motion the app may use, such as hover feedback, each with its limits.", "type": "array", "items": { "$ref": "#/$defs/motionIntent" } },
+        "reducedMotionPolicy": { "description": "What motion is still allowed when the reader asks for reduced motion.", "$ref": "#/$defs/reducedMotionPolicy" },
+        "mustNot": { "description": "Things the app must not do with motion, such as animating rankings to create urgency.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
       }
     },
     "motionIntent": {
@@ -318,13 +326,13 @@
       "additionalProperties": true,
       "required": ["id", "duration", "curve", "maxDistancePx", "allowedProperties", "mustNot"],
       "properties": {
-        "id": { "$ref": "#/$defs/slug" },
-        "duration": { "$ref": "#/$defs/nonEmptyString" },
-        "curve": { "$ref": "#/$defs/nonEmptyString" },
-        "maxDistancePx": { "type": "integer", "minimum": 0, "maximum": 24 },
-        "maxMovingElements": { "type": "integer", "minimum": 0, "maximum": 16 },
-        "allowedProperties": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+        "id": { "description": "A lowercase hyphenated id for the kind of motion, such as hover-feedback.", "$ref": "#/$defs/slug" },
+        "duration": { "description": "The name of the duration to use, a key in settleDurations.", "$ref": "#/$defs/nonEmptyString" },
+        "curve": { "description": "The name of the easing curve to use, a key in curves.", "$ref": "#/$defs/nonEmptyString" },
+        "maxDistancePx": { "description": "The furthest an element may move, in pixels, 0 to 24.", "type": "integer", "minimum": 0, "maximum": 24 },
+        "maxMovingElements": { "description": "The most elements allowed to move at once for this kind of motion. Not more than the profile's maxMovingElements.", "type": "integer", "minimum": 0, "maximum": 16 },
+        "allowedProperties": { "description": "The CSS properties this motion may animate, such as opacity or color.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "mustNot": { "description": "Things this kind of motion must not do.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
       }
     },
     "reducedMotionPolicy": {
@@ -332,9 +340,9 @@
       "additionalProperties": true,
       "required": ["mode", "allowedProperties", "mustNot"],
       "properties": {
-        "mode": { "$ref": "#/$defs/nonEmptyString" },
-        "allowedProperties": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+        "mode": { "description": "The reduced-motion approach. Must match the motion section's reducedMotion value.", "$ref": "#/$defs/nonEmptyString" },
+        "allowedProperties": { "description": "The CSS properties that may still change under reduced motion. Transform is not allowed.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "mustNot": { "description": "Things the app must not do under reduced motion, such as removing information.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
       }
     },
     "materiality": {
@@ -342,11 +350,11 @@
       "additionalProperties": true,
       "required": ["status", "consumer", "paperGrain", "shadow", "surfaces"],
       "properties": {
-        "status": { "const": "h5-token-substrate" },
-        "consumer": { "$ref": "#/$defs/nonEmptyString" },
-        "paperGrain": { "$ref": "#/$defs/paperGrain" },
-        "shadow": { "$ref": "#/$defs/materialShadow" },
-        "surfaces": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/materialSurface" } }
+        "status": { "description": "A fixed marker for this section. Always h5-token-substrate.", "const": "h5-token-substrate" },
+        "consumer": { "description": "The part of the app meant to use these surface rules, the App H5 materiality skin pass.", "$ref": "#/$defs/nonEmptyString" },
+        "paperGrain": { "description": "Settings for the faint paper texture on page surfaces.", "$ref": "#/$defs/paperGrain" },
+        "shadow": { "description": "Rules for shadows on raised surfaces.", "$ref": "#/$defs/materialShadow" },
+        "surfaces": { "description": "The surfaces that carry the paper texture, each tied to a colour token.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/materialSurface" } }
       }
     },
     "paperGrain": {
@@ -354,11 +362,11 @@
       "additionalProperties": true,
       "required": ["opacity", "scalePx", "contrastLimit", "tokens", "mustNot"],
       "properties": {
-        "opacity": { "type": "number", "exclusiveMinimum": 0, "maximum": 0.08 },
-        "scalePx": { "type": "integer", "minimum": 96, "maximum": 320 },
-        "contrastLimit": { "type": "number", "exclusiveMinimum": 0, "maximum": 0.1 },
-        "tokens": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+        "opacity": { "description": "How visible the texture is, above 0 and at most 0.08.", "type": "number", "exclusiveMinimum": 0, "maximum": 0.08 },
+        "scalePx": { "description": "The size of the texture tile in pixels, 96 to 320.", "type": "integer", "minimum": 96, "maximum": 320 },
+        "contrastLimit": { "description": "The most the texture may change contrast, above 0 and at most 0.1.", "type": "number", "exclusiveMinimum": 0, "maximum": 0.1 },
+        "tokens": { "description": "Names of the colour tokens the texture may sit on, such as background and surface.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "mustNot": { "description": "Things the texture must not do, such as hiding low contrast or animating.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
       }
     },
     "materialShadow": {
@@ -366,10 +374,10 @@
       "additionalProperties": true,
       "required": ["style", "source", "maxLevels", "mustNot"],
       "properties": {
-        "style": { "const": "warm-soft" },
-        "source": { "const": "tokens.elevation" },
-        "maxLevels": { "type": "integer", "minimum": 1, "maximum": 2 },
-        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+        "style": { "description": "The shadow style. Always warm-soft.", "const": "warm-soft" },
+        "source": { "description": "Where the shadow values come from. Always tokens.elevation.", "const": "tokens.elevation" },
+        "maxLevels": { "description": "How many shadow levels may be used, 1 or 2.", "type": "integer", "minimum": 1, "maximum": 2 },
+        "mustNot": { "description": "Things shadows must not do, such as serving as the only focus indicator.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
       }
     },
     "materialSurface": {
@@ -377,10 +385,10 @@
       "additionalProperties": true,
       "required": ["id", "token", "grain", "role"],
       "properties": {
-        "id": { "$ref": "#/$defs/slug" },
-        "token": { "$ref": "#/$defs/nonEmptyString" },
-        "grain": { "const": "paperGrain" },
-        "role": { "$ref": "#/$defs/nonEmptyString" }
+        "id": { "description": "A lowercase hyphenated id for the surface, such as page-paper.", "$ref": "#/$defs/slug" },
+        "token": { "description": "The name of the colour token for this surface. It must exist in the profile's colours.", "$ref": "#/$defs/nonEmptyString" },
+        "grain": { "description": "The texture used. Always paperGrain.", "const": "paperGrain" },
+        "role": { "description": "Where the surface is used, in a phrase.", "$ref": "#/$defs/nonEmptyString" }
       }
     },
     "componentContract": {
@@ -388,10 +396,10 @@
       "additionalProperties": true,
       "required": ["id", "tokens", "mustExpress", "mustNot"],
       "properties": {
-        "id": { "$ref": "#/$defs/slug" },
-        "tokens": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "mustExpress": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+        "id": { "description": "A lowercase hyphenated id for the component, such as ranked-card.", "$ref": "#/$defs/slug" },
+        "tokens": { "description": "Names of the colour tokens the component uses.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "mustExpress": { "description": "What the component must show, such as the fit tier or source access.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "mustNot": { "description": "What the component must not do or look like, such as look sponsored.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
       }
     },
     "cssVariableMapping": {
@@ -399,11 +407,11 @@
       "additionalProperties": true,
       "required": ["status", "consumer", "sourceProfile", "note", "rows"],
       "properties": {
-        "status": { "const": "i3-review-table" },
-        "consumer": { "$ref": "#/$defs/nonEmptyString" },
-        "sourceProfile": { "$ref": "#/$defs/nonEmptyString" },
-        "note": { "$ref": "#/$defs/nonEmptyString" },
-        "rows": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/cssVariableMappingRow" } }
+        "status": { "description": "A fixed marker for this table. Always i3-review-table.", "const": "i3-review-table" },
+        "consumer": { "description": "The part of the app meant to apply the mapping.", "$ref": "#/$defs/nonEmptyString" },
+        "sourceProfile": { "description": "The id of the profile whose tokens the table maps, such as quiet-commons.", "$ref": "#/$defs/nonEmptyString" },
+        "note": { "description": "A sentence on who owns which side of the mapping.", "$ref": "#/$defs/nonEmptyString" },
+        "rows": { "description": "One row per CSS custom property.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/cssVariableMappingRow" } }
       }
     },
     "cssVariableMappingRow": {
@@ -411,9 +419,9 @@
       "additionalProperties": true,
       "required": ["token", "cssVariable", "role"],
       "properties": {
-        "token": { "$ref": "#/$defs/nonEmptyString" },
-        "cssVariable": { "type": "string", "pattern": "^--[a-z0-9-]+$" },
-        "role": { "$ref": "#/$defs/nonEmptyString" }
+        "token": { "description": "The token's path in the profile, with dots, such as color.background.", "$ref": "#/$defs/nonEmptyString" },
+        "cssVariable": { "description": "The CSS custom property the token sets, such as --bg.", "type": "string", "pattern": "^--[a-z0-9-]+$" },
+        "role": { "description": "What the property is used for, in a phrase.", "$ref": "#/$defs/nonEmptyString" }
       }
     },
     "contrastRemediationContract": {
@@ -421,14 +429,14 @@
       "additionalProperties": true,
       "required": ["status", "consumer", "sourceAudit", "appOwnedFile", "rule", "steps", "sharedEvidenceRequired", "coverage"],
       "properties": {
-        "status": { "const": "h9-app-owned-remediation" },
-        "consumer": { "$ref": "#/$defs/nonEmptyString" },
-        "sourceAudit": { "const": "research/contrast_audit.js" },
-        "appOwnedFile": { "const": "app/styles.css" },
-        "rule": { "$ref": "#/$defs/nonEmptyString" },
-        "steps": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/contrastRemediationStep" } },
-        "sharedEvidenceRequired": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "coverage": { "type": "object", "minProperties": 1 }
+        "status": { "description": "A fixed marker for this checklist. Always h9-app-owned-remediation.", "const": "h9-app-owned-remediation" },
+        "consumer": { "description": "The part of the app meant to make the fixes, the App H9 contrast cleanup.", "$ref": "#/$defs/nonEmptyString" },
+        "sourceAudit": { "description": "The audit that finds the contrast failures. Always research/contrast_audit.js.", "const": "research/contrast_audit.js" },
+        "appOwnedFile": { "description": "The file where the fixes are made. Always app/styles.css.", "const": "app/styles.css" },
+        "rule": { "description": "A sentence saying the tokens file supplies tokens and warnings and the app makes the CSS change.", "$ref": "#/$defs/nonEmptyString" },
+        "steps": { "description": "One step per contrast failure.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/contrastRemediationStep" } },
+        "sharedEvidenceRequired": { "description": "Checks to run after the fixes, such as running the contrast audit.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "coverage": { "description": "Totals for the checklist: warnings, steps, the CSS variable that must be added (--accent-text), and flags saying the fix is made in the app (appOwned true) and cannot be made in the data alone (dataOnlyFix false).", "type": "object", "minProperties": 1 }
       }
     },
     "contrastRemediationStep": {
@@ -436,18 +444,18 @@
       "additionalProperties": true,
       "required": ["id", "label", "warning", "theme", "foreground", "background", "ratio", "minimum", "targetCssVariables", "tokenSource", "appOwnedEvidence", "mustNot"],
       "properties": {
-        "id": { "$ref": "#/$defs/slug" },
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "warning": { "$ref": "#/$defs/nonEmptyString" },
-        "theme": { "enum": ["light", "dark"] },
-        "foreground": { "$ref": "#/$defs/nonEmptyString" },
-        "background": { "$ref": "#/$defs/nonEmptyString" },
-        "ratio": { "type": "number", "minimum": 1 },
-        "minimum": { "type": "number", "minimum": 3 },
-        "targetCssVariables": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^--[a-z0-9-]+$" } },
-        "tokenSource": { "$ref": "#/$defs/nonEmptyString" },
-        "appOwnedEvidence": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+        "id": { "description": "A lowercase hyphenated id for the step.", "$ref": "#/$defs/slug" },
+        "label": { "description": "What to do, in a short phrase.", "$ref": "#/$defs/nonEmptyString" },
+        "warning": { "description": "The contrast failure the audit reported, with the measured ratio.", "$ref": "#/$defs/nonEmptyString" },
+        "theme": { "description": "Which theme the failure is in: light or dark.", "enum": ["light", "dark"] },
+        "foreground": { "description": "The text colour that fails, as a hex code or CSS variable.", "$ref": "#/$defs/nonEmptyString" },
+        "background": { "description": "The background it fails on, as a hex code or CSS variable.", "$ref": "#/$defs/nonEmptyString" },
+        "ratio": { "description": "The measured contrast ratio.", "type": "number", "minimum": 1 },
+        "minimum": { "description": "The ratio it must reach. Currently 4.5 for every step.", "type": "number", "minimum": 3 },
+        "targetCssVariables": { "description": "The CSS custom properties the fix should use or change.", "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^--[a-z0-9-]+$" } },
+        "tokenSource": { "description": "The design token that supplies the fixed colour, such as color.accentText.", "$ref": "#/$defs/nonEmptyString" },
+        "appOwnedEvidence": { "description": "What the app must show once the step is done.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "mustNot": { "description": "Ways the fix must not be made.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
       }
     },
     "skinReadinessId": {
@@ -458,15 +466,15 @@
       "additionalProperties": true,
       "required": ["status", "consumer", "sourceProfile", "generatedFrom", "dataOnlyDrain", "appOwnedNext", "items", "coverage", "mustNot"],
       "properties": {
-        "status": { "enum": ["substrate-ready", "blocked"] },
-        "consumer": { "$ref": "#/$defs/nonEmptyString" },
-        "sourceProfile": { "$ref": "#/$defs/nonEmptyString" },
-        "generatedFrom": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "dataOnlyDrain": { "const": false },
-        "appOwnedNext": { "$ref": "#/$defs/nonEmptyString" },
-        "items": { "type": "array", "minItems": 5, "items": { "$ref": "#/$defs/skinReadinessItem" } },
-        "coverage": { "$ref": "#/$defs/skinReadinessCoverage" },
-        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+        "status": { "description": "substrate-ready when every item is ready, blocked otherwise.", "enum": ["substrate-ready", "blocked"] },
+        "consumer": { "description": "The part of the app meant to use the skin.", "$ref": "#/$defs/nonEmptyString" },
+        "sourceProfile": { "description": "The id of the profile checked, such as quiet-commons.", "$ref": "#/$defs/nonEmptyString" },
+        "generatedFrom": { "description": "The files the check read: the tokens file and the valueSignature fields in the app datasets.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "dataOnlyDrain": { "description": "Always false: the data being ready does not finish the work, because the app still has to use it.", "const": false },
+        "appOwnedNext": { "description": "What the app has to do next, in a sentence.", "$ref": "#/$defs/nonEmptyString" },
+        "items": { "description": "One item per part of the skin.", "type": "array", "minItems": 5, "items": { "$ref": "#/$defs/skinReadinessItem" } },
+        "coverage": { "description": "How many items there are, how many are ready and how many are blocked.", "$ref": "#/$defs/skinReadinessCoverage" },
+        "mustNot": { "description": "Ways the readiness result must not be used, each starting Do not.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
       }
     },
     "skinReadinessItem": {
@@ -474,13 +482,13 @@
       "additionalProperties": true,
       "required": ["id", "label", "status", "consumer", "paths", "evidence", "appOwnedNext"],
       "properties": {
-        "id": { "$ref": "#/$defs/skinReadinessId" },
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "status": { "enum": ["ready", "blocked"] },
-        "consumer": { "$ref": "#/$defs/nonEmptyString" },
-        "paths": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "evidence": { "type": "object" },
-        "appOwnedNext": { "$ref": "#/$defs/nonEmptyString" }
+        "id": { "description": "The item's id, such as h3-motion.", "$ref": "#/$defs/skinReadinessId" },
+        "label": { "description": "The item's display name.", "$ref": "#/$defs/nonEmptyString" },
+        "status": { "description": "ready when the data the item needs is in place, blocked otherwise.", "enum": ["ready", "blocked"] },
+        "consumer": { "description": "The part of the app meant to use this item.", "$ref": "#/$defs/nonEmptyString" },
+        "paths": { "description": "Where in the index the item's data lives, as dotted paths.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "evidence": { "description": "The facts the ready check looked at for this item, such as which CSS custom properties exist and, for the bloom, how many options are signed or stale.", "type": "object" },
+        "appOwnedNext": { "description": "What the app has to do next for this item, in a sentence.", "$ref": "#/$defs/nonEmptyString" }
       }
     },
     "skinReadinessCoverage": {
@@ -488,10 +496,10 @@
       "additionalProperties": true,
       "required": ["required", "ready", "blocked", "substrateOnly"],
       "properties": {
-        "required": { "$ref": "#/$defs/nonNegativeInteger" },
-        "ready": { "$ref": "#/$defs/nonNegativeInteger" },
-        "blocked": { "$ref": "#/$defs/nonNegativeInteger" },
-        "substrateOnly": { "const": true }
+        "required": { "description": "How many items there are.", "$ref": "#/$defs/nonNegativeInteger" },
+        "ready": { "description": "How many items are ready.", "$ref": "#/$defs/nonNegativeInteger" },
+        "blocked": { "description": "How many items are blocked.", "$ref": "#/$defs/nonNegativeInteger" },
+        "substrateOnly": { "description": "Always true: the check covers the data only, not how the running app looks.", "const": true }
       }
     },
     "artToken": {
@@ -499,13 +507,13 @@
       "additionalProperties": true,
       "required": ["id", "kind", "viewBox", "stroke", "fill", "path", "usage"],
       "properties": {
-        "id": { "$ref": "#/$defs/slug" },
-        "kind": { "enum": ["svg-line", "svg-fill"] },
-        "viewBox": { "$ref": "#/$defs/nonEmptyString" },
-        "stroke": { "$ref": "#/$defs/nonEmptyString" },
-        "fill": { "$ref": "#/$defs/nonEmptyString" },
-        "path": { "$ref": "#/$defs/nonEmptyString" },
-        "usage": { "$ref": "#/$defs/nonEmptyString" }
+        "id": { "description": "A lowercase hyphenated id for the drawing.", "$ref": "#/$defs/slug" },
+        "kind": { "description": "svg-line for a stroked line drawing, svg-fill for a filled shape.", "enum": ["svg-line", "svg-fill"] },
+        "viewBox": { "description": "The SVG viewBox, as four numbers.", "$ref": "#/$defs/nonEmptyString" },
+        "stroke": { "description": "The colour token used for the line, or none.", "$ref": "#/$defs/nonEmptyString" },
+        "fill": { "description": "The colour token used for the fill, or none.", "$ref": "#/$defs/nonEmptyString" },
+        "path": { "description": "The SVG path data, starting with M.", "$ref": "#/$defs/nonEmptyString" },
+        "usage": { "description": "Where the drawing may be used, in a phrase.", "$ref": "#/$defs/nonEmptyString" }
       }
     },
     "profile": {
@@ -513,43 +521,48 @@
       "additionalProperties": true,
       "required": ["id", "label", "role", "status", "summary", "cssVariables", "colorTokens", "colorRamps", "colorModes", "typography", "space", "radius", "motion", "elevation", "contrast", "contrastSummary", "componentContracts", "artTokens"],
       "properties": {
-        "id": { "$ref": "#/$defs/slug" },
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "role": { "$ref": "#/$defs/nonEmptyString" },
-        "status": { "enum": ["format-seed", "active", "archived"] },
-        "summary": { "$ref": "#/$defs/nonEmptyString" },
+        "id": { "description": "A lowercase hyphenated id for the profile, such as quiet-commons.", "$ref": "#/$defs/slug" },
+        "label": { "description": "The profile's display name.", "$ref": "#/$defs/nonEmptyString" },
+        "role": { "description": "Which site or use the profile is for, as a short id.", "$ref": "#/$defs/nonEmptyString" },
+        "status": { "description": "How far along the profile is: format-seed (an example to build from), active, or archived.", "enum": ["format-seed", "active", "archived"] },
+        "summary": { "description": "A sentence describing the look.", "$ref": "#/$defs/nonEmptyString" },
         "cssVariables": {
+          "description": "CSS custom properties generated from the profile's colours, spacing, corners, shadows, type and motion, named --ov- then the profile id, then the token, each mapped to its value.",
           "type": "object",
           "additionalProperties": { "$ref": "#/$defs/nonEmptyString" }
         },
-        "colorTokens": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/colorToken" } },
-        "colorRamps": { "$ref": "#/$defs/colorRamps" },
-        "colorModes": { "$ref": "#/$defs/colorModes" },
-        "dayCycle": { "$ref": "#/$defs/dayCycle" },
+        "colorTokens": { "description": "The profile's colours as a list, each with its name, hex value and role.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/colorToken" } },
+        "colorRamps": { "description": "Families of related shades, copied from the tokens file.", "$ref": "#/$defs/colorRamps" },
+        "colorModes": { "description": "Light and dark mode colours, copied from the tokens file.", "$ref": "#/$defs/colorModes" },
+        "dayCycle": { "description": "Palettes for dawn, noon, dusk and night, copied from the tokens file when the profile has them.", "$ref": "#/$defs/dayCycle" },
         "typography": {
+          "description": "Text styles, copied from the tokens file.",
           "type": "object",
           "additionalProperties": { "$ref": "#/$defs/typographyToken" }
         },
         "space": {
+          "description": "Named spacing sizes, copied from the tokens file.",
           "type": "object",
           "additionalProperties": { "$ref": "#/$defs/length" }
         },
         "radius": {
+          "description": "Named corner radii, copied from the tokens file.",
           "type": "object",
           "additionalProperties": { "$ref": "#/$defs/length" }
         },
-        "motion": { "$ref": "#/$defs/motion" },
+        "motion": { "description": "Animation lengths, curves and limits, copied from the tokens file.", "$ref": "#/$defs/motion" },
         "elevation": {
+          "description": "One or two shadow levels, copied from the tokens file.",
           "type": "object",
           "minProperties": 1,
           "maxProperties": 2,
           "additionalProperties": { "$ref": "#/$defs/nonEmptyString" }
         },
-        "materiality": { "$ref": "#/$defs/materiality" },
-        "contrast": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/contrastResult" } },
-        "contrastSummary": { "type": "object" },
-        "componentContracts": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/componentContract" } },
-        "artTokens": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/artToken" } }
+        "materiality": { "description": "Paper texture and shadow rules, copied from the tokens file when the profile has them.", "$ref": "#/$defs/materiality" },
+        "contrast": { "description": "The result of checking every contrast pair in the profile.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/contrastResult" } },
+        "contrastSummary": { "description": "Totals for the contrast results: pairs, pass, fail, and minimumRatio, the lowest ratio found.", "type": "object" },
+        "componentContracts": { "description": "Rules for what key components must and must not show, copied from the tokens file.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/componentContract" } },
+        "artTokens": { "description": "Small SVG drawings, copied from the tokens file.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/artToken" } }
       }
     }
   }

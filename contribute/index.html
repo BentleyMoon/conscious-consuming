@@ -5,7 +5,7 @@
 <script>try{var t=localStorage.getItem('cc.theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Help improve Values Commons</title>
-<meta name="description" content="Useful ways to help Values Commons: correct a sourced fact, add a missing option, map ownership, scope a new app, or support the public-interest path.">
+<meta name="description" content="How to correct a fact in Values Commons with its source, or plan a new subject area. No account, nothing sponsored.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#1d7a5a">
 <link rel="icon" href="/app/icon.svg" type="image/svg+xml"><link rel="alternate icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64"><link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
@@ -14,196 +14,274 @@
 <meta property="og:url" content="https://valuescommons.org/contribute/">
 <meta property="og:site_name" content="Values Commons">
 <meta property="og:title" content="Help improve Values Commons">
-<meta property="og:description" content="Correct a sourced fact, add a missing option, map ownership, or scope a new app. Concrete ways to help public-interest technology.">
+<meta property="og:description" content="Correct a fact with its source, or plan a new subject area. Where to send each one.">
 <meta property="og:image" content="https://valuescommons.org/og-standard.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Help improve Values Commons">
-<meta name="twitter:description" content="Correct a sourced fact, add a missing option, map ownership, or scope a new app. Concrete ways to help public-interest technology.">
+<meta name="twitter:description" content="Correct a fact with its source, or plan a new subject area. Where to send each one.">
 <meta name="twitter:image" content="https://valuescommons.org/og-standard.png">
 <style>
-  :root{--shadow-sm:0 1px 2px rgba(40,34,24,.07),0 1px 1px rgba(40,34,24,.05);--shadow-md:0 2px 6px rgba(40,34,24,.09),0 10px 26px rgba(40,34,24,.07);--shadow-lg:0 6px 16px rgba(40,34,24,.12),0 22px 48px rgba(40,34,24,.10);--bg:#f8f5ee;--surface:#fff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--soft:#e9f3ee;--track:#eef1ef;--max:1040px;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,system-ui,sans-serif;--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,ui-serif,serif}
-  /* Nine surfaces stated a light palette and no alternative, so a reader who asks for
-     dark was overridden on most of the commons and honoured on two of it. Same values
-     the Institute uses, so the family reads as one in either mode. */
-  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--shadow-sm:0 1px 2px rgba(0,0,0,.55);--shadow-md:0 2px 8px rgba(0,0,0,.6),0 12px 30px rgba(0,0,0,.45);--shadow-lg:0 8px 20px rgba(0,0,0,.65),0 28px 56px rgba(0,0,0,.5);--bg:#11140f;--surface:#181d16;--ink:#eef1e8;--muted:#c0c9bd;--hint:#8b978a;--line:#2b322a;--accent:#6fce8c;--soft:#1b2a20;--track:#2b322a}}
-
-  @media(prefers-color-scheme:dark){:root{--bg:#11140f;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.1);--accent:#5dcaa5;--soft:#16241d;--track:#1b241f}}
-  *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}.wrap{max-width:var(--max);margin:0 auto;padding:0 1.25rem}.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:1.05rem 0;border-bottom:1px solid var(--line)}.brand{font-family:var(--serif);font-weight:600;color:var(--ink);font-size:1.12rem}.links{display:flex;gap:.45rem 1rem;flex-wrap:wrap;font-size:0.86rem}.links a{color:var(--muted)}.links a:hover{color:var(--accent);text-decoration:none}.cta{border:1px solid var(--accent);border-radius:999px;padding:.28rem .68rem;color:var(--accent)!important}.hero{padding:4.2rem 0 3rem}.kicker{font-size:0.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 .9rem}h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.12;text-wrap:balance}h1{font-size:clamp(2.0rem,3.25vw,2.6rem);margin:0 0 1rem}h2{font-size:1.75rem;margin:0 0 .6rem}h3{font-size:1.12rem;margin:0 0 .35rem}.lede{max-width:45rem;color:var(--muted);font-size:1.12rem;margin:0}.actions{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1.45rem}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:2.65rem;padding:.58rem 1rem;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:650}.btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn.primary:hover{color:#fff}.band{border-top:1px solid var(--line);padding:2.5rem 0}.intro{color:var(--muted);max-width:44rem;margin:0 0 1.2rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:.85rem}.card{display:block;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1rem;color:var(--ink)}.card:hover{border-color:var(--accent);text-decoration:none}.card p{margin:.35rem 0 0;color:var(--muted);font-size:1rem}.tag{display:inline-block;font-size:0.75rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--accent);background:var(--soft);border-radius:999px;padding:.12rem .5rem;margin-bottom:.55rem}.note{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1rem;color:var(--muted);max-width:46rem}.primitivebar{display:flex;align-items:center;gap:.42rem;flex-wrap:wrap;margin:1rem 0 0;font-size:0.86rem;color:var(--hint)}.primitivebar a{color:var(--muted);border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:.2rem .58rem}.primitivebar a:hover,.primitivebar a[aria-current="page"]{border-color:var(--accent);color:var(--accent);text-decoration:none}.primitive-note{margin:.55rem 0 0;color:var(--muted);font-size:0.86rem}.ladder{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.65rem}.ladder .card{min-height:8.4rem}footer{border-top:1px solid var(--line);padding:1.7rem 0 2.7rem;color:var(--hint);font-size:0.86rem}.footlinks{display:flex;gap:.4rem 1rem;flex-wrap:wrap;margin-top:.45rem}@media(max-width:760px){.hero{padding:3.2rem 0 2.4rem}}
-  /* Field-guide register, shared with the landing: serif argues, mono measures */
-  :root{--ochre:#8a5514;--line-strong:#cfd8d3}
-  @media(prefers-color-scheme:dark){:root{--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17)}}
-  body{font-family:var(--serif);line-height:1.58}
-  .nav{border-bottom-color:var(--line-strong)}
-  .brand{font-weight:700;font-size:1.12rem;letter-spacing:-.015em}
-  .brand::after{content:"Open field guide";font-family:var(--mono);font-weight:600;font-size:0.75rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ochre);margin-left:.6rem;padding-left:.6rem;border-left:1px solid var(--line-strong)}
-  .links{font-family:var(--mono);font-size:0.75rem}
-  .cta{border-radius:3px}
-  .primitivebar{font-family:var(--mono);font-size:0.75rem;letter-spacing:.03em}
-  .primitivebar a{border-radius:3px}
-  .kicker{font-family:var(--mono);font-size:0.75rem;letter-spacing:.16em;color:var(--muted)}
-  h1{font-size:clamp(1.85rem,3.06vw,2.45rem);letter-spacing:-.015em}
-  .btn{font-family:var(--mono);font-size:0.75rem;letter-spacing:.02em;font-weight:600;border-radius:3px}
-  .tag{font-family:var(--mono);border-radius:3px}
-  .card,.route,.note,.build,.edgemap,.specimen{border-radius:4px}
-  pre,table{border-radius:4px}
-  footer{font-size:0.86rem}
-  /* Professional futurism: light spent on the living and the chosen */
-  :root{--glow:0 0 14px rgba(29,122,90,.2)}
-  @media(prefers-color-scheme:dark){:root{--glow:0 0 16px rgba(93,202,165,.28)}}
-  ::selection{background:color-mix(in srgb,var(--accent) 24%,transparent)}
-  .hero{background:radial-gradient(44rem 24rem at 6% -10%,color-mix(in srgb,var(--accent) 7%,transparent),transparent 62%),radial-gradient(36rem 20rem at 96% -8%,color-mix(in srgb,var(--ochre) 4%,transparent),transparent 64%)}
-  .btn.primary:hover,.cta:hover{box-shadow:var(--glow)}
-  html{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--accent) 45%,var(--track)) transparent}
-  a:focus-visible,button:focus-visible{box-shadow:var(--glow)}
-  :root[data-theme="dark"]{--bg:#11140f;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.1);--accent:#5dcaa5;--soft:#16241d;--track:#1b241f;--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17);--glow:0 0 16px rgba(93,202,165,.28);color-scheme:dark}
-  :root[data-theme="light"]{--bg:#f8f5ee;--surface:#fff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--soft:#e9f3ee;--track:#eef1ef;--ochre:#8a5514;--line-strong:#cfd8d3;--glow:0 0 14px rgba(29,122,90,.2);color-scheme:light}
-  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.55rem .9rem;border-radius:0 0 8px 0;z-index:20}
+  /* Help out, in the front page's lab-notebook register: one specimen correction on a plate, the
+     four notes under it, one note in pencil. Green is the reader's values and the primary buttons.
+     Ochre is a fact's source and nothing else: here, the source line of the specimen. */
+  :root{--bg:#f8f5ee;--surface:#ffffff;--sunk:#eef1ef;--ink:#18211d;--muted:#566560;--hint:#607068;
+    --line:#e3e7e5;--line-strong:#cfd8d3;--accent:#1d7a5a;--accent-bright:#17936a;--accent-soft:#e9f3ee;
+    --track:#eef1ef;--warn:#a8432f;--ochre:#8a5514;--band:#eef2f0;--code:#f3f5f3;--on-accent:#ffffff;--graphite:#4d5357;--hatch:rgba(24,33,29,.36);
+    --e1:0 1px 2px rgba(24,38,30,.05),0 3px 10px rgba(24,38,30,.05);
+    --font-display:"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,ui-serif,serif;
+    --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--max:1040px}
+  @media (prefers-color-scheme:dark){:root{--bg:#11140f;--surface:#161d18;--sunk:#0b100d;--ink:#e6ece8;--muted:#9aa8a1;--hint:#87968e;
+    --line:rgba(255,255,255,.10);--line-strong:rgba(255,255,255,.17);--accent:#5dcaa5;--accent-bright:#6ad9ab;--accent-soft:#16241d;
+    --track:#1b241f;--warn:#e3a594;--ochre:#cc9c5e;--band:#131b16;--code:#0f1512;--on-accent:#0b100d;--graphite:#b6bcc0;--hatch:rgba(230,236,232,.32);
+    --e1:0 1px 2px rgba(0,0,0,.3),0 3px 10px rgba(0,0,0,.3)}}
+  :root[data-theme="dark"]{--bg:#11140f;--surface:#161d18;--sunk:#0b100d;--ink:#e6ece8;--muted:#9aa8a1;--hint:#87968e;--line:rgba(255,255,255,.10);--line-strong:rgba(255,255,255,.17);--accent:#5dcaa5;--accent-bright:#6ad9ab;--accent-soft:#16241d;--track:#1b241f;--warn:#e3a594;--ochre:#cc9c5e;--band:#131b16;--code:#0f1512;--on-accent:#0b100d;--graphite:#b6bcc0;--hatch:rgba(230,236,232,.32);--e1:0 1px 2px rgba(0,0,0,.3),0 3px 10px rgba(0,0,0,.3);color-scheme:dark}
+  :root[data-theme="light"]{--bg:#f8f5ee;--surface:#ffffff;--sunk:#eef1ef;--ink:#18211d;--muted:#566560;--hint:#607068;--line:#e3e7e5;--line-strong:#cfd8d3;--accent:#1d7a5a;--accent-bright:#17936a;--accent-soft:#e9f3ee;--track:#eef1ef;--warn:#a8432f;--ochre:#8a5514;--band:#eef2f0;--code:#f3f5f3;--on-accent:#ffffff;--graphite:#4d5357;--hatch:rgba(24,33,29,.36);--e1:0 1px 2px rgba(24,38,30,.05),0 3px 10px rgba(24,38,30,.05);color-scheme:light}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-display);font-size:1.08rem;line-height:1.58;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.55rem .9rem;z-index:30}
   .skip:focus{left:0}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1.1rem,4vw,2.2rem)}
+  h1,h2,h3{font-weight:550;letter-spacing:-.01em;text-wrap:balance}
+  code,.mono{font-family:var(--font-mono)}
 
-  /* depth pass */
-  /* Containers lift off the page instead of being outlined on it, so a card, a chip and
-     a panel stop announcing themselves with the same single grey pixel. */
-  .card,.note{box-shadow:var(--shadow-md);background:var(--surface)}
-  h1{font-weight:550;letter-spacing:-0.02em}
-  h2{font-weight:550;letter-spacing:-0.01em}
+  /* masthead */
+  .masthead{border-bottom:1px solid var(--line-strong)}
+  .masthead .wrap{display:flex;align-items:baseline;justify-content:space-between;gap:.6rem 1rem;flex-wrap:wrap;padding-top:1.1rem;padding-bottom:.95rem}
+  .brand{font-weight:700;font-size:1.25rem;letter-spacing:-.015em;color:var(--ink)}
+  .brand:hover{text-decoration:none}
+  .topnav{display:flex;align-items:center;gap:.4rem 1.1rem;flex-wrap:wrap;font-family:var(--font-mono);font-size:0.75rem}
+  .topnav a{color:var(--muted);padding:.35rem 0}
+  .topnav a:hover{color:var(--ink);text-decoration:none}
+  .topnav a[aria-current="page"]{color:var(--ink);font-weight:700}
+
+  /* hero */
+  .hero{padding:clamp(1.8rem,4vw,2.8rem) 0 clamp(1.8rem,4vw,2.6rem);background:radial-gradient(52rem 26rem at 10% -20%,color-mix(in srgb,var(--accent) 10%,transparent),transparent 60%)}
+  .hero h1{font-size:clamp(2rem,3.8vw,2.8rem);line-height:1.08;margin:0 0 .9rem;max-width:22ch}
+  .lede{font-size:1.12rem;color:var(--muted);max-width:58ch;margin:0}
+  .receipt{display:flex;flex-wrap:wrap;gap:.2rem 1.3rem;margin:1.3rem 0 0;padding:.45rem 0;border-top:1px solid color-mix(in srgb,var(--ink) 55%,transparent);border-bottom:1px dotted color-mix(in srgb,var(--ink) 55%,transparent);font-family:var(--font-mono);font-size:0.75rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+  .toc{margin:1.4rem 0 0}
+  .toc p{margin:0 0 .3rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--hint)}
+  .toc ol{margin:0;padding-left:1.4rem}
+  .toc li{margin:.15rem 0}
+  .toc li::marker{font-family:var(--font-mono);font-size:0.8rem;color:var(--hint)}
+  .actions{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.4rem}
+  .btn{font-family:var(--font-mono);font-size:0.75rem;font-weight:600;display:inline-flex;align-items:center;min-height:2.75rem;padding:.55rem 1rem;border-radius:3px;border:1px solid var(--line-strong);color:var(--muted);background:transparent}
+  .btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none;background:var(--surface)}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+  .btn.primary:hover{background:var(--accent-bright);color:var(--on-accent)}
+
+  /* sections */
+  .step{padding:clamp(2.2rem,5vw,3.2rem) 0;border-top:1px solid var(--line)}
+  .step.band{background:var(--band)}
+  .sh{font-size:clamp(1.45rem,2.5vw,1.9rem);font-style:italic;font-weight:500;margin:0 0 .5rem}
+  h3.sub{font-size:1.15rem;font-style:italic;font-weight:500;margin:1.8rem 0 .4rem}
+  .sd{color:var(--muted);max-width:62ch;margin:0 0 1.3rem}
+  .fine{font-size:0.93rem;color:var(--muted);max-width:66ch;margin:1rem 0 0}
+  .plate-id{display:flex;justify-content:space-between;align-items:baseline;gap:.3rem 1rem;flex-wrap:wrap;margin:0 0 1rem;padding-bottom:.4rem;border-bottom:1px solid color-mix(in srgb,var(--ink) 55%,transparent)}
+  .plate-id .pn{font-family:var(--font-mono);font-size:0.75rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
+  .plate-id .fig{font-style:italic;font-size:0.92rem;color:var(--muted)}
+  .hand{font-family:"Segoe Print","Ink Free","Bradley Hand","Chalkboard SE","Marker Felt",cursive;color:var(--graphite);font-size:0.98rem;line-height:1.4;transform:rotate(-1.4deg);transform-origin:left top;margin:1.4rem 0 0;max-width:36ch}
+
+  /* tables: routes, and what to include */
+  .tbl{width:100%;border-collapse:collapse;font-size:0.95rem}
+  .tbl th,.tbl td{text-align:left;vertical-align:baseline;padding:.7rem 1rem .7rem 0;border-bottom:1px solid var(--line)}
+  .tbl thead th{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--hint);font-weight:600}
+  .tbl tbody th{font-weight:650;width:28%}
+  .tbl td{color:var(--muted)}
+  .tbl td.where{font-family:var(--font-mono);font-size:0.8rem;width:30%;overflow-wrap:anywhere}
+
+  /* the specimen correction */
+  .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(1.4rem,4vw,2.6rem);align-items:start}
+  .spec{background:var(--surface);border:1px solid var(--line-strong);border-radius:4px;box-shadow:var(--e1);font-family:var(--font-mono);font-size:0.8rem;line-height:1.7;overflow-wrap:anywhere}
+  .spec .hd{padding:.7rem 1rem;border-bottom:1px solid var(--line);color:var(--muted)}
+  .spec dl{margin:0;padding:.7rem 1rem .9rem;display:grid;grid-template-columns:7.2rem minmax(0,1fr);gap:.15rem .8rem}
+  .spec dt{color:var(--hint)}
+  .spec dd{margin:0;color:var(--ink)}
+  .spec .src{color:var(--ochre);border-bottom:1px dotted var(--ochre)}
+  .spec .m{display:inline-grid;place-items:center;width:1.15rem;height:1.15rem;border-radius:50%;border:1px solid var(--muted);font-size:0.7rem;font-weight:700;color:var(--ink);margin-left:.35rem;vertical-align:.05rem}
+  .marks{margin:0;padding-left:1.4rem;font-size:0.93rem;color:var(--muted)}
+  .marks li{margin:.3rem 0}
+  .marks li::marker{font-family:var(--font-mono);font-size:0.75rem;font-weight:700;color:var(--ink)}
+  .marks b{color:var(--ink);font-weight:600}
+  .notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem 2rem;margin:1.8rem 0 0}
+  .notes p{margin:0;font-size:0.95rem;color:var(--muted);line-height:1.5}
+  .notes .h{font-weight:700;color:var(--ink)}
+  .notes .dev{padding-left:.8rem;border-left:2px solid var(--line-strong)}
+
+  /* numbered lists that are real sequences */
+  .steps{margin:0;padding-left:1.5rem;max-width:62ch}
+  .steps li{margin:0 0 .7rem;color:var(--muted)}
+  .steps li::marker{font-family:var(--font-mono);font-size:0.8rem;font-weight:700;color:var(--ink)}
+  .steps b{color:var(--ink)}
+  .qs{margin:0;max-width:62ch}
+  .qs dt{font-weight:650;margin-top:.7rem}
+  .qs dd{margin:.1rem 0 0;color:var(--muted)}
+
+  footer{border-top:1px solid var(--line-strong);background:var(--sunk)}
+  footer .wrap{padding:1.8rem clamp(1.1rem,4vw,2.2rem);font-size:0.9rem;color:var(--muted)}
+  footer p{margin:0 0 .6rem;max-width:70ch}
+  .footlinks{display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;font-family:var(--font-mono);font-size:0.75rem}
+  .footlinks a{color:var(--muted);border-bottom:1px dotted var(--line-strong)}
+
+  @media (max-width:820px){
+    .two,.notes{grid-template-columns:1fr}
+  }
+  @media (max-width:560px){
+    body{font-size:1rem}
+    .tbl thead{display:none}
+    .tbl tr{display:block;border-bottom:1px solid var(--line);padding:.6rem 0}
+    .tbl th,.tbl td{display:block;border:0;padding:0;width:auto}
+    .tbl td{margin-top:.2rem}
+    .tbl tbody th{width:auto}
+    .tbl td.where{width:auto}
+    .spec dl{grid-template-columns:1fr;gap:0}
+    .spec dd{margin-bottom:.35rem}
+  }
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="wrap">
-  <nav class="nav" aria-label="Values Commons">
+<header class="masthead">
+  <div class="wrap">
     <a class="brand" href="../index.html">&#9671; Values Commons</a>
-    <div class="links">
+    <nav class="topnav" aria-label="Values Commons">
       <a href="../standard/index.html">For builders</a>
       <a href="../passport/index.html">Your values</a>
       <a href="../instances/index.html">Apps</a>
       <a href="../weave/index.html">Ownership map</a>
-      <a class="cta" href="../workshop/index.html">Correct a fact</a>
-    </div>
-  </nav>
-
-  <div class="primitivebar" aria-label="Ways to help">
-    <span>Ways to help</span>
-    <a href="../passport/index.html">Your values</a>
-    <a href="../instances/index.html">Apps</a>
-    <a aria-current="page" href="../contribute/index.html">Help out</a>
-    <a href="../weave/index.html">Ownership map</a>
-    <a href="../assembly/index.html">Group agreement</a>
+      <a href="../contribute/index.html" aria-current="page">Corrections</a>
+    </nav>
   </div>
-  <p class="primitive-note">Correct a claim, add a missing option, or make ownership and alternatives easier to trace.</p>
+</header>
 
-  <main id="main" tabindex="-1">
-    <header class="hero">
-      <p class="kicker">Help out</p>
-      <h1>Make one decision more trustworthy</h1>
-      <p class="lede">A useful contribution leaves one decision clearer than it found it. Keep the change small, attach the source, and say who it helps. No account is required. Nothing is sponsored.</p>
+<main id="main" tabindex="-1">
+  <section class="hero">
+    <div class="wrap">
+      <h1>How to help</h1>
+      <p class="lede">I maintain this alone, so each fact someone else checks is one I do not have to check myself. The smallest useful help is one corrected fact with its source. No account is needed for anything on this page. Nothing is sponsored, and nobody can pay to be listed.</p>
+      <p class="receipt"><span>futurisminstitute@gmail.com</span><span>github.com/BentleyMoon/conscious-consuming</span><span>Account: none</span></p>
+      <nav class="toc" aria-label="Ways to help">
+        <p>Ways to help, on this page</p>
+        <ol>
+          <li><a href="#correct">Correct a fact</a>, or add a missing option</li>
+          <li><a href="#instance-steward">Build a new subject area</a></li>
+        </ol>
+      </nav>
       <div class="actions">
         <a class="btn primary" href="../workshop/index.html">Correct a fact</a>
-        <a class="btn" href="#instance-steward">Scope the next app</a>
-        <a class="btn" href="../funders/index.html">Fund the public path</a>
+        <a class="btn" href="#instance-steward">Plan a new app</a>
+        <a class="btn" href="../funders/index.html">Fund the project</a>
       </div>
-    </header>
+    </div>
+  </section>
 
-    <section class="band" id="send">
-      <h2>Where to send it</h2>
-      <p class="intro">No account is needed for any of these, and a correction that turns out to be
-      wrong is kept with its history like any other.</p>
-      <div class="grid">
-        <a class="card" href="mailto:futurisminstitute@gmail.com?subject=Correction">
-          <span class="tag">Email</span>
-          <b>futurisminstitute@gmail.com</b>
-          <p>Name the decision, category or page, attach the source, and say what should change.
-          One sharp correction beats a long list.</p>
-        </a>
-        <a class="card" href="../workshop/index.html">
-          <span class="tag">Patch file</span>
-          <b>Repair a fact in your browser</b>
-          <p>The workshop writes a small JSON patch on your device. Nothing is uploaded by the page
-          itself; send the file to the address beside this.</p>
-        </a>
-        <a class="card" href="https://github.com/BentleyMoon/conscious-consuming">
-          <span class="tag">Pull request</span>
-          <b>The public repository</b>
-          <p>The engine, the sourced data, the audits and the standard, refreshed from the working
-          copy. Open an issue or a pull request against anything in it.</p>
-        </a>
-      </div>
-    </section>
+  <section class="step" id="send">
+    <div class="wrap">
+      <h2 class="sh">Where to send it</h2>
+      <p class="sd">There are three ways to send something, and all three reach me. Use whichever is least work for you.</p>
+      <table class="tbl">
+        <thead><tr><th scope="col">Route</th><th scope="col">What to send</th><th scope="col">Where</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Email</th><td>Name the decision, category or page, say what should change, and attach the source.</td><td class="where"><a href="mailto:futurisminstitute@gmail.com?subject=Correction">futurisminstitute@gmail.com</a></td></tr>
+          <tr><th scope="row">Patch file</th><td>Make the change in your browser on the fact repair page. It saves a small JSON file on your computer and uploads nothing; email that file to the same address.</td><td class="where"><a href="../workshop/index.html">Fact repair</a></td></tr>
+          <tr><th scope="row">Pull request</th><td>The engine, the sourced data, the audits and the standard are all in the public repository. Open an issue or a pull request against any of it.</td><td class="where"><a href="https://github.com/BentleyMoon/conscious-consuming">The public repository</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-    <section class="band">
-      <p class="kicker">Where to start</p>
-      <h2>Choose the smallest useful move</h2>
-      <p class="intro">Choose the smallest change another person can check and use.</p>
-      <div class="grid">
-        <a class="card" href="../workshop/index.html"><span class="tag">Facts</span><h3>Correct a sourced claim</h3><p>Add a better URL, date, or note. Keep claims neutral and values-relative.</p></a>
-        <a class="card" href="../workshop/index.html"><span class="tag">Option</span><h3>Add a missing option</h3><p>Fill a mainstream gap, values niche, or honest floor. More rows only help when they change a decision.</p></a>
-        <a class="card" href="../standard/index.html"><span class="tag">Build rules</span><h3>Review compatibility</h3><p>Test whether values, facts, group agreement, shared plans, and compatible apps stay portable.</p></a>
-        <a class="card" href="#instance-steward"><span class="tag">New app</span><h3>Plan a new subject</h3><p>Name the decision, audience, starter facts, values that carry over, and correction route before building.</p></a>
-        <a class="card" href="../weave/index.html"><span class="tag">Map</span><h3>Improve relationships</h3><p>Make ownership, alternatives, resemblance, and practical paths more honest across subjects.</p></a>
-        <a class="card" href="../funders/index.html"><span class="tag">Support</span><h3>Back the uncapturable core</h3><p>Help keep the core open, static, no-account, and no-pay-to-rank.</p></a>
+  <section class="step band" id="correct">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">Plate I</span><span class="fig">Fig. 1. A useful correction email, with its four important parts numbered.</span></p>
+      <h2 class="sh">An example correction email</h2>
+      <p class="sd">This example is made up, and the bank and the report are not real. The numbered parts are what let me check a correction without writing back to ask.</p>
+      <div class="two">
+        <div class="spec" aria-label="An example correction email">
+          <div class="hd">To: futurisminstitute@gmail.com<br>Subject: Correction</div>
+          <dl>
+            <dt>Decision</dt><dd>Choosing a bank<span class="m">1</span></dd>
+            <dt>Option</dt><dd>Example Bank</dd>
+            <dt>Fact</dt><dd>Green financing, shown as 98</dd>
+            <dt>Should be</dt><dd>40<span class="m">2</span></dd>
+            <dt>Source URL</dt><dd><span class="src">https://example.org/report, p. 12</span><span class="m">3</span></dd>
+            <dt>As-of date</dt><dd>June 2026</dd>
+            <dt>Why</dt><dd>The report counts fossil loans the old figure left out.<span class="m">4</span></dd>
+          </dl>
+        </div>
+        <ol class="marks">
+          <li><b>Name the decision.</b> Which category, facts file, page or app is affected.</li>
+          <li><b>Change one thing.</b> The row, score, wording, relationship or option that should change, and to what.</li>
+          <li><b>Attach the source.</b> A link, a dataset, a method note or a public record, and the as-of date the fact was true. If the number is your own judgement, say so.</li>
+          <li><b>Give the reason.</b> Keep it visible so the next person can accept it, reject it or reverse it later.</li>
+        </ol>
       </div>
-    </section>
+      <div class="notes">
+        <p><span class="h">What's happening.</span> A good correction needs only these seven lines. The fact repair page puts the same fields into a file for you.</p>
+        <p><span class="h">Why it matters.</span> Every fact here carries a source, and the site says so on the front page. A correction that brings its own source keeps that true. One that does not has to wait until somebody finds one.</p>
+        <p class="dev"><span class="h">Devil's advocate.</span> A sourced correction can still be wrong. A company's own sustainability report is a source, and it is also an advert. The catalogue's rule is to prefer the regulator's record or an independent test where one exists, and to read the company's own page as a lead. An old source still counts as a source, and the as-of date shows how old it is.</p>
+        <p><span class="h">Rabbit hole.</span> The rule every compatible app keeps, "Every judgement cites", is in <a href="../standard/index.html#rules">the standard</a>, beside the validator that checks it.</p>
+      </div>
+      <p class="hand">Corrections that turn out to be wrong are kept too, with their history.</p>
+    </div>
+  </section>
 
-    <section class="band" id="instance-steward">
-      <p class="kicker">New subject brief</p>
-      <h2>Write the decision before the code</h2>
-      <p class="intro">Before building a new app, name the choice, the people it should help, the facts it needs, and the values it can honestly compare.</p>
-      <div class="grid">
-        <div class="card"><span class="tag">Decision</span><h3>Name the real choice</h3><p>What should people rank, compare, switch, fund, avoid, or adopt?</p></div>
-        <div class="card"><span class="tag">Facts</span><h3>Draft the starter set</h3><p>List 8-20 options and 3-7 criteria that would be enough to test the subject honestly.</p></div>
-        <div class="card"><span class="tag">Bridge</span><h3>Map portable values</h3><p>Say which broad values carry into the subject and which should remain visibly not transferred.</p></div>
-        <div class="card"><span class="tag">Review</span><h3>Plan the contribution route</h3><p>Name how corrections, missing options, source disputes, and forks should reach maintainers.</p></div>
-      </div>
+  <section class="step">
+    <div class="wrap">
+      <h2 class="sh">What to include</h2>
+      <p class="sd">One narrow correction is easier to check than a long list. Here is what each kind of help needs so someone else can verify it without guessing.</p>
+      <table class="tbl">
+        <thead><tr><th scope="col">If you are sending</th><th scope="col">Include</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Correct a sourced claim</th><td>The category, the item, what should change, a source URL and an as-of date.</td></tr>
+          <tr><th scope="row">Add a missing option</th><td>The category and region, why people actually choose it, and the sources behind its scores. A new row helps only when it changes a decision.</td></tr>
+          <tr><th scope="row">Request a category</th><td>The decision, who needs it, 5 to 10 options people would recognise, and any open dataset or trusted source that could seed it.</td></tr>
+          <tr><th scope="row">Add an ownership or alternative link</th><td>Both ends, the relation, why it changes a decision, and the source or the calculation. The <a href="../weave/index.html">ownership map</a> shows what these look like.</td></tr>
+          <tr><th scope="row">Build a compatible app</th><td>The subject, who would use it, where the starting facts come from, the license, and how a person's values file carries over. <a href="../standard/index.html">The standard</a> has the rules.</td></tr>
+        </tbody>
+      </table>
+      <p class="fine">What does not help: affiliate pitches, scores with no source, copy from a brand's own marketing, "add more" with nothing named, and offers to pay for placement. There are no ads here, nobody can pay to rank, and nothing is placed for money.</p>
+    </div>
+  </section>
+
+  <section class="step band" id="instance-steward">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">Plate II</span><span class="fig">Fig. 2. New subject brief. Four questions to answer before any code is written.</span></p>
+      <h2 class="sh">Write the decision before the code</h2>
+      <p class="sd">Every app here ranks one kind of choice. Before building a new one, write down the choice and who it is for. Most of the work is in these four answers.</p>
+      <ol class="steps">
+        <li><b>Name the real choice.</b> What should people rank, compare, switch, fund, avoid or adopt?</li>
+        <li><b>Draft the starting facts.</b> 8 to 20 options and 3 to 7 criteria, enough to test the subject properly.</li>
+        <li><b>Say which values carry over.</b> Which of a person's existing values apply in this subject, and which do not, so the app can say so.</li>
+        <li><b>Plan how corrections arrive.</b> How corrections, missing options, source disputes and copies of the facts will reach whoever maintains it.</li>
+      </ol>
       <div class="actions">
         <a class="btn primary" href="../instances/index.html#steward">Use the new-subject brief</a>
         <a class="btn" href="../docs/ADOPTION-KIT.md">Open the adoption guide</a>
-        <a class="btn" href="../docs/CREATE-AN-INSTANCE.md#new-subject-brief">Open build guide</a>
+        <a class="btn" href="../docs/CREATE-AN-INSTANCE.md#new-subject-brief">Open the build guide</a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="band">
-      <p class="kicker">A useful correction</p>
-      <h2>From noticing to improving</h2>
-      <p class="intro">Useful work should travel as a small, reviewable change: what changed, why it matters, where the evidence lives, and what decision becomes clearer.</p>
-      <div class="ladder">
-        <div class="card"><span class="tag">1 Notice</span><h3>Name the decision</h3><p>Say which category, facts file, page, or app is affected.</p></div>
-        <div class="card"><span class="tag">2 Source</span><h3>Anchor the claim</h3><p>Provide a URL, date, dataset, method note, or public record.</p></div>
-        <div class="card"><span class="tag">3 Change</span><h3>Make it specific</h3><p>Propose the row, score, copy, relationship, or option that should change.</p></div>
-        <div class="card"><span class="tag">4 Trail</span><h3>Leave a trail</h3><p>Keep the rationale visible so others can inspect, accept, reject, or reverse it.</p></div>
-      </div>
-    </section>
+  <section class="step" id="happened">
+    <div class="wrap">
+      <h2 class="sh">Other ways to help</h2>
+      <ul class="steps">
+        <li>Make ownership and alternatives easier to trace on <a href="../weave/index.html">the ownership map</a>.</li>
+        <li>Pay to keep the open version running. It is a static site with no accounts, and nobody pays to rank. The <a href="../funders/index.html">page for funders</a> explains how.</li>
+      </ul>
+      <p class="fine">Everything on this page works by passing files: an email, a patch, a pull request. There is no forum and no login. If one is ever added it will be optional, because the files have to keep working for one person on a laptop with no server.</p>
+    </div>
+  </section>
+</main>
 
-    <section class="band">
-      <p class="kicker">What to include</p>
-      <h2>Make the next action obvious</h2>
-      <p class="intro">A good contribution carries enough context that another person can verify it without guessing. Prefer one sharp correction over a broad wish.</p>
-      <div class="grid">
-        <div class="card"><span class="tag">Correct</span><h3>Correct a sourced claim</h3><p>Include the category, item, what should change, a source URL, and an as-of date.</p></div>
-        <div class="card"><span class="tag">Option</span><h3>Add a missing option</h3><p>Name the category, region, why the option is mainstream or a values niche, and the sources that support the scores.</p></div>
-        <div class="card"><span class="tag">Category</span><h3>Request a category</h3><p>Name the decision, who needs it, 5-10 recognizable options, and any open dataset or trusted source that could seed it.</p></div>
-        <div class="card"><span class="tag">Relationship</span><h3>Add an ownership or alternative link</h3><p>Name both ends, the relation, why it changes a decision, and the source or computed basis.</p></div>
-        <div class="card"><span class="tag">App</span><h3>Build a compatible app</h3><p>Name the subject, likely users, starter source, license, and how the values file should carry over.</p></div>
-      </div>
-      <div class="note" style="margin-top:1rem">
-        <p><b>What does not help:</b> affiliate pitches, unsourced scores, brand copy, vague "add more" requests, or pressure to rank by payment. No ads, no pay-to-rank, and no sponsored placement.</p>
-      </div>
-    </section>
-
-    <section class="band">
-      <p class="kicker">Keep the core independent</p>
-      <h2>Files first; discussion can follow</h2>
-      <div class="note">
-        <p>The public core should keep working as files even if every optional community server disappears. Community discussion, ratings, identity, and moderation can arrive later as an opt-in layer, but the builder rules should never require it.</p>
-        <p>That keeps Values Commons useful to one person on a laptop and to a group passing files around at the same time.</p>
-      </div>
-    </section>
-  </main>
-
-
-  <footer>
-    <div>Values Commons - useful contributions make one decision clearer.</div>
+<footer>
+  <div class="wrap">
+    <p>Values Commons is built and maintained by Bentley Moon at the <a href="https://futurisminstitute.org">Futurism Institute</a>.</p>
     <div class="footlinks">
       <a href="../index.html">Home</a>
       <a href="../standard/index.html">For builders</a>
@@ -213,8 +291,30 @@
       <a href="https://github.com/BentleyMoon/conscious-consuming">Source and data</a>
       <a href="mailto:futurisminstitute@gmail.com">futurisminstitute@gmail.com</a>
     </div>
-  </footer>
-</div>
+    <!-- family:start -->
+<style>
+  /* sizes, spacing and case follow research/design_system_audit.js: the eight-step scale, the 0.25rem grid, no uppercase */
+  .fam{border-top:1px solid var(--line,#e3e7e5);margin-top:1.5rem;padding-top:1.25rem;grid-column:1/-1;flex-basis:100%;width:100%}
+  .fam-foot{border-top:1px solid var(--line,#e3e7e5);padding:1.25rem 0 2.5rem}
+  .fam-foot .fam,.fam-after .fam{border-top:0;margin-top:0}
+  .fam>p{margin:0 0 1rem;font-family:var(--font-mono,ui-monospace,monospace);font-size:.75rem;color:var(--hint,var(--muted,#566560))}
+  .fam-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(10.5rem,1fr));gap:1rem 1.5rem}
+  .fam-head{margin:0 0 .5rem;font-size:.86rem;font-weight:700;color:var(--ink,#18211d)}
+  .fam ul{list-style:none;margin:0;padding:0}
+  .fam li{margin:0 0 .5rem}
+  .fam a{display:block;text-decoration:none;color:inherit;border:0;box-shadow:none}
+  .fam a:hover .fam-name{text-decoration:underline}
+  .fam-name{display:block;font-size:.86rem;font-weight:600;color:var(--accent,#1d7a5a)}
+  .fam-desc{display:block;font-size:.75rem;line-height:1.4;color:var(--muted,#566560)}
+  .fam-you{display:inline-block;margin-top:.25rem;font-family:var(--font-mono,ui-monospace,monospace);font-size:.64rem;color:var(--ink,#18211d)}
+</style>
+<nav class="fam" aria-label="The Futurism Institute family">
+  <p>The Futurism Institute family</p>
+  <div class="fam-cols"><div><p class="fam-head">Start here</p><ul><li><a href="https://futurisminstitute.org"><span class="fam-name">Futurism Institute</span><span class="fam-desc">How the projects fit together</span></a></li></ul></div><div><p class="fam-head">Research</p><ul><li><a href="https://bentleymoon.com"><span class="fam-name">Bentley Moon</span><span class="fam-desc">Research record and films</span></a></li></ul></div><div><p class="fam-head">Records</p><ul><li><a href="https://bentleymoon.com/research/checking-ai/"><span class="fam-name">Checking AI</span><span class="fam-desc">When one AI can check another</span></a></li><li class="fam-here"><a href="https://valuescommons.org/app/"><span class="fam-name">Conscious Consuming</span><span class="fam-desc">Products and services, by what you care about</span><span class="fam-you">You are here</span></a></li><li><a href="https://dignityneeds.com"><span class="fam-name">Dignity Needs</span><span class="fam-desc">What every person should be able to expect</span></a></li><li><a href="https://kosplora.org"><span class="fam-name">Kosplora</span><span class="fam-desc">Learning and research tools</span></a></li><li><a href="https://legibleai.org"><span class="fam-name">Legible AI</span><span class="fam-desc">A first road into AI safety</span></a></li><li><a href="https://legibleai.org/searches/"><span class="fam-name">AI Searches</span><span class="fam-desc">A shared record of AI answers, with their sources</span></a></li></ul></div><div><p class="fam-head">Groups</p><ul><li><a href="https://socratichearth.org"><span class="fam-name">The Socratic Hearth</span><span class="fam-desc">Talk a question through, disagreements kept</span></a></li><li><a href="https://theworkparty.org"><span class="fam-name">The Work Party</span><span class="fam-desc">What a group agreed, as a file it keeps</span></a></li></ul></div><div><p class="fam-head">Places</p><ul><li><a href="https://earthenbeings.com"><span class="fam-name">Earthen Beings</span><span class="fam-desc">Communities and land projects in the Pacific Northwest</span></a></li><li><a href="https://basicdignity.com"><span class="fam-name">Basic Dignity</span><span class="fam-desc">Draft rules for whoever holds what a person needs, from a shared house to the companies that own AI.</span></a></li></ul></div></div>
+</nav>
+<!-- family:end -->
+  </div>
+</footer>
 <script src="../app/theme.js"></script>
 </body>
 </html>

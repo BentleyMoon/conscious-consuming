@@ -2,44 +2,46 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/presentation-strings-v1.0.schema.json",
   "title": "Open Values Presentation Strings v1.0",
-  "description": "Signed public vocabulary and reusable presentation-layer copy.",
+  "description": "The words the shared page layer shows to readers: names for the main things a person works with, coverage messages, button labels and error messages. Maintainers write it, and the presentation build copies it into the package the app reads.",
   "type": "object",
   "additionalProperties": false,
   "required": ["format", "version", "updated", "locale", "signedVocabulary", "search", "objectTypes", "coverage", "fieldStates", "evidenceKinds", "appliedValues", "actions", "errors"],
   "properties": {
-    "format": {"const": "open-values-presentation-strings"},
-    "version": {"const": "1.0.0"},
-    "updated": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
-    "locale": {"type": "string", "minLength": 2},
-    "signedVocabulary": {"$ref": "#/$defs/stringMap"},
-    "search": {"$ref": "#/$defs/stringMap"},
-    "objectTypes": {"$ref": "#/$defs/stringMap"},
+    "format": { "description": "Names the file format. Always open-values-presentation-strings.", "const": "open-values-presentation-strings"},
+    "version": { "description": "The version of this format the file follows. Always 1.0.0.", "const": "1.0.0"},
+    "updated": { "description": "The date the strings were last changed, as YYYY-MM-DD. The presentation package uses it as its built date.", "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "locale": { "description": "The language of the strings, as a language code. The build currently accepts only en.", "type": "string", "minLength": 2},
+    "signedVocabulary": { "description": "The names for the main things a person works with, such as My rules and The baseline, approved by the founder in the 2026-07-15 plain-words review. The build fails if any of them change.", "$ref": "#/$defs/stringMap"},
+    "search": { "description": "Words for the search box and for the page shown when a search or address finds nothing.", "$ref": "#/$defs/stringMap"},
+    "objectTypes": { "description": "The display name for each kind of thing a page can be about, such as Decision, Source or Company, keyed by type.", "$ref": "#/$defs/stringMap"},
     "coverage": {
+      "description": "The five evidence states an answer can be in, each with a label, a sentence and an action. The labels are fixed and the build fails if they change.",
       "type": "object",
       "additionalProperties": false,
       "required": ["rich", "thin", "lowEvidence", "notCovered", "unavailable"],
       "properties": {
-        "rich": {"$ref": "#/$defs/coverageState"},
-        "thin": {"$ref": "#/$defs/coverageState"},
-        "lowEvidence": {"$ref": "#/$defs/coverageState"},
-        "notCovered": {"$ref": "#/$defs/coverageState"},
-        "unavailable": {"$ref": "#/$defs/coverageState"}
+        "rich": { "description": "Sources cover the decisive facts in the answer.", "$ref": "#/$defs/coverageState"},
+        "thin": { "description": "Some facts in the answer lack enough source detail.", "$ref": "#/$defs/coverageState"},
+        "lowEvidence": { "description": "Too much is missing to rank the choices reliably.", "$ref": "#/$defs/coverageState"},
+        "notCovered": { "description": "The decision is on the map but has no comparison yet.", "$ref": "#/$defs/coverageState"},
+        "unavailable": { "description": "The original source could not be opened, so the stored citation is shown instead.", "$ref": "#/$defs/coverageState"}
       }
     },
-    "fieldStates": {"$ref": "#/$defs/stringMap"},
-    "evidenceKinds": {"$ref": "#/$defs/stringMap"},
+    "fieldStates": { "description": "Short messages shown in place of a missing or empty field, such as when a source was not supplied or ownership is unknown, keyed by state.", "$ref": "#/$defs/stringMap"},
+    "evidenceKinds": { "description": "The labels for the three kinds of evidence: measured, certified, and assessed from public evidence. The build fails if they change.", "$ref": "#/$defs/stringMap"},
     "appliedValues": {
+      "description": "Copy for the panel that explains why an answer ranks first.",
       "type": "object",
       "additionalProperties": false,
       "required": ["label", "templates", "actions"],
       "properties": {
-        "label": {"type": "string", "minLength": 1},
-        "templates": {"$ref": "#/$defs/stringMap"},
-        "actions": {"$ref": "#/$defs/stringMap"}
+        "label": { "description": "The panel heading. Always Why this answer.", "type": "string", "minLength": 1},
+        "templates": { "description": "The six sentence templates that explain a ranking, keyed by case, such as baselineOnly or personalRule. Words in braces, like {answer} or {decisiveFact}, are filled in when the page is drawn.", "$ref": "#/$defs/stringMap"},
+        "actions": { "description": "Button labels inside the panel, such as Change My rules, keyed by action.", "$ref": "#/$defs/stringMap"}
       }
     },
-    "actions": {"$ref": "#/$defs/stringMap"},
-    "errors": {"$ref": "#/$defs/stringMap"}
+    "actions": { "description": "Button and link labels used across pages, such as Save this choice or Read source, keyed by action. Words in braces are filled in when the page is drawn.", "$ref": "#/$defs/stringMap"},
+    "errors": { "description": "Error messages, keyed by error, such as an invalid address or a file that could not be imported. Words in braces are filled in when the message is shown.", "$ref": "#/$defs/stringMap"}
   },
   "$defs": {
     "stringMap": {
@@ -52,9 +54,9 @@
       "additionalProperties": false,
       "required": ["label", "sentence", "action"],
       "properties": {
-        "label": {"type": "string", "minLength": 1},
-        "sentence": {"type": "string", "minLength": 1},
-        "action": {"type": "string", "minLength": 1}
+        "label": { "description": "The short label shown for this state.", "type": "string", "minLength": 1},
+        "sentence": { "description": "A sentence explaining the state. Words in braces, like {source} or {missing}, are filled in when the page is drawn.", "type": "string", "minLength": 1},
+        "action": { "description": "The label of the action offered in this state, such as See the sources.", "type": "string", "minLength": 1}
       }
     }
   }

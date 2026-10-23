@@ -27,7 +27,7 @@ Ready meals can save time, reduce takeout spending, and make food available on d
 | Protein and fullness | Protein per 100 g, fiber-rich ingredients, legumes, eggs, dairy, tofu, fish, meat, or whole grains | A "meal" that is mostly sauce, starch, or coating may leave you buying another snack |
 | Nutrition grade | Nutri-Score or comparable front-of-pack signals where available | These are imperfect, but they help compare similar packaged foods quickly |
 | Environment | Green-Score or environmental score where present, plant-forward bases, packaging burden | The largest tradeoff may be ingredients, refrigeration, and single-use packaging |
-| Price | Open Prices observations, price per meal, and whether one package is truly one serving | A cheap ready meal can be economical; an undersized one can quietly become two purchases |
+| Price | Open Prices observations, price per meal, and whether one package is one serving | A cheap ready meal can be economical; an undersized one can mean buying two |
 
 ## What the explorer is good at
 
@@ -63,7 +63,7 @@ This floor is deliberately humane. A reliable ready meal can be the better choic
 
 ## The convenience trap
 
-Ready meals are often cheaper than delivery and more realistic than cooking from scratch every night. That is a legitimate value. The trap is when "convenient" quietly becomes "less food than it looks like", "too much salt for frequent use", or "expensive because you still need to add half the meal."
+Ready meals are often cheaper than delivery and more realistic than cooking from scratch every night. That is a legitimate value. The trap is when "convenient" turns out to mean "less food than it looks like", "too much salt for frequent use", or "expensive because you still need to add half the meal."
 
 Use the explorer to find the better version inside the same convenience job:
 

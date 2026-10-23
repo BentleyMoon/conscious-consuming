@@ -2,24 +2,24 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/governance-index-v0.1.schema.json",
   "title": "Open Values Governance Index v0.1",
-  "description": "Generated app-readable index for file-based governance proposals and attestations.",
+  "description": "A summary of the governance ledger for the app to show: each proposal with whether its target file has changed since it was written, a tally of responses, and totals. pipeline/build_proposals.js builds it from content/governance/proposals.json into app/data/proposals.json; change the ledger, not this file.",
   "type": "object",
   "additionalProperties": true,
   "required": ["format", "version", "standard", "built", "purpose", "generatedFrom", "publication", "kAnonymity", "counts", "filters", "principles", "proposals", "attestations"],
   "properties": {
-    "format": { "const": "open-values-governance-index" },
-    "version": { "type": "string", "pattern": "^0\\.1\\.0(?:[-+].*)?$" },
-    "standard": { "const": "open-values-standard" },
-    "built": { "$ref": "#/$defs/date" },
-    "purpose": { "$ref": "#/$defs/nonEmptyString" },
-    "generatedFrom": { "$ref": "#/$defs/generatedFrom" },
-    "publication": { "$ref": "#/$defs/publication" },
-    "kAnonymity": { "$ref": "#/$defs/kAnonymity" },
-    "counts": { "$ref": "#/$defs/counts" },
-    "filters": { "$ref": "#/$defs/filters" },
-    "principles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-    "proposals": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/proposal" } },
-    "attestations": { "type": "array", "items": { "$ref": "#/$defs/attestation" } }
+    "format": { "description": "Always \"open-values-governance-index\". Tells a reader which Open Values format this is.", "const": "open-values-governance-index" },
+    "version": { "description": "The version of the index format this file follows. Must start with 0.1.0.", "type": "string", "pattern": "^0\\.1\\.0(?:[-+].*)?$" },
+    "standard": { "description": "Always \"open-values-standard\", the standard this format belongs to.", "const": "open-values-standard" },
+    "built": { "description": "The date of the ledger this index was built from, copied from the ledger's updated field, as YYYY-MM-DD.", "$ref": "#/$defs/date" },
+    "purpose": { "description": "A sentence saying what this index is for.", "$ref": "#/$defs/nonEmptyString" },
+    "generatedFrom": { "description": "The ledger file this index was built from, its date, and its hash, so anyone can check the index against it.", "$ref": "#/$defs/generatedFrom" },
+    "publication": { "description": "Copied unchanged from the ledger: how it is published and whether voting or ratification is open.", "$ref": "#/$defs/publication" },
+    "kAnonymity": { "description": "Copied unchanged from the ledger: the rules for when attestations may count.", "$ref": "#/$defs/kAnonymity" },
+    "counts": { "description": "Totals across the ledger: proposals, attestations, targets, and how many there are of each status and stance.", "$ref": "#/$defs/counts" },
+    "filters": { "description": "The distinct values an app can offer as filters, each list sorted alphabetically.", "$ref": "#/$defs/filters" },
+    "principles": { "description": "Copied unchanged from the ledger: the rules it follows, one short sentence each.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "proposals": { "description": "A summary of every proposal in the ledger, in ledger order, with a check of whether its target file has changed and a tally of its attestations.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/proposal" } },
+    "attestations": { "description": "A summary of every attestation in the ledger, in ledger order.", "type": "array", "items": { "$ref": "#/$defs/attestation" } }
   },
   "$defs": {
     "nonEmptyString": { "type": "string", "minLength": 1 },
@@ -33,9 +33,9 @@
       "additionalProperties": false,
       "required": ["path", "updated", "sha256"],
       "properties": {
-        "path": { "const": "content/governance/proposals.json" },
-        "updated": { "$ref": "#/$defs/date" },
-        "sha256": { "$ref": "#/$defs/sha256" }
+        "path": { "description": "Always \"content/governance/proposals.json\", the ledger this index is built from.", "const": "content/governance/proposals.json" },
+        "updated": { "description": "The ledger's own updated date, as YYYY-MM-DD.", "$ref": "#/$defs/date" },
+        "sha256": { "description": "The SHA-256 hash of the ledger file text at build time, in 64 lowercase hex characters.", "$ref": "#/$defs/sha256" }
       }
     },
     "publication": {
@@ -43,14 +43,14 @@
       "additionalProperties": true,
       "required": ["status", "storage", "relay", "identity", "liveVoting", "contactGated", "ratification", "privacy"],
       "properties": {
-        "status": { "enum": ["format-seed", "active", "archived"] },
-        "storage": { "$ref": "#/$defs/nonEmptyString" },
-        "relay": { "$ref": "#/$defs/nonEmptyString" },
-        "identity": { "$ref": "#/$defs/nonEmptyString" },
-        "liveVoting": { "const": false },
-        "contactGated": { "const": true },
-        "ratification": { "$ref": "#/$defs/nonEmptyString" },
-        "privacy": { "$ref": "#/$defs/nonEmptyString" }
+        "status": { "description": "Whether the ledger is a format seed (examples only), active (a real community process is open), or archived.", "enum": ["format-seed", "active", "archived"] },
+        "storage": { "description": "How the records are stored, such as \"single-json-file\".", "$ref": "#/$defs/nonEmptyString" },
+        "relay": { "description": "The ways records may be passed around, such as a static host or email turned into a file. A relay only moves files and has no say over them.", "$ref": "#/$defs/nonEmptyString" },
+        "identity": { "description": "How people are identified in the records, such as pseudonymous or named by choice.", "$ref": "#/$defs/nonEmptyString" },
+        "liveVoting": { "description": "Always false: the ledger does not run live votes.", "const": false },
+        "contactGated": { "description": "Always true: anyone wanting to open a real process has to make contact first.", "const": true },
+        "ratification": { "description": "A sentence saying whether any proposal can currently be ratified, and what has to happen before attestations count.", "$ref": "#/$defs/nonEmptyString" },
+        "privacy": { "description": "What must never be published in the ledger, such as email addresses, phone numbers or exact addresses.", "$ref": "#/$defs/nonEmptyString" }
       }
     },
     "kAnonymity": {
@@ -58,11 +58,11 @@
       "additionalProperties": true,
       "required": ["minimumGroupSize", "countedStatuses", "uncountedStatuses", "countedOnlyWhen", "note"],
       "properties": {
-        "minimumGroupSize": { "type": "integer", "minimum": 5 },
-        "countedStatuses": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "uncountedStatuses": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "countedOnlyWhen": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "note": { "$ref": "#/$defs/nonEmptyString" }
+        "minimumGroupSize": { "description": "The smallest number of counted attestations that may be reported as a group, so no single person can be picked out. At least 5.", "type": "integer", "minimum": 5 },
+        "countedStatuses": { "description": "The attestation statuses that can count towards a result, such as \"submitted\". The governance audit rejects \"template\" and \"draft\" here.", "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "uncountedStatuses": { "description": "The statuses that never count, such as \"template\", \"draft\" and \"archived\".", "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "countedOnlyWhen": { "description": "The conditions that must all hold before an attestation counts, written as short expressions such as \"signature.verified === true\". The governance audit requires at least two.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "note": { "description": "A sentence for readers about why the current records do not count as votes.", "$ref": "#/$defs/nonEmptyString" }
       }
     },
     "counts": {
@@ -70,14 +70,14 @@
       "additionalProperties": true,
       "required": ["proposals", "attestations", "countedAttestations", "targets", "targetFormats", "proposalStatuses", "attestationStatuses", "stances"],
       "properties": {
-        "proposals": { "type": "integer", "minimum": 1 },
-        "attestations": { "type": "integer", "minimum": 0 },
-        "countedAttestations": { "type": "integer", "const": 0 },
-        "targets": { "type": "integer", "minimum": 1 },
-        "targetFormats": { "type": "integer", "minimum": 1 },
-        "proposalStatuses": { "type": "object" },
-        "attestationStatuses": { "type": "object" },
-        "stances": { "type": "object" }
+        "proposals": { "description": "How many proposals the ledger holds.", "type": "integer", "minimum": 1 },
+        "attestations": { "description": "How many attestations the ledger holds.", "type": "integer", "minimum": 0 },
+        "countedAttestations": { "description": "How many attestations have counted set to true. The schema fixes this at 0 while the ledger is a seed.", "type": "integer", "const": 0 },
+        "targets": { "description": "How many different target files the proposals point at.", "type": "integer", "minimum": 1 },
+        "targetFormats": { "description": "How many different Open Values formats those target files use.", "type": "integer", "minimum": 1 },
+        "proposalStatuses": { "description": "How many proposals have each status, keyed by status, such as { \"draft\": 2, \"template\": 1 }.", "type": "object" },
+        "attestationStatuses": { "description": "How many attestations have each status, keyed by status.", "type": "object" },
+        "stances": { "description": "How many attestations take each stance, keyed by stance, such as { \"support\": 1 }.", "type": "object" }
       }
     },
     "filters": {
@@ -85,11 +85,11 @@
       "additionalProperties": false,
       "required": ["proposalStatuses", "attestationStatuses", "stances", "targets", "targetFormats"],
       "properties": {
-        "proposalStatuses": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "attestationStatuses": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "stances": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "targets": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "targetFormats": { "type": "array", "items": { "$ref": "#/$defs/formatId" } }
+        "proposalStatuses": { "description": "Every proposal status that appears in the ledger.", "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "attestationStatuses": { "description": "Every attestation status that appears in the ledger.", "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "stances": { "description": "Every stance that appears in the ledger.", "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "targets": { "description": "Every target file path the proposals point at.", "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "targetFormats": { "description": "Every Open Values format among the target files.", "type": "array", "items": { "$ref": "#/$defs/formatId" } }
       }
     },
     "actor": {
@@ -97,9 +97,9 @@
       "additionalProperties": true,
       "required": ["type", "id", "display"],
       "properties": {
-        "type": { "$ref": "#/$defs/nonEmptyString" },
-        "id": { "$ref": "#/$defs/slug" },
-        "display": { "$ref": "#/$defs/nonEmptyString" }
+        "type": { "description": "What kind of identity this is, such as \"pseudonymous\" or \"attributed\". No account system is needed to fill it in.", "$ref": "#/$defs/nonEmptyString" },
+        "id": { "description": "A short lowercase name for this person or group, made of letters, numbers and hyphens, such as \"seed-steward\". The governance audit rejects email addresses and phone numbers anywhere in the record.", "$ref": "#/$defs/slug" },
+        "display": { "description": "The name to show readers, such as \"Conscious Consuming seed steward\".", "$ref": "#/$defs/nonEmptyString" }
       }
     },
     "signature": {
@@ -107,8 +107,8 @@
       "additionalProperties": true,
       "required": ["method", "verified"],
       "properties": {
-        "method": { "$ref": "#/$defs/nonEmptyString" },
-        "verified": { "type": "boolean" }
+        "method": { "description": "How the record was signed, as a short label. The seed records use \"none-template\", meaning nobody signed them.", "$ref": "#/$defs/nonEmptyString" },
+        "verified": { "description": "True only when the signature has been checked and holds. The governance audit requires false for every seed record, so no example can pass as a real vote.", "type": "boolean" }
       }
     },
     "target": {
@@ -116,13 +116,13 @@
       "additionalProperties": true,
       "required": ["path", "format", "baseSha256", "baseHash", "currentSha256", "currentHash", "matchesCurrent"],
       "properties": {
-        "path": { "$ref": "#/$defs/nonEmptyString" },
-        "format": { "$ref": "#/$defs/formatId" },
-        "baseSha256": { "$ref": "#/$defs/sha256" },
-        "baseHash": { "$ref": "#/$defs/shortHash" },
-        "currentSha256": { "$ref": "#/$defs/sha256" },
-        "currentHash": { "$ref": "#/$defs/shortHash" },
-        "matchesCurrent": { "type": "boolean" }
+        "path": { "description": "The repository path of the file this proposal would change, such as \"content/asks-offers.json\".", "$ref": "#/$defs/nonEmptyString" },
+        "format": { "description": "The Open Values format of the target file, such as \"open-values-asks-offers\".", "$ref": "#/$defs/formatId" },
+        "baseSha256": { "description": "The SHA-256 hash of the target file as it stood when the proposal was written, in 64 lowercase hex characters. If the file changes afterwards, the hash no longer matches and the governance audit fails until the proposal is updated.", "$ref": "#/$defs/sha256" },
+        "baseHash": { "description": "The first 8 characters of baseSha256, for showing to readers. The governance audit checks that it is exactly that prefix.", "$ref": "#/$defs/shortHash" },
+        "currentSha256": { "description": "The SHA-256 hash of the target file as it stood when this index was built.", "$ref": "#/$defs/sha256" },
+        "currentHash": { "description": "The first 8 characters of currentSha256.", "$ref": "#/$defs/shortHash" },
+        "matchesCurrent": { "description": "True when the target file has not changed since the proposal was written, that is, when currentSha256 equals baseSha256.", "type": "boolean" }
       }
     },
     "operation": {
@@ -130,11 +130,11 @@
       "additionalProperties": true,
       "required": ["op", "path", "summary"],
       "properties": {
-        "op": { "enum": ["add-item", "remove-item", "edit-field", "set-field", "note"] },
-        "path": { "type": "string", "pattern": "^/" },
-        "summary": { "$ref": "#/$defs/nonEmptyString" },
-        "impact": { "$ref": "#/$defs/nonEmptyString" },
-        "risk": { "$ref": "#/$defs/nonEmptyString" }
+        "op": { "description": "The kind of change: add an item to a list, remove an item, edit a field, set a field to a new value, or attach a note without changing data.", "enum": ["add-item", "remove-item", "edit-field", "set-field", "note"] },
+        "path": { "description": "Where in the target file the change applies, written like a JSON Pointer starting with \"/\", such as \"/publication/privacy\". The seed records use \"*\" to mean every item in a list.", "type": "string", "pattern": "^/" },
+        "summary": { "description": "One or two sentences saying what the change does.", "$ref": "#/$defs/nonEmptyString" },
+        "impact": { "description": "What the change would make better if it were adopted.", "$ref": "#/$defs/nonEmptyString" },
+        "risk": { "description": "What could go wrong if the change were adopted.", "$ref": "#/$defs/nonEmptyString" }
       }
     },
     "proposal": {
@@ -142,18 +142,18 @@
       "additionalProperties": true,
       "required": ["id", "status", "target", "author", "created", "updated", "rationale", "operations", "operationCount", "signature", "attestations", "limits"],
       "properties": {
-        "id": { "$ref": "#/$defs/slug" },
-        "status": { "enum": ["template", "draft", "submitted", "withdrawn", "superseded", "archived"] },
-        "target": { "$ref": "#/$defs/target" },
-        "author": { "$ref": "#/$defs/actor" },
-        "created": { "$ref": "#/$defs/date" },
-        "updated": { "$ref": "#/$defs/date" },
-        "rationale": { "$ref": "#/$defs/nonEmptyString" },
-        "operations": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/operation" } },
-        "operationCount": { "type": "integer", "minimum": 1 },
-        "signature": { "$ref": "#/$defs/signature" },
-        "attestations": { "type": "object" },
-        "limits": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } }
+        "id": { "description": "A unique name for this proposal, in lowercase letters, numbers and hyphens, such as \"proposal-asks-offers-reply-safety\". Attestations point at it.", "$ref": "#/$defs/slug" },
+        "status": { "description": "Where the proposal stands: template (an example), draft, submitted, withdrawn, superseded by another, or archived. The seed ledger holds only templates and drafts.", "enum": ["template", "draft", "submitted", "withdrawn", "superseded", "archived"] },
+        "target": { "description": "The file the proposal would change, and the hash of that file when the proposal was written.", "$ref": "#/$defs/target" },
+        "author": { "description": "Who wrote the proposal.", "$ref": "#/$defs/actor" },
+        "created": { "description": "The date the proposal was first written, as YYYY-MM-DD.", "$ref": "#/$defs/date" },
+        "updated": { "description": "The date the proposal was last changed, as YYYY-MM-DD.", "$ref": "#/$defs/date" },
+        "rationale": { "description": "Why the change is wanted, in a sentence or two.", "$ref": "#/$defs/nonEmptyString" },
+        "operations": { "description": "The changes the proposal would make to the target file, one entry per change. At least one.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/operation" } },
+        "operationCount": { "description": "How many operations the proposal holds.", "type": "integer", "minimum": 1 },
+        "signature": { "description": "How the proposal was signed and whether that signature has been checked. A missing verified flag in the ledger becomes false here.", "$ref": "#/$defs/signature" },
+        "attestations": { "description": "A tally of the attestations that point at this proposal: total, how many are counted, and how many take each stance.", "type": "object" },
+        "limits": { "description": "Copied from the proposal: things it does not do or must not be used for, one sentence each. An empty list when the proposal names none.", "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } }
       }
     },
     "attestation": {
@@ -161,16 +161,16 @@
       "additionalProperties": true,
       "required": ["id", "status", "proposal", "stance", "attester", "created", "publicComment", "signature", "counted", "privacy"],
       "properties": {
-        "id": { "$ref": "#/$defs/slug" },
-        "status": { "enum": ["template", "submitted", "withdrawn", "archived"] },
-        "proposal": { "$ref": "#/$defs/slug" },
-        "stance": { "enum": ["support", "concern", "needs-work", "oppose", "abstain"] },
-        "attester": { "$ref": "#/$defs/actor" },
-        "created": { "$ref": "#/$defs/date" },
-        "publicComment": { "$ref": "#/$defs/nonEmptyString" },
-        "signature": { "$ref": "#/$defs/signature" },
-        "counted": { "type": "boolean", "const": false },
-        "privacy": { "$ref": "#/$defs/nonEmptyString" }
+        "id": { "description": "A unique name for this attestation, in lowercase letters, numbers and hyphens.", "$ref": "#/$defs/slug" },
+        "status": { "description": "Where the attestation stands: template (an example), submitted, withdrawn, or archived.", "enum": ["template", "submitted", "withdrawn", "archived"] },
+        "proposal": { "description": "The id of the proposal this attestation responds to.", "$ref": "#/$defs/slug" },
+        "stance": { "description": "The position taken on the proposal: support, concern, needs-work, oppose, or abstain.", "enum": ["support", "concern", "needs-work", "oppose", "abstain"] },
+        "attester": { "description": "Who made the attestation.", "$ref": "#/$defs/actor" },
+        "created": { "description": "The date the attestation was made, as YYYY-MM-DD.", "$ref": "#/$defs/date" },
+        "publicComment": { "description": "What the attester wants to say about the proposal, published with the record.", "$ref": "#/$defs/nonEmptyString" },
+        "signature": { "description": "How the attestation was signed and whether that signature has been checked.", "$ref": "#/$defs/signature" },
+        "counted": { "description": "Whether this attestation counts towards a result. The schema fixes it at false while the ledger is a seed.", "type": "boolean", "const": false },
+        "privacy": { "description": "A sentence saying what private details the record leaves out, such as \"Template record; contains no private contact details.\"", "$ref": "#/$defs/nonEmptyString" }
       }
     }
   }

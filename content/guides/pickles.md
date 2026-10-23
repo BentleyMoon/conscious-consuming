@@ -38,7 +38,7 @@ Pickles add acid, salt, crunch, and sometimes sugar to a meal. Small labeled ser
 
 ## Set the pickle floor
 
-Pickles are seasoning with crunch. The floor is a jar that makes food better without letting brine quietly become the meal.
+Pickles are seasoning with crunch. The floor is a jar that makes food better without the brine's salt taking over the meal.
 
 | Floor check | Why it matters |
 | --- | --- |

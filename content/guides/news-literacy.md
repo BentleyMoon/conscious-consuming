@@ -10,7 +10,7 @@ disclosure: We take no money from any outlet. Nothing here is sponsored. We judg
 
 # News literacy: ownership, incentives, and corrections
 
-The thing most likely to mislead you in the news is not an outright lie. It is the **structure you cannot see**: who owns the outlet, how it makes money, whether it corrects itself, and what its incentives quietly reward. You cannot fact-check every story, but you can choose sources whose structure points toward telling you the truth.
+The thing most likely to mislead you in the news is not an outright lie. It is the **structure you cannot see**: who owns the outlet, how it makes money, whether it corrects itself, and what its incentives reward. You cannot fact-check every story, but you can choose sources whose structure points toward telling you the truth.
 
 > **The short answer.** Judge a source by its **funding and structure**, not its vibe, and not whether it flatters your politics. The questions that matter: is ownership independent, nonprofit, public, cooperative, trust-owned, or reader-funded? Does it disclose corrections, funding, conflicts, authorship, and story type? Does it do original reporting or mostly aggregate and argue? The [Trust Project](https://thetrustproject.org/trust-indicators/) is useful here because its indicators focus on disclosures readers can inspect. Wire cooperatives such as AP describe themselves as not-for-profit and independent ([AP purpose](https://apnews.com/purpose/)). Bias tools such as [Ad Fontes](https://adfontesmedia.com/methodology/) and [AllSides](https://www.allsides.com/media-bias/ratings/) can help you see spread, but they are aids, not substitutes for reading carefully.
 

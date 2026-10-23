@@ -1,7 +1,7 @@
 # Contributing
 
 The most useful thing you can send is a correction: a fact that is wrong, with a source that shows
-it. One sharp correction beats a long list, and it does not need an account.
+it. A correction about one fact is easier to check than a long list, and it does not need an account.
 
 ## Three ways to send one
 

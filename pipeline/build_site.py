@@ -16,11 +16,11 @@ sys.stdout.reconfigure(encoding='utf-8')
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_DIST = os.path.join(ROOT, 'dist')
-PUBLIC_DIRS = ['app', 'kosplora', 'instances', 'assembly', 'workshop', 'slate', 'tour', 'funders', 'standard', 'passport', 'contribute', 'weave', 'awards']
+PUBLIC_DIRS = ['app', 'kosplora', 'instances', 'assembly', 'workshop', 'slate', 'tour', 'funders', 'standard', 'passport', 'contribute', 'weave', 'awards', 'sky', 'preview']
 # favicon.ico is here because every site page names /favicon.ico as the ICO fallback for
 # browsers that will not take the SVG. It was generated at the repo root and never copied,
 # so the fallback answered 404 on the live site.
-ROOT_FILES  = ['index.html', 'og-standard.png', 'llms.txt', 'favicon.ico']
+ROOT_FILES  = ['index.html', 'og-standard.png', 'og-ovs.png', 'llms.txt', 'favicon.ico']
 FLASH_DRIVE_README = os.path.join(ROOT, 'content', 'flash-drive-README.md')
 FUNDING_LEDGER = os.path.join(ROOT, 'content', 'ledger.json')
 CITATION_BUNDLES = os.path.join(ROOT, 'content', 'citation-bundles')
@@ -28,7 +28,7 @@ ODBL_LICENSE = 'https://opendatacommons.org/licenses/odbl/1-0/'
 CC_BY_SA_LICENSE = 'https://creativecommons.org/licenses/by-sa/4.0/'
 AGPL_LICENSE = 'https://www.gnu.org/licenses/agpl-3.0.en.html'
 # The canon a reviewer might actually open — rendered to HTML. Internal masterplans/brainstorms stay out of dist.
-PUBLIC_DOCS = ['GRANT-ONE-PAGER', 'GRANT-PREVIEW-PATH', 'DEPLOY-AND-SHARE', 'PREVIEW-FEEDBACK-LOOP', 'R1-REVIEW', 'DECISION-REFRAME-FOUNDER-REVIEW', 'ADOPTION-KIT', 'FEDERATION', 'VALUES-PASSPORT', 'CREATE-AN-INSTANCE', 'INSTANCE-2-KOSPLORA', 'STANDARD-v0', 'THE-VALUES-LAYER', 'THE-WEAVE', 'REGISTER-PASS-RUNBOOK', 'REGISTER-FRESHNESS-QUEUE']
+PUBLIC_DOCS = ['GRANT-ONE-PAGER', 'GRANT-PREVIEW-PATH', 'DEPLOY-AND-SHARE', 'ADOPTION-KIT', 'FEDERATION', 'VALUES-PASSPORT', 'CREATE-AN-INSTANCE', 'INSTANCE-2-KOSPLORA', 'STANDARD-v0', 'THE-VALUES-LAYER', 'THE-WEAVE', 'REGISTER-PASS-RUNBOOK', 'REGISTER-FRESHNESS-QUEUE']
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Build Values Commons dist/ as either public production or private preview.')
@@ -71,7 +71,7 @@ SITE_ORIGIN = _origin(SITE_BASE)
 ROUTE_META = {
     'index.html': {'path': '/', 'title': 'Values Commons', 'image': '/og-standard.png'},
     'app/index.html': {'url': SITE_BASE + '/', 'title': 'Conscious Consuming', 'image': SITE_BASE + '/og-home.png'},
-    'standard/index.html': {'path': '/standard/', 'title': 'Open Values Standard'},
+    'standard/index.html': {'path': '/standard/', 'title': 'Open Values Standard', 'image': '/og-ovs.png'},
     'passport/index.html': {'path': '/passport/', 'title': 'Your values file'},
     'instances/index.html': {'path': '/instances/', 'title': 'Apps built on Values Commons'},
     'instances/new/index.html': {'path': '/instances/new/', 'title': 'Build a Values Commons app'},
@@ -79,7 +79,7 @@ ROUTE_META = {
     'contribute/index.html': {'path': '/contribute/', 'title': 'Contribute to Values Commons'},
     'weave/index.html': {'path': '/weave/', 'title': 'Ownership and alternatives map'},
     'kosplora/index.html': {'path': '/kosplora/', 'title': 'Kosplora: follow a question into the world'},
-    'assembly/index.html': {'path': '/assembly/', 'title': 'Find group agreement'},
+    'assembly/index.html': {'path': '/assembly/', 'title': 'Add up a group\'s values'},
     'workshop/index.html': {'path': '/workshop/', 'title': 'Repair sourced facts'},
     'slate/index.html': {'path': '/slate/', 'title': 'Make a shared plan'},
     'tour/index.html': {'path': '/tour/', 'title': 'Values Commons tour'},
@@ -243,15 +243,34 @@ def _write_schema_ids():
     out_dir = os.path.join(DIST, 'schema')
     os.makedirs(out_dir, exist_ok=True)
     count = 0
+    # Which registry entry names each schema, so the index can say what format a schema is for
+    # (the builders' kit, 2026-10-13: tools read /schema/index.json instead of scraping pages).
+    with open(os.path.join(ROOT, 'app', 'data', 'standard', 'registry.json'), encoding='utf-8') as fh:
+        by_schema = {e.get('schema'): e for e in json.load(fh).get('entries', [])}
+    index = []
     for fn in sorted(os.listdir(src_dir)):
         if not fn.endswith('.schema.json'):
             continue
         with open(os.path.join(src_dir, fn), encoding='utf-8') as fh:
-            schema_id = json.load(fh).get('$id', '')
+            schema = json.load(fh)
+        schema_id = schema.get('$id', '')
         if not schema_id.startswith(SCHEMA_BASE):
             continue
         shutil.copy2(os.path.join(src_dir, fn), os.path.join(out_dir, schema_id[len(SCHEMA_BASE):]))
+        entry = by_schema.get('app/data/standard/schemas/' + fn) or {}
+        index.append({
+            'id': schema_id,
+            'title': schema.get('title', ''),
+            'format': entry.get('id', ''),
+            'status': entry.get('status', ''),
+            'version': entry.get('declaredVersion') or entry.get('version', ''),
+            'spec': ('https://openvaluesstandard.org/spec/' + entry['id'] + '/') if entry.get('id') else '',
+        })
         count += 1
+    with open(os.path.join(out_dir, 'index.json'), 'w', encoding='utf-8', newline='\n') as fh:
+        json.dump({'format': 'open-values-schema-index', 'standard': 'open-values-standard',
+                   'base': SCHEMA_BASE, 'schemas': index}, fh, ensure_ascii=False, indent=2)
+        fh.write('\n')
     return count
 
 def _write_stack_files(generated_at, lens_rows):
@@ -468,16 +487,27 @@ def doc_page(title, body):
             '<footer>Part of <a href="../index.html">Values Commons</a> · powered by the Open Values Standard · static &amp; local · no tracking</footer>'
             '</div></body></html>') % (FAVICON, _html.escape(title), DOC_CSS, body)
 
+# The page a dead link lands on. Served by worker.js since 2026-09-28; before that the Worker returned
+# a zero-byte 404 and this file was built and never shown. Cool paper and ink as the family moved to in
+# July, three ways onward, and the one question worth asking the reader.
 NOTFOUND = ('<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width, initial-scale=1">'
-            '<meta name="robots" content="noindex,nofollow">' + FAVICON + '<title>Not found — Values Commons</title>'
-            '<style>body{margin:0;min-height:100vh;display:grid;place-items:center;text-align:center;padding:2rem;'
-            'background:#faf8f3;color:#2c2c28;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}'
-            '@media(prefers-color-scheme:dark){body{background:#16170f;color:#e7e5d8}}'
-            'h1{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-weight:600;margin:0 0 .4rem}'
-            'a{color:#1d7a5a;font-weight:600}p{color:#6b6a62}</style></head><body><div>'
-            '<h1>Nothing here</h1><p>That page doesn&rsquo;t exist.</p>'
-            '<p><a href="/index.html">&larr; Values Commons</a></p></div></body></html>')
+            '<meta name="robots" content="noindex,nofollow">' + FAVICON + '<title>Not found: Values Commons</title>'
+            '<style>:root{--bg:#f6f8f7;--ink:#18211d;--muted:#56615b;--accent:#1d6f52;color-scheme:light}'
+            '@media(prefers-color-scheme:dark){:root{--bg:#0f1512;--ink:#e6ece8;--muted:#a3b0a9;--accent:#6fd0a8;color-scheme:dark}}'
+            'body{margin:0;min-height:100vh;display:grid;place-items:center;padding:2rem 1rem;background:var(--bg);'
+            'color:var(--ink);font:17px/1.55 "Iowan Old Style",Palatino,Georgia,serif}'
+            'main{max-width:34rem}h1{font-size:1.6rem;margin:0 0 .5rem}p{margin:0 0 1rem;color:var(--muted)}'
+            'ul{margin:0 0 1.2rem;padding-left:1.1rem}li{margin:.35rem 0}a{color:var(--accent);font-weight:600}'
+            '.small{font-size:.9rem}</style></head><body><main>'
+            '<h1>Nothing at this address</h1>'
+            '<p>The link may be old, or one letter off. Everything on the site is still reachable from here:</p>'
+            '<ul><li><a href="https://valuescommons.org/app/">Open the app and search it</a></li>'
+            '<li><a href="https://valuescommons.org/app/g/index.html">Every guide</a></li>'
+            '<li><a href="https://valuescommons.org/">The Values Commons home page</a></li></ul>'
+            '<p class="small">If a link on this site brought you here, it is ours to fix. Tell us which one: '
+            '<a href="mailto:futurisminstitute@gmail.com?subject=A%20link%20that%20leads%20nowhere">futurisminstitute@gmail.com</a></p>'
+            '</main></body></html>')
 
 NETLIFY = ('# Private grant preview — not a public launch. Keep it out of search indexes.\n'
            '[[headers]]\n  for = "/*"\n  [headers.values]\n'
@@ -541,10 +571,25 @@ def _write_root_sitemap():
     """
     today = _dt.date.today().isoformat()
     urls = ['/']
+    # /kosplora/ answers with a redirect to kosplora.org (worker.js), so it is not a page of this site.
+    redirected = {'/kosplora/'}
     for meta in ROUTE_META.values():
         path = meta.get('path')
-        if path and path not in urls:
+        if path and path not in urls and path not in redirected:
             urls.append(path)
+    # The builders' kit (pipeline/build_kit.js): every generated section and spec page that was built.
+    kit_root = os.path.join(DIST, 'standard')
+    if os.path.isdir(kit_root):
+        for section in sorted(os.listdir(kit_root)):
+            sec_dir = os.path.join(kit_root, section)
+            if not os.path.isdir(sec_dir):
+                continue
+            if os.path.isfile(os.path.join(sec_dir, 'index.html')):
+                urls.append('/standard/%s/' % section)
+            if section == 'spec':
+                for fmt in sorted(os.listdir(sec_dir)):
+                    if os.path.isfile(os.path.join(sec_dir, fmt, 'index.html')):
+                        urls.append('/standard/spec/%s/' % fmt)
     rows = ''.join(
         '  <url><loc>%s%s</loc><lastmod>%s</lastmod></url>\n' % (SITE_ORIGIN, u, today)
         for u in urls

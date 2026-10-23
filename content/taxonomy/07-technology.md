@@ -64,19 +64,22 @@ edge: Devices, the connections they run on, and the software and services used t
 ### Talking and writing
 - Messaging | cid: messaging | aka: messaging apps
 - Email | cid: email
-- Video calls | cid: digital-services | facet: video calls
+- Video calls | cid: video-calls
 
 ### Finding and going
 - Browsers | cid: browsers | aka: web browsers
 - Search | cid: search | aka: search engines
-- Maps | cid: digital-services | facet: maps
+- Maps | cid: maps
 
 ### Keeping and sharing
-- Cloud storage | cid: digital-services | facet: cloud storage
-- Notes | cid: digital-services | facet: notes | aka: note taking apps
-- Social networks | cid: digital-services | facet: social | aka: social media
+- Cloud storage | cid: cloud-storage
+- Notes | cid: notes | aka: note taking apps
+- Social networks | cid: social-networks | aka: social media
 - Photo libraries and backup
 - Calendars and scheduling
+
+### Everything else, for now
+- Other everyday digital tools | cid: digital-services | aka: online forms, office tools, ad blocking, email aliases, data broker removal
 
 ## Software and tools | type: S | mode: subscribe | cadence: yearly
 

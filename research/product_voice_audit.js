@@ -9,6 +9,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const publicCopy = require('./public_copy.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const failures = [];
@@ -179,7 +180,9 @@ function main() {
   // 124 on 2026-08-26: messaging and browsers authored their own contracts in the split.
   // 126 on 2026-09-23: email and search left the shared digital-services dataset in the same
   // split, authoring their own contracts.
-  if (contracts.length !== 126) failures.push(`${decisionRel}: expected 126 decision contracts, found ${contracts.length}`);
+  // Moved 2026-09-29: cloud storage and notes flipped from digital-services facets to their
+  // own datasets, wave two of the nine-way split; video calls, maps and social networks remain.
+  if (contracts.length !== 144) failures.push(`${decisionRel}: expected 144 decision contracts, found ${contracts.length}`);
   for (const contract of contracts) {
     const label = contract.category || '(unknown category)';
     const summary = contract.reads && contract.reads.text || '';
@@ -198,6 +201,8 @@ function main() {
     }
   }
 
+  // In the public copy, a working document it does not carry is skipped by name, not failed (2026-10-23).
+  failures.splice(0, failures.length, ...publicCopy.dropPrivateFailures(failures));
   if (failures.length) {
     console.log(`  failures: ${failures.length}`);
     for (const failure of failures) console.log(`  FAIL ${failure}`);

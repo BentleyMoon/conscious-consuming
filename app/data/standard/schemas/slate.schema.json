@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/slate-v0.1.schema.json",
+  "title": "Open Values Slate v0.1",
+  "description": "A group's plan for one facts file: the options it would use, the ones it would move away from, and the sourced reason for each, worked out from the group's values. The page at /slate/ makes it.",
+  "type": "object",
+  "required": ["format", "version", "lensHash", "values", "endorse", "divest", "ranked"],
+  "additionalProperties": true,
+  "$defs": {
+    "item": {
+      "type": "object",
+      "required": ["name", "score"],
+      "properties": {
+        "code": { "description": "The option's code in the facts file." },
+        "name": { "type": "string", "description": "The option's name." },
+        "brand": { "type": ["string", "null"], "description": "The option's brand or maker, when the facts file gives one." },
+        "score": { "type": "number", "minimum": 0, "maximum": 100, "description": "How well the option fits the group's values, from 0 to 100." },
+        "tier": { "type": ["string", "array"], "items": { "type": "string" }, "description": "The plain fit label for the score. The engine writes it as a pair: the label, such as \"Strong fit\", and a style name for drawing it. Older files may hold the label alone." },
+        "why": { "type": "array", "items": { "type": "string" }, "description": "The criteria that did most to set this option's score, most important first." },
+        "reason": { "type": ["object", "null"], "description": "The one fact the plan gives as this option's reason: its criterion, score, band, note, and the source and date when the facts file has them." },
+        "conflicts": {
+          "type": "array",
+          "description": "Values the group weighted 4 or more that this option scores badly on, each with its source.",
+          "items": {
+            "type": "object",
+            "required": ["key", "v"],
+            "properties": {
+              "label": { "type": "string", "description": "The criterion's name as shown to people." },
+              "key": { "type": "string", "description": "The criterion's key in the facts file." },
+              "v": { "type": "number", "description": "The option's score on that criterion, from 0 to 100. It is 25 or less, which is why it counts as a conflict." },
+              "source": { "type": ["string", "null"], "description": "The web address of the source for that score, or empty when the facts file gives none." },
+              "note": { "type": ["string", "null"], "description": "The facts file's note on that score." },
+              "asof": { "type": ["string", "null"], "description": "When that score's claim was true, as the facts file gives it." }
+            }
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "format": { "const": "open-values-slate", "description": "Always \"open-values-slate\". Tells a reader that this file is a group's plan." },
+    "version": { "type": "string", "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$", "description": "The version of the slate format this file follows, 0.1." },
+    "lens": { "type": "string", "description": "The id of the facts file the plan was built from." },
+    "lensTitle": { "type": "string", "description": "The facts file's title, from its meta." },
+    "lensHash": { "type": "string", "description": "A fingerprint of that facts file, so a reader can tell whether the plan was made from the file they have." },
+    "by": { "type": "string", "description": "Whose values the plan uses: the name or source written in the values file that was loaded." },
+    "values": { "type": "object", "additionalProperties": { "type": "number", "minimum": 0, "maximum": 5 }, "description": "The group's weight for each shared value, from 0 to 5, copied from the values file the plan was made with." },
+    "applied": { "description": "The shared values weighted 4 or more that this facts file has a criterion for, so they changed the plan." },
+    "dissent": { "type": "array", "description": "What the group split on, carried from its collective file." },
+    "endorse": { "type": "array", "items": { "$ref": "#/$defs/item" }, "description": "The options the group would use: up to three that score 60 or more, best first." },
+    "divest": { "type": "array", "items": { "$ref": "#/$defs/item" }, "description": "The options the group would move away from: up to three that score 25 or less on a value the group weighted 4 or more, lowest overall score first." },
+    "ranked": { "type": "array", "items": { "$ref": "#/$defs/item" }, "description": "Every option the facts file could score with these values, best first." }
+  }
+}

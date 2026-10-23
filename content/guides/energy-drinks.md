@@ -86,7 +86,7 @@ Energy drinks are sometimes used as emergency infrastructure for a life that is 
 
 ## Make caffeine visible across the day
 
-Energy drinks are easier to evaluate when they are part of the whole caffeine day. Coffee, tea, cola, pre-workout, and some supplements can stack quietly.
+Energy drinks are easier to evaluate when they are part of the whole caffeine day. Coffee, tea, cola, pre-workout, and some supplements all add to the same daily caffeine total.
 
 | Source | What to note |
 | --- | --- |

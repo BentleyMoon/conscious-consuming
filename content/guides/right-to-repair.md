@@ -120,7 +120,7 @@ Keeping devices longer is the default, but not a law of nature. Replacement can 
 
 ## Claims to verify
 
-- **"Thinner and lighter" can mean harder to fix.** Thinness is often sold as progress while repairability quietly disappears.
+- **"Thinner and lighter" can mean harder to fix.** Thinness is often sold as progress while repairability disappears.
 - **"Trade in every year" is still the upgrade cycle.** It can be better than landfill, but skipping the upgrade is usually better.
 - **Premium is not the same as repairable.** Expensive devices can still be glued, paired, locked, or unsupported.
 - **"Recyclable" is the fallback, not the win.** Repair and reuse keep more value intact than recycling.

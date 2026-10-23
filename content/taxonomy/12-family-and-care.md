@@ -10,7 +10,7 @@ edge: Looking after people who depend on you, at both ends of a life. Children's
 ## Babies and toddlers | actor: household
 
 ### Feeding a baby
-- Infant formula | need: nourish | aka: baby formula, baby food and formula
+- Infant formula | need: nourish | aka: baby formula, baby food and formula | cid: infant-formula
 - Baby and toddler food | need: nourish
 - Bottles and feeding equipment
 - Breastfeeding products and support
@@ -25,8 +25,8 @@ edge: Looking after people who depend on you, at both ends of a life. Children's
 - Nappy bins and disposal
 
 ### Sleeping and getting around | cadence: once
-- Cots and cribs
-- Baby monitors | need: connect
+- Cots and cribs | hold: Almost every recall on record is the 2010 to 2011 drop-side generation, so the register separates old designs from new ones rather than one current cot from another.
+- Baby monitors | need: connect | hold: The recall record only separates old or budget brands, so it cannot rank the monitors people actually choose between today.
 - Strollers and pushchairs | aka: prams, buggies
 - Car seats | need: move
 - Slings and carriers
@@ -49,7 +49,7 @@ edge: Looking after people who depend on you, at both ends of a life. Children's
 - Toy libraries and swaps | type: I | mode: borrow | actor: community
 
 ### Being looked after | type: S | mode: hire | cadence: monthly
-- Childcare
+- Childcare | hold: 98.8 per cent of English nurseries are rated Good or Outstanding and price is set per nursery, so the published rating does not separate them and the price cannot be compared nationally.
 - Childminders and nannies
 - After-school and holiday clubs
 - Babysitting services
@@ -61,20 +61,20 @@ edge: Looking after people who depend on you, at both ends of a life. Children's
 ## Caring for adults | type: S | mode: hire | actor: household
 
 ### Care at home
-- Home care services
+- Home care services | cid: home-care-services
 - Live-in care
 - Respite care
 - Care at home equipment | type: P | mode: buy
 - Personal alarms and care technology | type: P | mode: buy
 
 ### Care away from home | cadence: once
-- Care homes
+- Care homes | cid: care-homes
 - Supported living
 - Retirement housing | need: keep-a-home
 - Day centres and community care | actor: community
 
 ### Support for the carer | type: I | mode: free
-- Carer support and advice
+- Carer support and advice | hold: Ranking entitlements by amount would edge into legal advice, which this catalogue does not give; a guide can explain the routes without ranking them.
 - Carer benefits and entitlements
 - Carer respite grants
 

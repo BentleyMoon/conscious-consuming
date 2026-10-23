@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/door-v0.1.schema.json",
   "title": "Open Values Door v0.1",
-  "description": "A well-known discovery document for an Open Values instance and its published lens distributions.",
+  "description": "The file a site publishes at /.well-known/open-values.json to say what it offers: which version of the standard it follows, its privacy promises, its licences, and every facts file it publishes with a hash to check it against. The site's build writes it.",
   "type": "object",
   "additionalProperties": true,
   "required": [
@@ -21,21 +21,26 @@
   ],
   "properties": {
     "format": {
-      "const": "open-values-door"
+      "const": "open-values-door",
+      "description": "Always \"open-values-door\". Tells a reader that this file is a site's public list of what it publishes."
     },
     "version": {
       "type": "string",
-      "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$"
+      "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$",
+      "description": "The version of the door format this file follows, 0.1."
     },
     "generatedAt": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "description": "When the site build wrote this file, as an ISO 8601 date and time in UTC, such as \"2026-10-13T09:00:00Z\"."
     },
     "self": {
-      "$ref": "#/$defs/url"
+      "$ref": "#/$defs/url",
+      "description": "The address this file is served at, normally the site's /.well-known/open-values.json."
     },
     "publisher": {
-      "$ref": "#/$defs/namedUrl"
+      "$ref": "#/$defs/namedUrl",
+      "description": "Who publishes the site: a name and a web address."
     },
     "standard": {
       "type": "object",
@@ -48,19 +53,24 @@
       "properties": {
         "name": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "The standard's name, \"Open Values Standard\"."
         },
         "version": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "The version of the standard the site follows, such as \"0.1\"."
         },
         "url": {
-          "$ref": "#/$defs/url"
+          "$ref": "#/$defs/url",
+          "description": "The address of the page that explains the standard."
         },
         "spec": {
-          "$ref": "#/$defs/url"
+          "$ref": "#/$defs/url",
+          "description": "The address of the written specification."
         }
-      }
+      },
+      "description": "Which version of the Open Values Standard the site follows, and where to read it."
     },
     "instance": {
       "type": "object",
@@ -74,26 +84,33 @@
       "properties": {
         "name": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "The app's name, such as \"Conscious Consuming\"."
         },
         "role": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "What the app is for among apps that use the standard, such as \"reference-instance\" for the one the standard is checked against."
         },
         "url": {
-          "$ref": "#/$defs/url"
+          "$ref": "#/$defs/url",
+          "description": "The app's address."
         },
         "index": {
-          "$ref": "#/$defs/url"
+          "$ref": "#/$defs/url",
+          "description": "The address of the app's list of facts files (its data index)."
         },
         "cards": {
-          "$ref": "#/$defs/url"
+          "$ref": "#/$defs/url",
+          "description": "The address of the app's shareable result cards."
         }
-      }
+      },
+      "description": "The app on this site that uses the standard: its name, its role and where its data lives."
     },
     "licenses": {
       "type": "object",
-      "additionalProperties": true
+      "additionalProperties": true,
+      "description": "The licences that cover the site, as web addresses keyed by what they cover, such as code, data, and guides and docs."
     },
     "privacy": {
       "type": "object",
@@ -106,25 +123,32 @@
       ],
       "properties": {
         "accounts": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Whether the site has user accounts."
         },
         "tracking": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Whether the site tracks visitors."
         },
         "ads": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Whether the site shows ads."
         },
         "payToRank": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Whether anyone can pay to change a ranking."
         },
         "passportLocation": {
-          "type": "string"
+          "type": "string",
+          "description": "Where a person's values file is kept, such as \"local-device\" for their own browser."
         }
-      }
+      },
+      "description": "What the site does and does not do with the people who use it. Each answer is true or false."
     },
     "trustArtifacts": {
       "type": "object",
-      "additionalProperties": true
+      "additionalProperties": true,
+      "description": "Addresses of public records a reader can check, keyed by name, such as the funding ledger and the citation bundles."
     },
     "stacks": {
       "type": "object",
@@ -136,15 +160,19 @@
       ],
       "properties": {
         "index": {
-          "$ref": "#/$defs/url"
+          "$ref": "#/$defs/url",
+          "description": "The address of the list of fixed copies (a stack index file)."
         },
         "pattern": {
-          "$ref": "#/$defs/urlTemplate"
+          "$ref": "#/$defs/urlTemplate",
+          "description": "The address pattern for one fixed copy. Replace {id} with the facts file's id and {sha256} with its hash."
         },
         "hash": {
-          "const": "sha256"
+          "const": "sha256",
+          "description": "Always \"sha256\": the hash used to name and check the copies."
         }
-      }
+      },
+      "description": "Where to find fixed copies of each facts file, named by their SHA-256 hash, so a copy can be checked after download."
     },
     "agents": {
       "type": "object",
@@ -152,36 +180,43 @@
       "properties": {
         "llms": {
           "type": "string",
-          "format": "uri"
+          "format": "uri",
+          "description": "The address of a plain-text summary of the site written for AI systems (llms.txt)."
         },
         "mcp": {
           "type": "object",
           "properties": {
             "url": {
               "type": "string",
-              "format": "uri"
+              "format": "uri",
+              "description": "The server's address."
             },
             "transport": {
-              "type": "string"
+              "type": "string",
+              "description": "How to connect to the server, such as \"streamable-http\"."
             },
             "tools": {
               "type": "array",
               "items": {
                 "type": "string"
-              }
+              },
+              "description": "The names of the tools the server offers, such as \"search\" and \"fetch\"."
             },
             "readOnly": {
-              "type": "boolean"
+              "type": "boolean",
+              "description": "True when the server can only read data and cannot change anything."
             },
             "logsQueries": {
-              "type": "boolean"
+              "type": "boolean",
+              "description": "Whether the server keeps a log of the questions sent to it."
             }
           },
           "required": [
             "url",
             "transport",
             "tools"
-          ]
+          ],
+          "description": "A Model Context Protocol server an AI agent can use to search and read the data."
         }
       }
     },
@@ -190,7 +225,8 @@
       "minItems": 1,
       "items": {
         "$ref": "#/$defs/lens"
-      }
+      },
+      "description": "Every facts file the site publishes, with where to get it and the hash to check it against."
     }
   },
   "$defs": {
@@ -212,10 +248,12 @@
       "properties": {
         "name": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "The name to show."
         },
         "url": {
-          "$ref": "#/$defs/url"
+          "$ref": "#/$defs/url",
+          "description": "The web address."
         }
       }
     },
@@ -245,11 +283,13 @@
       "properties": {
         "id": {
           "type": "string",
-          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+          "description": "The facts file's id, such as \"banking\"."
         },
         "title": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "The facts file's name as shown to people."
         },
         "type": {
           "enum": [
@@ -258,59 +298,74 @@
             "Media",
             "Organizations",
             "Initiatives"
-          ]
+          ],
+          "description": "What kind of thing its entries are: Products, Services, Media, Organizations or Initiatives."
         },
         "domain": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "The area of life it belongs to in the site's navigation, such as \"Money\"."
         },
         "group": {
-          "type": "string"
+          "type": "string",
+          "description": "The group it sits in inside that area, where it has one."
         },
         "entries": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "description": "How many entries the file holds."
         },
         "criteria": {
           "type": "array",
           "items": {
             "type": "string",
             "pattern": "^[a-z][a-z0-9_]*$"
-          }
+          },
+          "description": "The keys of the criteria its entries are scored on."
         },
         "url": {
-          "$ref": "#/$defs/urlTemplate"
+          "$ref": "#/$defs/urlTemplate",
+          "description": "The address of the page in the app that shows this file's rankings."
         },
         "data": {
-          "$ref": "#/$defs/url"
+          "$ref": "#/$defs/url",
+          "description": "The address of the file's JSON data."
         },
         "sha256": {
-          "$ref": "#/$defs/sha256"
+          "$ref": "#/$defs/sha256",
+          "description": "The SHA-256 hash of the data file's bytes, 64 hexadecimal characters."
         },
         "integrity": {
           "type": "string",
-          "pattern": "^sha256-[0-9a-f]{64}$"
+          "pattern": "^sha256-[0-9a-f]{64}$",
+          "description": "The same hash written as \"sha256-\" followed by the hex digest."
         },
         "stack": {
-          "$ref": "#/$defs/url"
+          "$ref": "#/$defs/url",
+          "description": "The address of the fixed copy of this exact version of the file."
         },
         "license": {
-          "$ref": "#/$defs/url"
+          "$ref": "#/$defs/url",
+          "description": "The address of the licence the data is published under."
         },
         "source": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "Where the facts come from as a whole, copied from the file's meta."
         },
         "attribution": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "The file's attribution paragraph, copied from its meta: what it covers and which sources it uses."
         },
         "asof": {
-          "type": "string"
+          "type": "string",
+          "description": "The most recent year among the dates on the file's sourced claims."
         },
         "sourceAsOf": {
           "type": "object",
-          "additionalProperties": true
+          "additionalProperties": true,
+          "description": "The oldest and newest years among the dates on the file's sourced claims."
         }
       }
     }

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "standard": "open-values-standard",
   "standardVersion": "1.0.0-draft.1",
-  "updated": "2026-09-23",
+  "updated": "2026-10-13",
   "entries": [
     {
       "id": "open-values-format-registry",
@@ -24,18 +24,19 @@
         "app/data/standard/registry.json"
       ],
       "generatedOutputs": [
-        "app/data/challenge-index.json"
+        "standard/registry/index.html",
+        "standard/spec/index.html"
       ],
-      "builders": [
-        "pipeline/build_challenge.js"
-      ],
+      "builders": [],
       "audits": [
         "npm run audit:standard"
       ],
       "ownerLane": "data-lane",
       "runtimeConsumers": [
         "audit:standard",
-        "standard documentation"
+        "standard documentation",
+        "pipeline/build_kit.js",
+        "pipeline/build_site.py"
       ],
       "compatibility": {
         "acceptsLegacyVersion": false,
@@ -59,19 +60,17 @@
         "app/data/standard/conformance-vectors.json",
         "docs/STANDARD-v1.md"
       ],
-      "generatedOutputs": [
-        "app/data/asks-offers-index.json"
-      ],
-      "builders": [
-        "pipeline/build_initiatives.js"
-      ],
+      "generatedOutputs": [],
+      "builders": [],
       "audits": [
         "npm run audit:standard"
       ],
       "ownerLane": "data-lane",
       "runtimeConsumers": [
         "audit:standard",
-        "future implementer test suites"
+        "future implementer test suites",
+        "research/standard_audit.js",
+        "pipeline/build_kit.js"
       ],
       "compatibility": {
         "acceptsLegacyVersion": false,
@@ -276,7 +275,7 @@
         "app/data.js"
       ],
       "builders": [
-        "pipeline/build_datasets.py"
+        "pipeline/build_decisions.js"
       ],
       "audits": [
         "node research/two_fields_audit.js",
@@ -289,7 +288,8 @@
         "Round 4 practical dials",
         "Round 4 computed answer recipes",
         "Round 6 shared-floor interface",
-        "Round 9 category-wide decision-page rollout"
+        "Round 9 category-wide decision-page rollout",
+        "pipeline/build_datasets.py"
       ],
       "compatibility": {
         "acceptsLegacyVersion": false,
@@ -2660,6 +2660,174 @@
       "dependencies": [
         "open-values-taxonomy"
       ]
+    },
+    {
+      "id": "open-values-collective",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "A group's values, added up from several people's values files, with how far apart the group is on each value and a values file for the group.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-collective"
+      },
+      "schema": "app/data/standard/schemas/collective.schema.json",
+      "sourceOfTruth": [
+        "app/engine.js",
+        "app/data/standard/schemas/collective.schema.json"
+      ],
+      "generatedOutputs": [],
+      "builders": [],
+      "audits": [
+        "node research/federation_test.js",
+        "node research/schema_ids_audit.js"
+      ],
+      "ownerLane": "shared",
+      "runtimeConsumers": [
+        "assembly/index.html",
+        "app/engine.js mergePassports"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Files are written with bare version 0.1; the registry normalizes it as 0.1.0. Registered 2026-10-12, after an outside review found the group files in no registry."
+      }
+    },
+    {
+      "id": "open-values-slate",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "A group's plan: its values applied to one facts file, with what it would use and move away from, and the reason for each line.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-slate"
+      },
+      "schema": "app/data/standard/schemas/slate.schema.json",
+      "sourceOfTruth": [
+        "app/engine.js",
+        "app/data/standard/schemas/slate.schema.json"
+      ],
+      "generatedOutputs": [],
+      "builders": [],
+      "audits": [
+        "node research/slate_test.js",
+        "node research/schema_ids_audit.js"
+      ],
+      "ownerLane": "shared",
+      "runtimeConsumers": [
+        "slate/index.html",
+        "app/engine.js buildSlate"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Files are written with bare version 0.1; the registry normalizes it as 0.1.0. Registered 2026-10-12, after an outside review found the group files in no registry."
+      }
+    },
+    {
+      "id": "open-values-position",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "A position a person could be talked out of: where they stand, how firmly, the strongest case against it in its holder's own terms, and what would change their mind.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-position"
+      },
+      "schema": "app/data/standard/schemas/position.schema.json",
+      "sourceOfTruth": [
+        "websites:sites/futurism-institute/public/js/hearth.js",
+        "app/data/standard/schemas/position.schema.json"
+      ],
+      "generatedOutputs": [],
+      "builders": [
+        "websites:sites/futurism-institute/public/js/hearth.js"
+      ],
+      "audits": [
+        "websites: node scripts/roundtrip-audit.mjs",
+        "node research/schema_ids_audit.js"
+      ],
+      "ownerLane": "external",
+      "runtimeConsumers": [
+        "websites:sites/futurism-institute/public/js/work-party.js"
+      ],
+      "formerNames": [
+        "hearth-position"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Shipped for one day as hearth-position; a reader treats that name as an alias. Built in the Futurism Institute websites repository; registered here on 2026-10-12 so this registry is the single list, and websites formats.json is generated from it."
+      }
+    },
+    {
+      "id": "open-values-agreement",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "What a group settled: the question, who was present, each agreement with who does it, by when and how the group will know it is done, and what stayed open.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-agreement"
+      },
+      "schema": "app/data/standard/schemas/agreement.schema.json",
+      "sourceOfTruth": [
+        "websites:sites/futurism-institute/public/js/work-party.js",
+        "app/data/standard/schemas/agreement.schema.json"
+      ],
+      "generatedOutputs": [],
+      "builders": [
+        "websites:sites/futurism-institute/public/js/work-party.js"
+      ],
+      "audits": [
+        "websites: node scripts/roundtrip-audit.mjs",
+        "node research/schema_ids_audit.js"
+      ],
+      "ownerLane": "external",
+      "runtimeConsumers": [
+        "websites:sites/futurism-institute/public/js/work-party.js"
+      ],
+      "formerNames": [
+        "agreements-record"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Read back by its own writer for revision; a second, independent reader is still missing. Built in the Futurism Institute websites repository; registered here on 2026-10-12 so this registry is the single list, and websites formats.json is generated from it."
+      }
+    },
+    {
+      "id": "open-values-lens-patch",
+      "version": "0.1.0",
+      "declaredVersion": "0.1",
+      "status": "draft",
+      "kind": "source",
+      "purpose": "A list of corrections to one facts file, changed scores and added options, each with its source, for whoever holds the facts to read and apply.",
+      "marker": {
+        "mode": "explicit-format",
+        "format": "open-values-lens-patch"
+      },
+      "schema": "app/data/standard/schemas/lens-patch.schema.json",
+      "sourceOfTruth": [
+        "app/engine.js",
+        "docs/FEDERATION.md",
+        "app/data/standard/schemas/lens-patch.schema.json"
+      ],
+      "generatedOutputs": [],
+      "builders": [],
+      "audits": [
+        "node research/schema_ids_audit.js"
+      ],
+      "ownerLane": "shared",
+      "runtimeConsumers": [
+        "workshop/index.html",
+        "app/engine.js mergeLens"
+      ],
+      "compatibility": {
+        "acceptsBareVersion": true,
+        "notes": "Files are written with bare version 0.1. Registered 2026-10-13, when the builders' kit found fact repair writing a format the registry did not list."
+      }
     }
   ]
 }

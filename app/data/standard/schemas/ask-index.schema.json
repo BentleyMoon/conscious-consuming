@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/ask-index-v0.1.schema.json",
   "title": "Open Values Ask Index v0.1",
-  "description": "A generated full Ask search index mapping tokens and aliases to Open Values targets.",
+  "description": "The full search index for Ask, the site's search box. It maps words and names to everything on the site, including single entries by name or barcode. The data build writes it, and the app loads it only when a search needs product names or barcodes.",
   "type": "object",
   "additionalProperties": true,
   "required": [
@@ -19,35 +19,45 @@
   ],
   "properties": {
     "format": {
+      "description": "Names this file's format, so a reader can check it before reading the rest of the file.",
       "const": "ovs-ask-index"
     },
     "version": {
+      "description": "The version of the format this file follows, such as \"0.1\".",
       "type": "string",
       "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$"
     },
     "built": {
+      "description": "The date of the source data this file was built from, as YYYY-MM-DD.",
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
     },
     "source": {
+      "description": "The files this index was built from, as paths in the repository.",
       "$ref": "#/$defs/sourceList"
     },
     "loadHint": {
+      "description": "Always \"lazy-product-search\": the app loads this file only when a search needs product names or barcodes.",
       "const": "lazy-product-search"
     },
     "budget": {
+      "description": "The size limit for this file and how it is measured.",
       "$ref": "#/$defs/budget"
     },
     "shards": {
+      "description": "Whether the index is split across several files, and which.",
       "$ref": "#/$defs/shards"
     },
     "tokens": {
+      "description": "A map from each normalized word or phrase to the ids it can find, at most 24 per key. Covers categories, entries, brands, companies, tags, errands, lines and guides.",
       "$ref": "#/$defs/tokenMap"
     },
     "aliases": {
+      "description": "A map from each normalized name to the one id it names exactly, such as \"7up\" to \"ovs:brand/7up\".",
       "$ref": "#/$defs/aliasMap"
     },
     "stats": {
+      "description": "Counts by name, such as \"tokens\", \"aliases\", \"items\" (entries) and \"barcodeLikeItems\" (entries whose code looks like a barcode).",
       "$ref": "#/$defs/stats"
     }
   },
@@ -70,19 +80,24 @@
       "required": ["maxBytes", "currentBytes", "withinBudget", "measurement", "actionWhenExceeded"],
       "properties": {
         "maxBytes": {
+          "description": "The largest this file may be, in bytes.",
           "const": 6000000
         },
         "currentBytes": {
+          "description": "This file's size in bytes.",
           "type": "integer",
           "minimum": 1
         },
         "withinBudget": {
+          "description": "True when currentBytes is not more than maxBytes.",
           "type": "boolean"
         },
         "measurement": {
+          "description": "How the size is measured, such as the UTF-8 bytes of the written file.",
           "$ref": "#/$defs/nonEmptyString"
         },
         "actionWhenExceeded": {
+          "description": "What to do when the file grows past maxBytes.",
           "$ref": "#/$defs/nonEmptyString"
         }
       }
@@ -93,13 +108,16 @@
       "required": ["status", "count", "files", "hint"],
       "properties": {
         "status": {
+          "description": "\"not-needed\" while one file fits the budget, or \"required\" once it does not.",
           "enum": ["not-needed", "required"]
         },
         "count": {
+          "description": "How many files the index is split across.",
           "type": "integer",
           "minimum": 1
         },
         "files": {
+          "description": "The names of those files.",
           "type": "array",
           "minItems": 1,
           "items": {
@@ -107,6 +125,7 @@
           }
         },
         "hint": {
+          "description": "A note on when to split the index.",
           "$ref": "#/$defs/nonEmptyString"
         }
       }

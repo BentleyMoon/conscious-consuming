@@ -4,143 +4,270 @@
 <meta charset="utf-8">
 <script>try{var t=localStorage.getItem('cc.theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#2f6d8c">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#1d7a5a">
 <link rel="icon" href="/app/icon.svg" type="image/svg+xml"><link rel="alternate icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64"><link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
-<title>Repair sourced facts - Values Commons</title>
-<meta name="description" content="Correct a fact, add an option, preview changes from others, and export improved sourced facts without a server owning the truth.">
+<title>Fact repair - Values Commons</title>
+<meta name="description" content="Think a fact is wrong? Send the correction with its source, or keep your own copy of the facts file. It runs in your browser and uploads nothing.">
 <link rel="canonical" href="https://valuescommons.org/workshop/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://valuescommons.org/workshop/">
 <meta property="og:site_name" content="Values Commons">
-<meta property="og:title" content="Repair sourced facts">
-<meta property="og:description" content="Correct a fact, add an option, preview changes from others, and export improved sourced facts without a server owning the truth.">
+<meta property="og:title" content="Fact repair">
+<meta property="og:description" content="Think a fact is wrong? Send the correction with its source, or keep your own copy of the facts file. It runs in your browser and uploads nothing.">
 <meta property="og:image" content="https://valuescommons.org/og-standard.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Repair sourced facts">
-<meta name="twitter:description" content="Correct a fact, add an option, preview changes from others, and export improved sourced facts without a server owning the truth.">
+<meta name="twitter:title" content="Fact repair">
+<meta name="twitter:description" content="Think a fact is wrong? Send the correction with its source, or keep your own copy of the facts file. It runs in your browser and uploads nothing.">
 <meta name="twitter:image" content="https://valuescommons.org/og-standard.png">
 <style>
-  /* A FIFTH skin (a drafting table / blueprint): cool light, slate-blue accent, monospace for patches & logs. */
-  :root{--shadow-sm:0 1px 2px rgba(40,34,24,.07),0 1px 1px rgba(40,34,24,.05);--shadow-md:0 2px 6px rgba(40,34,24,.09),0 10px 26px rgba(40,34,24,.07);--shadow-lg:0 6px 16px rgba(40,34,24,.12),0 22px 48px rgba(40,34,24,.10); --bg:#f8f5ee; --surface:#ffffff; --ink:#16242e; --muted:#52646f; --hint:#8295a0;
-    --line:rgba(20,40,55,.14); --accent:#2f6d8c; --warn:#9a5a23; --track:#dce5eb;
-    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
-  /* Nine surfaces stated a light palette and no alternative, so a reader who asks for
-     dark was overridden on most of the commons and honoured on two of it. Same values
-     the Institute uses, so the family reads as one in either mode. */
-  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--shadow-sm:0 1px 2px rgba(0,0,0,.55);--shadow-md:0 2px 8px rgba(0,0,0,.6),0 12px 30px rgba(0,0,0,.45);--shadow-lg:0 8px 20px rgba(0,0,0,.65),0 28px 56px rgba(0,0,0,.5);--bg:#11140f;--surface:#181d16;--ink:#eef1e8;--muted:#c0c9bd;--hint:#8b978a;--line:#2b322a;--accent:#6fce8c;--track:#2b322a}}
-
-  @media (prefers-color-scheme:dark){:root{ color-scheme:dark;
-    --bg:#121a1f; --surface:#1a242c; --ink:#e3eaef; --muted:#9fb0ba; --hint:#7e909b;
-    --line:rgba(255,255,255,.13); --accent:#62b3d8; --warn:#d59a5a; --track:#232f38; }}
+  /* Fact repair, in the front page's lab-notebook register: three plates for the three things the
+     tool does, four notes under the two that need explaining, one note in pencil.
+     Green is the reader's values and the primary buttons. This page holds no ochre. */
+  :root{--bg:#f8f5ee;--surface:#ffffff;--sunk:#eef1ef;--ink:#18211d;--muted:#566560;--hint:#607068;
+    --line:#e3e7e5;--line-strong:#cfd8d3;--accent:#1d7a5a;--accent-bright:#17936a;--accent-soft:#e9f3ee;
+    --track:#eef1ef;--warn:#a8432f;--band:#eef2f0;--code:#f3f5f3;--on-accent:#ffffff;--graphite:#4d5357;--hatch:rgba(24,33,29,.36);
+    --e1:0 1px 2px rgba(24,38,30,.05),0 3px 10px rgba(24,38,30,.05);
+    --font-display:"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,ui-serif,serif;
+    --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--max:1040px}
+  @media (prefers-color-scheme:dark){:root{--bg:#11140f;--surface:#161d18;--sunk:#0b100d;--ink:#e6ece8;--muted:#9aa8a1;--hint:#87968e;
+    --line:rgba(255,255,255,.10);--line-strong:rgba(255,255,255,.17);--accent:#5dcaa5;--accent-bright:#6ad9ab;--accent-soft:#16241d;
+    --track:#1b241f;--warn:#e3a594;--band:#131b16;--code:#0f1512;--on-accent:#0b100d;--graphite:#b6bcc0;--hatch:rgba(230,236,232,.32);
+    --e1:0 1px 2px rgba(0,0,0,.3),0 3px 10px rgba(0,0,0,.3)}}
+  :root[data-theme="dark"]{--bg:#11140f;--surface:#161d18;--sunk:#0b100d;--ink:#e6ece8;--muted:#9aa8a1;--hint:#87968e;--line:rgba(255,255,255,.10);--line-strong:rgba(255,255,255,.17);--accent:#5dcaa5;--accent-bright:#6ad9ab;--accent-soft:#16241d;--track:#1b241f;--warn:#e3a594;--band:#131b16;--code:#0f1512;--on-accent:#0b100d;--graphite:#b6bcc0;--hatch:rgba(230,236,232,.32);--e1:0 1px 2px rgba(0,0,0,.3),0 3px 10px rgba(0,0,0,.3);color-scheme:dark}
+  :root[data-theme="light"]{--bg:#f8f5ee;--surface:#ffffff;--sunk:#eef1ef;--ink:#18211d;--muted:#566560;--hint:#607068;--line:#e3e7e5;--line-strong:#cfd8d3;--accent:#1d7a5a;--accent-bright:#17936a;--accent-soft:#e9f3ee;--track:#eef1ef;--warn:#a8432f;--band:#eef2f0;--code:#f3f5f3;--on-accent:#ffffff;--graphite:#4d5357;--hatch:rgba(24,33,29,.36);--e1:0 1px 2px rgba(24,38,30,.05),0 3px 10px rgba(24,38,30,.05);color-scheme:light}
   *{box-sizing:border-box}
-  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;line-height:1.55}
-  .wrap{max-width:820px;margin:0 auto;padding:2rem 1.2rem 4rem}
-  .sitebar{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;margin:0 0 1.6rem;padding:0 0 .9rem;border-bottom:1px solid var(--line)}
-  .sitebar .home{font-weight:800;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
-  .sitebar nav{display:flex;gap:.35rem .8rem;flex-wrap:wrap;font-size:0.86rem}
-  .sitebar nav a{color:var(--muted);text-decoration:none}
-  .sitebar nav a[aria-current="page"]{color:var(--accent);font-weight:700}
-  .sitebar nav a:hover{color:var(--accent);text-decoration:none}
-  .loopnote{font-size:0.75rem;color:var(--hint);margin:-.8rem 0 1.4rem}
-  h1{font-weight:550;font-size:1.75rem;letter-spacing:-.02em;margin:.2rem 0 .3rem}
-  .sub{color:var(--muted);margin:0 0 1.2rem}
-  .banner{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:.8rem 1rem;margin:0 0 1.4rem;font-size:0.86rem;color:var(--muted)}
-  .banner b{color:var(--ink)} .banner a{color:var(--accent)}
-  .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.2rem;margin-bottom:1.1rem}
-  .card h2{font-size:0.75rem;font-weight:550;letter-spacing:.06em;text-transform:uppercase;color:var(--hint);margin:0 0 .8rem}
-  .lensttl{font-weight:700;font-size:1.12rem} .lensttl .id{font-family:var(--mono);font-size:0.75rem;color:var(--hint);font-weight:400}
-  .meta{color:var(--muted);font-size:0.86rem;margin:.3rem 0 .6rem}
-  .chips{display:flex;flex-wrap:wrap;gap:.35rem;margin:.2rem 0 .6rem}
-  .chip{font-size:0.75rem;background:var(--track);color:var(--muted);padding:.12rem .5rem;border-radius:999px}
-  .lineage{font-family:var(--mono);font-size:0.75rem;color:var(--hint)}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-display);font-size:1.08rem;line-height:1.58;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,label.btn:focus-within{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.55rem .9rem;z-index:30}
+  .skip:focus{left:0}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1.1rem,4vw,2.2rem)}
+  h1,h2,h3{font-weight:550;letter-spacing:-.01em;text-wrap:balance}
+  code,.mono{font-family:var(--font-mono)}
+  code{background:var(--code);border:1px solid var(--line);padding:.05rem .3rem;border-radius:3px;font-size:0.82rem}
+
+  /* masthead */
+  .masthead{border-bottom:1px solid var(--line-strong)}
+  .masthead .wrap{display:flex;align-items:baseline;justify-content:space-between;gap:.6rem 1rem;flex-wrap:wrap;padding-top:1.1rem;padding-bottom:.95rem}
+  .brand{font-weight:700;font-size:1.25rem;letter-spacing:-.015em;color:var(--ink)}
+  .brand:hover{text-decoration:none}
+  .topnav{display:flex;align-items:center;gap:.4rem 1.1rem;flex-wrap:wrap;font-family:var(--font-mono);font-size:0.75rem}
+  .topnav a{color:var(--muted);padding:.35rem 0}
+  .topnav a:hover{color:var(--ink);text-decoration:none}
+  .topnav a[aria-current="page"]{color:var(--ink);font-weight:700}
+
+  /* hero */
+  .hero{padding:clamp(1.8rem,4vw,2.8rem) 0 clamp(1.8rem,4vw,2.6rem);background:radial-gradient(52rem 26rem at 10% -20%,color-mix(in srgb,var(--accent) 10%,transparent),transparent 60%)}
+  .hero h1{font-size:clamp(2rem,3.8vw,2.8rem);line-height:1.08;margin:0 0 .9rem}
+  .lede{font-size:1.12rem;color:var(--muted);max-width:58ch;margin:0}
+  .lede b{color:var(--ink)}
+  .receipt{display:flex;flex-wrap:wrap;gap:.2rem 1.3rem;margin:1.3rem 0 0;padding:.45rem 0;border-top:1px solid color-mix(in srgb,var(--ink) 55%,transparent);border-bottom:1px dotted color-mix(in srgb,var(--ink) 55%,transparent);font-family:var(--font-mono);font-size:0.75rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+
+  /* sections */
+  .step{padding:clamp(2.2rem,5vw,3.2rem) 0;border-top:1px solid var(--line)}
+  .step.band{background:var(--band)}
+  .sh{font-size:clamp(1.45rem,2.5vw,1.9rem);font-style:italic;font-weight:500;margin:0 0 .5rem}
+  .sd{color:var(--muted);max-width:62ch;margin:0 0 1.3rem}
+  .plate-id{display:flex;justify-content:space-between;align-items:baseline;gap:.3rem 1rem;flex-wrap:wrap;margin:0 0 1rem;padding-bottom:.4rem;border-bottom:1px solid color-mix(in srgb,var(--ink) 55%,transparent)}
+  .plate-id .pn{font-family:var(--font-mono);font-size:0.75rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
+  .plate-id .fig{font-style:italic;font-size:0.92rem;color:var(--muted)}
+  .hand{font-family:"Segoe Print","Ink Free","Bradley Hand","Chalkboard SE","Marker Felt",cursive;color:var(--graphite);font-size:0.98rem;line-height:1.4;transform:rotate(-1.4deg);transform-origin:left top;margin:1.4rem 0 0;max-width:36ch}
+
+  /* how the files move: three numbered steps */
+  .moves{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4rem;counter-reset:mv}
+  .moves li{border-top:2px solid var(--line-strong);padding-top:.6rem;counter-increment:mv}
+  .moves li::before{content:"Step " counter(mv);display:block;font-family:var(--font-mono);font-size:0.75rem;font-weight:700;color:var(--hint);margin-bottom:.15rem}
+  .moves b{display:block;font-size:1.02rem}
+  .moves p{margin:.2rem 0 0;font-size:0.93rem;color:var(--muted)}
+
+  /* what a useful correction includes: rule and meaning */
+  .rules{width:100%;border-collapse:collapse;font-size:0.95rem}
+  .rules th,.rules td{text-align:left;vertical-align:baseline;padding:.7rem 1rem .7rem 0;border-bottom:1px solid var(--line)}
+  .rules th{font-weight:650;width:30%}
+  .rules td{color:var(--muted)}
+
+  /* the tool */
+  .card{background:var(--surface);border:1px solid var(--line-strong);border-radius:4px;box-shadow:var(--e1);padding:1.1rem 1.2rem}
+  .lensttl{font-weight:700;font-size:1.2rem} .lensttl .id{font-family:var(--font-mono);font-size:0.75rem;color:var(--hint);font-weight:400;margin-left:.3rem}
+  .meta{color:var(--muted);font-size:0.93rem;margin:.3rem 0 .5rem}
+  .lineage{font-family:var(--font-mono);font-size:0.75rem;color:var(--hint)}
+  .sub2{font-size:1.08rem;font-style:italic;font-weight:500;margin:1.3rem 0 .6rem;color:var(--ink)}
+  .sub2:first-child{margin-top:0}
+  .sub2 .hint{font-style:normal}
   /* minmax(0,1fr), not 1fr. A bare 1fr cannot shrink below its content, and a text input's content
      is about 188px wide whatever the screen is, so two of them made this form 427px wide on a 360px
      phone and the whole page scrolled sideways. Measured 2026-09-20. One field per row below 30rem. */
   .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem .8rem}
-  .grid2 input,.grid2 select{min-width:0;width:100%;box-sizing:border-box}
+  .grid2 input,.grid2 select{min-width:0;width:100%}
   @media(max-width:30rem){.grid2{grid-template-columns:minmax(0,1fr)}}
-  label.fl{display:flex;flex-direction:column;gap:.2rem;font-size:0.75rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--hint)}
-  input,select{font:inherit;font-size:0.86rem;padding:.4rem .55rem;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink)}
+  label.fl{display:flex;flex-direction:column;gap:.2rem;font-family:var(--font-mono);font-size:0.75rem;font-weight:600;letter-spacing:.03em;color:var(--hint)}
+  input,select{font-family:var(--font-display);font-size:0.95rem;padding:.4rem .55rem;border:1px solid var(--line-strong);border-radius:3px;background:var(--bg);color:var(--ink);min-height:2.4rem}
   input[type=number]{width:100%}
-  .sub2{font-weight:700;font-size:0.86rem;margin:1rem 0 .5rem;color:var(--ink)}
-  .row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:end}
-  .btn{font:inherit;font-weight:600;color:#fff;background:var(--accent);border:none;padding:.45rem .8rem;border-radius:7px;cursor:pointer}
-  .btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+  .btn{font-family:var(--font-mono);font-size:0.75rem;font-weight:600;display:inline-flex;align-items:center;min-height:2.6rem;padding:.5rem .95rem;border-radius:3px;border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);cursor:pointer}
+  .btn:hover{background:var(--accent-bright);border-color:var(--accent-bright)}
+  .btn.ghost{background:transparent;color:var(--accent);border-color:var(--line-strong)}
+  .btn.ghost:hover{border-color:var(--accent);background:var(--surface)}
   .btn:disabled{opacity:.45;cursor:not-allowed}
-  .hint{font-size:0.75rem;color:var(--hint);margin:.3rem 0 0} .warn{color:var(--warn)}
-  .curval{font-family:var(--mono);font-size:0.86rem;color:var(--muted)}
-  .gradegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(8.5rem,1fr));gap:.5rem;margin:.4rem 0}
+  .hint{font-size:0.82rem;color:var(--hint);margin:.3rem 0 0} .warn{color:var(--warn)}
+  .curval{font-family:var(--font-mono);font-size:0.8rem;color:var(--muted)}
+  .gradegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(8.5rem,1fr));gap:.5rem;margin:.6rem 0 .3rem}
   .oplist,.loglist{list-style:none;margin:.6rem 0 0;padding:0}
-  .oplist li,.loglist li{font-family:var(--mono);font-size:0.86rem;padding:.4rem .55rem;background:var(--bg);border:1px solid var(--line);border-radius:7px;margin-bottom:.35rem;display:flex;justify-content:space-between;gap:.6rem;align-items:flex-start}
-  .oplist .x{cursor:pointer;color:var(--hint);border:none;background:none;font-size:0.86rem}
-  .loglist .by{color:var(--accent);font-weight:700} .loglist .st{color:var(--warn)}
+  .oplist li,.loglist li{font-family:var(--font-mono);font-size:0.8rem;padding:.45rem .55rem;background:var(--code);border:1px solid var(--line);border-radius:3px;margin-bottom:.35rem;display:flex;justify-content:space-between;gap:.6rem;align-items:flex-start;overflow-wrap:anywhere}
+  .oplist .x{cursor:pointer;color:var(--hint);border:none;background:none;font-size:0.86rem;min-width:1.8rem;min-height:1.8rem}
+  .loglist .by{color:var(--ink);font-weight:700} .loglist .st{color:var(--warn)}
   .actions{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem;align-items:center}
-  .flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.65rem;margin:0 0 1.2rem}
-  .flow div,.flow a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.85rem .95rem;color:var(--muted);font-size:0.86rem;text-decoration:none}
-  .flow a:hover{border-color:var(--accent)}
-  .flow b{display:block;color:var(--ink);font-size:1rem;margin-bottom:.15rem}
-  .flow small{display:block;color:var(--hint);font-size:0.75rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.2rem}
-  footer{margin-top:1.6rem;color:var(--hint);font-size:0.86rem;border-top:1px solid var(--line);padding-top:1rem}
-  footer a{color:var(--accent)} code{font-family:var(--mono);background:var(--track);padding:.05rem .3rem;border-radius:4px;font-size:0.86rem}
-  .err{color:#b3402f}
-  :root[data-theme="light"]{--bg:#f8f5ee;--surface:#ffffff;--ink:#16242e;--muted:#52646f;--hint:#8295a0;--line:rgba(20,40,55,.14);--accent:#2f6d8c;--warn:#9a5a23;--track:#dce5eb;color-scheme:light}
-  :root[data-theme="dark"]{--bg:#121a1f;--surface:#1a242c;--ink:#e3eaef;--muted:#9fb0ba;--hint:#7e909b;--line:rgba(255,255,255,.13);--accent:#62b3d8;--warn:#d59a5a;--track:#232f38;color-scheme:dark}
+  .err{color:var(--warn)}
 
-  /* depth pass */
-  /* Containers lift off the page instead of being outlined on it, so a card, a chip and
-     a panel stop announcing themselves with the same single grey pixel. */
-  .banner,.card{box-shadow:var(--shadow-md);background:var(--surface)}
-  h1{font-weight:550;letter-spacing:-0.02em}
-  h2{font-weight:550;letter-spacing:-0.01em}
-.skip{position:absolute;left:-999px;top:.4rem;background:#1d7a5a;color:#fff;padding:.5rem .9rem;border-radius:4px;z-index:100;text-decoration:none}.skip:focus{left:.6rem}</style>
+  /* the four notes, after /windows/ */
+  .notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem 2rem;margin:1.5rem 0 0;max-width:62rem}
+  .notes p{margin:0;font-size:0.95rem;color:var(--muted);line-height:1.5}
+  .notes .h{font-weight:700;color:var(--ink)}
+  .notes .dev{padding-left:.8rem;border-left:2px solid var(--line-strong)}
+
+  footer{border-top:1px solid var(--line-strong);background:var(--sunk)}
+  footer .wrap{padding:1.8rem clamp(1.1rem,4vw,2.2rem);font-size:0.9rem;color:var(--muted)}
+  footer p{margin:0 0 .6rem;max-width:70ch}
+  .footlinks{display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;font-family:var(--font-mono);font-size:0.75rem}
+  .footlinks a{color:var(--muted);border-bottom:1px dotted var(--line-strong)}
+
+  @media (max-width:820px){
+    .moves,.notes{grid-template-columns:1fr}
+    .rules th{width:auto}
+  }
+  @media (max-width:560px){
+    body{font-size:1rem}
+    .rules tr{display:block;border-bottom:1px solid var(--line);padding:.6rem 0}
+    .rules th,.rules td{display:block;border:0;padding:0}
+    .rules td{margin-top:.2rem}
+    .card{padding:1rem .9rem}
+  }
+</style>
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
-<div class="wrap">
-  <header class="sitebar">
-    <a class="home" href="../index.html">◇ Values Commons</a>
-    <nav aria-label="Group decision tools">
-      <a href="../assembly/index.html">Group agreement</a>
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="../index.html">&#9671; Values Commons</a>
+    <nav class="topnav" aria-label="Group decision tools">
+      <a href="../assembly/index.html">Group values</a>
       <a href="../workshop/index.html" aria-current="page">Fact repair</a>
       <a href="../slate/index.html">Shared plan</a>
       <a href="../tour/index.html">Tour</a>
-      <a href="../instances/index.html">Apps</a>
     </nav>
-  </header>
-  <p class="loopnote">Facts should be correctable without losing their sources. This page lets you make and inspect those changes.</p>
-  <h1 id="content" tabindex="-1">Repair the facts</h1>
-  <p class="sub">Correct a score, add a missing option, or inspect someone else's change. Every edit keeps its source and can be exported as a small file.</p>
-
-  <div class="banner">
-    <b>You can change a claim. The trust rule stays fixed.</b> Correct a score or add an option, then hand someone the change with its author and source attached. They can inspect it before accepting it. Nothing is uploaded. To offer a change to this commons, email the file to <a href="mailto:futurisminstitute@gmail.com?subject=Correction">futurisminstitute@gmail.com</a> or open a pull request on <a href="https://github.com/BentleyMoon/conscious-consuming">the public repository</a>. <a href="../docs/FEDERATION.md">How file-sharing works →</a>
   </div>
+</header>
 
-  <section class="flow" aria-label="How the files move">
-    <div><small>Input</small><b>Facts and changes</b>Load a subject file, then add sourced corrections or change files from others.</div>
-    <div><small>This page</small><b>Attributable preview</b>Preview each change, keep the source trail, and export the improved facts or change file.</div>
-    <a href="../slate/index.html"><small>Next</small><b>Act with better facts</b>Use the improved facts in a shared plan, or drop them into a new app folder.</a>
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <h1 id="content" tabindex="-1">Fact repair</h1>
+      <p class="lede">Think a fact here is wrong? Correct it below, attach the source, and export the change as a small file. Email it to <a href="mailto:futurisminstitute@gmail.com?subject=Correction">futurisminstitute@gmail.com</a> or open a pull request on <a href="https://github.com/BentleyMoon/conscious-consuming">the public repository</a>, and once it is checked the fact changes for everyone. You can also keep your own copy of the facts file and use that instead, without sending anything.</p>
+      <p class="receipt"><span>Runs in your browser</span><span>Uploads nothing</span><span>No account</span><span>Same scoring code as the app</span></p>
+    </div>
   </section>
 
-  <section class="flow" aria-label="What a useful correction includes">
-    <div><small>Scope</small><b>Change one thing</b>Name the affected facts file, option, criterion, relationship, or source.</div>
-    <div><small>Evidence</small><b>Source before score</b>Attach a URL, date, dataset, or method note. Mark judgement as judgement.</div>
-    <div><small>Change</small><b>Keep it reversible</b>Prefer a narrow edit someone can inspect, accept, reject, or reverse without mystery.</div>
-    <div><small>Attribution</small><b>An optional label</b>Add a human-readable author label and note. Identity is optional; the rationale is required.</div>
+  <section class="step">
+    <div class="wrap">
+      <h2 class="sh">How the files move</h2>
+      <p class="sd">Three files take part: the facts file, a change file, and the improved facts file. <a href="../docs/FEDERATION.md">How file-sharing works</a> has the formats.</p>
+      <ol class="moves">
+        <li><b>Load the facts</b><p>The page opens with an example facts file. Load any other facts file, or turn a set of community ratings into one.</p></li>
+        <li><b>Write your changes</b><p>Correct a fact or add an option. Each change keeps its source, and the list exports as a change file you can send.</p></li>
+        <li><b>Use the result</b><p>Apply change files other people sent you, then export the improved facts for an app folder or a <a href="../slate/index.html">shared plan</a>.</p></li>
+      </ol>
+    </div>
   </section>
 
-  <div class="card" id="lenscard"></div>
-  <div class="card" id="contribute"></div>
-  <div class="card" id="merge"></div>
+  <section class="step band">
+    <div class="wrap">
+      <h2 class="sh">What a useful correction includes</h2>
+      <table class="rules">
+        <tbody>
+          <tr><th scope="row">Change one thing</th><td>Name the facts file, the option, and the fact, relationship or source you mean.</td></tr>
+          <tr><th scope="row">A correction needs its source</th><td>A link, a date, a dataset or a method note. If the number is your own judgement, say so.</td></tr>
+          <tr><th scope="row">Keep it reversible</th><td>A narrow change is one someone can read, accept, reject or undo later without guessing what you meant.</td></tr>
+          <tr><th scope="row">Say why</th><td>Your name is optional, and any label will do. There is no account to make. Write down the reason for the change, because whoever checks it reads the reason first.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-  <footer>
-    Part of <a href="../index.html"><b>Values Commons</b></a> - the same <code>engine.js</code> as
-    <a href="../app/index.html">Conscious Consuming</a> and the <a href="../assembly/index.html">group agreement page</a>.
-    Facts stay contestable: a correction without a source is just an opinion.
-  </footer>
-</div>
+  <section class="step">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">Plate I</span><span class="fig">Fig. 1. The facts file you are editing.</span></p>
+      <h2 class="sh">The file you are working on</h2>
+      <p class="sd">The page starts with Where to Message, a small example file that ranks messaging apps. The code after the title is a fingerprint worked out from the facts, so changing any one number changes the code.</p>
+      <div class="card" id="lenscard"></div>
+    </div>
+  </section>
+
+  <section class="step band">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">Plate II</span><span class="fig">Fig. 2. The form for writing corrections and exporting them as a change file.</span></p>
+      <h2 class="sh">Write your changes</h2>
+      <div class="card" id="contribute"></div>
+      <div class="notes">
+        <p><span class="h">What's happening.</span> The form edits a copy of the facts in this tab. Each correction or new option adds one entry to your change file, and Export saves that list to your computer as a JSON file. Nothing is sent anywhere until you attach it to an email or a pull request yourself.</p>
+        <p><span class="h">Why it matters.</span> A change that arrives as a file can be checked line by line and applied by anyone holding the same facts file, including people who run their own copy. An email that says "the privacy score looks off" has to be turned into one of these by hand first.</p>
+        <p class="dev"><span class="h">Devil's advocate.</span> The form accepts a correction with no source and only warns you. When you add an option, a box you leave empty stays empty. The engine counts it as unknown and pulls the option's score toward 50 by the share of your weight that the missing fact carries. It does not guess a number. And the example file says of itself that its scores are illustrative, not an audit, so you are practising on example numbers that nobody has checked.</p>
+        <p><span class="h">Rabbit hole.</span> How the change file is laid out, field by field, is in <a href="../standard/spec/open-values-lens-patch/index.html">the builders' kit</a>, with a worked example in <a href="../docs/FEDERATION.md">How file-sharing works</a>. Open your exported file beside it.</p>
+      </div>
+      <p class="hand">Open the file you export in a text editor. One correction is about twenty lines of readable JSON.</p>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">Plate III</span><span class="fig">Fig. 3. Change files from other people, listed so you can read them before they are applied.</span></p>
+      <h2 class="sh">Check what others sent you</h2>
+      <div class="card" id="merge"></div>
+      <div class="notes">
+        <p><span class="h">What's happening.</span> Load one or more change files. Every change is listed with who made it and its source before anything happens. Apply merges them into your working copy in the order you loaded them.</p>
+        <p><span class="h">Why it matters.</span> Nobody holds a master copy. Two people with the same facts file and the same change files get the same result, and the fingerprint lets them confirm it.</p>
+        <p class="dev"><span class="h">Devil's advocate.</span> The name on a change is whatever the sender typed. The fingerprint shows which version of the facts a change was made for. It does not prove who made it. It catches a file made for a different version of the facts, and the page warns you, but it proves nothing about who wrote it. If you press Apply anyway, the page applies it.</p>
+        <p><span class="h">Rabbit hole.</span> Take the improved facts into a <a href="../slate/index.html">shared plan</a>, where a group keeps the reason for each step and who disagreed.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Part of <a href="../index.html"><b>Values Commons</b></a>. This page runs the same scoring code as <a href="../app/index.html">Conscious Consuming</a> and the <a href="../assembly/index.html">group values page</a>. You can send a correction without a source, but it will not be applied until someone finds one.</p>
+    <div class="footlinks">
+      <a href="../contribute/index.html">Other ways to help</a>
+      <a href="../docs/FEDERATION.md">How file-sharing works</a>
+      <a href="https://github.com/BentleyMoon/conscious-consuming">Source and data</a>
+      <a href="mailto:futurisminstitute@gmail.com?subject=Correction">futurisminstitute@gmail.com</a>
+    </div>
+    <!-- family:start -->
+<style>
+  /* sizes, spacing and case follow research/design_system_audit.js: the eight-step scale, the 0.25rem grid, no uppercase */
+  .fam{border-top:1px solid var(--line,#e3e7e5);margin-top:1.5rem;padding-top:1.25rem;grid-column:1/-1;flex-basis:100%;width:100%}
+  .fam-foot{border-top:1px solid var(--line,#e3e7e5);padding:1.25rem 0 2.5rem}
+  .fam-foot .fam,.fam-after .fam{border-top:0;margin-top:0}
+  .fam>p{margin:0 0 1rem;font-family:var(--font-mono,ui-monospace,monospace);font-size:.75rem;color:var(--hint,var(--muted,#566560))}
+  .fam-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(10.5rem,1fr));gap:1rem 1.5rem}
+  .fam-head{margin:0 0 .5rem;font-size:.86rem;font-weight:700;color:var(--ink,#18211d)}
+  .fam ul{list-style:none;margin:0;padding:0}
+  .fam li{margin:0 0 .5rem}
+  .fam a{display:block;text-decoration:none;color:inherit;border:0;box-shadow:none}
+  .fam a:hover .fam-name{text-decoration:underline}
+  .fam-name{display:block;font-size:.86rem;font-weight:600;color:var(--accent,#1d7a5a)}
+  .fam-desc{display:block;font-size:.75rem;line-height:1.4;color:var(--muted,#566560)}
+  .fam-you{display:inline-block;margin-top:.25rem;font-family:var(--font-mono,ui-monospace,monospace);font-size:.64rem;color:var(--ink,#18211d)}
+</style>
+<nav class="fam" aria-label="The Futurism Institute family">
+  <p>The Futurism Institute family</p>
+  <div class="fam-cols"><div><p class="fam-head">Start here</p><ul><li><a href="https://futurisminstitute.org"><span class="fam-name">Futurism Institute</span><span class="fam-desc">How the projects fit together</span></a></li></ul></div><div><p class="fam-head">Research</p><ul><li><a href="https://bentleymoon.com"><span class="fam-name">Bentley Moon</span><span class="fam-desc">Research record and films</span></a></li></ul></div><div><p class="fam-head">Records</p><ul><li><a href="https://bentleymoon.com/research/checking-ai/"><span class="fam-name">Checking AI</span><span class="fam-desc">When one AI can check another</span></a></li><li class="fam-here"><a href="https://valuescommons.org/app/"><span class="fam-name">Conscious Consuming</span><span class="fam-desc">Products and services, by what you care about</span><span class="fam-you">You are here</span></a></li><li><a href="https://dignityneeds.com"><span class="fam-name">Dignity Needs</span><span class="fam-desc">What every person should be able to expect</span></a></li><li><a href="https://kosplora.org"><span class="fam-name">Kosplora</span><span class="fam-desc">Learning and research tools</span></a></li><li><a href="https://legibleai.org"><span class="fam-name">Legible AI</span><span class="fam-desc">A first road into AI safety</span></a></li><li><a href="https://legibleai.org/searches/"><span class="fam-name">AI Searches</span><span class="fam-desc">A shared record of AI answers, with their sources</span></a></li></ul></div><div><p class="fam-head">Groups</p><ul><li><a href="https://socratichearth.org"><span class="fam-name">The Socratic Hearth</span><span class="fam-desc">Talk a question through, disagreements kept</span></a></li><li><a href="https://theworkparty.org"><span class="fam-name">The Work Party</span><span class="fam-desc">What a group agreed, as a file it keeps</span></a></li></ul></div><div><p class="fam-head">Places</p><ul><li><a href="https://earthenbeings.com"><span class="fam-name">Earthen Beings</span><span class="fam-desc">Communities and land projects in the Pacific Northwest</span></a></li><li><a href="https://basicdignity.com"><span class="fam-name">Basic Dignity</span><span class="fam-desc">Draft rules for whoever holds what a person needs, from a shared house to the companies that own AI.</span></a></li></ul></div></div>
+</nav>
+<!-- family:end -->
+  </div>
+</footer>
 
 <script src="../app/engine.js"></script>
 <!-- An example lens to work on (you can load your own with the button). -->
@@ -164,13 +291,12 @@
 
   function renderLens(){
     var m=lens.meta||{}, ff=m.forkedFrom;
-    lc.innerHTML='<h2>Working facts file</h2>'+
+    lc.innerHTML=
       '<div class="lensttl">'+esc(m.title||'(untitled facts)')+' <span class="id">'+esc(m.id||'?')+'</span></div>'+
-      '<div class="meta">'+lens.resources.length+' options · '+lens.criteria.length+' criteria</div>'+
-      '<div class="chips">'+lens.criteria.map(function(c){return '<span class="chip">'+esc(c.label)+'</span>';}).join('')+'</div>'+
-      '<div class="lineage">#'+E.lensHash(lens)+(applied?(' · '+applied+' change file'+(applied===1?'':'s')+' applied'):'')+(ff?(' · forked from '+esc(ff.id)+' #'+esc(ff.hash)):'')+'</div>'+
+      '<div class="meta">'+lens.resources.length+' option'+(lens.resources.length===1?'':'s')+', measured on '+lens.criteria.length+' criteria'+(lens.criteria.length?': '+lens.criteria.map(function(c){return esc(c.label);}).join(', '):'')+'.</div>'+
+      '<div class="lineage">fingerprint #'+E.lensHash(lens)+(applied?(' · '+applied+' change file'+(applied===1?'':'s')+' applied'):'')+(ff?(' · copied from '+esc(ff.id)+' #'+esc(ff.hash)):'')+'</div>'+
       '<div class="actions"><label class="btn ghost" style="cursor:pointer">Load a facts file<input type="file" id="lensfile" accept=".json,.js,application/json" hidden></label>'+
-        '<label class="btn ghost" style="cursor:pointer" title="Turn a community&apos;s aggregated ratings into editable, sourced facts">Import community ratings &rarr; facts<input type="file" id="ratingsfile" accept=".json,application/json" hidden></label></div>';
+        '<label class="btn ghost" style="cursor:pointer" title="Turn a community&apos;s pooled ratings into a facts file you can edit and cite">Import community ratings<input type="file" id="ratingsfile" accept=".json,application/json" hidden></label></div>';
     var lf=document.getElementById('lensfile'); if(lf)lf.onchange=function(e){ var f=e.target.files&&e.target.files[0]; if(f)readLensFile(f); e.target.value=''; };
     var rf=document.getElementById('ratingsfile'); if(rf)rf.onchange=function(e){ var f=e.target.files&&e.target.files[0]; if(f)readRatings(f); e.target.value=''; };
   }
@@ -179,24 +305,24 @@
     var c=document.getElementById('contribute');
     var entOpts=lens.resources.map(function(r){return '<option value="'+esc(r.code)+'">'+esc(r.name)+'</option>';}).join('');
     var critOpts=lens.criteria.map(function(cr){return '<option value="'+esc(cr.key)+'">'+esc(cr.label)+'</option>';}).join('');
-    var grid=lens.criteria.map(function(cr){return '<label class="fl">'+esc(cr.label)+'<input type="number" min="0" max="100" id="ne_'+esc(cr.key)+'" placeholder="0–100"></label>';}).join('');
-    c.innerHTML='<h2>Propose changes</h2>'+
-      '<div class="sub2">Correct a fact</div>'+
+    var grid=lens.criteria.map(function(cr){return '<label class="fl">'+esc(cr.label)+'<input type="number" min="0" max="100" id="ne_'+esc(cr.key)+'" placeholder="0 to 100"></label>';}).join('');
+    c.innerHTML='<h3 class="sub2">Correct a fact</h3>'+
       '<div class="grid2">'+
         '<label class="fl">Option<select id="cs_ent">'+entOpts+'</select></label>'+
         '<label class="fl">Criterion<select id="cs_crit">'+critOpts+'</select></label>'+
-        '<label class="fl">New value (0–100)<input type="number" min="0" max="100" id="cs_val"></label>'+
-        '<label class="fl">Source<input id="cs_src" placeholder="where this fact comes from"></label>'+
+        '<label class="fl">New value, 0 to 100<input type="number" min="0" max="100" id="cs_val"></label>'+
+        '<label class="fl">Source<input id="cs_src" placeholder="a link, a report, a dataset"></label>'+
       '</div>'+
-      '<div class="hint">Currently: <span class="curval" id="cs_cur">–</span></div>'+
+      '<div class="hint">Now: <span class="curval" id="cs_cur">...</span></div>'+
       '<div class="actions"><button class="btn" id="cs_add">+ Add correction</button><span class="hint" id="cs_note"></span></div>'+
-      '<div class="sub2">Add an option</div>'+
-      '<div class="grid2"><label class="fl">Name<input id="ae_name"></label><label class="fl">Maker<input id="ae_brand" placeholder="who makes or runs it, not what kind it is"></label></div>'+
+      '<h3 class="sub2">Add an option</h3>'+
+      '<div class="grid2"><label class="fl">Name<input id="ae_name"></label><label class="fl">Maker<input id="ae_brand" placeholder="who makes or runs it"></label></div>'+
       '<div class="gradegrid">'+grid+'</div>'+
-      '<div class="grid2"><label class="fl">Source<input id="ae_src" placeholder="where these facts come from"></label></div>'+
+      '<div class="hint">Fill in only the facts you know. A box you leave empty gets no value, and the option shows no fact there.</div>'+
+      '<div class="grid2" style="margin-top:.6rem"><label class="fl">Source<input id="ae_src" placeholder="where these facts come from"></label></div>'+
       '<div class="actions"><button class="btn" id="ae_add">+ Add option</button><span class="hint" id="ae_note"></span></div>'+
-      '<div class="sub2">Your change file <span class="hint" style="font-weight:400">· '+ops.length+' change'+(ops.length===1?'':'s')+'</span></div>'+
-      '<div class="grid2"><label class="fl">Your name (optional)<input id="p_by" placeholder="a label, no account needed"></label><label class="fl">Change note<input id="p_note" placeholder="why these changes"></label></div>'+
+      '<h3 class="sub2">Your change file <span class="hint">('+ops.length+' change'+(ops.length===1?'':'s')+')</span></h3>'+
+      '<div class="grid2"><label class="fl">Your name, optional<input id="p_by" placeholder="any label; there is no account"></label><label class="fl">Why these changes<input id="p_note" placeholder="one line is plenty"></label></div>'+
       '<ul class="oplist">'+(ops.length?ops.map(function(o,i){return '<li><span>'+esc(opDesc(o))+'</span><button class="x" data-i="'+i+'" aria-label="remove">✕</button></li>';}).join(''):'<li style="justify-content:flex-start;color:var(--hint)">No changes yet.</li>')+'</ul>'+
       '<div class="actions"><button class="btn" id="p_exp"'+(ops.length?'':' disabled')+'>⤓ Export change file</button><span class="hint">Then email it to <a href="mailto:futurisminstitute@gmail.com?subject=Correction">futurisminstitute@gmail.com</a>, or open a pull request on <a href="https://github.com/BentleyMoon/conscious-consuming">the public repository</a>.</span></div>';
 
@@ -218,19 +344,19 @@
     var code=document.getElementById('cs_ent').value, key=document.getElementById('cs_crit').value;
     var val=document.getElementById('cs_val').value, src=document.getElementById('cs_src').value.trim();
     var note=document.getElementById('cs_note');
-    if(val===''){ note.innerHTML='<span class="warn">Enter a value 0–100.</span>'; return; }
+    if(val===''){ note.innerHTML='<span class="warn">Enter a value from 0 to 100.</span>'; return; }
     var v=Math.max(0,Math.min(100,+val));
     ops.push({op:'set-score',code:code,key:key,value:v,source:src,note:''});
     renderContribute();
-    if(!src){ document.getElementById('cs_note').innerHTML='<span class="warn">Added. A correction without a source is just an opinion; consider adding one.</span>'; }
+    if(!src){ document.getElementById('cs_note').innerHTML='<span class="warn">Added without a source. Add the source before you send it, or the correction will wait until someone finds one.</span>'; }
   }
   function addOption(){
     var name=document.getElementById('ae_name').value.trim(), brand=document.getElementById('ae_brand').value.trim(), src=document.getElementById('ae_src').value.trim();
     var note=document.getElementById('ae_note');
-    if(!name){ note.innerHTML='<span class="warn">A name is required.</span>'; return; }
-    var code=slug(name); if(lens.resources.some(function(r){return r.code===code;})||ops.some(function(o){return o.op==='add-entity'&&o.entity.code===code;})){ note.innerHTML='<span class="warn">An option with that name already exists.</span>'; return; }
+    if(!name){ note.innerHTML='<span class="warn">Give it a name first.</span>'; return; }
+    var code=slug(name); if(lens.resources.some(function(r){return r.code===code;})||ops.some(function(o){return o.op==='add-entity'&&o.entity.code===code;})){ note.innerHTML='<span class="warn">An option with that name is already here.</span>'; return; }
     var scores={}, prov={};
-    lens.criteria.forEach(function(cr){ var el=document.getElementById('ne_'+cr.key); var v=(el&&el.value!=='')?Math.max(0,Math.min(100,+el.value)):50; scores[cr.key]=v; prov[cr.key]={note:'',source:src}; });
+    lens.criteria.forEach(function(cr){ var el=document.getElementById('ne_'+cr.key); if(!el||el.value==='') return; /* an empty box is unknown, so it is left out, never written as a number (Standard v0.1, missing is not zero) */ scores[cr.key]=Math.max(0,Math.min(100,+el.value)); prov[cr.key]={note:'',source:src}; });
     ops.push({op:'add-entity',entity:{code:code,name:name,brand:brand||'',scores:scores,provenance:prov},source:src});
     renderContribute();
   }
@@ -244,20 +370,20 @@
   function renderMerge(){
     var mg=document.getElementById('merge');
     var log = pendingLog ? '<ul class="loglist">'+pendingLog.map(function(l){
-        if(l.status==='base-mismatch') return '<li><span><span class="by">'+esc(l.by||'?')+'</span> &#9888; authored for a different version (#'+esc(l.expected)+' vs your #'+esc(l.got)+'); review before applying</span></li>';
+        if(l.status==='base-mismatch') return '<li><span><span class="by">'+esc(l.by||'?')+'</span> &#9888; written for a different version of these facts (#'+esc(l.expected)+', yours is #'+esc(l.got)+'). Read it before applying.</span></li>';
         if(l.status) return '<li><span><span class="by">'+esc(l.by||'?')+'</span> '+esc(l.op)+' '+esc(l.code||'')+' · <span class="st">'+esc(l.status)+'</span></span></li>';
-        if(l.op==='set-score') return '<li><span><span class="by">'+esc(l.by)+'</span> corrected '+esc(ename(l.code))+' · '+esc(clabel(l.key))+': '+(l.from==null?'–':l.from)+' → '+l.to+(l.source?(' ['+esc(l.source)+']'):'')+'</span></li>';
+        if(l.op==='set-score') return '<li><span><span class="by">'+esc(l.by)+'</span> corrected '+esc(ename(l.code))+' · '+esc(clabel(l.key))+': '+(l.from==null?'none':l.from)+' → '+l.to+(l.source?(' ['+esc(l.source)+']'):' [no source]')+'</span></li>';
         if(l.op==='add-entity') return '<li><span><span class="by">'+esc(l.by)+'</span> added "'+esc(l.name)+'"'+(l.source?(' ['+esc(l.source)+']'):'')+'</span></li>';
         return '';
       }).join('')+'</ul>' : '';
-    mg.innerHTML='<h2>Preview changes</h2>'+
-      '<div class="actions"><label class="btn ghost" style="cursor:pointer">Load change file(s)<input type="file" id="patchfiles" accept=".json,application/json" multiple hidden></label>'+
-        (pending.length?'<span class="hint">'+pending.length+' change file'+(pending.length===1?'':'s')+' loaded · '+(pendingLog?pendingLog.length:0)+' change(s)</span>':'<span class="hint">Load changes others sent you; preview every change before applying.</span>')+'</div>'+
+    mg.innerHTML='<h3 class="sub2">Change files from others</h3>'+
+      '<div class="actions"><label class="btn ghost" style="cursor:pointer">Load change files<input type="file" id="patchfiles" accept=".json,application/json" multiple hidden></label>'+
+        (pending.length?'<span class="hint">'+pending.length+' change file'+(pending.length===1?'':'s')+' loaded, '+(pendingLog?pendingLog.length:0)+' line'+((pendingLog&&pendingLog.length===1)?'':'s')+' to read</span>':'<span class="hint">Nothing loaded yet. Each change is listed here before anything is applied.</span>')+'</div>'+
       log+
       (pending.length?'<div class="actions"><button class="btn" id="applybtn">✓ Apply to working facts</button></div>':'')+
-      '<div class="sub2">Export</div>'+
-      '<div class="actions"><button class="btn ghost" id="explens">⤓ Export facts (.js)</button><button class="btn ghost" id="expfork">⑂ Export alternate file</button></div>'+
-      '<div class="hint">Drop the exported <code>lens.js</code> into an app folder to ship the improved facts - no server, no permission needed.</div>';
+      '<h3 class="sub2">Export the improved facts</h3>'+
+      '<div class="actions"><button class="btn ghost" id="explens">⤓ Export facts (.js)</button><button class="btn ghost" id="expfork">⑂ Export as your own copy</button></div>'+
+      '<div class="hint">Put the exported <code>lens.js</code> in an app folder and that app ranks with your facts. No server is involved and nobody has to approve it. Your own copy also records which file and fingerprint it came from.</div>';
     var pf=document.getElementById('patchfiles'); if(pf)pf.onchange=function(e){ loadPatches(e.target.files); e.target.value=''; };
     var ab=document.getElementById('applybtn'); if(ab)ab.onclick=applyMerge;
     document.getElementById('explens').onclick=function(){ exportLens(lens,(lens.meta&&lens.meta.id)||'lens'); };
@@ -282,7 +408,7 @@
     var rd=new FileReader();
     rd.onload=function(){ var txt=rd.result, L=null;
       try{ if(/OVS_LENS|KOSPLORA_LENS/.test(txt)){ var w={}; (new Function('window',txt))(w); L=w.OVS_LENS||w.KOSPLORA_LENS; } else { L=JSON.parse(txt); } }catch(e){ L=null; }
-      if(L&&L.resources){ setLens(L); } else { document.getElementById('lenscard').insertAdjacentHTML('beforeend','<p class="err" style="font-size:.82rem">That file is not a facts file (no options found).</p>'); }
+      if(L&&L.resources){ setLens(L); } else { document.getElementById('lenscard').insertAdjacentHTML('beforeend','<p class="err" style="font-size:.82rem">That file has no options in it, so it is not a facts file.</p>'); }
     };
     rd.readAsText(f);
   }
@@ -302,7 +428,7 @@
         if(ratings.length && criteria.length) L=E.lensFromRatings(ratings,{id:(j&&j.id)||'community-ratings',title:(j&&j.title)||'Community ratings',criteria:criteria,universalToLocal:(j&&j.universalToLocal)});
       }catch(e){ L=null; }
       if(L && L.resources.length){ setLens(L); }
-      else { document.getElementById('lenscard').insertAdjacentHTML('beforeend','<p class="err" style="font-size:.82rem">That file is not community ratings; expected a list of <code>{code, name, scores}</code>.</p>'); }
+      else { document.getElementById('lenscard').insertAdjacentHTML('beforeend','<p class="err" style="font-size:.82rem">That is not a ratings file. It should be a list of <code>{code, name, scores}</code>.</p>'); }
     };
     rd.readAsText(f);
   }

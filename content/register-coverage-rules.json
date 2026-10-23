@@ -1,7 +1,7 @@
 {
   "format": "open-values-register-coverage-rules",
   "version": "1.0.0",
-  "updated": "2026-08-14",
+  "updated": "2026-10-12",
   "note": "Conservative machine-readable applicability rules for public registers. The matrix builder derives its decision side from the taxonomy and its register side from the shelf. A missing reviewed rule remains unmapped, never not-applicable.",
   "statusDefinitions": {
     "applicable": "The register's subject matter clearly covers this decision. Individual option coverage may still be partial.",
@@ -270,6 +270,19 @@
           "status": "applicable",
           "reason": "NHTSA recall and safety records cover vehicles, tyres, car seats, and some road-product decisions.",
           "match": { "decisionIds": ["new-cars", "used-cars", "electric-vehicles", "hybrid-and-plug-in-hybrid-cars", "small-and-city-cars", "tyres", "car-parts-and-accessories", "e-bikes", "car-seats"] }
+        }
+      ]
+    },
+    {
+      "registerId": "fueleconomy-gov-vehicles",
+      "default": { "status": "unmapped", "reason": "fueleconomy.gov vehicle coverage has not yet been reviewed for this decision." },
+      "selectors": [
+        {
+          "id": "new-vehicles-rated-for-us-sale",
+          "priority": 80,
+          "status": "applicable",
+          "reason": "The EPA and DOE vehicle file lists every new car, SUV, van and pickup rated for sale in the US, with its annual fuel cost and, for electric and plug-in models, its range.",
+          "match": { "decisionIds": ["new-cars", "electric-vehicles", "hybrid-and-plug-in-hybrid-cars", "small-and-city-cars", "vans-and-pickups"] }
         }
       ]
     },

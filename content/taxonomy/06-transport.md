@@ -10,10 +10,10 @@ edge: Getting a person or a thing from one place to another, and everything owne
 ## Cars
 
 ### Buying a car | cadence: once
-- New cars | aka: cars
+- New cars | cid: new-cars | aka: cars
 - Used cars | cid: used-cars
-- Electric vehicles | aka: EVs, electric cars
-- Hybrid and plug-in hybrid cars
+- Electric vehicles | cid: electric-vehicles | aka: EVs, electric cars
+- Hybrid and plug-in hybrid cars | cid: hybrid-and-plug-in-hybrid-cars
 - Small and city cars
 - Vans and pickups
 

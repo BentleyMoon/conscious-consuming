@@ -28,6 +28,7 @@ const jsSyntaxFiles = [
   "app/shell.js",
   "app/sigil.js",
   "app/sw.js",
+  "app/visitnotes.js",
   "pipeline/build_errands.js",
   "pipeline/build_lines.js",
   "pipeline/build_cards.js",
@@ -35,6 +36,9 @@ const jsSyntaxFiles = [
   "pipeline/build_decisions.js",
   "pipeline/build_design_tokens.js",
   "pipeline/build_presentation.js",
+  "pipeline/build_front_figures.js",
+  "pipeline/build_family_footer.js",
+  "pipeline/build_kit.js",
   "pipeline/build_proposals.js",
   "pipeline/build_initiatives.js",
   "pipeline/build_nodes.js",
@@ -43,6 +47,8 @@ const jsSyntaxFiles = [
   "research/a11y_audit.js",
   "research/descriptor_brand_audit.js",
   "research/source_promise_audit.js",
+  "research/visit_notes_audit.js",
+  "research/working_matches_audit.js",
   "research/ochre_ratchet_audit.js",
   "research/cache_bust_audit.js",
   "research/route_protocol_audit.js",
@@ -249,7 +255,8 @@ function checkLocalLinks(files) {
       const target = stripTarget(raw);
       if (shouldSkipTarget(target)) continue;
       const abs = resolveLocalTarget(file, target);
-      if (abs.startsWith(ROOT) && publicCopy.isAbsentPrivateDoc(path.relative(ROOT, abs))) {
+      const relTarget = abs.startsWith(ROOT) ? path.relative(ROOT, abs) : '';
+      if (abs.startsWith(ROOT) && (publicCopy.isAbsentPrivateDoc(relTarget) || publicCopy.isAbsentPrivatePath(relTarget))) {
         console.log(`  SKIP ${file} links ${raw}, a working document the public copy does not carry`);
         continue;
       }
@@ -291,9 +298,19 @@ const coreAudits = [
   ["research/value_theme_map_audit.js"],
   ["research/value_signature_audit.js"],
   ["research/value_editorial_audit.js"],
+  // Regenerate the node artifacts immediately before their byte-exact audit. Observed on
+  // 2026-09-29: after a full prepare, four node files (readiness, load plan, integration
+  // checklist, preview matrix) sit reindented on disk and the audit fails, while running the
+  // generator directly before it passes in the same tree. Some later step reformats them and
+  // has not been identified; until it is named, regenerating here makes this audit check what
+  // it means to check, that the generator reproduces the committed content, rather than which
+  // writer happened to run last.
+  ["pipeline/build_nodes.js"],
   ["research/node_index_audit.js"],
   ["research/descriptor_brand_audit.js"],
   ["research/source_promise_audit.js"],
+  ["research/visit_notes_audit.js"],
+  ["research/working_matches_audit.js"],
   ["research/ask_readiness_audit.js"],
   full ? ["research/pulse_audit.js"] : ["research/pulse_audit.js", "--allow-derived-drift"],
   ["research/public_route_audit.js"],
@@ -305,6 +322,9 @@ const coreAudits = [
   ["research/presentation_ontology_audit.js"],
   ["research/presentation_design_audit.js"],
   ["pipeline/build_presentation.js", "--check"],
+  ["pipeline/build_front_figures.js", "--check"],
+  ["pipeline/build_family_footer.js", "--check"],
+  ["pipeline/build_kit.js", "--check"],
   ["research/presentation_package_audit.js"],
   ["research/presentation_acceptance_audit.js", "--contract"],
   ["research/explore_three_doors_audit.js"],

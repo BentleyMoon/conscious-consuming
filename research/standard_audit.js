@@ -4199,7 +4199,23 @@ function looksLikePath(value) {
     && /^(app|content|docs|pipeline|research|scripts|dist)\//.test(value);
 }
 
+// A format built in the Futurism Institute's websites repository (the Socratic Hearth, the Work Party) is
+// registered here too, so this registry is the single list (agreed 2026-10-12). Its builders and audit
+// commands live in that repository, written "websites:<path>" or "websites: node <script>". This audit
+// can only check their shape; C:\websites\scripts\roundtrip-audit.mjs checks that they work.
+const WEBSITES = /^websites:\s*/;
+function websitesPathShape(entryId, what, value) {
+  const rel = value.replace(WEBSITES, '');
+  if (!rel || rel.startsWith('/') || rel.split('/').includes('..') || !/\.(js|mjs|ts|astro|py)$/.test(rel)) {
+    failures.push(`${entryId}: ${what} in the websites repository is not a relative source path: ${value}`);
+  }
+}
+
 function checkAuditCommand(entryId, auditCommand, packageScripts) {
+  if (WEBSITES.test(auditCommand)) {
+    if (!/^websites:\s*node [^\s]+\.m?js(?:\s+.*)?$/.test(auditCommand)) failures.push(`${entryId}: websites audit command is not "websites: node <script>": ${auditCommand}`);
+    return;
+  }
   const npmRun = auditCommand.match(/^npm run ([A-Za-z0-9:_-]+)(?:\s+.*)?$/);
   if (npmRun) {
     if (!packageScripts[npmRun[1]]) failures.push(`${entryId}: audit command references missing package script ${auditCommand}`);
@@ -4229,11 +4245,13 @@ function checkRegistryPaths(registry) {
       failures.push(`${entry.id}: schema path missing ${entry.schema}`);
     }
     for (const builder of entry.builders || []) {
+      if (WEBSITES.test(builder)) { websitesPathShape(entry.id, 'builder', builder); continue; }
       if (/\.(js|mjs|py)$/.test(builder) && !fs.existsSync(path.join(ROOT, builder))) {
         failures.push(`${entry.id}: builder path missing ${builder}`);
       }
     }
     for (const candidate of [...(entry.sourceOfTruth || []), ...(entry.generatedOutputs || [])]) {
+      if (WEBSITES.test(candidate)) { websitesPathShape(entry.id, 'source', candidate); continue; }
       if (looksLikePath(candidate) && !fs.existsSync(path.join(ROOT, candidate))) {
         warnings.push(`${entry.id}: declared path currently missing ${candidate}`);
       }

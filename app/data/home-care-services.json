@@ -1,0 +1,999 @@
+{
+ "meta": {
+  "id": "home-care-services",
+  "label": "Home care services",
+  "type": "Services",
+  "primaryAxis": "safety",
+  "tradeoff": [
+   "safety",
+   "accessibility"
+  ],
+  "tradeoffLabels": [
+   "best CQC inspection record",
+   "largest network to choose from"
+  ],
+  "source": "Conscious Consuming",
+  "attribution": "These scores describe home care brands and groups in England, not individual agencies. Many brands here are franchise networks, so one office's rating says little about the next, and the agency's own inspection report matters more than a brand's average. The inspection record is this catalogue's own count from the Care Quality Commission's published ratings file (as at 1 September 2026) joined to its care directory (23 September 2026). It covers agencies the directory lists as home care agencies that register no other service, because the ratings file no longer gives a location-level rating to agencies that also register supported living or other services. Locations are grouped by the name they trade under, or by the CQC brand name or provider name where the note says so. The score is the share rated Good or Outstanding among agencies rated Outstanding, Good, Requires improvement or Inadequate, rounded. Across the 6,221 rated agencies of this kind that share is 87.5 per cent, and 3,650 of the 9,894 have no published rating at all. It is not a CQC statistic and CQC does not endorse it. Ratings are snapshots: between 44 and 89 per cent of a brand's ratings were published more than three years before the file date, and each note gives its figure. Choice is the count of agencies divided by 1.8, capped at 95, and says nothing about capacity or fees. Fees are not scored, because each office of a franchise network sets its own prices and the pages found show prices from different areas. Transparency scores how much of a price a page read for this check shows: 90 for hourly, shorter-visit, weekend and overnight rates, 80 for a national starting hourly price with charges, 75 for branch pages that give some rates, 60 for weekly packages only, and 30 where a page says prices start from an affordable rate and gives no figure. It reflects the pages read, not every branch. Contains CQC data used under the Open Government Licence. Scotland, Wales and Northern Ireland are regulated by other bodies and are not covered. This is not advice on choosing care. A council can carry out a needs assessment, and any agency should be asked for its latest inspection report before a decision. Reviewed 2026-09. Suggest changes via Contribute.",
+  "allergens": false,
+  "presets": {
+   "Balanced": {
+    "w": {
+     "safety": 3,
+     "accessibility": 3,
+     "transparency": 2
+    },
+    "x": []
+   },
+   "Best inspection record": {
+    "w": {
+     "safety": 5,
+     "accessibility": 1,
+     "transparency": 2
+    },
+    "x": []
+   },
+   "Largest network to choose from": {
+    "w": {
+     "accessibility": 5,
+     "safety": 2,
+     "transparency": 1
+    },
+    "x": []
+   },
+   "Clearest about price": {
+    "w": {
+     "transparency": 5,
+     "safety": 3,
+     "accessibility": 1
+    },
+    "x": []
+   }
+  },
+  "n": 16,
+  "valueSignatureProfile": {
+   "entryCount": 16,
+   "signedEntries": 16,
+   "drawableEntries": 14,
+   "minimumThemesForBloom": 2,
+   "themeCounts": {
+    "health": 15,
+    "honesty": 6,
+    "cost": 14
+   }
+  },
+  "provenanceProfile": {
+   "entryCount": 16,
+   "singleSourceEntries": 11,
+   "multiSourceEntries": 5,
+   "noSourceEntries": 0,
+   "noteOnlyEntries": 0,
+   "averageSourceDomains": 1.31,
+   "topPrimarySources": [
+    {
+     "label": "cqc.org.uk",
+     "entries": 15
+    },
+    {
+     "label": "gov.uk",
+     "entries": 1
+    }
+   ]
+  },
+  "decision": {
+   "category": "home-care-services",
+   "reads": {
+    "text": "Compare home care services by safety, everyday access, and disclosure.",
+    "basis": [
+     {
+      "criterion": "safety",
+      "readsAs": "safety"
+     },
+     {
+      "criterion": "accessibility",
+      "readsAs": "everyday access"
+     },
+     {
+      "criterion": "transparency",
+      "readsAs": "disclosure"
+     }
+    ],
+    "signature": {
+     "by": "Conscious Consuming",
+     "on": "2026-07-15",
+     "status": "approved-batch"
+    },
+    "receipt": {
+     "dataset": "home-care-services",
+     "entryCount": 16,
+     "criteria": [
+      {
+       "criterion": "safety",
+       "readsAs": "safety",
+       "known": 15,
+       "minimum": 63,
+       "maximum": 100,
+       "spread": 37
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access",
+       "known": 14,
+       "minimum": 4,
+       "maximum": 95,
+       "spread": 91
+      },
+      {
+       "criterion": "transparency",
+       "readsAs": "disclosure",
+       "known": 6,
+       "minimum": 30,
+       "maximum": 90,
+       "spread": 60
+      }
+     ]
+    }
+   },
+   "axes": [
+    {
+     "id": "record-or-reach",
+     "kind": "tradeoff",
+     "label": "Record or reach",
+     "question": "A stronger inspection record, or easier to actually get?",
+     "criteria": [
+      "safety",
+      "accessibility"
+     ],
+     "poles": [
+      "Stronger record",
+      "Easier to get"
+     ],
+     "default": 50
+    },
+    {
+     "id": "transparency",
+     "kind": "criterion",
+     "label": "Disclosure",
+     "question": "Does stronger disclosure matter more?",
+     "criteria": [
+      "transparency"
+     ],
+     "poles": [
+      "Flexible",
+      "Stronger disclosure"
+     ],
+     "default": 50
+    }
+   ],
+   "budget": {
+    "available": false,
+    "mode": "none",
+    "knownEntries": 0,
+    "coverage": 0
+   },
+   "archetypes": [
+    "best-for-most",
+    "strictest-match"
+   ],
+   "page": {
+    "stage": "approved-batch",
+    "primaryRoute": true
+   },
+   "consumer": {
+    "reads": "Round 8 approved category differences reads.",
+    "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+    "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+    "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+    "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+   }
+  }
+ },
+ "criteria": [
+  {
+   "key": "safety",
+   "label": "Inspection record: share of the brand's home care agencies in England rated Good or Outstanding by CQC",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "accessibility",
+   "label": "Choice: how many agencies it has, so how easily a family can find an office near them",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "transparency",
+   "label": "How much of a price the brand's own pages show",
+   "source": "curated",
+   "tier": "assessed"
+  }
+ ],
+ "products": [
+  {
+   "code": "bluebird-care",
+   "name": "Bluebird Care",
+   "brand": "Bluebird Care",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "safety": 96,
+    "accessibility": 86,
+    "transparency": 75
+   },
+   "provenance": {
+    "safety": {
+     "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 154 home care agencies that register no other service and are named Bluebird Care. 140 hold an overall rating: 27 Outstanding, 107 Good, 6 Requires improvement and 0 Inadequate, which is 95.7 per cent Good or Outstanding, against 87.5 per cent across the 6,221 rated agencies of this kind in England. 14 have no published rating. 69 per cent of the ratings were published more than three years before the file date, and 6 carry a rating inherited from an earlier provider.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "The CQC ratings file and care directory list 154 home care agencies that register no other service and are named Bluebird Care, 1.6 per cent of the 9,894 in England. Scored as agencies divided by 1.8, capped at 95; a bigger network is likelier to have an office near a given family, but this says nothing about capacity, waiting lists or fees.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    },
+    "transparency": {
+     "note": "Two branch pages were read. Bluebird Care's Calderdale page lists 30 minutes at £21.99, 45 minutes at £26.10 and 60 minutes at £28.99, and says the rates cover trained carers, consistent visits, care plans and supervision. A second branch page, linked, for Reading, Maidenhead and Windsor says home care visits 'start from £31.50' and live-in care 'from £1,650 per week', and gives no visit-length rates. Prices differ by branch, so this reflects the pages read.",
+     "source": "https://www.bluebirdcare.co.uk/calderdale/about-us/our-fees",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.bluebirdcare.co.uk/"
+    },
+    {
+     "label": "Calderdale branch fees page",
+     "url": "https://www.bluebirdcare.co.uk/calderdale/about-us/our-fees"
+    },
+    {
+     "label": "Reading, Maidenhead and Windsor branch pricing page",
+     "url": "https://www.bluebirdcare.co.uk/reading-wokingham/pricing"
+    }
+   ],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "National brand",
+    "Franchise network"
+   ],
+   "description": "A national brand whose offices are registered under many separate provider companies. Its branch price pages differ from one area to another.",
+   "valueSignature": {
+    "health": 96,
+    "honesty": 75,
+    "cost": 86
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "cqc.org.uk",
+    "sourceLabels": [
+     "cqc.org.uk",
+     "bluebirdcare.co.uk"
+    ]
+   }
+  },
+  {
+   "code": "home-instead",
+   "name": "Home Instead",
+   "brand": "Home Instead",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "safety": 99,
+    "accessibility": 95,
+    "transparency": 60
+   },
+   "provenance": {
+    "safety": {
+     "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 177 home care agencies that register no other service and are named Home Instead. 163 hold an overall rating: 60 Outstanding, 101 Good, 2 Requires improvement and 0 Inadequate, which is 98.8 per cent Good or Outstanding, against 87.5 per cent across the 6,221 rated agencies of this kind in England. 14 have no published rating. 80 per cent of the ratings were published more than three years before the file date, and 5 carry a rating inherited from an earlier provider.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "The CQC ratings file and care directory list 177 home care agencies that register no other service and are named Home Instead, 1.8 per cent of the 9,894 in England. Scored as agencies divided by 1.8, capped at 95; a bigger network is likelier to have an office near a given family, but this says nothing about capacity, waiting lists or fees.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    },
+    "transparency": {
+     "note": "Home Instead's St Albans branch page gives weekly package prices, about £114 for three one-hour visits, about £266 for seven and about £816 for twenty-one, and says 'Each Home Instead franchise office is independently owned and operated'. It states no hourly rate, though the packages imply about £38 to £39 an hour. A national cost page, linked, gives general UK market ranges, £26 to £38 an hour for agencies, and not its own rates.",
+     "source": "https://www.homeinstead.co.uk/st-albans/blog/lets-look-at-our-care-package-prices/",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.homeinstead.co.uk/"
+    },
+    {
+     "label": "St Albans branch package prices",
+     "url": "https://www.homeinstead.co.uk/st-albans/blog/lets-look-at-our-care-package-prices/"
+    },
+    {
+     "label": "National page on home care hourly costs",
+     "url": "https://www.homeinstead.co.uk/local-care/blog/how-much-do-home-carers-charge-per-hour-a-look-at-costs-and-considerations/"
+    }
+   ],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "National brand",
+    "Franchise network"
+   ],
+   "description": "A national brand that says each of its offices is independently owned and operated.",
+   "valueSignature": {
+    "health": 99,
+    "honesty": 60,
+    "cost": 95
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "cqc.org.uk",
+    "sourceLabels": [
+     "cqc.org.uk",
+     "homeinstead.co.uk"
+    ]
+   }
+  },
+  {
+   "code": "helping-hands",
+   "name": "Helping Hands Homecare",
+   "brand": "Helping Hands",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "safety": 98,
+    "accessibility": 89,
+    "transparency": 80
+   },
+   "provenance": {
+    "safety": {
+     "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 160 home care agencies that register no other service and are named Helping Hands. 142 hold an overall rating: 0 Outstanding, 139 Good, 3 Requires improvement and 0 Inadequate, which is 97.9 per cent Good or Outstanding, against 87.5 per cent across the 6,221 rated agencies of this kind in England. 18 have no published rating. 77 per cent of the ratings were published more than three years before the file date, and 2 carry a rating inherited from an earlier provider.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "The CQC ratings file and care directory list 160 home care agencies that register no other service and are named Helping Hands, 1.6 per cent of the 9,894 in England. Scored as agencies divided by 1.8, capped at 95; a bigger network is likelier to have an office near a given family, but this says nothing about capacity, waiting lists or fees.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    },
+    "transparency": {
+     "note": "Helping Hands' costs page, headed 2026 Pricing Guide and reviewed on 22 April 2026, says 'Prices start from £32.40 per hour for one-to-one support from a dedicated carer', adds a £4.50 travel charge per visit, offers a free initial home assessment, and says its private carers are directly employed by it.",
+     "source": "https://www.helpinghandshomecare.co.uk/costs-funding/costs-of-visiting-care/",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.helpinghandshomecare.co.uk/"
+    },
+    {
+     "label": "Costs of visiting care",
+     "url": "https://www.helpinghandshomecare.co.uk/costs-funding/costs-of-visiting-care/"
+    }
+   ],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "National brand"
+   ],
+   "description": "A national brand, mostly registered under Midshires Care Limited, that publishes a national starting price.",
+   "valueSignature": {
+    "health": 98,
+    "honesty": 80,
+    "cost": 89
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "cqc.org.uk",
+    "sourceLabels": [
+     "cqc.org.uk",
+     "helpinghandshomecare.co.uk"
+    ]
+   }
+  },
+  {
+   "code": "right-at-home",
+   "name": "Right at Home",
+   "brand": "Right at Home",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "safety": 99,
+    "accessibility": 44,
+    "transparency": 30
+   },
+   "provenance": {
+    "safety": {
+     "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 79 home care agencies that register no other service and are named Right at Home. 66 hold an overall rating: 22 Outstanding, 43 Good, 1 Requires improvement and 0 Inadequate, which is 98.5 per cent Good or Outstanding, against 87.5 per cent across the 6,221 rated agencies of this kind in England. 13 have no published rating. 79 per cent of the ratings were published more than three years before the file date, and 3 carry a rating inherited from an earlier provider.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "The CQC ratings file and care directory list 79 home care agencies that register no other service and are named Right at Home, 0.8 per cent of the 9,894 in England. Scored as agencies divided by 1.8, capped at 95; a bigger network is likelier to have an office near a given family, but this says nothing about capacity, waiting lists or fees.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    },
+    "transparency": {
+     "note": "Right at Home's article on the cost of homecare, dated 27 August 2024, says its visits 'start from an affordable hourly rate' and gives no figure for its own price. It cites a UK range of £26 to £38 an hour from homecare.co.uk, says it has no hidden fees, and asks readers to contact it for a quote.",
+     "source": "https://www.rightathome.co.uk/news-item/calculating-the-cost-of-homecare/",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.rightathome.co.uk/"
+    },
+    {
+     "label": "Calculating the cost of homecare",
+     "url": "https://www.rightathome.co.uk/news-item/calculating-the-cost-of-homecare/"
+    }
+   ],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "National brand",
+    "Franchise network"
+   ],
+   "description": "A national brand whose national cost article gives a benchmark range and no rate of its own.",
+   "valueSignature": {
+    "health": 99,
+    "honesty": 30,
+    "cost": 44
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "cqc.org.uk",
+    "sourceLabels": [
+     "cqc.org.uk",
+     "rightathome.co.uk"
+    ]
+   }
+  },
+  {
+   "code": "caremark",
+   "name": "Caremark",
+   "brand": "Caremark",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "safety": 86,
+    "accessibility": 55,
+    "transparency": 90
+   },
+   "provenance": {
+    "safety": {
+     "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 99 home care agencies that register no other service and are named Caremark. 80 hold an overall rating: 4 Outstanding, 65 Good, 10 Requires improvement and 1 Inadequate, which is 86.2 per cent Good or Outstanding, against 87.5 per cent across the 6,221 rated agencies of this kind in England. 19 have no published rating. 65 per cent of the ratings were published more than three years before the file date, and 2 carry a rating inherited from an earlier provider.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "The CQC ratings file and care directory list 99 home care agencies that register no other service and are named Caremark, 1.0 per cent of the 9,894 in England. Scored as agencies divided by 1.8, capped at 95; a bigger network is likelier to have an office near a given family, but this says nothing about capacity, waiting lists or fees.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    },
+    "transparency": {
+     "note": "Caremark's Liverpool branch page lists 60 minutes at £28.90 on weekdays and £29.90 at weekends, 45 minutes at £24.90 and £25.90, 30 minutes at £20.50 and £21.50, a sleep-in from 10pm to 7am at £185 and £195, and awake nights at £28.90 and £29.90 an hour. It says 'Each Caremark Limited franchise office is independently owned and operated', so other branches set their own prices.",
+     "source": "https://www.caremark.co.uk/liverpool/understanding-the-cost-of-home-care/",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.caremark.co.uk/"
+    },
+    {
+     "label": "Liverpool branch cost page",
+     "url": "https://www.caremark.co.uk/liverpool/understanding-the-cost-of-home-care/"
+    }
+   ],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "National brand",
+    "Franchise network"
+   ],
+   "description": "A national brand that says each of its offices is independently owned and operated.",
+   "valueSignature": {
+    "health": 86,
+    "honesty": 90,
+    "cost": 55
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "cqc.org.uk",
+    "sourceLabels": [
+     "cqc.org.uk",
+     "caremark.co.uk"
+    ]
+   }
+  },
+  {
+   "code": "cera",
+   "name": "Cera",
+   "brand": "Cera",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "safety": 87,
+    "accessibility": 39
+   },
+   "provenance": {
+    "safety": {
+     "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 71 home care agencies that register no other service and are listed by CQC under the brand Cera Care. 70 hold an overall rating: 2 Outstanding, 59 Good, 8 Requires improvement and 1 Inadequate, which is 87.1 per cent Good or Outstanding, against 87.5 per cent across the 6,221 rated agencies of this kind in England. 1 has no published rating. 61 per cent of the ratings were published more than three years before the file date, and 5 carry a rating inherited from an earlier provider.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "The CQC ratings file and care directory list 71 home care agencies that register no other service and are listed by CQC under the brand Cera Care, 0.7 per cent of the 9,894 in England. Scored as agencies divided by 1.8, capped at 95; a bigger network is likelier to have an office near a given family, but this says nothing about capacity, waiting lists or fees.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    }
+   },
+   "links": [],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "National brand"
+   ],
+   "description": "A home care provider that CQC records as one brand across many locations.",
+   "valueSignature": {
+    "health": 87,
+    "cost": 39
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "cqc.org.uk"
+   }
+  },
+  {
+   "code": "care-outlook",
+   "name": "Care Outlook",
+   "brand": "Care Outlook",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "safety": 63,
+    "accessibility": 4
+   },
+   "provenance": {
+    "safety": {
+     "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 8 home care agencies that register no other service and are listed by CQC under the brand Care Outlook. 8 hold an overall rating: 0 Outstanding, 5 Good, 3 Requires improvement and 0 Inadequate, which is 62.5 per cent Good or Outstanding, against 87.5 per cent across the 6,221 rated agencies of this kind in England. All of them hold a rating. 62 per cent of the ratings were published more than three years before the file date, and none carries an inherited rating.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "The CQC ratings file and care directory list 8 home care agencies that register no other service and are listed by CQC under the brand Care Outlook, 0.1 per cent of the 9,894 in England. Scored as agencies divided by 1.8, capped at 95; a bigger network is likelier to have an office near a given family, but this says nothing about capacity, waiting lists or fees.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    }
+   },
+   "links": [],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "Regional group"
+   ],
+   "description": "A small group whose overall share of Good or Outstanding ratings is the lowest of the named brands here, from eight rated agencies.",
+   "valueSignature": {
+    "health": 63,
+    "cost": 4
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "cqc.org.uk"
+   }
+  },
+  {
+   "code": "radfield",
+   "name": "Radfield Home Care",
+   "brand": "Radfield",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "safety": 100,
+    "accessibility": 19
+   },
+   "provenance": {
+    "safety": {
+     "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 34 home care agencies that register no other service and are named Radfield. 18 hold an overall rating: 5 Outstanding, 13 Good, 0 Requires improvement and 0 Inadequate, which is 100.0 per cent Good or Outstanding, against 87.5 per cent across the 6,221 rated agencies of this kind in England. 16 have no published rating. 72 per cent of the ratings were published more than three years before the file date, and 1 carries a rating inherited from an earlier provider.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "The CQC ratings file and care directory list 34 home care agencies that register no other service and are named Radfield, 0.3 per cent of the 9,894 in England. Scored as agencies divided by 1.8, capped at 95; a bigger network is likelier to have an office near a given family, but this says nothing about capacity, waiting lists or fees.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    }
+   },
+   "links": [],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "Franchise network"
+   ],
+   "description": "A franchise network in which about half of the agencies have no published CQC rating yet.",
+   "valueSignature": {
+    "health": 100,
+    "cost": 19
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "cqc.org.uk"
+   }
+  },
+  {
+   "code": "everycare",
+   "name": "Everycare",
+   "brand": "Everycare",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "safety": 90,
+    "accessibility": 6
+   },
+   "provenance": {
+    "safety": {
+     "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 10 home care agencies that register no other service and are named Everycare. 10 hold an overall rating: 0 Outstanding, 9 Good, 0 Requires improvement and 1 Inadequate, which is 90.0 per cent Good or Outstanding, against 87.5 per cent across the 6,221 rated agencies of this kind in England. All of them hold a rating. 50 per cent of the ratings were published more than three years before the file date, and none carries an inherited rating.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "The CQC ratings file and care directory list 10 home care agencies that register no other service and are named Everycare, 0.1 per cent of the 9,894 in England. Scored as agencies divided by 1.8, capped at 95; a bigger network is likelier to have an office near a given family, but this says nothing about capacity, waiting lists or fees.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    }
+   },
+   "links": [],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "Franchise network"
+   ],
+   "description": "A small franchise network, all of whose agencies hold a rating.",
+   "valueSignature": {
+    "health": 90,
+    "cost": 6
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "cqc.org.uk"
+   }
+  },
+  {
+   "code": "visiting-angels",
+   "name": "Visiting Angels",
+   "brand": "Visiting Angels",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "safety": 89,
+    "accessibility": 12
+   },
+   "provenance": {
+    "safety": {
+     "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 22 home care agencies that register no other service and are named Visiting Angels. 9 hold an overall rating: 0 Outstanding, 8 Good, 1 Requires improvement and 0 Inadequate, which is 88.9 per cent Good or Outstanding, against 87.5 per cent across the 6,221 rated agencies of this kind in England. 13 have no published rating. 44 per cent of the ratings were published more than three years before the file date, and 1 carries a rating inherited from an earlier provider.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "The CQC ratings file and care directory list 22 home care agencies that register no other service and are named Visiting Angels, 0.2 per cent of the 9,894 in England. Scored as agencies divided by 1.8, capped at 95; a bigger network is likelier to have an office near a given family, but this says nothing about capacity, waiting lists or fees.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    }
+   },
+   "links": [],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "Franchise network"
+   ],
+   "description": "A franchise network in which most agencies have no published CQC rating yet.",
+   "valueSignature": {
+    "health": 89,
+    "cost": 12
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "cqc.org.uk"
+   }
+  },
+  {
+   "code": "prestige-nursing",
+   "name": "Prestige Nursing + Care",
+   "brand": "Prestige Nursing",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "safety": 94,
+    "accessibility": 14
+   },
+   "provenance": {
+    "safety": {
+     "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 25 home care agencies that register no other service and are named Prestige Nursing. 18 hold an overall rating: 2 Outstanding, 15 Good, 1 Requires improvement and 0 Inadequate, which is 94.4 per cent Good or Outstanding, against 87.5 per cent across the 6,221 rated agencies of this kind in England. 7 have no published rating. 89 per cent of the ratings were published more than three years before the file date, and 10 carry a rating inherited from an earlier provider.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "The CQC ratings file and care directory list 25 home care agencies that register no other service and are named Prestige Nursing, 0.3 per cent of the 9,894 in England. Scored as agencies divided by 1.8, capped at 95; a bigger network is likelier to have an office near a given family, but this says nothing about capacity, waiting lists or fees.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    }
+   },
+   "links": [],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "Nursing and home care"
+   ],
+   "description": "A network of nursing and home care offices.",
+   "valueSignature": {
+    "health": 94,
+    "cost": 14
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "cqc.org.uk"
+   }
+  },
+  {
+   "code": "agincare",
+   "name": "Agincare",
+   "brand": "Agincare",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "safety": 90,
+    "accessibility": 11
+   },
+   "provenance": {
+    "safety": {
+     "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 20 home care agencies that register no other service and are listed by CQC under the brand Agincare. 19 hold an overall rating: 0 Outstanding, 17 Good, 2 Requires improvement and 0 Inadequate, which is 89.5 per cent Good or Outstanding, against 87.5 per cent across the 6,221 rated agencies of this kind in England. 1 has no published rating. 89 per cent of the ratings were published more than three years before the file date, and 1 carries a rating inherited from an earlier provider.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "The CQC ratings file and care directory list 20 home care agencies that register no other service and are listed by CQC under the brand Agincare, 0.2 per cent of the 9,894 in England. Scored as agencies divided by 1.8, capped at 95; a bigger network is likelier to have an office near a given family, but this says nothing about capacity, waiting lists or fees.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    }
+   },
+   "links": [],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "Regional group"
+   ],
+   "description": "A provider of care homes and home care that CQC records as one brand.",
+   "valueSignature": {
+    "health": 90,
+    "cost": 11
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "cqc.org.uk"
+   }
+  },
+  {
+   "code": "age-uk-local",
+   "name": "Age UK local services",
+   "brand": "Age UK",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "safety": 83,
+    "accessibility": 7
+   },
+   "provenance": {
+    "safety": {
+     "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 12 home care agencies that register no other service and are run by providers whose name includes Age UK. 12 hold an overall rating: 1 Outstanding, 9 Good, 2 Requires improvement and 0 Inadequate, which is 83.3 per cent Good or Outstanding, against 87.5 per cent across the 6,221 rated agencies of this kind in England. All of them hold a rating. 67 per cent of the ratings were published more than three years before the file date, and none carries an inherited rating.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "The CQC ratings file and care directory list 12 home care agencies that register no other service and are run by providers whose name includes Age UK, 0.1 per cent of the 9,894 in England. Scored as agencies divided by 1.8, capped at 95; a bigger network is likelier to have an office near a given family, but this says nothing about capacity, waiting lists or fees.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    }
+   },
+   "links": [],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "Local Age UK services"
+   ],
+   "description": "Home care run by providers whose name includes Age UK.",
+   "valueSignature": {
+    "health": 83,
+    "cost": 7
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "cqc.org.uk"
+   }
+  },
+  {
+   "code": "council-run-home-care",
+   "name": "Council-run home care",
+   "brand": "Local authorities",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "safety": 97
+   },
+   "provenance": {
+    "safety": {
+     "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 182 home care agencies that register no other service and are run by a provider whose name includes the word Council. 173 hold an overall rating: 17 Outstanding, 151 Good, 5 Requires improvement and 0 Inadequate, which is 97.1 per cent Good or Outstanding, against 87.5 per cent across the 6,221 rated agencies of this kind in England. 9 have no published rating. 81 per cent of the ratings were published more than three years before the file date, and 2 carry a rating inherited from an earlier provider.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "CQC care services",
+     "url": "https://www.cqc.org.uk/care-services"
+    }
+   ],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "Public sector"
+   ],
+   "description": "Home care that a council provides itself. Covers only agencies a council runs, not care a council arranges from other providers, and a given council may run none. No choice score is given for that reason.",
+   "valueSignature": {
+    "health": 97
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "cqc.org.uk"
+   }
+  },
+  {
+   "code": "independent-single-agency",
+   "name": "Independent single-agency providers",
+   "brand": "Single-location providers",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "safety": 85,
+    "accessibility": 95
+   },
+   "provenance": {
+    "safety": {
+     "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 6,536 home care agencies that register no other service and are run by a provider that registers only that one location and has no CQC brand, excluding the named brands above. 3,726 hold an overall rating: 126 Outstanding, 3,056 Good, 519 Requires improvement and 25 Inadequate, which is 85.4 per cent Good or Outstanding, against 87.5 per cent across the 6,221 rated agencies of this kind in England. 2,810 have no published rating. 69 per cent of the ratings were published more than three years before the file date, and 115 carry a rating inherited from an earlier provider.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    },
+    "accessibility": {
+     "note": "The CQC ratings file and care directory list 6,536 such agencies, 66 per cent of the 9,894 in England and more than any brand. Each is its own provider, so the choice is between individual agencies. Scored at the cap of 95.",
+     "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "CQC care services",
+     "url": "https://www.cqc.org.uk/care-services"
+    }
+   ],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "Independent",
+    "Single agency"
+   ],
+   "description": "Owner-run and other single-location agencies, taken together. More than two in five have no published rating, and each agency has to be judged on its own report.",
+   "valueSignature": {
+    "health": 85,
+    "cost": 95
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "cqc.org.uk"
+   }
+  },
+  {
+   "code": "council-arranged-care",
+   "name": "Care arranged by your council after a needs assessment",
+   "brand": "Local authorities",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "transparency": 75
+   },
+   "provenance": {
+    "transparency": {
+     "note": "The Department of Health and Social Care's charging circular for 2026 to 2027, published 17 February 2026, sets out the rules councils apply to people whose care is arranged by a local authority: the capital limits stay at £14,250 (lower) and £23,250 (upper), and it gives the minimum income guarantee for people receiving care other than in a care home, for example £241.45 a week for a single person of pension credit age. It is a national rulebook, so what a given person pays still depends on a council's financial assessment.",
+     "source": "https://www.gov.uk/government/publications/social-care-charging-for-local-authorities-2026-to-2027/social-care-charging-for-care-and-support-2026-to-2027-local-authority-circular",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Apply for a needs assessment (GOV.UK, England and Wales)",
+     "url": "https://www.gov.uk/apply-needs-assessment-social-services"
+    }
+   ],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "Public sector",
+    "Route that is not a private purchase"
+   ],
+   "description": "The route that is not a private purchase in England. A council assesses care needs, and people may then have care arranged for them and pay towards it depending on a financial assessment. GOV.UK's needs assessment page says services can include home care and lists a postcode lookup for the local council.",
+   "valueSignature": {
+    "honesty": 75
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "gov.uk"
+   }
+  }
+ ]
+}

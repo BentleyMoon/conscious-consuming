@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Build a Values Commons app</title>
-<meta name="description" content="Build a small values guide around one decision, using sourced options and the shared Values Commons engine.">
+<meta name="description" content="Build a small values app around one decision: name it, pick the values that matter, add options with a source for every score, and download two files that run on the shared Values Commons engine.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#1d7a5a">
 <link rel="icon" href="/app/icon.svg" type="image/svg+xml"><link rel="alternate icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64"><link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
@@ -13,246 +13,239 @@
 <meta property="og:url" content="https://valuescommons.org/instances/new/">
 <meta property="og:site_name" content="Values Commons">
 <meta property="og:title" content="Build a Values Commons app">
-<meta property="og:description" content="Build a small values guide around one decision, using sourced options and the shared Values Commons engine.">
+<meta property="og:description" content="Name one decision, add options with a source for every score, and download two files that run on the shared Values Commons engine.">
 <meta property="og:image" content="https://valuescommons.org/og-standard.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Build a Values Commons app">
-<meta name="twitter:description" content="Build a small values guide around one decision, using sourced options and the shared Values Commons engine.">
+<meta name="twitter:description" content="Name one decision, add options with a source for every score, and download two files that run on the shared Values Commons engine.">
 <meta name="twitter:image" content="https://valuescommons.org/og-standard.png">
 <script>try{var t=localStorage.getItem('cc.theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <style>
-  :root{--bg:#f8f5ee;--surface:#fff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--soft:#e9f3ee;--track:#eef1ef;--max:1120px;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,system-ui,sans-serif;--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,ui-serif,serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--ochre:#8a5514;--line-strong:#cfd8d3;--warn:#a8432f;--glow:0 0 14px rgba(29,122,90,.22)}
-  @media(prefers-color-scheme:dark){:root{--bg:#11140f;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.1);--accent:#5dcaa5;--soft:#16241d;--track:#1b241f;--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17);--warn:#e3a594;--glow:0 0 16px rgba(93,202,165,.3)}}
-  :root[data-theme="dark"]{--bg:#11140f;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.1);--accent:#5dcaa5;--soft:#16241d;--track:#1b241f;--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17);--warn:#e3a594;--glow:0 0 16px rgba(93,202,165,.3);color-scheme:dark}
-  :root[data-theme="light"]{--bg:#f8f5ee;--surface:#fff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--soft:#e9f3ee;--track:#eef1ef;--ochre:#8a5514;--line-strong:#cfd8d3;--warn:#a8432f;--glow:0 0 14px rgba(29,122,90,.22);color-scheme:light}
+  /* The starter builder, in the lab-notebook register. Green is the reader's choices and the
+     primary button; ochre marks a source, which on this page means the source boxes and the
+     sources shown under each ranked option; graphite is the maker's hand. */
+  :root{--bg:#f8f5ee;--surface:#fff;--ink:#18211d;--muted:#566560;--hint:#607068;--line:#e3e7e5;--accent:#1d7a5a;--accent-bright:#17936a;--soft:#e9f3ee;--track:#eef1ef;--band:#eef2f0;--max:1120px;--serif:"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,ui-serif,serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--ochre:#8a5514;--line-strong:#cfd8d3;--warn:#a8432f;--on-accent:#fff;--graphite:#4d5357;--hatch:rgba(24,33,29,.36)}
+  @media(prefers-color-scheme:dark){:root{--bg:#11140f;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#87968e;--line:rgba(255,255,255,.1);--accent:#5dcaa5;--accent-bright:#6ad9ab;--soft:#16241d;--track:#1b241f;--band:#131b16;--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17);--warn:#e3a594;--on-accent:#0b100d;--graphite:#b6bcc0;--hatch:rgba(230,236,232,.32)}}
+  :root[data-theme="dark"]{--bg:#11140f;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#87968e;--line:rgba(255,255,255,.1);--accent:#5dcaa5;--accent-bright:#6ad9ab;--soft:#16241d;--track:#1b241f;--band:#131b16;--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17);--warn:#e3a594;--on-accent:#0b100d;--graphite:#b6bcc0;--hatch:rgba(230,236,232,.32);color-scheme:dark}
+  :root[data-theme="light"]{--bg:#f8f5ee;--surface:#fff;--ink:#18211d;--muted:#566560;--hint:#607068;--line:#e3e7e5;--accent:#1d7a5a;--accent-bright:#17936a;--soft:#e9f3ee;--track:#eef1ef;--band:#eef2f0;--ochre:#8a5514;--line-strong:#cfd8d3;--warn:#a8432f;--on-accent:#fff;--graphite:#4d5357;--hatch:rgba(24,33,29,.36);color-scheme:light}
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.58;-webkit-font-smoothing:antialiased}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:1.04rem;line-height:1.58;-webkit-font-smoothing:antialiased}
   a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
   a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-  .wrap{max-width:var(--max);margin:0 auto;padding:0 1.25rem}
-  .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:1.05rem 0;border-bottom:1px solid var(--line-strong)}
-  .brand{font-family:var(--serif);font-weight:700;color:var(--ink);font-size:1.12rem;letter-spacing:-.015em}
-  .brand::after{content:"Open field guide";font-family:var(--mono);font-weight:600;font-size:0.75rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ochre);margin-left:.6rem;padding-left:.6rem;border-left:1px solid var(--line-strong)}
-  .links{display:flex;gap:.45rem 1rem;flex-wrap:wrap;font-family:var(--mono);font-size:0.75rem}
-  .links a{color:var(--muted)}.links a:hover{color:var(--accent);text-decoration:none}
-  .kicker{font-family:var(--mono);font-size:0.75rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 .9rem}
-  h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.12;text-wrap:balance;letter-spacing:-.015em}
-  h1{font-size:clamp(1.85rem,3.06vw,2.45rem);margin:0 0 .8rem}
-  h2{font-size:1.35rem;margin:0 0 .5rem}
-  .hero{position:relative;overflow:hidden;padding:2.6rem 0 1.6rem;background:radial-gradient(48rem 28rem at 4% -12%,color-mix(in srgb,var(--accent) 15%,transparent),transparent 58%),radial-gradient(40rem 22rem at 98% -8%,color-mix(in srgb,var(--ochre) 8%,transparent),transparent 60%)}
-  .hero>:not(.grove){position:relative;z-index:1}
-  .grove{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
-  ::selection{background:color-mix(in srgb,var(--accent) 24%,transparent)}
-  .lede{max-width:56ch;color:var(--muted);font-size:1.12rem;margin:0}
-  .lede b{color:var(--ink)}
-  .law{border:1px solid var(--line);border-left:3px solid var(--warn);border-radius:4px;background:var(--surface);padding:.7rem .9rem;margin:1.1rem 0 0;font-size:1rem;max-width:56ch}
-  .law b{font-family:var(--mono);font-size:0.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--warn);display:block;margin-bottom:.2rem}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1rem,4vw,2.2rem)}
+  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.55rem .9rem;z-index:20}
+  .skip:focus{left:0}
+  h1,h2,h3{font-family:var(--serif);font-weight:550;line-height:1.12;text-wrap:balance;letter-spacing:-.01em}
 
-  .press{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(1.2rem,3vw,2.2rem);align-items:start;padding:1.2rem 0 3rem}
-  .step{border:1px solid var(--line);border-radius:4px;background:var(--surface);margin:0 0 1rem;overflow:hidden}
-  .step-h{display:flex;align-items:baseline;gap:.6rem;padding:.75rem 1rem;border-bottom:1px solid var(--line)}
-  .step-h .no{font-family:var(--mono);font-size:0.75rem;color:var(--ochre)}
-  .step-h h2{font-size:1.12rem;margin:0}
+  .masthead{border-bottom:1px solid var(--line-strong)}
+  .masthead .wrap{display:flex;align-items:baseline;justify-content:space-between;gap:.6rem 1rem;flex-wrap:wrap;padding-top:1.1rem;padding-bottom:.95rem}
+  .brand{font-weight:700;font-size:1.25rem;letter-spacing:-.015em;color:var(--ink)}
+  .brand:hover{text-decoration:none}
+  .exits{display:flex;align-items:center;gap:.2rem 1.1rem;flex-wrap:wrap;font-family:var(--mono);font-size:0.75rem}
+  .exits a{color:var(--muted);padding:.35rem 0}
+  .exits a:hover{color:var(--ink);text-decoration:none}
+
+  .plate-id{display:flex;justify-content:space-between;align-items:baseline;gap:.3rem 1rem;flex-wrap:wrap;margin:0 0 1rem;padding-bottom:.4rem;border-bottom:1px solid color-mix(in srgb,var(--ink) 55%,transparent)}
+  .plate-id .pn{font-family:var(--mono);font-size:0.75rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
+  .plate-id .fig{font-style:italic;font-size:0.92rem;color:var(--muted)}
+
+  .hero{padding:clamp(1.8rem,4vw,2.6rem) 0 1.4rem}
+  .hero h1{font-size:clamp(1.9rem,3.6vw,2.6rem);margin:0 0 .9rem;max-width:20ch}
+  .lede{max-width:60ch;color:var(--muted);font-size:1.12rem;margin:0}
+  .lede b{color:var(--ink)}
+  .law{border-top:1px solid color-mix(in srgb,var(--ink) 55%,transparent);border-bottom:1px dotted color-mix(in srgb,var(--ink) 55%,transparent);padding:.6rem 0;margin:1.2rem 0 0;font-size:1rem;max-width:60ch}
+  .law b{font-family:var(--mono);font-size:0.86rem;color:var(--ink);margin-right:.35rem}
+
+  .press{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(1.2rem,3vw,2.2rem);align-items:start;padding:1.6rem 0 1rem}
+  .step{border:1px solid var(--line-strong);border-radius:4px;background:var(--surface);margin:0 0 1rem;overflow:hidden}
+  .step-h{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap;padding:.75rem 1rem;border-bottom:1px solid var(--line)}
+  .step-h .no{font-family:var(--mono);font-size:0.75rem;font-weight:700;color:var(--ink)}
+  .step-h h2{font-size:1.2rem;font-style:italic;font-weight:500;margin:0}
   .step-h .hint{margin-left:auto;font-family:var(--mono);font-size:0.75rem;color:var(--hint)}
   .step-b{padding:.9rem 1rem 1rem}
-  .frow{display:grid;grid-template-columns:auto 1fr;gap:.3rem .7rem;align-items:baseline;margin:0 0 .6rem}
-  .frow label{font-family:var(--mono);font-size:0.75rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .frow{display:grid;grid-template-columns:8.5rem 1fr;gap:.3rem .7rem;align-items:baseline;margin:0 0 .6rem}
+  .frow label,.flab{font-family:var(--mono);font-size:0.75rem;color:var(--muted);font-weight:600}
+  .flab{display:block;margin-bottom:.15rem}
   input[type=text],textarea,select{font:inherit;font-size:1rem;color:var(--ink);background:var(--bg);border:1px solid var(--line-strong);border-radius:3px;padding:.42rem .55rem;width:100%;min-height:2.2rem}
-  textarea{font-family:var(--mono);font-size:0.75rem;line-height:1.45;resize:vertical}
   input::placeholder,textarea::placeholder{color:var(--hint)}
-  .tiny{font-size:0.86rem;color:var(--hint);margin:.3rem 0 0}
+  .tiny{font-size:0.9rem;color:var(--muted);margin:.4rem 0 0}
   .mono{font-family:var(--mono)}
+  .hand{font-family:"Segoe Print","Ink Free","Bradley Hand","Chalkboard SE","Marker Felt",cursive;color:var(--graphite);font-size:0.98rem;line-height:1.4;transform:rotate(-1.4deg);transform-origin:left top;margin:1rem 0 .4rem .2rem;max-width:38ch}
 
-  .theme-row,.opt{border-top:1px dashed var(--line);padding:.8rem 0 .2rem;position:relative}
+  .theme-row,.opt{border-top:1px dashed var(--line-strong);padding:.8rem 0 .2rem;position:relative}
   .theme-row:first-child,.opt:first-child{border-top:0;padding-top:.2rem}
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:.5rem .7rem}
-  .grid3{display:grid;grid-template-columns:1.1fr 1fr .9fr;gap:.5rem .7rem}
-  .rm{position:absolute;top:.55rem;right:0;background:none;border:1px solid var(--line);border-radius:3px;color:var(--hint);font-family:var(--mono);font-size:0.75rem;min-height:1.6rem;padding:.1rem .45rem;cursor:pointer}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:.5rem .7rem;padding-right:4.5rem}
+  .grid3{display:grid;grid-template-columns:1.1fr 1fr .9fr;gap:.5rem .7rem;padding-right:4.5rem}
+  .rm{position:absolute;top:.55rem;right:0;background:none;border:1px solid var(--line);border-radius:3px;color:var(--hint);font-family:var(--mono);font-size:0.75rem;min-height:2rem;padding:.1rem .5rem;cursor:pointer}
   .rm:hover{border-color:var(--warn);color:var(--warn)}
-  .add{font-family:var(--mono);font-size:0.75rem;font-weight:600;min-height:2.2rem;padding:.4rem .8rem;border:1px solid var(--accent);border-radius:3px;background:var(--surface);color:var(--accent);cursor:pointer;margin-top:.7rem}
+  .add{font-family:var(--mono);font-size:0.75rem;font-weight:600;min-height:2.4rem;padding:.4rem .8rem;border:1px solid var(--accent);border-radius:3px;background:var(--surface);color:var(--accent);cursor:pointer;margin-top:.7rem}
   .add:hover{background:var(--soft)}
-  .exbtn{font-family:var(--mono);font-size:0.75rem;background:none;border:none;color:var(--muted);text-decoration:underline;text-underline-offset:2px;cursor:pointer;padding:0}
-  .exbtn:hover{color:var(--accent)}
+  .exbtn{font-family:var(--mono);font-size:0.75rem;background:none;border:none;color:var(--accent);text-decoration:underline;text-underline-offset:2px;cursor:pointer;padding:0;min-height:1.8rem}
 
-  .factrow{display:grid;grid-template-columns:7.5rem 4.2rem 1fr;gap:.4rem .6rem;align-items:center;margin:.35rem 0}
-  .factrow .fl{font-family:var(--mono);font-size:0.75rem;letter-spacing:.03em;text-transform:uppercase;color:var(--muted)}
-  .factrow input[type=number]{font-family:var(--mono);font-size:0.86rem;text-align:right;min-height:2rem;padding:.25rem .4rem;background:var(--bg);border:1px solid var(--line-strong);border-radius:3px;color:var(--ink);width:100%}
-  .factrow input[type=number]:disabled{background:var(--track);color:var(--hint);border-style:dashed;cursor:not-allowed}
-  .factrow input.src{min-height:2rem;font-family:var(--mono);font-size:0.75rem;padding:.25rem .5rem}
-  .factrow input.src:placeholder-shown{border-color:var(--line)}
+  .factrow{display:grid;grid-template-columns:7.5rem 4.4rem 1fr;gap:.4rem .6rem;align-items:center;margin:.35rem 0}
+  .factrow .fl{font-family:var(--mono);font-size:0.75rem;color:var(--muted)}
+  .factrow input[type=number]{font-family:var(--mono);font-size:0.86rem;text-align:right;min-height:2.2rem;padding:.25rem .4rem;background:var(--bg);border:1px solid var(--line-strong);border-radius:3px;color:var(--ink);width:100%}
+  .factrow input[type=number]:disabled{background:repeating-linear-gradient(-45deg,var(--hatch) 0 1px,transparent 1px 5px);color:var(--hint);border-style:dashed;cursor:not-allowed}
+  .factrow input.src{min-height:2.2rem;font-family:var(--mono);font-size:0.75rem;padding:.25rem .5rem;color:var(--ochre)}
+  .factrow input.src:not(:placeholder-shown){border-color:var(--ochre)}
 
-  /* the live proof */
+  /* Fig. 1: the ranking, live */
   .proof{position:sticky;top:1rem;border:1px solid var(--line-strong);border-radius:4px;background:var(--surface);overflow:hidden}
   .proof-h{padding:.8rem 1rem;border-bottom:1px solid var(--line)}
-  .proof-h .cat{font-weight:700;font-size:1rem}
-  .proof-h .livechip{float:right;font-family:var(--mono);font-size:0.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
-  .proof-h .sub{margin:.25rem 0 0;font-size:0.86rem;color:var(--muted)}
+  .proof-h .cat{font-weight:700;font-size:1.1rem}
+  .proof-h .sub{margin:.2rem 0 0;font-size:0.9rem;color:var(--muted)}
   .proof-sliders{padding:.6rem 1rem .8rem;border-bottom:1px solid var(--line)}
   .ps{display:grid;grid-template-columns:1fr auto;gap:0 .5rem;align-items:baseline;margin-top:.45rem}
-  .ps label{font-family:var(--mono);font-size:0.75rem;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);font-weight:600}
-  .ps .v{font-family:var(--mono);font-size:0.75rem;color:var(--hint)}
-  .ps input{grid-column:1/-1;width:100%;height:1.75rem;accent-color:var(--accent);cursor:pointer;margin:0}
+  .ps label{font-family:var(--mono);font-size:0.75rem;color:var(--muted);font-weight:600}
+  .ps .v{font-family:var(--mono);font-size:0.75rem;color:var(--accent);font-weight:700}
+  .ps input{grid-column:1/-1;width:100%;height:1.9rem;accent-color:var(--accent-bright);cursor:pointer;margin:0}
   .proof-rows{list-style:none;margin:0;padding:.3rem}
-  .pe{display:grid;grid-template-columns:1.3rem 1fr auto;gap:.1rem .6rem;align-items:baseline;padding:.5rem .6rem;border-radius:3px}
+  .pe{display:grid;grid-template-columns:1.3rem 1fr auto;gap:.1rem .6rem;align-items:baseline;padding:.55rem .6rem;border-radius:3px}
   .pe+.pe{border-top:1px solid var(--line)}
   .pe .rk{font-family:var(--mono);font-size:0.75rem;color:var(--hint);justify-self:end}
   .pe .nm{font-weight:700;font-size:1rem}
-  .pe .sc{font-family:var(--mono);font-weight:600}
-  .pe .why{grid-column:2/-1;font-size:0.75rem;color:var(--muted)}
-  .pe.lead{background:var(--soft)}
-  .proof-empty{padding:1rem;color:var(--hint);font-size:0.86rem}
-  .proof-foot{padding:.6rem 1rem .8rem;border-top:1px solid var(--line);font-family:var(--mono);font-size:0.75rem;color:var(--hint)}
-  .proof-foot .okz{color:var(--accent)} .proof-foot .bad{color:var(--warn)}
+  .pe .sc{font-family:var(--mono);font-weight:700}
+  .pe .why{grid-column:2/-1;font-size:0.8rem;color:var(--muted)}
+  .pe .pv{grid-column:2/-1;font-family:var(--mono);font-size:0.75rem;line-height:1.45;color:var(--ochre)}
+  .pe.lead .nm{color:var(--accent)}
+  .proof-empty{padding:1rem;color:var(--muted);font-size:0.9rem}
+  .proof-foot{padding:.6rem 1rem .8rem;border-top:1px solid var(--line);font-family:var(--mono);font-size:0.75rem;color:var(--muted)}
+  .proof-foot .okz{color:var(--ink);font-weight:700} .proof-foot .bad{color:var(--warn)}
 
   .pressbar{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;padding:.9rem 1rem;border-top:1px solid var(--line)}
-  .btn{font-family:var(--mono);font-size:0.75rem;font-weight:600;letter-spacing:.02em;display:inline-flex;align-items:center;min-height:2.5rem;padding:.5rem .95rem;border-radius:3px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);cursor:pointer}
+  .btn{font-family:var(--mono);font-size:0.75rem;font-weight:600;display:inline-flex;align-items:center;min-height:2.75rem;padding:.5rem .95rem;border-radius:3px;border:1px solid var(--line-strong);background:transparent;color:var(--muted);cursor:pointer}
   .btn:hover{border-color:var(--accent);color:var(--accent)}
-  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;transition:box-shadow .3s}
-  .btn.primary:hover{color:#fff}
-  .btn.primary:not(:disabled){box-shadow:var(--glow)}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+  .btn.primary:hover{background:var(--accent-bright);color:var(--on-accent)}
   .btn:disabled{opacity:.45;cursor:not-allowed}
-  .pe.lead .sc{text-shadow:0 0 9px color-mix(in srgb,var(--accent) 38%,transparent)}
   #pressnote{font-family:var(--mono);font-size:0.75rem;color:var(--accent)}
 
+  .explain{border-top:1px solid var(--line);padding:clamp(1.8rem,4vw,2.6rem) 0 2rem}
+  .explain h2{font-size:clamp(1.35rem,2.4vw,1.75rem);font-style:italic;font-weight:500;margin:0 0 1rem}
+  .notes{max-width:66ch}
+  .notes p{margin:0 0 .9rem}
+  .notes .h{font-style:italic;font-weight:650}
+  .notes .dev{padding-left:1rem;border-left:2px solid var(--graphite)}
+  .notes .fur{padding-left:1rem;border-left:2px dotted var(--line-strong)}
+
   footer{border-top:1px solid var(--line);padding:1.5rem 0 2.5rem;color:var(--hint);font-size:0.86rem}
-  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.55rem .9rem;border-radius:0 0 8px 0;z-index:20}
-  .skip:focus{left:0}
   @media(max-width:900px){.press{grid-template-columns:1fr}.proof{position:static}}
-  @media(max-width:560px){.grid2,.grid3{grid-template-columns:1fr}.factrow{grid-template-columns:6rem 3.8rem 1fr}}
+  @media(max-width:560px){.grid2,.grid3{grid-template-columns:1fr}.factrow{grid-template-columns:6rem 4rem 1fr}.frow{grid-template-columns:1fr}.step-h .hint{margin-left:0;flex-basis:100%}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="wrap">
-  <nav class="nav" aria-label="Values Commons">
+<header class="masthead">
+  <div class="wrap">
     <a class="brand" href="../../index.html">&#9671; Values Commons</a>
-    <div class="links">
-      <a href="../index.html">Apps</a>
-      <a href="../../standard/index.html">For builders</a>
-      <a href="../../contribute/index.html">Help out</a>
-      <a href="../../docs/ADOPTION-KIT.md">Adoption guide</a>
-    </div>
-  </nav>
+    <nav class="exits" aria-label="Site">
+      <a href="../index.html">The apps</a>
+      <a href="../messages/index.html">A finished example</a>
+      <a href="../../docs/CREATE-AN-INSTANCE.md">Build guide</a>
+    </nav>
+  </div>
+</header>
 
+<div class="wrap">
   <header class="hero">
-    <canvas class="grove" id="grove" aria-hidden="true"></canvas>
-    <p class="kicker">Starter builder &middot; facts + design + the shared engine</p>
+    <p class="plate-id"><span class="pn">The starter builder</span><span class="fig">Two files, and nothing to install.</span></p>
     <h1>Build an app around one decision</h1>
-    <p class="lede">Name the decision, choose what can be compared, and add options with their sources. The ranking runs here on the same engine as the live apps, and you can take the finished files with you.</p>
-    <div class="law"><b>The one law</b> No source, no score. A number you cannot cite does not exist here; the score field stays shut until its source is written. That rule is what makes the result worth trusting.</div>
+    <p class="lede">Name a decision, pick two to four values that change it, and add options with a source for every score. The ranking on the right runs on the same engine as the three live apps. When it looks right, download <b>two files</b> and put them in a folder. That is the app.</p>
+    <p class="law"><b>No source, no score.</b> Each score box stays locked until you write where the number came from.</p>
   </header>
 
   <div class="press" id="main" tabindex="-1">
     <div>
       <div class="step">
-        <div class="step-h"><span class="no">1</span><h2>The decision</h2><span class="hint">start here, not with features</span></div>
+        <div class="step-h"><span class="no">1</span><h2>The decision</h2><span class="hint">start here</span></div>
         <div class="step-b">
-          <p class="tiny" style="margin:0 0 .7rem">A worked example is loaded so you can see the ranking change. <button class="exbtn" id="loadex" type="button">Clear it and name your own &rarr;</button><br>Start with the decision, not a feature list.</p>
+          <p class="tiny" style="margin:0 0 .8rem">A coffee example is loaded so you can see the ranking move. <button class="exbtn" id="loadex" type="button">Clear it and start your own</button></p>
           <div class="frow"><label for="f-noun">Where to&hellip;</label><input type="text" id="f-noun" placeholder="drink coffee &middot; bank &middot; host photos" autocomplete="off"></div>
           <div class="frow"><label for="f-title">Title</label><input type="text" id="f-title" placeholder="Where to Drink Coffee" autocomplete="off"></div>
-          <div class="frow"><label for="f-tag">One honest line</label><input type="text" id="f-tag" placeholder="Pick a daily coffee by your values, not by the loudest shelf." autocomplete="off"></div>
+          <div class="frow"><label for="f-tag">One line about it</label><input type="text" id="f-tag" placeholder="Pick a daily coffee by what you care about." autocomplete="off"></div>
         </div>
       </div>
 
       <div class="step">
-        <div class="step-h"><span class="no">2</span><h2>The values</h2><span class="hint">2&ndash;4 priorities that change the choice</span></div>
+        <div class="step-h"><span class="no">2</span><h2>The values</h2><span class="hint">two to four that change the answer</span></div>
         <div class="step-b">
           <div id="themes"></div>
           <button class="add" id="addtheme" type="button">+ Add a value</button>
-          <p class="tiny">Connect each local measure to one of the ten shared values. That lets another person's values file carry over without inventing a match the subject cannot support.</p>
+          <p class="tiny">For each one, pick which of the ten shared values it stands for. That is how a values file someone made elsewhere carries into your app. If none fits, leave it on "choose". That value then stays home, and the app does not make up a score for it.</p>
         </div>
       </div>
 
       <div class="step">
-        <div class="step-h"><span class="no">3</span><h2>The options</h2><span class="hint">source first, score second</span></div>
+        <div class="step-h"><span class="no">3</span><h2>The options</h2><span class="hint">each score needs its source</span></div>
         <div class="step-b">
           <div id="opts"></div>
           <button class="add" id="addopt" type="button">+ Add an option</button>
         </div>
       </div>
+      <p class="hand">Try this: delete one of the co-op's sources. Its score box locks and empties, and the co-op's score falls. Typing the source back does not bring the number back. You have to enter it again.</p>
     </div>
 
     <aside>
-      <div class="proof" aria-label="Your app, ranking live">
+      <p class="plate-id"><span class="pn">Plate I</span><span class="fig">Fig. 1. Your app's ranking, updated as you type.</span></p>
+      <div class="proof" aria-label="Your app's ranking, updated as you type">
         <div class="proof-h">
-          <span class="livechip">Live</span>
           <span class="cat" id="proof-title">Your app</span>
-          <p class="sub">This is a working ranking, not a mockup. It uses the same engine as the live apps.</p>
+          <p class="sub">This runs on the same engine as the live apps and uses what you typed. Move a slider to change a value's weight.</p>
         </div>
         <div class="proof-sliders" id="proof-sliders"></div>
         <ul class="proof-rows" id="proof-rows"><li class="proof-empty">Name a decision, add a value and two sourced options, and the ranking appears.</li></ul>
         <div class="proof-foot" id="proof-foot"></div>
         <div class="pressbar">
           <button class="btn primary" id="dl-lens" type="button" disabled>&#10515; lens.js</button>
-          <button class="btn" id="dl-page" type="button" disabled>&#10515; starter page</button>
+          <button class="btn" id="dl-page" type="button" disabled>&#10515; the page</button>
           <span id="pressnote" role="status"></span>
         </div>
       </div>
-      <p class="tiny" style="margin:.7rem .2rem 0">The starter page keeps the facts in one readable file and links to the shared engine. Put both files in a folder and open the page. To go further, study <a href="../messages/index.html">Where to Message's source</a> and the <a href="../../docs/CREATE-AN-INSTANCE.md">build guide</a>.</p>
+      <p class="tiny" style="margin:.7rem .2rem 0"><code class="mono">lens.js</code> holds your facts and their sources in one readable file. The page shows them and links to the shared engine. Put both in a folder and open the page.</p>
     </aside>
   </div>
 
+  <section class="explain" aria-labelledby="h-explain">
+    <h2 id="h-explain">What the builder does, and what it cannot</h2>
+    <div class="notes">
+      <p><span class="h">What's happening.</span> The form on the left writes a facts file, <code class="mono">lens.js</code>, as you type. The panel on the right loads that file into the shared engine and ranks your options by the weights on its sliders. A score only counts once its source box has at least three characters in it.</p>
+      <p><span class="h">Why it matters.</span> Most of the work in a values app is finding the facts. This lets a teacher, a co-op buyer or a tenants' group find out whether their decision works as a ranking before anyone writes software.</p>
+      <p class="dev"><span class="h">Devil's advocate.</span> The lock only checks that a source box has something in it. It cannot tell a certification register from "my uncle said", which is also more than three characters. The scores are yours, and nothing here checks them. The downloaded page also fetches the engine from valuescommons.org, so it needs the internet the first time, or a copy of <code class="mono">engine.js</code> beside it.</p>
+      <p class="fur"><span class="h">Rabbit hole.</span> Read <a href="../messages/lens.js">Where to Message's lens.js</a> to see a finished one, then the <a href="../../docs/CREATE-AN-INSTANCE.md">build guide</a> for everything past a first draft.</p>
+    </div>
+  </section>
+
   <footer>
     Values Commons &middot; <a href="../../docs/ADOPTION-KIT.md">read the adoption guide</a> &middot; <a href="../../contribute/index.html">get help</a>
+  <!-- family:start -->
+<style>
+  /* sizes, spacing and case follow research/design_system_audit.js: the eight-step scale, the 0.25rem grid, no uppercase */
+  .fam{border-top:1px solid var(--line,#e3e7e5);margin-top:1.5rem;padding-top:1.25rem;grid-column:1/-1;flex-basis:100%;width:100%}
+  .fam-foot{border-top:1px solid var(--line,#e3e7e5);padding:1.25rem 0 2.5rem}
+  .fam-foot .fam,.fam-after .fam{border-top:0;margin-top:0}
+  .fam>p{margin:0 0 1rem;font-family:var(--font-mono,ui-monospace,monospace);font-size:.75rem;color:var(--hint,var(--muted,#566560))}
+  .fam-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(10.5rem,1fr));gap:1rem 1.5rem}
+  .fam-head{margin:0 0 .5rem;font-size:.86rem;font-weight:700;color:var(--ink,#18211d)}
+  .fam ul{list-style:none;margin:0;padding:0}
+  .fam li{margin:0 0 .5rem}
+  .fam a{display:block;text-decoration:none;color:inherit;border:0;box-shadow:none}
+  .fam a:hover .fam-name{text-decoration:underline}
+  .fam-name{display:block;font-size:.86rem;font-weight:600;color:var(--accent,#1d7a5a)}
+  .fam-desc{display:block;font-size:.75rem;line-height:1.4;color:var(--muted,#566560)}
+  .fam-you{display:inline-block;margin-top:.25rem;font-family:var(--font-mono,ui-monospace,monospace);font-size:.64rem;color:var(--ink,#18211d)}
+</style>
+<nav class="fam" aria-label="The Futurism Institute family">
+  <p>The Futurism Institute family</p>
+  <div class="fam-cols"><div><p class="fam-head">Start here</p><ul><li><a href="https://futurisminstitute.org"><span class="fam-name">Futurism Institute</span><span class="fam-desc">How the projects fit together</span></a></li></ul></div><div><p class="fam-head">Research</p><ul><li><a href="https://bentleymoon.com"><span class="fam-name">Bentley Moon</span><span class="fam-desc">Research record and films</span></a></li></ul></div><div><p class="fam-head">Records</p><ul><li><a href="https://bentleymoon.com/research/checking-ai/"><span class="fam-name">Checking AI</span><span class="fam-desc">When one AI can check another</span></a></li><li class="fam-here"><a href="https://valuescommons.org/app/"><span class="fam-name">Conscious Consuming</span><span class="fam-desc">Products and services, by what you care about</span><span class="fam-you">You are here</span></a></li><li><a href="https://dignityneeds.com"><span class="fam-name">Dignity Needs</span><span class="fam-desc">What every person should be able to expect</span></a></li><li><a href="https://kosplora.org"><span class="fam-name">Kosplora</span><span class="fam-desc">Learning and research tools</span></a></li><li><a href="https://legibleai.org"><span class="fam-name">Legible AI</span><span class="fam-desc">A first road into AI safety</span></a></li><li><a href="https://legibleai.org/searches/"><span class="fam-name">AI Searches</span><span class="fam-desc">A shared record of AI answers, with their sources</span></a></li></ul></div><div><p class="fam-head">Groups</p><ul><li><a href="https://socratichearth.org"><span class="fam-name">The Socratic Hearth</span><span class="fam-desc">Talk a question through, disagreements kept</span></a></li><li><a href="https://theworkparty.org"><span class="fam-name">The Work Party</span><span class="fam-desc">What a group agreed, as a file it keeps</span></a></li></ul></div><div><p class="fam-head">Places</p><ul><li><a href="https://earthenbeings.com"><span class="fam-name">Earthen Beings</span><span class="fam-desc">Communities and land projects in the Pacific Northwest</span></a></li><li><a href="https://basicdignity.com"><span class="fam-name">Basic Dignity</span><span class="fam-desc">Draft rules for whoever holds what a person needs, from a shared house to the companies that own AI.</span></a></li></ul></div></div>
+</nav>
+<!-- family:end -->
   </footer>
 </div>
 
 <script src="../../app/engine.js"></script>
 <script>
-// The grove: an organic circuit grown behind the hero of the creation surface.
-// Decoration that behaves: low alpha, capped work, static under reduced motion,
-// waits for real layout dimensions, regrows on resize.
-(function () {
-  var c = document.getElementById('grove');
-  if (!c || !c.getContext) return;
-  var section = c.parentElement;
-  var ctx = c.getContext('2d');
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  var tone = dark ? '93,202,165' : '29,122,90';
-  var lineA = dark ? 0.13 : 0.08;
-  var budA = dark ? 0.3 : 0.18;
-  var W = 0, H = 0, branches = [], steps = 0, MAX = 480, running = false;
-  function bud(x, y, r) { ctx.fillStyle = 'rgba(' + tone + ',' + budA + ')'; ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill(); }
-  function seed(x, a) { branches.push({ x: x, y: H + 4, a: a, w: 1.4, life: 34 + Math.random() * 28 }); }
-  function tick() {
-    for (var i = branches.length - 1; i >= 0; i--) {
-      var b = branches[i];
-      var nx = b.x + Math.cos(b.a) * 7, ny = b.y + Math.sin(b.a) * 7;
-      ctx.strokeStyle = 'rgba(' + tone + ',' + lineA + ')'; ctx.lineWidth = b.w;
-      ctx.beginPath(); ctx.moveTo(b.x, b.y); ctx.lineTo(nx, ny); ctx.stroke();
-      b.x = nx; b.y = ny; b.a += (Math.random() * 0.5 - 0.25); b.life--; steps++;
-      if (Math.random() < 0.09 && branches.length < 36) {
-        bud(b.x, b.y, 1.4);
-        branches.push({ x: b.x, y: b.y, a: b.a + (Math.random() < 0.5 ? -0.7 : 0.7), w: Math.max(0.5, b.w * 0.75), life: b.life * 0.7 });
-      }
-      if (b.life <= 0 || b.y < H * 0.2 || b.x < -20 || b.x > W + 20) { bud(b.x, b.y, 2); branches.splice(i, 1); }
-    }
-  }
-  function grow() {
-    W = section.clientWidth; H = section.clientHeight;
-    if (!W || !H) { requestAnimationFrame(grow); return; }
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    c.width = W * dpr; c.height = H * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.lineCap = 'round';
-    branches = []; steps = 0;
-    for (var i = 0; i < 4; i++) seed(W * (0.55 + Math.random() * 0.4), -Math.PI / 2 + (Math.random() * 0.3 - 0.15));
-    if (reduce) { var guard = 0; while (branches.length && steps < MAX && guard++ < 400) tick(); }
-    else if (!running) {
-      running = true;
-      (function loop() { tick(); if (branches.length && steps < MAX) requestAnimationFrame(loop); else running = false; })();
-    }
-  }
-  grow();
-  var rT;
-  window.addEventListener('resize', function () {
-    clearTimeout(rT);
-    rT = setTimeout(function () { if (Math.abs(section.clientWidth - W) > 80) grow(); }, 300);
-  });
-})();
-
 (function(){
 'use strict';
 var E = window.CC && CC.engine;
@@ -276,9 +269,9 @@ function renderThemes(){
     var d=document.createElement('div');d.className='theme-row';
     d.innerHTML='<button class="rm" type="button" aria-label="remove this value">remove</button>'+
       '<div class="grid3">'+
-      '<span><label class="fl mono" style="font-size:.66rem;text-transform:uppercase;color:var(--muted)" for="tl'+i+'">Value label</label><input type="text" id="tl'+i+'" value="'+esc(t.label)+'" placeholder="Fair pay" autocomplete="off"></span>'+
-      '<span><label class="fl mono" style="font-size:.66rem;text-transform:uppercase;color:var(--muted)" for="tb'+i+'">In a few words</label><input type="text" id="tb'+i+'" value="'+esc(t.blurb)+'" placeholder="growers get a floor price" autocomplete="off"></span>'+
-      '<span><label class="fl mono" style="font-size:.66rem;text-transform:uppercase;color:var(--muted)" for="tu'+i+'">Universal value</label><select id="tu'+i+'"><option value="">choose&hellip;</option>'+UNIVERSAL.map(function(u){return '<option value="'+u[0]+'"'+(t.uni===u[0]?' selected':'')+'>'+u[1]+'</option>';}).join('')+'</select></span>'+
+      '<span><label class="flab" for="tl'+i+'">Value label</label><input type="text" id="tl'+i+'" value="'+esc(t.label)+'" placeholder="Fair pay" autocomplete="off"></span>'+
+      '<span><label class="flab" for="tb'+i+'">In a few words</label><input type="text" id="tb'+i+'" value="'+esc(t.blurb)+'" placeholder="growers get a floor price" autocomplete="off"></span>'+
+      '<span><label class="flab" for="tu'+i+'">Shared value</label><select id="tu'+i+'"><option value="">choose&hellip;</option>'+UNIVERSAL.map(function(u){return '<option value="'+u[0]+'"'+(t.uni===u[0]?' selected':'')+'>'+u[1]+'</option>';}).join('')+'</select></span>'+
       '</div>';
     d.querySelector('.rm').onclick=function(){S.themes.splice(i,1);renderThemes();renderOpts();renderProof();};
     d.querySelector('#tl'+i).oninput=function(){t.label=this.value;renderOpts();renderProof();};
@@ -298,15 +291,15 @@ function renderOpts(){
     var d=document.createElement('div');d.className='opt';
     var head='<button class="rm" type="button" aria-label="remove this option">remove</button>'+
       '<div class="grid2">'+
-      '<span><label class="fl mono" style="font-size:.66rem;text-transform:uppercase;color:var(--muted)" for="on'+oi+'">Option</label><input type="text" id="on'+oi+'" value="'+esc(o.name)+'" placeholder="Local roaster co-op" autocomplete="off"></span>'+
-      '<span><label class="fl mono" style="font-size:.66rem;text-transform:uppercase;color:var(--muted)" for="ob'+oi+'">Brand or org</label><input type="text" id="ob'+oi+'" value="'+esc(o.brand)+'" placeholder="member-owned" autocomplete="off"></span></div>';
+      '<span><label class="flab" for="on'+oi+'">Option</label><input type="text" id="on'+oi+'" value="'+esc(o.name)+'" placeholder="Local roaster co-op" autocomplete="off"></span>'+
+      '<span><label class="flab" for="ob'+oi+'">Brand or org</label><input type="text" id="ob'+oi+'" value="'+esc(o.brand)+'" placeholder="member-owned" autocomplete="off"></span></div>';
     var rows=S.themes.map(function(t,ti){
       var id=ids[ti], sv=o.scores[id], src=o.srcs[id]||'';
       var gated=src.trim().length<3;
       return '<div class="factrow">'+
         '<span class="fl">'+esc(t.label||('value '+(ti+1)))+'</span>'+
-        '<input type="number" min="0" max="100" step="1" inputmode="numeric" aria-label="Score for '+esc(t.label)+'" data-o="'+oi+'" data-t="'+id+'" value="'+(sv==null?'':sv)+'"'+(gated?' disabled placeholder="&#8212;"':'')+'>'+
-        '<input type="text" class="src" aria-label="Source for '+esc(t.label)+'" data-so="'+oi+'" data-st="'+id+'" value="'+esc(src)+'" placeholder="source first: certification register, filing, label&hellip;">'+
+        '<input type="number" min="0" max="100" step="1" inputmode="numeric" aria-label="Score for '+esc(t.label)+'" data-o="'+oi+'" data-t="'+id+'" value="'+(sv==null?'':sv)+'"'+(gated?' disabled placeholder="locked"':'')+'>'+
+        '<input type="text" class="src" aria-label="Source for '+esc(t.label)+'" data-so="'+oi+'" data-st="'+id+'" value="'+esc(src)+'" placeholder="where it came from: a register, a filing, a label&hellip;">'+
         '</div>';
     }).join('');
     d.innerHTML=head+rows;
@@ -353,7 +346,7 @@ function buildLens(){
   }).filter(function(r){return Object.keys(r.scores).length>0;});
   return {
     meta:{ id:slug(S.title||S.noun||'instance'), storeKey:'ovs-'+slug(S.title||S.noun||'instance')+'.values',
-      noun:S.noun||'', title:S.title||'Untitled instance', tagline:S.tag||'',
+      noun:S.noun||'', title:S.title||'Untitled app', tagline:S.tag||'',
       attribution:'Facts entered with named sources by the person who built this app; scores are sourced assessments, not audits.',
       footer:'Built with Values Commons; runs on the shared engine, unmodified.' },
     criteria:criteria, themes:themes, key2theme:k2t, universalToLocal:u2l, resources:resources
@@ -393,12 +386,12 @@ function renderProof(){
     var ranked=L.resources.map(function(r){return [r,E.score(r,{criteria:L.criteria,weights:w})];})
       .filter(function(x){return x[1];})
       .sort(function(a,b){return b[1].score-a[1].score;});
-    if(!ranked.length){ rowsEl.innerHTML='<li class="proof-empty">Sourced scores are still too sparse for the coverage floor; add a few more.</li>'; }
+    if(!ranked.length){ rowsEl.innerHTML='<li class="proof-empty">Too few sourced scores to rank yet. Add a few more.</li>'; }
     else rowsEl.innerHTML=ranked.map(function(x,i){
       var r=x[0],v=x[1];
-      var why=r.provenance && r.provenance[Object.keys(r.provenance)[0]] ? Object.keys(r.provenance)[0] : '';
+      var srcs=Object.keys(r.provenance||{}).map(function(k){return r.provenance[k];}).join(' · ');
       return '<li class="pe'+(i===0?' lead':'')+'"><span class="rk">'+(i+1)+'</span><span class="nm">'+esc(r.name)+'</span><span class="sc">'+v.score+'</span>'+
-        (r.brand?'<span class="why">'+esc(r.brand)+'</span>':'')+'</li>';
+        (r.brand?'<span class="why">'+esc(r.brand)+'</span>':'')+(srcs?'<span class="pv">Sources: '+esc(srcs)+'</span>':'')+'</li>';
     }).join('');
   }
   /* foot + press buttons */
@@ -434,12 +427,12 @@ function pageSource(){
   '.wrap{max-width:640px;margin:0 auto}h1{font-size:1.7rem;margin:.2rem 0}\n'+
   '.tag{color:var(--muted);margin:0 0 1rem}\n'+
   '.ps{display:grid;grid-template-columns:1fr auto;gap:0 .5rem;margin:.4rem 0}\n'+
-  '.ps label{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;color:var(--muted)}\n'+
+  '.ps label{font-family:var(--mono);font-size:.75rem;color:var(--muted)}\n'+
   '.ps input{grid-column:1/-1;width:100%;height:1.75rem;accent-color:var(--accent)}\n'+
   '.pe{display:grid;grid-template-columns:1.3rem 1fr auto;gap:.1rem .6rem;padding:.5rem .4rem;border-top:1px solid var(--line)}\n'+
   '.pe .rk,.pe .sc{font-family:var(--mono)}.pe .nm{font-weight:700}.pe.lead{background:var(--soft)}\n'+
-  '.pe .pv{grid-column:2/-1;font-size:.8rem;color:var(--muted)}\n'+
-  'footer{margin-top:1.4rem;font-size:.8rem;color:var(--muted)}\n</style>\n</head>\n<body>\n<div class="wrap">\n'+
+  '.pe .pv{grid-column:2/-1;font-size:.86rem;color:var(--muted)}\n'+
+  'footer{margin-top:1.4rem;font-size:.86rem;color:var(--muted)}\n</style>\n</head>\n<body>\n<div class="wrap">\n'+
   '<h1>'+esc(L.meta.title)+'</h1>\n<p class="tag">'+esc(L.meta.tagline)+'</p>\n'+
   '<div id="sliders"></div>\n<div id="rank"></div>\n'+
   '<footer>'+L.meta.footer+' &middot; attribution: '+esc(L.meta.attribution)+'</footer>\n</div>\n'+
@@ -466,13 +459,13 @@ document.getElementById('dl-page').onclick=function(){dl('index.html',pageSource
 
 /* ---------- worked example: start with a useful, non-empty ranking ---------- */
 function loadExample(){
-  S.noun='drink coffee'; S.title='Where to Drink Coffee'; S.tag='Pick a daily coffee by your values, not by the loudest shelf.';
+  S.noun='drink coffee'; S.title='Where to Drink Coffee'; S.tag='Pick a daily coffee by what you care about.';
   document.getElementById('f-noun').value=S.noun;
   document.getElementById('f-title').value=S.title;
   document.getElementById('f-tag').value=S.tag;
   S.themes=[ newTheme('Fair pay','growers get a floor price','people'),
              newTheme('Climate','how and where it was grown','planet'),
-             newTheme('Price','per cup, honestly','access') ];
+             newTheme('Price','shelf price per cup','access') ];
   S.opts=[ newOpt('Local roaster co-op','member-owned'), newOpt('Fairtrade supermarket line',''), newOpt('Budget instant','') ];
   var ids=['fair-pay','climate','price'];
   var seed=[ [92,'co-op member disclosure',84,'origin + roast disclosure',38,'shelf price per cup'],

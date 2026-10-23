@@ -1,0 +1,1101 @@
+{
+  "meta": {
+    "id": "cloud-storage",
+    "label": "Cloud storage",
+    "type": "Services",
+    "primaryAxis": "privacy",
+    "tradeoff": [
+      "accessibility",
+      "privacy"
+    ],
+    "tradeoffLabels": [
+      "easiest",
+      "most private"
+    ],
+    "source": "Conscious Consuming (curated)",
+    "attribution": "Built from providers' own security and privacy documentation, terms of service, pricing pages and published source repositories, and from two peer-reviewed cryptographic studies of encrypted storage, not measured data. Plans, prices and promotions change often, so check the current pages before relying on any of these. Prices are US list prices unless a currency is stated, and some pricing pages load their numbers by script; where a price could not be read from the page, the economical cell is left empty rather than estimated. Privacy reflects whether a provider's servers can read stored files in normal operation, since a provider that holds the encryption keys can, and then whether independent cryptographic analysis of a claimed end-to-end design found ways for a malicious server to defeat it. ETH Zurich researchers studied MEGA in 2022 and Sync, pCloud and Tresorit in 2024. A vendor claim that no independent analysis has tested is scored below one that survived analysis, and each cell says which case applies. Openness reflects whether client and server code is published and under what licence; a source-available licence that allows review only is scored below an open-source licence. Portability reflects whether files can be downloaded or synced out through ordinary folders, archives or open protocols. Respect reflects whether the business model runs on advertising or on selling storage. Accessibility covers how easy a service is to set up and use across devices and to share files from; it does not measure access for disabled users. Economical reflects the free allowance and the price of a paid tier of about 1 to 2 TB where a price could be read. Apple no longer offers Advanced Data Protection to new users in the UK, which leaves iCloud Drive without end-to-end encryption there. In the EU, the Data Act (Regulation (EU) 2023/2854) has applied since 12 September 2025 and sets switching rights for data processing services, with switching charges removed from 12 January 2027 according to the European Commission; whether a given consumer plan falls under it is not scored here. No official register of consumer storage services was found, so the record here is the providers' own legal and technical documents plus peer-reviewed research, and the share of institutional sources is low for that reason. Compared here are services and software that keep a person's files on a server or across their own devices and sync them. Backup tools such as restic and Arq, file encryption tools such as Cryptomator, one-off transfer services such as WeTransfer and SwissTransfer, and photo-only services such as Google Photos, Ente and Immich do a different job and are not compared. Box and Icedrive were not researched for this version. Sync.com's help centre and Tresorit's support site refused automated requests, so their export pages could not be read and the portability cells for those two are empty. Suggest changes via Contribute.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": {
+          "privacy": 3,
+          "openness": 3,
+          "portability": 3,
+          "respect": 3,
+          "accessibility": 3
+        },
+        "x": []
+      },
+      "Most private": {
+        "w": {
+          "privacy": 5,
+          "respect": 4,
+          "openness": 2,
+          "portability": 2,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Open and portable": {
+        "w": {
+          "openness": 5,
+          "portability": 4,
+          "privacy": 3,
+          "respect": 2,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Escape surveillance": {
+        "w": {
+          "respect": 5,
+          "privacy": 4,
+          "openness": 3,
+          "portability": 1,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Easiest, cheapest": {
+        "w": {
+          "accessibility": 5,
+          "economical": 4,
+          "privacy": 2,
+          "respect": 1,
+          "openness": 1
+        },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    {
+      "key": "privacy",
+      "label": "Encrypted so the provider cannot read files",
+      "source": "curated"
+    },
+    {
+      "key": "openness",
+      "label": "Open source",
+      "source": "curated"
+    },
+    {
+      "key": "portability",
+      "label": "Easy to leave with your files intact",
+      "source": "curated"
+    },
+    {
+      "key": "respect",
+      "label": "No advertising business model",
+      "source": "curated"
+    },
+    {
+      "key": "accessibility",
+      "label": "Easy to set up and use across devices and to share files",
+      "source": "curated"
+    },
+    {
+      "key": "economical",
+      "label": "Economical",
+      "source": "curated"
+    }
+  ],
+  "products": [
+    {
+      "code": "google-drive",
+      "name": "Google Drive",
+      "brand": "Google",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 28,
+        "openness": 15,
+        "portability": 68,
+        "respect": 35,
+        "accessibility": 95,
+        "economical": 86
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Google's help page says Drive files can be encrypted with Workspace client-side encryption only by someone with a Workspace account whose administrator has turned the setting on; the page describes no equivalent for a personal Google account.",
+          "source": "https://support.google.com/docs/answer/10519333?hl=en",
+          "asof": "2026-09"
+        },
+        "openness": {
+          "note": "Google's terms of service prohibit reverse engineering its services or the underlying technology to extract trade secrets or other proprietary information, except as applicable law allows, so Drive is offered as a proprietary service.",
+          "source": "https://policies.google.com/terms?hl=en-US",
+          "asof": "2026-09"
+        },
+        "portability": {
+          "note": "Google's Drive help page says a person can export and download Drive data, including items from Docs, Sheets and Slides, as an archive to keep or to use in another service; some work and school data may not be available, and exports over the size limits can fail.",
+          "source": "https://support.google.com/drive/answer/9759608?hl=en",
+          "asof": "2026-09"
+        },
+        "respect": {
+          "note": "Google's privacy policy says it does not show personalized ads based on content from Drive, Gmail or Photos, and also describes automated systems that analyze content to provide tailored search results, personalized ads and other features across the account.",
+          "source": "https://policies.google.com/privacy?hl=en-US",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "Google's Drive help page says files can be uploaded and shared from any device, created, edited and shared with others in the same place, and it describes a Drive for desktop app for computers.",
+          "source": "https://support.google.com/drive/answer/2424384?hl=en",
+          "asof": "2026-09"
+        },
+        "economical": {
+          "note": "Google lists up to 15 GB of storage with every Google Account, 100 GB at 1.99 US dollars a month and 2 TB at 9.99 dollars a month, and says paid storage is shared across Google Photos, Drive and Gmail; the 2 TB plan is sold with Gemini features.",
+          "source": "https://one.google.com/about/plans",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Google Drive help",
+          "url": "https://support.google.com/drive/answer/2424384?hl=en"
+        },
+        {
+          "label": "Privacy policy",
+          "url": "https://policies.google.com/privacy?hl=en-US"
+        },
+        {
+          "label": "Storage plans",
+          "url": "https://one.google.com/about/plans"
+        },
+        {
+          "label": "Export your data",
+          "url": "https://support.google.com/drive/answer/9759608?hl=en"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "freemium"
+      },
+      "description": "The cloud drive most people already have through a Google account, with sharing and editing in the browser. On personal accounts Google holds the keys, and paid storage is shared with Gmail and Photos.",
+      "focuses": [
+        "Google",
+        "Freemium",
+        "Closed source",
+        "Mainstream"
+      ]
+    },
+    {
+      "code": "icloud-drive",
+      "name": "Apple iCloud Drive",
+      "brand": "Apple",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 52,
+        "openness": 12,
+        "portability": 60,
+        "respect": 68,
+        "accessibility": 82,
+        "economical": 78
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Apple's iCloud data security table lists iCloud Drive as encrypted in transit and on the server with the keys stored by Apple under standard protection, and as end-to-end encrypted with keys on trusted devices only when the optional Advanced Data Protection setting is on.",
+          "source": "https://support.apple.com/en-us/102651",
+          "asof": "2026-09"
+        },
+        "openness": {
+          "note": "Apple's iCloud terms say Apple and its licensors own the service and its software, which contain proprietary and confidential information that may be used only to use the service under the agreement.",
+          "source": "https://www.apple.com/legal/internet-services/icloud/en/terms.html",
+          "asof": "2026-09"
+        },
+        "portability": {
+          "note": "Apple's guide to archiving iCloud data says iCloud Drive files can be copied from a Mac, iPhone, iPad or iCloud.com to another location, including another cloud service in the Files app, and that copying a file out of a shared folder does not copy the sharing access.",
+          "source": "https://support.apple.com/en-us/108306",
+          "asof": "2026-09"
+        },
+        "respect": {
+          "note": "Apple's privacy policy says ads from its advertising platform may appear in the App Store, Apple News, Stocks and the Apple TV app, none of which is iCloud, and says that platform does not link data from Apple's apps with third-party data for targeted advertising.",
+          "source": "https://www.apple.com/legal/privacy/en-ww/",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "Apple's requirements page lists iCloud Drive on iPhone, iPad, Mac and Windows PC with iCloud for Windows, and says only some Android devices can use iCloud.com, which works best in browsers on macOS, iOS, iPadOS and Windows.",
+          "source": "https://support.apple.com/en-us/118308",
+          "asof": "2026-09"
+        },
+        "economical": {
+          "note": "Apple gives 5 GB of iCloud storage free, and its US price list shows iCloud+ at 0.99 dollars a month for 50 GB, 2.99 dollars for 200 GB and 9.99 dollars for 2 TB.",
+          "source": "https://support.apple.com/en-us/108047",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "iCloud data security overview",
+          "url": "https://support.apple.com/en-us/102651"
+        },
+        {
+          "label": "Advanced Data Protection in the UK",
+          "url": "https://support.apple.com/en-gb/122234"
+        },
+        {
+          "label": "iCloud+ plans and pricing",
+          "url": "https://support.apple.com/en-us/108047"
+        },
+        {
+          "label": "Archive or copy iCloud data",
+          "url": "https://support.apple.com/en-us/108306"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "freemium"
+      },
+      "description": "Apple's file storage, built into iPhone, iPad and Mac and usable on Windows through iCloud for Windows. It is end-to-end encrypted only if Advanced Data Protection is switched on, and Apple no longer offers that setting to new users in the UK.",
+      "focuses": [
+        "Apple",
+        "Freemium",
+        "Closed source",
+        "Mainstream"
+      ]
+    },
+    {
+      "code": "onedrive",
+      "name": "Microsoft OneDrive",
+      "brand": "Microsoft",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 30,
+        "openness": 12,
+        "portability": 66,
+        "respect": 42,
+        "accessibility": 90,
+        "economical": 74
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Microsoft's OneDrive security page says data is protected with TLS in transit and each file is encrypted at rest with a unique AES256 key, with those keys protected by master keys stored in Azure Key Vault; Personal Vault adds a second step of identity verification for its files.",
+          "source": "https://support.microsoft.com/en-us/onedrive/how-onedrive-safeguards-your-data-in-the-cloud",
+          "asof": "2026-09"
+        },
+        "openness": {
+          "note": "Microsoft's Services Agreement says the software is licensed, not sold, and that a person may not disassemble, decompile, decrypt, hack, emulate, exploit or reverse engineer any software or other aspect of the services, except as applicable copyright law expressly permits.",
+          "source": "https://www.microsoft.com/en-us/servicesagreement",
+          "asof": "2026-09"
+        },
+        "portability": {
+          "note": "Microsoft's help page says selecting several files or folders and choosing Download saves them as one .zip file, and that files can be downloaded to a location outside the OneDrive folders.",
+          "source": "https://support.microsoft.com/en-us/onedrive/download-files-and-folders-from-onedrive-or-sharepoint",
+          "asof": "2026-09"
+        },
+        "respect": {
+          "note": "Microsoft's privacy statement says it does not use personal files, photos or documents to target ads, and also says it uses data for advertising on Microsoft and third-party properties, which a person can opt out of.",
+          "source": "https://www.microsoft.com/en-us/privacy/privacystatement",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "Microsoft's OneDrive page lists the service as working on PC, Mac, iPhone, iPad and Android phones and tablets, with sharing and the Microsoft 365 web and mobile apps included in its plans.",
+          "source": "https://www.microsoft.com/en-us/microsoft-365/onedrive/online-cloud-storage",
+          "asof": "2026-09"
+        },
+        "economical": {
+          "note": "Microsoft lists a free plan with 5 GB of cloud storage, Microsoft 365 Basic with 100 GB at 1.99 US dollars a month, and Microsoft 365 Personal with 1 TB at 9.99 dollars a month, which also includes the Office apps.",
+          "source": "https://www.microsoft.com/en-us/microsoft-365/onedrive/online-cloud-storage",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "How OneDrive safeguards your data",
+          "url": "https://support.microsoft.com/en-us/onedrive/how-onedrive-safeguards-your-data-in-the-cloud"
+        },
+        {
+          "label": "Plans and pricing",
+          "url": "https://www.microsoft.com/en-us/microsoft-365/onedrive/onedrive-plans-and-pricing"
+        },
+        {
+          "label": "Privacy statement",
+          "url": "https://www.microsoft.com/en-us/privacy/privacystatement"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "freemium"
+      },
+      "description": "Microsoft's file storage, sold inside Microsoft 365 plans and built around the Office apps. Files are encrypted at rest with keys Microsoft manages, and Personal Vault adds a second identity check for a protected folder.",
+      "focuses": [
+        "Microsoft",
+        "Freemium",
+        "Closed source",
+        "Mainstream"
+      ]
+    },
+    {
+      "code": "dropbox",
+      "name": "Dropbox",
+      "brand": "Dropbox",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 30,
+        "openness": 18,
+        "portability": 68,
+        "respect": 62,
+        "accessibility": 88,
+        "economical": 64
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Dropbox's help centre says end-to-end encryption is available for teams on Dropbox Business Plus, Advanced and Enterprise, and does not list the individual Basic and Plus plans; encrypted folders lose search indexing, thumbnails and previews.",
+          "source": "https://help.dropbox.com/security/encrypted-team-folders",
+          "asof": "2026-09"
+        },
+        "openness": {
+          "note": "Dropbox's terms say some software components may be offered under open source licenses, and otherwise ask a person not to reverse engineer or decompile the services, unless the law prohibits that restriction.",
+          "source": "https://www.dropbox.com/terms",
+          "asof": "2026-09"
+        },
+        "portability": {
+          "note": "Dropbox's help page says folders download as compressed .zip files, only if the folder is under 250 GB uncompressed and holds fewer than 10,000 files, while single files have no size limit.",
+          "source": "https://help.dropbox.com/sync/download-entire-folders",
+          "asof": "2026-09"
+        },
+        "respect": {
+          "note": "Dropbox's privacy policy says it will not sell personal information to advertisers or other third parties, and the page notes a revised privacy policy takes effect on 1 January 2027.",
+          "source": "https://www.dropbox.com/privacy",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "Dropbox's plans page lists a free Basic plan and a one-person Plus plan that stays connected across devices, restores deleted files for 30 days and transfers files up to 50 GB, and its footer links desktop and mobile apps.",
+          "source": "https://www.dropbox.com/plans",
+          "asof": "2026-09"
+        },
+        "economical": {
+          "note": "Dropbox's plans page lists Basic as free with 2 GB and Plus at 9.99 US dollars a month for 2 TB, with monthly and yearly billing options.",
+          "source": "https://www.dropbox.com/plans",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Plans",
+          "url": "https://www.dropbox.com/plans"
+        },
+        {
+          "label": "Privacy policy",
+          "url": "https://www.dropbox.com/privacy"
+        },
+        {
+          "label": "Encrypted team folders",
+          "url": "https://help.dropbox.com/security/encrypted-team-folders"
+        },
+        {
+          "label": "Download folders",
+          "url": "https://help.dropbox.com/sync/download-entire-folders"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "freemium"
+      },
+      "description": "The long-standing file-sync service, with a 2 GB free plan and a 2 TB paid plan for one person. End-to-end encryption is offered to teams on higher business plans and is not listed for Basic or Plus.",
+      "focuses": [
+        "Freemium",
+        "Closed source",
+        "Mainstream",
+        "Sync"
+      ]
+    },
+    {
+      "code": "proton-drive",
+      "name": "Proton Drive",
+      "brand": "Proton",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 86,
+        "openness": 72,
+        "portability": 60,
+        "respect": 88,
+        "accessibility": 72,
+        "economical": 58
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Proton says it encrypts files, their names and more on the device before upload so that only the user holds the keys, and that independent experts audit the storage regularly; this rests on Proton's own statement.",
+          "source": "https://proton.me/drive",
+          "asof": "2026-09"
+        },
+        "openness": {
+          "note": "Proton's Drive GitHub organisation publishes the Windows, macOS, Android and iOS Drive apps under GPL-3.0 and a software development kit under MIT; the repositories are client-side code and no server is among them.",
+          "source": "https://github.com/ProtonDriveApps",
+          "asof": "2026-09"
+        },
+        "portability": {
+          "note": "Proton's download page lists Drive apps for Windows and macOS, a command-line client, and iOS, Android and web apps, and lists no Linux desktop app.",
+          "source": "https://proton.me/drive/download",
+          "asof": "2026-09"
+        },
+        "respect": {
+          "note": "Proton says it does not and cannot access or monetize stored data and does not answer to investors, and the same page offers a free plan alongside paid plans.",
+          "source": "https://proton.me/drive",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "Proton's pricing page lists a free plan with 5 GB and an online document and spreadsheet editor, and says the free plan has the same level of encryption as paid plans.",
+          "source": "https://proton.me/drive/pricing",
+          "asof": "2026-09"
+        },
+        "economical": {
+          "note": "Proton's plans page says the free plan gives 2 GB of Drive storage, raised to 5 GB by completing setup actions, and that Proton Unlimited, with 500 GB shared across Mail and Drive plus VPN and other services, costs 12.99 euros a month or 119.88 euros for a year.",
+          "source": "https://proton.me/support/proton-plans",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Proton Drive",
+          "url": "https://proton.me/drive"
+        },
+        {
+          "label": "Source code",
+          "url": "https://github.com/ProtonDriveApps"
+        },
+        {
+          "label": "Download apps",
+          "url": "https://proton.me/drive/download"
+        },
+        {
+          "label": "Plans",
+          "url": "https://proton.me/support/proton-plans"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "freemium"
+      },
+      "description": "End-to-end encrypted storage from the maker of Proton Mail, with its apps published under open licences and a free plan of up to 5 GB. Desktop sync apps are listed for Windows and macOS only.",
+      "focuses": [
+        "Encrypted",
+        "Open source",
+        "Freemium",
+        "Swiss"
+      ]
+    },
+    {
+      "code": "tresorit",
+      "name": "Tresorit",
+      "brand": "Tresorit",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 86,
+        "openness": 15,
+        "respect": 78,
+        "accessibility": 66,
+        "economical": 45
+      },
+      "provenance": {
+        "privacy": {
+          "note": "An ETH Zurich analysis presented at ACM CCS 2024 found severe flaws in four of the five end-to-end encrypted services it tested against a malicious server and describes Tresorit's design as mostly unaffected; Tresorit's sharing relies on public keys certified by its own certificate authority.",
+          "source": "https://eprint.iacr.org/2024/1616.pdf",
+          "asof": "2026-09"
+        },
+        "openness": {
+          "note": "Tresorit's terms say Tresorit remains the owner of the software at all times and grants a limited, non-exclusive, non-transferable licence to use it with the services.",
+          "source": "https://tresorit.com/terms-of-use",
+          "asof": "2026-09"
+        },
+        "respect": {
+          "note": "Tresorit says it is part of Swiss Post and provides end-to-end encrypted content collaboration solutions for secure file sharing, storage and digital workflows.",
+          "source": "https://tresorit.com/about-us",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "Tresorit's download page lists apps for Windows 10 or later, macOS and Linux, iOS 15 or later and Android 5.0 or later.",
+          "source": "https://tresorit.com/download",
+          "asof": "2026-09"
+        },
+        "economical": {
+          "note": "Tresorit Basic is a free account with 3 GB of encrypted storage, files up to 500 MB and sync across 2 devices; the paid personal plans of 50 GB, 1 TB and 4 TB load their prices by script, so those prices are not quoted.",
+          "source": "https://tresorit.com/pricing/basic",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Security",
+          "url": "https://tresorit.com/security"
+        },
+        {
+          "label": "Free Basic account",
+          "url": "https://tresorit.com/pricing/basic"
+        },
+        {
+          "label": "Personal pricing",
+          "url": "https://tresorit.com/pricing/personal"
+        },
+        {
+          "label": "Download",
+          "url": "https://tresorit.com/download"
+        },
+        {
+          "label": "ETH Zurich analysis",
+          "url": "https://eprint.iacr.org/2024/1616"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "freemium"
+      },
+      "description": "Encrypted storage from a Swiss Post company, with a free Basic account of 3 GB and paid personal plans of 50 GB, 1 TB and 4 TB. An independent 2024 analysis found its design mostly unaffected by attacks that worked against four other encrypted providers.",
+      "focuses": [
+        "Encrypted",
+        "Freemium",
+        "Swiss Post",
+        "Closed source"
+      ]
+    },
+    {
+      "code": "sync-com",
+      "name": "Sync.com",
+      "brand": "Sync.com",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 58,
+        "openness": 15,
+        "respect": 76,
+        "accessibility": 74,
+        "economical": 55
+      },
+      "provenance": {
+        "privacy": {
+          "note": "The ETH Zurich analysis found that a malicious server can force Sync's web client to encrypt files with an attacker-controlled key and then decrypt them, that Sync's sharing has no way to authenticate other users' public keys, and that its share links send the decryption password to the server when clicked; the paper says Sync had not responded to disclosure by 4 September 2024.",
+          "source": "https://eprint.iacr.org/2024/1616.pdf",
+          "asof": "2026-09"
+        },
+        "openness": {
+          "note": "Sync's terms say a person agrees not to decompile, reverse engineer, disassemble or otherwise attempt to derive source code from the services.",
+          "source": "https://www.sync.com/terms/",
+          "asof": "2026-09"
+        },
+        "respect": {
+          "note": "Sync's plan comparison says Sync does not track, share or sell app usage data, and lists its individual products as paid Personal and Solo plans.",
+          "source": "https://www.sync.com/pricing-individual/",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "Sync's plan comparison lists access from any Windows, Mac, iOS or Android device or a web browser, with realtime backup and sync, files-on-demand, link sharing and file history of 60 to 180 days depending on the plan.",
+          "source": "https://www.sync.com/pricing-individual/",
+          "asof": "2026-09"
+        },
+        "economical": {
+          "note": "Sync lists Personal 150 GB at 3.50 US dollars a month billed annually and Personal 1 TB at 12 dollars a month billed annually or 16 billed monthly, with a Save 50% for 1 year offer shown on the page.",
+          "source": "https://www.sync.com/pricing-individual/",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Pricing for individuals",
+          "url": "https://www.sync.com/pricing-individual/"
+        },
+        {
+          "label": "Free plan",
+          "url": "https://www.sync.com/free-cloud-storage/"
+        },
+        {
+          "label": "Terms",
+          "url": "https://www.sync.com/terms/"
+        },
+        {
+          "label": "ETH Zurich analysis",
+          "url": "https://eprint.iacr.org/2024/1616"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "freemium"
+      },
+      "description": "A Canadian encrypted storage service with a free 5 GB plan and paid plans from 150 GB. A 2024 ETH Zurich analysis of its web application found ways a malicious server could defeat its encryption, and Sync had not replied to the researchers as of September 2024.",
+      "focuses": [
+        "Encrypted",
+        "Freemium",
+        "Canadian",
+        "Closed source"
+      ]
+    },
+    {
+      "code": "mega",
+      "name": "MEGA",
+      "brand": "MEGA",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 68,
+        "openness": 40,
+        "portability": 64,
+        "respect": 55,
+        "accessibility": 72,
+        "economical": 60
+      },
+      "provenance": {
+        "privacy": {
+          "note": "ETH Zurich researchers showed in 2022 that MEGA's user-controlled encryption did not protect against a malicious server, with five attacks that together allow full compromise of file confidentiality; MEGA patched, and the researchers say the patch stops the RSA key recovery and plaintext recovery attacks but keeps non-standard use of cryptographic primitives.",
+          "source": "https://mega-awry.io/",
+          "asof": "2026-09"
+        },
+        "openness": {
+          "note": "MEGA publishes its web client and desktop app code under the MEGA Limited Code Review Licence, which allows reading the code to look for defects and gives no right to use it for any commercial or other purpose beyond review and commentary.",
+          "source": "https://github.com/meganz/webclient/blob/master/LICENCE.md",
+          "asof": "2026-09"
+        },
+        "portability": {
+          "note": "MEGA's desktop app repository describes the app as automated syncing and backup between a computer and a MEGA cloud drive.",
+          "source": "https://github.com/meganz/MEGAsync",
+          "asof": "2026-09"
+        },
+        "respect": {
+          "note": "MEGA's privacy policy says it will never sell personal data to a third party, and also says it may serve advertisements or use third-party advertising companies to serve them on its services and other sites; some metadata, such as file sizes, versioning order and contact email addresses, is retained unencrypted.",
+          "source": "https://mega.io/privacy",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "MEGA says files can be reached through its desktop app, mobile apps or the web, and describes zero-knowledge encryption in which only the user holds the key.",
+          "source": "https://mega.io/storage",
+          "asof": "2026-09"
+        },
+        "economical": {
+          "note": "MEGA's pricing page offers a free plan at 0 euros with limited transfer, sets both a storage and a transfer quota on Pro plans, and lists Pro Flexi at 15 euros a month for 3 TB of storage and 3 TB of transfer; the prices of the smaller Pro plans load by script and are not quoted.",
+          "source": "https://mega.io/pricing",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Security",
+          "url": "https://mega.io/security"
+        },
+        {
+          "label": "Pricing",
+          "url": "https://mega.io/pricing"
+        },
+        {
+          "label": "Privacy policy",
+          "url": "https://mega.io/privacy"
+        },
+        {
+          "label": "ETH Zurich research",
+          "url": "https://mega-awry.io/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "freemium"
+      },
+      "description": "A cloud drive with user-controlled encryption, a free plan and a Pro Flexi plan billed by use. Its clients are published for review only, and researchers broke its key handling in 2022 before MEGA patched part of it.",
+      "focuses": [
+        "Encrypted",
+        "Freemium",
+        "Source available",
+        "Metered transfer"
+      ]
+    },
+    {
+      "code": "filen",
+      "name": "Filen",
+      "brand": "Filen",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 76,
+        "openness": 76,
+        "portability": 82,
+        "respect": 84,
+        "accessibility": 66,
+        "economical": 90
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Filen says its encryption is AES 256-bit with zero-knowledge technology so that no one, including Filen, can access the data, and that its headquarters and all servers are in Germany; this rests on Filen's own statement and no independent analysis was read for this entry.",
+          "source": "https://filen.io/",
+          "asof": "2026-09"
+        },
+        "openness": {
+          "note": "Filen's GitHub organisation publishes its desktop, web, mobile, command-line, sync and network-drive clients under AGPL-3.0 and some SDKs under MIT; no server repository is among its public repositories.",
+          "source": "https://github.com/FilenCloudDienste",
+          "asof": "2026-09"
+        },
+        "portability": {
+          "note": "Filen's GitHub organisation lists a WebDAV server package, an S3 server package, a Filen backend for rclone (MIT), a sync engine, a network-drive package and a command-line client alongside its apps.",
+          "source": "https://github.com/FilenCloudDienste",
+          "asof": "2026-09"
+        },
+        "respect": {
+          "note": "Filen's pricing page lists paid storage tiers from 200 GiB to 10 TiB, and every tier lists client-side encryption and zero-knowledge technology as included.",
+          "source": "https://filen.io/pricing",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "Filen offers web, desktop, mobile and command-line clients and a network drive, and says most questions can be answered in its support panel with 24/7 contact for the rest.",
+          "source": "https://filen.io/",
+          "asof": "2026-09"
+        },
+        "economical": {
+          "note": "Filen lists 200 GiB at 1.99 euros a month, 500 GiB at 3.99, 2 TiB at 8.99 and 10 TiB at 39.99, and its pricing FAQ says the free allotment is 10 GiB.",
+          "source": "https://filen.io/pricing",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Filen",
+          "url": "https://filen.io/"
+        },
+        {
+          "label": "Pricing",
+          "url": "https://filen.io/pricing"
+        },
+        {
+          "label": "Source code",
+          "url": "https://github.com/FilenCloudDienste"
+        },
+        {
+          "label": "Privacy policy",
+          "url": "https://filen.io/privacy"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "freemium"
+      },
+      "description": "A German end-to-end encrypted drive with clients published under AGPL-3.0, a 10 GiB free plan and paid plans from 200 GiB at 1.99 euros a month. Its encryption claims rest on its own statements, and no independent cryptographic analysis was read for this entry.",
+      "focuses": [
+        "Encrypted",
+        "Open source",
+        "Freemium",
+        "German"
+      ]
+    },
+    {
+      "code": "internxt",
+      "name": "Internxt",
+      "brand": "Internxt",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 76,
+        "openness": 92,
+        "portability": 58,
+        "respect": 80,
+        "accessibility": 66
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Internxt says files are end-to-end encrypted before leaving the device with zero-knowledge AES-256 and post-quantum encryption, and says the penetration-testing firm Securitum audited it; this rests on Internxt's own statements and no independent analysis was read for this entry.",
+          "source": "https://internxt.com/pricing",
+          "asof": "2026-09"
+        },
+        "openness": {
+          "note": "Internxt's GitHub organisation publishes the Drive server and the network bridge under AGPL-3.0, the web app under AGPL-3.0 and the desktop app under MIT.",
+          "source": "https://github.com/internxt",
+          "asof": "2026-09"
+        },
+        "portability": {
+          "note": "Internxt's help centre says Drive supports native rclone and a WebDAV route through its command-line client, and says both are available only with the Ultimate plan, which is 5 TB.",
+          "source": "https://help.internxt.com/en/articles/13430180-how-to-set-up-native-rclone-support-for-internxt-drive",
+          "asof": "2026-09"
+        },
+        "respect": {
+          "note": "Internxt's pricing page lists a free 1 GB tier and paid annual, lifetime and business plans, with zero-knowledge encryption listed on every paid plan.",
+          "source": "https://internxt.com/pricing",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "Internxt lists Linux, Windows and macOS apps, iOS and Android apps and a web app on its paid plans, and a free tier of 1 GB.",
+          "source": "https://internxt.com/pricing",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Pricing",
+          "url": "https://internxt.com/pricing"
+        },
+        {
+          "label": "Source code",
+          "url": "https://github.com/internxt"
+        },
+        {
+          "label": "rclone support",
+          "url": "https://help.internxt.com/en/articles/13430180-how-to-set-up-native-rclone-support-for-internxt-drive"
+        },
+        {
+          "label": "Terms and privacy",
+          "url": "https://internxt.com/legal"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "freemium"
+      },
+      "description": "A Spanish encrypted drive whose server, web and desktop code is published on GitHub, with a 1 GB free tier and lifetime plans. Its WebDAV and rclone access is limited to the top plan.",
+      "focuses": [
+        "Encrypted",
+        "Open source",
+        "Freemium",
+        "Lifetime plans"
+      ]
+    },
+    {
+      "code": "pcloud",
+      "name": "pCloud",
+      "brand": "pCloud",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 40,
+        "openness": 15,
+        "portability": 64,
+        "respect": 58,
+        "accessibility": 78,
+        "economical": 62
+      },
+      "provenance": {
+        "privacy": {
+          "note": "pCloud says its client-side, zero-knowledge encryption is a feature a person turns on to activate a Crypto folder, that files added to that folder are encrypted before upload, and the page sells it as a separate item at 150 US dollars for a lifetime, down from 229.",
+          "source": "https://www.pcloud.com/encrypted-cloud-storage.html",
+          "asof": "2026-09"
+        },
+        "openness": {
+          "note": "pCloud's terms prohibit attempting to decipher, decompile, disassemble or reverse engineer any software used to provide the service, except to the limited extent applicable law allows.",
+          "source": "https://www.pcloud.com/terms_and_conditions.html",
+          "asof": "2026-09"
+        },
+        "portability": {
+          "note": "pCloud publishes developer documentation for a public HTTP and JSON API with methods to list folders and to return a zip file of a chosen file tree.",
+          "source": "https://docs.pcloud.com/methods/archiving/getzip.html",
+          "asof": "2026-09"
+        },
+        "respect": {
+          "note": "pCloud's privacy policy names pCloud International AG in Switzerland as the controller, and says it shares personal data with advertising and analytics companies to deliver information about new features and offers.",
+          "source": "https://www.pcloud.com/privacy_policy",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "pCloud's plan page lists automatic phone and desktop backup, syncing across devices, offline access, built-in music and video players and password-protected share links.",
+          "source": "https://www.pcloud.com/cloud-storage-pricing-plans.html",
+          "asof": "2026-09"
+        },
+        "economical": {
+          "note": "pCloud's plan page lists one-time lifetime prices of 219 US dollars for 500 GB (279 before the current reduction), 499 for 2 TB (709 before) and 1,499 for 10 TB (2,799 before), with no setup fees.",
+          "source": "https://www.pcloud.com/cloud-storage-pricing-plans.html",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Plans",
+          "url": "https://www.pcloud.com/cloud-storage-pricing-plans.html"
+        },
+        {
+          "label": "pCloud Encryption",
+          "url": "https://www.pcloud.com/encrypted-cloud-storage.html"
+        },
+        {
+          "label": "Data regions",
+          "url": "https://www.pcloud.com/data-regions"
+        },
+        {
+          "label": "ETH Zurich analysis",
+          "url": "https://eprint.iacr.org/2024/1616"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "freemium"
+      },
+      "description": "A Swiss storage service that sells lifetime plans as well as subscriptions. Client-side encryption is a separate paid feature for one folder, and an ETH Zurich study of its client-side encryption found flaws that let a malicious server replace keys.",
+      "focuses": [
+        "Freemium",
+        "Lifetime plans",
+        "Swiss",
+        "Closed source"
+      ]
+    },
+    {
+      "code": "nextcloud",
+      "name": "Nextcloud",
+      "brand": "Nextcloud",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 58,
+        "openness": 98,
+        "portability": 90,
+        "respect": 88,
+        "accessibility": 50,
+        "economical": 60
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Nextcloud's manual says end-to-end encryption works only if the administrator has enabled the End-to-End Encryption app, must be switched on per folder from a desktop or mobile client, applies only to empty folders, and leaves encrypted folders read-only in the browser.",
+          "source": "https://docs.nextcloud.com/server/stable/user_manual/en/files/using_e2ee.html",
+          "asof": "2026-09"
+        },
+        "openness": {
+          "note": "The Nextcloud server repository on GitHub is licensed under AGPL-3.0.",
+          "source": "https://github.com/nextcloud/server",
+          "asof": "2026-09"
+        },
+        "portability": {
+          "note": "Nextcloud's install page says it uses open standards such as WebDAV, CalDAV and IMAP so that independent third-party clients can connect, and offers the server for download or through hosting providers.",
+          "source": "https://nextcloud.com/install/",
+          "asof": "2026-09"
+        },
+        "respect": {
+          "note": "Nextcloud's install page offers the server for download to run on a person's own server or through hosting providers, and its menu links Nextcloud Enterprise plans and pricing.",
+          "source": "https://nextcloud.com/install/",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "Nextcloud's install page offers desktop and mobile clients, but the server must be installed on a person's own machine, with an all-in-one Docker image maintained by Nextcloud GmbH, or chosen from a list of hosting providers.",
+          "source": "https://nextcloud.com/install/",
+          "asof": "2026-09"
+        },
+        "economical": {
+          "note": "Nextcloud's install page offers the server software for download and lists hosting providers that give 2 or more GB of storage; the cost of a person's own hardware or a paid provider is not covered on the page.",
+          "source": "https://nextcloud.com/install/",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Install",
+          "url": "https://nextcloud.com/install/"
+        },
+        {
+          "label": "Source code",
+          "url": "https://github.com/nextcloud/server"
+        },
+        {
+          "label": "End-to-end encryption manual",
+          "url": "https://docs.nextcloud.com/server/stable/user_manual/en/files/using_e2ee.html"
+        },
+        {
+          "label": "ETH Zurich paper, related work",
+          "url": "https://eprint.iacr.org/2024/1616"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "free"
+      },
+      "description": "Open-source file storage and collaboration software that a person runs on their own server or rents from a hosting provider. It gives the most control and needs the most setup, and its optional end-to-end encryption is limited to empty folders set up from a client app.",
+      "focuses": [
+        "Open source",
+        "Self-hosted",
+        "Free",
+        "Control"
+      ]
+    },
+    {
+      "code": "syncthing",
+      "name": "Syncthing",
+      "brand": "Syncthing Foundation",
+      "allergens": [],
+      "allergensDeclared": true,
+      "scores": {
+        "privacy": 90,
+        "openness": 98,
+        "portability": 92,
+        "respect": 96,
+        "accessibility": 36,
+        "economical": 96
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Syncthing's security documentation says all device to device traffic is protected by TLS and that only devices on a preset list of certificate fingerprints can join, and that with global discovery on, which is the default, the discovery server can map device IDs to IP addresses.",
+          "source": "https://docs.syncthing.net/users/security.html",
+          "asof": "2026-09"
+        },
+        "openness": {
+          "note": "The Syncthing repository on GitHub is licensed under MPL-2.0.",
+          "source": "https://github.com/syncthing/syncthing",
+          "asof": "2026-09"
+        },
+        "portability": {
+          "note": "Syncthing's FAQ says it does not upload data to the cloud and instead exchanges it across a person's own machines, so the files already live on the devices the person controls.",
+          "source": "https://docs.syncthing.net/users/faq.html",
+          "asof": "2026-09"
+        },
+        "respect": {
+          "note": "The Syncthing Foundation is a registered Swedish non-profit foundation whose purpose is to maintain and encourage development and use of the free software Syncthing, and it pays for the website, discovery servers and build servers.",
+          "source": "https://syncthing.net/foundation/",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "Syncthing's FAQ says data is exchanged only as soon as the machines are online at the same time, and that the current team has no plans to officially support iOS.",
+          "source": "https://docs.syncthing.net/users/faq.html",
+          "asof": "2026-09"
+        },
+        "economical": {
+          "note": "The Syncthing Foundation describes Syncthing as free software and pays for the website, discovery servers and build servers it depends on.",
+          "source": "https://syncthing.net/foundation/",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Syncthing",
+          "url": "https://syncthing.net/"
+        },
+        {
+          "label": "Security",
+          "url": "https://docs.syncthing.net/users/security.html"
+        },
+        {
+          "label": "FAQ",
+          "url": "https://docs.syncthing.net/users/faq.html"
+        },
+        {
+          "label": "Source code",
+          "url": "https://github.com/syncthing/syncthing"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "price": {
+        "tier": "free"
+      },
+      "description": "Free software that copies folders directly between a person's own devices, with no cloud server holding the files. The devices need to be online at the same time, and there is no official iOS app.",
+      "focuses": [
+        "Open source",
+        "No cloud",
+        "Free",
+        "Peer to peer"
+      ]
+    }
+  ]
+}

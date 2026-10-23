@@ -2,32 +2,33 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/node-load-plan-v0.1.schema.json",
   "title": "Open Values Node Load Plan v0.1",
-  "description": "Runtime loading contract for generated node and Ask files.",
+  "description": "The order in which the app should load the generated node and search files, what each stage needs, and what to do when a file fails to load. The data build writes it, and the app and its tests read it. It is an internal file used while building the site.",
   "type": "object",
   "additionalProperties": true,
   "required": ["format", "version", "built", "source", "purpose", "appLaneNote", "integrityContract", "budgets", "stages", "totals"],
   "properties": {
-    "format": { "const": "ovs-node-load-plan" },
-    "version": { "$ref": "#/$defs/version" },
-    "built": { "$ref": "#/$defs/date" },
-    "source": { "$ref": "#/$defs/source" },
-    "purpose": { "$ref": "#/$defs/nonEmptyString" },
-    "appLaneNote": { "$ref": "#/$defs/nonEmptyString" },
+    "format": { "description": "Names this file's format, so a reader can check it before reading the rest of the file.", "const": "ovs-node-load-plan" },
+    "version": { "description": "The version of the format this file follows, such as \"0.1\".", "$ref": "#/$defs/version" },
+    "built": { "description": "The date of the source data this file was built from, as YYYY-MM-DD.", "$ref": "#/$defs/date" },
+    "source": { "description": "The script and files this file was built from, as paths in the repository.", "$ref": "#/$defs/source" },
+    "purpose": { "description": "One sentence on what this file is for.", "$ref": "#/$defs/nonEmptyString" },
+    "appLaneNote": { "description": "A note on which choices this file leaves to the app code that reads it, such as fetching, layout and wording.", "$ref": "#/$defs/nonEmptyString" },
     "integrityContract": {
+      "description": "The rules for cache keys and hash checks.",
       "type": "object",
       "additionalProperties": true,
       "required": ["algorithm", "cacheKey", "validate", "retry", "fallback"],
       "properties": {
-        "algorithm": { "const": "sha256" },
-        "cacheKey": { "$ref": "#/$defs/nonEmptyString" },
-        "validate": { "$ref": "#/$defs/nonEmptyString" },
-        "retry": { "$ref": "#/$defs/nonEmptyString" },
-        "fallback": { "$ref": "#/$defs/nonEmptyString" }
+        "algorithm": { "description": "The hash algorithm. Always \"sha256\".", "const": "sha256" },
+        "cacheKey": { "description": "The pattern for cache keys, \"<file>:<sha256>\".", "$ref": "#/$defs/nonEmptyString" },
+        "validate": { "description": "When and how to check a loaded file against its hash in manifest.json.", "$ref": "#/$defs/nonEmptyString" },
+        "retry": { "description": "What to do after a hash mismatch or a parse failure.", "$ref": "#/$defs/nonEmptyString" },
+        "fallback": { "description": "What to do when a file still fails after the retry.", "$ref": "#/$defs/nonEmptyString" }
       }
     },
-    "budgets": { "type": "object", "minProperties": 1 },
-    "stages": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/stage" } },
-    "totals": { "type": "object", "minProperties": 1 }
+    "budgets": { "description": "Byte sizes and limits for loading, by name, such as \"askCoreBytes\" and \"startupBudgetBytes\".", "type": "object", "minProperties": 1 },
+    "stages": { "description": "The load stages, in order.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/stage" } },
+    "totals": { "description": "How many stages there are, how many run in the app, and how many are for testing only.", "type": "object", "minProperties": 1 }
   },
   "$defs": {
     "version": { "type": "string", "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$" },
@@ -44,13 +45,13 @@
       "additionalProperties": true,
       "required": ["id", "label", "loadHint", "files", "trigger", "acceptanceCriteria", "failureMode"],
       "properties": {
-        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "loadHint": { "$ref": "#/$defs/nonEmptyString" },
-        "files": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "trigger": { "$ref": "#/$defs/nonEmptyString" },
-        "acceptanceCriteria": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "failureMode": { "$ref": "#/$defs/nonEmptyString" }
+        "id": { "description": "A short id for the stage, such as \"bootstrap-metadata\".", "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "label": { "description": "A short name for the stage.", "$ref": "#/$defs/nonEmptyString" },
+        "loadHint": { "description": "When the files in this stage load, such as \"eager-metadata\", \"eager\", \"eager-search\", \"defer-page-nodes\", \"lazy-product-search\" or \"dev-contract\".", "$ref": "#/$defs/nonEmptyString" },
+        "files": { "description": "The file names in this stage.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "trigger": { "description": "What should start this stage loading.", "$ref": "#/$defs/nonEmptyString" },
+        "acceptanceCriteria": { "description": "Checks the app must pass for this stage, one sentence each.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "failureMode": { "description": "What the app should do when this stage fails to load.", "$ref": "#/$defs/nonEmptyString" }
       }
     }
   }

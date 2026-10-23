@@ -53,10 +53,10 @@
     "audit:taxonomy": "node research/taxonomy_audit.js",
     "audit:map": "node research/map_audit.js",
     "audit:relations": "node research/relation_audit.js",
+    "refresh:impactbench": "python pipeline/refresh_impactbench.py",
     "audit:lenses": "node research/lens_check.js --all",
     "audit:interface-words": "node research/interface_vocabulary_audit.js",
     "lens:check": "node research/lens_check.js",
-    "swarm": "node scripts/swarm.mjs",
     "taxonomy:build": "python pipeline/build_taxonomy.py",
     "audit:presentation-ontology": "node research/presentation_ontology_audit.js",
     "audit:presentation-design": "node research/presentation_design_audit.js",
@@ -108,10 +108,19 @@
     "audit:inline-scripts": "node research/inline_script_audit.js",
     "audit:design-system": "node research/design_system_audit.js",
     "check:delivery": "node scripts/delivery-check.mjs",
-    "audit:source-promise": "node research/source_promise_audit.js"
+    "secret:deepseek": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/secret-store.ps1",
+    "ontology:expand": "node scripts/with-deepseek.mjs node pipeline/ontology_expand.mjs --all",
+    "ontology:verify": "node pipeline/ontology_expand.mjs --verify",
+    "audit:source-promise": "node research/source_promise_audit.js",
+    "audit:visit-notes": "node research/visit_notes_audit.js",
+    "audit:working-matches": "node research/working_matches_audit.js",
+    "validate": "node scripts/ovs-validate.mjs"
   },
   "devDependencies": {
     "playwright": "^1.61.1",
     "wrangler": "^4.137.0"
+  },
+  "overrides": {
+    "undici": "7.29.1"
   }
 }

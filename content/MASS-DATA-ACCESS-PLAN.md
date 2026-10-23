@@ -2,6 +2,11 @@
 
 Updated: 2026-06-29
 
+> 2026-10-12: the routes below are now built through one path, `pipeline/sources/` (see its README
+> and `docs/SWARM-BRIEF.md` section 3a). `npm run swarm plan` ranks the 76 verified registers on
+> `content/registers.json` by the open decisions they can build, which replaces the probe table here as
+> the place to decide what to ingest next. This file stays as the record of the June probes.
+
 Purpose: find high-volume, source-honest ways to grow Conscious Consuming without lowering the evidence bar. Bulk sources should become generated or semi-generated content only when the source has clear public access, stable fields, licensing/attribution we can honor, and enough scorable rows to pass the roughly 50-entry floor.
 
 ## Working rule

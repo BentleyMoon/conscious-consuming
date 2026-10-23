@@ -39,7 +39,7 @@
     vegan: 'animals', cruelty_free: 'animals',
     economical: 'cost', fees: 'cost', price: 'cost', accessibility: 'cost', catalog: 'cost', selection: 'cost',
     local: 'local', ownership: 'local',
-    portability: 'privacy', respect: 'privacy', educational: 'people', calm: 'health'
+    portability: 'privacy', respect: 'privacy', educational: 'people', calm: 'health', wellbeing: 'health'
   };
 
   // Project a Values Passport (theme → weight) onto a lens's criteria → per-criterion weights.
@@ -451,7 +451,7 @@
   // and `toJSONLD` exports any node + its edges as web-citable linked data — how a CC node JOINS the graph the
   // rest of the web already shares (the "values overlay"): no server, just shared identifiers.
   const WEAVE_CONTEXT = {
-    '@vocab': 'https://schema.org/', 'ovs': 'https://openvalues.dev/ns#',
+    '@vocab': 'https://schema.org/', 'ovs': 'https://openvaluesstandard.org/ns#',
     'alternative-to': 'schema:isSimilarTo', 'owned-by': 'schema:parentOrganization',
     'parent-of': 'schema:subOrganization', 'made-by': 'schema:manufacturer',
     'supplies': 'ovs:supplies', 'certified-by': 'ovs:certifiedBy',

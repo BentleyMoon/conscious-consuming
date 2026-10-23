@@ -2,31 +2,34 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/register-shelf-v1.schema.json",
   "title": "Open Values Register Shelf",
-  "description": "Public registers admitted for repeatable catalogue-wide evidence passes.",
+  "description": "The list of public registers, such as government recall and complaint databases, that this catalogue takes facts from, with how to fetch each one and the kinds of source it refuses. Maintainers edit it by hand, and the tools that capture, map and plan register passes read it.",
   "type": "object",
   "required": ["format", "version", "note", "howToRead", "registers", "refused"],
   "additionalProperties": false,
   "properties": {
-    "format": { "const": "open-values-register-shelf" },
-    "version": { "const": "1.0.0" },
-    "note": { "type": "string", "minLength": 24 },
+    "format": { "description": "Names the file format. Always open-values-register-shelf.", "const": "open-values-register-shelf" },
+    "version": { "description": "The version of this format the file follows. Always 1.0.0.", "const": "1.0.0" },
+    "note": { "description": "A short paragraph on what the shelf is for and how a register earns a place on it.", "type": "string", "minLength": 24 },
     "howToRead": {
+      "description": "Plain explanations of the four register fields a reader most needs: reach, access, provenanceKey and proven.",
       "type": "object",
       "required": ["reach", "access", "provenanceKey", "proven"],
       "additionalProperties": false,
       "properties": {
-        "reach": { "type": "string", "minLength": 1 },
-        "access": { "type": "string", "minLength": 1 },
-        "provenanceKey": { "type": "string", "minLength": 1 },
-        "proven": { "type": "string", "minLength": 1 }
+        "reach": { "description": "Explains the two reach values, cross-cutting and single.", "type": "string", "minLength": 1 },
+        "access": { "description": "Explains the three access values, api, bulk and page, and which of them scale.", "type": "string", "minLength": 1 },
+        "provenanceKey": { "description": "Explains that provenanceKey is the criterion key a pass from the register writes to.", "type": "string", "minLength": 1 },
+        "proven": { "description": "Explains that proven lists decisions where a citation from the register was checked by hand.", "type": "string", "minLength": 1 }
       }
     },
     "registers": {
+      "description": "The public registers admitted to the shelf, one entry each.",
       "type": "array",
       "minItems": 1,
       "items": { "$ref": "#/$defs/register" }
     },
     "refused": {
+      "description": "Kinds of source the catalogue will not cite, each with the reason.",
       "type": "array",
       "minItems": 1,
       "items": { "$ref": "#/$defs/refusal" }
@@ -42,32 +45,35 @@
       "required": ["id", "name", "publisher", "access", "endpoint", "reach", "provenanceKey", "populates", "proven"],
       "additionalProperties": false,
       "properties": {
-        "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
-        "name": { "type": "string", "minLength": 1 },
-        "publisher": { "type": "string", "minLength": 1 },
-        "access": { "enum": ["api", "bulk", "page"] },
-        "endpoint": { "$ref": "#/$defs/httpUrl" },
+        "id": { "description": "A short lowercase id for the register, with words joined by hyphens. Snapshots, mappings, coverage rules and evidence files refer to the register by this id, so it must be unique on the shelf.", "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "name": { "description": "The register's name as a reader would recognise it.", "type": "string", "minLength": 1 },
+        "publisher": { "description": "The organisation that publishes the register, usually a government body or standards owner.", "type": "string", "minLength": 1 },
+        "access": { "description": "How the data can be fetched. api is a query service, bulk is a downloadable file, page is a website that must be read one record at a time. api and bulk scale to many decisions; page does not.", "enum": ["api", "bulk", "page"] },
+        "endpoint": { "description": "The main web address to fetch the register from. Each register on the shelf has a different endpoint.", "$ref": "#/$defs/httpUrl" },
         "alsoAt": {
+          "description": "Other web addresses that serve parts of the same register, such as a second API path or the human-readable page.",
           "type": "array",
           "uniqueItems": true,
           "items": { "$ref": "#/$defs/httpUrl" }
         },
-        "reach": { "enum": ["cross-cutting", "single"] },
-        "provenanceKey": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "reach": { "description": "cross-cutting means one pass over this register can add a sourced criterion to many decisions at once. single means it serves one decision or a small family of them.", "enum": ["cross-cutting", "single"] },
+        "provenanceKey": { "description": "The criterion key a pass from this register writes to, such as health or safety, so the same fact means the same thing in every decision. It must be a criterion key the engine and the dataset builders already know.", "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
         "populates": {
+          "description": "Plain descriptions of the decisions or product kinds this register can supply facts for.",
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
           "items": { "type": "string", "minLength": 1 }
         },
         "proven": {
+          "description": "Ids of catalogue decisions where a citation from this register has already been checked by hand against the source page. Each must be a real decision id in the catalogue.",
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
           "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
         },
-        "note": { "type": "string", "minLength": 1 },
-        "caution": { "type": "string", "minLength": 1 }
+        "note": { "description": "Advice for whoever runs a pass: how to query the register and what a result or an absence does and does not show.", "type": "string", "minLength": 1 },
+        "caution": { "description": "A known problem with fetching or reading this register, and how to work around it.", "type": "string", "minLength": 1 }
       }
     },
     "refusal": {
@@ -75,14 +81,15 @@
       "required": ["pattern", "why"],
       "additionalProperties": false,
       "properties": {
-        "pattern": { "type": "string", "minLength": 1 },
+        "pattern": { "description": "The kind of source refused, such as affiliate and review sites. Each pattern appears once.", "type": "string", "minLength": 1 },
         "examples": {
+          "description": "Concrete examples of sources that fall under the pattern.",
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
           "items": { "type": "string", "minLength": 1 }
         },
-        "why": { "type": "string", "minLength": 24 }
+        "why": { "description": "Why the catalogue does not cite this kind of source, in at least a full sentence.", "type": "string", "minLength": 24 }
       }
     }
   }

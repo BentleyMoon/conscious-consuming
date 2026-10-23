@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* Ochre means provenance and nothing else, and this check keeps the count of ochre uses from growing.
 
-   The contract is written in the valuescommons.org design document: "ochre for anything but
+   The contract is written in this site's design document: "ochre for anything but
    provenance" is on the list of what this site refuses. It is broken in roughly ten places (the
    front page hero gradient and footer links among them), and those are parked as Bentley's
    decisions. Nothing checked the contract, so a new ochre use could land anywhere.
@@ -37,7 +37,7 @@ const OCHRE_HEX = ['#8a5514', '#cc9c5e', '#7a5f18', '#c9a227'];
 
 // var(--ochre) uses per file on 2026-09-23: 36 in 14 files.
 const PINS = new Map([
-  ['index.html', 9],
+  ['index.html', 3],
   ['kosplora/shelf/index.html', 4],
   ['funders/index.html', 3],
   ['instances/new/index.html', 3],
@@ -45,12 +45,14 @@ const PINS = new Map([
   ['instances/index.html', 2],
   ['kosplora/route.css', 2],
   ['passport/index.html', 2],
-  ['standard/index.html', 2],
+  ['standard/index.html', 1],
   ['tour/index.html', 2],
   ['weave/index.html', 2],
   ['awards/index.html', 1],
   ['kosplora/curriculum.js', 1],
-  ['pipeline/build_awards.js', 1]
+  ['pipeline/build_awards.js', 1],
+  // 2026-10-23: the proposed front page shows each ranked option's source link in ochre, which is provenance.
+  ['preview/front/index.html', 1]
 ]);
 
 function countUses(text) {
@@ -90,6 +92,8 @@ function inspect(found) {
     if (vars < pin) errors.push(`tighten: ${file} uses ochre ${vars} times; lower its pin from ${pin} to ${vars}`);
   }
   for (const [file, pin] of PINS) {
+    // A pinned file in a folder the public copy does not carry (sky/, preview/) is absent there, not tightened.
+    if (!found.has(file) && require('./public_copy.js').isAbsentPrivatePath(file)) continue;
     if (!found.has(file)) errors.push(`tighten: ${file} no longer uses ochre; remove its pin of ${pin}`);
   }
   return errors;

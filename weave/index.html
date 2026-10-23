@@ -5,7 +5,7 @@
 <script>try{var t=localStorage.getItem('cc.theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ownership and alternatives map - Values Commons</title>
-<meta name="description" content="Trace ownership, alternatives, look-alike choices, and next actions across Values Commons decisions.">
+<meta name="description" content="Who owns a brand, and what you could pick instead. Each link names both sides and carries the source that says so.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#1d7a5a">
 <link rel="icon" href="/app/icon.svg" type="image/svg+xml"><link rel="alternate icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64"><link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
@@ -14,219 +14,348 @@
 <meta property="og:url" content="https://valuescommons.org/weave/">
 <meta property="og:site_name" content="Values Commons">
 <meta property="og:title" content="Ownership and alternatives map">
-<meta property="og:description" content="Trace ownership, alternatives, look-alike choices, and next actions across Values Commons decisions.">
+<meta property="og:description" content="Who owns a brand, and what you could pick instead. Each link names both sides and carries the source that says so.">
 <meta property="og:image" content="https://valuescommons.org/og-standard.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ownership and alternatives map">
-<meta name="twitter:description" content="Trace ownership, alternatives, look-alike choices, and next actions across Values Commons decisions.">
+<meta name="twitter:description" content="Who owns a brand, and what you could pick instead. Each link names both sides and carries the source that says so.">
 <meta name="twitter:image" content="https://valuescommons.org/og-standard.png">
 <style>
-  :root{--shadow-sm:0 1px 2px rgba(40,34,24,.07),0 1px 1px rgba(40,34,24,.05);--shadow-md:0 2px 6px rgba(40,34,24,.09),0 10px 26px rgba(40,34,24,.07);--shadow-lg:0 6px 16px rgba(40,34,24,.12),0 22px 48px rgba(40,34,24,.10);--bg:#f8f5ee;--surface:#fff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--soft:#e9f3ee;--max:1040px;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,system-ui,sans-serif;--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,ui-serif,serif}
-  /* Nine surfaces stated a light palette and no alternative, so a reader who asks for
-     dark was overridden on most of the commons and honoured on two of it. Same values
-     the Institute uses, so the family reads as one in either mode. */
-  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--shadow-sm:0 1px 2px rgba(0,0,0,.55);--shadow-md:0 2px 8px rgba(0,0,0,.6),0 12px 30px rgba(0,0,0,.45);--shadow-lg:0 8px 20px rgba(0,0,0,.65),0 28px 56px rgba(0,0,0,.5);--bg:#11140f;--surface:#181d16;--ink:#eef1e8;--muted:#c0c9bd;--hint:#8b978a;--line:#2b322a;--accent:#6fce8c;--soft:#1b2a20}}
-
-  @media(prefers-color-scheme:dark){:root{--bg:#11140f;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.1);--accent:#5dcaa5;--soft:#16241d}}
-  *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}.wrap{max-width:var(--max);margin:0 auto;padding:0 1.25rem}.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:1.05rem 0;border-bottom:1px solid var(--line)}.brand{font-family:var(--serif);font-weight:600;color:var(--ink);font-size:1.12rem}.links{display:flex;gap:.45rem 1rem;flex-wrap:wrap;font-size:0.86rem}.links a{color:var(--muted)}.links a:hover{color:var(--accent);text-decoration:none}.cta{border:1px solid var(--accent);border-radius:999px;padding:.28rem .68rem;color:var(--accent)!important}.hero{padding:4.2rem 0 3rem}.kicker{font-size:0.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 .9rem}h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.12;text-wrap:balance}h1{font-size:clamp(2.0rem,3.25vw,2.6rem);margin:0 0 1rem}h2{font-size:1.75rem;margin:0 0 .6rem}h3{font-size:1.12rem;margin:0 0 .35rem}.lede{max-width:45rem;color:var(--muted);font-size:1.12rem;margin:0}.actions{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1.45rem}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:2.65rem;padding:.58rem 1rem;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:650}.btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn.primary:hover{color:#fff}.band{border-top:1px solid var(--line);padding:2.5rem 0}.intro{color:var(--muted);max-width:44rem;margin:0 0 1.2rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:.85rem}.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1rem}.card p{margin:.35rem 0 0;color:var(--muted);font-size:1rem}.tag{display:inline-block;font-size:0.75rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--accent);background:var(--soft);border-radius:999px;padding:.12rem .5rem;margin-bottom:.55rem}.primitivebar{display:flex;align-items:center;gap:.42rem;flex-wrap:wrap;margin:1rem 0 0;font-size:0.86rem;color:var(--hint)}.primitivebar a{color:var(--muted);border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:.2rem .58rem}.primitivebar a:hover,.primitivebar a[aria-current="page"]{border-color:var(--accent);color:var(--accent);text-decoration:none}.primitive-note{margin:.55rem 0 0;color:var(--muted);font-size:0.86rem}.edgefile{display:grid;grid-template-columns:minmax(0,1fr) minmax(19rem,.9fr);gap:1rem;align-items:start}.edgefile pre{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1rem;overflow:auto;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:0.86rem;line-height:1.45}.edgefile code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.edgeflow{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.65rem;margin-top:1rem}.edgeflow div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1rem;color:var(--muted);font-size:0.86rem}.edgeflow b{display:block;color:var(--ink);font-family:var(--serif);font-size:1rem;margin-bottom:.2rem}footer{border-top:1px solid var(--line);padding:1.7rem 0 2.7rem;color:var(--hint);font-size:0.86rem}.footlinks{display:flex;gap:.4rem 1rem;flex-wrap:wrap;margin-top:.45rem}@media(max-width:860px){.edgefile{grid-template-columns:1fr 1fr}}@media(max-width:540px){.edgefile{grid-template-columns:1fr}.hero{padding:3.2rem 0 2.4rem}}
-  /* The edge inspector: a small real map where every line is a claim you can open */
-  .edgemap{border:1px solid var(--line);border-radius:8px;background:var(--surface);overflow:hidden;margin:0 0 1.2rem}
-  .edgemap svg{display:block;width:100%;height:auto}
-  .edgemap .node rect{fill:var(--bg);stroke:var(--line);stroke-width:1;rx:6}
-  .edgemap .node text{font-size:0.75rem;fill:var(--ink);font-weight:600}
-  .edgemap .node .kind{font-size:0.75rem;fill:var(--hint);font-weight:400;letter-spacing:.06em;text-transform:uppercase}
-  .edgemap .edge{cursor:pointer}
-  .edgemap .edge line{stroke:var(--accent);stroke-width:1.8}
-  .edgemap .edge.computed line{stroke:var(--hint);stroke-dasharray:5 4}
-  .edgemap .edge text{font-size:0.75rem;fill:var(--muted);letter-spacing:.03em}
-  .edgemap .edge:hover line,.edgemap .edge.active line{stroke-width:3}
-  .edgemap .edge.active text{fill:var(--accent);font-weight:700}
-  .edgemap-note{border-top:1px solid var(--line);padding:.65rem 1rem;font-size:0.86rem;color:var(--muted);min-height:2.8rem;margin:0}
-  .edgemap-note .chip{display:inline-block;font-size:0.75rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:.08rem .5rem;margin-right:.4rem}
-  .edgemap-note .chip.receipt{background:var(--soft);color:var(--accent)}
-  .edgemap-note .chip.computed{background:var(--line);color:var(--muted)}
-  /* Field-guide register, shared with the landing: serif argues, mono measures */
-  :root{--ochre:#8a5514;--line-strong:#cfd8d3}
-  @media(prefers-color-scheme:dark){:root{--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17)}}
-  body{font-family:var(--serif);line-height:1.58}
-  .nav{border-bottom-color:var(--line-strong)}
-  .brand{font-weight:700;font-size:1.12rem;letter-spacing:-.015em}
-  .brand::after{content:"Open field guide";font-family:var(--mono);font-weight:600;font-size:0.75rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ochre);margin-left:.6rem;padding-left:.6rem;border-left:1px solid var(--line-strong)}
-  .links{font-family:var(--mono);font-size:0.75rem}
-  .cta{border-radius:3px}
-  .primitivebar{font-family:var(--mono);font-size:0.75rem;letter-spacing:.03em}
-  .primitivebar a{border-radius:3px}
-  .kicker{font-family:var(--mono);font-size:0.75rem;letter-spacing:.16em;color:var(--muted)}
-  h1{font-size:clamp(1.85rem,3.06vw,2.45rem);letter-spacing:-.015em}
-  .btn{font-family:var(--mono);font-size:0.75rem;letter-spacing:.02em;font-weight:600;border-radius:3px}
-  .tag{font-family:var(--mono);border-radius:3px}
-  .card,.route,.note,.build,.edgemap,.specimen{border-radius:4px}
-  pre,table{border-radius:4px}
-  footer{font-size:0.86rem}
-  /* Professional futurism: light spent on the living and the chosen */
-  :root{--glow:0 0 14px rgba(29,122,90,.2)}
-  @media(prefers-color-scheme:dark){:root{--glow:0 0 16px rgba(93,202,165,.28)}}
-  ::selection{background:color-mix(in srgb,var(--accent) 24%,transparent)}
-  .hero{background:radial-gradient(44rem 24rem at 6% -10%,color-mix(in srgb,var(--accent) 7%,transparent),transparent 62%),radial-gradient(36rem 20rem at 96% -8%,color-mix(in srgb,var(--ochre) 4%,transparent),transparent 64%)}
-  .btn.primary:hover,.cta:hover{box-shadow:var(--glow)}
-  .edgemap .edge.active line{filter:drop-shadow(0 0 3px color-mix(in srgb,var(--accent) 50%,transparent))}
-  html{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--accent) 45%,var(--track)) transparent}
-  a:focus-visible,button:focus-visible{box-shadow:var(--glow)}
-  :root[data-theme="dark"]{--bg:#11140f;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.1);--accent:#5dcaa5;--soft:#16241d;--track:#1b241f;--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17);--glow:0 0 16px rgba(93,202,165,.28);color-scheme:dark}
-  :root[data-theme="light"]{--bg:#f8f5ee;--surface:#fff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--soft:#e9f3ee;--track:#eef1ef;--ochre:#8a5514;--line-strong:#cfd8d3;--glow:0 0 14px rgba(29,122,90,.2);color-scheme:light}
-  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.55rem .9rem;border-radius:0 0 8px 0;z-index:20}
+  /* The ownership map, in the lab-notebook register of the front page, the standard and the tour.
+     Links between companies are ink: they are facts about the world, not the reader's values.
+     Ochre is provenance and nothing else: the source line under a link, and the source in a record.
+     Hatching marks a kind of link that is named here and not built yet. */
+  :root{--bg:#f8f5ee;--surface:#ffffff;--sunk:#eef1ef;--ink:#18211d;--muted:#566560;--hint:#607068;
+    --line:#e3e7e5;--line-strong:#cfd8d3;--accent:#1d7a5a;--accent-bright:#17936a;--accent-soft:#e9f3ee;
+    --track:#eef1ef;--warn:#a8432f;--ochre:#8a5514;--band:#eef2f0;--code:#f3f5f3;--on-accent:#ffffff;--graphite:#4d5357;--hatch:rgba(24,33,29,.36);
+    --e1:0 1px 2px rgba(24,38,30,.05),0 3px 10px rgba(24,38,30,.05);
+    --font-display:"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,ui-serif,serif;
+    --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--max:1040px;--ease:cubic-bezier(.2,.7,.2,1)}
+  @media (prefers-color-scheme:dark){:root{--bg:#11140f;--surface:#161d18;--sunk:#0b100d;--ink:#e6ece8;--muted:#9aa8a1;--hint:#87968e;
+    --line:rgba(255,255,255,.10);--line-strong:rgba(255,255,255,.17);--accent:#5dcaa5;--accent-bright:#6ad9ab;--accent-soft:#16241d;
+    --track:#1b241f;--warn:#e3a594;--ochre:#cc9c5e;--band:#131b16;--code:#0f1512;--on-accent:#0b100d;--graphite:#b6bcc0;--hatch:rgba(230,236,232,.32);
+    --e1:0 1px 2px rgba(0,0,0,.3),0 3px 10px rgba(0,0,0,.3)}}
+  :root[data-theme="dark"]{--bg:#11140f;--surface:#161d18;--sunk:#0b100d;--ink:#e6ece8;--muted:#9aa8a1;--hint:#87968e;--line:rgba(255,255,255,.10);--line-strong:rgba(255,255,255,.17);--accent:#5dcaa5;--accent-bright:#6ad9ab;--accent-soft:#16241d;--track:#1b241f;--warn:#e3a594;--ochre:#cc9c5e;--band:#131b16;--code:#0f1512;--on-accent:#0b100d;--graphite:#b6bcc0;--hatch:rgba(230,236,232,.32);--e1:0 1px 2px rgba(0,0,0,.3),0 3px 10px rgba(0,0,0,.3);color-scheme:dark}
+  :root[data-theme="light"]{--bg:#f8f5ee;--surface:#ffffff;--sunk:#eef1ef;--ink:#18211d;--muted:#566560;--hint:#607068;--line:#e3e7e5;--line-strong:#cfd8d3;--accent:#1d7a5a;--accent-bright:#17936a;--accent-soft:#e9f3ee;--track:#eef1ef;--warn:#a8432f;--ochre:#8a5514;--band:#eef2f0;--code:#f3f5f3;--on-accent:#ffffff;--graphite:#4d5357;--hatch:rgba(24,33,29,.36);--e1:0 1px 2px rgba(24,38,30,.05),0 3px 10px rgba(24,38,30,.05);color-scheme:light}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-display);font-size:1.08rem;line-height:1.58;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.55rem .9rem;z-index:30}
   .skip:focus{left:0}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1.1rem,4vw,2.2rem)}
+  h1,h2,h3{font-weight:550;letter-spacing:-.01em;text-wrap:balance}
+  code,.mono{font-family:var(--font-mono)}
+  .tnum{font-variant-numeric:tabular-nums}
 
-  /* depth pass */
-  /* Containers lift off the page instead of being outlined on it, so a card, a chip and
-     a panel stop announcing themselves with the same single grey pixel. */
-  .card,.edgemap{box-shadow:var(--shadow-md);background:var(--surface)}
-  h1{font-weight:550;letter-spacing:-0.02em}
-  h2{font-weight:550;letter-spacing:-0.01em}
+  .masthead{border-bottom:1px solid var(--line-strong)}
+  .masthead .wrap{display:flex;align-items:baseline;justify-content:space-between;gap:.6rem 1rem;flex-wrap:wrap;padding-top:1.1rem;padding-bottom:.95rem}
+  .brand{font-weight:700;font-size:1.25rem;letter-spacing:-.015em;color:var(--ink)}
+  .brand:hover{text-decoration:none}
+  .topnav{display:flex;align-items:center;gap:.4rem 1.1rem;flex-wrap:wrap;font-family:var(--font-mono);font-size:0.75rem}
+  .topnav a{color:var(--muted);padding:.35rem 0;border-bottom:1px solid transparent}
+  .topnav a:hover{color:var(--ink);border-bottom-color:var(--accent);text-decoration:none}
+  .topnav a[aria-current="page"]{color:var(--ink);font-weight:600}
+
+  .hero{padding:clamp(2rem,4.5vw,3.2rem) 0 clamp(1.8rem,4vw,2.6rem);background:radial-gradient(52rem 26rem at 10% -20%,color-mix(in srgb,var(--ink) 5%,transparent),transparent 60%)}
+  .hero h1{font-size:clamp(1.95rem,3.8vw,2.75rem);line-height:1.08;margin:0 0 .9rem;max-width:22ch}
+  .lede{font-size:1.12rem;color:var(--muted);max-width:58ch;margin:0}
+  .receipt{display:flex;flex-wrap:wrap;gap:.2rem 1.3rem;margin:1.4rem 0 0;padding:.45rem 0;border-top:1px solid color-mix(in srgb,var(--ink) 55%,transparent);border-bottom:1px dotted color-mix(in srgb,var(--ink) 55%,transparent);font-family:var(--font-mono);font-size:0.75rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+  .receipt a{color:inherit;border-bottom:1px dotted currentColor}
+  .receipt a:hover{text-decoration:none;color:var(--ink)}
+  .actions{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.4rem}
+  .btn{font-family:var(--font-mono);font-size:0.75rem;font-weight:600;display:inline-flex;align-items:center;min-height:2.75rem;padding:.55rem 1rem;border-radius:3px;border:1px solid var(--line-strong);color:var(--muted);background:transparent}
+  .btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none;background:var(--surface)}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+  .btn.primary:hover{background:var(--accent-bright);color:var(--on-accent)}
+
+  .plate-id{display:flex;justify-content:space-between;align-items:baseline;gap:.3rem 1rem;flex-wrap:wrap;margin:0 0 1rem;padding-bottom:.4rem;border-bottom:1px solid color-mix(in srgb,var(--ink) 55%,transparent)}
+  .plate-id .pn{font-family:var(--font-mono);font-size:0.75rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
+  .plate-id .fig{font-style:italic;font-size:0.92rem;color:var(--muted)}
+  .plate{padding:clamp(2.2rem,5vw,3.4rem) 0;border-top:1px solid var(--line)}
+  .plate:nth-of-type(odd){background:var(--band)}
+  .plate h2{font-size:clamp(1.45rem,2.5vw,1.9rem);font-style:italic;font-weight:500;margin:0 0 .4rem}
+  .lead{color:var(--muted);max-width:62ch;margin:0 0 1.4rem}
+  .two{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(1.4rem,4vw,2.6rem);align-items:start}
+  .hand{font-family:"Segoe Print","Ink Free","Bradley Hand","Chalkboard SE","Marker Felt",cursive;color:var(--graphite);font-size:0.98rem;line-height:1.4;transform:rotate(-1.4deg);transform-origin:left top;margin:1.4rem 0 0;max-width:30ch}
+
+  /* The edge inspector: three real names, and every line between them opens its claim */
+  .edgemap{border:1px solid var(--line-strong);border-radius:4px;background:var(--surface);box-shadow:var(--e1);overflow:hidden;min-width:0}
+  .edgemap svg{display:block;width:100%;max-width:34rem;height:auto;margin:0 auto;padding:.4rem .2rem 0}
+  .edgemap .node rect{fill:var(--bg);stroke:var(--line-strong);stroke-width:1}
+  .edgemap .node text{font-size:13px;fill:var(--ink);font-weight:600}
+  .edgemap .node .kind{font-family:var(--font-mono);font-size:11px;fill:var(--hint);font-weight:400;letter-spacing:.04em}
+  .edgemap .edge{cursor:pointer;outline:none}
+  .edgemap .edge .ln{stroke:var(--ink);stroke-width:1.6}
+  .edgemap .edge.computed .ln{stroke:var(--hint);stroke-dasharray:5 4}
+  .edgemap .edge .hit{stroke:transparent;stroke-width:18}
+  .edgemap .edge text{font-family:var(--font-mono);font-size:12px;fill:var(--muted)}
+  .edgemap .edge:hover .ln,.edgemap .edge.active .ln{stroke-width:3.2}
+  .edgemap .edge:focus-visible .ln{stroke-width:3.2}
+  .edgemap .edge.active text,.edgemap .edge:focus-visible text{fill:var(--ink);font-weight:700}
+  .edgemap-note{border-top:1px solid var(--line);padding:.75rem 1rem .85rem;font-size:0.95rem;color:var(--ink);min-height:6.4rem;margin:0}
+  .edgemap-note .kindlabel{display:block;font-family:var(--font-mono);font-size:0.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem}
+  .edgemap-note .src{display:block;margin-top:.35rem;font-family:var(--font-mono);font-size:0.75rem;line-height:1.5;color:var(--ochre)}
+  .edgemap-note .src a{color:inherit;border-bottom:1px dotted currentColor}
+  .edgemap-note .src a:hover{text-decoration:none}
+  .edgemap-note .more{display:block;margin-top:.35rem;font-size:0.86rem;color:var(--muted)}
+  .key{display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--hint);margin:0;padding:.55rem 1rem;border-top:1px solid var(--line)}
+  .key i{display:inline-block;width:1.4rem;height:0;border-top:2px solid var(--ink);vertical-align:.2rem;margin-right:.4rem}
+  .key i.c{border-top:2px dashed var(--hint)}
+
+  h3.sub{font-size:1.2rem;font-style:italic;font-weight:500;margin:0 0 .7rem}
+  .rules{list-style:none;margin:0;padding:0;counter-reset:r}
+  .rules li{counter-increment:r;padding:.7rem 0 .75rem 2rem;border-top:1px solid var(--line);position:relative;font-size:0.95rem;color:var(--muted)}
+  .rules li:first-child{border-top:0;padding-top:0}
+  .rules li::before{content:counter(r);position:absolute;left:0;top:.75rem;font-family:var(--font-mono);font-size:0.75rem;font-weight:700;color:var(--ink)}
+  .rules li:first-child::before{top:.05rem}
+  .rules b{display:block;color:var(--ink);font-size:1.02rem;font-weight:650}
+
+  .notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem 2.2rem;margin:2rem 0 0;padding-top:1.1rem;border-top:1px dashed color-mix(in srgb,var(--ink) 30%,transparent)}
+  .notes p{margin:0;font-size:0.95rem;line-height:1.55;color:var(--muted)}
+  .notes b{color:var(--ink);font-weight:650}
+
+  /* what the map holds: solid is in the data, hatched is named and not built */
+  .kinds{width:100%;border-collapse:collapse;font-size:0.95rem}
+  .kinds th,.kinds td{text-align:left;vertical-align:baseline;padding:.75rem 1rem .75rem 0;border-bottom:1px solid var(--line)}
+  .kinds thead th{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--hint);font-weight:600;padding-top:0}
+  .kinds tbody th{font-weight:650;width:18%}
+  .kinds td{color:var(--muted);font-size:0.92rem}
+  .kinds td.now{width:38%;font-size:0.9rem;padding-left:.7rem;border-left:3px solid var(--ink)}
+  .kinds td.now b{color:var(--ink);font-family:var(--font-mono);font-size:0.86rem}
+  .kinds tr.named td.now{border-left:0;padding-left:1.35rem;background:repeating-linear-gradient(-45deg,var(--hatch) 0 1px,transparent 1px 4px) left top/.7rem 100% no-repeat}
+  .legend{display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--hint);margin:.8rem 0 0}
+  .legend i{display:inline-block;width:1.1rem;height:.75rem;border:1px solid var(--line-strong);vertical-align:-.08rem;margin-right:.35rem}
+  .legend i.s{border-left:3px solid var(--ink)}
+  .legend i.h{background:repeating-linear-gradient(-45deg,var(--hatch) 0 1px,transparent 1px 4px)}
+
+  /* the record itself */
+  .edgefile pre{margin:0;background:var(--code);border:1px solid var(--line-strong);border-radius:4px;padding:1rem;overflow:auto;font-family:var(--font-mono);font-size:0.78rem;line-height:1.55;white-space:pre-wrap;word-break:break-word}
+  .edgefile pre .p{color:var(--ochre)}
+  .edgefile pre .k{color:var(--muted)}
+  .parts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem 1.6rem;margin:1.2rem 0 0}
+  .parts p{margin:0;font-size:0.92rem;color:var(--muted);border-top:2px solid var(--line-strong);padding-top:.5rem}
+  .parts b{display:block;color:var(--ink);font-weight:650;font-size:0.98rem}
+  .sendline{margin:1.3rem 0 0;font-size:0.98rem}
+  .figcap{font-family:var(--font-mono);font-size:0.75rem;color:var(--hint);margin:.5rem 0 0}
+
+  footer{border-top:1px solid var(--line-strong);background:var(--sunk)}
+  footer .wrap{padding:1.8rem clamp(1.1rem,4vw,2.2rem);font-size:0.9rem;color:var(--muted)}
+  footer p{margin:0 0 .6rem;max-width:70ch}
+  .footlinks{display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;font-family:var(--font-mono);font-size:0.75rem}
+  .footlinks a{color:var(--muted);border-bottom:1px dotted var(--line-strong)}
+  .footlinks a:hover{color:var(--accent);text-decoration:none}
+
+  @media (max-width:820px){
+    .two,.notes{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    body{font-size:1rem}
+    .parts{grid-template-columns:1fr}
+    .kinds thead{display:none}
+    .kinds tr{display:block;border-bottom:1px solid var(--line);padding:.7rem 0}
+    .kinds th,.kinds td{display:block;border-bottom:0;padding:0;width:auto}
+    .kinds tbody th,.kinds td.now{width:auto}
+    .kinds td{margin-top:.25rem}
+    .kinds td.now{margin-top:.5rem;padding:.35rem .6rem}
+    .kinds tr.named td.now{padding-left:1.35rem}
+  }
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="wrap">
-  <nav class="nav" aria-label="Values Commons">
+<header class="masthead">
+  <div class="wrap">
     <a class="brand" href="../index.html">&#9671; Values Commons</a>
-    <div class="links">
-      <a href="../standard/index.html">For builders</a>
-      <a href="../passport/index.html">Your values</a>
+    <nav class="topnav" aria-label="Explore the map">
+      <a href="../passport/index.html">Your values file</a>
       <a href="../instances/index.html">Apps</a>
-      <a href="../contribute/index.html">Help out</a>
-      <a class="cta" href="#edge-file">Relationship file</a>
-    </div>
-  </nav>
-
-  <div class="primitivebar" aria-label="Explore the map">
-    <span>Explore the map</span>
-    <a href="../passport/index.html">Your values</a>
-    <a href="../instances/index.html">Apps</a>
-    <a href="../contribute/index.html">Help out</a>
-    <a aria-current="page" href="../weave/index.html">Ownership map</a>
-    <a href="../assembly/index.html">Group agreement</a>
+      <a aria-current="page" href="../weave/index.html">Ownership map</a>
+      <a href="#edge-file">Relationship file</a>
+    </nav>
   </div>
-  <p class="primitive-note">Follow ownership, alternatives, and other connections that can change a decision.</p>
+</header>
 
-  <main id="main" tabindex="-1">
-    <header class="hero">
-      <p class="kicker">Ownership, alternatives, next moves</p>
+<main id="main" tabindex="-1">
+  <header class="hero">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">Ownership map</span><span class="fig">Who owns what, with the receipt for each link.</span></p>
       <h1>See what a choice is connected to</h1>
-      <p class="lede">Who owns the option in front of you? What replaces it if you walk away? The map keeps those connections as claims you can inspect, source, and challenge, not suggestions from a feed.</p>
+      <p class="lede">Who owns the brand in front of you, and what else do they own? What could you pick instead? The map keeps each answer as one link between two named things, with the source that says so and the year it was recorded. The app uses these links for the rules you set, such as nothing from Nestl&eacute;.</p>
       <div class="actions">
         <a class="btn primary" href="#edgemap">Try the example map</a>
         <a class="btn" href="#edge-file">The relationship file</a>
         <a class="btn" href="../docs/THE-WEAVE.md">Read the map note</a>
       </div>
-    </header>
+      <p class="receipt"><span>344 ownership links</span><span>29 parent companies</span><span>4 sourced alternatives</span><span>14 links with no web source yet</span><span>Counted 29 Sept 2026 from <a href="../app/edges.json">edges.json</a></span></p>
+    </div>
+  </header>
 
-    <section class="band">
-      <p class="kicker">Trust rules</p>
-      <h2>Every line is a claim</h2>
-      <p class="intro">The rules are short. Name both sides. Show the source or calculation. Keep corrections visible. The map below is real, so click any line.</p>
-      <div class="edgemap" id="edgemap">
-        <svg viewBox="0 0 560 205" role="img" aria-label="A small ownership map: two VPNs owned by the same parent company, and a computed alternative. Each edge can be inspected.">
-          <g class="edge" data-edge="0" tabindex="0" role="button" aria-label="Inspect: ExpressVPN owned by Kape Technologies">
-            <line x1="200" y1="140" x2="315" y2="62"/>
-            <text x="222" y="94" text-anchor="middle">owned-by</text>
-          </g>
-          <g class="edge" data-edge="1" tabindex="0" role="button" aria-label="Inspect: Private Internet Access owned by Kape Technologies">
-            <line x1="452" y1="140" x2="360" y2="62"/>
-            <text x="435" y="94" text-anchor="middle">owned-by</text>
-          </g>
-          <g class="edge computed" data-edge="2" tabindex="0" role="button" aria-label="Inspect: Mullvad alternative to ExpressVPN, computed">
-            <line x1="118" y1="158" x2="152" y2="158"/>
-            <text x="135" y="150" text-anchor="middle">alt</text>
-          </g>
-          <g class="node">
-            <rect x="270" y="22" width="150" height="40"/>
-            <text x="345" y="40" text-anchor="middle">Kape Technologies</text>
-            <text class="kind" x="345" y="53" text-anchor="middle">parent company</text>
-          </g>
-          <g class="node">
-            <rect x="152" y="140" width="96" height="40"/>
-            <text x="200" y="158" text-anchor="middle">ExpressVPN</text>
-            <text class="kind" x="200" y="171" text-anchor="middle">vpn</text>
-          </g>
-          <g class="node">
-            <rect x="404" y="140" width="96" height="40"/>
-            <text x="452" y="158" text-anchor="middle">Private Internet A.</text>
-            <text class="kind" x="452" y="171" text-anchor="middle">vpn</text>
-          </g>
-          <g class="node">
-            <rect x="22" y="140" width="96" height="40"/>
-            <text x="70" y="158" text-anchor="middle">Mullvad</text>
-            <text class="kind" x="70" y="171" text-anchor="middle">vpn</text>
-          </g>
-        </svg>
-        <p class="edgemap-note" id="edgemap-note">Click an edge. Each one carries its basis: a receipt with a date, or a computed label that says how.</p>
-      </div>
-    </section>
-
-    <section class="band">
-      <p class="kicker">What the map should do</p>
-      <h2>Four relationships worth showing</h2>
-      <p class="intro">Start small and honest. Every useful connection is a public relationship with a source or clear basis, not a black-box suggestion.</p>
-      <div class="grid">
-        <div class="card"><span class="tag">Ownership</span><h3>Belongs to</h3><p>Who is behind it, and what else do they control? Trace the parent before you trust the brand.</p></div>
-        <div class="card"><span class="tag">Alternatives</span><h3>Substitutes for</h3><p>The closest values-fit replacement, so a switch is practical instead of merely symbolic.</p></div>
-        <div class="card"><span class="tag">Resemblance</span><h3>Rhymes with</h3><p>The Patagonia of phones, the credit union of clouds, the library of courses. A value can travel between subjects.</p></div>
-        <div class="card"><span class="tag">Group action</span><h3>Organizes with</h3><p>From one person's switch to a group agreement, a shared plan, a campaign.</p></div>
-      </div>
-    </section>
-
-    <section class="band" id="edge-file">
-      <div class="edgefile">
-        <div>
-          <p class="kicker">Relationship file</p>
-          <h2>A relationship is a small sourced record</h2>
-          <p class="intro">A contribution should be as inspectable as a fact correction: two stable endpoints, one relation, a source, and an as-of date when the claim can change.</p>
-          <div class="edgeflow">
-            <div><b>Asserted edge</b> Ownership, alternative, manufacturer, or organizer links need a source.</div>
-            <div><b>Computed edge</b> Resemblance can be derived from value signatures and labelled as computed.</div>
-            <div><b>Combined relationship</b> Relationship files dedupe by <code>from + rel + to</code> and keep the source trail.</div>
-            <div><b>Citable relationship</b> Nodes can export as JSON-LD so the commons joins the wider web.</div>
-          </div>
-          <p class="sendline">Have one? Follow that shape and <a href="../contribute/index.html">Add a relationship</a>. One clear change with its source beats ten vague ones.</p>
+  <section class="plate" id="rules">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">Plate I</span><span class="fig">Fig. 1. Trust rules, and one parent company with two rival brands.</span></p>
+      <h2>Two rival VPNs with the same owner</h2>
+      <p class="lead">ExpressVPN and Private Internet Access compete for the same customers, and Kape Technologies owns both. Click or tab to a line to read the claim behind it.</p>
+      <div class="two">
+        <div class="edgemap" id="edgemap">
+          <svg viewBox="0 0 380 200" role="img" aria-label="A small ownership map: ExpressVPN and Private Internet Access, both owned by Kape Technologies, and Mullvad drawn as a computed alternative to ExpressVPN. Each line can be inspected.">
+            <g class="edge" data-edge="0" tabindex="0" role="button" aria-label="Inspect: ExpressVPN owned by Kape Technologies">
+              <line class="hit" x1="192" y1="138" x2="180" y2="58"/>
+              <line class="ln" x1="192" y1="138" x2="180" y2="58"/>
+              <text x="178" y="104" text-anchor="end">owned-by</text>
+            </g>
+            <g class="edge" data-edge="1" tabindex="0" role="button" aria-label="Inspect: Private Internet Access owned by Kape Technologies">
+              <line class="hit" x1="320" y1="138" x2="258" y2="58"/>
+              <line class="ln" x1="320" y1="138" x2="258" y2="58"/>
+              <text x="298" y="104" text-anchor="start">owned-by</text>
+            </g>
+            <g class="edge computed" data-edge="2" tabindex="0" role="button" aria-label="Inspect: Mullvad as an alternative to ExpressVPN, computed">
+              <line class="hit" x1="104" y1="164" x2="140" y2="164"/>
+              <line class="ln" x1="104" y1="164" x2="140" y2="164"/>
+              <text x="122" y="154" text-anchor="middle">alt</text>
+            </g>
+            <g class="node">
+              <rect x="110" y="14" width="160" height="44" rx="4"/>
+              <text x="190" y="34" text-anchor="middle">Kape Technologies</text>
+              <text class="kind" x="190" y="50" text-anchor="middle">parent company</text>
+            </g>
+            <g class="node">
+              <rect x="140" y="138" width="104" height="52" rx="4"/>
+              <text x="192" y="162" text-anchor="middle">ExpressVPN</text>
+              <text class="kind" x="192" y="178" text-anchor="middle">vpn</text>
+            </g>
+            <g class="node">
+              <rect x="268" y="138" width="108" height="52" rx="4"/>
+              <text x="322" y="156" text-anchor="middle">Private Internet</text>
+              <text x="322" y="171" text-anchor="middle">Access</text>
+              <text class="kind" x="322" y="184" text-anchor="middle">vpn</text>
+            </g>
+            <g class="node">
+              <rect x="4" y="138" width="100" height="52" rx="4"/>
+              <text x="54" y="162" text-anchor="middle">Mullvad</text>
+              <text class="kind" x="54" y="178" text-anchor="middle">vpn</text>
+            </g>
+          </svg>
+          <p class="edgemap-note" id="edgemap-note" aria-live="polite">Pick a line. A solid line is a sourced record from the data. The dashed one is computed, and says so.</p>
+          <p class="key"><span><i></i>sourced record</span><span><i class="c"></i>computed</span></p>
         </div>
-        <pre><code>{
-  "format": "open-values-edges",
-  "version": "0.1",
-  "edges": [{
+        <div>
+          <h3 class="sub">Trust rules</h3>
+          <ol class="rules">
+            <li><b>Name both sides.</b> A link joins two named things, such as ExpressVPN and Kape Technologies. Never a brand and a vague "big tech".</li>
+            <li><b>Show the source or calculation.</b> A sourced link says who said so and in what year. A computed link says it was computed, and from what.</li>
+            <li><b>Keep corrections visible.</b> A challenge goes through <a href="../workshop/index.html">fact repair</a> with its own source, and once checked it changes the map for everyone.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="notes">
+        <p><b>What's happening.</b> Four real names and three links. The two solid lines are records copied from the data file, each with its source. The dashed line is drawn only for this example, because the data has no sourced alternative for any VPN yet.</p>
+        <p><b>Why it matters.</b> Switching from ExpressVPN to Private Internet Access changes the logo and not the owner. Kape also owns CyberGhost and ZenMate, so four VPN brands that look like rivals have one owner.</p>
+        <p><b>Devil's advocate.</b> A receipt is only as good as its source, and these two cite Wikipedia, plus a news site for one of them, not a company filing. Both are among the 14 links in the file with a written source and no web address. Before you trust a VPN ranking, note that Kape also bought a publisher of VPN reviews, Webselenese, in 2021.</p>
+        <p><b>Rabbit hole.</b> Open <a href="../app/index.html#n/company/kape-technologies">Kape Technologies in the app</a> to see every brand the map links to it, or read <a href="https://en.wikipedia.org/wiki/Kape_Technologies">its Wikipedia history</a>, where it turns out Kape was called Crossrider until 2018.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="plate" id="kinds">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">Plate II</span><span class="fig">What the map should do, and how much of it the data holds today.</span></p>
+      <h2>Four kinds of link, two of them built</h2>
+      <p class="lead">Ownership is most of the map. The rest is either small or still a plan, and the table says which.</p>
+      <table class="kinds">
+        <thead><tr><th scope="col">Link</th><th scope="col">The question it answers</th><th scope="col">In the data today</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Owned by</th><td>Who is behind this brand, and what else do they own?</td><td class="now"><b>344</b> links to 29 parent companies, from Nestl&eacute; to Alphabet.</td></tr>
+          <tr><th scope="row">Alternative to</th><td>If I walk away from this one, what do I pick instead?</td><td class="now"><b>4</b> links, all between banks, each with a web source.</td></tr>
+          <tr class="named"><th scope="row">Resembles</th><td>What in another subject shares these values? For example, a cloud storage company owned by its members, the way a credit union is.</td><td class="now">Not stored. The engine can compute a likeness; the data file holds these back until there are enough alternatives inside each subject.</td></tr>
+          <tr class="named"><th scope="row">Organizes with</th><td>Who else is making the same switch, so one person's choice becomes a group's?</td><td class="now">Not built. <a href="../assembly/index.html">Group values</a> and the <a href="../slate/index.html">shared plan</a> do this by hand for now.</td></tr>
+        </tbody>
+      </table>
+      <p class="legend"><span><i class="s"></i>in the data</span><span><i class="h"></i>named here, not built</span></p>
+    </div>
+  </section>
+
+  <section class="plate" id="edge-file">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">Plate III</span><span class="fig">Fig. 2. The ExpressVPN record, exactly as it appears in the data file.</span></p>
+      <h2>A link is a small record with a source</h2>
+      <p class="lead">Two names, the relation between them, a source, and the year it was recorded. A correction to a link looks the same as a correction to any other fact.</p>
+      <div class="two edgefile">
+        <div>
+          <pre><code>{
+  <span class="k">"format"</span>: "open-values-edges",
+  <span class="k">"version"</span>: "0.1",
+  <span class="k">"edges"</span>: [{
     "from": "ovs:vpn/expressvpn",
     "rel": "owned-by",
     "to": "ovs:org/kape-technologies",
-    "source": "public acquisition record",
-    "asof": "2026"
+    <span class="p">"source": "Kape Technologies (British-Israeli; owner Teddy Sagi) acquired ExpressVPN in 2021; it also owns CyberGhost, Private Internet Access and ZenMate. Source: Kape Technologies (Wikipedia); CyberInsider.",</span>
+    <span class="p">"asof": "2026"</span>
   }]
 }</code></pre>
+          <p class="figcap">One of 678 records in <a href="../app/edges.json">the ownership data file</a>.</p>
+        </div>
+        <div>
+          <div class="parts">
+            <p><b>Sourced links</b>Ownership, alternatives, makers and organisers. A new one needs a web address for its source.</p>
+            <p><b>Computed links</b>Likeness worked out from how two options score, and labelled computed wherever it shows.</p>
+            <p><b>Merging files</b>Two relationship files merge on <code>from + rel + to</code>, and every source is kept.</p>
+            <p><b>Citing a node</b>Any company or brand on the map can be saved in a form another website can cite.</p>
+          </div>
+          <p class="sendline">If you have one, write it in this shape and send it with <a href="../contribute/index.html">Add a relationship</a>.</p>
+          <p class="hand">Know an owner we missed? Send the page that proves it.</p>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
+</main>
 
-  </main>
-
-  <footer>
-    <div>Values Commons - relationships should be inspectable claims.</div>
+<footer>
+  <div class="wrap">
+    <p>Values Commons. Each ownership link here names its source and the year it was recorded.</p>
     <div class="footlinks">
       <a href="../index.html">Home</a>
       <a href="../standard/index.html">For builders</a>
-      <a href="../passport/index.html">Your values</a>
+      <a href="../passport/index.html">Your values file</a>
       <a href="../instances/index.html">Apps</a>
       <a href="../funders/index.html">Funders</a>
     </div>
-  </footer>
-</div>
+    <!-- family:start -->
+<style>
+  /* sizes, spacing and case follow research/design_system_audit.js: the eight-step scale, the 0.25rem grid, no uppercase */
+  .fam{border-top:1px solid var(--line,#e3e7e5);margin-top:1.5rem;padding-top:1.25rem;grid-column:1/-1;flex-basis:100%;width:100%}
+  .fam-foot{border-top:1px solid var(--line,#e3e7e5);padding:1.25rem 0 2.5rem}
+  .fam-foot .fam,.fam-after .fam{border-top:0;margin-top:0}
+  .fam>p{margin:0 0 1rem;font-family:var(--font-mono,ui-monospace,monospace);font-size:.75rem;color:var(--hint,var(--muted,#566560))}
+  .fam-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(10.5rem,1fr));gap:1rem 1.5rem}
+  .fam-head{margin:0 0 .5rem;font-size:.86rem;font-weight:700;color:var(--ink,#18211d)}
+  .fam ul{list-style:none;margin:0;padding:0}
+  .fam li{margin:0 0 .5rem}
+  .fam a{display:block;text-decoration:none;color:inherit;border:0;box-shadow:none}
+  .fam a:hover .fam-name{text-decoration:underline}
+  .fam-name{display:block;font-size:.86rem;font-weight:600;color:var(--accent,#1d7a5a)}
+  .fam-desc{display:block;font-size:.75rem;line-height:1.4;color:var(--muted,#566560)}
+  .fam-you{display:inline-block;margin-top:.25rem;font-family:var(--font-mono,ui-monospace,monospace);font-size:.64rem;color:var(--ink,#18211d)}
+</style>
+<nav class="fam" aria-label="The Futurism Institute family">
+  <p>The Futurism Institute family</p>
+  <div class="fam-cols"><div><p class="fam-head">Start here</p><ul><li><a href="https://futurisminstitute.org"><span class="fam-name">Futurism Institute</span><span class="fam-desc">How the projects fit together</span></a></li></ul></div><div><p class="fam-head">Research</p><ul><li><a href="https://bentleymoon.com"><span class="fam-name">Bentley Moon</span><span class="fam-desc">Research record and films</span></a></li></ul></div><div><p class="fam-head">Records</p><ul><li><a href="https://bentleymoon.com/research/checking-ai/"><span class="fam-name">Checking AI</span><span class="fam-desc">When one AI can check another</span></a></li><li class="fam-here"><a href="https://valuescommons.org/app/"><span class="fam-name">Conscious Consuming</span><span class="fam-desc">Products and services, by what you care about</span><span class="fam-you">You are here</span></a></li><li><a href="https://dignityneeds.com"><span class="fam-name">Dignity Needs</span><span class="fam-desc">What every person should be able to expect</span></a></li><li><a href="https://kosplora.org"><span class="fam-name">Kosplora</span><span class="fam-desc">Learning and research tools</span></a></li><li><a href="https://legibleai.org"><span class="fam-name">Legible AI</span><span class="fam-desc">A first road into AI safety</span></a></li><li><a href="https://legibleai.org/searches/"><span class="fam-name">AI Searches</span><span class="fam-desc">A shared record of AI answers, with their sources</span></a></li></ul></div><div><p class="fam-head">Groups</p><ul><li><a href="https://socratichearth.org"><span class="fam-name">The Socratic Hearth</span><span class="fam-desc">Talk a question through, disagreements kept</span></a></li><li><a href="https://theworkparty.org"><span class="fam-name">The Work Party</span><span class="fam-desc">What a group agreed, as a file it keeps</span></a></li></ul></div><div><p class="fam-head">Places</p><ul><li><a href="https://earthenbeings.com"><span class="fam-name">Earthen Beings</span><span class="fam-desc">Communities and land projects in the Pacific Northwest</span></a></li><li><a href="https://basicdignity.com"><span class="fam-name">Basic Dignity</span><span class="fam-desc">Draft rules for whoever holds what a person needs, from a shared house to the companies that own AI.</span></a></li></ul></div></div>
+</nav>
+<!-- family:end -->
+  </div>
+</footer>
 <script>
   // The edge inspector: click a relationship, read the claim behind it.
   (function(){
     var note=document.getElementById('edgemap-note'); if(!note) return;
+    var WIKI='<a href="https://en.wikipedia.org/wiki/Kape_Technologies">Kape Technologies (Wikipedia)</a>';
     var EDGES=[
-      {kind:'receipt', html:'<span class="chip receipt">receipt</span><b>ExpressVPN</b> is owned by <b>Kape Technologies</b>. Source: public acquisition record, as of 2026. Disagree? <a href="../workshop/index.html">Challenge it with a source</a>.'},
-      {kind:'receipt', html:'<span class="chip receipt">receipt</span><b>Private Internet Access</b> is owned by <b>Kape Technologies</b>: two rivals, one parent. Source: public acquisition record, as of 2026.'},
-      {kind:'computed', html:'<span class="chip computed">computed</span><b>Mullvad</b> is an alternative to <b>ExpressVPN</b>, derived from value-signature resemblance and labelled as computed, never passed off as a sourced fact.'}
+      {kind:'receipt', html:'<span class="kindlabel">Sourced record</span><b>ExpressVPN</b> is owned by <b>Kape Technologies</b>, which bought it in 2021.<span class="src">Source: '+WIKI+'; CyberInsider. Recorded 2026.</span><span class="more">Disagree? <a href="../workshop/index.html">Challenge it with a source</a>.</span>'},
+      {kind:'receipt', html:'<span class="kindlabel">Sourced record</span><b>Private Internet Access</b> is owned by <b>Kape Technologies</b>, which bought it in 2019. Kape also owns ExpressVPN.<span class="src">Source: '+WIKI+'. Recorded 2026.</span><span class="more">Disagree? <a href="../workshop/index.html">Challenge it with a source</a>.</span>'},
+      {kind:'computed', html:'<span class="kindlabel">Computed, drawn for the example</span><b>Mullvad</b> as an alternative to <b>ExpressVPN</b>. A computed link comes from how closely two options score on the same values. It is always labelled computed and never shown as a sourced fact.<span class="more">No sourced VPN alternative is in the data yet. <a href="../contribute/index.html">Add one</a>.</span>'}
     ];
     var els=document.querySelectorAll('#edgemap .edge');
     function select(el){

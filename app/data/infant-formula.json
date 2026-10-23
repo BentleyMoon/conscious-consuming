@@ -1,0 +1,903 @@
+{
+ "meta": {
+  "id": "infant-formula",
+  "label": "Infant formula",
+  "type": "Products",
+  "primaryAxis": "health",
+  "tradeoff": [
+   "economical",
+   "health"
+  ],
+  "tradeoffLabels": [
+   "cheapest per ounce",
+   "cleanest FDA recall record"
+  ],
+  "source": "Conscious Consuming",
+  "attribution": "This covers powdered infant formula sold in the US. Every formula legally sold there must meet FDA's requirements for safety and nutrition, and FDA says caregivers should be cautious with imported formula bought online or from third-party sellers, because it may not meet those requirements and recall news may not reach the buyer. This is not medical advice. Ask a paediatrician before changing formula, and use FDA's own guidance on preparation and storage. The recall record comes from FDA and CDC pages and from FDA's enforcement reports, read through the openFDA interface, for recalls initiated in the five years to 29 September 2026. The score is a tier. 90 means no FDA enforcement report for the brand's formula in that period. 80 means only Class III entries and 70 only Class II. 55 means one Class I recall with no illness reported. 45 means two Class I recalls with no illness reported. 30 means a Class I recall in which FDA or CDC report infant illnesses, with certain lots recalled. 20 is the same with all product recalled, and 10 adds an earlier Class I recall. A missing entry means FDA's published reports show no problem on the date checked, which does not prove there is none. Class I is FDA's most serious recall class and says nothing about how many units were affected. A brand's record also includes the plant that makes it, and store brands are made by contract manufacturers, so a recall can touch several labels. Price is the seller's listed price per ounce of powder on the date shown, scored as 100 minus 40 times dollars per ounce, and sale prices are ignored. Only four products could be priced from a page that displayed a price, so most options have no price score, and the store brands sold by Walmart and Costco are among them. Palm oil is scored from the ingredient list on the seller's page: 90 for none, 35 where palm may be present, 15 where it is named outright. FDA's list of infant formulas marketed in the US, current as of 1 September 2026, includes every brand here except the a2 Platinum USA label, and flags ByHeart and Nara Organics as under recall. WIC is included as the route that is not a purchase. Reviewed 2026-09. Suggest changes via Contribute.",
+  "allergens": false,
+  "presets": {
+   "Balanced": {
+    "w": {
+     "economical": 3,
+     "health": 3,
+     "palm_oil": 2
+    },
+    "x": []
+   },
+   "Cheapest per ounce": {
+    "w": {
+     "economical": 5,
+     "health": 2,
+     "palm_oil": 1
+    },
+    "x": []
+   },
+   "Cleanest FDA recall record": {
+    "w": {
+     "health": 5,
+     "economical": 2,
+     "palm_oil": 1
+    },
+    "x": []
+   },
+   "No palm oil": {
+    "w": {
+     "palm_oil": 5,
+     "health": 3,
+     "economical": 2
+    },
+    "x": []
+   }
+  },
+  "n": 13,
+  "valueSignatureProfile": {
+   "entryCount": 13,
+   "signedEntries": 13,
+   "drawableEntries": 6,
+   "minimumThemesForBloom": 2,
+   "themeCounts": {
+    "planet": 6,
+    "health": 12,
+    "cost": 5
+   }
+  },
+  "provenanceProfile": {
+   "entryCount": 13,
+   "singleSourceEntries": 7,
+   "multiSourceEntries": 6,
+   "noSourceEntries": 0,
+   "noteOnlyEntries": 0,
+   "averageSourceDomains": 1.46,
+   "topPrimarySources": [
+    {
+     "label": "api.fda.gov",
+     "entries": 4
+    },
+    {
+     "label": "fda.gov",
+     "entries": 4
+    },
+    {
+     "label": "target.com",
+     "entries": 3
+    },
+    {
+     "label": "ers.usda.gov",
+     "entries": 1
+    },
+    {
+     "label": "us.kendamil.com",
+     "entries": 1
+    }
+   ]
+  },
+  "decision": {
+   "category": "infant-formula",
+   "reads": {
+    "text": "Compare infant formula by body safety, cost, and palm-oil signals.",
+    "basis": [
+     {
+      "criterion": "health",
+      "readsAs": "body safety"
+     },
+     {
+      "criterion": "economical",
+      "readsAs": "cost"
+     },
+     {
+      "criterion": "palm_oil",
+      "readsAs": "palm-oil signals"
+     }
+    ],
+    "signature": {
+     "by": "Conscious Consuming",
+     "on": "2026-07-15",
+     "status": "approved-batch"
+    },
+    "receipt": {
+     "dataset": "infant-formula",
+     "entryCount": 13,
+     "criteria": [
+      {
+       "criterion": "health",
+       "readsAs": "body safety",
+       "known": 12,
+       "minimum": 10,
+       "maximum": 90,
+       "spread": 80
+      },
+      {
+       "criterion": "economical",
+       "readsAs": "cost",
+       "known": 5,
+       "minimum": 29,
+       "maximum": 100,
+       "spread": 71
+      },
+      {
+       "criterion": "palm_oil",
+       "readsAs": "palm-oil signals",
+       "known": 6,
+       "minimum": 15,
+       "maximum": 90,
+       "spread": 75
+      }
+     ]
+    }
+   },
+   "axes": [
+    {
+     "id": "cost-or-values",
+     "kind": "cost-values",
+     "label": "Cost or overall fit",
+     "question": "Lower cost or a stronger overall fit?",
+     "criteria": [
+      "economical",
+      "health",
+      "palm_oil"
+     ],
+     "poles": [
+      "Lower cost",
+      "Stronger overall fit"
+     ],
+     "default": 50
+    },
+    {
+     "id": "palm-oil",
+     "kind": "criterion",
+     "label": "Palm-oil signals",
+     "question": "Do you need palm-oil-free evidence?",
+     "criteria": [
+      "palm_oil"
+     ],
+     "poles": [
+      "Flexible",
+      "Palm-oil-free"
+     ],
+     "default": 50
+    }
+   ],
+   "budget": {
+    "available": true,
+    "mode": "assessed-affordability-rank",
+    "criterion": "economical",
+    "minimumKnown": 5,
+    "knownEntries": 5,
+    "coverage": 0.3846
+   },
+   "archetypes": [
+    "best-for-most",
+    "strictest-match",
+    "budget-honest"
+   ],
+   "page": {
+    "stage": "approved-batch",
+    "primaryRoute": true
+   },
+   "consumer": {
+    "reads": "Round 8 approved category differences reads.",
+    "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+    "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+    "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+    "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+   }
+  }
+ },
+ "criteria": [
+  {
+   "key": "economical",
+   "label": "Price per ounce of powder as listed by the seller",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "health",
+   "label": "FDA recall and outbreak record for the brand's formula over five years",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "palm_oil",
+   "label": "Palm-oil-free: no palm or palm olein oil in the ingredient list",
+   "source": "curated",
+   "tier": "assessed"
+  }
+ ],
+ "products": [
+  {
+   "code": "similac",
+   "name": "Similac",
+   "brand": "Abbott",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "economical": 44,
+    "health": 30,
+    "palm_oil": 90
+   },
+   "provenance": {
+    "economical": {
+     "note": "Target lists Similac Advance Infant Formula with Iron powder, 30.8 oz, at $42.99, which its page gives as $1.40 per ounce. Prices on Target change, and this is the price shown when the page was read.",
+     "source": "https://www.target.com/p/similac-advance-infant-formula-with-iron-powder-30-8oz/-/A-14901126",
+     "asof": "2026-09"
+    },
+    "health": {
+     "note": "FDA's investigation page says Abbott Nutrition's Sturgis, Michigan plant was linked to four infant illness reports, all four infants were hospitalised, and Cronobacter infection may have contributed to two deaths. It says five environmental samples from the plant were positive for Cronobacter sakazakii and that Abbott had not set up process controls covering all stages of processing. Abbott recalled Similac, Alimentum and EleCare powders made at the plant, and CDC closed its investigation on 12 May 2022 with no further cases. FDA's enforcement report for the recall (linked) is Class I. Scored in the 'illness-linked recall, certain lots' tier described in the attribution.",
+     "source": "https://www.fda.gov/food/outbreaks-foodborne-illness/fda-investigation-cronobacter-infections-powdered-infant-formula-february-2022",
+     "asof": "2026-09"
+    },
+    "palm_oil": {
+     "note": "Target's listing for Similac Advance says 'NO PALM OLEIN OIL' and its ingredient list, which begins nonfat milk, lactose, high oleic sunflower oil, whey protein concentrate, soy oil, coconut oil, names no palm oil.",
+     "source": "https://www.target.com/p/similac-advance-infant-formula-with-iron-powder-30-8oz/-/A-14901126",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Similac",
+     "url": "https://www.similac.com/"
+    },
+    {
+     "label": "FDA enforcement reports for Similac",
+     "url": "https://api.fda.gov/food/enforcement.json?search=product_description:%22Similac%22&limit=100&sort=report_date:desc"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Milk-based powder",
+    "Major brand"
+   ],
+   "description": "A major national brand from Abbott. Its powder formulas made at the Sturgis, Michigan plant were recalled in February 2022 after infant illnesses were reported.",
+   "valueSignature": {
+    "planet": 90,
+    "health": 30,
+    "cost": 44
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "target.com",
+    "sourceLabels": [
+     "target.com",
+     "fda.gov"
+    ]
+   }
+  },
+  {
+   "code": "enfamil",
+   "name": "Enfamil",
+   "brand": "Reckitt (Mead Johnson)",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "economical": 29,
+    "health": 45,
+    "palm_oil": 35
+   },
+   "provenance": {
+    "economical": {
+     "note": "Target lists Enfamil NeuroPro Powder Infant Formula, 28.3 oz, at $49.99, which its page gives as $1.77 per ounce.",
+     "source": "https://www.target.com/p/enfamil-neuropro-powder-infant-formula-28-3oz/-/A-79334028",
+     "asof": "2026-09"
+    },
+    "health": {
+     "note": "FDA's enforcement report search for Enfamil returns two Class I recalls by Mead Johnson, both now terminated. Enfamil ProSobee 12.9 oz was recalled from 19 February 2023, 147,230 cans, for a 'remote possibility of cross-contamination with Cronobacter sakazakii'. Enfamil Nutramigen powder was recalled from 30 December 2023, 1,396,438 cans, because it 'has the potential to be contaminated with Cronobacter sakazakii'. FDA's two recall notices, linked, say no illnesses had been reported. Scored in the 'two Class I recalls, no illness reported' tier.",
+     "source": "https://api.fda.gov/food/enforcement.json?search=product_description:%22Enfamil%22&limit=100&sort=report_date:desc",
+     "asof": "2026-09"
+    },
+    "palm_oil": {
+     "note": "Target's listing for Enfamil NeuroPro gives the oil ingredient as 'vegetable oil (contains one or more of the following: palm olein oil, coconut oil, soy oil, high oleic sunflower oil)', so palm olein may be present in a given batch.",
+     "source": "https://www.target.com/p/enfamil-neuropro-powder-infant-formula-28-3oz/-/A-79334028",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Enfamil",
+     "url": "https://www.enfamil.com/"
+    },
+    {
+     "label": "FDA notice, ProSobee recall (2023)",
+     "url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/reckitt-recalls-two-batches-prosobee-129-oz-simply-plant-based-infant-formula-because-possible"
+    },
+    {
+     "label": "FDA notice, Nutramigen recall (2023)",
+     "url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/reckittmead-johnson-nutrition-voluntarily-recalls-select-batches-nutramigen-hypoallergenic-infant"
+    },
+    {
+     "label": "FDA warning letters to three formula makers (30 August 2023)",
+     "url": "https://www.fda.gov/news-events/press-announcements/fda-issues-warning-letters-three-infant-formula-manufacturers"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Milk-based powder",
+    "Major brand"
+   ],
+   "description": "A major national brand from Reckitt/Mead Johnson Nutrition. FDA's notices say no illnesses were reported for either of two 2023 recalls, and FDA sent the company a warning letter in August 2023.",
+   "valueSignature": {
+    "planet": 35,
+    "health": 45,
+    "cost": 29
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "target.com",
+    "sourceLabels": [
+     "target.com",
+     "api.fda.gov"
+    ]
+   }
+  },
+  {
+   "code": "good-start",
+   "name": "Good Start (formerly Gerber Good Start)",
+   "brand": "Perrigo",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "health": 55
+   },
+   "provenance": {
+    "health": {
+     "note": "FDA's recall notice says Perrigo recalled certain lots of Gerber Good Start SoothePro powder on 17 March 2023 for the potential presence of Cronobacter sakazakii. The lots were made at its Eau Claire, Wisconsin plant between 2 and 18 January 2023, no distributed product had tested positive, no adverse events had been reported, and FDA has terminated the recall. FDA's enforcement report for the recall (linked) is Class I. Scored in the 'one Class I recall, no illness reported' tier.",
+     "source": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/perrigo-announces-voluntary-recall-limited-quantity-gerberr-good-startr-sootheprotm-powdered-infant",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "FDA enforcement reports for Gerber",
+     "url": "https://api.fda.gov/food/enforcement.json?search=product_description:%22Gerber%22&limit=100&sort=report_date:desc"
+    },
+    {
+     "label": "Perrigo announcement of the Good Start and Dr. Brown's partnership (26 September 2024)",
+     "url": "https://investor.perrigo.com/2024-09-26-Perrigo-Announces-Good-Start-R-and-Dr-Browns-R-Brand-Partnership-and-Launch-of-Infant-Formula-Portfolio"
+    },
+    {
+     "label": "FDA warning letters to three formula makers (30 August 2023)",
+     "url": "https://www.fda.gov/news-events/press-announcements/fda-issues-warning-letters-three-infant-formula-manufacturers"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Milk-based powder",
+    "Major brand"
+   ],
+   "description": "Marketed by Perrigo under a Nestlé trademark licence, and with the Dr. Brown's name since a September 2024 partnership. Perrigo recalled certain lots of Gerber Good Start SoothePro in March 2023, and FDA sent Perrigo's Wisconsin plant a warning letter in August 2023.",
+   "valueSignature": {
+    "health": 55
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "fda.gov"
+   }
+  },
+  {
+   "code": "parents-choice",
+   "name": "Parent's Choice",
+   "brand": "Walmart",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "health": 80
+   },
+   "provenance": {
+    "health": {
+     "note": "FDA's enforcement report search for Parent's Choice lists, for infant formula, one Class III entry from PBM Nutritionals initiated 16 June 2023 for Parent's Choice Sensitivity Premium Infant Formula 638 g tubs and Tippy Toes brand formula, with the reason 'Inadvertent release of rejected product to market'. It is terminated. A 2019 Parent's Choice Advantage entry falls outside the five-year window. Scored in the 'Class III only' tier.",
+     "source": "https://api.fda.gov/food/enforcement.json?search=product_description:%22Parent%27s+Choice%22&limit=100&sort=report_date:desc",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "FDA list of infant formulas marketed in the US",
+     "url": "https://www.fda.gov/food/infant-formula-homepage/infant-formulas-marketed-us"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Store brand",
+    "Milk-based powder"
+   ],
+   "description": "Walmart's store-brand formula, which FDA's report ties to the firm PBM Nutritionals. Walmart's product pages could not be read for this check, so it has no price or ingredient score.",
+   "valueSignature": {
+    "health": 80
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "api.fda.gov"
+   }
+  },
+  {
+   "code": "kirkland-signature",
+   "name": "Kirkland Signature ProCare",
+   "brand": "Costco",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "health": 90
+   },
+   "provenance": {
+    "health": {
+     "note": "FDA's enforcement report search for 'Kirkland' returned 29 reports on the date checked, none for infant formula; they cover foods such as salmon, eggs and pastries, and one soy beverage. FDA's list of infant formulas marketed in the US, current as of 1 September 2026, includes Kirkland Signature ProCare (Costco). No entry means FDA's published reports show none on the date checked, which does not prove there is none.",
+     "source": "https://api.fda.gov/food/enforcement.json?search=product_description:%22Kirkland%22&limit=100&sort=report_date:desc",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Costco product page",
+     "url": "https://www.costco.com/p/-/kirkland-signature-procare-with-dual-hmos-non-gmo-infant-formula-42-oz-2-pack/100810650"
+    },
+    {
+     "label": "FDA list of infant formulas marketed in the US",
+     "url": "https://www.fda.gov/food/infant-formula-homepage/infant-formulas-marketed-us"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Store brand",
+    "Milk-based powder"
+   ],
+   "description": "Costco's store-brand formula. Costco's page showed no price when read, so it has no price score.",
+   "valueSignature": {
+    "health": 90
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "api.fda.gov"
+   }
+  },
+  {
+   "code": "up-and-up",
+   "name": "up&up Infant Formula",
+   "brand": "Target",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "economical": 62,
+    "health": 90,
+    "palm_oil": 15
+   },
+   "provenance": {
+    "economical": {
+     "note": "Target lists up&up Gentle Premium Powder Infant Formula, 34 oz, at $31.99, which its page gives as $0.94 per ounce.",
+     "source": "https://www.target.com/p/gentle-premium-powder-infant-formula-34oz-up-38-up-8482/-/A-87765855",
+     "asof": "2026-09"
+    },
+    "health": {
+     "note": "FDA's enforcement report search for 'up&up' returned one report on the date checked, a 2013 dietary supplement from another maker, and none for infant formula. FDA's list of infant formulas marketed in the US, current as of 1 September 2026, includes the up&up formulas sold at Target. No entry does not prove there is no problem.",
+     "source": "https://api.fda.gov/food/enforcement.json?search=product_description:%22up%26up%22&limit=100&sort=report_date:desc",
+     "asof": "2026-09"
+    },
+    "palm_oil": {
+     "note": "Target's listing for up&up Gentle Premium gives an ingredient list beginning 'corn syrup, nonfat milk, palm olein, partially hydrolyzed whey, soy oil, coconut oil', so palm olein is named outright.",
+     "source": "https://www.target.com/p/gentle-premium-powder-infant-formula-34oz-up-38-up-8482/-/A-87765855",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Target product page",
+     "url": "https://www.target.com/p/gentle-premium-powder-infant-formula-34oz-up-38-up-8482/-/A-87765855"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Store brand",
+    "Milk-based powder"
+   ],
+   "description": "Target's store-brand formula, the lowest price per ounce among the products priced here, and the only one whose ingredient list names palm olein outright.",
+   "valueSignature": {
+    "planet": 15,
+    "health": 90,
+    "cost": 62
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "target.com",
+    "sourceLabels": [
+     "target.com",
+     "api.fda.gov"
+    ]
+   }
+  },
+  {
+   "code": "earths-best",
+   "name": "Earth's Best Organic",
+   "brand": "Hain Celestial",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "health": 90,
+    "palm_oil": 35
+   },
+   "provenance": {
+    "health": {
+     "note": "FDA's enforcement report search for Earth's Best returned one report on the date checked, from 2012 for organic teething biscuits, and none for infant formula. FDA's list of infant formulas marketed in the US, current as of 1 September 2026, includes Earth's Best Organic Dairy Infant Formula. No entry does not prove there is no problem.",
+     "source": "https://api.fda.gov/food/enforcement.json?search=product_description:%22Earth%27s+Best%22&limit=100&sort=report_date:desc",
+     "asof": "2026-09"
+    },
+    "palm_oil": {
+     "note": "Target's listing for Earth's Best Organic Dairy Infant Formula gives the oils as 'organic oils (organic palm or palm olein, organic soy, organic coconut, organic high oleic safflower or sunflower oil)', so palm may be present.",
+     "source": "https://www.target.com/p/earth-s-best-organic-dairy-infant-formula-with-iron-for-baby-s-first-12-months-32-oz-907-g/-/A-1006458651",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Target product page",
+     "url": "https://www.target.com/p/earth-s-best-organic-dairy-infant-formula-with-iron-for-baby-s-first-12-months-32-oz-907-g/-/A-1006458651"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Organic",
+    "Milk-based powder"
+   ],
+   "description": "An organic milk-based powder sold in mainstream US stores. Target's listing gives inconsistent size fields, so no price score is given.",
+   "valueSignature": {
+    "planet": 35,
+    "health": 90
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "api.fda.gov",
+    "sourceLabels": [
+     "api.fda.gov",
+     "target.com"
+    ]
+   }
+  },
+  {
+   "code": "bobbie",
+   "name": "Bobbie Organic",
+   "brand": "Bobbie",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "health": 90,
+    "palm_oil": 90
+   },
+   "provenance": {
+    "health": {
+     "note": "FDA's enforcement report search for Bobbie returns one report, initiated 7 June 2019 and terminated, classed Class I, for Bobbie Milk-Based Powder Companion Formula 14.1 oz because 'the product does not provide adequate nutrition for some infants'. It is older than the five-year window, so no deduction is made. FDA's list of infant formulas marketed in the US, current as of 1 September 2026, includes Bobbie Organic.",
+     "source": "https://api.fda.gov/food/enforcement.json?search=product_description:%22Bobbie%22&limit=100&sort=report_date:desc",
+     "asof": "2026-09"
+    },
+    "palm_oil": {
+     "note": "Bobbie's product page says 'No palm oil, palm olein oil, soy allergens, or alternative sugars', and its ingredient list, which begins organic lactose, organic nonfat milk, organic high oleic oil, names no palm oil.",
+     "source": "https://www.hibobbie.com/products/bobbie-organic-infant-formula",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Bobbie product page",
+     "url": "https://www.hibobbie.com/products/bobbie-organic-infant-formula"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Organic",
+    "Milk-based powder"
+   ],
+   "description": "A US organic formula brand. FDA classed a 2019 recall of its Companion Formula as Class I, and no later Bobbie formula recall appears in FDA's reports.",
+   "valueSignature": {
+    "planet": 90,
+    "health": 90
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "api.fda.gov",
+    "sourceLabels": [
+     "api.fda.gov",
+     "hibobbie.com"
+    ]
+   }
+  },
+  {
+   "code": "kendamil",
+   "name": "Kendamil Classic",
+   "brand": "Kendamil",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "economical": 52,
+    "health": 90,
+    "palm_oil": 90
+   },
+   "provenance": {
+    "economical": {
+     "note": "Kendamil's US site lists Classic Infant Formula 28.2 oz (800 g) at $33.99 per can, about $1.21 per ounce.",
+     "source": "https://us.kendamil.com/products/classic-first-infant-milk",
+     "asof": "2026-09"
+    },
+    "health": {
+     "note": "FDA's enforcement report search for Kendamil returns two Class II entries from 8 August 2021, both terminated, from the importer Able Groupe for Kendamil Organic Stage 1 and Stage 2 formulas, because the 'required pre-market notifications' had not been submitted. They fall just outside the five-year window, so no deduction is made. FDA's list of infant formulas marketed in the US, current as of 1 September 2026, includes Kendamil Infant Formula.",
+     "source": "https://api.fda.gov/food/enforcement.json?search=product_description:%22Kendamil%22&limit=100&sort=report_date:desc",
+     "asof": "2026-09"
+    },
+    "palm_oil": {
+     "note": "Kendamil's US product page says 'We don't do palm oil, corn syrups, soya or fish oil', and its ingredient list names sunflower, coconut and rapeseed oils.",
+     "source": "https://us.kendamil.com/products/classic-first-infant-milk",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Kendamil US",
+     "url": "https://us.kendamil.com/products/classic-first-infant-milk"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Imported",
+    "Whole milk"
+   ],
+   "description": "A European-made whole-milk formula sold in the US. A US importer recalled its organic formulas in 2021 because the required FDA premarket notification had not been filed, and FDA now lists a Kendamil formula on its US market list.",
+   "valueSignature": {
+    "planet": 90,
+    "health": 90,
+    "cost": 52
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "us.kendamil.com",
+    "sourceLabels": [
+     "us.kendamil.com",
+     "api.fda.gov"
+    ]
+   }
+  },
+  {
+   "code": "byheart",
+   "name": "ByHeart Whole Nutrition",
+   "brand": "ByHeart",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "health": 10
+   },
+   "provenance": {
+    "health": {
+     "note": "FDA's outbreak page says 48 infants (28 confirmed, 20 probable) in 17 states had infant botulism linked to ByHeart Whole Nutrition formula, all 48 were hospitalised and none died, and that all ByHeart formula, cans and single-serve packs, was recalled. It says testing found Clostridium botulinum in a base mix and in organic whole milk powder used to make the formula, and that CDC declared the outbreak over as of 26 February 2026. ByHeart also recalled five batches on 11 December 2022 for possible Cronobacter cross-contamination, and both recalls are Class I in FDA's enforcement reports (linked). Scored in the lowest tier described in the attribution.",
+     "source": "https://www.fda.gov/food/outbreaks-foodborne-illness/outbreak-investigation-infant-botulism-infant-formula-november-2025",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "FDA notice, 2022 recall",
+     "url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/byheart-issues-voluntary-recall-five-batches-its-infant-formula-because-possible-health-risk"
+    },
+    {
+     "label": "FDA enforcement reports for ByHeart",
+     "url": "https://api.fda.gov/food/enforcement.json?search=recalling_firm:%22ByHeart%22&limit=100&sort=report_date:desc"
+    },
+    {
+     "label": "CDC outbreak investigation",
+     "url": "https://www.cdc.gov/botulism/outbreaks-investigations/infant-formula-nov-2025/investigation.html"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Recalled",
+    "Newer brand"
+   ],
+   "description": "A newer brand. In November 2025 all of its formula was recalled during an infant botulism outbreak, after a five-batch Cronobacter recall in December 2022. FDA's US market list flags it as under recall.",
+   "valueSignature": {
+    "health": 10
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "fda.gov"
+   }
+  },
+  {
+   "code": "nara-organics",
+   "name": "Nara Organics Whole Milk",
+   "brand": "Nara Organics",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "health": 20
+   },
+   "provenance": {
+    "health": {
+     "note": "FDA's outbreak page says four infants in California, Pennsylvania and Washington, with illness onset in April and May 2026, were confirmed with infant botulism after consuming Nara Organics formula, and all four were hospitalised. It says one infant's sample was a genetic match to samples from the ByHeart outbreak and that supply chain commonalities indicate a common source of contamination between the two outbreaks, that all Nara Organics formula was recalled, that the product was sold at Target, Target.com and Nara.com from July 2025 to June 2026, and that the outbreak was declared over on 27 August 2026. FDA's enforcement report for the recall (linked) is Class I. Scored in the 'illness-linked recall, all product' tier.",
+     "source": "https://www.fda.gov/food/outbreaks-foodborne-illness/outbreak-investigation-infant-botulism-powdered-infant-formula-june-2026",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "FDA recall notice",
+     "url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/nara-organics-recalls-all-lots-nara-infant-formula-because-possible-health-risk"
+    },
+    {
+     "label": "FDA enforcement reports for Nara",
+     "url": "https://api.fda.gov/food/enforcement.json?search=recalling_firm:%22NARA+ORGANICS%22&limit=100&sort=report_date:desc"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Recalled",
+    "Organic"
+   ],
+   "description": "A whole-milk organic formula made in Europe and sold at Target and nara.com. All of it was recalled in June 2026 during an infant botulism outbreak that FDA says shares a common source of contamination with ByHeart's.",
+   "valueSignature": {
+    "health": 20
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "fda.gov"
+   }
+  },
+  {
+   "code": "a2-platinum",
+   "name": "a2 Platinum Premium (USA label)",
+   "brand": "The a2 Milk Company",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "health": 55
+   },
+   "provenance": {
+    "health": {
+     "note": "FDA's recall notice says The a2 Milk Company recalled three batches of a2 Platinum Premium Infant Formula 0-12 months, USA label, 31.7 oz tins, on 2 May 2026 for the presence of cereulide toxin, sold through its website, Amazon and Meijer. No confirmed illness had been reported, the company discontinued the product before the recall, and FDA has terminated the recall. FDA's enforcement report for the recall (linked) is Class I. Scored in the 'one Class I recall, no illness reported' tier.",
+     "source": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/a2-platinum-usa-label-infant-formula-recalled-because-possible-health-risk",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "FDA enforcement reports for a2 Milk Company",
+     "url": "https://api.fda.gov/food/enforcement.json?search=recalling_firm:%22a2+Milk%22&limit=100&sort=report_date:desc"
+    },
+    {
+     "label": "FDA list of infant formulas marketed in the US",
+     "url": "https://www.fda.gov/food/infant-formula-homepage/infant-formulas-marketed-us"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Imported",
+    "Discontinued"
+   ],
+   "description": "An imported formula sold through the maker's site, Amazon and Meijer. Three batches were recalled in May 2026 for cereulide toxin, and the product was discontinued before the recall. It is not on FDA's US market list.",
+   "valueSignature": {
+    "health": 55
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "fda.gov"
+   }
+  },
+  {
+   "code": "wic",
+   "name": "WIC infant formula benefit",
+   "brand": "USDA and state WIC agencies",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "economical": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "USDA's Economic Research Service says WIC 'provides infant formula at no cost to almost 2 million nutritionally at-risk infants in low-income households'. The article is from 2004, so the participant count is dated.",
+     "source": "https://ers.usda.gov/amber-waves/2004/september/sharing-the-economic-burden-who-pays-for-wic-s-infant-formula",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "USDA ERS WIC programme page",
+     "url": "https://www.ers.usda.gov/topics/food-nutrition-assistance/wic-program"
+    },
+    {
+     "label": "GAO-25-106503 on WIC formula contracts",
+     "url": "https://www.gao.gov/products/gao-25-106503"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Free to eligible families",
+    "Not a purchase"
+   ],
+   "description": "The route that is not a purchase. Income-eligible families get formula through a state WIC agency, which buys from one contract manufacturer, so the brand depends on the state. USDA's Economic Research Service says applicants need family income at or below 185 percent of the poverty level or participation in another means-tested programme, and GAO found two manufacturers held almost all state contracts as of August 2024.",
+   "valueSignature": {
+    "cost": 100
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "ers.usda.gov"
+   }
+  }
+ ]
+}

@@ -4,9 +4,44 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The route file format</title>
-<meta name="description" content="Kosplora's open format for learning routes: versioned, source-aware, forkable, and usable in any walker, including one this site did not serve.">
+<meta name="description" content="Kosplora's open format for learning routes, version 0.1: one text file with dated sources, a stated falsifier and its drafting on its face, readable by any walker.">
 <link rel="icon" href="/app/icon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../route.css">
+<style>
+  /* The family register, scoped to this page. route.css stays shared with the walker pages. */
+  :root{--graphite:#4d5357}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--graphite:#b6bcc0}}
+  .instancebar nav{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.02em}
+  h2{font-style:italic;font-weight:500}
+  .plate-id{display:flex;justify-content:space-between;align-items:baseline;gap:.25rem 1rem;flex-wrap:wrap;
+    margin:2.5rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid color-mix(in srgb,var(--ink) 55%,transparent)}
+  .plate-id+h2{margin-top:0}
+  .plate-id,.receipt{max-width:none}
+  .plate-id .pn{font-family:var(--font-mono);font-size:.75rem;font-weight:700;letter-spacing:.2em;color:var(--ink)}
+  .plate-id .fig{font-style:italic;font-size:.86rem;color:var(--muted)}
+  .fields{margin:0 0 1rem;max-width:62ch}
+  .fields dt{font-family:var(--font-mono);font-size:.86rem;color:var(--ink);margin-top:.75rem}
+  .fields dd{margin:.25rem 0 0 1.25rem;color:var(--muted)}
+  .types{border-collapse:collapse;margin:0 0 1rem;max-width:62ch;width:100%}
+  .types th,.types td{text-align:left;vertical-align:baseline;padding:.5rem .75rem .5rem 0;border-top:1px solid var(--line);font-size:.95rem}
+  .types th{font-family:var(--font-mono);font-size:.86rem;font-weight:500;white-space:nowrap;color:var(--ink)}
+  .types td{color:var(--muted)}
+  .rules{padding-left:1.25rem;max-width:62ch}
+  .rules li{margin:0 0 .75rem}
+  .notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem 2rem;margin:1.5rem 0 0;padding-top:1rem;
+    border-top:1px dashed color-mix(in srgb,var(--ink) 30%,transparent)}
+  .notes p{margin:0;font-size:.95rem;line-height:1.55;color:var(--muted)}
+  .notes b{color:var(--ink);font-weight:650}
+  @media (max-width:640px){.notes{grid-template-columns:1fr}}
+  .receipt{display:flex;flex-wrap:wrap;gap:.25rem 1.25rem;margin:3rem 0 .75rem;padding:.5rem 0;
+    border-top:1px solid color-mix(in srgb,var(--ink) 55%,transparent);
+    border-bottom:1px dotted color-mix(in srgb,var(--ink) 55%,transparent);
+    font-family:var(--font-mono);font-size:.75rem;letter-spacing:.04em;color:var(--muted)}
+  .hand{font-family:"Segoe Print","Ink Free","Bradley Hand","Chalkboard SE","Marker Felt",cursive;
+    color:var(--graphite);font-size:1rem;line-height:1.4;transform:rotate(-1.4deg);transform-origin:left top;
+    margin:2rem 0 0;max-width:36ch}
+  .hand a{color:var(--graphite)}
+</style>
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -25,49 +60,58 @@
 
 <main id="content" tabindex="-1">
 <h1>The route file format.</h1>
-<p class="meta"><b>kosplora-route/0.1</b> &middot; published 2026-08-18 &middot; versioned; changes will appear here dated</p>
-<p class="sub">A route is a text file. This page is the whole specification: what the file holds,
-what makes it valid, and why the walker on this site is only one of the ways to read it.</p>
+<p class="meta"><b>kosplora-route/0.1</b> &middot; published 2026-08-18 &middot; any change will appear here, dated</p>
+<p class="sub">A route is one text file. This page is the whole specification: what the file holds,
+what makes it valid, and a blank one to copy.</p>
 
 <h2>What a route file holds</h2>
-<p>A question worth following. The move being made (understand, decide, make, practice, teach, or
-organize). A stated time. Three to nine stations, each with a type, a task, and its sources. What
-the learner leaves with. The ways out. And two honesty fields the format requires:</p>
-<p><b>would_change</b>: every route states what would restructure it. A route that cannot say what
-would change it is a syllabus with confidence.</p>
-<p><b>drafted_with</b>: if a model helped draft the route, the route says so beside its authors. A
-format that demands provenance of every source does not exempt itself.</p>
+<p>A question worth following. The move it makes: understand, decide, make, practice, teach or
+organize. A stated time. Three to nine stations, each with a type, a task and its sources. What you
+leave with, and the ways out. Two more fields ask the author to be honest about the route:</p>
+<dl class="fields">
+  <dt>would_change</dt>
+  <dd>What would make the author restructure the route. A route whose author cannot name one is not
+  open to correction.</dd>
+</dl>
 
-<h2>The seven station types</h2>
-<p><span class="m">ORIENT</span> and <span class="m">SOURCE</span>: read, watch, or examine
-something with visible provenance. <span class="m">COUNTERPOINT</span>: meet a credible
-disagreement. <span class="m">PERSON</span>: speak with someone. <span class="m">PLACE</span>: go
-somewhere real. <span class="m">PRACTICE</span>: attempt the skill. <span class="m">MAKE</span>:
-produce the artifact. Plus <span class="m">REFLECT</span>, which closes most routes. The list is
-closed on purpose: a new type needs a format revision, and that is what keeps a forked route
-walkable in someone else's walker.</p>
+<h2>Eight station types</h2>
+<table class="types">
+  <tr><th scope="row">orient</th><td>Get your bearings from something with visible provenance.</td></tr>
+  <tr><th scope="row">source</th><td>Read, watch or examine one thing closely.</td></tr>
+  <tr><th scope="row">counterpoint</th><td>Meet a credible disagreement from outside the route.</td></tr>
+  <tr><th scope="row">person</th><td>Speak with someone.</td></tr>
+  <tr><th scope="row">place</th><td>Go somewhere real.</td></tr>
+  <tr><th scope="row">practice</th><td>Attempt the skill.</td></tr>
+  <tr><th scope="row">make</th><td>Produce the thing you keep.</td></tr>
+  <tr><th scope="row">reflect</th><td>Close the route and say what changed.</td></tr>
+</table>
+<p>The first version of this page called them seven and then listed eight. It is eight.
+The list is closed. A new type needs a new version of the format, so a copied route still works in
+someone else's walker, the program that shows a route.</p>
 
 <h2>What makes a file valid</h2>
-<p>1. It parses, and its format field names a version a walker knows.</p>
-<p>2. Three to nine stations, including at least one that can correct the walker of the route (a
-counterpoint, a person holding a different relationship to the question, or a tested practice) and
-at least one that happens away from the page (a person, a place, a practice, a making).</p>
-<p>3. Every counterpoint station cites at least one source whose origin is a published work, a
-person, or a dataset, with an author and a date. A counterpoint generated by whatever drafted the
-route is not a counterpoint; the objection has to come from outside. The measured reason lives at
-<a href="https://legibleai.org/">Legible AI</a>: a second opinion only adds signal when it differs
-in lineage, and a second prompt to the same model is the same opinion asked twice.</p>
-<p>4. Every source carries a date, or the walker prints undated beside it.</p>
-<p>5. would_change is present and not empty.</p>
-<p>6. A file with no correcting station and no active station can still be valid, but only as
-kind: reading-list, and a walker titles it as one. Kosplora's own
-<a href="../shelf/index.html">twelve ranked reading routes</a> carry exactly that label.</p>
+<ol class="rules">
+  <li>It parses, and its format field names a version a walker knows.</li>
+  <li>It has three to nine stations. At least one can correct the person walking it (a
+  counterpoint, a person with a different relationship to the question, or a tested practice), and
+  at least one happens away from the page (a person, a place, a practice or a making).</li>
+  <li>Every counterpoint cites at least one source whose origin is a published work, a person or a
+  dataset, with an author and a date. An objection written by whatever drafted the route does not
+  count. <a href="https://legibleai.org/">Legible AI</a> has the measurements behind this rule. A
+  second opinion adds information only when it comes from a different source, and asking the same
+  model a second time gets the same opinion twice.</li>
+  <li>Every source carries a date, or the walker prints "undated" beside it.</li>
+  <li>would_change is present and not empty.</li>
+  <li>A file with no correcting station or no active station is still valid, but only as
+  kind: reading-list, and a walker titles it that way. The
+  <a href="../shelf/index.html">reading shelf</a> takes its name from this rule.</li>
+</ol>
 
+<p class="plate-id"><span class="pn">Plate I</span><span class="fig">Fig. 1. A blank route file, ready to copy.</span></p>
 <h2>A starter file</h2>
-<p>Copy it, fill it in a text editor, and open it beside any of
-<a href="../index.html">the walkable routes</a> to compare. The composer does not exist yet; this
-file and a text editor are the current composer, and that is a statement of fact rather than a
-plan.</p>
+<p>Copy it, fill it in any text editor, and put it beside one of
+<a href="../index.html">the walkable routes</a> to compare. Each of those has its own route.json one
+click from its page.</p>
 <pre><code>{
  "kind": "route",
  "format": "kosplora-route/0.1",
@@ -76,7 +120,6 @@ plan.</p>
  "audience": "",
  "time": { "solo": "2h" },
  "authors": [{ "name": "", "date": "" }],
- "drafted_with": null,
  "would_change": "",
  "stations": [
   { "type": "orient", "time": "30m", "task": "",
@@ -90,12 +133,28 @@ plan.</p>
  "exit": ["keep", "share", "fork", "close"],
  "revisions": [{ "date": "", "change": "First version.", "by": "" }]
 }</code></pre>
+<div class="notes">
+  <p><b>What's happening.</b> This is everything a route needs, empty. Four stations are enough to
+  pass every rule above: an orientation, a person, an outside counterpoint and something you make.</p>
+  <p><b>Why it matters.</b> A route kept in a file outlives this site. You can fork it, print it, or
+  open it in a walker I did not write, and you can check any route page here against the
+  route.json it was built from.</p>
+  <p><b>Devil's advocate.</b> The rules check the shape of a claim and not its truth. The audit
+  confirms that a counterpoint names a dated source with an author and an origin other than
+  "generated". It cannot tell whether that source says what the route says it says, or whether
+  "published" is true. A careful liar passes. Checking still takes a person reading the source.</p>
+  <p><b>Rabbit hole.</b> Open <a href="../route/second-mapper/route.json">the second-mapper
+  route's file</a> and find its counterpoint. Then read <a href="https://legibleai.org/">Legible
+  AI</a> on when a second opinion is really a second opinion.</p>
+</div>
 
-<p class="stands">Where this honestly stands: the format is at 0.1 and three routes use it. No
-walker other than this site's exists yet, and no route written outside this family has been
-walked. The format is published first so that either of those can happen without permission.</p>
+<p class="receipt"><span>Version 0.1</span><span>Routes using it: 3</span><span>Walkers: 1, this site's</span><span>Routes written outside this project: 0</span></p>
+<p>The format is published first so that any of those numbers can change without asking me.</p>
 
-<footer>Kosplora, a Values Commons instance. No account, no tracking.</footer>
+<p class="hand">Write a route for something you actually know. If the format cannot hold it, that
+is a bug in the format, and I want to hear about it. <a href="mailto:futurisminstitute@gmail.com">Write in</a>.</p>
+
+<footer>Kosplora is a Values Commons app. No account, no tracking.</footer>
 </main>
 </div>
 </body>

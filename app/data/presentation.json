@@ -46,11 +46,11 @@
     "counts": {
       "needs": 8,
       "categories": 18,
-      "subcategories": 39,
-      "decisions": 217,
-      "livePaths": 130,
-      "liveDatasets": 126,
-      "notYetCovered": 87
+      "subcategories": 40,
+      "decisions": 225,
+      "livePaths": 144,
+      "liveDatasets": 144,
+      "notYetCovered": 81
     },
     "needs": [
       {
@@ -248,6 +248,7 @@
                 "decisionIds": [
                   "vitamins-and-supplements",
                   "over-the-counter-medicine",
+                  "online-pharmacies-and-prescription-delivery",
                   "first-aid",
                   "contraception"
                 ]
@@ -257,9 +258,18 @@
                 "label": "Mind and movement",
                 "decisionIds": [
                   "fitness-equipment",
-                  "sports-nutrition",
+                  "cardio-machines",
+                  "protein-and-sports-nutrition",
                   "mental-health-apps",
                   "meditation-apps"
+                ]
+              },
+              {
+                "id": "care-at-home-and-in-later-life",
+                "label": "Care at home and in later life",
+                "decisionIds": [
+                  "home-care-services",
+                  "care-homes"
                 ]
               }
             ]
@@ -275,10 +285,12 @@
                 "decisionIds": [
                   "clothing",
                   "outerwear-and-coats",
+                  "insulated-and-down-jackets",
                   "underwear-and-socks",
                   "jewellery-and-watches",
                   "secondhand-and-resale",
-                  "repair-and-tailoring"
+                  "repair-and-tailoring",
+                  "shoe-repair-and-resoling"
                 ]
               },
               {
@@ -286,7 +298,7 @@
                 "label": "Children and pets",
                 "decisionIds": [
                   "nappies",
-                  "baby-food-and-formula",
+                  "infant-formula",
                   "baby-wipes",
                   "car-seats",
                   "strollers-and-pushchairs",
@@ -404,12 +416,13 @@
                   "email",
                   "browsers",
                   "search",
-                  "digital-services:social",
+                  "social-networks",
+                  "digital-services",
                   "federated-social-servers",
-                  "digital-services:cloud-storage",
-                  "digital-services:notes",
-                  "digital-services:maps",
-                  "digital-services:video-calls",
+                  "cloud-storage",
+                  "notes",
+                  "maps",
+                  "video-calls",
                   "self-hosting-platforms"
                 ]
               },
@@ -475,8 +488,9 @@
                 "id": "cars-bikes-and-transit",
                 "label": "Cars, bikes, and transit",
                 "decisionIds": [
-                  "cars",
+                  "new-cars",
                   "electric-vehicles",
+                  "hybrid-and-plug-in-hybrid-cars",
                   "used-cars",
                   "tyres",
                   "bicycles",
@@ -1718,6 +1732,19 @@
         "cid": "over-the-counter-medicine"
       },
       {
+        "id": "online-pharmacies-and-prescription-delivery",
+        "label": "Online pharmacies",
+        "state": "live",
+        "route": "#decide/online-pharmacies-and-prescription-delivery",
+        "need": "care",
+        "category": "health-and-wellbeing",
+        "subcategory": "remedies-and-health",
+        "type": "Services",
+        "sourceDomain": "Health & wellness",
+        "sourceGroup": "Medicines and supplements",
+        "cid": "online-pharmacies-and-prescription-delivery"
+      },
+      {
         "id": "first-aid",
         "label": "First aid",
         "state": "not-yet-covered",
@@ -1744,26 +1771,41 @@
       {
         "id": "fitness-equipment",
         "label": "Fitness equipment",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/fitness-equipment",
+        "state": "live",
+        "route": "#decide/fitness-equipment",
         "need": "care",
         "category": "health-and-wellbeing",
         "subcategory": "mind-and-movement",
         "type": "Products",
         "sourceDomain": "Health & wellness",
-        "sourceGroup": "Movement and fitness"
+        "sourceGroup": "Movement and fitness",
+        "cid": "fitness-equipment"
       },
       {
-        "id": "sports-nutrition",
-        "label": "Sports nutrition",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/sports-nutrition",
+        "id": "cardio-machines",
+        "label": "Cardio machines",
+        "state": "live",
+        "route": "#decide/cardio-machines",
         "need": "care",
         "category": "health-and-wellbeing",
         "subcategory": "mind-and-movement",
         "type": "Products",
         "sourceDomain": "Health & wellness",
-        "sourceGroup": "Movement and fitness"
+        "sourceGroup": "Movement and fitness",
+        "cid": "cardio-machines"
+      },
+      {
+        "id": "protein-and-sports-nutrition",
+        "label": "Sports nutrition",
+        "state": "live",
+        "route": "#decide/protein-and-sports-nutrition",
+        "need": "care",
+        "category": "health-and-wellbeing",
+        "subcategory": "mind-and-movement",
+        "type": "Products",
+        "sourceDomain": "Health & wellness",
+        "sourceGroup": "Movement and fitness",
+        "cid": "protein-and-sports-nutrition"
       },
       {
         "id": "mental-health-apps",
@@ -1790,6 +1832,32 @@
         "sourceGroup": "Mind and mood"
       },
       {
+        "id": "home-care-services",
+        "label": "Home care services",
+        "state": "live",
+        "route": "#decide/home-care-services",
+        "need": "care",
+        "category": "health-and-wellbeing",
+        "subcategory": "care-at-home-and-in-later-life",
+        "type": "Services",
+        "sourceDomain": "Health & wellness",
+        "sourceGroup": "Care at home and in later life",
+        "cid": "home-care-services"
+      },
+      {
+        "id": "care-homes",
+        "label": "Care homes",
+        "state": "live",
+        "route": "#decide/care-homes",
+        "need": "care",
+        "category": "health-and-wellbeing",
+        "subcategory": "care-at-home-and-in-later-life",
+        "type": "Services",
+        "sourceDomain": "Health & wellness",
+        "sourceGroup": "Care at home and in later life",
+        "cid": "care-homes"
+      },
+      {
         "id": "clothing",
         "label": "Everyday clothing",
         "state": "live",
@@ -1813,6 +1881,19 @@
         "type": "Products",
         "sourceDomain": "Clothing",
         "sourceGroup": "Everyday clothing"
+      },
+      {
+        "id": "insulated-and-down-jackets",
+        "label": "Insulated & down jackets",
+        "state": "live",
+        "route": "#decide/insulated-and-down-jackets",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "clothing-and-repair",
+        "type": "Products",
+        "sourceDomain": "Clothing",
+        "sourceGroup": "Everyday clothing",
+        "cid": "insulated-and-down-jackets"
       },
       {
         "id": "underwear-and-socks",
@@ -1854,14 +1935,28 @@
       {
         "id": "repair-and-tailoring",
         "label": "Repair & tailoring",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/repair-and-tailoring",
+        "state": "live",
+        "route": "#decide/repair-and-tailoring",
         "need": "care",
         "category": "clothes-family-and-pets",
         "subcategory": "clothing-and-repair",
         "type": "Services",
         "sourceDomain": "Clothing",
-        "sourceGroup": "Secondhand and repair"
+        "sourceGroup": "Secondhand and repair",
+        "cid": "repair-and-tailoring"
+      },
+      {
+        "id": "shoe-repair-and-resoling",
+        "label": "Shoe repair & resoling",
+        "state": "live",
+        "route": "#decide/shoe-repair-and-resoling",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "clothing-and-repair",
+        "type": "Services",
+        "sourceDomain": "Clothing",
+        "sourceGroup": "Secondhand and repair",
+        "cid": "shoe-repair-and-resoling"
       },
       {
         "id": "nappies",
@@ -1877,16 +1972,17 @@
         "cid": "nappies"
       },
       {
-        "id": "baby-food-and-formula",
+        "id": "infant-formula",
         "label": "Baby food & formula",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/baby-food-and-formula",
+        "state": "live",
+        "route": "#decide/infant-formula",
         "need": "care",
         "category": "clothes-family-and-pets",
         "subcategory": "children-and-pets",
         "type": "Products",
         "sourceDomain": "Kids & family",
-        "sourceGroup": "Babies and toddlers"
+        "sourceGroup": "Babies and toddlers",
+        "cid": "infant-formula"
       },
       {
         "id": "baby-wipes",
@@ -2459,18 +2555,30 @@
         "cid": "search"
       },
       {
-        "id": "digital-services:social",
+        "id": "social-networks",
         "label": "Social networks",
         "state": "live",
-        "route": "#decide/digital-services/social",
+        "route": "#decide/social-networks",
         "need": "connect",
         "category": "communication",
         "subcategory": "online-services",
         "type": "Services",
         "sourceDomain": "Tech & digital",
         "sourceGroup": "Digital services",
-        "cid": "digital-services",
-        "facet": "social"
+        "cid": "social-networks"
+      },
+      {
+        "id": "digital-services",
+        "label": "Other digital tools",
+        "state": "live",
+        "route": "#decide/digital-services",
+        "need": "connect",
+        "category": "communication",
+        "subcategory": "online-services",
+        "type": "Services",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Digital services",
+        "cid": "digital-services"
       },
       {
         "id": "federated-social-servers",
@@ -2486,60 +2594,56 @@
         "cid": "federated-social-servers"
       },
       {
-        "id": "digital-services:cloud-storage",
+        "id": "cloud-storage",
         "label": "Cloud storage",
         "state": "live",
-        "route": "#decide/digital-services/cloud%20storage",
+        "route": "#decide/cloud-storage",
         "need": "connect",
         "category": "communication",
         "subcategory": "online-services",
         "type": "Services",
         "sourceDomain": "Tech & digital",
         "sourceGroup": "Digital services",
-        "cid": "digital-services",
-        "facet": "cloud storage"
+        "cid": "cloud-storage"
       },
       {
-        "id": "digital-services:notes",
+        "id": "notes",
         "label": "Notes",
         "state": "live",
-        "route": "#decide/digital-services/notes",
+        "route": "#decide/notes",
         "need": "connect",
         "category": "communication",
         "subcategory": "online-services",
         "type": "Services",
         "sourceDomain": "Tech & digital",
         "sourceGroup": "Digital services",
-        "cid": "digital-services",
-        "facet": "notes"
+        "cid": "notes"
       },
       {
-        "id": "digital-services:maps",
+        "id": "maps",
         "label": "Maps",
         "state": "live",
-        "route": "#decide/digital-services/maps",
+        "route": "#decide/maps",
         "need": "connect",
         "category": "communication",
         "subcategory": "online-services",
         "type": "Services",
         "sourceDomain": "Tech & digital",
         "sourceGroup": "Digital services",
-        "cid": "digital-services",
-        "facet": "maps"
+        "cid": "maps"
       },
       {
-        "id": "digital-services:video-calls",
+        "id": "video-calls",
         "label": "Video calls",
         "state": "live",
-        "route": "#decide/digital-services/video%20calls",
+        "route": "#decide/video-calls",
         "need": "connect",
         "category": "communication",
         "subcategory": "online-services",
         "type": "Services",
         "sourceDomain": "Tech & digital",
         "sourceGroup": "Digital services",
-        "cid": "digital-services",
-        "facet": "video calls"
+        "cid": "video-calls"
       },
       {
         "id": "self-hosting-platforms",
@@ -2717,28 +2821,43 @@
         "sourceGroup": "Accessories"
       },
       {
-        "id": "cars",
-        "label": "Cars",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/cars",
+        "id": "new-cars",
+        "label": "New cars",
+        "state": "live",
+        "route": "#decide/new-cars",
         "need": "move",
         "category": "getting-around",
         "subcategory": "cars-bikes-and-transit",
         "type": "Products",
         "sourceDomain": "Transport & mobility",
-        "sourceGroup": "Cars"
+        "sourceGroup": "Cars",
+        "cid": "new-cars"
       },
       {
         "id": "electric-vehicles",
         "label": "Electric vehicles",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/electric-vehicles",
+        "state": "live",
+        "route": "#decide/electric-vehicles",
         "need": "move",
         "category": "getting-around",
         "subcategory": "cars-bikes-and-transit",
         "type": "Products",
         "sourceDomain": "Transport & mobility",
-        "sourceGroup": "Cars"
+        "sourceGroup": "Cars",
+        "cid": "electric-vehicles"
+      },
+      {
+        "id": "hybrid-and-plug-in-hybrid-cars",
+        "label": "Hybrid and plug-in hybrid cars",
+        "state": "live",
+        "route": "#decide/hybrid-and-plug-in-hybrid-cars",
+        "need": "move",
+        "category": "getting-around",
+        "subcategory": "cars-bikes-and-transit",
+        "type": "Products",
+        "sourceDomain": "Transport & mobility",
+        "sourceGroup": "Cars",
+        "cid": "hybrid-and-plug-in-hybrid-cars"
       },
       {
         "id": "used-cars",
@@ -5378,5 +5497,5 @@
       }
     ]
   },
-  "checksum": "sha256:97bf3f3b3ce4e6a945ed57fd5ed7eed43d81b4f7540fdffa3acc030bb7824f21"
+  "checksum": "sha256:a879fca78f8dea18ae84b286c0fff29e2e99740d67bcacda0237400deecb48ff"
 }

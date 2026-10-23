@@ -36,7 +36,7 @@ Juice is not a fruit replacement. The floor is a drink whose role is named: a sm
 | added sugar line is checked | "fruit drink" and pouch products can behave more like soda |
 | serving size matches real pouring | a label portion may be smaller than the glass |
 | whole fruit remains the default | chewing and fiber are part of the food, not decoration |
-| package size matches the role | large cartons can quietly turn juice into background hydration |
+| package size matches the role | large cartons can turn juice into the default drink for thirst |
 | child use is more conservative | age and portion guidance matter when juice becomes a household default |
 
 ## What to compare

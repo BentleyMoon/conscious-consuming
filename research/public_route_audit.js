@@ -244,39 +244,70 @@ for (const route of [
   "standard/index.html",
   "passport/index.html",
   "instances/index.html",
-  "contribute/index.html",
+  // 2026-10-13: contribute/ left the front page; Bentley asks nobody to help out or test until he says the tools are ready.
   "weave/index.html",
 ]) {
   expectIncludes("index.html", route, `homepage link to ${route}`);
 }
 
 expectIncludes("standard/index.html", "Open Values Standard", "standard page title/copy");
-expectIncludes("index.html", "Doors", "homepage door index");
-expectIncludes("index.html", "Three tools, one engine", "homepage app-first path");
-expectIncludes("index.html", "How it stays honest", "homepage honesty section");
-expectIncludes("index.html", "Five parts you keep as files", "homepage civic-tools framing");
+// 2026-10-12. Bentley asked for top-bar links a visitor needs and outside reading at the bottom of the front page.
+expectIncludes("index.html", "<a href=\"tour/index.html\">Two-minute tour</a>", "homepage top bar names the tour");
+expectIncludes("index.html", ">Report a problem</a>", "homepage draft strip has a way to report a problem");
+expectIncludes("index.html", "<h2 class=\"sh\">Further reading</h2>", "homepage outside reading");
+// 2026-10-08. Bentley asked for cybersecurity to be part of why the project matters; the front page says how
+// to check each protection, including the Content-Security-Policy that limits where a page can connect.
+expectIncludes("index.html", "Why it matters for security", "homepage security section");
+expectIncludes("index.html", "connect-src", "homepage security section names the policy line a reader can check");
+// 2026-09-29. Bentley asked for his own statement of what the site is back at the top of the front page,
+// word for word as he wrote it on 16 Aug 2026 (3dfddd9ee). The 09-28 redesign had moved it to the bottom.
+expectIncludes("index.html", "<p class=\"maker\">Values Commons is an evolving backend for decentralized personalization and customization of digital, civic tools like other nodes of the", "homepage maker statement at the top");
+{ const home = read("index.html"); if (home.indexOf("class=\"maker\"") > home.indexOf("<h1")) failures.push("index.html: Bentley's statement must come before the headline"); }
+// 2026-09-29. Bentley asked for plain wording; the footer list of pages is headed "Pages", not "Doors".
+expectIncludes("index.html", "<h3>Pages</h3>", "homepage door index");
+// 2026-09-28. The front page was redrawn around one figure, "How a ranking is made", so a first
+// visitor can see what happens to their values and to the facts. The three section names pinned
+// here before ("Three tools, one engine", "How it stays honest", "Five parts you keep as files")
+// became the layer drawing, the promises table and the notes hung under each step. The checks keep
+// their jobs: the apps are shown as one family, the promises are stated with a way to check them,
+// and each civic tool is placed at the step it belongs to.
+// 2026-09-29. Bentley called "Where each part lives" slop; the heading now says what the section is.
+expectIncludes("index.html", "The apps and what they share", "homepage app-first path");
+expectIncludes("index.html", "What it will not do, and how to check", "homepage honesty section");
+expectIncludes("index.html", "How a ranking is made", "homepage civic-tools framing");
+for (const tool of ["assembly/index.html", "workshop/index.html", "slate/index.html"]) {
+  expectIncludes("index.html", tool, `homepage link to ${tool}`);
+}
 // 2026-08-13. The phrase moved when the front page was rewritten to state its claim directly.
 // What the check is for is the promise, not the wording: the values file carries no identity and
 // needs no account. Testing the promise rather than a sentence that copy edits will keep breaking.
 expectIncludes("index.html", "No identity, no account", "homepage passport contract");
-expectIncludes("index.html", "Source before score", "homepage workshop contract");
-expectIncludes("index.html", "Commit, not command", "homepage slate contract");
-expectIncludes("index.html", "Ownership, alternatives, and look-alike choices are inspectable claims", "homepage relationship-map contract");
+expectIncludes("index.html", "Send a correction with its source", "homepage workshop contract");
+expectIncludes("index.html", "keeps the reason for each step, and who disagreed", "homepage slate contract");
+expectIncludes("index.html", "Who owns a brand is a fact with a receipt", "homepage relationship-map contract");
 expectIncludes("index.html", "Read the adoption guide", "homepage adoption-guide CTA");
-expectIncludes("index.html", "Share what happened", "homepage feedback CTA");
-expectIncludes("index.html", "docs/PREVIEW-FEEDBACK-LOOP.md", "homepage feedback-loop link");
+// 2026-10-13. Bentley: nobody is asked to use a site, test it or recruit testers until he says it is ready.
+// The front page no longer asks readers to share what happened or to help out; it keeps a way to report a problem.
+expectNotIncludes("index.html", "Share what happened", "homepage asks nobody to test it");
+expectNotIncludes("index.html", ">Help out<", "homepage asks nobody to help out");
+expectIncludes("index.html", ">Report a problem</a>", "homepage keeps a way to report a problem");
 expectNotIncludes("index.html", "coming soon", "homepage placeholder copy");
 expectIncludes("docs/README.md", "Public On-Ramp", "docs on-ramp map");
 expectIncludes("docs/README.md", "The reorganization established the public names", "docs map reorganization closeout");
 expectIncludes("docs/README.md", "Before the first invitations", "docs map adoption feedback closeout");
 expectIncludes("passport/index.html", "Values Passport", "passport page title/copy");
 expectIncludes("passport/index.html", "Core files", "passport core-file navigation");
-expectIncludes("passport/index.html", "Privacy promise", "passport privacy section");
+// 2026-09-29: Bentley asked for plain wording; the caption "Privacy promise: ..." became a plain description of the section.
+expectIncludes("passport/index.html", "The four privacy rules", "passport privacy section");
 expectIncludes("passport/index.html", "No identity", "passport privacy contract");
-expectIncludes("passport/index.html", "No fake transfer", "passport honest-transfer rule");
+// 2026-09-29: Bentley asked for plain wording; the rule "No fake transfer" is now named "No guessing".
+expectIncludes("passport/index.html", "No guessing", "passport honest-transfer rule");
 expectIncludes("passport/index.html", "No account required", "passport no-account portability rule");
-expectIncludes("passport/index.html", "Use this next", "passport next-use section");
-expectIncludes("passport/index.html", "Find group agreement", "passport group-agreement CTA");
+// 2026-09-29: Bentley asked for plain wording; the "Use this next:" tagline was cut from the caption.
+expectIncludes("passport/index.html", "Every page that writes or reads the file", "passport next-use section");
+// 2026-10-12. "Group agreement" became "Group values": the Work Party is where a group records what it agreed.
+expectIncludes("passport/index.html", "Add up your group&rsquo;s values", "passport group-values CTA");
+expectIncludes("assembly/index.html", "https://theworkparty.org/#group-files", "group values points at the family map of group files");
 expectNotIncludes("passport/index.html", "Try CC", "passport app-first CTA");
 expectIncludes("instances/index.html", "Build the next app", "app creation path");
 expectIncludes("instances/index.html", "What every app shares", "shared app structure section");
@@ -290,7 +321,8 @@ expectIncludes("instances/index.html", "Use the new-subject brief", "new-subject
 expectIncludes("instances/new/index.html", "Build an app around one decision", "new-app builder purpose");
 expectIncludes("instances/new/index.html", "No source, no score", "new-app evidence rule");
 expectNotIncludes("instances/new/index.html", "press an instance", "internal builder jargon");
-expectIncludes("contribute/index.html", "Make one decision more trustworthy", "contribution path");
+// 2026-09-29: Bentley asked for plain wording; the slogan heading "Make one decision more trustworthy" became the literal "How to help".
+expectIncludes("contribute/index.html", "<h1>How to help</h1>", "contribution path");
 expectIncludes("contribute/index.html", "Ways to help", "contribution navigation");
 expectIncludes("contribute/index.html", "A useful correction", "correction section");
 expectIncludes("contribute/index.html", "Add an ownership or alternative link", "relationship contribution shape");
@@ -311,21 +343,26 @@ expectIncludes("weave/index.html", "Add a relationship", "relationship contribut
 expectIncludes("weave/index.html", "What the map should do", "relationship action section");
 expectNotIncludes("weave/index.html", "Try CC", "weave app-first CTA");
 expectIncludes("kosplora/index.html", "Instance spine", "Kosplora instance navigation");
-expectIncludes("instances/messages/index.html", "Instance spine", "Where to Message instance navigation");
+// 2026-09-29: "Instance spine" was internal jargon read aloud to screen readers; the voice rewrite names the nav for what it links to.
+expectIncludes("instances/messages/index.html", 'aria-label="Other apps and tools"', "Where to Message instance navigation");
 expectIncludes("assembly/index.html", "How the files move", "assembly file guide");
 expectIncludes("assembly/index.html", "What this page promises", "assembly consent rules");
 expectIncludes("assembly/index.html", "People bring their own files", "assembly consent rule");
-expectIncludes("assembly/index.html", "Dissent preserved", "assembly dissent preservation rule");
+// 2026-09-29: "Dissent preserved" was a telegraphic label; the voice rewrite states the same rule as a sentence.
+expectIncludes("assembly/index.html", "Where people split stays on the page", "assembly dissent preservation rule");
 expectIncludes("assembly/index.html", "Full group export", "assembly full-group export rule");
 expectIncludes("workshop/index.html", "How the files move", "workshop file guide");
 expectIncludes("workshop/index.html", "What a useful correction includes", "workshop correction rules");
-expectIncludes("workshop/index.html", "Source before score", "workshop source-before-score rule");
+// 2026-09-29: "Source before score" was a coined slogan; the voice rewrite states the same rule as a sentence.
+expectIncludes("workshop/index.html", "A correction needs its source", "workshop source-before-score rule");
 expectIncludes("workshop/index.html", "Keep it reversible", "workshop reversible change rule");
 expectIncludes("slate/index.html", "How the files move", "slate file guide");
 expectIncludes("slate/index.html", "What the plan must keep visible", "slate planning rules");
-expectIncludes("slate/index.html", "Reason stays attached", "slate attached-reason rule");
-expectIncludes("slate/index.html", "Dissent visible", "slate dissent visibility rule");
-expectIncludes("slate/index.html", "Facts contestable", "slate contestability rule");
+// 2026-09-29: the slate's three rule labels ("Reason stays attached", "Dissent visible", "Facts contestable")
+// were telegraphic slogans; the voice rewrite states each rule as a sentence, and these pins follow it.
+expectIncludes("slate/index.html", "Each line keeps its reason", "slate attached-reason rule");
+expectIncludes("slate/index.html", "What the group split on is printed above the plan", "slate dissent visibility rule");
+expectIncludes("slate/index.html", "A fact you think is wrong can be fixed", "slate contestability rule");
 expectIncludes("tour/index.html", "Tour exits", "tour ecosystem exit links");
 expectIncludes("tour/index.html", "Choose your next move", "tour next-move chooser");
 expectIncludes("tour/index.html", "Correct a claim", "tour workshop route");
@@ -334,22 +371,28 @@ expectIncludes("tour/index.html", "../weave/index.html", "tour link to Weave");
 // 2026-08-18: the engine demonstration moved to kosplora/shelf/ when the door became the
 // route walker's front page; these pins follow the content they exist to protect. The door
 // gets its own pins: the routes it lists must exist and the promises must stay put.
-expectIncludes("kosplora/shelf/index.html", "What this instance proves", "Kosplora proof strip");
-expectIncludes("kosplora/shelf/index.html", "Decision transfer", "Kosplora decision-transfer proof");
+// 2026-09-29: Bentley asked for plain wording; the proof strip heading is now "What this page tests".
+expectIncludes("kosplora/shelf/index.html", "What this page tests", "Kosplora proof strip");
+// 2026-09-29: "Decision transfer" was a coined label on a card grid; the shelf now says it plainly in its four notes.
+expectIncludes("kosplora/shelf/index.html", "the same file Conscious Consuming uses", "Kosplora decision-transfer proof");
 expectIncludes("kosplora/shelf/index.html", "../../app/engine.js", "Kosplora shared engine import");
 expectIncludes("kosplora/shelf/index.html", "../../app/decision.js", "Kosplora shared decision import");
 expectIncludes("kosplora/index.html", "Follow a question into the world", "Kosplora door hero");
 expectIncludes("kosplora/index.html", "route/local-ai/index.html", "Kosplora door lists the first route");
 expectIncludes("kosplora/index.html", "shelf/index.html", "Kosplora door reaches the shelf");
-expectIncludes("instances/messages/index.html", "What this instance proves", "Messages proof strip");
-expectIncludes("instances/messages/index.html", "Zero shell edits", "Messages zero-shell proof");
-expectIncludes("funders/index.html", "What support strengthens", "funder support section");
+// 2026-09-29: "instance" is builder jargon on a reader's page; the voice rewrite calls it what it is, a demo.
+expectIncludes("instances/messages/index.html", "What this demo proves", "Messages proof strip");
+// 2026-09-29: Bentley asked for plain wording; the "Zero shell edits:" colon restatement became one sentence, same proof.
+expectIncludes("instances/messages/index.html", "The shared code that draws the page was not edited to make it", "Messages zero-shell proof");
+// 2026-09-29. The brief was rewritten in Bentley's first-person voice; four pinned phrases were an
+// abstract heading, a "we", and two rhythm triplets, so each pin moved to the sentence doing its job.
+expectIncludes("funders/index.html", "What the money buys", "funder support section");
 expectNotIncludes("funders/index.html", "noindex", "funder noindex directive conflicts with its public sitemap entry");
-expectIncludes("funders/index.html", "More people can use it, check it, and adapt it.", "funder public-use framing");
-expectIncludes("funders/index.html", "What we would test", "funder test plan");
+expectIncludes("funders/index.html", "first use by people outside the project", "funder public-use framing");
+expectIncludes("funders/index.html", "What I would test", "funder test plan");
 expectIncludes("funders/index.html", "One new subject", "funder new-subject test");
 expectIncludes("funders/index.html", "Six months of work", "funder work plan");
-expectIncludes("funders/index.html", "Use it, learn, and fix what matters.", "funder work framing");
+expectIncludes("funders/index.html", "publish what happened", "funder work framing");
 expectIncludes("funders/index.html", "Plan one new app", "funder new-app milestone");
 expectIncludes("funders/index.html", "Improve the adoption guide", "funder adoption milestone");
 expectIncludes("funders/index.html", "ADOPTION-KIT.md", "funder link to adoption kit");

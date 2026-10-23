@@ -2,25 +2,27 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/register-snapshot-v1.schema.json",
   "title": "Open Values Register Snapshot",
-  "description": "A reproducible receipt for raw bytes captured from one public register request.",
+  "description": "A record of one download from a public register: what was asked for, when, what came back, and a hash of the saved bytes so anyone can check they have not changed. The capture tool writes it, and later builds read the saved copy instead of going back to the internet.",
   "type": "object",
   "required": ["format", "version", "snapshotId", "registerId", "access", "capturedAt", "request", "response", "license", "parser"],
   "additionalProperties": false,
   "properties": {
-    "format": { "const": "open-values-register-snapshot" },
-    "version": { "const": "1.0.0" },
-    "snapshotId": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}-[0-9a-f]{12}$" },
-    "registerId": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
-    "access": { "enum": ["api", "bulk", "page"] },
-    "capturedAt": { "type": "string", "format": "date-time" },
+    "format": { "description": "Names the file format. Always open-values-register-snapshot.", "const": "open-values-register-snapshot" },
+    "version": { "description": "The version of this format the file follows. Always 1.0.0.", "const": "1.0.0" },
+    "snapshotId": { "description": "This snapshot's id: the capture date, then the first 12 characters of a SHA-256 hash of the rest of the manifest (leaving out format, version, snapshotId and the payload file name). The manifest and payload file names start with it, so a changed capture gets a new id.", "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}-[0-9a-f]{12}$" },
+    "registerId": { "description": "The id of the register this was captured from. It must match a register id in content/registers.json and the folder the snapshot sits in.", "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "access": { "description": "How the bytes were fetched, copied from the register's access on the shelf: api, bulk or page.", "enum": ["api", "bulk", "page"] },
+    "capturedAt": { "description": "When the capture was made, as a UTC date and time.", "type": "string", "format": "date-time" },
     "request": {
+      "description": "What was asked for, recorded so the same request can be repeated. Secret header values are never stored.",
       "type": "object",
       "required": ["method", "url", "query", "scope", "headers", "secretHeaderNames"],
       "additionalProperties": false,
       "properties": {
-        "method": { "const": "GET" },
-        "url": { "type": "string", "pattern": "^https?://" },
+        "method": { "description": "The HTTP method used. Always GET.", "const": "GET" },
+        "url": { "description": "The address requested, without its query string. It must be on one of the hosts the register declares on the shelf.", "type": "string", "pattern": "^https?://" },
         "query": {
+          "description": "The query parameters sent with the request. Each key maps to a list of values, and keys and values are sorted. Keys that look like secrets, such as api_key or token, are refused.",
           "type": "object",
           "additionalProperties": {
             "type": "array",
@@ -28,12 +30,14 @@
             "items": { "type": "string" }
           }
         },
-        "scope": { "type": "string", "minLength": 1 },
+        "scope": { "description": "A plain sentence saying what this request covers and what it leaves out, for example which products and which date range. Evidence notes quote it, so an absence is only read within this scope.", "type": "string", "minLength": 1 },
         "headers": {
+          "description": "The non-secret request headers sent, such as Accept and User-Agent, by header name.",
           "type": "object",
           "additionalProperties": { "type": "string", "minLength": 1 }
         },
         "secretHeaderNames": {
+          "description": "Names of secret headers that were sent, such as Authorization. Only the names are kept; the values come from environment variables and are never written to the file.",
           "type": "array",
           "uniqueItems": true,
           "items": { "enum": ["Authorization", "Cookie", "Proxy-Authorization", "X-Api-Key", "Api-Key"] }
@@ -41,35 +45,38 @@
       }
     },
     "response": {
+      "description": "What came back, with the facts needed to check the saved payload has not changed.",
       "type": "object",
       "required": ["status", "finalUrl", "mediaType", "bytes", "sha256", "payload", "fetchMode"],
       "additionalProperties": false,
       "properties": {
-        "status": { "type": "integer", "minimum": 200, "maximum": 299 },
-        "finalUrl": { "type": "string", "pattern": "^https?://" },
-        "mediaType": { "type": "string", "minLength": 1 },
-        "bytes": { "type": "integer", "minimum": 0 },
-        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-        "payload": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}-[0-9a-f]{12}\\.payload\\.[a-z0-9]{1,10}$" },
-        "fetchMode": { "enum": ["network", "file-import"] }
+        "status": { "description": "The HTTP status code returned. Only success codes from 200 to 299 are kept. A file import records 200.", "type": "integer", "minimum": 200, "maximum": 299 },
+        "finalUrl": { "description": "The full address the bytes came from after any redirects, including the query string.", "type": "string", "pattern": "^https?://" },
+        "mediaType": { "description": "The content type of the payload, such as application/json or text/csv.", "type": "string", "minLength": 1 },
+        "bytes": { "description": "The size of the payload file in bytes.", "type": "integer", "minimum": 0 },
+        "sha256": { "description": "The SHA-256 hash of the payload file, as 64 lowercase hex characters. Verification fails if the file no longer matches.", "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "payload": { "description": "The file name of the saved payload, next to this manifest. It is the snapshotId followed by .payload. and a file extension.", "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}-[0-9a-f]{12}\\.payload\\.[a-z0-9]{1,10}$" },
+        "fetchMode": { "description": "network means the bytes were fetched live by the capture tool. file-import means they came from a file downloaded by hand, while request.url still records where it came from.", "enum": ["network", "file-import"] }
       }
     },
     "license": {
+      "description": "The terms the register publishes its data under.",
       "type": "object",
       "required": ["url", "note"],
       "additionalProperties": false,
       "properties": {
-        "url": { "type": "string", "pattern": "^https?://" },
-        "note": { "type": "string", "minLength": 1 }
+        "url": { "description": "A web address for the publisher's terms of reuse.", "type": "string", "pattern": "^https?://" },
+        "note": { "description": "A short summary of those terms and any limits on how the data should be read or reused.", "type": "string", "minLength": 1 }
       }
     },
     "parser": {
+      "description": "The parser expected to read this payload into observations, and its version.",
       "type": "object",
       "required": ["id", "version"],
       "additionalProperties": false,
       "properties": {
-        "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
-        "version": { "type": "string", "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$" }
+        "id": { "description": "A lowercase hyphenated id for the parser.", "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "version": { "description": "The parser's version number, in major.minor.patch form.", "type": "string", "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$" }
       }
     }
   }

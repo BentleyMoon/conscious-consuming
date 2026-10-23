@@ -100,7 +100,7 @@ Freshness and waste both depend on how fast you drink coffee. A smaller bag with
 | decaf or half-caf | buy intentionally, not as a lesser backup | body fit is part of quality |
 | subscription | pause or size it deliberately | automatic shipments can create stale surplus |
 
-Coffee subscriptions and bulk discounts can quietly overrun the pace of real drinking. A bag that arrives when the old one is still half full is not a better coffee system; it is future waste with nicer branding.
+Coffee subscriptions and bulk discounts can deliver coffee faster than you drink it. A bag that arrives when the old one is still half full is not a better coffee system; it is future waste with nicer branding.
 
 ## Make the default cup lower-waste
 

@@ -4,165 +4,265 @@
 <meta charset="utf-8">
 <script>try{var t=localStorage.getItem('cc.theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#43508c">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#1d7a5a">
 <link rel="icon" href="/app/icon.svg" type="image/svg+xml"><link rel="alternate icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64"><link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
-<title>Find group agreement - Values Commons</title>
-<meta name="description" content="Combine several values files into a shared stance locally in your browser, with dissent visible and no server or account required.">
+<title>Group values - Values Commons</title>
+<meta name="description" content="Several people's values files, added up in your browser. Where the group agrees and where it splits both stay on the page, and nothing is uploaded.">
 <link rel="canonical" href="https://valuescommons.org/assembly/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://valuescommons.org/assembly/">
 <meta property="og:site_name" content="Values Commons">
-<meta property="og:title" content="Find group agreement">
-<meta property="og:description" content="Combine several values files into a shared stance locally in your browser, with dissent visible and no account required.">
+<meta property="og:title" content="Group values">
+<meta property="og:description" content="Several people's values files, added up in your browser. Where the group agrees and where it splits both stay on the page.">
 <meta property="og:image" content="https://valuescommons.org/og-standard.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Find group agreement">
-<meta name="twitter:description" content="Combine several values files into a shared stance locally in your browser, with dissent visible and no account required.">
+<meta name="twitter:title" content="Group values">
+<meta name="twitter:description" content="Several people's values files, added up in your browser. Where the group agrees and where it splits both stay on the page.">
 <meta name="twitter:image" content="https://valuescommons.org/og-standard.png">
 <style>
-  /* A FOURTH skin (civic "assembly hall"): warm paper, indigo-blue accent. Same engine underneath. */
-  :root{--shadow-sm:0 1px 2px rgba(40,34,24,.07),0 1px 1px rgba(40,34,24,.05);--shadow-md:0 2px 6px rgba(40,34,24,.09),0 10px 26px rgba(40,34,24,.07);--shadow-lg:0 6px 16px rgba(40,34,24,.12),0 22px 48px rgba(40,34,24,.10); --bg:#f8f5ee; --surface:#fffdf8; --ink:#1f2433; --muted:#5b6172; --hint:#8a8f9e;
-    --line:rgba(30,35,55,.12); --accent:#43508c; --amber:#a9722a; --track:#e7e4dc; }
-  /* Nine surfaces stated a light palette and no alternative, so a reader who asks for
-     dark was overridden on most of the commons and honoured on two of it. Same values
-     the Institute uses, so the family reads as one in either mode. */
-  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--shadow-sm:0 1px 2px rgba(0,0,0,.55);--shadow-md:0 2px 8px rgba(0,0,0,.6),0 12px 30px rgba(0,0,0,.45);--shadow-lg:0 8px 20px rgba(0,0,0,.65),0 28px 56px rgba(0,0,0,.5);--bg:#11140f;--surface:#181d16;--ink:#eef1e8;--muted:#c0c9bd;--hint:#8b978a;--line:#2b322a;--accent:#6fce8c;--track:#2b322a}}
-
-  @media (prefers-color-scheme:dark){:root{ color-scheme:dark;
-    --bg:#15161d; --surface:#1d1f29; --ink:#e8e7f0; --muted:#a0a0b5; --hint:#74748a;
-    --line:rgba(255,255,255,.12); --accent:#8b96e6; --amber:#d39a5a; --track:#2a2c38; }}
+  /* Group values, in the tour's lab-notebook register (2026-09-29). One plate holds the tool;
+     the table reads like the tour's step 3: each person's weights, the group's row under them, and
+     the values they split on hatched. Green is the reader's values; this page has no sources, so
+     it uses no ochre. */
+  :root{--bg:#f8f5ee;--surface:#ffffff;--sunk:#eef1ef;--ink:#18211d;--muted:#566560;--hint:#607068;
+    --line:#e3e7e5;--line-strong:#cfd8d3;--accent:#1d7a5a;--accent-bright:#17936a;--accent-soft:#e9f3ee;
+    --track:#eef1ef;--warn:#a8432f;--band:#eef2f0;--on-accent:#ffffff;--graphite:#4d5357;--hatch:rgba(24,33,29,.36);
+    --e1:0 1px 2px rgba(24,38,30,.05),0 3px 10px rgba(24,38,30,.05);
+    --font-display:"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,ui-serif,serif;
+    --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--max:1040px}
+  @media (prefers-color-scheme:dark){:root{--bg:#11140f;--surface:#161d18;--sunk:#0b100d;--ink:#e6ece8;--muted:#9aa8a1;--hint:#87968e;
+    --line:rgba(255,255,255,.10);--line-strong:rgba(255,255,255,.17);--accent:#5dcaa5;--accent-bright:#6ad9ab;--accent-soft:#16241d;
+    --track:#1b241f;--warn:#e3a594;--band:#131b16;--on-accent:#0b100d;--graphite:#b6bcc0;--hatch:rgba(230,236,232,.32);
+    --e1:0 1px 2px rgba(0,0,0,.3),0 3px 10px rgba(0,0,0,.3)}}
+  :root[data-theme="dark"]{--bg:#11140f;--surface:#161d18;--sunk:#0b100d;--ink:#e6ece8;--muted:#9aa8a1;--hint:#87968e;--line:rgba(255,255,255,.10);--line-strong:rgba(255,255,255,.17);--accent:#5dcaa5;--accent-bright:#6ad9ab;--accent-soft:#16241d;--track:#1b241f;--warn:#e3a594;--band:#131b16;--on-accent:#0b100d;--graphite:#b6bcc0;--hatch:rgba(230,236,232,.32);--e1:0 1px 2px rgba(0,0,0,.3),0 3px 10px rgba(0,0,0,.3);color-scheme:dark}
+  :root[data-theme="light"]{--bg:#f8f5ee;--surface:#ffffff;--sunk:#eef1ef;--ink:#18211d;--muted:#566560;--hint:#607068;--line:#e3e7e5;--line-strong:#cfd8d3;--accent:#1d7a5a;--accent-bright:#17936a;--accent-soft:#e9f3ee;--track:#eef1ef;--warn:#a8432f;--band:#eef2f0;--on-accent:#ffffff;--graphite:#4d5357;--hatch:rgba(24,33,29,.36);--e1:0 1px 2px rgba(24,38,30,.05),0 3px 10px rgba(24,38,30,.05);color-scheme:light}
   *{box-sizing:border-box}
-  a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;line-height:1.6}
-  .wrap{max-width:760px;margin:0 auto;padding:2rem 1.2rem 4rem}
-  .sitebar{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;margin:0 0 1.6rem;padding:0 0 .9rem;border-bottom:1px solid var(--line)}
-  .sitebar .home{font-family:Georgia,"Times New Roman",serif;font-weight:700;color:var(--ink);text-decoration:none}
-  .sitebar nav{display:flex;gap:.35rem .8rem;flex-wrap:wrap;font-size:0.86rem}
-  .sitebar nav a{color:var(--muted);text-decoration:none}
-  .sitebar nav a[aria-current="page"]{color:var(--accent);font-weight:700}
-  .sitebar nav a:hover{color:var(--accent);text-decoration:none}
-  .loopnote{font-size:0.75rem;color:var(--hint);margin:-.8rem 0 1.4rem}
-  h1{font-family:Georgia,"Times New Roman",serif;font-weight:600;font-size:2.4rem;letter-spacing:-.01em;margin:.2rem 0 .3rem}
-  .sub{color:var(--muted);margin:0 0 1.3rem;font-size:1rem}
-  .banner{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:.85rem 1.05rem;margin:0 0 1.6rem;font-size:0.86rem;color:var(--muted)}
-  .banner b{color:var(--ink)} .banner a{color:var(--accent)}
-  .panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.2rem;margin-bottom:1.3rem}
-  .field{display:flex;flex-direction:column;gap:.3rem;margin-bottom:.9rem}
-  .field label{font-size:0.75rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--hint)}
-  #aname{font:inherit;font-size:1rem;padding:.5rem .7rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
-  #drop{border:1.5px dashed var(--line);border-radius:10px;padding:1rem;text-align:center;color:var(--muted);transition:.15s;cursor:pointer}
-  #drop.over{border-color:var(--accent);background:rgba(67,80,140,.05);color:var(--ink)}
-  .filebtn{display:inline-block;font:inherit;font-weight:600;color:#fff;background:var(--accent);padding:.5rem .9rem;border-radius:8px;cursor:pointer}
-  #loadnote{font-size:0.86rem;color:var(--muted);min-height:1.1em;margin:.5rem 0 0}
-  #members{margin:.7rem 0 0}
-  .member{display:flex;gap:.6rem;align-items:center;padding:.4rem 0;border-bottom:1px solid var(--line)}
-  .member:last-child{border-bottom:none}
-  .mnick{flex:1;font:inherit;font-size:1rem;padding:.35rem .55rem;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink)}
-  .member .src{color:var(--hint);font-size:0.75rem;white-space:nowrap}
-  .member .rm{border:none;background:none;color:var(--hint);font-size:1rem;cursor:pointer;padding:.2rem .4rem;border-radius:6px}
-  .member .rm:hover{color:var(--amber);background:var(--track)}
-  .muted{color:var(--muted)} .err{color:#b3402f}
-  /* the collective */
-  .empty h2{font-family:Georgia,serif;font-size:1.35rem;margin:.2rem 0 .6rem}
-  .empty ol{margin:0 0 .8rem;padding-left:1.2rem;color:var(--ink)} .empty li{margin:.3rem 0}
-  .col h2{font-family:Georgia,serif;font-weight:600;font-size:1.35rem;margin:.2rem 0 1rem;display:flex;align-items:baseline;gap:.6rem}
-  .col h2 .n{font-family:inherit;font-size:0.75rem;font-weight:600;color:#fff;background:var(--accent);padding:.1rem .55rem;border-radius:999px}
-  .vrows{display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.2rem}
-  .vrow{display:grid;grid-template-columns:9.5rem 1fr 2.2rem 4rem;gap:.7rem;align-items:center}
-  .vl b{font-size:1rem;display:block;line-height:1.2} .vl small{font-size:0.75rem;color:var(--hint)}
-  .track{height:9px;background:var(--track);border-radius:6px;overflow:hidden}
-  .fill{height:100%;background:var(--accent);border-radius:6px}
-  .mn{font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
-  .cons{font-size:0.75rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;text-align:center;padding:.12rem 0;border-radius:6px}
-  .cons.hi{background:rgba(67,80,140,.14);color:var(--accent)}
-  .cons.mid{background:var(--track);color:var(--muted)}
-  .cons.lo{background:rgba(169,114,42,.16);color:var(--amber)}
-  .readout{border-top:1px solid var(--line);padding-top:.9rem;margin-bottom:1rem}
-  .readout p{margin:.35rem 0;font-size:0.86rem}
-  .tag{font-size:0.75rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.1rem .45rem;border-radius:6px;margin-right:.4rem}
-  .tag.share{background:rgba(67,80,140,.14);color:var(--accent)} .tag.split{background:rgba(169,114,42,.16);color:var(--amber)}
-  .actions{display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center;border-top:1px solid var(--line);padding-top:1rem}
-  .btn{font:inherit;font-weight:600;color:#fff;background:var(--accent);border:none;padding:.55rem .95rem;border-radius:8px;cursor:pointer}
-  .carry{font-size:0.86rem;color:var(--muted)} .carry a{color:var(--accent)}
-  .repro{font-size:0.75rem;color:var(--hint);margin:1rem 0 0;font-style:italic}
-  .flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.65rem;margin:0 0 1.3rem}
-  .flow div,.flow a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.85rem .95rem;color:var(--muted);font-size:0.86rem;text-decoration:none}
-  .flow a:hover{border-color:var(--accent)}
-  .flow b{display:block;color:var(--ink);font-family:Georgia,"Times New Roman",serif;font-size:1rem;margin-bottom:.15rem}
-  .flow small{display:block;color:var(--hint);font-size:0.75rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.2rem}
-  footer{margin-top:2rem;color:var(--hint);font-size:0.86rem;border-top:1px solid var(--line);padding-top:1rem}
-  footer a{color:var(--accent)} code{background:var(--track);padding:.05rem .35rem;border-radius:4px;font-size:0.86rem}
-  :root[data-theme="light"]{--bg:#f8f5ee;--surface:#fffdf8;--ink:#1f2433;--muted:#5b6172;--hint:#8a8f9e;--line:rgba(30,35,55,.12);--accent:#43508c;--amber:#a9722a;--track:#e7e4dc;color-scheme:light}
-  :root[data-theme="dark"]{--bg:#15161d;--surface:#1d1f29;--ink:#e8e7f0;--muted:#a0a0b5;--hint:#74748a;--line:rgba(255,255,255,.12);--accent:#8b96e6;--amber:#d39a5a;--track:#2a2c38;color-scheme:dark}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-display);font-size:1.08rem;line-height:1.58;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+  a:focus-visible,button:focus-visible,input:focus-visible,label:focus-within{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.55rem .9rem;z-index:30}
+  .skip:focus{left:0}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1rem,4vw,2.2rem)}
+  h1,h2,h3{font-weight:550;letter-spacing:-.01em;text-wrap:balance}
+  .mono{font-family:var(--font-mono)}
 
-  /* depth pass */
-  /* Containers lift off the page instead of being outlined on it, so a card, a chip and
-     a panel stop announcing themselves with the same single grey pixel. */
-  .banner,.mnick,.panel{box-shadow:var(--shadow-md);background:var(--surface)}
-  h1{font-weight:550;letter-spacing:-0.02em}
-  h2{font-weight:550;letter-spacing:-0.01em}
-.skip{position:absolute;left:-999px;top:.4rem;background:#1d7a5a;color:#fff;padding:.5rem .9rem;border-radius:4px;z-index:100;text-decoration:none}.skip:focus{left:.6rem}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}</style>
+  .masthead{border-bottom:1px solid var(--line-strong)}
+  .masthead .wrap{display:flex;align-items:baseline;justify-content:space-between;gap:.6rem 1rem;flex-wrap:wrap;padding-top:1.1rem;padding-bottom:.95rem}
+  .brand{font-weight:700;font-size:1.25rem;letter-spacing:-.015em;color:var(--ink)}
+  .brand:hover{text-decoration:none}
+  .exits{display:flex;align-items:center;gap:.4rem 1.1rem;flex-wrap:wrap;font-family:var(--font-mono);font-size:0.75rem}
+  .exits a{color:var(--muted);padding:.35rem 0}
+  .exits a:hover{color:var(--ink)}
+  .exits a[aria-current="page"]{color:var(--ink);font-weight:700;border-bottom:1px solid var(--ink)}
+
+  .hero{padding:clamp(1.8rem,4vw,2.8rem) 0 1.4rem}
+  .hero h1{font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.08;margin:0 0 .9rem;max-width:22ch}
+  .hero .lede{font-size:1.12rem;color:var(--muted);max-width:58ch;margin:0}
+
+  .plate-id{display:flex;justify-content:space-between;align-items:baseline;gap:.3rem 1rem;flex-wrap:wrap;margin:0 0 1rem;padding-bottom:.4rem;border-bottom:1px solid color-mix(in srgb,var(--ink) 55%,transparent)}
+  .plate-id .pn{font-family:var(--font-mono);font-size:0.75rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
+  .plate-id .fig{font-style:italic;font-size:0.92rem;color:var(--muted)}
+
+  .step{padding:clamp(2rem,5vw,3.2rem) 0;border-top:1px solid var(--line)}
+  .step.band{background:var(--band)}
+  .step h2{font-size:clamp(1.4rem,2.5vw,1.85rem);font-style:italic;font-weight:500;margin:0 0 .5rem}
+  .step .lead{color:var(--muted);max-width:62ch;margin:0 0 1.3rem}
+  .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(1.4rem,4vw,2.8rem);align-items:start}
+  .card{background:var(--surface);border:1px solid var(--line-strong);border-radius:4px;box-shadow:var(--e1);padding:1rem 1.1rem}
+  .hand{font-family:"Segoe Print","Ink Free","Bradley Hand","Chalkboard SE","Marker Felt",cursive;color:var(--graphite);font-size:0.98rem;line-height:1.4;transform:rotate(-1.4deg);transform-origin:left top;margin:1.1rem 0 0;max-width:36ch}
+  .cap{font-size:0.9rem;color:var(--muted);margin:1rem 0 0;max-width:64ch}
+  .receipt{display:flex;flex-wrap:wrap;gap:.2rem 1.3rem;margin:1.1rem 0 0;padding:.5rem 0;border-top:1px solid color-mix(in srgb,var(--ink) 55%,transparent);border-bottom:1px dotted color-mix(in srgb,var(--ink) 55%,transparent);font-family:var(--font-mono);font-size:0.75rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+
+  /* the room: who has brought a file */
+  .field{display:flex;flex-direction:column;gap:.3rem;margin-bottom:1rem}
+  .field .lab{font-family:var(--font-mono);font-size:0.75rem;font-weight:600;color:var(--hint)}
+  #aname{font:inherit;font-size:1rem;padding:.5rem .7rem;border:1px solid var(--line-strong);border-radius:3px;background:var(--bg);color:var(--ink)}
+  #drop{border:1px dashed var(--line-strong);border-radius:4px;padding:1rem;text-align:center;color:var(--muted);cursor:pointer}
+  #drop.over{border-color:var(--accent);background:var(--accent-soft);color:var(--ink)}
+  #drop .or{margin-top:.5rem;font-size:0.86rem}
+  .filebtn{display:inline-flex;align-items:center;min-height:2.6rem;font-family:var(--font-mono);font-size:0.75rem;font-weight:600;color:var(--on-accent);background:var(--accent);padding:.5rem 1rem;border-radius:3px;cursor:pointer}
+  .filebtn:hover{background:var(--accent-bright)}
+  #loadnote{font-family:var(--font-mono);font-size:0.75rem;color:var(--muted);min-height:1.1em;margin:.5rem 0 0}
+  #members{margin:.4rem 0 0}
+  .member{display:flex;gap:.6rem;align-items:center;padding:.45rem 0;border-top:1px solid var(--line)}
+  .member:first-child{border-top:0}
+  .mnick{flex:1;min-width:0;font:inherit;font-size:1rem;padding:.35rem .55rem;border:1px solid var(--line-strong);border-radius:3px;background:var(--bg);color:var(--ink)}
+  .member .src{color:var(--hint);font-family:var(--font-mono);font-size:0.75rem;white-space:nowrap}
+  .member .rm{border:1px solid transparent;background:none;color:var(--hint);font-size:1rem;cursor:pointer;min-width:2.2rem;min-height:2.2rem;border-radius:3px}
+  .member .rm:hover{color:var(--ink);border-color:var(--line-strong)}
+  .muted{color:var(--muted)} .err{color:var(--warn)}
+
+  /* the result: each person's weights, the group's row, and how far apart they are */
+  #collective{margin-top:clamp(1.4rem,3vw,2rem)}
+  .empty h3,.col h3{font-size:1.2rem;font-style:italic;font-weight:500;margin:0 0 .5rem}
+  .col h3 .n{font-family:var(--font-mono);font-style:normal;font-size:0.75rem;font-weight:600;color:var(--hint);margin-left:.5rem}
+  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .grid{width:100%;border-collapse:collapse;font-size:0.95rem}
+  .grid th,.grid td{padding:.5rem .45rem;text-align:center;border-bottom:1px solid var(--line)}
+  .grid thead th{font-family:var(--font-mono);font-size:0.75rem;font-weight:600;color:var(--hint);letter-spacing:.03em;vertical-align:bottom}
+  .grid thead th:first-child,.grid tbody th{text-align:left}
+  .grid tbody th{font-weight:650}
+  .grid tbody th small{display:block;font-family:var(--font-mono);font-weight:400;font-size:0.75rem;color:var(--hint)}
+  .grid td{font-family:var(--font-mono);font-weight:700}
+  .grid td.tog{color:var(--accent);border-left:2px solid var(--line-strong)}
+  .grid td.word{font-size:0.75rem;font-weight:600;text-align:left;white-space:nowrap}
+  .grid .hi{color:var(--accent)}
+  .grid .mid{color:var(--muted)}
+  .grid .spl{background:repeating-linear-gradient(-45deg,var(--hatch) 0 1px,transparent 1px 5px)}
+  .legend{display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--hint);margin:.7rem 0 0}
+  .legend i{display:inline-block;width:1.1rem;height:.7rem;border:1px solid var(--line-strong);vertical-align:-.05rem;margin-right:.35rem}
+  .legend i.h{background:repeating-linear-gradient(-45deg,var(--hatch) 0 1px,transparent 1px 4px)}
+  .say{margin:1rem 0 0;max-width:64ch}
+  .say b{font-weight:650}
+  .actions{display:flex;flex-wrap:wrap;gap:.55rem;align-items:center;margin-top:1.2rem;padding-top:1rem;border-top:1px dashed var(--line-strong)}
+  .btn{font-family:var(--font-mono);font-size:0.75rem;font-weight:600;display:inline-flex;align-items:center;min-height:2.6rem;padding:.5rem .95rem;border-radius:3px;border:1px solid var(--line-strong);color:var(--ink);background:transparent;cursor:pointer;text-decoration:none}
+  .btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+  .btn.primary:hover{background:var(--accent-bright);color:var(--on-accent)}
+  .carry{font-size:0.9rem;color:var(--muted);margin:.8rem 0 0;max-width:64ch}
+
+  /* the four notes, as on the Institute's /windows/ page */
+  .notes{max-width:66ch;margin-top:clamp(1.6rem,4vw,2.4rem)}
+  .notes p{margin:0 0 1rem}
+  .notes .h{font-style:italic;font-weight:650}
+  .notes .dev{padding-left:1rem;border-left:2px solid var(--graphite)}
+  .notes .fur{padding-left:1rem;border-left:2px dotted var(--line-strong)}
+
+  /* the rules, written as sentences */
+  ol.steps,ul.rules{margin:0;padding-left:1.3rem;max-width:62ch}
+  ol.steps li,ul.rules li{margin:0 0 .7rem}
+  ul.rules b{font-weight:650}
+
+  footer{border-top:1px solid var(--line);padding:1.6rem 0 2.8rem;color:var(--hint);font-size:0.9rem}
+  code{font-family:var(--font-mono);font-size:0.86rem;background:var(--track);padding:.05rem .3rem;border-radius:3px}
+
+  @media (max-width:820px){ .two{grid-template-columns:minmax(0,1fr)} }
+  @media (max-width:520px){
+    body{font-size:1rem}
+    .grid th,.grid td{padding:.42rem .25rem;font-size:0.86rem}
+    .grid td.word{font-size:0.75rem}
+  }
+</style>
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
-<div class="wrap">
-  <header class="sitebar">
-    <a class="home" href="../index.html">◇ Values Commons</a>
-    <nav aria-label="Group decision tools">
-      <a href="../assembly/index.html" aria-current="page">Group agreement</a>
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="../index.html">&#9671; Values Commons</a>
+    <nav class="exits" aria-label="Group decision tools">
+      <a href="../assembly/index.html" aria-current="page">Group values</a>
       <a href="../workshop/index.html">Fact repair</a>
       <a href="../slate/index.html">Shared plan</a>
       <a href="../tour/index.html">Tour</a>
-      <a href="../instances/index.html">Apps</a>
     </nav>
+  </div>
+</header>
+
+<main>
+  <header class="hero">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">Group values</span><span class="fig">Several values files, added up in your browser.</span></p>
+      <h1 id="content" tabindex="-1">See where your group agrees, and where it splits</h1>
+      <p class="lede">Each person brings the small file their app saved. It holds how much they care about each value, from 0 to 5, and no name. This page adds the files up in your browser and puts every person's weights beside the group's. Nothing is uploaded, and anyone holding the same files gets the same table.</p>
+    </div>
   </header>
-  <p class="loopnote">From individual rules to a group decision. This page combines only the files people choose to bring.</p>
-  <h1 id="content" tabindex="-1">Find group agreement</h1>
-  <p class="sub">Combine several values files in this browser. The result shows both common ground and disagreement, and the group can export it for the next decision.</p>
 
-  <div class="banner">
-    <b>Values stay with the people who set them.</b> Each person chooses whether to bring a file. The tally runs in this browser, uploads nothing, and can be reproduced by anyone holding the same inputs. <a href="../docs/FEDERATION.md">How file-sharing works →</a>
-  </div>
-
-  <section class="flow" aria-label="How the files move">
-    <div><small>Input</small><b>Values files</b>Each person brings a small file exported from any compatible app.</div>
-    <div><small>This page</small><b>Shared stance</b>The browser combines the files, shows shared values and dissent, and uploads nothing.</div>
-    <a href="../slate/index.html"><small>Next</small><b>Carry into a plan</b>Export the full group file so the action step can keep the dissent trail.</a>
-  </section>
-
-  <section class="flow" aria-label="What this page promises">
-    <div><small>Consent</small><b>People bring their own files</b>The group does not infer or scrape anyone's values.</div>
-    <div><small>This device</small><b>No center decides</b>The tally runs in this browser. Anyone holding the same files can reproduce it.</div>
-    <div><small>Disagreement</small><b>Dissent preserved</b>Split values stay visible instead of being flattened into fake unanimity.</div>
-    <a href="../slate/index.html"><small>Carry forward</small><b>Full group export</b>Use the full group file when the shared plan needs both shared values and the dissent trail.</a>
-  </section>
-
-  <div class="panel">
-    <div class="field">
-      <label for="aname">Name this group</label>
-      <input id="aname" value="Our group" autocomplete="off" spellcheck="false">
-    </div>
-    <div class="field">
-      <label>Add everyone's values files</label>
-      <div id="drop">
-        <label class="filebtn">Choose values files<input type="file" id="afile" accept="application/json,.json" multiple hidden></label>
-        <div style="margin-top:.5rem;font-size:.85rem">…or drag &amp; drop them here. Nothing leaves your device.</div>
+  <section class="step" aria-labelledby="h-room">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">Plate I</span><span class="fig">Fig. 1. The values files you add, and the group table they make.</span></p>
+      <h2 id="h-room">Bring the files</h2>
+      <p class="lead">Two files are enough to see a split. The label beside each file comes from its filename or from the app that made it, and you can change it. The full group export lists these labels, so use whatever the group is happy to have written down.</p>
+      <div class="two">
+        <div class="card">
+          <div class="field">
+            <label class="lab" for="aname">The group's name</label>
+            <input id="aname" value="Our group" autocomplete="off" spellcheck="false">
+          </div>
+          <div class="field">
+            <span class="lab" id="lab-files">Everyone's values files</span>
+            <div id="drop" aria-labelledby="lab-files">
+              <label class="filebtn">Choose values files<input type="file" id="afile" accept="application/json,.json" multiple hidden></label>
+              <div class="or">or drop them here. They are read on this device and go nowhere else.</div>
+            </div>
+            <p id="loadnote" role="status"></p>
+          </div>
+          <div id="members"></div>
+        </div>
+        <div>
+          <p class="cap" style="margin-top:0">A values file comes from <a href="../app/index.html">Conscious Consuming</a>, <a href="../kosplora/index.html">Kosplora</a>, <a href="../instances/messages/index.html">Where to Message</a> or step 1 of <a href="../tour/index.html">the tour</a>. It holds weights and nothing that says who you are. <a href="../passport/index.html">What a values file carries</a>.</p>
+          <p class="hand">No files to hand? Load the example group and look at the Autonomy row before anything else.</p>
+        </div>
       </div>
-      <p id="loadnote"></p>
+
+      <div id="collective"></div>
+
+      <div class="notes" aria-label="Notes on the table">
+        <p><span class="h">What&rsquo;s happening.</span> Each row is one value. The numbers are each person&rsquo;s weight, 0 to 5, and the Together column is their average. The word at the end says how far apart they are, from the spread of their weights: aligned when the spread is 0.75 or less, split when it is more than 1.25, mixed in between. A value someone&rsquo;s file leaves out is left out of that row for them; it does not count as a 0.</p>
+        <p><span class="h">Why it matters.</span> An average on its own makes every group look as if it mostly agrees. The split rows are what the group needs to talk about, and the full group export carries them to the <a href="../slate/index.html">shared plan</a>, which prints them above its list.</p>
+        <p class="dev"><span class="h">Devil&rsquo;s advocate.</span> In the example, Ada and Cy put Autonomy at 5 and Ben and Dee put it at 1. The average is 3.0, a number none of the four chose, which is why the row is hatched and not trusted. The page also takes every file on trust: it cannot tell whether Ben&rsquo;s file was made by Ben, and anyone can edit one in a text editor. Use it with people you already trust. It counts files, and it has no idea how many people are behind them.</p>
+        <p class="fur"><span class="h">Rabbit hole.</span> How the files travel between people and apps with no server in the middle is written up in <a href="../docs/FEDERATION.md">how file-sharing works</a>.</p>
+      </div>
     </div>
-    <div id="members"></div>
+  </section>
+
+  <section class="step band" aria-labelledby="h-move">
+    <div class="wrap">
+      <div class="two">
+        <div>
+          <h2 id="h-move">How the files move</h2>
+          <ol class="steps">
+            <li>Each person saves a values file from an app that writes one.</li>
+            <li>They hand it to whoever is running this page, any way they like: email, a chat, a USB stick. This page sends nothing anywhere.</li>
+            <li>The files go in above. The group&rsquo;s result can be saved as a file, either the group&rsquo;s values on their own or the full group export, which also carries who split on what.</li>
+            <li>The full group export goes into the <a href="../slate/index.html">shared plan</a>, where the group&rsquo;s values are applied to the facts about real options.</li>
+          </ol>
+          <p>Group values and the shared plan are one of two pairs of group tools in this family. In the other pair, the Work Party reads positions written on the Socratic Hearth. The two pairs do not read each other&rsquo;s files yet. <a href="https://theworkparty.org/#group-files">See where each group file goes</a>.</p>
+        </div>
+        <div>
+          <h2 id="h-promise">What this page promises</h2>
+          <ul class="rules">
+            <li>People bring their own files. Nobody&rsquo;s values are guessed, looked up or collected from anywhere else.</li>
+            <li>The adding up happens in this browser and uploads nothing. You can check by opening your browser&rsquo;s network panel and dropping a file in.</li>
+            <li>Where people split stays on the page, next to where they agree. A split value is never folded into the average without a mark on it.</li>
+            <li><b>Full group export</b> is the file to take to the shared plan. It holds each value&rsquo;s average, its spread, how many files gave it a weight, and the list of splits.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    This page runs the same scoring code as <a href="../app/index.html">Conscious Consuming</a>, <a href="../kosplora/index.html">Kosplora</a> and <a href="../instances/messages/index.html">Where to Message</a>. Next step: <a href="../slate/index.html">make a shared plan</a>. Back to <a href="../index.html">Values Commons</a>.
+    <!-- family:start -->
+<style>
+  /* sizes, spacing and case follow research/design_system_audit.js: the eight-step scale, the 0.25rem grid, no uppercase */
+  .fam{border-top:1px solid var(--line,#e3e7e5);margin-top:1.5rem;padding-top:1.25rem;grid-column:1/-1;flex-basis:100%;width:100%}
+  .fam-foot{border-top:1px solid var(--line,#e3e7e5);padding:1.25rem 0 2.5rem}
+  .fam-foot .fam,.fam-after .fam{border-top:0;margin-top:0}
+  .fam>p{margin:0 0 1rem;font-family:var(--font-mono,ui-monospace,monospace);font-size:.75rem;color:var(--hint,var(--muted,#566560))}
+  .fam-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(10.5rem,1fr));gap:1rem 1.5rem}
+  .fam-head{margin:0 0 .5rem;font-size:.86rem;font-weight:700;color:var(--ink,#18211d)}
+  .fam ul{list-style:none;margin:0;padding:0}
+  .fam li{margin:0 0 .5rem}
+  .fam a{display:block;text-decoration:none;color:inherit;border:0;box-shadow:none}
+  .fam a:hover .fam-name{text-decoration:underline}
+  .fam-name{display:block;font-size:.86rem;font-weight:600;color:var(--accent,#1d7a5a)}
+  .fam-desc{display:block;font-size:.75rem;line-height:1.4;color:var(--muted,#566560)}
+  .fam-you{display:inline-block;margin-top:.25rem;font-family:var(--font-mono,ui-monospace,monospace);font-size:.64rem;color:var(--ink,#18211d)}
+</style>
+<nav class="fam" aria-label="The Futurism Institute family">
+  <p>The Futurism Institute family</p>
+  <div class="fam-cols"><div><p class="fam-head">Start here</p><ul><li><a href="https://futurisminstitute.org"><span class="fam-name">Futurism Institute</span><span class="fam-desc">How the projects fit together</span></a></li></ul></div><div><p class="fam-head">Research</p><ul><li><a href="https://bentleymoon.com"><span class="fam-name">Bentley Moon</span><span class="fam-desc">Research record and films</span></a></li></ul></div><div><p class="fam-head">Records</p><ul><li><a href="https://bentleymoon.com/research/checking-ai/"><span class="fam-name">Checking AI</span><span class="fam-desc">When one AI can check another</span></a></li><li class="fam-here"><a href="https://valuescommons.org/app/"><span class="fam-name">Conscious Consuming</span><span class="fam-desc">Products and services, by what you care about</span><span class="fam-you">You are here</span></a></li><li><a href="https://dignityneeds.com"><span class="fam-name">Dignity Needs</span><span class="fam-desc">What every person should be able to expect</span></a></li><li><a href="https://kosplora.org"><span class="fam-name">Kosplora</span><span class="fam-desc">Learning and research tools</span></a></li><li><a href="https://legibleai.org"><span class="fam-name">Legible AI</span><span class="fam-desc">A first road into AI safety</span></a></li><li><a href="https://legibleai.org/searches/"><span class="fam-name">AI Searches</span><span class="fam-desc">A shared record of AI answers, with their sources</span></a></li></ul></div><div><p class="fam-head">Groups</p><ul><li><a href="https://socratichearth.org"><span class="fam-name">The Socratic Hearth</span><span class="fam-desc">Talk a question through, disagreements kept</span></a></li><li><a href="https://theworkparty.org"><span class="fam-name">The Work Party</span><span class="fam-desc">What a group agreed, as a file it keeps</span></a></li></ul></div><div><p class="fam-head">Places</p><ul><li><a href="https://earthenbeings.com"><span class="fam-name">Earthen Beings</span><span class="fam-desc">Communities and land projects in the Pacific Northwest</span></a></li><li><a href="https://basicdignity.com"><span class="fam-name">Basic Dignity</span><span class="fam-desc">Draft rules for whoever holds what a person needs, from a shared house to the companies that own AI.</span></a></li></ul></div></div>
+</nav>
+<!-- family:end -->
   </div>
-
-  <div id="collective"></div>
-
-  <footer>
-    Part of <a href="../index.html"><b>Values Commons</b></a> - the same <code>engine.js</code> as
-    <a href="../app/index.html">Conscious Consuming</a>, <a href="../kosplora/index.html">Kosplora</a>, and
-    <a href="../instances/messages/index.html">Where to Message</a>. Files by consent: no server, no center, no capture.
-  </footer>
-</div>
+</footer>
 
 <script src="../app/engine.js"></script>
 <script src="../app/sigil.js"></script>
@@ -170,25 +270,27 @@
 (function(){
   'use strict';
   var box=document.getElementById('collective');
-  if(!(window.CC && CC.engine)){ box.innerHTML='<p class="err">Couldn’t load the engine. Refresh, or open this page from the <a href="../index.html">Values Commons home</a>.</p>'; return; }
+  if(!(window.CC && CC.engine)){ box.innerHTML='<p class="err">The engine did not load. Refresh the page, or go back to <a href="../index.html">Values Commons</a>.</p>'; return; }
   var E=CC.engine;
   // Display labels for the shared universal vocabulary (docs/VALUES-PASSPORT.md).
   var LABELS={
-    planet:['Planet','environment, climate, waste'], people:['People','fair labour, dignity, ethics'],
-    openness:['Openness','transparency, open source'], access:['Access','affordable, low-fee, easy'],
-    wellbeing:['Wellbeing','health, safety, calm'], autonomy:['Autonomy','privacy, control, independence'],
-    animals:['Animals','welfare, cruelty-free'], community:['Community','local, cooperative, mutual aid'],
-    quality:['Quality','rigour, durability, craft'], joy:['Joy','delight, meaning, beauty']
+    planet:['Planet','climate, waste'], people:['People','fair work, dignity'],
+    openness:['Openness','transparency, open source'], access:['Access','cheap, easy to get'],
+    wellbeing:['Wellbeing','health, safety'], autonomy:['Autonomy','privacy, control'],
+    animals:['Animals','welfare, cruelty-free'], community:['Community','local, cooperative'],
+    quality:['Quality','durability, craft'], joy:['Joy','delight, beauty']
   };
   var members=[]; // [{ nick, values, source }]
   var nameEl=document.getElementById('aname'), fileEl=document.getElementById('afile');
   function aname(){ return (nameEl && nameEl.value.trim()) || 'Our group'; }
   function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function slug(){ return aname().toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'assembly'; }
+  function list(a){ return a.length<2?a.join(''):a.slice(0,-1).join(', ')+' and '+a[a.length-1]; }
 
   function addPassport(p, fallback){
     if(!p || !p.values || typeof p.values!=='object') return false;
     var nick = (p.source && p.source!=='conscious-consuming' && p.source!=='collective' && p.source!=='a group') ? p.source : (fallback||'');
-    members.push({ nick: nick || ('member '+(members.length+1)), values:p.values, source:p.source||'' });
+    members.push({ nick: nick || ('person '+(members.length+1)), values:p.values, source:p.source||'' });
     return true;
   }
   function loadFiles(list){
@@ -203,67 +305,70 @@
     });
   }
 
-  function loadExample(){   // kill the cold-start: a reviewer sees a collective (with real dissent) form in one click
-    members = [   // shaped so the demo clearly shows SHARED (planet, openness) vs SPLIT (autonomy, access)
+  function loadExample(){   // one click to a group with a real split: Planet and Openness shared, Autonomy and Access split
+    members = [
       { nick:'Ada', source:'example', values:{ planet:5, people:4, openness:5, access:1, autonomy:5, community:4 } },
       { nick:'Ben', source:'example', values:{ planet:5, people:5, openness:4, access:2, autonomy:1, community:5 } },
       { nick:'Cy',  source:'example', values:{ planet:4, people:3, openness:5, access:5, autonomy:5, community:2 } },
       { nick:'Dee', source:'example', values:{ planet:5, people:5, openness:4, access:1, autonomy:1, community:5 } }
     ];
-    var n=document.getElementById('loadnote'); if(n)n.textContent='Loaded an example group of 4 - add real values files (or remove these) to make it yours.';
+    var n=document.getElementById('loadnote'); if(n)n.textContent='Loaded the example group: Ada, Ben, Cy and Dee. Remove them, or add real files next to them.';
     render();
   }
   function render(){ renderMembers(); renderCollective(); }
   function renderMembers(){
     var host=document.getElementById('members');
-    if(!members.length){ host.innerHTML='<p class="muted" style="font-size:.86rem">No one in the room yet.</p>'; return; }
+    if(!members.length){ host.innerHTML='<p class="muted" style="font-size:.9rem;margin:.2rem 0 0">No files yet.</p>'; return; }
     host.innerHTML=members.map(function(m,i){
-      return '<div class="member"><span class="msig" style="flex:0 0 auto;color:var(--accent);line-height:0" aria-hidden="true">'+(window.CC&&CC.sigil?CC.sigil(m.values,{size:30}):'')+'</span><input class="mnick" data-i="'+i+'" value="'+esc(m.nick)+'" aria-label="name for member '+(i+1)+'">'+
+      return '<div class="member"><span class="msig" style="flex:0 0 auto;color:var(--accent);line-height:0" aria-hidden="true">'+(window.CC&&CC.sigil?CC.sigil(m.values,{size:28}):'')+'</span><input class="mnick" data-i="'+i+'" value="'+esc(m.nick)+'" aria-label="Label for file '+(i+1)+'">'+
         (m.source?'<span class="src">from '+esc(m.source)+'</span>':'')+
-        '<button class="rm" data-rm="'+i+'" aria-label="remove member">✕</button></div>';
+        '<button class="rm" data-rm="'+i+'" aria-label="Remove '+esc(m.nick)+'">&#10005;</button></div>';
     }).join('');
     [].forEach.call(host.querySelectorAll('.mnick'),function(inp){ inp.oninput=function(){ members[+inp.dataset.i].nick=inp.value; renderCollective(); }; });
     [].forEach.call(host.querySelectorAll('.rm'),function(b){ b.onclick=function(){ members.splice(+b.dataset.rm,1); render(); }; });
   }
-  function consClass(c){ return c>=0.7?'hi':c>=0.4?'mid':'lo'; }
-  function consWord(c){ return c>=0.7?'aligned':c>=0.4?'mixed':'split'; }
+  // 2026-09-29: "split" here now means what the shared plan means by it (consensus below 0.5, a
+  // spread above 1.25). Before, the table called 0.4 to 0.5 "mixed" while the sentence under it and
+  // the plan both counted it as a split.
+  function consClass(c){ return c>=0.7?'hi':c>=0.5?'mid':'spl'; }
+  function consWord(c){ return c>=0.7?'aligned':c>=0.5?'mixed':'split'; }
 
   function renderCollective(){
     if(!members.length){
-      box.innerHTML='<div class="panel empty"><h2>How group agreement forms</h2>'+
-        '<ol><li>Each person exports their <b>values file</b> from any compatible app - Conscious Consuming, Kosplora, anywhere.</li>'+
-        '<li>They send you the file by <b>any channel</b>: email, a USB stick, a chat. This page sends nothing.</li>'+
-        '<li>Drop them all in above. The shared stance is computed <b>in your browser</b>; anyone with the same files gets the same result.</li></ol>'+
-        '<p class="muted">That is the whole trick: a movement that is just a folder of files. No account to register, no server to seize.</p>'+
-        '<p style="margin-top:1rem"><button class="btn" id="loadex">&#9654; See it with an example group (4 people)</button></p></div>';
+      box.innerHTML='<div class="card empty"><h3>Nothing to add up yet</h3>'+
+        '<p class="muted" style="margin:0 0 1rem">Add two or more values files above, or load an example group of four people who agree on some things and not others.</p>'+
+        '<p style="margin:0"><button class="btn primary" id="loadex" type="button">Load the example group (4 people)</button></p></div>';
       var _ex=document.getElementById('loadex'); if(_ex)_ex.onclick=loadExample;
       return;
     }
     var m=E.mergePassports(members, aname());
     var keys=Object.keys(m.values).sort(function(a,b){ return m.values[b]-m.values[a]; });
+    var head='<tr><th scope="col">Value</th>'+members.map(function(p){ return '<th scope="col">'+esc(p.nick)+'</th>'; }).join('')+'<th scope="col">Together</th><th scope="col">Spread</th></tr>';
     var rows=keys.map(function(u){
-      var a=m.agreement[u], lab=LABELS[u]||[u,''];
-      return '<div class="vrow"><div class="vl"><b>'+esc(lab[0])+'</b><small>'+esc(lab[1])+'</small></div>'+
-        '<div class="track"><div class="fill" style="width:'+(a.mean/5*100).toFixed(1)+'%"></div></div>'+
-        '<div class="mn">'+a.mean.toFixed(1)+'</div>'+
-        '<div class="cons '+consClass(a.consensus)+'" title="'+a.voices+' of '+m.n+' expressed this · spread '+a.sd+'">'+consWord(a.consensus)+'</div></div>';
+      var a=m.agreement[u], lab=LABELS[u]||[u,''], cls=consClass(a.consensus), splitRow=cls==='spl';
+      return '<tr><th scope="row">'+esc(lab[0])+(lab[1]?'<small>'+esc(lab[1])+'</small>':'')+'</th>'+
+        members.map(function(p){ var v=p.values[u]; return '<td class="'+(splitRow?'spl':'')+'">'+(v==null?'<span class="muted" title="not in this file">&middot;</span>':esc(v))+'</td>'; }).join('')+
+        '<td class="tog '+(splitRow?'spl':'')+'">'+a.mean.toFixed(1)+'</td>'+
+        '<td class="word '+cls+'" title="'+a.voices+' of '+m.n+' files gave a weight; spread '+a.sd+'">'+consWord(a.consensus)+'</td></tr>';
     }).join('');
-    var shared=keys.filter(function(u){ return m.values[u]>=3.5 && m.agreement[u].consensus>=0.5; }).slice(0,4).map(function(u){return (LABELS[u]||[u])[0];});
-    var split=m.dissent.filter(function(u){ return m.agreement[u].consensus<0.5; }).slice(0,3).map(function(u){return (LABELS[u]||[u])[0];});
-    box.innerHTML='<div class="panel col">'+
-      '<h2>'+esc(aname())+' <span class="n">'+m.n+' '+(m.n===1?'voice':'voices')+'</span></h2>'+
-      '<div class="colsig" style="text-align:center;margin:.1rem 0 .9rem;color:var(--accent)">'+(window.CC&&CC.sigil?CC.sigil(m.values,{size:92}):'')+'<div style="font-size:.72rem;color:var(--hint);margin-top:.15rem">the face of your group - its shared values, as one mark</div></div>'+
-      '<div class="vrows">'+rows+'</div>'+
-      '<div class="readout">'+
-        '<p><span class="tag share">What we share</span>'+(shared.length?('<b>'+shared.join('</b> · <b>')+'</b>: strong enough, and broadly agreed.'):'No strong shared priority yet; the room leans balanced.')+'</p>'+
-        '<p><span class="tag split">Where we’re split</span>'+(split.length?('<b>'+split.join('</b> · <b>')+'</b>: worth talking through before acting.'):'Remarkable alignment: no major splits.')+'</p>'+
-      '</div>'+
-      '<div class="actions"><button class="btn" id="exp">⤓ Export group values</button>'+
-        '<button class="btn" id="expfull" style="background:transparent;color:var(--accent);border:1px solid var(--accent)">⤓ Full group file (with agreement)</button>'+
-        '<button class="btn" id="expcard" style="background:transparent;color:var(--accent);border:1px solid var(--accent)">⤓ Our values card</button>'+
-        '<a class="btn" id="goslate" href="../slate/index.html" style="background:transparent;color:var(--accent);border:1px solid var(--accent);text-decoration:none">→ Turn this into a shared plan</a></div>'+
-        '<p class="carry" style="margin:.55rem 0 0">Carry the values file into a compatible app - <a href="../app/index.html">Conscious Consuming</a> · <a href="../kosplora/index.html">Kosplora</a> · <a href="../instances/messages/index.html">Where to Message</a> (load it under <i>Bring your values</i> or <i>Import values</i>) - or build a <a href="../slate/index.html">shared plan</a>: what, together, you actually buy or move away from.</p>'+
-      '<p class="repro">Reproducible: anyone holding these '+m.n+' files gets exactly this. The group file can speak in any compatible app, with no name and no account.</p>'+
+    var shared=keys.filter(function(u){ return m.values[u]>=3.5 && m.agreement[u].consensus>=0.7; }).slice(0,4).map(function(u){return (LABELS[u]||[u])[0];});
+    var mixed=keys.filter(function(u){ var c=m.agreement[u].consensus; return c>=0.5 && c<0.7; }).map(function(u){return (LABELS[u]||[u])[0];});
+    var split=m.dissent.filter(function(u){ return m.agreement[u].consensus<0.5; }).map(function(u){return (LABELS[u]||[u])[0];});
+    function bold(x){ return '<b>'+esc(x)+'</b>'; }
+    var say=(shared.length?('They agree, and care, about '+list(shared.map(bold))+'. '):'No value is both weighted high and agreed on yet. ')+
+      (mixed.length?('They lean the same way on '+list(mixed.map(bold))+', with some distance between them. '):'')+
+      (split.length?('They split on '+list(split.map(bold))+'. Talk '+(split.length>1?'those':'that')+' through before anyone acts on the average.'):'Nobody is split on anything, which in a real group is worth a second look.');
+    box.innerHTML='<div class="card col">'+
+      '<h3>'+esc(aname())+'<span class="n">'+m.n+' '+(m.n===1?'file':'files')+'</span></h3>'+
+      '<div class="tablewrap"><table class="grid"><thead>'+head+'</thead><tbody>'+rows+'</tbody></table></div>'+
+      '<p class="legend"><span>weights 0 to 5</span><span><i></i>aligned or mixed</span><span><i class="h"></i>split: spread over 1.25, talk before acting</span></p>'+
+      '<p class="say">'+say+'</p>'+
+      '<p class="receipt"><span>'+m.n+' '+(m.n===1?'file':'files')+' added</span><span>'+keys.length+' values</span><span>'+split.length+' split</span><span>Uploaded: nothing</span></p>'+
+      '<div class="actions"><button class="btn primary" id="expfull" type="button">Full group export, with the splits</button>'+
+        '<button class="btn" id="exp" type="button">Save the group&rsquo;s values only</button>'+
+        '<button class="btn" id="expcard" type="button">Save a values card (PNG)</button>'+
+        '<a class="btn" id="goslate" href="../slate/index.html">Make a shared plan &rarr;</a></div>'+
+      '<p class="carry">The full group export is the file the <a href="../slate/index.html">shared plan</a> reads. The group&rsquo;s values on their own open in <a href="../app/index.html">Conscious Consuming</a>, <a href="../kosplora/index.html">Kosplora</a> and <a href="../instances/messages/index.html">Where to Message</a>, the same way one person&rsquo;s file does. Anyone holding these '+m.n+' files gets exactly this table.</p>'+
       '</div>';
     var ex=document.getElementById('exp'); if(ex)ex.onclick=function(){ exportCollective(m); };
     var ef=document.getElementById('expfull'); if(ef)ef.onclick=function(){ exportFull(m); };
@@ -272,18 +377,18 @@
   function exportCollective(m){
     var blob=new Blob([JSON.stringify(m.passport,null,2)],{type:'application/json'});
     var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
-    a.download=(aname().toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'assembly')+'-values-passport.json';
+    a.download=slug()+'-values-passport.json';
     document.body.appendChild(a); a.click(); a.remove();
   }
-  function exportFull(m){   // the whole collective (values + agreement + dissent): for a Slate, so dissent travels
+  function exportFull(m){   // the whole group (values, agreement and the splits), so the shared plan can show who disagreed
     var blob=new Blob([JSON.stringify(m,null,2)],{type:'application/json'});
     var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
-    a.download=(aname().toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'assembly')+'-collective.json';
+    a.download=slug()+'-collective.json';
     document.body.appendChild(a); a.click(); a.remove();
   }
-  function downloadCollectiveCard(m){   // shareable PNG of the group's shared values; uses the shared CC.downloadCardPNG helper
+  function downloadCollectiveCard(m){   // a PNG of the group's values, drawn by the shared CC.downloadCardPNG helper
     if(!(window.CC&&CC.collectiveCard&&CC.downloadCardPNG))return;
-    CC.downloadCardPNG(CC.collectiveCard(m,{size:1080}),(aname().toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'assembly')+'-values-card.png');
+    CC.downloadCardPNG(CC.collectiveCard(m,{size:1080}),slug()+'-values-card.png');
   }
 
   if(fileEl)fileEl.onchange=function(e){ loadFiles(e.target.files); e.target.value=''; };

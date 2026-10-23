@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/agreement-v0.1.schema.json",
+  "title": "Open Values Agreement v0.1",
+  "description": "The record of what a group agreed: the question, who was there, each agreement with who does it, by when and what counts as done, and what is still open. The Work Party page makes it in the browser and can read it back to revise it.",
+  "type": "object",
+  "required": ["format", "version", "recorded", "agreed"],
+  "additionalProperties": true,
+  "properties": {
+    "format": { "const": "open-values-agreement", "description": "Always \"open-values-agreement\". Tells a reader that this file is the record of what a group agreed." },
+    "version": { "type": "string", "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$", "description": "The version of the agreement format this file follows, 0.1." },
+    "recorded": { "type": "string", "description": "The date the browser saved the file, YYYY-MM-DD." },
+    "question": { "type": "string", "description": "The question the group settled, such as \"Do we buy a second ladder, or share the one we have?\"" },
+    "present": { "type": "array", "items": { "type": "string" }, "description": "Who was there, one name per item. First names are enough." },
+    "agreed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["what"],
+        "properties": {
+          "what": { "type": "string", "description": "What was agreed." },
+          "who": { "type": "string", "description": "Who is doing it. Empty when nobody was named." },
+          "by": { "type": "string", "description": "By when, as the group wrote it. It is free text, not a fixed date format." },
+          "done_when": { "type": "string", "description": "What counts as done, so the group can tell when it is finished." }
+        }
+      },
+      "description": "What the group agreed, one item per agreement. Rows with nothing in what are left out."
+    },
+    "open": { "type": "array", "items": { "type": "string" }, "description": "What is still open, one item per line, including who disagreed and with what." },
+    "led_by": { "type": "string", "description": "Who led the conversation. Present only when filled in." },
+    "led_by_hoped": { "type": "string", "description": "What the person who led hoped for going in. Present only when filled in." },
+    "decided_by": { "type": "string", "description": "How the group decided: \"everyone\" (everyone agreed), \"no-objection\" (nobody objected), \"most\" (most agreed) or \"one-person\" (one person decided after hearing everyone). Present only when chosen." },
+    "dissent_read_by_holders": { "type": "boolean", "description": "True when everyone named in open has read how their disagreement is worded and agrees it is how they would put it. Present only when true." },
+    "checked_by": { "type": "string", "description": "Who checks that the agreements get done. Present only when filled in." },
+    "revision": { "description": "Present when the file revises an earlier one: what it revises and what changed, computed by the Work Party." }
+  }
+}

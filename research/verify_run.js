@@ -12,7 +12,7 @@ const BLOOM_THEMES = ['planet', 'people', 'health', 'honesty', 'privacy', 'anima
 const BLOOM_MIN_THEMES = 2;
 const KEY2THEME = {
   environment: 'planet', forest: 'planet', packaging: 'planet', palm_oil: 'planet', organic: 'planet', durability: 'planet', repairability: 'planet', longevity: 'planet',
-  processing: 'health', nutrition_grade: 'health', protein: 'health', low_sugar: 'health', health: 'health', safety: 'health', calm: 'health',
+  processing: 'health', nutrition_grade: 'health', protein: 'health', low_sugar: 'health', health: 'health', safety: 'health', calm: 'health', wellbeing: 'health',
   ethics: 'people', labor: 'people', artist_pay: 'people', impact: 'people', ways_to_help: 'people', educational: 'people',
   transparency: 'honesty', independence: 'honesty', nonprofit: 'honesty', certification: 'honesty', depth: 'honesty',
   privacy: 'privacy', openness: 'privacy', jurisdiction: 'privacy', security: 'privacy', portability: 'privacy', respect: 'privacy',
@@ -21,7 +21,7 @@ const KEY2THEME = {
   local: 'local', ownership: 'local',
   // 2026-08-13. Kept in step with pipeline/build_datasets.py by hand, which is the point: this map
   // is re-implemented here rather than imported, so a builder that starts theming a key wrongly
-  // has to be agreed with twice. Six keys arrived with the swarm's first waves. rewards is money
+  // has to be agreed with twice. Six keys arrived with the first content waves. rewards is money
   // coming back to you; complaints, buyer_protection and damage_protection all answer who carries
   // the loss when something goes wrong; reliability and cancellations are the debatable pair, read
   // as honesty on the grounds that a published schedule an airline does not keep is a gap between
@@ -152,7 +152,7 @@ let ontCids = 0; (function w(o){ if (Array.isArray(o)) o.forEach(w); else if (o 
 const liveCategoryDomains = new Set(cats.map(c => c.domain).filter(Boolean));
 const ontologyDomains = B.ontology.domains || [];
 const checks = {
-  // 2026-08-12, swarm wave one. 88 -> 91 categories, and the count of domains holding at least one
+  // 2026-08-12, the first content wave. 88 -> 91 categories, and the count of domains holding at least one
   // built category went 10 -> 13: Health & wellness, Transport & mobility and Pets each had none
   // before this and now have one. Those were three of the six realms that read to a visitor as
   // subjects the catalogue did not cover.
@@ -162,7 +162,8 @@ const checks = {
   // 2026-08-14, Phase 10 serial promotion: four built frontier lenses entered the ontology.
   // 124 on 2026-08-26: the digital-services split gave messaging and browsers their own datasets.
   // 126 on 2026-09-23: the same split gave email and search their own datasets.
-  'categories = 126': cats.length === 126 ? 126 : 'FAIL(' + cats.length + ')',
+  // 128 on 2026-09-29: cloud storage and notes joined in wave two of the split.
+  'categories = 144': cats.length === 144 ? 144 : 'FAIL(' + cats.length + ')',
   'all 15 live category domains': liveCategoryDomains.size === 15 ? 'yes' : 'FAIL(' + liveCategoryDomains.size + ')',
   'priced food have economical': PRICED.every(id => B.data[id] && B.data[id].criteria.some(c => c.key === 'economical')),
   'food with economical (all)': FOOD.filter(id => B.data[id] && B.data[id].criteria.some(c => c.key === 'economical')).length,

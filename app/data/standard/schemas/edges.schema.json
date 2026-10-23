@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/edges-v0.1.schema.json",
   "title": "Open Values Edges v0.1",
-  "description": "A relationship graph for ownership, alternatives, and other sourced relationships between Open Values nodes.",
+  "description": "A list of sourced links between options, brands and companies, such as which company owns a brand or which bank is an alternative to another. Each link carries a source and a date.",
   "type": "object",
   "additionalProperties": true,
   "required": [
@@ -12,21 +12,25 @@
   ],
   "properties": {
     "format": {
-      "const": "open-values-edges"
+      "const": "open-values-edges",
+      "description": "Always \"open-values-edges\". Tells a reader that this file is a list of sourced links between entries."
     },
     "version": {
       "type": "string",
-      "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$"
+      "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$",
+      "description": "The version of the edges format this file follows, 0.1."
     },
     "note": {
-      "type": "string"
+      "type": "string",
+      "description": "A paragraph for maintainers saying what the edges cover and which checks hold them."
     },
     "edges": {
       "type": "array",
       "minItems": 1,
       "items": {
         "$ref": "#/$defs/edge"
-      }
+      },
+      "description": "The links. Each one says that one entry, brand or company relates to another in a named way, with a source and a date."
     }
   },
   "$defs": {
@@ -46,22 +50,27 @@
       ],
       "properties": {
         "from": {
-          "$ref": "#/$defs/nodeId"
+          "$ref": "#/$defs/nodeId",
+          "description": "The id of the thing the link starts from, written \"ovs:\" then a group and a code, such as \"ovs:banking/us-bank\" for an entry in the banking facts file or \"ovs:brand/nestle\" for a brand."
         },
         "rel": {
           "type": "string",
-          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+          "description": "How the two are related, in lower case with hyphens. The file uses \"owned-by\" (a brand owned by a company), \"parent-of\" (the same ownership read from the company's side) and \"alternative-to\" (an option to consider instead)."
         },
         "to": {
-          "$ref": "#/$defs/nodeId"
+          "$ref": "#/$defs/nodeId",
+          "description": "The id of the thing the link points to, in the same \"ovs:group/code\" form as from."
         },
         "source": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "Where the link is shown to be true, usually a web address."
         },
         "asof": {
           "type": "string",
-          "pattern": "^(19|20)\\d{2}(?:-\\d{2}-\\d{2})?$"
+          "pattern": "^(19|20)\\d{2}(?:-\\d{2}-\\d{2})?$",
+          "description": "When the link was true, as a year such as \"2026\" or a full date."
         }
       }
     }

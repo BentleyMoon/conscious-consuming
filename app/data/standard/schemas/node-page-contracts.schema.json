@@ -2,19 +2,19 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/node-page-contracts-v0.1.schema.json",
   "title": "Open Values Node Page Contracts v0.1",
-  "description": "Route and page contract data for generated node, category, guide, and item pages.",
+  "description": "For each kind of page on the site (category, entry, guide, brand, company, label, errand, line), its address pattern, where its data comes from, which fields it needs, and the sections it shows. The data build writes it for the people building those pages. It is an internal file used while building the site.",
   "type": "object",
   "additionalProperties": true,
   "required": ["format", "version", "built", "source", "purpose", "appLaneNote", "contracts", "totals"],
   "properties": {
-    "format": { "const": "ovs-node-page-contracts" },
-    "version": { "$ref": "#/$defs/version" },
-    "built": { "$ref": "#/$defs/date" },
-    "source": { "$ref": "#/$defs/source" },
-    "purpose": { "$ref": "#/$defs/nonEmptyString" },
-    "appLaneNote": { "$ref": "#/$defs/nonEmptyString" },
-    "contracts": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/contract" } },
-    "totals": { "type": "object", "minProperties": 1 }
+    "format": { "description": "Names this file's format, so a reader can check it before reading the rest of the file.", "const": "ovs-node-page-contracts" },
+    "version": { "description": "The version of the format this file follows, such as \"0.1\".", "$ref": "#/$defs/version" },
+    "built": { "description": "The date of the source data this file was built from, as YYYY-MM-DD.", "$ref": "#/$defs/date" },
+    "source": { "description": "The script and files this file was built from, as paths in the repository.", "$ref": "#/$defs/source" },
+    "purpose": { "description": "One sentence on what this file is for.", "$ref": "#/$defs/nonEmptyString" },
+    "appLaneNote": { "description": "A note on which choices this file leaves to the app code that reads it, such as fetching, layout and wording.", "$ref": "#/$defs/nonEmptyString" },
+    "contracts": { "description": "One contract per kind of page: category, item, guide, brand, company, tag, errand and line.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/contract" } },
+    "totals": { "description": "How many pages of each kind exist, by kind.", "type": "object", "minProperties": 1 }
   },
   "$defs": {
     "version": { "type": "string", "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$" },
@@ -33,9 +33,9 @@
       "additionalProperties": true,
       "required": ["id", "label", "hash"],
       "properties": {
-        "id": { "$ref": "#/$defs/ovsId" },
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "hash": { "$ref": "#/$defs/routeHash" }
+        "id": { "description": "The id of an example page's subject, such as \"ovs:cat/banking\".", "$ref": "#/$defs/ovsId" },
+        "label": { "description": "The example's name as shown to readers.", "$ref": "#/$defs/nonEmptyString" },
+        "hash": { "description": "The route of the example page, such as \"#explore/banking\".", "$ref": "#/$defs/routeHash" }
       }
     },
     "contract": {
@@ -43,13 +43,13 @@
       "additionalProperties": true,
       "required": ["type", "routePattern", "source", "requiredFields", "sections", "examples"],
       "properties": {
-        "type": { "$ref": "#/$defs/nonEmptyString" },
-        "routePattern": { "$ref": "#/$defs/routeHash" },
-        "source": { "$ref": "#/$defs/nonEmptyString" },
-        "requiredFields": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "optionalFields": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "sections": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "examples": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/example" } }
+        "type": { "description": "The kind of page, such as \"category\" or \"brand\".", "$ref": "#/$defs/nonEmptyString" },
+        "routePattern": { "description": "The route pattern for this kind of page, such as \"#n/brand/<slug>\".", "$ref": "#/$defs/routeHash" },
+        "source": { "description": "The file or files the page's data comes from.", "$ref": "#/$defs/nonEmptyString" },
+        "requiredFields": { "description": "Fields the page needs from its record.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "optionalFields": { "description": "Fields the page shows when present.", "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "sections": { "description": "The sections the page shows, in order.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "examples": { "description": "Real pages of this kind to test with.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/example" } }
       }
     }
   }

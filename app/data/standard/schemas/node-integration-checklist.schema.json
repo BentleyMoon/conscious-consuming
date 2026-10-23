@@ -2,23 +2,23 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/node-integration-checklist-v0.1.schema.json",
   "title": "Open Values Node Integration Checklist v0.1",
-  "description": "Acceptance checklist for app-owned node and Ask integration work.",
+  "description": "The checklist for wiring the generated node and search files into the app: the phases of the work, the commands to run, and what must be true before each kind of page goes public. The data build writes it for the people doing that work. It is an internal file used while building the site.",
   "type": "object",
   "additionalProperties": true,
   "required": ["format", "version", "built", "source", "purpose", "appLaneNote", "readinessTargets", "counts", "smokeCommands", "publicGates", "h4DrainContract", "phases"],
   "properties": {
-    "format": { "const": "ovs-node-integration-checklist" },
-    "version": { "$ref": "#/$defs/version" },
-    "built": { "$ref": "#/$defs/date" },
-    "source": { "$ref": "#/$defs/source" },
-    "purpose": { "$ref": "#/$defs/nonEmptyString" },
-    "appLaneNote": { "$ref": "#/$defs/nonEmptyString" },
-    "readinessTargets": { "type": "object", "minProperties": 1 },
-    "counts": { "type": "object", "minProperties": 1 },
-    "smokeCommands": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-    "publicGates": { "$ref": "#/$defs/publicGates" },
-    "h4DrainContract": { "$ref": "#/$defs/h4DrainContract" },
-    "phases": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/phase" } }
+    "format": { "description": "Names this file's format, so a reader can check it before reading the rest of the file.", "const": "ovs-node-integration-checklist" },
+    "version": { "description": "The version of the format this file follows, such as \"0.1\".", "$ref": "#/$defs/version" },
+    "built": { "description": "The date of the source data this file was built from, as YYYY-MM-DD.", "$ref": "#/$defs/date" },
+    "source": { "description": "The script and files this file was built from, as paths in the repository.", "$ref": "#/$defs/source" },
+    "purpose": { "description": "One sentence on what this file is for.", "$ref": "#/$defs/nonEmptyString" },
+    "appLaneNote": { "description": "A note on which choices this file leaves to the app code that reads it, such as fetching, layout and wording.", "$ref": "#/$defs/nonEmptyString" },
+    "readinessTargets": { "description": "Byte budgets and the lists of files that load at startup, when a page needs them, only for product search, or only in testing.", "type": "object", "minProperties": 1 },
+    "counts": { "description": "Counts of generated nodes, Ask index entries and test cases, by name.", "type": "object", "minProperties": 1 },
+    "smokeCommands": { "description": "Commands to run before checking the app, such as \"node research/node_index_audit.js\".", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "publicGates": { "description": "The conditions each kind of generated page must meet before it moves out of the private workbench and goes public.", "$ref": "#/$defs/publicGates" },
+    "h4DrainContract": { "description": "The steps the app must show evidence for before handoff item H4 in docs/CONTENT-HANDOFF.md can be closed. H4 is the work of wiring the generated node and Ask files into the app.", "$ref": "#/$defs/h4DrainContract" },
+    "phases": { "description": "The phases of the integration work, each with what it must achieve.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/phase" } }
   },
   "$defs": {
     "version": { "type": "string", "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$" },
@@ -35,13 +35,13 @@
       "additionalProperties": true,
       "required": ["status", "namedConsumer", "voiceSource", "rule", "appOwnedBeforePublic", "releaseContract", "surfaces"],
       "properties": {
-        "status": { "const": "ready-for-app-public-gates" },
-        "namedConsumer": { "$ref": "#/$defs/nonEmptyString" },
-        "voiceSource": { "$ref": "#/$defs/nonEmptyString" },
-        "rule": { "$ref": "#/$defs/nonEmptyString" },
-        "appOwnedBeforePublic": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "releaseContract": { "$ref": "#/$defs/releaseContract" },
-        "surfaces": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/publicGateSurface" } }
+        "status": { "description": "Always \"ready-for-app-public-gates\": the gate list is complete and waits on the app.", "const": "ready-for-app-public-gates" },
+        "namedConsumer": { "description": "The piece of app work that uses this gate list.", "$ref": "#/$defs/nonEmptyString" },
+        "voiceSource": { "description": "The document section where the wording rules for public copy were signed off.", "$ref": "#/$defs/nonEmptyString" },
+        "rule": { "description": "The rule for moving pages public, in one sentence.", "$ref": "#/$defs/nonEmptyString" },
+        "appOwnedBeforePublic": { "description": "What the app must do before any surface goes public, one sentence each.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "releaseContract": { "description": "The order in which surfaces go public, and what each needs first.", "$ref": "#/$defs/releaseContract" },
+        "surfaces": { "description": "One record per kind of page that can go public, such as brand pages or company pages.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/publicGateSurface" } }
       }
     },
     "releaseContract": {
@@ -49,15 +49,15 @@
       "additionalProperties": true,
       "required": ["purpose", "status", "namedConsumer", "releaseRule", "voiceSource", "releaseOrder", "sharedEvidenceRequired", "rollbackRule", "coverage"],
       "properties": {
-        "purpose": { "$ref": "#/$defs/nonEmptyString" },
-        "status": { "const": "ready-for-app-public-gates" },
-        "namedConsumer": { "$ref": "#/$defs/nonEmptyString" },
-        "releaseRule": { "$ref": "#/$defs/nonEmptyString" },
-        "voiceSource": { "$ref": "#/$defs/nonEmptyString" },
-        "releaseOrder": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/releaseStep" } },
-        "sharedEvidenceRequired": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "rollbackRule": { "$ref": "#/$defs/nonEmptyString" },
-        "coverage": { "type": "object", "minProperties": 1 }
+        "purpose": { "description": "One sentence on what the release order is for.", "$ref": "#/$defs/nonEmptyString" },
+        "status": { "description": "Always \"ready-for-app-public-gates\": the release order is complete and waits on the app.", "const": "ready-for-app-public-gates" },
+        "namedConsumer": { "description": "The piece of app work that uses this release order.", "$ref": "#/$defs/nonEmptyString" },
+        "releaseRule": { "description": "The rule for releasing surfaces, in one sentence.", "$ref": "#/$defs/nonEmptyString" },
+        "voiceSource": { "description": "The document section where the wording rules for public copy were signed off.", "$ref": "#/$defs/nonEmptyString" },
+        "releaseOrder": { "description": "The surfaces in the order they should go public, one at a time.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/releaseStep" } },
+        "sharedEvidenceRequired": { "description": "Evidence every surface needs before it goes public, one sentence each.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "rollbackRule": { "description": "What to do when a surface fails its gate in app testing.", "$ref": "#/$defs/nonEmptyString" },
+        "coverage": { "description": "Counts and lists showing that every surface has a place in the release order, and which surfaces are signed or show only generated copy.", "type": "object", "minProperties": 1 }
       }
     },
     "releaseStep": {
@@ -65,14 +65,14 @@
       "additionalProperties": true,
       "required": ["step", "surfaceId", "label", "voiceStatus", "sourceFiles", "evidenceRequired", "releaseWhen", "mustNot"],
       "properties": {
-        "step": { "type": "integer", "minimum": 1 },
-        "surfaceId": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "voiceStatus": { "enum": ["signed", "minimal-generated-copy"] },
-        "sourceFiles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "evidenceRequired": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "releaseWhen": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+        "step": { "description": "This surface's place in the release order, counting from 1.", "type": "integer", "minimum": 1 },
+        "surfaceId": { "description": "The id of the surface, matching an id in publicGates.surfaces.", "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "label": { "description": "A short name for the surface, such as \"Company pages\".", "$ref": "#/$defs/nonEmptyString" },
+        "voiceStatus": { "description": "\"signed\" when the surface's copy passed the wording review, or \"minimal-generated-copy\" when the page shows only generated fields and no written text.", "enum": ["signed", "minimal-generated-copy"] },
+        "sourceFiles": { "description": "The files the surface is built from, as paths in the repository.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "evidenceRequired": { "description": "Evidence this surface needs before it goes public, one sentence each.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "releaseWhen": { "description": "Conditions that must all hold before this surface goes public.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "mustNot": { "description": "Things the app must not do here, one sentence each.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
       }
     },
     "h4DrainContract": {
@@ -80,25 +80,26 @@
       "additionalProperties": true,
       "required": ["purpose", "status", "activeHandoff", "namedConsumer", "h4DrainableFromDataAlone", "drainRule", "steps", "finalDecision", "coverage"],
       "properties": {
-        "purpose": { "$ref": "#/$defs/nonEmptyString" },
-        "status": { "const": "pending-app-integration" },
-        "activeHandoff": { "const": "H4" },
-        "namedConsumer": { "$ref": "#/$defs/nonEmptyString" },
-        "h4DrainableFromDataAlone": { "const": false },
-        "drainRule": { "$ref": "#/$defs/nonEmptyString" },
-        "steps": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/h4DrainStep" } },
+        "purpose": { "description": "One sentence on what this checklist is for.", "$ref": "#/$defs/nonEmptyString" },
+        "status": { "description": "Always \"pending-app-integration\": the generated data is ready, and the app work that uses it is not yet confirmed.", "const": "pending-app-integration" },
+        "activeHandoff": { "description": "The handoff item this checklist closes. Always \"H4\", from docs/CONTENT-HANDOFF.md.", "const": "H4" },
+        "namedConsumer": { "description": "The piece of app work that uses this checklist.", "$ref": "#/$defs/nonEmptyString" },
+        "h4DrainableFromDataAlone": { "description": "Always false. The generated files alone can never close handoff item H4; that needs evidence from the running app.", "const": false },
+        "drainRule": { "description": "The rule for closing H4, in one sentence.", "$ref": "#/$defs/nonEmptyString" },
+        "steps": { "description": "The checks to work through, in order.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/h4DrainStep" } },
         "finalDecision": {
+          "description": "The conditions for the last step, the decision to close H4.",
           "type": "object",
           "additionalProperties": true,
           "required": ["expectedStatusBeforeAppWork", "dataAloneIsInsufficient", "drainOnlyWhen", "mustNot"],
           "properties": {
-            "expectedStatusBeforeAppWork": { "const": "pending-app-integration" },
-            "dataAloneIsInsufficient": { "const": true },
-            "drainOnlyWhen": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-            "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+            "expectedStatusBeforeAppWork": { "description": "The status H4 should have until the app work is done. Always \"pending-app-integration\".", "const": "pending-app-integration" },
+            "dataAloneIsInsufficient": { "description": "Always true. Generated data alone is not enough to close H4.", "const": true },
+            "drainOnlyWhen": { "description": "Conditions that must all hold before H4 is closed.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+            "mustNot": { "description": "Things that must not happen when deciding to close H4, one sentence each.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
           }
         },
-        "coverage": { "type": "object", "minProperties": 1 }
+        "coverage": { "description": "Counts showing that the steps cover every integration phase, preview scenario and public surface.", "type": "object", "minProperties": 1 }
       }
     },
     "h4DrainStep": {
@@ -106,15 +107,15 @@
       "additionalProperties": true,
       "required": ["step", "id", "label", "phaseIds", "sourceFiles", "contractPointer", "appOwnedEvidence", "passWhen", "mustNot"],
       "properties": {
-        "step": { "type": "integer", "minimum": 1 },
-        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "phaseIds": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^[a-z0-9-]+$" } },
-        "sourceFiles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "contractPointer": { "$ref": "#/$defs/nonEmptyString" },
-        "appOwnedEvidence": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "passWhen": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+        "step": { "description": "This step's place in the checklist, counting from 1.", "type": "integer", "minimum": 1 },
+        "id": { "description": "A short id for the step, such as \"manifest-loader\".", "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "label": { "description": "A short name for the step.", "$ref": "#/$defs/nonEmptyString" },
+        "phaseIds": { "description": "The ids of the phases in node-integration-checklist.json that this step covers.", "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^[a-z0-9-]+$" } },
+        "sourceFiles": { "description": "The files this step checks, as paths in the repository.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "contractPointer": { "description": "The file and field that hold the contract this step checks, such as \"manifest.json#loaderPlan\".", "$ref": "#/$defs/nonEmptyString" },
+        "appOwnedEvidence": { "description": "Evidence from the running app that this step needs, one sentence each.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "passWhen": { "description": "Conditions that must all hold for this step to pass.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "mustNot": { "description": "Things the app must not do here, one sentence each.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
       }
     },
     "publicGateSurface": {
@@ -122,16 +123,16 @@
       "additionalProperties": true,
       "required": ["id", "label", "owner", "status", "proseClass", "sourceFiles", "voice", "appOwnedGate", "mustNot"],
       "properties": {
-        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "owner": { "const": "app/design" },
-        "status": { "const": "voice-signed-app-gate" },
-        "proseClass": { "$ref": "#/$defs/nonEmptyString" },
-        "sourceFiles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "voice": { "$ref": "#/$defs/publicGateVoice" },
-        "generatedCount": { "type": "integer", "minimum": 0 },
-        "appOwnedGate": { "$ref": "#/$defs/nonEmptyString" },
-        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+        "id": { "description": "A short id for the surface, such as \"company-pages\".", "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "label": { "description": "A short name for the surface, such as \"Company pages\".", "$ref": "#/$defs/nonEmptyString" },
+        "owner": { "description": "Who owns this work. Always \"app/design\", the app and design side of the project.", "const": "app/design" },
+        "status": { "description": "Always \"voice-signed-app-gate\": the wording is settled, and going public waits on the app gate.", "const": "voice-signed-app-gate" },
+        "proseClass": { "description": "Which kind of text the surface shows, such as \"company-reads\" or \"minimal-generated-copy\" for pages that show only generated fields.", "$ref": "#/$defs/nonEmptyString" },
+        "sourceFiles": { "description": "The files the surface is built from, as paths in the repository.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "voice": { "description": "The record of the wording review for this surface.", "$ref": "#/$defs/publicGateVoice" },
+        "generatedCount": { "description": "How many pages of this kind the build generated. Missing when the build does not count them.", "type": "integer", "minimum": 0 },
+        "appOwnedGate": { "description": "The condition this surface must meet in the app before it goes public.", "$ref": "#/$defs/nonEmptyString" },
+        "mustNot": { "description": "Things the app must not do here, one sentence each.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
       }
     },
     "publicGateVoice": {
@@ -139,11 +140,11 @@
       "additionalProperties": true,
       "required": ["status", "signedAt", "signoffBlock", "pilotSamples"],
       "properties": {
-        "status": { "enum": ["signed", "minimal-generated-copy"] },
-        "signedAt": { "$ref": "#/$defs/date" },
-        "signoffBlock": { "$ref": "#/$defs/nonEmptyString" },
-        "pilotSamples": { "type": "integer", "minimum": 0 },
-        "note": { "$ref": "#/$defs/nonEmptyString" }
+        "status": { "description": "\"signed\" when the surface's copy passed the wording review, or \"minimal-generated-copy\" when the page shows only generated fields.", "enum": ["signed", "minimal-generated-copy"] },
+        "signedAt": { "description": "The date of the wording review, as YYYY-MM-DD.", "$ref": "#/$defs/date" },
+        "signoffBlock": { "description": "The document section that records the review.", "$ref": "#/$defs/nonEmptyString" },
+        "pilotSamples": { "description": "How many pilot samples the review recorded for this surface. The build writes 5 for signed surfaces and 0 for brand pages.", "type": "integer", "minimum": 0 },
+        "note": { "description": "A note on what the surface may and may not say, when one is needed.", "$ref": "#/$defs/nonEmptyString" }
       }
     },
     "phase": {
@@ -151,13 +152,13 @@
       "additionalProperties": true,
       "required": ["id", "label", "owner", "status", "sourceFiles", "acceptanceCriteria", "risk"],
       "properties": {
-        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "owner": { "const": "app/design" },
-        "status": { "const": "pending-app-integration" },
-        "sourceFiles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "acceptanceCriteria": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "risk": { "$ref": "#/$defs/nonEmptyString" }
+        "id": { "description": "A short id for the phase, such as \"discover-load-plan\".", "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "label": { "description": "A short name for the phase.", "$ref": "#/$defs/nonEmptyString" },
+        "owner": { "description": "Who owns this work. Always \"app/design\", the app and design side of the project.", "const": "app/design" },
+        "status": { "description": "Always \"pending-app-integration\": the generated data is ready, and the app work that uses it is not yet confirmed.", "const": "pending-app-integration" },
+        "sourceFiles": { "description": "The generated files this phase uses.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "acceptanceCriteria": { "description": "What the app must do for the phase to pass, one sentence each.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "risk": { "description": "What goes wrong if this phase is skipped or done badly.", "$ref": "#/$defs/nonEmptyString" }
       }
     }
   }

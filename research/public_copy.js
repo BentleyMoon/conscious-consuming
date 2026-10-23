@@ -29,6 +29,11 @@ const PRIVATE_DOCS = new Set([
   'docs/REGISTER-PASS-RUNBOOK.md', 'docs/SECURITY-AND-PRACTICES.md', 'docs/STATE-OF-THE-BUILD.md',
   'docs/SWARM-BRIEF.md', 'docs/TAXONOMY-MAP.md',
   'docs/design/DESIGN-AUDITS.md', 'docs/design/FOUNDER-WALK.md', 'docs/design/INFORMATION-ARCHITECTURE.md',
+  // 2026-10-23: held back from the public copy on Bentley's instruction to check how everything public reads.
+  // The tester-recruiting documents and internal planning notes stay in the working repository only.
+  'docs/PREVIEW-FEEDBACK-LOOP.md', 'docs/R1-REVIEW.md', 'docs/DECISION-REFRAME-FOUNDER-REVIEW.md',
+  'docs/CODEX-BUILD-PROGRAM.md', 'docs/CODEX-CC-PROGRAM-25.md', 'docs/CODEX-SPRINT-EVIDENCE.md',
+  'content/MAJOR-CONTENT-ADDITION-PREP.md',
   'docs/design/PATTERN-LANGUAGE.md', 'docs/design/REQUIREMENTS-LEDGER.md', 'docs/design/VISUAL-SPECIFICATION.md',
 ]);
 
@@ -68,16 +73,30 @@ function missingDocsIn(message) {
 
 // A failure is a working-document failure when the file it checks is an absent working document, or
 // when it checks a published file and fails only because the working documents it points at are absent.
+// Folders the public copy does not carry, named on purpose (2026-10-23): the live sky behind the front page
+// (copied from the Institute's design system, not this project's to republish) and the unlisted /preview/
+// pages. A page's link into one of them is not broken in the public copy; the folder is simply not there.
+// content/operations/ holds the adoption ledger's working files, held back on 2026-10-23 with the other internal
+// planning material.
+const PRIVATE_DIRS = ['sky/', 'preview/', 'content/operations/'];
+function isAbsentPrivatePath(rel) {
+  rel = norm(rel);
+  return IS_PUBLIC_COPY && PRIVATE_DIRS.some((d) => rel.startsWith(d)) && !fs.existsSync(path.join(ROOT, rel));
+}
+
 function isPrivateFailure(message) {
   const lead = leadPath(message);
-  if (lead && isAbsentPrivateDoc(lead)) return true;
+  if (lead && (isAbsentPrivateDoc(lead) || isAbsentPrivatePath(lead))) return true;
+  const link = String(message).match(/missing local link (\S+)/);
+  if (link && isAbsentPrivatePath(link[1])) return true;
   const refs = missingDocsIn(message).filter(r => r !== lead);
   return refs.length > 0 && refs.every(isAbsentPrivateDoc);
 }
 
 function docsNamedIn(message) {
   const lead = leadPath(message);
-  return [lead, ...missingDocsIn(message)].filter(Boolean);
+  const link = String(message).match(/missing local link (S+)/);
+  return [lead, ...missingDocsIn(message), link && isAbsentPrivatePath(link[1]) ? norm(link[1]) : null].filter(Boolean);
 }
 
 // Filter an audit's failure list. Prints one SKIP line naming the documents, so a skip is never silent.
@@ -88,7 +107,7 @@ function dropPrivateFailures(failures, log) {
   for (const f of failures) {
     if (isPrivateFailure(f)) {
       skipped++;
-      for (const n of docsNamedIn(f)) if (isAbsentPrivateDoc(n)) docs.add(n);
+      for (const n of docsNamedIn(f)) if (isAbsentPrivateDoc(n) || isAbsentPrivatePath(n)) docs.add(n);
     } else kept.push(f);
   }
   if (skipped) {
@@ -103,4 +122,4 @@ function readUnlessPrivate(rel) {
   return fs.readFileSync(path.join(ROOT, rel), 'utf8');
 }
 
-module.exports = { IS_PUBLIC_COPY, PRIVATE_DOCS, isAbsentPrivateDoc, isPrivateFailure, dropPrivateFailures, readUnlessPrivate };
+module.exports = { IS_PUBLIC_COPY, PRIVATE_DOCS, PRIVATE_DIRS, isAbsentPrivateDoc, isAbsentPrivatePath, isPrivateFailure, dropPrivateFailures, readUnlessPrivate };

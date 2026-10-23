@@ -107,17 +107,20 @@ function main() {
   expect(fs.existsSync(path.join(ROOT, actual.taxonomy.sourceSchema)), 'taxonomy schema source does not exist');
   expect(actual.taxonomy && actual.taxonomy.counts.needs === 8, 'taxonomy needs count changed');
   expect(actual.taxonomy && actual.taxonomy.counts.categories === 18, 'taxonomy category count changed');
-  expect(actual.taxonomy && actual.taxonomy.counts.subcategories === 39, 'taxonomy subcategory count changed');
-  expect(actual.taxonomy && actual.taxonomy.counts.decisions === 217, 'taxonomy decision count changed');
+  expect(actual.taxonomy && actual.taxonomy.counts.subcategories === 40, 'taxonomy subcategory count changed');
+  expect(actual.taxonomy && actual.taxonomy.counts.decisions === 225, 'taxonomy decision count changed');
   // 2026-08-14 serial promotion: four built energy and open-technology rows
   // became live without reducing the 87 explicitly not-yet-covered rows.
-  expect(actual.taxonomy && actual.taxonomy.counts.livePaths === 130, 'taxonomy live path count changed');
+  expect(actual.taxonomy && actual.taxonomy.counts.livePaths === 144, 'taxonomy live path count changed');
   // 124 on 2026-08-26: messaging and browsers left the shared digital-services dataset, the
   // first two of the nine-way split recorded in docs/ONTOLOGY-RESEARCH.md 4.1.
   // 126 on 2026-09-23: email and search left the shared digital-services dataset in the same
   // split, the next two of the nine-way division.
-  expect(actual.taxonomy && actual.taxonomy.counts.liveDatasets === 126, 'taxonomy live dataset count changed');
-  expect(actual.taxonomy && actual.taxonomy.counts.notYetCovered === 87, 'taxonomy gap count changed');
+  // Moved 2026-09-29: cloud storage and notes flipped from digital-services facets to their
+  // own datasets, wave two of the nine-way split; video calls, maps and social networks remain.
+  expect(actual.taxonomy && actual.taxonomy.counts.liveDatasets === 144, 'taxonomy live dataset count changed');
+  // 83 on 2026-09-29: four old gap rows gained datasets in the ten-cid promotion.
+  expect(actual.taxonomy && actual.taxonomy.counts.notYetCovered === 81, 'taxonomy gap count changed');
 
   const decisions = actual.taxonomy && actual.taxonomy.decisions || [];
   expect(new Set(decisions.map((decision) => decision.id)).size === decisions.length, 'generated decision ids are not unique');

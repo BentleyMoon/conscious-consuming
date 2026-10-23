@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/passport-v0.1.schema.json",
   "title": "Open Values Passport v0.1",
-  "description": "A nameless, user-owned map of universal value weights that can travel between Open Values Standard instances.",
+  "description": "A small file that says how much each of ten shared values matters to one person, from 0 to 5, with no name in it. The person keeps it and can carry it to any app that reads the format.",
   "type": "object",
   "required": [
     "format",
@@ -12,17 +12,21 @@
   "additionalProperties": true,
   "properties": {
     "format": {
-      "const": "open-values-passport"
+      "const": "open-values-passport",
+      "description": "Always \"open-values-passport\". Tells a reader that this file is a values file."
     },
     "version": {
       "type": "string",
-      "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$"
+      "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$",
+      "description": "The version of the passport format this file follows, 0.1. Readers of 0.1 ignore fields they do not know."
     },
     "source": {
-      "type": "string"
+      "type": "string",
+      "description": "Which app wrote the file, such as \"conscious-consuming\", or the group's name when the file was made by adding up several people's files. Not a person's name."
     },
     "exported": {
-      "type": "string"
+      "type": "string",
+      "description": "When the file was downloaded, as an ISO 8601 date and time. Conscious Consuming sets it; other apps may leave it out."
     },
     "values": {
       "type": "object",
@@ -30,36 +34,47 @@
       "additionalProperties": false,
       "properties": {
         "planet": {
-          "$ref": "#/$defs/weight"
+          "$ref": "#/$defs/weight",
+          "description": "Weight for the environment: sustainability and how long things last. 0 to 5."
         },
         "people": {
-          "$ref": "#/$defs/weight"
+          "$ref": "#/$defs/weight",
+          "description": "Weight for fairness to other people: ethics and how workers and others are treated. 0 to 5."
         },
         "openness": {
-          "$ref": "#/$defs/weight"
+          "$ref": "#/$defs/weight",
+          "description": "Weight for openness: transparency, open and free things, independence, and being able to leave. 0 to 5."
         },
         "access": {
-          "$ref": "#/$defs/weight"
+          "$ref": "#/$defs/weight",
+          "description": "Weight for access: low cost, accessible, and easy to start. 0 to 5."
         },
         "wellbeing": {
-          "$ref": "#/$defs/weight"
+          "$ref": "#/$defs/weight",
+          "description": "Weight for wellbeing: health, safety and calm. 0 to 5."
         },
         "autonomy": {
-          "$ref": "#/$defs/weight"
+          "$ref": "#/$defs/weight",
+          "description": "Weight for autonomy: privacy, control and ownership. 0 to 5."
         },
         "animals": {
-          "$ref": "#/$defs/weight"
+          "$ref": "#/$defs/weight",
+          "description": "Weight for the welfare of animals. 0 to 5."
         },
         "community": {
-          "$ref": "#/$defs/weight"
+          "$ref": "#/$defs/weight",
+          "description": "Weight for community: local, independent and co-operative options. 0 to 5."
         },
         "quality": {
-          "$ref": "#/$defs/weight"
+          "$ref": "#/$defs/weight",
+          "description": "Weight for quality: rigour, craft, depth and accuracy. 0 to 5."
         },
         "joy": {
-          "$ref": "#/$defs/weight"
+          "$ref": "#/$defs/weight",
+          "description": "Weight for joy: engagement, delight and beauty. 0 to 5."
         }
-      }
+      },
+      "description": "How much the person cares about each shared value, from 0 (ignore it) to 5 (matters most). 3 is neutral. A value that is missing was not set, which is not the same as 0."
     }
   },
   "$defs": {

@@ -81,7 +81,7 @@ function renderCompare(){
   html+='</tr></thead><tbody>';
   for(const c of crit){html+=`<tr><td class="cmp-cl">${esc(c.label)}</td>`;
     for(const e of compareSet){const sc=e.product.scores?e.product.scores[c.key]:null;
-      html+=`<td>${sc!=null?`<span class="cmp-bar"><span style="width:${sc}%"></span></span> <span class="cmp-v">${sc}</span>`:'<span class="cmp-na">,</span>'}</td>`;}
+      html+=`<td>${sc!=null?`<span class="cmp-bar"><span style="width:${sc}%"></span></span> <span class="cmp-v">${sc}</span>`:'<span class="cmp-na">not checked</span>'}</td>`;}
     html+='</tr>';}
   html+='</tbody></table></div>';
   v.innerHTML=html;
@@ -286,6 +286,7 @@ let _rerankRAF=0;
 function scheduleRerank(){ if(_rerankRAF)return; _rerankRAF=requestAnimationFrame(()=>{_rerankRAF=0;render();updateProfile();}); }
 function applyErrand(t){ // t 0..100 between the two poles; weights start from your themes, then the poles pull
   const ax=catAxes(); if(!ax.tradeoff)return;
+  rankByValuesAgain();
   weights=themeDefaults(DATA.criteria);
   const a=ax.tradeoff[0], b=ax.tradeoff[1];
   weights[a]=Math.max(0,Math.min(5,Math.round(1+4*(1-t/100))));
@@ -416,7 +417,7 @@ function renderThemes(){
   box.querySelectorAll('.themechip').forEach(b=>b.onclick=()=>{const id=b.dataset.theme;themeWeights[id]=(themeWeights[id]||3)>=4?3:5;saveThemes();applyThemes();});
 }
 function applyThemes(){
-  rerankPing=true;
+  rerankPing=true;rankByValuesAgain();
   if(DATA){weights=themeDefaults(DATA.criteria);
     for(const cr of DATA.criteria){const i=document.getElementById('w_'+cr.key);if(i){i.value=weights[cr.key]||0;sliderFill(i);const v=document.getElementById('v_'+cr.key);if(v)v.textContent=weights[cr.key]||0;}}}
   renderThemes();render();updateProfile();
@@ -437,6 +438,28 @@ function startValues(){quizPhase='intro';quizI=0;quizPts={};renderValues();}
 function pickValue(c){const q=VALUES_QUIZ[quizI];for(const th of q[c].th)quizPts[th]=(quizPts[th]||0)+1;quizI++;if(quizI>=VALUES_QUIZ.length)quizPhase='result';renderValues();}
 function topValueThemes(){return Object.keys(quizPts).sort((a,b)=>quizPts[b]-quizPts[a]).slice(0,3);}
 function useValues(){for(const t of THEMES){const p=quizPts[t.id]||0;themeWeights[t.id]=Math.min(5,3+Math.min(2,p));}saveThemes();try{localStorage.setItem(ONBOARD_KEY,'1');}catch(e){}onboarded=true;announce('Your values are set');location.hash='#map';} // graded seeding: more picks → higher weight (3→5)
+function renderInstitute(){
+  const v=document.getElementById('view-institute');
+  v.innerHTML=`<article class="institute-page">
+    <p class="institute-kicker">The name in the corner</p>
+    <h1>The Futurism Institute</h1>
+    <p>Conscious Consuming is built and kept by the Futurism Institute, an independent maker of
+    civic instruments for an age of machine abundance. Independent means what it sounds like:
+    nobody pays to be ranked here, nothing is sponsored, and the drafts say they are drafts.</p>
+    <p>On this site that shows up in three ways. Every fact carries its source. The index and its
+    ids are published as an open standard anyone can adopt or check. And your values, rules, and
+    settings stay on your device, because an instrument you consult should not be watching you
+    back.</p>
+    <p>The Institute keeps other instruments beside this one, each with the same discipline:
+    claims in plain words, provenance attached, gaps drawn instead of hidden.</p>
+    <ul class="institute-links">
+      <li><a href="../standard/index.html">The Open Values Standard, which this catalogue publishes</a></li>
+      <li><a href="https://futurisminstitute.org/" target="_blank" rel="noopener">futurisminstitute.org, the Institute itself</a></li>
+      <li><a href="#contribute">Suggest a decision, or argue with one</a></li>
+    </ul>
+    <p class="institute-back"><a href="#">Back to the front page</a></p>
+  </article>`;
+}
 function renderValues(){
   const v=document.getElementById('view-values');if(!v)return;
   if(quizPhase==='studio'){
@@ -539,13 +562,26 @@ function presetSummary(pr){
 }
 
 // --- profile (M3) ---
-function saveProfile(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify({weights,excludes:[...excludes],sortBy,regionFilter,category:DATA&&DATA.meta.id}));}catch(e){}}
+/* sortChosen: the reader picked this sort themselves. A saved sort is reapplied only then, so an
+   automatic default never turns into a standing choice. listLimit: how much of the list is showing. */
+const LIST_PAGE=40;
+let sortChosen=false, listLimit=LIST_PAGE;
+/* Moving a weight asks for a ranking by values. A list sorted on one measure ignores the weights, so
+   until 2026-10-23 the trade-off slider, the presets and the sliders changed nothing a reader could
+   see whenever a single-measure sort was on. */
+function rankByValuesAgain(){
+  if(sortBy==='score')return false;
+  sortBy='score';sortChosen=false;listLimit=LIST_PAGE;
+  const s=document.getElementById('sort');if(s)s.value='score';
+  return true;
+}
+function saveProfile(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify({weights,excludes:[...excludes],sortBy,sortChosen,regionFilter,category:DATA&&DATA.meta.id}));}catch(e){}}
 function loadProfile(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'null');}catch(e){return null;}}
 function profileName(){
   const P=curPresets();
   for(const name in P){const pr=P[name];let ok=true;
     for(const cr of DATA.criteria){if((weights[cr.key]||0)!==(pr.w[cr.key]||0)){ok=false;break;}}
-    if(ok){const xs=new Set(pr.x||[]);if(xs.size!==excludes.size||[...excludes].some(a=>!xs.has(a)))ok=false;}
+    if(ok){const xs=new Set([...((YOU&&YOU.allergens)||[]),...(pr.x||[])]);if(xs.size!==excludes.size||[...excludes].some(a=>!xs.has(a)))ok=false;}
     if(ok)return name;}
   return null;
 }
@@ -559,7 +595,9 @@ function standingSummary(){ // the active standing filters, in plain words
 }
 // The "your lines, applied" strip — the rent test paid in public: every line you hold is shown working, here,
 // with an honest count of what it hid. Empty when you hold no lines that touch this category.
+function updateExclSummary(){const sm=document.querySelector('#filters details.excl>summary');if(sm)sm.innerHTML=`Exclude allergens${excludes.size?` <span class="excl-n">${excludes.size} on</span>`:''}`;}
 function updateFilterNote(){
+  updateExclSummary();
   const fn=document.getElementById('filternote');if(!fn)return;
   const parts=[];
   if(excludes.size)parts.push('declared free of '+[...excludes].map(a=>esc(ALLERGEN_LABELS[a]||a)).join(', ')+(allergenFoldedLast.length?` <span class="fn-n">${allergenFoldedLast.length} need a label check</span>`:''));
@@ -576,6 +614,7 @@ function updateFilterNote(){
 function updateProfile(){
   const n=profileName(), s=document.getElementById('profstatus');
   if(s)s.textContent=(n?`Your values · ${n}`:'Your custom values')+' · saved on this device · ';
+  document.querySelectorAll('#presets button').forEach(b=>{const on=b.textContent===n;b.setAttribute('aria-pressed',String(on));b.classList.toggle('on',on);});
   updateFilterNote();saveProfile();
 }
 
@@ -608,6 +647,7 @@ function updateNavRegion(){
   b.innerHTML=CC.icon('globe')+' '+esc(regionLabel(YOU.region))+'<span class="navregion-caret" aria-hidden="true">&#9662;</span>';
   b.title=REGION_SCOPE+' Choose a region or language.';
   b.setAttribute('aria-haspopup','true');
+  b.setAttribute('aria-label','Region: '+regionLabel(YOU.region)+'. Change region or language');
   b.setAttribute('aria-expanded',document.getElementById('regionmenu')?'true':'false');
 }
 /* Coverage counted from the live index rather than written down, so the menu cannot claim a
@@ -726,10 +766,13 @@ function regionRerender(){
   if(DATA&&explore&&explore.style.display!=='none'){render();return;}
   route();
 }
+const CATDIR_WIDE=window.matchMedia?window.matchMedia('(min-width:1100px)'):{matches:false};
+function syncCatDir(){const dir=document.querySelector('#cats details.catdir');if(dir)dir.open=!!CATDIR_WIDE.matches;}
 function setActiveCat(id){
   document.querySelectorAll('#cats .tr-row').forEach(b=>b.classList.toggle('on',b.dataset.cid===id));
   const active=document.querySelector('#cats .tr-row.on'), d=active&&active.closest('details.tree');
   if(d&&!d.open)d.open=true;
+  syncCatDir();
 }
 
 // --- testing notes (M5) ---
@@ -813,7 +856,7 @@ function rankedList(filterQuery){
   }
   activeAvoidLast=Object.keys(avoidCount).map(k=>({label:k,n:avoidCount[k]}));dietCountLast=dietCount;
   if(sortBy==='name')arr.sort((a,b)=>a[0].name.localeCompare(b[0].name));
-  else if(sortBy!=='score'&&DATA.criteria.some(cr=>cr.key===sortBy))arr.sort((a,b)=>{const x=a[0].scores[sortBy],y=b[0].scores[sortBy];return (y==null?-1:y)-(x==null?-1:x);});
+  else if(sortBy!=='score'&&DATA.criteria.some(cr=>cr.key===sortBy))arr.sort((a,b)=>{const x=a[0].scores[sortBy],y=b[0].scores[sortBy];if(x==null&&y==null)return b[1].score-a[1].score;if(x==null)return 1;if(y==null)return -1;return (y-x)||(b[1].score-a[1].score);});
   else arr.sort((a,b)=>b[1].score-a[1].score);
   return arr;
 }
@@ -922,7 +965,7 @@ function trustLensControlHTML(){
   if(!DATA||!DATA.products)return '';
   const total=DATA.products.length, multi=DATA.products.filter(trustLensQualified).length;
   return `<label class="trusttoggle"><input id="trusttoggle" type="checkbox"${trustLensOn?' checked':''}> <span>Show only verdicts backed by two or more independent sources</span></label>
-    <p>${multi.toLocaleString()} of ${total.toLocaleString()} entries in this category have 2+ source domains. Single-source and no-source verdicts fold with a show-anyway path; they are never erased.</p>`;
+    <p>${multi.toLocaleString()} of ${total.toLocaleString()} here have two or more. The rest stay listed, folded below.</p>`;
 }
 function renderTrustLensControl(){
   const box=document.getElementById('trustlens'); if(!box)return;
@@ -971,15 +1014,29 @@ function hopTo(hash){
 }
 function openProduct(code){location.hash='item/'+encodeURIComponent(DATA.meta.id)+'/'+encodeURIComponent(code);}
 
+/* Why a product has no score. A missing score used to read "excluded by your allergen filter" even when
+   the product simply carried too few of the facts being weighed (the engine needs a quarter of them). */
+function noScoreReason(p){
+  try{if(excludes&&excludes.size&&!CC.engine.allergenDecision(p,excludes).eligible)return 'Left out: it may contain an allergen you excluded';}catch(e){}
+  return 'Not scored: too few of the facts you are weighing';
+}
 function listCard(p,s,badge,onClick){
   const card=el('div',{class:'card click','data-code':p.code});
   const t=s&&scoreTier(s.score);
-  card.innerHTML=`<div class="top"><div><span class="nm">${esc(p.name)}</span>${p.brand?` <span class="br">${esc(p.brand)}</span>`:''}${badge?`<span class="catbadge">${esc(badge)}</span>`:''}</div><div class="right" style="display:flex;align-items:center;gap:.6rem"><span class="sc${s&&s.coverage<0.7?' low':''}">${s?s.score:','}<small> /100</small></span></div></div>
-    <div class="why">${s?`<span class="stier ${t[1]}">${t[0]}</span> · strongest on ${s.why.join(' and ')}${s.facts<s.wanted?` · ${s.facts} of ${s.wanted} facts you value`:''}${s.cap?` · capped on ${esc(s.cap.label)}`:''}`:'excluded by your allergen filter'}</div>
+  // In a category list the product name is a real link and the save button sits beside it. Other
+  // lists (search, discover) pass their own onClick and keep the whole card as the control.
+  const own=!onClick&&DATA&&DATA.meta;
+  const nameHTML=own?`<a class="nm" href="#item/${encodeURIComponent(DATA.meta.id)}/${encodeURIComponent(p.code)}">${esc(p.name)}</a>`:`<span class="nm">${esc(p.name)}</span>`;
+  const sc=own&&sortCriterion(), sv=sc?p.scores[sc.key]:null;
+  const sortLine=sc?`<div class="sortfact">${esc(sc.label)}: ${sv==null?'no figure for this one, so it follows the ones that have it':`<b>${sv}</b> of 100`}</div>`:'';
+  card.innerHTML=`<div class="top"><div>${nameHTML}${p.brand?` <span class="br">${esc(p.brand)}</span>`:''}${badge?`<span class="catbadge">${esc(badge)}</span>`:''}</div><div class="right" style="display:flex;align-items:center;gap:.6rem"><span class="sc${s&&s.coverage<0.7?' low':''}">${s?`${s.score}<small> /100</small>`:'<span aria-label="no score">&ndash;</span>'}</span></div></div>
+    <div class="why">${s?`<span class="stier ${t[1]}">${t[0]}</span> · strongest on ${s.why.join(' and ')}${s.facts<s.wanted?` · ${s.facts} of ${s.wanted} facts you value`:''}${s.cap?` · capped on ${esc(s.cap.label)}`:''}`:esc(noScoreReason(p))}</div>
+    ${sortLine}
     <div class="provline">${provenanceChipHTML(p)}</div>
     ${algHTML(p)}`;
   card.querySelector('.right').appendChild(saveToggleEl(p,false));
-  makeClickable(card,onClick||(()=>openProduct(p.code)),`View ${p.name}`);
+  if(own)card.addEventListener('click',e=>{if(e.target.closest('a,button,details,summary'))return;openProduct(p.code);});
+  else makeClickable(card,onClick||(()=>openProduct(p.code)),`View ${p.name}`);
   return card;
 }
 function allergenStatusText(row){
@@ -1025,7 +1082,7 @@ function evidenceCoverage(ds){
 function showEvidence(ds){
   const e=document.getElementById('evcov'); if(!e)return;
   const ev=evidenceCoverage(ds);
-  e.innerHTML=ev?`<span class="ev ev-${ev.level}" title="${ev.good} of ${ev.total} shown facts carry a measured value, a certification, a cited source, or a low-stakes convenience note (${Math.round(ev.pct*100)}%). Strong ≥66% · partial ≥33% · early below.">${EV_LABEL[ev.level]}</span>`:'';
+  e.innerHTML=ev?`<span class="ev ev-${ev.level}" title="${ev.good} of ${ev.total} shown facts carry a measured value, a certification, a cited source, or a low-stakes convenience note (${Math.round(ev.pct*100)}%). Strong ≥66% · partial ≥20% · early below.">${EV_LABEL[ev.level]}</span>`:'';
 }
 function loadChallengeIndex(){
   if(CHALLENGE_INDEX)return Promise.resolve(CHALLENGE_INDEX);
@@ -1176,12 +1233,16 @@ function renderAsksOffersBoard(cid,box){
     box.innerHTML=asksOffersBoardHTML(index);
   });
 }
+function sortCriterion(){return (sortBy!=='score'&&sortBy!=='name')?DATA.criteria.find(c=>c.key===sortBy)||null:null;}
+function sortAnnouncement(){const c=sortCriterion();return sortBy==='name'?'Sorted A to Z':c?`Sorted by ${c.label.toLowerCase()}`:'Ranked for your values';}
 function renderList(){
+  setExpToggle();
+  const et=document.getElementById('explore-title');if(et)et.textContent=`${DATA.meta.label}: every option, ranked`;
   const arr=rankedList();
   const trust=trustLensSplit(arr), displayArr=trust.visible, foldedArr=trust.folded;
   // the count line says what the ranking actually is — the category's own axis, a single fact, or your values
-  const _axl=(sortBy!=='score'&&sortBy!=='name')?(DATA.criteria.find(c=>c.key===sortBy)||{}).label:null;
-  const rankingLabel=sortBy==='name'?'A to Z':_axl?`Ranked by ${_axl.toLowerCase()}, switch to “best for you” anytime`:'Ranked for your values';
+  const _sc=sortCriterion(), _withFig=_sc?arr.filter(([p])=>p.scores[_sc.key]!=null).length:0;
+  const rankingLabel=sortBy==='name'?'Sorted A to Z':_sc?`Sorted by ${_sc.label.toLowerCase()} (${_withFig} of ${arr.length} have this figure; the rest follow, ranked for your values)`:'Ranked for your values';
   document.getElementById('count').textContent=trustLensOn
     ? `Trust Lens on · ${displayArr.length} matches backed by 2+ independent sources${foldedArr.length?`, ${foldedArr.length} single/no-source matches folded below`:''}`
     : `${rankingLabel} · ${arr.length} eligible match${arr.length===1?'':'es'}${allergenFoldedLast.length?` · ${allergenFoldedLast.length} need a label check`:''}`;
@@ -1200,7 +1261,7 @@ function renderList(){
     } else fb.innerHTML='';
   }
   showEvidence(DATA);
-  if(overlayCount(DATA.meta.id)){const _e=document.getElementById('evcov');if(_e){const _n=overlayCount(DATA.meta.id);_e.innerHTML+=(_e.innerHTML.trim()?' · ':'')+`<span style="color:var(--accent)">✎ ${_n} correction${_n>1?'s':''} you've applied here</span> <a id="lwipe" style="cursor:pointer;color:var(--accent);text-decoration:underline">clear</a>`;const _w=document.getElementById('lwipe');if(_w)_w.onclick=()=>{clearOverlay(DATA.meta.id);announce('Corrections cleared, original facts restored');render();};}}
+  if(overlayCount(DATA.meta.id)){const _e=document.getElementById('evcov');if(_e){const _n=overlayCount(DATA.meta.id);_e.innerHTML+=(_e.innerHTML.trim()?' · ':'')+`<span style="color:var(--accent)">✎ ${_n} correction${_n>1?'s':''} you've applied here</span> <button type="button" id="lwipe" class="linkbtn">clear</button>`;const _w=document.getElementById('lwipe');if(_w)_w.onclick=()=>{clearOverlay(DATA.meta.id);announce('Corrections cleared, original facts restored');render();};}}
   const res=document.getElementById('results');
   const first={}; for(const ch of res.children){const c=ch.dataset&&ch.dataset.code; if(c)first[c]=ch.getBoundingClientRect();}
   res.innerHTML='';
@@ -1220,11 +1281,27 @@ function renderList(){
   if(displayArr.length>1){const dc=el('a',{class:'guidelink',href:decideHref(DATA.meta.id,listScope),style:'border-left:3px solid var(--accent)'});dc.innerHTML='✦ <b>Just want the answer?</b> Help me decide →';res.appendChild(dc);}
   const chbox=el('div',{class:'challengebox','data-cid':DATA.meta.id});res.appendChild(chbox);renderChallengeBox(DATA.meta.id,chbox);
   let prevSc=null;
-  for(const [p,s] of displayArr.slice(0,40)){const card=listCard(p,s);if(sortBy==='score'&&prevSc!=null&&s&&Math.abs(s.score-prevSc)<=2)card.classList.add('tied');if(s)prevSc=s.score;res.appendChild(card);}
-  if(displayArr.length>40)res.appendChild(el('div',{class:'listend'},`Showing your 40 best matches of ${displayArr.length}. Refine your values or search above to see further down.`));
-  else if(displayArr.length)res.appendChild(el('div',{class:'listend'},`That's all ${displayArr.length}, ranked for your values, you're all caught up.`));
+  const shown=Math.min(listLimit,displayArr.length);
+  for(const [p,s] of displayArr.slice(0,shown)){const card=listCard(p,s);if(sortBy==='score'&&prevSc!=null&&s&&Math.abs(s.score-prevSc)<=2)card.classList.add('tied');if(s)prevSc=s.score;res.appendChild(card);}
+  const orderWords=sortBy==='name'?'A to Z':_sc?`sorted by ${_sc.label.toLowerCase()}`:'ranked for your values';
+  if(displayArr.length>shown){
+    const more=Math.min(LIST_PAGE,displayArr.length-shown);
+    const end=el('div',{class:'listend listmore'},`Showing ${shown} of ${displayArr.length}, ${orderWords}. `);
+    const b=el('button',{type:'button',class:'catbtn'},`Show ${more} more`);
+    b.onclick=()=>{const from=shown;listLimit=shown+LIST_PAGE;render();const next=document.querySelectorAll('#results .card')[from];const a=next&&next.querySelector('a.nm');if(a)a.focus();announce(`Showing ${Math.min(listLimit,displayArr.length)} of ${displayArr.length}`);};
+    end.appendChild(b);res.appendChild(end);
+  }
+  else if(displayArr.length)res.appendChild(el('div',{class:'listend'},`That's all ${displayArr.length}, ${orderWords}.`));
   else if(trustLensOn&&foldedArr.length)res.appendChild(el('div',{class:'listend'},'No entries in this view have two independent source domains yet. The single-source and no-source verdicts are folded below.'));
   else if(allergenFoldedLast.length)res.appendChild(el('div',{class:'listend'},'No option here is explicitly declared free of every selected allergen. The label-check fold keeps every option inspectable.'));
+  else{
+    // Nothing to show and nothing folded: say why, and give the way back.
+    const q=currentListQuery(), hidden=dietHidden+avoidHiddenLast;
+    const box=el('div',{class:'listend listempty'},q?`Nothing here matches “${esc(q)}”.`:hidden?`Your rules hide all ${hidden} options here.`:regionFilter!=='everywhere'?'Nothing here is listed for the region you chose.':'Nothing to show here yet.');
+    if(q){const b=el('button',{type:'button',class:'catbtn'},'Clear the search');b.onclick=()=>{const qi=document.getElementById('q');if(qi){qi.value='';qi.dispatchEvent(new Event('input',{bubbles:true}));qi.focus();}};box.appendChild(b);}
+    else if(hidden){box.appendChild(el('a',{href:'#you',class:'catbtn'},'Edit my rules'));}
+    res.appendChild(box);
+  }
   const allergenFold=allergenSafetyFoldEl(allergenFoldedLast);
   if(allergenFold)res.appendChild(allergenFold);
   const folded=trustLensOn?trustFoldEl(foldedArr):null;
@@ -1390,7 +1467,13 @@ function renderDetail(){
   const better=scored.filter(z=>z[0].code!==p.code&&z[1].score>my).slice(0,4);
   // D1 — verdict-forward: the single most-decisive sourced reason, an honest confidence read, an explicit next action.
   const reason=s?headlineReason(p,DATA,s):null;
-  const covLevel=s?(s.coverage>=0.7?['strong','ev-strong']:s.coverage>=0.4?['partial','ev-partial']:['limited','ev-early']):null;
+  let covLevel=s?(s.coverage>=0.7?['strong','ev-strong']:s.coverage>=0.4?['partial','ev-partial']:['limited','ev-early']):null;
+  // The badge used to count facts while the panel below said confidence is held, so a reader got
+  // "strong" and "held" for the same evidence. Breadth cannot outrank independence: one source
+  // domain caps the badge at partial, and missing links at limited.
+  const _prov=provenanceParts(p);
+  if(covLevel&&_prov&&_prov.mode==='held'&&covLevel[1]==='ev-strong')covLevel=['one source','ev-partial'];
+  if(covLevel&&_prov&&_prov.mode==='missing')covLevel=['links missing','ev-early'];
   const LENS_VERB={banking:'Move your money',investing:'Move your money',payments:'Switch your payments','digital-services':'Switch the service','ai-assistants':'Switch assistant',vpn:'Switch VPN','password-managers':'Switch manager','music-streaming':'Switch service',phones:'Choose better',laptops:'Choose better',clothing:'Shop better',shoes:'Shop better'};
   const _cid=DATA.meta.id, _verb=LENS_VERB[_cid];
   const _gslug=CAT_GUIDE[_cid], _hasGuide=!!(_gslug&&(window.CC_GUIDES||[]).some(g=>g.slug===_gslug));
@@ -1401,27 +1484,36 @@ function renderDetail(){
   res.appendChild(makeClickable(el('div',{class:'back'},'← all'),()=>{location.hash='explore/'+DATA.meta.id;},'Back to all'));
   const avHit=activeAvoidLines().find(a=>avoidHit(p,a));
   if(avHit){const bn=el('div',{class:'avoidbanner'});bn.innerHTML=`&#8856; You’re avoiding <b>${esc(avHit.label)}</b>, and this is one of its brands. It’s hidden from your rankings, you’re seeing it here only because you opened it directly. <a href="#you">My rules →</a>`;res.appendChild(bn);}
-  if(overlayCount(DATA.meta.id)){const nn=overlayCount(DATA.meta.id);const ln=el('div',{style:'font-size:.82rem;color:var(--muted);margin:.1rem 0 .55rem'});ln.innerHTML='✎ You\'ve applied <b>'+nn+'</b> correction'+(nn>1?'s':'')+' here, on this device, reproducible, never uploaded. ';const clr=el('a',{style:'color:var(--accent);cursor:pointer'},'clear & restore originals');clr.onclick=()=>{clearOverlay(DATA.meta.id);announce('Corrections cleared, original facts restored');render();};ln.appendChild(clr);res.appendChild(ln);}
+  if(overlayCount(DATA.meta.id)){const nn=overlayCount(DATA.meta.id);const ln=el('div',{style:'font-size:.82rem;color:var(--muted);margin:.1rem 0 .55rem'});ln.innerHTML='✎ You\'ve applied <b>'+nn+'</b> correction'+(nn>1?'s':'')+' here, on this device, reproducible, never uploaded. ';const clr=el('button',{type:'button',class:'linkbtn'},'clear & restore originals');clr.onclick=()=>{clearOverlay(DATA.meta.id);announce('Corrections cleared, original facts restored');render();};ln.appendChild(clr);res.appendChild(ln);}
   const src=DATA.meta.productBase
     ? `<a href="${DATA.meta.productBase}${encodeURIComponent(p.code||'')}" target="_blank" rel="noopener">see source &amp; suggest a correction ↗</a>`
     : `<a href="#contribute/problem/${encodeURIComponent(p.name||'')}">dispute or correct a rating ↗</a>`;
   // Phase C / C1 — richer record fields (all optional, backward-compatible)
   const descHTML=p.description?`<p class="desc">${esc(p.description)}</p>`:'';
-  const focusHTML=(p.focuses&&p.focuses.length)?`<div class="focuses">${p.focuses.map(f=>`<span class="focus">${esc(f)}</span>`).join('')}</div>`:'';
+  const focusHTML=(p.focuses&&p.focuses.length)?`<p class="focuses">${p.focuses.map(f=>esc(f)).join(' \u00b7 ')}</p>`:'';
   const linksHTML=(p.links&&p.links.length)?`<div class="links">${p.links.map(l=>`<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label||'Website')} ↗</a>`).join('')}</div>`:'';
+  const factRows=(DATA.criteria||[]).filter(cr=>cr.key!=='price').map(cr=>{
+    const v=p.scores&&p.scores[cr.key];
+    const lead=reason&&reason.label===cr.label;
+    if(v==null)return `<li class="vf-row vf-none"><span class="vf-l">${esc(cr.label)}</span><span class="vf-b">not measured</span><span class="vf-n"></span></li>`;
+    const b=CC.engine.band(v);
+    return `<li class="vf-row${lead?' vf-lead':''}"><span class="vf-l">${esc(cr.label)}</span><span class="vf-b">${esc(b[0])}</span><span class="vf-n">${v}</span></li>`;
+  }).join('');
+  const factsHTML=factRows?`<ul class="vd-facts" aria-label="Every factor for ${esc(p.name)}">${factRows}</ul>`:'';
   const card=el('div',{class:'card vdcard'});
   const reasonHTML=reason
     ? `<div class="vd-reason"><span class="vd-rl">${esc(reason.label)}: <b>${esc(reason.band[0])}</b></span><span class="vd-rn">${reason.applied?`<b style="color:var(--accent)">✎ your correction</b> · `:''}${esc(reason.note||'')} ${reason.source?`<a href="${esc(reason.source)}" target="_blank" rel="noopener">${reason.applied?'your source':'source'} ↗${reason.asof?' '+esc(reason.asof):''}</a>`:''}</span></div>`
     : (s?`<div class="vd-reason"><span class="vd-rl">Strongest on <b>${esc(s.why.join(' and '))}</b></span>${wk&&wk[1]<55?`<span class="vd-rn">Watch the weakest axis, ${esc(wk[0])} (${wk[1]}/100).</span>`:''}</div>`:'');
-  card.innerHTML=`<div class="vd-id"><div class="nm big">${esc(p.name)}</div>${p.brand?`<div class="br">${esc(p.brand)}</div>`:''}</div>
+  card.innerHTML=`<div class="vd-id"><h2 class="nm big">${esc(p.name)}</h2>${p.brand?`<div class="br">${esc(p.brand)}</div>`:''}</div>
+    ${descHTML}${focusHTML}
     ${s?`<div class="vd-verdict"><div class="vd-score"><span class="vd-num">${s.score}</span><span class="vd-den">/ 100</span></div>
       <div class="vd-meta"><div class="vd-fit"><span class="stier ${t[1]}">${t[0]}</span> <span class="vd-for">for your values</span></div>
         <div class="vd-conf">${covLevel?`<span class="ev ${covLevel[1]}">Evidence: ${covLevel[0]}</span>`:''}<span>weighted by what you care about${s.facts<s.wanted?` · ${s.facts} of ${s.wanted} facts`:''}</span></div></div></div>`
-      :`<div class="vd-conf">Excluded by your allergen filter.</div>`}
+      :`<div class="vd-conf">${esc(noScoreReason(p))}.</div>`}
     ${s&&s.cap?`<div class="capnote">Capped at 49, you weight <b>${esc(s.cap.label)}</b> highly and it scores ${s.cap.v}/100, a dealbreaker for what you care about.</div>`:''}
     ${reasonHTML}
-    ${provenancePanelHTML(p)}
-    ${descHTML}${focusHTML}`;
+    ${factsHTML}
+    ${provenancePanelHTML(p)}`;
   res.appendChild(card);
   const detailChallenge=el('div',{class:'challengebox challengebox-detail','data-cid':DATA.meta.id,'data-code':p.code});
   res.appendChild(detailChallenge);renderDetailChallengeBox(DATA.meta.id,p.code,detailChallenge);
@@ -1433,7 +1525,8 @@ function renderDetail(){
   const arIn=el('div',{class:'fold-in'});around.appendChild(arIn);
   fpIn.appendChild(explainEl(p));
   fpIn.appendChild(postureEl(p));
-  const sb=el('div',{style:'display:flex;gap:.6rem;align-items:center;margin:.1rem 0 .5rem'});
+  // flex-wrap: five actions did not fit a phone's width and pushed the whole page 173px sideways.
+  const sb=el('div',{class:'vd-actions',style:'display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin:.1rem 0 .5rem'});
   sb.appendChild(saveToggleEl(p,true));
   const note=el('button',{class:'savebtn'},CC.icon('edit')+' note on this');
   note.onclick=()=>{feedbackContext=p.name;viewingFeedback=true;selected=null;render();};
@@ -1476,7 +1569,7 @@ function renderSaved(){
   document.getElementById('count').textContent='';
   const res=document.getElementById('results');res.innerHTML='';
   res.appendChild(makeClickable(el('div',{class:'back'},'← back to browsing'),()=>{location.hash='explore';},'Back to browsing'));
-  res.appendChild(el('div',{class:'alts-h'},`Your saved (${savedList.length})`));
+  res.appendChild(el('h2',{class:'alts-h'},`Your saved (${savedList.length})`));
   if(!savedList.length){res.appendChild(el('div',{class:'alts-sub'},'Nothing saved yet, tap '+CC.icon('heart')+' on any entry to keep it here. Saved on this device only.'));return;}
   res.appendChild(el('div',{class:'alts-sub'},'kept on this device · scored where it shares your current values'));
   for(const entry of savedList){
@@ -1493,7 +1586,7 @@ function renderFeedback(){
   document.getElementById('count').textContent='';
   const res=document.getElementById('results');res.innerHTML='';
   res.appendChild(makeClickable(el('div',{class:'back'},'← back to browsing'),()=>{feedbackContext=null;location.hash='explore';},'Back to browsing'));
-  res.appendChild(el('div',{class:'alts-h'},'Self-test field log'));
+  res.appendChild(el('h2',{class:'alts-h'},'Self-test field log'));
   res.appendChild(el('div',{class:'alts-sub'},'Use this for real decisions for about two weeks. After each one, note whether it helped, what was missing, and whether you trusted it. The notes stay on this device until you export them.'));
   const form=el('div',{class:'card'});
   form.innerHTML=`${feedbackContext?`<div class="why">about: <b>${esc(feedbackContext)}</b></div>`:''}
@@ -1504,7 +1597,7 @@ function renderFeedback(){
       <button class="savebtn" data-r="confusing">confusing</button>
       <button class="savebtn" data-r="idea">idea</button>
     </div>
-    <textarea id="fnote" rows="3" placeholder="What did you notice? What worked, what didn't, what's missing, did you trust it?"></textarea>
+    <textarea id="fnote" rows="3" aria-label="Your note" placeholder="What did you notice? What worked, what didn't, what's missing, did you trust it?"></textarea>
     <div style="margin-top:.6rem"><button class="catbtn" id="fsave">Save note</button></div>`;
   res.appendChild(form);
   let reaction=null;
@@ -1535,13 +1628,15 @@ function render(){
   // opening under a full category menu — the founder's ambush report. The DOM stays intact so the
   // search box, sort and region keep their values for the way back.
   const _ev=document.getElementById('view-explore');
-  if(_ev)_ev.classList.toggle('leaf',!!selected&&!viewingSaved&&!viewingFeedback);
+  // Saved and Notes are lists of their own, so they drop the ranking's chrome the same way.
+  if(_ev)_ev.classList.toggle('leaf',!!selected||viewingSaved||viewingFeedback);
   viewingFeedback?renderFeedback():viewingSaved?renderSaved():selected?renderDetail():renderList();
   if(selected)renderCrumbs();
 }
 
 function applyPreset(name){
-  const pr=curPresets()[name];if(!pr)return;weights={...pr.w};excludes=new Set(pr.x||[]);rerankPing=true;
+  // A preset adds its exclusions to your own allergens; it never removes one you set.
+  const pr=curPresets()[name];if(!pr)return;rankByValuesAgain();weights={...pr.w};excludes=new Set([...((YOU&&YOU.allergens)||[]),...(pr.x||[])]);rerankPing=true;
   for(const cr of DATA.criteria){const i=document.getElementById('w_'+cr.key);if(i){i.value=weights[cr.key]||0;sliderFill(i);document.getElementById('v_'+cr.key).textContent=weights[cr.key]||0;}}
   document.querySelectorAll('.filters input').forEach(cb=>cb.checked=excludes.has(cb.value));
   render();updateProfile();announce('Applied the '+name+' preset. '+presetSummary(pr));
@@ -1570,7 +1665,7 @@ function buildControls(){
     row.innerHTML=`<label for="w_${cr.key}">${esc(cr.label)}</label><input id="w_${cr.key}" type="range" min="0" max="5" step="1" value="${weights[cr.key]||0}"><span class="v" id="v_${cr.key}">${weights[cr.key]||0}</span>`;
     parent.appendChild(row);
     const inp=row.querySelector('input'); sliderFill(inp);
-    inp.addEventListener('input',e=>{weights[cr.key]=+e.target.value;document.getElementById('v_'+cr.key).textContent=e.target.value;sliderFill(e.target);rerankPing=true;scheduleRerank();});
+    inp.addEventListener('input',e=>{rankByValuesAgain();weights[cr.key]=+e.target.value;document.getElementById('v_'+cr.key).textContent=e.target.value;sliderFill(e.target);rerankPing=true;scheduleRerank();});
   };
   const byTheme={}, order=[];
   for(const cr of DATA.criteria){const th=KEY2THEME[cr.key]||'other';if(!byTheme[th]){byTheme[th]=[];order.push(th);}byTheme[th].push(cr);}
@@ -1583,17 +1678,26 @@ function buildControls(){
     grp.appendChild(inner);
     sl.appendChild(grp);
   }
-  const ff=document.getElementById('filters');ff.innerHTML='<span>Exclude:</span>';ff.style.display=DATA.meta.allergens?'':'none';
-  if(DATA.meta.allergens)for(const k in ALLERGEN_LABELS){
-    const lab=el('label',{},`<input type="checkbox" value="${k}"> ${ALLERGEN_LABELS[k]}`);
-    lab.querySelector('input').addEventListener('change',e=>{e.target.checked?excludes.add(k):excludes.delete(k);YOU.allergens=[...excludes];saveYou();render();updateProfile();});
-    ff.appendChild(lab);
+  // Sixteen allergen boxes used to sit open on every food list, a wall a reader without allergies had
+  // to scroll past. They now sit behind one control that says how many are on, and open when any are.
+  const ff=document.getElementById('filters');ff.innerHTML='';ff.style.display=DATA.meta.allergens?'':'none';
+  if(DATA.meta.allergens){
+    const det=el('details',{class:'excl'});if(excludes.size)det.open=true;
+    det.appendChild(el('summary',{},''));
+    const list=el('div',{class:'excl-list'});
+    for(const k in ALLERGEN_LABELS){
+      const lab=el('label',{},`<input type="checkbox" value="${k}"> ${ALLERGEN_LABELS[k]}`);
+      lab.querySelector('input').addEventListener('change',e=>{e.target.checked?excludes.add(k):excludes.delete(k);YOU.allergens=[...excludes];saveYou();render();updateProfile();});
+      list.appendChild(lab);
+    }
+    det.appendChild(list);ff.appendChild(det);updateExclSummary();
   }
   const pr=document.getElementById('presets');pr.innerHTML='';
   const P=curPresets();
   const pnote=el('p',{class:'hint presetnote',id:'presetnote',style:'flex-basis:100%;margin:.3rem 0 0;min-height:1.15em'});
   for(const name in P){const sum=presetSummary(P[name]);const b=el('button',{title:sum,'aria-label':name+(sum?', '+sum:'')},name);const show=()=>{pnote.textContent=sum;};b.addEventListener('mouseenter',show);b.addEventListener('focus',show);b.onclick=()=>applyPreset(name);pr.appendChild(b);}
-  pr.appendChild(pnote);
+  const oldNote=document.getElementById('presetnote');if(oldNote&&oldNote!==pnote)oldNote.remove();
+  pr.after(pnote);
   const sort=document.getElementById('sort');
   let opts=`<option value="score">Sort: best for you</option><option value="name">Sort: name (A–Z)</option>`;
   for(const cr of DATA.criteria)opts+=`<option value="${cr.key}">Sort: best on ${cr.label.toLowerCase()}</option>`;
@@ -1607,9 +1711,9 @@ function buildControls(){
   updateProfile();
 }
 function wireStaticControls(){
-  document.getElementById('sort').addEventListener('change',e=>{sortBy=e.target.value;render();updateProfile();});
+  document.getElementById('sort').addEventListener('change',e=>{sortBy=e.target.value;sortChosen=sortBy!=='score';listLimit=LIST_PAGE;render();updateProfile();announce(sortAnnouncement());});
   const reg=document.getElementById('region');if(reg)reg.addEventListener('change',e=>{regionFilter=e.target.value;YOU.region=regionFilter;saveYou();updateNavRegion();render();updateProfile();});
-  document.getElementById('q').addEventListener('input',()=>{if(!selected&&!viewingSaved&&!viewingFeedback)render();});
+  document.getElementById('q').addEventListener('input',()=>{listLimit=LIST_PAGE;if(!selected&&!viewingSaved&&!viewingFeedback)render();});
   const rb=document.getElementById('profreset');if(rb)rb.onclick=()=>{try{localStorage.removeItem(STORAGE_KEY);localStorage.removeItem(THEMES_KEY);}catch(e){}THEMES.forEach(t=>themeWeights[t.id]=3);excludes=new Set(YOU.allergens);regionFilter=YOU.region;const rg=document.getElementById('region');if(rg)rg.value=regionFilter;applyThemes();};
 }
 
@@ -1687,11 +1791,12 @@ function loadCategory(cat){
       weights=themeDefaults(DATA.criteria);  // your value-themes derive the weights everywhere; presets/sliders override in-session
       excludes=new Set(YOU.allergens);       // standing: your allergens follow you into every category
       regionFilter=YOU.region;               // standing: your region default travels too
-      // Honest default sort: a category with a declared point (primaryAxis) opens sorted by that point —
-      // educational media by educational value. Your saved sort for THIS category still wins; "best for you"
-      // is always one tap away in the dropdown.
-      const _ax=catAxes();
-      sortBy=(sv&&sv.category===d.meta.id&&sv.sortBy)?sv.sortBy:(_ax.primary||'score');
+      // Every category opens ranked for your values, as its decision page does. It used to open sorted
+      // on its primary axis (coffee by fair trade), which left the trade-off slider and the presets with
+      // no visible effect and put every product missing that one figure at the bottom. A sort the reader
+      // chose for this category still wins.
+      const _keep=sv&&sv.category===d.meta.id&&sv.sortChosen&&sv.sortBy&&(sv.sortBy==='name'||d.criteria.some(c=>c.key===sv.sortBy));
+      sortBy=_keep?sv.sortBy:'score';sortChosen=!!_keep&&sortBy!=='score';listLimit=LIST_PAGE;
       buildControls();
       if(first)wireStaticControls();
       builtCriteria=critKey;
@@ -1799,7 +1904,7 @@ const HOME_SPOTLIGHTS=[
   {cid:'causes-to-support', q:"Where would a little giving do the most good?", s:"Sent well, a small amount goes a long way. Compare causes by transparency and the real-world good they do.", link:"Find a cause",
     proof:{intro:'Two you can back, and see exactly why',
            a:{cid:'causes-to-support',code:'givewell',band:'high',name:'GiveWell',tag:'Even publishes its own mistakes'},
-           b:{cid:'causes-to-support',code:'eff',band:'high',name:'EFF',tag:'Digital rights &middot; open books since 1990'}}}
+           b:{cid:'causes-to-support',code:'eff',band:'high',name:'EFF',tag:'Digital rights · open books since 1990'}}}
 ];
 function homeSpotlight(avoidCid){
   // Every spotlight now carries its own real, sourced proof pair, so a first-time visitor sees a concrete
@@ -1882,9 +1987,6 @@ function renderHome(){
      measures that light it. Nothing else. */
   const total=(CATALOG||[]).length;
   const savedMapMode=homeMapState&&homeMapState.mode==='fisheye'?'fisheye':'spatial';
-  const savedMapHelp=savedMapMode==='fisheye'
-    ?'Move away from the centre to travel; move farther to go faster. The overview marks your position.'
-    :'Zoom from eight needs to areas, kinds, decisions, and evidence.';
   v.innerHTML=`
     <section class="home-nexus" aria-labelledby="home-title">
       <div class="nexus-titlebar">
@@ -1892,7 +1994,7 @@ function renderHome(){
           <h1 id="home-title" class="nexus-h">Your Navigation Nexus</h1>
           <p class="nexus-sub">Vote with your dollar, steward your attention, and subvert marketing with your values.</p>
         </div>
-        <a class="home-institute" href="https://futurisminstitute.org/" target="_blank" rel="noopener">
+        <a class="home-institute" href="#institute">
           <svg class="home-institute-sun" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle cx="20" cy="20" r="7.5"/><line class="sun-ray" x1="30.50" y1="20.00" x2="38.00" y2="20.00"/><line class="sun-ray sun-ray--dotted" x1="30.14" y1="22.72" x2="34.49" y2="23.88"/><line class="sun-ray" x1="29.09" y1="25.25" x2="35.59" y2="29.00"/><line class="sun-ray sun-ray--dotted" x1="27.42" y1="27.42" x2="30.61" y2="30.61"/><line class="sun-ray" x1="25.25" y1="29.09" x2="29.00" y2="35.59"/><line class="sun-ray sun-ray--dotted" x1="22.72" y1="30.14" x2="23.88" y2="34.49"/><line class="sun-ray" x1="20.00" y1="30.50" x2="20.00" y2="38.00"/><line class="sun-ray sun-ray--dotted" x1="17.28" y1="30.14" x2="16.12" y2="34.49"/><line class="sun-ray" x1="14.75" y1="29.09" x2="11.00" y2="35.59"/><line class="sun-ray sun-ray--dotted" x1="12.58" y1="27.42" x2="9.39" y2="30.61"/><line class="sun-ray" x1="10.91" y1="25.25" x2="4.41" y2="29.00"/><line class="sun-ray sun-ray--dotted" x1="9.86" y1="22.72" x2="5.51" y2="23.88"/><line class="sun-ray" x1="9.50" y1="20.00" x2="2.00" y2="20.00"/><line class="sun-ray sun-ray--dotted" x1="9.86" y1="17.28" x2="5.51" y2="16.12"/><line class="sun-ray" x1="10.91" y1="14.75" x2="4.41" y2="11.00"/><line class="sun-ray sun-ray--dotted" x1="12.58" y1="12.58" x2="9.39" y2="9.39"/><line class="sun-ray" x1="14.75" y1="10.91" x2="11.00" y2="4.41"/><line class="sun-ray sun-ray--dotted" x1="17.28" y1="9.86" x2="16.12" y2="5.51"/><line class="sun-ray" x1="20.00" y1="9.50" x2="20.00" y2="2.00"/><line class="sun-ray sun-ray--dotted" x1="22.72" y1="9.86" x2="23.88" y2="5.51"/><line class="sun-ray" x1="25.25" y1="10.91" x2="29.00" y2="4.41"/><line class="sun-ray sun-ray--dotted" x1="27.42" y1="12.58" x2="30.61" y2="9.39"/><line class="sun-ray" x1="29.09" y1="14.75" x2="35.59" y2="11.00"/><line class="sun-ray sun-ray--dotted" x1="30.14" y1="17.28" x2="34.49" y2="16.12"/></svg>
           <span class="home-institute-copy">
             <small>An independent commons</small>
@@ -1905,10 +2007,11 @@ function renderHome(){
         <li class="nexus-item">
           <a class="nexus-head" href="../passport/index.html">Private</a>
           <div class="nexus-panel"><div class="nexus-panel-in">
-            <p>There is no account and nothing is tracked. Your rules and saved lists are files on this device. The values file you can export holds weights and deal-breakers, and no name attached to them.</p>
+            <p>There is no account and nothing is tracked. Your rules and saved lists are files on this device. The values file you can export holds weights and deal-breakers, and no name attached to them. The site sends nothing; if you keep notes of a visit, you can choose to send a copy yourself.</p>
             <ul class="nexus-links">
               <li><a href="../passport/index.html">What is stored, and what never leaves the device</a></li>
               <li><a href="#guide/the-anti-app">Why there is no account and no feed</a></li>
+              <li><a href="#home" data-visit-notes-open>Keep notes of a visit, and send them if you want</a></li>
               <li><a href="#you">Set your own rules and deal-breakers</a></li>
             </ul>
           </div></div>
@@ -1940,7 +2043,7 @@ function renderHome(){
           <div class="nexus-panel"><div class="nexus-panel-in">
             <p>A working draft, changed by what readers report. It belongs to the Futurism Institute, which builds civic instruments for an age of machine abundance, and the drafts here say they are drafts.</p>
             <ul class="nexus-links">
-              <li><a href="https://futurisminstitute.org/" target="_blank" rel="noopener">What the Futurism Institute is for</a></li>
+              <li><a href="#institute">What the Futurism Institute is for</a></li>
               <li><a href="../index.html">The rest of the Values Commons</a></li>
               <li><a href="#contribute">Tell us what is wrong here</a></li>
             </ul>
@@ -1951,7 +2054,7 @@ function renderHome(){
           <div class="nexus-panel"><div class="nexus-panel-in">
             <p>One common explorer for the things you buy, use, watch, support, join, and depend upon.</p>
             <p class="nexus-types">Products &middot; Services &middot; Media &middot; Organizations &middot; Initiatives</p>
-            <p>Sixteen realms, eighty-five fields, more than a thousand decisions, each with an id that stays put.</p>
+            <p>Sixteen areas, eighty-five fields, more than a thousand decisions, each with an id that stays put.</p>
             <ul class="nexus-links">
               <li><a href="#map">Open the explorer</a></li>
               <li><a href="../standard/index.html">How the index works, and why the ids stay put</a></li>
@@ -1965,31 +2068,16 @@ function renderHome(){
         <label for="hq">What are you choosing?</label>
         <div class="home-search-row"><input type="search" id="hq" placeholder="${tr('home.search')}" autocomplete="off"><button type="submit" class="valuescta">${tr('home.searchBtn')}</button></div>
       </form>
+      <div class="homelens" id="homelens" style="width:100%;max-width:1040px;height:min(660px,66vh,120vw);margin:0 auto .6rem" aria-label="Map of the catalogue: every decision with an answer. Switch on the open ground to see the whole named map, including what is not built yet."></div>
+      <div class="homelens-line">
+        <nav class="homelens-trail-path" id="homelens-trail-path" aria-label="Where you are on the map"><span aria-current="location">All needs</span></nav>
+        <span class="homelens-receipt" id="homelens-cap">${total} decisions have answers.</span>
+        <label class="homelens-ground-switch"><input type="checkbox" id="homelens-ground"${savedMapMode==='fisheye'?' checked':''}> <span id="homelens-ground-label">${mapTotalsOf()?`Show the ${mapTotalsOf().open.toLocaleString('en-US')} still open`:'Show the open ground'}</span></label>
+      </div>
       <p class="home-news" id="home-news" hidden></p>
-      <div class="homelens-modes">
-        <span class="homelens-mode-label">Map view</span>
-        <div class="homelens-mode-switch" role="group" aria-label="Choose how to navigate the map">
-          <button type="button" data-map-mode="spatial" aria-pressed="${savedMapMode==='spatial'}">Spatial</button>
-          <button type="button" data-map-mode="fisheye" aria-pressed="${savedMapMode==='fisheye'}">Fisheye</button>
-        </div>
-        <p id="homelens-mode-help">${savedMapHelp}</p>
-      </div>
-      <div class="homelens-trail">
-        <span aria-hidden="true">You are here</span>
-        <nav class="homelens-trail-path" id="homelens-trail-path" aria-label="Current map location"><span aria-current="location">All needs / areas</span></nav>
-        <small id="homelens-trail-hint">Choose an area to see the kinds inside.</small>
-      </div>
-      <div class="homelens-viewbar">
-        <span class="homelens-view-label">View</span>
-        <div class="homelens-viewsteps" id="homelens-viewsteps" role="group" aria-label="Choose map depth"></div>
-        <button type="button" class="homelens-reset" id="homelens-reset">Start over</button>
-      </div>
-      <div class="homelens" id="homelens" style="width:100%;max-width:1040px;height:min(660px,66vh,120vw);margin:0 auto .6rem" aria-label="Browse the catalogue map. Spatial shows built decisions; Fisheye opens the whole named map and scrolls through its categorical depth."></div>
-      <div class="homelens-lensbar" id="homelens-lenses" role="group" aria-label="Light a measure across the map"></div>
-      <p class="homelens-cap" id="homelens-cap">${total} decisions with answers, of those built so far.</p>
       <details class="homelens-about">
         <summary>How this map decides what gets space</summary>
-        <p>Colour identifies the need. In Spatial, cell size combines the stakes of a decision with the difference between its choices. Fisheye loads the whole named map only when opened: domains are sized by how many decisions they hold and shaded by how many have answers. Scroll moves through domains, needs, fields, families, decisions, and evidence. Open, held, and refused decisions remain visible but do not pretend to have routes. The selected view and location stay on this device.</p>
+        <p>Colour identifies the need. Cell size combines the stakes of a decision with the difference between its choices. With the open ground on, the whole named map loads: areas are sized by how many decisions they hold and shaded by how many have answers, and open, held, and refused decisions stay visible without pretending to have routes. Scroll moves deeper; the trail under the map climbs back out. The view and location stay on this device.</p>
       </details>
     </section>
     <article class="home-question" id="home-question">${spotlightHTML(sp)}</article>
@@ -1999,41 +2087,14 @@ function renderHome(){
   document.getElementById('hsearch').onsubmit=(e)=>{e.preventDefault();goSearch((document.getElementById('hq').value||'').trim());};
   wireSuggest(document.getElementById('hq'));
   if(CC.homeLens)CC.homeLens.mount('homelens',function(){return CATALOG;});
-  (function mapModes(){
-    const buttons=[...document.querySelectorAll('[data-map-mode]')];
-    const help=document.getElementById('homelens-mode-help');
+  (function mapLine(){
+    const ground=document.getElementById('homelens-ground');
     const path=document.getElementById('homelens-trail-path');
-    const hint=document.getElementById('homelens-trail-hint');
-    const viewsteps=document.getElementById('homelens-viewsteps');
-    const reset=document.getElementById('homelens-reset');
     const cap=document.getElementById('homelens-cap');
     const mapBox=document.getElementById('homelens');
-    const copy={
-      spatial:'Zoom from eight needs to areas, kinds, decisions, and evidence.',
-      fisheye:'Scroll from domains through needs, fields, families, decisions, and evidence. Move away from centre to travel.'
-    };
     if(CC.homeLens&&CC.homeLens.restore&&homeMapState)CC.homeLens.restore(homeMapState);
-    buttons.forEach(button=>button.onclick=()=>{
-      const mode=button.dataset.mapMode;
-      if(!CC.homeLens||!CC.homeLens.setMode)return;
-      CC.homeLens.setMode(mode);
-    });
-    let crumbSignature='',scaleSignature='';
-    const titleCase=value=>String(value||'').replace(/^./,letter=>letter.toUpperCase());
-    const renderScale=detail=>{
-      if(!viewsteps)return;
-      const labels=(detail.scale||[]).filter(Boolean);
-      const signature=detail.mode+'|'+labels.join('|');
-      if(scaleSignature!==signature){
-        scaleSignature=signature;
-        viewsteps.innerHTML=labels.map((label,index)=>`<button type="button" data-map-view="${index}" aria-pressed="false">${esc(titleCase(label))}</button>`).join('');
-        viewsteps.querySelectorAll('[data-map-view]').forEach(button=>button.onclick=()=>{
-          if(CC.homeLens&&CC.homeLens.setView)CC.homeLens.setView(Number(button.dataset.mapView));
-        });
-      }
-      viewsteps.querySelectorAll('[data-map-view]').forEach(button=>button.setAttribute('aria-pressed',String(Number(button.dataset.mapView)===Number(detail.at))));
-      viewsteps.setAttribute('aria-label',detail.mode==='fisheye'?'Choose categorical depth':'Choose spatial depth');
-    };
+    if(ground)ground.onchange=()=>{if(CC.homeLens&&CC.homeLens.setMode)CC.homeLens.setMode(ground.checked?'fisheye':'spatial');};
+    let crumbSignature='';
     const renderCrumbs=detail=>{
       if(!path)return;
       const crumbs=(detail.crumbs||[]).filter(crumb=>crumb&&crumb.label)
@@ -2053,29 +2114,29 @@ function renderHome(){
     };
     const applyContext=detail=>{
       if(!detail)return;
-      buttons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.mapMode===detail.mode)));
-      if(help)help.textContent=copy[detail.mode]||copy.spatial;
-      renderScale(detail);
+      if(ground)ground.checked=detail.mode==='fisheye';
       renderCrumbs(detail);
-      if(hint)hint.textContent=detail.hint||'';
       if(cap){
         /* A readout, not a caption. The claims that used to live here (sources attached, no paid
            placement, settings local) are made by the Transparent and Private cards two inches
            above, and saying them twice on one screen makes both weaker. */
         const here=detail.here;
         const place=(detail.crumbs||[]).filter(c=>c&&c.label).slice(-1)[0];
-        const where=(here&&here.where)||(place?place.label:'The whole map');
-        if(here&&here.state){
-          cap.textContent=`${where}: `+(here.state==='built'?`answered, ${here.options} option${here.options===1?'':'s'} compared on sourced facts.`
+        const atTop=!place||(detail.crumbs||[]).filter(c=>c&&c.label).length<=1;
+        const T=mapTotalsOf();
+        if(atTop&&T&&!(here&&here.state)){
+          cap.textContent=`${T.answered.toLocaleString('en-US')} of ${T.decisions.toLocaleString('en-US')} decisions have a sourced answer. ${T.open.toLocaleString('en-US')} are named and still open${T.held?`; ${T.held} are held back on purpose, each with its reason`:''}.`;
+        }else if(here&&here.state){
+          cap.textContent=(here.state==='built'?`Answered: ${here.options} option${here.options===1?'':'s'} compared on sourced facts.`
             :here.state==='open'?'open, no answer yet. Choose it to ask for one.'
             :here.state==='held'?'held back on purpose, with the reason in the map.'
             :'outside this catalogue.');
         }else if(here&&here.exact){
-          cap.textContent=`${where}: ${here.built} of ${here.named} decision${here.named===1?'':'s'} here ${here.built===1?'has':'have'} a sourced answer.`;
+          cap.textContent=`${here.built} of ${here.named} decision${here.named===1?'':'s'} here ${here.built===1?'has':'have'} a sourced answer.`;
         }else if(here&&here.single){
-          cap.textContent=`${where}: ${here.options} option${here.options===1?'':'s'} compared on sourced facts.`;
+          cap.textContent=`${here.options} option${here.options===1?'':'s'} compared on sourced facts.`;
         }else if(here){
-          cap.textContent=`${where}: ${here.built} decision${here.built===1?'':'s'} with sourced answers.`;
+          cap.textContent=`${here.built} decision${here.built===1?'':'s'} here with sourced answers.`;
         }else if(mapBox&&mapBox.dataset.mapDecisions){
           cap.textContent=`${mapBox.dataset.mapDecisions} decisions named, ${mapBox.dataset.mapBuilt||0} with answers.`;
         }else cap.textContent=`${total} decisions have answers.`;
@@ -2088,7 +2149,6 @@ function renderHome(){
     if(window._ccHomeLensContext)window.removeEventListener('cc:homelens-context',window._ccHomeLensContext);
     window._ccHomeLensContext=event=>applyContext(event.detail);
     window.addEventListener('cc:homelens-context',window._ccHomeLensContext);
-    if(reset)reset.onclick=()=>{if(CC.homeLens&&CC.homeLens.reset)CC.homeLens.reset();};
     if(CC.homeLens&&CC.homeLens.context)applyContext(CC.homeLens.context());
   })();
   /* The lens measures its container at mount, and on the front page it mounts while the view is
@@ -2096,19 +2156,6 @@ function renderHome(){
      One resize after layout settles it. Cheap, and the alternative is teaching the lens to observe
      its own box, which is a bigger change than this page needs today. */
   requestAnimationFrame(()=>setTimeout(()=>window.dispatchEvent(new Event('resize')),50));
-  (function lensbar(tries){
-    const bar=document.getElementById('homelens-lenses');
-    if(!bar)return;
-    if(!CC.homeLens||!CC.homeLens.lenses){ if((tries||0)<40)setTimeout(()=>lensbar((tries||0)+1),300); return; }
-    const defs=CC.homeLens.lenses();
-    bar.innerHTML=defs.map(d=>`<button type="button" data-lens="${d.id}" aria-pressed="false">${d.label} <small>${d.count}</small></button>`).join('');
-    bar.querySelectorAll('button[data-lens]').forEach(b=>b.onclick=()=>{
-      const on=b.getAttribute('aria-pressed')==='true';
-      bar.querySelectorAll('button[data-lens]').forEach(x=>x.setAttribute('aria-pressed','false'));
-      if(on){CC.homeLens.setLens(null);}
-      else{b.setAttribute('aria-pressed','true');CC.homeLens.setLens(b.dataset.lens);}
-    });
-  })();
 }
 // The starter lines on home — draw your first line in one tap, right at the front door (Move 1).
 const STARTERS=[{kind:'diet',label:'Vegetarian'},{kind:'diet',label:'Vegan'},{kind:'avoid',id:'avoid:nestle',label:'Avoid Nestlé'},{kind:'req',label:'Open source'}];
@@ -2211,6 +2258,7 @@ function newsItems(pulse,since){
   }
   return out;
 }
+function mapTotalsOf(){const B=window.CC_BUNDLE,t=B&&B.index&&B.index.mapTotals;return t&&t.decisions?t:null;}
 function joinWords(list){return list.length<2?list.join(''):list.slice(0,-1).join(', ')+' and '+list[list.length-1];}
 function dayWords(iso){try{return new Date(iso+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long'});}catch(e){return iso;}}
 function renderHomeNews(){
@@ -2225,9 +2273,13 @@ function renderHomeNews(){
     const comps=items.filter(i=>i.kind==='comparison'), guides=items.filter(i=>i.kind==='guide'), parts=[];
     if(comps.length)parts.push((comps.length===1?'a comparison of ':'comparisons of ')+links(comps));
     if(guides.length)parts.push((guides.length===1?'a guide to ':'guides to ')+links(guides));
-    const lead=seen?`New since ${esc(dayWords(seen))}:`:`New on ${esc(dayWords(newest))}:`;
-    box.innerHTML=`${lead} ${joinWords(parts)}${rest>0?`, and ${rest} more`:''}. <button type="button" class="home-news-done">Got it</button>`;
+    const n=found.length, when=seen?`since ${esc(dayWords(seen))}`:`on ${esc(dayWords(newest))}`;
+    const lead=`${n} new ${n===1?'addition':'additions'} ${when}:`;
+    const restLinks=rest>0?joinWords(found.slice(6).map(i=>`<a href="${esc(i.href)}">${esc(i.name)}</a>`)):'';
+    box.innerHTML=`${lead} ${joinWords(parts)}${rest>0?`<span class="home-news-tail">, and <button type="button" class="home-news-more" aria-expanded="false">${rest} more</button></span><span class="home-news-rest" hidden>, and also ${restLinks}</span>`:''}. <button type="button" class="home-news-done">Got it</button>`;
     box.hidden=false;
+    const more=box.querySelector('.home-news-more');
+    if(more)more.onclick=()=>{box.querySelector('.home-news-rest').hidden=false;box.querySelector('.home-news-tail').remove();const first=box.querySelector('.home-news-rest a');if(first)first.focus();};
     box.querySelector('.home-news-done').onclick=()=>{try{localStorage.setItem(SEEN_KEY,newest);}catch(e){}box.hidden=true;};
   };
   if(PULSE){paint();return;}
@@ -2256,7 +2308,7 @@ function renderGuidesList(){
 function renderGuide(slug){
   const g=(window.CC_GUIDES||[]).find(x=>x.slug===slug);
   const v=document.getElementById('view-guide');
-  if(!g){v.innerHTML='<a class="back" href="#guides">← all guides</a><p>Guide not found.</p>';return;}
+  if(!g){v.innerHTML='<a class="back" href="#guides">← all guides</a><p>'+((window.CC_GUIDES||[]).length?'Guide not found.':'Loading the guide…')+'</p>';return;}
   v.innerHTML=`<a class="back" href="#guides">← all guides</a>
     <div class="guidehead">${g.category?`<div class="gcat">${esc(g.category)}</div>`:''}${g.disclosure?`<p class="gdisc">${esc(g.disclosure)}</p>`:''}</div>
     <article class="guide-body">${g.html}</article>`;
@@ -2567,7 +2619,7 @@ function decisionLineContextHTML(pool,listHref,contract){
   const personalStatus=personal.length?`${personal.length} active${pool.personalHidden?` &middot; ${pool.personalHidden} filtered`:''}`:'none set';
   const personalBody=`<div class="decision-personal-door"><div class="decision-personal-intro"><div><b>My rules</b><span>Saved on this device and included in an exported file</span></div><p>${personal.length?'A rule acts only where this category carries the fact it needs. The count on each rule is calculated after the baseline, so the same option is never counted twice.':'Add only the few things you refuse or require. You do not need to create a profile.'}</p><a class="savebtn" href="#you">${personal.length?'Set or edit rules':'Set a rule'}</a></div>${personal.length?`<div class="decision-personal-rules">${personal.map(decisionPersonalReceiptHTML).join('')}</div>`:'<p class="decision-personal-empty">No personal rule is filtering this decision. The baseline and the named choices below still produce an answer.</p>'}</div>`;
   return `<div class="decision-context" aria-label="Decision context">
-    <details class="decision-floor"><summary><span>The baseline</span><strong>${status}</strong></summary>${floorBody}</details>
+    <details class="decision-floor"><summary><span>The baseline: shared minimum standards</span><strong>${status}</strong></summary>${floorBody}</details>
     <details class="decision-personal"><summary><span class="decision-personal-summary"><b>My rules</b><span class="decision-personal-chips">${chips}</span></span><strong>${personalStatus}</strong></summary>${personalBody}</details>
   </div>`;
 }
@@ -2764,9 +2816,10 @@ function decisionOneAnswerHTML(group,contract,pool){
 /* Everything that is not the answer lives below it, closed, and opens only when asked. */
 function decisionQuietDoorsHTML(pool,contract,query,result){
   const listHref=rankingHref(contract.category,query), count=(result&&result.ranked&&result.ranked.length)||0;
-  const seeAll=count>1?`<details class="decision-all" id="decision-all"><summary>Rank all ${result.ranked.length} with these choices &rarr;</summary><p>The baseline and my rules stay applied. The list below uses the same current settings.</p><div id="decision-ranked-list"></div></details>`:'';
+  const left=Math.max(0,((pool&&pool.entries)||[]).length-count);
+  const seeAll=count>1?`<details class="decision-all" id="decision-all"><summary>Show the full ranking (${count})</summary><p>Ranked with the settings above, with the baseline and my rules applied.${left?` ${left} more ${left===1?'has':'have'} too few of the facts these settings weigh to be ranked, so ${left===1?'it is':'they are'} left out here; the table above still shows ${left===1?'it':'them'}.`:''} <a href="${esc(listHref)}">Open the full ranking with every control</a></p><div id="decision-ranked-list"></div></details>`:'';
   const others=(result&&result.groups&&result.groups.length>1)
-    ? `<details class="decision-other" id="decision-other"><summary>Other ways to read this (${result.groups.length-1})</summary><div class="decision-answer-grid">${result.groups.slice(1).map(group=>decisionAnswerCardHTML(group,contract,pool)).join('')}</div></details>`
+    ? `<details class="decision-other" id="decision-other"><summary>Other answers, each by a different rule (${result.groups.length-1})</summary><div class="decision-answer-grid">${result.groups.slice(1).map(group=>decisionAnswerCardHTML(group,contract,pool)).join('')}</div></details>`
     : '';
   return `<div class="decision-quiet">${seeAll}${others}${decisionLineContextHTML(pool,listHref,contract)}${decisionPersonalFoldHTML(pool)}${decisionFloorFoldHTML(pool)}${decisionPrecedenceHTML(pool,result)}</div>`;
 }
@@ -2888,36 +2941,161 @@ function decisionDerivationHTML(p,weights){
       +(dom?' <a href="'+esc(src)+'" target="_blank" rel="noopener">'+esc(dom)+'</a>':'')
       +(pr&&pr.asof?' <i>'+esc(String(pr.asof))+'</i>':'')+'</span></div>');
   }
+  /* The working must reproduce the number in the table. The engine pulls the result toward 50 in
+     proportion to the weight whose facts are missing, and caps it at 49 when a fact you weigh
+     heavily scores 20 or below; until 2026-09-28 this box showed neither, so any row with a gap or
+     a veto printed a different number here from the one it explained. */
+  const eng=CC.engine.score(p,{criteria:DATA.criteria,weights:weights,excludes:new Set()});
+  const all=(DATA.criteria||[]).reduce((t,c)=>t+(weights[c.key]||1),0);
+  const cov=all?sw/all:0, plain=sw?acc/sw:0, pulled=Math.round(plain*cov+50*(1-cov));
+  const missing=(DATA.criteria||[]).filter(c=>!p.scores||p.scores[c.key]==null).length;
+  if(missing&&sw)rows.push('<div class="dtx-row dtx-adj"><span>Missing facts</span><span>'+missing+' of '+(DATA.criteria||[]).length
+    +' facts are missing, so the result is pulled toward 50, the neutral middle, in proportion to the weight they would carry: '
+    +Math.round(plain)+' becomes '+pulled+'.</span></div>');
+  if(eng&&eng.cap)rows.push('<div class="dtx-row dtx-adj"><span>Capped</span><span>You weigh '+esc(String(eng.cap.label))
+    +' most and it scores '+eng.cap.v+', so the result stops at 49 however well the rest scores.</span></div>');
   const ps=p.provenanceSummary||{};
   return '<div class="dtx-box">'+rows.join('')
-    +'<div class="dtx-tot">Weighted result '+(sw?Math.round(acc/sw):'0')+' / 100'
+    +'<div class="dtx-tot">Weighted result '+(eng?eng.score:(sw?Math.round(plain):0))+' / 100'
     +(ps.factCount?' \u00b7 '+ps.factCount+' sourced facts':'')
     +(ps.sourceDomainCount?' \u00b7 '+ps.sourceDomainCount+' independent source domain'+(ps.sourceDomainCount===1?'':'s'):'')+'</div></div>';}
-/* THE SHAPE OF THE CHOICE. A 291 row table is not a decision, it is a filing cabinet, and the
-   honest cut is not "the first twelve" but "the ones that could ever win". An option beaten by
-   some other option on every single measure can never come first under any weighting a reader
-   might choose, so it cannot be the answer to their question. Missing facts are skipped rather
-   than counted as zero, which is the same refusal to guess the rest of the page makes, and it
-   means an option with thin data stays in the running rather than being quietly eliminated. */
-function decisionTableFrontier(rows,crits){
-  const keys=crits.map(c=>c.key);
-  const vec=r=>keys.map(k=>r.p.scores?r.p.scores[k]:null);
-  const cache=rows.map(r=>({r:r,v:vec(r)}));
-  const beats=(a,b)=>{let strict=false;
-    for(let i=0;i<keys.length;i++){const x=a.v[i],y=b.v[i];
-      if(x==null||y==null)continue;
-      if(x<y)return false;
-      if(x>y)strict=true;}
-    return strict;};
-  const keep=new Set();
-  for(const b of cache){if(!cache.some(a=>a!==b&&beats(a,b)))keep.add(b.r.p.code);}
-  return keep;}
+/* WHO CAN COME FIRST, COUNTED. The table offers two weights per column, even or "weigh this most"
+   (1 or 5), over the columns it shows, so there are 2^k ways to weigh it: 32 for five columns. Until
+   2026-09-28 this was a dominance test ("beaten on every measure") over those five columns, and it
+   was wrong both ways: the score also uses criteria the table does not show, and the engine pulls a
+   missing fact toward 50 where the test skipped it, so options it called beaten could win; and under
+   a weighted average most unbeaten options can never come first anyway. On coffee the page said 58
+   could come first when 7 can, and 5 of those 7 were among the "beaten". So now every row is scored
+   under every one of the ways, with the same engine call the table itself uses, and the page counts
+   who comes first. 291 rows x 32 ways is about 9,000 scores; the result is cached per list. Ties at
+   the top are counted apart and said. Decision analysis calls these acceptability indices (SMAA,
+   Lahdelma et al. 1998); here they are a sentence. */
+var _decisionWinnersCache={};
+function decisionTableWinners(cid,pool,crits){
+  const entries=pool.entries||[],all=DATA.criteria||[],keys=crits.map(c=>c.key);
+  const id=cid+'|'+keys.join(',')+'|'+entries.map(p=>p.code).join(',');
+  if(_decisionWinnersCache.id===id)return _decisionWinnersCache.w;
+  const n=1<<keys.length,solo={},tie={},how={},ways=[];let ties=0;
+  for(let m=0;m<n;m++){
+    const w={};for(const c of all)w[c.key]=1;keys.forEach((k,i)=>{if(m&(1<<i))w[k]=5;});
+    let top=-1,lead=[];
+    for(const p of entries){const r=CC.engine.score(p,{criteria:all,weights:w,excludes:new Set()});if(!r)continue;
+      if(r.score>top){top=r.score;lead=[p];}else if(r.score===top)lead.push(p);}
+    if(!lead.length)continue;
+    ways.push({emph:keys.filter((k,i)=>m&(1<<i)),lead:lead.map(p=>p.code),score:top});
+    if(lead.length===1){const c=lead[0].code;solo[c]=(solo[c]||0)+1;(how[c]=how[c]||[]).push(keys.filter((k,i)=>m&(1<<i)));}
+    else{ties++;for(const p of lead)tie[p.code]=(tie[p.code]||0)+1;}
+  }
+  ways.sort((a,b)=>a.emph.length-b.emph.length);
+  const w={n:n,solo:solo,tie:tie,how:how,ties:ties,ways:ways,codes:new Set(Object.keys(solo).concat(Object.keys(tie)))};
+  _decisionWinnersCache={id:id,w:w};
+  return w;}
+function decisionWinnersSentence(w,pool){
+  const byCode={};for(const p of pool.entries||[])byCode[p.code]=p;
+  const name=c=>byCode[c]?byCode[c].name:c;
+  const list=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+' and '+a[a.length-1];
+  const order=Object.keys(w.solo).sort((a,b)=>w.solo[b]-w.solo[a]);
+  if(!order.length)return w.ties?'Every way you can weigh this table ends in a tie at the top.':'';
+  if(order.length===1&&!w.ties)return name(order[0])+' comes first in all '+w.n+' ways you can weigh this table.';
+  const out=[];
+  let head=name(order[0])+' comes first in '+w.solo[order[0]]+' of the '+w.n+' ways you can weigh this table';
+  let rest=order.slice(1);
+  if(rest.length&&w.solo[rest[0]]>2){head+=' and '+name(rest[0])+' in '+w.solo[rest[0]];rest=rest.slice(1);}
+  out.push(head+'.');
+  const named=rest.slice(0,3).map(c=>{const hw=w.how[c];
+    if(hw.length<=2){const e=hw[0];return name(c)+(e.length?' comes first if you weigh '+list(e.map(decisionCriterionName))+' most':' comes first when every measure weighs the same');}
+    return name(c)+' comes first in '+w.solo[c];});
+  if(named.length)out.push(named.join('; ')+'.');
+  const more=rest.length-3;
+  if(more>0)out.push(more+(more===1?' more comes':' more come')+' first in one or two ways.');
+  if(w.ties)out.push(w.ties===1?'One way ends in a tie at the top.':w.ties+' ways end in a tie at the top.');
+  return out.join(' ');}
+/* THE CLOSEST CALL. Nobody checks every source: about one Wikipedia reader in 300 opens a citation
+   (Piccardi et al. 2020), and a citation raises trust whether or not it is right (Ding et al. 2025).
+   So the page names the one fact its current answer hangs on: the single score, of the leader or of
+   a challenger, whose smallest change would put a different option first under the reader's own
+   weights. Scored with the engine itself on a changed copy, so the pull toward 50 and the cap are
+   included and the claim is exact. It carries its source, because a counterfactual persuades even
+   when it is wrong (van der Waa et al. 2021). The family's legibility study, pattern 2. */
+function decisionClosestCall(cid,pool){
+  const all=DATA.criteria||[],w=decisionTableWeights(cid);
+  const sc=p=>{const r=CC.engine.score(p,{criteria:all,weights:w,excludes:new Set()});return r?r.score:null;};
+  const ranked=(pool.entries||[]).map(p=>({p:p,s:sc(p)})).filter(r=>r.s!=null).sort((a,b)=>b.s-a.s);
+  if(ranked.length<2)return '';
+  const L=ranked[0];
+  if(ranked[1].s===L.s)return 'A tie at the top: '+ranked.filter(r=>r.s===L.s).slice(0,3).map(r=>r.p.name).join(' and ')+' both score '+L.s+'.';
+  const withFact=(p,k,v)=>Object.assign({},p,{scores:Object.assign({},p.scores,{[k]:v})});
+  let best=null;
+  for(const c of all){const v=L.p.scores?L.p.scores[c.key]:null;if(v==null)continue;
+    for(let d=1;d<=v&&(!best||d<best.d);d++){const ls=sc(withFact(L.p,c.key,v-d));
+      const over=ranked.slice(1).find(r=>r.s>ls);
+      if(over){best={d:d,who:L.p,k:c.key,v:v,to:v-d,lower:true,winner:over.p};break;}}}
+  for(const r of ranked.slice(1,6))for(const c of all){const v=r.p.scores?r.p.scores[c.key]:null;if(v==null)continue;
+    for(let d=1;d<=100-v&&(!best||d<best.d);d++){if(sc(withFact(r.p,c.key,v+d))>L.s){best={d:d,who:r.p,k:c.key,v:v,to:v+d,lower:false,winner:r.p};break;}}}
+  if(!best)return 'No single fact could change what comes first here.';
+  const pr=best.who.provenance&&best.who.provenance[best.k];
+  const src=pr&&pr.source&&String(pr.source).indexOf('://')>0?String(pr.source).split('/')[2].replace(/^www\./,''):'';
+  const when=pr&&pr.asof?String(pr.asof).slice(0,4):'';
+  const from=src?' ('+src+(when?', '+when:'')+')':'';
+  const crit=decisionCriterionName(best.k);
+  return best.lower
+    ?'Closest call: '+best.who.name+'\u2019s '+crit+' score is '+best.v+from+'. At '+best.to+' or lower, '+best.winner.name+' would come first.'
+    :'Closest call: '+best.who.name+'\u2019s '+crit+' score is '+best.v+from+'. At '+best.to+' or higher, it would come first.';}
+/* THE WAYS, SHOWN. The count above rests on a choice the site made: two weights per visible column,
+   so 2^k ways. A count whose grid is hidden reads like a probability ("a 62% chance Triodos suits
+   me") and names a winner before the reader has weighed anything, which is a nudge in a boost's
+   coat (the family's legibility study of 2026-09-28, pattern 1). So every way is
+   listed on request with who comes first, the reader's current weighting is marked, and any row can
+   be applied with one tap. */
+function decisionWaysHTML(w,pool,crits,st){
+  if(!w||!w.ways||!w.ways.length)return '';
+  const byCode={};for(const p of pool.entries||[])byCode[p.code]=p;
+  const cur=(st.emph||[]).slice().sort().join('|');
+  let h='<details class="dtable-ways"><summary>All '+w.n+' ways to weigh this table, and who comes first in each</summary>'
+    +'<p class="dtable-ways-note">These are the only weightings the table offers: each measure either counts the same as the others or is weighed most. They are not equally likely to be yours; the count above is a count of ways, not a chance.</p>'
+    +'<div class="dtable-scroll"><table class="dtable dways"><thead><tr><th>Weighed most</th><th>Comes first</th><th class="dway-go"><span class="sr-only">Use</span></th></tr></thead><tbody>';
+  for(const way of w.ways){
+    const key=way.emph.slice().sort().join('|');
+    const names=way.emph.length?way.emph.map(decisionCriterionName).join(', '):'Nothing: every measure counts the same';
+    const first=way.lead.length>1?'A tie at '+way.score+': '+way.lead.map(c=>byCode[c]?byCode[c].name:c).join(', ')
+      :(byCode[way.lead[0]]?byCode[way.lead[0]].name:way.lead[0])+' ('+way.score+')';
+    const on=key===cur;
+    h+='<tr'+(on?' class="dway-on"':'')+'><td>'+esc(names)+(on?' <b>(yours now)</b>':'')+'</td><td>'+esc(first)+'</td><td class="dway-go">'
+      +(on?'':'<button type="button" class="dt-way" data-way="'+esc(way.emph.join(','))+'" aria-label="'+esc('Weigh this way: '+names)+'">Weigh this way</button>')+'</td></tr>';
+  }
+  return h+'</tbody></table></div></details>';}
+/* WHAT MOVED. The sentence says who leads after a change; it cannot say what else moved, and a
+   reader comparing the new order with a remembered one is comparing a screen with memory (Munzner's
+   "eyes beat memory"). So after a weight changes, the options that changed place among the top eight
+   are listed once, old place to new, until the reader dismisses it or weighs again.
+   The family's legibility study, pattern 7. */
+function decisionRankCodes(cid,pool){
+  const all=DATA.criteria||[],w=decisionTableWeights(cid);
+  return (pool.entries||[]).map(p=>({p:p,s:CC.engine.score(p,{criteria:all,weights:w,excludes:new Set()})}))
+    .filter(r=>r.s).sort((a,b)=>b.s.score-a.s.score).map(r=>r.p.code);}
+function decisionMoved(before,after,pool){
+  const byCode={};for(const p of pool.entries||[])byCode[p.code]=p;
+  // The top eight before and after, so an option that falls out of view (a leader dropping to ninth)
+  // is named as well as the ones that rise into it. Ordered by where each one is now.
+  const seen=new Set(before.slice(0,8).concat(after.slice(0,8))),out=[];
+  for(const c of seen){const was=before.indexOf(c),now=after.indexOf(c);
+    if(was!==now)out.push({name:byCode[c]?byCode[c].name:c,from:was+1,to:now+1});}
+  // The old leader and the new one come first, whatever else moved: those are the two a reader
+  // most needs to see, and a leader falling to ninth would otherwise sit last in the list.
+  const lead=m=>m.from===1||m.to===1?0:1;
+  return out.sort((x,y)=>lead(x)-lead(y)||x.to-y.to);}
+function decisionMovedHTML(st){
+  if(!st.moved||!st.moved.length)return '';
+  const items=st.moved.slice(0,8).map(m=>esc(m.name)+' <span class="dmove-n">'+m.from+' \u2192 '+m.to+'</span>').join('<span class="dmove-sep"> \u00b7 </span>');
+  return '<p class="dtable-moved"><span class="dmove-h">What moved:</span> '+items
+    +(st.moved.length>8?' <span class="dmove-n">and '+(st.moved.length-8)+' more</span>':'')
+    +' <button type="button" class="dt-moved-x">Got it</button></p>';}
 function decisionTableShapeSentence(total,front,shown){
   if(total<=shown)return '';
-  const dominated=total-front;
+  const never=total-front;
   let out='Showing '+shown+' of '+total+'. ';
-  out+=front+' of them can come first depending on what you weigh';
-  if(dominated>0)out+='; the other '+dominated+' are beaten by one of those on every measure';
+  out+=(front===1?'One of them comes':front+' of them come')+' first in at least one of the ways you can weigh this table';
+  if(never>0)out+='; the other '+never+' never do';
   return out+'.';}
 function decisionTableHTML(cid,contract,pool){
   const st=decisionTableState[cid]=decisionTableState[cid]||{emph:[],sort:'score',dir:-1,open:null,show:'top'};
@@ -2927,7 +3105,7 @@ function decisionTableHTML(cid,contract,pool){
   // do not, and truncating both would be carrying a fix forward on the strength of it having
   // worked somewhere else. Measured per category, which is the rule.
   const TOP=12, WALL=26;
-  const frontier=decisionTableFrontier(allRows,decisionTableCrits(contract));
+  const winners=decisionTableWinners(cid,pool,crits),frontier=winners.codes;
   const rows=allRows.length<WALL?allRows
     :st.show==='all'?allRows
     :st.show==='frontier'?allRows.filter(r=>frontier.has(r.p.code))
@@ -2938,6 +3116,12 @@ function decisionTableHTML(cid,contract,pool){
   const arrow=k=>st.sort===k?(st.dir<0?' \u2193':' \u2191'):'';
   let h='<div class="dtable-wrap">';
   if(sent)h+='<p class="dtable-sent" aria-live="polite">'+esc(sent)+'</p>';
+  h+=decisionMovedHTML(st);
+  const who=decisionWinnersSentence(winners,pool);
+  if(who)h+='<p class="dtable-who">'+esc(who)+'</p>';
+  const close=decisionClosestCall(cid,pool);
+  if(close)h+='<p class="dtable-close">'+esc(close)+'</p>';
+  h+=decisionWaysHTML(winners,pool,crits,st);
   /* The app has always known when a category's values side is really nutrition data. It said so
      inside a collapsed disclosure, which then ended up nested inside the collapsed controls when
      those moved below the table, so the caveat sat two clicks and a screen away from the ranking
@@ -2949,14 +3133,22 @@ function decisionTableHTML(cid,contract,pool){
   const nutCols=crits.filter(c=>DECISION_NUTRITION_KEYS.has(c.key));
   if(nutCols.length&&nutCols.length>=crits.length/2){
     const nut=nutCols.map(c=>decisionCriterionLabel(c)).join(', ');
-    h+='<p class="dtable-caveat">Scored from open food data, so most of what is compared here is nutrition ('
-      +esc(nut)+'). Organic, fair trade, packaging and farmer pay are not scored yet. Read this as a nutrition comparison, not a sourcing verdict.</p>';
+    // The table shows the first five measures; the rest still count in the score. Until 2026-10-23 this
+    // line said organic and fair trade were "not scored yet" on coffee, which scores both.
+    const and=xs=>xs.length<2?xs.join(''):xs.slice(0,-1).join(', ')+' and '+xs[xs.length-1];
+    const offTable=(DATA.criteria||[]).filter(c=>!crits.some(x=>x.key===c.key)).map(c=>decisionCriterionLabel(c));
+    const absent=[['organic','organic certification'],['fair_trade','fair trade'],['packaging','packaging'],['labor','farmer pay']].filter(([k])=>!(DATA.criteria||[]).some(c=>c.key===k)).map(([,w])=>w);
+    h+='<p class="dtable-caveat">Scored from open food data, so most of the columns here are nutrition ('
+      +esc(nut)+').'+(offTable.length?' '+esc(and(offTable)).replace(/^./,ch=>ch.toUpperCase())+(offTable.length===1?' also counts':' also count')+' in the score but '+(offTable.length===1?'has':'have')+' no column here.':'')
+      +(absent.length?' '+esc(and(absent)).replace(/^./,ch=>ch.toUpperCase())+(absent.length===1?' is':' are')+' not scored.':'')
+      +' Read this mostly as a nutrition comparison, not a sourcing verdict.</p>';
   }
   h+='<div class="dtable-scroll"><table class="dtable"><thead><tr><th class="dt-name">'+allRows.length+' compared</th>';
+  const ariaSort=k=>st.sort===k?' aria-sort="'+(st.dir<0?'descending':'ascending')+'"':'';
   for(const c of crits){const on=st.emph.indexOf(c.key)>=0;
-    h+='<th class="dt-c"><button type="button" class="dt-sort" data-sort="'+esc(c.key)+'">'+esc(decisionCriterionLabel(c))+arrow(c.key)+'</button>'
+    h+='<th class="dt-c"'+ariaSort(c.key)+'><button type="button" class="dt-sort" data-sort="'+esc(c.key)+'">'+esc(decisionCriterionLabel(c))+arrow(c.key)+'</button>'
       +'<button type="button" class="dt-w'+(on?' on':'')+'" data-emph="'+esc(c.key)+'" aria-pressed="'+on+'" aria-label="Weigh '+esc(decisionCriterionLabel(c))+' most" title="Weigh '+esc(decisionCriterionLabel(c))+' most">'+(on?'\u25cf':'\u25cb')+'</button></th>';}
-  h+='<th class="dt-s"><button type="button" class="dt-sort" data-sort="score">For you'+arrow('score')+'</button></th></tr></thead><tbody>';
+  h+='<th class="dt-s"'+ariaSort('score')+'><button type="button" class="dt-sort" data-sort="score">For you'+arrow('score')+'</button></th></tr></thead><tbody>';
   for(const r of rows){
     const line=decisionEntryLine(r.p);
     h+='<tr class="dt-row"><td class="dt-name"><a href="#item/'+encodeURIComponent(cid)+'/'+encodeURIComponent(r.p.code)+'">'+esc(r.p.name)+'</a>'
@@ -2964,7 +3156,7 @@ function decisionTableHTML(cid,contract,pool){
     for(const c of crits){const v=r.p.scores?r.p.scores[c.key]:null;
       h+= v==null?'<td class="dt-c dt-null">&ndash;</td>'
         :'<td class="dt-c'+(v===best[c.key]?' dt-best':'')+(st.emph.indexOf(c.key)>=0?' dt-emph':'')+'" style="--w:'+v+'%">'+v+'</td>';}
-    h+='<td class="dt-s"><button type="button" class="dt-open" data-open="'+esc(r.p.code)+'" title="Show the working">'+r.s.score+'</button></td></tr>';
+    h+='<td class="dt-s"><button type="button" class="dt-open" data-open="'+esc(r.p.code)+'" title="Show the working" aria-label="'+esc(r.s.score+' for you, '+r.p.name+': show the working')+'" aria-expanded="'+(st.open===r.p.code?'true':'false')+'">'+r.s.score+'</button></td></tr>';
     if(st.open===r.p.code)h+='<tr class="dtx"><td colspan="'+(crits.length+2)+'">'+decisionDerivationHTML(r.p,weights)+'</td></tr>';
   }
   // The weighting instruction moved up into the caption, where it is in the first screen. What is
@@ -2973,8 +3165,9 @@ function decisionTableHTML(cid,contract,pool){
   const shape=decisionTableShapeSentence(allRows.length,frontier.size,rows.length);
   if(shape){
     h+='<p class="dtable-shape">'+esc(shape)+'</p><p class="dtable-more">';
-    if(st.show!=='frontier'&&frontier.size>rows.length)
-      h+='<button type="button" class="dt-show" data-show="frontier">Show the '+frontier.size+' that can come first</button>';
+    // Offer the winners whenever one of them is not already on screen, not only when they outnumber the rows.
+    if(st.show!=='frontier'&&[...frontier].some(c=>!rows.some(r=>r.p.code===c)))
+      h+='<button type="button" class="dt-show" data-show="frontier">Show the '+frontier.size+' that come first in some way</button>';
     if(st.show!=='all')
       h+='<button type="button" class="dt-show" data-show="all">Show all '+allRows.length+'</button>';
     if(st.show!=='top')
@@ -2983,11 +3176,39 @@ function decisionTableHTML(cid,contract,pool){
   }
   h+='<p class="dtable-note">Tap any score to see its working.</p></div>';
   return h;}
+/* Every control in the decision table rebuilds the table, which used to drop keyboard focus to the
+   page. The control's identity is noted on click and focus returns to its replacement. */
+let decisionRefocusSel=null, decisionControlsOpen=true;
+function decisionNoteFocus(b){
+  const keys=['emph','sort','open','show','way'];
+  for(const k of keys)if(b.dataset[k]!=null){decisionRefocusSel='.'+b.className.split(' ')[0]+'[data-'+k+'="'+CSS.escape(b.dataset[k])+'"]';return;}
+  decisionRefocusSel=null;
+}
+function decisionRestoreFocus(){
+  if(!decisionRefocusSel)return;
+  const v=document.getElementById('view-decide');
+  const b=v&&(v.querySelector(decisionRefocusSel)||v.querySelector('.dtable-ways>summary'));
+  decisionRefocusSel=null;
+  if(b)b.focus({preventScroll:true});
+}
 function wireDecisionTable(cid,facet,contract){
+  document.querySelectorAll('#view-decide .dt-w,#view-decide .dt-way,#view-decide .dt-sort,#view-decide .dt-show,#view-decide .dt-open').forEach(b=>b.addEventListener('click',()=>decisionNoteFocus(b),{capture:true}));
   const v=document.getElementById('view-decide');if(!v)return;
   v.querySelectorAll('.dt-w').forEach(function(b){b.onclick=function(){
     const st=decisionTableState[cid];const k=b.dataset.emph;const i=st.emph.indexOf(k);
+    const pool=decisionCandidatePool(contract,String(facet||'').trim()),before=decisionRankCodes(cid,pool);
     if(i>=0)st.emph.splice(i,1);else st.emph.push(k);
+    st.moved=decisionMoved(before,decisionRankCodes(cid,pool),pool);
+    renderContractDecision(cid,facet,contract);
+    const sent=decisionTableSentence(cid,contract,decisionCandidatePool(contract,String(facet||'').trim()));
+    announce(sent||'Every measure weighs the same again.');};});
+  v.querySelectorAll('.dt-moved-x').forEach(function(b){b.onclick=function(){
+    decisionTableState[cid].moved=[];renderContractDecision(cid,facet,contract);};});
+  v.querySelectorAll('.dt-way').forEach(function(b){b.onclick=function(){
+    const st=decisionTableState[cid];
+    const pool=decisionCandidatePool(contract,String(facet||'').trim()),before=decisionRankCodes(cid,pool);
+    st.emph=b.dataset.way?b.dataset.way.split(','):[];
+    st.moved=decisionMoved(before,decisionRankCodes(cid,pool),pool);
     renderContractDecision(cid,facet,contract);
     const sent=decisionTableSentence(cid,contract,decisionCandidatePool(contract,String(facet||'').trim()));
     announce(sent||'Every measure weighs the same again.');};});
@@ -3017,7 +3238,9 @@ function renderContractDecision(cid,facet,contract){
     ? `<details class="decision-more" id="decision-more"><summary>More controls (${secondary.length})</summary><div class="decision-more-body">${secondary.map(item=>decisionDialHTML(item,values[item.id])).join('')}${!axis&&dirty?'<button class="savebtn" id="decision-reset" type="button">Reset choices</button>':''}</div></details>`
     : '';
   const tableHtml=decisionTableHTML(cid,contract,pool);
-  const controlsHtml=tableHtml+`<details class="decision-oldcontrols"><summary>What can change the answer</summary>`+slider+more+`<p class="decision-zero">${esc(zero)}</p></details>`;
+  // The slider is the page's own control. It sat in a closed fold below the table, so most readers never
+  // met it; the fold now starts open and remembers if the reader closes it.
+  const controlsHtml=tableHtml+`<details class="decision-oldcontrols" id="decision-controls"${decisionControlsOpen?' open':''}><summary>What can change the answer</summary>`+slider+more+`<p class="decision-zero">${esc(zero)}</p></details>`;
   const presentation=!query&&CC.presentation&&CC.presentation.current()&&CC.presentation.fixtureFor(CC.presentation.current(),'category','#decide/'+cid)?CC.presentation.current():null;
   if(presentation){
     const guide=CAT_GUIDE[cid], hasGuide=!!(guide&&(window.CC_GUIDES||[]).some(item=>item.slug===guide));
@@ -3033,7 +3256,7 @@ function renderContractDecision(cid,facet,contract){
     const search=v.querySelector('[data-presentation-search-form]');if(search)search.onsubmit=e=>{e.preventDefault();const input=search.querySelector('input[type="search"]'),term=input&&input.value.trim();if(term)location.hash='#search/'+encodeURIComponent(term);};
     const saveList=document.getElementById('decision-save-list');if(saveList)saveList.onclick=()=>{const receipt=decisionSaveList(contract,query),status=document.getElementById('decision-save-status');saveList.textContent='List saved';saveList.classList.add('on');if(status)status.textContent=`Saved ${receipt.choices.length} ranked choices on this device. Your file will include them.`;announce(`${DATA.meta.label} list saved on this device.`);};
   }else{
-    v.innerHTML=`<div class="decision-page decision-one${contract.page&&contract.page.primaryRoute?' decision-primary':''}"><a class="back" href="${esc(listHref)}">&larr; all ${esc(DATA.meta.label.toLowerCase())}</a><header class="decision-head"><div class="decision-kicker">Choosing</div><h1>${esc(DATA.meta.label)}</h1><p class="decision-read">${esc(contract.reads.text)}</p></header>${controlsHtml}<section id="decision-answers" aria-live="polite"></section>${decisionNextHTML(contract)}</div>`;
+    v.innerHTML=`<div class="decision-page decision-one${contract.page&&contract.page.primaryRoute?' decision-primary':''}"><a class="back" href="${esc(listHref)}">&larr; all ${esc(DATA.meta.label.toLowerCase())}</a><header class="decision-head"><div class="decision-kicker">Choosing</div><h1>${esc(DATA.meta.label)}</h1><p class="decision-read">${esc(contract.reads.text)}</p></header>${controlsHtml}<section id="decision-answers"></section>${decisionNextHTML(contract)}</div>`;
   }
   v.querySelectorAll('[data-decision-axis]').forEach(input=>{
     sliderFill(input);
@@ -3051,6 +3274,8 @@ function renderContractDecision(cid,facet,contract){
   const floorRestore=document.getElementById('decision-floor-restore');if(floorRestore)floorRestore.onclick=()=>{decisionRestoreFloor();renderContractDecision(cid,facet,contract);const door=document.querySelector('.decision-floor');if(door)door.open=true;const first=document.querySelector('[data-floor-rule]');if(first)first.focus();announce('All published baseline rules restored on this device.');};
   const reset=document.getElementById('decision-reset');if(reset)reset.onclick=()=>{delete decisionDialState[cid];decisionSaveDials();renderContractDecision(cid,facet,contract);announce('Choices reset to balanced.');};
   wireDecisionTable(cid,facet,contract);
+  decisionRestoreFocus();
+  const dc=document.getElementById('decision-controls');if(dc)dc.addEventListener('toggle',()=>{decisionControlsOpen=dc.open;});
   renderDecisionAnswers(cid,query);
   const challenge=document.getElementById('decision-challenge');if(challenge)renderChallengeBox(cid,challenge);
   const challengeJump=document.getElementById('decision-challenge-jump');if(challengeJump&&challenge)challengeJump.onclick=()=>{challenge.scrollIntoView({behavior:'smooth',block:'start'});challenge.focus({preventScroll:true});announce('Challenge view. Your current choices stay unchanged.');};
@@ -3162,7 +3387,7 @@ function renderIndexes(){
   v.innerHTML=`<a class="back" href="#map">← Explore</a><h2 class="sectionh">Your indexes</h2>`
     +`<p class="sectionsub">Author your own way of slicing the commons, the things <b>strong on the values you care about</b>, across every category at once. An index is a small file you own: run it, export it, and share or fork it. No official taxonomy, no server, nothing uploaded.</p>`
     +`<div class="card"><div class="dsh">Build an index, pick the values it's about</div><div class="themechips" id="idxchips">${chips}</div>`
-    +`<div class="idxbuild-row"><input id="idxname" placeholder="Name it, e.g. Planet & fair labour" value="${esc(idxName)}"><button class="catbtn" id="idxsave">Save index</button><button class="savebtn" id="idxprev">Preview</button></div></div>`
+    +`<div class="idxbuild-row"><input id="idxname" aria-label="Index name" placeholder="Name it, e.g. Planet & fair labour" value="${esc(idxName)}"><button class="catbtn" id="idxsave">Save index</button><button class="savebtn" id="idxprev">Preview</button></div></div>`
     +(list.length?`<div class="dsh" style="margin-top:1.3rem">Saved on this device · <button class="savebtn" id="idximport">⤒ apply a shared one</button></div>${saved}`:`<p class="sectionsub" style="margin-top:1rem">No saved indexes yet, build one above, or <button class="savebtn" id="idximport">⤒ apply a shared index file</button>.</p>`)
     +`<div id="idxresults"></div>`;
   v.querySelectorAll('#idxchips .themechip').forEach(b=>b.onclick=()=>{const id=b.dataset.th;idxBuild.has(id)?idxBuild.delete(id):idxBuild.add(id);renderIndexes();});
@@ -3251,7 +3476,7 @@ function renderSearch(query){
   prods.forEach(r=>{r.sameType=(r.type===(DATA&&DATA.meta.type));r.s=r.sameType?score(r.p):null;});
   prods.sort((a,b)=>((b.s?b.s.score:-1)-(a.s?a.s.score:-1)));
   const shown=prods.slice(0,30);
-  let html=`<form class="hsearch" id="ssearch" style="margin-bottom:1.25rem"><input type="search" id="sq" placeholder="Search products, brands, guides…" autocomplete="off"><button type="submit">Search</button></form>`;
+  let html=`<h2 class="sectionh">${q?`Search: “${esc(query.trim())}”`:'Search'}</h2><form class="hsearch" id="ssearch" style="margin-bottom:1.25rem"><input type="search" id="sq" aria-label="Search products, brands and guides" placeholder="Search products, brands, guides…" autocomplete="off"><button type="submit">Search</button></form>`;
   // Ask found places this could mean — offer them first, as places, not results
   if(window._askQ===query&&window._askHits&&window._askHits.length){
     html+=`<div class="facet-h" style="margin-top:0">Places this could mean</div><div class="facets" style="margin-bottom:1rem">${window._askHits.map(h=>`<a class="facet" href="${esc(h.hash)}">${esc(h.label)} <span class="fc">${esc(h.type)}</span></a>`).join('')}</div>`;
@@ -3340,9 +3565,9 @@ function renderContribute(arg){
       <g style="stroke:var(--accent)"><rect x="186" y="44" width="26" height="20" rx="4"/><rect x="330" y="66" width="26" height="20" rx="4"/><path d="M199 54h0M343 76h0" stroke-width="4"/></g>
     </svg></figure>
     <div class="card">
-      <div class="rx" style="margin-bottom:.6rem"><select id="ckind" class="ckind">${opts}</select></div>
+      <div class="rx" style="margin-bottom:.6rem"><select id="ckind" class="ckind" aria-label="Kind of suggestion">${opts}</select></div>
       <p id="chint" class="youmuted small" style="margin:.2rem 0 .65rem">${esc(hint)}</p>
-      <textarea id="ctext" rows="4" placeholder="Include the category or item, what should change, source URL, as-of date, and why it matters.">${esc(ptext)}</textarea>
+      <textarea id="ctext" rows="4" aria-label="Your suggestion" placeholder="Include the category or item, what should change, source URL, as-of date, and why it matters.">${esc(ptext)}</textarea>
       <div style="margin-top:.6rem"><button class="catbtn" id="csave">Save suggestion</button></div>
     </div>
     <details class="explain" style="margin-top:1rem"><summary>How do I correct a fact?</summary><p>Food and beauty facts come from <a href="https://world.openfoodfacts.org/" target="_blank" rel="noopener">Open Food Facts</a>. Correct the product there, and the fix can flow back here. For researched categories, save a sourced correction above.</p></details>`;
@@ -3379,8 +3604,11 @@ function priorityThemeIds(){return THEMES.filter(t=>(themeWeights[t.id]||3)>=4).
 function catRelevance(cid){const crit=catCriteria(cid);if(!crit.length)return 0;const pr=new Set(priorityThemeIds());if(!pr.size)return 0;let m=0;for(const c of crit){const t=KEY2THEME[c.key];if(t&&pr.has(t))m++;}return m/crit.length;}
 function catIsHot(cid){return catRelevance(cid)>=0.4;}
 function mapToggle(active){
-  const catHref='#explore'+(DATA?('/'+DATA.meta.id):'');
-  return `<div class="modetoggle" role="tablist" aria-label="Explore mode"><a href="#map" class="mt${active==='map'?' on':''}" role="tab" aria-selected="${active==='map'?'true':'false'}">${CC.icon('map')} Map</a><a href="${catHref}" class="mt${active==='cat'?' on':''}" role="tab" aria-selected="${active==='cat'?'true':'false'}">${CC.icon('grid')} Category view</a></div>`;
+  // Links, not tabs: each one loads a page. "Category view" used to point at #explore, which forwards to
+  // the decision page, so from the full ranking it took you away from the view it was named for.
+  const catHref='#rank'+(DATA?('/'+DATA.meta.id):'');
+  const cur=(on)=>on?' on" aria-current="page':'';
+  return `<nav class="modetoggle" aria-label="Explore mode"><a href="#map" class="mt${cur(active==='map')}">${CC.icon('map')} Map</a><a href="${catHref}" class="mt${cur(active==='cat')}">${CC.icon('grid')} Category view</a></nav>`;
 }
 function setExpToggle(){const e=document.getElementById('exptoggle');if(e)e.innerHTML=mapToggle('cat');}
 // T3 — the unified Explore: Map, Browse and Discover are ONE destination ("Explore the commons") seen three
@@ -3484,7 +3712,7 @@ function renderValue(key){
   v.innerHTML=`<a class="back" href="#map">&larr; Explore</a>
     <header class="value-head"><div class="decision-kicker">A value in the commons</div><h1>${esc(spec.label)}</h1><p class="value-reads">${esc(reads)}</p>${labelsUsed.length?`<p class="value-aka">Appears in the standard as: ${labelsUsed.map(esc).join(' · ')}.</p>`:''}</header>
     ${editorial}
-    <section class="value-where"><h2 class="sectionh2">Where it lives</h2><p class="value-tally">${cats.length===1?'Measured in 1 of 88 decisions.':`Measured in ${cats.length} of 88 decisions.`}</p><div class="value-grid">${rows||'<p class="need-edge">No live decision measures this yet.</p>'}</div></section>
+    <section class="value-where"><h2 class="sectionh2">Where it lives</h2><p class="value-tally">${`Measured in ${cats.length} of ${(CATALOG||[]).length} decisions.`}</p><div class="value-grid">${rows||'<p class="need-edge">No live decision measures this yet.</p>'}</div></section>
     ${editorial?'':`<section class="value-honesty"><b>What this page is.</b> Computed live from the standard&rsquo;s claims. Sourced editorial is not available for this value yet. <a href="#contribute">Suggest a sourced correction &rarr;</a></section>`}`;
 }
 
@@ -3825,7 +4053,9 @@ function renderCrumbs(){
   box.innerHTML=trail.map((c,i)=>i===trail.length-1?`<span class="crumb cur" aria-current="page">${esc(c.label)}</span>`:`<a class="crumb" href="${esc(c.href)}">${esc(c.label)}</a>`).join('<span class="crumb-sep" aria-hidden="true">›</span>');
 }
 function closeNavMenu(){const nav=document.querySelector('.nav');if(nav&&nav.classList.contains('open')){nav.classList.remove('open');const nt=document.getElementById('navtoggle');if(nt){nt.setAttribute('aria-expanded','false');nt.innerHTML='&#9776;';}}}
-function showView(name){['home','guides','guide','discover','search','contribute','explore','compare','recent','map','you','card','values','need','domain','scan','decide','garden','indexes','node','workbench','value'].forEach(v=>{const e=document.getElementById('view-'+v);if(e)e.style.display=(v===name)?'':'none';});setNavActive(name==='guide'?'guides':name);updateNavValues();}
+// Every view section, not a hand-kept list: the list missed view-institute, so after one visit its text
+// stayed on screen and focusMain stopped at its heading on most other pages.
+function showView(name){document.querySelectorAll('main>section.view').forEach(e=>{e.style.display=(e.id==='view-'+name)?'':'none';});setNavActive(name==='guide'?'guides':name);updateNavValues();}
 
 // --- in-app navigation history: a browser-grade back button + a "recently viewed" trail (device-only) ---
 const navTrail=[];
@@ -3840,7 +4070,12 @@ function navLabel(h){
   if(v==='guide'){const g=(window.CC_GUIDES||[]).find(x=>x.slug===dec(parts[1])); return g?g.title:'Guide';}
   if(v==='discover'&&parts[2])return 'Discover · '+dec(parts[2]);
   if(v==='search')return 'Search · '+dec(parts[1]);
-  return {home:'Home',guides:'Guides',browse:'Browse',discover:'Discover',contribute:'Contribute',lab:'Lab',compare:'Compare',saved:'Saved',notes:'Notes',recent:'Recent',you:'You'}[v]||'Home';
+  /* Decision, value and domain pages fell through to "Home", so a screen reader heard "Home" on
+     every decision page, and so would the visit notes (visitnotes.js records these words). */
+  if(v==='decide'){const c=(CATALOG||[]).find(x=>x.id===dec(parts[1]));const base=c?c.label:'A decision';const f=parts.length>2?dec(parts.slice(2).join('/')):'';return f?base+' · '+f:base;}
+  if(v==='value'){const vp=VALUE_PAGES[dec(parts[1])];return vp?vp.label:'A value';}
+  if(v==='domain')return dec(parts[1])||'An area';
+  return {home:'Home',guides:'Guides',browse:'Browse',discover:'Discover',contribute:'Contribute',lab:'Lab',compare:'Compare',saved:'Saved',notes:'Notes',recent:'Recent',you:'You',map:'Explore',scan:'Scan',values:'Your values',garden:'Garden',indexes:'Your indexes',workbench:'Workbench'}[v]||'Home';
 }
 function recordNav(){
   const h=location.hash||'#home'; if(h.slice(1)==='recent')return;
@@ -3855,7 +4090,7 @@ function goBack(){
 }
 function updateBackBtn(){const b=document.getElementById('backbtn');if(b){b.disabled=navTrail.length<2;b.setAttribute('aria-disabled',String(navTrail.length<2));}}
 function announce(t){const l=document.getElementById('live');if(l)l.textContent=t;}
-function focusMain(){for(const v of document.querySelectorAll('.view')){if(v.style.display!=='none'){const hd=v.querySelector('h1,h2,.sectionh');if(hd){hd.setAttribute('tabindex','-1');try{hd.focus({preventScroll:true});}catch(e){}}break;}}}
+function focusMain(){for(const v of document.querySelectorAll('.view')){if(v.style.display!=='none'){const hd=[...v.querySelectorAll('h1,h2,.sectionh')].find(h=>h.getClientRects().length&&h.textContent.trim());if(hd){hd.setAttribute('tabindex','-1');try{hd.focus({preventScroll:true});}catch(e){}}else{const m=document.getElementById('main');if(m)try{m.focus({preventScroll:true});}catch(e){}}break;}}}
 function renderRecent(){
   const v=document.getElementById('view-recent'); if(!v)return;
   const items=navTrail.slice().reverse().slice(0,30);
@@ -3877,7 +4112,8 @@ const CC_KEYS=[
   ONBOARD_KEY,TRUST_LENS_KEY,THEME_KEY,CH_KEY,FORCE_KEY,CEREM_KEY,ERRAND_KEY,MAP_STATE_KEY,
   'cc.locale','cc.patches','cc.indexes.v1',
   'cc.lab.v1',                                     // retired; kept so old devices still wipe it
-  'cc:h10-local-evidence-v1','vc:h4-evidence:v1'   // workbench review evidence (device-local QA)
+  'cc:h10-local-evidence-v1','vc:h4-evidence:v1',  // workbench review evidence (device-local QA)
+  'cc.visitnotes.v1'                               // notes of a visit, written only after the reader starts them (visitnotes.js)
 ];
 function ccExport(){const store={};for(const k of CC_KEYS){try{const val=localStorage.getItem(k);if(val!=null)store[k]=val;}catch(e){}}return {app:'Conscious Consuming',format:'cc-data-v1',exported:new Date().toISOString(),store};}
 function exportAll(){const b=new Blob([JSON.stringify(ccExport(),null,2)],{type:'application/json'});const a=el('a',{href:URL.createObjectURL(b),download:'conscious-consuming-my-data.json'});a.click();announce('Your data was exported.');const m=document.getElementById('you-msg');if(m)m.textContent='Exported, a file with everything this device holds.';}
@@ -3888,7 +4124,21 @@ function importAll(file){const r=new FileReader();
     else if(m)m.textContent='Sorry, that file isn’t a Conscious Consuming export.';};
   r.readAsText(file);}
 function deleteAll(){for(const k of CC_KEYS){try{localStorage.removeItem(k);}catch(e){}}location.reload();}
-function renderYou(){
+/* Pages rebuilt on every toggle (the You page) put keyboard focus back on the control that was used,
+   found again by its id or data attribute, instead of dropping it to the top of the document. */
+function focusKeyIn(viewId){
+  const a=document.activeElement, v=document.getElementById(viewId);
+  if(!a||!v||!v.contains(a))return null;
+  if(a.id)return '#'+CSS.escape(a.id);
+  for(const k of Object.keys(a.dataset||{}))return `[data-${k.replace(/[A-Z]/g,m=>'-'+m.toLowerCase())}="${CSS.escape(a.dataset[k])}"]`;
+  return null;
+}
+function restoreFocusKey(viewId,key){
+  if(!key)return;const v=document.getElementById(viewId),b=v&&v.querySelector(key);
+  if(b)try{b.focus({preventScroll:true});}catch(e){}
+}
+function renderYou(){const _fk=focusKeyIn('view-you');renderYouInner();restoreFocusKey('view-you',_fk);}
+function renderYouInner(){
   const v=document.getElementById('view-you'); if(!v)return;
   const cnt=k=>{try{const a=JSON.parse(localStorage.getItem(k)||'[]');return Array.isArray(a)?a.length:0;}catch(e){return 0;}};
   const nSaved=cnt(SAVED_KEY), nNotes=cnt(FEEDBACK_KEY), nContrib=cnt(CONTRIB_KEY);
@@ -3946,7 +4196,7 @@ function renderYou(){
       <p class="youmuted small">Price limits (“never over $X”) come when open price data lands. What we use has no per-item prices yet, so that rule would be silent. Better to leave it out than fake it.</p>
       <p class="youmuted small"><button class="youbtn" id="you-passport">⤓ Download your file</button> &nbsp;<label class="youbtn" style="cursor:pointer">⤒ Upload a file<input type="file" id="you-passport-in" accept="application/json,.json" hidden></label>. The file carries these ${nLines} rule${nLines===1?'':'s'} plus Advanced close-call priorities, never a name or account. Older compatible files still upload safely.</p>
     </div>
-    <details class="youcard youleanings">
+    <details class="youcard youleanings" id="you-advanced">
       <summary><span>Advanced: Close-call priorities</span><small>${summary}</small></summary>
       <div class="youleanings-body"><div class="youhd">Close-call priorities <span class="youmuted">, optional and consulted last</span></div>
       <p class="youmuted small">These never override the baseline, one of your rules, or the choices in front of you. They only break an exact tie between options that remain eligible.</p>
@@ -4094,9 +4344,9 @@ function renderCard(cid, code){
   if(sh)sh.onclick=()=>{
     const text=r?`${r.label}: ${r.band[0]}, ${r.note||''}`:`${ds.meta.label} · sources and scores`;
     if(navigator.share){navigator.share({title:p.name+', sources and scores',text,url:shareUrl}).catch(()=>{});}
-    else{const ok=()=>{sh.textContent='Link copied ✓';announce('Link copied, paste it to share');};try{navigator.clipboard.writeText(shareUrl).then(ok,ok);}catch(e){ok();}}
+    else{const ok=()=>{sh.textContent='Link copied ✓';announce('Link copied, paste it to share');},no=()=>{sh.textContent='Copy failed: '+shareUrl;announce('Copy failed. The link is shown on the button.');};try{navigator.clipboard.writeText(shareUrl).then(ok,no);}catch(e){no();}}
   };
-  if(cp)cp.onclick=()=>{const done=()=>{cp.textContent='Copied ✓';announce('Link copied');};try{navigator.clipboard.writeText(shareUrl).then(done,done);}catch(e){done();}};
+  if(cp)cp.onclick=()=>{const done=()=>{cp.textContent='Copied ✓';announce('Link copied');},no=()=>{cp.textContent='Copy failed';announce('Copy failed. Copy the address from the address bar.');};try{navigator.clipboard.writeText(shareUrl).then(done,no);}catch(e){no();}};
 }
 // --- 🔦 Scan a barcode → the verdict for THAT product, by your values. Fully offline: the {barcode→category}
 // index (app/data/barcodes.json, ~16.5k Open Food Facts products) resolves a scan to its category, and the
@@ -4242,14 +4492,16 @@ function startScan(){
   navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}}}).then(stream=>{
     let det;try{det=new window.BarcodeDetector({formats:['ean_13','ean_8','upc_a','upc_e','code_128','code_39']});}catch(e){det=new window.BarcodeDetector();}
     video.srcObject=stream;video.setAttribute('playsinline','');const pp=video.play();if(pp&&pp.catch)pp.catch(()=>{});
-    scanState={stream,raf:0,active:true};
+    scanState={stream,raf:0,active:true};syncScanBtn();
     scanMsg('Point the camera at a barcode…');
     (function tick(){ if(!scanState||!scanState.active)return;
       det.detect(video).then(codes=>{ if(scanState&&scanState.active){ if(codes&&codes.length)handleCode(codes[0].rawValue); else scanState.raf=requestAnimationFrame(tick); } }).catch(()=>{ if(scanState&&scanState.active)scanState.raf=requestAnimationFrame(tick); });
     })();
   }).catch(()=>{if(wrap)wrap.hidden=true;scanMsg('Couldn’t open the camera (permission denied, or none found). Type the barcode below.');});
 }
-function stopScan(){ if(!scanState)return; scanState.active=false; if(scanState.raf)cancelAnimationFrame(scanState.raf); try{scanState.stream.getTracks().forEach(t=>t.stop());}catch(e){} const v=document.getElementById('scan-video');if(v)v.srcObject=null; scanState=null; }
+function stopScan(){ if(!scanState)return; scanState.active=false; if(scanState.raf)cancelAnimationFrame(scanState.raf); try{scanState.stream.getTracks().forEach(t=>t.stop());}catch(e){} const v=document.getElementById('scan-video');if(v)v.srcObject=null; scanState=null; syncScanBtn(); }
+// The camera button starts and stops the camera; it used to hide itself, so nothing could turn the camera off.
+function syncScanBtn(){const st=document.getElementById('scan-start');if(st){st.hidden=false;st.textContent=scanState?'Stop camera':'Start camera';}}
 function renderScan(){
   const v=document.getElementById('view-scan');if(!v)return;
   if(!document.getElementById('scancss')){const s=el('style',{id:'scancss'});s.textContent=SCAN_CSS;document.head.appendChild(s);}
@@ -4266,7 +4518,7 @@ function renderScan(){
   const go=document.getElementById('scan-go'),inp=document.getElementById('scan-in'),st=document.getElementById('scan-start');
   if(go)go.onclick=()=>handleCode(inp.value);
   if(inp)inp.onkeydown=e=>{if(e.key==='Enter')handleCode(inp.value);};
-  if(st)st.onclick=()=>{st.hidden=true;startScan();};
+  if(st)st.onclick=()=>{if(scanState)stopScan();else startScan();};
 }
 
 // ══ N1 · THE NODE SYSTEM (BUILD-PLAN.md §4) — everything is a node; every node gets the same six-slot page;
@@ -4389,11 +4641,32 @@ function renderNode(arg){
   const v=document.getElementById('view-node'); if(!v)return;
   const parts=(arg||'').split('/'), type=parts[0]||'', slug=decodeURIComponent(parts.slice(1).join('/')||'');
   // richer pages already exist for these node types — the node address just walks you there
-  if(type==='category'){location.hash='explore/'+slug;return;}
-  if(type==='guide'){location.hash='guide/'+slug;return;}
-  if(type==='item'){location.hash='item/'+slug;return;}
+  if(type==='category'){hopTo('explore/'+slug);return;}
+  if(type==='guide'){hopTo('guide/'+slug);return;}
+  if(type==='item'){hopTo('item/'+slug);return;}
   // Public channel: brand / company / tag / errand pages are on the workbench (their generated text
   // hasn't passed the voice bar). Replace with the honest note — and keep the one verb that IS ready.
+  // A task is a list of decisions, and each decision already has a reviewed page. Public visitors used to
+  // reach an "On the workbench" placeholder from the Explore page's task cards, a dead end; they now get
+  // the task's decisions, linked, with no unreviewed per-step notes.
+  if(!chDev()&&type==='errand'){
+    v.innerHTML='<p class="sectionsub">Loading…</p>';
+    loadNodes().then(()=>{
+      const n=findNode('errand',slug);
+      if(!n){v.innerHTML=`<a class="back" href="#map">← Explore</a><h2 class="sectionh">Task not found</h2><p class="sectionsub"><a href="#map">Back to Explore</a></p>`;focusMain();return;}
+      const steps=(n.steps&&n.steps.length?n.steps:(n.categories||[]).map(cat=>({cat}))), built=[], open=[];
+      for(const st of steps){const c=CATALOG.find(x=>x.id===st.cat);(c?built:open).push(c||st);}
+      v.innerHTML=`<a class="back" href="#map">← Explore</a>
+        <div class="ntype">Task</div>
+        <h2 class="sectionh" style="margin-top:.1rem">${esc(n.label)}</h2>
+        ${n.reads?`<p class="sectionsub">${esc(n.reads)}</p>`:''}
+        <h3 class="taskh">The decisions in this task (${built.length})</h3>
+        <ol class="tasksteps">${built.map(c=>`<li><a href="#explore/${encodeURIComponent(c.id)}">${esc(c.label)}</a></li>`).join('')}</ol>
+        ${open.length?`<p class="sectionsub small">${open.length} more ${open.length===1?'step has':'steps have'} no comparison on the site yet.</p>`:''}`;
+      focusMain();
+    });
+    return;
+  }
   if(!chDev()&&type!=='line'&&type!=='value'){
     const label=slug.replace(/-/g,' ').replace(/\b\w/g,m=>m.toUpperCase());
     const L=lineById('avoid:'+slug);
@@ -6568,10 +6841,21 @@ function route(){
   if(view==='guide'){renderGuide(arg);showView('guide');}
   else if(view==='guides'){renderGuidesList();showView('guides');}
   else if(view==='browse'){location.replace('#map');return;}
-  else if(view==='search'){showView('search');document.getElementById('view-search').innerHTML='<p class="sectionsub">Searching the full commons…</p>';loadAllCategories().then(()=>renderSearch(decodeURIComponent(arg||'')));}
+  else if(view==='search'){showView('search');document.getElementById('view-search').innerHTML='<p class="sectionsub">Searching the full commons…</p>';loadAllCategories().then(()=>{renderSearch(decodeURIComponent(arg||''));if(currentRouteView()==='search')focusMain();});}
   else if(view==='contribute'){renderContribute(arg);showView('contribute');}
   else if(view==='discover'){if(!arg){location.replace('#map');return;}showView('discover');document.getElementById('view-discover').innerHTML='<p class="sectionsub">Loading the full commons…</p>';loadAllCategories().then(()=>renderDiscover(arg));}
-  else if(view==='compare'){renderCompare();showView('compare');}
+  /* #compare/<decision>/<a>/<b>, as INFORMATION-ARCHITECTURE.md documents and the founder walk uses
+     (#compare/banking/triodos/chase). Until 2026-09-28 the route ignored everything after
+     "compare" and answered "Nothing pinned yet", so a shared comparison arrived empty. A link names
+     up to four entries of one decision; a bare #compare shows whatever this visit has pinned. */
+  else if(view==='compare'){
+    const segs=arg?arg.split('/').map(s=>{try{return decodeURIComponent(s);}catch(e){return s;}}):[];
+    const cid=segs[0],codes=segs.slice(1,5),c=cid&&codes.length?CATALOG.find(x=>x.id===cid):null;
+    const pin=()=>{const got=codes.map(code=>DATA.products.find(p=>p.code===code)).filter(Boolean);
+      if(got.length)compareSet=got.map(p=>({code:p.code,product:p,label:DATA.meta.label,criteria:DATA.criteria.slice()}));
+      updateCompareFab();renderCompare();showView('compare');};
+    if(c){if(!DATA||DATA.meta.id!==cid){setActiveCat(cid);loadCategory(c).then(pin);}else pin();}
+    else{renderCompare();showView('compare');}}
   else if(view==='recent'){renderRecent();showView('recent');}
   else if(view==='map'){renderMap();showView('map');if(!NODES)loadNodes().then(hydrateExploreErrands);}
   else if(view==='need'){renderNeed(arg);showView('need');}
@@ -6579,8 +6863,14 @@ function route(){
   else if(view==='garden'){renderGarden();showView('garden');}
   else if(view==='indexes'){renderIndexes();showView('indexes');}
   else if(view==='domain'){const target=legacyDomainNeedId(arg);if(target){location.replace('#need/'+encodeURIComponent(target));return;}renderDomain(arg);showView('domain');}
-  else if(view==='saved'){viewingSaved=true;showView('explore');if(DATA)render();}
-  else if(view==='notes'){viewingFeedback=true;showView('explore');if(DATA)render();}
+  // Saved and Notes draw inside the ranking view and need a category loaded; opened by link or after a
+  // reload none was, and they sat on "Loading..." for good. Load the last one used, else the first.
+  else if(view==='saved'||view==='notes'){
+    if(view==='saved')viewingSaved=true;else viewingFeedback=true;
+    showView('explore');
+    if(DATA)render();
+    else{const sv=loadProfile(),c=(sv&&CATALOG.find(x=>x.id===sv.category))||CATALOG[0];if(c){setActiveCat(c.id);loadCategory(c).then(()=>{if(currentRouteView()!==view)return;if(view==='saved')viewingSaved=true;else viewingFeedback=true;render();focusMain();});}}
+  }
   else if(view==='item'){
     const segs=arg?arg.split('/'):[], cid=segs[0], code=segs[1]?decodeURIComponent(segs[1]):'';
     selected=code; const c=CATALOG.find(x=>x.id===cid);
@@ -6609,10 +6899,12 @@ function route(){
   }
   else if(view==='workbench'){if(!chDev()){location.replace('#you');return;}renderWorkbench();showView('workbench');}
   else if(view==='n'){renderNode(arg);showView('node');}
-  else if(view==='you'){renderYou();showView('you');}
+  // "Advanced" in the top bar opens this section, where it used to land on the top of the same page as "You".
+  else if(view==='you'){renderYou();showView('you');if(arg==='advanced'){const d=document.getElementById('you-advanced');if(d){d.open=true;setTimeout(()=>{d.scrollIntoView({block:'start'});const sm=d.querySelector('summary');if(sm)sm.focus({preventScroll:true});});}}}
   else if(view==='values'){if(arg==='quiz'){startValues();}else{quizPhase='studio';renderValues();}showView('values');}
+  else if(view==='institute'){renderInstitute();showView('institute');}
   else if(view==='card'){const segs=arg?arg.split('/'):[];renderCard(segs[0],segs[1]?decodeURIComponent(segs[1]):'');showView('card');}
-  else if(view==='decide'){const segs=arg?arg.split('/'):[], cid=segs[0], facet=segs.length>1?decodeURIComponent(segs.slice(1).join('/')):'';const c=cid&&CATALOG.find(x=>x.id===cid);if(!c){location.hash='map';return;}if(!DATA||DATA.meta.id!==cid){setActiveCat(cid);loadCategory(c).then(()=>renderDecide(cid,facet));}else{renderDecide(cid,facet);}showView('decide');}
+  else if(view==='decide'){const segs=arg?arg.split('/'):[], cid=segs[0], facet=segs.length>1?decodeURIComponent(segs.slice(1).join('/')):'';const c=cid&&CATALOG.find(x=>x.id===cid);if(!c){hopTo('map');return;}if(!DATA||DATA.meta.id!==cid){const dv=document.getElementById('view-decide');if(dv)dv.innerHTML='<p class="sectionsub" role="status">Loading…</p>';setActiveCat(cid);loadCategory(c).then(()=>{renderDecide(cid,facet);if(currentRouteView()==='decide')focusMain();});}else{renderDecide(cid,facet);}showView('decide');}
   else if(view==='not-yet-covered'){let id='';try{id=decodeURIComponent(arg||'');}catch(e){}if(!renderPresentationGap(id))renderPresentationUnknown(id);showView('decide');}
   else if(view==='scan'){renderScan();showView('scan');}
   else {renderHome();showView('home');}
@@ -6643,6 +6935,11 @@ function boot(){
     const byNeed={};idx.categories.forEach(c=>{const id=c.need||'other';(byNeed[id]=byNeed[id]||[]).push(c);});
     const needIds=needs.map(n=>n.id).filter(id=>byNeed[id]).concat(Object.keys(byNeed).filter(id=>!needMeta[id]).sort());
     const activeNeed=(idx.categories.find(c=>c.id===startId)||{}).need;
+    // Every decision, grouped by need. On a wide screen it is a rail beside the list; on a narrow one it
+    // used to open in full above the tool, 2,300px of names before the first control. It now sits closed
+    // behind one control there.
+    const dir=el('details',{class:'catdir'});dir.innerHTML='<summary>Browse every decision</summary>';
+    cats.appendChild(dir);
     for(const id of needIds){
       const label=(needMeta[id]&&needMeta[id].label)||'Other';
       const d=el('details',{class:'tree side','data-need':id});if(id===activeNeed)d.setAttribute('open','');
@@ -6652,8 +6949,12 @@ function boot(){
         r.innerHTML=`<span>${esc(c.label)}</span>`;
         d.appendChild(r);
       });
-      cats.appendChild(d);
+      dir.appendChild(d);
     }
+    syncCatDir();
+    if(window.matchMedia){try{CATDIR_WIDE.addEventListener('change',syncCatDir);}catch(e){}}
+    // Picking another decision from the full ranking keeps you in the full ranking.
+    cats.addEventListener('click',e=>{const a=e.target.closest('a.tr-row');if(a&&currentRouteView()==='rank'){e.preventDefault();location.hash='rank/'+encodeURIComponent(a.dataset.cid);}});
     const extra=el('div',{class:'catextra'});
     const sbtn=el('button',{class:'savetag first',id:'savedbtn'});sbtn.onclick=()=>{location.hash='saved';};
     extra.appendChild(sbtn);
@@ -6678,10 +6979,12 @@ boot().then(()=>{
   if(window.matchMedia){try{window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',()=>{if(theme==='system')applyTheme();});}catch(e){}}
   const tt=document.getElementById('totop');if(tt)tt.onclick=()=>window.scrollTo({top:0,behavior:prefersReduced()?'auto':'smooth'});
   window.addEventListener('scroll',()=>{const e=document.getElementById('totop');if(e)e.classList.toggle('show',window.scrollY>500);},{passive:true});
+  // Escape closes a home claim panel opened by hover or focus; it stays closed until the pointer or focus leaves.
+  document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;document.querySelectorAll('.nexus-item:hover,.nexus-item:focus-within').forEach(it=>{it.classList.add('dismissed');const done=()=>{it.classList.remove('dismissed');it.removeEventListener('mouseleave',done);it.removeEventListener('focusout',done);};it.addEventListener('mouseleave',done);it.addEventListener('focusout',done);});});
   document.addEventListener('keydown',e=>{
     const t=e.target||{}, typing=/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName||'')||t.isContentEditable;
     if(e.key==='/'&&!typing){const v=['hq','q'].map(id=>document.getElementById(id)).filter(Boolean).find(el=>el.offsetParent!==null);if(v){e.preventDefault();v.focus();if(v.select)v.select();}}
-    else if(e.key==='Escape'&&typing&&t.type==='search'){t.value='';t.blur();}
+    else if(e.key==='Escape'&&typing&&t.type==='search'){t.value='';t.dispatchEvent(new Event('input',{bubbles:true}));t.blur();}
   });
   window.addEventListener('hashchange',route);route();
   // guides.js is deferred (it's the largest bundle; deferring it lets the app boot without waiting on it).
@@ -6690,7 +6993,7 @@ boot().then(()=>{
   if(!window.CC_GUIDES){const gs=document.querySelector('script[src*="guides.js"]');
     if(gs)gs.addEventListener('load',()=>{const v=(location.hash.slice(1)||'').split('/')[0];if(v==='guides'||v==='guide')route();});}
 })
-  .catch(e=>{document.getElementById('attr').textContent='Could not load data, run: python pipeline/build_datasets.py';});
+  .catch(e=>{document.getElementById('attr').textContent='The data could not load. Check the connection and reload the page.';});
 
 // Phase A: register the service worker so the commons installs & works offline — but ONLY on a real (non-localhost)
 // http(s) deploy. In dev/preview a caching SW gets in the way, so there we make sure none is active (self-healing).

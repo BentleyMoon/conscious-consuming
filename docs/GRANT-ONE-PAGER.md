@@ -18,10 +18,10 @@ The collective version is no better. When a group wants to act on shared values,
 
 Current working state:
 
-- **126 categories** across food, personal care, home, clothing, learning and media, technology, money, giving, and mission-led businesses.
-- **24,228 entries**, including open-data food and beauty products plus hand-checked comparisons for choices such as banking, investing, AI assistants, payments, VPNs, clothing, news, and causes.
-- **108 guides** and **3,458 shareable comparison pages**.
-- **An honest sourcing count**: 6,033 of those entries rest on more than one independent source domain; the rest rest on one, often the seller's own site. The gap is published, not hidden.
+- **144 categories** across food, personal care, home, clothing, transport, learning and media, technology, money, giving, and mission-led businesses.
+- **24,998 entries**, including open-data food and beauty products plus hand-checked comparisons for choices such as banking, investing, AI assistants, payments, VPNs, clothing, news, and causes.
+- **141 guides** and **4,228 shareable comparison pages**.
+- **An honest sourcing count**: 6,594 of those entries rest on more than one independent source domain; the rest rest on one, often the seller's own site. The gap is published, not hidden.
 - **100% hand-checked evidence coverage** by the app's evidence meter: shown facts are measured, certified, cited, or clearly marked as low-stakes convenience notes.
 - Static, local-first, installable, and offline-capable. Values and saved choices live on the user's own device.
 
@@ -48,19 +48,19 @@ The reason this needs grant support is also the reason it can be trusted: the pr
 
 ## What A Grant Would Fund
 
-A focused **6-month phase** to take the working reference implementation to first real use:
+A focused **6-month phase** to get the working reference implementation ready, and then, once I judge it ready, to its first real use. Nobody outside the project is asked to use it before then.
 
-1. **Reach a first cohort.** Bring Conscious Consuming to 20-50 values-driven users and learn whether it helps with real decisions.
-2. **Validate the organizing loop.** Take one or two real groups through Assembly to Slate for a genuine shared choice.
+1. **Get it ready, then reach a first cohort.** Finish what a first-time user needs; then bring Conscious Consuming to 20-50 values-driven users and learn whether it helps with real decisions.
+2. **Validate the organizing loop.** Take one or two real groups from Group values to the shared plan for a genuine shared choice.
 3. **Make Values Commons easier to adopt.** Turn the Open Values Standard and the "create an instance" path into a clearer, repeatable on-ramp for other communities.
 4. **Improve what real users touch.** Deepen evidence and usability only where the first users and groups actually need it.
 5. **Stay independent.** Fund focused maker time so the project does not need ads, affiliates, brand sponsorship, or surveillance.
 
 ### Six months of work
 
-- **Month 1:** recruit the first cohort and prepare consentful feedback prompts that do not require accounts or tracking.
+- **Month 1:** get the tools ready for a first-time user and choose the decisions to start with. The work with people starts when I judge the tools ready, not on a date.
 - **Months 2-3:** observe real choices in the live apps and document where the commons helps, confuses, or needs better evidence.
-- **Months 3-4:** run one group pilot through Assembly, Workshop, and Slate, keeping blockers and dissent visible.
+- **Months 3-4:** run one group pilot through Group values, fact repair and the shared plan, keeping blockers and dissent visible.
 - **Months 4-5:** plan a fourth app with an outside community: define the decision, audience, starter facts, values mapping, privacy boundary, and correction route.
 - **Month 6:** improve the adoption guide for people who want to use the commons, correct its facts, adapt the standard, or build an app for another subject.
 - **Closeout:** publish what people tried, what helped, what failed, what changed, and what remains uncertain.

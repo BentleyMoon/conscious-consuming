@@ -342,7 +342,9 @@ function checkDecisionRegistry(index) {
   // 124 on 2026-08-26: messaging and browsers authored their own contracts in the split.
   // 126 on 2026-09-23: email and search left the shared digital-services dataset in the same
   // split, authoring their own contracts.
-  expect(contracts.length === 126, `content/decisions.json: expected 126 category contracts, found ${contracts.length}`);
+  // Moved 2026-09-29: cloud storage and notes flipped from digital-services facets to their
+  // own datasets, wave two of the nine-way split; video calls, maps and social networks remain.
+  expect(contracts.length === 144, `content/decisions.json: expected 144 category contracts, found ${contracts.length}`);
   const categorySet = new Set(categories);
   expect(
     liveCategories.every((category) => categorySet.has(category)) && categories.every((category) => liveCategories.includes(category)),

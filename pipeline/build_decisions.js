@@ -85,7 +85,7 @@ const HAND_AXIS_QUESTIONS = {
 };
 
 const COPY = {
-  // 2026-08-13. Five keys arrived with the swarm's waves. A criterion key has to be registered in
+  // 2026-08-13. Five keys arrived with the content waves. A criterion key has to be registered in
   // three places before a decision page can be generated from it: KEY2THEME in the builder, its
   // twin in research/verify_run.js, and this reader-facing phrasing. That is a real cost of a new
   // axis, and it is the reason lens_check warns when a key is new to the corpus.
@@ -133,6 +133,7 @@ const COPY = {
   rainforest_alliance: ['Rainforest Alliance certification', 'Rainforest Alliance certification', 'Do you require Rainforest Alliance certification?', 'Flexible', 'Rainforest Alliance certified'],
   repairability: ['repairability', 'Repairability', 'Does easier repair matter more?', 'Flexible', 'Easier repair'],
   respect: ['respect for attention', 'Respect for attention', 'Do you want the more respectful option?', 'Flexible', 'More respectful'],
+  wellbeing: ['how it treats you', 'How it treats you', 'Do you want the assistant that treats you better?', 'Flexible', 'Treats you better'],
   safety: ['safety', 'Safety', 'Does stronger safety matter more?', 'Flexible', 'Stronger safety'],
   security: ['security', 'Security', 'Does stronger security matter more?', 'Flexible', 'Stronger security'],
   selection: ['selection', 'Selection', 'Do you need wider selection?', 'Flexible', 'Wider selection'],
@@ -142,7 +143,7 @@ const COPY = {
 };
 
 const TRADEOFFS = {
-  // 2026-08-13, the swarm's first waves. A tradeoff pair needs its own reader-facing question here
+  // 2026-08-13, the first content waves. A tradeoff pair needs its own reader-facing question here
   // before a decision page can be generated, which together with COPY and the two theme maps makes
   // four registries a genuinely new axis has to enter. That cost is the argument for reusing an
   // existing key wherever one honestly fits.
@@ -150,6 +151,9 @@ const TRADEOFFS = {
   'environment|durability': ['efficiency-or-durability', 'Efficiency or durability', 'Cheaper to run every wash, or built and legally supported to last?', ['Cheaper to run', 'Built to last']],
   'ownership|certification': ['ownership-or-certification', 'Ownership or certification', 'Independently owned, or more rigorously verified?', ['Independently owned', 'More verified']],
   'economical|safety': ['cost-or-safety', 'Cost or safety', 'Lower cost or less risk of the thing catching fire?', ['Lower cost', 'Lower risk']],
+  'ethics|repairability': ['sourcing-or-repair', 'Sourcing or repair', 'Stronger down sourcing or a stronger repair service?', ['Stronger sourcing', 'Easier repair']],
+  // The care lenses: CQC and GPhC records against how reachable the service actually is.
+  'safety|accessibility': ['record-or-reach', 'Record or reach', 'A stronger inspection record, or easier to actually get?', ['Stronger record', 'Easier to get']],
   'accessibility|ownership': ['access-or-ownership', 'Access or ownership', 'Easier to get seen, or locally owned?', ['Easier access', 'Locally owned']],
   'accessibility|complaints': ['access-or-complaints', 'Access or complaint record', 'Easier to qualify for or a cleaner complaint record?', ['Easier to qualify', 'Cleaner record']],
   'accessibility|health': ['access-or-safety', 'Access or safety record', 'Cheaper and easier to find, or a cleaner safety record?', ['Easier to find', 'Cleaner record']],

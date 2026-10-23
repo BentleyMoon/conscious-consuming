@@ -35,3 +35,27 @@ Guides and docs are prose, so Creative Commons is the natural fit; share-alike k
 (so the file alone can't be misread as putting the *data* under AGPL). The header is brief enough
 that GitHub/SPDX license auto-detection still resolves the file as `AGPL-3.0`, which the DPG
 review relies on.
+
+## The notice that went with the code licence
+
+LICENSE holds only the GNU Affero General Public License v3.0 text, so tools can read it. The notice that
+used to sit above it:
+
+```
+Conscious Consuming & the Open Values Standard
+Copyright (C) 2026 Bentley Moon
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+
+This file contains the full GNU Affero General Public License v3.0, which governs
+the project's CODE. The project is multi-licensed by asset type (see LICENSING.md):
+  • Code ............. AGPL-3.0-or-later  (full text below)
+  • Data ............. ODbL-1.0           (content/lenses, ontology, built datasets)
+  • Guides & docs .... CC BY-SA 4.0       (content/guides, docs/)
+Forks must preserve these notices. Attribution: "Conscious Consuming / the Open
+Values Standard, by Bentley Moon." Open Food Facts / Open Beauty Facts
+source data remains under its own ODbL terms (https://world.openfoodfacts.org/).
+WHY AGPL: any fork — including one run only as a hosted network service — must keep
+its source open to its users. The standard can spread by being forked, yet cannot be
+captured into a closed product. The license is the "uncapturable" principle, binding.
+```

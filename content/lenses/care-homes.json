@@ -1,0 +1,793 @@
+{
+  "meta": {
+    "id": "care-homes",
+    "label": "Care homes",
+    "type": "Services",
+    "primaryAxis": "safety",
+    "tradeoff": [
+      "safety",
+      "accessibility"
+    ],
+    "tradeoffLabels": [
+      "best CQC inspection record",
+      "most homes to choose from"
+    ],
+    "source": "Conscious Consuming",
+    "attribution": "These scores describe operators of care homes for older people in England, not individual homes. A home's own inspection report matters more than its operator's average, and the average moves as ratings are renewed. The inspection record is this catalogue's own count from the Care Quality Commission's published ratings file (as at 1 September 2026) joined to its care directory (23 September 2026). It covers homes the directory lists as residential or nursing homes for adults over 65 that hold an overall rating, grouped by provider name or, where the note says so, by the brand name CQC records. The score is the share rated Good or Outstanding among homes rated Outstanding, Good, Requires improvement or Inadequate, rounded. The file holds 10,546 such homes, and across the 10,479 that carry one of those four ratings the share is 81 per cent (440 Outstanding, 8,039 Good, 1,914 Requires improvement, 86 Inadequate). It is not a CQC statistic and CQC does not endorse it. Ratings are snapshots and many are old: between 14 and 95 per cent of an operator's ratings were published more than three years before the file date, and each note gives its figure. Choice is the count of an operator's homes divided by 2.5, capped at 95. It says nothing about vacancies, fees or whether a council will fund a place. Fees are not scored because operators set them home by home. Ownership is scored only where an operator's own statement or a regulator's published decision states it: 90 for a registered charity, 85 for a charitable housing association, 60 for a company that says it has no shareholders, and 20 where the competition regulator records that a US real estate investment trust owns the homes. Most operators carry no ownership score because their ownership could not be stated from a page read for this check. The competition regulator accepted undertakings over Welltower's purchase of the Barchester and HC-One property portfolios on 10 September 2026, and its case page was still open on 15 September 2026, so ownership at some homes is changing. Contains CQC data used under the Open Government Licence. Homes in Scotland, Wales and Northern Ireland are regulated by other bodies and are not covered. This is not advice on choosing care. A council can carry out a needs assessment, and any home should be visited before a decision. Reviewed 2026-09. Suggest changes via Contribute.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": {
+          "safety": 3,
+          "accessibility": 3,
+          "ownership": 3
+        },
+        "x": []
+      },
+      "Best inspection record": {
+        "w": {
+          "safety": 5,
+          "accessibility": 1,
+          "ownership": 2
+        },
+        "x": []
+      },
+      "Most homes to choose from": {
+        "w": {
+          "accessibility": 5,
+          "safety": 2,
+          "ownership": 1
+        },
+        "x": []
+      },
+      "Answers to residents, not investors": {
+        "w": {
+          "ownership": 5,
+          "safety": 3,
+          "accessibility": 1
+        },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    {
+      "key": "safety",
+      "label": "Inspection record: share of the operator's older people's homes in England rated Good or Outstanding by CQC",
+      "source": "curated"
+    },
+    {
+      "key": "accessibility",
+      "label": "Choice: how many homes it runs, so how easily a family can find one near them",
+      "source": "curated"
+    },
+    {
+      "key": "ownership",
+      "label": "Who it answers to: charity or no shareholders, against a property investor",
+      "source": "curated"
+    }
+  ],
+  "products": [
+    {
+      "code": "barchester",
+      "name": "Barchester Healthcare",
+      "brand": "Barchester Healthcare",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 89,
+        "accessibility": 80,
+        "ownership": 20
+      },
+      "provenance": {
+        "safety": {
+          "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 201 older people's care homes registered to Barchester Healthcare Homes Limited and Barchester Hellens Limited with an overall rating: 9 Outstanding, 169 Good, 21 Requires improvement and 2 Inadequate, which is 88.6 per cent Good or Outstanding, against 81 per cent across the 10,479 rated homes of this kind in England. 64 per cent of these ratings were published more than three years before the file date, and none carries an inherited rating.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "The CQC ratings file and care directory list 201 older people's care homes registered to Barchester Healthcare Homes Limited and Barchester Hellens Limited, 1.9 per cent of the 10,546 such homes in England. Scored as homes divided by 2.5, capped at 95; a bigger operator is likelier to have a home near a given family, but this says nothing about vacancies or fees.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "ownership": {
+          "note": "The CMA's Phase 1 decision summary for case ME/7137/25 says Welltower Inc., which it describes as a US-based real estate investment trust, completed its acquisition on 23 and 24 October 2025 of the real estate interests in 275 care homes managed by Barchester Healthcare, and that operator-owned management companies now run the homes day to day. It also says that in the structure Welltower uses for some homes it can approve operators' annual business plans and operating budgets.",
+          "source": "https://assets.publishing.service.gov.uk/media/69fc63b04fb0713aa63ea593/Summary_of_phase_1_decision_2.pdf",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.barchester.com/"
+        },
+        {
+          "label": "CQC provider page",
+          "url": "https://www.cqc.org.uk/provider/1-102642955"
+        },
+        {
+          "label": "CMA case page",
+          "url": "https://www.gov.uk/cma-cases/welltower-slash-multiple-care-homes-merger-inquiries"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "National chain",
+        "Residential and nursing"
+      ],
+      "description": "One of the largest operators in England, with most homes in the South East and South West. A US property investor bought the real estate of its homes in October 2025, and the competition regulator accepted remedies over local overlaps in September 2026."
+    },
+    {
+      "code": "hc-one",
+      "name": "HC-One",
+      "brand": "HC-One",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 86,
+        "accessibility": 50,
+        "ownership": 20
+      },
+      "provenance": {
+        "safety": {
+          "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 125 older people's care homes registered to providers whose name begins HC-One with an overall rating: 4 Outstanding, 103 Good, 17 Requires improvement and 1 Inadequate, which is 85.6 per cent Good or Outstanding, against 81 per cent across the 10,479 rated homes of this kind in England. 62 per cent of these ratings were published more than three years before the file date, and 22 of the homes carry a rating inherited from an earlier operator.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "The CQC ratings file and care directory list 126 older people's care homes registered to providers whose name begins HC-One, 1.2 per cent of the 10,546 such homes in England. Scored as homes divided by 2.5, capped at 95; a bigger operator is likelier to have a home near a given family, but this says nothing about vacancies or fees.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "ownership": {
+          "note": "The CMA's Phase 1 decision summary for case ME/7137/25 says Welltower Inc., a US-based real estate investment trust, completed its acquisition on 23 and 24 October 2025 of the real estate interests in 279 care homes managed by HC-One, with operator-owned management companies running the homes day to day. The CMA found that Welltower's approval rights over operators' business plans and budgets, in the structure it uses for some homes, give it the ability to influence how those homes compete.",
+          "source": "https://assets.publishing.service.gov.uk/media/69fc63b04fb0713aa63ea593/Summary_of_phase_1_decision_2.pdf",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.hc-one.co.uk/"
+        },
+        {
+          "label": "CMA case page",
+          "url": "https://www.gov.uk/cma-cases/welltower-slash-multiple-care-homes-merger-inquiries"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "National chain",
+        "Residential and nursing"
+      ],
+      "description": "A national operator, mostly in the North West, North East and West Midlands. A US property investor bought the real estate of its homes in October 2025, as it did with Barchester's, and some homes are being sold or moved to other operators under the competition regulator's remedies."
+    },
+    {
+      "code": "bupa-care-homes",
+      "name": "Bupa Care Homes",
+      "brand": "Bupa",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 87,
+        "accessibility": 44,
+        "ownership": 60
+      },
+      "provenance": {
+        "safety": {
+          "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 110 older people's care homes registered to providers whose name begins Bupa Care Homes with an overall rating: 6 Outstanding, 90 Good, 14 Requires improvement and 0 Inadequate, which is 87.3 per cent Good or Outstanding, against 81 per cent across the 10,479 rated homes of this kind in England. 68 per cent of these ratings were published more than three years before the file date, and none carries an inherited rating.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "The CQC ratings file and care directory list 110 older people's care homes registered to providers whose name begins Bupa Care Homes, 1.0 per cent of the 10,546 such homes in England. Scored as homes divided by 2.5, capped at 95; a bigger operator is likelier to have a home near a given family, but this says nothing about vacancies or fees.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "ownership": {
+          "note": "Bupa's own site says 'With no shareholders, we reinvest profits into providing more and better healthcare for the benefit of future customers', and that it entered UK care homes in the 1980s and later grew through acquisitions of more than 200 homes. That is the group's statement about itself.",
+          "source": "https://www.bupa.com/company/about-us/our-story",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Bupa group site",
+          "url": "https://www.bupa.com/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "National chain",
+        "No shareholders"
+      ],
+      "description": "Bupa's UK care homes, run through a set of Bupa Care Homes companies within a group that says it has no shareholders."
+    },
+    {
+      "code": "care-uk",
+      "name": "Care UK",
+      "brand": "Care UK",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 92,
+        "accessibility": 66
+      },
+      "provenance": {
+        "safety": {
+          "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 164 older people's care homes registered to Care UK Care Services Limited and Care UK Community Partnerships Ltd with an overall rating: 22 Outstanding, 129 Good, 13 Requires improvement and 0 Inadequate, which is 92.1 per cent Good or Outstanding, against 81 per cent across the 10,479 rated homes of this kind in England. 51 per cent of these ratings were published more than three years before the file date, and 29 of the homes carry a rating inherited from an earlier operator.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "The CQC ratings file and care directory list 164 older people's care homes registered to Care UK Care Services Limited and Care UK Community Partnerships Ltd, 1.6 per cent of the 10,546 such homes in England. Scored as homes divided by 2.5, capped at 95; a bigger operator is likelier to have a home near a given family, but this says nothing about vacancies or fees.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.careuk.com/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "National chain",
+        "Residential and nursing"
+      ],
+      "description": "A large national operator of residential, nursing and dementia care, named as an operator in the competition regulator's Welltower case."
+    },
+    {
+      "code": "anchor-hanover",
+      "name": "Anchor Hanover",
+      "brand": "Anchor Hanover Group",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 85,
+        "accessibility": 47,
+        "ownership": 85
+      },
+      "provenance": {
+        "safety": {
+          "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 118 older people's care homes registered to Anchor Hanover Group with an overall rating: 3 Outstanding, 97 Good, 18 Requires improvement and 0 Inadequate, which is 84.7 per cent Good or Outstanding, against 81 per cent across the 10,479 rated homes of this kind in England. 66 per cent of these ratings were published more than three years before the file date, and 3 of the homes carry a rating inherited from an earlier operator.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "The CQC ratings file and care directory list 118 older people's care homes registered to Anchor Hanover Group, 1.1 per cent of the 10,546 such homes in England. Scored as homes divided by 2.5, capped at 95; a bigger operator is likelier to have a home near a given family, but this says nothing about vacancies or fees.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "ownership": {
+          "note": "Anchor's own regulators page describes it as 'a charitable housing association registered as a society under the Co-operative and Community Benefit Societies Act 2014' and as regulated by the Care Quality Commission and the Regulator of Social Housing. The page gives no registration number, and the regulator's register was not opened for this check.",
+          "source": "https://www.anchor.org.uk/about-anchor/our-regulators",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.anchor.org.uk/"
+        },
+        {
+          "label": "CQC provider page",
+          "url": "https://www.cqc.org.uk/provider/1-102642895"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Not-for-profit",
+        "National"
+      ],
+      "description": "A not-for-profit provider of housing and care for older people, formed in 2018 from Anchor and Hanover Housing Association."
+    },
+    {
+      "code": "avery-healthcare",
+      "name": "Avery Healthcare",
+      "brand": "Avery Healthcare",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 89,
+        "accessibility": 38
+      },
+      "provenance": {
+        "safety": {
+          "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 94 older people's care homes registered to the providers CQC lists under the brand Avery with an overall rating: 3 Outstanding, 81 Good, 10 Requires improvement and 0 Inadequate, which is 89.4 per cent Good or Outstanding, against 81 per cent across the 10,479 rated homes of this kind in England. 55 per cent of these ratings were published more than three years before the file date, and 18 of the homes carry a rating inherited from an earlier operator.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "The CQC ratings file and care directory list 94 older people's care homes registered to the providers CQC lists under the brand Avery, 0.9 per cent of the 10,546 such homes in England. Scored as homes divided by 2.5, capped at 95; a bigger operator is likelier to have a home near a given family, but this says nothing about vacancies or fees.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.averyhealthcare.co.uk/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "National chain",
+        "Residential and nursing"
+      ],
+      "description": "An operator with homes in the South East, West Midlands and East Midlands, registered through many separate provider companies that CQC groups under one brand."
+    },
+    {
+      "code": "mha",
+      "name": "MHA (Methodist Homes)",
+      "brand": "Methodist Homes",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 90,
+        "accessibility": 28,
+        "ownership": 90
+      },
+      "provenance": {
+        "safety": {
+          "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 69 older people's care homes registered to Methodist Homes with an overall rating: 7 Outstanding, 55 Good, 7 Requires improvement and 0 Inadequate, which is 89.9 per cent Good or Outstanding, against 81 per cent across the 10,479 rated homes of this kind in England. 72 per cent of these ratings were published more than three years before the file date, and none carries an inherited rating.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "The CQC ratings file and care directory list 69 older people's care homes registered to Methodist Homes, 0.7 per cent of the 10,546 such homes in England. Scored as homes divided by 2.5, capped at 95; a bigger operator is likelier to have a home near a given family, but this says nothing about vacancies or fees.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "ownership": {
+          "note": "MHA's own site states 'Methodist Homes (MHA) is a Registered Charity in England & Wales (No 1083995). Company limited by Guarantee (No 4043124)', lists its trustees, and says it reinvests any surplus in its services. The Charity Commission register returned an access error when opened for this check, so charity status rests on MHA's statement and the number it gives.",
+          "source": "https://mha.org.uk/about-us",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://mha.org.uk/"
+        },
+        {
+          "label": "CQC provider page",
+          "url": "https://www.cqc.org.uk/provider/1-102642904"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Charity",
+        "National"
+      ],
+      "description": "A charity that runs care homes and retirement living, governed by volunteer trustees."
+    },
+    {
+      "code": "sanctuary-care",
+      "name": "Sanctuary Care",
+      "brand": "Sanctuary Care",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 96,
+        "accessibility": 36
+      },
+      "provenance": {
+        "safety": {
+          "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 91 older people's care homes registered to Sanctuary Care Limited and Sanctuary Care Property (1) Limited with an overall rating: 3 Outstanding, 84 Good, 3 Requires improvement and 1 Inadequate, which is 95.6 per cent Good or Outstanding, against 81 per cent across the 10,479 rated homes of this kind in England. 77 per cent of these ratings were published more than three years before the file date, and 9 of the homes carry a rating inherited from an earlier operator.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "The CQC ratings file and care directory list 91 older people's care homes registered to Sanctuary Care Limited and Sanctuary Care Property (1) Limited, 0.9 per cent of the 10,546 such homes in England. Scored as homes divided by 2.5, capped at 95; a bigger operator is likelier to have a home near a given family, but this says nothing about vacancies or fees.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "CQC provider page",
+          "url": "https://www.cqc.org.uk/provider/1-102643190"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Regional chain",
+        "Residential and nursing"
+      ],
+      "description": "An operator with homes in the South West, West Midlands and London and one of the highest shares of Good or Outstanding ratings among the larger operators here."
+    },
+    {
+      "code": "runwood-homes",
+      "name": "Runwood Homes",
+      "brand": "Runwood Homes",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 84,
+        "accessibility": 22
+      },
+      "provenance": {
+        "safety": {
+          "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 55 older people's care homes registered to Runwood Homes Limited with an overall rating: 1 Outstanding, 45 Good, 9 Requires improvement and 0 Inadequate, which is 83.6 per cent Good or Outstanding, against 81 per cent across the 10,479 rated homes of this kind in England. 42 per cent of these ratings were published more than three years before the file date, and none carries an inherited rating.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "The CQC ratings file and care directory list 55 older people's care homes registered to Runwood Homes Limited, 0.5 per cent of the 10,546 such homes in England. Scored as homes divided by 2.5, capped at 95; a bigger operator is likelier to have a home near a given family, but this says nothing about vacancies or fees.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.runwoodhomes.co.uk/"
+        },
+        {
+          "label": "CQC provider page",
+          "url": "https://www.cqc.org.uk/provider/1-102642999"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Regional chain"
+      ],
+      "description": "An operator with most of its homes in the East of England."
+    },
+    {
+      "code": "osjct",
+      "name": "The Orders of St John Care Trust",
+      "brand": "The Orders of St John Care Trust",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 94,
+        "accessibility": 19,
+        "ownership": 90
+      },
+      "provenance": {
+        "safety": {
+          "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 47 older people's care homes registered to The Orders Of St. John Care Trust with an overall rating: 4 Outstanding, 40 Good, 3 Requires improvement and 0 Inadequate, which is 93.6 per cent Good or Outstanding, against 81 per cent across the 10,479 rated homes of this kind in England. 66 per cent of these ratings were published more than three years before the file date, and none carries an inherited rating.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "The CQC ratings file and care directory list 47 older people's care homes registered to The Orders Of St. John Care Trust, 0.4 per cent of the 10,546 such homes in England. Scored as homes divided by 2.5, capped at 95; a bigger operator is likelier to have a home near a given family, but this says nothing about vacancies or fees.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "ownership": {
+          "note": "OSJCT's own page says 'OSJCT is a not for profit charitable Trust. Importantly, this means any financial surplus we make is reinvested for the benefit of our residents', gives registered charity number 1048355 and company number 03073089, and says it has no shareholders. The Charity Commission register was not opened for this check.",
+          "source": "https://www.osjct.co.uk/about-us/charitable-status",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.osjct.co.uk/"
+        },
+        {
+          "label": "CQC provider page",
+          "url": "https://www.cqc.org.uk/provider/1-102642912"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Charity",
+        "Regional"
+      ],
+      "description": "A charitable trust running care homes for older people, mostly in the South West, South East and East Midlands."
+    },
+    {
+      "code": "minster-care",
+      "name": "Minster Care Group",
+      "brand": "Minster Care Group",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 83,
+        "accessibility": 24
+      },
+      "provenance": {
+        "safety": {
+          "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 59 older people's care homes registered to the providers CQC lists under the brand Minster Care Group with an overall rating: 0 Outstanding, 49 Good, 10 Requires improvement and 0 Inadequate, which is 83.1 per cent Good or Outstanding, against 81 per cent across the 10,479 rated homes of this kind in England. 71 per cent of these ratings were published more than three years before the file date, and 10 of the homes carry a rating inherited from an earlier operator.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "The CQC ratings file and care directory list 59 older people's care homes registered to the providers CQC lists under the brand Minster Care Group, 0.6 per cent of the 10,546 such homes in England. Scored as homes divided by 2.5, capped at 95; a bigger operator is likelier to have a home near a given family, but this says nothing about vacancies or fees.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.minstercaregroup.co.uk/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Regional chain"
+      ],
+      "description": "An operator with most of its homes in the North West; CQC groups the Croftwood and Amicura providers under this brand."
+    },
+    {
+      "code": "country-court-care",
+      "name": "Country Court Care",
+      "brand": "Country Court Care",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 86,
+        "accessibility": 17
+      },
+      "provenance": {
+        "safety": {
+          "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 43 older people's care homes registered to the providers CQC lists under the brand Country Court Care with an overall rating: 0 Outstanding, 37 Good, 6 Requires improvement and 0 Inadequate, which is 86.0 per cent Good or Outstanding, against 81 per cent across the 10,479 rated homes of this kind in England. 53 per cent of these ratings were published more than three years before the file date, and 5 of the homes carry a rating inherited from an earlier operator.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "The CQC ratings file and care directory list 43 older people's care homes registered to the providers CQC lists under the brand Country Court Care, 0.4 per cent of the 10,546 such homes in England. Scored as homes divided by 2.5, capped at 95; a bigger operator is likelier to have a home near a given family, but this says nothing about vacancies or fees.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.countrycourtcare.com/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Regional chain"
+      ],
+      "description": "An operator with homes in the East of England, East Midlands, London and South West."
+    },
+    {
+      "code": "akari-care",
+      "name": "Akari Care",
+      "brand": "Akari Care",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 93,
+        "accessibility": 11
+      },
+      "provenance": {
+        "safety": {
+          "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 28 older people's care homes registered to Akari Care Limited with an overall rating: 0 Outstanding, 26 Good, 2 Requires improvement and 0 Inadequate, which is 92.9 per cent Good or Outstanding, against 81 per cent across the 10,479 rated homes of this kind in England. 61 per cent of these ratings were published more than three years before the file date, and none carries an inherited rating.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "The CQC ratings file and care directory list 28 older people's care homes registered to Akari Care Limited, 0.3 per cent of the 10,546 such homes in England. Scored as homes divided by 2.5, capped at 95; a bigger operator is likelier to have a home near a given family, but this says nothing about vacancies or fees.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.akaricare.co.uk/"
+        },
+        {
+          "label": "CQC provider page",
+          "url": "https://www.cqc.org.uk/provider/1-322080396"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Regional chain"
+      ],
+      "description": "An operator with most of its homes in the North East."
+    },
+    {
+      "code": "maria-mallaband",
+      "name": "Maria Mallaband Care Group",
+      "brand": "Maria Mallaband Care Group",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 73,
+        "accessibility": 26
+      },
+      "provenance": {
+        "safety": {
+          "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 64 older people's care homes registered to the providers CQC lists under the brand Maria Mallaband Care Group with an overall rating: 2 Outstanding, 45 Good, 17 Requires improvement and 0 Inadequate, which is 73.4 per cent Good or Outstanding, against 81 per cent across the 10,479 rated homes of this kind in England. 45 per cent of these ratings were published more than three years before the file date, and none carries an inherited rating.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "The CQC ratings file and care directory list 64 older people's care homes registered to the providers CQC lists under the brand Maria Mallaband Care Group, 0.6 per cent of the 10,546 such homes in England. Scored as homes divided by 2.5, capped at 95; a bigger operator is likelier to have a home near a given family, but this says nothing about vacancies or fees.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.mmcg.co.uk/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Regional chain"
+      ],
+      "description": "An operator with homes in the North West, South East, North East and London whose share of Good or Outstanding ratings is lower than the larger operators here."
+    },
+    {
+      "code": "advinia",
+      "name": "Advinia Healthcare",
+      "brand": "Advinia Healthcare",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 46,
+        "accessibility": 9
+      },
+      "provenance": {
+        "safety": {
+          "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 22 older people's care homes registered to the providers CQC lists under the brand Advinia Healthcare with an overall rating: 0 Outstanding, 10 Good, 9 Requires improvement and 3 Inadequate, which is 45.5 per cent Good or Outstanding, against 81 per cent across the 10,479 rated homes of this kind in England. 14 per cent of these ratings were published more than three years before the file date, and none carries an inherited rating.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "The CQC ratings file and care directory list 22 older people's care homes registered to the providers CQC lists under the brand Advinia Healthcare, 0.2 per cent of the 10,546 such homes in England. Scored as homes divided by 2.5, capped at 95; a bigger operator is likelier to have a home near a given family, but this says nothing about vacancies or fees.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.advinia.co.uk/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Regional chain"
+      ],
+      "description": "An operator with homes across the North, Midlands and London whose ratings are mostly recent and include three Inadequate homes."
+    },
+    {
+      "code": "colten-care",
+      "name": "Colten Care",
+      "brand": "Colten Care",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 100,
+        "accessibility": 8
+      },
+      "provenance": {
+        "safety": {
+          "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 21 older people's care homes registered to the providers CQC lists under the brand Colten Care with an overall rating: 7 Outstanding, 14 Good, 0 Requires improvement and 0 Inadequate, which is 100.0 per cent Good or Outstanding, against 81 per cent across the 10,479 rated homes of this kind in England. 95 per cent of these ratings were published more than three years before the file date, and none carries an inherited rating.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "The CQC ratings file and care directory list 21 older people's care homes registered to the providers CQC lists under the brand Colten Care, 0.2 per cent of the 10,546 such homes in England. Scored as homes divided by 2.5, capped at 95; a bigger operator is likelier to have a home near a given family, but this says nothing about vacancies or fees.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.colten.co.uk/"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Regional chain"
+      ],
+      "description": "An operator with homes in the South West and South East; almost all of its ratings are more than three years old."
+    },
+    {
+      "code": "independent-single-home",
+      "name": "Independent single-home operators",
+      "brand": "Single-location providers",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 78,
+        "accessibility": 95
+      },
+      "provenance": {
+        "safety": {
+          "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 3,731 older people's care homes registered to providers that register only one older people's care home and have no CQC brand with an overall rating: 140 Outstanding, 2,752 Good, 794 Requires improvement and 45 Inadequate, which is 77.5 per cent Good or Outstanding, against 81 per cent across the 10,479 rated homes of this kind in England. 63 per cent of these ratings were published more than three years before the file date, and 343 of the homes carry a rating inherited from an earlier operator.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "The CQC ratings file and care directory list 3,764 older people's care homes whose provider registers only that one home and has no CQC brand, 36 per cent of the 10,546 such homes in England and more than any operator group. Each is its own operator, so the choice is between individual homes. Scored at the cap of 95.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "CQC care services",
+          "url": "https://www.cqc.org.uk/care-services"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Independent",
+        "Single home"
+      ],
+      "description": "Owner-run homes and other single-home providers, taken together. Their overall share of Good or Outstanding ratings is below the larger operators and below the England average, and each home has to be judged on its own report."
+    },
+    {
+      "code": "council-run-homes",
+      "name": "Council-run care homes",
+      "brand": "Local authorities",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 86
+      },
+      "provenance": {
+        "safety": {
+          "note": "CQC's ratings file (as at 1 September 2026), joined to its care directory, lists 214 older people's care homes registered to providers whose name contains the word Council with an overall rating: 12 Outstanding, 172 Good, 29 Requires improvement and 1 Inadequate, which is 86.0 per cent Good or Outstanding, against 81 per cent across the 10,479 rated homes of this kind in England. 79 per cent of these ratings were published more than three years before the file date, and 17 of the homes carry a rating inherited from an earlier operator.",
+          "source": "https://www.cqc.org.uk/about-us/transparency/using-cqc-data",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "CQC care services",
+          "url": "https://www.cqc.org.uk/care-services"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Public sector",
+        "Route that is not a private purchase"
+      ],
+      "description": "Homes that a council runs itself. Covers only homes a council operates, not places a council arranges or funds in other operators' homes, and a given council may run none near you. No choice score is given for that reason."
+    }
+  ]
+}

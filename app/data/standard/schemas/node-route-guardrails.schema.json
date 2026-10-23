@@ -2,20 +2,20 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/node-route-guardrails-v0.1.schema.json",
   "title": "Open Values Node Route Guardrails v0.1",
-  "description": "Negative and canonicalization route guardrails for app-owned router integration.",
+  "description": "Page addresses that are broken, unsupported, point at nothing, or should be rewritten, with what the site must do for each. The data build writes them as tests for the app. It is an internal file used while building the site.",
   "type": "object",
   "additionalProperties": true,
   "required": ["format", "version", "built", "source", "purpose", "appLaneNote", "fallbackGuidance", "cases", "totals"],
   "properties": {
-    "format": { "const": "ovs-node-route-guardrails" },
-    "version": { "$ref": "#/$defs/version" },
-    "built": { "$ref": "#/$defs/date" },
-    "source": { "$ref": "#/$defs/source" },
-    "purpose": { "$ref": "#/$defs/nonEmptyString" },
-    "appLaneNote": { "$ref": "#/$defs/nonEmptyString" },
-    "fallbackGuidance": { "type": "object", "minProperties": 1 },
-    "cases": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/guardrailCase" } },
-    "totals": { "type": "object", "minProperties": 1 }
+    "format": { "description": "Names this file's format, so a reader can check it before reading the rest of the file.", "const": "ovs-node-route-guardrails" },
+    "version": { "description": "The version of the format this file follows, such as \"0.1\".", "$ref": "#/$defs/version" },
+    "built": { "description": "The date of the source data this file was built from, as YYYY-MM-DD.", "$ref": "#/$defs/date" },
+    "source": { "description": "The script and files this file was built from, as paths in the repository.", "$ref": "#/$defs/source" },
+    "purpose": { "description": "One sentence on what this file is for.", "$ref": "#/$defs/nonEmptyString" },
+    "appLaneNote": { "description": "A note on which choices this file leaves to the app code that reads it, such as fetching, layout and wording.", "$ref": "#/$defs/nonEmptyString" },
+    "fallbackGuidance": { "description": "What the app should do for each kind of case, by kind.", "type": "object", "minProperties": 1 },
+    "cases": { "description": "Routes that are broken, unsupported, point at nothing, or should be rewritten, each with what the parser must report.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/guardrailCase" } },
+    "totals": { "description": "How many cases there are, overall and by kind.", "type": "object", "minProperties": 1 }
   },
   "$defs": {
     "version": { "type": "string", "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$" },
@@ -38,18 +38,19 @@
       "additionalProperties": true,
       "required": ["id", "kind", "hash", "reason", "expect"],
       "properties": {
-        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-        "kind": { "enum": ["malformed", "unsupported", "unknown-target", "canonicalize"] },
-        "hash": { "type": "string" },
-        "reason": { "$ref": "#/$defs/nonEmptyString" },
+        "id": { "description": "A short id for the case.", "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "kind": { "description": "\"malformed\" (cannot be parsed), \"unsupported\" (a route family the parser does not handle), \"unknown-target\" (parses but names nothing that exists) or \"canonicalize\" (works but should be rewritten to its standard form).", "enum": ["malformed", "unsupported", "unknown-target", "canonicalize"] },
+        "hash": { "description": "The route to test. It may be empty or broken on purpose.", "type": "string" },
+        "reason": { "description": "Why the route needs this handling, in one sentence.", "$ref": "#/$defs/nonEmptyString" },
         "expect": {
+          "description": "What the parser must report for this route.",
           "type": "object",
           "additionalProperties": true,
           "required": ["parseable", "targetExists", "canonicalHash"],
           "properties": {
-            "parseable": { "type": "boolean" },
-            "targetExists": { "type": "boolean" },
-            "canonicalHash": { "$ref": "#/$defs/canonicalHash" }
+            "parseable": { "description": "True when the route should parse.", "type": "boolean" },
+            "targetExists": { "description": "True when the route names a page that exists.", "type": "boolean" },
+            "canonicalHash": { "description": "The standard form to rewrite the route to, such as \"#n/line/avoid%3Anestle\", or null when there is none.", "$ref": "#/$defs/canonicalHash" }
           }
         }
       }

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/lens-patch-v0.1.schema.json",
+  "title": "Open Values Lens Patch v0.1",
+  "description": "A list of corrections to one facts file: changed scores and added options, each with its source. Written by fact repair (workshop/index.html) and applied by app/engine.js mergeLens, which checks the fingerprint first.",
+  "type": "object",
+  "required": ["format", "version", "ops"],
+  "additionalProperties": true,
+  "$defs": {
+    "op": {
+      "type": "object",
+      "required": ["op"],
+      "properties": {
+        "op": { "enum": ["set-score", "add-entity"], "description": "What the change does: correct one score, or add a new option." },
+        "code": { "type": "string", "description": "For set-score: the code of the option being corrected." },
+        "key": { "type": "string", "description": "For set-score: the criterion whose score changes." },
+        "value": { "type": "number", "minimum": 0, "maximum": 100, "description": "For set-score: the corrected score, 0 to 100." },
+        "entity": { "type": "object", "description": "For add-entity: the new option, with its code, name, brand, scores and provenance, in the same shape as an option in a facts file." },
+        "source": { "type": "string", "description": "Where the corrected fact comes from, so whoever applies the change can check it." },
+        "asof": { "type": "string", "description": "The date the source says the fact was true." },
+        "note": { "type": "string", "description": "A short note on the fact, shown beside the score." }
+      }
+    }
+  },
+  "properties": {
+    "format": { "const": "open-values-lens-patch", "description": "Always open-values-lens-patch, so a reader knows what the file is." },
+    "version": { "type": "string", "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$", "description": "The version of this format the file follows." },
+    "target": { "type": "string", "description": "The id of the facts file these changes are for." },
+    "baseHash": { "type": "string", "description": "The fingerprint of the facts file the changes were made against. A reader warns when it differs from the file they hold, because the changes may no longer fit." },
+    "by": { "type": "string", "description": "Whatever name or label the sender typed. It is not checked, so it is not proof of who sent it." },
+    "note": { "type": "string", "description": "The sender's reason for the changes, read first by whoever decides whether to apply them." },
+    "created": { "type": "string", "description": "When the file was saved, as an ISO date and time." },
+    "ops": { "type": "array", "items": { "$ref": "#/$defs/op" }, "description": "The changes, in the order they were made." }
+  }
+}

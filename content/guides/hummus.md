@@ -23,7 +23,7 @@ Hummus can be a simple mix of chickpeas, tahini, lemon, garlic, oil, and salt, o
 | Axis | What to look for | Why it matters |
 | --- | --- | --- |
 | Protein and fiber | chickpeas high in the list; decent protein per 100 g | The chickpea is the useful part |
-| Sodium | lower sodium per serving or per 100 g | Dips can quietly become salt delivery systems |
+| Sodium | lower sodium per serving or per 100 g | Dips can add a lot of salt |
 | Oil | olive, rapeseed/canola, sunflower; avoid vague excess oil | Oil changes both nutrition and flavor |
 | Allergens | tahini/sesame declared clearly | Sesame matters for allergic households |
 | Ingredients | chickpeas, tahini, lemon, garlic, spices | Short lists are easier to trust |

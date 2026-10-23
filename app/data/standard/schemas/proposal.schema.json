@@ -2,23 +2,23 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/proposal-v0.1.schema.json",
   "title": "Open Values Proposal v0.1",
-  "description": "A portable governance patch: target, base hash, rationale, author, operations, and signature metadata.",
+  "description": "A suggested change to one data file, written down so anyone can read and check it: which file and version it changes, what it would change, why, and who wrote it. Proposals live inside the governance ledger at content/governance/proposals.json, and pipeline/build_proposals.js summarises them for the app. Nothing reads them as votes yet.",
   "type": "object",
   "additionalProperties": true,
   "required": ["format", "version", "id", "status", "target", "author", "created", "updated", "rationale", "operations", "signature"],
   "properties": {
-    "format": { "const": "open-values-proposal" },
-    "version": { "type": "string", "pattern": "^0\\.1\\.0(?:[-+].*)?$" },
-    "id": { "$ref": "#/$defs/slug" },
-    "status": { "enum": ["template", "draft", "submitted", "withdrawn", "superseded", "archived"] },
-    "target": { "$ref": "#/$defs/target" },
-    "author": { "$ref": "#/$defs/actor" },
-    "created": { "$ref": "#/$defs/date" },
-    "updated": { "$ref": "#/$defs/date" },
-    "rationale": { "$ref": "#/$defs/nonEmptyString" },
-    "operations": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/operation" } },
-    "signature": { "$ref": "#/$defs/signature" },
-    "limits": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } }
+    "format": { "description": "Always \"open-values-proposal\". Tells a reader which Open Values format this is.", "const": "open-values-proposal" },
+    "version": { "description": "The version of the proposal format this record follows. Must start with 0.1.0.", "type": "string", "pattern": "^0\\.1\\.0(?:[-+].*)?$" },
+    "id": { "description": "A unique name for this proposal, in lowercase letters, numbers and hyphens, such as \"proposal-asks-offers-reply-safety\". Attestations point at it.", "$ref": "#/$defs/slug" },
+    "status": { "description": "Where the proposal stands: template (an example), draft, submitted, withdrawn, superseded by another, or archived. The seed ledger holds only templates and drafts.", "enum": ["template", "draft", "submitted", "withdrawn", "superseded", "archived"] },
+    "target": { "description": "The file the proposal would change, and the hash of that file when the proposal was written.", "$ref": "#/$defs/target" },
+    "author": { "description": "Who wrote the proposal.", "$ref": "#/$defs/actor" },
+    "created": { "description": "The date the proposal was first written, as YYYY-MM-DD.", "$ref": "#/$defs/date" },
+    "updated": { "description": "The date the proposal was last changed, as YYYY-MM-DD.", "$ref": "#/$defs/date" },
+    "rationale": { "description": "Why the change is wanted, in a sentence or two.", "$ref": "#/$defs/nonEmptyString" },
+    "operations": { "description": "The changes the proposal would make to the target file, one entry per change. At least one.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/operation" } },
+    "signature": { "description": "How the proposal was signed and whether that signature has been checked.", "$ref": "#/$defs/signature" },
+    "limits": { "description": "Things the proposal does not do or must not be used for, one sentence each, such as \"This proposal is a template, not a vote.\"", "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } }
   },
   "$defs": {
     "nonEmptyString": { "type": "string", "minLength": 1 },
@@ -31,10 +31,10 @@
       "additionalProperties": true,
       "required": ["path", "format", "baseSha256", "baseHash"],
       "properties": {
-        "path": { "$ref": "#/$defs/nonEmptyString" },
-        "format": { "type": "string", "pattern": "^(open-values|ovs)-[a-z0-9]+(?:-[a-z0-9]+)*$" },
-        "baseSha256": { "$ref": "#/$defs/sha256" },
-        "baseHash": { "$ref": "#/$defs/shortHash" }
+        "path": { "description": "The repository path of the file this proposal would change, such as \"content/asks-offers.json\".", "$ref": "#/$defs/nonEmptyString" },
+        "format": { "description": "The Open Values format of the target file, such as \"open-values-asks-offers\".", "type": "string", "pattern": "^(open-values|ovs)-[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "baseSha256": { "description": "The SHA-256 hash of the target file as it stood when the proposal was written, in 64 lowercase hex characters. If the file changes afterwards, the hash no longer matches and the governance audit fails until the proposal is updated.", "$ref": "#/$defs/sha256" },
+        "baseHash": { "description": "The first 8 characters of baseSha256, for showing to readers. The governance audit checks that it is exactly that prefix.", "$ref": "#/$defs/shortHash" }
       }
     },
     "actor": {
@@ -42,9 +42,9 @@
       "additionalProperties": true,
       "required": ["type", "id", "display"],
       "properties": {
-        "type": { "$ref": "#/$defs/nonEmptyString" },
-        "id": { "$ref": "#/$defs/slug" },
-        "display": { "$ref": "#/$defs/nonEmptyString" }
+        "type": { "description": "What kind of identity this is, such as \"pseudonymous\" or \"attributed\". No account system is needed to fill it in.", "$ref": "#/$defs/nonEmptyString" },
+        "id": { "description": "A short lowercase name for this person or group, made of letters, numbers and hyphens, such as \"seed-steward\". The governance audit rejects email addresses and phone numbers anywhere in the record.", "$ref": "#/$defs/slug" },
+        "display": { "description": "The name to show readers, such as \"Conscious Consuming seed steward\".", "$ref": "#/$defs/nonEmptyString" }
       }
     },
     "operation": {
@@ -52,11 +52,11 @@
       "additionalProperties": true,
       "required": ["op", "path", "summary", "impact", "risk"],
       "properties": {
-        "op": { "enum": ["add-item", "remove-item", "edit-field", "set-field", "note"] },
-        "path": { "type": "string", "pattern": "^/" },
-        "summary": { "$ref": "#/$defs/nonEmptyString" },
-        "impact": { "$ref": "#/$defs/nonEmptyString" },
-        "risk": { "$ref": "#/$defs/nonEmptyString" }
+        "op": { "description": "The kind of change: add an item to a list, remove an item, edit a field, set a field to a new value, or attach a note without changing data.", "enum": ["add-item", "remove-item", "edit-field", "set-field", "note"] },
+        "path": { "description": "Where in the target file the change applies, written like a JSON Pointer starting with \"/\", such as \"/publication/privacy\". The seed records use \"*\" to mean every item in a list.", "type": "string", "pattern": "^/" },
+        "summary": { "description": "One or two sentences saying what the change does.", "$ref": "#/$defs/nonEmptyString" },
+        "impact": { "description": "What the change would make better if it were adopted.", "$ref": "#/$defs/nonEmptyString" },
+        "risk": { "description": "What could go wrong if the change were adopted.", "$ref": "#/$defs/nonEmptyString" }
       }
     },
     "signature": {
@@ -64,8 +64,8 @@
       "additionalProperties": true,
       "required": ["method", "verified"],
       "properties": {
-        "method": { "$ref": "#/$defs/nonEmptyString" },
-        "verified": { "type": "boolean" }
+        "method": { "description": "How the record was signed, as a short label. The seed records use \"none-template\", meaning nobody signed them.", "$ref": "#/$defs/nonEmptyString" },
+        "verified": { "description": "True only when the signature has been checked and holds. The governance audit requires false for every seed record, so no example can pass as a real vote.", "type": "boolean" }
       }
     }
   }

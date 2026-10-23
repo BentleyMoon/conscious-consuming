@@ -181,7 +181,7 @@ function lensFiles() {
 // prose, skipping comment lines. Copy assembled by concatenation is out of this lane's reach and
 // stays a reading job, which section 9 of the web standards says it was always going to be.
 const APP_HTML = ['app/index.html', 'app/community.html'];
-const APP_JS = ['app/app.js', 'app/presentation.js', 'app/shell.js', 'app/decision.js', 'app/icons.js', 'app/homelens.js', 'app/needsrose.js'];
+const APP_JS = ['app/app.js', 'app/presentation.js', 'app/shell.js', 'app/decision.js', 'app/icons.js', 'app/homelens.js', 'app/needsrose.js', 'app/visitnotes.js'];
 
 // A comment is not copy, in any of the three languages an app page is written in. HTML comments
 // come out with a regex, but the CSS and JS comments inside style and script blocks do not, and

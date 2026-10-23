@@ -32,7 +32,7 @@ Finally, check allergens and household fit. Wheat and sesame are major U.S. alle
 | --- | --- | --- |
 | Whole grain | Whole wheat, rye, oats, or sprouted grain first | USDA MyPlate notes whole grains provide more fiber, magnesium, and zinc than refined grains |
 | Fiber | More fiber per slice or per 100 g | Fiber helps the loaf act like food, not just quick starch |
-| Sodium | Use %DV; 20% DV or more is high | Bread can quietly add a lot of sodium because people eat it repeatedly |
+| Sodium | Use %DV; 20% DV or more is high | Bread can add a lot of sodium because people eat it repeatedly |
 | Processing | Fewer emulsifiers, sweeteners, colors, and softeners | Simple bread is easier to understand and compare |
 | Waste | Freeze extra slices if you buy a better loaf | Food wasted is still money and impact spent |
 
@@ -71,7 +71,7 @@ This is where a half-step loaf can be smarter than a perfect one. Moving from so
 
 ## Keep bread from becoming compost
 
-Bread is a staple where waste quietly erases better choices. Freeze half the loaf early, toast from frozen, and buy smaller when your household is unpredictable. A slightly better loaf that gets finished beats an ideal one that molds. If the bakery loaf is special, treat it like fresh food with a plan, not pantry infrastructure.
+Bread is a staple where waste erases better choices. Freeze half the loaf early, toast from frozen, and buy smaller when your household is unpredictable. A slightly better loaf that gets finished beats an ideal one that molds. If the bakery loaf is special, treat it like fresh food with a plan, not pantry infrastructure.
 
 ## Run a loaf plan
 

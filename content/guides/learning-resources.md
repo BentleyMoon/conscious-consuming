@@ -97,7 +97,7 @@ If you want **course discovery**, use directories carefully. Open Culture, Class
 
 If you want **career training**, treat commercial platforms as tools, not homes. FutureLearn, Alison, DataCamp, Udacity, Skillshare, LinkedIn Learning, Coursera, edX, and Udemy can be useful when they provide structure, projects, feedback, or a credential you need. They are weaker choices when they sell urgency, shallow completion, or subscription access to material you could learn from the commons.
 
-If you want **library access**, check the public layer before buying. Libby, OverDrive, local library databases, interlibrary loan, Kanopy, JSTOR access through a library, HathiTrust public-domain access, DPLA, NLS where eligible, and physical branches can quietly beat another subscription when the goal is reading, listening, research, or a calm place to study.
+If you want **library access**, check the public layer before buying. Libby, OverDrive, local library databases, interlibrary loan, Kanopy, JSTOR access through a library, HathiTrust public-domain access, DPLA, NLS where eligible, and physical branches can beat another subscription when the goal is reading, listening, research, or a calm place to study.
 
 If you want **orientation**, short explainers and educational channels can be useful. TED, CrashCourse, YouTube education, newsletters, and podcasts are often best as maps, not destinations. Use them to find the question, then move to deeper sources.
 
@@ -148,7 +148,7 @@ The point is not discipline theater. It is protecting the scarce thing learning 
 ## Claims to verify
 
 - **Certificate theater** - a certificate can help in some job markets, but it is not the same as skill. Ask whether the platform gives you practice, feedback, and durable work.
-- **The infinite course shelf** - buying ten courses can feel like learning while quietly replacing the hard part: doing the work.
+- **The infinite course shelf** - buying ten courses can feel like learning while it takes the place of doing the work.
 - **Urgency pricing** - perpetual "sales" and countdowns reward impulsive buying, not thoughtful study.
 - **The YouTube rabbit hole** - free videos can be wonderful, but the surrounding platform is optimized for the next click, not your finished thought.
 - **Celebrity over curriculum** - famous teachers can inspire, but a well-structured open textbook may teach more.

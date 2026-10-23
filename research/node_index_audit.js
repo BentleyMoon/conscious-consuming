@@ -1950,8 +1950,11 @@ function checkAppRuntimeIntegration() {
   const showViewMatch = text.match(/function showView\(name\)\{([\s\S]*?)\}\s*\n/);
   expect(!!showViewMatch, 'app/app.js: missing showView(name)');
   if (showViewMatch) {
-    expect(/'node'/.test(showViewMatch[1]), 'app/app.js: showView registry must include node routes');
-    expect(/'workbench'/.test(showViewMatch[1]), 'app/app.js: showView registry must include workbench routes');
+    // Since 2026-10-23 showView hides every main>section.view instead of naming each one (the named
+    // list missed view-institute), which covers the node and workbench views without listing them.
+    const allViews = /section\.view/.test(showViewMatch[1]);
+    expect(allViews || /'node'/.test(showViewMatch[1]), 'app/app.js: showView registry must include node routes');
+    expect(allViews || /'workbench'/.test(showViewMatch[1]), 'app/app.js: showView registry must include workbench routes');
   }
   expect(/else if\(view==='n'\)\{renderNode\(arg\);showView\('node'\);\}/.test(text), 'app/app.js: node route should render and show the node view');
   expect(/else if\(view==='workbench'\)\{if\(!chDev\(\)\)\{location\.replace\('#you'\);return;\}renderWorkbench\(\);showView\('workbench'\);\}/.test(text), 'app/app.js: workbench route should redirect publicly and render only in developer mode');

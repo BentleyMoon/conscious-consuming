@@ -35,7 +35,7 @@ Every piece of federated software in the explorer is AGPL. That is a genuinely u
 | PeerTube | AGPL-3.0 | Video, as an alternative to centralised platforms |
 | Friendica | AGPL-3.0 | Links across Mastodon, Lemmy, Diaspora and corporate services |
 
-AGPL matters more here than in most categories, because these are network services. GoToSocial's README spells out the consequence: anyone running a modified version over a network has to offer its users the corresponding source. A server operator cannot quietly fork the software and keep the changes to themselves.
+AGPL matters more here than in most categories, because these are network services. GoToSocial's README spells out the consequence: anyone running a modified version over a network has to offer its users the corresponding source. A server operator cannot fork the software and keep the changes to themselves.
 
 ## What a server costs to run
 

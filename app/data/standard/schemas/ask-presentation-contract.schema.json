@@ -2,22 +2,22 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/ask-presentation-contract-v0.1.schema.json",
   "title": "Open Values Ask Presentation Contract v0.1",
-  "description": "Suggested presentation contract for app-owned Ask UI integration.",
+  "description": "Suggested wording and grouping for showing Ask search results: section headings, labels for each kind of result, and what to offer when nothing matches. The data build writes it for the people building the search page. It is an internal file used while building the site.",
   "type": "object",
   "additionalProperties": true,
   "required": ["format", "version", "built", "source", "purpose", "appLaneNote", "resultSections", "typeCopy", "matchReasons", "emptyState", "qaCases"],
   "properties": {
-    "format": { "const": "ovs-ask-presentation-contract" },
-    "version": { "$ref": "#/$defs/version" },
-    "built": { "$ref": "#/$defs/date" },
-    "source": { "$ref": "#/$defs/source" },
-    "purpose": { "$ref": "#/$defs/nonEmptyString" },
-    "appLaneNote": { "$ref": "#/$defs/nonEmptyString" },
-    "resultSections": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/resultSection" } },
-    "typeCopy": { "type": "object", "minProperties": 1 },
-    "matchReasons": { "type": "object", "minProperties": 1 },
-    "emptyState": { "$ref": "#/$defs/emptyState" },
-    "qaCases": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/qaCase" } }
+    "format": { "description": "Names this file's format, so a reader can check it before reading the rest of the file.", "const": "ovs-ask-presentation-contract" },
+    "version": { "description": "The version of the format this file follows, such as \"0.1\".", "$ref": "#/$defs/version" },
+    "built": { "description": "The date of the source data this file was built from, as YYYY-MM-DD.", "$ref": "#/$defs/date" },
+    "source": { "description": "The script and files this file was built from, as paths in the repository.", "$ref": "#/$defs/source" },
+    "purpose": { "description": "One sentence on what this file is for.", "$ref": "#/$defs/nonEmptyString" },
+    "appLaneNote": { "description": "A note on which choices this file leaves to the app code that reads it, such as fetching, layout and wording.", "$ref": "#/$defs/nonEmptyString" },
+    "resultSections": { "description": "Groups the app can show Ask results in, such as places from the startup index and entries from the full index.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/resultSection" } },
+    "typeCopy": { "description": "For each kind of result, the badge text, the action label and the route pattern.", "type": "object", "minProperties": 1 },
+    "matchReasons": { "description": "For each match reason, a short label readers can understand, such as \"typo match\".", "type": "object", "minProperties": 1 },
+    "emptyState": { "description": "What to offer when a query finds nothing.", "$ref": "#/$defs/emptyState" },
+    "qaCases": { "description": "Test queries with the first result and matched result the app should show.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/qaCase" } }
   },
   "$defs": {
     "version": { "type": "string", "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$" },
@@ -35,11 +35,11 @@
       "additionalProperties": true,
       "required": ["id", "label", "layers", "targetTypes", "maxItems"],
       "properties": {
-        "id": { "$ref": "#/$defs/nonEmptyString" },
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "layers": { "type": "array", "minItems": 1, "items": { "enum": ["core", "full"] } },
-        "targetTypes": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "maxItems": { "type": "integer", "minimum": 1 }
+        "id": { "description": "A short id for the section, such as \"places\".", "$ref": "#/$defs/nonEmptyString" },
+        "label": { "description": "The section heading shown to readers.", "$ref": "#/$defs/nonEmptyString" },
+        "layers": { "description": "Which indexes feed this section: \"core\", \"full\" or both.", "type": "array", "minItems": 1, "items": { "enum": ["core", "full"] } },
+        "targetTypes": { "description": "The kinds of result shown in this section.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "maxItems": { "description": "The most results to show in this section.", "type": "integer", "minimum": 1 }
       }
     },
     "emptyState": {
@@ -47,8 +47,8 @@
       "additionalProperties": true,
       "required": ["primary", "secondary"],
       "properties": {
-        "primary": { "$ref": "#/$defs/routeHash" },
-        "secondary": { "$ref": "#/$defs/routeHash" }
+        "primary": { "description": "The route of the main thing to offer, such as a request for the missing item.", "$ref": "#/$defs/routeHash" },
+        "secondary": { "description": "The route of the second thing to offer, such as browsing.", "$ref": "#/$defs/routeHash" }
       }
     },
     "qaCase": {
@@ -56,15 +56,16 @@
       "additionalProperties": true,
       "required": ["query", "section", "expectFirstHash", "expectMatchedHash", "ok"],
       "properties": {
-        "query": { "$ref": "#/$defs/nonEmptyString" },
-        "section": { "$ref": "#/$defs/nonEmptyString" },
-        "expectFirstHash": { "$ref": "#/$defs/routeHash" },
-        "expectMatchedHash": { "$ref": "#/$defs/routeHash" },
+        "query": { "description": "The query as a person would type it.", "$ref": "#/$defs/nonEmptyString" },
+        "section": { "description": "The id of the section the results appear in: \"places\" for the startup index, \"entries\" for the full index.", "$ref": "#/$defs/nonEmptyString" },
+        "expectFirstHash": { "description": "The route of the first result the app should show.", "$ref": "#/$defs/routeHash" },
+        "expectMatchedHash": { "description": "The route of the expected result the app should show.", "$ref": "#/$defs/routeHash" },
         "orderingChecks": {
+          "description": "The result of each ordering rule, copied from ask-traces.json.",
           "type": "array",
           "items": { "$ref": "#/$defs/orderingCheck" }
         },
-        "ok": { "type": "boolean" }
+        "ok": { "description": "True when the trace for this query passed.", "type": "boolean" }
       }
     },
     "orderingCheck": {
@@ -72,13 +73,13 @@
       "additionalProperties": true,
       "required": ["id", "winnerReason", "loserReason", "ok"],
       "properties": {
-        "id": { "$ref": "#/$defs/nonEmptyString" },
-        "note": { "$ref": "#/$defs/nonEmptyString" },
-        "winnerReason": { "$ref": "#/$defs/nonEmptyString" },
-        "loserReason": { "$ref": "#/$defs/nonEmptyString" },
-        "winnerRank": { "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }] },
-        "loserRank": { "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }] },
-        "ok": { "type": "boolean" }
+        "id": { "description": "The id of the ordering rule this check tests.", "$ref": "#/$defs/nonEmptyString" },
+        "note": { "description": "A plain note on why this order matters, copied from the rule.", "$ref": "#/$defs/nonEmptyString" },
+        "winnerReason": { "description": "The match reason that must rank higher.", "$ref": "#/$defs/nonEmptyString" },
+        "loserReason": { "description": "The match reason that must rank lower.", "$ref": "#/$defs/nonEmptyString" },
+        "winnerRank": { "description": "The rank of the first result with the winning reason, counting from 1. Null when no such result came back.", "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }] },
+        "loserRank": { "description": "The rank of the first result with the losing reason, counting from 1. Null when no such result came back.", "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }] },
+        "ok": { "description": "True when a winning result came back and ranks above every losing one, or no losing result came back.", "type": "boolean" }
       }
     }
   }

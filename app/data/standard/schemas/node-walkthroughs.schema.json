@@ -2,18 +2,18 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/node-walkthroughs-v0.1.schema.json",
   "title": "Open Values Node Walkthroughs v0.1",
-  "description": "Generated flagship node and Ask walkthrough contracts for app-owned QA and previews.",
+  "description": "Worked examples that follow one search, such as \"is nestle bad\", through to the company, brand and line pages it should open, with the checks each must pass. The data build writes them for testing the app by hand. It is an internal file used while building the site.",
   "type": "object",
   "additionalProperties": true,
   "required": ["format", "version", "built", "source", "purpose", "appLaneNote", "walkthroughs"],
   "properties": {
-    "format": { "const": "ovs-node-walkthroughs" },
-    "version": { "$ref": "#/$defs/version" },
-    "built": { "$ref": "#/$defs/date" },
-    "source": { "$ref": "#/$defs/source" },
-    "purpose": { "$ref": "#/$defs/nonEmptyString" },
-    "appLaneNote": { "$ref": "#/$defs/nonEmptyString" },
-    "walkthroughs": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/walkthrough" } }
+    "format": { "description": "Names this file's format, so a reader can check it before reading the rest of the file.", "const": "ovs-node-walkthroughs" },
+    "version": { "description": "The version of the format this file follows, such as \"0.1\".", "$ref": "#/$defs/version" },
+    "built": { "description": "The date of the source data this file was built from, as YYYY-MM-DD.", "$ref": "#/$defs/date" },
+    "source": { "description": "The script and files this file was built from, as paths in the repository.", "$ref": "#/$defs/source" },
+    "purpose": { "description": "One sentence on what this file is for.", "$ref": "#/$defs/nonEmptyString" },
+    "appLaneNote": { "description": "A note on which choices this file leaves to the app code that reads it, such as fetching, layout and wording.", "$ref": "#/$defs/nonEmptyString" },
+    "walkthroughs": { "description": "The walkthroughs. Each follows one Ask query through to the pages it should open.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/walkthrough" } }
   },
   "$defs": {
     "version": { "type": "string", "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$" },
@@ -32,11 +32,11 @@
       "additionalProperties": true,
       "required": ["id", "label", "hash", "score", "reason"],
       "properties": {
-        "id": { "$ref": "#/$defs/ovsId" },
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "hash": { "$ref": "#/$defs/routeHash" },
-        "score": { "type": "number" },
-        "reason": { "$ref": "#/$defs/nonEmptyString" }
+        "id": { "description": "The id of the result, such as \"ovs:brand/nestle\".", "$ref": "#/$defs/ovsId" },
+        "label": { "description": "The result's name as shown to readers.", "$ref": "#/$defs/nonEmptyString" },
+        "hash": { "description": "The route of the result's page, such as \"#n/brand/nestle\".", "$ref": "#/$defs/routeHash" },
+        "score": { "description": "The match score; a higher score ranks first. Alias matches score 120, exact 110, a query word 95, one letter off 86, and overlapping words 76 less the difference in word count.", "type": "number" },
+        "reason": { "description": "The rule that produced the match: \"alias\" (an exact name), \"exact\" (an exact word or phrase), \"query-token\" (one word of the query), \"fuzzy-1\" (one letter off) or \"token-containment\" (the words overlap).", "$ref": "#/$defs/nonEmptyString" }
       }
     },
     "walkthrough": {
@@ -44,14 +44,14 @@
       "additionalProperties": true,
       "required": ["id", "label", "query", "expected", "askTop", "matchedTop", "pages", "checks"],
       "properties": {
-        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "query": { "$ref": "#/$defs/nonEmptyString" },
-        "expected": { "type": "object", "minProperties": 1 },
-        "askTop": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/askHit" } },
-        "matchedTop": { "$ref": "#/$defs/ovsId" },
-        "pages": { "type": "object", "minProperties": 1 },
-        "checks": { "type": "object", "minProperties": 1 }
+        "id": { "description": "A short id for the walkthrough, such as \"nestle-concern-path\".", "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "label": { "description": "A short name for the walkthrough.", "$ref": "#/$defs/nonEmptyString" },
+        "query": { "description": "The Ask query the walkthrough starts from, as a person would type it.", "$ref": "#/$defs/nonEmptyString" },
+        "expected": { "description": "What the walkthrough must reach, such as the company, line and brand ids, minimum counts, and brand names the line must include.", "type": "object", "minProperties": 1 },
+        "askTop": { "description": "The top Ask results for the query.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/askHit" } },
+        "matchedTop": { "description": "The id of the highest-ranked result that is one of the expected targets.", "$ref": "#/$defs/ovsId" },
+        "pages": { "description": "The data of the pages the walkthrough opens, keyed by kind of page, such as \"company\" or \"line\".", "type": "object", "minProperties": 1 },
+        "checks": { "description": "Named true or false checks the build ran on the walkthrough, such as \"companyPresent\".", "type": "object", "minProperties": 1 }
       }
     }
   }

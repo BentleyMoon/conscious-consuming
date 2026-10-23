@@ -75,6 +75,14 @@ const rpcError = (id, code, message) => ({ jsonrpc: '2.0', id: id === undefined 
 let _coreIndex; // Promise<parsed ask-core.json | null>
 let _fullIndex; // Promise<parsed ask-index.json | null>
 const _lensCache = new Map(); // small per-isolate cache for lens files touched by title resolution
+// Decisions with a static page per option (pipeline/build_cards.js writes the list). A result links that page
+// when it exists, since a crawler or an agent can read it; otherwise it links the item inside the app.
+let _cardCids = null;
+async function itemUrl(cid, code, loadJson, appBase) {
+  if (!_cardCids) _cardCids = loadJson('/app/c/_cids.json').then((a) => new Set(a)).catch(() => new Set());
+  const cids = await _cardCids;
+  return cids.has(cid) ? appBase + '/c/' + cid + '/' + String(code).replace(/[^a-zA-Z0-9._-]/g, '-') : appBase + '/#card/' + cid + '/' + encodeURIComponent(code);
+}
 async function _lens(cid, loadJson) {
   if (!_lensCache.has(cid)) _lensCache.set(cid, loadJson('/app/data/' + cid + '.json'));
   return _lensCache.get(cid);
@@ -134,7 +142,7 @@ async function doSearch(query, loadJson, appBase) {
       if (p) results.push({
         id,
         title: p.name + (p.brand ? ' (' + p.brand + ')' : ''),
-        url: appBase + '/#card/' + m[1] + '/' + encodeURIComponent(m[2]),
+        url: await itemUrl(m[1], m[2], loadJson, appBase),
         snippet: 'item in ' + ((ds.meta && ds.meta.label) || m[1]),
         score: Math.round(score * 10) / 10,
       });
@@ -156,7 +164,7 @@ function provLine(ps) {
   const n = ps.sourceDomainCount || (ps.sourceLabels || []).length;
   return n + ' independent source domains' + ((ps.sourceLabels && ps.sourceLabels.length) ? ' (' + ps.sourceLabels.slice(0, 4).join(', ') + ')' : '') + '.';
 }
-function itemDoc(cat, p, ds, appBase) {
+async function itemDoc(cat, p, ds, appBase, loadJson) {
   const facts = [];
   const provenance = p.provenance || {};
   for (const cr of ds.criteria || []) {
@@ -175,7 +183,7 @@ function itemDoc(cat, p, ds, appBase) {
   return {
     id: 'ovs:item/' + cat + '/' + p.code,
     title: p.name + (p.brand ? ' (' + p.brand + ')' : ''),
-    url: appBase + '/#card/' + cat + '/' + encodeURIComponent(p.code),
+    url: await itemUrl(cat, p.code, loadJson, appBase),
     text: [
       p.name + (p.brand ? ', by ' + p.brand : '') + ', in ' + (ds.meta && ds.meta.label ? ds.meta.label : cat) + '.',
       p.description || '',
@@ -225,7 +233,7 @@ async function fetchItem(cid, code, loadJson, appBase) {
   if (!ds || !Array.isArray(ds.products)) return { error: 'unknown category: ' + cid };
   const p = ds.products.find((x) => String(x.code) === String(code));
   if (!p) return { error: 'unknown entry: ' + cid + '/' + code };
-  return itemDoc(cid, p, ds, appBase);
+  return itemDoc(cid, p, ds, appBase, loadJson);
 }
 async function fetchNode(kind, id, loadJson, appBase) {
   const file = { brand: 'brands', company: 'companies', tag: 'tags', errand: 'errands' }[kind];

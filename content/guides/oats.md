@@ -10,7 +10,7 @@ disclosure: We take no money from any brand. Nothing here is sponsored. This is 
 
 # Oats: format, sugar, and value
 
-Oats are one of the rare supermarket staples where the plain version is usually the best version. The trouble starts when oats get turned into sachets, cups, clusters, and dessert flavors that cost more and quietly add sugar, salt, flavoring, and packaging.
+Oats are one of the rare supermarket staples where the plain version is usually the best version. The trouble starts when oats get turned into sachets, cups, clusters, and dessert flavors that cost more and add sugar, salt, flavoring, and packaging.
 
 > **The short answer.** Plain rolled oats or steel-cut oats are the calm default: cheap, filling, minimally processed, and easy to flavor yourself. Instant oats are not automatically bad, but flavored instant packets often add sugar and shrink the serving into expensive single-use packaging. If convenience matters, choose plain quick oats and add fruit, nuts, yogurt, or spices at home.
 

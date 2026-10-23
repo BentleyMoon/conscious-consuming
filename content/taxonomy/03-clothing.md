@@ -31,7 +31,7 @@ edge: What a person wears, and every way of getting it other than buying new. Wa
 ### Outerwear
 - Outerwear and coats | aka: coats, jackets
 - Waterproofs and rainwear
-- Insulated and down jackets
+- Insulated and down jackets | cid: insulated-and-down-jackets
 - Fleece and midlayers
 
 ### Formal and occasion
@@ -58,7 +58,7 @@ edge: What a person wears, and every way of getting it other than buying new. Wa
 
 ### Keeping shoes going
 - Shoe care products
-- Shoe repair and resoling | type: S | mode: hire
+- Shoe repair and resoling | type: S | mode: hire | cid: shoe-repair-and-resoling
 - Insoles and orthotics
 
 ## Clothing for a purpose
@@ -101,17 +101,17 @@ edge: What a person wears, and every way of getting it other than buying new. Wa
 
 ### Secondhand
 - Secondhand and resale | type: S | aka: preloved, thrift, vintage clothing | cid: secondhand-and-resale
-- Charity and thrift shops | type: S
-- Clothing swaps | type: I | mode: share | actor: community
+- Charity and thrift shops | type: S | hold: The charities’ annual reports define shop income too differently to compare, so a ranking would measure accounting choices rather than the shops.
+- Clothing swaps | type: I | mode: share | actor: community | hold: Fewer than twelve readable, trading operations exist to compare; the free way of getting clothes stays visible on the map while the roster is too thin to rank.
 
 ### Borrowing and renting
-- Clothing rental | type: S | mode: rent | aka: fashion rental
+- Clothing rental | type: S | mode: rent | aka: fashion rental | hold: Fewer than twelve readable, trading operations exist to compare, and several listed services no longer trade.
 - Occasionwear hire | type: S | mode: hire
 - Clothing libraries | type: I | mode: borrow | actor: community
 
 ### Making it last
-- Repair and tailoring | type: S | mode: hire | aka: alterations, mending
+- Repair and tailoring | type: S | mode: hire | aka: alterations, mending | cid: repair-and-tailoring
 - Mending supplies and kits | mode: make
 - Dyeing and upcycling | mode: make
 - Clothing storage and moth care
-- Textile recycling and take-back | type: S | aka: clothing recycling
+- Textile recycling and take-back | type: S | aka: clothing recycling | hold: The only sources are the collectors’ own claims about where textiles go, and a comparison built on unverifiable self-description would be sourcing theater.

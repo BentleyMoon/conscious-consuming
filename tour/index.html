@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <script>try{var t=localStorage.getItem('cc.theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Values Commons in two minutes: choose a messenger by your values, check the sourced facts, combine group values, and make a shared plan. Live, in your browser.">
+<meta name="description" content="Values Commons in two minutes: choose a messenger by what you care about, open the source behind each fact, see where four friends agree and split, and watch their shared plan form. Live, in your browser.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#1d7a5a">
 <link rel="canonical" href="https://valuescommons.org/tour/">
@@ -12,299 +12,465 @@
 <meta property="og:url" content="https://valuescommons.org/tour/">
 <meta property="og:site_name" content="Values Commons">
 <meta property="og:title" content="Values Commons in two minutes">
-<meta property="og:description" content="Choose a messenger by your values, check the sourced facts, combine group values, and make a shared plan. Live, in your browser.">
+<meta property="og:description" content="Choose a messenger by what you care about, open the source behind each fact, and watch four friends reach a shared plan. Live, in your browser.">
 <meta property="og:image" content="https://valuescommons.org/og-standard.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Values Commons in two minutes">
-<meta name="twitter:description" content="Choose a messenger by your values, check the sourced facts, combine group values, and make a shared plan. Live, in your browser.">
+<meta name="twitter:description" content="Choose a messenger by what you care about, open the source behind each fact, and watch four friends reach a shared plan. Live, in your browser.">
 <meta name="twitter:image" content="https://valuescommons.org/og-standard.png">
 <link rel="icon" href="/app/icon.svg" type="image/svg+xml"><link rel="alternate icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64"><link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
 <title>Values Commons in two minutes</title>
 <style>
-  :root{--shadow-sm:0 1px 2px rgba(40,34,24,.07),0 1px 1px rgba(40,34,24,.05);--shadow-md:0 2px 6px rgba(40,34,24,.09),0 10px 26px rgba(40,34,24,.07);--shadow-lg:0 6px 16px rgba(40,34,24,.12),0 22px 48px rgba(40,34,24,.10); --bg:#f8f5ee; --surface:#ffffff; --ink:#18211d; --muted:#566560; --hint:#8a958f; --line:#e3e7e5;
-    --accent:#1d7a5a; --accent-soft:#e9f3ee; --track:#eef1ef; --clay:#a8432f;
-    --fd:"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,ui-serif,serif;
-    --fs:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,system-ui,sans-serif; }
-  /* Nine surfaces stated a light palette and no alternative, so a reader who asks for
-     dark was overridden on most of the commons and honoured on two of it. Same values
-     the Institute uses, so the family reads as one in either mode. */
-  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--shadow-sm:0 1px 2px rgba(0,0,0,.55);--shadow-md:0 2px 8px rgba(0,0,0,.6),0 12px 30px rgba(0,0,0,.45);--shadow-lg:0 8px 20px rgba(0,0,0,.65),0 28px 56px rgba(0,0,0,.5);--bg:#11140f;--surface:#181d16;--ink:#eef1e8;--muted:#c0c9bd;--hint:#8b978a;--line:#2b322a;--accent:#6fce8c;--track:#2b322a}}
-
-  @media (prefers-color-scheme:dark){:root{ color-scheme:dark; --bg:#11140f; --surface:#161d18; --ink:#e6ece8; --muted:#9aa8a1;
-    --hint:#6c7a72; --line:rgba(255,255,255,.10); --accent:#5dcaa5; --accent-soft:#16241d; --track:#1b241f; --clay:#e3a594; }}
+  /* The tour, in the front page's lab-notebook register: four plates in the order a decision
+     runs, a rail that says which step you are on, and one experiment per step in pencil.
+     Green is the reader's values; ochre is a fact's source and nothing else. */
+  :root{--bg:#f8f5ee;--surface:#ffffff;--sunk:#eef1ef;--ink:#18211d;--muted:#566560;--hint:#607068;
+    --line:#e3e7e5;--line-strong:#cfd8d3;--accent:#1d7a5a;--accent-bright:#17936a;--accent-soft:#e9f3ee;
+    --track:#eef1ef;--warn:#a8432f;--ochre:#8a5514;--band:#eef2f0;--on-accent:#ffffff;--graphite:#4d5357;--hatch:rgba(24,33,29,.36);
+    --e1:0 1px 2px rgba(24,38,30,.05),0 3px 10px rgba(24,38,30,.05);
+    --font-display:"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,ui-serif,serif;
+    --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--max:1040px;--ease:cubic-bezier(.2,.7,.2,1)}
+  @media (prefers-color-scheme:dark){:root{--bg:#11140f;--surface:#161d18;--sunk:#0b100d;--ink:#e6ece8;--muted:#9aa8a1;--hint:#87968e;
+    --line:rgba(255,255,255,.10);--line-strong:rgba(255,255,255,.17);--accent:#5dcaa5;--accent-bright:#6ad9ab;--accent-soft:#16241d;
+    --track:#1b241f;--warn:#e3a594;--ochre:#cc9c5e;--band:#131b16;--on-accent:#0b100d;--graphite:#b6bcc0;--hatch:rgba(230,236,232,.32);
+    --e1:0 1px 2px rgba(0,0,0,.3),0 3px 10px rgba(0,0,0,.3)}}
+  :root[data-theme="dark"]{--bg:#11140f;--surface:#161d18;--sunk:#0b100d;--ink:#e6ece8;--muted:#9aa8a1;--hint:#87968e;--line:rgba(255,255,255,.10);--line-strong:rgba(255,255,255,.17);--accent:#5dcaa5;--accent-bright:#6ad9ab;--accent-soft:#16241d;--track:#1b241f;--warn:#e3a594;--ochre:#cc9c5e;--band:#131b16;--on-accent:#0b100d;--graphite:#b6bcc0;--hatch:rgba(230,236,232,.32);--e1:0 1px 2px rgba(0,0,0,.3),0 3px 10px rgba(0,0,0,.3);color-scheme:dark}
+  :root[data-theme="light"]{--bg:#f8f5ee;--surface:#ffffff;--sunk:#eef1ef;--ink:#18211d;--muted:#566560;--hint:#607068;--line:#e3e7e5;--line-strong:#cfd8d3;--accent:#1d7a5a;--accent-bright:#17936a;--accent-soft:#e9f3ee;--track:#eef1ef;--warn:#a8432f;--ochre:#8a5514;--band:#eef2f0;--on-accent:#ffffff;--graphite:#4d5357;--hatch:rgba(24,33,29,.36);--e1:0 1px 2px rgba(24,38,30,.05),0 3px 10px rgba(24,38,30,.05);color-scheme:light}
   *{box-sizing:border-box}
-  a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--fs);line-height:1.6;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:680px;margin:0 auto;padding:0 1.2rem 4rem}
-  a{color:var(--accent)} h1,h2,h3{font-family:var(--fd);font-weight:600;text-wrap:balance}
-  .top{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-bottom:.5px solid var(--line);margin-bottom:2rem;font-size:0.86rem}
-  .top .wm{font-family:var(--fd);font-weight:600;color:var(--ink);text-decoration:none}
-  .tourlinks{display:flex;flex-wrap:wrap;gap:.4rem .8rem;margin:-1.2rem 0 2rem;font-size:0.86rem;color:var(--hint)}
-  .tourlinks a{color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:.18rem .55rem;background:var(--surface)}
-  .tourlinks a:hover{color:var(--accent);border-color:var(--accent)}
-  .hero{padding:1rem 0 1.5rem}
-  .eyebrow{font-size:0.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 .8rem}
-  .hero h1{font-size:clamp(1.85rem,3.06vw,2.45rem);line-height:1.08;margin:0 0 .8rem}
-  .hero p{font-size:1.12rem;color:var(--muted);margin:0}
-  .beat{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.3rem 1.4rem;margin:1.1rem 0}
-  .bn{display:inline-flex;align-items:center;gap:.5rem;font-size:0.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
-  .bn b{display:grid;place-items:center;width:1.5rem;height:1.5rem;border-radius:50%;background:var(--accent);color:#fff;font-size:0.75rem}
-  .beat h2{font-size:1.35rem;margin:.5rem 0 .3rem}
-  .beat .lead{color:var(--muted);margin:0 0 1rem;font-size:1rem}
-  .cap{font-size:0.86rem;color:var(--muted);margin:1rem 0 0;border-top:1px dashed var(--line);padding-top:.8rem}
-  .cap a{font-weight:600}
-  /* beat 1: sliders + live ranking */
-  .vrow{display:grid;grid-template-columns:8rem 1fr 1.4rem;align-items:center;gap:.7rem;padding:.32rem 0}
-  .vrow label{font-size:0.86rem} .vrow input{width:100%;accent-color:var(--accent);cursor:pointer}
-  .vrow .vv{text-align:right;color:var(--muted);font-size:0.86rem;font-variant-numeric:tabular-nums}
-  .rank{margin-top:1rem;display:flex;flex-direction:column;gap:.4rem}
-  .ri{display:flex;align-items:center;gap:.8rem;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:.55rem .8rem;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
-  .ri .rk{font-family:var(--fd);font-size:1.12rem;color:var(--hint);min-width:1.2rem}
-  .ri .nm{flex:1;font-weight:600} .ri .nm small{font-weight:400;color:var(--hint)}
-  .ri .tier{font-size:0.75rem;color:var(--accent)} .ri .sc{font-family:var(--fd);font-size:1.12rem;min-width:2rem;text-align:right}
-  /* shared band/verdict bits */
-  .bandlbl{font-size:0.75rem;font-weight:700;padding:.05rem .4rem;border-radius:5px;background:var(--track);color:var(--muted)}
-  .bandlbl.hi{background:var(--accent-soft);color:var(--accent)}
-  .verdict{display:flex;align-items:baseline;gap:.7rem;margin:.2rem 0 .6rem}
-  .verdict .vs{font-family:var(--fd);font-size:1.75rem} .verdict .vt{color:var(--accent);font-weight:600}
-  .reason{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 8px 8px 0;padding:.55rem .8rem;font-size:0.86rem;margin:.4rem 0}
-  .bars{display:flex;flex-wrap:wrap;gap:.3rem .7rem;font-size:0.75rem;color:var(--hint)}
-  .bars span{display:inline-flex;gap:.3rem;align-items:center}
-  /* beat 3: collective */
-  .cbar{display:grid;grid-template-columns:7rem 1fr 3.6rem;gap:.6rem;align-items:center;padding:.2rem 0;font-size:0.86rem}
-  .track{height:8px;background:var(--track);border-radius:6px;overflow:hidden}.fill{height:100%;background:var(--accent);border-radius:6px}
-  .cons{font-size:0.75rem;font-weight:700;text-transform:uppercase;text-align:center;padding:.08rem 0;border-radius:5px}
-  .cons.hi{background:var(--accent-soft);color:var(--accent)} .cons.lo{background:rgba(168,67,47,.14);color:var(--clay)}
-  .readout{margin-top:.8rem;font-size:0.86rem} .readout b{color:var(--ink)}
-  .tag{font-size:0.75rem;font-weight:700;text-transform:uppercase;padding:.1rem .42rem;border-radius:5px;margin-right:.4rem}
-  .tag.s{background:var(--accent-soft);color:var(--accent)} .tag.x{background:rgba(168,67,47,.14);color:var(--clay)}
-  /* beat 4: slate */
-  .slate h3{font-size:1rem;margin:.8rem 0 .4rem}
-  .si{display:flex;align-items:baseline;gap:.6rem;padding:.4rem 0;border-top:1px solid var(--line)}
-  .si .snm{font-weight:600;flex:1} .si .snm small{font-weight:400;color:var(--hint)}
-  .si .why{font-size:0.86rem;color:var(--muted);flex:2} .si .ssc{font-family:var(--fd);color:var(--accent)} .si .ssc.low{color:var(--clay)}
-  .close{text-align:center;padding:2rem 1rem 0}
-  .close .loop{font-family:var(--fd);font-size:1.35rem;margin:0 0 .4rem}
-  .cta{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:1rem}
-  .btn{font-weight:600;font-size:1rem;padding:.55rem 1.05rem;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none}
-  .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
-  .nextmoves{margin:1.45rem 0 0;text-align:left;display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.65rem}
-  .nextmoves a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.8rem .85rem;text-decoration:none;color:var(--ink)}
-  .nextmoves a:hover{border-color:var(--accent)}
-  .nextmoves b{display:block;font-family:var(--fd);font-size:1rem;line-height:1.2;margin-bottom:.18rem}
-  .nextmoves span{display:block;color:var(--muted);font-size:0.86rem;line-height:1.35}
-  .err{color:var(--clay)}
-  /* craft: calm reveal-on-scroll (animation, not transition, so it never fights hover) + a pulse when beat 2 reacts */
-  .reveal-on .reveal,.reveal-on .beat,.reveal-on .close{opacity:0}
-  .reveal-on .reveal.in,.reveal-on .beat.in,.reveal-on .close.in{animation:revealin .6s cubic-bezier(.2,.7,.2,1) both}
-  @keyframes revealin{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-  .beat.pulse{animation:beatpulse .7s ease}
-  @keyframes beatpulse{0%{box-shadow:0 0 0 0 rgba(29,122,90,0)}28%{box-shadow:0 0 0 4px rgba(29,122,90,.18)}100%{box-shadow:0 0 0 0 rgba(29,122,90,0)}}
-  @media (prefers-reduced-motion:reduce){.beat.pulse{animation:none}}
-  /* Field-guide register, shared with the landing: serif argues, mono measures */
-  :root{--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--ochre:#8a5514;--line-strong:#cfd8d3}
-  @media(prefers-color-scheme:dark){:root{--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17)}}
-  body{font-family:var(--fd);line-height:1.58}
-  .top{border-bottom-color:var(--line-strong)}
-  .top .wm{font-weight:700;letter-spacing:-.015em}
-  .top .wm::after{content:"Open field guide";font-family:var(--mono);font-weight:600;font-size:0.75rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ochre);margin-left:.6rem;padding-left:.6rem;border-left:1px solid var(--line-strong)}
-  .tourlinks{font-family:var(--mono);font-size:0.75rem}
-  .tourlinks a{border-radius:3px}
-  .eyebrow{font-family:var(--mono);letter-spacing:.16em}
-  .bn{font-family:var(--mono)}
-  .beat{border-radius:4px}
-  .cap{font-size:0.86rem}
-  .vrow input[type=range]{height:1.75rem;accent-color:var(--accent)}
-  .vv{font-family:var(--mono);font-size:0.75rem}
-  .keepbtn{font-family:var(--mono);font-size:0.75rem;font-weight:600;letter-spacing:.02em;min-height:2.2rem;padding:.35rem .7rem;border:1px solid var(--accent);border-radius:3px;background:var(--surface);color:var(--accent);cursor:pointer;vertical-align:middle}
-  .keepbtn:hover{background:var(--accent-soft)}
-  #keepnote{color:var(--accent);font-family:var(--mono);font-size:0.75rem}
-  /* Professional futurism: light spent on the living and the chosen */
-  :root{--glow:0 0 14px rgba(29,122,90,.2)}
-  @media(prefers-color-scheme:dark){:root{--glow:0 0 16px rgba(93,202,165,.28)}}
-  ::selection{background:color-mix(in srgb,var(--accent) 24%,transparent)}
-  .hero{background:radial-gradient(40rem 22rem at 6% -10%,color-mix(in srgb,var(--accent) 7%,transparent),transparent 62%),radial-gradient(32rem 18rem at 96% -8%,color-mix(in srgb,var(--ochre) 4%,transparent),transparent 64%)}
-  .btn.primary:hover,.keepbtn:hover{box-shadow:var(--glow)}
-  html{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--accent) 45%,var(--track)) transparent}
-  a:focus-visible,button:focus-visible,input:focus-visible{box-shadow:var(--glow)}
-  #tour-sigil svg{filter:drop-shadow(0 0 6px color-mix(in srgb,var(--accent) 45%,transparent))}
-  :root[data-theme="dark"]{--bg:#11140f;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.10);--accent:#5dcaa5;--accent-soft:#16241d;--track:#1b241f;--clay:#e3a594;--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17);--glow:0 0 16px rgba(93,202,165,.28);color-scheme:dark}
-  :root[data-theme="light"]{--bg:#f8f5ee;--surface:#ffffff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--accent-soft:#e9f3ee;--track:#eef1ef;--clay:#a8432f;--ochre:#8a5514;--line-strong:#cfd8d3;--glow:0 0 14px rgba(29,122,90,.2);color-scheme:light}
-  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.55rem .9rem;border-radius:0 0 8px 0;z-index:20}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-display);font-size:1.08rem;line-height:1.58;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.55rem .9rem;z-index:30}
   .skip:focus{left:0}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{transition:none!important;animation:none!important}}
+  html{scroll-behavior:smooth}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1.1rem,4vw,2.2rem)}
+  h1,h2,h3{font-weight:550;letter-spacing:-.01em;text-wrap:balance}
+  .tnum{font-variant-numeric:tabular-nums}
 
-  /* depth pass */
-  /* Containers lift off the page instead of being outlined on it, so a card, a chip and
-     a panel stop announcing themselves with the same single grey pixel. */
-  .beat,.btn,.ri{box-shadow:var(--shadow-md);background:var(--surface)}
-  h1{font-weight:550;letter-spacing:-0.02em}
-  h2{font-weight:550;letter-spacing:-0.01em}
+  .masthead{border-bottom:1px solid var(--line-strong)}
+  .masthead .wrap{display:flex;align-items:baseline;justify-content:space-between;gap:.6rem 1rem;flex-wrap:wrap;padding-top:1.1rem;padding-bottom:.95rem}
+  .brand{font-weight:700;font-size:1.25rem;letter-spacing:-.015em;color:var(--ink)}
+  .brand:hover{text-decoration:none}
+  .exits{display:flex;align-items:center;gap:.4rem 1.1rem;flex-wrap:wrap;font-family:var(--font-mono);font-size:0.75rem}
+  .exits a{color:var(--muted);padding:.35rem 0}
+  .exits a:hover{color:var(--ink)}
+  .exits .skipit{color:var(--accent);font-weight:600}
+
+  /* where you are: four stations, sticky, the current one filled */
+  .rail{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px dotted color-mix(in srgb,var(--ink) 40%,transparent)}
+  .rail ol{list-style:none;margin:0 auto;max-width:var(--max);padding:.5rem clamp(1.1rem,4vw,2.2rem);display:flex;gap:.3rem;align-items:center}
+  .rail li{flex:1;display:flex;align-items:center;gap:.4rem;min-width:0}
+  .rail li + li::before{content:"";flex:0 0 1.2rem;height:1px;background:var(--line-strong)}
+  .rail a{display:flex;align-items:center;gap:.4rem;color:var(--muted);font-family:var(--font-mono);font-size:0.75rem;white-space:nowrap;min-height:2.2rem}
+  .rail a:hover{text-decoration:none;color:var(--ink)}
+  .rail .dot{flex:none;width:1.45rem;height:1.45rem;border-radius:50%;border:1px solid var(--line-strong);display:grid;place-items:center;font-weight:700;background:var(--surface)}
+  .rail li.on a{color:var(--ink);font-weight:700}
+  .rail li.on .dot{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .rail li.done .dot{border-color:var(--ink)}
+
+  .hero{padding:clamp(1.8rem,4vw,2.8rem) 0 1rem;background:radial-gradient(52rem 26rem at 10% -20%,color-mix(in srgb,var(--accent) 10%,transparent),transparent 60%)}
+  .hero h1{font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.08;margin:0 0 .9rem;max-width:22ch}
+  .hero .lede{font-size:1.12rem;color:var(--muted);max-width:56ch;margin:0}
+  .hero .lede b{color:var(--ink)}
+
+  .plate-id{display:flex;justify-content:space-between;align-items:baseline;gap:.3rem 1rem;flex-wrap:wrap;margin:0 0 1rem;padding-bottom:.4rem;border-bottom:1px solid color-mix(in srgb,var(--ink) 55%,transparent)}
+  .plate-id .pn{font-family:var(--font-mono);font-size:0.75rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
+  .plate-id .fig{font-style:italic;font-size:0.92rem;color:var(--muted)}
+  .step{padding:clamp(2.2rem,5vw,3.4rem) 0;border-top:1px solid var(--line);scroll-margin-top:3.4rem}
+  .step:nth-of-type(even){background:var(--band)}
+  .step h2{font-size:clamp(1.45rem,2.5vw,1.9rem);font-style:italic;font-weight:500;margin:0 0 .4rem}
+  .step .lead{color:var(--muted);max-width:60ch;margin:0 0 1.4rem}
+  .two{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(1.4rem,4vw,2.8rem);align-items:start}
+  .card{background:var(--surface);border:1px solid var(--line-strong);border-radius:4px;box-shadow:var(--e1);padding:1rem 1.1rem}
+  .hand{font-family:"Segoe Print","Ink Free","Bradley Hand","Chalkboard SE","Marker Felt",cursive;color:var(--graphite);font-size:0.98rem;line-height:1.4;transform:rotate(-1.4deg);transform-origin:left top;margin:1.2rem 0 0;max-width:34ch}
+  .result{font-family:var(--font-mono);font-size:0.75rem;color:var(--ink);margin:.5rem 0 0;min-height:1.2em}
+  .cap{font-size:0.9rem;color:var(--muted);margin:1.2rem 0 0;max-width:62ch}
+  .cap a{font-weight:600}
+  .mono{font-family:var(--font-mono)}
+
+  /* step 1: what you care about, and the ranking it makes */
+  .vrow{display:grid;grid-template-columns:9.5rem minmax(0,1fr) 1.4rem;align-items:center;gap:.7rem;padding:.3rem 0}
+  .vrow label{font-size:0.95rem;font-weight:600}
+  .vrow label small{display:block;font-weight:400;font-size:0.75rem;font-family:var(--font-mono);color:var(--hint)}
+  .vrow input{width:100%;height:1.9rem;accent-color:var(--accent-bright);cursor:pointer}
+  .vrow .vv{font-family:var(--font-mono);font-size:0.75rem;color:var(--accent);font-weight:700;text-align:right}
+  .keep{display:flex;flex-wrap:wrap;gap:.4rem .8rem;align-items:center;margin-top:1rem;padding-top:.8rem;border-top:1px dashed var(--line-strong);font-size:0.86rem;color:var(--muted)}
+  .keepbtn{font-family:var(--font-mono);font-size:0.75rem;font-weight:600;min-height:2.4rem;padding:.3rem .8rem;border:1px solid var(--accent);border-radius:3px;background:transparent;color:var(--accent);cursor:pointer}
+  .keepbtn:hover{background:var(--accent-soft)}
+  #keepnote{font-family:var(--font-mono);font-size:0.75rem;color:var(--accent)}
+  .rank{list-style:none;margin:0;padding:0}
+  .rank li{display:grid;grid-template-columns:1.4rem minmax(0,1fr) auto;gap:.1rem .6rem;align-items:baseline;padding:.5rem .2rem;border-top:1px solid var(--line)}
+  .rank li:first-child{border-top:0}
+  .rank .rk{font-family:var(--font-mono);font-size:0.75rem;color:var(--hint);text-align:right}
+  .rank .nm{font-weight:650}
+  .rank .sc{font-family:var(--font-mono);font-weight:700}
+  .rank .bar{grid-column:2/-1;height:4px;background:var(--track);border-radius:2px;overflow:hidden}
+  .rank .bar i{display:block;height:100%;background:var(--accent);transition:width .4s var(--ease)}
+  .rank li.first .nm{color:var(--accent)}
+  .rank-h{font-family:var(--font-mono);font-size:0.75rem;color:var(--hint);margin:0 0 .4rem;display:flex;justify-content:space-between}
+
+  /* step 2: the top pick's facts, each with its source */
+  .verdict{display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap;margin:0 0 .6rem}
+  .verdict .vs{font-family:var(--font-mono);font-size:2rem;font-weight:700;line-height:1}
+  .verdict .vn{font-size:1.25rem;font-weight:650}
+  .facts{list-style:none;margin:0;padding:0}
+  .facts li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.15rem .8rem;padding:.7rem 0;border-top:1px solid var(--line)}
+  .facts li:first-child{border-top:0}
+  .facts .fl{font-weight:650}
+  .facts .fv{font-family:var(--font-mono);font-weight:700;text-align:right}
+  .facts .fn{grid-column:1/-1;font-size:0.9rem;color:var(--muted);line-height:1.45}
+  .facts .fs{grid-column:1/-1;font-family:var(--font-mono);font-size:0.75rem}
+  .facts .fs a{color:var(--ochre);border-bottom:1px dotted var(--ochre)}
+  .facts .fs a:hover{text-decoration:none}
+
+  /* step 3: four values files, side by side, and where they agree */
+  .grid{width:100%;border-collapse:collapse;font-size:0.95rem}
+  .grid th,.grid td{padding:.55rem .5rem;text-align:center;border-bottom:1px solid var(--line)}
+  .grid thead th:first-child{text-align:left}
+  .grid thead th{font-family:var(--font-mono);font-size:0.75rem;font-weight:600;color:var(--hint);letter-spacing:.03em}
+  .grid tbody th{text-align:left;font-weight:650}
+  .grid td{font-family:var(--font-mono);font-weight:700}
+  .grid tr.together th,.grid tr.together td{border-top:2px solid var(--line-strong);border-bottom:0}
+  .grid .ok{color:var(--accent)}
+  .grid .spl{background:repeating-linear-gradient(-45deg,var(--hatch) 0 1px,transparent 1px 5px)}
+  .legend{display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--hint);margin:.7rem 0 0}
+  .legend i{display:inline-block;width:1.1rem;height:.7rem;border:1px solid var(--line-strong);vertical-align:-.05rem;margin-right:.35rem}
+  .legend i.h{background:repeating-linear-gradient(-45deg,var(--hatch) 0 1px,transparent 1px 4px)}
+
+  /* step 4: the plan */
+  .plan h3{font-size:1.1rem;font-style:italic;font-weight:500;margin:0 0 .3rem}
+  .plan ul{list-style:none;margin:0 0 1.2rem;padding:0}
+  .plan li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.1rem .8rem;padding:.55rem 0;border-top:1px solid var(--line)}
+  .plan li:first-child{border-top:0}
+  .plan .pn{font-weight:650}
+  .plan .ps{font-family:var(--font-mono);font-weight:700}
+  .plan .pw{grid-column:1/-1;font-size:0.88rem;color:var(--muted)}
+  .plan .leave .ps{color:var(--warn)}
+
+  /* the end: what just happened, stamped, and where to go */
+  .end{padding:clamp(2.2rem,5vw,3.4rem) 0 3rem;border-top:1px solid var(--line)}
+  .end h2{font-size:clamp(1.45rem,2.5vw,1.9rem);font-style:italic;font-weight:500;margin:0 0 .6rem}
+  .receipt{display:flex;flex-wrap:wrap;gap:.2rem 1.3rem;margin:0 0 1.6rem;padding:.5rem 0;border-top:1px solid color-mix(in srgb,var(--ink) 55%,transparent);border-bottom:1px dotted color-mix(in srgb,var(--ink) 55%,transparent);font-family:var(--font-mono);font-size:0.75rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+  .moves{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem 1.6rem;margin:0}
+  .moves a{display:block;padding:.2rem 0 .2rem .9rem;border-left:2px solid var(--line-strong);color:var(--ink)}
+  .moves a:hover{border-left-color:var(--accent);text-decoration:none}
+  .moves b{display:block;font-size:1.02rem}
+  .moves span{display:block;font-size:0.88rem;color:var(--muted);line-height:1.4}
+  .btns{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.6rem}
+  .btn{font-family:var(--font-mono);font-size:0.75rem;font-weight:600;display:inline-flex;align-items:center;min-height:2.75rem;padding:.55rem 1rem;border-radius:3px;border:1px solid var(--line-strong);color:var(--muted);background:transparent}
+  .btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none;background:var(--surface)}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+  .btn.primary:hover{background:var(--accent-bright);color:var(--on-accent)}
+  .err{color:var(--warn)}
+
+  @media (max-width:820px){
+    .two,.moves{grid-template-columns:1fr}
+    .rail .word{display:none}
+  }
+  @media (max-width:520px){
+    body{font-size:1rem}
+    .vrow{grid-template-columns:7.5rem minmax(0,1fr) 1.2rem}
+    .grid th,.grid td{padding:.45rem .25rem;font-size:0.86rem}
+  }
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="wrap">
-  <div class="top"><a class="wm" href="../index.html">◇ Values Commons</a><a href="../index.html">Skip the tour →</a></div>
-  <div class="tourlinks" aria-label="Tour exits">
-    <span>After the tour:</span>
-    <a href="../passport/index.html">Your values</a>
-    <a href="../instances/index.html">Apps</a>
-    <a href="../workshop/index.html">Fix facts</a>
-    <a href="../assembly/index.html">Group agreement</a>
-    <a href="../slate/index.html">Shared plan</a>
-    <a href="../weave/index.html">Ownership map</a>
-    <a href="../contribute/index.html">Help out</a>
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="../index.html">&#9671; Values Commons</a>
+    <nav class="exits" aria-label="Tour exits">
+      <a href="../app/index.html">Open the app</a>
+      <a href="../standard/index.html">For builders</a>
+      <a class="skipit" href="../index.html">Skip the tour &rarr;</a>
+    </nav>
   </div>
+</header>
 
-  <header class="hero" id="main" tabindex="-1">
-    <p class="eyebrow">A two-minute tour · live in your browser</p>
-    <h1>Follow one choice from your rules to a group decision.</h1>
-    <p>Use a familiar question, <b>which messenger to choose</b>, to see how personal rules, sourced facts, group agreement, and a shared plan fit together. Everything below runs in your browser. Nothing is uploaded.</p>
+<nav class="rail" aria-label="Tour steps">
+  <ol>
+    <li data-step="s1"><a href="#s1"><span class="dot">1</span><span class="word">Value</span></a></li>
+    <li data-step="s2"><a href="#s2"><span class="dot">2</span><span class="word">Know</span></a></li>
+    <li data-step="s3"><a href="#s3"><span class="dot">3</span><span class="word">Decide</span></a></li>
+    <li data-step="s4"><a href="#s4"><span class="dot">4</span><span class="word">Act</span></a></li>
+  </ol>
+</nav>
+
+<main id="main" tabindex="-1">
+  <header class="hero">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">The tour</span><span class="fig">Four steps, about two minutes. Everything runs in your browser.</span></p>
+      <h1>Follow one choice from what you care about to a group's plan.</h1>
+      <p class="lede">The question: <b>which messenger should four friends use?</b> The options and facts come from the app's real messaging comparison, which covers <span id="n-options">19</span> apps and gives a source for every fact. Nothing you do here is uploaded.</p>
+    </div>
   </header>
 
-  <section class="beat" id="b1">
-    <span class="bn"><b>1</b> Value</span>
-    <h2>Set what matters to you</h2>
-    <p class="lead">Weigh what you care about. The ranking is yours: re-ordered live, never by who pays. Move a slider:</p>
-    <div id="sliders"></div>
-    <div id="tour-sigil" style="text-align:center;margin:.5rem 0 .2rem;color:var(--accent)"></div>
-    <div class="rank" id="rank"></div>
-    <p class="cap">Your values just became a portable file: no name, no account. <button class="keepbtn" id="keepfile" type="button">&#10515; Keep this file</button> <span id="keepnote" role="status"></span><br>It loads in <a href="../app/index.html">the live app</a> and <a href="../assembly/index.html">group agreement</a>; <a href="../passport/index.html">see what it carries →</a></p>
-  </section>
-
-  <section class="beat" id="b2">
-    <span class="bn"><b>2</b> Know</span>
-    <h2>The facts are sourced and repairable</h2>
-    <p class="lead" id="b2lead">Your top pick, and the cited reason behind it:</p>
-    <div id="know"></div>
-    <p class="cap">Every claim carries its source. Disagree with one? Correct it with a citation or keep an alternate facts file in <a href="../workshop/index.html">fact repair →</a></p>
-  </section>
-
-  <section class="beat" id="b3">
-    <span class="bn"><b>3</b> Decide</span>
-    <h2>See where the group agrees and where it does not</h2>
-    <p class="lead">Four neighbours hand each other their values files. Their shared stance forms locally, honest about where they agree <i>and</i> where they're split:</p>
-    <div id="collective"></div>
-    <p class="cap">No one's values are uploaded; the tally is reproducible by anyone holding the same files. <a href="../assembly/index.html">Find group agreement →</a></p>
-  </section>
-
-  <section class="beat" id="b4">
-    <span class="bn"><b>4</b> Act</span>
-    <h2>A shared decision with reasons</h2>
-    <p class="lead">Their shared values, applied to the same facts, become a plan: where the group messages, and where it moves away, every line with its reason.</p>
-    <div class="slate" id="slate"></div>
-    <p class="cap">Derived, never decreed; a recommendation the group chooses to commit to. <a href="../slate/index.html">Make a shared plan →</a></p>
-  </section>
-
-  <div class="close">
-    <p class="loop">value → know → decide → act</p>
-    <p style="color:var(--muted);margin:0">No server. No account. No owner. A movement is a folder of files.</p>
-    <div class="nextmoves" aria-label="Choose your next move">
-      <a href="../instances/index.html"><b>Try an app</b><span>Open the live apps and see the same values file travel.</span></a>
-      <a href="../passport/index.html"><b>Carry values</b><span>Inspect the nameless file that moves between subjects.</span></a>
-      <a href="../workshop/index.html"><b>Correct a claim</b><span>Patch sourced facts without waiting for a central editor.</span></a>
-      <a href="../assembly/index.html"><b>Find group agreement</b><span>Combine values files while keeping dissent visible.</span></a>
-      <a href="../weave/index.html"><b>Trace relationships</b><span>Follow alternatives, ownership, analogies, and action paths.</span></a>
-      <a href="../contribute/index.html"><b>Build the commons</b><span>Scope a new app, add a source, or contribute a relationship.</span></a>
+  <section class="step" id="s1">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">Step 1 of 4 &middot; Value</span><span class="fig">Fig. 1. Your weights, and the order they make.</span></p>
+      <h2>Say what matters to you</h2>
+      <p class="lead">Four things people weigh when they pick a messenger. Move a slider and the order on the right changes. Nobody paid for a place in it.</p>
+      <div class="two">
+        <div class="card">
+          <div id="sliders"></div>
+          <div class="keep"><button class="keepbtn" id="keepfile" type="button">Keep these as a file</button><span id="keepnote" role="status"></span><span>A small file with your weights and no name. It opens in <a href="../app/index.html">the app</a> and in <a href="../assembly/index.html">group values</a>. <a href="../passport/index.html">What it carries</a>.</span></div>
+          <p class="hand">Try this: push Easy to reach people all the way up and the other three all the way down. Guess who comes first before you look.</p>
+          <p class="result" id="r1" aria-live="polite"></p>
+        </div>
+        <div class="card">
+          <p class="rank-h"><span>Your order</span><span>fit to your weights, 0 to 100</span></p>
+          <ol class="rank" id="rank"><li><span class="rk">1</span><span class="nm">Signal</span><span class="sc">&hellip;</span></li></ol>
+        </div>
+      </div>
     </div>
-    <div class="cta">
-      <a class="btn primary" href="../instances/index.html">See the apps</a>
-      <a class="btn" href="../index.html">Values Commons →</a>
-      <a class="btn" href="../contribute/index.html">Contribute →</a>
+  </section>
+
+  <section class="step" id="s2">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">Step 2 of 4 &middot; Know</span><span class="fig">Fig. 2. The facts behind your first place, each with its source.</span></p>
+      <h2>Check why it came first</h2>
+      <p class="lead">Every fact is a sentence someone wrote down from a page you can open. The ones that counted most for you come first.</p>
+      <div class="card" id="know"><p class="cap">Loading the facts&hellip;</p></div>
+      <p class="hand">Open one of the brown links. If the page says something else, that is a bug worth reporting.</p>
+      <p class="cap">Think a fact is wrong? Send a correction with its source, or keep your own facts file, in <a href="../workshop/index.html">fact repair</a>.</p>
     </div>
-  </div>
-</div>
+  </section>
+
+  <section class="step" id="s3">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">Step 3 of 4 &middot; Decide</span><span class="fig">Fig. 3. Four values files, side by side.</span></p>
+      <h2>See where four friends agree, and where they split</h2>
+      <p class="lead">Ada, Ben, Cy and Dee each made a file like yours and handed them round. The table adds them up. Nobody's file was uploaded anywhere, and anyone with the same four files gets the same table.</p>
+      <div class="card">
+        <table class="grid" id="grid" aria-describedby="grid-say"><thead><tr><th scope="col">Who</th></tr></thead><tbody></tbody></table>
+        <p class="legend"><span><i></i>agreed: every weight within 2 of the others</span><span><i class="h"></i>split: set aside as neutral in the plan</span></p>
+      </div>
+      <p class="cap" id="grid-say"></p>
+      <p class="hand">Cy wants everything at once. Every group has a Cy.</p>
+    </div>
+  </section>
+
+  <section class="step" id="s4">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">Step 4 of 4 &middot; Act</span><span class="fig">Fig. 4. What the four of them would do, with the reason for each line.</span></p>
+      <h2>Turn it into a plan</h2>
+      <p class="lead">Their shared weights, applied to the same facts. What they split on counts as neutral, so nobody's strongest view quietly wins.</p>
+      <div class="two plan" id="plan"></div>
+      <p class="cap"><b>Devil's advocate.</b> "Every weight within 2 of the others" is a generous rule for four friends. Forty people would split on almost everything, and a real group needs a better rule than this demo's. The <a href="../assembly/index.html">group values</a> tool shows the whole spread instead of one yes or no.</p>
+      <p class="cap">A plan is a suggestion the group chooses to commit to. It keeps the reason for each line and who disagreed. <a href="../slate/index.html">Make a shared plan</a>.</p>
+    </div>
+  </section>
+
+  <section class="end" id="end">
+    <div class="wrap">
+      <h2>That is all four steps</h2>
+      <p class="receipt" id="receipt"><span>Your weights</span><span>Facts with sources</span><span>Four files merged</span><span>One plan</span></p>
+      <h3 class="mono" style="font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--hint);font-weight:700;margin:0 0 .8rem">Choose your next move</h3>
+      <div class="moves" aria-label="Choose your next move">
+        <a href="../app/index.html"><b>Use it for real</b><span>140+ comparisons in the app, from banks to bread.</span></a>
+        <a href="../workshop/index.html"><b>Correct a claim</b><span>Send a fix with its source. Once checked, it changes for everyone.</span></a>
+        <a href="../assembly/index.html"><b>Decide with others</b><span>Put your group's files side by side, as in step 3.</span></a>
+        <a href="../weave/index.html"><b>Trace relationships</b><span>Who owns which brand, with the receipt for each link.</span></a>
+      </div>
+      <div class="btns">
+        <a class="btn primary" href="../app/index.html">Open the app &rarr;</a>
+        <a class="btn" href="../index.html">Back to Values Commons</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="fam-foot"><div class="wrap"><!-- family:start -->
+<style>
+  /* sizes, spacing and case follow research/design_system_audit.js: the eight-step scale, the 0.25rem grid, no uppercase */
+  .fam{border-top:1px solid var(--line,#e3e7e5);margin-top:1.5rem;padding-top:1.25rem;grid-column:1/-1;flex-basis:100%;width:100%}
+  .fam-foot{border-top:1px solid var(--line,#e3e7e5);padding:1.25rem 0 2.5rem}
+  .fam-foot .fam,.fam-after .fam{border-top:0;margin-top:0}
+  .fam>p{margin:0 0 1rem;font-family:var(--font-mono,ui-monospace,monospace);font-size:.75rem;color:var(--hint,var(--muted,#566560))}
+  .fam-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(10.5rem,1fr));gap:1rem 1.5rem}
+  .fam-head{margin:0 0 .5rem;font-size:.86rem;font-weight:700;color:var(--ink,#18211d)}
+  .fam ul{list-style:none;margin:0;padding:0}
+  .fam li{margin:0 0 .5rem}
+  .fam a{display:block;text-decoration:none;color:inherit;border:0;box-shadow:none}
+  .fam a:hover .fam-name{text-decoration:underline}
+  .fam-name{display:block;font-size:.86rem;font-weight:600;color:var(--accent,#1d7a5a)}
+  .fam-desc{display:block;font-size:.75rem;line-height:1.4;color:var(--muted,#566560)}
+  .fam-you{display:inline-block;margin-top:.25rem;font-family:var(--font-mono,ui-monospace,monospace);font-size:.64rem;color:var(--ink,#18211d)}
+</style>
+<nav class="fam" aria-label="The Futurism Institute family">
+  <p>The Futurism Institute family</p>
+  <div class="fam-cols"><div><p class="fam-head">Start here</p><ul><li><a href="https://futurisminstitute.org"><span class="fam-name">Futurism Institute</span><span class="fam-desc">How the projects fit together</span></a></li></ul></div><div><p class="fam-head">Research</p><ul><li><a href="https://bentleymoon.com"><span class="fam-name">Bentley Moon</span><span class="fam-desc">Research record and films</span></a></li></ul></div><div><p class="fam-head">Records</p><ul><li><a href="https://bentleymoon.com/research/checking-ai/"><span class="fam-name">Checking AI</span><span class="fam-desc">When one AI can check another</span></a></li><li class="fam-here"><a href="https://valuescommons.org/app/"><span class="fam-name">Conscious Consuming</span><span class="fam-desc">Products and services, by what you care about</span><span class="fam-you">You are here</span></a></li><li><a href="https://dignityneeds.com"><span class="fam-name">Dignity Needs</span><span class="fam-desc">What every person should be able to expect</span></a></li><li><a href="https://kosplora.org"><span class="fam-name">Kosplora</span><span class="fam-desc">Learning and research tools</span></a></li><li><a href="https://legibleai.org"><span class="fam-name">Legible AI</span><span class="fam-desc">A first road into AI safety</span></a></li><li><a href="https://legibleai.org/searches/"><span class="fam-name">AI Searches</span><span class="fam-desc">A shared record of AI answers, with their sources</span></a></li></ul></div><div><p class="fam-head">Groups</p><ul><li><a href="https://socratichearth.org"><span class="fam-name">The Socratic Hearth</span><span class="fam-desc">Talk a question through, disagreements kept</span></a></li><li><a href="https://theworkparty.org"><span class="fam-name">The Work Party</span><span class="fam-desc">What a group agreed, as a file it keeps</span></a></li></ul></div><div><p class="fam-head">Places</p><ul><li><a href="https://earthenbeings.com"><span class="fam-name">Earthen Beings</span><span class="fam-desc">Communities and land projects in the Pacific Northwest</span></a></li><li><a href="https://basicdignity.com"><span class="fam-name">Basic Dignity</span><span class="fam-desc">Draft rules for whoever holds what a person needs, from a shared house to the companies that own AI.</span></a></li></ul></div></div>
+</nav>
+<!-- family:end --></div></footer>
 
 <script src="../app/engine.js"></script>
-<script src="../app/sigil.js"></script>
-<script src="../instances/messages/lens.js"></script>
 <script>
 (function(){
   'use strict';
-  if(!(window.CC && CC.engine && window.OVS_LENS)){ document.getElementById('rank').innerHTML='<p class="err">Couldn’t load the live engine. Refresh, or open the tour from the <a href="../index.html">standard’s home</a>.</p>'; return; }
-  var E=CC.engine, L=window.OVS_LENS;
-  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-  var ULAB={planet:'Planet',people:'People',openness:'Openness',access:'Access',wellbeing:'Wellbeing',autonomy:'Autonomy',animals:'Animals',community:'Community',quality:'Quality',joy:'Joy'};
+  function $(id){return document.getElementById(id);}
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  var E=window.CC&&CC.engine;
 
-  // --- Beat 1 + 2: live ranking + the verdict for the top pick ---
-  var passport={}; L.themes.forEach(function(t){passport[t.id]=3;});
-  function weights(){ return E.themeDefaults(L.criteria, passport, L.key2theme); }
-  function ranked(){ var w=weights(); return L.resources.map(function(r){return [r,E.score(r,{criteria:L.criteria,weights:w})];}).filter(function(x){return x[1];}).sort(function(a,b){return b[1].score-a[1].score;}); }
+  /* THE RAIL. The step whose plate is in view is filled; the ones before it are marked done. */
+  (function(){
+    var items=[].slice.call(document.querySelectorAll('.rail li'));
+    if(!('IntersectionObserver' in window)) return;
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        var id=en.target.id, hit=false;
+        items.forEach(function(li){
+          var on=li.getAttribute('data-step')===id;
+          li.classList.toggle('on',on); li.classList.toggle('done',!on&&!hit);
+          if(on){ hit=true; li.querySelector('a').setAttribute('aria-current','step'); } else li.querySelector('a').removeAttribute('aria-current');
+        });
+        if(id==='end') items.forEach(function(li){li.classList.remove('on');li.classList.add('done');});
+      });
+    },{rootMargin:'-45% 0px -50% 0px'});
+    ['s1','s2','s3','s4','end'].forEach(function(id){var el=$(id); if(el) io.observe(el);});
+  })();
+
+  if(!E){ $('rank').innerHTML='<li class="err">The engine did not load. Refresh the page, or <a href="../app/index.html">open the app</a>.</li>'; return; }
+
+  /* Four sliders a person can hold in their head, each standing for the measures in the app's
+     messaging comparison that it names. The comparison has six; this is the same arithmetic with
+     fewer knobs, and the step 2 facts show all six. */
+  var KNOBS=[
+    {id:'private',label:'Private',sub:'privacy, no ad business',keys:['privacy','respect'],uni:'autonomy'},
+    {id:'open',label:'Open',sub:'open source, portable',keys:['openness','portability'],uni:'openness'},
+    {id:'reach',label:'Easy to reach people',sub:'easy to start',keys:['accessibility'],uni:'community'},
+    {id:'free',label:'Free',sub:'costs nothing',keys:['economical'],uni:null}
+  ];
+  var mine={private:3,open:3,reach:3,free:3};
+  var DATA=null;
+
+  function weightsFrom(k){ var w={}; KNOBS.forEach(function(n){ n.keys.forEach(function(key){ w[key]=k[n.id]; }); }); return w; }
+  function rankWith(k){
+    var w=weightsFrom(k);
+    return DATA.products.map(function(p){return {p:p,s:E.score(p,{criteria:DATA.criteria,weights:w})};})
+      .filter(function(x){return x.s;}).sort(function(a,b){return b.s.score-a.s.score;});
+  }
+  function label(key){ var c=DATA.criteria.filter(function(c){return c.key===key;})[0]; return c?c.label:key; }
+
   function renderRank(){
-    var arr=ranked().slice(0,3), first={};
-    [].forEach.call(document.querySelectorAll('#rank .ri'),function(el){first[el.dataset.c]=el.getBoundingClientRect();});
-    document.getElementById('rank').innerHTML=arr.map(function(x,i){var r=x[0],t=E.scoreTier(x[1].score);
-      return '<div class="ri" data-c="'+r.code+'"><span class="rk">'+(i+1)+'</span><span class="nm">'+esc(r.name)+' <small>'+esc(r.brand)+'</small></span><span class="tier">'+esc(t[0])+'</span><span class="sc">'+x[1].score+'</span></div>';}).join('');
-    [].forEach.call(document.querySelectorAll('#rank .ri'),function(el){var f=first[el.dataset.c];if(!f)return;var l=el.getBoundingClientRect(),dy=f.top-l.top;if(!dy)return;el.style.transform='translateY('+dy+'px)';el.style.transition='none';requestAnimationFrame(function(){requestAnimationFrame(function(){el.style.transition='';el.style.transform='';});});});
+    var r=rankWith(mine);
+    $('rank').innerHTML=r.slice(0,6).map(function(x,i){
+      return '<li'+(i===0?' class="first"':'')+'><span class="rk">'+(i+1)+'</span><span class="nm">'+esc(x.p.name)+'</span><span class="sc">'+x.s.score+'</span><span class="bar"><i style="width:'+x.s.score+'%"></i></span></li>';
+    }).join('');
+    return r;
   }
-  function renderKnow(){
-    var top=ranked()[0]; if(!top){document.getElementById('know').innerHTML='';return;}
-    var r=top[0], V=E.verdict(r,{criteria:L.criteria,weights:weights()}); if(!V)return;
-    var dec=V.reason, bars=V.bands.slice(0,4).map(function(b){return '<span>'+esc(b.label)+' <span class="bandlbl '+(b.v>=70?'hi':'')+'">'+esc(b.band[0])+'</span></span>';}).join('');
-    document.getElementById('know').innerHTML=
-      '<div class="verdict"><span class="vs">'+V.score+'</span><span><span class="vt">'+esc(V.tier[0])+'</span> · '+esc(r.name)+' <small style="color:var(--hint)">'+esc(r.brand)+'</small></span></div>'+
-      (dec?'<div class="reason"><b>'+esc(dec.label)+': '+esc(dec.band[0])+'</b> · '+esc(dec.note||'')+'</div>':'')+
-      '<div class="bars">'+bars+'</div>';
+  function renderKnow(r){
+    var top=r[0]; if(!top){ $('know').innerHTML='<p class="cap">Nothing scored with these weights.</p>'; return; }
+    var w=weightsFrom(mine), p=top.p;
+    var keys=DATA.criteria.map(function(c){return c.key;}).filter(function(k){return p.scores[k]!=null;})
+      .sort(function(a,b){return (w[b]||0)*p.scores[b]-(w[a]||0)*p.scores[a];});
+    var html='<div class="verdict"><span class="vs">'+top.s.score+'</span><span class="vn">'+esc(p.name)+'</span><span class="mono" style="font-size:.75rem;color:var(--hint)">based on '+top.s.facts+' of '+top.s.wanted+' facts you weighted</span></div><ul class="facts">';
+    keys.forEach(function(k){
+      var pv=(p.provenance||{})[k]; var note=pv&&typeof pv==='object'?pv.note:(pv||''); var src=pv&&pv.source;
+      var host=''; try{ host=src?new URL(src).hostname.replace(/^www\./,''):''; }catch(e){}
+      html+='<li><span class="fl">'+esc(label(k))+(w[k]?'':' <small class="mono" style="color:var(--hint);font-weight:400">(you gave this 0)</small>')+'</span><span class="fv">'+p.scores[k]+'</span>'+
+        (note?'<span class="fn">'+esc(note)+'</span>':'')+
+        (src?'<span class="fs">source: <a rel="noopener" target="_blank">'+esc(host)+(pv.asof?', '+esc(pv.asof):'')+'</a></span>':'<span class="fs" style="color:var(--hint)">no source recorded for this fact</span>')+'</li>';
+    });
+    $('know').innerHTML=html+'</ul>';
+    // links are set as properties so their addresses are exactly the recorded sources
+    var links=$('know').querySelectorAll('.fs a'), i=0;
+    keys.forEach(function(k){ var pv=(p.provenance||{})[k]; if(pv&&pv.source&&links[i]){ links[i].href=pv.source; i++; } });
   }
-  document.getElementById('sliders').innerHTML=L.themes.map(function(t){
-    return '<div class="vrow"><label for="t_'+t.id+'">'+esc(t.label)+'</label><input id="t_'+t.id+'" type="range" min="0" max="5" step="1" value="3" data-t="'+t.id+'"><span class="vv" data-v="'+t.id+'">3</span></div>';}).join('');
-  [].forEach.call(document.querySelectorAll('#sliders input'),function(s){ s.oninput=function(){passport[s.dataset.t]=+s.value;var o=document.querySelector('[data-v="'+s.dataset.t+'"]');if(o)o.textContent=s.value;renderRank();renderKnow();renderTourSigil();var b2=document.getElementById('b2');if(b2){b2.classList.remove('pulse');void b2.offsetWidth;b2.classList.add('pulse');}}; });
-  function renderTourSigil(){ var el=document.getElementById('tour-sigil'); if(el&&window.CC&&CC.sigil) el.innerHTML=CC.sigil(passport,{size:88})+'<div style="font-size:.7rem;color:var(--hint);margin-top:.1rem">your values, as a unique mark; it morphs as you weigh</div>'; }
-  renderRank(); renderKnow(); renderTourSigil();
-  // Keep this file: the beat-1 values leave with the visitor, in the shared passport shape.
-  // Local theme ids translate to the universal ids (mirrors this lens's universalToLocal),
-  // so the file merges cleanly in group agreement and travels like any app passport.
-  var TO_UNIVERSAL={private:'autonomy',open:'openness',ease:'access',reach:'community'};
-  var kb=document.getElementById('keepfile');
-  if(kb) kb.onclick=function(){
-    var vals={}; Object.keys(passport).forEach(function(k){vals[TO_UNIVERSAL[k]||k]=passport[k];});
-    var f={kind:'values-passport',version:'0.1',source:'two-minute tour',values:vals};
+
+  var firstLeader=null;
+  function update(){
+    var r=renderRank(); renderKnow(r);
+    if(firstLeader===null&&r[0]) firstLeader=r[0].p.name;
+    var lead=r[0]?r[0].p.name:'';
+    $('r1').textContent=(lead&&firstLeader&&lead!==firstLeader)?('Now first: '+lead+'. It was '+firstLeader+'.'):(lead?'First right now: '+lead+'.':'');
+  }
+
+  function buildSliders(){
+    $('sliders').innerHTML=KNOBS.map(function(n){
+      return '<div class="vrow"><label for="k_'+n.id+'">'+esc(n.label)+'<small>'+esc(n.sub)+'</small></label><input id="k_'+n.id+'" type="range" min="0" max="5" step="1" value="3" data-k="'+n.id+'" aria-label="How much '+esc(n.label)+' matters to you, 0 to 5"><span class="vv" data-v="'+n.id+'">3</span></div>';
+    }).join('');
+    [].forEach.call(document.querySelectorAll('#sliders input'),function(s){
+      s.addEventListener('input',function(){ mine[s.dataset.k]=+s.value; document.querySelector('[data-v="'+s.dataset.k+'"]').textContent=s.value; update(); });
+    });
+  }
+
+  /* Keep these as a file: the four weights leave as a values file in the shape the tour has always
+     written (the app reads it as an older tour file), with the knobs that have a shared value name
+     translated to it, so group values can read it. */
+  $('keepfile').addEventListener('click',function(){
+    var TO_UNIVERSAL={private:'autonomy',open:'openness',reach:'community'};
+    var values={}; Object.keys(TO_UNIVERSAL).forEach(function(k){ values[TO_UNIVERSAL[k]]=mine[k]; });
+    var f={kind:'values-passport',version:'0.1',source:'the two-minute tour',values:values};
     var a=document.createElement('a');
     a.href=URL.createObjectURL(new Blob([JSON.stringify(f,null,2)],{type:'application/json'}));
-    a.download='my-values-passport.json';
-    document.body.appendChild(a); a.click(); a.remove();
-    var n=document.getElementById('keepnote'); if(n)n.textContent='Saved to your device.';
-  };
+    a.download='my-values-passport.json'; document.body.appendChild(a); a.click(); a.remove();
+    $('keepnote').textContent='Saved to your device.';
+  });
 
-  // --- Beat 3: the collective (four example passports, universal values travel) ---
-  // Four neighbours' passports. We weight only values THIS instance carries (its universalToLocal:
-  // openness→open, autonomy→privacy, access→ease, community→reach) so what they SHARE in beat 3 is visibly
-  // what drives the slate in beat 4: they agree on openness + reach, and split on privacy vs. ease.
-  var EXAMPLE=[
-    {nick:'Ada',values:{openness:5,access:1,autonomy:5,community:4}},
-    {nick:'Ben',values:{openness:4,access:2,autonomy:1,community:5}},
-    {nick:'Cy', values:{openness:5,access:5,autonomy:5,community:2}},
-    {nick:'Dee',values:{openness:4,access:1,autonomy:1,community:5}}
+  /* STEP 3 AND 4. Four friends' weights. A knob is agreed when every weight is within 2 of every
+     other; otherwise it is split, and the plan treats it as neutral (3) so no one's strongest view
+     wins by default. The plan is the group's order: the first three to use, the last two to leave. */
+  var FRIENDS=[
+    {nick:'Ada',k:{private:5,open:4,reach:3,free:3}},
+    {nick:'Ben',k:{private:1,open:3,reach:5,free:4}},
+    {nick:'Cy', k:{private:5,open:5,reach:5,free:5}},
+    {nick:'Dee',k:{private:2,open:4,reach:4,free:4}}
   ];
-  var COL=E.mergePassports(EXAMPLE,'four neighbours');
-  (function(){
-    var keys=Object.keys(COL.values).sort(function(a,b){return COL.values[b]-COL.values[a];});
-    var rows=keys.map(function(u){var a=COL.agreement[u],hi=a.consensus>=0.5;
-      return '<div class="cbar"><span>'+esc(ULAB[u]||u)+'</span><span class="track"><span class="fill" style="width:'+(a.mean/5*100).toFixed(0)+'%"></span></span><span class="cons '+(hi?'hi':'lo')+'">'+(hi?'aligned':'split')+'</span></div>';}).join('');
-    var shared=keys.filter(function(u){return COL.values[u]>=3.5&&COL.agreement[u].consensus>=0.5;}).slice(0,4).map(function(u){return ULAB[u]||u;});
-    var split=COL.dissent.filter(function(u){return COL.agreement[u].consensus<0.5;}).map(function(u){return ULAB[u]||u;});
-    var sharedTxt=shared.length?'<b>'+shared.join('</b> · <b>')+'</b>':'<i style="color:var(--hint)">broad alignment</i>';
-    var splitTxt=split.length?'<b>'+split.join('</b> · <b>')+'</b>':'<i style="color:var(--hint)">nothing major; rare, but honest</i>';
-    document.getElementById('collective').innerHTML=rows+
-      '<div class="readout"><p><span class="tag s">What they share</span> '+sharedTxt+'</p>'+
-      '<p><span class="tag x">Where they’re split</span> '+splitTxt+'</p></div>';
-  })();
+  function groupStep(){
+    var agreed={}, together={}, split=[], shared=[];
+    KNOBS.forEach(function(n){
+      var vals=FRIENDS.map(function(f){return f.k[n.id];});
+      var mean=vals.reduce(function(a,b){return a+b;},0)/vals.length;
+      var ok=Math.max.apply(null,vals)-Math.min.apply(null,vals)<=2;
+      agreed[n.id]=ok; together[n.id]=ok?Math.round(mean*10)/10:3;
+      (ok?shared:split).push(n.label);
+    });
+    var head='<tr><th scope="col">Who</th>'+KNOBS.map(function(n){return '<th scope="col">'+esc(n.label)+'</th>';}).join('')+'</tr>';
+    var rows=FRIENDS.map(function(f){return '<tr><th scope="row">'+esc(f.nick)+'</th>'+KNOBS.map(function(n){return '<td class="'+(agreed[n.id]?'':'spl')+'">'+f.k[n.id]+'</td>';}).join('')+'</tr>';}).join('');
+    var tog='<tr class="together"><th scope="row">Together</th>'+KNOBS.map(function(n){return '<td class="'+(agreed[n.id]?'ok':'spl')+'">'+(agreed[n.id]?together[n.id]:'split')+'</td>';}).join('')+'</tr>';
+    $('grid').querySelector('thead').innerHTML=head; $('grid').querySelector('tbody').innerHTML=rows+tog;
+    function list(a){return a.length<2?a.join(''):a.slice(0,-1).join(', ')+' and '+a[a.length-1];}
+    $('grid-say').textContent='They agree on '+(shared.length?list(shared):'nothing')+'. They split on '+(split.length?list(split):'nothing')+', so the plan sets '+(split.length>1?'those':'that')+' to neutral and says so.';
+    return {together:together,split:split};
+  }
+  function planStep(g){
+    var r=rankWith(g.together), w=weightsFrom(g.together);
+    /* The reason for a line is the fact that sets this option apart: where it sits furthest above
+       (or, for the ones they would leave, below) the average of all the options, by the group's
+       weight. A fact every free app scores 100 on explains nothing about why this one. */
+    var avg={}; DATA.criteria.forEach(function(c){ var v=DATA.products.map(function(p){return p.scores[c.key];}).filter(function(x){return x!=null;}); avg[c.key]=v.length?v.reduce(function(a,b){return a+b;},0)/v.length:50; });
+    function reason(p,best){
+      var keys=Object.keys(p.scores).filter(function(k){return w[k];});
+      keys.sort(function(a,b){ var da=w[a]*(p.scores[a]-avg[a]), db=w[b]*(p.scores[b]-avg[b]); return best?db-da:da-db; });
+      var k=keys[0]; if(!k) return '';
+      var pv=(p.provenance||{})[k]; var note=pv&&typeof pv==='object'?pv.note:(pv||'');
+      return (best?'Strongest on ':'Weakest on ')+label(k).toLowerCase()+' ('+p.scores[k]+'). '+(note?firstSentence(note):'');
+    }
+    function firstSentence(t){ var i=t.indexOf('. '); return i>0?t.slice(0,i+1):t; }
+    var use=r.slice(0,3), leave=r.slice(-2).reverse();
+    $('plan').innerHTML='<div class="card"><h3>Where they talk</h3><ul>'+use.map(function(x){return '<li><span class="pn">'+esc(x.p.name)+'</span><span class="ps">'+x.s.score+'</span><span class="pw">'+esc(reason(x.p,true))+'</span></li>';}).join('')+'</ul></div>'+
+      '<div class="card leave"><h3>What they would leave</h3><ul>'+leave.map(function(x){return '<li><span class="pn">'+esc(x.p.name)+'</span><span class="ps">'+x.s.score+'</span><span class="pw">'+esc(reason(x.p,false))+'</span></li>';}).join('')+'</ul>'+
+      (g.split.length?'<p class="cap" style="margin-top:.4rem">Set to neutral because they split: '+esc(g.split.join(', '))+'.</p>':'')+'</div>';
+    return use[0];
+  }
 
-  // --- Beat 4: the slate (their shared values, applied to messaging) ---
-  (function(){
-    var split=COL.dissent.filter(function(u){return COL.agreement[u].consensus<0.5;}).map(function(u){return ULAB[u]||u;});
-    var S=E.buildSlate(COL, L, {dissent:split});
-    function row(x,low){var c=x.conflicts&&x.conflicts[0];var why=low?(c?('fails '+esc(c.label)+(c.note?': '+esc(c.note):'')):''):(x.reason?('fits on '+esc(x.reason.label)+(x.reason.note?': '+esc(x.reason.note):'')):'');
-      return '<div class="si"><span class="snm">'+esc(x.name)+' <small>'+esc(x.brand)+'</small></span><span class="why">'+why+'</span><span class="ssc'+(low?' low':'')+'">'+x.score+'</span></div>';}
-    document.getElementById('slate').innerHTML=
-      '<h3 style="color:var(--accent)">Where they message</h3>'+(S.endorse.length?S.endorse.map(function(x){return row(x,false);}).join(''):'<p class="cap" style="border:none">–</p>')+
-      '<h3 style="color:var(--clay)">Where they move money &amp; attention from</h3>'+(S.divest.length?S.divest.map(function(x){return row(x,true);}).join(''):'<p style="font-size:.86rem;color:var(--muted)">Nothing egregiously against their shared values; no call-outs.</p>');
-  })();
+  fetch('../app/data/messaging.json').then(function(res){return res.ok?res.json():null;}).then(function(d){
+    if(!d||!d.products||!d.criteria) throw new Error('no data');
+    DATA=d;
+    $('n-options').textContent=d.products.length;
+    buildSliders(); update();
+    var g=groupStep(), pick=planStep(g);
+    var sourced=0,total=0; d.products.forEach(function(p){Object.keys(p.scores||{}).forEach(function(k){total++; var pv=(p.provenance||{})[k]; if(pv&&pv.source) sourced++;});});
+    $('receipt').innerHTML=['Messaging, '+d.products.length+' apps','Facts: '+sourced+' of '+total+' with a source','Four files merged','Group pick: '+(pick?pick.p.name:'none')].map(function(t){return '<span>'+esc(t)+'</span>';}).join('');
+  }).catch(function(){
+    $('rank').innerHTML='<li class="err">The messaging data did not load. Refresh, or <a href="../app/index.html#explore/messaging">open it in the app</a>.</li>';
+    $('know').innerHTML='<p class="cap err">The facts did not load.</p>';
+  });
 })();
 </script>
-<script src="../app/reveal.js"></script>
 <script src="../app/theme.js"></script>
 </body>
 </html>

@@ -22,7 +22,7 @@ Spices are tiny purchases with outsized influence. A jar of cumin, chili flakes,
 
 | Axis | What to look for | Why it matters |
 | --- | --- | --- |
-| Salt | Sodium per serving, salt as the first ingredient, "no salt added" or salt-free blends | Seasonings can quietly become the main sodium source in a meal |
+| Salt | Sodium per serving, salt as the first ingredient, "no salt added" or salt-free blends | Seasonings can become the main sodium source in a meal |
 | Simplicity | Single-ingredient spices, short blends, fewer fillers and flavor enhancers | A plain spice is a different purchase from a salty flavor packet |
 | Transparency | Country of origin, ingredient percentages, certifier, lot or product page | Spices are high-value, small-volume products where vague sourcing is common |
 | Allergens | Clear allergen declarations and cross-contact notes | Spice blends can include sesame, mustard, wheat, soy, milk, nuts, or other allergen-bearing ingredients |

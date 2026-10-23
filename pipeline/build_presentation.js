@@ -316,18 +316,27 @@ function resolvedTaxonomy(ontology, index) {
 
   assert(needs.length === 8, `taxonomy: expected 8 needs, found ${needs.length}`);
   assert(needs.reduce((sum, need) => sum + need.categories.length, 0) === 18, 'taxonomy: expected 18 categories');
-  assert(needs.flatMap((need) => need.categories).reduce((sum, category) => sum + category.subcategories.length, 0) === 39, 'taxonomy: expected 39 subcategories');
-  // 2026-08-13, swarm waves two and three. Two rows added, Reusable nappies and Clothing rental, both being the reuse route beside the thing it replaces, which is the comparison this catalogue exists to make. Ten decisions promoted from gap to live across health, transport, travel, money, home, family and clothing. 206 -> 208 rows, 96 -> 110 live paths, 88 -> 102 datasets, 110 -> 98 gaps.
+  // Moved 2026-09-29, the ten-cid promotion: clothing repair, family and care, and health.
+  // 40 with the new Care at home and in later life group under Health & wellness.
+  assert(needs.flatMap((need) => need.categories).reduce((sum, category) => sum + category.subcategories.length, 0) === 40, 'taxonomy: expected 40 subcategories');
+  // 2026-08-13, the content waves of 13 August. Two rows added, Reusable nappies and Clothing rental, both being the reuse route beside the thing it replaces, which is the comparison this catalogue exists to make. Ten decisions promoted from gap to live across health, transport, travel, money, home, family and clothing. 206 -> 208 rows, 96 -> 110 live paths, 88 -> 102 datasets, 110 -> 98 gaps.
   // 2026-08-14, Phase 10 serial promotion. Four built decisions added four source rows;
   // no existing row moved and the not-yet-covered count stayed at 87.
-  assert(decisions.length === 217, `taxonomy: expected 217 decisions, found ${decisions.length}`);
-  assert(live.length === 130, `taxonomy: expected 130 live paths, found ${live.length}`);
+  // 223: six new rows joined in the ten-cid promotion, every row reachable through a subcategory.
+  assert(decisions.length === 225, `taxonomy: expected 225 decisions, found ${decisions.length}`);
+  // 140 on 2026-09-29: the ten-cid promotion.
+  // 141 on 2026-09-29: the parent digital-services dataset stays live on its own transitional row.
+  // 142 on 2026-10-12: electric-vehicles, the first decision built by a register adapter (pipeline/sources).
+  // 144 on 2026-10-13: new-cars and hybrid-and-plug-in-hybrid-cars from the same adapter; the hybrid row is new (225 rows).
+  assert(live.length === 144, `taxonomy: expected 144 live paths, found ${live.length}`);
   // 124 on 2026-08-26: messaging and browsers left the shared digital-services dataset and
   // gained their own, the first two of the nine-way split in docs/ONTOLOGY-RESEARCH.md 4.1.
   // 126 on 2026-09-23: email and search left the shared digital-services dataset in the same
   // split, the next two of the nine-way division.
-  assert(liveIds.size === 126, `taxonomy: expected 126 live datasets, found ${liveIds.size}`);
-  assert(gaps.length === 87, `taxonomy: expected 87 gaps, found ${gaps.length}`);
+  // 128 on 2026-09-29: cloud storage and notes, wave two of the digital-services split.
+  assert(liveIds.size === 144, `taxonomy: expected 144 live datasets, found ${liveIds.size}`);
+  // 83: four old gap rows gained their datasets in the promotion.
+  assert(gaps.length === 81, `taxonomy: expected 81 gaps, found ${gaps.length}`);
   assert(duplicateValues(decisions.map((decision) => decision.id)).length === 0, 'taxonomy: duplicate decision id');
   assert(duplicateValues(decisions.map((decision) => decision.route)).length === 0, 'taxonomy: duplicate decision route');
   assert([...liveIds].every((id) => generatedIds.has(id)) && [...generatedIds].every((id) => liveIds.has(id)), 'taxonomy: generated category set disagrees with resolved live datasets');

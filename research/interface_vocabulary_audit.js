@@ -93,6 +93,10 @@ function visibleText(html) {
     spoken.push(m[1]);
   }
   const body = html
+    // The family footer (pipeline/build_family_footer.js) is the Futurism Institute's shared list of its
+    // projects, drawn from its own project list. Its column "Groups" and lines like "What a group agreed"
+    // name groups of people, the family's vocabulary on every site, not this app's machinery (2026-10-23).
+    .replace(/<!-- family:start -->[\s\S]*?<!-- family:end -->/g, ' ')
     .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ' ')
     .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ' ')
     .replace(/<!--[\s\S]*?-->/g, ' ')
@@ -128,6 +132,8 @@ function pageList() {
 
 /* Text that labels a control, as against text that says something about the world. */
 function chromeText(html) {
+  // The family footer is the Institute's shared list of projects, not this app's controls (see visibleText).
+  html = html.replace(/<!-- family:start -->[\s\S]*?<!-- family:end -->/g, ' ');
   const parts = [];
   for (const m of html.matchAll(/\b(?:aria-label|title|alt|placeholder)\s*=\s*"([^"]*)"/gi)) {
     parts.push(m[1]);

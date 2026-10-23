@@ -1,0 +1,1157 @@
+{
+ "meta": {
+  "id": "maps",
+  "label": "Maps",
+  "type": "Services",
+  "primaryAxis": "privacy",
+  "tradeoff": [
+   "accessibility",
+   "privacy"
+  ],
+  "tradeoffLabels": [
+   "easiest",
+   "keeps least about you"
+  ],
+  "source": "Conscious Consuming (curated)",
+  "attribution": "Built from providers' own privacy policies and help pages, their terms of use, open-source repositories and OpenStreetMap's licence page, one US state attorney general's release, and the European Commission's Digital Markets Act listing, all read on 2026-09-29; not measured data. Map apps change their policies and prices often, so read the current documents before relying on a row. Privacy means how much location and route information the provider's own policy says it keeps or links to a person, and what the app does without a network; an app that works fully offline with no account scores above one that keeps a route history. Respect means whether the business model runs on advertising and profiling, taken from the provider's own statements about ads, its funding, or a regulator's description of it. Openness reflects whether map data and code are published and under what licence; for closed apps it rests on the terms that bar copying, scraping or reverse engineering, and it is left empty for HERE WeGo and Sygic where nothing read settled it. Accessibility covers the platforms an app runs on, whether it works offline, whether a person must register, and where it is limited by region or paid tier; it does not measure the quality of live traffic or business listings, which no source read here compares. Economical is left empty for Google Maps, Apple Maps, Waze, Sygic, Citymapper and Transit, where the pages read state no price. Google Maps is a core platform service designated under the Digital Markets Act, a fact the Commission's gatekeeper page lists. OpenStreetMap is scored as its website; its privacy policy is published only on the OpenStreetMap Foundation's wiki, which this catalogue does not cite, so that cell is empty. OpenStreetMap data underlies Organic Maps, CoMaps, OsmAnd and Magic Earth. Suggest changes via Contribute.",
+  "allergens": false,
+  "presets": {
+   "Balanced": {
+    "w": {
+     "privacy": 3,
+     "respect": 3,
+     "openness": 3,
+     "accessibility": 3,
+     "economical": 2
+    },
+    "x": []
+   },
+   "Keeps least about you": {
+    "w": {
+     "privacy": 5,
+     "respect": 4,
+     "openness": 2,
+     "accessibility": 1,
+     "economical": 1
+    },
+    "x": []
+   },
+   "Open data and code": {
+    "w": {
+     "openness": 5,
+     "privacy": 3,
+     "respect": 3,
+     "economical": 2,
+     "accessibility": 1
+    },
+    "x": []
+   },
+   "Easiest to start": {
+    "w": {
+     "accessibility": 5,
+     "economical": 3,
+     "privacy": 1,
+     "respect": 1,
+     "openness": 1
+    },
+    "x": []
+   }
+  },
+  "n": 12,
+  "valueSignatureProfile": {
+   "entryCount": 12,
+   "signedEntries": 12,
+   "drawableEntries": 12,
+   "minimumThemesForBloom": 2,
+   "themeCounts": {
+    "privacy": 12,
+    "cost": 12
+   }
+  },
+  "provenanceProfile": {
+   "entryCount": 12,
+   "singleSourceEntries": 6,
+   "multiSourceEntries": 6,
+   "noSourceEntries": 0,
+   "noteOnlyEntries": 0,
+   "averageSourceDomains": 1.58,
+   "topPrimarySources": [
+    {
+     "label": "apple.com",
+     "entries": 1
+    },
+    {
+     "label": "citymapper.com",
+     "entries": 1
+    },
+    {
+     "label": "comaps.app",
+     "entries": 1
+    },
+    {
+     "label": "here.com",
+     "entries": 1
+    },
+    {
+     "label": "magicearth.com",
+     "entries": 1
+    },
+    {
+     "label": "openstreetmap.org",
+     "entries": 1
+    }
+   ]
+  },
+  "decision": {
+   "category": "maps",
+   "reads": {
+    "text": "Compare maps by privacy, everyday access, respect for attention, and openness.",
+    "basis": [
+     {
+      "criterion": "privacy",
+      "readsAs": "privacy"
+     },
+     {
+      "criterion": "accessibility",
+      "readsAs": "everyday access"
+     },
+     {
+      "criterion": "respect",
+      "readsAs": "respect for attention"
+     },
+     {
+      "criterion": "openness",
+      "readsAs": "openness"
+     }
+    ],
+    "signature": {
+     "by": "Conscious Consuming",
+     "on": "2026-07-15",
+     "status": "approved-batch"
+    },
+    "receipt": {
+     "dataset": "maps",
+     "entryCount": 12,
+     "criteria": [
+      {
+       "criterion": "privacy",
+       "readsAs": "privacy",
+       "known": 12,
+       "minimum": 30,
+       "maximum": 95,
+       "spread": 65
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access",
+       "known": 12,
+       "minimum": 55,
+       "maximum": 90,
+       "spread": 35
+      },
+      {
+       "criterion": "respect",
+       "readsAs": "respect for attention",
+       "known": 11,
+       "minimum": 12,
+       "maximum": 95,
+       "spread": 83
+      },
+      {
+       "criterion": "openness",
+       "readsAs": "openness",
+       "known": 10,
+       "minimum": 8,
+       "maximum": 100,
+       "spread": 92
+      }
+     ]
+    }
+   },
+   "axes": [
+    {
+     "id": "cost-or-values",
+     "kind": "cost-values",
+     "label": "Cost or overall fit",
+     "question": "Lower cost or a stronger overall fit?",
+     "criteria": [
+      "economical",
+      "privacy",
+      "accessibility",
+      "respect",
+      "openness"
+     ],
+     "poles": [
+      "Lower cost",
+      "Stronger overall fit"
+     ],
+     "default": 50
+    },
+    {
+     "id": "access-or-privacy",
+     "kind": "tradeoff",
+     "label": "Access or privacy",
+     "question": "Easier access or less data exposure?",
+     "criteria": [
+      "accessibility",
+      "privacy"
+     ],
+     "poles": [
+      "Easier access",
+      "Less exposure"
+     ],
+     "default": 50
+    },
+    {
+     "id": "respect",
+     "kind": "criterion",
+     "label": "Respect for attention",
+     "question": "Do you want the more respectful option?",
+     "criteria": [
+      "respect"
+     ],
+     "poles": [
+      "Flexible",
+      "More respectful"
+     ],
+     "default": 50
+    }
+   ],
+   "budget": {
+    "available": true,
+    "mode": "assessed-affordability-rank",
+    "criterion": "economical",
+    "minimumKnown": 5,
+    "knownEntries": 6,
+    "coverage": 0.5
+   },
+   "archetypes": [
+    "best-for-most",
+    "strictest-match",
+    "budget-honest"
+   ],
+   "page": {
+    "stage": "approved-batch",
+    "primaryRoute": true
+   },
+   "consumer": {
+    "reads": "Round 8 approved category differences reads.",
+    "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+    "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+    "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+    "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+   }
+  }
+ },
+ "criteria": [
+  {
+   "key": "privacy",
+   "label": "Keeps little location data about you",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "respect",
+   "label": "No advertising or profiling business model",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "openness",
+   "label": "Open map data and code",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "accessibility",
+   "label": "Easy to start and use, judged by platforms, offline use and sign-in",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "economical",
+   "label": "Economical",
+   "source": "curated",
+   "tier": "assessed"
+  }
+ ],
+ "products": [
+  {
+   "allergens": [],
+   "allergensDeclared": true,
+   "region": [
+    "global"
+   ],
+   "code": "google-maps",
+   "name": "Google Maps",
+   "brand": "Google",
+   "scores": {
+    "privacy": 45,
+    "respect": 12,
+    "openness": 8,
+    "accessibility": 90
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Google's Maps Help says Timeline is off by default for a Google Account and can only be turned on by opting in, that the data shown comes from the device so Timeline is not available on a computer, and that a cloud backup is an encrypted copy on Google's servers.",
+     "source": "https://support.google.com/maps/answer/14169818?hl=en",
+     "asof": "2026-09-29"
+    },
+    "respect": {
+     "note": "New Jersey's Attorney General says in its release on the November 2022 settlement that location data is a key part of Google's digital advertising business and is used to build detailed user profiles for targeted ads, and that 40 states settled for $391.5 million after alleging Google misled users about its location tracking since at least 2014.",
+     "source": "https://www.njoag.gov/forty-attorneys-general-announce-historic-settlement-with-google-over-location-tracking-practices/",
+     "asof": "2026-09-29"
+    },
+    "openness": {
+     "note": "Google Maps' terms say users may not redistribute or sell any part of Google Maps, copy its content, mass download it or create bulk feeds, or use it to build a substitute mapping dataset.",
+     "source": "https://www.google.com/help/terms_maps/",
+     "asof": "2026-09-29"
+    },
+    "accessibility": {
+     "note": "Google's help page says an area can be saved for offline use and guidance works while the whole route is inside the downloaded area, and also says offline downloads are unavailable in some countries or regions.",
+     "source": "https://support.google.com/maps/answer/6291838?hl=en",
+     "asof": "2026-09-29"
+    }
+   },
+   "links": [
+    {
+     "label": "Timeline settings",
+     "url": "https://support.google.com/maps/answer/14169818?hl=en"
+    },
+    {
+     "label": "Attorney General release, 2022",
+     "url": "https://www.njoag.gov/forty-attorneys-general-announce-historic-settlement-with-google-over-location-tracking-practices/"
+    },
+    {
+     "label": "Ads in Maps",
+     "url": "https://support.google.com/maps/answer/9947218?hl=en"
+    },
+    {
+     "label": "Digital Markets Act gatekeepers",
+     "url": "https://digital-markets-act.ec.europa.eu/gatekeepers_en"
+    }
+   ],
+   "description": "Google's maps app. Timeline is off by default, but Google's own Maps Help says ads appear while browsing, searching and navigating, and a state attorney general describes location data as central to its advertising business.",
+   "focuses": [
+    "Google",
+    "Mainstream",
+    "Ads",
+    "Closed source"
+   ],
+   "valueSignature": {
+    "privacy": 21.67,
+    "cost": 90
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "support.google.com",
+    "sourceLabels": [
+     "support.google.com",
+     "google.com",
+     "njoag.gov"
+    ]
+   }
+  },
+  {
+   "allergens": [],
+   "allergensDeclared": true,
+   "region": [
+    "global"
+   ],
+   "code": "apple-maps",
+   "name": "Apple Maps",
+   "brand": "Apple",
+   "scores": {
+    "privacy": 78,
+    "respect": 55,
+    "openness": 8,
+    "accessibility": 68
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Apple's privacy page says there is no sign-in when starting Maps, that search terms, routing and traffic data are associated with random identifiers rather than an Apple Account, that Apple has no profile of a person's movements and searches, and that Significant Locations and collections sync with end-to-end encryption.",
+     "source": "https://www.apple.com/privacy/features/",
+     "asof": "2026-09-29"
+    },
+    "respect": {
+     "note": "Apple's March 2026 announcement says ads on Maps begin that summer in the US and Canada, appear at the top of search results and in a Suggested Places section, and that a user's location and the ads they see are not associated with their Apple Account.",
+     "source": "https://www.apple.com/newsroom/2026/03/introducing-apple-business-a-new-all-in-one-platform-for-businesses-of-all-sizes/",
+     "asof": "2026-09-29"
+    },
+    "openness": {
+     "note": "Apple's Maps terms bar users from copying, extracting or scraping any part of the service, including bulk downloads and databases built from its data, and from using it to train any model.",
+     "source": "https://www.apple.com/legal/internet-services/maps/terms-en.html",
+     "asof": "2026-09-29"
+    },
+    "accessibility": {
+     "note": "Apple's support page says Maps on the web works in Safari on macOS and iOS and in Edge, Chrome and Firefox on Mac, PC and mobile devices, with feature availability varying by platform, language and region.",
+     "source": "https://support.apple.com/en-us/120585",
+     "asof": "2026-09-29"
+    }
+   },
+   "links": [
+    {
+     "label": "Apple Maps privacy",
+     "url": "https://www.apple.com/privacy/features/"
+    },
+    {
+     "label": "Ads on Maps announcement",
+     "url": "https://www.apple.com/newsroom/2026/03/introducing-apple-business-a-new-all-in-one-platform-for-businesses-of-all-sizes/"
+    },
+    {
+     "label": "Offline maps on iPhone",
+     "url": "https://support.apple.com/en-us/105084"
+    }
+   ],
+   "description": "Random identifiers instead of an account and no sign-in, according to Apple. Apple announced ads in Maps for the US and Canada in 2026, and says they stay unlinked to an Apple Account. Offline maps exist in iOS 17 and later but not in all countries.",
+   "focuses": [
+    "Apple",
+    "Mainstream",
+    "Ads",
+    "Closed source"
+   ],
+   "valueSignature": {
+    "privacy": 47,
+    "cost": 68
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "apple.com",
+    "sourceLabels": [
+     "apple.com",
+     "support.apple.com"
+    ]
+   }
+  },
+  {
+   "allergens": [],
+   "allergensDeclared": true,
+   "region": [
+    "global"
+   ],
+   "code": "waze",
+   "name": "Waze",
+   "brand": "Waze Mobile Limited",
+   "scores": {
+    "privacy": 30,
+    "respect": 20,
+    "openness": 10,
+    "accessibility": 82
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Waze's privacy policy says every user gets a Waze account whether or not they register, linked to a unique identifier, that location and route information is saved to a route history of all trips made in the app, and that depending on device and account settings location may be collected even when the app is not in use.",
+     "source": "https://www.waze.com/legal/privacy",
+     "asof": "2026-09-29"
+    },
+    "respect": {
+     "note": "Waze's privacy policy says it collects information in part to show relevant ads while using Waze and, depending on settings, may show personalized ads based on interests and activity, and it has a section on ads in Waze.",
+     "source": "https://www.waze.com/legal/privacy",
+     "asof": "2026-09-29"
+    },
+    "openness": {
+     "note": "Waze's terms of service say users may not copy, modify, adapt, translate, reverse engineer, decompile or disassemble any portion of the service, or mass download content to build a database.",
+     "source": "https://www.waze.com/legal/tos",
+     "asof": "2026-09-29"
+    },
+    "accessibility": {
+     "note": "Waze's privacy policy says the service may be used whether or not a user registers an account, and that registering is needed only for certain features such as map editing.",
+     "source": "https://www.waze.com/legal/privacy",
+     "asof": "2026-09-29"
+    }
+   },
+   "links": [
+    {
+     "label": "Privacy policy",
+     "url": "https://www.waze.com/legal/privacy"
+    },
+    {
+     "label": "Terms of service",
+     "url": "https://www.waze.com/legal/tos"
+    }
+   ],
+   "description": "Community-reported traffic, used without registering. Its policy says a route history of every trip is saved and personalized ads can be shown depending on settings.",
+   "focuses": [
+    "Google",
+    "Ads",
+    "Closed source"
+   ],
+   "valueSignature": {
+    "privacy": 20,
+    "cost": 82
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "waze.com"
+   }
+  },
+  {
+   "allergens": [],
+   "allergensDeclared": true,
+   "region": [
+    "global"
+   ],
+   "code": "here-wego",
+   "name": "HERE WeGo",
+   "brand": "HERE Technologies",
+   "scores": {
+    "privacy": 68,
+    "respect": 45,
+    "accessibility": 75,
+    "economical": 90
+   },
+   "provenance": {
+    "privacy": {
+     "note": "HERE's WeGo privacy supplement says no location data or other information is sent to HERE if the service is used only in offline mode, that features other than syncing collections work without signing in, and that activity records are typically kept only for a short period before being anonymized.",
+     "source": "https://www.here.com/en-us/privacy/here-wego-here-application-or-here-maps-privacy-supplement-updated",
+     "asof": "2026-09-29"
+    },
+    "respect": {
+     "note": "HERE's WeGo privacy supplement says the service may include location based advertising and behaviorally profiled advertisements, and that the device advertising ID may be shared with advertising networks to provide relevant ones.",
+     "source": "https://www.here.com/en-us/privacy/here-wego-here-application-or-here-maps-privacy-supplement-updated",
+     "asof": "2026-09-29"
+    },
+    "accessibility": {
+     "note": "HERE's WeGo page offers downloads for iOS, Android, Huawei and Samsung devices and describes an offline map capability.",
+     "source": "https://www.here.com/products/wego",
+     "asof": "2026-09-29"
+    },
+    "economical": {
+     "note": "HERE's WeGo page calls it a free mobile application.",
+     "source": "https://www.here.com/products/wego",
+     "asof": "2026-09-29"
+    }
+   },
+   "links": [
+    {
+     "label": "HERE WeGo",
+     "url": "https://www.here.com/products/wego"
+    },
+    {
+     "label": "Privacy supplement",
+     "url": "https://www.here.com/en-us/privacy/here-wego-here-application-or-here-maps-privacy-supplement-updated"
+    }
+   ],
+   "price": {
+    "tier": "free"
+   },
+   "description": "A free app with downloadable offline maps that sends HERE nothing in offline mode. Online, its policy allows location-based and behaviorally profiled ads.",
+   "focuses": [
+    "Free",
+    "Ads",
+    "Closed source"
+   ],
+   "valueSignature": {
+    "privacy": 56.5,
+    "cost": 82.5
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "here.com"
+   }
+  },
+  {
+   "allergens": [],
+   "allergensDeclared": true,
+   "region": [
+    "global"
+   ],
+   "code": "sygic-gps",
+   "name": "Sygic GPS Navigation",
+   "brand": "Sygic",
+   "scores": {
+    "privacy": 42,
+    "respect": 35,
+    "accessibility": 72
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Sygic's privacy policy lists, among its purposes, analysing user behaviour, measuring and optimising marketing campaigns, and linking information across devices associated with the same user.",
+     "source": "https://www.sygic.com/company/privacy-policy",
+     "asof": "2026-09-29"
+    },
+    "respect": {
+     "note": "Sygic's privacy policy lists delivering and evaluating targeted advertising, where permitted by law, among the purposes for which it uses information.",
+     "source": "https://www.sygic.com/company/privacy-policy",
+     "asof": "2026-09-29"
+    },
+    "accessibility": {
+     "note": "Sygic's privacy policy describes its GPS Navigation app as an offline navigation app for Android and iOS with 3D offline maps and real-time traffic information.",
+     "source": "https://www.sygic.com/company/privacy-policy",
+     "asof": "2026-09-29"
+    }
+   },
+   "links": [
+    {
+     "label": "Sygic GPS Navigation",
+     "url": "https://www.sygic.com/gps-navigation"
+    },
+    {
+     "label": "Privacy policy",
+     "url": "https://www.sygic.com/company/privacy-policy"
+    }
+   ],
+   "description": "An offline car navigation app from a Slovak company. Its privacy policy lists targeted advertising and linking information across devices among its purposes.",
+   "focuses": [
+    "EU",
+    "Ads",
+    "Closed source"
+   ],
+   "valueSignature": {
+    "privacy": 38.5,
+    "cost": 72
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "sygic.com"
+   }
+  },
+  {
+   "allergens": [],
+   "allergensDeclared": true,
+   "region": [
+    "global"
+   ],
+   "code": "magic-earth",
+   "name": "Magic Earth",
+   "brand": "Magic Lane",
+   "scores": {
+    "privacy": 85,
+    "respect": 88,
+    "openness": 40,
+    "accessibility": 55,
+    "economical": 55
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Magic Earth's privacy policy says it uses information generated while the service runs but does not collect it, does not store personal information generated automatically, and may collect only data that does not permit direct association with an individual.",
+     "source": "https://www.magicearth.com/terms-and-conditions",
+     "asof": "2026-09-29"
+    },
+    "respect": {
+     "note": "Magic Earth's home page says the company does not collect personal data, track movements or profile users, and describes the app as 100% surveillance free.",
+     "source": "https://www.magicearth.com/",
+     "asof": "2026-09-29"
+    },
+    "openness": {
+     "note": "Magic Earth's maps page says its map data is OpenStreetMap; the page does not say the app's own code is published.",
+     "source": "https://www.magicearth.com/maps",
+     "asof": "2026-09-29"
+    },
+    "accessibility": {
+     "note": "Magic Earth's pricing page lists offline maps, real-time traffic and weather, and CarPlay and Android Auto under Premium, and only basic navigation and standard maps under Essential, with downloads on the App Store and Google Play.",
+     "source": "https://www.magicearth.com/pricing",
+     "asof": "2026-09-29"
+    },
+    "economical": {
+     "note": "Magic Earth's pricing page lists a free Essential tier and a Premium licence sold as a one-year licence with no auto renewal on the web or as an annual subscription in the app stores, with a 14-day free trial.",
+     "source": "https://www.magicearth.com/pricing",
+     "asof": "2026-09-29"
+    }
+   },
+   "links": [
+    {
+     "label": "Magic Earth",
+     "url": "https://www.magicearth.com/"
+    },
+    {
+     "label": "Pricing",
+     "url": "https://www.magicearth.com/pricing"
+    },
+    {
+     "label": "Privacy policy",
+     "url": "https://www.magicearth.com/terms-and-conditions"
+    }
+   ],
+   "price": {
+    "tier": "freemium"
+   },
+   "description": "OpenStreetMap-based navigation whose maker says it does not collect or profile. Offline maps and live traffic sit behind the paid Premium licence.",
+   "focuses": [
+    "Freemium",
+    "Private",
+    "No ads",
+    "Closed source"
+   ],
+   "valueSignature": {
+    "privacy": 71,
+    "cost": 55
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "magicearth.com"
+   }
+  },
+  {
+   "allergens": [],
+   "allergensDeclared": true,
+   "region": [
+    "global"
+   ],
+   "code": "organic-maps",
+   "name": "Organic Maps",
+   "brand": "Organic Maps OÜ",
+   "scores": {
+    "privacy": 95,
+    "respect": 95,
+    "openness": 88,
+    "accessibility": 65,
+    "economical": 100
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Organic Maps' privacy policy, effective 2021-04-24, says there is no collection of location, statistical or personal data from the device whatsoever.",
+     "source": "https://organicmaps.app/privacy/",
+     "asof": "2026-09-29"
+    },
+    "respect": {
+     "note": "Organic Maps' home page says the app has no ads, no tracking and no data collection, cites verification by the Exodus Privacy Project, and asks users to donate to support it.",
+     "source": "https://organicmaps.app/",
+     "asof": "2026-09-29"
+    },
+    "openness": {
+     "note": "Organic Maps' repository says the code is licensed under Apache 2.0 while its binary map data files are provided under a separate data licence, and describes the maps as crowd-sourced OpenStreetMap data.",
+     "source": "https://github.com/organicmaps/organicmaps",
+     "asof": "2026-09-29"
+    },
+    "accessibility": {
+     "note": "Organic Maps' home page lists App Store, Google Play, Huawei AppGallery, Obtainium, Accrescent and F-Droid downloads, says all features work without an internet connection once maps are downloaded, and lists no registration.",
+     "source": "https://organicmaps.app/",
+     "asof": "2026-09-29"
+    },
+    "economical": {
+     "note": "Organic Maps' home page says the app is absolutely free, with no ads, and asks users to donate.",
+     "source": "https://organicmaps.app/",
+     "asof": "2026-09-29"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://organicmaps.app/"
+    },
+    {
+     "label": "Source",
+     "url": "https://github.com/organicmaps/organicmaps"
+    },
+    {
+     "label": "Privacy policy",
+     "url": "https://organicmaps.app/privacy/"
+    }
+   ],
+   "price": {
+    "tier": "free"
+   },
+   "description": "Free offline maps from OpenStreetMap with no account and, by its own policy, no collection of location data. The project's README says donations fall well short of the effort needed to sustain it.",
+   "focuses": [
+    "Open source",
+    "Free",
+    "Private",
+    "No ads",
+    "Offline"
+   ],
+   "valueSignature": {
+    "privacy": 92.67,
+    "cost": 82.5
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "organicmaps.app",
+    "sourceLabels": [
+     "organicmaps.app",
+     "GitHub"
+    ]
+   }
+  },
+  {
+   "allergens": [],
+   "allergensDeclared": true,
+   "region": [
+    "global"
+   ],
+   "code": "comaps",
+   "name": "CoMaps",
+   "brand": "CoMaps",
+   "scores": {
+    "privacy": 95,
+    "respect": 90,
+    "openness": 92,
+    "accessibility": 60,
+    "economical": 100
+   },
+   "provenance": {
+    "privacy": {
+     "note": "CoMaps' privacy page, effective 2026-09-19, says the app has no form of identification of people, advertising or personal data collection and does not track users, though log files emailed to support may contain GPS coordinates.",
+     "source": "https://comaps.app/privacy/",
+     "asof": "2026-09-29"
+    },
+    "respect": {
+     "note": "CoMaps' fork announcement of 12 May 2025 lists its core principles as transparency, community decision-making, not-for-profit and public interest, fully open source and privacy, and says donations are handled transparently through Open Collective.",
+     "source": "https://www.comaps.app/news/2025-05-12/3/",
+     "asof": "2026-09-29"
+    },
+    "openness": {
+     "note": "CoMaps' repository describes a community-led free and open source maps app based on OpenStreetMap, a fork of Organic Maps, licensed under the Apache License 2.0.",
+     "source": "https://github.com/comaps/comaps",
+     "asof": "2026-09-29"
+    },
+    "accessibility": {
+     "note": "CoMaps' home page lists Google Play, App Store, F-Droid and AppGallery downloads and offline search and routing, and says the app comes preinstalled as the default map app on some operating systems.",
+     "source": "https://comaps.app/",
+     "asof": "2026-09-29"
+    },
+    "economical": {
+     "note": "CoMaps' home page says the app is free for everyone and built by the community, and links to donations.",
+     "source": "https://comaps.app/",
+     "asof": "2026-09-29"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://comaps.app/"
+    },
+    {
+     "label": "Source",
+     "url": "https://github.com/comaps/comaps"
+    },
+    {
+     "label": "Fork announcement",
+     "url": "https://www.comaps.app/news/2025-05-12/3/"
+    }
+   ],
+   "price": {
+    "tier": "free"
+   },
+   "description": "A community fork of Organic Maps announced in May 2025, after CoMaps' announcement says talks with the original project's shareholders made no progress, with donations handled through Open Collective and no data collection by its own policy.",
+   "focuses": [
+    "Open source",
+    "Free",
+    "Private",
+    "No ads",
+    "Offline",
+    "Community-run"
+   ],
+   "valueSignature": {
+    "privacy": 92.33,
+    "cost": 80
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "comaps.app",
+    "sourceLabels": [
+     "comaps.app",
+     "GitHub"
+    ]
+   }
+  },
+  {
+   "allergens": [],
+   "allergensDeclared": true,
+   "region": [
+    "global"
+   ],
+   "code": "osmand",
+   "name": "OsmAnd",
+   "brand": "OsmAnd B.V.",
+   "scores": {
+    "privacy": 88,
+    "respect": 78,
+    "openness": 85,
+    "accessibility": 58,
+    "economical": 62
+   },
+   "provenance": {
+    "privacy": {
+     "note": "OsmAnd's privacy policy says it collects no personal information beyond what users provide with clear consent, that map-download records are tied to a random identifier and the IP address used, that screen-usage sharing is off by default, and that nothing is collected when maps are installed manually.",
+     "source": "https://osmand.net/docs/legal/privacy-policy/",
+     "asof": "2026-09-29"
+    },
+    "respect": {
+     "note": "OsmAnd's privacy policy says collected data may be used for reports, statistics and OsmAnd's own discount pop-up notifications and is never shared with a third party.",
+     "source": "https://osmand.net/docs/legal/privacy-policy/",
+     "asof": "2026-09-29"
+    },
+    "openness": {
+     "note": "OsmAnd's repository says its code is covered by GPLv3 and its artwork by CC-BY-NC-ND 4.0, and describes the software as navigation based on OpenStreetMap.",
+     "source": "https://github.com/osmandapp/OsmAnd",
+     "asof": "2026-09-29"
+    },
+    "accessibility": {
+     "note": "OsmAnd's purchases page says the app is available for Android and iOS and that most of its features are in the free version.",
+     "source": "https://osmand.net/docs/user/purchases/",
+     "asof": "2026-09-29"
+    },
+    "economical": {
+     "note": "OsmAnd's Android purchases page says the free version allows 7 map downloads, while the paid OsmAnd+ app and Maps+ purchase unlock unlimited downloads.",
+     "source": "https://osmand.net/docs/user/purchases/android/",
+     "asof": "2026-09-29"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://osmand.net/"
+    },
+    {
+     "label": "Source",
+     "url": "https://github.com/osmandapp/OsmAnd"
+    },
+    {
+     "label": "Privacy policy",
+     "url": "https://osmand.net/docs/legal/privacy-policy/"
+    }
+   ],
+   "price": {
+    "tier": "freemium"
+   },
+   "description": "Offline OpenStreetMap navigation with deep settings. The free version is capped at 7 map downloads, and unlimited downloads need the paid version.",
+   "focuses": [
+    "Open source",
+    "Freemium",
+    "Private",
+    "Offline"
+   ],
+   "valueSignature": {
+    "privacy": 83.67,
+    "cost": 60
+   },
+   "provenanceSummary": {
+    "factCount": 5,
+    "sourcedFactCount": 5,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "osmand.net",
+    "sourceLabels": [
+     "osmand.net",
+     "GitHub"
+    ]
+   }
+  },
+  {
+   "allergens": [],
+   "allergensDeclared": true,
+   "region": [
+    "global"
+   ],
+   "code": "openstreetmap",
+   "name": "OpenStreetMap (website)",
+   "brand": "OpenStreetMap Foundation",
+   "scores": {
+    "openness": 100,
+    "accessibility": 55,
+    "economical": 100,
+    "privacy": 72
+   },
+   "provenance": {
+    "openness": {
+     "note": "OpenStreetMap's copyright page says the data is open data under the Open Data Commons Open Database License, free to copy, distribute, transmit and adapt with credit, with derived databases shared under the same licence.",
+     "source": "https://www.openstreetmap.org/copyright",
+     "asof": "2026-09-29"
+    },
+    "accessibility": {
+     "note": "OpenStreetMap's site provides a browser map with a directions panel that offers GraphHopper, OSRM or Valhalla routing and route downloads as GeoJSON; the page does not describe voice navigation.",
+     "source": "https://www.openstreetmap.org/directions",
+     "asof": "2026-09-29"
+    },
+    "economical": {
+     "note": "OpenStreetMap's home page says the map is created by people like you and free to use under an open license.",
+     "source": "https://www.openstreetmap.org/",
+     "asof": "2026-09-29"
+    },
+    "privacy": {
+     "note": "The OpenStreetMap Foundation's privacy policy says it receives usage messages and network access data such as IP addresses for the systems it operates, does not support anonymous contributions, and retains non-geographic contributor data on a legitimate-interest basis under GDPR article 6. Contributions are public and attributable to an account by design.",
+     "source": "https://osmfoundation.org/wiki/Privacy_Policy",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://www.openstreetmap.org/"
+    },
+    {
+     "label": "Copyright and licence",
+     "url": "https://www.openstreetmap.org/copyright"
+    }
+   ],
+   "price": {
+    "tier": "free"
+   },
+   "description": "The open map itself, usable in a browser with basic route planning, and the data behind Organic Maps, CoMaps, OsmAnd and Magic Earth. Its own privacy policy is published only on a wiki, so privacy is not scored here.",
+   "focuses": [
+    "Open source",
+    "Free",
+    "Nonprofit"
+   ],
+   "valueSignature": {
+    "privacy": 86,
+    "cost": 77.5
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "openstreetmap.org",
+    "sourceLabels": [
+     "openstreetmap.org",
+     "osmfoundation.org"
+    ]
+   }
+  },
+  {
+   "allergens": [],
+   "allergensDeclared": true,
+   "region": [
+    "global"
+   ],
+   "code": "citymapper",
+   "name": "Citymapper",
+   "brand": "Citymapper",
+   "scores": {
+    "privacy": 55,
+    "respect": 40,
+    "openness": 10,
+    "accessibility": 68
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Citymapper's privacy policy, updated 10 August 2026, says an account is not needed but trip data, destinations, preferences and location information are still collected and linked to a random ID generated at each install.",
+     "source": "https://citymapper.com/privacy",
+     "asof": "2026-09-29"
+    },
+    "respect": {
+     "note": "Citymapper's home page offers advertisers commuters in 400+ major cities through its ad formats and targeting capabilities.",
+     "source": "https://citymapper.com/",
+     "asof": "2026-09-29"
+    },
+    "openness": {
+     "note": "Citymapper's terms say users may not decipher, decompile, disassemble or reverse engineer the software making up its app.",
+     "source": "https://citymapper.com/terms",
+     "asof": "2026-09-29"
+    },
+    "accessibility": {
+     "note": "Citymapper's home page says it covers all the major transit cities of the world and links to iPhone and Android apps.",
+     "source": "https://citymapper.com/",
+     "asof": "2026-09-29"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://citymapper.com/"
+    },
+    {
+     "label": "Privacy policy",
+     "url": "https://citymapper.com/privacy"
+    }
+   ],
+   "description": "Public transport planning for major cities, owned by Via Transportation. It sells advertising to commuters and links trip data to an install ID even without an account.",
+   "focuses": [
+    "Ads",
+    "Closed source"
+   ],
+   "valueSignature": {
+    "privacy": 35,
+    "cost": 68
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "citymapper.com"
+   }
+  },
+  {
+   "allergens": [],
+   "allergensDeclared": true,
+   "region": [
+    "US",
+    "UK"
+   ],
+   "code": "transit",
+   "name": "Transit",
+   "brand": "Transit",
+   "scores": {
+    "privacy": 80,
+    "respect": 88,
+    "openness": 10,
+    "accessibility": 68
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Transit's privacy policy says it keeps location coordinates separate from other personal data such as email, collects location with consent when the app is opened and while a transit trip is tracked, and does not record location when the app is not active.",
+     "source": "https://transitapp.com/privacy",
+     "asof": "2026-09-29"
+    },
+    "respect": {
+     "note": "Transit's privacy policy says that, unlike other navigation apps, it never shares user data with advertisers or data brokers.",
+     "source": "https://transitapp.com/privacy",
+     "asof": "2026-09-29"
+    },
+    "openness": {
+     "note": "Transit's terms say users must not decompile, disassemble, reverse engineer or access any non-UI portion of the app, and give no right to a copy of the source code.",
+     "source": "https://transitapp.com/terms",
+     "asof": "2026-09-29"
+    },
+    "accessibility": {
+     "note": "Transit's home page reports 40M+ downloads and 1200+ cities, naming New York, Chicago, London, Vancouver, Seattle and Houston.",
+     "source": "https://transitapp.com/",
+     "asof": "2026-09-29"
+    }
+   },
+   "links": [
+    {
+     "label": "Website",
+     "url": "https://transitapp.com/"
+    },
+    {
+     "label": "Privacy policy",
+     "url": "https://transitapp.com/privacy"
+    }
+   ],
+   "description": "Public transport routing for cities that keeps location apart from other personal data and says it never shares data with advertisers. Its home page describes getting around cities by bus, train, foot and bike.",
+   "focuses": [
+    "No ads",
+    "Closed source"
+   ],
+   "valueSignature": {
+    "privacy": 59.33,
+    "cost": 68
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "transitapp.com"
+   }
+  }
+ ]
+}

@@ -114,7 +114,7 @@ Storage is part of the value. A plain cracker finished fresh can beat a better-l
 
 Choose crackers with a whole grain or legume flour near the front, moderate sodium, and enough fiber to justify the snack. If crackers are mainly a vehicle for hummus, cheese, or soup, buy a simple sturdy cracker instead of paying for a box full of flavor dust.
 
-For a household default, keep one everyday cracker that meets the basics and one treat cracker if you actually love it. The point is not to make crackers morally impressive. It is to keep a cheap, useful pantry item from quietly becoming salt, air, and packaging.
+For a household default, keep one everyday cracker that meets the basics and one treat cracker if you actually love it. The point is not to make crackers morally impressive. It is to keep a cheap, useful pantry item from becoming salt, air, and packaging.
 
 Useful anchors: USDA [MyPlate grains](https://www.myplate.gov/eat-healthy/grains), FDA [Nutrition Facts label guide](https://www.fda.gov/food/nutrition-facts-label/how-understand-and-use-nutrition-facts-label), FDA [sodium guidance](https://www.fda.gov/food/nutrition-education-resources-materials/sodium-your-diet), FDA [Daily Values table](https://www.fda.gov/food/nutrition-facts-label/daily-value-nutrition-and-supplement-facts-labels), FDA [food allergen labeling guidance](https://www.fda.gov/food/food-allergensgluten-free-guidance-documents-regulatory-information/frequently-asked-questions-food-allergen-labeling-guidance-industry), USDA [organic labeling](https://www.ams.usda.gov/rules-regulations/organic/labeling), and EPA [preventing wasted food at home](https://www.epa.gov/recycle/preventing-wasted-food-home).
 

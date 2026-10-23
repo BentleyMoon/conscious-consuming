@@ -1,0 +1,973 @@
+{
+  "meta": {
+    "id": "social-networks",
+    "label": "Social networks",
+    "type": "Services",
+    "primaryAxis": "privacy",
+    "tradeoff": [
+      "accessibility",
+      "privacy"
+    ],
+    "tradeoffLabels": [
+      "easiest to join",
+      "least profiled"
+    ],
+    "source": "Conscious Consuming (curated)",
+    "attribution": "Built from platforms' own terms, privacy policies, help pages and developer documentation, from regulator records (European Commission decisions under the Digital Markets Act and Digital Services Act, Ireland's Data Protection Commission, the US FTC) and from public companies' annual filings, all read on 2026-09-29; not measured data. Policies and enforcement change, so read the current documents before relying on a row. Privacy here means how far a network is built on profiling its members for advertising, judged from the business model each source describes, regulator findings about data use, and whether messages are readable by the operator. It does not measure how private any single post is, since most posts on every network here are public by design. Openness reflects whether the network runs on a published protocol or open source code, and for closed platforms it rests on the terms that bar reverse engineering, on documentation that limits what outside apps can reach, or, for X, on the Commission's finding about researcher access to public data. ActivityPub, which Mastodon, Pixelfed, Lemmy and Micro.blog use, is a W3C Recommendation of 23 January 2018, and the AT Protocol behind Bluesky is documented at atproto.com. Portability covers export tools and, where a network supports it, moving an account and its followers; it is left empty where the only source that would settle it could not be read. Accessibility means how easily a person can join and how many people are already there, using each source's own user counts, which are counted differently (daily or monthly, worldwide or in the EU only) and are not comparable to each other. Mastodon and Pixelfed are scored here as networks a person joins; running or choosing a server, and Pixelfed as server software, are covered by the sister decision on federated social servers. Facebook and Messenger were one row in the earlier shared dataset; Messenger's messaging is scored under the messaging decision. Nostr, Friendica, PeerTube and Flickr were in that dataset and are not listed here, because this decision needs a roster a person can choose among rather than every protocol. Suggest changes via Contribute.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": {
+          "privacy": 3,
+          "openness": 3,
+          "portability": 3,
+          "accessibility": 3
+        },
+        "x": []
+      },
+      "Least profiled": {
+        "w": {
+          "privacy": 5,
+          "openness": 2,
+          "portability": 2,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Open and portable": {
+        "w": {
+          "openness": 5,
+          "portability": 4,
+          "privacy": 3,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Easiest to join": {
+        "w": {
+          "accessibility": 5,
+          "privacy": 1,
+          "openness": 1,
+          "portability": 1
+        },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    {
+      "key": "privacy",
+      "label": "Privacy from ad profiling",
+      "source": "curated"
+    },
+    {
+      "key": "openness",
+      "label": "Open protocol or open source",
+      "source": "curated"
+    },
+    {
+      "key": "portability",
+      "label": "Easy to leave with your data or your followers",
+      "source": "curated"
+    },
+    {
+      "key": "accessibility",
+      "label": "Easy to join, and where your people already are",
+      "source": "curated"
+    }
+  ],
+  "products": [
+    {
+      "allergens": [],
+      "allergensDeclared": true,
+      "region": [
+        "global"
+      ],
+      "code": "facebook",
+      "name": "Facebook",
+      "brand": "Meta",
+      "scores": {
+        "privacy": 12,
+        "openness": 12,
+        "portability": 50,
+        "accessibility": 92
+      },
+      "provenance": {
+        "privacy": {
+          "note": "The European Commission found on 23 April 2025 that Meta breached the Digital Markets Act obligation to give consumers the choice of a service that uses less of their personal data, and fined Meta €200 million.",
+          "source": "https://digital-markets-act.ec.europa.eu/commission-finds-apple-and-meta-breach-digital-markets-act-2025-04-23_en",
+          "asof": "2026-09-29"
+        },
+        "openness": {
+          "note": "Meta's Terms of Service, which cover Facebook, require written permission or an open source licence to modify, translate, create derivative works of, decompile or reverse engineer its products, or to try to extract source code.",
+          "source": "https://www.facebook.com/legal/terms",
+          "asof": "2026-09-29"
+        },
+        "portability": {
+          "note": "Facebook's Help Center has a page titled 'Export a copy of your Facebook information', described as showing how to export a copy of your information from Facebook.",
+          "source": "https://www.facebook.com/help/212802592074644",
+          "asof": "2026-09-29"
+        },
+        "accessibility": {
+          "note": "Meta reported 3.58 billion daily active people across its family of apps on average for December 2025, up 7% from a year earlier; the release gives no figure for Facebook alone.",
+          "source": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Fourth-Quarter-and-Full-Year-2025-Results/default.aspx",
+          "asof": "2026-09-29"
+        }
+      },
+      "links": [
+        {
+          "label": "Commission decision, April 2025",
+          "url": "https://digital-markets-act.ec.europa.eu/commission-finds-apple-and-meta-breach-digital-markets-act-2025-04-23_en"
+        },
+        {
+          "label": "Digital Markets Act gatekeepers",
+          "url": "https://digital-markets-act.ec.europa.eu/gatekeepers_en"
+        },
+        {
+          "label": "Meta Terms of Service",
+          "url": "https://www.facebook.com/legal/terms"
+        },
+        {
+          "label": "Meta annual report, FY2025",
+          "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm"
+        }
+      ],
+      "description": "Meta's flagship network and a Digital Markets Act gatekeeper service. In April 2025 the European Commission fined Meta €200 million over the choice offered to people who want a service that uses less of their personal data.",
+      "focuses": [
+        "Meta",
+        "Mainstream",
+        "Closed source",
+        "Ads"
+      ]
+    },
+    {
+      "allergens": [],
+      "allergensDeclared": true,
+      "region": [
+        "global"
+      ],
+      "code": "instagram",
+      "name": "Instagram",
+      "brand": "Meta",
+      "scores": {
+        "privacy": 15,
+        "openness": 15,
+        "portability": 50,
+        "accessibility": 90
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Instagram's Help Center page on end-to-end encryption carries the description 'End-to-end encrypted messaging on Instagram ended May 8, 2026'; the page body loads by script, so the description is the text that could be read.",
+          "source": "https://help.instagram.com/491565145294150/",
+          "asof": "2026-09-29"
+        },
+        "openness": {
+          "note": "Meta's Instagram Platform documentation says its APIs give apps access to data for Instagram professional accounts, meaning businesses and creators.",
+          "source": "https://developers.facebook.com/docs/instagram-platform/overview",
+          "asof": "2026-09-29"
+        },
+        "portability": {
+          "note": "Instagram's Help Center says you can review the information you've shared on Instagram in Profile history and export a copy of it to your device or an external service.",
+          "source": "https://help.instagram.com/181231772500920",
+          "asof": "2026-09-29"
+        },
+        "accessibility": {
+          "note": "Meta's release reports 3.58 billion daily active people across its family of apps for December 2025, a family that includes Instagram; it gives no Instagram-only figure.",
+          "source": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Fourth-Quarter-and-Full-Year-2025-Results/default.aspx",
+          "asof": "2026-09-29"
+        }
+      },
+      "links": [
+        {
+          "label": "End-to-end encryption on Instagram",
+          "url": "https://help.instagram.com/491565145294150/"
+        },
+        {
+          "label": "Meta annual report, FY2025",
+          "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm"
+        },
+        {
+          "label": "Export your information",
+          "url": "https://help.instagram.com/181231772500920"
+        }
+      ],
+      "description": "Photo and video sharing on Meta's ad-funded model. Its own Help Center says end-to-end encrypted messaging on Instagram ended on 8 May 2026.",
+      "focuses": [
+        "Meta",
+        "Mainstream",
+        "Closed source",
+        "Ads",
+        "Data export"
+      ]
+    },
+    {
+      "allergens": [],
+      "allergensDeclared": true,
+      "region": [
+        "global"
+      ],
+      "code": "threads",
+      "name": "Threads",
+      "brand": "Meta",
+      "scores": {
+        "privacy": 15,
+        "openness": 40,
+        "portability": 55,
+        "accessibility": 82
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Meta's page for advertisers says campaigns run in Ads Manager are opted in to ads on Threads by default, that the ads appear between organic posts in the Threads home feed, and that advertisers get the same level of personalization as on other Meta platforms.",
+          "source": "https://www.facebook.com/business/ads/threads/",
+          "asof": "2026-09-29"
+        },
+        "openness": {
+          "note": "Meta's help page on Threads says that when you turn on sharing to the fediverse, your Threads profile and posts are shared with users on other servers not controlled or moderated by Meta.",
+          "source": "https://help.instagram.com/387800897233223",
+          "asof": "2026-09-29"
+        },
+        "portability": {
+          "note": "Meta's help page for Threads says you can review your Threads information in Account history and export a copy to an external service or to your device.",
+          "source": "https://help.instagram.com/259803026523198/",
+          "asof": "2026-09-29"
+        },
+        "accessibility": {
+          "note": "Meta's June 2026 announcement says Threads has reached 500 million monthly active users.",
+          "source": "https://about.fb.com/news/2026/06/meta-launching-new-features-500-million-monthly-threads-users/",
+          "asof": "2026-09-29"
+        }
+      },
+      "links": [
+        {
+          "label": "Ads on Threads",
+          "url": "https://www.facebook.com/business/ads/threads/"
+        },
+        {
+          "label": "Fediverse sharing",
+          "url": "https://help.instagram.com/387800897233223"
+        }
+      ],
+      "description": "Meta's text network, open to advertisers by default, with an opt-in switch that shares posts with other servers on the fediverse. Of Meta's networks listed here, it is the only one with that switch.",
+      "focuses": [
+        "Meta",
+        "Ads",
+        "ActivityPub",
+        "Opt-in"
+      ]
+    },
+    {
+      "allergens": [],
+      "allergensDeclared": true,
+      "region": [
+        "global"
+      ],
+      "code": "tiktok",
+      "name": "TikTok",
+      "brand": "ByteDance",
+      "scores": {
+        "privacy": 14,
+        "openness": 10,
+        "portability": 45,
+        "accessibility": 82
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Ireland's Data Protection Commission fined TikTok €530 million in 2025 for infringing the GDPR in its transfers of EEA user data to China and in its transparency requirements, and ordered it to bring its processing into compliance within six months.",
+          "source": "https://www.dataprotection.ie/en/news-media/latest-news/irish-data-protection-commission-fines-tiktok-eu530-million-and-orders-corrective-measures-following",
+          "asof": "2026-09-29"
+        },
+        "openness": {
+          "note": "TikTok's Terms of Service say users may not make unauthorised copies of, modify, adapt, translate, reverse engineer, disassemble or decompile the Services, or create derivative works of them.",
+          "source": "https://www.tiktok.com/legal/page/row/terms-of-service/en",
+          "asof": "2026-09-29"
+        },
+        "portability": {
+          "note": "The European Commission's Digital Markets Act developer portal lists a Data Portability API among ByteDance's tools for TikTok, under the Article 6(9) duty to give users portability of data they provide or generate, with continuous and real-time access.",
+          "source": "https://digital-markets-act.ec.europa.eu/developer-portal/end-user-data-portability_en",
+          "asof": "2026-09-29"
+        },
+        "accessibility": {
+          "note": "TikTok's seventh Digital Services Act transparency report, published 31 August 2026, says TikTok reaches 189 million people across the European Union every month, for January to June 2026.",
+          "source": "https://newsroom.tiktok.com/digital-services-act-our-seventh-transparency-report-on-content-moderation-in-europe?lang=en-150",
+          "asof": "2026-09-29"
+        }
+      },
+      "links": [
+        {
+          "label": "Data Protection Commission decision",
+          "url": "https://www.dataprotection.ie/en/news-media/latest-news/irish-data-protection-commission-fines-tiktok-eu530-million-and-orders-corrective-measures-following"
+        },
+        {
+          "label": "US Justice Department settlement, August 2026",
+          "url": "https://www.justice.gov/opa/pr/justice-department-secures-400m-settlement-tiktok-and-bytedance-resolve-childrens-privacy"
+        }
+      ],
+      "description": "Short video with a very large audience. Ireland's regulator fined it €530 million in 2025 over data transfers to China, and in August 2026 the US Justice Department announced a $400 million settlement of a children's privacy case.",
+      "focuses": [
+        "Mainstream",
+        "Closed source",
+        "Ads"
+      ]
+    },
+    {
+      "allergens": [],
+      "allergensDeclared": true,
+      "region": [
+        "global"
+      ],
+      "code": "x",
+      "name": "X",
+      "brand": "X Corp",
+      "scores": {
+        "privacy": 20,
+        "openness": 18,
+        "portability": 40,
+        "accessibility": 75
+      },
+      "provenance": {
+        "privacy": {
+          "note": "X's privacy policy, effective 15 January 2026, says it collects approximate location including to show relevant ads, uses information to help recognise devices and serve ads on and off X, and may use collected and public information to train its machine learning or AI models.",
+          "source": "https://x.com/en/privacy",
+          "asof": "2026-09-29"
+        },
+        "openness": {
+          "note": "The European Commission fined X €120 million on 5 December 2025 for breaching Digital Services Act transparency obligations, including an ad repository that fails the DSA's requirements and a failure to give researchers access to public data.",
+          "source": "https://digital-strategy.ec.europa.eu/en/news/commission-fines-x-eu120-million-under-digital-services-act",
+          "asof": "2026-09-29"
+        },
+        "portability": {
+          "note": "X's privacy policy says you can download a copy of your information, such as your posts, by following the instructions it links to.",
+          "source": "https://x.com/en/privacy",
+          "asof": "2026-09-29"
+        },
+        "accessibility": {
+          "note": "X's privacy policy says the public does not need to be signed in to view some content on X, and that an account is needed to use some of its products and services.",
+          "source": "https://x.com/en/privacy",
+          "asof": "2026-09-29"
+        }
+      },
+      "links": [
+        {
+          "label": "Commission fine, December 2025",
+          "url": "https://digital-strategy.ec.europa.eu/en/news/commission-fines-x-eu120-million-under-digital-services-act"
+        },
+        {
+          "label": "Commission accepts action plan, July 2026",
+          "url": "https://digital-strategy.ec.europa.eu/en/news/commission-accepts-xs-action-plan-comply-digital-services-act"
+        },
+        {
+          "label": "Recommendation algorithm source",
+          "url": "https://github.com/twitter/the-algorithm"
+        }
+      ],
+      "description": "A public-first network. The European Commission fined it €120 million in December 2025 under the Digital Services Act and accepted an action plan in July 2026 on ad transparency and researcher data access.",
+      "focuses": [
+        "Mainstream",
+        "Ads",
+        "Closed source"
+      ]
+    },
+    {
+      "allergens": [],
+      "allergensDeclared": true,
+      "region": [
+        "global"
+      ],
+      "code": "youtube",
+      "name": "YouTube",
+      "brand": "Google",
+      "scores": {
+        "privacy": 22,
+        "openness": 12,
+        "portability": 55,
+        "accessibility": 92
+      },
+      "provenance": {
+        "privacy": {
+          "note": "The FTC's 2019 settlement with Google and YouTube for $170 million says YouTube collected persistent identifiers that track users across the Internet from viewers of child-directed channels without notifying parents or getting consent, and used them to deliver targeted ads.",
+          "source": "https://www.ftc.gov/news-events/news/press-releases/2019/09/google-youtube-will-pay-record-170-million-alleged-violations-childrens-privacy-law",
+          "asof": "2026-09-29"
+        },
+        "openness": {
+          "note": "Google's Terms of Service, effective 30 July 2026, list reverse engineering its services or underlying technology to extract trade secrets or other proprietary information among prohibited uses, except as applicable law allows.",
+          "source": "https://policies.google.com/terms",
+          "asof": "2026-09-29"
+        },
+        "portability": {
+          "note": "Google's account help says data from Google products, including YouTube videos, can be exported and downloaded, and that an archive can be created to transfer data to another service.",
+          "source": "https://support.google.com/accounts/answer/3024190?hl=en",
+          "asof": "2026-09-29"
+        },
+        "accessibility": {
+          "note": "YouTube's press page reports billions of monthly logged-in users and localized versions in over 100 countries across 80 languages.",
+          "source": "https://blog.youtube/press/",
+          "asof": "2026-09-29"
+        }
+      },
+      "links": [
+        {
+          "label": "FTC settlement, September 2019",
+          "url": "https://www.ftc.gov/news-events/news/press-releases/2019/09/google-youtube-will-pay-record-170-million-alleged-violations-childrens-privacy-law"
+        },
+        {
+          "label": "Alphabet annual report, FY2025",
+          "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm"
+        }
+      ],
+      "description": "Google's video network, with billions of monthly logged-in users by its own count, and a Digital Markets Act gatekeeper service. Alphabet's annual report says more than 70% of its revenue comes from online advertising, and the FTC's 2019 settlement concerned targeted ads shown to children.",
+      "focuses": [
+        "Google",
+        "Mainstream",
+        "Ads",
+        "Closed source",
+        "Data export"
+      ]
+    },
+    {
+      "allergens": [],
+      "allergensDeclared": true,
+      "region": [
+        "global"
+      ],
+      "code": "reddit",
+      "name": "Reddit",
+      "brand": "Reddit, Inc.",
+      "scores": {
+        "privacy": 28,
+        "openness": 12,
+        "accessibility": 82
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Reddit's annual report for 2025 says 'We generate a majority of our revenue from advertising' and calls Reddit 'one of the most important and differentiated data sources'.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1713445/000171344526000022/rddt-20251231.htm",
+          "asof": "2026-09-29"
+        },
+        "openness": {
+          "note": "Reddit's User Agreement says users may not, without written agreement, modify, prepare derivative works of, disassemble, decompile or reverse engineer any part of the Services or Content.",
+          "source": "https://www.redditinc.com/policies/user-agreement",
+          "asof": "2026-09-29"
+        },
+        "accessibility": {
+          "note": "Reddit's annual report says an average of 121.4 million daily active uniques used Reddit in the quarter ended 31 December 2025.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1713445/000171344526000022/rddt-20251231.htm",
+          "asof": "2026-09-29"
+        }
+      },
+      "links": [
+        {
+          "label": "Annual report, FY2025",
+          "url": "https://www.sec.gov/Archives/edgar/data/1713445/000171344526000022/rddt-20251231.htm"
+        },
+        {
+          "label": "User Agreement",
+          "url": "https://www.redditinc.com/policies/user-agreement"
+        }
+      ],
+      "description": "Communities organised by topic, funded mostly by advertising. Its annual report calls Reddit a differentiated data source. Its help pages on exporting data could not be read, so portability is not scored.",
+      "focuses": [
+        "Mainstream",
+        "Ads",
+        "Closed source"
+      ]
+    },
+    {
+      "allergens": [],
+      "allergensDeclared": true,
+      "region": [
+        "global"
+      ],
+      "code": "snapchat",
+      "name": "Snapchat",
+      "brand": "Snap",
+      "scores": {
+        "privacy": 22,
+        "openness": 10,
+        "portability": 45,
+        "accessibility": 84
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Snap's 2025 annual report says advertising revenue was approximately 87% of total revenue in 2025, 91% in 2024 and 96% in 2023.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000013/snap-20251231.htm",
+          "asof": "2026-09-29"
+        },
+        "openness": {
+          "note": "Snap's terms say users may not reverse engineer, make derivative works of, decompile, disassemble or decode the Services, or extract the source code of their software, without written permission, except as an open source licence or applicable law allows.",
+          "source": "https://www.snap.com/terms",
+          "asof": "2026-09-29"
+        },
+        "portability": {
+          "note": "Snap's privacy policy says you can request a copy of your Snapchat information through its Download My Data tool.",
+          "source": "https://values.snap.com/privacy/privacy-policy",
+          "asof": "2026-09-29"
+        },
+        "accessibility": {
+          "note": "Snap's annual report says it had 474 million daily active users on average in the quarter ended 31 December 2025.",
+          "source": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000013/snap-20251231.htm",
+          "asof": "2026-09-29"
+        }
+      },
+      "links": [
+        {
+          "label": "Annual report, FY2025",
+          "url": "https://www.sec.gov/Archives/edgar/data/1564408/000156440826000013/snap-20251231.htm"
+        },
+        {
+          "label": "Privacy policy",
+          "url": "https://values.snap.com/privacy/privacy-policy"
+        }
+      ],
+      "description": "Snap's network, funded mostly by advertising: about 87% of 2025 revenue, down from 96% in 2023.",
+      "focuses": [
+        "Mainstream",
+        "Ads",
+        "Closed source",
+        "Data export"
+      ]
+    },
+    {
+      "allergens": [],
+      "allergensDeclared": true,
+      "region": [
+        "global"
+      ],
+      "code": "linkedin",
+      "name": "LinkedIn",
+      "brand": "LinkedIn Corporation",
+      "scores": {
+        "privacy": 22,
+        "openness": 12,
+        "portability": 50,
+        "accessibility": 78
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Ireland's Data Protection Commission fined LinkedIn €310 million in October 2024 after an inquiry into processing of personal data for behavioural analysis and targeted advertising, finding it did not validly rely on consent, legitimate interests or contractual necessity and that its transparency about lawful bases was inadequate.",
+          "source": "https://www.dataprotection.ie/en/news-media/press-releases/irish-data-protection-commission-fines-linkedin-ireland-eu310-million",
+          "asof": "2026-09-29"
+        },
+        "openness": {
+          "note": "LinkedIn's User Agreement bars members from reverse engineering, decompiling or disassembling the Services, or trying to derive the source code of any related technology that is not open source.",
+          "source": "https://www.linkedin.com/legal/user-agreement",
+          "asof": "2026-09-29"
+        },
+        "portability": {
+          "note": "LinkedIn's help page says the easiest and fastest way to obtain a copy of your LinkedIn data is to start a data download from Settings & Privacy.",
+          "source": "https://www.linkedin.com/help/linkedin/answer/a1339364/downloading-your-account-data",
+          "asof": "2026-09-29"
+        },
+        "accessibility": {
+          "note": "LinkedIn's About page describes it as the world's largest professional network with more than 1 billion members in more than 200 countries and territories.",
+          "source": "https://about.linkedin.com/",
+          "asof": "2026-09-29"
+        }
+      },
+      "links": [
+        {
+          "label": "Data Protection Commission decision",
+          "url": "https://www.dataprotection.ie/en/news-media/press-releases/irish-data-protection-commission-fines-linkedin-ireland-eu310-million"
+        },
+        {
+          "label": "About LinkedIn",
+          "url": "https://about.linkedin.com/"
+        }
+      ],
+      "description": "The professional network, owned by Microsoft since 2016 and a Digital Markets Act gatekeeper service. Ireland's regulator fined it €310 million in 2024 over ad targeting, and LinkedIn says its revenue comes from subscriptions, advertising and recruitment.",
+      "focuses": [
+        "Microsoft",
+        "Mainstream",
+        "Ads",
+        "Closed source",
+        "Data export"
+      ]
+    },
+    {
+      "allergens": [],
+      "allergensDeclared": true,
+      "region": [
+        "global"
+      ],
+      "code": "discord",
+      "name": "Discord",
+      "brand": "Discord",
+      "scores": {
+        "privacy": 48,
+        "openness": 15,
+        "portability": 45,
+        "accessibility": 78
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Discord's privacy policy, effective 29 September 2025, says 'We don't sell your personal information' and that its business is funded through subscriptions, paid products and sponsored content.",
+          "source": "https://discord.com/privacy",
+          "asof": "2026-09-29"
+        },
+        "openness": {
+          "note": "Discord's terms say users may not reverse engineer or decompile its software or services, or assist anyone in doing so, without its written consent or where applicable law permits it.",
+          "source": "https://discord.com/terms",
+          "asof": "2026-09-29"
+        },
+        "portability": {
+          "note": "Discord's privacy policy says you can request a copy of your data in the Data & Privacy section of User Settings, that the data packet should arrive within 30 days, and that it comes in common digital formats including JSON.",
+          "source": "https://discord.com/privacy",
+          "asof": "2026-09-29"
+        },
+        "accessibility": {
+          "note": "Discord's download page lists apps for Windows, macOS, Linux, iOS, Android and consoles.",
+          "source": "https://discord.com/download",
+          "asof": "2026-09-29"
+        }
+      },
+      "links": [
+        {
+          "label": "Privacy policy",
+          "url": "https://discord.com/privacy"
+        },
+        {
+          "label": "Terms of service",
+          "url": "https://discord.com/terms"
+        }
+      ],
+      "description": "Community chat organised in servers, funded by subscriptions, paid products and sponsored content according to its privacy policy, which also says it does not sell personal information.",
+      "focuses": [
+        "Mainstream",
+        "Closed source",
+        "Data export"
+      ]
+    },
+    {
+      "allergens": [],
+      "allergensDeclared": true,
+      "region": [
+        "global"
+      ],
+      "code": "tumblr",
+      "name": "Tumblr",
+      "brand": "Automattic",
+      "scores": {
+        "privacy": 38,
+        "openness": 30,
+        "portability": 60,
+        "accessibility": 60
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Tumblr's privacy policy says Tumblr selectively runs advertisements to provide its content for free, makes educated guesses about members' interests from their activity to target them, and does not sell or share information that identifies a person, such as a name or contact details, in its ads program.",
+          "source": "https://www.tumblr.com/privacy/en",
+          "asof": "2026-09-29"
+        },
+        "openness": {
+          "note": "Tumblr's developer documentation describes a public API v2 with OAuth for blogs, posts and notifications; the documentation offers no open protocol or published client code.",
+          "source": "https://www.tumblr.com/docs/en/api/v2",
+          "asof": "2026-09-29"
+        },
+        "portability": {
+          "note": "Tumblr's help page says a whole blog can be exported as a ZIP file, primary and secondary blogs separately, from the web only, with backups kept for 3 days and 4 exports allowed per blog per month.",
+          "source": "https://help.tumblr.com/knowledge-base/export-your-blog/",
+          "asof": "2026-09-29"
+        },
+        "accessibility": {
+          "note": "Tumblr's privacy policy says creating an account asks for a username, password, age and email address, and that its content is provided for free.",
+          "source": "https://www.tumblr.com/privacy/en",
+          "asof": "2026-09-29"
+        }
+      },
+      "links": [
+        {
+          "label": "Privacy policy",
+          "url": "https://www.tumblr.com/privacy/en"
+        },
+        {
+          "label": "Export your blog",
+          "url": "https://help.tumblr.com/knowledge-base/export-your-blog/"
+        }
+      ],
+      "description": "Blogging and reblogging, owned by Automattic. It runs personalised ads to keep the content free, and offers a full-blog ZIP export with limits on how often.",
+      "focuses": [
+        "Mainstream",
+        "Ads",
+        "Data export"
+      ]
+    },
+    {
+      "allergens": [],
+      "allergensDeclared": true,
+      "region": [
+        "global"
+      ],
+      "code": "mastodon",
+      "name": "Mastodon",
+      "brand": "Mastodon",
+      "scores": {
+        "privacy": 78,
+        "openness": 95,
+        "portability": 72,
+        "accessibility": 55
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Mastodon's site says it will never serve ads or push profiles, and that each Mastodon server is an independent entity that sets its own rules.",
+          "source": "https://joinmastodon.org/",
+          "asof": "2026-09-29"
+        },
+        "openness": {
+          "note": "Mastodon's site says it is free and open-source software, built on open web protocols and able to speak with any platform that implements ActivityPub.",
+          "source": "https://joinmastodon.org/",
+          "asof": "2026-09-29"
+        },
+        "portability": {
+          "note": "Mastodon's documentation says follows, lists, blocks and mutes can be exported as CSV and a posts archive requested every 7 days, and that a profile move carries followers to a new server but posts are not moved and post import is not supported.",
+          "source": "https://docs.joinmastodon.org/user/moving/",
+          "asof": "2026-09-29"
+        },
+        "accessibility": {
+          "note": "The API of mastodon.social, Mastodon's flagship server, reported on 2026-09-29 that registrations are open without approval, a minimum age of 16, and 269,657 monthly active users on that server.",
+          "source": "https://mastodon.social/api/v2/instance",
+          "asof": "2026-09-29"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://joinmastodon.org/"
+        },
+        {
+          "label": "ActivityPub, W3C Recommendation",
+          "url": "https://www.w3.org/TR/activitypub/"
+        },
+        {
+          "label": "Private mentions are not encrypted",
+          "url": "https://docs.joinmastodon.org/user/posting/"
+        },
+        {
+          "label": "Source",
+          "url": "https://github.com/mastodon/mastodon"
+        }
+      ],
+      "description": "A network of independently run servers on ActivityPub with no ads by design. The documentation warns that private mentions are not encrypted and server administrators may read them. Joining means choosing a server.",
+      "focuses": [
+        "Open source",
+        "Federated",
+        "ActivityPub",
+        "No ads",
+        "Nonprofit"
+      ]
+    },
+    {
+      "allergens": [],
+      "allergensDeclared": true,
+      "region": [
+        "global"
+      ],
+      "code": "bluesky",
+      "name": "Bluesky",
+      "brand": "Bluesky Social, PBC",
+      "scores": {
+        "privacy": 60,
+        "openness": 85,
+        "portability": 68,
+        "accessibility": 70
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Bluesky's privacy policy, last updated 14 August 2025, says posts and comments are public, that direct messages are unencrypted and can be accessed for Trust & Safety purposes, and that it does not sell or share personal data for targeted advertising.",
+          "source": "https://bsky.social/about/support/privacy-policy",
+          "asof": "2026-09-29"
+        },
+        "openness": {
+          "note": "The atproto repository, Bluesky's protocol implementation, is dual-licensed under MIT and Apache 2.0, and Bluesky Social PBC has committed to a software patent non-aggression pledge.",
+          "source": "https://github.com/bluesky-social/atproto",
+          "asof": "2026-09-29"
+        },
+        "portability": {
+          "note": "The AT Protocol documentation describes migrating an account to a new personal data server using an identity that can be active on one server at a time, and says these mechanisms are not a formal part of the protocol and may change.",
+          "source": "https://atproto.com/guides/account-migration",
+          "asof": "2026-09-29"
+        },
+        "accessibility": {
+          "note": "The AT Protocol site reports 40M+ users.",
+          "source": "https://atproto.com/",
+          "asof": "2026-09-29"
+        }
+      },
+      "links": [
+        {
+          "label": "Privacy policy",
+          "url": "https://bsky.social/about/support/privacy-policy"
+        },
+        {
+          "label": "Protocol",
+          "url": "https://atproto.com/"
+        },
+        {
+          "label": "Source",
+          "url": "https://github.com/bluesky-social/atproto"
+        }
+      ],
+      "description": "A network on the open AT Protocol that reports 40M+ users. Its privacy policy rules out targeted-ad sales, but posts are public and its direct messages are unencrypted.",
+      "focuses": [
+        "Open source",
+        "Decentralized",
+        "No ads"
+      ]
+    },
+    {
+      "allergens": [],
+      "allergensDeclared": true,
+      "region": [
+        "global"
+      ],
+      "code": "pixelfed",
+      "name": "Pixelfed",
+      "brand": "Pixelfed",
+      "scores": {
+        "privacy": 68,
+        "openness": 92,
+        "accessibility": 45
+      },
+      "provenance": {
+        "privacy": {
+          "note": "The privacy policy of pixelfed.social, the flagship server, says operators of the server and any receiving server may view direct and followers-only posts, and that the latest IP address used is stored for up to 12 months.",
+          "source": "https://pixelfed.social/site/privacy",
+          "asof": "2026-09-29"
+        },
+        "openness": {
+          "note": "The Pixelfed repository is licensed AGPL-3.0 and describes photo sharing across the fediverse.",
+          "source": "https://github.com/pixelfed/pixelfed",
+          "asof": "2026-09-29"
+        },
+        "accessibility": {
+          "note": "The instance API of pixelfed.social reported on 2026-09-29 that registrations are open without approval and that the server has 586,659 users.",
+          "source": "https://pixelfed.social/api/v1/instance",
+          "asof": "2026-09-29"
+        }
+      },
+      "links": [
+        {
+          "label": "Source",
+          "url": "https://github.com/pixelfed/pixelfed"
+        },
+        {
+          "label": "Flagship server privacy policy",
+          "url": "https://pixelfed.social/site/privacy"
+        }
+      ],
+      "description": "Federated photo sharing on open source software, joined through a server such as pixelfed.social. Server operators can read direct posts. No export tool could be confirmed, so portability is not scored.",
+      "focuses": [
+        "Open source",
+        "Federated",
+        "ActivityPub",
+        "Photo sharing"
+      ]
+    },
+    {
+      "allergens": [],
+      "allergensDeclared": true,
+      "region": [
+        "global"
+      ],
+      "code": "lemmy",
+      "name": "Lemmy",
+      "brand": "LemmyNet",
+      "scores": {
+        "privacy": 78,
+        "openness": 92,
+        "accessibility": 40
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Lemmy's site says it is not controlled by any company, with no profit motive, no advertising and no user tracking, and that development is funded solely by donations.",
+          "source": "https://join-lemmy.org/",
+          "asof": "2026-09-29"
+        },
+        "openness": {
+          "note": "The Lemmy repository is licensed AGPL-3.0 and describes a decentralised discussion platform.",
+          "source": "https://github.com/LemmyNet/lemmy",
+          "asof": "2026-09-29"
+        },
+        "accessibility": {
+          "note": "The site API of lemmy.world, one Lemmy server, reported on 2026-09-29 that new accounts need an application, with 198,976 users and 12,694 active in the past month.",
+          "source": "https://lemmy.world/api/v3/site",
+          "asof": "2026-09-29"
+        }
+      },
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://join-lemmy.org/"
+        },
+        {
+          "label": "Source",
+          "url": "https://github.com/LemmyNet/lemmy"
+        }
+      ],
+      "description": "Federated topic forums on open source software with no advertising, joined through a server, some of which review applications. No export tool could be confirmed, so portability is not scored.",
+      "focuses": [
+        "Open source",
+        "Federated",
+        "ActivityPub",
+        "No ads"
+      ]
+    },
+    {
+      "allergens": [],
+      "allergensDeclared": true,
+      "region": [
+        "global"
+      ],
+      "code": "micro-blog",
+      "name": "Micro.blog",
+      "brand": "Micro.blog",
+      "scores": {
+        "privacy": 88,
+        "openness": 62,
+        "portability": 88,
+        "accessibility": 48
+      },
+      "provenance": {
+        "privacy": {
+          "note": "Micro.blog's privacy policy says it has no ads, that its business model is a subscription paid for features such as blog hosting, that it collects only enough information to run the service, and that it never sells data.",
+          "source": "https://help.micro.blog/t/privacy-policy/114",
+          "asof": "2026-09-29"
+        },
+        "openness": {
+          "note": "Micro.blog's help says it supports the ActivityPub API so Mastodon users can follow and reply, and IndieWeb APIs such as Micropub and Webmention, though Mastodon-only client apps do not currently work with it.",
+          "source": "https://help.micro.blog/t/whats-the-difference-between-micro-blog-and-mastodon/1395",
+          "asof": "2026-09-29"
+        },
+        "portability": {
+          "note": "Micro.blog's help lists exports in WordPress format, a Blog Archive Format ZIP and a JSON file of replies, weekly GitHub archiving, Wayback Machine copies, and Markdown export on macOS.",
+          "source": "https://help.micro.blog/t/exporting-from-micro-blog/557",
+          "asof": "2026-09-29"
+        },
+        "accessibility": {
+          "note": "Micro.blog's pricing page lists Micro.one at $1 a month and Micro.blog at $5 a month with higher plans above, and says a trial that expires switches to the free plan.",
+          "source": "https://help.micro.blog/t/pricing/19",
+          "asof": "2026-09-29"
+        }
+      },
+      "links": [
+        {
+          "label": "Privacy policy",
+          "url": "https://help.micro.blog/t/privacy-policy/114"
+        },
+        {
+          "label": "Pricing",
+          "url": "https://help.micro.blog/t/pricing/19"
+        }
+      ],
+      "price": {
+        "tier": "$"
+      },
+      "description": "A paid network built around personal blogs, with no ads, ActivityPub support and detailed export options. It costs from $1 a month.",
+      "focuses": [
+        "Paid",
+        "No ads",
+        "ActivityPub",
+        "Data export",
+        "Portable"
+      ]
+    }
+  ]
+}

@@ -31,8 +31,6 @@ const EXPECTED_DOCS = [
   'GRANT-ONE-PAGER',
   'GRANT-PREVIEW-PATH',
   'DEPLOY-AND-SHARE',
-  'PREVIEW-FEEDBACK-LOOP',
-  'R1-REVIEW',
   'ADOPTION-KIT',
   'FEDERATION',
   'VALUES-PASSPORT',
@@ -298,7 +296,8 @@ function checkDocs() {
     for (const needle of needles) expectNotIncludes(rel, needle, `${rel} old preview instruction: ${needle}`);
   }
 
-  expectIncludes('pipeline/build_site.py', "'PREVIEW-FEEDBACK-LOOP'", 'rendered feedback-loop doc');
+  // 2026-10-23: the tester-recruiting documents are kept in the repository but no longer published (Bentley's no-asks rule).
+  expectNotIncludes('pipeline/build_site.py', "'PREVIEW-FEEDBACK-LOOP'", 'feedback-loop doc must not be published');
 }
 
 function checkLinkedData(meta) {
@@ -391,8 +390,6 @@ function checkDist() {
     'contribute/index.html',
     'docs/GRANT-ONE-PAGER.html',
     'docs/GRANT-PREVIEW-PATH.html',
-    'docs/PREVIEW-FEEDBACK-LOOP.html',
-    'docs/R1-REVIEW.html',
     'docs/ADOPTION-KIT.html',
     'README-FLASH-DRIVE.txt',
     'build-meta.json',

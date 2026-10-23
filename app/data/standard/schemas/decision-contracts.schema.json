@@ -2,17 +2,18 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/decision-contracts-v0.2.schema.json",
   "title": "Open Values Decision Contracts v0.2",
-  "description": "Signed category reads, practical decision axes, budget-data posture, and computed-answer slots.",
+  "description": "For each product or service category on Conscious Consuming, the setup of its decision page: the one-line summary of what to compare, up to three dials a reader can move, whether a budget answer can be shown, and which computed answers to show. pipeline/build_decisions.js writes it to content/decisions.json, and the dataset build copies each contract into its category file for the app to read.",
   "type": "object",
   "required": ["format", "version", "published", "status", "consumer", "contracts"],
   "additionalProperties": true,
   "properties": {
-    "format": { "const": "open-values-decision-contracts" },
-    "version": { "type": "string", "pattern": "^0\\.2\\.0(?:[-+].*)?$" },
-    "published": { "type": "string", "format": "date" },
-    "status": { "enum": ["founder-signoff-pending", "founder-approved"] },
-    "consumer": { "$ref": "#/$defs/consumer" },
+    "format": { "description": "Always \"open-values-decision-contracts\". Tells a reader which Open Values format this is.", "const": "open-values-decision-contracts" },
+    "version": { "description": "The version of the decision contracts format this file follows. Must start with 0.2.0.", "type": "string", "pattern": "^0\\.2\\.0(?:[-+].*)?$" },
+    "published": { "description": "The date this set of contracts was published, as YYYY-MM-DD.", "type": "string", "format": "date" },
+    "status": { "description": "Whether the founder has approved the contracts (founder-approved) or not yet (founder-signoff-pending).", "enum": ["founder-signoff-pending", "founder-approved"] },
+    "consumer": { "description": "Notes naming the part of the site that reads each part of a contract.", "$ref": "#/$defs/consumer" },
     "contracts": {
+      "description": "One contract per category, each saying how that category's decision page works.",
       "type": "array",
       "minItems": 1,
       "items": { "$ref": "#/$defs/decision" }
@@ -24,10 +25,10 @@
       "required": ["reads", "axes", "budget", "archetypes"],
       "additionalProperties": false,
       "properties": {
-        "reads": { "type": "string", "minLength": 1 },
-        "axes": { "type": "string", "minLength": 1 },
-        "budget": { "type": "string", "minLength": 1 },
-        "archetypes": { "type": "string", "minLength": 1 }
+        "reads": { "description": "A note naming the part of the site that shows the one-line reads, and the review round that approved them.", "type": "string", "minLength": 1 },
+        "axes": { "description": "A note naming the part of the site that shows the dials, and the review round that approved them.", "type": "string", "minLength": 1 },
+        "budget": { "description": "A note naming the part of the site that uses the budget settings, and the review round that approved them.", "type": "string", "minLength": 1 },
+        "archetypes": { "description": "A note naming the part of the site that shows the computed answers, and the review round that approved them.", "type": "string", "minLength": 1 }
       }
     },
     "decision": {
@@ -36,19 +37,22 @@
       "additionalProperties": true,
       "properties": {
         "category": {
+          "description": "The id of the category this contract is for, such as \"plant-based-milk\". It matches a category dataset in app/data/.",
           "type": "string",
           "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
         },
-        "consumer": { "$ref": "#/$defs/consumer" },
-        "reads": { "$ref": "#/$defs/reads" },
+        "consumer": { "description": "Notes for this one category that replace the file-wide consumer notes, when a category needs them.", "$ref": "#/$defs/consumer" },
+        "reads": { "description": "The one-line summary of what to compare in this category, the criteria it is based on, and who signed it off.", "$ref": "#/$defs/reads" },
         "axes": {
+          "description": "The dials a reader can move on the decision page, one to three of them. Each dial shifts how much some criteria count.",
           "type": "array",
           "minItems": 1,
           "maxItems": 3,
           "items": { "$ref": "#/$defs/axis" }
         },
-        "budget": { "$ref": "#/$defs/budget" },
+        "budget": { "description": "Whether the category has enough cost data for a budget answer, and which criterion holds it.", "$ref": "#/$defs/budget" },
         "archetypes": {
+          "description": "Which computed answers the page shows: \"best-for-most\" (top result with the reader's rules and dials), \"strictest-match\" (the option whose weakest score on the read criteria is highest), and \"budget-honest\" (a cost-first rank over only the options with cost data). The last one appears only when budget data is available.",
           "type": "array",
           "minItems": 2,
           "maxItems": 3,
@@ -64,15 +68,16 @@
       "required": ["text", "basis", "signature"],
       "additionalProperties": true,
       "properties": {
-        "text": { "type": "string", "minLength": 1, "maxLength": 140 },
+        "text": { "description": "The sentence a reader sees, at most 140 characters, such as \"Compare plant-based milk by environmental impact, processing, nutrition, and cost.\"", "type": "string", "minLength": 1, "maxLength": 140 },
         "basis": {
+          "description": "The criteria the sentence names, two to five of them, each with the words used for it.",
           "type": "array",
           "minItems": 2,
           "maxItems": 5,
           "items": { "$ref": "#/$defs/readBasis" }
         },
-        "signature": { "$ref": "#/$defs/signature" },
-        "receipt": { "$ref": "#/$defs/readReceipt" }
+        "signature": { "description": "Who approved the sentence, when, and whether it was a pilot or part of an approved batch.", "$ref": "#/$defs/signature" },
+        "receipt": { "description": "Added by the dataset build: how many entries the category holds and, for each criterion in the read, how far scores spread, so a reader can see the criteria really separate the options.", "$ref": "#/$defs/readReceipt" }
       }
     },
     "readBasis": {
@@ -80,8 +85,8 @@
       "required": ["criterion", "readsAs"],
       "additionalProperties": false,
       "properties": {
-        "criterion": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
-        "readsAs": { "type": "string", "minLength": 1 }
+        "criterion": { "description": "The criterion key in the category dataset, such as \"nutrition_grade\".", "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "readsAs": { "description": "The words the sentence uses for that criterion, such as \"nutrition\".", "type": "string", "minLength": 1 }
       }
     },
     "signature": {
@@ -89,9 +94,9 @@
       "required": ["by", "on", "status"],
       "additionalProperties": false,
       "properties": {
-        "by": { "type": "string", "minLength": 1 },
-        "on": { "type": "string", "format": "date" },
-        "status": { "enum": ["pilot", "approved-batch"] }
+        "by": { "description": "Who approved the read, such as \"Conscious Consuming\".", "type": "string", "minLength": 1 },
+        "on": { "description": "The date of approval, as YYYY-MM-DD.", "type": "string", "format": "date" },
+        "status": { "description": "Whether the read was approved one by one as a pilot (pilot) or as part of a generated batch (approved-batch).", "enum": ["pilot", "approved-batch"] }
       }
     },
     "readReceipt": {
@@ -99,9 +104,10 @@
       "required": ["dataset", "entryCount", "criteria"],
       "additionalProperties": false,
       "properties": {
-        "dataset": { "type": "string" },
-        "entryCount": { "type": "integer", "minimum": 1 },
+        "dataset": { "description": "The id of the category dataset the figures were taken from.", "type": "string" },
+        "entryCount": { "description": "How many entries the category dataset holds.", "type": "integer", "minimum": 1 },
         "criteria": {
+          "description": "For each criterion in the read that has at least two different scores, how many entries have a score and how far the scores spread.",
           "type": "array",
           "minItems": 2,
           "items": { "$ref": "#/$defs/spread" }
@@ -113,12 +119,12 @@
       "required": ["criterion", "readsAs", "known", "minimum", "maximum", "spread"],
       "additionalProperties": false,
       "properties": {
-        "criterion": { "type": "string" },
-        "readsAs": { "type": "string" },
-        "known": { "type": "integer", "minimum": 1 },
-        "minimum": { "type": "number", "minimum": 0, "maximum": 100 },
-        "maximum": { "type": "number", "minimum": 0, "maximum": 100 },
-        "spread": { "type": "number", "exclusiveMinimum": 0, "maximum": 100 }
+        "criterion": { "description": "The criterion key, such as \"processing\".", "type": "string" },
+        "readsAs": { "description": "The words the read uses for that criterion.", "type": "string" },
+        "known": { "description": "How many entries have a score on this criterion.", "type": "integer", "minimum": 1 },
+        "minimum": { "description": "The lowest score on this criterion, from 0 to 100.", "type": "number", "minimum": 0, "maximum": 100 },
+        "maximum": { "description": "The highest score on this criterion, from 0 to 100.", "type": "number", "minimum": 0, "maximum": 100 },
+        "spread": { "description": "The highest score minus the lowest. Always above 0.", "type": "number", "exclusiveMinimum": 0, "maximum": 100 }
       }
     },
     "axis": {
@@ -126,23 +132,25 @@
       "required": ["id", "kind", "label", "question", "criteria", "poles", "default"],
       "additionalProperties": false,
       "properties": {
-        "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
-        "kind": { "enum": ["criterion", "tradeoff", "cost-values"] },
-        "label": { "type": "string", "minLength": 1 },
-        "question": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "id": { "description": "A short name for the dial, such as \"processing\" or \"cost-or-values\".", "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "kind": { "description": "How the dial works: \"criterion\" turns one criterion up or down; \"tradeoff\" moves weight between two criteria; \"cost-values\" moves weight between the cost criterion (listed first) and the value criteria after it.", "enum": ["criterion", "tradeoff", "cost-values"] },
+        "label": { "description": "The name shown on the dial, such as \"Price or overall fit\".", "type": "string", "minLength": 1 },
+        "question": { "description": "The question shown with the dial, at most 80 characters, such as \"Lower observed price or a stronger overall fit?\"", "type": "string", "minLength": 1, "maxLength": 80 },
         "criteria": {
+          "description": "The criterion keys the dial changes. For a cost-values dial the first is the cost criterion; for a tradeoff dial there are exactly two.",
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
           "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" }
         },
         "poles": {
+          "description": "The labels at the two ends of the dial: the first at 0, the second at 100.",
           "type": "array",
           "minItems": 2,
           "maxItems": 2,
           "items": { "type": "string", "minLength": 1 }
         },
-        "default": { "type": "integer", "minimum": 0, "maximum": 100 }
+        "default": { "description": "Where the dial starts, from 0 to 100. 50 is the middle, where neither end is favoured.", "type": "integer", "minimum": 0, "maximum": 100 }
       }
     },
     "budget": {
@@ -150,14 +158,15 @@
       "required": ["available", "mode"],
       "additionalProperties": true,
       "properties": {
-        "available": { "type": "boolean" },
+        "available": { "description": "True when at least 5 entries have a cost score and those scores differ, so a budget answer can be shown.", "type": "boolean" },
         "mode": {
+          "description": "Where the cost data comes from: \"observed-price-rank\" (prices seen in open food data), \"assessed-fees-rank\" (assessed fees), \"assessed-affordability-rank\" (assessed price or affordability), or \"none\" when there is not enough.",
           "enum": ["none", "observed-price-rank", "assessed-fees-rank", "assessed-affordability-rank"]
         },
-        "criterion": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
-        "minimumKnown": { "type": "integer", "minimum": 1 },
-        "knownEntries": { "type": "integer", "minimum": 0 },
-        "coverage": { "type": "number", "minimum": 0, "maximum": 1 }
+        "criterion": { "description": "The criterion key that holds cost, such as \"economical\" or \"fees\".", "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "minimumKnown": { "description": "How many entries need a cost score before a budget answer may be shown. Currently 5.", "type": "integer", "minimum": 1 },
+        "knownEntries": { "description": "Added by the dataset build: how many entries have a cost score. 0 when no budget answer is available.", "type": "integer", "minimum": 0 },
+        "coverage": { "description": "Added by the dataset build: the share of entries with a cost score, from 0 to 1, rounded to four places.", "type": "number", "minimum": 0, "maximum": 1 }
       }
     }
   }

@@ -1,0 +1,4180 @@
+{
+ "meta": {
+  "id": "hybrid-and-plug-in-hybrid-cars",
+  "label": "Hybrid and plug-in hybrid cars",
+  "type": "Products",
+  "primaryAxis": "economical",
+  "tradeoff": [
+   "economical",
+   "safety"
+  ],
+  "tradeoffLabels": [
+   "cheapest to run",
+   "best NHTSA crash rating"
+  ],
+  "source": "EPA and DOE fueleconomy.gov; NHTSA 5-Star Safety Ratings; Science Based Targets initiative",
+  "attribution": "Every full hybrid and plug-in hybrid the EPA rated for model year 2026 or 2027, one row per make, nameplate and powertrain (model year 2026 where it exists), from the EPA and DOE vehicle file on fueleconomy.gov: 45 hybrids and 29 plug-in hybrids. Mild hybrids, whose engine description in the file says \"Mild Hybrid\" and which the EPA lists as hybrids, are left out here and kept on the new cars list. 21 plug-in nameplates the EPA rated for model year 2025 have no 2026 or 2027 rating in this file, among them the Toyota RAV4 and Toyota Prius plug-in hybrids. The file does not say which have ended and which are not yet rated, and none is on this list until the EPA rates it. Running cost is the EPA's yearly fuel or electricity cost for the median configuration, for 15,000 miles with 55 per cent city driving at the fuel prices fueleconomy.gov used (at $4.47 a gallon of regular and 15 cents a kilowatt-hour in this file), scored as a share of the cheapest on this list. For a plug-in hybrid it is fueleconomy.gov's combined electricity and gasoline figure, which assumes the share of miles on electricity the EPA sets for that car; each note also gives its cost on gasoline alone. Crash ratings are NHTSA's overall stars, joined only to the model NHTSA names with the same year, make and powertrain, and scored on the lowest-rated tested version; a model NHTSA has not tested is left unscored. NHTSA advises comparing frontal crash ratings only between vehicles within 250 pounds of each other. The maker's climate target is SBTi's record for the company whose EPA manufacturer code certifies the vehicle, matched by LEI; a maker SBTi does not list is left unscored, not marked down. Purchase prices are not in these registers and are not scored.",
+  "allergens": false,
+  "presets": {
+   "Balanced": {
+    "w": {
+     "economical": 3,
+     "safety": 3,
+     "environment": 2
+    },
+    "x": []
+   },
+   "Cheapest to run": {
+    "w": {
+     "economical": 5,
+     "safety": 2,
+     "environment": 1
+    },
+    "x": []
+   },
+   "Crash safety first": {
+    "w": {
+     "safety": 5,
+     "economical": 2,
+     "environment": 1
+    },
+    "x": []
+   },
+   "Maker's climate target": {
+    "w": {
+     "environment": 5,
+     "economical": 2,
+     "safety": 2
+    },
+    "x": []
+   }
+  },
+  "license": "US public data (EPA, DOE, NHTSA); SBTi facts cited with credit under its website terms",
+  "n": 74,
+  "valueSignatureProfile": {
+   "entryCount": 74,
+   "signedEntries": 74,
+   "drawableEntries": 59,
+   "minimumThemesForBloom": 2,
+   "themeCounts": {
+    "planet": 47,
+    "health": 35,
+    "cost": 74
+   }
+  },
+  "provenanceProfile": {
+   "entryCount": 74,
+   "singleSourceEntries": 15,
+   "multiSourceEntries": 59,
+   "noSourceEntries": 0,
+   "noteOnlyEntries": 0,
+   "averageSourceDomains": 2.11,
+   "topPrimarySources": [
+    {
+     "label": "fueleconomy.gov",
+     "entries": 39
+    },
+    {
+     "label": "api.nhtsa.gov",
+     "entries": 35
+    }
+   ]
+  },
+  "decision": {
+   "category": "hybrid-and-plug-in-hybrid-cars",
+   "reads": {
+    "text": "Compare hybrid and plug-in hybrid cars by cost, safety, and environmental impact.",
+    "basis": [
+     {
+      "criterion": "economical",
+      "readsAs": "cost"
+     },
+     {
+      "criterion": "safety",
+      "readsAs": "safety"
+     },
+     {
+      "criterion": "environment",
+      "readsAs": "environmental impact"
+     }
+    ],
+    "signature": {
+     "by": "Conscious Consuming",
+     "on": "2026-07-15",
+     "status": "approved-batch"
+    },
+    "receipt": {
+     "dataset": "hybrid-and-plug-in-hybrid-cars",
+     "entryCount": 74,
+     "criteria": [
+      {
+       "criterion": "economical",
+       "readsAs": "cost",
+       "known": 74,
+       "minimum": 20,
+       "maximum": 100,
+       "spread": 80
+      },
+      {
+       "criterion": "safety",
+       "readsAs": "safety",
+       "known": 35,
+       "minimum": 80,
+       "maximum": 100,
+       "spread": 20
+      },
+      {
+       "criterion": "environment",
+       "readsAs": "environmental impact",
+       "known": 47,
+       "minimum": 60,
+       "maximum": 100,
+       "spread": 40
+      }
+     ]
+    }
+   },
+   "axes": [
+    {
+     "id": "cost-or-values",
+     "kind": "cost-values",
+     "label": "Cost or overall fit",
+     "question": "Lower cost or a stronger overall fit?",
+     "criteria": [
+      "economical",
+      "safety",
+      "environment"
+     ],
+     "poles": [
+      "Lower cost",
+      "Stronger overall fit"
+     ],
+     "default": 50
+    },
+    {
+     "id": "environment",
+     "kind": "criterion",
+     "label": "Environmental impact",
+     "question": "Does lower environmental impact matter more?",
+     "criteria": [
+      "environment"
+     ],
+     "poles": [
+      "Flexible",
+      "Lower impact"
+     ],
+     "default": 50
+    }
+   ],
+   "budget": {
+    "available": true,
+    "mode": "assessed-affordability-rank",
+    "criterion": "economical",
+    "minimumKnown": 5,
+    "knownEntries": 74,
+    "coverage": 1.0
+   },
+   "archetypes": [
+    "best-for-most",
+    "strictest-match",
+    "budget-honest"
+   ],
+   "page": {
+    "stage": "approved-batch",
+    "primaryRoute": true
+   },
+   "consumer": {
+    "reads": "Round 8 approved category differences reads.",
+    "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+    "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+    "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+    "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+   }
+  }
+ },
+ "criteria": [
+  {
+   "key": "economical",
+   "label": "Fuel and electricity cost a year",
+   "source": "EPA and DOE fueleconomy.gov",
+   "tier": "measured"
+  },
+  {
+   "key": "safety",
+   "label": "NHTSA crash rating",
+   "source": "NHTSA 5-Star Safety Ratings",
+   "tier": "measured"
+  },
+  {
+   "key": "environment",
+   "label": "Maker's climate target",
+   "source": "Science Based Targets initiative",
+   "tier": "certified"
+  }
+ ],
+ "products": [
+  {
+   "code": "aston-martin-valhalla",
+   "name": "Aston Martin Valhalla",
+   "brand": "Aston Martin",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Aston Martin Valhalla is a plug-in hybrid and was rated by the EPA in one configuration (two-seaters), with 6 miles of electric range and 16 mpg on gasoline alone.",
+   "scores": {
+    "economical": 20,
+    "environment": 60
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $4,700 a year for electricity and gasoline together, assuming 18 per cent of miles run on electricity, the share the EPA assigns to a car with 6 miles of electric range (its utility factor). On gasoline alone, at 16 mpg, its figure is $5,150. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $5.48 a gallon of premium, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50309",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Aston Martin vehicles are certified under EPA manufacturer code ASX, which belongs to Aston Martin Lagonda Global Holdings PLC. SBTi lists Aston Martin Lagonda Global Holdings PLC (LEI 213800167WOVOK5ZC776) with a commitment to set targets, not yet validated. Record updated 2022-01-26.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-01"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50309"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Aston Martin",
+    "Two-seater",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "planet": 60,
+    "cost": 20
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "bentley-bentayga-plug-in-hybrid",
+   "name": "Bentley Bentayga (plug-in hybrid)",
+   "brand": "Bentley",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Bentley Bentayga (plug-in hybrid) was rated by the EPA in one configuration (standard SUVs), with 20 miles of electric range and 21 mpg on gasoline alone.",
+   "scores": {
+    "economical": 36,
+    "environment": 70
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $2,650 a year for electricity and gasoline together, assuming 54 per cent of miles run on electricity, the share the EPA assigns to a car with 20 miles of electric range (its utility factor). On gasoline alone, at 21 mpg, its figure is $3,900. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $5.48 a gallon of premium, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49751",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Bentley vehicles are certified under EPA manufacturer code VGA, which belongs to Volkswagen Aktiengesellschaft. SBTi lists Volkswagen AG (LEI 529900NNUPAGGOMPXZ31) with validated near-term targets classed 1.5°C / 2°C (scored on the weaker). Record updated 2022-04-21.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-04"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49751"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Bentley",
+    "SUV",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "planet": 70,
+    "cost": 36
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "bentley-continental",
+   "name": "Bentley Continental",
+   "brand": "Bentley",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Bentley Continental is a plug-in hybrid and was rated by the EPA in 2 configurations (subcompact cars and minicompact cars), with 30 miles of electric range and 19 mpg on gasoline alone.",
+   "scores": {
+    "economical": 40,
+    "environment": 70
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $2,400 a year for electricity and gasoline together, assuming 67 per cent of miles run on electricity, the share the EPA assigns to a car with 30 miles of electric range (its utility factor). On gasoline alone, at 19 mpg, its figure is $4,350. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $5.48 a gallon of premium, the prices behind the EPA's figures in this file. That is the median of its 2 configurations, which run $2,400. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49752",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Bentley vehicles are certified under EPA manufacturer code VGA, which belongs to Volkswagen Aktiengesellschaft. SBTi lists Volkswagen AG (LEI 529900NNUPAGGOMPXZ31) with validated near-term targets classed 1.5°C / 2°C (scored on the weaker). Record updated 2022-04-21.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-04"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49752"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Bentley",
+    "Car",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "planet": 70,
+    "cost": 40
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "bentley-flying-spur",
+   "name": "Bentley Flying Spur",
+   "brand": "Bentley",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Bentley Flying Spur is a plug-in hybrid and was rated by the EPA in one configuration (midsize cars), with 30 miles of electric range and 19 mpg on gasoline alone.",
+   "scores": {
+    "economical": 40,
+    "environment": 70
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $2,400 a year for electricity and gasoline together, assuming 67 per cent of miles run on electricity, the share the EPA assigns to a car with 30 miles of electric range (its utility factor). On gasoline alone, at 19 mpg, its figure is $4,350. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $5.48 a gallon of premium, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49754",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Bentley vehicles are certified under EPA manufacturer code VGA, which belongs to Volkswagen Aktiengesellschaft. SBTi lists Volkswagen AG (LEI 529900NNUPAGGOMPXZ31) with validated near-term targets classed 1.5°C / 2°C (scored on the weaker). Record updated 2022-04-21.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-04"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49754"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Bentley",
+    "Car",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "planet": 70,
+    "cost": 40
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "bmw-5-series-plug-in-hybrid",
+   "name": "BMW 5 Series (plug-in hybrid)",
+   "brand": "BMW",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 BMW 5 Series (plug-in hybrid) was rated by the EPA in one configuration (midsize cars), with 34 miles of electric range and 25 mpg on gasoline alone.",
+   "scores": {
+    "economical": 49,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,950 a year for electricity and gasoline together, assuming 63 per cent of miles run on electricity, the share the EPA assigns to a car with 34 miles of electric range (its utility factor). On gasoline alone, at 25 mpg, its figure is $3,300. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $5.48 a gallon of premium, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49756",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "BMW vehicles are certified under EPA manufacturer code BMX, which belongs to Bayerische Motoren Werke Aktiengesellschaft. SBTi lists BMW Group (LEI YEH5ZCD6E441RHVHD759) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-02-24.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-02"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49756"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "BMW",
+    "Car",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "cost": 49
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "bmw-7-series-plug-in-hybrid",
+   "name": "BMW 7 Series (plug-in hybrid)",
+   "brand": "BMW",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 BMW 7 Series (plug-in hybrid) was rated by the EPA in one configuration (large cars), with 35 miles of electric range and 24 mpg on gasoline alone.",
+   "scores": {
+    "economical": 50,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,900 a year for electricity and gasoline together, assuming 64 per cent of miles run on electricity, the share the EPA assigns to a car with 35 miles of electric range (its utility factor). On gasoline alone, at 24 mpg, its figure is $3,400. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $5.48 a gallon of premium, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49759",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "BMW vehicles are certified under EPA manufacturer code BMX, which belongs to Bayerische Motoren Werke Aktiengesellschaft. SBTi lists BMW Group (LEI YEH5ZCD6E441RHVHD759) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-02-24.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-02"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49759"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "BMW",
+    "Car",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "cost": 50
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "bmw-m5",
+   "name": "BMW M5",
+   "brand": "BMW",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 BMW M5 is a plug-in hybrid and was rated by the EPA in 2 configurations (midsize cars and midsize station wagons), with 25 to 29 miles of electric range and 13 to 14 mpg on gasoline alone.",
+   "scores": {
+    "economical": 28,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $3,350 a year for electricity and gasoline together, assuming 58 per cent of miles run on electricity, the share the EPA assigns to a car with 29 miles of electric range (its utility factor). On gasoline alone, at 14 mpg, its figure is $5,850. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $5.48 a gallon of premium, the prices behind the EPA's figures in this file. That is the median of its 2 configurations, which run $3,350 to $3,700. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49757",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "BMW vehicles are certified under EPA manufacturer code BMX, which belongs to Bayerische Motoren Werke Aktiengesellschaft. SBTi lists BMW Group (LEI YEH5ZCD6E441RHVHD759) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-02-24.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-02"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49757"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "BMW",
+    "Car",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "cost": 28
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "bmw-x5-plug-in-hybrid",
+   "name": "BMW X5 (plug-in hybrid)",
+   "brand": "BMW",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 BMW X5 (plug-in hybrid) was rated by the EPA in one configuration (standard SUVs), with 40 miles of electric range and 22 mpg on gasoline alone.",
+   "scores": {
+    "economical": 46,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $2,050 a year for electricity and gasoline together, assuming 68 per cent of miles run on electricity, the share the EPA assigns to a car with 40 miles of electric range (its utility factor). On gasoline alone, at 22 mpg, its figure is $3,750. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $5.48 a gallon of premium, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49760",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "BMW vehicles are certified under EPA manufacturer code BMX, which belongs to Bayerische Motoren Werke Aktiengesellschaft. SBTi lists BMW Group (LEI YEH5ZCD6E441RHVHD759) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-02-24.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-02"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49760"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "BMW",
+    "SUV",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "cost": 46
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "bmw-xm-label",
+   "name": "BMW XM Label",
+   "brand": "BMW",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 BMW XM Label is a plug-in hybrid and was rated by the EPA in one configuration (standard SUVs), with 30 miles of electric range and 14 mpg on gasoline alone.",
+   "scores": {
+    "economical": 28,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $3,400 a year for electricity and gasoline together, assuming 59 per cent of miles run on electricity, the share the EPA assigns to a car with 30 miles of electric range (its utility factor). On gasoline alone, at 14 mpg, its figure is $5,850. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $5.48 a gallon of premium, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49761",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "BMW vehicles are certified under EPA manufacturer code BMX, which belongs to Bayerische Motoren Werke Aktiengesellschaft. SBTi lists BMW Group (LEI YEH5ZCD6E441RHVHD759) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-02-24.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-02"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49761"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "BMW",
+    "SUV",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "cost": 28
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "chevrolet-corvette-hybrid",
+   "name": "Chevrolet Corvette (hybrid)",
+   "brand": "Chevrolet",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Chevrolet Corvette (hybrid) was rated by the EPA in 2 configurations (two-seaters), at 14 to 19 mpg combined.",
+   "scores": {
+    "economical": 22,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $4,350 to $5,850 a year in premium gasoline across its 2 configurations, median $4,350, at 14 to 19 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $5.48 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49774",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Chevrolet vehicles are certified under EPA manufacturer code GMX, which belongs to General Motors Company. SBTi lists General Motors (LEI 54930070NSV60J38I987) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2021-05-20.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2021-05"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49774"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Chevrolet",
+    "Two-seater",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "cost": 22
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "chrysler-pacifica-plug-in-hybrid",
+   "name": "Chrysler Pacifica (plug-in hybrid)",
+   "brand": "Chrysler",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Chrysler Pacifica (plug-in hybrid) was rated by the EPA in one configuration (minivans), with 32 miles of electric range and 30 mpg on gasoline alone.",
+   "scores": {
+    "economical": 66,
+    "safety": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,450 a year for electricity and gasoline together, assuming 61 per cent of miles run on electricity, the share the EPA assigns to a car with 32 miles of electric range (its utility factor). On gasoline alone, at 30 mpg, its figure is $2,250. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $4.47 a gallon of regular, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49762",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: CHRYSLER PACIFICA HYBRID PV PHEV FWD: 5. Scored on the lowest (5 stars; front 4, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/20915",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49762"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Chrysler",
+    "Van",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "health": 100,
+    "cost": 66
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "ferrari-296-gtb",
+   "name": "Ferrari 296 GTB",
+   "brand": "Ferrari",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Ferrari 296 GTB is a plug-in hybrid and was rated by the EPA in one configuration (two-seaters), with 8 miles of electric range and 18 mpg on gasoline alone.",
+   "scores": {
+    "economical": 25
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $3,850 a year for electricity and gasoline together, assuming 22 per cent of miles run on electricity, the share the EPA assigns to a car with 8 miles of electric range (its utility factor). On gasoline alone, at 18 mpg, its figure is $4,550. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $5.48 a gallon of premium, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50260",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50260"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Ferrari",
+    "Two-seater",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "cost": 25
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "fueleconomy.gov"
+   }
+  },
+  {
+   "code": "ferrari-296-gts",
+   "name": "Ferrari 296 GTS",
+   "brand": "Ferrari",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Ferrari 296 GTS is a plug-in hybrid and was rated by the EPA in one configuration (two-seaters), with 7 miles of electric range and 18 mpg on gasoline alone.",
+   "scores": {
+    "economical": 23
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $4,050 a year for electricity and gasoline together, assuming 22 per cent of miles run on electricity, the share the EPA assigns to a car with 7 miles of electric range (its utility factor). On gasoline alone, at 18 mpg, its figure is $4,550. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $5.48 a gallon of premium, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50261",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50261"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Ferrari",
+    "Two-seater",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "cost": 23
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "fueleconomy.gov"
+   }
+  },
+  {
+   "code": "ferrari-296-speciale",
+   "name": "Ferrari 296 Speciale",
+   "brand": "Ferrari",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Ferrari 296 Speciale is a plug-in hybrid and was rated by the EPA in one configuration (two-seaters), with 7 miles of electric range and 18 mpg on gasoline alone.",
+   "scores": {
+    "economical": 24
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $3,900 a year for electricity and gasoline together, assuming 22 per cent of miles run on electricity, the share the EPA assigns to a car with 7 miles of electric range (its utility factor). On gasoline alone, at 18 mpg, its figure is $4,550. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $5.48 a gallon of premium, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50262",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50262"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Ferrari",
+    "Two-seater",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "cost": 24
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "fueleconomy.gov"
+   }
+  },
+  {
+   "code": "ferrari-296-speciale-a",
+   "name": "Ferrari 296 Speciale A",
+   "brand": "Ferrari",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Ferrari 296 Speciale A is a plug-in hybrid and was rated by the EPA in one configuration (two-seaters), with 7 miles of electric range and 18 mpg on gasoline alone.",
+   "scores": {
+    "economical": 24
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $3,900 a year for electricity and gasoline together, assuming 22 per cent of miles run on electricity, the share the EPA assigns to a car with 7 miles of electric range (its utility factor). On gasoline alone, at 18 mpg, its figure is $4,550. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $5.48 a gallon of premium, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50263",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50263"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Ferrari",
+    "Two-seater",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "cost": 24
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "fueleconomy.gov"
+   }
+  },
+  {
+   "code": "ferrari-f80",
+   "name": "Ferrari F80",
+   "brand": "Ferrari",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Ferrari F80 is a hybrid and was rated by the EPA in one configuration (two-seaters), at 17 mpg combined.",
+   "scores": {
+    "economical": 20
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $4,850 a year in premium gasoline across its one configuration, median $4,850, at 17 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $5.48 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50044",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50044"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Ferrari",
+    "Two-seater",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "cost": 20
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "fueleconomy.gov"
+   }
+  },
+  {
+   "code": "ford-escape-hybrid",
+   "name": "Ford Escape (hybrid)",
+   "brand": "Ford",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Ford Escape (hybrid) was rated by the EPA in one configuration (small SUVs), at 39 mpg combined.",
+   "scores": {
+    "economical": 56,
+    "safety": 100,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,700 a year in regular gasoline across its one configuration, median $1,700, at 39 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49851",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: FORD ESCAPE HEV SUV HEV AWD: 5; FORD ESCAPE HEV SUV HEV FWD: 5. Scored on the lowest (5 stars; front 5, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21398",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Ford vehicles are certified under EPA manufacturer code FMX, which belongs to Ford Motor Company. SBTi lists Ford Motor Company (LEI 20S05OYHG0MQM4VUIC57) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2021-03-31.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2021-03"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49851"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Ford",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "health": 100,
+    "cost": 56
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "ford-escape-plug-in-hybrid",
+   "name": "Ford Escape (plug-in hybrid)",
+   "brand": "Ford",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Ford Escape (plug-in hybrid) was rated by the EPA in one configuration (small SUVs), with 37 miles of electric range and 40 mpg on gasoline alone.",
+   "scores": {
+    "economical": 86,
+    "safety": 100,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,100 a year for electricity and gasoline together, assuming 66 per cent of miles run on electricity, the share the EPA assigns to a car with 37 miles of electric range (its utility factor). On gasoline alone, at 40 mpg, its figure is $1,700. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $4.47 a gallon of regular, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49763",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: FORD ESCAPE PHEV SUV PHEV FWD: 5. Scored on the lowest (5 stars; front 4, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21399",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Ford vehicles are certified under EPA manufacturer code FMX, which belongs to Ford Motor Company. SBTi lists Ford Motor Company (LEI 20S05OYHG0MQM4VUIC57) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2021-03-31.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2021-03"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49763"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Ford",
+    "SUV",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "health": 100,
+    "cost": 86
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "ford-f150-hybrid",
+   "name": "Ford F150 (hybrid)",
+   "brand": "Ford",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Ford F150 (hybrid) was rated by the EPA in 2 configurations (standard pickups), at 23 to 24 mpg combined.",
+   "scores": {
+    "economical": 34,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $2,800 to $2,900 a year in regular gasoline across its 2 configurations, median $2,800, at 23 to 24 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50447",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Ford vehicles are certified under EPA manufacturer code FMX, which belongs to Ford Motor Company. SBTi lists Ford Motor Company (LEI 20S05OYHG0MQM4VUIC57) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2021-03-31.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2021-03"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50447"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Ford",
+    "Pickup",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "cost": 34
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "ford-maverick-hybrid",
+   "name": "Ford Maverick (hybrid)",
+   "brand": "Ford",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Ford Maverick (hybrid) was rated by the EPA in 3 configurations (small pickups), at 36 to 38 mpg combined.",
+   "scores": {
+    "economical": 53,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,750 to $1,850 a year in regular gasoline across its 3 configurations, median $1,800, at 36 to 38 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50083",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Ford vehicles are certified under EPA manufacturer code FMX, which belongs to Ford Motor Company. SBTi lists Ford Motor Company (LEI 20S05OYHG0MQM4VUIC57) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2021-03-31.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2021-03"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50083"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Ford",
+    "Pickup",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "cost": 53
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "honda-accord-hybrid",
+   "name": "Honda Accord (hybrid)",
+   "brand": "Honda",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Honda Accord (hybrid) was rated by the EPA in 2 configurations (midsize cars and large cars), at 44 to 48 mpg combined.",
+   "scores": {
+    "economical": 68,
+    "safety": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,400 to $1,500 a year in regular gasoline across its 2 configurations, median $1,400, at 44 to 48 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50071",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: HONDA ACCORD HYBRID 4 DR HEV FWD: 5. Scored on the lowest (5 stars; front 5, side 5, rollover 5). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/22062",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50071"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Honda",
+    "Car",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "health": 100,
+    "cost": 68
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "honda-civic-hybrid",
+   "name": "Honda Civic (hybrid)",
+   "brand": "Honda",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Honda Civic (hybrid) was rated by the EPA in 2 configurations (midsize cars and large cars), at 48 to 49 mpg combined.",
+   "scores": {
+    "economical": 70
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,350 to $1,400 a year in regular gasoline across its 2 configurations, median $1,350, at 48 to 49 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49289",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49289"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Honda",
+    "Car",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "cost": 70
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "fueleconomy.gov"
+   }
+  },
+  {
+   "code": "honda-cr-v-hybrid",
+   "name": "Honda CR-V (hybrid)",
+   "brand": "Honda",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Honda CR-V (hybrid) was rated by the EPA in 3 configurations (midsize station wagons and small SUVs), at 35 to 40 mpg combined.",
+   "scores": {
+    "economical": 53,
+    "safety": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,700 to $1,900 a year in regular gasoline across its 3 configurations, median $1,800, at 35 to 40 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49488",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: HONDA CR-V HYBRID SUV HEV AWD: 5; HONDA CR-V HYBRID SUV HEV FWD: 5. Scored on the lowest (5 stars; front 4, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/20888",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49488"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Honda",
+    "Wagon",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "health": 100,
+    "cost": 53
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "honda-prelude",
+   "name": "Honda Prelude",
+   "brand": "Honda",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Honda Prelude is a hybrid and was rated by the EPA in one configuration (subcompact cars), at 44 mpg combined.",
+   "scores": {
+    "economical": 63
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,500 a year in regular gasoline across its one configuration, median $1,500, at 44 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50046",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50046"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Honda",
+    "Car",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "cost": 63
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "fueleconomy.gov"
+   }
+  },
+  {
+   "code": "hyundai-elantra-hybrid",
+   "name": "Hyundai Elantra (hybrid)",
+   "brand": "Hyundai",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Hyundai Elantra (hybrid) was rated by the EPA in 2 configurations (midsize cars), at 50 to 54 mpg combined.",
+   "scores": {
+    "economical": 76,
+    "safety": 100,
+    "environment": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,250 to $1,350 a year in regular gasoline across its 2 configurations, median $1,250, at 50 to 54 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49817",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: HYUNDAI ELANTRA HYBRID 4DR HEV FWD: 5. Scored on the lowest (5 stars; front 4, side 5, rollover 5). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21151",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Hyundai vehicles are certified under EPA manufacturer code HYX, which belongs to Hyundai Motor Company. SBTi lists Hyundai Motor Company (LEI 9884004RQX8PRBXQ8S60) with validated near-term targets classed 1.5°C / 1.5°C (scored on the weaker). Record updated 2025-12-04.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2025-12"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49817"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Hyundai",
+    "Car",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "health": 100,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "hyundai-palisade-hybrid",
+   "name": "Hyundai Palisade (hybrid)",
+   "brand": "Hyundai",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Hyundai Palisade (hybrid) was rated by the EPA in 3 configurations (standard SUVs), at 29 to 34 mpg combined.",
+   "scores": {
+    "economical": 44,
+    "safety": 100,
+    "environment": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,950 to $2,300 a year in regular gasoline across its 3 configurations, median $2,150, at 29 to 34 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49885",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: HYUNDAI PALISADE HYBRID SUV HEV AWD: 5; HYUNDAI PALISADE HYBRID SUV HEV FWD: 5. Scored on the lowest (5 stars; front 4, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21139",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Hyundai vehicles are certified under EPA manufacturer code HYX, which belongs to Hyundai Motor Company. SBTi lists Hyundai Motor Company (LEI 9884004RQX8PRBXQ8S60) with validated near-term targets classed 1.5°C / 1.5°C (scored on the weaker). Record updated 2025-12-04.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2025-12"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49885"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Hyundai",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "health": 100,
+    "cost": 44
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "hyundai-santa-fe-hybrid",
+   "name": "Hyundai Santa Fe (hybrid)",
+   "brand": "Hyundai",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Hyundai Santa Fe (hybrid) was rated by the EPA in 2 configurations (small SUVs), at 34 to 36 mpg combined.",
+   "scores": {
+    "economical": 51,
+    "safety": 100,
+    "environment": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,850 to $1,950 a year in regular gasoline across its 2 configurations, median $1,850, at 34 to 36 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49447",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: HYUNDAI SANTA FE HYBRID SUV HEV AWD: 5; HYUNDAI SANTA FE HYBRID SUV HEV FWD: 5. Scored on the lowest (5 stars; front 5, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21135",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Hyundai vehicles are certified under EPA manufacturer code HYX, which belongs to Hyundai Motor Company. SBTi lists Hyundai Motor Company (LEI 9884004RQX8PRBXQ8S60) with validated near-term targets classed 1.5°C / 1.5°C (scored on the weaker). Record updated 2025-12-04.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2025-12"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49447"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Hyundai",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "health": 100,
+    "cost": 51
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "hyundai-sonata-hybrid",
+   "name": "Hyundai Sonata (hybrid)",
+   "brand": "Hyundai",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Hyundai Sonata (hybrid) was rated by the EPA in 2 configurations (large cars), at 47 to 51 mpg combined.",
+   "scores": {
+    "economical": 73,
+    "safety": 100,
+    "environment": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,300 to $1,450 a year in regular gasoline across its 2 configurations, median $1,300, at 47 to 51 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49322",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: HYUNDAI SONATA HYBRID 4DR HEV FWD: 5. Scored on the lowest (5 stars; front 4, side 5, rollover 5). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21162",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Hyundai vehicles are certified under EPA manufacturer code HYX, which belongs to Hyundai Motor Company. SBTi lists Hyundai Motor Company (LEI 9884004RQX8PRBXQ8S60) with validated near-term targets classed 1.5°C / 1.5°C (scored on the weaker). Record updated 2025-12-04.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2025-12"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49322"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Hyundai",
+    "Car",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "health": 100,
+    "cost": 73
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "hyundai-tucson-hybrid",
+   "name": "Hyundai Tucson (hybrid)",
+   "brand": "Hyundai",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Hyundai Tucson (hybrid) was rated by the EPA in 2 configurations (small SUVs), at 36 to 38 mpg combined.",
+   "scores": {
+    "economical": 54,
+    "safety": 100,
+    "environment": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,750 to $1,850 a year in regular gasoline across its 2 configurations, median $1,750, at 36 to 38 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49499",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: HYUNDAI TUCSON HYBRID SUV HEV AWD: 5. Scored on the lowest (5 stars; front 5, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21144",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Hyundai vehicles are certified under EPA manufacturer code HYX, which belongs to Hyundai Motor Company. SBTi lists Hyundai Motor Company (LEI 9884004RQX8PRBXQ8S60) with validated near-term targets classed 1.5°C / 1.5°C (scored on the weaker). Record updated 2025-12-04.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2025-12"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49499"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Hyundai",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "health": 100,
+    "cost": 54
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "hyundai-tucson-plug-in-hybrid",
+   "name": "Hyundai Tucson (plug-in hybrid)",
+   "brand": "Hyundai",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Hyundai Tucson (plug-in hybrid) was rated by the EPA in one configuration (small SUVs), with 32 miles of electric range and 35 mpg on gasoline alone.",
+   "scores": {
+    "economical": 70,
+    "environment": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,350 a year for electricity and gasoline together, assuming 60 per cent of miles run on electricity, the share the EPA assigns to a car with 32 miles of electric range (its utility factor). On gasoline alone, at 35 mpg, its figure is $1,900. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $4.47 a gallon of regular, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49764",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Hyundai vehicles are certified under EPA manufacturer code HYX, which belongs to Hyundai Motor Company. SBTi lists Hyundai Motor Company (LEI 9884004RQX8PRBXQ8S60) with validated near-term targets classed 1.5°C / 1.5°C (scored on the weaker). Record updated 2025-12-04.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2025-12"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49764"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Hyundai",
+    "SUV",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "planet": 100,
+    "cost": 70
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "jeep-cherokee",
+   "name": "Jeep Cherokee",
+   "brand": "Jeep",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Jeep Cherokee is a hybrid and was rated by the EPA in one configuration (standard SUVs), at 37 mpg combined.",
+   "scores": {
+    "economical": 53
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,800 a year in regular gasoline across its one configuration, median $1,800, at 37 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50161",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50161"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Jeep",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "cost": 53
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "fueleconomy.gov"
+   }
+  },
+  {
+   "code": "jeep-grand-cherokee-plug-in-hybrid",
+   "name": "Jeep Grand Cherokee (plug-in hybrid)",
+   "brand": "Jeep",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Jeep Grand Cherokee (plug-in hybrid) was rated by the EPA in one configuration (standard SUVs), with 26 miles of electric range and 23 mpg on gasoline alone.",
+   "scores": {
+    "economical": 46
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $2,050 a year for electricity and gasoline together, assuming 54 per cent of miles run on electricity, the share the EPA assigns to a car with 26 miles of electric range (its utility factor). On gasoline alone, at 23 mpg, its figure is $2,900. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $4.47 a gallon of regular, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50265",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50265"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Jeep",
+    "SUV",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "cost": 46
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "fueleconomy.gov"
+   }
+  },
+  {
+   "code": "jeep-wrangler-plug-in-hybrid",
+   "name": "Jeep Wrangler (plug-in hybrid)",
+   "brand": "Jeep",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Jeep Wrangler (plug-in hybrid) was rated by the EPA in one configuration (small SUVs), with 22 miles of electric range and 20 mpg on gasoline alone.",
+   "scores": {
+    "economical": 39
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $2,450 a year for electricity and gasoline together, assuming 49 per cent of miles run on electricity, the share the EPA assigns to a car with 22 miles of electric range (its utility factor). On gasoline alone, at 20 mpg, its figure is $3,350. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $4.47 a gallon of regular, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50264",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50264"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Jeep",
+    "SUV",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "cost": 39
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "fueleconomy.gov"
+   }
+  },
+  {
+   "code": "kia-carnival-hybrid",
+   "name": "Kia Carnival (hybrid)",
+   "brand": "Kia",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Kia Carnival (hybrid) was rated by the EPA in one configuration (minivans), at 32 mpg combined.",
+   "scores": {
+    "economical": 45,
+    "safety": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $2,100 a year in regular gasoline across its one configuration, median $2,100, at 32 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49438",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: KIA CARNIVAL HYBRID PV HEV FWD: 5. Scored on the lowest (5 stars; front 4, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21166",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49438"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Kia",
+    "Van",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "health": 100,
+    "cost": 45
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "kia-niro-hybrid",
+   "name": "Kia Niro (hybrid)",
+   "brand": "Kia",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Kia Niro (hybrid) was rated by the EPA in 2 configurations (small SUVs), at 49 to 53 mpg combined.",
+   "scores": {
+    "economical": 76,
+    "safety": 80
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,250 to $1,350 a year in regular gasoline across its 2 configurations, median $1,250, at 49 to 53 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49459",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: KIA NIRO SUV HEV FWD: 4. Scored on the lowest (4 stars; front 4, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21177",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49459"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Kia",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "health": 80,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "kia-niro-plug-in-hybrid",
+   "name": "Kia Niro (plug-in hybrid)",
+   "brand": "Kia",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Kia Niro (plug-in hybrid) was rated by the EPA in one configuration (small SUVs), with 33 miles of electric range and 48 mpg on gasoline alone.",
+   "scores": {
+    "economical": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $950 a year for electricity and gasoline together, assuming 62 per cent of miles run on electricity, the share the EPA assigns to a car with 33 miles of electric range (its utility factor). On gasoline alone, at 48 mpg, its figure is $1,400. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $4.47 a gallon of regular, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49765",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49765"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Kia",
+    "SUV",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "cost": 100
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "fueleconomy.gov"
+   }
+  },
+  {
+   "code": "kia-sorento-hybrid",
+   "name": "Kia Sorento (hybrid)",
+   "brand": "Kia",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Kia Sorento (hybrid) was rated by the EPA in 2 configurations (small SUVs), at 34 to 37 mpg combined.",
+   "scores": {
+    "economical": 53,
+    "safety": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,800 to $1,950 a year in regular gasoline across its 2 configurations, median $1,800, at 34 to 37 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49457",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: KIA SORENTO HYBRID SUV HEV AWD: 5; KIA SORENTO HYBRID SUV HEV FWD: 5. Scored on the lowest (5 stars; front 4, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21184",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49457"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Kia",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "health": 100,
+    "cost": 53
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "kia-sorento-plug-in-hybrid",
+   "name": "Kia Sorento (plug-in hybrid)",
+   "brand": "Kia",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Kia Sorento (plug-in hybrid) was rated by the EPA in one configuration (small SUVs), with 30 miles of electric range and 33 mpg on gasoline alone.",
+   "scores": {
+    "economical": 68
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,400 a year for electricity and gasoline together, assuming 59 per cent of miles run on electricity, the share the EPA assigns to a car with 30 miles of electric range (its utility factor). On gasoline alone, at 33 mpg, its figure is $2,050. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $4.47 a gallon of regular, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49766",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49766"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Kia",
+    "SUV",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "cost": 68
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "fueleconomy.gov"
+   }
+  },
+  {
+   "code": "kia-sportage-hybrid",
+   "name": "Kia Sportage (hybrid)",
+   "brand": "Kia",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Kia Sportage (hybrid) was rated by the EPA in 2 configurations (small SUVs), at 35 to 42 mpg combined.",
+   "scores": {
+    "economical": 59,
+    "safety": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,600 to $1,900 a year in regular gasoline across its 2 configurations, median $1,600, at 35 to 42 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49456",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: KIA SPORTAGE HYBRID SUV HEV AWD: 5. Scored on the lowest (5 stars; front 5, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21189",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49456"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Kia",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "health": 100,
+    "cost": 59
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "kia-sportage-plug-in-hybrid",
+   "name": "Kia Sportage (plug-in hybrid)",
+   "brand": "Kia",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Kia Sportage (plug-in hybrid) was rated by the EPA in one configuration (small SUVs), with 33 miles of electric range and 36 mpg on gasoline alone.",
+   "scores": {
+    "economical": 73
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,300 a year for electricity and gasoline together, assuming 61 per cent of miles run on electricity, the share the EPA assigns to a car with 33 miles of electric range (its utility factor). On gasoline alone, at 36 mpg, its figure is $1,850. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $4.47 a gallon of regular, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49767",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49767"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Kia",
+    "SUV",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "cost": 73
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "fueleconomy.gov"
+   }
+  },
+  {
+   "code": "kia-telluride-hybrid",
+   "name": "Kia Telluride (hybrid)",
+   "brand": "Kia",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2027 Kia Telluride (hybrid) was rated by the EPA in 3 configurations (standard SUVs), at 31 to 35 mpg combined.",
+   "scores": {
+    "economical": 46
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,900 to $2,150 a year in regular gasoline across its 3 configurations, median $2,050, at 31 to 35 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50422",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50422"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Kia",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "cost": 46
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "fueleconomy.gov"
+   }
+  },
+  {
+   "code": "lamborghini-urus",
+   "name": "Lamborghini Urus",
+   "brand": "Lamborghini",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Lamborghini Urus is a plug-in hybrid and was rated by the EPA in one configuration (standard SUVs), with 35 miles of electric range and 20 mpg on gasoline alone.",
+   "scores": {
+    "economical": 38,
+    "environment": 70
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $2,500 a year for electricity and gasoline together, assuming 64 per cent of miles run on electricity, the share the EPA assigns to a car with 35 miles of electric range (its utility factor). On gasoline alone, at 20 mpg, its figure is $4,100. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $5.48 a gallon of premium, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49755",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Lamborghini vehicles are certified under EPA manufacturer code VGA, which belongs to Volkswagen Aktiengesellschaft. SBTi lists Volkswagen AG (LEI 529900NNUPAGGOMPXZ31) with validated near-term targets classed 1.5°C / 2°C (scored on the weaker). Record updated 2022-04-21.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-04"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49755"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Lamborghini",
+    "SUV",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "planet": 70,
+    "cost": 38
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "lexus-es",
+   "name": "Lexus ES",
+   "brand": "Lexus",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Lexus ES is a hybrid and was rated by the EPA in 2 configurations (midsize cars), at 44 to 46 mpg combined.",
+   "scores": {
+    "economical": 53,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,800 to $1,850 a year in premium gasoline across its 2 configurations, median $1,800, at 44 to 46 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $5.48 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50445",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Lexus vehicles are certified under EPA manufacturer code TYX, which belongs to Toyota Motor Corporation. SBTi lists Toyota Motor Corporation (LEI 5493006W3QUS5LMH6R84) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-11-03.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-11"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50445"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Lexus",
+    "Car",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "cost": 53
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "lexus-lx-hybrid",
+   "name": "Lexus LX (hybrid)",
+   "brand": "Lexus",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Lexus LX (hybrid) was rated by the EPA in one configuration (standard SUVs), at 20 mpg combined.",
+   "scores": {
+    "economical": 23,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $4,100 a year in premium gasoline across its one configuration, median $4,100, at 20 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $5.48 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50169",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Lexus vehicles are certified under EPA manufacturer code TYX, which belongs to Toyota Motor Corporation. SBTi lists Toyota Motor Corporation (LEI 5493006W3QUS5LMH6R84) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-11-03.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-11"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50169"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Lexus",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "cost": 23
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "lexus-nx-hybrid",
+   "name": "Lexus NX (hybrid)",
+   "brand": "Lexus",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Lexus NX (hybrid) was rated by the EPA in 2 configurations (small SUVs), at 39 to 40 mpg combined.",
+   "scores": {
+    "economical": 46,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $2,050 to $2,100 a year in premium gasoline across its 2 configurations, median $2,050, at 39 to 40 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $5.48 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49462",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Lexus vehicles are certified under EPA manufacturer code TYX, which belongs to Toyota Motor Corporation. SBTi lists Toyota Motor Corporation (LEI 5493006W3QUS5LMH6R84) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-11-03.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-11"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49462"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Lexus",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "cost": 46
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "lexus-rx-hybrid",
+   "name": "Lexus RX (hybrid)",
+   "brand": "Lexus",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Lexus RX (hybrid) was rated by the EPA in 2 configurations (small SUVs), at 27 to 36 mpg combined.",
+   "scores": {
+    "economical": 41,
+    "safety": 100,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $2,300 to $3,050 a year in premium gasoline across its 2 configurations, median $2,300, at 27 to 36 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $5.48 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49857",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: LEXUS RX 350H SUV HEV AWD: 5; LEXUS RX 500H SUV HEV AWD: 5. Scored on the lowest (5 stars; front 4, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21621",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Lexus vehicles are certified under EPA manufacturer code TYX, which belongs to Toyota Motor Corporation. SBTi lists Toyota Motor Corporation (LEI 5493006W3QUS5LMH6R84) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-11-03.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-11"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49857"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Lexus",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "health": 100,
+    "cost": 41
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "lexus-tx-hybrid",
+   "name": "Lexus TX (hybrid)",
+   "brand": "Lexus",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Lexus TX (hybrid) was rated by the EPA in one configuration (standard SUVs), at 27 mpg combined.",
+   "scores": {
+    "economical": 31,
+    "safety": 100,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $3,050 a year in premium gasoline across its one configuration, median $3,050, at 27 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $5.48 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49923",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: LEXUS TX 500H SUV HEV AWD: 5. Scored on the lowest (5 stars; front 4, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21638",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Lexus vehicles are certified under EPA manufacturer code TYX, which belongs to Toyota Motor Corporation. SBTi lists Toyota Motor Corporation (LEI 5493006W3QUS5LMH6R84) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-11-03.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-11"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49923"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Lexus",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "health": 100,
+    "cost": 31
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "lexus-ux",
+   "name": "Lexus UX",
+   "brand": "Lexus",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Lexus UX is a hybrid and was rated by the EPA in 4 configurations (compact cars), at 42 to 43 mpg combined.",
+   "scores": {
+    "economical": 61,
+    "safety": 100,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,550 to $1,600 a year in regular gasoline across its 4 configurations, median $1,550, at 42 to 43 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50050",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: LEXUS UX 300H 5 HB HEV AWD: 5; LEXUS UX 300H 5 HB HEV FWD: 5. Scored on the lowest (5 stars; front 4, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21632",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Lexus vehicles are certified under EPA manufacturer code TYX, which belongs to Toyota Motor Corporation. SBTi lists Toyota Motor Corporation (LEI 5493006W3QUS5LMH6R84) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-11-03.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-11"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50050"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Lexus",
+    "Car",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "health": 100,
+    "cost": 61
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "lincoln-corsair-plug-in-hybrid",
+   "name": "Lincoln Corsair (plug-in hybrid)",
+   "brand": "Lincoln",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Lincoln Corsair (plug-in hybrid) was rated by the EPA in one configuration (small SUVs), with 27 miles of electric range and 33 mpg on gasoline alone.",
+   "scores": {
+    "economical": 66,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,450 a year for electricity and gasoline together, assuming 55 per cent of miles run on electricity, the share the EPA assigns to a car with 27 miles of electric range (its utility factor). On gasoline alone, at 33 mpg, its figure is $2,050. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $4.47 a gallon of regular, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49768",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Lincoln vehicles are certified under EPA manufacturer code FMX, which belongs to Ford Motor Company. SBTi lists Ford Motor Company (LEI 20S05OYHG0MQM4VUIC57) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2021-03-31.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2021-03"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49768"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Lincoln",
+    "SUV",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "cost": 66
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "lincoln-nautilus-hybrid",
+   "name": "Lincoln Nautilus (hybrid)",
+   "brand": "Lincoln",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Lincoln Nautilus (hybrid) was rated by the EPA in one configuration (small SUVs), at 30 mpg combined.",
+   "scores": {
+    "economical": 42,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $2,250 a year in regular gasoline across its one configuration, median $2,250, at 30 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49515",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Lincoln vehicles are certified under EPA manufacturer code FMX, which belongs to Ford Motor Company. SBTi lists Ford Motor Company (LEI 20S05OYHG0MQM4VUIC57) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2021-03-31.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2021-03"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49515"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Lincoln",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "cost": 42
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "mazda-cx-50-hybrid",
+   "name": "Mazda CX-50 (hybrid)",
+   "brand": "Mazda",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Mazda CX-50 (hybrid) was rated by the EPA in one configuration (small SUVs), at 38 mpg combined.",
+   "scores": {
+    "economical": 54,
+    "safety": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,750 a year in regular gasoline across its one configuration, median $1,750, at 38 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50010",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: MAZDA CX-50 SUV HEV AWD: 5. Scored on the lowest (5 stars; front 5, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21115",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50010"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Mazda",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "health": 100,
+    "cost": 54
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "mazda-cx-70-plug-in-hybrid",
+   "name": "Mazda CX-70 (plug-in hybrid)",
+   "brand": "Mazda",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Mazda CX-70 (plug-in hybrid) was rated by the EPA in one configuration (standard SUVs), with 32 miles of electric range and 26 mpg on gasoline alone.",
+   "scores": {
+    "economical": 49,
+    "safety": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,950 a year for electricity and gasoline together, assuming 61 per cent of miles run on electricity, the share the EPA assigns to a car with 32 miles of electric range (its utility factor). On gasoline alone, at 26 mpg, its figure is $3,150. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $5.48 a gallon of premium, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50266",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: MAZDA CX-70 SUV PHEV AWD: 5. Scored on the lowest (5 stars; front 5, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21118",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50266"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Mazda",
+    "SUV",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "health": 100,
+    "cost": 49
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "mazda-cx-90-plug-in-hybrid",
+   "name": "Mazda CX-90 (plug-in hybrid)",
+   "brand": "Mazda",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Mazda CX-90 (plug-in hybrid) was rated by the EPA in one configuration (standard SUVs), with 27 miles of electric range and 26 mpg on gasoline alone.",
+   "scores": {
+    "economical": 44,
+    "safety": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $2,150 a year for electricity and gasoline together, assuming 56 per cent of miles run on electricity, the share the EPA assigns to a car with 27 miles of electric range (its utility factor). On gasoline alone, at 26 mpg, its figure is $3,150. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $5.48 a gallon of premium, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50267",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: MAZDA CX-90 SUV PHEV AWD: 5. Scored on the lowest (5 stars; front 5, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21116",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50267"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Mazda",
+    "SUV",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "health": 100,
+    "cost": 44
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "mercedes-benz-e-class-plug-in-hybrid",
+   "name": "Mercedes-Benz E-Class (plug-in hybrid)",
+   "brand": "Mercedes-Benz",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Mercedes-Benz E-Class (plug-in hybrid) was rated by the EPA in 2 configurations (midsize cars and midsize station wagons), with 41 to 44 miles of electric range and 22 to 24 mpg on gasoline alone.",
+   "scores": {
+    "economical": 50,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,900 a year for electricity and gasoline together, assuming 71 per cent of miles run on electricity, the share the EPA assigns to a car with 44 miles of electric range (its utility factor). On gasoline alone, at 24 mpg, its figure is $3,400. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $5.48 a gallon of premium, the prices behind the EPA's figures in this file. That is the median of its 2 configurations, which run $1,900 to $2,050. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49769",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Mercedes-Benz vehicles are certified under EPA manufacturer code MBX, which belongs to Mercedes-Benz AG. SBTi lists Mercedes-Benz AG (LEI 5299000W0HB7SX4P4882) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2019-11-22.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2019-11"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49769"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Mercedes-Benz",
+    "Car",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "cost": 50
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "mitsubishi-outlander-plug-in-hybrid",
+   "name": "Mitsubishi Outlander (plug-in hybrid)",
+   "brand": "Mitsubishi",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Mitsubishi Outlander (plug-in hybrid) was rated by the EPA in one configuration (standard SUVs), with 44 miles of electric range and 27 mpg on gasoline alone.",
+   "scores": {
+    "economical": 63
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,500 a year for electricity and gasoline together, assuming 71 per cent of miles run on electricity, the share the EPA assigns to a car with 44 miles of electric range (its utility factor). On gasoline alone, at 27 mpg, its figure is $2,500. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $4.47 a gallon of regular, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50310",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50310"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Mitsubishi",
+    "SUV",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "cost": 63
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "fueleconomy.gov"
+   }
+  },
+  {
+   "code": "subaru-crosstrek-hybrid",
+   "name": "Subaru Crosstrek (hybrid)",
+   "brand": "Subaru",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Subaru Crosstrek (hybrid) was rated by the EPA in one configuration (small SUVs), at 36 mpg combined.",
+   "scores": {
+    "economical": 51,
+    "safety": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,850 a year in regular gasoline across its one configuration, median $1,850, at 36 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49538",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: SUBARU CROSSTREK HYBRID SW HEV AWD: 5. Scored on the lowest (5 stars; front 5, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21694",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49538"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Subaru",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "health": 100,
+    "cost": 51
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "subaru-forester-hybrid",
+   "name": "Subaru Forester (hybrid)",
+   "brand": "Subaru",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Subaru Forester (hybrid) was rated by the EPA in one configuration (small SUVs), at 35 mpg combined.",
+   "scores": {
+    "economical": 50,
+    "safety": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,900 a year in regular gasoline across its one configuration, median $1,900, at 35 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50131",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: SUBARU FORESTER HYBRID SUV HEV AWD: 5. Scored on the lowest (5 stars; front 5, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21698",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50131"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Subaru",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "health": 100,
+    "cost": 50
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "toyota-4runner-hybrid",
+   "name": "Toyota 4Runner (hybrid)",
+   "brand": "Toyota",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Toyota 4Runner (hybrid) was rated by the EPA in 2 configurations (standard SUVs), at 23 mpg combined.",
+   "scores": {
+    "economical": 33,
+    "safety": 80,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $2,900 a year in regular gasoline across its 2 configurations, median $2,900, at 23 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50178",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: TOYOTA 4RUNNER HYBRID SUV HEV AWD: 4; TOYOTA 4RUNNER HYBRID SUV HEV 4WD: 4. Scored on the lowest (4 stars; front 4, side 5, rollover 3). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21658",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Toyota vehicles are certified under EPA manufacturer code TYX, which belongs to Toyota Motor Corporation. SBTi lists Toyota Motor Corporation (LEI 5493006W3QUS5LMH6R84) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-11-03.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-11"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50178"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Toyota",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "health": 80,
+    "cost": 33
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "toyota-camry",
+   "name": "Toyota Camry",
+   "brand": "Toyota",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Toyota Camry is a hybrid and was rated by the EPA in 5 configurations (midsize cars), at 43 to 51 mpg combined.",
+   "scores": {
+    "economical": 66,
+    "safety": 100,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,300 to $1,550 a year in regular gasoline across its 5 configurations, median $1,450, at 43 to 51 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49821",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: TOYOTA CAMRY HYBRID 4 DR HEV AWD: 5; TOYOTA CAMRY HYBRID 4 DR HEV FWD: 5. Scored on the lowest (5 stars; front 5, side 5, rollover 5). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21641",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Toyota vehicles are certified under EPA manufacturer code TYX, which belongs to Toyota Motor Corporation. SBTi lists Toyota Motor Corporation (LEI 5493006W3QUS5LMH6R84) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-11-03.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-11"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49821"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Toyota",
+    "Car",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "health": 100,
+    "cost": 66
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "toyota-corolla-hybrid",
+   "name": "Toyota Corolla (hybrid)",
+   "brand": "Toyota",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Toyota Corolla (hybrid) was rated by the EPA in 4 configurations (compact cars), at 44 to 50 mpg combined.",
+   "scores": {
+    "economical": 68,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,350 to $1,500 a year in regular gasoline across its 4 configurations, median $1,400, at 44 to 50 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49806",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Toyota vehicles are certified under EPA manufacturer code TYX, which belongs to Toyota Motor Corporation. SBTi lists Toyota Motor Corporation (LEI 5493006W3QUS5LMH6R84) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-11-03.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-11"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49806"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Toyota",
+    "Car",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "cost": 68
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "toyota-corolla-cross-hybrid",
+   "name": "Toyota Corolla Cross (hybrid)",
+   "brand": "Toyota",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Toyota Corolla Cross (hybrid) was rated by the EPA in one configuration (small SUVs), at 42 mpg combined.",
+   "scores": {
+    "economical": 59,
+    "safety": 100,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,600 a year in regular gasoline across its one configuration, median $1,600, at 42 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49870",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: TOYOTA COROLLA CROSS HYBRID SUV HEV AWD: 5. Scored on the lowest (5 stars; front 4, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21649",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Toyota vehicles are certified under EPA manufacturer code TYX, which belongs to Toyota Motor Corporation. SBTi lists Toyota Motor Corporation (LEI 5493006W3QUS5LMH6R84) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-11-03.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-11"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49870"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Toyota",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "health": 100,
+    "cost": 59
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "toyota-crown",
+   "name": "Toyota Crown",
+   "brand": "Toyota",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Toyota Crown is a hybrid and was rated by the EPA in 2 configurations (midsize cars), at 30 to 41 mpg combined.",
+   "scores": {
+    "economical": 58,
+    "safety": 100,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,650 to $2,250 a year in regular gasoline across its 2 configurations, median $1,650, at 30 to 41 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49297",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: TOYOTA CROWN HYBRID 4 DR HEV AWD: 5. Scored on the lowest (5 stars; front 5, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21680",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Toyota vehicles are certified under EPA manufacturer code TYX, which belongs to Toyota Motor Corporation. SBTi lists Toyota Motor Corporation (LEI 5493006W3QUS5LMH6R84) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-11-03.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-11"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49297"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Toyota",
+    "Car",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "health": 100,
+    "cost": 58
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "toyota-crown-signia",
+   "name": "Toyota Crown Signia",
+   "brand": "Toyota",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Toyota Crown Signia is a hybrid and was rated by the EPA in one configuration (small station wagons), at 38 mpg combined.",
+   "scores": {
+    "economical": 54,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,750 a year in regular gasoline across its one configuration, median $1,750, at 38 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50076",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Toyota vehicles are certified under EPA manufacturer code TYX, which belongs to Toyota Motor Corporation. SBTi lists Toyota Motor Corporation (LEI 5493006W3QUS5LMH6R84) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-11-03.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-11"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50076"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Toyota",
+    "Wagon",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "cost": 54
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "toyota-grand-highlander-hybrid",
+   "name": "Toyota Grand Highlander (hybrid)",
+   "brand": "Toyota",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Toyota Grand Highlander (hybrid) was rated by the EPA in 3 configurations (standard SUVs), at 27 to 36 mpg combined.",
+   "scores": {
+    "economical": 49,
+    "safety": 100,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,850 to $2,500 a year in regular gasoline across its 3 configurations, median $1,950, at 27 to 36 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49935",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: TOYOTA GRAND HIGHLANDER HYBRID SUV HEV AWD: 5; TOYOTA GRAND HIGHLANDER HYBRID SUV HEV FWD: 5. Scored on the lowest (5 stars; front 4, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21685",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Toyota vehicles are certified under EPA manufacturer code TYX, which belongs to Toyota Motor Corporation. SBTi lists Toyota Motor Corporation (LEI 5493006W3QUS5LMH6R84) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-11-03.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-11"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49935"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Toyota",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "health": 100,
+    "cost": 49
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "toyota-highlander-hybrid",
+   "name": "Toyota Highlander (hybrid)",
+   "brand": "Toyota",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Toyota Highlander (hybrid) was rated by the EPA in 2 configurations (standard SUVs), at 35 mpg combined.",
+   "scores": {
+    "economical": 50,
+    "safety": 100,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,900 a year in regular gasoline across its 2 configurations, median $1,900, at 35 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50180",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: TOYOTA HIGHLANDER HYBRID SUV HEV AWD: 5. Scored on the lowest (5 stars; front 4, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21665",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Toyota vehicles are certified under EPA manufacturer code TYX, which belongs to Toyota Motor Corporation. SBTi lists Toyota Motor Corporation (LEI 5493006W3QUS5LMH6R84) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-11-03.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-11"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50180"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Toyota",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "health": 100,
+    "cost": 50
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "toyota-land-cruiser",
+   "name": "Toyota Land Cruiser",
+   "brand": "Toyota",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Toyota Land Cruiser is a hybrid and was rated by the EPA in one configuration (standard SUVs), at 23 mpg combined.",
+   "scores": {
+    "economical": 27,
+    "safety": 80,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $3,550 a year in premium gasoline across its one configuration, median $3,550, at 23 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $5.48 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49936",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: TOYOTA LAND CRUISER SUV HEV 4WD: 4. Scored on the lowest (4 stars; front 4, side 5, rollover 3). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21659",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Toyota vehicles are certified under EPA manufacturer code TYX, which belongs to Toyota Motor Corporation. SBTi lists Toyota Motor Corporation (LEI 5493006W3QUS5LMH6R84) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-11-03.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-11"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49936"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Toyota",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "health": 80,
+    "cost": 27
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "toyota-prius",
+   "name": "Toyota Prius",
+   "brand": "Toyota",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Toyota Prius is a hybrid and was rated by the EPA in 4 configurations (midsize cars), at 49 to 57 mpg combined.",
+   "scores": {
+    "economical": 76,
+    "safety": 100,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,200 to $1,350 a year in regular gasoline across its 4 configurations, median $1,250, at 49 to 57 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49298",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: TOYOTA PRIUS 5 HB HEV AWD: 5; TOYOTA PRIUS 5 HB HEV FWD: 5. Scored on the lowest (5 stars; front 5, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21651",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Toyota vehicles are certified under EPA manufacturer code TYX, which belongs to Toyota Motor Corporation. SBTi lists Toyota Motor Corporation (LEI 5493006W3QUS5LMH6R84) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-11-03.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-11"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49298"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Toyota",
+    "Car",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "health": 100,
+    "cost": 76
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "toyota-rav4",
+   "name": "Toyota RAV4",
+   "brand": "Toyota",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Toyota RAV4 is a hybrid and was rated by the EPA in 6 configurations (small SUVs), at 38 to 43 mpg combined.",
+   "scores": {
+    "economical": 58,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,550 to $1,750 a year in regular gasoline across its 6 configurations, median $1,650, at 38 to 43 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50133",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Toyota vehicles are certified under EPA manufacturer code TYX, which belongs to Toyota Motor Corporation. SBTi lists Toyota Motor Corporation (LEI 5493006W3QUS5LMH6R84) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-11-03.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-11"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50133"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Toyota",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "cost": 58
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "toyota-sequoia",
+   "name": "Toyota Sequoia",
+   "brand": "Toyota",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Toyota Sequoia is a hybrid and was rated by the EPA in 4 configurations (standard SUVs), at 20 to 22 mpg combined.",
+   "scores": {
+    "economical": 28,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $3,050 to $4,100 a year in gasoline (regular or premium, by configuration) across its 4 configurations, median $3,350, at 20 to 22 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon of regular and $5.48 a gallon of premium, the prices behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49608",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Toyota vehicles are certified under EPA manufacturer code TYX, which belongs to Toyota Motor Corporation. SBTi lists Toyota Motor Corporation (LEI 5493006W3QUS5LMH6R84) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-11-03.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-11"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49608"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Toyota",
+    "SUV",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "cost": 28
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "fueleconomy.gov",
+    "sourceLabels": [
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "toyota-sienna",
+   "name": "Toyota Sienna",
+   "brand": "Toyota",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Toyota Sienna is a hybrid and was rated by the EPA in 2 configurations (minivans), at 35 to 36 mpg combined.",
+   "scores": {
+    "economical": 51,
+    "safety": 100,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,850 to $1,900 a year in regular gasoline across its 2 configurations, median $1,850, at 35 to 36 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50111",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: TOYOTA SIENNA HYBRID VAN HEV AWD: 5; TOYOTA SIENNA HYBRID VAN HEV FWD: 5. Scored on the lowest (5 stars; front 4, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21661",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Toyota vehicles are certified under EPA manufacturer code TYX, which belongs to Toyota Motor Corporation. SBTi lists Toyota Motor Corporation (LEI 5493006W3QUS5LMH6R84) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-11-03.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-11"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50111"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Toyota",
+    "Van",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "health": 100,
+    "cost": 51
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "toyota-tacoma-hybrid",
+   "name": "Toyota Tacoma (hybrid)",
+   "brand": "Toyota",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Toyota Tacoma (hybrid) was rated by the EPA in 2 configurations (standard pickups), at 23 mpg combined.",
+   "scores": {
+    "economical": 33,
+    "safety": 80,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $2,900 a year in regular gasoline across its 2 configurations, median $2,900, at 23 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon, the price behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50109",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: TOYOTA TACOMA HYBRID PU/CC HEV 4WD: 4. Scored on the lowest (4 stars; front 3, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21678",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Toyota vehicles are certified under EPA manufacturer code TYX, which belongs to Toyota Motor Corporation. SBTi lists Toyota Motor Corporation (LEI 5493006W3QUS5LMH6R84) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-11-03.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-11"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=50109"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Toyota",
+    "Pickup",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "health": 80,
+    "cost": 33
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "toyota-tundra-hybrid",
+   "name": "Toyota Tundra (hybrid)",
+   "brand": "Toyota",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Toyota Tundra (hybrid) was rated by the EPA in 6 configurations (standard pickups), at 19 to 22 mpg combined.",
+   "scores": {
+    "economical": 27,
+    "safety": 100,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $3,050 to $4,350 a year in gasoline (regular or premium, by configuration) across its 6 configurations, median $3,550, at 19 to 22 mpg combined. That assumes 15,000 miles a year with 55 per cent city driving at $4.47 a gallon of regular and $5.48 a gallon of premium, the prices behind the EPA's figures in this file. Scored against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49425",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: TOYOTA TUNDRA HYBRID PU/CC HEV AWD: 5; TOYOTA TUNDRA HYBRID PU/CC HEV RWD: 5. Scored on the lowest (5 stars; front 5, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21671",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Toyota vehicles are certified under EPA manufacturer code TYX, which belongs to Toyota Motor Corporation. SBTi lists Toyota Motor Corporation (LEI 5493006W3QUS5LMH6R84) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2022-11-03.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2022-11"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49425"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Toyota",
+    "Pickup",
+    "Hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "health": 100,
+    "cost": 27
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "volvo-xc60-plug-in-hybrid",
+   "name": "Volvo XC60 (plug-in hybrid)",
+   "brand": "Volvo",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Volvo XC60 (plug-in hybrid) was rated by the EPA in one configuration (small SUVs), with 36 miles of electric range and 28 mpg on gasoline alone.",
+   "scores": {
+    "economical": 53,
+    "safety": 100,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,800 a year for electricity and gasoline together, assuming 64 per cent of miles run on electricity, the share the EPA assigns to a car with 36 miles of electric range (its utility factor). On gasoline alone, at 28 mpg, its figure is $2,950. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $5.48 a gallon of premium, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49771",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: VOLVO XC60 T8 SUV PHEV AWD: 5. Scored on the lowest (5 stars; front 5, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/20877",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Volvo vehicles are certified under EPA manufacturer code VVX, which belongs to Volvo Car AB. SBTi lists Volvo Car Group (LEI 5299000EAMGGBEYP7J33) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2021-03-01.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2021-03"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49771"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Volvo",
+    "SUV",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "health": 100,
+    "cost": 53
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  },
+  {
+   "code": "volvo-xc90-plug-in-hybrid",
+   "name": "Volvo XC90 (plug-in hybrid)",
+   "brand": "Volvo",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 Volvo XC90 (plug-in hybrid) was rated by the EPA in one configuration (standard SUVs), with 33 miles of electric range and 27 mpg on gasoline alone.",
+   "scores": {
+    "economical": 49,
+    "safety": 100,
+    "environment": 85
+   },
+   "provenance": {
+    "economical": {
+     "note": "The EPA estimates $1,950 a year for electricity and gasoline together, assuming 61 per cent of miles run on electricity, the share the EPA assigns to a car with 33 miles of electric range (its utility factor). On gasoline alone, at 27 mpg, its figure is $3,050. Both assume 15,000 miles a year with 55 per cent city driving, at 15 cents a kilowatt-hour and $5.48 a gallon of premium, the prices behind the EPA's figures in this file. Scored on the combined figure against the cheapest to run on this list ($950 a year scores 100; twice that scores 50).",
+     "source": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49772",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA overall rating, in stars out of 5, for each tested 2026 version: VOLVO XC90 T8 SUV PHEV AWD: 5. Scored on the lowest (5 stars; front 5, side 5, rollover 4). Versions NHTSA has not tested are not counted.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/20881",
+     "asof": "2026-10"
+    },
+    "environment": {
+     "note": "Volvo vehicles are certified under EPA manufacturer code VVX, which belongs to Volvo Car AB. SBTi lists Volvo Car Group (LEI 5299000EAMGGBEYP7J33) with validated near-term targets classed 1.5°C / Well-below 2°C (scored on the weaker). Record updated 2021-03-01.",
+     "source": "https://sciencebasedtargets.org/target-dashboard",
+     "asof": "2021-03"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy figures",
+     "url": "https://www.fueleconomy.gov/feg/Find.do?action=sbs&id=49772"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Volvo",
+    "SUV",
+    "Plug-in hybrid"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "health": 100,
+    "cost": 49
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "fueleconomy.gov",
+     "sciencebasedtargets.org"
+    ]
+   }
+  }
+ ],
+ "links": [
+  {
+   "label": "fueleconomy.gov: find and compare cars",
+   "url": "https://www.fueleconomy.gov/feg/findacar.shtml"
+  },
+  {
+   "label": "fueleconomy.gov plug-in hybrids",
+   "url": "https://www.fueleconomy.gov/feg/phevsbs.shtml"
+  },
+  {
+   "label": "EPA and DOE vehicle data download",
+   "url": "https://www.fueleconomy.gov/feg/ws/index.shtml"
+  },
+  {
+   "label": "NHTSA 5-Star Safety Ratings",
+   "url": "https://www.nhtsa.gov/ratings"
+  },
+  {
+   "label": "SBTi target dashboard",
+   "url": "https://sciencebasedtargets.org/target-dashboard"
+  }
+ ]
+}

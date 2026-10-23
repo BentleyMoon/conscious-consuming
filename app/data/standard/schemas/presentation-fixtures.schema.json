@@ -2,16 +2,17 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/presentation-fixtures-v1.0.schema.json",
   "title": "Open Values Presentation Fixtures v1.0",
-  "description": "Real rich, thin, and not-yet-covered cases for each shared presentation page kind.",
+  "description": "Test cases for the shared page layer: for each of the ten page kinds, one real page with good sources, one with gaps, and one not covered yet, with what each page must and must not show. Maintainers write them, and the presentation build checks every case still points at real data.",
   "type": "object",
   "additionalProperties": false,
   "required": ["format", "version", "updated", "states", "fixtureSets"],
   "properties": {
-    "format": {"const": "open-values-presentation-fixtures"},
-    "version": {"const": "1.0.0"},
-    "updated": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
-    "states": {"const": ["rich", "thin", "not-yet-covered"]},
+    "format": { "description": "Names the file format. Always open-values-presentation-fixtures.", "const": "open-values-presentation-fixtures"},
+    "version": { "description": "The version of this format the file follows. Always 1.0.0.", "const": "1.0.0"},
+    "updated": { "description": "The date the fixtures were last changed, as YYYY-MM-DD.", "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "states": { "description": "The three coverage states every page kind is tested in, in this order: rich, thin and not-yet-covered.", "const": ["rich", "thin", "not-yet-covered"]},
     "fixtureSets": {
+      "description": "One set of test cases per page kind, in the same order as the page kinds file.",
       "type": "array",
       "minItems": 10,
       "maxItems": 10,
@@ -24,8 +25,8 @@
       "additionalProperties": false,
       "required": ["pageKind", "cases"],
       "properties": {
-        "pageKind": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
-        "cases": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"$ref": "#/$defs/fixture"}}
+        "pageKind": { "description": "The id of the page kind these cases test.", "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "cases": { "description": "Exactly three cases: one rich, one thin and one not-yet-covered, in that order.", "type": "array", "minItems": 3, "maxItems": 3, "items": {"$ref": "#/$defs/fixture"}}
       }
     },
     "fixture": {
@@ -33,25 +34,26 @@
       "additionalProperties": false,
       "required": ["id", "state", "title", "route", "sourceRefs", "expected", "requirements"],
       "properties": {
-        "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
-        "state": {"enum": ["rich", "thin", "not-yet-covered"]},
-        "instance": {"enum": ["conscious-consuming", "kosplora"]},
-        "title": {"type": "string", "minLength": 1},
-        "route": {"type": "string", "pattern": "^#"},
-        "sourceRefs": {"type": "array", "minItems": 1, "items": {"type": "object"}},
+        "id": { "description": "A lowercase hyphenated id for the case, unique across the file.", "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "state": { "description": "Which coverage state the case shows: rich, thin or not-yet-covered.", "enum": ["rich", "thin", "not-yet-covered"]},
+        "instance": { "description": "Which site the case comes from: conscious-consuming or kosplora.", "enum": ["conscious-consuming", "kosplora"]},
+        "title": { "description": "The title the page should show.", "type": "string", "minLength": 1},
+        "route": { "description": "The in-app address of the page, starting with #.", "type": "string", "pattern": "^#"},
+        "sourceRefs": { "description": "Pointers to the real repository files the case is drawn from. Each gives a path and may name text the file must contain, or a collection and the item in it that must exist. The build fails if any pointer no longer resolves.", "type": "array", "minItems": 1, "items": {"type": "object"}},
         "expected": {
+          "description": "What the rendered page must and must not show.",
           "type": "object",
           "additionalProperties": false,
           "required": ["coverage", "action", "path", "mustShow", "mustNotClaim"],
           "properties": {
-            "coverage": {"type": "string", "minLength": 1},
-            "action": {"type": "string", "minLength": 1},
-            "path": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
-            "mustShow": {"type": "array", "minItems": 3, "items": {"type": "string", "minLength": 1}},
-            "mustNotClaim": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+            "coverage": { "description": "The coverage label the page must show. It must match the label for this state in the strings file.", "type": "string", "minLength": 1},
+            "action": { "description": "The main action the page must offer. For rich and thin cases it must match the page kind's mainAction.", "type": "string", "minLength": 1},
+            "path": { "description": "The trail of labels from the top of the navigation down to this page.", "type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+            "mustShow": { "description": "At least three pieces of text the page must show.", "type": "array", "minItems": 3, "items": {"type": "string", "minLength": 1}},
+            "mustNotClaim": { "description": "Text the page must not show, such as a claim the evidence does not support.", "type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
           }
         },
-        "requirements": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^R-[A-Z]+-\\d{2}$"}}
+        "requirements": { "description": "Ids of the requirements in docs/design/REQUIREMENTS-LEDGER.md that this case checks, such as R-IA-03.", "type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^R-[A-Z]+-\\d{2}$"}}
       }
     }
   }

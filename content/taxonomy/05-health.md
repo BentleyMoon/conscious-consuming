@@ -19,12 +19,12 @@ edge: Treating and monitoring a body, and the services that do it. The line agai
 
 ### Getting medicines | type: S | mode: hire
 - Pharmacies and chemists
-- Online pharmacies and prescription delivery
+- Online pharmacies and prescription delivery | cid: online-pharmacies-and-prescription-delivery
 - Repeat prescription services
 
 ### Supplements | type: P | mode: buy | cadence: monthly
 - Vitamins and supplements | aka: vitamins, multivitamins | cid: vitamins-and-supplements
-- Protein and sports nutrition | aka: sports nutrition, protein powder
+- Protein and sports nutrition | aka: sports nutrition, protein powder | cid: protein-and-sports-nutrition
 - Probiotics and gut health
 - Herbal and traditional remedies
 - Children's supplements
@@ -58,7 +58,7 @@ edge: Treating and monitoring a body, and the services that do it. The line agai
 - Prescription sunglasses
 - Contact lens solutions
 - Opticians and eye tests | type: S | mode: hire
-- Eye drops and eye care
+- Eye drops and eye care | hold: openFDA misses recalls that omit the brand name, so a no-recall claim cannot be supported for this category and a comparison would imply safety the register cannot show.
 
 ### Teeth | type: S | mode: hire
 - Dentists
@@ -110,8 +110,8 @@ edge: Treating and monitoring a body, and the services that do it. The line agai
 ## Movement and fitness | need: care
 
 ### Equipment
-- Fitness equipment | aka: home gym, weights
-- Cardio machines | cadence: rare
+- Fitness equipment | aka: home gym, weights | cid: fitness-equipment
+- Cardio machines | cadence: rare | cid: cardio-machines
 - Yoga and floor equipment
 - Recovery and massage tools
 

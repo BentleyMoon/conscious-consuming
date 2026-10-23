@@ -105,7 +105,7 @@
   var LENSES = [
     { id: 'climate', label: 'Climate & nature', keys: ['environment', 'palm_oil', 'forest', 'rainforest_alliance', 'packaging'] },
     { id: 'animals', label: 'Animals', keys: ['cruelty_free', 'vegan'] },
-    { id: 'health', label: 'Health', keys: ['nutrition_grade', 'low_sugar', 'processing', 'protein', 'organic', 'health'] },
+    { id: 'health', label: 'Health', keys: ['nutrition_grade', 'low_sugar', 'processing', 'protein', 'organic', 'health', 'wellbeing'] },
     { id: 'people', label: 'People & labour', keys: ['ethics', 'fair_trade', 'labor', 'artist_pay', 'respect', 'nonprofit'] },
     { id: 'privacy', label: 'Privacy & openness', keys: ['privacy', 'openness', 'transparency', 'security', 'independence'] },
     { id: 'wallet', label: 'Your wallet', keys: ['economical', 'fees', 'price'] },
@@ -1118,7 +1118,7 @@
         if (cell.state !== 'built') return cell.state === 'open' ? 'open; no answer yet, choose it to ask for one'
           : cell.state === 'held' ? 'held deliberately'
           : cell.state === 'refused' ? 'outside this catalogue' : cell.state;
-        return plural(cell.count || 0, 'option') + '; ' + Math.round((cell.checkable || 0) * 100) + '% second-sourced';
+        return plural(cell.count || 0, 'option') + ' compared';
       }
       return plural(cell.totalCount || 0, 'decision') + '; ' + (cell.builtCount || 0) + ' answered';
     }
@@ -1139,7 +1139,7 @@
        group come from its members, so the same chip means the same thing at both rungs. */
     function infoLine(c) {
       if (info === 'options') return plural(c.count, 'option');
-      if (info === 'sourced') return Math.round(c.checkable * 100) + '% second-sourced';
+      if (info === 'sourced') return Math.round(c.checkable * 100) + '% checked against a second source';
       if (info === 'stakes') return 'stakes ' + c.stakes + ' of 5';
       if (info === 'differ') return 'options differ ' + Math.round(c.spread * 100) + ' of 100';
       return '';
@@ -1608,7 +1608,7 @@
             }
             ctx.globalAlpha = 0.85;
             ctx.font = '600 10px ' + TH.font;
-            ctx.fillText(fit(ctx, c.count + ' options · ' + Math.round(c.checkable * 100) + '% second-sourced · click to open', L.w - 12),
+            ctx.fillText(fit(ctx, c.count + ' options · click to open', L.w - 12),
                          L.x + 6, L.y + L.h - 14);
             ctx.globalAlpha = 1;
           } else {
@@ -1627,7 +1627,7 @@
             var fishEvidence = mode === 'fisheye' && fishDepthShown > 1.35;
             var stat = mode === 'fisheye' && wide ? ((isFocus || fishEvidence) ? mapLine(c) : '')
                      : info ? infoLine(c)
-                     : ((isFocus || fishEvidence) ? c.count + ' options · ' + Math.round(c.checkable * 100) + '% second-sourced' : '');
+                     : ((isFocus || fishEvidence) ? c.count + ' options' : '');
             // A wide-rung cell's scent is often the same counts mapLine gives ("133 decisions; 50
             // answered"), and the focused domain printed it twice. Say it once.
             if (stat && stat === scentDrawn) stat = '';

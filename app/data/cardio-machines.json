@@ -1,0 +1,1011 @@
+{
+ "meta": {
+  "id": "cardio-machines",
+  "label": "Cardio machines",
+  "type": "Products",
+  "primaryAxis": "safety",
+  "tradeoff": [
+   "economical",
+   "safety"
+  ],
+  "tradeoffLabels": [
+   "cheapest to buy",
+   "cleanest CPSC recall record"
+  ],
+  "source": "Conscious Consuming",
+  "attribution": "Covers cardio machines for a home in the US: treadmills, exercise bikes, rowers and ellipticals, each as one named model, plus walking outdoors as the route that costs nothing. The safety score reads recalls in the US Consumer Product Safety Commission (CPSC) recall database through its public interface, searched on 29 September 2026 by brand name in the recall title, product name and recall description. It counts recalls of the same type of machine under the brand, and where CPSC names a company as the brand's former or current owner it counts that company's recall of the same type of machine. Records are dated by the recall notice. A brand with no recall of that machine type scores 90, a recall older than five years scores 75, a recall inside five years with no injuries reported scores 55, one with injuries reported scores 35, and a recall that reports a death scores 10. A recall covers the models and serial numbers in the notice, and the notes say when the machine now sold is a different model. CPSC lists only products with a reported hazard and a recall, so a score of 90 shows no recall was found and does not show a product is free of faults. Incident reports on SaferProducts.gov are not scored. The price is the price shown on the seller's page on the day read, using the sale price where one is shown, and it does not include subscriptions or memberships that connected machines need for classes. Peloton, NordicTrack and Echelon sell classes separately. The warranty score reads the terms printed on the seller's page. A lifetime frame and motor with 3 years on parts and 1 year of labor scores 100, a 10 year frame with 2 years on parts and 1 year of labor scores 87, a 10 year frame with 90 days of labor scores 77, a 5 year frame with 12 months on components scores 42, a 1 year limited warranty scores 20 and a 30 day limited warranty scores 5. A page that gives no terms is left unscored. Machines of different types have different prices, so the price score compares a rower with a treadmill only in what it costs. Not medical or engineering advice. A doctor can advise on whether a machine suits a health condition, and CPSC's recall notices give the models and serial numbers involved. Reviewed 2026-09. Suggest changes via Contribute.",
+  "allergens": false,
+  "presets": {
+   "Balanced": {
+    "w": {
+     "economical": 3,
+     "safety": 3,
+     "durability": 2
+    },
+    "x": []
+   },
+   "Cheapest": {
+    "w": {
+     "economical": 5,
+     "safety": 2,
+     "durability": 1
+    },
+    "x": []
+   },
+   "Cleanest recall record": {
+    "w": {
+     "safety": 5,
+     "durability": 2,
+     "economical": 1
+    },
+    "x": []
+   },
+   "Longest warranty": {
+    "w": {
+     "durability": 5,
+     "safety": 3,
+     "economical": 2
+    },
+    "x": []
+   }
+  },
+  "n": 13,
+  "valueSignatureProfile": {
+   "entryCount": 13,
+   "signedEntries": 13,
+   "drawableEntries": 11,
+   "minimumThemesForBloom": 2,
+   "themeCounts": {
+    "planet": 8,
+    "health": 12,
+    "cost": 11
+   }
+  },
+  "provenanceProfile": {
+   "entryCount": 13,
+   "singleSourceEntries": 2,
+   "multiSourceEntries": 11,
+   "noSourceEntries": 0,
+   "noteOnlyEntries": 0,
+   "averageSourceDomains": 1.85,
+   "topPrimarySources": [
+    {
+     "label": "target.com",
+     "entries": 3
+    },
+    {
+     "label": "onepeloton.com",
+     "entries": 2
+    },
+    {
+     "label": "bowflex.com",
+     "entries": 1
+    },
+    {
+     "label": "concept2.com",
+     "entries": 1
+    },
+    {
+     "label": "echelonfit.com",
+     "entries": 1
+    },
+    {
+     "label": "horizonfitness.com",
+     "entries": 1
+    }
+   ]
+  },
+  "decision": {
+   "category": "cardio-machines",
+   "reads": {
+    "text": "Compare cardio machines by safety, cost, and durability.",
+    "basis": [
+     {
+      "criterion": "safety",
+      "readsAs": "safety"
+     },
+     {
+      "criterion": "economical",
+      "readsAs": "cost"
+     },
+     {
+      "criterion": "durability",
+      "readsAs": "durability"
+     }
+    ],
+    "signature": {
+     "by": "Conscious Consuming",
+     "on": "2026-07-15",
+     "status": "approved-batch"
+    },
+    "receipt": {
+     "dataset": "cardio-machines",
+     "entryCount": 13,
+     "criteria": [
+      {
+       "criterion": "safety",
+       "readsAs": "safety",
+       "known": 12,
+       "minimum": 10,
+       "maximum": 90,
+       "spread": 80
+      },
+      {
+       "criterion": "economical",
+       "readsAs": "cost",
+       "known": 11,
+       "minimum": 6,
+       "maximum": 100,
+       "spread": 94
+      },
+      {
+       "criterion": "durability",
+       "readsAs": "durability",
+       "known": 8,
+       "minimum": 5,
+       "maximum": 100,
+       "spread": 95
+      }
+     ]
+    }
+   },
+   "axes": [
+    {
+     "id": "cost-or-values",
+     "kind": "cost-values",
+     "label": "Cost or overall fit",
+     "question": "Lower cost or a stronger overall fit?",
+     "criteria": [
+      "economical",
+      "safety",
+      "durability"
+     ],
+     "poles": [
+      "Lower cost",
+      "Stronger overall fit"
+     ],
+     "default": 50
+    },
+    {
+     "id": "durability",
+     "kind": "criterion",
+     "label": "Durability",
+     "question": "Do you want a longer useful life?",
+     "criteria": [
+      "durability"
+     ],
+     "poles": [
+      "Flexible",
+      "Longer life"
+     ],
+     "default": 50
+    }
+   ],
+   "budget": {
+    "available": true,
+    "mode": "assessed-affordability-rank",
+    "criterion": "economical",
+    "minimumKnown": 5,
+    "knownEntries": 11,
+    "coverage": 0.8462
+   },
+   "archetypes": [
+    "best-for-most",
+    "strictest-match",
+    "budget-honest"
+   ],
+   "page": {
+    "stage": "approved-batch",
+    "primaryRoute": true
+   },
+   "consumer": {
+    "reads": "Round 8 approved category differences reads.",
+    "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+    "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+    "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+    "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+   }
+  }
+ },
+ "criteria": [
+  {
+   "key": "economical",
+   "label": "Price shown on the seller's page (machine only, no subscription)",
+   "source": "curated",
+   "tier": "measured"
+  },
+  {
+   "key": "safety",
+   "label": "CPSC recall record for this type of machine under the brand",
+   "source": "curated",
+   "tier": "measured"
+  },
+  {
+   "key": "durability",
+   "label": "Warranty length printed on the seller's page (frame, parts and labor)",
+   "source": "curated",
+   "tier": "measured"
+  }
+ ],
+ "products": [
+  {
+   "code": "peloton-bike",
+   "name": "Peloton Cross Training Bike",
+   "brand": "connected bike, subscription classes",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "economical": 52,
+    "safety": 35,
+    "durability": 42
+   },
+   "provenance": {
+    "economical": {
+     "note": "onepeloton.com lists the Cross Training Bike at $1,695, or $141.25 a month at 0 percent APR for 12 months, and the Cross Training Bike+ at $2,695. The page says the All-Access Membership is priced separately from the bike.",
+     "source": "https://www.onepeloton.com/bike",
+     "asof": "2026-09"
+    },
+    "safety": {
+     "note": "CPSC's recall database lists three Peloton bike records: 6 November 2025 Original Series Bike+ Model PL02 (about 833,000 units, three reports of the seat post breaking, two with injuries), 11 May 2023 Bike Model PL01 (about 2.2 million units, 35 reports, 13 with injuries including a fractured wrist), and a 2020 recall of PR70P pedals (120 reports, 16 leg injuries). The notices name Original Series bikes, and the page lists Cross Training bikes, which the notices do not name. Recalls within five years with injuries score 35.",
+     "source": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallTitle=Peloton",
+     "asof": "2026-09"
+    },
+    "durability": {
+     "note": "The Peloton page states that the Limited Warranty covers the Bike touchscreen and most original components for up to 12 months and the Bike frame for 5 years, and that a Protection Plan adds coverage. A 5 year frame term with 12 months on components scores 42.",
+     "source": "https://www.onepeloton.com/bike",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Peloton bike page",
+     "url": "https://www.onepeloton.com/bike"
+    },
+    {
+     "label": "CPSC recalls titled Peloton",
+     "url": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallTitle=Peloton"
+    },
+    {
+     "label": "CPSC 2023 bike recall notice",
+     "url": "https://www.cpsc.gov/Recalls/2023/Peloton-Recalls-Two-Million-Exercise-Bikes-Due-to-Fall-and-Injury-Hazards"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Bike",
+    "Subscription classes",
+    "Recalls 2020, 2023, 2025"
+   ],
+   "description": "The best-known connected bike. Two seat post recalls name Original Series bikes and the page lists Cross Training bikes, and the classes are billed separately.",
+   "valueSignature": {
+    "planet": 42,
+    "health": 35,
+    "cost": 52
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "onepeloton.com",
+    "sourceLabels": [
+     "onepeloton.com",
+     "saferproducts.gov"
+    ]
+   }
+  },
+  {
+   "code": "peloton-tread",
+   "name": "Peloton Cross Training Tread",
+   "brand": "connected treadmill, subscription classes",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "economical": 6,
+    "safety": 10
+   },
+   "provenance": {
+    "economical": {
+     "note": "onepeloton.com lists the Cross Training Tread at $3,295, or $274.58 a month at 0 percent APR for 12 months, and the Cross Training Tread+ at $6,695. The page states no warranty terms.",
+     "source": "https://www.onepeloton.com/tread",
+     "asof": "2026-09"
+    },
+    "safety": {
+     "note": "CPSC's recall database lists two Peloton treadmill records dated 5 May 2021. The Tread+ recall (about 125,000 units, sold September 2018 to April 2021 for about $4,295) followed the death of a 6-year-old child pulled under the rear of the treadmill and 72 other reports of people, pets and objects pulled under it. The Tread recall (about 1,050 units) covered touchscreens that could detach and fall, with no injuries reported in the US. The notices name the Tread and Tread+, and the page lists a Cross Training Tread, which they do not name. A recall that reports a death scores 10.",
+     "source": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallTitle=Peloton",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Peloton treadmill page",
+     "url": "https://www.onepeloton.com/tread"
+    },
+    {
+     "label": "CPSC recalls titled Peloton",
+     "url": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallTitle=Peloton"
+    },
+    {
+     "label": "CPSC 2021 Tread+ recall notice",
+     "url": "https://www.cpsc.gov/Recalls/2021/Peloton-Recalls-Tread-Plus-Treadmills-After-One-Child-Died-and-More-than-70-Incidents-Reported"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Treadmill",
+    "Subscription classes",
+    "Recall with a death 2021"
+   ],
+   "description": "A connected treadmill from the brand whose 2021 Tread+ recall followed a child's death. The recalled models were sold until April 2021, and the machine now listed is not named in the notices.",
+   "valueSignature": {
+    "health": 10,
+    "cost": 6
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "onepeloton.com",
+    "sourceLabels": [
+     "onepeloton.com",
+     "saferproducts.gov"
+    ]
+   }
+  },
+  {
+   "code": "nordictrack-rw900",
+   "name": "NordicTrack RW900 rower",
+   "brand": "connected rower, subscription classes",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "safety": 55,
+    "durability": 87
+   },
+   "provenance": {
+    "safety": {
+     "note": "CPSC's recall database lists a 16 October 2025 recall of NordicTrack rowing machines with model numbers NTRW19147.0 to .3, which have RW900 printed on the back legs (about 44,800 units, sold November 2018 to April 2022 for about $1,700), for a screen console that can overheat and ignite. It reports eight incidents including two fires and at least $6,000 of property damage, with no injuries. A recall within five years with no injuries reported scores 55.",
+     "source": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallTitle=NordicTrack",
+     "asof": "2026-09"
+    },
+    "durability": {
+     "note": "NordicTrack's rower category page states 10 Year Frame, 2 Year Parts, 1 Year Tablet and 1 Year Labor and Repairs for its rowers. A 10 year frame, 2 years on parts and 1 year of labor scores 87.",
+     "source": "https://www.nordictrack.com/category/rowers",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "NordicTrack rowers",
+     "url": "https://www.nordictrack.com/category/rowers"
+    },
+    {
+     "label": "CPSC recalls titled NordicTrack",
+     "url": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallTitle=NordicTrack"
+    },
+    {
+     "label": "CPSC 2025 rowing machine recall notice",
+     "url": "https://www.cpsc.gov/Recalls/2026/iFIT-Recalls-NordicTrack-Rowing-Machines-Due-to-Fire-Hazard"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Rower",
+    "Recall 2025"
+   ],
+   "description": "A rower with a long frame warranty and a 2025 fire hazard recall of its earlier units. The rower category page shows no price, so none is scored.",
+   "valueSignature": {
+    "planet": 87,
+    "health": 55
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "nordictrack.com",
+    "sourceLabels": [
+     "nordictrack.com",
+     "saferproducts.gov"
+    ]
+   }
+  },
+  {
+   "code": "nordictrack-commercial-1750",
+   "name": "NordicTrack Commercial 1750 treadmill",
+   "brand": "connected treadmill, subscription classes",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "safety": 90
+   },
+   "provenance": {
+    "safety": {
+     "note": "CPSC's recall database, searched on 29 September 2026 for NordicTrack in the recall title, lists two records, both for other products: rowing machines (2025) and 50 lb adjustable dumbbells (2024). It lists no NordicTrack treadmill recall, so the treadmill scores 90. The rower recall is on its own row.",
+     "source": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallTitle=NordicTrack",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "NordicTrack Commercial 1750",
+     "url": "https://www.nordictrack.com/treadmills/commercial-1750-treadmill"
+    },
+    {
+     "label": "CPSC recalls titled NordicTrack",
+     "url": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallTitle=NordicTrack"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Treadmill"
+   ],
+   "description": "The mainstream NordicTrack treadmill. Its page shows a promotion and a lifetime motor warranty but no base price or other warranty terms, so only the recall record is scored.",
+   "valueSignature": {
+    "health": 90
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "saferproducts.gov"
+   }
+  },
+  {
+   "code": "bowflex-t6",
+   "name": "Bowflex T6 treadmill",
+   "brand": "connected treadmill, no subscription needed",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "economical": 71,
+    "safety": 55,
+    "durability": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "bowflex.com lists the T6 Treadmill at a regular price of $1,299 and a sale price of $999 marked as $300 off plus free shipping, and says no subscription is required. The score uses the $999 sale price.",
+     "source": "https://www.bowflex.com/products/t6-treadmill",
+     "asof": "2026-09"
+    },
+    "safety": {
+     "note": "CPSC's recall database lists no treadmill recall under the BowFlex name. A 9 June 2022 recall covers Nautilus treadmills, models T616 and T618 (about 7,300 units, 21 reports of the treadmill starting on its own, no injuries), and a 2025 CPSC notice names BowFlex Inc. as formerly Nautilus Inc. That recall is inside five years with no injuries reported, so the score is 55.",
+     "source": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallTitle=Nautilus",
+     "asof": "2026-09"
+    },
+    "durability": {
+     "note": "The bowflex.com page for the T6 states a lifetime frame and motor warranty, 3 years on mechanical parts and 1 year of labor, and a 30 day return for a full product refund minus shipping. That scores 100.",
+     "source": "https://www.bowflex.com/products/t6-treadmill",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Bowflex T6 page",
+     "url": "https://www.bowflex.com/products/t6-treadmill"
+    },
+    {
+     "label": "CPSC recalls titled Nautilus",
+     "url": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallTitle=Nautilus"
+    },
+    {
+     "label": "CPSC 2022 Nautilus treadmill recall notice",
+     "url": "https://www.cpsc.gov/Recalls/2022/Nautilus-Recalls-Treadmills-Due-to-Fall-Hazard"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Treadmill",
+    "No subscription"
+   ],
+   "description": "A treadmill with a lifetime frame and motor warranty and no subscription. The scored recall is under the maker's former name, Nautilus, for different treadmill models.",
+   "valueSignature": {
+    "planet": 100,
+    "health": 55,
+    "cost": 71
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "bowflex.com",
+    "sourceLabels": [
+     "bowflex.com",
+     "saferproducts.gov"
+    ]
+   }
+  },
+  {
+   "code": "horizon-7-0-at",
+   "name": "Horizon 7.0 AT treadmill",
+   "brand": "treadmill, no subscription",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "economical": 69,
+    "safety": 35,
+    "durability": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "horizonfitness.com lists the 7.0 AT Treadmill at a sale price of $1,099 against a regular price of $2,100. The score uses the $1,099 sale price.",
+     "source": "https://www.horizonfitness.com/products/horizon-7-0-at-treadmill",
+     "asof": "2026-09"
+    },
+    "safety": {
+     "note": "CPSC's recall database lists a 27 October 2022 recall of Horizon Fitness T101-05 folding treadmills by Johnson Health Tech Trading (about 192,000 units sold March 2018 to October 2022 for $600 to $1,000). Horizon had at least 874 reports of unexpected speed changes or stops, including 71 reports of injury and two broken bones. The 7.0 AT is a different model. A recall within five years with injuries reported scores 35.",
+     "source": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallTitle=Horizon+Fitness",
+     "asof": "2026-09"
+    },
+    "durability": {
+     "note": "The horizonfitness.com page for the 7.0 AT states a lifetime frame and a lifetime motor, 3 years on parts and 1 year of labor, with a 30 day return for a full refund. That scores 100.",
+     "source": "https://www.horizonfitness.com/products/horizon-7-0-at-treadmill",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Horizon 7.0 AT page",
+     "url": "https://www.horizonfitness.com/products/horizon-7-0-at-treadmill"
+    },
+    {
+     "label": "CPSC recalls titled Horizon Fitness",
+     "url": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallTitle=Horizon+Fitness"
+    },
+    {
+     "label": "CPSC 2022 Horizon treadmill recall notice",
+     "url": "https://www.cpsc.gov/Recalls/2023/Johnson-Health-Tech-Trading-Recalls-Horizon-Fitness-Treadmills-Due-to-Fall-Hazard"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Treadmill",
+    "No subscription",
+    "Recall 2022"
+   ],
+   "description": "A mid-priced treadmill with a lifetime frame and motor warranty from a brand whose 2022 recall of a cheaper model reported 71 injuries.",
+   "valueSignature": {
+    "planet": 100,
+    "health": 35,
+    "cost": 69
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "horizonfitness.com",
+    "sourceLabels": [
+     "horizonfitness.com",
+     "saferproducts.gov"
+    ]
+   }
+  },
+  {
+   "code": "concept2-rowerg",
+   "name": "Concept2 RowErg",
+   "brand": "rower, no subscription",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "economical": 72,
+    "safety": 90
+   },
+   "provenance": {
+    "economical": {
+     "note": "concept2.com lists the RowErg with standard legs at $990 and with tall legs at $1,155, and says quantity discounts apply to orders of five or more machines. The page text gives no warranty terms, so no durability score is given.",
+     "source": "https://www.concept2.com/indoor-rowers/concept2-rowerg",
+     "asof": "2026-09"
+    },
+    "safety": {
+     "note": "CPSC's recall database, searched on 29 September 2026 for Concept2 in the recall description, returned an empty list. Searches of the recall title and product name fields gave the same result.",
+     "source": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallDescription=Concept2",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Concept2 RowErg page",
+     "url": "https://www.concept2.com/indoor-rowers/concept2-rowerg"
+    },
+    {
+     "label": "CPSC search, Concept2",
+     "url": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallDescription=Concept2"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Rower",
+    "No subscription",
+    "No recall found"
+   ],
+   "description": "A rower with no CPSC recall found under the maker's name, at a higher price than the budget bikes and a lower price than the connected machines.",
+   "valueSignature": {
+    "health": 90,
+    "cost": 72
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "concept2.com",
+    "sourceLabels": [
+     "concept2.com",
+     "saferproducts.gov"
+    ]
+   }
+  },
+  {
+   "code": "echelon-ex-5s",
+   "name": "Echelon Connect EX-5s-22 bike",
+   "brand": "connected bike, membership classes",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "economical": 66,
+    "safety": 90
+   },
+   "provenance": {
+    "economical": {
+     "note": "echelonfit.com lists the Connect EX-5s-22 at a regular price of $1,699.99 and a sale price of $1,199.99, with a Premier Membership offered as a 1-year plan at $33.33 a month and a 2-year plan at $29.17 a month, $699.99 at checkout. The page gives no warranty terms, so no durability score is given. The score uses the $1,199.99 sale price.",
+     "source": "https://www.echelonfit.com/products/echelon-smart-connect-bike-ex5s-w-free-membership",
+     "asof": "2026-09"
+    },
+    "safety": {
+     "note": "CPSC's recall database, searched on 29 September 2026 for Echelon in the recall description, returned an empty list. Searches of the recall title and product name fields gave the same result.",
+     "source": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallDescription=Echelon",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Echelon EX-5s page",
+     "url": "https://www.echelonfit.com/products/echelon-smart-connect-bike-ex5s-w-free-membership"
+    },
+    {
+     "label": "CPSC search, Echelon",
+     "url": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallDescription=Echelon"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Bike",
+    "Membership classes",
+    "No recall found"
+   ],
+   "description": "A connected bike priced below Peloton's, with membership sold alongside and no CPSC recall found under the maker's name.",
+   "valueSignature": {
+    "health": 90,
+    "cost": 66
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "echelonfit.com",
+    "sourceLabels": [
+     "echelonfit.com",
+     "saferproducts.gov"
+    ]
+   }
+  },
+  {
+   "code": "schwinn-430-elliptical",
+   "name": "Schwinn 430 elliptical",
+   "brand": "elliptical, no subscription",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "economical": 71,
+    "safety": 75,
+    "durability": 77
+   },
+   "provenance": {
+    "economical": {
+     "note": "schwinnfitness.com lists the 430 Elliptical at $999, and the page shows it as out of stock.",
+     "source": "https://www.schwinnfitness.com/products/schwinn-430-elliptical",
+     "asof": "2026-09"
+    },
+    "safety": {
+     "note": "CPSC's recall database lists a 6 December 2011 recall of Schwinn elliptical exercise equipment by Nautilus (about 10,000 units sold July 2008 to May 2011 for about $1,000), for foot plates that could detach or break, with nine reports and one knee strike. It is more than five years old and reports a minor injury, and the 430 is a different model, so it scores 75.",
+     "source": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallTitle=Schwinn",
+     "asof": "2026-09"
+    },
+    "durability": {
+     "note": "The schwinnfitness.com page for the 430 states a 10 year frame, 2 years on mechanical parts, 1 year on electronics and 90 days of labor, with a 30 day return for a full refund minus shipping. That scores 77.",
+     "source": "https://www.schwinnfitness.com/products/schwinn-430-elliptical",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Schwinn 430 page",
+     "url": "https://www.schwinnfitness.com/products/schwinn-430-elliptical"
+    },
+    {
+     "label": "CPSC recalls titled Schwinn",
+     "url": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallTitle=Schwinn"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Elliptical",
+    "No subscription",
+    "Recall 2011"
+   ],
+   "description": "An elliptical with a 10 year frame warranty and one 2011 recall of an older model. The listing was out of stock when read.",
+   "valueSignature": {
+    "planet": 77,
+    "health": 75,
+    "cost": 71
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "schwinnfitness.com",
+    "sourceLabels": [
+     "schwinnfitness.com",
+     "saferproducts.gov"
+    ]
+   }
+  },
+  {
+   "code": "xterra-fb360",
+   "name": "XTERRA Fitness FB360 folding bike",
+   "brand": "",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "economical": 95,
+    "safety": 90,
+    "durability": 20
+   },
+   "provenance": {
+    "economical": {
+     "note": "Target lists the XTERRA Fitness FB360 Folding Exercise Bike at $159.99, sold and shipped by Target, with a weight capacity of 250 pounds.",
+     "source": "https://www.target.com/p/xterra-fitness-fb360-folding-exercise-bike/-/A-89636527",
+     "asof": "2026-09"
+    },
+    "safety": {
+     "note": "CPSC's recall database, searched on 29 September 2026 for XTERRA in the recall description, returned an empty list. Searches of the recall title and product name fields gave the same result.",
+     "source": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallDescription=XTERRA",
+     "asof": "2026-09"
+    },
+    "durability": {
+     "note": "The Target page states a 1 Year Limited Warranty, which scores 20.",
+     "source": "https://www.target.com/p/xterra-fitness-fb360-folding-exercise-bike/-/A-89636527",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Target listing",
+     "url": "https://www.target.com/p/xterra-fitness-fb360-folding-exercise-bike/-/A-89636527"
+    },
+    {
+     "label": "CPSC search, XTERRA",
+     "url": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallDescription=XTERRA"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Bike",
+    "Budget",
+    "No recall found"
+   ],
+   "description": "A budget folding bike sold by Target with a one year warranty and no CPSC recall found.",
+   "valueSignature": {
+    "planet": 20,
+    "health": 90,
+    "cost": 95
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "target.com",
+    "sourceLabels": [
+     "target.com",
+     "saferproducts.gov"
+    ]
+   }
+  },
+  {
+   "code": "yosuda-indoor-cycling-bike",
+   "name": "YOSUDA indoor cycling bike (300 lb)",
+   "brand": "",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "economical": 94,
+    "safety": 90,
+    "durability": 20
+   },
+   "provenance": {
+    "economical": {
+     "note": "Target lists the YOSUDA Exercise Bike, Stationary Indoor Cycling Bike for Home, 300 lb capacity, at $209.99 against a regular price of $349.99, sold and shipped by FEIER FITNESS INC.",
+     "source": "https://www.target.com/p/yosuda-indoor-cycling-bike-brake-pad-magnetic-stationary-bike-cycle-bike-with-tablet-mount-comfortable-seat-cushion/-/A-1004461330",
+     "asof": "2026-09"
+    },
+    "safety": {
+     "note": "CPSC's recall database, searched on 29 September 2026 for YOSUDA in the recall description, returned an empty list. Searches of the recall title and product name fields gave the same result.",
+     "source": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallDescription=YOSUDA",
+     "asof": "2026-09"
+    },
+    "durability": {
+     "note": "The Target page states a 1 Year Limited Warranty, which scores 20.",
+     "source": "https://www.target.com/p/yosuda-indoor-cycling-bike-brake-pad-magnetic-stationary-bike-cycle-bike-with-tablet-mount-comfortable-seat-cushion/-/A-1004461330",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Target listing",
+     "url": "https://www.target.com/p/yosuda-indoor-cycling-bike-brake-pad-magnetic-stationary-bike-cycle-bike-with-tablet-mount-comfortable-seat-cushion/-/A-1004461330"
+    },
+    {
+     "label": "CPSC search, YOSUDA",
+     "url": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallDescription=YOSUDA"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Bike",
+    "Budget",
+    "Marketplace seller"
+   ],
+   "description": "A budget indoor bike from a marketplace seller on Target, with a one year warranty and no CPSC recall found.",
+   "valueSignature": {
+    "planet": 20,
+    "health": 90,
+    "cost": 94
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "target.com",
+    "sourceLabels": [
+     "target.com",
+     "saferproducts.gov"
+    ]
+   }
+  },
+  {
+   "code": "costway-folding-treadmill",
+   "name": "Costway 2.25HP folding treadmill",
+   "brand": "",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "economical": 92,
+    "safety": 90,
+    "durability": 5
+   },
+   "provenance": {
+    "economical": {
+     "note": "Target lists the Costway 2.25HP Folding Treadmill Running Machine with LED touch display at $279.99 against a listed regular price of $1,199.99, sold and shipped by Costway, with a weight capacity of 265 pounds.",
+     "source": "https://www.target.com/p/costway-2-25hp-folding-treadmill-running-machine-led-touch-display/-/A-84827374",
+     "asof": "2026-09"
+    },
+    "safety": {
+     "note": "CPSC's recall database, searched on 29 September 2026 for Costway in the recall title, lists four records, all for other products: high chairs and activity centers, strollers and portable steam saunas. It lists no Costway treadmill or exercise machine, so the treadmill scores 90.",
+     "source": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallTitle=Costway",
+     "asof": "2026-09"
+    },
+    "durability": {
+     "note": "The Target page states a 30 Day Limited Warranty, which scores 5.",
+     "source": "https://www.target.com/p/costway-2-25hp-folding-treadmill-running-machine-led-touch-display/-/A-84827374",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Target listing",
+     "url": "https://www.target.com/p/costway-2-25hp-folding-treadmill-running-machine-led-touch-display/-/A-84827374"
+    },
+    {
+     "label": "CPSC recalls titled Costway",
+     "url": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallTitle=Costway"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Treadmill",
+    "Budget",
+    "30 day warranty"
+   ],
+   "description": "The cheapest treadmill on the roster, with a 30 day warranty and CPSC recalls only for the brand's baby and sauna products.",
+   "valueSignature": {
+    "planet": 5,
+    "health": 90,
+    "cost": 92
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "target.com",
+    "sourceLabels": [
+     "target.com",
+     "saferproducts.gov"
+    ]
+   }
+  },
+  {
+   "code": "walking-outdoors",
+   "name": "Walking outdoors, no machine",
+   "brand": "free, no purchase",
+   "allergens": [],
+   "allergensDeclared": false,
+   "scores": {
+    "economical": 100
+   },
+   "provenance": {
+    "economical": {
+     "note": "The NHS says walking is simple, free and one of the easiest ways to get more active, and points to a free smartphone app and free exercise videos for people who cannot leave the house.",
+     "source": "https://www.nhs.uk/live-well/exercise/running-and-aerobic-exercises/walking-for-health/",
+     "asof": "2026-09"
+    }
+   },
+   "links": [
+    {
+     "label": "NHS on walking for health",
+     "url": "https://www.nhs.uk/live-well/exercise/running-and-aerobic-exercises/walking-for-health/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Free",
+    "No purchase"
+   ],
+   "description": "The route that needs no machine. It has no CPSC recall record because it is not a product, and no warranty.",
+   "valueSignature": {
+    "cost": 100
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "nhs.uk"
+   }
+  }
+ ]
+}

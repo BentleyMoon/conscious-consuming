@@ -335,7 +335,9 @@ function main() {
   // first two of the nine-way split recorded in docs/ONTOLOGY-RESEARCH.md 4.1.
   // 126 on 2026-09-23: email and search left the shared digital-services dataset in the same
   // split, the next two of the nine-way division.
-  expect(live.length === 126, `app/data/index.json: expected 126 live categories, found ${live.length}`);
+  // Moved 2026-09-29: cloud storage and notes flipped from digital-services facets to their
+  // own datasets, wave two of the nine-way split; video calls, maps and social networks remain.
+  expect(live.length === 144, `app/data/index.json: expected 144 live categories, found ${live.length}`);
   const contractCategories = contracts.map((contract) => contract.category);
   const contractCategorySet = new Set(contractCategories);
   expect(contractCategorySet.size === contractCategories.length, 'content/decisions.json: rollout categories must be unique');
@@ -425,16 +427,24 @@ function main() {
     }
   }
 
-  expect(receipt.categories === 126, `rollout: tested ${receipt.categories}/126 generated categories`);
+  expect(receipt.categories === 144, `rollout: tested ${receipt.categories}/144 generated categories`);
   expect(receipt.pilotRoutes === 2, `rollout: expected 2 founder-approved pilot routes, found ${receipt.pilotRoutes}`);
   // 122 on 2026-08-26: messaging and browsers joined the approved batch with their own
   // contracts when the digital-services split gave them datasets.
   // 124 on 2026-09-23: email and search joined the approved batch with their own contracts
   // when the same split gave them datasets.
-  expect(receipt.batchRoutes === 124, `rollout: expected 124 approved batch routes, found ${receipt.batchRoutes}`);
+  // Moved 2026-09-29: cloud storage and notes flipped from digital-services facets to their
+  // own datasets, wave two of the nine-way split; video calls, maps and social networks remain.
+  // 140 on 2026-10-12: electric-vehicles joined with its own contract, built from the
+  // fueleconomy.gov register by pipeline/sources. 142 on 2026-10-13: new-cars and
+  // hybrid-and-plug-in-hybrid-cars from the same adapter.
+  expect(receipt.batchRoutes === 142, `rollout: expected 142 approved batch routes, found ${receipt.batchRoutes}`);
   expect(receipt.certificationPilots === 3, `rollout: expected 3 S8 certification pilots, found ${receipt.certificationPilots}`);
   expect(receipt.categoryAssignmentPaths === 24, `rollout: expected 24 category-assignment ranking paths, found ${receipt.categoryAssignmentPaths}`);
-  expect(receipt.floorFolded === 22, `rollout: shared floor should preserve its bounded 22-option receipt, found ${receipt.floorFolded}`);
+  // 30 on 2026-09-29: the two default floor lines scoped to digital services now cover the nine split
+  // decisions too, so the same floor reaches the same products in their new homes (Google Maps; Facebook,
+  // Instagram, Threads; WeChat; Yandex, Baidu). Folded options stay visible; nothing is removed.
+  expect(receipt.floorFolded === 30, `rollout: shared floor should preserve its bounded 30-option receipt, found ${receipt.floorFolded}`);
   appChecks();
   finish(receipt);
 }

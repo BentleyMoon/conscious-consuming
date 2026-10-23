@@ -71,7 +71,7 @@ The app choice matters, but the first ten minutes of settings matter too.
 | Setting | Safer default | Why it matters |
 |---|---|---|
 | backups | know whether chats are backed up, encrypted, or not backed up | backups can move messages outside the protection you thought you had |
-| linked devices | remove old desktops, tablets, and web sessions | linked devices quietly expand who can read messages |
+| linked devices | remove old desktops, tablets, and web sessions | each linked device is another place your messages can be read |
 | disappearing messages | use for sensitive threads, not as a promise of secrecy | they reduce persistence but do not stop screenshots or other capture |
 | notification previews | hide sensitive content on lock screens | the phone surface is often the weakest display |
 | phone number and profile visibility | limit who can see identifying details where possible | contact discovery can expose more than message contents |
@@ -125,7 +125,7 @@ This is the sane middle path between "everyone must migrate today" and "privacy 
 - **Network fatalism.** You do not have to move everyone at once. Move the sensitive conversations first.
 - **Privacy as a personality test.** If the tool is too hard for the people you need, choose the strongest realistic norm instead of a perfect unused app.
 - **Screenshot blindness.** Encryption does not stop someone from saving or forwarding what appears on their screen.
-- **Group creep.** A private group can quietly become risky as members, linked devices, and invite links accumulate.
+- **Group creep.** A private group can become risky as members, linked devices, and invite links accumulate.
 
 ---
 

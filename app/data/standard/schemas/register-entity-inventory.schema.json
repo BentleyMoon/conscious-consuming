@@ -2,36 +2,39 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/register-entity-inventory-v1.schema.json",
   "title": "Open Values Register Entity Inventory",
-  "description": "Compact identity receipts for every option in every built decision.",
+  "description": "A list of every decision in the catalogue with how many options it has and a hash of their codes and names. A build script makes it from the dataset index, and the register mapping tools use it to notice when an option has been added, removed or renamed.",
   "type": "object",
   "required": ["format", "version", "generatedFrom", "counts", "catalogueIdentitySha256", "decisions"],
   "additionalProperties": false,
   "properties": {
-    "format": { "const": "open-values-register-entity-inventory" },
-    "version": { "const": "1.0.0" },
+    "format": { "description": "Names the file format. Always open-values-register-entity-inventory.", "const": "open-values-register-entity-inventory" },
+    "version": { "description": "The version of this format the file follows. Always 1.0.0.", "const": "1.0.0" },
     "generatedFrom": {
+      "description": "The file this inventory was built from, with its hash, so a stale inventory can be detected.",
       "type": "object",
       "required": ["index", "indexSha256"],
       "additionalProperties": false,
       "properties": {
-        "index": { "const": "app/data/index.json" },
-        "indexSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        "index": { "description": "The path of the dataset index the inventory was built from. Always app/data/index.json.", "const": "app/data/index.json" },
+        "indexSha256": { "description": "The SHA-256 hash of the index file's bytes at build time, as 64 lowercase hex characters.", "type": "string", "pattern": "^[0-9a-f]{64}$" }
       }
     },
     "counts": {
+      "description": "Totals across the whole inventory.",
       "type": "object",
       "required": ["decisions", "entities", "missingCodes", "missingNames", "duplicateCodesWithinDecision"],
       "additionalProperties": false,
       "properties": {
-        "decisions": { "type": "integer", "minimum": 1 },
-        "entities": { "type": "integer", "minimum": 1 },
-        "missingCodes": { "const": 0 },
-        "missingNames": { "const": 0 },
-        "duplicateCodesWithinDecision": { "const": 0 }
+        "decisions": { "description": "How many built decisions are listed.", "type": "integer", "minimum": 1 },
+        "entities": { "description": "How many options there are across all decisions.", "type": "integer", "minimum": 1 },
+        "missingCodes": { "description": "How many options had no code. Always 0, because the build stops if any option lacks one.", "const": 0 },
+        "missingNames": { "description": "How many options had no name. Always 0, because the build stops if any option lacks one.", "const": 0 },
+        "duplicateCodesWithinDecision": { "description": "How many option codes were repeated inside one decision. Always 0, because the build stops on a repeat.", "const": 0 }
       }
     },
-    "catalogueIdentitySha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "catalogueIdentitySha256": { "description": "One SHA-256 hash over every decision's cid, entityCount and identitySha256. It changes whenever any option is added, removed, renamed or recoded anywhere in the catalogue.", "type": "string", "pattern": "^[0-9a-f]{64}$" },
     "decisions": {
+      "description": "One row per built decision, sorted by cid.",
       "type": "array",
       "minItems": 1,
       "items": {
@@ -39,12 +42,12 @@
         "required": ["cid", "label", "dataset", "entityField", "entityCount", "identitySha256"],
         "additionalProperties": false,
         "properties": {
-          "cid": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
-          "label": { "type": "string", "minLength": 1 },
-          "dataset": { "type": "string", "pattern": "^app/data/[a-z0-9-]+\\.json$" },
-          "entityField": { "enum": ["products", "resources"] },
-          "entityCount": { "type": "integer", "minimum": 1 },
-          "identitySha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+          "cid": { "description": "The decision's id, as used in app/data/index.json.", "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+          "label": { "description": "The decision's display name, copied from the index.", "type": "string", "minLength": 1 },
+          "dataset": { "description": "The path of the decision's dataset file under app/data/.", "type": "string", "pattern": "^app/data/[a-z0-9-]+\\.json$" },
+          "entityField": { "description": "Which array in the dataset holds the options: products or resources.", "enum": ["products", "resources"] },
+          "entityCount": { "description": "How many options the decision has.", "type": "integer", "minimum": 1 },
+          "identitySha256": { "description": "A SHA-256 hash of the decision's option codes and names, sorted by code. It changes when an option is added, removed, renamed or recoded, and mappings use it to notice that.", "type": "string", "pattern": "^[0-9a-f]{64}$" }
         }
       }
     }

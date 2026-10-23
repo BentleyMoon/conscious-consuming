@@ -76,7 +76,7 @@ Ketchup rarely arrives alone. Fries, burgers, nuggets, sausages, sandwiches, pic
 | novelty flavor | smallest size available | prevents one-theme condiments from lingering |
 | shared fridge | familiar bottle with clear date | makes use-up easier |
 
-A bottle is not cheaper because it is bigger. It is cheaper when it is finished, enjoyed, and stored well. Condiment shelves are where "value size" quietly becomes waste.
+A bottle is not cheaper because it is bigger. It is cheaper when it is finished, enjoyed, and stored well. On a condiment shelf, a "value size" bottle can end up as waste.
 
 ## Build a condiment shelf with rules
 

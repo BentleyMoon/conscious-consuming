@@ -134,7 +134,7 @@ The goal is not to keep obsolete devices alive forever. It is to use the remaini
 - **Storage upsell fog.** More storage can be worth it, but only after you check whether old videos, duplicates, and app caches are the real problem.
 - **Carrier deal gravity.** A "free" phone can mean lock-in, bill credits, financing complexity, or a plan you would not otherwise choose.
 - **AI-feature pressure.** New software tricks are not a reason to replace secure hardware unless they solve a real accessibility, work, or safety need.
-- **Accessory churn.** A new case, cable standard, or charger situation can quietly add cost and waste to a replacement.
+- **Accessory churn.** A new case, cable standard, or charger situation can add cost and waste to a replacement.
 
 ## A practical default
 

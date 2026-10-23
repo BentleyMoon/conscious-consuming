@@ -3,9 +3,9 @@ title: AI assistants: privacy, data use, and openness
 category: AI
 type: curated-guide
 status: published
-last_updated: 2026-08-15
+last_updated: 2026-10-08
 maintainer: Conscious Consuming
-disclosure: We take no money from any AI company. Nothing here is sponsored. We rank by public policies, model cards, open releases, and user controls, and AI policies change fast.
+disclosure: We take no money from any AI company. Nothing here is sponsored. We rank by public policies, model cards, open releases, user controls, and independent behaviour testing, and AI policies change fast.
 ---
 
 # AI assistants: privacy, data use, and openness
@@ -27,6 +27,7 @@ AI assistants now handle questions, writing, code, research, plans, and work doc
 | Openness | Are weights, code, data information, and licenses clear? | OSI distinguishes open weights from fully open-source AI systems |
 | Transparency | Are there model cards, system cards, safety reports, or policy pages? | Public documentation gives outsiders something to inspect |
 | Safety and reliability | Does the provider document risk management and limitations? | NIST frames trustworthy AI as something designed and managed, not assumed |
+| How it treats you | In independent tests, does it flatter you, invent facts, or support your own thinking? | The same question can get answers that build your judgement or replace it |
 
 ## Choose by task shape, not by leaderboard
 
@@ -155,6 +156,28 @@ The assistant can make retrieval faster. It should not outsource judgment. A goo
 - **Paste inertia.** The easiest workflow can become the riskiest one if every file goes through the same assistant by habit.
 - **Policy drift.** AI product terms, training controls, retention, and enterprise promises can change faster than ordinary software expectations.
 
+## How it treats you, measured from outside
+
+Everything above is about what a company says and what its settings do. A separate question is how the assistant behaves in the conversation itself: whether it agrees with you to keep you happy, invents facts, or helps you think for yourself. MIT Media Lab's ImpactBench tests this from outside the companies. It runs models through simulated conversations, checks more than 800 behaviours drawn from published research, and summarises them as an [AI Nutrition Label](https://impactbench.media.mit.edu/nutrition) across nine areas: avoiding hallucination, sycophancy, toxicity and sexual content, and promoting agency, learning, social connection, creativity and wellbeing. It scores adult and child users separately.
+
+{{chart:ai-assistants:wellbeing}}
+
+| Assistant | Model tested | Adult users | Child users | Avoids sycophancy |
+| --- | --- | --- | --- | --- |
+| Grok | Grok 4.6 | 61 | 63 | 83% |
+| Claude | Claude Opus 5 and Sonnet 5 | 60 | 62 | 69% |
+| ChatGPT | GPT-5.6 Luna and Terra | 59 | 66 | 58% |
+| Gemini | Gemini 3.7 Flash | 55 | 57 | 56% |
+| Qwen | Qwen3.8 27B | 50 | 49 | 56% |
+| Gemma | Gemma 4 31B | 49 | 46 | 50% |
+| DeepSeek | DeepSeek V4 Flash | 38 | 35 | 56% |
+
+*Scores are the share of checks passed across the nine areas, out of 100, from release 1.0.1 of 11 September 2026. Where two of a company's models were tested, the table averages them.*
+
+Read it with three cautions. The benchmark scores models, not apps, and an app may switch between models or add its own instructions. A language model from the GPT family grades the conversations, which the benchmark checks with human review but cannot rule out entirely. And each area rests on three to sixteen checks, so gaps under about ten points are noise: Grok, Claude and ChatGPT are effectively tied, while DeepSeek's lower score is a real difference. Most of the assistants in the explorer were not tested, and the explorer leaves them unscored rather than guessing.
+
+The finding worth acting on today is sycophancy: even the best-scoring models agree when they should push back in a meaningful share of tests. You can counter it in how you ask. Instead of "Is my plan good?", try "What would make this plan fail?" or "Argue the other side before you answer." If an assistant only ever tells you that you are right, treat that as a reason to doubt it, not a reason to trust it.
+
 ## Extra caution for companion and social AI
 
 Companion, character, and social-platform assistants deserve a different boundary from productivity tools. They are designed around ongoing relationship, mood, identity, roleplay, or social discovery, so they can collect unusually intimate signals even when the topic feels playful.
@@ -164,7 +187,7 @@ Companion, character, and social-platform assistants deserve a different boundar
 | emotional dependence | keep real support people, therapy, and emergency resources outside the app |
 | identity exposure | avoid full names, addresses, workplace details, school details, and third-party secrets |
 | sexual or romantic roleplay | check age policies, consent boundaries, moderation, and data controls |
-| teen or family use | prefer tools with clear youth policies, guardian controls, and safety documentation |
+| teen or family use | prefer tools with clear youth policies, guardian controls, and safety documentation; check child-user results where an independent test publishes them |
 | social graph leakage | assume platform assistants can connect chats to a wider account ecosystem unless proven otherwise |
 | crisis moments | do not rely on a chatbot as emergency care |
 
@@ -197,4 +220,4 @@ Useful anchors: NIST [AI Risk Management Framework](https://www.nist.gov/itl/ai-
 
 ---
 
-*Compare assistants on privacy, openness, safety and transparency by your own weighting in the [AI-assistants explorer](#explore/ai-assistants).*
+*Compare assistants on privacy, openness, safety, transparency and how they treat you by your own weighting in the [AI-assistants explorer](#explore/ai-assistants).*

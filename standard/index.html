@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <script>try{var t=localStorage.getItem('cc.theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Open Values Standard - Values Commons</title>
-<meta name="description" content="The builder-facing file format underneath Values Commons: values files, sourced facts, reproducible rankings, group agreement, shared plans, and compatible apps.">
+<title>Open Values Standard: small files and one formula for ranking by values</title>
+<meta name="description" content="The Open Values Standard: the values file, the facts file and the one formula that any app can use to rank choices by a person's own values, with a worked example running the reference engine.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#1d7a5a">
 <link rel="icon" href="/app/icon.svg" type="image/svg+xml"><link rel="alternate icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64"><link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
@@ -14,139 +14,559 @@
 <meta property="og:url" content="https://valuescommons.org/standard/">
 <meta property="og:site_name" content="Values Commons">
 <meta property="og:title" content="Open Values Standard">
-<meta property="og:description" content="The builder-facing file format underneath Values Commons: values files, sourced facts, reproducible rankings, and compatible apps.">
+<meta property="og:description" content="Small files and one formula, written down so any app can rank choices by a person's own values, and anyone can rerun the result.">
 <meta property="og:image" content="https://valuescommons.org/og-standard.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Open Values Standard">
-<meta name="twitter:description" content="The builder-facing file format underneath Values Commons: values files, sourced facts, reproducible rankings, and compatible apps.">
+<meta name="twitter:description" content="Small files and one formula, written down so any app can rank choices by a person's own values, and anyone can rerun the result.">
 <meta name="twitter:image" content="https://valuescommons.org/og-standard.png">
 <style>
-  :root{--shadow-sm:0 1px 2px rgba(40,34,24,.07),0 1px 1px rgba(40,34,24,.05);--shadow-md:0 2px 6px rgba(40,34,24,.09),0 10px 26px rgba(40,34,24,.07);--shadow-lg:0 6px 16px rgba(40,34,24,.12),0 22px 48px rgba(40,34,24,.10);--bg:#f8f5ee;--surface:#fff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--soft:#e9f3ee;--track:#eef1ef;--max:1040px;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,system-ui,sans-serif;--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,ui-serif,serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-  /* Nine surfaces stated a light palette and no alternative, so a reader who asks for
-     dark was overridden on most of the commons and honoured on two of it. Same values
-     the Institute uses, so the family reads as one in either mode. */
-  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--shadow-sm:0 1px 2px rgba(0,0,0,.55);--shadow-md:0 2px 8px rgba(0,0,0,.6),0 12px 30px rgba(0,0,0,.45);--shadow-lg:0 8px 20px rgba(0,0,0,.65),0 28px 56px rgba(0,0,0,.5);--bg:#11140f;--surface:#181d16;--ink:#eef1e8;--muted:#c0c9bd;--hint:#8b978a;--line:#2b322a;--accent:#6fce8c;--soft:#1b2a20;--track:#2b322a}}
-
-  @media(prefers-color-scheme:dark){:root{--bg:#11140f;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.1);--accent:#5dcaa5;--soft:#16241d;--track:#1b241f}}
-  *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}.wrap{max-width:var(--max);margin:0 auto;padding:0 1.25rem}.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:1.05rem 0;border-bottom:1px solid var(--line)}.brand{font-family:var(--serif);font-weight:600;color:var(--ink);font-size:1.12rem}.links{display:flex;gap:.45rem 1rem;flex-wrap:wrap;font-size:0.86rem}.links a{color:var(--muted)}.links a:hover{color:var(--accent);text-decoration:none}.cta{border:1px solid var(--accent);border-radius:999px;padding:.28rem .68rem;color:var(--accent)!important}.hero{padding:4.2rem 0 3rem}.kicker{font-size:0.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 .9rem}h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.12;text-wrap:balance}h1{font-size:clamp(2.0rem,3.25vw,2.6rem);margin:0 0 1rem}h2{font-size:1.75rem;margin:0 0 .6rem}h3{font-size:1.12rem;margin:0 0 .35rem}.lede{max-width:45rem;color:var(--muted);font-size:1.12rem;margin:0}.actions{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1.45rem}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:2.65rem;padding:.58rem 1rem;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:650}.btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn.primary:hover{color:#fff}.band{border-top:1px solid var(--line);padding:2.5rem 0}.intro{color:var(--muted);max-width:44rem;margin:0 0 1.2rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:.85rem}.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1rem}.card p{margin:.35rem 0 0;color:var(--muted);font-size:1rem}.tag{display:inline-block;font-size:0.75rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--accent);background:var(--soft);border-radius:999px;padding:.12rem .5rem;margin-bottom:.55rem}.check{display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:.55rem}.check div{border-top:1px solid var(--line);padding:.72rem 0;color:var(--muted)}.check b{color:var(--ink)}code{font-family:var(--mono);font-size:0.86rem;background:var(--track);border-radius:5px;padding:.08rem .32rem}.spec{display:grid;grid-template-columns:minmax(0,1fr) minmax(17rem,.6fr);gap:1rem;align-items:start}.note{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1rem;color:var(--muted)}footer{border-top:1px solid var(--line);padding:1.7rem 0 2.7rem;color:var(--hint);font-size:0.86rem}.footlinks{display:flex;gap:.4rem 1rem;flex-wrap:wrap;margin-top:.45rem}@media(max-width:760px){.spec{grid-template-columns:1fr}.hero{padding:3.2rem 0 2.4rem}}
-  /* Field-guide register, shared with the landing: serif argues, mono measures */
-  :root{--ochre:#8a5514;--line-strong:#cfd8d3}
-  @media(prefers-color-scheme:dark){:root{--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17)}}
-  body{font-family:var(--serif);line-height:1.58}
-  .nav{border-bottom-color:var(--line-strong)}
-  .brand{font-weight:700;font-size:1.12rem;letter-spacing:-.015em}
-  .brand::after{content:"Open field guide";font-family:var(--mono);font-weight:600;font-size:0.75rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ochre);margin-left:.6rem;padding-left:.6rem;border-left:1px solid var(--line-strong)}
-  .links{font-family:var(--mono);font-size:0.75rem}
-  .cta{border-radius:3px}
-  .primitivebar{font-family:var(--mono);font-size:0.75rem;letter-spacing:.03em}
-  .primitivebar a{border-radius:3px}
-  .kicker{font-family:var(--mono);font-size:0.75rem;letter-spacing:.16em;color:var(--muted)}
-  h1{font-size:clamp(1.85rem,3.06vw,2.45rem);letter-spacing:-.015em}
-  .btn{font-family:var(--mono);font-size:0.75rem;letter-spacing:.02em;font-weight:600;border-radius:3px}
-  .tag{font-family:var(--mono);border-radius:3px}
-  .card,.route,.note,.build,.edgemap,.specimen{border-radius:4px}
-  pre,table{border-radius:4px}
-  footer{font-size:0.86rem}
-  /* Professional futurism: light spent on the living and the chosen */
-  :root{--glow:0 0 14px rgba(29,122,90,.2)}
-  @media(prefers-color-scheme:dark){:root{--glow:0 0 16px rgba(93,202,165,.28)}}
-  ::selection{background:color-mix(in srgb,var(--accent) 24%,transparent)}
-  .hero{background:radial-gradient(44rem 24rem at 6% -10%,color-mix(in srgb,var(--accent) 7%,transparent),transparent 62%),radial-gradient(36rem 20rem at 96% -8%,color-mix(in srgb,var(--ochre) 4%,transparent),transparent 64%)}
-  .btn.primary:hover,.cta:hover{box-shadow:var(--glow)}
-  html{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--accent) 45%,var(--track)) transparent}
-  a:focus-visible,button:focus-visible{box-shadow:var(--glow)}
-  :root[data-theme="dark"]{--bg:#11140f;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.1);--accent:#5dcaa5;--soft:#16241d;--track:#1b241f;--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17);--glow:0 0 16px rgba(93,202,165,.28);color-scheme:dark}
-  :root[data-theme="light"]{--bg:#f8f5ee;--surface:#fff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--soft:#e9f3ee;--track:#eef1ef;--ochre:#8a5514;--line-strong:#cfd8d3;--glow:0 0 14px rgba(29,122,90,.2);color-scheme:light}
-  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.55rem .9rem;border-radius:0 0 8px 0;z-index:20}
+  /* The standard's own home, in the family's field-guide register: serif argues, mono measures.
+     Green is the reader's values; ochre is provenance and nothing else. */
+  :root{--bg:#f8f5ee;--surface:#ffffff;--sunk:#eef1ef;--ink:#18211d;--muted:#566560;--hint:#607068;
+    --line:#e3e7e5;--line-strong:#cfd8d3;--accent:#1d7a5a;--accent-bright:#17936a;--accent-soft:#e9f3ee;
+    --track:#eef1ef;--warn:#a8432f;--ochre:#8a5514;--band:#eef2f0;--code:#f3f5f3;--on-accent:#ffffff;
+    --e1:0 1px 2px rgba(24,38,30,.05),0 3px 10px rgba(24,38,30,.05);
+    --font-display:"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,ui-serif,serif;
+    --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--max:1120px;--ease:cubic-bezier(.2,.7,.2,1)}
+  @media (prefers-color-scheme:dark){:root{--bg:#11140f;--surface:#161d18;--sunk:#0b100d;--ink:#e6ece8;--muted:#9aa8a1;--hint:#87968e;
+    --line:rgba(255,255,255,.10);--line-strong:rgba(255,255,255,.17);--accent:#5dcaa5;--accent-bright:#6ad9ab;--accent-soft:#16241d;
+    --track:#1b241f;--warn:#e3a594;--ochre:#cc9c5e;--band:#131b16;--code:#0f1512;--on-accent:#0b100d;--e1:0 1px 2px rgba(0,0,0,.3),0 3px 10px rgba(0,0,0,.3)}}
+  :root[data-theme="dark"]{--bg:#11140f;--surface:#161d18;--sunk:#0b100d;--ink:#e6ece8;--muted:#9aa8a1;--hint:#87968e;--line:rgba(255,255,255,.10);--line-strong:rgba(255,255,255,.17);--accent:#5dcaa5;--accent-bright:#6ad9ab;--accent-soft:#16241d;--track:#1b241f;--warn:#e3a594;--ochre:#cc9c5e;--band:#131b16;--code:#0f1512;--on-accent:#0b100d;--e1:0 1px 2px rgba(0,0,0,.3),0 3px 10px rgba(0,0,0,.3);color-scheme:dark}
+  :root[data-theme="light"]{--bg:#f8f5ee;--surface:#ffffff;--sunk:#eef1ef;--ink:#18211d;--muted:#566560;--hint:#607068;--line:#e3e7e5;--line-strong:#cfd8d3;--accent:#1d7a5a;--accent-bright:#17936a;--accent-soft:#e9f3ee;--track:#eef1ef;--warn:#a8432f;--ochre:#8a5514;--band:#eef2f0;--code:#f3f5f3;--on-accent:#ffffff;--e1:0 1px 2px rgba(24,38,30,.05),0 3px 10px rgba(24,38,30,.05);color-scheme:light}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-display);font-size:1.08rem;line-height:1.58;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.55rem .9rem;z-index:20}
   .skip:focus{left:0}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1.1rem,4vw,2.2rem)}
+  h1,h2,h3{font-weight:550;letter-spacing:-.01em;text-wrap:balance}
+  code,pre,.mono{font-family:var(--font-mono)}
+  .tnum{font-variant-numeric:tabular-nums}
 
-  /* depth pass */
-  /* Containers lift off the page instead of being outlined on it, so a card, a chip and
-     a panel stop announcing themselves with the same single grey pixel. */
-  .card,.note{box-shadow:var(--shadow-md);background:var(--surface)}
-  h1{font-weight:550;letter-spacing:-0.02em}
-  h2{font-weight:550;letter-spacing:-0.01em}
+  .masthead{border-bottom:1px solid var(--line-strong)}
+  .masthead .wrap{display:flex;align-items:baseline;justify-content:space-between;gap:.6rem 1rem;flex-wrap:wrap;padding-top:1.2rem;padding-bottom:1rem}
+  .brand{font-weight:700;font-size:1.3rem;letter-spacing:-.015em;color:var(--ink)}
+  .brand:hover{text-decoration:none}
+  .brand small{font-family:var(--font-mono);font-size:0.75rem;font-weight:600;letter-spacing:.08em;color:var(--hint);margin-left:.55rem}
+  .links{display:flex;align-items:center;gap:.45rem 1.1rem;flex-wrap:wrap;font-family:var(--font-mono);font-size:0.75rem}
+  .links a{color:var(--muted);padding:.35rem 0}
+  .links a:hover{color:var(--ink)}
+  .links .home{color:var(--accent);font-weight:600}
+
+  section{border-top:1px solid var(--line)}
+  main>section:nth-of-type(even){background:var(--band)}
+  section>.wrap{padding-top:clamp(2.4rem,5vw,3.8rem);padding-bottom:clamp(2.4rem,5vw,3.8rem)}
+  .sh{font-size:clamp(1.5rem,2.5vw,1.95rem);font-style:italic;font-weight:500;margin:0 0 .5rem}
+  /* One drawn line glyph per idea, in the app's icon language. Green only on the values file. */
+  .glyph{width:1.7rem;height:1.7rem;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;color:var(--muted);flex:none}
+  .glyph.v{color:var(--accent)}
+
+  .sd{color:var(--muted);max-width:62ch;margin:0 0 1.4rem}
+
+  /* hero and its wiring diagram */
+  .hero{border-top:none;background:radial-gradient(58rem 30rem at 12% -18%,color-mix(in srgb,var(--accent) 10%,transparent),transparent 60%),radial-gradient(46rem 28rem at 88% -8%,color-mix(in srgb,var(--surface) 75%,transparent),transparent 62%)}
+  .hero h1{font-size:clamp(2rem,3.8vw,2.8rem);line-height:1.08;margin:0 0 .9rem}
+  .lede{font-size:1.15rem;color:var(--muted);max-width:52ch;margin:0 0 1rem}
+  .state{display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--hint);margin:0 0 1.3rem}
+  .state b{color:var(--ink);font-weight:600}
+  .actions{display:flex;flex-wrap:wrap;gap:.55rem}
+  .btn{font-family:var(--font-mono);font-size:0.75rem;font-weight:600;display:inline-flex;align-items:center;min-height:2.75rem;padding:.55rem 1rem;border-radius:3px;border:1px solid var(--line-strong);color:var(--muted);background:transparent}
+  .btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none;background:var(--surface)}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+  .btn.primary:hover{background:var(--accent-bright);color:var(--on-accent)}
+  .wiring{margin:2.2rem 0 0;display:grid;grid-template-columns:minmax(0,1fr) 3rem minmax(0,1fr) 3rem minmax(0,1fr);align-items:center}
+  .wires-in{display:grid;gap:.8rem}
+  .node{background:var(--surface);border:1px solid var(--line-strong);border-radius:4px;padding:.8rem .95rem;box-shadow:var(--e1)}
+  .node{position:relative;padding-right:3rem}
+  .node .glyph{position:absolute;top:.75rem;right:.8rem;width:1.5rem;height:1.5rem}
+  .node b{display:block;font-size:1.02rem}
+  .node code{display:block;font-size:0.75rem;color:var(--hint);margin:.1rem 0 .3rem}
+  .node span{display:block;font-size:0.86rem;color:var(--muted);line-height:1.4}
+  .node.engine{border-color:var(--accent);border-width:1.5px}
+  .node.out{background:var(--accent-soft)}
+  .join{position:relative;height:100%;min-height:6rem}
+  .join svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+  .join path{fill:none;stroke:var(--muted);stroke-width:1.2}
+  .join polygon{fill:var(--muted)}
+
+  /* specimens: real files, annotated like plates in a field guide */
+  .plates{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.6rem;margin-top:1.4rem}
+  .plate{background:var(--surface);border:1px solid var(--line-strong);border-radius:4px;box-shadow:var(--e1);display:flex;flex-direction:column;min-width:0}
+  .plate header{padding:.9rem 1.05rem .6rem}
+  .plate h3{font-size:1.15rem;font-style:italic;font-weight:500;margin:0}
+  .plate header p{margin:.2rem 0 0;font-size:0.9rem;color:var(--muted)}
+  .plate pre{margin:0;padding:.85rem 1.05rem;background:var(--code);border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:0.78rem;line-height:1.6;overflow-x:auto;color:var(--ink)}
+  .plate pre .k{color:var(--muted)}
+  .plate pre .v{color:var(--accent)}
+  .plate pre .p{color:var(--ochre)}
+  .plate pre .m{display:inline-grid;place-items:center;width:1.15rem;height:1.15rem;border-radius:50%;border:1px solid var(--muted);font-size:0.7rem;font-weight:700;color:var(--ink);margin-left:.35rem;vertical-align:.05rem}
+  .plate ol{margin:0;padding:.75rem 1.05rem .9rem 2.3rem;font-size:0.9rem;color:var(--muted)}
+  .plate ol li{margin:.2rem 0;padding-left:.2rem}
+  .plate ol li::marker{font-family:var(--font-mono);font-size:0.75rem;font-weight:700;color:var(--ink)}
+  .plate ol b{color:var(--ink);font-weight:600}
+
+  /* The lab-plate register, shared with the front page: plates name themselves, the rules are
+     experiments a reader can run, and one note sits in the maker's hand, in graphite. */
+  :root{--graphite:#4d5357}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--graphite:#b6bcc0}}
+  :root[data-theme="dark"]{--graphite:#b6bcc0}
+  .plate-id{display:flex;justify-content:space-between;align-items:baseline;gap:.3rem 1rem;flex-wrap:wrap;margin:0 0 1.2rem;padding-bottom:.4rem;border-bottom:1px solid color-mix(in srgb,var(--ink) 55%,transparent)}
+  .plate-id .pn{font-family:var(--font-mono);font-size:0.75rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)}
+  .plate-id .fig{font-style:italic;font-size:0.92rem;color:var(--muted)}
+  .hand{font-family:"Segoe Print","Ink Free","Bradley Hand","Chalkboard SE","Marker Felt",cursive;color:var(--graphite);font-size:0.98rem;line-height:1.4;transform:rotate(-1.6deg);transform-origin:left top;margin:1.4rem 0 0;max-width:34ch}
+  .try{margin-top:.6rem;font-family:var(--font-mono);font-size:0.75rem;font-weight:600;min-height:2.4rem;padding:.3rem .85rem;border:1px solid var(--accent);border-radius:3px;background:transparent;color:var(--accent);cursor:pointer}
+  .try:hover,.try:focus-visible{background:var(--accent-soft)}
+
+
+  /* THE FOUR NOTES, from the Institute's /windows/ page, the one Bentley wrote himself: what you are
+     looking at, why it matters, where it misleads, and where to go next. Used once per figure. */
+  .notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem 2.2rem;margin:2rem 0 0;padding-top:1.1rem;border-top:1px dashed color-mix(in srgb,var(--ink) 30%,transparent)}
+  .notes p{margin:0;font-size:0.95rem;line-height:1.55;color:var(--muted)}
+  .notes b{color:var(--ink);font-weight:650}
+  @media (max-width:640px){.notes{grid-template-columns:1fr}}
+
+  /* the formula, running the reference engine */
+  .formula-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(1.4rem,4vw,2.8rem);align-items:start;margin-top:1.3rem}
+  .axes{background:var(--surface);border:1px solid var(--line-strong);border-radius:4px;box-shadow:var(--e1)}
+  .axes-h{display:grid;grid-template-columns:6.2rem 1fr 1fr;gap:.8rem;padding:.6rem 1rem;border-bottom:1px solid var(--line);font-family:var(--font-mono);font-size:0.75rem;color:var(--hint);letter-spacing:.04em}
+  .axis{display:grid;grid-template-columns:6.2rem 1fr 1fr;gap:.8rem;align-items:center;padding:.7rem 1rem;border-bottom:1px solid var(--line)}
+  .axis:last-child{border-bottom:0}
+  .axis .nm{font-weight:650}
+  .ctl{display:grid;grid-template-columns:1fr 2.2rem;align-items:center;gap:.4rem;font-family:var(--font-mono);font-size:0.75rem}
+  .ctl input[type=range]{width:100%;height:1.9rem;margin:0;accent-color:var(--accent-bright)}
+  .ctl output{text-align:right;color:var(--muted)}
+  .ctl.w output{color:var(--accent);font-weight:700}
+  .unk{grid-column:1/-1;display:flex;align-items:center;gap:.4rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--hint);cursor:pointer;min-height:1.6rem}
+  .unk input{margin:0;accent-color:var(--accent)}
+  .ctl.off input[type=range]{opacity:.35}
+  .ctl.off output{text-decoration:line-through}
+  .work{font-family:var(--font-mono);font-size:0.8rem;line-height:1.7}
+  .wline{display:grid;grid-template-columns:1fr auto;gap:.8rem;padding:.35rem 0;border-bottom:1px solid var(--line)}
+  .wline span:first-child{color:var(--muted)}
+  .wline b{font-weight:700}
+  .wscore{display:flex;align-items:baseline;justify-content:space-between;margin-top:.7rem;padding-top:.6rem;border-top:2px solid var(--line-strong)}
+  .wscore .big{font-size:2.1rem;font-weight:700;line-height:1}
+  .wsay{font-family:var(--font-display);font-size:0.95rem;color:var(--ink);margin:.8rem 0 0;min-height:3.2em}
+  .wsay.flag{color:var(--warn)}
+  .gauge{position:relative;height:.7rem;border-radius:3px;background:var(--track);margin:.9rem 0 .25rem;overflow:hidden}
+  .gauge i{position:absolute;top:0;bottom:0;left:0;background:var(--accent);transition:width .35s var(--ease)}
+  .gauge u{position:absolute;top:-2px;bottom:-2px;width:1px;background:var(--ink);left:50%}
+  .gscale{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:0.7rem;color:var(--hint)}
+  .ret{margin:1rem 0 0;padding:.7rem .8rem;background:var(--code);border:1px solid var(--line);border-radius:3px;font-size:0.75rem;white-space:pre-wrap;word-break:break-word}
+  .ret-h{font-family:var(--font-mono);font-size:0.75rem;color:var(--hint);margin:1rem 0 0}
+  .rules3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4rem;margin-top:2.2rem}
+  .rules3 div{border-top:2px solid var(--line-strong);padding-top:.6rem}
+  .rules3 b{display:block;font-size:1rem;margin-bottom:.2rem}
+  .rules3 p{margin:0;font-size:0.9rem;color:var(--muted)}
+  .rules3 .exp-n{display:block;font-family:var(--font-mono);font-size:0.75rem;font-weight:700;color:var(--hint);margin-bottom:.15rem}
+
+  /* conformance: rule, meaning, how it is checked */
+  .conf{width:100%;border-collapse:collapse;margin-top:1rem;font-size:0.95rem}
+  .conf th,.conf td{text-align:left;vertical-align:baseline;padding:.7rem 1rem .7rem 0;border-bottom:1px solid var(--line)}
+  .conf thead th{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--hint);font-weight:600}
+  .conf tbody th{font-weight:650;width:22%}
+  .conf td{color:var(--muted);font-size:0.92rem}
+  .conf td.how{font-family:var(--font-mono);font-size:0.75rem;color:var(--muted);width:30%}
+  .run{margin:1.2rem 0 0;font-size:0.95rem;color:var(--muted)}
+  .run code{background:var(--code);border:1px solid var(--line);padding:.1rem .35rem;border-radius:3px;font-size:0.82rem;color:var(--ink)}
+
+  /* where it stands */
+  .stand{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(1.6rem,4vw,3rem);align-items:start}
+  .uses{width:100%;border-collapse:collapse;font-size:0.95rem}
+  .uses th,.uses td{text-align:left;padding:.55rem .8rem .55rem 0;border-bottom:1px solid var(--line);vertical-align:baseline}
+  .uses thead th{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--hint);font-weight:600}
+  .uses td{color:var(--muted);font-size:0.9rem}
+  .reg{display:flex;height:1.1rem;border-radius:3px;overflow:hidden;margin:.6rem 0 .45rem;border:1px solid var(--line-strong)}
+  .reg i{display:block;height:100%}
+  .reg .s{background:color-mix(in srgb,var(--ink) 72%,var(--surface))}
+  .reg .d{background:color-mix(in srgb,var(--ink) 30%,var(--surface))}
+  .reg .c{background:var(--surface)}
+  .regkey{display:flex;flex-wrap:wrap;gap:.3rem 1.1rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--hint);margin:0}
+  .regkey i{display:inline-block;width:.9rem;height:.6rem;border:1px solid var(--line-strong);border-radius:2px;margin-right:.35rem;vertical-align:-.03rem}
+  .steps{list-style:none;margin:.5rem 0 0;padding:0;border-left:1px solid var(--line-strong)}
+  .steps li{position:relative;padding:0 0 .9rem 1.1rem;font-size:0.95rem}
+  .steps li::before{content:"";position:absolute;left:-4px;top:.5rem;width:7px;height:7px;border-radius:50%;background:var(--bg);border:1px solid var(--muted)}
+  .steps li.now::before{background:var(--muted)}
+  .steps b{display:block;font-family:var(--font-mono);font-size:0.75rem;color:var(--muted);letter-spacing:.04em}
+  h3.sub{font-size:1.2rem;font-style:italic;font-weight:500;margin:0 0 .4rem}
+  .fine{font-size:0.9rem;color:var(--muted);margin:.8rem 0 0}
+
+  footer{border-top:1px solid var(--line-strong);background:var(--sunk)}
+  footer .wrap{padding:1.8rem clamp(1.1rem,4vw,2.2rem);font-size:0.9rem;color:var(--muted)}
+  footer p{margin:0 0 .6rem;max-width:70ch}
+  .footlinks{display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;font-family:var(--font-mono);font-size:0.75rem}
+  .footlinks a{color:var(--muted);border-bottom:1px dotted var(--line-strong)}
+
+  @media (max-width:900px){
+    .wiring{grid-template-columns:1fr;gap:0}
+    .join{min-height:2.4rem}
+    .join svg{display:none}
+    .join::before{content:"";position:absolute;left:1.5rem;top:.35rem;bottom:.6rem;border-left:1px solid var(--muted)}
+    .join::after{content:"";position:absolute;left:calc(1.5rem - 4px);bottom:.3rem;border:4.5px solid transparent;border-top:7px solid var(--muted);border-bottom:0}
+    .plates,.formula-grid,.stand{grid-template-columns:1fr}
+    .rules3{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    body{font-size:1rem}
+    .axes-h{grid-template-columns:1fr 1fr}
+    .axes-h span:first-child{display:none}
+    .axis{grid-template-columns:1fr 1fr;row-gap:.3rem}
+    .axis .nm{grid-column:1/-1}
+    .conf thead{display:none}
+    .conf tr{display:block;border-bottom:1px solid var(--line);padding:.6rem 0}
+    .conf th,.conf td{display:block;border:0;padding:0;width:auto}
+    .conf td{margin-top:.2rem}
+  }
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="wrap">
-  <nav class="nav" aria-label="Values Commons">
-    <a class="brand" href="../index.html">&#9671; Values Commons</a>
-    <div class="links">
-      <a href="../passport/index.html">Your values</a>
-      <a href="../instances/index.html">Apps</a>
-      <a href="../weave/index.html">Ownership map</a>
-      <a href="../contribute/index.html">Help out</a>
-      <a class="cta" href="../app/index.html">Open the app</a>
-    </div>
-  </nav>
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="#main">&#9671; Open Values Standard<small>for builders</small></a>
+    <nav class="links" aria-label="The builders' kit">
+      <a href="index.html" aria-current="page">Overview</a>
+      <a href="spec/index.html">Spec</a>
+      <a href="registry/index.html">Registry</a>
+      <a href="engine/index.html">Engine</a>
+      <a href="data/index.html">Data</a>
+      <a href="conformance/index.html">Conformance</a>
+      <a href="https://valuescommons.org/schema/index.json">Schemas</a>
+      <a href="#formula">The formula</a>
+      <a class="home" href="https://valuescommons.org/">Values Commons &rarr;</a>
+    </nav>
+  </div>
+</header>
 
-  <main id="main" tabindex="-1">
-    <header class="hero">
-      <p class="kicker">For builders</p>
-      <h1>Open Values Standard</h1>
-      <p class="lede">This is the builder-facing specification for the files Values Commons passes around: what someone values, what the sourced facts say, how rankings are re-run, how a group finds agreement, and how a plan stays accountable. The aim is permissionless compatibility between tools.</p>
+<main id="main" tabindex="-1">
+  <section class="hero">
+    <div class="wrap">
+      <h1>The Open Values Standard</h1>
+      <p class="lede">A few small files and one formula, written down so any app can rank choices by a person's own values, and anyone can rerun the result to check it.</p>
+      <p class="state"><span>Version <b>0.1</b>, a working draft</span><span>Reference engine <b id="eng-v">v0.11</b></span><span>Used in full by <b>1</b> app, in demos by <b>2</b></span></p>
       <div class="actions">
-        <a class="btn primary" href="../docs/STANDARD-v0.md">Read the current spec</a>
-        <a class="btn" href="../passport/index.html">See the values file</a>
-        <a class="btn" href="../instances/index.html#create">Build a compatible app</a>
+        <a class="btn primary" href="spec/index.html">Read the spec</a>
+        <a class="btn" href="https://valuescommons.org/schema/index.json">Get the schemas</a>
+        <a class="btn" href="conformance/index.html">Check your app</a>
       </div>
-    </header>
+      <p class="hand">Fig. 2 runs the real engine on this page, so every number in it is computed, not typed.</p>
 
-    <section class="band">
-      <p class="kicker">The shape</p>
-      <h2>Small files, reproducible decisions</h2>
-      <p class="intro">The standard is not a social network or a ranking authority. It is a grammar for decisions that can be inspected, repaired, combined, and re-run from files.</p>
-      <div class="grid">
-        <div class="card"><span class="tag">Values</span><h3>Values file</h3><p>A local, nameless file of weights and deal-breakers that says what matters to a person or group.</p></div>
-        <div class="card"><span class="tag">Facts</span><h3>Sourced facts</h3><p>A roster of options, criteria, scores, notes, links, and dates. It can be corrected or kept as a separate version.</p></div>
-        <div class="card"><span class="tag">Decision</span><h3>Ranking</h3><p>A deterministic result from values plus facts. Same inputs, same order, with withheld confidence when facts are thin.</p></div>
-        <div class="card"><span class="tag">Together</span><h3>Group agreement</h3><p>Many values files combined into a shared stance that preserves disagreement instead of smoothing it away.</p></div>
-        <div class="card"><span class="tag">Action</span><h3>Shared plan</h3><p>A derived list of buys, avoids, switches, or priorities with the reason and evidence attached.</p></div>
-        <div class="card"><span class="tag">Apps</span><h3>Compatible app</h3><p>A subject-specific front end running the shared shell and engine with its own facts, look, and language.</p></div>
+      <div class="wiring" aria-label="How the parts connect: a values file and a lens go into the engine, which returns a ranking">
+        <div class="wires-in">
+          <div class="node"><svg class="glyph v" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20C7 16.7 4 13.7 4 10.3 4 8 5.9 6.2 8.2 6.2c1.5 0 2.9.8 3.8 2 .9-1.2 2.3-2 3.8-2C20 6.2 20 8 20 10.3 20 13.7 17 16.7 12 20Z"/></svg><b>The values file</b><code>open-values-passport</code><span>What one person cares about. Weights only, no name.</span></div>
+          <div class="node"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h11v17l-1.8-1.2-1.9 1.2-1.8-1.2-1.8 1.2-1.9-1.2-1.8 1.2zM9.2 8.2h5.6M9.2 11.4h5.6M9.2 14.6h3.4"/></svg><b>The lens</b><code>open-values-lens</code><span>The options, the axes they are measured on, and each fact's source.</span></div>
+        </div>
+        <div class="join" aria-hidden="true"><svg viewBox="0 0 48 100" preserveAspectRatio="none"><path d="M0 26 C 24 26, 24 50, 42 50"/><path d="M0 74 C 24 74, 24 50, 42 50"/><polygon points="48,50 40,46 40,54"/></svg></div>
+        <div class="node engine"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5V19M8 19h8M6 7.5h12M6 7.5 3.5 13a2.5 2.5 0 0 0 5 0zM18 7.5 15.5 13a2.5 2.5 0 0 0 5 0zM9 6l3-1.5L15 6"/></svg><b>The engine</b><code>engine.js &middot; score()</code><span>One formula. No accounts, no network, no hidden state. The same inputs always give the same order.</span></div>
+        <div class="join" aria-hidden="true"><svg viewBox="0 0 48 100" preserveAspectRatio="none"><path d="M0 50 L 42 50"/><polygon points="48,50 40,46 40,54"/></svg></div>
+        <div class="node out"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 6.5h1.2M4.5 12h1.2M4.5 17.5h1.2M8.5 6.5h11M8.5 12h7.5M8.5 17.5h4.5"/></svg><b>The ranking</b><code>score &middot; coverage &middot; why &middot; cap</code><span>A score for each option, how much of it was known, and what moved it.</span></div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="band">
-      <div class="spec">
+  <section id="parts">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">Plate I</span><span class="fig">Fig. 1. Four example files from the spec.</span></p>
+      <h2 class="sh">The four files, with examples</h2>
+      <p class="sd">The numbered marks point at the parts builders most often get wrong.</p>
+      <div class="plates">
+        <article class="plate">
+          <header><h3>The values file</h3><p>What matters to one person, carried from app to app.</p></header>
+<pre><span class="k">{</span>
+  <span class="k">"format":</span> "open-values-passport",<span class="m">1</span>
+  <span class="k">"version":</span> "0.1",
+  <span class="k">"values":</span> {
+    <span class="k">"planet":</span> <span class="v">5</span>, <span class="k">"openness":</span> <span class="v">4</span>,<span class="m">2</span>
+    <span class="k">"autonomy":</span> <span class="v">5</span>, <span class="k">"access":</span> <span class="v">3</span>
+  }
+<span class="k">}</span></pre>
+          <ol>
+            <li><b>No name and no account.</b> The file holds weights and nothing that identifies anyone.</li>
+            <li><b>Weights run 0 to 5, and 3 is neutral.</b> Ten shared value names (planet, people, openness, access, wellbeing, autonomy, animals, community, quality, joy) let one file work in every app.</li>
+          </ol>
+        </article>
+        <article class="plate">
+          <header><h3>An axis of value</h3><p>One thing an option is measured on, and how it is known.</p></header>
+<pre><span class="k">{</span>
+  <span class="k">"key":</span> "environment",<span class="m">1</span>
+  <span class="k">"label":</span> "Green financing",
+  <span class="k">"tier":</span> "assessed"<span class="m">2</span>
+<span class="k">}</span></pre>
+          <ol>
+            <li><b>Apps that use the same key can share a values file.</b> Two apps that both use <code>environment</code> can share a values file without translating it.</li>
+            <li><b>The tier says how the fact is known.</b> <code>measured</code> is an open-data fact, shown exactly. <code>certified</code> is a third-party label. <code>assessed</code> is a researched judgement, which must cite a source and is shown as a band, never as a precise-looking number.</li>
+          </ol>
+        </article>
+        <article class="plate">
+          <header><h3>An option and its facts</h3><p>Scores on the declared axes, each with where it came from.</p></header>
+<pre><span class="k">{</span>
+  <span class="k">"code":</span> "example-bank",
+  <span class="k">"name":</span> "Example Bank",
+  <span class="k">"scores":</span> { <span class="k">"environment":</span> <span class="v">98</span> },<span class="m">1</span>
+  <span class="k">"provenance":</span> { <span class="k">"environment":</span> {
+    <span class="k">"note":</span>   "What the source says, in one line",
+    <span class="p">"source": "https://example.org/report",</span><span class="m">2</span>
+    <span class="k">"asof":</span>   "2026"
+  } }
+<span class="k">}</span></pre>
+          <ol>
+            <li><b>A missing score means unknown, never zero.</b> Leave the key out. Every key that is present must be an axis the lens declares, from 0 to 100.</li>
+            <li><b>Every judgement cites.</b> A note, a source that resolves, and the date it was true, so anyone can check it or dispute it.</li>
+          </ol>
+        </article>
+        <article class="plate">
+          <header><h3>What the engine returns</h3><p>A number, plus how much of it was known and what moved it.</p></header>
+<pre><span class="k">{</span>
+  <span class="k">"score":</span> <span class="v">49</span>,
+  <span class="k">"coverage":</span> <span class="v">0.57</span>,<span class="m">1</span>
+  <span class="k">"why":</span> ["Ethics", "Transparent"],
+  <span class="k">"facts":</span> 4, <span class="k">"wanted":</span> 7,
+  <span class="k">"cap":</span> { <span class="k">"label":</span> "Green financing", <span class="k">"v":</span> 12 }<span class="m">2</span>
+<span class="k">}</span></pre>
+          <ol>
+            <li><b>Coverage comes with the score.</b> This option was scored on 4 of the 7 things the reader cares about, and the score says so.</li>
+            <li><b>A dealbreaker cannot be averaged away.</b> Here one heavily weighted axis scored 12, so the score is held at 49 whatever the others say.</li>
+          </ol>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="formula">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">Plate II</span><span class="fig">Fig. 2. The scoring formula, running the reference engine.</span></p>
+      <h2 class="sh">The formula, worked</h2>
+      <p class="sd">This runs the reference engine, the same <code>engine.js</code> file the app uses. One option, three axes. Change a weight, change a fact, or mark a fact as unknown, and see which of the three rules below applies.</p>
+      <div class="formula-grid">
         <div>
-          <p class="kicker">Conformance v0.1</p>
-          <h2>What counts as standard-aligned</h2>
-          <p class="intro">A project can be creative in its domain and design, but the core promise should stay recognizable.</p>
-          <div class="check">
-            <div><b>Local-first core.</b> Values and rankings work without an account or server dependency.</div>
-            <div><b>No pay-to-rank.</b> Money cannot buy placement inside a values-relative ranking.</div>
-            <div><b>Portable values.</b> A user can export and import values without identity baggage.</div>
-            <div><b>Sourced claims.</b> Assessed facts carry sources, dates, and a human-readable basis.</div>
-            <div><b>Repairable facts.</b> Disagreement creates a visible patch or alternate file that anyone can inspect.</div>
-            <div><b>Reproducible results.</b> Rankings can be re-derived from the same public inputs.</div>
+          <div class="axes" id="axes">
+            <div class="axes-h" aria-hidden="true"><span>Axis</span><span>Your weight (0 to 5)</span><span>The fact (0 to 100)</span></div>
+            <div class="axis" data-key="climate">
+              <span class="nm">Climate</span>
+              <label class="ctl w"><input type="range" min="0" max="5" step="1" value="3" aria-label="Your weight on climate"><output class="tnum">3</output></label>
+              <div class="ctl f"><input type="range" min="0" max="100" step="1" value="80" aria-label="The climate fact"><output class="tnum">80</output><label class="unk"><input type="checkbox"> unknown</label></div>
+            </div>
+            <div class="axis" data-key="pay">
+              <span class="nm">Fair pay</span>
+              <label class="ctl w"><input type="range" min="0" max="5" step="1" value="3" aria-label="Your weight on fair pay"><output class="tnum">3</output></label>
+              <div class="ctl f off"><input type="range" min="0" max="100" step="1" value="70" aria-label="The fair pay fact"><output class="tnum">70</output><label class="unk"><input type="checkbox" checked> unknown</label></div>
+            </div>
+            <div class="axis" data-key="price">
+              <span class="nm">Price</span>
+              <label class="ctl w"><input type="range" min="0" max="5" step="1" value="2" aria-label="Your weight on price"><output class="tnum">2</output></label>
+              <div class="ctl f"><input type="range" min="0" max="100" step="1" value="60" aria-label="The price fact"><output class="tnum">60</output><label class="unk"><input type="checkbox"> unknown</label></div>
+            </div>
           </div>
         </div>
-        <aside class="note">
-          <h3>The spec versus the public site</h3>
-          <p><b>Open Values Standard</b> is the protocol. <b>Values Commons</b> is the public site built on it. Conscious Consuming is the first flagship app proving that the protocol can carry real, sourced decisions.</p>
-          <p>That is why <code>openvaluesstandard.org</code> is best used as the spec home or redirect to this page, while <code>valuescommons.org</code> carries the public story.</p>
-        </aside>
+        <div class="work" aria-live="polite">
+          <div class="wline"><span>Average of the known facts, by weight</span><b class="tnum" id="w-mean">72.0</b></div>
+          <div class="wline"><span>Coverage: weight on known facts / all weight</span><b class="tnum" id="w-cov">5 / 8 = 0.625</b></div>
+          <div class="wline"><span>72.0 &times; 0.625 + 50 &times; 0.375</span><b class="tnum" id="w-mix">63.8</b></div>
+          <div class="wscore"><span>score</span><span class="big tnum" id="w-score">64</span></div>
+          <div class="gauge" aria-hidden="true"><i id="w-bar" style="width:64%"></i><u></u></div>
+          <div class="gscale" aria-hidden="true"><span>0</span><span>50, neutral</span><span>100</span></div>
+          <p class="wsay" id="w-say">Fair pay is unknown, so 3 of the 8 weight points had no fact, and the score is pulled a little toward 50.</p>
+          <p class="ret-h">What <code>score()</code> returned</p>
+          <pre class="ret" id="w-ret">{"score":64,"coverage":0.625,"why":["Climate","Price"],"facts":2,"wanted":3,"cap":null}</pre>
+        </div>
       </div>
-    </section>
-  </main>
+      <div class="rules3">
+            <div><span class="exp-n">Exp. 1</span><b>Missing is not zero</b><p>An unknown fact is left out. The score is pulled toward a neutral 50 by how much is unknown.</p><button type="button" class="try" data-try="missing">Try it</button></div>
+            <div><span class="exp-n">Exp. 2</span><b>Too little known, no score</b><p>Below a quarter of what you care about, the engine returns nothing rather than a guess.</p><button type="button" class="try" data-try="thin">Try it</button></div>
+            <div><span class="exp-n">Exp. 3</span><b>Dealbreakers hold</b><p>An axis you weight 4 or 5 that scores 20 or less caps the score at 49. A certification is the exception, because a 0 there means no label was found, which is missing paperwork, not harm.</p><button type="button" class="try" data-try="cap">Try it</button></div>
+      </div>
+      <div class="notes">
+        <p><b>What's happening.</b> One option, three axes, and the reference engine itself, the same file the app runs. Each Try it button sets the inputs so that one rule applies.</p>
+        <p><b>Why it matters.</b> An average is the obvious way to combine what someone cares about, and it misleads in two predictable ways: it treats a missing fact as a zero, and it lets a disaster on one axis hide behind good marks on the others. The first two rules answer the first; the cap answers the second.</p>
+        <p><b>Devil's advocate.</b> The cap is crude on purpose. It is a flat 49, whatever the rest says. It used to fire on certifications too, where a 0 only means no label was found. On the open-data food comparisons that was 10,702 of 14,945 ethics scores in September 2026, so version 0.11 stopped treating missing paperwork as a verdict.</p>
+        <p><b>Rabbit hole.</b> The engine is one plain file. Its <code>score()</code> function is 27 lines, six of them comments explaining the rules. <a href="https://github.com/BentleyMoon/conscious-consuming/blob/main/app/engine.js">Read it on GitHub</a>.</p>
+      </div>
+    </div>
+  </section>
 
-  <footer>
-    <div>Values Commons - powered by the Open Values Standard.</div>
+  <section id="rules">
+    <div class="wrap">
+      <h2 class="sh">What an app must keep to call itself compatible</h2>
+      <p class="sd">An app can look and sound however it likes. These six stay the same, and five of them are checked by a validator anyone can run.</p>
+      <table class="conf">
+        <thead><tr><th scope="col">Rule</th><th scope="col">What it means</th><th scope="col">How it is checked</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Fit to someone's values</th><td>A score says how well an option fits someone's stated values. It never says an option is good or bad for everyone.</td><td class="how">Same facts with other weights must give another order</td></tr>
+          <tr><th scope="row">Every judgement cites</th><td>An assessed claim carries a note, a source and the date it was true.</td><td class="how">Validator: provenance shape</td></tr>
+          <tr><th scope="row">Missing is not zero</th><td>Unknown facts are left out, pulled toward neutral, and withheld when too little is known.</td><td class="how">Validator: score keys and 0 to 100 range</td></tr>
+          <tr><th scope="row">No pay-to-rank</th><td>Nothing in the files can encode sponsorship or paid placement.</td><td class="how">Validator: no paid-placement fields</td></tr>
+          <tr><th scope="row">Values travel</th><td>A person's values file carries no identity and works in any compatible app.</td><td class="how">Validator: values file shape</td></tr>
+          <tr><th scope="row">Any community's values</th><td>An app can bring its own value names and map them to the shared ten. The format favours none.</td><td class="how">Validator: value-name mappings point at real axes</td></tr>
+        </tbody>
+      </table>
+      <p class="run">To check a lens you built: clone the <a href="https://github.com/BentleyMoon/conscious-consuming">source</a> and run <code>npm run audit:conformance</code>, or add <code>--passport=yourfile.json</code> to check a values file.</p>
+    </div>
+  </section>
+
+  <section id="status">
+    <div class="wrap">
+      <h2 class="sh">Where it stands</h2>
+      <div class="stand">
+        <div>
+          <h3 class="sub">Apps using it</h3>
+          <table class="uses">
+            <thead><tr><th scope="col">App</th><th scope="col">How far</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="../app/index.html">Conscious Consuming</a></th><td>In full. The reference implementation, ranking 140+ everyday decisions.</td></tr>
+              <tr><th scope="row"><a href="../kosplora/index.html">Kosplora</a></th><td>Demo. The second app. It needed its own value names, which is why version 0.1 exists.</td></tr>
+              <tr><th scope="row"><a href="../instances/messages/index.html">Where to Message</a></th><td>Demo. Messengers ranked on privacy, openness and reach.</td></tr>
+            </tbody>
+          </table>
+          <h3 class="sub" style="margin-top:1.8rem">Registered file formats</h3>
+          <p class="fine" id="reg-say" style="margin-top:0"><b class="tnum">72</b> formats are registered: <b class="tnum">24</b> stable, <b class="tnum">36</b> drafts and <b class="tnum">12</b> internal contracts used while building.</p>
+          <div class="reg" id="reg-bar" aria-hidden="true"><i class="s" style="width:33.3%"></i><i class="d" style="width:50.0%"></i><i class="c" style="width:16.7%"></i></div>
+          <p class="regkey"><span><i class="s" style="background:color-mix(in srgb,var(--ink) 72%,var(--surface))"></i>stable</span><span><i style="background:color-mix(in srgb,var(--ink) 30%,var(--surface))"></i>draft</span><span><i></i>internal</span><span><a href="../app/data/standard/registry.json">The registry, as JSON &rarr;</a></span></p>
+        </div>
+        <div>
+          <h3 class="sub">How it changes</h3>
+          <ol class="steps">
+            <li><b>June 2026</b>Version 0 written down from what the first app already did.</li>
+            <li><b>July 2026</b>Version 0.1: the second app, Kosplora, needed its own value names, so the engine now takes them as an input.</li>
+            <li class="now"><b>Now</b>A 1.0 draft is in progress.</li>
+            <li><b>Next</b>A version changes when a new app needs it to. Breaking changes raise the major number, and the reference engine always tracks the latest.</li>
+          </ol>
+          <p class="fine">One maintainer today: Bentley Moon, at the <a href="https://futurisminstitute.org">Futurism Institute</a>. To propose a change, open an issue on <a href="https://github.com/BentleyMoon/conscious-consuming">GitHub</a> or write to <a href="mailto:futurisminstitute@gmail.com">futurisminstitute@gmail.com</a>.</p>
+          <p class="fine">If it ever publishes descriptions of organisations, it will use Murmurations, an existing open protocol, rather than invent a format.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>openvaluesstandard.org</b> is this standard's home. <b>Values Commons</b> at valuescommons.org is the public site built on it, and Conscious Consuming is its first full app.</p>
     <div class="footlinks">
-      <a href="../index.html">Home</a>
-      <a href="../docs/FEDERATION.md">File-sharing model</a>
-      <a href="../docs/CREATE-AN-INSTANCE.md">Implementation guide</a>
-      <a href="../workshop/index.html">Workshop</a>
-      <a href="../funders/index.html">Funders</a>
+      <a href="../index.html">Values Commons</a>
+      <a href="../docs/STANDARD-v0.md">The spec, v0.1</a>
+      <a href="../docs/FEDERATION.md">How file-sharing works</a>
+      <a href="../docs/CREATE-AN-INSTANCE.md">Build an app on it</a>
+      <a href="../passport/index.html">Your values file</a>
       <a href="https://github.com/BentleyMoon/conscious-consuming">Source and data</a>
       <a href="mailto:futurisminstitute@gmail.com">futurisminstitute@gmail.com</a>
     </div>
-  </footer>
-</div>
+    <!-- family:start -->
+<style>
+  /* sizes, spacing and case follow research/design_system_audit.js: the eight-step scale, the 0.25rem grid, no uppercase */
+  .fam{border-top:1px solid var(--line,#e3e7e5);margin-top:1.5rem;padding-top:1.25rem;grid-column:1/-1;flex-basis:100%;width:100%}
+  .fam-foot{border-top:1px solid var(--line,#e3e7e5);padding:1.25rem 0 2.5rem}
+  .fam-foot .fam,.fam-after .fam{border-top:0;margin-top:0}
+  .fam>p{margin:0 0 1rem;font-family:var(--font-mono,ui-monospace,monospace);font-size:.75rem;color:var(--hint,var(--muted,#566560))}
+  .fam-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(10.5rem,1fr));gap:1rem 1.5rem}
+  .fam-head{margin:0 0 .5rem;font-size:.86rem;font-weight:700;color:var(--ink,#18211d)}
+  .fam ul{list-style:none;margin:0;padding:0}
+  .fam li{margin:0 0 .5rem}
+  .fam a{display:block;text-decoration:none;color:inherit;border:0;box-shadow:none}
+  .fam a:hover .fam-name{text-decoration:underline}
+  .fam-name{display:block;font-size:.86rem;font-weight:600;color:var(--accent,#1d7a5a)}
+  .fam-desc{display:block;font-size:.75rem;line-height:1.4;color:var(--muted,#566560)}
+  .fam-you{display:inline-block;margin-top:.25rem;font-family:var(--font-mono,ui-monospace,monospace);font-size:.64rem;color:var(--ink,#18211d)}
+</style>
+<nav class="fam" aria-label="The Futurism Institute family">
+  <p>The Futurism Institute family</p>
+  <div class="fam-cols"><div><p class="fam-head">Start here</p><ul><li><a href="https://futurisminstitute.org"><span class="fam-name">Futurism Institute</span><span class="fam-desc">How the projects fit together</span></a></li></ul></div><div><p class="fam-head">Research</p><ul><li><a href="https://bentleymoon.com"><span class="fam-name">Bentley Moon</span><span class="fam-desc">Research record and films</span></a></li></ul></div><div><p class="fam-head">Records</p><ul><li><a href="https://bentleymoon.com/research/checking-ai/"><span class="fam-name">Checking AI</span><span class="fam-desc">When one AI can check another</span></a></li><li><a href="https://valuescommons.org/app/"><span class="fam-name">Conscious Consuming</span><span class="fam-desc">Products and services, by what you care about</span></a></li><li><a href="https://dignityneeds.com"><span class="fam-name">Dignity Needs</span><span class="fam-desc">What every person should be able to expect</span></a></li><li><a href="https://kosplora.org"><span class="fam-name">Kosplora</span><span class="fam-desc">Learning and research tools</span></a></li><li><a href="https://legibleai.org"><span class="fam-name">Legible AI</span><span class="fam-desc">A first road into AI safety</span></a></li><li><a href="https://legibleai.org/searches/"><span class="fam-name">AI Searches</span><span class="fam-desc">A shared record of AI answers, with their sources</span></a></li></ul></div><div><p class="fam-head">Groups</p><ul><li><a href="https://socratichearth.org"><span class="fam-name">The Socratic Hearth</span><span class="fam-desc">Talk a question through, disagreements kept</span></a></li><li><a href="https://theworkparty.org"><span class="fam-name">The Work Party</span><span class="fam-desc">What a group agreed, as a file it keeps</span></a></li></ul></div><div><p class="fam-head">Places</p><ul><li><a href="https://earthenbeings.com"><span class="fam-name">Earthen Beings</span><span class="fam-desc">Communities and land projects in the Pacific Northwest</span></a></li><li><a href="https://basicdignity.com"><span class="fam-name">Basic Dignity</span><span class="fam-desc">Draft rules for whoever holds what a person needs, from a shared house to the companies that own AI.</span></a></li></ul></div></div>
+</nav>
+<!-- family:end -->
+  </div>
+</footer>
+
+<script src="../app/engine.js"></script>
+<script>
+  /* THE FORMULA, WORKED. The numbers come from CC.engine.score(), the reference implementation,
+     so this page cannot drift from what the apps do. The lines above the score only lay out the
+     same arithmetic in words; if the engine is missing, the page keeps its printed example. */
+  (function(){
+    var E=window.CC&&CC.engine, box=document.getElementById("axes");
+    var ev=document.getElementById("eng-v"); if(E&&E.VERSION&&ev) ev.textContent="v"+E.VERSION;
+    if(!E||!box) return;
+    var LABEL={climate:"Climate",pay:"Fair pay",price:"Price"};
+    var criteria=Object.keys(LABEL).map(function(k){return {key:k,label:LABEL[k]};});
+    function $(id){return document.getElementById(id);}
+    function fmt(n,d){return (Math.round(n*Math.pow(10,d))/Math.pow(10,d)).toFixed(d);}
+    function read(){
+      var w={}, s={}, unknown=[];
+      box.querySelectorAll(".axis").forEach(function(row){
+        var k=row.getAttribute("data-key"), wi=row.querySelector(".ctl.w input"), fi=row.querySelector(".ctl.f input"),
+            un=row.querySelector(".unk input"), fc=row.querySelector(".ctl.f");
+        row.querySelector(".ctl.w output").textContent=wi.value;
+        row.querySelector(".ctl.f output").textContent=fi.value;
+        fc.classList.toggle("off",un.checked); fi.disabled=un.checked;
+        w[k]=+wi.value;
+        if(un.checked) unknown.push(LABEL[k]); else s[k]=+fi.value;
+      });
+      return {w:w,s:s,unknown:unknown};
+    }
+    function render(){
+      var r=read(), res=E.score({scores:r.s},{criteria:criteria,weights:r.w});
+      var all=0, known=0, num=0, capHit=null;
+      criteria.forEach(function(c){var w=r.w[c.key]||0; all+=w; if(w>0&&r.s[c.key]!=null){known+=w;num+=w*r.s[c.key];}});
+      var mean=known?num/known:null, cov=all?known/all:0;
+      $("w-mean").textContent=mean==null?"none known":fmt(mean,1);
+      $("w-cov").textContent=known+" / "+all+" = "+(all?fmt(cov,3):"0");
+      var mixLine=$("w-mix").previousElementSibling;
+      if(mean==null){ mixLine.textContent="Nothing you weighted is known"; $("w-mix").textContent="none"; }
+      else { mixLine.textContent=fmt(mean,1)+" × "+fmt(cov,3)+" + 50 × "+fmt(1-cov,3); $("w-mix").textContent=fmt(mean*cov+50*(1-cov),1); }
+      var say=$("w-say");
+      say.classList.remove("flag");
+      if(!res){
+        $("w-score").textContent="none"; $("w-bar").style.width="0";
+        say.textContent=all===0?"You gave every axis a weight of 0, so there is nothing to rank by."
+          :"Only "+known+" of "+all+" weight points had a fact, under a quarter, so the engine withholds the score instead of guessing.";
+        say.classList.add("flag");
+      }else{
+        $("w-score").textContent=res.score; $("w-bar").style.width=res.score+"%";
+        if(res.cap){ say.textContent=res.cap.label+" scored "+res.cap.v+" and you weighted it heavily, so the score is held at 49 however good the rest is."; say.classList.add("flag"); }
+        else if(r.unknown.length&&known<all){ say.textContent=r.unknown.join(" and ")+(r.unknown.length>1?" are":" is")+" unknown, so "+(all-known)+" of the "+all+" weight points had no fact, and the score is pulled toward 50 by that much."; }
+        else say.textContent="Every fact you weighted is known, so the score is simply their weighted average.";
+      }
+      $("w-ret").textContent=JSON.stringify(res);
+    }
+    var TRIES={
+      missing:{climate:[3,80,false],pay:[3,70,true],price:[2,60,false]},
+      thin:{climate:[4,80,true],pay:[4,70,true],price:[1,60,false]},
+      cap:{climate:[3,80,false],pay:[3,70,false],price:[4,15,false]}
+    };
+    document.querySelectorAll(".try[data-try]").forEach(function(btn){
+      btn.addEventListener("click",function(){
+        var set=TRIES[btn.getAttribute("data-try")];
+        box.querySelectorAll(".axis").forEach(function(row){
+          var v=set[row.getAttribute("data-key")]; if(!v) return;
+          row.querySelector(".ctl.w input").value=v[0];
+          row.querySelector(".ctl.f input").value=v[1];
+          row.querySelector(".unk input").checked=v[2];
+        });
+        render();
+        var work=document.querySelector(".work");
+        var wr=work&&work.getBoundingClientRect(); if(wr&&(wr.top<0||wr.top>window.innerHeight-80)) work.scrollIntoView({behavior:"smooth",block:"center"});
+      });
+    });
+    box.addEventListener("input",render);
+    box.addEventListener("change",render);
+    render();
+  })();
+
+  /* The registry counts, read from the registry itself so they cannot go stale. */
+  (function(){
+    fetch("../app/data/standard/registry.json").then(function(r){return r.ok?r.json():null;}).then(function(j){
+      if(!j||!j.entries) return;
+      var n=j.entries.length, c={stable:0,draft:0,other:0};
+      j.entries.forEach(function(e){ if(e.status==="stable")c.stable++; else if(e.status==="draft")c.draft++; else c.other++; });
+      var say=document.getElementById("reg-say"), bar=document.getElementById("reg-bar");
+      if(say) say.innerHTML='<b class="tnum">'+n+'</b> formats are registered: <b class="tnum">'+c.stable+'</b> stable, <b class="tnum">'+c.draft+'</b> drafts and <b class="tnum">'+c.other+'</b> internal contracts used while building.';
+      if(bar){ var is=bar.querySelectorAll("i"); is[0].style.width=(c.stable/n*100)+"%"; is[1].style.width=(c.draft/n*100)+"%"; is[2].style.width=(c.other/n*100)+"%"; }
+    }).catch(function(){});
+  })();
+</script>
 <script src="../app/theme.js"></script>
 </body>
 </html>

@@ -2,21 +2,21 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/node-runtime-states-v0.1.schema.json",
   "title": "Open Values Node Runtime States v0.1",
-  "description": "Runtime state and failure-mode fixtures for generated node and Ask integration.",
+  "description": "The states the app can be in while loading the generated files, such as loading, unavailable or offline, with what the app must and must not do in each. The data build writes them as tests for the app. It is an internal file used while building the site.",
   "type": "object",
   "additionalProperties": true,
   "required": ["format", "version", "built", "source", "purpose", "appLaneNote", "caseFields", "qaContract", "cases", "totals"],
   "properties": {
-    "format": { "const": "ovs-node-runtime-states" },
-    "version": { "$ref": "#/$defs/version" },
-    "built": { "$ref": "#/$defs/date" },
-    "source": { "$ref": "#/$defs/source" },
-    "purpose": { "$ref": "#/$defs/nonEmptyString" },
-    "appLaneNote": { "$ref": "#/$defs/nonEmptyString" },
-    "caseFields": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-    "qaContract": { "$ref": "#/$defs/qaContract" },
-    "cases": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/stateCase" } },
-    "totals": { "type": "object", "minProperties": 1 }
+    "format": { "description": "Names this file's format, so a reader can check it before reading the rest of the file.", "const": "ovs-node-runtime-states" },
+    "version": { "description": "The version of the format this file follows, such as \"0.1\".", "$ref": "#/$defs/version" },
+    "built": { "description": "The date of the source data this file was built from, as YYYY-MM-DD.", "$ref": "#/$defs/date" },
+    "source": { "description": "The script and files this file was built from, as paths in the repository.", "$ref": "#/$defs/source" },
+    "purpose": { "description": "One sentence on what this file is for.", "$ref": "#/$defs/nonEmptyString" },
+    "appLaneNote": { "description": "A note on which choices this file leaves to the app code that reads it, such as fetching, layout and wording.", "$ref": "#/$defs/nonEmptyString" },
+    "caseFields": { "description": "The names of the fields each case carries.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "qaContract": { "description": "How the cases are grouped for testing, and when this part of H4 can close.", "$ref": "#/$defs/qaContract" },
+    "cases": { "description": "One case per state the app can be in while loading generated files, such as loading, unavailable or offline.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/stateCase" } },
+    "totals": { "description": "How many cases there are, overall and by family.", "type": "object", "minProperties": 1 }
   },
   "$defs": {
     "version": { "type": "string", "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$" },
@@ -33,14 +33,14 @@
       "additionalProperties": true,
       "required": ["id", "family", "stage", "trigger", "requiredBehavior", "mustNot", "appOwnedCopyIntent", "sourceFiles"],
       "properties": {
-        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-        "family": { "$ref": "#/$defs/nonEmptyString" },
-        "stage": { "$ref": "#/$defs/nonEmptyString" },
-        "trigger": { "$ref": "#/$defs/nonEmptyString" },
-        "requiredBehavior": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "appOwnedCopyIntent": { "$ref": "#/$defs/nonEmptyString" },
-        "sourceFiles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+        "id": { "description": "A short id for the case, such as \"metadata-loading\".", "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "family": { "description": "The kind of state: \"loading\", \"unavailable\", \"integrity\", \"empty\", \"route\" or \"offline\".", "$ref": "#/$defs/nonEmptyString" },
+        "stage": { "description": "The id of the load stage in node-load-plan.json this case belongs to.", "$ref": "#/$defs/nonEmptyString" },
+        "trigger": { "description": "The situation that puts the app in this state.", "$ref": "#/$defs/nonEmptyString" },
+        "requiredBehavior": { "description": "What the app must do in this state, one sentence each.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "mustNot": { "description": "Things the app must not do here, one sentence each.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "appOwnedCopyIntent": { "description": "What any message shown to the reader should do. The exact words are left to the app.", "$ref": "#/$defs/nonEmptyString" },
+        "sourceFiles": { "description": "The generated files involved in this state.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
       }
     },
     "qaContract": {
@@ -48,17 +48,18 @@
       "additionalProperties": true,
       "required": ["purpose", "status", "h4DrainableFromDataAlone", "drainRule", "modes", "loadStageCoverage", "coverage"],
       "properties": {
-        "purpose": { "$ref": "#/$defs/nonEmptyString" },
-        "status": { "const": "pending-app-integration" },
-        "h4DrainableFromDataAlone": { "const": false },
-        "drainRule": { "$ref": "#/$defs/nonEmptyString" },
-        "modes": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/qaMode" } },
+        "purpose": { "description": "One sentence on what the test plan is for.", "$ref": "#/$defs/nonEmptyString" },
+        "status": { "description": "Always \"pending-app-integration\": the generated data is ready, and the app work that uses it is not yet confirmed.", "const": "pending-app-integration" },
+        "h4DrainableFromDataAlone": { "description": "Always false. The generated files alone can never close handoff item H4; that needs evidence from the running app.", "const": false },
+        "drainRule": { "description": "The rule for closing this part of H4, in one sentence.", "$ref": "#/$defs/nonEmptyString" },
+        "modes": { "description": "Test passes, each covering a set of cases.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/qaMode" } },
         "loadStageCoverage": {
+          "description": "For each load stage id, the cases that test it.",
           "type": "object",
           "minProperties": 1,
           "additionalProperties": { "$ref": "#/$defs/loadStageCoverage" }
         },
-        "coverage": { "type": "object", "minProperties": 1 }
+        "coverage": { "description": "Counts showing that every case is in a test pass, and which passes run in the app or are reviewed by hand.", "type": "object", "minProperties": 1 }
       }
     },
     "qaMode": {
@@ -66,12 +67,12 @@
       "additionalProperties": true,
       "required": ["id", "owner", "caseIds", "sourceFiles", "passWhen", "mustNot"],
       "properties": {
-        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-        "owner": { "const": "app/design" },
-        "caseIds": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^[a-z0-9-]+$" } },
-        "sourceFiles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "passWhen": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "mustNot": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+        "id": { "description": "A short id for the test pass, such as \"startup-smoke\".", "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "owner": { "description": "Who owns this work. Always \"app/design\", the app and design side of the project.", "const": "app/design" },
+        "caseIds": { "description": "The ids of the cases this pass covers.", "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^[a-z0-9-]+$" } },
+        "sourceFiles": { "description": "The generated files this pass uses.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "passWhen": { "description": "Conditions that must all hold for this pass to pass.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "mustNot": { "description": "Things the app must not do here, one sentence each.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
       }
     },
     "loadStageCoverage": {
@@ -79,10 +80,10 @@
       "additionalProperties": true,
       "required": ["loadHint", "runtime", "sourceFiles", "caseIds"],
       "properties": {
-        "loadHint": { "$ref": "#/$defs/nonEmptyString" },
-        "runtime": { "type": "boolean" },
-        "sourceFiles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "caseIds": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^[a-z0-9-]+$" } }
+        "loadHint": { "description": "The stage's load hint, such as \"eager-metadata\".", "$ref": "#/$defs/nonEmptyString" },
+        "runtime": { "description": "True when the app loads this stage while running.", "type": "boolean" },
+        "sourceFiles": { "description": "The files in this stage.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "caseIds": { "description": "The ids of the cases that test this stage.", "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^[a-z0-9-]+$" } }
       }
     }
   }

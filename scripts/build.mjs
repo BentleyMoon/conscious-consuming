@@ -52,4 +52,10 @@ run("node", ["pipeline/build_design_tokens.js"]);
 run("node", ["pipeline/build_cards.js"]);
 run("node", ["pipeline/build_map.js"]);
 runPython("pipeline/build_guides.py");
+// The awards page and the front-page figures are written from the data before the site is assembled,
+// so the HTML a crawler reads carries the same numbers the page script draws (outside review, 2026-10-12).
+run("node", ["pipeline/build_awards.js"]);
+run("node", ["pipeline/build_front_figures.js"]);
+run("node", ["pipeline/build_kit.js"]);
+run("node", ["pipeline/build_family_footer.js"]);
 runPython("pipeline/build_site.py", [preview ? "--preview" : "--public", "--site-base", siteBase]);

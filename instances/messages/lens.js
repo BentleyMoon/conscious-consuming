@@ -7,17 +7,18 @@ window.OVS_LENS = {
     id: 'messages', storeKey: 'ovs-messages.values', noun: 'messaging',
     slug: 'messages',
     proof: {
-      title: 'One component, another domain',
-      text: 'This page, Kosplora, and Conscious Consuming call the same decision.js recipes, controls, explanations, and math. Only the list and the skin change.',
+      title: 'The same code as the other apps',
+      text: 'This page, Kosplora and Conscious Consuming run the same scoring code and the same page code. Only the list of messengers and the colours are different.',
       links: [
-        { href: '../../instances/', label: 'See every instance' },
+        { href: '../../app/#explore/messaging', label: 'The sourced messaging comparison, with a citation on every score' },
+        { href: '../../instances/', label: 'The other sites built this way' },
         { href: '../../standard/', label: 'Read the standard' }
       ]
     },
     title: 'Where to Message',
     tagline: 'Pick a messenger by your own values: privacy, openness, reach. Not by who advertises hardest.',
-    attribution: 'Characteristics are well-known public facts (E2EE defaults, ownership, licensing) as of 2026. Scores illustrative, not an audit.',
-    footer: 'a third instance, built only from a lens + a skin, no engine or shell edits. A privacy-first user and a reach-first user get different #1s from the same core. <a href="../../app/index.html">Conscious Consuming</a> · <a href="../../kosplora/index.html">Kosplora</a>'
+    attribution: 'The facts are public ones (default encryption, ownership, licensing) as of 2026. The scores are my own illustration, not an audit.',
+    footer: 'the third app, made from a list of messengers and a colour file, with no change to the shared code. Someone who puts privacy first and someone who puts reach first get different top picks. <a href="../../app/index.html">Conscious Consuming</a> · <a href="../../kosplora/index.html">Kosplora</a>'
   },
   // The sourced axes. security/openness are near-factual (E2EE default; licence) → "measured"; the rest are judgements.
   criteria: [
@@ -40,7 +41,7 @@ window.OVS_LENS = {
   // The decision contract. Same component Conscious Consuming and Kosplora drive; only the
   // configuration differs, which is the whole claim this instance exists to demonstrate.
   decision: {
-    category:'messages', status:'illustrative', headline:'Choose where to send it',
+    category:'messages', status:'illustrative', headline:'Choose where to send it', kicker:'Example scores',
     reads:{
       text:'Messengers differ most in what they keep about you, how they encrypt, whether anyone can audit them, how easy they are, and who you can actually reach.',
       basis:[

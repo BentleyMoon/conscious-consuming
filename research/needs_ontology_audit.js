@@ -40,22 +40,22 @@ const EXPECTED_DOMAINS = [
   'Giving & causes',
   'Companies & makers',
 ];
-/* 2026-08-12, swarm wave one. CARE 15 -> 17 (over-the-counter medicine, dog food) and MOVE 1 -> 2
+/* 2026-08-12, the first content wave. CARE 15 -> 17 (over-the-counter medicine, dog food) and MOVE 1 -> 2
    (used cars). MOVE had exactly one live category before this, which is why the front page showed
    a single cell for the whole of getting around. */
-/* 2026-08-13, swarm waves two and three. CARE 17 -> 23 (nappies, reusable nappies, mattresses,
+/* 2026-08-13, the content waves of 13 August. CARE 17 -> 23 (nappies, reusable nappies, mattresses,
    vitamins and supplements, glasses and contact lenses, secondhand and resale, clothing rental,
    less the ones already counted), KEEP A HOME 5 -> 7 (electricity suppliers, mattresses), MOVE
    2 -> 3 (airlines), PROTECT 5 -> 7 (mortgages, credit cards). NOURISH is untouched at 50, which
    is the point: the catalogue stopped being a grocery list tonight. */
 const EXPECTED_LIVE_BY_NEED = {
   nourish: 50,
-  care: 26,
+  care: 36,  // 2026-09-29: ten rows in the promotion live under care, including Baby food & formula, whose row sits with Kids & family while the taxonomy decision feeds
   'keep-a-home': 10,
   // 12 on 2026-09-23: email and search left the shared digital-services dataset in the split,
   // the same kind of move as messaging and browsers on 2026-08-26.
-  connect: 12,
-  move: 6,
+  connect: 17,  // 2026-09-29: video calls, maps and social networks gained datasets; the parent stays on its own row
+  move: 9,  // 2026-10-13: new cars and hybrids; 7 on 2026-10-12, electric vehicles
   learn: 9,
   'give-and-act': 6,
   protect: 7,
@@ -73,7 +73,7 @@ const EXPECTED_LIVE_BY_NEED = {
    into a single row. The one row that carried no group at all, Podcasts, joined "Music and audio",
    and the label selector that used to reach it was removed so it is not matched twice.
 
-   2026-08-12, 60f61692 -> 6f4e7a0a. Swarm wave one. Three rows gained a cid and nothing else
+   2026-08-12, 60f61692 -> 6f4e7a0a. the first content wave. Three rows gained a cid and nothing else
    changed: Over-the-counter medicine, Used cars and Dog food were gaps and are now built. No row
    was added, removed, relabelled or regrouped, so the projection moved by exactly three cid
    fields. Each dataset was checked against its sources by hand before promotion; the dog food
@@ -126,7 +126,18 @@ const EXPECTED_LIVE_BY_NEED = {
 // Re-pinned 2026-09-23: email and search left the shared digital-services dataset in the split,
 // the same kind of move. Two facet fields dropped from the Email and Search rows and their cid
 // values changed from digital-services to email and search; nothing else in the projection moved.
-const ROUND9_DOMAIN_SIGNATURE = '5ad70582b91bed4ab14fff6baf7175da204e124aa059d962bd4ee8f1fd3953fd';
+// Re-pinned 2026-09-29: cloud storage and notes flipped to their own cids, wave two of the
+// split. The signature follows the recorded change, as it did for wave one.
+// Re-pinned 2026-09-29: the ten-cid promotion added six navigation rows and a later-life
+// care subcategory; the signature follows the recorded change.
+// Re-pinned 2026-09-29: the final three splits flipped and no row names digital-services.
+// Re-pinned 2026-10-12: the Electric vehicles row, already waiting under Cars, gained its cid. It is
+// the first decision built by a register adapter (pipeline/sources/adapters/fueleconomy-vehicles.mjs);
+// no other row moved. MOVE 6 -> 7.
+// Re-pinned 2026-10-13: the same adapter built new-cars and hybrid-and-plug-in-hybrid-cars. The
+// waiting "Cars" row under Cars was relabelled "New cars" (the map's label) and gained its cid, and a
+// "Hybrid and plug-in hybrid cars" row was added beside Electric vehicles. MOVE 7 -> 9, rows 224 -> 225.
+const ROUND9_DOMAIN_SIGNATURE = '5363e28ae734b38a2085916abe182e6abfac84b19e9259575ad1f14e1e6d5793';
 
 function read(rel) {
   try {
@@ -205,18 +216,22 @@ function main() {
     }
   }
 
-  expect(rows === 217, `content/ontology.json: expected 217 category rows, found ${rows}`);
-  expect(liveRows === 130, `content/ontology.json: expected 130 live rows including facets, found ${liveRows}`);
+  expect(rows === 225, `content/ontology.json: expected 225 category rows, found ${rows}`);
+  expect(liveRows === 144, `content/ontology.json: expected 144 live rows including facets, found ${liveRows}`);
   // Moved 2026-08-26: messaging and browsers flipped from digital-services facets to their own
   // datasets, the first two of the nine-way split in docs/ONTOLOGY-RESEARCH.md 4.1.
   // Moved again 2026-09-23: email and search flipped the same way, the next two of the nine-way
   // split. 7 -> 5 preserved facets (social, cloud storage, notes, maps, video calls remain).
-  expect(facets === 5, `content/ontology.json: expected 5 preserved facets, found ${facets}`);
+  // Moved 2026-09-29: cloud storage and notes flipped from digital-services facets to their
+  // own datasets, wave two of the nine-way split; video calls, maps and social networks remain.
+  expect(facets === 0, `content/ontology.json: expected 0 preserved facets, found ${facets}`);
   // 124 on 2026-08-26: messaging and browsers left the shared digital-services dataset, the
   // first two of the nine-way split recorded in docs/ONTOLOGY-RESEARCH.md 4.1.
   // 126 on 2026-09-23: email and search left the shared digital-services dataset in the same
   // split, the next two of the nine-way division.
-  expect(cidRecords.size === 126, `content/ontology.json: expected 126 unique live categories, found ${cidRecords.size}`);
+  // Moved 2026-09-29: cloud storage and notes flipped from digital-services facets to their
+  // own datasets, wave two of the nine-way split; video calls, maps and social networks remain.
+  expect(cidRecords.size === 144, `content/ontology.json: expected 144 unique live categories, found ${cidRecords.size}`);
   for (const id of validNeeds) {
     expect(rowCounts[id] > 0, `content/ontology.json: ${id} is an orphan need`);
     expect(liveSets[id].size === EXPECTED_LIVE_BY_NEED[id], `content/ontology.json: ${id} expected ${EXPECTED_LIVE_BY_NEED[id]} live categories, found ${liveSets[id].size}`);
@@ -233,7 +248,7 @@ function main() {
 
   // 126 on 2026-09-23: email and search left the shared digital-services dataset in the split,
   // 2026-09-23.
-  expect(Array.isArray(index.categories) && index.categories.length === 126, `app/data/index.json: expected 126 live categories, found ${(index.categories || []).length}`);
+  expect(Array.isArray(index.categories) && index.categories.length === 144, `app/data/index.json: expected 144 live categories, found ${(index.categories || []).length}`);
   expect(JSON.stringify(index.ontology) === JSON.stringify(ontology), 'app/data/index.json: embedded ontology differs from content/ontology.json');
   const generatedIds = new Set();
   for (const category of index.categories || []) {

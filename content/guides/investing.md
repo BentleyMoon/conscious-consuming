@@ -34,7 +34,7 @@ Do not begin with the shiniest impact product. Begin where your money already si
 
 | Account or money pool | First useful move | Why it has leverage |
 | --- | --- | --- |
-| Workplace plan or pension | Identify the default fund, fees, holdings, and screened alternatives | recurring contributions quietly compound the current choice |
+| Workplace plan or pension | Identify the default fund, fees, holdings, and screened alternatives | recurring contributions keep going into the current choice and compound there |
 | IRA, ISA, or personal brokerage | Compare the core fund against one broad low-fee values option | you usually have more menu control than at work |
 | Robo-adviser | Read the sustainable portfolio method and underlying ETFs | the marketing layer may hide ordinary holdings |
 | Cash meant for near-term goals | Keep safety and liquidity first; consider credit unions or insured deposits separately | values should not turn rent, tuition, or emergency money into risk capital |
@@ -73,7 +73,7 @@ Values do not cancel ordinary investment risk. Before moving money, check the bo
 | Question | Safer posture | Why it matters |
 | --- | --- | --- |
 | Is this emergency or near-term money? | Keep safety and liquidity first | A values fund can still lose value at the wrong time |
-| Is the alternative much more expensive? | Compare total fund costs and platform/adviser fees | Fees compound quietly against the investor |
+| Is the alternative much more expensive? | Compare total fund costs and platform/adviser fees | Fees compound against the investor |
 | Is the fund narrow or thematic? | Treat it as a satellite, not the whole portfolio | A theme can be values-aligned and still concentrated |
 | Are there tax or account consequences? | Pause, read the account rules, or get advice | A values switch can create real costs if done casually |
 | Do you understand what the fund owns? | Read holdings before relying on the name | A clean label can hide ordinary or unwanted exposure |
@@ -153,7 +153,7 @@ The note does not need to be formal. It only needs to slow the decision enough t
 
 If you are investing for retirement and do not want to become a fund researcher, start with the account you already use. Find the default fund's factsheet, fees, top holdings, and any available sustainable alternatives. Prefer a broad, diversified, low-fee option first; among credible options, choose the one with the clearest values screen and holdings disclosure. If your only "ethical" choice is expensive, narrow, or opaque, do not shame yourself into it. A cheap diversified core plus a smaller, clearly labeled impact or community allocation may be more grounded than betting the whole plan on a pretty label.
 
-For taxable investing, be extra careful about fees, tax drag, and risk. For community notes, green bonds, or active impact funds, read the documents like an adult contract, not a brochure. The goal is not to make money feel morally pure. It is to stop letting your long-term capital quietly vote against the world you want.
+For taxable investing, be extra careful about fees, tax drag, and risk. For community notes, green bonds, or active impact funds, read the documents like an adult contract, not a brochure. The goal is not to make money feel morally pure. It is to stop letting your long-term capital vote against the world you want.
 
 ## When not to switch today
 

@@ -2,64 +2,69 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/register-evidence-bundle-v1.schema.json",
   "title": "Open Values Register Evidence Bundle",
-  "description": "Deterministically generated lens-ready provenance from a verified snapshot, reviewed mappings, and traceable observations.",
+  "description": "Citations ready to go into the catalogue, built from one register download, its matched options and its parsed facts, plus a sample of entries a person must check by hand. The evidence builder writes it, and reviewers and the promotion step read it.",
   "type": "object",
   "required": ["format", "version", "registerId", "criterion", "snapshot", "generatedFrom", "counts", "reviewRequirement", "entries"],
   "additionalProperties": false,
   "properties": {
-    "format": { "const": "open-values-register-evidence-bundle" },
-    "version": { "const": "1.0.0" },
-    "registerId": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
-    "criterion": { "type": "string", "minLength": 1 },
+    "format": { "description": "Names the file format. Always open-values-register-evidence-bundle.", "const": "open-values-register-evidence-bundle" },
+    "version": { "description": "The version of this format the file follows. Always 1.0.0.", "const": "1.0.0" },
+    "registerId": { "description": "The id of the register the evidence comes from, from content/registers.json.", "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "criterion": { "description": "The criterion key these entries would fill in a lens, copied from the register's provenanceKey on the shelf.", "type": "string", "minLength": 1 },
     "snapshot": {
+      "description": "The verified snapshot the evidence was read from.",
       "type": "object",
       "required": ["snapshotId", "capturedAt", "queryUrl", "scope", "payloadSha256"],
       "additionalProperties": false,
       "properties": {
-        "snapshotId": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}-[0-9a-f]{12}$" },
-        "capturedAt": { "type": "string", "format": "date-time" },
-        "queryUrl": { "type": "string", "pattern": "^https?://" },
-        "scope": { "type": "string", "minLength": 1 },
-        "payloadSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        "snapshotId": { "description": "The snapshot's id.", "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}-[0-9a-f]{12}$" },
+        "capturedAt": { "description": "When the snapshot was captured, as a UTC date and time, copied from the manifest.", "type": "string", "format": "date-time" },
+        "queryUrl": { "description": "The full request address, with the query parameters in sorted order, rebuilt from the manifest. Every entry cites it as its source.", "type": "string", "pattern": "^https?://" },
+        "scope": { "description": "The manifest's sentence saying what the request covered. Every entry's note quotes it.", "type": "string", "minLength": 1 },
+        "payloadSha256": { "description": "The SHA-256 hash of the snapshot payload, copied from the manifest.", "type": "string", "pattern": "^[0-9a-f]{64}$" }
       }
     },
     "generatedFrom": {
+      "description": "The input files, each with the SHA-256 hash of its bytes, and the generator version. Any change to an input changes a hash and means the bundle must be rebuilt and reviewed again.",
       "type": "object",
       "required": ["snapshotManifest", "snapshotManifestSha256", "mapping", "mappingSha256", "observations", "observationsSha256", "coverageMatrixSha256", "generatorVersion"],
       "additionalProperties": false,
       "properties": {
-        "snapshotManifest": { "type": "string", "minLength": 1 },
-        "snapshotManifestSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-        "mapping": { "type": "string", "minLength": 1 },
-        "mappingSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-        "observations": { "type": "string", "minLength": 1 },
-        "observationsSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-        "coverageMatrixSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-        "generatorVersion": { "type": "string", "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$" }
+        "snapshotManifest": { "description": "Path of the snapshot manifest.", "type": "string", "minLength": 1 },
+        "snapshotManifestSha256": { "description": "SHA-256 hash of the snapshot manifest file.", "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "mapping": { "description": "Path of the register's entity map.", "type": "string", "minLength": 1 },
+        "mappingSha256": { "description": "SHA-256 hash of the entity map file.", "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "observations": { "description": "Path of the observations file.", "type": "string", "minLength": 1 },
+        "observationsSha256": { "description": "SHA-256 hash of the observations file.", "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "coverageMatrixSha256": { "description": "SHA-256 hash of the coverage matrix, which decides which decisions the register applies to.", "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "generatorVersion": { "description": "The version of the evidence generator that wrote the bundle, in major.minor.patch form.", "type": "string", "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$" }
       }
     },
     "counts": {
+      "description": "Totals for the bundle.",
       "type": "object",
       "required": ["matchedMappings", "recordsFound", "scopedAbsences", "entries"],
       "additionalProperties": false,
       "properties": {
-        "matchedMappings": { "type": "integer", "minimum": 0 },
-        "recordsFound": { "type": "integer", "minimum": 0 },
-        "scopedAbsences": { "type": "integer", "minimum": 0 },
-        "entries": { "type": "integer", "minimum": 0 }
+        "matchedMappings": { "description": "How many matched entity mappings the observations covered.", "type": "integer", "minimum": 0 },
+        "recordsFound": { "description": "How many entries have the outcome records-found.", "type": "integer", "minimum": 0 },
+        "scopedAbsences": { "description": "How many entries have the outcome no-matching-record.", "type": "integer", "minimum": 0 },
+        "entries": { "description": "How many entries the bundle holds.", "type": "integer", "minimum": 0 }
       }
     },
     "reviewRequirement": {
+      "description": "The entries a person must check by hand before the bundle can be approved.",
       "type": "object",
       "required": ["method", "sampleSize", "entryIds"],
       "additionalProperties": false,
       "properties": {
-        "method": { "const": "lowest-sha256-of-bundle-inputs-and-entry-id" },
-        "sampleSize": { "type": "integer", "minimum": 0, "maximum": 10 },
-        "entryIds": { "type": "array", "maxItems": 10, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+        "method": { "description": "How the sample is picked: entries are ranked by a SHA-256 hash of the snapshot, mapping and observations hashes plus the entry id, and the lowest are taken. The same inputs always give the same sample.", "const": "lowest-sha256-of-bundle-inputs-and-entry-id" },
+        "sampleSize": { "description": "How many entries are in the sample: ten, or every entry if there are fewer.", "type": "integer", "minimum": 0, "maximum": 10 },
+        "entryIds": { "description": "The entry ids to check, sorted. A review receipt must cover exactly these.", "type": "array", "maxItems": 10, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
       }
     },
     "entries": {
+      "description": "One entry per catalogue option the snapshot covers, sorted by cid then entityCode.",
       "type": "array",
       "items": { "$ref": "#/$defs/entry" }
     }
@@ -70,18 +75,18 @@
       "required": ["entryId", "cid", "entityCode", "entityName", "entityIdentitySha256", "legalName", "registerIdentifier", "mappingReview", "outcome", "searchTerms", "recordTrace", "provenance"],
       "additionalProperties": false,
       "properties": {
-        "entryId": { "type": "string", "minLength": 1 },
-        "cid": { "type": "string", "minLength": 1 },
-        "entityCode": { "type": "string", "minLength": 1 },
-        "entityName": { "type": "string", "minLength": 1 },
-        "entityIdentitySha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-        "legalName": { "type": "string", "minLength": 1 },
-        "registerIdentifier": { "type": "object", "required": ["scheme", "value"], "additionalProperties": false, "properties": { "scheme": { "type": "string", "minLength": 1 }, "value": { "type": "string", "minLength": 1 } } },
-        "mappingReview": { "type": "object", "required": ["by", "on"], "additionalProperties": false, "properties": { "by": { "type": "string", "minLength": 1 }, "on": { "type": "string", "format": "date" } } },
-        "outcome": { "enum": ["records-found", "no-matching-record"] },
-        "searchTerms": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
-        "recordTrace": { "type": "array", "items": { "type": "object", "required": ["id", "pointer"], "additionalProperties": false, "properties": { "id": { "type": "string", "minLength": 1 }, "pointer": { "type": "string", "minLength": 1 } } } },
-        "provenance": { "type": "object", "required": ["note", "source", "asof"], "additionalProperties": false, "properties": { "note": { "type": "string", "minLength": 1 }, "source": { "type": "string", "pattern": "^https?://" }, "asof": { "type": "string", "pattern": "^\\d{4}$" } } }
+        "entryId": { "description": "The option's id, written as cid/entityCode.", "type": "string", "minLength": 1 },
+        "cid": { "description": "The id of the catalogue decision the option belongs to.", "type": "string", "minLength": 1 },
+        "entityCode": { "description": "The option's code inside that decision.", "type": "string", "minLength": 1 },
+        "entityName": { "description": "The option's name in the catalogue.", "type": "string", "minLength": 1 },
+        "entityIdentitySha256": { "description": "The SHA-256 hash of the option's code and name, copied from the entity map.", "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "legalName": { "description": "The legal name the option was matched to in the register.", "type": "string", "minLength": 1 },
+        "registerIdentifier": { "description": "The register's identifier for the matched entity.", "type": "object", "required": ["scheme", "value"], "additionalProperties": false, "properties": { "scheme": { "description": "The kind of identifier, as in the entity map.", "type": "string", "minLength": 1 }, "value": { "description": "The identifier itself, as in the entity map.", "type": "string", "minLength": 1 } } },
+        "mappingReview": { "description": "Who reviewed the option's mapping and when, copied from the entity map.", "type": "object", "required": ["by", "on"], "additionalProperties": false, "properties": { "by": { "description": "Who reviewed the mapping.", "type": "string", "minLength": 1 }, "on": { "description": "The date of the mapping review, as YYYY-MM-DD.", "type": "string", "format": "date" } } },
+        "outcome": { "description": "records-found if the register returned matching records, no-matching-record if it returned none for the search.", "enum": ["records-found", "no-matching-record"] },
+        "searchTerms": { "description": "The exact terms searched for, sorted.", "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "recordTrace": { "description": "The raw records the facts came from, each with its id and position in the payload. Empty for no-matching-record.", "type": "array", "items": { "type": "object", "required": ["id", "pointer"], "additionalProperties": false, "properties": { "id": { "description": "The record's id, as given in the observations file.", "type": "string", "minLength": 1 }, "pointer": { "description": "Where the record sits in the payload: a JSON pointer, or a line or row number.", "type": "string", "minLength": 1 } } } },
+        "provenance": { "description": "The citation, written by the generator, ready to go into a lens cell.", "type": "object", "required": ["note", "source", "asof"], "additionalProperties": false, "properties": { "note": { "description": "A generated sentence giving the legal name, the register, the facts found or the absence, the search terms, the scope and the capture date. An absence note always adds that it does not establish safety, quality or compliance.", "type": "string", "minLength": 1 }, "source": { "description": "The web address cited, the same as snapshot.queryUrl.", "type": "string", "pattern": "^https?://" }, "asof": { "description": "The year the snapshot was captured, as four digits.", "type": "string", "pattern": "^\\d{4}$" } } }
       }
     }
   }

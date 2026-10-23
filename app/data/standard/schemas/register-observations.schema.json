@@ -2,40 +2,44 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/register-observations-v1.schema.json",
   "title": "Open Values Register Observations",
-  "description": "Parser output containing only structured, traceable observations from one verified register snapshot.",
+  "description": "The facts a parser read out of one saved register download, as short labelled values that each point back to the raw record they came from. A register's parser writes it, and the evidence builder turns it into citations; it holds no scores and no finished sentences.",
   "type": "object",
   "required": ["format", "version", "registerId", "snapshot", "parser", "targets", "observations"],
   "additionalProperties": false,
   "properties": {
-    "format": { "const": "open-values-register-observations" },
-    "version": { "const": "1.0.0" },
-    "registerId": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "format": { "description": "Names the file format. Always open-values-register-observations.", "const": "open-values-register-observations" },
+    "version": { "description": "The version of this format the file follows. Always 1.0.0.", "const": "1.0.0" },
+    "registerId": { "description": "The id of the register the observations were read from. It must match the snapshot and the entity map.", "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
     "snapshot": {
+      "description": "The one verified snapshot these observations were parsed from.",
       "type": "object",
       "required": ["manifest", "snapshotId", "payloadSha256"],
       "additionalProperties": false,
       "properties": {
-        "manifest": { "type": "string", "pattern": "^pipeline/registers/raw/[^/]+/[^/]+\\.snapshot\\.json$" },
-        "snapshotId": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}-[0-9a-f]{12}$" },
-        "payloadSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        "manifest": { "description": "Path of the snapshot manifest, under pipeline/registers/raw/.", "type": "string", "pattern": "^pipeline/registers/raw/[^/]+/[^/]+\\.snapshot\\.json$" },
+        "snapshotId": { "description": "The snapshot's id. It must match the manifest.", "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}-[0-9a-f]{12}$" },
+        "payloadSha256": { "description": "The SHA-256 hash of the snapshot payload the parser read. It must match the manifest, so observations from changed bytes are rejected.", "type": "string", "pattern": "^[0-9a-f]{64}$" }
       }
     },
     "parser": {
+      "description": "The parser that wrote this file. It must be the same id and version the snapshot manifest names.",
       "type": "object",
       "required": ["id", "version"],
       "additionalProperties": false,
       "properties": {
-        "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
-        "version": { "type": "string", "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$" }
+        "id": { "description": "The parser's lowercase hyphenated id.", "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "version": { "description": "The parser's version number, in major.minor.patch form.", "type": "string", "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$" }
       }
     },
     "targets": {
+      "description": "The catalogue options this snapshot covers, each written as cid/entityCode. Each must have a matched row in the register's entity map, and each needs exactly one observation. Listing targets lets several snapshots each cover part of one map.",
       "type": "array",
       "minItems": 1,
       "uniqueItems": true,
       "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*/.+$" }
     },
     "observations": {
+      "description": "One observation per target option, keyed by that option's register identifier.",
       "type": "array",
       "items": { "$ref": "#/$defs/observation" }
     }
@@ -46,8 +50,8 @@
       "required": ["scheme", "value"],
       "additionalProperties": false,
       "properties": {
-        "scheme": { "type": "string", "minLength": 1 },
-        "value": { "type": "string", "minLength": 1 }
+        "scheme": { "description": "The kind of identifier, the same scheme as in the entity map.", "type": "string", "minLength": 1 },
+        "value": { "description": "The identifier itself, the same value as in the entity map.", "type": "string", "minLength": 1 }
       }
     },
     "record": {
@@ -55,8 +59,8 @@
       "required": ["id", "pointer"],
       "additionalProperties": false,
       "properties": {
-        "id": { "type": "string", "minLength": 1 },
-        "pointer": { "type": "string", "pattern": "^(#|/|line:|row:)" }
+        "id": { "description": "An id for one raw record in the payload, unique within the observation. Claims cite records by this id.", "type": "string", "minLength": 1 },
+        "pointer": { "description": "Where the record sits in the payload: a JSON pointer starting with / or #, or line: or row: followed by a position in a text or CSV file.", "type": "string", "pattern": "^(#|/|line:|row:)" }
       }
     },
     "claim": {
@@ -64,10 +68,11 @@
       "required": ["label", "value", "recordIds"],
       "additionalProperties": false,
       "properties": {
-        "label": { "type": "string", "minLength": 1 },
-        "value": { "type": ["string", "number", "integer", "boolean"] },
-        "unit": { "type": "string", "minLength": 1 },
+        "label": { "description": "A short name for the fact, such as Company complaint total. It is shown before the value in the generated note.", "type": "string", "minLength": 1 },
+        "value": { "description": "The fact itself as a single string, number or true/false value. No prose.", "type": ["string", "number", "integer", "boolean"] },
+        "unit": { "description": "The unit of the value, when it has one. It is shown after the value.", "type": "string", "minLength": 1 },
         "recordIds": {
+          "description": "Ids of the records this fact was read from. Each must be an id in the observation's records list.",
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
@@ -80,33 +85,34 @@
       "required": ["registerIdentifier", "outcome", "searchTerms", "records", "claims"],
       "additionalProperties": false,
       "properties": {
-        "registerIdentifier": { "$ref": "#/$defs/identifier" },
-        "outcome": { "enum": ["records-found", "no-matching-record"] },
+        "registerIdentifier": { "description": "The register identifier this observation is about, matching a matched row in the entity map.", "$ref": "#/$defs/identifier" },
+        "outcome": { "description": "records-found means the register returned matching records and the observation lists them with claims. no-matching-record means the search returned nothing; it then has no records or claims, and the generated note says this absence does not establish safety, quality or compliance.", "enum": ["records-found", "no-matching-record"] },
         "searchTerms": {
+          "description": "The exact terms searched for, such as the legal name and product category. They are quoted in the generated note.",
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
           "items": { "type": "string", "minLength": 1 }
         },
-        "records": { "type": "array", "items": { "$ref": "#/$defs/record" } },
-        "claims": { "type": "array", "items": { "$ref": "#/$defs/claim" } }
+        "records": { "description": "The raw records found, each with an id and a pointer into the payload. Empty when the outcome is no-matching-record.", "type": "array", "items": { "$ref": "#/$defs/record" } },
+        "claims": { "description": "Single facts read from those records, each citing the records it came from. Empty when the outcome is no-matching-record.", "type": "array", "items": { "$ref": "#/$defs/claim" } }
       },
       "allOf": [
         {
-          "if": { "properties": { "outcome": { "const": "records-found" } }, "required": ["outcome"] },
+          "if": { "properties": { "outcome": { "description": "Applies when the outcome is records-found.", "const": "records-found" } }, "required": ["outcome"] },
           "then": {
             "properties": {
-              "records": { "minItems": 1 },
-              "claims": { "minItems": 1 }
+              "records": { "description": "A records-found observation lists at least one record.", "minItems": 1 },
+              "claims": { "description": "A records-found observation lists at least one claim.", "minItems": 1 }
             }
           }
         },
         {
-          "if": { "properties": { "outcome": { "const": "no-matching-record" } }, "required": ["outcome"] },
+          "if": { "properties": { "outcome": { "description": "Applies when the outcome is no-matching-record.", "const": "no-matching-record" } }, "required": ["outcome"] },
           "then": {
             "properties": {
-              "records": { "maxItems": 0 },
-              "claims": { "maxItems": 0 }
+              "records": { "description": "A no-matching-record observation lists no records.", "maxItems": 0 },
+              "claims": { "description": "A no-matching-record observation lists no claims.", "maxItems": 0 }
             }
           }
         }

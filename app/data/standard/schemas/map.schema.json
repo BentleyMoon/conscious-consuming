@@ -2,17 +2,17 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/map-v1.schema.json",
   "title": "Conscious Consuming Map v1",
-  "description": "The whole map published for a spatial view: every decision the catalogue names, in four levels, each carrying the state the taxonomy gave it. A built decision carries the id of its dataset; open, held and refused decisions carry no route because there is nothing yet to route to. Distinct from the ontology, which navigates only what can be shown today, and from the taxonomy, which is the authored source this is compiled from.",
+  "description": "Every buying decision Conscious Consuming names, such as which plant-based milk or which bank, whether or not it has data yet, sorted into areas of life. pipeline/build_map.js writes it to app/data/map.json from the hand-edited list in content/taxonomy.json, and the zoomable map in the app (app/homelens.js) loads it when a reader zooms out to the widest levels, so the decisions with no answer yet show up as well as the ones that have one.",
   "type": "object",
   "required": ["format", "version", "built", "purpose", "consumer", "source", "states", "totals", "realms"],
   "additionalProperties": true,
   "properties": {
-    "format": { "const": "open-values-map" },
-    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
-    "built": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}" },
-    "purpose": { "type": "string", "minLength": 1 },
-    "consumer": { "type": "string", "minLength": 1 },
-    "source": { "type": "string", "minLength": 1 },
+    "format": { "description": "Always \"open-values-map\". Tells a reader which Open Values format this is.", "const": "open-values-map" },
+    "version": { "description": "The version of the map format this file follows, such as \"1.0.0\".", "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "built": { "description": "The date the map was built from, as YYYY-MM-DD: the taxonomy's own built date when it has one, otherwise the date of its last committed change, or the build date if it has uncommitted changes or git is not available.", "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}" },
+    "purpose": { "description": "A sentence saying what this file is for.", "type": "string", "minLength": 1 },
+    "consumer": { "description": "Which code reads the file and when, such as \"app/homelens.js wide rungs; lazily fetched, never part of the boot payload.\"", "type": "string", "minLength": 1 },
+    "source": { "description": "The file the map is built from, \"content/taxonomy.json\".", "type": "string", "minLength": 1 },
     "states": {
       "type": "object",
       "description": "Every state a decision can be published in, described in the words a reader would meet.",
@@ -20,40 +20,45 @@
       "additionalProperties": { "type": "string", "minLength": 1 }
     },
     "totals": {
+      "description": "Counts across the map: areas, fields, families and decisions, and how many decisions are in each state.",
       "type": "object",
       "required": ["realms", "fields", "families", "decisions", "built", "open", "held", "refused"],
       "additionalProperties": { "type": "integer", "minimum": 0 }
     },
     "realms": {
+      "description": "The areas of life, such as \"Food and drink\", each holding its fields. Areas with no decisions are left out.",
       "type": "array",
       "minItems": 1,
       "items": {
         "type": "object",
         "required": ["id", "label", "fields"],
         "properties": {
-          "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
-          "label": { "type": "string", "minLength": 1 },
-          "need": { "type": "string", "minLength": 1 },
-          "edge": { "type": "string" },
+          "id": { "description": "A short name for the area, such as \"food-and-drink\".", "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+          "label": { "description": "The area name shown to readers, such as \"Food and drink\".", "type": "string", "minLength": 1 },
+          "need": { "description": "Which of the eight human needs the area mostly serves, such as \"nourish\".", "type": "string", "minLength": 1 },
+          "edge": { "description": "A few sentences saying what belongs in this area and what belongs elsewhere. An empty string when the taxonomy gives none.", "type": "string" },
           "fields": {
+            "description": "The fields inside the area, such as \"Groceries\". Fields with no decisions are left out.",
             "type": "array",
             "minItems": 1,
             "items": {
               "type": "object",
               "required": ["id", "label", "families"],
               "properties": {
-                "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
-                "label": { "type": "string", "minLength": 1 },
+                "id": { "description": "A short name for the field, such as \"groceries\".", "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+                "label": { "description": "The field name shown to readers, such as \"Groceries\".", "type": "string", "minLength": 1 },
                 "families": {
+                  "description": "The families of decisions inside the field. Families with no decisions are left out.",
                   "type": "array",
                   "minItems": 1,
                   "items": {
                     "type": "object",
                     "required": ["id", "label", "decisions"],
                     "properties": {
-                      "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
-                      "label": { "type": "string", "minLength": 1 },
+                      "id": { "description": "A short name for the family of decisions.", "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+                      "label": { "description": "The family name shown to readers.", "type": "string", "minLength": 1 },
                       "decisions": {
+                        "description": "The decisions in the family, each with its state.",
                         "type": "array",
                         "minItems": 1,
                         "items": {
@@ -61,11 +66,11 @@
                           "required": ["id", "label", "state", "need"],
                           "additionalProperties": false,
                           "properties": {
-                            "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
-                            "label": { "type": "string", "minLength": 1 },
-                            "state": { "enum": ["built", "open", "held", "refused"] },
-                            "need": { "type": "string", "minLength": 1 },
-                            "cid": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
+                            "id": { "description": "A short name for the decision, such as \"plant-based-milk\".", "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+                            "label": { "description": "The decision name shown to readers, such as \"Plant-based milk\".", "type": "string", "minLength": 1 },
+                            "state": { "description": "Whether the decision has an answer: built (a dataset exists), open (named but not built yet), held (deliberately not built, with a written reason), or refused (out of scope, with a written reason).", "enum": ["built", "open", "held", "refused"] },
+                            "need": { "description": "Which of the eight human needs this decision serves, such as \"nourish\".", "type": "string", "minLength": 1 },
+                            "cid": { "description": "For a built decision only, the id of its category dataset, so the map can link to it, such as \"plant-based-milk\".", "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
                           }
                         }
                       }

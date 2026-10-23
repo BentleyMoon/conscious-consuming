@@ -276,7 +276,7 @@ h1[tabindex],h2[tabindex],.sectionh[tabindex]{outline:none}
 .needsrose{width:min(200px,30vh,60vw);height:min(200px,30vh,60vw);margin:.7rem auto .1rem;position:relative}
 .needsrose-canvas{display:block;border-radius:50%;outline-offset:4px}
 .needsrose-canvas:focus-visible{outline:2px solid var(--accent)}
-.needsrose-cap{text-align:center;font-size:.72rem;color:var(--hint);max-width:38ch;margin:.15rem auto .9rem}
+.needsrose-cap{text-align:center;font-size:.75rem;color:var(--hint);max-width:38ch;margin:.15rem auto .9rem}
 .need-branch.rose-dim{opacity:.4;transition:opacity .25s}
 .home-plate{display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
 /* A treemap tiles a rectangle. The round frame is left over from the plate it replaced, and a
@@ -284,27 +284,18 @@ h1[tabindex],h2[tabindex],.sectionh[tabindex]{outline:none}
 .homelens{width:min(470px,86vw,100%);height:min(430px,54vh,120vw);margin:.2rem auto .1rem;position:relative}
 .homelens-canvas{display:block;border:1px solid var(--line);border-radius:4px;touch-action:pan-y;outline-offset:4px}
 .homelens-canvas:focus-visible{outline:2px solid var(--accent)}
-.homelens-cap{text-align:center;font-size:.74rem;color:var(--hint);margin:.15rem 0 .2rem}
-/* Two projections, one catalogue. The compact switch makes the experiment explicit and reversible;
-   the sentence beside it teaches the different gesture before the pointer reaches the canvas. */
-.homelens-modes{display:grid;grid-template-columns:auto auto minmax(12rem,1fr);align-items:center;gap:.55rem;
-  width:100%;max-width:1040px;margin:.65rem auto .55rem}
-.homelens-mode-label{font-size:.64rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--hint)}
-.homelens-mode-switch{display:inline-flex;padding:3px;border:1px solid color-mix(in oklab,var(--line) 88%,transparent);
-  border-radius:999px;background:color-mix(in oklab,var(--surface) 72%,transparent);
-  box-shadow:inset 0 1px 0 color-mix(in oklab,var(--ink) 7%,transparent)}
-.homelens-mode-switch button{min-height:32px;padding:.28rem .8rem;border:0;border-radius:999px;background:transparent;
-  color:var(--muted);font:650 .75rem/1 var(--font-body);cursor:pointer;
-  transition:background var(--dur-hover) var(--ease),color var(--dur-hover) var(--ease),box-shadow var(--dur-hover) var(--ease)}
-.homelens-mode-switch button:hover{color:var(--ink)}
-.homelens-mode-switch button[aria-pressed="true"]{background:var(--accent);color:var(--accent-text);
-  box-shadow:0 2px 8px color-mix(in oklab,var(--accent) 28%,transparent)}
-.homelens-mode-switch button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.homelens-modes p{margin:0;color:var(--muted);font-size:.75rem;line-height:1.4}
-.homelens-trail{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:.5rem;
-  width:100%;max-width:1040px;margin:0 auto .35rem;padding:.38rem .55rem;border-left:2px solid var(--accent);
-  background:color-mix(in oklab,var(--surface) 54%,transparent)}
-.homelens-trail>span{font-size:.64rem;font-weight:750;letter-spacing:.08em;text-transform:uppercase;color:var(--hint)}
+.homelens-cap{text-align:center;font-size:.75rem;color:var(--hint);margin:.15rem 0 .2rem}
+/* One line under the map: the clickable trail fused with the receipt and the one switch that
+   means something. Everything this replaced (mode pair, view rail, hint, chip bar, caption row)
+   said where you are or how to move; the map and this line now say it once each. */
+.homelens-line{display:flex;flex-wrap:wrap;align-items:baseline;gap:.25rem .6rem;
+  width:100%;max-width:1040px;margin:.2rem auto .35rem;padding:.38rem .55rem;
+  border-left:2px solid var(--accent);background:color-mix(in oklab,var(--surface) 54%,transparent)}
+.homelens-receipt{font-family:var(--font-mono);font-size:.75rem;color:var(--muted);min-width:0}
+.homelens-ground-switch{margin-left:auto;display:inline-flex;align-items:center;gap:.35rem;
+  font-size:.75rem;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap}
+.homelens-ground-switch input{accent-color:var(--accent);width:.95rem;height:.95rem;margin:0;cursor:pointer}
+.homelens-ground-switch:hover{color:var(--ink)}
 .homelens-trail-path{display:flex;align-items:center;min-width:0;overflow:hidden;white-space:nowrap;
   color:var(--ink);font-size:.75rem;font-weight:650}
 .homelens-trail-path button{min-width:0;padding:.2rem .12rem;border:0;background:transparent;color:var(--muted);
@@ -313,34 +304,9 @@ h1[tabindex],h2[tabindex],.sectionh[tabindex]{outline:none}
 .homelens-trail-path button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:5px}
 .homelens-trail-path [aria-current="location"]{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .homelens-trail-sep{padding:0 .28rem;color:var(--hint);font-weight:450}
-.homelens-trail>small{color:var(--muted);font-size:.64rem;white-space:nowrap}
-/* One semantic zoom rail serves both projections. These are DOM controls rather than canvas text,
-   so depth is visible, tappable and keyboard-addressable before a reader learns the wheel gesture. */
-.homelens-viewbar{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:.45rem;
-  width:100%;max-width:1040px;margin:0 auto .35rem}
-.homelens-view-label{font-size:.64rem;font-weight:750;letter-spacing:.08em;text-transform:uppercase;color:var(--hint)}
-.homelens-viewsteps{display:flex;align-items:center;gap:.18rem;min-width:0}
-.homelens-viewsteps button,.homelens-reset{min-height:32px;padding:.25rem .5rem;border:1px solid transparent;
-  border-radius:999px;background:transparent;color:var(--muted);font:650 .75rem/1.1 var(--font-body);cursor:pointer}
-.homelens-viewsteps button:hover,.homelens-reset:hover{color:var(--ink);border-color:var(--line)}
-.homelens-viewsteps button[aria-pressed="true"]{color:var(--accent);border-color:color-mix(in oklab,var(--accent) 55%,var(--line));
-  background:color-mix(in oklab,var(--accent) 9%,transparent)}
-.homelens-viewsteps button:focus-visible,.homelens-reset:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.homelens-reset{justify-self:end;color:var(--hint);border-color:var(--line);border-radius:5px}
-/* The filter layers: real buttons under the map, one per measure the catalogue carries. Lighting
-   one dims the decisions that do not carry it without hiding them. Targets meet 24px with a fine
-   pointer and 44px with a coarse one, same policy as the rest of the shell. */
-.homelens-lensbar{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:center;margin:.3rem auto .2rem;max-width:520px}
-.homelens-lensbar button{font:inherit;font-size:.72rem;font-weight:600;color:var(--muted);background:var(--surface);
-  border:1px solid var(--line);border-radius:3px;padding:.28rem .65rem;min-height:28px;cursor:pointer;
-  transition:border-color var(--dur-1) var(--ease),color var(--dur-1) var(--ease)}
-.homelens-lensbar button small{font-weight:500;color:var(--hint)}
-.homelens-lensbar button:hover{border-color:var(--accent);color:var(--accent)}
-.homelens-lensbar button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface))}
-.lens-sep{flex-basis:100%;height:0}
-@media (pointer:coarse){.homelens-lensbar button,.homelens-mode-switch button,.homelens-viewsteps button,.homelens-reset{min-height:44px}}
+@media (pointer:coarse){.homelens-ground-switch{min-height:44px}}
 .homelens-about{text-align:center;margin:.15rem 0 .8rem}
-.homelens-about>summary{display:inline-flex;align-items:center;min-height:34px;cursor:pointer;font-size:.72rem;color:var(--muted);font-weight:600}
+.homelens-about>summary{display:inline-flex;align-items:center;min-height:34px;cursor:pointer;font-size:.75rem;color:var(--muted);font-weight:600}
 .homelens-about>summary:hover{color:var(--accent)}
 .homelens-about>summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:5px}
 .homelens-about>p{text-align:left;max-width:58ch;margin:.3rem auto .2rem;padding:.6rem .7rem;border:1px solid var(--line);
@@ -350,17 +316,20 @@ h1[tabindex],h2[tabindex],.sectionh[tabindex]{outline:none}
 .homelens-alt:active{border-color:var(--accent)}
 @media (max-width:640px){
   .homelens{width:min(340px,88vw,100%);height:min(360px,96vw)}
-  .homelens-modes{grid-template-columns:auto 1fr;gap:.45rem .55rem}
-  .homelens-mode-switch{justify-self:start}
-  .homelens-modes p{grid-column:1/-1;min-height:2.1em}
-  .homelens-trail{grid-template-columns:auto minmax(0,1fr);gap:.25rem .45rem}
-  .homelens-trail>small{grid-column:2;grid-row:1;white-space:normal}
-  .homelens-trail-path{grid-column:1/-1;grid-row:2;overflow:visible;white-space:normal;flex-wrap:wrap}
+  .homelens-line{padding:.35rem .45rem}
+  .homelens-ground-switch{margin-left:0;flex-basis:100%}
+  .homelens-trail-path{overflow:visible;white-space:normal;flex-wrap:wrap}
   .homelens-trail-path button,.homelens-trail-path [aria-current="location"]{flex:0 0 auto;overflow:visible;white-space:normal}
-  .homelens-viewbar{grid-template-columns:auto 1fr;gap:.25rem .4rem}
-  .homelens-viewsteps{grid-column:1/-1;flex-wrap:wrap;gap:.12rem}
-  .homelens-reset{grid-column:2;grid-row:1}
 }
+.institute-page{max-width:58ch;margin:1.4rem auto 2rem;padding:0 1rem}
+.institute-kicker{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--hint);margin:0 0 .2rem}
+.institute-page h1{font-family:var(--font-display);margin:.1rem 0 .8rem}
+.institute-page p{font-size:.95rem;line-height:1.65;color:var(--ink);margin:.65rem 0}
+.institute-links{list-style:none;margin:1rem 0;padding:.7rem .9rem;border-left:2px solid var(--accent);
+  background:color-mix(in oklab,var(--surface) 54%,transparent);display:grid;gap:.5rem}
+.institute-links a{color:var(--accent);font-weight:650;text-decoration:none}
+.institute-links a:hover,.institute-links a:focus-visible{text-decoration:underline;text-underline-offset:.2em;outline:none}
+.institute-back{margin-top:1.2rem;font-size:.82rem}
 .home-quicklinks-label{color:var(--hint);font-size:0.75rem;align-self:center;margin-right:.1rem}
 .home-search-row input{min-width:0}
 .home-quicklinks{display:flex;flex-wrap:wrap;gap:.4rem;margin:.7rem 0 .9rem}
@@ -395,8 +364,11 @@ h1[tabindex],h2[tabindex],.sectionh[tabindex]{outline:none}
 /* Why this question is here, in the same quiet voice as the proof line below it. */
 .home-question .wedge-why{margin:-.25rem 0 .6rem;color:var(--hint);font-size:.75rem}
 /* New since the reader last looked: one line under the search, gone once they say so. */
-.home-news{margin:.45rem 0 .1rem;color:var(--muted);font-size:.82rem;line-height:1.5}
+.home-news{width:100%;max-width:1040px;margin:.1rem auto .1rem;padding:0 .55rem;color:var(--hint);font-size:.75rem;line-height:1.5}
 .home-news a{color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.home-news-more{font:inherit;font-weight:600;color:var(--accent);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline dotted;text-underline-offset:2px}
+.home-news-more:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+.home-news-rest[hidden]{display:none}
 .home-news-done{margin-left:.35rem;min-height:24px;padding:.1rem .55rem;border:1px solid var(--line);border-radius:var(--radius);
   background:var(--bg);color:var(--muted);font:600 .75rem/1 var(--font-sans);cursor:pointer}
 .home-news-done:hover,.home-news-done:focus-visible{color:var(--ink);border-color:var(--ink);outline:none}
@@ -1120,7 +1092,7 @@ textarea{width:100%;resize:vertical;margin-top:.7rem;line-height:1.5}
   .regionmenu{background:color-mix(in oklab,var(--surface) 90%,transparent);backdrop-filter:blur(8px)}
 }
 .rm-sec+.rm-sec{margin-top:.35rem;padding-top:.35rem;border-top:1px solid var(--line)}
-.rm-h{font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+.rm-h{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
   color:var(--hint);padding:.35rem .5rem .3rem}
 .rm-opt{display:flex;gap:.5rem;width:100%;text-align:left;padding:.45rem .5rem;
   border:0;border-radius:var(--radius);background:none;color:var(--ink);cursor:pointer;font:inherit}
@@ -1133,7 +1105,7 @@ textarea{width:100%;resize:vertical;margin-top:.7rem;line-height:1.5}
 .rm-body b{display:block;font-size:.9rem;font-weight:650;line-height:1.3}
 .rm-body b i{font-style:normal;font-weight:400;color:var(--muted)}
 .rm-body small{display:block;margin-top:.12rem;font-size:.76rem;line-height:1.4;color:var(--muted)}
-.rm-note{margin:.3rem .5rem .2rem;font-size:.73rem;line-height:1.45;color:var(--hint)}
+.rm-note{margin:.3rem .5rem .2rem;font-size:.75rem;line-height:1.45;color:var(--hint)}
 .rm-note a{color:var(--accent)}
 /* the sidebar variant of the tree — compact, same grammar */
 #cats .tree.side{margin:.3rem 0}
@@ -1304,7 +1276,15 @@ footer a{color:var(--accent)}
 
 /* Phase C / C1 — richer record: description, focuses, links */
 .desc{font-size:0.86rem;color:var(--ink);margin:.4rem 0 .55rem;line-height:1.6}
-.focuses{display:flex;flex-wrap:wrap;gap:.4rem;margin:.1rem 0 .7rem}
+.focuses{margin:.15rem 0 .8rem;font-size:.78rem;color:var(--muted)}
+/* Every factor, one line each: the label argues in the body face, the number measures in mono. */
+.vd-facts{list-style:none;margin:.7rem 0 .4rem;padding:0;display:grid;gap:.12rem}
+.vf-row{display:grid;grid-template-columns:minmax(0,1fr) auto 2.6rem;gap:.8rem;align-items:baseline;padding:.28rem .55rem;border-left:2px solid transparent;font-size:.86rem}
+.vf-lead{border-left-color:var(--accent);background:var(--pill)}
+.vf-b{color:var(--muted);font-size:.8rem}
+.vf-n{font-family:var(--font-mono);text-align:right;font-size:.82rem}
+.vf-none .vf-l,.vf-none .vf-b{color:var(--hint)}
+
 .focus{font-size:0.75rem;color:var(--muted);background:var(--pill);border-radius:3px;padding:.15rem .65rem}
 .links{display:flex;flex-wrap:wrap;gap:.4rem .9rem;margin:.7rem 0 .1rem}
 .links a{color:var(--accent);font-size:0.86rem;text-decoration:none}
@@ -1574,6 +1554,7 @@ footer a{color:var(--accent)}
    On an item page (#view-explore.leaf) the list's chrome — mode toggle, category directory, the
    tune panel, facet chips, count lines — is hidden. The item renders verdict-first into #results;
    attribution (#attr) stays, because the sourced facts on screen still owe their credit line. */
+#view-explore.leaf>#explore-title,
 #view-explore.leaf>#exptoggle,
 #view-explore.leaf>#cats,
 #view-explore.leaf>.panel,
@@ -1585,6 +1566,7 @@ footer a{color:var(--accent)}
    On an item page (#view-explore.leaf) the list's chrome — mode toggle, category directory, the
    tune panel, facet chips, count lines — is hidden. The item renders verdict-first into #results;
    attribution (#attr) stays, because the sourced facts on screen still owe their credit line. */
+#view-explore.leaf>#explore-title,
 #view-explore.leaf>#exptoggle,
 #view-explore.leaf>#cats,
 #view-explore.leaf>.panel,
@@ -1719,7 +1701,7 @@ footer a{color:var(--accent)}
 .portal-band{display:flex;flex-direction:column;align-items:center;gap:.15rem;
   background:var(--bg);padding:.35rem .9rem .4rem;min-width:72%;text-align:center}
 .portal-band b{font-family:var(--font-display);font-weight:600;font-size:1.06rem;color:var(--ink);line-height:1.2}
-.portal-receipt{font-family:var(--font-mono);font-size:.68rem;color:var(--muted);min-height:.9em}
+.portal-receipt{font-family:var(--font-mono);font-size:.75rem;color:var(--muted);min-height:.9em}
 .portal-map{display:block;width:84%;margin-top:.1rem}
 .portal-map svg{display:block;width:100%;height:auto}
 .portal-face:hover,.portal-face:focus-visible{outline:none;filter:brightness(1.07)}
@@ -1837,6 +1819,10 @@ tr.dtx td{background:var(--track);padding:.4rem .6rem .7rem}
 .dtx-src a{color:var(--accent)}
 .dtx-src i{color:var(--hint);font-style:normal;font-size:0.75rem}
 .dtx-miss>span:last-child{color:var(--hint);font-style:italic}
+/* Two-part rows (a missing fact, the pull toward 50, a cap) span the number and source columns;
+   left in the 4.5rem number column their sentence broke every two words. */
+.dtx-miss>span:last-child,.dtx-adj>span:last-child{grid-column:2 / -1}
+.dtx-adj>span:last-child{color:var(--muted);line-height:1.45}
 .dtx-tot{border-top:1px dashed var(--line);margin-top:.3rem;padding-top:.35rem;font-size:0.75rem;font-weight:650;color:var(--ink)}
 /* The shape of the choice, stated under the table it describes. Not a truncation notice: the
    count of options that could ever win is a fact about the decision, and the doors below it
@@ -1846,6 +1832,21 @@ tr.dtx td{background:var(--track);padding:.4rem .6rem .7rem}
 .dtable-caveat{font-size:.8rem;line-height:1.5;color:var(--muted);border-left:3px solid var(--accent);
   padding:.4rem .7rem;margin:.35rem 0 .6rem;max-width:70ch}
 .dtable-shape{font-size:.8rem;color:var(--ink);margin:.55rem 0 .35rem;max-width:62ch}
+/* Who comes first, counted over every way the table can be weighed. At rest, above the table,
+   because it says whether the answer is the reader's or only the default. */
+.dtable-who{font-size:.86rem;line-height:1.5;color:var(--ink);margin:.1rem 0 .3rem;max-width:70ch}
+.dtable-ways{margin:0 0 .7rem;max-width:70ch;font-size:.8rem}
+.dtable-ways>summary{cursor:pointer;color:var(--accent);min-height:24px}
+.dtable-ways-note{color:var(--muted);line-height:1.5;margin:.4rem 0}
+.dways td,.dways th{font-size:.78rem;text-align:left;padding:.3rem .5rem;vertical-align:baseline}
+.dways tr.dway-on td{font-weight:600}
+.dt-way{min-height:28px;padding:.15rem .55rem;border:1px solid var(--line);border-radius:3px;background:var(--surface);color:var(--ink);font:inherit;font-size:.75rem;cursor:pointer}
+.dtable-moved{font-size:.8rem;line-height:1.6;color:var(--ink);margin:-.3rem 0 .55rem;max-width:70ch}
+.dmove-h{font-weight:600}
+.dmove-n{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
+.dmove-sep{color:var(--muted)}
+.dt-moved-x{min-height:24px;padding:0 .4rem;border:0;background:none;color:var(--accent);text-decoration:underline;font:inherit;font-size:.78rem;cursor:pointer}
+.dtable-close{font-size:.8rem;line-height:1.5;color:var(--muted);margin:0 0 .6rem;max-width:70ch}
 .dtable-more{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 .2rem}
 .dt-show{min-height:40px;padding:.35rem .8rem;border:1px solid var(--line);border-radius:3px;
   background:var(--surface);color:var(--accent);font:inherit;font-size:.8rem;font-weight:650;cursor:pointer}
@@ -1988,12 +1989,11 @@ td.dt-c{min-width:3.9rem}
   .nexus-panel-in{padding:.85rem .95rem;border:1px solid var(--line);border-top:2px solid var(--accent);
     border-radius:var(--radius);color:var(--ink);background:var(--surface);
     box-shadow:0 .6rem 1.6rem rgba(0,0,0,.16)}
-  @supports (backdrop-filter:blur(6px)){
-    /* The transparency is the point: the panel reads as sitting above the page rather than
-       replacing part of it, so you keep your place while you read. */
-    .nexus-panel-in{background:color-mix(in oklab,var(--surface) 88%,transparent);backdrop-filter:blur(7px)}
-  }
+  /* Opaque since 2026-10-23. At 88 per cent with a blur, the search box and the map showed through
+     the panel's text, and the panel opens over that search box whenever the pointer crosses the row. */
   .nexus-item:hover .nexus-panel,.nexus-item:focus-within .nexus-panel{opacity:1;visibility:visible;transform:none}
+  /* Escape dismisses an open panel until the pointer or focus leaves (WCAG 1.4.13, content on hover). */
+  .nexus-item.dismissed .nexus-panel{opacity:0;visibility:hidden}
   /* The last column is at the right edge, so its panel opens leftward or it would leave the page. */
   .nexus-item--wide .nexus-panel{left:auto;right:-.75rem;width:min(27rem,46vw)}
 }
@@ -2030,7 +2030,7 @@ td.dt-c{min-width:3.9rem}
 .home-institute-sun{flex:none;width:20px;height:20px;fill:none;stroke:#e7905c;stroke-width:1.1;stroke-linecap:round}
 .sun-ray--dotted{opacity:.55}
 .home-institute-copy{display:flex;flex-direction:column;gap:.15rem}
-.home-institute-copy small{font-family:var(--font-mono);font-size:.7rem;text-transform:uppercase;
+.home-institute-copy small{font-family:var(--font-mono);font-size:.75rem;text-transform:uppercase;
   letter-spacing:.08em;color:var(--hint);line-height:1.2}
 .home-institute-copy strong{font-family:var(--font-display);font-size:.95rem;font-weight:600;
   color:var(--ink);line-height:1.25}
@@ -2040,3 +2040,60 @@ td.dt-c{min-width:3.9rem}
   .home-institute{align-self:flex-start}
 }
 @media (prefers-reduced-motion:reduce){.home-institute{transition:none}}
+
+/* The category view, 2026-10-23. The directory of every decision is a rail beside the list on a wide
+   screen and one closed control above it on a narrow one; allergen exclusions sit behind one control;
+   a list sorted on one measure shows that measure on every card. */
+#cats .catdir>summary{display:inline-flex;align-items:center;min-height:2.5rem;padding:.35rem .95rem;border:1px solid var(--line);border-radius:3px;cursor:pointer;color:var(--ink);font-size:.95rem;margin:.5rem 0}
+#cats .catdir>summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(min-width:1100px){
+  #view-explore:not(.leaf){display:grid;grid-template-columns:minmax(12rem,15rem) minmax(0,1fr);column-gap:1.75rem;align-items:start;max-width:none}
+  #view-explore:not(.leaf)>*{grid-column:2}
+  #view-explore:not(.leaf)>#cats{grid-column:1;grid-row:1/span 12;position:sticky;top:5rem;max-height:calc(100vh - 6rem);overflow:auto}
+  #cats .catdir>summary{display:none}
+}
+.filters .excl{flex-basis:100%}
+.filters .excl>summary{display:inline-flex;align-items:center;gap:.4rem;min-height:2rem;cursor:pointer;font-size:.9rem;color:var(--ink)}
+.filters .excl-n{font-size:.8rem;color:var(--accent);font-weight:600}
+.filters .excl-list{display:flex;flex-wrap:wrap;gap:.4rem .9rem;margin:.5rem 0 .2rem}
+.filters .excl-list label{min-height:1.75rem}
+.filters .excl-list input{width:1.1rem;height:1.1rem}
+.card a.nm{color:inherit;text-decoration:none}
+.card a.nm:hover,.card a.nm:focus-visible{text-decoration:underline;text-underline-offset:.18em}
+.card a.nm:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.card .sortfact{font-size:.86rem;color:var(--muted);margin:.25rem 0 0}
+.card .sortfact b{color:var(--ink)}
+.listend.listmore{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.6rem;font-size:.86rem}
+@media(max-width:720px){
+  /* Six presets wrapped to three rows of 44px buttons on a phone. One row that scrolls sideways keeps
+     the touch size and gives the space back to the list. */
+  .presets{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:.35rem;margin-bottom:.4rem;-webkit-overflow-scrolling:touch}
+  .presets button{flex:0 0 auto;scroll-snap-align:start;white-space:nowrap}
+}
+.presetnote{margin:.1rem 0 .8rem}
+.filters .excl>summary,#cats .catdir>summary{list-style:none}
+.filters .excl>summary::-webkit-details-marker,#cats .catdir>summary::-webkit-details-marker{display:none}
+.filters .excl>summary::before,#cats .catdir>summary::before{content:"\25B8";display:inline-block;margin-right:.45rem;color:var(--muted);transition:transform .15s}
+.filters .excl[open]>summary::before,#cats .catdir[open]>summary::before{transform:rotate(90deg)}
+@media (prefers-reduced-motion:reduce){.filters .excl>summary::before,#cats .catdir>summary::before{transition:none}}
+.vd-id h2.nm{margin:0;font-family:inherit;line-height:1.3;letter-spacing:normal}
+#explore-title{margin:.2rem 0 .8rem}
+/* A control that reads as a link but acts in place, so it is a button a keyboard can reach. */
+.linkbtn{background:none;border:0;padding:0;margin:0;font:inherit;color:var(--accent);text-decoration:underline;text-underline-offset:.15em;cursor:pointer;min-height:24px}
+.linkbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.taskh{font-size:1rem;margin:1.2rem 0 .4rem}
+.tasksteps{margin:.2rem 0 1rem;padding-left:1.4rem;line-height:1.9}
+.tasksteps a{color:var(--accent)}
+.presets button.on{background:var(--accent);color:var(--surface);border-color:var(--accent)}
+/* The Compare button sat on top of the back-to-top button on desktop and under the tab bar on a phone,
+   where it could not be tapped. It now sits beside the back-to-top button, above the tab bar. */
+.cmpfab{right:4.4rem}
+@media (max-width:600px){.cmpfab{right:4.2rem;bottom:5rem}}
+/* Long pole labels ("best NHTSA crash rating") pushed the trade-off bar past a phone's width. Below
+   480px the labels sit above the slider, one at each end. */
+@media (max-width:480px){
+  .errand{flex-wrap:wrap;gap:.3rem .7rem}
+  .errand .er-l{order:1;flex:1 1 40%;white-space:normal}
+  .errand .er-r{order:2;flex:1 1 40%;text-align:right;white-space:normal}
+  .errand input[type=range]{order:3;flex:1 1 100%;min-width:0}
+}

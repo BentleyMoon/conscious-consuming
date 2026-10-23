@@ -2,20 +2,20 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/node-route-fixtures-v0.1.schema.json",
   "title": "Open Values Node Route Fixtures v0.1",
-  "description": "Golden positive route parser fixtures for node and content page routes.",
+  "description": "Page addresses that the site's address parser must understand, each with the result it must give. The data build writes them as tests for the app. It is an internal file used while building the site.",
   "type": "object",
   "additionalProperties": true,
   "required": ["format", "version", "built", "source", "purpose", "appLaneNote", "parserRules", "cases", "totals"],
   "properties": {
-    "format": { "const": "ovs-node-route-fixtures" },
-    "version": { "$ref": "#/$defs/version" },
-    "built": { "$ref": "#/$defs/date" },
-    "source": { "$ref": "#/$defs/source" },
-    "purpose": { "$ref": "#/$defs/nonEmptyString" },
-    "appLaneNote": { "$ref": "#/$defs/nonEmptyString" },
-    "parserRules": { "type": "object", "minProperties": 1 },
-    "cases": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/routeCase" } },
-    "totals": { "type": "object", "minProperties": 1 }
+    "format": { "description": "Names this file's format, so a reader can check it before reading the rest of the file.", "const": "ovs-node-route-fixtures" },
+    "version": { "description": "The version of the format this file follows, such as \"0.1\".", "$ref": "#/$defs/version" },
+    "built": { "description": "The date of the source data this file was built from, as YYYY-MM-DD.", "$ref": "#/$defs/date" },
+    "source": { "description": "The script and files this file was built from, as paths in the repository.", "$ref": "#/$defs/source" },
+    "purpose": { "description": "One sentence on what this file is for.", "$ref": "#/$defs/nonEmptyString" },
+    "appLaneNote": { "description": "A note on which choices this file leaves to the app code that reads it, such as fetching, layout and wording.", "$ref": "#/$defs/nonEmptyString" },
+    "parserRules": { "description": "The rules a route parser should follow, such as the accepted route patterns and how to decode them.", "type": "object", "minProperties": 1 },
+    "cases": { "description": "Routes that must parse, each with what parsing must give.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/routeCase" } },
+    "totals": { "description": "How many cases there are, overall and by kind of page.", "type": "object", "minProperties": 1 }
   },
   "$defs": {
     "version": { "type": "string", "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$" },
@@ -34,19 +34,20 @@
       "additionalProperties": true,
       "required": ["id", "type", "label", "hash", "expect"],
       "properties": {
-        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-        "type": { "$ref": "#/$defs/nonEmptyString" },
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "hash": { "$ref": "#/$defs/routeHash" },
+        "id": { "description": "A short id for the case.", "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "type": { "description": "The kind of page the route opens, such as \"category\" or \"line\".", "$ref": "#/$defs/nonEmptyString" },
+        "label": { "description": "The name of the page's subject as shown to readers.", "$ref": "#/$defs/nonEmptyString" },
+        "hash": { "description": "The route to parse, such as \"#explore/banking\".", "$ref": "#/$defs/routeHash" },
         "expect": {
+          "description": "What parsing the route must give.",
           "type": "object",
           "additionalProperties": true,
           "required": ["route", "type", "id", "params"],
           "properties": {
-            "route": { "$ref": "#/$defs/nonEmptyString" },
-            "type": { "$ref": "#/$defs/nonEmptyString" },
-            "id": { "$ref": "#/$defs/ovsId" },
-            "params": { "type": "object" }
+            "route": { "description": "The route family, such as \"explore\", \"item\", \"guide\" or \"node\".", "$ref": "#/$defs/nonEmptyString" },
+            "type": { "description": "The kind of page.", "$ref": "#/$defs/nonEmptyString" },
+            "id": { "description": "The id of the page's subject, such as \"ovs:cat/banking\".", "$ref": "#/$defs/ovsId" },
+            "params": { "description": "The named parts taken from the route, such as {\"cid\": \"banking\"}.", "type": "object" }
           }
         }
       }

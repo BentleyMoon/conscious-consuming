@@ -12,12 +12,12 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 // Counts move only when a decision is promoted from gap to live, and the move is recorded here.
-// 2026-08-13, swarm waves two and three. Two rows added, Reusable nappies and Clothing rental, both being the reuse route beside the thing it replaces, which is the comparison this catalogue exists to make. Ten decisions promoted from gap to live across health, transport, travel, money, home, family and clothing. 206 -> 208 rows, 96 -> 110 live paths, 88 -> 102 datasets, 110 -> 98 gaps.
-// 2026-08-12, swarm wave one: over-the-counter medicine, used cars and dog food went live. Rows
+// 2026-08-13, the content waves of 13 August. Two rows added, Reusable nappies and Clothing rental, both being the reuse route beside the thing it replaces, which is the comparison this catalogue exists to make. Ten decisions promoted from gap to live across health, transport, travel, money, home, family and clothing. 206 -> 208 rows, 96 -> 110 live paths, 88 -> 102 datasets, 110 -> 98 gaps.
+// 2026-08-12, the first content wave: over-the-counter medicine, used cars and dog food went live. Rows
 // and subcategories unchanged; the three simply crossed from gaps to live.
-// 2026-08-13, swarm wave four. Six decisions promoted (cat food, vet services, video streaming, podcast apps, menstrual cups and discs, electric toothbrushes) and three rows added for the ones the legacy tree had never named. 207 -> 210 rows, 109 -> 115 live, 101 -> 107 datasets, 98 -> 95 gaps. CARE 22 -> 26, LEARN 5 -> 7.
-// 2026-08-13, swarm wave five. Four decisions promoted: online courses, language learning, volunteering and crowdfunding platforms, the last needing a new row. 210 -> 211 rows, 115 -> 119 live, 107 -> 111 datasets, 95 -> 92 gaps. LEARN 7 -> 9, GIVE & ACT 2 -> 4.
-// 2026-08-13, swarm wave six. Bicycles, e-bikes, B Corporations and secondhand marketplaces. 211 -> 212 rows, 119 -> 123 live, 111 -> 115 datasets, 92 -> 89 gaps. MOVE 3 -> 5, GIVE & ACT 4 -> 6.
+// 2026-08-13, content wave four. Six decisions promoted (cat food, vet services, video streaming, podcast apps, menstrual cups and discs, electric toothbrushes) and three rows added for the ones the legacy tree had never named. 207 -> 210 rows, 109 -> 115 live, 101 -> 107 datasets, 98 -> 95 gaps. CARE 22 -> 26, LEARN 5 -> 7.
+// 2026-08-13, content wave five. Four decisions promoted: online courses, language learning, volunteering and crowdfunding platforms, the last needing a new row. 210 -> 211 rows, 115 -> 119 live, 107 -> 111 datasets, 95 -> 92 gaps. LEARN 7 -> 9, GIVE & ACT 2 -> 4.
+// 2026-08-13, content wave six. Bicycles, e-bikes, B Corporations and secondhand marketplaces. 211 -> 212 rows, 119 -> 123 live, 111 -> 115 datasets, 92 -> 89 gaps. MOVE 3 -> 5, GIVE & ACT 4 -> 6.
 // 2026-08-13, wave seven. Washing machines, headphones and earbuds, ride-hailing: one each for the three thinnest needs. 212 -> 213 rows, 123 -> 126 live, 115 -> 118 datasets.
 // 2026-08-14, Phase 10 serial promotion. Four already-built decisions gained new rows: off-grid power systems and direct-drive solar under KEEP A HOME; self-hosting platforms and federated social servers under CONNECT. 213 -> 217 rows, 126 -> 130 live paths, 118 -> 122 datasets; gaps remain 87.
 // 2026-09-23: email and search left the shared digital-services dataset in the split, the same
@@ -25,14 +25,18 @@ const ROOT = path.resolve(__dirname, '..');
 const EXPECTED = {
   needs: 8,
   categories: 18,
-  subcategories: 39,
-  rows: 217,
-  livePaths: 130,
+  // 40 on 2026-09-29: the later-life care subcategory joined under Health and wellbeing.
+  subcategories: 40,
+  rows: 225,  // 2026-10-13: a Hybrid and plug-in hybrid cars row under Cars; 224 on 2026-09-29, six new rows in the ten-cid promotion
+  livePaths: 144,  // 2026-10-13: new-cars and hybrids from the same adapter; 142 on 2026-10-12, electric-vehicles from the fueleconomy.gov adapter; 141 on 2026-09-29, the ten-cid promotion
   // 124 on 2026-08-26: messaging and browsers flipped from digital-services facets to their
   // own datasets, the first two of the nine-way split. Rows stay 217, live paths stay 130.
   // 126 on 2026-09-23: email and search flipped the same way, the next two of the split.
-  liveDatasets: 126,
-  gaps: 87,
+  // Moved 2026-09-29: cloud storage and notes flipped from digital-services facets to their
+  // own datasets, wave two of the nine-way split; video calls, maps and social networks remain.
+  liveDatasets: 144,  // 2026-10-13: new-cars and hybrids; 142 on 2026-10-12, electric-vehicles; 141 on 2026-09-29, the final digital-services splits landed and the parent dataset retired
+  // 83 on 2026-09-29: four old gap rows gained datasets in the ten-cid promotion.
+  gaps: 81,  // 2026-10-13: the Cars gap row became New cars; 82 on 2026-10-12, electric-vehicles moved from gap to live
 };
 
 function readJson(rel) {

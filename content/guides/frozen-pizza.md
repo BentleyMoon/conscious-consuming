@@ -43,7 +43,7 @@ Frozen pizza works best when it is treated as backup dinner, not nutritional cam
 | Floor check | Why it matters |
 | --- | --- |
 | portion math is done for the real eater count | one-third pizza labels can hide half-pizza nights |
-| sodium is checked per real plate | crust, sauce, cheese, and cured meat stack quietly |
+| sodium is checked per real plate | crust, sauce, cheese, and cured meat each add sodium |
 | saturated fat is visible for cheese-heavy styles | the front of the box rarely names the richest tradeoff |
 | topping story is visible | vegetable garnish is not the same as vegetable-heavy dinner |
 | a no-effort side exists | pizza plus frozen veg, fruit, salad, beans, or soup is stronger than pizza alone |
@@ -79,7 +79,7 @@ The trick is not turning frozen pizza night into a cooking project. Keep one or 
 
 ## Stock the backup deliberately
 
-Frozen pizza works best when it is treated as emergency infrastructure, not an invisible weekly subscription. Keep the number that matches your household's real fallback pattern, pair it with no-effort sides, and replace it only after it actually prevents a worse option. If the freezer always contains five pizzas, the backup has quietly become the plan.
+Frozen pizza works best when it is treated as emergency infrastructure, not an invisible weekly subscription. Keep the number that matches your household's real fallback pattern, pair it with no-effort sides, and replace it only after it actually prevents a worse option. If the freezer always contains five pizzas, the backup has become the plan.
 
 | Backup question | Better answer |
 | --- | --- |

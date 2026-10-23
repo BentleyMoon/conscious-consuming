@@ -109,7 +109,7 @@ function displayNeed(label){return DISPLAY_NEED[String(label||'').toUpperCase()]
       '<div class="presentation-main-action" data-presentation-part="main-action"><button class="savebtn" id="decision-save-list" type="button" data-presentation-main-action>'+esc(pageKind&&pageKind.mainAction||actions.saveList||fixture.expected.action)+'</button><span id="decision-save-status" aria-live="polite">Saves on this device and travels with Your file.</span></div>'+
       '<section class="presentation-facts" data-presentation-part="facts" aria-labelledby="presentation-facts-title"><div class="presentation-facts-head"><div><div class="decision-kicker">Compare</div><h2 id="presentation-facts-title">What can change the answer</h2></div><div class="presentation-fact-chips">'+facts.map(function(fact){return '<span>'+esc(fact)+'</span>';}).join('')+'</div></div>'+
         '<div data-presentation-slot="controls">'+(model.controlsHtml||'')+'</div>'+
-        '<section id="decision-answers" data-presentation-part="applied-values" aria-live="polite"></section></section>'+
+        '<section id="decision-answers" data-presentation-part="applied-values"></section></section>'+
       '<section class="presentation-support" data-presentation-part="sources"><div class="decision-kicker">Sources</div><h2>Sources</h2><p>'+esc(sourceText)+'</p><a href="'+esc(datasetHref)+'">Open the comparison data</a></section>'+
       '<section data-presentation-part="connections">'+(model.connectionsHtml||'<h2>Connections</h2><p>This decision is connected to its entries and source notes.</p>')+'</section>'+
       '<section class="presentation-support" data-presentation-part="links-here"><h2>What links here</h2><p>'+linksHere+'</p></section>'+

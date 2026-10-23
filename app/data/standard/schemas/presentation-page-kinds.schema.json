@@ -2,15 +2,16 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/presentation-page-kinds-v1.0.schema.json",
   "title": "Open Values Presentation Page Kinds v1.0",
-  "description": "Ordered furniture and coverage-state copy for each presentation page kind.",
+  "description": "The ten kinds of page the shared page layer draws, each with its purpose, its main action, its sections in order, and the opening sentence for each coverage state. Maintainers write it, and the presentation build copies it into the package the app reads.",
   "type": "object",
   "additionalProperties": false,
   "required": ["format", "version", "updated", "pageKinds"],
   "properties": {
-    "format": {"const": "open-values-presentation-page-kinds"},
-    "version": {"const": "1.0.0"},
-    "updated": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "format": { "description": "Names the file format. Always open-values-presentation-page-kinds.", "const": "open-values-presentation-page-kinds"},
+    "version": { "description": "The version of this format the file follows. Always 1.0.0.", "const": "1.0.0"},
+    "updated": { "description": "The date the page kinds were last changed, as YYYY-MM-DD.", "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
     "pageKinds": {
+      "description": "The ten kinds of page the shared presentation layer draws, in a fixed order.",
       "type": "array",
       "minItems": 10,
       "maxItems": 10,
@@ -23,19 +24,20 @@
       "additionalProperties": false,
       "required": ["id", "label", "purpose", "mainAction", "sections", "stateCopy"],
       "properties": {
-        "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
-        "label": {"type": "string", "minLength": 1},
-        "purpose": {"type": "string", "minLength": 1},
-        "mainAction": {"type": "string", "minLength": 1},
-        "sections": {"type": "array", "minItems": 6, "items": {"$ref": "#/$defs/section"}},
+        "id": { "description": "A lowercase hyphenated id for the page kind, such as entry.", "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "label": { "description": "The page kind's display name.", "type": "string", "minLength": 1},
+        "purpose": { "description": "What a person uses this kind of page to do, in a sentence.", "type": "string", "minLength": 1},
+        "mainAction": { "description": "The label of the one main action the page offers, such as Save this choice.", "type": "string", "minLength": 1},
+        "sections": { "description": "The page's sections in the order they appear, at least six.", "type": "array", "minItems": 6, "items": {"$ref": "#/$defs/section"}},
         "stateCopy": {
+          "description": "The sentence shown at the top of the page for each coverage state.",
           "type": "object",
           "additionalProperties": false,
           "required": ["rich", "thin", "notCovered"],
           "properties": {
-            "rich": {"type": "string", "minLength": 1},
-            "thin": {"type": "string", "minLength": 1},
-            "notCovered": {"type": "string", "minLength": 1}
+            "rich": { "description": "Shown when sources cover the page's facts.", "type": "string", "minLength": 1},
+            "thin": { "description": "Shown when some facts lack a source or date.", "type": "string", "minLength": 1},
+            "notCovered": { "description": "Shown when there is no source-backed content for the page yet.", "type": "string", "minLength": 1}
           }
         }
       }
@@ -45,9 +47,9 @@
       "additionalProperties": false,
       "required": ["id", "heading", "when"],
       "properties": {
-        "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
-        "heading": {"type": "string", "minLength": 1},
-        "when": {"type": "string", "minLength": 1}
+        "id": { "description": "A lowercase hyphenated id for the section, unique within the page kind.", "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "heading": { "description": "The section heading as shown on the page.", "type": "string", "minLength": 1},
+        "when": { "description": "When the section appears. The build accepts required, applicable, ranked-or-filtered, available and optional.", "type": "string", "minLength": 1}
       }
     }
   }

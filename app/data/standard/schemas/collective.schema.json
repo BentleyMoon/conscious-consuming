@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openvaluesstandard.org/schema/collective-v0.1.schema.json",
+  "title": "Open Values Collective v0.1",
+  "description": "A group's values, worked out in the browser by averaging several people's values files. It records how far apart the group is on each value and includes a values file for the group that any app can read. The Assembly page at /assembly/ makes it.",
+  "type": "object",
+  "required": ["format", "version", "n", "values", "agreement", "dissent", "passport"],
+  "additionalProperties": true,
+  "properties": {
+    "format": { "const": "open-values-collective", "description": "Always \"open-values-collective\". Tells a reader that this file is a group's values, added up." },
+    "version": { "type": "string", "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$", "description": "The version of the collective format this file follows, 0.1." },
+    "name": { "type": "string", "description": "What the group called itself, or 'an assembly'." },
+    "n": { "type": "integer", "minimum": 0, "description": "How many values files were added up. The file cannot tell how many people are behind them." },
+    "members": { "type": "array", "items": { "type": "string" }, "description": "A label for each file, as its owner gave it. Not a name unless someone typed one." },
+    "values": {
+      "type": "object",
+      "description": "The group's mean weight, 0 to 5, for each shared value at least one file gave. A value no file gave is left out, not set to 0.",
+      "additionalProperties": { "type": "number", "minimum": 0, "maximum": 5 }
+    },
+    "agreement": {
+      "type": "object",
+      "description": "For each value in values: the mean, the spread, a consensus from 0 (split) to 1 (all the same), and how many files gave it.",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["mean", "sd", "consensus", "voices"],
+        "properties": {
+          "mean": { "type": "number", "minimum": 0, "maximum": 5, "description": "The average weight the files gave this value, from 0 to 5, rounded to two decimal places." },
+          "sd": { "type": "number", "minimum": 0, "description": "How spread out the weights were (the standard deviation), rounded to two decimal places. 0 means every file gave the same weight." },
+          "consensus": { "type": "number", "minimum": 0, "maximum": 1, "description": "How much the files agree, from 0 (split, as when half say 0 and half say 5) to 1 (all the same). Worked out as 1 minus the spread divided by 2.5, and never below 0." },
+          "voices": { "type": "integer", "minimum": 1, "description": "How many files gave a weight for this value." }
+        }
+      }
+    },
+    "dissent": { "type": "array", "items": { "type": "string" }, "description": "The values in agreement, most split first." },
+    "passport": { "$ref": "https://openvaluesstandard.org/schema/passport-v0.1.schema.json", "description": "A values file for the group, with the group's average weights and its name as the source, so any app that reads values files can use it." }
+  }
+}

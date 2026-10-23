@@ -48,7 +48,7 @@ Giving is one of the few consumption decisions where the gap between options is 
 | Pooled fund | You want expert allocation across a cause | Read who decides, fees, and grant criteria |
 | Monthly recurring | You want predictable support | Review annually so inertia does not replace judgment |
 
-Unrestricted funding often feels less satisfying because it does not buy a named thing. But strong organizations need accountants, safeguarding, monitoring, staff time, translators, technology, insurance, evaluation, and reserves. Restriction can be useful when you know exactly why a program needs support. It is weaker when it lets donors fund the photogenic part while the institution quietly starves.
+Unrestricted funding often feels less satisfying because it does not buy a named thing. But strong organizations need accountants, safeguarding, monitoring, staff time, translators, technology, insurance, evaluation, and reserves. Restriction can be useful when you know exactly why a program needs support. It is weaker when it lets donors fund the photogenic part while the organization goes without money for its core costs.
 
 ## Choose the giving container deliberately
 

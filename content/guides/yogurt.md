@@ -30,7 +30,7 @@ Yogurt ranges from plain cultured milk or plant base to sweetened dessert-style 
 
 ## A yogurt label pass
 
-1. **Start with added sugar.** Plain yogurt gives you control; flavored yogurt can quietly become a sweet snack.
+1. **Start with added sugar.** Plain yogurt gives you control; flavored yogurt can be closer to a sweet snack.
 2. **Check protein per serving.** Greek, skyr, strained dairy, soy, and fortified options often function better as breakfast or lunch.
 3. **Read the ingredient base.** Milk, soy, coconut, almond, oat, and cashew yogurts have very different nutrition profiles.
 4. **Look for fortification.** Plant-based yogurts may need calcium, vitamin D, or other fortification to play a dairy-like role.
@@ -75,7 +75,7 @@ If plain yogurt feels too abrupt, step down instead of flipping from dessert to 
 | marinade | tenderizing base with spices and acid |
 | dessert | fruit, cocoa, honey, granola, or frozen fruit swirl |
 
-A larger plain tub is only a good packaging and price move if it has jobs beyond breakfast. When yogurt can become sauce, snack, marinade, and baking ingredient, it is less likely to die quietly behind the milk.
+A larger plain tub is only a good packaging and price move if it has jobs beyond breakfast. When yogurt can become sauce, snack, marinade, and baking ingredient, it is less likely to be forgotten behind the milk until it goes off.
 
 ## Decide whether yogurt is food, dessert, or ingredient
 

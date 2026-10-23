@@ -12,7 +12,7 @@ disclosure: We take no money from any sauce brand, retailer, or certifier. Nothi
 
 Pasta sauce looks simple: tomatoes, herbs, maybe olive oil. The shelf makes it complicated with rustic labels, imported flags, hidden sugar, high sodium, creamy variants, and jars that cost like dinner even when the ingredients are ordinary. The back label is more useful than the village on the front.
 
-> **The short answer.** For an everyday jar, look for tomatoes first, a short ingredient list, moderate sodium, little or no added sugar, and a price that makes sense for how often you use it. FDA says 5% Daily Value or less of sodium per serving is low and 20% or more is high. Sauce servings are small on labels, while real pasta bowls often use more. If a jar is salty or sweet per serving, a full plate can quietly become much more so.
+> **The short answer.** For an everyday jar, look for tomatoes first, a short ingredient list, moderate sodium, little or no added sugar, and a price that makes sense for how often you use it. FDA says 5% Daily Value or less of sodium per serving is low and 20% or more is high. Sauce servings are small on labels, while real pasta bowls often use more. If a jar is salty or sweet per serving, a full plate can be much more so.
 
 ---
 
@@ -101,7 +101,7 @@ If your household rarely finishes a jar in one or two meals, make freezing part 
 | too plain jar | add garlic, herbs, chili, olive oil, or tomato paste |
 | novelty flavor | use as one meal accent, not the new default |
 
-This makes jarred sauce more useful. You can buy convenience without letting the fridge quietly tax you for it.
+This makes jarred sauce more useful. You can buy convenience without throwing away half-used jars.
 
 ## Claims to verify
 

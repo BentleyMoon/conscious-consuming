@@ -28,7 +28,7 @@
     const p=META.proof||{};
     const links=(p.links||[{href:'../standard/',label:'Read the standard'}])
       .map(l=>`<a href="${esc(l.href)}">${esc(l.label)}</a>`).join('');
-    return `<section class="review-next"><h2>${esc(p.title||'One component, many domains')}</h2><p>${esc(p.text||'Every instance calls the same decision.js recipes, controls, explanations, and math. Only the list and the skin change.')}</p><nav>${links}</nav></section>`;
+    return `<section class="review-next"><h2>${esc(p.title||'The same machinery, a different question')}</h2><p>${esc(p.text||'This page runs on the same code as Conscious Consuming: the same controls, explanations and arithmetic. The options and their look are what differ.')}</p><nav>${links}</nav></section>`;
   }
   const CRITERIA=L.criteria||[], THEMES=L.themes||[], KEY2THEME=L.key2theme||{};
   const RESOURCES=L.resources||[], CONTRACT=L.decision||{}, LINES=L.lines||[];
@@ -73,7 +73,7 @@
       return `<button type="button" class="linechip${on?' on':''}" data-instance-line="${esc(line.id)}" aria-pressed="${on}"><b>${esc(line.label)}</b><span>${esc(line.reads)}</span></button>`;
     }).join('');
     return `<section class="instance-context" aria-label="Decision rules">
-      <details class="decision-floor"><summary><span><b>The baseline is on</b><small>${pool.floorFolded.length} folded · read it</small></span><span aria-hidden="true">⌄</span></summary><div class="context-body"><h3>${esc(floor.label||'The baseline')} <span>v${esc(floor.version||'1')}</span></h3><p>${esc(floor.reads||'Evidence gaps remain visible.')}</p><p class="scope-note">This is an illustrative list, not a published exclusion set.</p></div></details>
+      <details class="decision-floor"><summary><span><b>The baseline is on</b><small>${pool.floorFolded.length} set aside by it. See why</small></span><span aria-hidden="true">⌄</span></summary><div class="context-body"><h3>${esc(floor.label||'The baseline')} <span>v${esc(floor.version||'1')}</span></h3><p>${esc(floor.reads||'Evidence gaps remain visible.')}</p><p class="scope-note">This is an illustrative list, not a published exclusion set.</p></div></details>
       <div class="instance-lines"><div><h2>Keep only what must be true</h2><p>Optional rules, stored on this device. Anything they filter stays one tap away.</p></div><div class="linechips">${chips}</div></div>
     </section>`;
   }
@@ -177,7 +177,7 @@
   function renderPage(){
     const current=values(), pool=candidatePool();
     const zero=DECISION.dialsAreDefault(CONTRACT,current)&&activeLines.size===0?'A balanced view. Set a rule or change a choice to make it yours.':'My rules and these choices stay on this device.';
-    mount.innerHTML=`<section class="decision-page illustrative-decision" aria-label="Choose from this list"><header class="decision-head"><h2>${esc(CONTRACT.headline||('Choose from these '+NOUN+' options'))}</h2><p class="decision-read">${esc(CONTRACT.reads.text)}</p><p class="illustrative-note"><b>${esc(CONTRACT.kicker||'Illustrative generality receipt')}.</b> Illustrative, not an endorsement. The scores test whether the component transfers; they are not release-grade evidence.</p></header>${floorAndLinesHTML(pool)}<p class="decision-zero">${esc(zero)}</p><section class="decision-controls" aria-labelledby="instance-controls-title"><div class="control-heading"><div><h2 id="instance-controls-title">What matters here</h2></div><button type="button" id="decision-reset">Reset choices</button></div>${(CONTRACT.axes||[]).map(axis=>DECISION.dialHTML(axis,current[axis.id],{escape:esc,idPrefix:DIALP})).join('')}<p class="budget-note">No budget answer here: this illustrative list has no dependable price facts.</p></section><section id="instance-answers" aria-live="polite"></section>${componentProofHTML()}</section>`;
+    mount.innerHTML=`<section class="decision-page illustrative-decision" aria-label="Choose from this list"><header class="decision-head"><h2>${esc(CONTRACT.headline||('Choose from these '+NOUN+' options'))}</h2><p class="decision-read">${esc(CONTRACT.reads.text)}</p><p class="illustrative-note"><b>${esc(CONTRACT.kicker||'An example list')}.</b> Illustrative, not an endorsement. The scores test whether the component transfers; they are not release-grade evidence.</p></header>${floorAndLinesHTML(pool)}<p class="decision-zero">${esc(zero)}</p><section class="decision-controls" aria-labelledby="instance-controls-title"><div class="control-heading"><div><h2 id="instance-controls-title">What matters here</h2></div><button type="button" id="decision-reset">Reset choices</button></div>${(CONTRACT.axes||[]).map(axis=>DECISION.dialHTML(axis,current[axis.id],{escape:esc,idPrefix:DIALP})).join('')}<p class="budget-note">No budget answer here: this illustrative list has no dependable price facts.</p></section><section id="instance-answers" aria-live="polite"></section>${componentProofHTML()}</section>`;
     mount.querySelectorAll('[data-decision-axis]').forEach(input=>input.addEventListener('input',event=>{
       const axis=(CONTRACT.axes||[]).find(row=>row.id===event.target.dataset.decisionAxis);if(!axis)return;
       savedDials[axis.id]=Number(event.target.value);writeStore(DIAL_KEY,savedDials);

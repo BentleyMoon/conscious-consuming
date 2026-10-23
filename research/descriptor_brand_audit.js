@@ -73,7 +73,8 @@ const ORG_MARKERS = new Set([
 
 // Real makers whose names happen to use a descriptor word, each with the reason it stays.
 const REAL_BRANDS = new Map([
-  // none needed on 2026-09-23; add as 'normalized label' => 'why it is a maker'
+  // add as 'normalized label' => 'why it is a maker'
+  ['organic maps ou', 'Organic Maps OÜ is the registered Estonian company (reg. 16225385) in the footer of organicmaps.app; the word organic is its name, not a descriptor'],
 ]);
 
 function readJson(file) {

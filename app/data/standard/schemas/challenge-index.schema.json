@@ -2,23 +2,23 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/challenge-index-v0.1.schema.json",
   "title": "Open Values Challenge Index v0.1",
-  "description": "Generated compact index for challenge surfaces: instance defaults, replayed top picks, and selected sourced contrary facts.",
+  "description": "A compact version of the challenge set for sites to read: each worked example with its top picks recomputed from the current category data and the chosen sourced facts filled in. pipeline/build_challenge.js builds it from content/challenge/index.json into app/data/challenge-index.json; change the challenge set, not this file.",
   "type": "object",
   "additionalProperties": true,
   "required": ["format", "version", "standard", "built", "purpose", "generatedFrom", "counts", "principles", "algorithms", "instances", "categories", "cases"],
   "properties": {
-    "format": { "const": "open-values-challenge-index" },
-    "version": { "type": "string", "pattern": "^0\\.1\\.0(?:[-+].*)?$" },
-    "standard": { "const": "open-values-standard" },
-    "built": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
-    "purpose": { "$ref": "#/$defs/nonEmptyString" },
-    "generatedFrom": { "$ref": "#/$defs/generatedFrom" },
-    "counts": { "$ref": "#/$defs/counts" },
-    "principles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-    "algorithms": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/algorithm" } },
-    "instances": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/instance" } },
-    "categories": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/category" } },
-    "cases": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/case" } }
+    "format": { "description": "Always \"open-values-challenge-index\". Tells a reader which Open Values format this is.", "const": "open-values-challenge-index" },
+    "version": { "description": "The version of the index format this file follows. Must start with 0.1.0.", "type": "string", "pattern": "^0\\.1\\.0(?:[-+].*)?$" },
+    "standard": { "description": "Always \"open-values-standard\", the standard this format belongs to.", "const": "open-values-standard" },
+    "built": { "description": "The date of the challenge set this index was built from, copied from that file's updated field, as YYYY-MM-DD.", "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "purpose": { "description": "A sentence saying what this index is for.", "$ref": "#/$defs/nonEmptyString" },
+    "generatedFrom": { "description": "The challenge set file this index was built from, its date, and its hash, so anyone can check the index against it.", "$ref": "#/$defs/generatedFrom" },
+    "counts": { "description": "How many sites, methods, cases, contrary tags and categories the challenge set holds.", "$ref": "#/$defs/counts" },
+    "principles": { "description": "Copied unchanged from the challenge set: the rules challenge features follow.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "algorithms": { "description": "The methods from the challenge set, with only their id, label and summary.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/algorithm" } },
+    "instances": { "description": "The sites and apps from the challenge set, copied with their settings.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/instance" } },
+    "categories": { "description": "Every category that has at least one case, sorted by id, with its criteria.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/category" } },
+    "cases": { "description": "Every case from the challenge set, with each view reranked against the current category data and the chosen sourced facts filled in.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/case" } }
   },
   "$defs": {
     "nonEmptyString": { "type": "string", "minLength": 1 },
@@ -30,9 +30,9 @@
       "additionalProperties": false,
       "required": ["path", "updated", "sha256"],
       "properties": {
-        "path": { "const": "content/challenge/index.json" },
-        "updated": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
-        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        "path": { "description": "Always \"content/challenge/index.json\", the file this index is built from.", "const": "content/challenge/index.json" },
+        "updated": { "description": "The challenge set's own updated date, as YYYY-MM-DD.", "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+        "sha256": { "description": "The SHA-256 hash of the challenge set file text at build time, in 64 lowercase hex characters.", "type": "string", "pattern": "^[0-9a-f]{64}$" }
       }
     },
     "counts": {
@@ -40,11 +40,11 @@
       "additionalProperties": false,
       "required": ["instances", "algorithms", "cases", "contraryTags", "categories"],
       "properties": {
-        "instances": { "type": "integer", "minimum": 1 },
-        "algorithms": { "type": "integer", "minimum": 1 },
-        "cases": { "type": "integer", "minimum": 1 },
-        "contraryTags": { "type": "integer", "minimum": 1 },
-        "categories": { "type": "integer", "minimum": 1 }
+        "instances": { "description": "How many sites and apps are listed.", "type": "integer", "minimum": 1 },
+        "algorithms": { "description": "How many methods are listed.", "type": "integer", "minimum": 1 },
+        "cases": { "description": "How many cases are listed.", "type": "integer", "minimum": 1 },
+        "contraryTags": { "description": "How many contrary tags the challenge set holds.", "type": "integer", "minimum": 1 },
+        "categories": { "description": "How many different categories the cases cover.", "type": "integer", "minimum": 1 }
       }
     },
     "source": {
@@ -52,9 +52,9 @@
       "additionalProperties": false,
       "required": ["note", "source", "asof"],
       "properties": {
-        "note": { "$ref": "#/$defs/nonEmptyString" },
-        "source": { "type": "string", "pattern": "^https?://" },
-        "asof": { "type": "string", "pattern": "^(19|20)\\d{2}$" }
+        "note": { "description": "One or two sentences saying what the source shows.", "$ref": "#/$defs/nonEmptyString" },
+        "source": { "description": "The web address of the source, starting with http:// or https://.", "type": "string", "pattern": "^https?://" },
+        "asof": { "description": "When the source was checked, as a year such as \"2026\", or a year and month such as \"2026-08\".", "type": "string", "pattern": "^(19|20)\\d{2}$" }
       }
     },
     "selectedTag": {
@@ -62,17 +62,18 @@
       "additionalProperties": true,
       "required": ["tag", "axis", "score", "summary", "source"],
       "properties": {
-        "tag": { "$ref": "#/$defs/nonEmptyString" },
-        "axis": { "$ref": "#/$defs/nonEmptyString" },
-        "score": { "$ref": "#/$defs/score" },
-        "summary": { "$ref": "#/$defs/nonEmptyString" },
-        "source": { "$ref": "#/$defs/source" }
+        "tag": { "description": "The id of the contrary tag, such as \"ai-assistants/jan-ai/safety\".", "$ref": "#/$defs/nonEmptyString" },
+        "axis": { "description": "The criterion key the fact is about, such as \"safety\".", "$ref": "#/$defs/nonEmptyString" },
+        "score": { "description": "The entry's score on that criterion, from 0 to 100.", "$ref": "#/$defs/score" },
+        "summary": { "description": "One sentence stating the fact.", "$ref": "#/$defs/nonEmptyString" },
+        "source": { "description": "Where the fact comes from.", "$ref": "#/$defs/source" }
       }
     },
     "weights": {
       "type": "object",
       "minProperties": 1,
       "additionalProperties": {
+        "description": "The weight for one criterion, from 0 (ignored) to 5 (counts most).",
         "type": "number",
         "minimum": 0,
         "maximum": 5
@@ -83,12 +84,12 @@
       "additionalProperties": true,
       "required": ["code", "name", "score", "coverage", "why"],
       "properties": {
-        "code": { "$ref": "#/$defs/entityCode" },
-        "name": { "$ref": "#/$defs/nonEmptyString" },
-        "brand": { "$ref": "#/$defs/nonEmptyString" },
-        "score": { "$ref": "#/$defs/score" },
-        "coverage": { "type": "number", "minimum": 0, "maximum": 1 },
-        "why": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } }
+        "code": { "description": "The code of the entry that ranks first, as it appears in the category dataset.", "$ref": "#/$defs/entityCode" },
+        "name": { "description": "The name of that entry, such as \"Jan\".", "$ref": "#/$defs/nonEmptyString" },
+        "brand": { "description": "A short tag the dataset gives the entry, such as \"local open-source assistant\".", "$ref": "#/$defs/nonEmptyString" },
+        "score": { "description": "The entry's overall fit under this weighting, from 0 to 100, as the app's scoring engine computes it.", "$ref": "#/$defs/score" },
+        "coverage": { "description": "The share of the weighting that the entry has scores for, from 0 to 1, rounded to four places. 1 means every weighted criterion has a score.", "type": "number", "minimum": 0, "maximum": 1 },
+        "why": { "description": "The labels of the criteria that added the most to the score, at most two, such as \"Privacy\".", "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } }
       }
     },
     "algorithm": {
@@ -96,9 +97,9 @@
       "additionalProperties": false,
       "required": ["id", "label", "summary"],
       "properties": {
-        "id": { "$ref": "#/$defs/slug" },
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "summary": { "$ref": "#/$defs/nonEmptyString" }
+        "id": { "description": "A short name for the method, such as \"opposite-view\" or \"steelman\".", "$ref": "#/$defs/slug" },
+        "label": { "description": "The name to show readers, such as \"Opposite view\".", "$ref": "#/$defs/nonEmptyString" },
+        "summary": { "description": "One or two sentences saying what the method does.", "$ref": "#/$defs/nonEmptyString" }
       }
     },
     "instance": {
@@ -106,12 +107,12 @@
       "additionalProperties": true,
       "required": ["id", "label", "role", "challengeDefault", "surfaces"],
       "properties": {
-        "id": { "$ref": "#/$defs/slug" },
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "role": { "$ref": "#/$defs/nonEmptyString" },
-        "status": { "$ref": "#/$defs/nonEmptyString" },
-        "challengeDefault": { "enum": ["available", "prominent", "primary"] },
-        "surfaces": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+        "id": { "description": "A short name for the site or app, such as \"kosplora\".", "$ref": "#/$defs/slug" },
+        "label": { "description": "The name to show readers, such as \"Kosplora\".", "$ref": "#/$defs/nonEmptyString" },
+        "role": { "description": "What part the site plays for challenge features, as a short label such as \"flagship-learning-instance\".", "$ref": "#/$defs/nonEmptyString" },
+        "status": { "description": "How far along the site is, when it is not yet live, such as \"format-seed\".", "$ref": "#/$defs/nonEmptyString" },
+        "challengeDefault": { "description": "How visible the challenge feature is by default on this site: available (there if asked for), prominent (shown alongside results), or primary (the main thing the site shows).", "enum": ["available", "prominent", "primary"] },
+        "surfaces": { "description": "The places on the site where a challenge can appear, such as \"verdict\", \"category\" or \"entry\".", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
       }
     },
     "category": {
@@ -119,12 +120,13 @@
       "additionalProperties": true,
       "required": ["id", "label", "type", "file", "criteria"],
       "properties": {
-        "id": { "$ref": "#/$defs/slug" },
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "type": { "enum": ["Products", "Services", "Media", "Organizations", "Initiatives"] },
-        "file": { "type": "string", "pattern": "^app/data/[a-z0-9-]+\\.json$" },
-        "n": { "type": "integer", "minimum": 0 },
+        "id": { "description": "The category id, such as \"ai-assistants\".", "$ref": "#/$defs/slug" },
+        "label": { "description": "The category name shown to readers, such as \"AI assistants\".", "$ref": "#/$defs/nonEmptyString" },
+        "type": { "description": "What kind of thing the category covers: Products, Services, Media, Organizations, or Initiatives.", "enum": ["Products", "Services", "Media", "Organizations", "Initiatives"] },
+        "file": { "description": "The path of the category dataset, such as \"app/data/ai-assistants.json\".", "type": "string", "pattern": "^app/data/[a-z0-9-]+\\.json$" },
+        "n": { "description": "How many entries the category dataset holds.", "type": "integer", "minimum": 0 },
         "criteria": {
+          "description": "The criteria entries in the category are scored on, in dataset order.",
           "type": "array",
           "minItems": 1,
           "items": {
@@ -132,8 +134,8 @@
             "additionalProperties": false,
             "required": ["key", "label"],
             "properties": {
-              "key": { "$ref": "#/$defs/nonEmptyString" },
-              "label": { "$ref": "#/$defs/nonEmptyString" }
+              "key": { "description": "The criterion key used in weights and scores, such as \"privacy\".", "$ref": "#/$defs/nonEmptyString" },
+              "label": { "description": "The criterion name shown to readers, such as \"Privacy\".", "$ref": "#/$defs/nonEmptyString" }
             }
           }
         }
@@ -144,13 +146,13 @@
       "additionalProperties": true,
       "required": ["label", "weights", "expectedTop", "top"],
       "properties": {
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "weights": { "$ref": "#/$defs/weights" },
-        "expectedTop": { "$ref": "#/$defs/entityCode" },
-        "top": { "$ref": "#/$defs/top" },
-        "sourceTag": { "$ref": "#/$defs/nonEmptyString" },
-        "selectedTag": { "$ref": "#/$defs/selectedTag" },
-        "receipt": { "$ref": "#/$defs/selectedTag" }
+        "label": { "description": "A short name for the weighting, such as \"Privacy and openness first\".", "$ref": "#/$defs/nonEmptyString" },
+        "weights": { "description": "How much each criterion counts in this view, keyed by criterion key from the category dataset, such as { \"privacy\": 5, \"safety\": 2 }. Each weight runs from 0 (ignored) to 5 (counts most).", "$ref": "#/$defs/weights" },
+        "expectedTop": { "description": "The code of the entry the challenge set says this weighting ranks first.", "$ref": "#/$defs/entityCode" },
+        "top": { "description": "The entry that actually ranks first under this weighting when the index is built. It should match expectedTop.", "$ref": "#/$defs/top" },
+        "sourceTag": { "description": "For the opposite view, the id of the contrary tag that backs its top pick.", "$ref": "#/$defs/nonEmptyString" },
+        "selectedTag": { "description": "For the opposite view, the contrary tag the builder chose: the highest-scoring opposite-view-strength fact for the top pick.", "$ref": "#/$defs/selectedTag" },
+        "receipt": { "description": "The same fact as selectedTag, repeated under this name for display code that reads it.", "$ref": "#/$defs/selectedTag" }
       }
     },
     "steelman": {
@@ -158,13 +160,13 @@
       "additionalProperties": true,
       "required": ["forEntity", "axis", "sourceTag", "framing", "line", "selectedTag", "receipt"],
       "properties": {
-        "forEntity": { "$ref": "#/$defs/entityCode" },
-        "axis": { "$ref": "#/$defs/nonEmptyString" },
-        "sourceTag": { "$ref": "#/$defs/nonEmptyString" },
-        "framing": { "$ref": "#/$defs/nonEmptyString" },
-        "line": { "$ref": "#/$defs/nonEmptyString" },
-        "selectedTag": { "$ref": "#/$defs/selectedTag" },
-        "receipt": { "$ref": "#/$defs/selectedTag" }
+        "forEntity": { "description": "The code of the entry the weakness is about, the user view's top pick.", "$ref": "#/$defs/entityCode" },
+        "axis": { "description": "The criterion key the weakness is on, such as \"safety\".", "$ref": "#/$defs/nonEmptyString" },
+        "sourceTag": { "description": "The id of the contrary tag that backs the weakness.", "$ref": "#/$defs/nonEmptyString" },
+        "framing": { "description": "The sentence a reader sees about the weakness.", "$ref": "#/$defs/nonEmptyString" },
+        "line": { "description": "The same sentence as framing, repeated under this name for display code that reads it.", "$ref": "#/$defs/nonEmptyString" },
+        "selectedTag": { "description": "The contrary tag the builder chose: the lowest-scoring steelman-weakness fact for the top pick on a criterion the user view weights at 2 or below.", "$ref": "#/$defs/selectedTag" },
+        "receipt": { "description": "The same fact as selectedTag, repeated under this name for display code that reads it.", "$ref": "#/$defs/selectedTag" }
       }
     },
     "case": {
@@ -172,13 +174,13 @@
       "additionalProperties": true,
       "required": ["id", "category", "label", "reads", "userView", "oppositeView", "steelman"],
       "properties": {
-        "id": { "$ref": "#/$defs/slug" },
-        "category": { "$ref": "#/$defs/slug" },
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "reads": { "type": "string", "minLength": 24, "maxLength": 140 },
-        "userView": { "$ref": "#/$defs/view" },
-        "oppositeView": { "$ref": "#/$defs/view" },
-        "steelman": { "$ref": "#/$defs/steelman" }
+        "id": { "description": "A unique name for this case, in lowercase letters, numbers and hyphens.", "$ref": "#/$defs/slug" },
+        "category": { "description": "The id of the category dataset the case ranks, such as \"ai-assistants\".", "$ref": "#/$defs/slug" },
+        "label": { "description": "A short title for the case, such as \"Open/local AI assistant versus managed safety\".", "$ref": "#/$defs/nonEmptyString" },
+        "reads": { "description": "The one sentence a reader sees, 24 to 140 characters. The challenge audit requires it to start with \"The strongest case the other way: \".", "type": "string", "minLength": 24, "maxLength": 140 },
+        "userView": { "description": "The weighting a reader is likely to hold, the entry it is expected to put on top, and the entry that actually ranks first.", "$ref": "#/$defs/view" },
+        "oppositeView": { "description": "The opposite weighting, its expected and actual top pick, and the sourced fact that backs that pick.", "$ref": "#/$defs/view" },
+        "steelman": { "description": "The strongest sourced weakness of the user view's top pick, on a criterion that view barely weights.", "$ref": "#/$defs/steelman" }
       }
     }
   }

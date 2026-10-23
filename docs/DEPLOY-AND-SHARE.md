@@ -186,7 +186,7 @@ separate domains yet; it fragments the story and multiplies DNS setup. The whole
 
 - **You don't strictly need a custom domain for the grant preview**: a `*.netlify.app` URL is fine and free.
 - **Use `valuescommons.org` as the main home.** It names the public ecosystem and best fits the home-first story.
-- **Use `openvaluesstandard.org` as the spec citation domain.** Every schema `$id` lives under `https://openvaluesstandard.org/schema/`, and the schemas `$ref` one another by those addresses, so the domain must serve `/schema/*` rather than redirect it. `worker.js` already does: it serves each schema at its `$id` path and sends every other path to `https://valuescommons.org/standard/`. To switch it on, delete the Redirect Rule for the domain and add it to `wrangler.toml` as a Custom Domain like the others.
+- **Use `openvaluesstandard.org` as the standard's own home.** Since 2026-09-28 the Worker can serve the standard's page at that domain's root (see 3b). Until the domain is bound to the Worker, its Redirect Rule still sends it to `https://valuescommons.org/standard/`, which shows the same page. Every schema `$id` lives under `https://openvaluesstandard.org/schema/`, and the schemas `$ref` one another by those addresses, so the domain must serve `/schema/*` rather than redirect it. `worker.js` already does: it serves each schema at its `$id` path and sends every other path to `https://valuescommons.org/standard/`. To switch it on, delete the Redirect Rule for the domain and add it to `wrangler.toml` as a Custom Domain like the others.
 - **`consciousconsuming.org` is the app's own front door.** `worker.js` serves Conscious Consuming at its root and sends old `/app/*` links there with a 301. The canonical address of every app page stays `https://valuescommons.org/app/…`, so search engines index one copy.
 
 ### 3a · Cloudflare host → domain allocation (the concrete map)
@@ -198,7 +198,7 @@ separate domains yet; it fragments the story and multiplies DNS setup. The whole
 | `valuescommons.org` (+ `www`) | **Canonical home**: `/` = Values Commons, `/app` = Conscious Consuming | **Custom Domain** on the Worker (already in `wrangler.toml`) |
 | `consciousconsuming.org` (+ `www`) | The app **at its root**: `worker.js` rewrites `/` to `/app/`, 301s `/app/*` to the clean path, and 301s ecosystem sections to `valuescommons.org`. Canonical tags still name `valuescommons.org/app/` | **Custom Domain** (already in `wrangler.toml`) |
 | `valuescommons.com` | Alias | **Redirect Rule** → `https://valuescommons.org/$1` (301, preserve path) |
-| `openvaluesstandard.org` | Spec citation: `/schema/*` serves the JSON Schemas at their `$id` paths, everything else 301s to `https://valuescommons.org/standard/` | **Custom Domain** on the Worker (replace the old Redirect Rule, which would run first and redirect the schema paths too) |
+| `openvaluesstandard.org` | The standard's home, and the spec citation: `/schema/*` serves the JSON Schemas at their `$id` paths | Today a **Redirect Rule** → `https://valuescommons.org/standard/` (301). Ready to become a **Custom Domain** on the Worker: see 3b |
 | `consciousconsuming.net` (if held) | Legacy alias | **Redirect Rule** → `https://consciousconsuming.org/$1` |
 
 **Canonical is a build-time decision as well as a DNS one.** The site base baked into every share-card, `og:*`, sitemap, and `<link rel=canonical>` must be exactly one home. `npm run build` defaults to `https://valuescommons.org/app`; keep it that way so the baked links match the canonical host. (To lead with the Conscious Consuming brand instead, build with `CC_SITE_BASE=https://consciousconsuming.org/app` and point the redirects the other way.)
@@ -210,6 +210,23 @@ separate domains yet; it fragments the story and multiplies DNS setup. The whole
 4. **SSL/TLS = Full (strict)**, **Always Use HTTPS = On**. Optional: a `www → apex` redirect so the apex stays canonical.
 
 Keep the Worker (don't switch to Pages): it's already wired; Pages would just mean re-doing the custom-domain bindings.
+
+### 3b · Moving openvaluesstandard.org from a redirect to its own page (prepared 2026-09-28)
+
+`worker.js` already knows the host: `/` serves the standard's page (built at `/standard/`), the scripts,
+data and images that page links to are served at their own paths, `/standard/` redirects to the root, and
+every other page redirects to valuescommons.org. `scripts/worker-selftest.mjs` checks all four. Nothing
+changes live until the domain reaches the Worker, and that needs the domain's own Cloudflare zone, which
+the deploy login can read but not change. In the Cloudflare dashboard, for the `openvaluesstandard.org` zone:
+
+1. **Rules → Redirect Rules:** delete the rule that sends the domain to `valuescommons.org/standard/`.
+2. **DNS:** delete the proxied placeholder record (`AAAA @ 100::`), so the next step can create its own.
+3. **Workers & Pages → consciousconsuming → Settings → Domains & Routes → Add → Custom domain:**
+   `openvaluesstandard.org`.
+
+Then add `[[routes]] pattern = "openvaluesstandard.org" custom_domain = true` to `wrangler.toml` so every
+later deploy keeps the binding. Do not add it before step 3: with the placeholder record still in place,
+`wrangler deploy` cannot create the custom domain and the release fails.
 
 ## 4 · After the grant: going public
 

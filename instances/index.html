@@ -5,7 +5,7 @@
 <script>try{var t=localStorage.getItem('cc.theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Apps built on Values Commons</title>
-<meta name="description" content="Values Commons apps use the same transparent scoring engine while speaking to different choices: buying, learning, messaging, and future public-interest domains.">
+<meta name="description" content="Three apps run on one scoring engine and read one values file: Conscious Consuming for spending, Kosplora for learning, Where to Message for messengers. What they share, what they change, and how to build a fourth.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#1d7a5a">
 <link rel="icon" href="/app/icon.svg" type="image/svg+xml"><link rel="alternate icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64"><link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
@@ -14,216 +14,347 @@
 <meta property="og:url" content="https://valuescommons.org/instances/">
 <meta property="og:site_name" content="Values Commons">
 <meta property="og:title" content="Apps built on Values Commons">
-<meta property="og:description" content="Different apps, one transparent scoring engine: buying, learning, messaging, and future public-interest domains.">
+<meta property="og:description" content="Three apps, one scoring engine, one values file: spending, learning and messaging. What they share, and how to build a fourth.">
 <meta property="og:image" content="https://valuescommons.org/og-standard.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Apps built on Values Commons">
-<meta name="twitter:description" content="Different apps, one transparent scoring engine: buying, learning, messaging, and future public-interest domains.">
+<meta name="twitter:description" content="Three apps, one scoring engine, one values file: spending, learning and messaging. What they share, and how to build a fourth.">
 <meta name="twitter:image" content="https://valuescommons.org/og-standard.png">
 <style>
-  :root{--shadow-sm:0 1px 2px rgba(40,34,24,.07),0 1px 1px rgba(40,34,24,.05);--shadow-md:0 2px 6px rgba(40,34,24,.09),0 10px 26px rgba(40,34,24,.07);--shadow-lg:0 6px 16px rgba(40,34,24,.12),0 22px 48px rgba(40,34,24,.10);--bg:#f8f5ee;--surface:#fff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--soft:#e9f3ee;--track:#eef1ef;--max:1040px;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,system-ui,sans-serif;--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,ui-serif,serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-  /* Nine surfaces stated a light palette and no alternative, so a reader who asks for
-     dark was overridden on most of the commons and honoured on two of it. Same values
-     the Institute uses, so the family reads as one in either mode. */
-  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--shadow-sm:0 1px 2px rgba(0,0,0,.55);--shadow-md:0 2px 8px rgba(0,0,0,.6),0 12px 30px rgba(0,0,0,.45);--shadow-lg:0 8px 20px rgba(0,0,0,.65),0 28px 56px rgba(0,0,0,.5);--bg:#11140f;--surface:#181d16;--ink:#eef1e8;--muted:#c0c9bd;--hint:#8b978a;--line:#2b322a;--accent:#6fce8c;--soft:#1b2a20;--track:#2b322a}}
-
-  @media(prefers-color-scheme:dark){:root{--bg:#11140f;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.1);--accent:#5dcaa5;--soft:#16241d;--track:#1b241f}}
-  *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}.wrap{max-width:var(--max);margin:0 auto;padding:0 1.25rem}.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:1.05rem 0;border-bottom:1px solid var(--line)}.brand{font-family:var(--serif);font-weight:600;color:var(--ink);font-size:1.12rem}.links{display:flex;gap:.45rem 1rem;flex-wrap:wrap;font-size:0.86rem}.links a{color:var(--muted)}.links a:hover{color:var(--accent);text-decoration:none}.cta{border:1px solid var(--accent);border-radius:999px;padding:.28rem .68rem;color:var(--accent)!important}.hero{padding:4.2rem 0 3rem}.kicker{font-size:0.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 .9rem}h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.12;text-wrap:balance}h1{font-size:clamp(2.0rem,3.25vw,2.6rem);margin:0 0 1rem}h2{font-size:1.75rem;margin:0 0 .6rem}h3{font-size:1.12rem;margin:0 0 .35rem}.lede{max-width:45rem;color:var(--muted);font-size:1.12rem;margin:0}.actions{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1.45rem}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:2.65rem;padding:.58rem 1rem;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:650}.btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn.primary:hover{color:#fff}.band{border-top:1px solid var(--line);padding:2.5rem 0}.intro{color:var(--muted);max-width:44rem;margin:0 0 1.2rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:.85rem}.card{display:block;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1rem;color:var(--ink)}.card:hover{border-color:var(--accent);text-decoration:none}.card p{margin:.35rem 0 0;color:var(--muted);font-size:1rem}.tag{display:inline-block;font-size:0.75rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--accent);background:var(--soft);border-radius:999px;padding:.12rem .5rem;margin-bottom:.55rem}.build{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1.1rem}.build code{font-family:var(--mono);font-size:0.86rem;background:var(--track);border-radius:5px;padding:.08rem .32rem}.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:.7rem;margin-top:1rem}.steps div{border-top:1px solid var(--line);padding:.7rem 0;color:var(--muted)}.steps b{color:var(--ink)}footer{border-top:1px solid var(--line);padding:1.7rem 0 2.7rem;color:var(--hint);font-size:0.86rem}.footlinks{display:flex;gap:.4rem 1rem;flex-wrap:wrap;margin-top:.45rem}@media(max-width:760px){.hero{padding:3.2rem 0 2.4rem}}
-  .matrix{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:.7rem;margin-top:1rem}
-  .matrix div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.9rem;color:var(--muted);font-size:0.86rem}
-  .matrix b{display:block;color:var(--ink);font-family:var(--serif);font-size:1rem;margin-bottom:.2rem}
-  .spinebar{display:flex;align-items:center;gap:.42rem;flex-wrap:wrap;margin:1rem 0 0;font-size:0.86rem;color:var(--hint)}
-  .spinebar a{color:var(--muted);border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:.2rem .58rem}
-  .spinebar a:hover,.spinebar a[aria-current="page"]{border-color:var(--accent);color:var(--accent);text-decoration:none}
-  .spinenote{margin:.55rem 0 0;color:var(--muted);font-size:0.86rem}
-  .checkgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:.65rem;margin-top:1rem}
-  .checkgrid div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.9rem;min-height:8rem;color:var(--muted);font-size:0.86rem}
-  .checkgrid b{display:block;color:var(--ink);font-family:var(--serif);font-size:1rem;margin-bottom:.2rem}
-  /* Field-guide register, shared with the landing: serif argues, mono measures */
-  :root{--ochre:#8a5514;--line-strong:#cfd8d3}
-  @media(prefers-color-scheme:dark){:root{--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17)}}
-  body{font-family:var(--serif);line-height:1.58}
-  .nav{border-bottom-color:var(--line-strong)}
-  .brand{font-weight:700;font-size:1.12rem;letter-spacing:-.015em}
-  .brand::after{content:"Open field guide";font-family:var(--mono);font-weight:600;font-size:0.75rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ochre);margin-left:.6rem;padding-left:.6rem;border-left:1px solid var(--line-strong)}
-  .links{font-family:var(--mono);font-size:0.75rem}
-  .cta{border-radius:3px}
-  .primitivebar{font-family:var(--mono);font-size:0.75rem;letter-spacing:.03em}
-  .primitivebar a{border-radius:3px}
-  .kicker{font-family:var(--mono);font-size:0.75rem;letter-spacing:.16em;color:var(--muted)}
-  h1{font-size:clamp(1.85rem,3.06vw,2.45rem);letter-spacing:-.015em}
-  .btn{font-family:var(--mono);font-size:0.75rem;letter-spacing:.02em;font-weight:600;border-radius:3px}
-  .tag{font-family:var(--mono);border-radius:3px}
-  .card,.route,.note,.build,.edgemap,.specimen{border-radius:4px}
-  pre,table{border-radius:4px}
-  footer{font-size:0.86rem}
-  /* Professional futurism: light spent on the living and the chosen */
-  :root{--glow:0 0 14px rgba(29,122,90,.2)}
-  @media(prefers-color-scheme:dark){:root{--glow:0 0 16px rgba(93,202,165,.28)}}
-  ::selection{background:color-mix(in srgb,var(--accent) 24%,transparent)}
-  .hero{background:radial-gradient(44rem 24rem at 6% -10%,color-mix(in srgb,var(--accent) 7%,transparent),transparent 62%),radial-gradient(36rem 20rem at 96% -8%,color-mix(in srgb,var(--ochre) 4%,transparent),transparent 64%)}
-  .btn.primary:hover,.cta:hover{box-shadow:var(--glow)}
-  html{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--accent) 45%,var(--track)) transparent}
-  a:focus-visible,button:focus-visible{box-shadow:var(--glow)}
-  .livedot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:.35rem;vertical-align:.05em;animation:vcpulse 2.4s ease-out infinite}
-  @keyframes vcpulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 45%,transparent)}70%{box-shadow:0 0 0 6px transparent}100%{box-shadow:0 0 0 0 transparent}}
-  @media(prefers-reduced-motion:reduce){.livedot{animation:none}}
-  :root[data-theme="dark"]{--bg:#11140f;--surface:#161d18;--ink:#e6ece8;--muted:#9aa8a1;--hint:#6c7a72;--line:rgba(255,255,255,.1);--accent:#5dcaa5;--soft:#16241d;--track:#1b241f;--ochre:#cc9c5e;--line-strong:rgba(255,255,255,.17);--glow:0 0 16px rgba(93,202,165,.28);color-scheme:dark}
-  :root[data-theme="light"]{--bg:#f8f5ee;--surface:#fff;--ink:#18211d;--muted:#566560;--hint:#8a958f;--line:#e3e7e5;--accent:#1d7a5a;--soft:#e9f3ee;--track:#eef1ef;--ochre:#8a5514;--line-strong:#cfd8d3;--glow:0 0 14px rgba(29,122,90,.2);color-scheme:light}
-  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.55rem .9rem;border-radius:0 0 8px 0;z-index:20}
+  /* The apps page, in the lab-notebook register the front page and the tour use: plates with
+     figure labels, italic serif headings, one maker's note in pencil per idea. Green is the
+     reader's values and the primary button; ochre is a fact's source and nothing else; graphite
+     is the maker's hand; hatching marks what is named but not built. */
+  :root{--bg:#f8f5ee;--surface:#ffffff;--sunk:#eef1ef;--ink:#18211d;--muted:#566560;--hint:#607068;
+    --line:#e3e7e5;--line-strong:#cfd8d3;--accent:#1d7a5a;--accent-bright:#17936a;--accent-soft:#e9f3ee;
+    --track:#eef1ef;--warn:#a8432f;--ochre:#8a5514;--band:#eef2f0;--on-accent:#ffffff;--graphite:#4d5357;--hatch:rgba(24,33,29,.36);
+    --e1:0 1px 2px rgba(24,38,30,.05),0 3px 10px rgba(24,38,30,.05);
+    --font-display:"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,ui-serif,serif;
+    --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--max:1040px}
+  @media (prefers-color-scheme:dark){:root{--bg:#11140f;--surface:#161d18;--sunk:#0b100d;--ink:#e6ece8;--muted:#9aa8a1;--hint:#87968e;
+    --line:rgba(255,255,255,.10);--line-strong:rgba(255,255,255,.17);--accent:#5dcaa5;--accent-bright:#6ad9ab;--accent-soft:#16241d;
+    --track:#1b241f;--warn:#e3a594;--ochre:#cc9c5e;--band:#131b16;--on-accent:#0b100d;--graphite:#b6bcc0;--hatch:rgba(230,236,232,.32);
+    --e1:0 1px 2px rgba(0,0,0,.3),0 3px 10px rgba(0,0,0,.3)}}
+  :root[data-theme="dark"]{--bg:#11140f;--surface:#161d18;--sunk:#0b100d;--ink:#e6ece8;--muted:#9aa8a1;--hint:#87968e;--line:rgba(255,255,255,.10);--line-strong:rgba(255,255,255,.17);--accent:#5dcaa5;--accent-bright:#6ad9ab;--accent-soft:#16241d;--track:#1b241f;--warn:#e3a594;--ochre:#cc9c5e;--band:#131b16;--on-accent:#0b100d;--graphite:#b6bcc0;--hatch:rgba(230,236,232,.32);--e1:0 1px 2px rgba(0,0,0,.3),0 3px 10px rgba(0,0,0,.3);color-scheme:dark}
+  :root[data-theme="light"]{--bg:#f8f5ee;--surface:#ffffff;--sunk:#eef1ef;--ink:#18211d;--muted:#566560;--hint:#607068;--line:#e3e7e5;--line-strong:#cfd8d3;--accent:#1d7a5a;--accent-bright:#17936a;--accent-soft:#e9f3ee;--track:#eef1ef;--warn:#a8432f;--ochre:#8a5514;--band:#eef2f0;--on-accent:#ffffff;--graphite:#4d5357;--hatch:rgba(24,33,29,.36);--e1:0 1px 2px rgba(24,38,30,.05),0 3px 10px rgba(24,38,30,.05);color-scheme:light}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-display);font-size:1.08rem;line-height:1.58;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+  .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.55rem .9rem;z-index:30}
   .skip:focus{left:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1rem,4vw,2.2rem)}
+  h1,h2,h3{font-weight:550;letter-spacing:-.01em;text-wrap:balance}
+  code{font-family:var(--font-mono);font-size:0.86rem;background:var(--track);border-radius:3px;padding:.05rem .3rem}
 
-  /* depth pass */
-  /* Containers lift off the page instead of being outlined on it, so a card, a chip and
-     a panel stop announcing themselves with the same single grey pixel. */
-  .build,.card{box-shadow:var(--shadow-md);background:var(--surface)}
-  h1{font-weight:550;letter-spacing:-0.02em}
-  h2{font-weight:550;letter-spacing:-0.01em}
+  .masthead{border-bottom:1px solid var(--line-strong)}
+  .masthead .wrap{display:flex;align-items:baseline;justify-content:space-between;gap:.6rem 1rem;flex-wrap:wrap;padding-top:1.1rem;padding-bottom:.95rem}
+  .brand{font-weight:700;font-size:1.25rem;letter-spacing:-.015em;color:var(--ink)}
+  .brand:hover{text-decoration:none}
+  .exits{display:flex;align-items:center;gap:.2rem 1.1rem;flex-wrap:wrap;font-family:var(--font-mono);font-size:0.75rem}
+  .exits a{color:var(--muted);padding:.35rem 0}
+  .exits a:hover{color:var(--ink)}
+  .exits a[aria-current="page"]{color:var(--ink);font-weight:700}
+
+  .hero{padding:clamp(1.8rem,4vw,2.8rem) 0 1.6rem;background:radial-gradient(52rem 26rem at 10% -20%,color-mix(in srgb,var(--accent) 10%,transparent),transparent 60%)}
+  .hero h1{font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.08;margin:0 0 .9rem;max-width:22ch}
+  .hero .lede{font-size:1.12rem;color:var(--muted);max-width:60ch;margin:0 0 .8rem}
+  .hero .lede b{color:var(--ink)}
+
+  .plate-id{display:flex;justify-content:space-between;align-items:baseline;gap:.3rem 1rem;flex-wrap:wrap;margin:0 0 1rem;padding-bottom:.4rem;border-bottom:1px solid color-mix(in srgb,var(--ink) 55%,transparent)}
+  .plate-id .pn{font-family:var(--font-mono);font-size:0.75rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
+  .plate-id .fig{font-style:italic;font-size:0.92rem;color:var(--muted)}
+
+  .plate{padding:clamp(2.2rem,5vw,3.4rem) 0;border-top:1px solid var(--line)}
+  .plate:nth-of-type(even){background:var(--band)}
+  .plate h2{font-size:clamp(1.45rem,2.5vw,1.9rem);font-style:italic;font-weight:500;margin:0 0 .4rem}
+  .plate .lead{color:var(--muted);max-width:62ch;margin:0 0 1.4rem}
+  .cap{font-size:0.9rem;color:var(--muted);margin:1rem 0 0;max-width:64ch}
+  .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(1.2rem,4vw,2.6rem);align-items:start}
+  .card{background:var(--surface);border:1px solid var(--line-strong);border-radius:4px;box-shadow:var(--e1);padding:1rem 1.1rem}
+  .hand{font-family:"Segoe Print","Ink Free","Bradley Hand","Chalkboard SE","Marker Felt",cursive;color:var(--graphite);font-size:0.98rem;line-height:1.4;transform:rotate(-1.4deg);transform-origin:left top;margin:1.4rem 0 0;max-width:40ch}
+
+  .receipt{display:flex;flex-wrap:wrap;gap:.2rem 1.3rem;margin:1.2rem 0 0;padding:.5rem 0;border-top:1px solid color-mix(in srgb,var(--ink) 55%,transparent);border-bottom:1px dotted color-mix(in srgb,var(--ink) 55%,transparent);font-family:var(--font-mono);font-size:0.75rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+
+  .btns{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.4rem}
+  .btn{font-family:var(--font-mono);font-size:0.75rem;font-weight:600;display:inline-flex;align-items:center;min-height:2.75rem;padding:.55rem 1rem;border-radius:3px;border:1px solid var(--line-strong);color:var(--muted);background:transparent}
+  .btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none;background:var(--surface)}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+  .btn.primary:hover{background:var(--accent-bright);color:var(--on-accent)}
+
+  /* Fig. 1: the apps, one row each */
+  .apps{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-strong)}
+  .apps li{display:grid;grid-template-columns:11rem minmax(0,1.3fr) minmax(0,1fr) 9rem;gap:.3rem 1.2rem;padding:.9rem .2rem;border-bottom:1px solid var(--line);align-items:baseline}
+  .apps .hd{font-family:var(--font-mono);font-size:0.75rem;color:var(--hint);padding:.5rem .2rem}
+  .apps .nm{font-weight:650;font-size:1.05rem}
+  .apps .nm a{color:var(--ink);border-bottom:1px solid var(--line-strong)}
+  .apps .nm a:hover{text-decoration:none;border-bottom-color:var(--accent)}
+  .apps .dc{color:var(--ink);font-size:0.98rem}
+  .apps .src{font-family:var(--font-mono);font-size:0.75rem;line-height:1.5;color:var(--ochre)}
+  .apps .src a{color:inherit;border-bottom:1px dotted var(--ochre)}
+  .apps .src a:hover{text-decoration:none}
+  .apps .st{font-family:var(--font-mono);font-size:0.75rem;color:var(--muted);line-height:1.5}
+  .apps .st b{display:block;color:var(--ink)}
+  .apps li.unbuilt{background:repeating-linear-gradient(-45deg,var(--hatch) 0 1px,transparent 1px 7px)}
+  .apps li.unbuilt .src{color:var(--muted)}
+  .apps .lbl{display:none}
+
+  .notes{margin:1.8rem 0 0;max-width:66ch}
+  .notes p{margin:0 0 .9rem}
+  .notes .h{font-style:italic;font-weight:650}
+  .notes .dev{padding-left:1rem;border-left:2px solid var(--graphite)}
+  .notes .fur{padding-left:1rem;border-left:2px dotted var(--line-strong)}
+
+  /* Fig. 2: shared and local */
+  .kept h3{font-size:1.1rem;font-style:italic;font-weight:500;margin:0 0 .5rem}
+  .kept ul{margin:0;padding:0;list-style:none}
+  .kept li{padding:.5rem 0;border-top:1px solid var(--line);font-size:0.98rem}
+  .kept li:first-child{border-top:0}
+  .kept li b{font-weight:650}
+
+  /* Fig. 3: where each shared value lands */
+  .carry{width:100%;border-collapse:collapse;font-size:0.95rem}
+  .carry th,.carry td{padding:.5rem .45rem;text-align:left;border-bottom:1px solid var(--line)}
+  .carry thead th{font-family:var(--font-mono);font-size:0.75rem;font-weight:600;color:var(--hint);vertical-align:bottom}
+  .carry tbody th{font-weight:650}
+  .carry td{font-family:var(--font-mono);font-size:0.8rem;color:var(--accent)}
+  .carry td.home{background:repeating-linear-gradient(-45deg,var(--hatch) 0 1px,transparent 1px 5px)}
+  .carry tfoot td,.carry tfoot th{font-family:var(--font-mono);font-size:0.75rem;color:var(--muted);border-bottom:0;border-top:2px solid var(--line-strong)}
+  .legend{display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--hint);margin:.7rem 0 0}
+  .legend i{display:inline-block;width:1.1rem;height:.7rem;border:1px solid var(--line-strong);vertical-align:-.05rem;margin-right:.35rem}
+  .legend i.h{background:repeating-linear-gradient(-45deg,var(--hatch) 0 1px,transparent 1px 4px)}
+  .vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+  /* checklists */
+  .checks{margin:0;padding:0 0 0 1.4rem;max-width:66ch}
+  .checks li{padding:.35rem 0 .35rem .3rem}
+  .checks li b{font-weight:650}
+  .checks li::marker{font-family:var(--font-mono);font-size:0.8rem;color:var(--hint)}
+  .files{font-family:var(--font-mono);font-size:0.86rem;margin:0 0 1rem;color:var(--muted)}
+
+  footer{border-top:1px solid var(--line);padding:1.7rem 0 2.7rem;color:var(--hint);font-size:0.86rem}
+  .footlinks{display:flex;gap:.2rem 1rem;flex-wrap:wrap;margin-top:.45rem;font-family:var(--font-mono);font-size:0.75rem}
+  .footlinks a{color:var(--muted);padding:.3rem 0}
+
+  @media (max-width:820px){
+    .two{grid-template-columns:1fr}
+    .apps .hd{display:none}
+    .apps li{grid-template-columns:1fr;gap:.2rem;padding:1rem .2rem}
+    .apps .lbl{display:inline;color:var(--hint)}
+  }
+  @media (max-width:520px){
+    body{font-size:1rem}
+    .carry th,.carry td{padding:.45rem .25rem}
+    .carry td{font-size:0.75rem}
+  }
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="wrap">
-  <nav class="nav" aria-label="Values Commons">
+<header class="masthead">
+  <div class="wrap">
     <a class="brand" href="../index.html">&#9671; Values Commons</a>
-    <div class="links">
-      <a href="../standard/index.html">For builders</a>
+    <nav class="exits" aria-label="Explore the apps">
+      <a href="../app/index.html">Conscious Consuming</a>
+      <a href="../kosplora/index.html">Kosplora</a>
+      <a href="messages/index.html">Where to Message</a>
       <a href="../passport/index.html">Your values</a>
-      <a href="../weave/index.html">Ownership map</a>
-      <a href="../contribute/index.html">Help out</a>
-      <a class="cta" href="#create">Build another app</a>
-    </div>
-  </nav>
-
-  <div class="spinebar" aria-label="Explore the apps">
-    <span>Explore the apps</span>
-    <a aria-current="page" href="../instances/index.html">Catalogue</a>
-    <a href="../passport/index.html">Your values</a>
-    <a href="../kosplora/index.html">Kosplora</a>
-    <a href="messages/index.html">Where to Message</a>
-    <a href="../workshop/index.html">Workshop</a>
-    <a href="../docs/ADOPTION-KIT.md">Adoption guide</a>
-    <a href="../docs/CREATE-AN-INSTANCE.md">Build guide</a>
+      <a href="#create">Build the next app</a>
+    </nav>
   </div>
-  <p class="spinenote">Each app covers a different subject. The same values file and scoring engine work across all of them.</p>
+</header>
 
-  <main id="main" tabindex="-1">
-    <header class="hero">
-      <p class="kicker">Use it in different subjects</p>
-      <h1>Apps that can read the same values file</h1>
-      <p class="lede">Each app has its own subject, facts, and language. They belong here only if your values can travel in and every claim can be checked.</p>
-      <div class="actions">
-        <a class="btn primary" href="#proofs">Compare the live apps</a>
+<main id="main" tabindex="-1">
+  <header class="hero">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">The apps</span><span class="fig">Three apps on one scoring engine, and how to build a fourth.</span></p>
+      <h1>Three apps that read the same values file</h1>
+      <p class="lede">I built Conscious Consuming first, for everyday spending. Then I wanted to know whether the engine under it was general, or whether it only worked for shopping. So I built two more on the same code, one about learning and one about messaging, and changed only the facts and the look.</p>
+      <p class="lede">They work. Set your weights once and <b>the same file</b> ranks groceries, reading lists and messengers. This page shows what the three share, where they differ, and how to make a fourth.</p>
+      <p class="receipt"><span>3 apps</span><span>1 scoring engine</span><span>10 shared values</span><span>0 accounts</span><span>Checked 29 Sept 2026</span></p>
+      <div class="btns">
+        <a class="btn primary" href="#proofs">Compare the three</a>
         <a class="btn" href="#create">Build the next app</a>
         <a class="btn" href="../docs/ADOPTION-KIT.md">Read the adoption guide</a>
-        <a class="btn" href="../docs/CREATE-AN-INSTANCE.md">Read the build guide</a>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <section class="band" id="proofs">
-      <p class="kicker">Live and illustrative</p>
-      <h2>Three apps, same engine</h2>
-      <p class="intro">Conscious Consuming is the real-data flagship. The other two show how the same engine can move into new subjects with only new facts and a new look.</p>
-      <div class="grid">
-        <a class="card" href="../app/index.html"><span class="tag"><span class="livedot" aria-hidden="true"></span>Live data</span><h3>Conscious Consuming</h3><p>Everyday dollar decisions across sourced categories.</p></a>
-        <a class="card" href="../kosplora/index.html"><span class="tag">Learning demo</span><h3>Kosplora</h3><p>A learning atlas with real routes: at every station, your values choose the resource.</p></a>
-        <a class="card" href="messages/index.html"><span class="tag">Messaging demo</span><h3>Where to Message</h3><p>A messenger choice tool for privacy, openness, reach, and practical adoption.</p></a>
-        <a class="card" href="#create"><span class="tag">Next app</span><h3>Your subject</h3><p>A nonprofit guide, local civic map, school resource list, buyer guide, or movement plan.</p></a>
+  <section class="plate" id="proofs">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">Plate I</span><span class="fig">Fig. 1. Each app, the decision it helps with, and where its facts come from.</span></p>
+      <h2>What each one decides</h2>
+      <p class="lead">One is a working app with real data. Two are demos, and they say so on their own pages. The hatched row is the one nobody has built yet.</p>
+      <ol class="apps">
+        <li class="hd" aria-hidden="true"><span>App</span><span>The decision</span><span>Where the facts come from</span><span>State</span></li>
+        <li><span class="nm"><a href="../app/index.html">Conscious Consuming</a></span><span class="dc">Where your everyday money goes, across 140+ categories from banks to bread.</span><span class="src"><span class="lbl">Facts: </span>Open datasets, public filings and hand-checked citations. Every scored fact carries a source record. <a href="../app/index.html#guide/how-scores-work">How scores are made</a></span><span class="st"><b>Live</b>Real data, dated</span></li>
+        <li><span class="nm"><a href="../kosplora/index.html">Kosplora</a></span><span class="dc">What to read, watch or try next, one station at a time along a route that starts from a real question.</span><span class="src"><span class="lbl">Facts: </span>Each source on a route carries its author and date.</span><span class="st"><b>Learning demo</b>3 routes, 12 older reading lists</span></li>
+        <li><span class="nm"><a href="messages/index.html">Where to Message</a></span><span class="dc">Which messenger to use, weighing privacy, openness and how many of your people are already there.</span><span class="src"><span class="lbl">Facts: </span>Public characteristics as of 2026: encryption defaults, ownership, licence. <a href="messages/lens.js">The whole list</a></span><span class="st"><b>Messaging demo</b>7 messengers, scores illustrative</span></li>
+        <li class="unbuilt"><span class="nm">Your subject</span><span class="dc">A school's reading list, a co-op's supplier choice, a town's map of repair shops.</span><span class="src"><span class="lbl">Facts: </span>Yours, each with its source.</span><span class="st"><b>Not built</b><a href="#create">Build it</a></span></li>
+      </ol>
+
+      <div class="notes">
+        <p><span class="h">What's happening.</span> All three rank with the same scoring code, <code>app/engine.js</code>, and lay out their answers with the same decision page, <code>app/decision.js</code>. Each app owns one list of options and facts, and one stylesheet. Where to Message was built without a single edit to the shared files.</p>
+        <p><span class="h">Why it matters.</span> If the engine only worked for shopping, your values file would be a shopping file. Because it carries across subjects, the weights you set once can come with you into an app you have never opened, and a school or a co-op can build one without writing a scoring system of its own.</p>
+        <p class="dev"><span class="h">Devil's advocate.</span> Three is a small number, and I built all three, so they share my blind spots. Two are demos. Where to Message ranks seven messengers on scores I assigned from public facts, and nobody outside this project has used a Kosplora route yet. What the three prove so far is that the engine works across subjects. They do not prove anyone else can build a fourth. That is the next test.</p>
+        <p class="fur"><span class="h">Rabbit hole.</span> Open <a href="messages/lens.js">Where to Message's lens.js</a>. It is one file of options, facts and value mappings, and it is the only code that app owns.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="band">
-      <p class="kicker">What every app shares</p>
-      <h2>What stays shared, what changes</h2>
-      <p class="intro">Each app should feel native to its subject without trapping people or changing the core. The portability test is simple: can a values file travel in, and can the facts be inspected or patched?</p>
-      <div class="matrix">
-        <div><b>Shared engine</b> Scoring, bands, values files, group combining, plan-building, and graph tools stay common.</div>
-        <div><b>Shared shell</b> Ranking, sliders, verdict details, import/export, and the on-device flow stay reusable.</div>
-        <div><b>Local facts</b> The subject chooses its options, criteria, source notes, and honest scope.</div>
-        <div><b>Local look</b> The app can look and sound like its own world while keeping the same ethics.</div>
+  <section class="plate" id="shared">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">Plate II</span><span class="fig">Fig. 2. What every app shares, and what each one can change.</span></p>
+      <h2>What every app shares</h2>
+      <p class="lead">An app can look and read like its subject. It cannot lock you in, sell a ranking or change the math. Two questions decide whether it belongs here: can your values file come in, and can anyone check and correct the facts?</p>
+      <div class="two kept">
+        <div class="card">
+          <h3>Shared by all of them</h3>
+          <ul>
+            <li><b>The scoring engine.</b> Weights, scores, bands, and combining a group's files.</li>
+            <li><b>The decision page.</b> Sliders, ranked answers, the math behind each one, import and export.</li>
+            <li><b>The values file.</b> One small file with your weights and no name in it.</li>
+            <li><b>The promises.</b> No account, no tracking, no ads, and nobody pays to rank. It all runs in your browser.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Each app's own</h3>
+          <ul>
+            <li><b>The options and facts.</b> What gets compared, with a source for each fact.</li>
+            <li><b>The criteria.</b> Named in the subject's own words: "encryption", "rigor", "cost".</li>
+            <li><b>The look and the language.</b> Kosplora is dark indigo; Where to Message is teal with a sans serif face.</li>
+            <li><b>The scope.</b> What the app does not cover, stated on the page.</li>
+          </ul>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="band">
-      <p class="kicker">How values carry over</p>
-      <h2>Values travel where the subject can honestly express them</h2>
-      <p class="intro">Each app maps broad values into local criteria through <code>universalToLocal</code>. A value that does not belong in the subject should be reported as not transferred, not smuggled into a fake score.</p>
-      <div class="matrix">
-        <div><b>Universal vocabulary</b> Planet, people, openness, access, wellbeing, autonomy, animals, community, quality, and joy.</div>
-        <div><b>Kosplora carries</b> Openness, access, quality, joy, wellbeing, people, and community into learning-resource criteria.</div>
-        <div><b>Where to Message carries</b> Autonomy, openness, access, community, and wellbeing into messaging criteria.</div>
-        <div><b>What stays home</b> Unsupported values stay visible as not transferred, so the user can see the boundary instead of trusting a fiction.</div>
+  <section class="plate" id="carry">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">Plate III</span><span class="fig">Fig. 3. The ten shared values, and which criterion each one maps to in each app.</span></p>
+      <h2>How values carry over</h2>
+      <p class="lead">Each app keeps a short map, <code>universalToLocal</code>, from the ten shared values to its own criteria. If no criterion in an app can honestly hold a value, the value stays home. The app says so, and does not make up a score for it.</p>
+      <div class="card">
+        <table class="carry">
+          <thead><tr><th scope="col">Shared value</th><th scope="col">Conscious Consuming</th><th scope="col">Kosplora</th><th scope="col">Where to Message</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Planet</th><td>planet</td><td class="home"><span class="vh">stays home</span></td><td class="home"><span class="vh">stays home</span></td></tr>
+            <tr><th scope="row">People</th><td>people</td><td>open</td><td class="home"><span class="vh">stays home</span></td></tr>
+            <tr><th scope="row">Openness</th><td>honesty</td><td>open</td><td>open</td></tr>
+            <tr><th scope="row">Access</th><td>cost</td><td>ease</td><td>ease</td></tr>
+            <tr><th scope="row">Wellbeing</th><td>health</td><td>ease</td><td>private</td></tr>
+            <tr><th scope="row">Autonomy</th><td>privacy</td><td class="home"><span class="vh">stays home</span></td><td>private</td></tr>
+            <tr><th scope="row">Animals</th><td>animals</td><td class="home"><span class="vh">stays home</span></td><td class="home"><span class="vh">stays home</span></td></tr>
+            <tr><th scope="row">Community</th><td>local</td><td>open</td><td>reach</td></tr>
+            <tr><th scope="row">Quality</th><td class="home"><span class="vh">stays home</span></td><td>rigor</td><td class="home"><span class="vh">stays home</span></td></tr>
+            <tr><th scope="row">Joy</th><td class="home"><span class="vh">stays home</span></td><td>ease</td><td class="home"><span class="vh">stays home</span></td></tr>
+          </tbody>
+          <tfoot><tr><th scope="row">Carried</th><td>8 of 10</td><td>7 of 10</td><td>5 of 10</td></tr></tfoot>
+        </table>
+        <p class="legend"><span><i></i>carried over to the criterion named in the cell</span><span><i class="h"></i>stays home, because no criterion in that app can honestly hold it</span></p>
       </div>
-    </section>
+      <p class="cap">Taken from each app's own map, <code>UNIVERSAL2CC</code> in <code>app/app.js</code> and <code>universalToLocal</code> in <code>kosplora/lens.js</code> and <a href="messages/lens.js"><code>instances/messages/lens.js</code></a>. What the file carries and what it leaves out is on <a href="../passport/index.html">the values file page</a>.</p>
+      <p class="hand">No messenger gets a planet score here, because I have no sources for one.</p>
+    </div>
+  </section>
 
-    <section class="band" id="readiness">
-      <p class="kicker">Before a new app is public</p>
-      <h2>What the next app needs before it is public</h2>
-      <p class="intro">A new subject should feel independent, but it must still keep the commons promises: portable values, inspectable evidence, and no pay-to-rank.</p>
-      <div class="checkgrid">
-        <div><b>Plain decision</b> Name the real choice and who needs it.</div>
-        <div><b>Sourced facts</b> Use sources for strong claims, dates for facts, and honest labels for judgements.</div>
-        <div><b>Visible path</b> Link back to Values Commons, the values file, fact repair, and neighboring apps.</div>
-        <div><b>Values bridge</b> State which universal values transfer into the local vocabulary.</div>
-        <div><b>Trust boundary</b> Keep the core no-account, no-tracking, no-ads, no-pay-to-rank, and static-capable.</div>
-        <div><b>Clear corrections</b> Show where to send a better source, missing option, or alternate facts file.</div>
-      </div>
-    </section>
+  <section class="plate" id="readiness">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">Before a new app is public</span><span class="fig">Six things that should be true before you share it.</span></p>
+      <h2>What the next app needs first</h2>
+      <p class="lead">A new app can look like anything. It still keeps the promises the other three keep: your values file works, the evidence can be checked, and nobody pays to rank.</p>
+      <ol class="checks">
+        <li><b>A plain decision.</b> Name the real choice and who has to make it.</li>
+        <li><b>Sourced facts.</b> A source for every strong claim, a date on every fact, and a label on anything that is a judgement.</li>
+        <li><b>Links back.</b> To Values Commons, the values file, fact repair and the other apps.</li>
+        <li><b>A values map.</b> Say which of the ten shared values carry over, and which stay home.</li>
+        <li><b>The same promises.</b> No account, no tracking, no ads, no pay-to-rank, and it still works as plain files on a static host.</li>
+        <li><b>An address for corrections.</b> Show where a better source, a missing option or a whole replacement facts file should go.</li>
+      </ol>
+    </div>
+  </section>
 
-    <section class="band" id="steward">
-      <p class="kicker">New subject brief</p>
+  <section class="plate" id="steward">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">New subject brief</span><span class="fig">Six questions to answer in writing.</span></p>
       <h2>Write this before code</h2>
-      <p class="intro">A clear decision and a small set of sourced facts matter more than a new interface. Write down who the app serves and which values truly belong in the comparison.</p>
-      <div class="matrix">
-        <div><b>Decision</b> What real choice should this app help someone rank or decide?</div>
-        <div><b>Audience</b> Who needs it first, and what language would make the domain feel native to them?</div>
-        <div><b>Starter facts</b> What 8-20 options and 3-7 criteria are enough to prove the subject?</div>
-        <div><b>Values bridge</b> Which universal values transfer, and which should stay visibly not transferred?</div>
-        <div><b>Source floor</b> What claims need citations before the app is trustworthy enough to share?</div>
-        <div><b>Contribution route</b> Where do corrections, missing options, forks, and disputes go after launch?</div>
-      </div>
-      <div class="actions">
+      <p class="lead">A clear decision and a small set of sourced facts will do more for an app than any interface. Answer these first. If one has no answer yet, start there.</p>
+      <ol class="checks">
+        <li><b>Decision.</b> What real choice should this app help someone make?</li>
+        <li><b>Audience.</b> Who needs it first, and what words do they already use for it?</li>
+        <li><b>Starter facts.</b> Which 8 to 20 options and 3 to 7 criteria are enough to show it works?</li>
+        <li><b>Values map.</b> Which shared values carry over, and which should visibly stay home?</li>
+        <li><b>Citations.</b> Which claims need a citation before you would let a friend rely on it?</li>
+        <li><b>Corrections.</b> After launch, where do fixes, missing options, forks and disputes go?</li>
+      </ol>
+      <div class="btns">
         <a class="btn primary" href="../docs/ADOPTION-KIT.md#new-subject-brief">Use the new-subject brief</a>
         <a class="btn" href="../docs/CREATE-AN-INSTANCE.md#instance-steward-brief">Use the full brief</a>
-        <a class="btn" href="../contribute/index.html">Plan contributions</a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="band" id="create">
-      <p class="kicker">Create one</p>
-      <h2>Build from one facts file</h2>
-      <div class="build">
-        <p class="intro" style="margin-bottom:.4rem">Define the options and criteria, choose a look for the subject, then use the shared shell and engine. The app can remain fully static. <a href="new/index.html"><b>Open the starter builder &rarr;</b></a> to make and download the facts file and page.</p>
-        <p><code>lens.js</code> + <code>index.html</code> skin + <code>engine.js</code> + <code>shell.js</code></p>
-        <div class="steps">
-          <div><b>1. Name the decision.</b> What choices should be ranked, and for whom?</div>
-          <div><b>2. Source the facts.</b> Each assessed claim needs a reason, URL, and date.</div>
-          <div><b>3. Keep the values portable.</b> Accept exported values instead of trapping users.</div>
-          <div><b>4. Publish static.</b> A folder on a static host is enough for the core.</div>
-        </div>
-        <div class="actions">
-          <a class="btn primary" href="../docs/CREATE-AN-INSTANCE.md">Read the implementation guide</a>
-          <a class="btn" href="../docs/ADOPTION-KIT.md">Start with the adoption guide</a>
-          <a class="btn" href="../workshop/index.html">Open the Lens Workshop</a>
-        </div>
+  <section class="plate" id="create">
+    <div class="wrap">
+      <p class="plate-id"><span class="pn">Plate IV</span><span class="fig">Fig. 4. The four files an app is made of.</span></p>
+      <h2>Build the next app</h2>
+      <p class="lead">An app is a folder. You write the facts file and the page; the engine and the shell are shared, and you link to them. Any static host is enough.</p>
+      <p class="files"><code>lens.js</code> your facts + <code>index.html</code> your page + <code>engine.js</code> + <code>shell.js</code></p>
+      <ol class="checks">
+        <li><b>Name the decision.</b> Which options get ranked, and for whom?</li>
+        <li><b>Source the facts.</b> Each score needs a reason, a link and a date.</li>
+        <li><b>Take values files in.</b> Accept a file someone made elsewhere, and let them take it back out.</li>
+        <li><b>Publish it as files.</b> A folder on any static host runs the whole thing.</li>
+      </ol>
+      <div class="btns">
+        <a class="btn primary" href="new/index.html">Open the starter builder</a>
+        <a class="btn" href="../docs/CREATE-AN-INSTANCE.md">Read the build guide</a>
+        <a class="btn" href="../workshop/index.html">Open fact repair</a>
       </div>
-    </section>
-  </main>
+      <p class="hand">Want to kick the tires? The builder opens with a coffee example already loaded. Try to get a score in without a source.</p>
+    </div>
+  </section>
+</main>
 
-  <footer>
-    <div>Values Commons - powered by the Open Values Standard.</div>
-    <div class="footlinks">
+<footer>
+  <div class="wrap">
+    <div>Values Commons, built on the <a href="../standard/index.html">Open Values Standard</a>.</div>
+    <nav class="footlinks" aria-label="Site">
       <a href="../index.html">Home</a>
       <a href="../tour/index.html">Tour</a>
       <a href="../standard/index.html">For builders</a>
       <a href="../passport/index.html">Your values</a>
-      <a href="../contribute/index.html">Help out</a>
       <a href="../funders/index.html">Funders</a>
-    </div>
-  </footer>
-</div>
+    </nav>
+    <!-- family:start -->
+<style>
+  /* sizes, spacing and case follow research/design_system_audit.js: the eight-step scale, the 0.25rem grid, no uppercase */
+  .fam{border-top:1px solid var(--line,#e3e7e5);margin-top:1.5rem;padding-top:1.25rem;grid-column:1/-1;flex-basis:100%;width:100%}
+  .fam-foot{border-top:1px solid var(--line,#e3e7e5);padding:1.25rem 0 2.5rem}
+  .fam-foot .fam,.fam-after .fam{border-top:0;margin-top:0}
+  .fam>p{margin:0 0 1rem;font-family:var(--font-mono,ui-monospace,monospace);font-size:.75rem;color:var(--hint,var(--muted,#566560))}
+  .fam-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(10.5rem,1fr));gap:1rem 1.5rem}
+  .fam-head{margin:0 0 .5rem;font-size:.86rem;font-weight:700;color:var(--ink,#18211d)}
+  .fam ul{list-style:none;margin:0;padding:0}
+  .fam li{margin:0 0 .5rem}
+  .fam a{display:block;text-decoration:none;color:inherit;border:0;box-shadow:none}
+  .fam a:hover .fam-name{text-decoration:underline}
+  .fam-name{display:block;font-size:.86rem;font-weight:600;color:var(--accent,#1d7a5a)}
+  .fam-desc{display:block;font-size:.75rem;line-height:1.4;color:var(--muted,#566560)}
+  .fam-you{display:inline-block;margin-top:.25rem;font-family:var(--font-mono,ui-monospace,monospace);font-size:.64rem;color:var(--ink,#18211d)}
+</style>
+<nav class="fam" aria-label="The Futurism Institute family">
+  <p>The Futurism Institute family</p>
+  <div class="fam-cols"><div><p class="fam-head">Start here</p><ul><li><a href="https://futurisminstitute.org"><span class="fam-name">Futurism Institute</span><span class="fam-desc">How the projects fit together</span></a></li></ul></div><div><p class="fam-head">Research</p><ul><li><a href="https://bentleymoon.com"><span class="fam-name">Bentley Moon</span><span class="fam-desc">Research record and films</span></a></li></ul></div><div><p class="fam-head">Records</p><ul><li><a href="https://bentleymoon.com/research/checking-ai/"><span class="fam-name">Checking AI</span><span class="fam-desc">When one AI can check another</span></a></li><li class="fam-here"><a href="https://valuescommons.org/app/"><span class="fam-name">Conscious Consuming</span><span class="fam-desc">Products and services, by what you care about</span><span class="fam-you">You are here</span></a></li><li><a href="https://dignityneeds.com"><span class="fam-name">Dignity Needs</span><span class="fam-desc">What every person should be able to expect</span></a></li><li><a href="https://kosplora.org"><span class="fam-name">Kosplora</span><span class="fam-desc">Learning and research tools</span></a></li><li><a href="https://legibleai.org"><span class="fam-name">Legible AI</span><span class="fam-desc">A first road into AI safety</span></a></li><li><a href="https://legibleai.org/searches/"><span class="fam-name">AI Searches</span><span class="fam-desc">A shared record of AI answers, with their sources</span></a></li></ul></div><div><p class="fam-head">Groups</p><ul><li><a href="https://socratichearth.org"><span class="fam-name">The Socratic Hearth</span><span class="fam-desc">Talk a question through, disagreements kept</span></a></li><li><a href="https://theworkparty.org"><span class="fam-name">The Work Party</span><span class="fam-desc">What a group agreed, as a file it keeps</span></a></li></ul></div><div><p class="fam-head">Places</p><ul><li><a href="https://earthenbeings.com"><span class="fam-name">Earthen Beings</span><span class="fam-desc">Communities and land projects in the Pacific Northwest</span></a></li><li><a href="https://basicdignity.com"><span class="fam-name">Basic Dignity</span><span class="fam-desc">Draft rules for whoever holds what a person needs, from a shared house to the companies that own AI.</span></a></li></ul></div></div>
+</nav>
+<!-- family:end -->
+  </div>
+</footer>
 <script src="../app/theme.js"></script>
 </body>
 </html>

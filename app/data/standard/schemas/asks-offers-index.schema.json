@@ -2,23 +2,23 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/asks-offers-index-v0.1.schema.json",
   "title": "Open Values Asks/Offers Index v0.1",
-  "description": "Generated board-ready index for file-based asks and offers.",
+  "description": "A ready-to-show version of the asks and offers file, with each related category, guide and organisation looked up and filled in, plus counts and filter lists. pipeline/build_initiatives.js builds it from content/asks-offers.json into app/data/asks-offers-index.json; change the source file, not this one.",
   "type": "object",
   "additionalProperties": true,
   "required": ["format", "version", "standard", "built", "purpose", "generatedFrom", "publication", "counts", "sections", "filters", "principles", "items"],
   "properties": {
-    "format": { "const": "open-values-asks-offers-index" },
-    "version": { "type": "string", "pattern": "^0\\.1\\.0(?:[-+].*)?$" },
-    "standard": { "const": "open-values-standard" },
-    "built": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
-    "purpose": { "$ref": "#/$defs/nonEmptyString" },
-    "generatedFrom": { "$ref": "#/$defs/generatedFrom" },
-    "publication": { "$ref": "#/$defs/publication" },
-    "counts": { "$ref": "#/$defs/counts" },
-    "sections": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/section" } },
-    "filters": { "$ref": "#/$defs/filters" },
-    "principles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-    "items": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/item" } }
+    "format": { "description": "Always \"open-values-asks-offers-index\". Tells a reader which Open Values format this is.", "const": "open-values-asks-offers-index" },
+    "version": { "description": "The version of the index format this file follows. Must start with 0.1.0.", "type": "string", "pattern": "^0\\.1\\.0(?:[-+].*)?$" },
+    "standard": { "description": "Always \"open-values-standard\", the standard this format belongs to.", "const": "open-values-standard" },
+    "built": { "description": "The date of the asks and offers file this index was built from, copied from that file's updated field, as YYYY-MM-DD.", "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "purpose": { "description": "A sentence saying what this index is for.", "$ref": "#/$defs/nonEmptyString" },
+    "generatedFrom": { "description": "The asks and offers file this index was built from, its date, and its hash, so anyone can check the index against it.", "$ref": "#/$defs/generatedFrom" },
+    "publication": { "description": "Copied unchanged from the asks and offers file: how it is published and what must stay out of it.", "$ref": "#/$defs/publication" },
+    "counts": { "description": "Totals across the file: items, asks, offers, templates, live items, and how many different categories, guides, initiatives, values and regions they mention.", "$ref": "#/$defs/counts" },
+    "sections": { "description": "The two groups a board shows, asks and offers, with how many items are in each.", "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/section" } },
+    "filters": { "description": "The distinct values an app can offer as filters, each list sorted alphabetically.", "$ref": "#/$defs/filters" },
+    "principles": { "description": "Copied unchanged from the asks and offers file: the rules it follows, one short sentence each.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "items": { "description": "Every ask and offer in the file, in file order, with its related categories, guides and initiatives looked up and filled in.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/item" } }
   },
   "$defs": {
     "nonEmptyString": { "type": "string", "minLength": 1 },
@@ -30,9 +30,9 @@
       "additionalProperties": false,
       "required": ["note", "source", "asof"],
       "properties": {
-        "note": { "$ref": "#/$defs/nonEmptyString" },
-        "source": { "type": "string", "pattern": "^https?://" },
-        "asof": { "type": "string", "pattern": "^(19|20)\\d{2}$" }
+        "note": { "description": "One sentence saying what the source shows.", "$ref": "#/$defs/nonEmptyString" },
+        "source": { "description": "The web address of the source, starting with http:// or https://.", "type": "string", "pattern": "^https?://" },
+        "asof": { "description": "The year the source was checked, as four digits, such as \"2026\".", "type": "string", "pattern": "^(19|20)\\d{2}$" }
       }
     },
     "generatedFrom": {
@@ -40,9 +40,9 @@
       "additionalProperties": false,
       "required": ["path", "updated", "sha256"],
       "properties": {
-        "path": { "const": "content/asks-offers.json" },
-        "updated": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
-        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        "path": { "description": "Always \"content/asks-offers.json\", the file this index is built from.", "const": "content/asks-offers.json" },
+        "updated": { "description": "The asks and offers file's own updated date, as YYYY-MM-DD.", "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+        "sha256": { "description": "The SHA-256 hash of the asks and offers file text at build time, in 64 lowercase hex characters.", "type": "string", "pattern": "^[0-9a-f]{64}$" }
       }
     },
     "publication": {
@@ -50,12 +50,12 @@
       "additionalProperties": true,
       "required": ["status", "storage", "relay", "identity", "liveDatabase", "privacy"],
       "properties": {
-        "status": { "enum": ["format-seed", "active", "archived"] },
-        "storage": { "$ref": "#/$defs/nonEmptyString" },
-        "relay": { "$ref": "#/$defs/nonEmptyString" },
-        "identity": { "$ref": "#/$defs/nonEmptyString" },
-        "liveDatabase": { "const": false },
-        "privacy": { "$ref": "#/$defs/nonEmptyString" }
+        "status": { "description": "Whether the file is a format seed (templates only), active (real asks and offers are being published), or archived.", "enum": ["format-seed", "active", "archived"] },
+        "storage": { "description": "How the records are stored, such as \"single-json-file\".", "$ref": "#/$defs/nonEmptyString" },
+        "relay": { "description": "The ways the file may be passed around, such as a static host or a repository discussion. A relay only moves the file and has no say over it.", "$ref": "#/$defs/nonEmptyString" },
+        "identity": { "description": "How the people behind asks and offers are identified, such as pseudonymous or named by choice.", "$ref": "#/$defs/nonEmptyString" },
+        "liveDatabase": { "description": "Always false: asks and offers live in a file, not in a live database.", "const": false },
+        "privacy": { "description": "What must never be published in the file, such as private contact details, exact addresses or the names of people being helped.", "$ref": "#/$defs/nonEmptyString" }
       }
     },
     "counts": {
@@ -63,16 +63,16 @@
       "additionalProperties": false,
       "required": ["items", "asks", "offers", "templates", "live", "categories", "guides", "initiatives", "values", "regions"],
       "properties": {
-        "items": { "type": "integer", "minimum": 1 },
-        "asks": { "type": "integer", "minimum": 0 },
-        "offers": { "type": "integer", "minimum": 0 },
-        "templates": { "type": "integer", "minimum": 0 },
-        "live": { "type": "integer", "const": 0 },
-        "categories": { "type": "integer", "minimum": 0 },
-        "guides": { "type": "integer", "minimum": 0 },
-        "initiatives": { "type": "integer", "minimum": 0 },
-        "values": { "type": "integer", "minimum": 0 },
-        "regions": { "type": "integer", "minimum": 0 }
+        "items": { "description": "How many asks and offers the file holds in all.", "type": "integer", "minimum": 1 },
+        "asks": { "description": "How many items are asks.", "type": "integer", "minimum": 0 },
+        "offers": { "description": "How many items are offers.", "type": "integer", "minimum": 0 },
+        "templates": { "description": "How many items have status template.", "type": "integer", "minimum": 0 },
+        "live": { "description": "How many items have status live. The schema fixes this at 0 while the file is a seed.", "type": "integer", "const": 0 },
+        "categories": { "description": "How many different categories the items point at.", "type": "integer", "minimum": 0 },
+        "guides": { "description": "How many different guides the items point at.", "type": "integer", "minimum": 0 },
+        "initiatives": { "description": "How many different initiatives the items point at.", "type": "integer", "minimum": 0 },
+        "values": { "description": "How many different values the items name.", "type": "integer", "minimum": 0 },
+        "regions": { "description": "How many different regions the items name.", "type": "integer", "minimum": 0 }
       }
     },
     "section": {
@@ -80,10 +80,10 @@
       "additionalProperties": false,
       "required": ["id", "label", "kind", "count"],
       "properties": {
-        "id": { "enum": ["asks", "offers"] },
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "kind": { "enum": ["ask", "offer"] },
-        "count": { "type": "integer", "minimum": 0 }
+        "id": { "description": "Which section this is: \"asks\" or \"offers\".", "enum": ["asks", "offers"] },
+        "label": { "description": "The heading to show for the section, such as \"Asks\".", "$ref": "#/$defs/nonEmptyString" },
+        "kind": { "description": "The item kind the section holds: \"ask\" or \"offer\".", "enum": ["ask", "offer"] },
+        "count": { "description": "How many items are in the section.", "type": "integer", "minimum": 0 }
       }
     },
     "filters": {
@@ -91,11 +91,11 @@
       "additionalProperties": false,
       "required": ["values", "regions", "categories", "guides", "initiatives"],
       "properties": {
-        "values": { "type": "array", "items": { "$ref": "#/$defs/universalValue" } },
-        "regions": { "type": "array", "items": { "$ref": "#/$defs/region" } },
-        "categories": { "type": "array", "items": { "$ref": "#/$defs/slug" } },
-        "guides": { "type": "array", "items": { "$ref": "#/$defs/slug" } },
-        "initiatives": { "type": "array", "items": { "$ref": "#/$defs/slug" } }
+        "values": { "description": "Every value named by at least one item.", "type": "array", "items": { "$ref": "#/$defs/universalValue" } },
+        "regions": { "description": "Every region named by at least one item.", "type": "array", "items": { "$ref": "#/$defs/region" } },
+        "categories": { "description": "Every category id named by at least one item.", "type": "array", "items": { "$ref": "#/$defs/slug" } },
+        "guides": { "description": "Every guide slug named by at least one item.", "type": "array", "items": { "$ref": "#/$defs/slug" } },
+        "initiatives": { "description": "Every initiative code named by at least one item.", "type": "array", "items": { "$ref": "#/$defs/slug" } }
       }
     },
     "category": {
@@ -103,13 +103,13 @@
       "additionalProperties": true,
       "required": ["id", "label"],
       "properties": {
-        "id": { "$ref": "#/$defs/slug" },
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "type": { "enum": ["Products", "Services", "Media", "Organizations", "Initiatives"] },
-        "domain": { "$ref": "#/$defs/nonEmptyString" },
-        "group": { "$ref": "#/$defs/nonEmptyString" },
-        "file": { "type": "string", "pattern": "^[a-z0-9-]+\\.json$" },
-        "n": { "type": "integer", "minimum": 0 }
+        "id": { "description": "The category id, such as \"password-managers\".", "$ref": "#/$defs/slug" },
+        "label": { "description": "The category name shown to readers, such as \"Password managers\". If the id is not found in the category index, this repeats the id.", "$ref": "#/$defs/nonEmptyString" },
+        "type": { "description": "What kind of thing the category covers: Products, Services, Media, Organizations, or Initiatives.", "enum": ["Products", "Services", "Media", "Organizations", "Initiatives"] },
+        "domain": { "description": "The broad area the category belongs to in the site navigation, such as \"Tech & digital\".", "$ref": "#/$defs/nonEmptyString" },
+        "group": { "description": "The group within that area, such as \"Digital services\", when the category has one.", "$ref": "#/$defs/nonEmptyString" },
+        "file": { "description": "The name of the category dataset file in app/data/, such as \"digital-services.json\".", "type": "string", "pattern": "^[a-z0-9-]+\\.json$" },
+        "n": { "description": "How many entries the category dataset holds.", "type": "integer", "minimum": 0 }
       }
     },
     "guide": {
@@ -117,10 +117,10 @@
       "additionalProperties": false,
       "required": ["id", "title", "path", "hash"],
       "properties": {
-        "id": { "$ref": "#/$defs/slug" },
-        "title": { "$ref": "#/$defs/nonEmptyString" },
-        "path": { "type": "string", "pattern": "^content/guides/[a-z0-9-]+\\.md$" },
-        "hash": { "type": "string", "pattern": "^#guide/[a-z0-9-]+$" }
+        "id": { "description": "The guide slug, such as \"private-messaging\".", "$ref": "#/$defs/slug" },
+        "title": { "description": "The guide's title, taken from its title line or first heading.", "$ref": "#/$defs/nonEmptyString" },
+        "path": { "description": "Where the guide lives in the repository, such as \"content/guides/private-messaging.md\".", "type": "string", "pattern": "^content/guides/[a-z0-9-]+\\.md$" },
+        "hash": { "description": "The link fragment that opens the guide in the app, such as \"#guide/private-messaging\".", "type": "string", "pattern": "^#guide/[a-z0-9-]+$" }
       }
     },
     "initiative": {
@@ -128,18 +128,19 @@
       "additionalProperties": true,
       "required": ["code", "name", "legitimacy", "actPath"],
       "properties": {
-        "code": { "$ref": "#/$defs/slug" },
-        "name": { "$ref": "#/$defs/nonEmptyString" },
-        "brand": { "$ref": "#/$defs/nonEmptyString" },
-        "focuses": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "description": { "$ref": "#/$defs/nonEmptyString" },
-        "legitimacy": { "$ref": "#/$defs/legitimacy" },
-        "actPath": { "$ref": "#/$defs/actPath" },
+        "code": { "description": "The initiative code, such as \"eff\", as used in the initiatives dataset.", "$ref": "#/$defs/slug" },
+        "name": { "description": "The name of the organization or project, such as \"Electronic Frontier Foundation\". If the code is not found in the dataset, this repeats the code.", "$ref": "#/$defs/nonEmptyString" },
+        "brand": { "description": "A short tag for what the initiative works on, such as \"digital rights\".", "$ref": "#/$defs/nonEmptyString" },
+        "focuses": { "description": "The topics the initiative is filed under, such as \"Privacy\" or \"Open source\".", "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "description": { "description": "One sentence on what the initiative does.", "$ref": "#/$defs/nonEmptyString" },
+        "legitimacy": { "description": "A line saying who the initiative is, with the source that backs it.", "$ref": "#/$defs/legitimacy" },
+        "actPath": { "description": "How a reader can act on the initiative: a link to follow, or a plain instruction.", "$ref": "#/$defs/actPath" },
         "scoreSignals": {
+          "description": "Three of the initiative's scores from the initiatives dataset, each from 0 to 100: impact, transparency, and ways_to_help.",
           "type": "object",
           "additionalProperties": true
         },
-        "links": { "type": "array" }
+        "links": { "description": "Links for the initiative, each with a label and a url, copied from the initiatives dataset.", "type": "array" }
       }
     },
     "related": {
@@ -147,9 +148,9 @@
       "additionalProperties": false,
       "required": ["categories", "guides", "initiatives"],
       "properties": {
-        "categories": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/category" } },
-        "guides": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/guide" } },
-        "initiatives": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/initiative" } }
+        "categories": { "description": "The related categories, each with its id, label and where it sits in the site.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/category" } },
+        "guides": { "description": "The related guides, each with its title, file path and app link.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/guide" } },
+        "initiatives": { "description": "The related initiatives, each with its name, description, source and how to act on it.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/initiative" } }
       }
     },
     "action": {
@@ -157,9 +158,9 @@
       "additionalProperties": false,
       "required": ["label", "listLabel", "items"],
       "properties": {
-        "label": { "enum": ["Ask", "Offer"] },
-        "listLabel": { "enum": ["Needs", "Offers"] },
-        "items": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+        "label": { "description": "The item kind as a heading: \"Ask\" or \"Offer\".", "enum": ["Ask", "Offer"] },
+        "listLabel": { "description": "The heading for the list below it: \"Needs\" for an ask, \"Offers\" for an offer.", "enum": ["Needs", "Offers"] },
+        "items": { "description": "The item's needs list for an ask, or its offers list for an offer.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
       }
     },
     "legitimacy": {
@@ -167,8 +168,8 @@
       "additionalProperties": false,
       "required": ["line", "source"],
       "properties": {
-        "line": { "$ref": "#/$defs/nonEmptyString" },
-        "source": { "$ref": "#/$defs/source" }
+        "line": { "description": "One sentence saying who the initiative is and what it does.", "$ref": "#/$defs/nonEmptyString" },
+        "source": { "description": "The source that backs that sentence.", "$ref": "#/$defs/source" }
       }
     },
     "actPath": {
@@ -176,10 +177,10 @@
       "additionalProperties": false,
       "required": ["kind", "label"],
       "properties": {
-        "kind": { "enum": ["url", "plain"] },
-        "label": { "$ref": "#/$defs/nonEmptyString" },
-        "url": { "type": "string", "pattern": "^https?://" },
-        "instruction": { "$ref": "#/$defs/nonEmptyString" }
+        "kind": { "description": "Whether the way to act is a link (\"url\") or a written instruction (\"plain\").", "enum": ["url", "plain"] },
+        "label": { "description": "The text to show for the action, such as \"Website\".", "$ref": "#/$defs/nonEmptyString" },
+        "url": { "description": "The web address to follow. Required when kind is url.", "type": "string", "pattern": "^https?://" },
+        "instruction": { "description": "What the reader should do, in words. Required when kind is plain.", "$ref": "#/$defs/nonEmptyString" }
       },
       "allOf": [
         {
@@ -197,19 +198,19 @@
       "additionalProperties": true,
       "required": ["id", "kind", "status", "title", "summary", "prompt", "audience", "values", "regions", "action", "related", "receipts", "limits"],
       "properties": {
-        "id": { "$ref": "#/$defs/slug" },
-        "kind": { "enum": ["ask", "offer"] },
-        "status": { "enum": ["template", "seed", "live", "archived"] },
-        "title": { "$ref": "#/$defs/nonEmptyString" },
-        "summary": { "$ref": "#/$defs/nonEmptyString" },
-        "prompt": { "$ref": "#/$defs/nonEmptyString" },
-        "audience": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
-        "values": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/universalValue" } },
-        "regions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/region" } },
-        "action": { "$ref": "#/$defs/action" },
-        "related": { "$ref": "#/$defs/related" },
-        "receipts": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/source" } },
-        "limits": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+        "id": { "description": "A unique name for this ask or offer, in lowercase letters, numbers and hyphens, such as \"ask-digital-safety-clinic\".", "$ref": "#/$defs/slug" },
+        "kind": { "description": "Whether this is an ask (someone needs help) or an offer (someone can give help).", "enum": ["ask", "offer"] },
+        "status": { "description": "Where the item stands: template (an example to copy), seed, live (a real request or offer), or archived.", "enum": ["template", "seed", "live", "archived"] },
+        "title": { "description": "A short heading for the item, such as \"We need help running a digital-safety clinic\".", "$ref": "#/$defs/nonEmptyString" },
+        "summary": { "description": "One or two sentences saying who needs or offers what.", "$ref": "#/$defs/nonEmptyString" },
+        "prompt": { "description": "The question or offer as the person would put it to a reader, such as \"Can you help run a calm digital-safety session for people who do not want jargon?\"", "$ref": "#/$defs/nonEmptyString" },
+        "audience": { "description": "The kinds of people or groups the item is for, such as \"library\" or \"mutual-aid group\".", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "values": { "description": "Which of the ten shared values the item serves, such as \"autonomy\" or \"community\". At least one.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/universalValue" } },
+        "regions": { "description": "Where the item applies: US, UK, EU, or global. At least one.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/region" } },
+        "action": { "description": "The item's kind as a heading, and its list of needs or offers.", "$ref": "#/$defs/action" },
+        "related": { "description": "The categories, guides and initiatives the item points at, looked up and filled in.", "$ref": "#/$defs/related" },
+        "receipts": { "description": "Sources a reader can follow to check the claims or resources the item relies on. At least one.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/source" } },
+        "limits": { "description": "What the item must not be used for or must not publish, one sentence each, such as \"Do not post invite links publicly.\" At least one.", "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
       }
     }
   }

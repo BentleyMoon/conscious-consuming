@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/lens-v0.1.schema.json",
   "title": "Open Values Lens v0.1",
-  "description": "A values-relative, sourced lens: criteria plus entities with sparse 0-100 scores and per-score provenance.",
+  "description": "A facts file for one kind of choice, such as banking: the criteria options are scored on, and every option with its scores from 0 to 100 and the source for each score. The site that publishes it keeps it, and anyone can copy it and correct it.",
   "type": "object",
   "required": [
     "meta",
@@ -33,35 +33,41 @@
   ],
   "properties": {
     "format": {
-      "const": "open-values-lens"
+      "const": "open-values-lens",
+      "description": "\"open-values-lens\" when present. Conscious Consuming's own facts files leave it out."
     },
     "version": {
       "type": "string",
-      "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$"
+      "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$",
+      "description": "The version of the lens format this file follows, 0.1, when present."
     },
     "meta": {
-      "$ref": "#/$defs/meta"
+      "$ref": "#/$defs/meta",
+      "description": "What the file covers and where its facts come from: its id, name, kind, sources, licence and starting weight settings."
     },
     "criteria": {
       "type": "array",
       "minItems": 1,
       "items": {
         "$ref": "https://openvaluesstandard.org/schema/criterion-v0.1.schema.json"
-      }
+      },
+      "description": "The things each entry is scored on, such as fossil-fuel financing or fees. Every score key used by an entry must be listed here."
     },
     "products": {
       "type": "array",
       "minItems": 1,
       "items": {
         "$ref": "https://openvaluesstandard.org/schema/entity-v0.1.schema.json"
-      }
+      },
+      "description": "The entries being compared, in Conscious Consuming's own facts files. A file has either products or resources, never both."
     },
     "resources": {
       "type": "array",
       "minItems": 1,
       "items": {
         "$ref": "https://openvaluesstandard.org/schema/entity-v0.1.schema.json"
-      }
+      },
+      "description": "The entries being compared, in facts files written for other apps that share the format, such as Kosplora's learning resources. A file has either products or resources, never both."
     }
   },
   "$defs": {
@@ -77,11 +83,13 @@
       "properties": {
         "id": {
           "type": "string",
-          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+          "description": "The file's id, in lower case with hyphens, such as \"banking\". It is unique across the catalogue and does not change."
         },
         "label": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "The name shown to people, such as \"Banking\"."
         },
         "type": {
           "type": "string",
@@ -91,38 +99,48 @@
             "Media",
             "Organizations",
             "Initiatives"
-          ]
+          ],
+          "description": "What kind of thing the entries are: Products, Services, Media, Organizations or Initiatives."
         },
         "domain": {
-          "type": "string"
+          "type": "string",
+          "description": "The area of life the file belongs to in navigation, such as \"Money\" or \"Food & drink\"."
         },
         "source": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "description": "Where the facts come from as a whole, either the name of an open database or a note that the facts were researched by hand for this file."
         },
         "attribution": {
-          "type": "string"
+          "type": "string",
+          "description": "A paragraph shown with the rankings: what the file covers, which sources each criterion is read from, what is left empty and why, and when it was last reviewed."
         },
         "license": {
-          "type": "string"
+          "type": "string",
+          "description": "The licence the file's underlying data is published under, such as \"ODbL 1.0\" for data from Open Food Facts or Open Beauty Facts."
         },
         "allergens": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "True for food and beauty files, where the app shows allergen information and lets a person exclude products by allergen. False hides those controls."
         },
         "productBase": {
-          "type": "string"
+          "type": "string",
+          "description": "A web address that an entry's code is added to, to link each entry to its record in the open database the facts came from, such as \"https://world.openbeautyfacts.org/product/\". Corrections then go to that database."
         },
         "presets": {
           "type": "object",
           "additionalProperties": {
             "$ref": "#/$defs/preset"
-          }
+          },
+          "description": "Ready-made weight settings a person can pick, keyed by the name shown on the button, such as \"Balanced\". If there are none, the app makes a Balanced preset with every criterion at 3."
         },
         "governance": {
-          "$ref": "#/$defs/governance"
+          "$ref": "#/$defs/governance",
+          "description": "Who may change the file and how changes are agreed, for files that take proposals from more than one group."
         },
         "decision": {
-          "$ref": "https://openvaluesstandard.org/schema/decision-contracts-v0.2.schema.json#/$defs/decision"
+          "$ref": "https://openvaluesstandard.org/schema/decision-contracts-v0.2.schema.json#/$defs/decision",
+          "description": "How the file is read as a decision: the plain sentence saying what it compares, the criteria that sentence rests on, and the trade-offs and picks the app shows. Defined in the decision contracts format."
         }
       }
     },
@@ -139,13 +157,15 @@
             "type": "number",
             "minimum": 0,
             "maximum": 5
-          }
+          },
+          "description": "The weight this preset gives each criterion, from 0 (ignore) to 5 (matters most), keyed by criterion key."
         },
         "x": {
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "description": "Allergen tags this preset excludes, such as \"peanut\". A product is kept only when its data says it is free of each one. Usually empty."
         }
       }
     },
@@ -154,16 +174,20 @@
       "additionalProperties": true,
       "properties": {
         "policy": {
-          "type": "string"
+          "type": "string",
+          "description": "The name of the change policy the file follows, such as \"format-seed\"."
         },
         "whoMayMerge": {
-          "type": "string"
+          "type": "string",
+          "description": "Who may accept a proposed change into the file."
         },
         "quorum": {
-          "type": "string"
+          "type": "string",
+          "description": "How much support a proposed change needs before it is accepted, or a note that no quorum exists yet."
         },
         "discussion": {
-          "type": "string"
+          "type": "string",
+          "description": "Where proposed changes to the file are recorded, such as a path to a proposals file."
         }
       }
     }

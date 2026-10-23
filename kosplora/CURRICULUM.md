@@ -33,7 +33,7 @@ This design follows established guidance on spacing, active retrieval, worked ex
 
 ## Demonstration scope
 
-- 12 guided routes
+- 24 guided routes
 - 60 route stages
 - 92 source-checked resource records
 - 9 expanded discovery shelves

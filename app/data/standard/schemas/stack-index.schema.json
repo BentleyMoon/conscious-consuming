@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/stack-index-v0.1.schema.json",
   "title": "Open Values Stack Index v0.1",
-  "description": "A content-addressed index of published lens snapshots.",
+  "description": "A list of fixed copies of a site's facts files, each named by the SHA-256 hash of its contents, so a copy can be checked after download. The site's build writes it.",
   "type": "object",
   "additionalProperties": true,
   "required": [
@@ -16,33 +16,40 @@
   ],
   "properties": {
     "format": {
-      "const": "open-values-stack-index"
+      "const": "open-values-stack-index",
+      "description": "Always \"open-values-stack-index\". Tells a reader that this file lists fixed copies of facts files."
     },
     "version": {
       "type": "string",
-      "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$"
+      "pattern": "^0\\.1(?:\\.0)?(?:[-+].*)?$",
+      "description": "The version of the stack index format this file follows, 0.1."
     },
     "generatedAt": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "description": "When the site build wrote this file, as an ISO 8601 date and time in UTC."
     },
     "sourceDoor": {
       "type": "string",
-      "pattern": "^https?://"
+      "pattern": "^https?://",
+      "description": "The address of the site's door file (/.well-known/open-values.json) that points to this index."
     },
     "hash": {
-      "const": "sha256"
+      "const": "sha256",
+      "description": "Always \"sha256\": the hash used to name and check each copy."
     },
     "description": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "description": "A sentence for readers saying what the index holds and that each copy's hash should be checked before it is trusted."
     },
     "lenses": {
       "type": "array",
       "minItems": 1,
       "items": {
         "$ref": "#/$defs/lens"
-      }
+      },
+      "description": "One row for each fixed copy of a facts file."
     }
   },
   "$defs": {
@@ -65,30 +72,37 @@
       "properties": {
         "id": {
           "type": "string",
-          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+          "description": "The facts file's id, such as \"banking\"."
         },
         "sha256": {
-          "$ref": "#/$defs/sha256"
+          "$ref": "#/$defs/sha256",
+          "description": "The SHA-256 hash of the copy's bytes, 64 hexadecimal characters. The copy is named by it."
         },
         "integrity": {
           "type": "string",
-          "pattern": "^sha256-[0-9a-f]{64}$"
+          "pattern": "^sha256-[0-9a-f]{64}$",
+          "description": "The same hash written as \"sha256-\" followed by the hex digest."
         },
         "path": {
           "type": "string",
-          "pattern": "^/stacks/lens/[a-z0-9]+(?:-[a-z0-9]+)*/[0-9a-f]{64}\\.json$"
+          "pattern": "^/stacks/lens/[a-z0-9]+(?:-[a-z0-9]+)*/[0-9a-f]{64}\\.json$",
+          "description": "Where the copy is on the site, as /stacks/lens/<id>/<sha256>.json."
         },
         "url": {
           "type": "string",
-          "pattern": "^https?://"
+          "pattern": "^https?://",
+          "description": "The full address of the copy. It does not change, because a new version of the file gets a new hash and a new address."
         },
         "canonicalData": {
           "type": "string",
-          "pattern": "^https?://"
+          "pattern": "^https?://",
+          "description": "The address of the live data file, which changes as the facts are updated."
         },
         "license": {
           "type": "string",
-          "pattern": "^https?://"
+          "pattern": "^https?://",
+          "description": "The address of the licence the data is published under."
         }
       }
     }

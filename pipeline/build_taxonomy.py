@@ -16,7 +16,7 @@ Arbitrary nesting sounds more capable and navigates worse: a reader cannot learn
 depth changes per branch. Capability lives in the facets instead, which cross the tree.
 
 THE WORK UNIT IS THE DECISION. One comparable choice a person actually faces. Its id is unique
-across the whole map, which is what lets a swarm of agents claim units without collision, and what
+across the whole map, which is what lets several parallel build lanes claim units without collision, and what
 makes "how much of the map is built" a countable question.
 
 INHERITANCE. need, type, mode, cadence, and actor flow realm -> field -> family -> decision, so a
@@ -127,12 +127,14 @@ def check_front_page_counts(counts):
     if not 1000 <= counts['decisions'] < 2000:
         raise Fail(f"the front page says \"more than a thousand decisions\" and the map now holds "
                    f"{counts['decisions']}. Rewrite that phrase in app/app.js.")
-    want = (f"{spell(counts['realms']).capitalize()} realms, {spell(counts['fields'])} fields, "
+    # "areas", not "realms", since 81d019750 (2026-09-28): the front page speaks the reader's
+    # word and keeps realm as internal vocabulary. The gate follows the page; the counts do not.
+    want = (f"{spell(counts['realms']).capitalize()} areas, {spell(counts['fields'])} fields, "
             f"more than a thousand decisions")
     page = open(HOME, encoding='utf-8').read()
     if want in page:
         return
-    marker = ' realms, '
+    marker = ' areas, '
     saw = ''
     at = page.find(marker)
     if at != -1:

@@ -1,0 +1,874 @@
+{
+  "meta": {
+    "id": "online-pharmacies-and-prescription-delivery",
+    "label": "Online pharmacies and prescription delivery",
+    "type": "Services",
+    "primaryAxis": "safety",
+    "tradeoff": [
+      "safety",
+      "accessibility"
+    ],
+    "tradeoffLabels": [
+      "cleanest GPhC inspection record",
+      "handles NHS prescriptions"
+    ],
+    "source": "Conscious Consuming",
+    "attribution": "Covers pharmacies registered with the General Pharmaceutical Council (GPhC) that supply medicines online in Great Britain, plus the local NHS pharmacy as the route that needs no online service. Every score comes from a public regulator record read on 29 September 2026. The safety score reads GPhC's inspection portal, which reports Standards met or Standards not all met for each registered premises and publishes reports only for inspections since April 2019. A report covers the premises against five principles, and it does not rate delivery, prices or the doctors who write private prescriptions. A latest result of met with a Good practice rating and no earlier failure scores 95, met with no earlier failure scores 90, met after an earlier failure scores 70, not all met after a met result scores 30, and two not-all-met results in a row score 15. A premises with no published report is left unscored. The enforcement score reads two fields on GPhC's register, Subject to notices and conditions and Enforcement history, and the enforcement summary each one links. No entry scores 90, an ended action such as revoked conditions scores 55, and a notice in force scores 10. The advertising score counts rulings in the public search of the Advertising Standards Authority (ASA), by the owner's and trading names. No ruling on medicines or pharmacy services scores 90, one or two upheld rulings score 40, and three or more score 15. Informally resolved cases are reported in the notes and are not scored. The NHS score is 100 for a pharmacy on NHS's list of online-only pharmacies, 60 where GPhC's report says it dispenses only a small number of NHS prescriptions, and 20 where GPhC's report says the pharmacy holds no NHS contract or describes only private prescribing and dispensing. A pharmacy whose report does not say either is left unscored. Across all internet and distance-selling pharmacies, GPhC's search lists 549 published inspection reports and 135 of them, 25 per cent, are Standards not all met, against 1,283 of 8,215, 16 per cent, for community pharmacies. Prices and delivery charges are not scored, because the sites of Pharmacy2U, Chemist4U, Oxford Online Pharmacy and The Independent Pharmacy refused automated requests, and a comparison built only on the sites that answered would favour whoever blocks least. Companies that run more than one registered premises appear once, scored on the premises named in the notes. Not medical advice. A pharmacist or doctor can advise on medicines, and GPhC's register shows whether a pharmacy is registered. Reviewed 2026-09. Suggest changes via Contribute.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": {
+          "safety": 3,
+          "health": 3,
+          "complaints": 2,
+          "accessibility": 2
+        },
+        "x": []
+      },
+      "NHS repeat prescriptions": {
+        "w": {
+          "accessibility": 5,
+          "safety": 4,
+          "health": 3,
+          "complaints": 1
+        },
+        "x": []
+      },
+      "Private treatments": {
+        "w": {
+          "safety": 5,
+          "health": 4,
+          "complaints": 4,
+          "accessibility": 0
+        },
+        "x": []
+      },
+      "Cleanest record": {
+        "w": {
+          "safety": 5,
+          "health": 5,
+          "complaints": 3,
+          "accessibility": 1
+        },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    {
+      "key": "safety",
+      "label": "Latest GPhC inspection outcome and history (reports published since April 2019)",
+      "source": "curated",
+      "tier": "measured"
+    },
+    {
+      "key": "health",
+      "label": "GPhC register: notices, conditions and enforcement history",
+      "source": "curated",
+      "tier": "measured"
+    },
+    {
+      "key": "complaints",
+      "label": "Advertising Standards Authority rulings on the pharmacy or its owner",
+      "source": "curated",
+      "tier": "measured"
+    },
+    {
+      "key": "accessibility",
+      "label": "Handles NHS prescriptions (the patient pays only the NHS charge, or nothing if exempt)",
+      "source": "curated",
+      "tier": "measured"
+    }
+  ],
+  "products": [
+    {
+      "code": "pharmacy2u",
+      "name": "Pharmacy2U",
+      "brand": "online pharmacy, NHS and private",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 70,
+        "health": 90,
+        "complaints": 90,
+        "accessibility": 100
+      },
+      "provenance": {
+        "safety": {
+          "note": "GPhC's inspection portal lists Pharmacy2U Ltd (registration 9010146) as Standards met on 15 October 2025, a full routine inspection in which all five principles were met, and as Standards met on 5 December 2022. The inspection of 3 March 2022 ended with an improvement action plan, which the portal says a pharmacy must complete when it has not met all standards. It scores 70 because the latest outcome is met and an earlier published inspection was not.",
+          "source": "https://inspections.pharmacyregulation.org/pharmacy/detail/pharmacy2u-ltd-9010146",
+          "asof": "2026-09"
+        },
+        "health": {
+          "note": "GPhC's register entry for Pharmacy2U Ltd (9010146), read on 29 September 2026, shows the status Registered, Subject to notices and conditions as No, and Enforcement history as No.",
+          "source": "https://www.pharmacyregulation.org/registers/pharmacy/9010146",
+          "asof": "2026-09"
+        },
+        "complaints": {
+          "note": "The Advertising Standards Authority's public search for Pharmacy2U, run on 29 September 2026, shows Rulings (0) and Informally resolved (0). A search for Pharmacy 2U gave the same result.",
+          "source": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=Pharmacy2U",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "The NHS list of online-only pharmacies, read on 29 September 2026, includes PHARMACY2U.",
+          "source": "https://www.nhs.uk/service-search/other-health-services/pharmacies/internetpharmacies",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "GPhC inspection report page",
+          "url": "https://inspections.pharmacyregulation.org/pharmacy/detail/pharmacy2u-ltd-9010146"
+        },
+        {
+          "label": "GPhC register entry",
+          "url": "https://www.pharmacyregulation.org/registers/pharmacy/9010146"
+        },
+        {
+          "label": "ASA rulings search",
+          "url": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=Pharmacy2U"
+        },
+        {
+          "label": "NHS list of online-only pharmacies",
+          "url": "https://www.nhs.uk/service-search/other-health-services/pharmacies/internetpharmacies"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "NHS prescriptions",
+        "Private prescribing",
+        "Largest NHS online provider"
+      ],
+      "description": "The online pharmacy with the most NHS electronic prescription nominations in the Pharmaceutical Journal's April 2025 count, with a met outcome in 2025 after a 2022 improvement plan. Its site refused automated requests, so no delivery charge is scored. The register also lists LloydsDirect under the same owner."
+    },
+    {
+      "code": "chemist4u",
+      "name": "Chemist4U",
+      "brand": "online pharmacy, NHS, over the counter and private",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 70,
+        "health": 55,
+        "complaints": 90,
+        "accessibility": 100
+      },
+      "provenance": {
+        "safety": {
+          "note": "GPhC's inspection portal lists Chemist4U at One, Penketh Place, Skelmersdale (9012464) as Standards met on 4 November 2025, a reinspection after an April 2025 inspection in which the pharmacy did not meet Standard 1.1. The report says the pharmacy had built a risk assessment process and had stopped prescribing weight loss medicines in bundles until suitable controls were in place. It scores 70 because the latest outcome is met and the one before it was not.",
+          "source": "https://inspections.pharmacyregulation.org/pharmacy/detail/chemist4u-9012464",
+          "asof": "2026-09"
+        },
+        "health": {
+          "note": "GPhC's enforcement summary for Chemist4U's premises at 34a-37 Greenhey Place (9011784) records conditions imposed under section 74D of the Medicines Act from 15 January 2022, after an inspection of the company's other site on 10 September 2020 found system wide failures including online over-the-counter supply of codeine linctus and promethazine medicines with inadequate risk management. The conditions barred sale of those medicines except against an NHS prescription and were revoked with effect from 10 August 2023. The action has ended, so the score is 55.",
+          "source": "https://inspections.pharmacyregulation.org/pharmacy/enforcement/9011784-2023-08-10-2376.pdf",
+          "asof": "2026-09"
+        },
+        "complaints": {
+          "note": "The Advertising Standards Authority's public search for Chemist4U, run on 29 September 2026, shows Rulings (0) and Informally resolved (0). Searches for Chemist 4 U and for the owner name Innox gave the same result.",
+          "source": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=Chemist4U",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "The NHS list of online-only pharmacies, read on 29 September 2026, includes CHEMIST4U.",
+          "source": "https://www.nhs.uk/service-search/other-health-services/pharmacies/internetpharmacies",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "GPhC inspection report page",
+          "url": "https://inspections.pharmacyregulation.org/pharmacy/detail/chemist4u-9012464"
+        },
+        {
+          "label": "GPhC enforcement summary, older premises",
+          "url": "https://inspections.pharmacyregulation.org/pharmacy/enforcement/9011784-2023-08-10-2376.pdf"
+        },
+        {
+          "label": "ASA rulings search",
+          "url": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=Chemist4U"
+        },
+        {
+          "label": "NHS list of online-only pharmacies",
+          "url": "https://www.nhs.uk/service-search/other-health-services/pharmacies/internetpharmacies"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "NHS prescriptions",
+        "Over the counter",
+        "Private prescribing"
+      ],
+      "description": "An online pharmacy with two registered premises, both owned by Innox Trading Limited on the register. The newer premises met standards in November 2025 after failing in April 2025, and the older premises carried conditions from 2022 to 2023. Its site refused automated requests, so no delivery charge is scored."
+    },
+    {
+      "code": "boots-online-doctor",
+      "name": "Boots Online Doctor (Boots Central Support Pharmacy)",
+      "brand": "high street chain, online doctor",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 70,
+        "health": 90,
+        "complaints": 90
+      },
+      "provenance": {
+        "safety": {
+          "note": "GPhC's inspection portal lists Boots Central Support Pharmacy in Nottingham (1096181), which dispenses private prescriptions for the Boots Online Doctor service by distance selling, as Standards met on 1 August 2023 across all five principles. The portal also lists an inspection in November 2022 that ended with an improvement action plan. It scores 70 because the latest outcome is met and an earlier published inspection was not.",
+          "source": "https://inspections.pharmacyregulation.org/pharmacy/detail/boots-1096181",
+          "asof": "2026-09"
+        },
+        "health": {
+          "note": "GPhC's register entry for Boots Central Support Pharmacy (1096181), owned by Boots UK Limited and read on 29 September 2026, shows the status Registered, Subject to notices and conditions as No, and Enforcement history as No.",
+          "source": "https://www.pharmacyregulation.org/registers/pharmacy/1096181",
+          "asof": "2026-09"
+        },
+        "complaints": {
+          "note": "The Advertising Standards Authority's public search for Boots UK, run on 29 September 2026, shows two rulings, dated 23 August 2023 (paid Google ads promoting infant formula, upheld) and 20 May 2026 (misleading savings claims in an online display ad, upheld in part). Neither concerns medicines or the online doctor service, and a search for Boots Online Doctor shows Rulings (0), so the score is 90.",
+          "source": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=Boots+UK",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "GPhC inspection report page",
+          "url": "https://inspections.pharmacyregulation.org/pharmacy/detail/boots-1096181"
+        },
+        {
+          "label": "GPhC register entry",
+          "url": "https://www.pharmacyregulation.org/registers/pharmacy/1096181"
+        },
+        {
+          "label": "ASA rulings search, Boots UK",
+          "url": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=Boots+UK"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Private prescribing",
+        "High street brand"
+      ],
+      "description": "The mainstream high street name. This premises supplies private prescriptions for Boots Online Doctor, and Boots' NHS repeat prescription delivery is not covered by this record."
+    },
+    {
+      "code": "superdrug-online-pharmacy",
+      "name": "Superdrug (superdrug.com pharmacy-only medicines)",
+      "brand": "high street chain, online",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 90,
+        "health": 90,
+        "complaints": 90
+      },
+      "provenance": {
+        "safety": {
+          "note": "GPhC's inspection portal lists Superdrug Pharmacy in Rotherham (9012712), whose sole operational activity is supplying pharmacy-only medicines for orders placed through superdrug.com, as Standards met on 12 September 2025 across all five principles, its first routine inspection since it registered in April 2025.",
+          "source": "https://inspections.pharmacyregulation.org/pharmacy/detail/superdrug-pharmacy-9012712",
+          "asof": "2026-09"
+        },
+        "health": {
+          "note": "GPhC's register entry for Superdrug Pharmacy (9012712), owned by Superdrug Stores Plc and read on 29 September 2026, shows the status Registered, Subject to notices and conditions as No, and Enforcement history as No.",
+          "source": "https://www.pharmacyregulation.org/registers/pharmacy/9012712",
+          "asof": "2026-09"
+        },
+        "complaints": {
+          "note": "The Advertising Standards Authority's public search for Superdrug, run on 29 September 2026, shows Rulings (0). It lists five informally resolved cases, four against Superdrug Stores plc dated between 30 March 2022 and 10 July 2024 and one against Health Bridge Ltd, and the list gives no subject for them, so the score is 90.",
+          "source": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=Superdrug",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "GPhC inspection report page",
+          "url": "https://inspections.pharmacyregulation.org/pharmacy/detail/superdrug-pharmacy-9012712"
+        },
+        {
+          "label": "GPhC register entry",
+          "url": "https://www.pharmacyregulation.org/registers/pharmacy/9012712"
+        },
+        {
+          "label": "ASA rulings search",
+          "url": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=Superdrug"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Over the counter",
+        "High street brand"
+      ],
+      "description": "A second Superdrug registration, Superdrug Online Pharmacy in Northampton (9010736), shows Not yet inspected with no published report, so the online doctor's dispensing premises has no inspection record here."
+    },
+    {
+      "code": "oxford-online-pharmacy",
+      "name": "Oxford Online Pharmacy",
+      "brand": "independent online pharmacy, NHS and private",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 95,
+        "health": 90,
+        "complaints": 90,
+        "accessibility": 100
+      },
+      "provenance": {
+        "safety": {
+          "note": "GPhC's inspection portal lists Oxford Online Pharmacy (9012796) as Standards met on 22 January 2026, its first routine inspection since relocating in July 2025, with Good practice recorded for Principles 1, 2 and 4 and Standards met for Principles 3 and 5. No other pharmacy on this roster shows a Good practice rating on its latest report.",
+          "source": "https://inspections.pharmacyregulation.org/pharmacy/detail/oxford-online-pharmacy-9012796",
+          "asof": "2026-09"
+        },
+        "health": {
+          "note": "GPhC's register entry for Oxford Online Pharmacy (9012796), owned by Frosts (Online) Limited and read on 29 September 2026, shows the status Registered, Subject to notices and conditions as No, and Enforcement history as No.",
+          "source": "https://www.pharmacyregulation.org/registers/pharmacy/9012796",
+          "asof": "2026-09"
+        },
+        "complaints": {
+          "note": "The Advertising Standards Authority's public search for Oxford Online, run on 29 September 2026, shows Rulings (0) and Informally resolved (0). A search for the owner name Frosts shows no ruling.",
+          "source": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=Oxford+Online",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "The NHS list of online-only pharmacies, read on 29 September 2026, includes Oxford Online Pharmacy.",
+          "source": "https://www.nhs.uk/service-search/other-health-services/pharmacies/internetpharmacies",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "GPhC inspection report page",
+          "url": "https://inspections.pharmacyregulation.org/pharmacy/detail/oxford-online-pharmacy-9012796"
+        },
+        {
+          "label": "GPhC register entry",
+          "url": "https://www.pharmacyregulation.org/registers/pharmacy/9012796"
+        },
+        {
+          "label": "ASA rulings search",
+          "url": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=Oxford+Online"
+        },
+        {
+          "label": "NHS list of online-only pharmacies",
+          "url": "https://www.nhs.uk/service-search/other-health-services/pharmacies/internetpharmacies"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "NHS prescriptions",
+        "Private prescribing",
+        "Good practice rating"
+      ],
+      "description": "An independent online pharmacy that dispenses NHS and private prescriptions and holds the best inspection result on this roster. Its site refused automated requests, so no delivery charge is scored."
+    },
+    {
+      "code": "medino",
+      "name": "medino.com",
+      "brand": "online pharmacy, NHS, over the counter and private",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 90,
+        "health": 90,
+        "complaints": 90,
+        "accessibility": 100
+      },
+      "provenance": {
+        "safety": {
+          "note": "GPhC's inspection portal lists medino.com (9011921) as Standards met on 20 January 2025 across all five principles, its first inspection since it registered in August 2022.",
+          "source": "https://inspections.pharmacyregulation.org/pharmacy/detail/medino.com-9011921",
+          "asof": "2026-09"
+        },
+        "health": {
+          "note": "GPhC's register entry for medino.com (9011921), owned by Medino Online Ltd and read on 29 September 2026, shows the status Registered, Subject to notices and conditions as No, and Enforcement history as No.",
+          "source": "https://www.pharmacyregulation.org/registers/pharmacy/9011921",
+          "asof": "2026-09"
+        },
+        "complaints": {
+          "note": "The Advertising Standards Authority's public search for Medino, run on 29 September 2026, shows Rulings (0) and Informally resolved (0).",
+          "source": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=Medino",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "The NHS list of online-only pharmacies, read on 29 September 2026, includes MEDINO.",
+          "source": "https://www.nhs.uk/service-search/other-health-services/pharmacies/internetpharmacies",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "GPhC inspection report page",
+          "url": "https://inspections.pharmacyregulation.org/pharmacy/detail/medino.com-9011921"
+        },
+        {
+          "label": "GPhC register entry",
+          "url": "https://www.pharmacyregulation.org/registers/pharmacy/9011921"
+        },
+        {
+          "label": "ASA rulings search",
+          "url": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=Medino"
+        },
+        {
+          "label": "NHS list of online-only pharmacies",
+          "url": "https://www.nhs.uk/service-search/other-health-services/pharmacies/internetpharmacies"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "NHS prescriptions",
+        "Over the counter",
+        "Private prescribing"
+      ],
+      "description": "An online pharmacy that dispenses NHS and private prescriptions and sells over-the-counter medicines, with a clean record on all three regulator sources read."
+    },
+    {
+      "code": "the-independent-pharmacy",
+      "name": "The Independent Pharmacy",
+      "brand": "online pharmacy and online doctor",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 90,
+        "health": 90,
+        "complaints": 90,
+        "accessibility": 60
+      },
+      "provenance": {
+        "safety": {
+          "note": "GPhC's inspection portal lists The Independent Pharmacy in Bristol (9012559) as Standards met on 19 September 2025 across all five principles, its first routine inspection since it registered in October 2024 and began operating in April 2025.",
+          "source": "https://inspections.pharmacyregulation.org/pharmacy/detail/the-independent-pharmacy-9012559",
+          "asof": "2026-09"
+        },
+        "health": {
+          "note": "GPhC's register entry for The Independent Pharmacy (9012559), owned by ABSM Healthcare Ltd and read on 29 September 2026, shows the status Registered, Subject to notices and conditions as No, and Enforcement history as No.",
+          "source": "https://www.pharmacyregulation.org/registers/pharmacy/9012559",
+          "asof": "2026-09"
+        },
+        "complaints": {
+          "note": "The Advertising Standards Authority's public search for the owner name ABSM, run on 29 September 2026, shows Rulings (0) and Informally resolved (0). A search for Independent Pharmacy gave the same result.",
+          "source": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=ABSM",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "GPhC's inspection report describes the pharmacy as one that also dispenses a small number of NHS prescriptions, as well as private prescriptions and medicines sold through its website, so the score is 60 rather than 100.",
+          "source": "https://inspections.pharmacyregulation.org/pharmacy/detail/the-independent-pharmacy-9012559",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "GPhC inspection report page",
+          "url": "https://inspections.pharmacyregulation.org/pharmacy/detail/the-independent-pharmacy-9012559"
+        },
+        {
+          "label": "GPhC register entry",
+          "url": "https://www.pharmacyregulation.org/registers/pharmacy/9012559"
+        },
+        {
+          "label": "ASA rulings search",
+          "url": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=ABSM"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Online doctor",
+        "Small NHS volume"
+      ],
+      "description": "A young online pharmacy and online doctor with a met result and a clean record, that handles only a small number of NHS prescriptions. Its site refused automated requests, so no delivery charge is scored."
+    },
+    {
+      "code": "medexpress",
+      "name": "MedExpress",
+      "brand": "private online pharmacy, weight management",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 15,
+        "health": 90,
+        "complaints": 40,
+        "accessibility": 20
+      },
+      "provenance": {
+        "safety": {
+          "note": "GPhC's inspection portal lists MedExpress in Leamington Spa (9012633) as Standards not all met on 11 November 2025, a reinspection after an April 2025 inspection in which Standards 1.1 and 4.2 were not met. Principle 1 was not all met and Principle 4 was met, and the report says some areas still required improvement. Both published inspections did not meet all standards, so the score is 15.",
+          "source": "https://inspections.pharmacyregulation.org/pharmacy/detail/medexpress-9012633",
+          "asof": "2026-09"
+        },
+        "health": {
+          "note": "GPhC's register entry for MedExpress (9012633), owned by Medexpress Enterprises Ltd and read on 29 September 2026, shows the status Registered, Subject to notices and conditions as No, and Enforcement history as No.",
+          "source": "https://www.pharmacyregulation.org/registers/pharmacy/9012633",
+          "asof": "2026-09"
+        },
+        "complaints": {
+          "note": "The Advertising Standards Authority's public search for MedExpress, run on 29 September 2026, lists two upheld rulings against MedExpress Enterprises Ltd: 11 February 2026 for social media posts promoting the weight-loss injection Mounjaro to the public, and 17 December 2025 for a paid Instagram ad under the name Bark that promoted prescription-only medicines. It also lists three informally resolved cases, the latest dated 8 July 2026.",
+          "source": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=MedExpress",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "GPhC's inspection report says the pharmacy does not hold an NHS contract and does not offer any NHS funded services.",
+          "source": "https://inspections.pharmacyregulation.org/pharmacy/detail/medexpress-9012633",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "GPhC inspection report page",
+          "url": "https://inspections.pharmacyregulation.org/pharmacy/detail/medexpress-9012633"
+        },
+        {
+          "label": "GPhC register entry",
+          "url": "https://www.pharmacyregulation.org/registers/pharmacy/9012633"
+        },
+        {
+          "label": "ASA rulings search",
+          "url": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=MedExpress"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Private only",
+        "Weight management"
+      ],
+      "description": "A private pharmacy whose bulk of dispensing is weight management treatments, with two inspections in 2025 that did not meet all standards and two upheld advertising rulings."
+    },
+    {
+      "code": "zava",
+      "name": "Zava",
+      "brand": "private online doctor and pharmacy",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 90,
+        "health": 90,
+        "complaints": 40,
+        "accessibility": 20
+      },
+      "provenance": {
+        "safety": {
+          "note": "GPhC's inspection portal lists Zava Pharmacy in Milton Keynes (9012701) as Standards met on 3 November 2025 across all five principles, its first routine inspection since it registered in April 2025. The report says the weight management services were inspected at a different site in September 2024, when all standards were met.",
+          "source": "https://inspections.pharmacyregulation.org/pharmacy/detail/zava-pharmacy-9012701",
+          "asof": "2026-09"
+        },
+        "health": {
+          "note": "GPhC's register entry for Zava Pharmacy (9012701), owned by Health Bridge Limited and read on 29 September 2026, shows the status Registered, Subject to notices and conditions as No, and Enforcement history as No.",
+          "source": "https://www.pharmacyregulation.org/registers/pharmacy/9012701",
+          "asof": "2026-09"
+        },
+        "complaints": {
+          "note": "The Advertising Standards Authority's public search for Health Bridge, run on 29 September 2026, lists two upheld rulings against Health Bridge Ltd t/a Zava: 11 February 2026 for social media posts promoting Mounjaro to the public, and 18 February 2026 for an advertorial on the Mumsnet website. It also lists one informally resolved case.",
+          "source": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=Health+Bridge",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "GPhC's inspection report says the pharmacy does not hold an NHS contract and does not offer any NHS funded services.",
+          "source": "https://inspections.pharmacyregulation.org/pharmacy/detail/zava-pharmacy-9012701",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "GPhC inspection report page",
+          "url": "https://inspections.pharmacyregulation.org/pharmacy/detail/zava-pharmacy-9012701"
+        },
+        {
+          "label": "GPhC register entry",
+          "url": "https://www.pharmacyregulation.org/registers/pharmacy/9012701"
+        },
+        {
+          "label": "ASA rulings search",
+          "url": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=Health+Bridge"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Private only",
+        "Weight management"
+      ],
+      "description": "A private online doctor and pharmacy with a met inspection result and a clean register entry, and two upheld advertising rulings from February 2026."
+    },
+    {
+      "code": "dr-fox-pharmacy",
+      "name": "Dr Fox Pharmacy",
+      "brand": "private online doctor and pharmacy",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 90,
+        "health": 90,
+        "complaints": 90,
+        "accessibility": 20
+      },
+      "provenance": {
+        "safety": {
+          "note": "GPhC's inspection portal lists Dr Fox Pharmacy in Glasgow (1124326) as Standards met on 30 May 2024 across all five principles. The report describes a pharmacy associated with the Dr Fox online prescribing service.",
+          "source": "https://inspections.pharmacyregulation.org/pharmacy/detail/dr-fox-pharmacy-1124326",
+          "asof": "2026-09"
+        },
+        "health": {
+          "note": "GPhC's register entry for Dr Fox Pharmacy (1124326), owned by The Park Road Pharmacy Ltd. and read on 29 September 2026, shows the status Registered, Subject to notices and conditions as No, and Enforcement history as No.",
+          "source": "https://www.pharmacyregulation.org/registers/pharmacy/1124326",
+          "asof": "2026-09"
+        },
+        "complaints": {
+          "note": "The Advertising Standards Authority's public search for Dr Fox, run on 29 September 2026, shows Rulings (0) and Informally resolved (0). A search for Index Medical, the owner of the prescribing service, gave the same result.",
+          "source": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=Dr+Fox",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "GPhC's inspection report says the pharmacy's only service is dispensing private prescriptions written by the Dr Fox prescribing service, so it does not handle NHS prescriptions.",
+          "source": "https://inspections.pharmacyregulation.org/pharmacy/detail/dr-fox-pharmacy-1124326",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "GPhC inspection report page",
+          "url": "https://inspections.pharmacyregulation.org/pharmacy/detail/dr-fox-pharmacy-1124326"
+        },
+        {
+          "label": "GPhC register entry",
+          "url": "https://www.pharmacyregulation.org/registers/pharmacy/1124326"
+        },
+        {
+          "label": "ASA rulings search",
+          "url": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=Dr+Fox"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Private only"
+      ],
+      "description": "A private online prescribing service with a met result from May 2024 and no advertising rulings found."
+    },
+    {
+      "code": "pharmacy-planet",
+      "name": "Pharmacy Planet",
+      "brand": "private online pharmacy, weight management",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 90,
+        "health": 90,
+        "complaints": 90,
+        "accessibility": 20
+      },
+      "provenance": {
+        "safety": {
+          "note": "GPhC's inspection portal lists Pharmacy Planet in Willenhall (9012778) as Standards met on 13 January 2026 across all five principles, its first inspection since it registered and opened in July 2025.",
+          "source": "https://inspections.pharmacyregulation.org/pharmacy/detail/pharmacy-planet-9012778",
+          "asof": "2026-09"
+        },
+        "health": {
+          "note": "GPhC's register entry for Pharmacy Planet (9012778), owned by Pharmacy Planet ltd and read on 29 September 2026, shows the status Registered, Subject to notices and conditions as No, and Enforcement history as No.",
+          "source": "https://www.pharmacyregulation.org/registers/pharmacy/9012778",
+          "asof": "2026-09"
+        },
+        "complaints": {
+          "note": "The Advertising Standards Authority's public search for Pharmacy Planet, run on 29 September 2026, shows Rulings (0) and Informally resolved (0).",
+          "source": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=Pharmacy+Planet",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "GPhC's inspection report says the pharmacy does not have an NHS contract and that its only activity is dispensing private prescriptions.",
+          "source": "https://inspections.pharmacyregulation.org/pharmacy/detail/pharmacy-planet-9012778",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "GPhC inspection report page",
+          "url": "https://inspections.pharmacyregulation.org/pharmacy/detail/pharmacy-planet-9012778"
+        },
+        {
+          "label": "GPhC register entry",
+          "url": "https://www.pharmacyregulation.org/registers/pharmacy/9012778"
+        },
+        {
+          "label": "ASA rulings search",
+          "url": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=Pharmacy+Planet"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Private only",
+        "Weight management"
+      ],
+      "description": "A private online pharmacy opened in July 2025, with one met inspection and no advertising rulings found."
+    },
+    {
+      "code": "simple-online-pharmacy",
+      "name": "Simple Online Pharmacy",
+      "brand": "private online pharmacy, weight management",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 30,
+        "health": 55,
+        "complaints": 90,
+        "accessibility": 20
+      },
+      "provenance": {
+        "safety": {
+          "note": "GPhC's inspection portal lists Simple Online Pharmacy in Glasgow (9011287) as Standards not all met on 7 October 2025, a full intelligence-led inspection after information reached the GPhC, with Principles 1 and 4 not all met. The pharmacy was last inspected in January 2023 and all standards were met, and the portal shows improvement action plans from October 2020 and September 2021. It scores 30 because the latest outcome is not all met and the one before it was met.",
+          "source": "https://inspections.pharmacyregulation.org/pharmacy/detail/simple-online-pharmacy-9011287",
+          "asof": "2026-09"
+        },
+        "health": {
+          "note": "GPhC's enforcement summary for Simple Online Pharmacy (9011287) records conditions imposed under section 74D of the Medicines Act from 20 October 2020, after a 1 October 2020 inspection found system wide failures including online over-the-counter supply of codeine linctus and promethazine medicines, and revoked with effect from 6 June 2025. The action has ended, so the score is 55.",
+          "source": "https://inspections.pharmacyregulation.org/pharmacy/enforcement/9011287-2025-06-11-3427.pdf",
+          "asof": "2026-09"
+        },
+        "complaints": {
+          "note": "The Advertising Standards Authority's public search for Simple Online Healthcare, the owner name, run on 29 September 2026, shows Rulings (0) and Informally resolved (0). A search for Simple Online gave the same result.",
+          "source": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=Simple+Online+Healthcare",
+          "asof": "2026-09"
+        },
+        "accessibility": {
+          "note": "GPhC's inspection report describes private online prescribing and dispensing services from an in-house prescribing service, mainly for weight management, erectile dysfunction, hair loss and sexual health, and does not describe NHS dispensing.",
+          "source": "https://inspections.pharmacyregulation.org/pharmacy/detail/simple-online-pharmacy-9011287",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "GPhC inspection report page",
+          "url": "https://inspections.pharmacyregulation.org/pharmacy/detail/simple-online-pharmacy-9011287"
+        },
+        {
+          "label": "GPhC enforcement summary",
+          "url": "https://inspections.pharmacyregulation.org/pharmacy/enforcement/9011287-2025-06-11-3427.pdf"
+        },
+        {
+          "label": "ASA rulings search",
+          "url": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=Simple+Online+Healthcare"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Private only",
+        "Conditions 2020 to 2025"
+      ],
+      "description": "A private pharmacy that carried GPhC conditions for almost five years and did not meet all standards at its October 2025 inspection."
+    },
+    {
+      "code": "voy-pharmacy",
+      "name": "Voy Pharmacy",
+      "brand": "private online pharmacy, weight management",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "safety": 15,
+        "health": 10,
+        "complaints": 15
+      },
+      "provenance": {
+        "safety": {
+          "note": "GPhC's inspection portal lists Voy Pharmacy in Wallingford (9012909) as Standards not all met on 11 August 2026, with Principles 1 and 2 not all met, after a March 2026 inspection that ended with an improvement action plan. Both published inspections did not meet all standards, so the score is 15.",
+          "source": "https://inspections.pharmacyregulation.org/pharmacy/detail/voy-pharmacy-9012909",
+          "asof": "2026-09"
+        },
+        "health": {
+          "note": "GPhC's enforcement summary records an improvement notice on Voy Pharmacy (9012909) effective 11 September 2026 for Standards 1.1, 1.4 and 2.6, after concerns about advertising and about supplies of weight loss medicines to people whose medical history had not been independently verified. The outcome is shown as ongoing with a deadline of 9 October 2026, and the summary says the pharmacy repeatedly advertised prescription-only medicines unlawfully despite four ASA rulings.",
+          "source": "https://inspections.pharmacyregulation.org/pharmacy/enforcement/9012909-2026-09-11-4337.pdf",
+          "asof": "2026-09"
+        },
+        "complaints": {
+          "note": "The Advertising Standards Authority's public search for Menwell, the owner name, run on 29 September 2026, lists four upheld rulings: 27 May 2026, 11 February 2026 and 17 September 2025 against Menwell Ltd t/a Voy, and 4 June 2025 against Menwell Ltd t/a Manual, each about promoting prescription-only weight-loss medicines to the public. It also lists five informally resolved cases.",
+          "source": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=Menwell",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "GPhC inspection report page",
+          "url": "https://inspections.pharmacyregulation.org/pharmacy/detail/voy-pharmacy-9012909"
+        },
+        {
+          "label": "GPhC improvement notice",
+          "url": "https://inspections.pharmacyregulation.org/pharmacy/enforcement/9012909-2026-09-11-4337.pdf"
+        },
+        {
+          "label": "ASA rulings search, Menwell",
+          "url": "https://www.asa.org.uk/codes-and-rulings/rulings.html?q=Menwell"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "Private only",
+        "Improvement notice 2026"
+      ],
+      "description": "A weight management pharmacy formerly named Menwell Pharmacy, with two inspections that did not meet standards, a current GPhC improvement notice and four upheld advertising rulings."
+    },
+    {
+      "code": "local-nhs-pharmacy",
+      "name": "Your local NHS pharmacy (collect in person)",
+      "brand": "high street pharmacy, no online service",
+      "allergens": [],
+      "allergensDeclared": false,
+      "scores": {
+        "accessibility": 100
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "NHS says a person can choose a high-street pharmacy to collect a repeat prescription from and that some pharmacies may offer delivery, and it points to online-only pharmacies as an alternative. It also says a GP surgery may be able to send a prescription to a pharmacy of the patient's choice.",
+          "source": "https://www.nhs.uk/nhs-services/prescriptions/how-to-order-a-repeat-prescription/",
+          "asof": "2026-09"
+        }
+      },
+      "links": [
+        {
+          "label": "NHS on ordering a repeat prescription",
+          "url": "https://www.nhs.uk/nhs-services/prescriptions/how-to-order-a-repeat-prescription/"
+        },
+        {
+          "label": "GPhC reports, community pharmacies, all outcomes",
+          "url": "https://inspections.pharmacyregulation.org/search/across-inspection-reports?SearchDocumentType=InspectionSearch&Page=1&OrderByField=Name&OrderDirection=asc&PharmacyType=2&PageSize=10"
+        },
+        {
+          "label": "GPhC reports, community pharmacies, not all met",
+          "url": "https://inspections.pharmacyregulation.org/search/across-inspection-reports?SearchDocumentType=InspectionSearch&Page=1&OrderByField=Name&OrderDirection=asc&PharmacyType=2&InspectionDecisionFrameworkRating=2&PageSize=10"
+        },
+        {
+          "label": "GPhC reports, internet and distance selling, all outcomes",
+          "url": "https://inspections.pharmacyregulation.org/search/across-inspection-reports?SearchDocumentType=InspectionSearch&Page=1&OrderByField=Name&OrderDirection=asc&PharmacyType=6&PageSize=10"
+        },
+        {
+          "label": "GPhC reports, internet and distance selling, not all met",
+          "url": "https://inspections.pharmacyregulation.org/search/across-inspection-reports?SearchDocumentType=InspectionSearch&Page=1&OrderByField=Name&OrderDirection=asc&PharmacyType=6&InspectionDecisionFrameworkRating=2&PageSize=10"
+        }
+      ],
+      "region": [
+        "UK"
+      ],
+      "focuses": [
+        "No purchase route",
+        "No delivery service needed"
+      ],
+      "description": "The route that needs no online pharmacy. GPhC's inspection search shows 1,283 of 8,215 published reports for community pharmacies (16 per cent) as Standards not all met, against 135 of 549 for internet and distance-selling pharmacies (25 per cent). It has no individual inspection score because no single premises is named."
+    }
+  ]
+}

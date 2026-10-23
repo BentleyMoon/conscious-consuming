@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/taxonomy-v1.schema.json",
   "title": "Conscious Consuming Taxonomy v1",
-  "description": "The map of every decision the catalogue intends to hold. Four levels, realm to field to family to decision, with six facets crossing the tree and a COICOP 2018 crosswalk used as an outside completeness referee. Distinct from the ontology, which is the navigation of what can be shown today.",
+  "description": "The full map of decisions the catalogue means to cover, in four levels from broad areas of life down to single decisions, with how many are built so far. It is checked against the United Nations COICOP spending categories so nothing is left out by accident. Conscious Consuming keeps it.",
   "type": "object",
   "required": [
     "format",
@@ -15,9 +15,9 @@
   ],
   "additionalProperties": true,
   "properties": {
-    "format": { "const": "open-values-taxonomy" },
-    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
-    "note": { "type": "string" },
+    "format": { "const": "open-values-taxonomy", "description": "Always \"open-values-taxonomy\". Tells a reader that this file is the full map of decisions." },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$", "description": "The version of this file's format, as major.minor.patch, such as \"1.0.0\"." },
+    "note": { "type": "string", "description": "A paragraph for maintainers saying what the file is, where it is written and which script checks it." },
     "levels": {
       "type": "array",
       "minItems": 4,
@@ -26,11 +26,12 @@
         "type": "object",
         "required": ["id", "label", "job"],
         "properties": {
-          "id": { "enum": ["realm", "field", "family", "decision"] },
-          "label": { "type": "string", "minLength": 1 },
-          "job": { "type": "string", "minLength": 1 }
+          "id": { "enum": ["realm", "field", "family", "decision"], "description": "The level's id, one of the four values listed, from the top level down to decision." },
+          "label": { "type": "string", "minLength": 1, "description": "The level's name as shown to people." },
+          "job": { "type": "string", "minLength": 1, "description": "One line saying what that level holds, such as \"A set of decisions that trade off together\"." }
         }
-      }
+      },
+      "description": "The four levels of the map, from the top down, each with a one-line description of what that level holds."
     },
     "facets": {
       "type": "object",
@@ -39,25 +40,27 @@
         "type": "object",
         "required": ["values", "job"],
         "properties": {
-          "values": { "type": "array", "minItems": 2, "items": { "type": "string" } },
-          "job": { "type": "string", "minLength": 1 }
+          "values": { "type": "array", "minItems": 2, "items": { "type": "string" }, "description": "The allowed values for this facet. Each decision's matching field must use one of them." },
+          "job": { "type": "string", "minLength": 1, "description": "One line saying what the facet records, such as \"How often the decision returns.\"" }
         }
-      }
+      },
+      "description": "The six ways every decision is labelled across the map (need, type, mode, cadence, actor and scope), each with its allowed values."
     },
     "coicop": {
       "type": "object",
       "description": "The external referee. Every division must be claimed by at least one realm; the audit fails otherwise.",
       "required": ["standard", "publisher", "source", "divisions"],
       "properties": {
-        "standard": { "type": "string" },
-        "name": { "type": "string" },
-        "publisher": { "type": "string" },
-        "source": { "type": "string", "format": "uri" },
-        "asof": { "type": "string" },
+        "standard": { "type": "string", "description": "The short name and edition of the outside classification, \"COICOP 2018\"." },
+        "name": { "type": "string", "description": "The classification's full name." },
+        "publisher": { "type": "string", "description": "Who publishes the classification: the United Nations Statistics Division." },
+        "source": { "type": "string", "format": "uri", "description": "The web address where the classification is published." },
+        "asof": { "type": "string", "description": "When the classification was last checked, such as \"2026-08\"." },
         "divisions": {
           "type": "object",
           "propertyNames": { "pattern": "^\\d{2}$" },
-          "additionalProperties": { "type": "string", "minLength": 1 }
+          "additionalProperties": { "type": "string", "minLength": 1 },
+          "description": "The classification's top-level divisions, keyed by their two-digit code, such as \"01\", with each division's title."
         }
       }
     },
@@ -70,8 +73,8 @@
       ],
       "additionalProperties": { "type": "number", "minimum": 0 }
     },
-    "byNeed": { "type": "object" },
-    "byDivision": { "type": "object" },
+    "byNeed": { "type": "object", "description": "Coverage for each of the eight needs, keyed by need id: how many decisions are in scope and how many have a built facts file. Decisions marked out are not counted." },
+    "byDivision": { "type": "object", "description": "Coverage for each COICOP division, keyed by its two-digit code: the division's title, the ids of the top-level areas that claim it, and how many of their decisions are in scope and built." },
     "realms": {
       "type": "array",
       "minItems": 1,
@@ -79,8 +82,8 @@
         "type": "object",
         "required": ["id", "label", "edge", "coicop", "need", "fields"],
         "properties": {
-          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-          "label": { "type": "string", "minLength": 1 },
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$", "description": "The area's id, in lower case with hyphens, such as \"food-and-drink\"." },
+          "label": { "type": "string", "minLength": 1, "description": "The area's name as shown to people." },
           "edge": {
             "type": "string",
             "minLength": 40,
@@ -89,9 +92,10 @@
           "coicop": {
             "type": "array",
             "minItems": 1,
-            "items": { "type": "string", "pattern": "^(\\d{2}|none)$" }
+            "items": { "type": "string", "pattern": "^(\\d{2}|none)$" },
+            "description": "The two-digit codes of the COICOP divisions this area covers, or \"none\"."
           },
-          "need": { "type": "string" },
+          "need": { "type": "string", "description": "The need that decisions in this area get by default, such as \"nourish\". A field, family or decision can set its own." },
           "fields": {
             "type": "array",
             "minItems": 1,
@@ -99,10 +103,10 @@
               "type": "object",
               "required": ["id", "label", "families"],
               "properties": {
-                "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-                "label": { "type": "string", "minLength": 1 },
-                "aka": { "type": "array", "items": { "type": "string" } },
-                "coicop": { "type": "array", "items": { "type": "string" } },
+                "id": { "type": "string", "pattern": "^[a-z0-9-]+$", "description": "The field's id, made from its label in lower case with hyphens." },
+                "label": { "type": "string", "minLength": 1, "description": "The field's name as shown to people." },
+                "aka": { "type": "array", "items": { "type": "string" }, "description": "Other names people use for this field. The build uses them to match rows in the site's navigation to their place on the map." },
+                "coicop": { "type": "array", "items": { "type": "string" }, "description": "COICOP division codes for this field, where they differ from its area's." },
                 "families": {
                   "type": "array",
                   "minItems": 1,
@@ -110,22 +114,26 @@
                     "type": "object",
                     "required": ["id", "label", "decisions"],
                     "properties": {
-                      "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-                      "label": { "type": "string", "minLength": 1 },
-                      "aka": { "type": "array", "items": { "type": "string" } },
+                      "id": { "type": "string", "pattern": "^[a-z0-9-]+$", "description": "The family's id, made from its label in lower case with hyphens." },
+                      "label": { "type": "string", "minLength": 1, "description": "The family's name as shown to people, such as \"Dairy and alternatives\"." },
+                      "aka": { "type": "array", "items": { "type": "string" }, "description": "Other names people use for this family. The build uses them to match rows in the site's navigation to their place on the map." },
                       "decisions": {
                         "type": "array",
                         "minItems": 1,
-                        "items": { "$ref": "#/$defs/decision" }
+                        "items": { "$ref": "#/$defs/decision" },
+                        "description": "The decisions in this family."
                       }
                     }
-                  }
+                  },
+                  "description": "The families inside this field. A family is a set of decisions that trade off against each other."
                 }
               }
-            }
+            },
+            "description": "The fields inside this area, each a recognisable part of it such as \"Groceries\"."
           }
         }
-      }
+      },
+      "description": "The top-level areas of the map, such as \"Food and drink\", each holding its fields, families and decisions."
     }
   },
   "$defs": {
@@ -135,23 +143,24 @@
       "required": ["id", "label", "path", "realm", "field", "family", "need", "type", "mode", "cadence", "actor", "scope"],
       "additionalProperties": false,
       "properties": {
-        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-        "label": { "type": "string", "minLength": 1 },
-        "path": { "type": "string", "pattern": "^[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+$" },
-        "realm": { "type": "string" },
-        "field": { "type": "string" },
-        "family": { "type": "string" },
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$", "description": "The decision's id, in lower case with hyphens, such as \"plant-based-milk\". It is unique across the whole map." },
+        "label": { "type": "string", "minLength": 1, "description": "The decision's name as shown to people." },
+        "path": { "type": "string", "pattern": "^[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+$", "description": "Where the decision sits, as four ids joined by slashes: top-level area, field, family and decision, such as \"food-and-drink/groceries/dairy-and-alternatives/milk\"." },
+        "realm": { "type": "string", "description": "The id of the top-level area this decision is in." },
+        "field": { "type": "string", "description": "The id of the field this decision is in." },
+        "family": { "type": "string", "description": "The id of the family this decision is in." },
         "need": {
-          "enum": ["nourish", "care", "keep-a-home", "connect", "move", "learn", "give-and-act", "protect"]
+          "enum": ["nourish", "care", "keep-a-home", "connect", "move", "learn", "give-and-act", "protect"],
+          "description": "Which of the eight needs brings a person to this decision, such as \"nourish\"."
         },
-        "type": { "enum": ["Products", "Services", "Media", "Organizations", "Initiatives"] },
+        "type": { "enum": ["Products", "Services", "Media", "Organizations", "Initiatives"], "description": "What kind of thing is being compared: Products, Services, Media, Organizations or Initiatives." },
         "mode": {
           "enum": ["buy", "subscribe", "rent", "hire", "borrow", "share", "make", "reuse", "free", "give"],
           "description": "How a person comes to have it. Buying is one of ten, which is the point."
         },
-        "cadence": { "enum": ["daily", "weekly", "monthly", "seasonal", "yearly", "rare", "once"] },
-        "actor": { "enum": ["person", "household", "community", "organization"] },
-        "scope": { "enum": ["covered", "open", "hold", "out"] },
+        "cadence": { "enum": ["daily", "weekly", "monthly", "seasonal", "yearly", "rare", "once"], "description": "How often a person faces this decision again, from daily to once." },
+        "actor": { "enum": ["person", "household", "community", "organization"], "description": "Who usually makes this decision: a person, a household, a community or an organization." },
+        "scope": { "enum": ["covered", "open", "hold", "out"], "description": "Where the work stands. \"covered\" has a built facts file, named in cid. \"open\" is waiting to be built. \"hold\" is held back on purpose and \"out\" is refused, and both need a written reason." },
         "cid": {
           "type": "string",
           "pattern": "^[a-z0-9-]+$",
@@ -161,7 +170,7 @@
           "type": "string",
           "description": "Set when several decisions share one dataset. Each sharer must name a distinct facet."
         },
-        "aka": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "aka": { "type": "array", "items": { "type": "string", "minLength": 1 }, "description": "Other names people use for this decision, such as \"oat milk\" for plant-based milk. The build uses them to match rows in the site's navigation to their place on the map." },
         "reason": {
           "type": "string",
           "minLength": 24,

@@ -44,7 +44,7 @@ A dressing should help vegetables get eaten, not hide them. The floor is a bottl
 | Floor check | Why it matters |
 | --- | --- |
 | serving size is calibrated once | two tablespoons may be less than the real pour |
-| sodium and added sugar are read together | sweet-salty dressings can quietly dominate the bowl |
+| sodium and added sugar are read together | a sweet-salty dressing can supply most of the bowl's sugar and sodium |
 | first oil is checked | "with olive oil" can still mean another oil leads |
 | creamy dressings show their richness | saturated fat and serving drift matter more than the front claim |
 | bottle size fits use | a premium bottle wasted half-full is not the greener answer |
@@ -80,7 +80,7 @@ A simple homemade dressing does not have to replace every bottle. It just gives 
 
 ## The two-tablespoon reality check
 
-Most dressing labels use a small serving. If your salad gets four tablespoons, double the nutrition numbers. This does not mean dressing is bad; it means the label math should match the plate. "Fat-free" dressings can lean on sugar and thickeners, while rich dressings can be satisfying in smaller amounts. The best choice is the one that gets you eating the vegetables you intended, without quietly turning the bowl into a salt-and-sugar delivery system.
+Most dressing labels use a small serving. If your salad gets four tablespoons, double the nutrition numbers. This does not mean dressing is bad; it means the label math should match the plate. "Fat-free" dressings can lean on sugar and thickeners, while rich dressings can be satisfying in smaller amounts. The best choice is the one that gets you eating the vegetables you intended, without loading the bowl with salt and sugar.
 
 ## Make dressing carry vegetables, not hide them
 

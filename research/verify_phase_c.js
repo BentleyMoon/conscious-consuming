@@ -16,7 +16,10 @@ fe.sort((a, b) => a.e - b.e);
 
 const checks = {
   "C2 ontology present": !!(B.ontology && B.ontology.types && B.ontology.types.length === 5),
-  "C2 ontology has facet": JSON.stringify(B.ontology).includes('"facet"'),
+  // Facets let one dataset stand for several decisions. The nine-way split (completed 2026-09-29)
+  // gave every such decision its own dataset, so the end state is none left; a facet reappearing
+  // means a decision is being answered by someone else's data again.
+  "C2 no decision answered through a shared facet": !JSON.stringify(B.ontology).includes('"facet"'),
   "C1 links on services": !!(svc.products[0].links && svc.products[0].links.length),
   "C1 region on services": !!(svc.products[0].region),
   "C1 org description": !!(find(org, 'patagonia').description),

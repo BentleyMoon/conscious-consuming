@@ -15537,6 +15537,10 @@
     {
      "key": "accessibility",
      "label": "Easy & free"
+    },
+    {
+     "key": "wellbeing",
+     "label": "Good for you"
     }
    ],
    "domain": "Tech & digital",
@@ -15561,11 +15565,11 @@
    },
    "provenanceProfile": {
     "entryCount": 98,
-    "singleSourceEntries": 33,
-    "multiSourceEntries": 65,
+    "singleSourceEntries": 32,
+    "multiSourceEntries": 66,
     "noSourceEntries": 0,
     "noteOnlyEntries": 0,
-    "averageSourceDomains": 1.92,
+    "averageSourceDomains": 1.99,
     "topPrimarySources": [
      {
       "label": "GitHub",
@@ -18390,7 +18394,7 @@
     },
     {
      "key": "reliability",
-     "label": "Flights arriving within 15 minutes of schedule (UK CAA, 2025)"
+     "label": "Flights within 15 minutes of schedule, arrivals and departures (UK CAA, 2025)"
     },
     {
      "key": "cancellations",
@@ -18780,11 +18784,11 @@
    },
    "provenanceProfile": {
     "entryCount": 12,
-    "singleSourceEntries": 11,
-    "multiSourceEntries": 1,
+    "singleSourceEntries": 10,
+    "multiSourceEntries": 2,
     "noSourceEntries": 0,
     "noteOnlyEntries": 0,
-    "averageSourceDomains": 1.08,
+    "averageSourceDomains": 1.25,
     "topPrimarySources": [
      {
       "label": "consumerreports.org",
@@ -19170,6 +19174,375 @@
    }
   },
   {
+   "id": "cardio-machines",
+   "label": "Cardio machines",
+   "file": "cardio-machines.json",
+   "n": 13,
+   "type": "Products",
+   "criteria": [
+    {
+     "key": "economical",
+     "label": "Price shown on the seller's page (machine only, no subscription)"
+    },
+    {
+     "key": "safety",
+     "label": "CPSC recall record for this type of machine under the brand"
+    },
+    {
+     "key": "durability",
+     "label": "Warranty length printed on the seller's page (frame, parts and labor)"
+    }
+   ],
+   "domain": "Health & wellness",
+   "need": "care",
+   "group": "Movement and fitness",
+   "regionProfile": {
+    "entryCount": 13,
+    "regionTagged": 13,
+    "missingRegion": 0,
+    "values": {
+     "US": 12,
+     "global": 1
+    },
+    "filterValues": [
+     "US"
+    ],
+    "globalEntries": 1,
+    "unknownRegionValues": {},
+    "countryLevelNeeded": false,
+    "countryLevelLimitationCount": 0,
+    "strictCurrentEnumSafe": true
+   },
+   "provenanceProfile": {
+    "entryCount": 13,
+    "singleSourceEntries": 2,
+    "multiSourceEntries": 11,
+    "noSourceEntries": 0,
+    "noteOnlyEntries": 0,
+    "averageSourceDomains": 1.85,
+    "topPrimarySources": [
+     {
+      "label": "target.com",
+      "entries": 3
+     },
+     {
+      "label": "onepeloton.com",
+      "entries": 2
+     },
+     {
+      "label": "bowflex.com",
+      "entries": 1
+     },
+     {
+      "label": "concept2.com",
+      "entries": 1
+     },
+     {
+      "label": "echelonfit.com",
+      "entries": 1
+     },
+     {
+      "label": "horizonfitness.com",
+      "entries": 1
+     }
+    ]
+   },
+   "valueSignatureProfile": {
+    "entryCount": 13,
+    "signedEntries": 13,
+    "drawableEntries": 11,
+    "minimumThemesForBloom": 2,
+    "themeCounts": {
+     "planet": 8,
+     "health": 12,
+     "cost": 11
+    }
+   },
+   "decision": {
+    "category": "cardio-machines",
+    "reads": {
+     "text": "Compare cardio machines by safety, cost, and durability.",
+     "basis": [
+      {
+       "criterion": "safety",
+       "readsAs": "safety"
+      },
+      {
+       "criterion": "economical",
+       "readsAs": "cost"
+      },
+      {
+       "criterion": "durability",
+       "readsAs": "durability"
+      }
+     ],
+     "signature": {
+      "by": "Conscious Consuming",
+      "on": "2026-07-15",
+      "status": "approved-batch"
+     },
+     "receipt": {
+      "dataset": "cardio-machines",
+      "entryCount": 13,
+      "criteria": [
+       {
+        "criterion": "safety",
+        "readsAs": "safety",
+        "known": 12,
+        "minimum": 10,
+        "maximum": 90,
+        "spread": 80
+       },
+       {
+        "criterion": "economical",
+        "readsAs": "cost",
+        "known": 11,
+        "minimum": 6,
+        "maximum": 100,
+        "spread": 94
+       },
+       {
+        "criterion": "durability",
+        "readsAs": "durability",
+        "known": 8,
+        "minimum": 5,
+        "maximum": 100,
+        "spread": 95
+       }
+      ]
+     }
+    },
+    "axes": [
+     {
+      "id": "cost-or-values",
+      "kind": "cost-values",
+      "label": "Cost or overall fit",
+      "question": "Lower cost or a stronger overall fit?",
+      "criteria": [
+       "economical",
+       "safety",
+       "durability"
+      ],
+      "poles": [
+       "Lower cost",
+       "Stronger overall fit"
+      ],
+      "default": 50
+     },
+     {
+      "id": "durability",
+      "kind": "criterion",
+      "label": "Durability",
+      "question": "Do you want a longer useful life?",
+      "criteria": [
+       "durability"
+      ],
+      "poles": [
+       "Flexible",
+       "Longer life"
+      ],
+      "default": 50
+     }
+    ],
+    "budget": {
+     "available": true,
+     "mode": "assessed-affordability-rank",
+     "criterion": "economical",
+     "minimumKnown": 5,
+     "knownEntries": 11,
+     "coverage": 0.8462
+    },
+    "archetypes": [
+     "best-for-most",
+     "strictest-match",
+     "budget-honest"
+    ],
+    "page": {
+     "stage": "approved-batch",
+     "primaryRoute": true
+    },
+    "consumer": {
+     "reads": "Round 8 approved category differences reads.",
+     "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+     "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+     "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+     "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+    }
+   }
+  },
+  {
+   "id": "care-homes",
+   "label": "Care homes",
+   "file": "care-homes.json",
+   "n": 18,
+   "type": "Services",
+   "criteria": [
+    {
+     "key": "safety",
+     "label": "Inspection record: share of the operator's older people's homes in England rated Good or Outstanding by CQC"
+    },
+    {
+     "key": "accessibility",
+     "label": "Choice: how many homes it runs, so how easily a family can find one near them"
+    },
+    {
+     "key": "ownership",
+     "label": "Who it answers to: charity or no shareholders, against a property investor"
+    }
+   ],
+   "domain": "Health & wellness",
+   "need": "care",
+   "group": "Care at home and in later life",
+   "regionProfile": {
+    "entryCount": 18,
+    "regionTagged": 18,
+    "missingRegion": 0,
+    "values": {
+     "UK": 18
+    },
+    "filterValues": [
+     "UK"
+    ],
+    "globalEntries": 0,
+    "unknownRegionValues": {},
+    "countryLevelNeeded": false,
+    "countryLevelLimitationCount": 0,
+    "strictCurrentEnumSafe": true
+   },
+   "provenanceProfile": {
+    "entryCount": 18,
+    "singleSourceEntries": 12,
+    "multiSourceEntries": 6,
+    "noSourceEntries": 0,
+    "noteOnlyEntries": 0,
+    "averageSourceDomains": 1.33,
+    "topPrimarySources": [
+     {
+      "label": "cqc.org.uk",
+      "entries": 18
+     }
+    ]
+   },
+   "valueSignatureProfile": {
+    "entryCount": 18,
+    "signedEntries": 18,
+    "drawableEntries": 17,
+    "minimumThemesForBloom": 2,
+    "themeCounts": {
+     "health": 18,
+     "cost": 17,
+     "local": 6
+    }
+   },
+   "decision": {
+    "category": "care-homes",
+    "reads": {
+     "text": "Compare care homes by safety, everyday access, and ownership.",
+     "basis": [
+      {
+       "criterion": "safety",
+       "readsAs": "safety"
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access"
+      },
+      {
+       "criterion": "ownership",
+       "readsAs": "ownership"
+      }
+     ],
+     "signature": {
+      "by": "Conscious Consuming",
+      "on": "2026-07-15",
+      "status": "approved-batch"
+     },
+     "receipt": {
+      "dataset": "care-homes",
+      "entryCount": 18,
+      "criteria": [
+       {
+        "criterion": "safety",
+        "readsAs": "safety",
+        "known": 18,
+        "minimum": 46,
+        "maximum": 100,
+        "spread": 54
+       },
+       {
+        "criterion": "accessibility",
+        "readsAs": "everyday access",
+        "known": 17,
+        "minimum": 8,
+        "maximum": 95,
+        "spread": 87
+       },
+       {
+        "criterion": "ownership",
+        "readsAs": "ownership",
+        "known": 6,
+        "minimum": 20,
+        "maximum": 90,
+        "spread": 70
+       }
+      ]
+     }
+    },
+    "axes": [
+     {
+      "id": "record-or-reach",
+      "kind": "tradeoff",
+      "label": "Record or reach",
+      "question": "A stronger inspection record, or easier to actually get?",
+      "criteria": [
+       "safety",
+       "accessibility"
+      ],
+      "poles": [
+       "Stronger record",
+       "Easier to get"
+      ],
+      "default": 50
+     },
+     {
+      "id": "ownership",
+      "kind": "criterion",
+      "label": "Ownership",
+      "question": "Does accountable ownership matter more?",
+      "criteria": [
+       "ownership"
+      ],
+      "poles": [
+       "Flexible",
+       "More accountable"
+      ],
+      "default": 50
+     }
+    ],
+    "budget": {
+     "available": false,
+     "mode": "none",
+     "knownEntries": 0,
+     "coverage": 0
+    },
+    "archetypes": [
+     "best-for-most",
+     "strictest-match"
+    ],
+    "page": {
+     "stage": "approved-batch",
+     "primaryRoute": true
+    },
+    "consumer": {
+     "reads": "Round 8 approved category differences reads.",
+     "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+     "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+     "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+     "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+    }
+   }
+  },
+  {
    "id": "cat-food",
    "label": "Cat food",
    "file": "cat-food.json",
@@ -19347,6 +19720,241 @@
     "archetypes": [
      "best-for-most",
      "strictest-match"
+    ],
+    "page": {
+     "stage": "approved-batch",
+     "primaryRoute": true
+    },
+    "consumer": {
+     "reads": "Round 8 approved category differences reads.",
+     "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+     "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+     "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+     "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+    }
+   }
+  },
+  {
+   "id": "cloud-storage",
+   "label": "Cloud storage",
+   "file": "cloud-storage.json",
+   "n": 13,
+   "type": "Services",
+   "criteria": [
+    {
+     "key": "privacy",
+     "label": "Encrypted so the provider cannot read files"
+    },
+    {
+     "key": "openness",
+     "label": "Open source"
+    },
+    {
+     "key": "portability",
+     "label": "Easy to leave with your files intact"
+    },
+    {
+     "key": "respect",
+     "label": "No advertising business model"
+    },
+    {
+     "key": "accessibility",
+     "label": "Easy to set up and use across devices and to share files"
+    },
+    {
+     "key": "economical",
+     "label": "Economical"
+    }
+   ],
+   "domain": "Tech & digital",
+   "need": "connect",
+   "group": "Digital services",
+   "regionProfile": {
+    "entryCount": 13,
+    "regionTagged": 13,
+    "missingRegion": 0,
+    "values": {
+     "global": 13
+    },
+    "filterValues": [],
+    "globalEntries": 13,
+    "unknownRegionValues": {},
+    "countryLevelNeeded": false,
+    "countryLevelLimitationCount": 0,
+    "strictCurrentEnumSafe": true
+   },
+   "provenanceProfile": {
+    "entryCount": 13,
+    "singleSourceEntries": 0,
+    "multiSourceEntries": 13,
+    "noSourceEntries": 0,
+    "noteOnlyEntries": 0,
+    "averageSourceDomains": 2.38,
+    "topPrimarySources": [
+     {
+      "label": "docs.syncthing.net",
+      "entries": 1
+     },
+     {
+      "label": "dropbox.com",
+      "entries": 1
+     },
+     {
+      "label": "filen.io",
+      "entries": 1
+     },
+     {
+      "label": "internxt.com",
+      "entries": 1
+     },
+     {
+      "label": "mega.io",
+      "entries": 1
+     },
+     {
+      "label": "microsoft.com",
+      "entries": 1
+     }
+    ]
+   },
+   "valueSignatureProfile": {
+    "entryCount": 13,
+    "signedEntries": 13,
+    "drawableEntries": 13,
+    "minimumThemesForBloom": 2,
+    "themeCounts": {
+     "privacy": 13,
+     "cost": 13
+    }
+   },
+   "decision": {
+    "category": "cloud-storage",
+    "reads": {
+     "text": "Compare cloud storage by privacy, everyday access, openness, and data portability.",
+     "basis": [
+      {
+       "criterion": "privacy",
+       "readsAs": "privacy"
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access"
+      },
+      {
+       "criterion": "openness",
+       "readsAs": "openness"
+      },
+      {
+       "criterion": "portability",
+       "readsAs": "data portability"
+      }
+     ],
+     "signature": {
+      "by": "Conscious Consuming",
+      "on": "2026-07-15",
+      "status": "approved-batch"
+     },
+     "receipt": {
+      "dataset": "cloud-storage",
+      "entryCount": 13,
+      "criteria": [
+       {
+        "criterion": "privacy",
+        "readsAs": "privacy",
+        "known": 13,
+        "minimum": 28,
+        "maximum": 90,
+        "spread": 62
+       },
+       {
+        "criterion": "accessibility",
+        "readsAs": "everyday access",
+        "known": 13,
+        "minimum": 36,
+        "maximum": 95,
+        "spread": 59
+       },
+       {
+        "criterion": "openness",
+        "readsAs": "openness",
+        "known": 13,
+        "minimum": 12,
+        "maximum": 98,
+        "spread": 86
+       },
+       {
+        "criterion": "portability",
+        "readsAs": "data portability",
+        "known": 11,
+        "minimum": 58,
+        "maximum": 92,
+        "spread": 34
+       }
+      ]
+     }
+    },
+    "axes": [
+     {
+      "id": "cost-or-values",
+      "kind": "cost-values",
+      "label": "Cost or overall fit",
+      "question": "Lower cost or a stronger overall fit?",
+      "criteria": [
+       "economical",
+       "privacy",
+       "accessibility",
+       "openness",
+       "portability",
+       "respect"
+      ],
+      "poles": [
+       "Lower cost",
+       "Stronger overall fit"
+      ],
+      "default": 50
+     },
+     {
+      "id": "access-or-privacy",
+      "kind": "tradeoff",
+      "label": "Access or privacy",
+      "question": "Easier access or less data exposure?",
+      "criteria": [
+       "accessibility",
+       "privacy"
+      ],
+      "poles": [
+       "Easier access",
+       "Less exposure"
+      ],
+      "default": 50
+     },
+     {
+      "id": "openness",
+      "kind": "criterion",
+      "label": "Openness",
+      "question": "Does openness matter more?",
+      "criteria": [
+       "openness"
+      ],
+      "poles": [
+       "Flexible",
+       "More open"
+      ],
+      "default": 50
+     }
+    ],
+    "budget": {
+     "available": true,
+     "mode": "assessed-affordability-rank",
+     "criterion": "economical",
+     "minimumKnown": 5,
+     "knownEntries": 12,
+     "coverage": 0.9231
+    },
+    "archetypes": [
+     "best-for-most",
+     "strictest-match",
+     "budget-honest"
     ],
     "page": {
      "stage": "approved-batch",
@@ -20552,6 +21160,186 @@
    }
   },
   {
+   "id": "electric-vehicles",
+   "label": "Electric vehicles",
+   "file": "electric-vehicles.json",
+   "n": 80,
+   "type": "Products",
+   "criteria": [
+    {
+     "key": "economical",
+     "label": "Energy cost a year"
+    },
+    {
+     "key": "accessibility",
+     "label": "Range on a full charge"
+    },
+    {
+     "key": "safety",
+     "label": "NHTSA crash rating"
+    },
+    {
+     "key": "environment",
+     "label": "Maker's climate target"
+    }
+   ],
+   "domain": "Transport & mobility",
+   "need": "move",
+   "group": "Cars",
+   "regionProfile": {
+    "entryCount": 80,
+    "regionTagged": 80,
+    "missingRegion": 0,
+    "values": {
+     "US": 80
+    },
+    "filterValues": [
+     "US"
+    ],
+    "globalEntries": 0,
+    "unknownRegionValues": {},
+    "countryLevelNeeded": false,
+    "countryLevelLimitationCount": 0,
+    "strictCurrentEnumSafe": true
+   },
+   "provenanceProfile": {
+    "entryCount": 80,
+    "singleSourceEntries": 27,
+    "multiSourceEntries": 53,
+    "noSourceEntries": 0,
+    "noteOnlyEntries": 0,
+    "averageSourceDomains": 1.84,
+    "topPrimarySources": [
+     {
+      "label": "fueleconomy.gov",
+      "entries": 80
+     }
+    ]
+   },
+   "valueSignatureProfile": {
+    "entryCount": 80,
+    "signedEntries": 80,
+    "drawableEntries": 53,
+    "minimumThemesForBloom": 2,
+    "themeCounts": {
+     "planet": 46,
+     "health": 21,
+     "cost": 80
+    }
+   },
+   "decision": {
+    "category": "electric-vehicles",
+    "reads": {
+     "text": "Compare electric vehicles by cost, everyday access, and environmental impact.",
+     "basis": [
+      {
+       "criterion": "economical",
+       "readsAs": "cost"
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access"
+      },
+      {
+       "criterion": "environment",
+       "readsAs": "environmental impact"
+      }
+     ],
+     "signature": {
+      "by": "Conscious Consuming",
+      "on": "2026-07-15",
+      "status": "approved-batch"
+     },
+     "receipt": {
+      "dataset": "electric-vehicles",
+      "entryCount": 80,
+      "criteria": [
+       {
+        "criterion": "economical",
+        "readsAs": "cost",
+        "known": 80,
+        "minimum": 40,
+        "maximum": 100,
+        "spread": 60
+       },
+       {
+        "criterion": "accessibility",
+        "readsAs": "everyday access",
+        "known": 80,
+        "minimum": 33,
+        "maximum": 100,
+        "spread": 67
+       },
+       {
+        "criterion": "environment",
+        "readsAs": "environmental impact",
+        "known": 46,
+        "minimum": 70,
+        "maximum": 100,
+        "spread": 30
+       }
+      ]
+     }
+    },
+    "axes": [
+     {
+      "id": "cost-or-values",
+      "kind": "cost-values",
+      "label": "Cost or overall fit",
+      "question": "Lower cost or a stronger overall fit?",
+      "criteria": [
+       "economical",
+       "accessibility",
+       "environment"
+      ],
+      "poles": [
+       "Lower cost",
+       "Stronger overall fit"
+      ],
+      "default": 50
+     },
+     {
+      "id": "environment",
+      "kind": "criterion",
+      "label": "Environmental impact",
+      "question": "Does lower environmental impact matter more?",
+      "criteria": [
+       "environment"
+      ],
+      "poles": [
+       "Flexible",
+       "Lower impact"
+      ],
+      "default": 50
+     }
+    ],
+    "budget": {
+     "available": true,
+     "mode": "assessed-affordability-rank",
+     "criterion": "economical",
+     "minimumKnown": 5,
+     "knownEntries": 80,
+     "coverage": 1.0
+    },
+    "archetypes": [
+     "best-for-most",
+     "strictest-match",
+     "budget-honest"
+    ],
+    "page": {
+     "stage": "approved-batch",
+     "primaryRoute": true
+    },
+    "consumer": {
+     "reads": "Round 8 approved category differences reads.",
+     "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+     "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+     "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+     "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+    }
+   }
+  },
+  {
    "id": "electricity-suppliers",
    "label": "Electricity suppliers",
    "file": "electricity-suppliers.json",
@@ -20600,11 +21388,11 @@
     "multiSourceEntries": 15,
     "noSourceEntries": 0,
     "noteOnlyEntries": 0,
-    "averageSourceDomains": 2.6,
+    "averageSourceDomains": 2.67,
     "topPrimarySources": [
      {
       "label": "citizensadvice.org.uk",
-      "entries": 5
+      "entries": 6
      },
      {
       "label": "100green.com",
@@ -20699,8 +21487,8 @@
         "readsAs": "everyday access",
         "known": 15,
         "minimum": 28,
-        "maximum": 87,
-        "spread": 59
+        "maximum": 81,
+        "spread": 53
        }
       ]
      }
@@ -21211,6 +21999,203 @@
    }
   },
   {
+   "id": "fitness-equipment",
+   "label": "Fitness equipment",
+   "file": "fitness-equipment.json",
+   "n": 14,
+   "type": "Products",
+   "criteria": [
+    {
+     "key": "economical",
+     "label": "Price of a pair per pound of one dumbbell's top weight"
+    },
+    {
+     "key": "safety",
+     "label": "CPSC recall record for dumbbells under the brand"
+    },
+    {
+     "key": "durability",
+     "label": "Warranty length printed on the seller's page"
+    }
+   ],
+   "domain": "Health & wellness",
+   "need": "care",
+   "group": "Movement and fitness",
+   "regionProfile": {
+    "entryCount": 14,
+    "regionTagged": 14,
+    "missingRegion": 0,
+    "values": {
+     "US": 13,
+     "global": 1
+    },
+    "filterValues": [
+     "US"
+    ],
+    "globalEntries": 1,
+    "unknownRegionValues": {},
+    "countryLevelNeeded": false,
+    "countryLevelLimitationCount": 0,
+    "strictCurrentEnumSafe": true
+   },
+   "provenanceProfile": {
+    "entryCount": 14,
+    "singleSourceEntries": 7,
+    "multiSourceEntries": 7,
+    "noSourceEntries": 0,
+    "noteOnlyEntries": 0,
+    "averageSourceDomains": 1.5,
+    "topPrimarySources": [
+     {
+      "label": "saferproducts.gov",
+      "entries": 8
+     },
+     {
+      "label": "target.com",
+      "entries": 2
+     },
+     {
+      "label": "bowflex.com",
+      "entries": 1
+     },
+     {
+      "label": "ironmaster.com",
+      "entries": 1
+     },
+     {
+      "label": "nhs.uk",
+      "entries": 1
+     },
+     {
+      "label": "powerblock.com",
+      "entries": 1
+     }
+    ]
+   },
+   "valueSignatureProfile": {
+    "entryCount": 14,
+    "signedEntries": 14,
+    "drawableEntries": 7,
+    "minimumThemesForBloom": 2,
+    "themeCounts": {
+     "planet": 5,
+     "health": 13,
+     "cost": 8
+    }
+   },
+   "decision": {
+    "category": "fitness-equipment",
+    "reads": {
+     "text": "Compare fitness equipment by safety, cost, and durability.",
+     "basis": [
+      {
+       "criterion": "safety",
+       "readsAs": "safety"
+      },
+      {
+       "criterion": "economical",
+       "readsAs": "cost"
+      },
+      {
+       "criterion": "durability",
+       "readsAs": "durability"
+      }
+     ],
+     "signature": {
+      "by": "Conscious Consuming",
+      "on": "2026-07-15",
+      "status": "approved-batch"
+     },
+     "receipt": {
+      "dataset": "fitness-equipment",
+      "entryCount": 14,
+      "criteria": [
+       {
+        "criterion": "safety",
+        "readsAs": "safety",
+        "known": 13,
+        "minimum": 35,
+        "maximum": 90,
+        "spread": 55
+       },
+       {
+        "criterion": "economical",
+        "readsAs": "cost",
+        "known": 8,
+        "minimum": 9,
+        "maximum": 100,
+        "spread": 91
+       },
+       {
+        "criterion": "durability",
+        "readsAs": "durability",
+        "known": 5,
+        "minimum": 8,
+        "maximum": 100,
+        "spread": 92
+       }
+      ]
+     }
+    },
+    "axes": [
+     {
+      "id": "cost-or-values",
+      "kind": "cost-values",
+      "label": "Cost or overall fit",
+      "question": "Lower cost or a stronger overall fit?",
+      "criteria": [
+       "economical",
+       "safety",
+       "durability"
+      ],
+      "poles": [
+       "Lower cost",
+       "Stronger overall fit"
+      ],
+      "default": 50
+     },
+     {
+      "id": "durability",
+      "kind": "criterion",
+      "label": "Durability",
+      "question": "Do you want a longer useful life?",
+      "criteria": [
+       "durability"
+      ],
+      "poles": [
+       "Flexible",
+       "Longer life"
+      ],
+      "default": 50
+     }
+    ],
+    "budget": {
+     "available": true,
+     "mode": "assessed-affordability-rank",
+     "criterion": "economical",
+     "minimumKnown": 5,
+     "knownEntries": 8,
+     "coverage": 0.5714
+    },
+    "archetypes": [
+     "best-for-most",
+     "strictest-match",
+     "budget-honest"
+    ],
+    "page": {
+     "stage": "approved-batch",
+     "primaryRoute": true
+    },
+    "consumer": {
+     "reads": "Round 8 approved category differences reads.",
+     "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+     "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+     "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+     "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+    }
+   }
+  },
+  {
    "id": "glasses-and-contact-lenses",
    "label": "Glasses and contact lenses",
    "file": "glasses-and-contact-lenses.json",
@@ -21630,6 +22615,742 @@
    }
   },
   {
+   "id": "home-care-services",
+   "label": "Home care services",
+   "file": "home-care-services.json",
+   "n": 16,
+   "type": "Services",
+   "criteria": [
+    {
+     "key": "safety",
+     "label": "Inspection record: share of the brand's home care agencies in England rated Good or Outstanding by CQC"
+    },
+    {
+     "key": "accessibility",
+     "label": "Choice: how many agencies it has, so how easily a family can find an office near them"
+    },
+    {
+     "key": "transparency",
+     "label": "How much of a price the brand's own pages show"
+    }
+   ],
+   "domain": "Health & wellness",
+   "need": "care",
+   "group": "Care at home and in later life",
+   "regionProfile": {
+    "entryCount": 16,
+    "regionTagged": 16,
+    "missingRegion": 0,
+    "values": {
+     "UK": 16
+    },
+    "filterValues": [
+     "UK"
+    ],
+    "globalEntries": 0,
+    "unknownRegionValues": {},
+    "countryLevelNeeded": false,
+    "countryLevelLimitationCount": 0,
+    "strictCurrentEnumSafe": true
+   },
+   "provenanceProfile": {
+    "entryCount": 16,
+    "singleSourceEntries": 11,
+    "multiSourceEntries": 5,
+    "noSourceEntries": 0,
+    "noteOnlyEntries": 0,
+    "averageSourceDomains": 1.31,
+    "topPrimarySources": [
+     {
+      "label": "cqc.org.uk",
+      "entries": 15
+     },
+     {
+      "label": "gov.uk",
+      "entries": 1
+     }
+    ]
+   },
+   "valueSignatureProfile": {
+    "entryCount": 16,
+    "signedEntries": 16,
+    "drawableEntries": 14,
+    "minimumThemesForBloom": 2,
+    "themeCounts": {
+     "health": 15,
+     "honesty": 6,
+     "cost": 14
+    }
+   },
+   "decision": {
+    "category": "home-care-services",
+    "reads": {
+     "text": "Compare home care services by safety, everyday access, and disclosure.",
+     "basis": [
+      {
+       "criterion": "safety",
+       "readsAs": "safety"
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access"
+      },
+      {
+       "criterion": "transparency",
+       "readsAs": "disclosure"
+      }
+     ],
+     "signature": {
+      "by": "Conscious Consuming",
+      "on": "2026-07-15",
+      "status": "approved-batch"
+     },
+     "receipt": {
+      "dataset": "home-care-services",
+      "entryCount": 16,
+      "criteria": [
+       {
+        "criterion": "safety",
+        "readsAs": "safety",
+        "known": 15,
+        "minimum": 63,
+        "maximum": 100,
+        "spread": 37
+       },
+       {
+        "criterion": "accessibility",
+        "readsAs": "everyday access",
+        "known": 14,
+        "minimum": 4,
+        "maximum": 95,
+        "spread": 91
+       },
+       {
+        "criterion": "transparency",
+        "readsAs": "disclosure",
+        "known": 6,
+        "minimum": 30,
+        "maximum": 90,
+        "spread": 60
+       }
+      ]
+     }
+    },
+    "axes": [
+     {
+      "id": "record-or-reach",
+      "kind": "tradeoff",
+      "label": "Record or reach",
+      "question": "A stronger inspection record, or easier to actually get?",
+      "criteria": [
+       "safety",
+       "accessibility"
+      ],
+      "poles": [
+       "Stronger record",
+       "Easier to get"
+      ],
+      "default": 50
+     },
+     {
+      "id": "transparency",
+      "kind": "criterion",
+      "label": "Disclosure",
+      "question": "Does stronger disclosure matter more?",
+      "criteria": [
+       "transparency"
+      ],
+      "poles": [
+       "Flexible",
+       "Stronger disclosure"
+      ],
+      "default": 50
+     }
+    ],
+    "budget": {
+     "available": false,
+     "mode": "none",
+     "knownEntries": 0,
+     "coverage": 0
+    },
+    "archetypes": [
+     "best-for-most",
+     "strictest-match"
+    ],
+    "page": {
+     "stage": "approved-batch",
+     "primaryRoute": true
+    },
+    "consumer": {
+     "reads": "Round 8 approved category differences reads.",
+     "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+     "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+     "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+     "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+    }
+   }
+  },
+  {
+   "id": "hybrid-and-plug-in-hybrid-cars",
+   "label": "Hybrid and plug-in hybrid cars",
+   "file": "hybrid-and-plug-in-hybrid-cars.json",
+   "n": 74,
+   "type": "Products",
+   "criteria": [
+    {
+     "key": "economical",
+     "label": "Fuel and electricity cost a year"
+    },
+    {
+     "key": "safety",
+     "label": "NHTSA crash rating"
+    },
+    {
+     "key": "environment",
+     "label": "Maker's climate target"
+    }
+   ],
+   "domain": "Transport & mobility",
+   "need": "move",
+   "group": "Cars",
+   "regionProfile": {
+    "entryCount": 74,
+    "regionTagged": 74,
+    "missingRegion": 0,
+    "values": {
+     "US": 74
+    },
+    "filterValues": [
+     "US"
+    ],
+    "globalEntries": 0,
+    "unknownRegionValues": {},
+    "countryLevelNeeded": false,
+    "countryLevelLimitationCount": 0,
+    "strictCurrentEnumSafe": true
+   },
+   "provenanceProfile": {
+    "entryCount": 74,
+    "singleSourceEntries": 15,
+    "multiSourceEntries": 59,
+    "noSourceEntries": 0,
+    "noteOnlyEntries": 0,
+    "averageSourceDomains": 2.11,
+    "topPrimarySources": [
+     {
+      "label": "fueleconomy.gov",
+      "entries": 39
+     },
+     {
+      "label": "api.nhtsa.gov",
+      "entries": 35
+     }
+    ]
+   },
+   "valueSignatureProfile": {
+    "entryCount": 74,
+    "signedEntries": 74,
+    "drawableEntries": 59,
+    "minimumThemesForBloom": 2,
+    "themeCounts": {
+     "planet": 47,
+     "health": 35,
+     "cost": 74
+    }
+   },
+   "decision": {
+    "category": "hybrid-and-plug-in-hybrid-cars",
+    "reads": {
+     "text": "Compare hybrid and plug-in hybrid cars by cost, safety, and environmental impact.",
+     "basis": [
+      {
+       "criterion": "economical",
+       "readsAs": "cost"
+      },
+      {
+       "criterion": "safety",
+       "readsAs": "safety"
+      },
+      {
+       "criterion": "environment",
+       "readsAs": "environmental impact"
+      }
+     ],
+     "signature": {
+      "by": "Conscious Consuming",
+      "on": "2026-07-15",
+      "status": "approved-batch"
+     },
+     "receipt": {
+      "dataset": "hybrid-and-plug-in-hybrid-cars",
+      "entryCount": 74,
+      "criteria": [
+       {
+        "criterion": "economical",
+        "readsAs": "cost",
+        "known": 74,
+        "minimum": 20,
+        "maximum": 100,
+        "spread": 80
+       },
+       {
+        "criterion": "safety",
+        "readsAs": "safety",
+        "known": 35,
+        "minimum": 80,
+        "maximum": 100,
+        "spread": 20
+       },
+       {
+        "criterion": "environment",
+        "readsAs": "environmental impact",
+        "known": 47,
+        "minimum": 60,
+        "maximum": 100,
+        "spread": 40
+       }
+      ]
+     }
+    },
+    "axes": [
+     {
+      "id": "cost-or-values",
+      "kind": "cost-values",
+      "label": "Cost or overall fit",
+      "question": "Lower cost or a stronger overall fit?",
+      "criteria": [
+       "economical",
+       "safety",
+       "environment"
+      ],
+      "poles": [
+       "Lower cost",
+       "Stronger overall fit"
+      ],
+      "default": 50
+     },
+     {
+      "id": "environment",
+      "kind": "criterion",
+      "label": "Environmental impact",
+      "question": "Does lower environmental impact matter more?",
+      "criteria": [
+       "environment"
+      ],
+      "poles": [
+       "Flexible",
+       "Lower impact"
+      ],
+      "default": 50
+     }
+    ],
+    "budget": {
+     "available": true,
+     "mode": "assessed-affordability-rank",
+     "criterion": "economical",
+     "minimumKnown": 5,
+     "knownEntries": 74,
+     "coverage": 1.0
+    },
+    "archetypes": [
+     "best-for-most",
+     "strictest-match",
+     "budget-honest"
+    ],
+    "page": {
+     "stage": "approved-batch",
+     "primaryRoute": true
+    },
+    "consumer": {
+     "reads": "Round 8 approved category differences reads.",
+     "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+     "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+     "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+     "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+    }
+   }
+  },
+  {
+   "id": "infant-formula",
+   "label": "Infant formula",
+   "file": "infant-formula.json",
+   "n": 13,
+   "type": "Products",
+   "criteria": [
+    {
+     "key": "economical",
+     "label": "Price per ounce of powder as listed by the seller"
+    },
+    {
+     "key": "health",
+     "label": "FDA recall and outbreak record for the brand's formula over five years"
+    },
+    {
+     "key": "palm_oil",
+     "label": "Palm-oil-free: no palm or palm olein oil in the ingredient list"
+    }
+   ],
+   "domain": "Kids & family",
+   "need": "care",
+   "group": "Babies and toddlers",
+   "regionProfile": {
+    "entryCount": 13,
+    "regionTagged": 13,
+    "missingRegion": 0,
+    "values": {
+     "US": 13
+    },
+    "filterValues": [
+     "US"
+    ],
+    "globalEntries": 0,
+    "unknownRegionValues": {},
+    "countryLevelNeeded": false,
+    "countryLevelLimitationCount": 0,
+    "strictCurrentEnumSafe": true
+   },
+   "provenanceProfile": {
+    "entryCount": 13,
+    "singleSourceEntries": 7,
+    "multiSourceEntries": 6,
+    "noSourceEntries": 0,
+    "noteOnlyEntries": 0,
+    "averageSourceDomains": 1.46,
+    "topPrimarySources": [
+     {
+      "label": "api.fda.gov",
+      "entries": 4
+     },
+     {
+      "label": "fda.gov",
+      "entries": 4
+     },
+     {
+      "label": "target.com",
+      "entries": 3
+     },
+     {
+      "label": "ers.usda.gov",
+      "entries": 1
+     },
+     {
+      "label": "us.kendamil.com",
+      "entries": 1
+     }
+    ]
+   },
+   "valueSignatureProfile": {
+    "entryCount": 13,
+    "signedEntries": 13,
+    "drawableEntries": 6,
+    "minimumThemesForBloom": 2,
+    "themeCounts": {
+     "planet": 6,
+     "health": 12,
+     "cost": 5
+    }
+   },
+   "decision": {
+    "category": "infant-formula",
+    "reads": {
+     "text": "Compare infant formula by body safety, cost, and palm-oil signals.",
+     "basis": [
+      {
+       "criterion": "health",
+       "readsAs": "body safety"
+      },
+      {
+       "criterion": "economical",
+       "readsAs": "cost"
+      },
+      {
+       "criterion": "palm_oil",
+       "readsAs": "palm-oil signals"
+      }
+     ],
+     "signature": {
+      "by": "Conscious Consuming",
+      "on": "2026-07-15",
+      "status": "approved-batch"
+     },
+     "receipt": {
+      "dataset": "infant-formula",
+      "entryCount": 13,
+      "criteria": [
+       {
+        "criterion": "health",
+        "readsAs": "body safety",
+        "known": 12,
+        "minimum": 10,
+        "maximum": 90,
+        "spread": 80
+       },
+       {
+        "criterion": "economical",
+        "readsAs": "cost",
+        "known": 5,
+        "minimum": 29,
+        "maximum": 100,
+        "spread": 71
+       },
+       {
+        "criterion": "palm_oil",
+        "readsAs": "palm-oil signals",
+        "known": 6,
+        "minimum": 15,
+        "maximum": 90,
+        "spread": 75
+       }
+      ]
+     }
+    },
+    "axes": [
+     {
+      "id": "cost-or-values",
+      "kind": "cost-values",
+      "label": "Cost or overall fit",
+      "question": "Lower cost or a stronger overall fit?",
+      "criteria": [
+       "economical",
+       "health",
+       "palm_oil"
+      ],
+      "poles": [
+       "Lower cost",
+       "Stronger overall fit"
+      ],
+      "default": 50
+     },
+     {
+      "id": "palm-oil",
+      "kind": "criterion",
+      "label": "Palm-oil signals",
+      "question": "Do you need palm-oil-free evidence?",
+      "criteria": [
+       "palm_oil"
+      ],
+      "poles": [
+       "Flexible",
+       "Palm-oil-free"
+      ],
+      "default": 50
+     }
+    ],
+    "budget": {
+     "available": true,
+     "mode": "assessed-affordability-rank",
+     "criterion": "economical",
+     "minimumKnown": 5,
+     "knownEntries": 5,
+     "coverage": 0.3846
+    },
+    "archetypes": [
+     "best-for-most",
+     "strictest-match",
+     "budget-honest"
+    ],
+    "page": {
+     "stage": "approved-batch",
+     "primaryRoute": true
+    },
+    "consumer": {
+     "reads": "Round 8 approved category differences reads.",
+     "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+     "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+     "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+     "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+    }
+   }
+  },
+  {
+   "id": "insulated-and-down-jackets",
+   "label": "Insulated and down jackets",
+   "file": "insulated-and-down-jackets.json",
+   "n": 16,
+   "type": "Products",
+   "criteria": [
+    {
+     "key": "ethics",
+     "label": "Down sourcing: how far the brand has acted to rule out live plucking (FOUR PAWS traffic-light rating)"
+    },
+    {
+     "key": "repairability",
+     "label": "Repair offered for wear and damage, with published prices or waits"
+    },
+    {
+     "key": "labor",
+     "label": "Fair Wear Foundation total benchmarking score, for members only"
+    }
+   ],
+   "domain": "Clothing",
+   "need": "care",
+   "group": "Everyday clothing",
+   "regionProfile": {
+    "entryCount": 16,
+    "regionTagged": 15,
+    "missingRegion": 1,
+    "values": {
+     "US": 5,
+     "EU": 5,
+     "UK": 4,
+     "global": 5
+    },
+    "filterValues": [
+     "US",
+     "EU",
+     "UK"
+    ],
+    "globalEntries": 5,
+    "unknownRegionValues": {},
+    "countryLevelNeeded": false,
+    "countryLevelLimitationCount": 0,
+    "strictCurrentEnumSafe": false
+   },
+   "provenanceProfile": {
+    "entryCount": 16,
+    "singleSourceEntries": 7,
+    "multiSourceEntries": 9,
+    "noSourceEntries": 0,
+    "noteOnlyEntries": 0,
+    "averageSourceDomains": 1.75,
+    "topPrimarySources": [
+     {
+      "label": "four-paws.org",
+      "entries": 10
+     },
+     {
+      "label": "fairwear.org",
+      "entries": 4
+     },
+     {
+      "label": "arcteryx.com",
+      "entries": 1
+     },
+     {
+      "label": "canadagoose.com",
+      "entries": 1
+     }
+    ]
+   },
+   "valueSignatureProfile": {
+    "entryCount": 16,
+    "signedEntries": 16,
+    "drawableEntries": 8,
+    "minimumThemesForBloom": 2,
+    "themeCounts": {
+     "planet": 8,
+     "people": 16
+    }
+   },
+   "decision": {
+    "category": "insulated-and-down-jackets",
+    "reads": {
+     "text": "Compare insulated and down jackets by labor and sourcing, repairability, and labor practices.",
+     "basis": [
+      {
+       "criterion": "ethics",
+       "readsAs": "labor and sourcing"
+      },
+      {
+       "criterion": "repairability",
+       "readsAs": "repairability"
+      },
+      {
+       "criterion": "labor",
+       "readsAs": "labor practices"
+      }
+     ],
+     "signature": {
+      "by": "Conscious Consuming",
+      "on": "2026-07-15",
+      "status": "approved-batch"
+     },
+     "receipt": {
+      "dataset": "insulated-and-down-jackets",
+      "entryCount": 16,
+      "criteria": [
+       {
+        "criterion": "ethics",
+        "readsAs": "labor and sourcing",
+        "known": 16,
+        "minimum": 10,
+        "maximum": 95,
+        "spread": 85
+       },
+       {
+        "criterion": "repairability",
+        "readsAs": "repairability",
+        "known": 8,
+        "minimum": 50,
+        "maximum": 88,
+        "spread": 38
+       },
+       {
+        "criterion": "labor",
+        "readsAs": "labor practices",
+        "known": 4,
+        "minimum": 63,
+        "maximum": 84,
+        "spread": 21
+       }
+      ]
+     }
+    },
+    "axes": [
+     {
+      "id": "sourcing-or-repair",
+      "kind": "tradeoff",
+      "label": "Sourcing or repair",
+      "question": "Stronger down sourcing or a stronger repair service?",
+      "criteria": [
+       "ethics",
+       "repairability"
+      ],
+      "poles": [
+       "Stronger sourcing",
+       "Easier repair"
+      ],
+      "default": 50
+     },
+     {
+      "id": "labor",
+      "kind": "criterion",
+      "label": "Labor practices",
+      "question": "Do stronger labor practices matter more?",
+      "criteria": [
+       "labor"
+      ],
+      "poles": [
+       "Flexible",
+       "Stronger labor"
+      ],
+      "default": 50
+     }
+    ],
+    "budget": {
+     "available": false,
+     "mode": "none",
+     "knownEntries": 0,
+     "coverage": 0
+    },
+    "archetypes": [
+     "best-for-most",
+     "strictest-match"
+    ],
+    "page": {
+     "stage": "approved-batch",
+     "primaryRoute": true
+    },
+    "consumer": {
+     "reads": "Round 8 approved category differences reads.",
+     "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+     "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+     "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+     "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+    }
+   }
+  },
+  {
    "id": "language-learning",
    "label": "Language learning",
    "file": "language-learning.json",
@@ -21820,6 +23541,241 @@
      "minimumKnown": 5,
      "knownEntries": 6,
      "coverage": 0.4615
+    },
+    "archetypes": [
+     "best-for-most",
+     "strictest-match",
+     "budget-honest"
+    ],
+    "page": {
+     "stage": "approved-batch",
+     "primaryRoute": true
+    },
+    "consumer": {
+     "reads": "Round 8 approved category differences reads.",
+     "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+     "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+     "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+     "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+    }
+   }
+  },
+  {
+   "id": "maps",
+   "label": "Maps",
+   "file": "maps.json",
+   "n": 12,
+   "type": "Services",
+   "criteria": [
+    {
+     "key": "privacy",
+     "label": "Keeps little location data about you"
+    },
+    {
+     "key": "respect",
+     "label": "No advertising or profiling business model"
+    },
+    {
+     "key": "openness",
+     "label": "Open map data and code"
+    },
+    {
+     "key": "accessibility",
+     "label": "Easy to start and use, judged by platforms, offline use and sign-in"
+    },
+    {
+     "key": "economical",
+     "label": "Economical"
+    }
+   ],
+   "domain": "Tech & digital",
+   "need": "connect",
+   "group": "Digital services",
+   "regionProfile": {
+    "entryCount": 12,
+    "regionTagged": 12,
+    "missingRegion": 0,
+    "values": {
+     "US": 1,
+     "UK": 1,
+     "global": 11
+    },
+    "filterValues": [
+     "US",
+     "UK"
+    ],
+    "globalEntries": 11,
+    "unknownRegionValues": {},
+    "countryLevelNeeded": false,
+    "countryLevelLimitationCount": 0,
+    "strictCurrentEnumSafe": true
+   },
+   "provenanceProfile": {
+    "entryCount": 12,
+    "singleSourceEntries": 6,
+    "multiSourceEntries": 6,
+    "noSourceEntries": 0,
+    "noteOnlyEntries": 0,
+    "averageSourceDomains": 1.58,
+    "topPrimarySources": [
+     {
+      "label": "apple.com",
+      "entries": 1
+     },
+     {
+      "label": "citymapper.com",
+      "entries": 1
+     },
+     {
+      "label": "comaps.app",
+      "entries": 1
+     },
+     {
+      "label": "here.com",
+      "entries": 1
+     },
+     {
+      "label": "magicearth.com",
+      "entries": 1
+     },
+     {
+      "label": "openstreetmap.org",
+      "entries": 1
+     }
+    ]
+   },
+   "valueSignatureProfile": {
+    "entryCount": 12,
+    "signedEntries": 12,
+    "drawableEntries": 12,
+    "minimumThemesForBloom": 2,
+    "themeCounts": {
+     "privacy": 12,
+     "cost": 12
+    }
+   },
+   "decision": {
+    "category": "maps",
+    "reads": {
+     "text": "Compare maps by privacy, everyday access, respect for attention, and openness.",
+     "basis": [
+      {
+       "criterion": "privacy",
+       "readsAs": "privacy"
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access"
+      },
+      {
+       "criterion": "respect",
+       "readsAs": "respect for attention"
+      },
+      {
+       "criterion": "openness",
+       "readsAs": "openness"
+      }
+     ],
+     "signature": {
+      "by": "Conscious Consuming",
+      "on": "2026-07-15",
+      "status": "approved-batch"
+     },
+     "receipt": {
+      "dataset": "maps",
+      "entryCount": 12,
+      "criteria": [
+       {
+        "criterion": "privacy",
+        "readsAs": "privacy",
+        "known": 12,
+        "minimum": 30,
+        "maximum": 95,
+        "spread": 65
+       },
+       {
+        "criterion": "accessibility",
+        "readsAs": "everyday access",
+        "known": 12,
+        "minimum": 55,
+        "maximum": 90,
+        "spread": 35
+       },
+       {
+        "criterion": "respect",
+        "readsAs": "respect for attention",
+        "known": 11,
+        "minimum": 12,
+        "maximum": 95,
+        "spread": 83
+       },
+       {
+        "criterion": "openness",
+        "readsAs": "openness",
+        "known": 10,
+        "minimum": 8,
+        "maximum": 100,
+        "spread": 92
+       }
+      ]
+     }
+    },
+    "axes": [
+     {
+      "id": "cost-or-values",
+      "kind": "cost-values",
+      "label": "Cost or overall fit",
+      "question": "Lower cost or a stronger overall fit?",
+      "criteria": [
+       "economical",
+       "privacy",
+       "accessibility",
+       "respect",
+       "openness"
+      ],
+      "poles": [
+       "Lower cost",
+       "Stronger overall fit"
+      ],
+      "default": 50
+     },
+     {
+      "id": "access-or-privacy",
+      "kind": "tradeoff",
+      "label": "Access or privacy",
+      "question": "Easier access or less data exposure?",
+      "criteria": [
+       "accessibility",
+       "privacy"
+      ],
+      "poles": [
+       "Easier access",
+       "Less exposure"
+      ],
+      "default": 50
+     },
+     {
+      "id": "respect",
+      "kind": "criterion",
+      "label": "Respect for attention",
+      "question": "Do you want the more respectful option?",
+      "criteria": [
+       "respect"
+      ],
+      "poles": [
+       "Flexible",
+       "More respectful"
+      ],
+      "default": 50
+     }
+    ],
+    "budget": {
+     "available": true,
+     "mode": "assessed-affordability-rank",
+     "criterion": "economical",
+     "minimumKnown": 5,
+     "knownEntries": 6,
+     "coverage": 0.5
     },
     "archetypes": [
      "best-for-most",
@@ -22871,6 +24827,421 @@
    }
   },
   {
+   "id": "new-cars",
+   "label": "New cars",
+   "file": "new-cars.json",
+   "n": 395,
+   "type": "Products",
+   "criteria": [
+    {
+     "key": "economical",
+     "label": "Fuel and electricity cost a year"
+    },
+    {
+     "key": "safety",
+     "label": "NHTSA crash rating"
+    },
+    {
+     "key": "environment",
+     "label": "Maker's climate target"
+    }
+   ],
+   "domain": "Transport & mobility",
+   "need": "move",
+   "group": "Cars",
+   "regionProfile": {
+    "entryCount": 395,
+    "regionTagged": 395,
+    "missingRegion": 0,
+    "values": {
+     "US": 395
+    },
+    "filterValues": [
+     "US"
+    ],
+    "globalEntries": 0,
+    "unknownRegionValues": {},
+    "countryLevelNeeded": false,
+    "countryLevelLimitationCount": 0,
+    "strictCurrentEnumSafe": true
+   },
+   "provenanceProfile": {
+    "entryCount": 395,
+    "singleSourceEntries": 77,
+    "multiSourceEntries": 318,
+    "noSourceEntries": 0,
+    "noteOnlyEntries": 0,
+    "averageSourceDomains": 2.07,
+    "topPrimarySources": [
+     {
+      "label": "fueleconomy.gov",
+      "entries": 239
+     },
+     {
+      "label": "api.nhtsa.gov",
+      "entries": 156
+     }
+    ]
+   },
+   "valueSignatureProfile": {
+    "entryCount": 395,
+    "signedEntries": 395,
+    "drawableEntries": 318,
+    "minimumThemesForBloom": 2,
+    "themeCounts": {
+     "planet": 266,
+     "health": 156,
+     "cost": 395
+    }
+   },
+   "decision": {
+    "category": "new-cars",
+    "reads": {
+     "text": "Compare new cars by cost, safety, and environmental impact.",
+     "basis": [
+      {
+       "criterion": "economical",
+       "readsAs": "cost"
+      },
+      {
+       "criterion": "safety",
+       "readsAs": "safety"
+      },
+      {
+       "criterion": "environment",
+       "readsAs": "environmental impact"
+      }
+     ],
+     "signature": {
+      "by": "Conscious Consuming",
+      "on": "2026-07-15",
+      "status": "approved-batch"
+     },
+     "receipt": {
+      "dataset": "new-cars",
+      "entryCount": 395,
+      "criteria": [
+       {
+        "criterion": "economical",
+        "readsAs": "cost",
+        "known": 395,
+        "minimum": 9,
+        "maximum": 100,
+        "spread": 91
+       },
+       {
+        "criterion": "safety",
+        "readsAs": "safety",
+        "known": 156,
+        "minimum": 80,
+        "maximum": 100,
+        "spread": 20
+       },
+       {
+        "criterion": "environment",
+        "readsAs": "environmental impact",
+        "known": 266,
+        "minimum": 60,
+        "maximum": 100,
+        "spread": 40
+       }
+      ]
+     }
+    },
+    "axes": [
+     {
+      "id": "cost-or-values",
+      "kind": "cost-values",
+      "label": "Cost or overall fit",
+      "question": "Lower cost or a stronger overall fit?",
+      "criteria": [
+       "economical",
+       "safety",
+       "environment"
+      ],
+      "poles": [
+       "Lower cost",
+       "Stronger overall fit"
+      ],
+      "default": 50
+     },
+     {
+      "id": "environment",
+      "kind": "criterion",
+      "label": "Environmental impact",
+      "question": "Does lower environmental impact matter more?",
+      "criteria": [
+       "environment"
+      ],
+      "poles": [
+       "Flexible",
+       "Lower impact"
+      ],
+      "default": 50
+     }
+    ],
+    "budget": {
+     "available": true,
+     "mode": "assessed-affordability-rank",
+     "criterion": "economical",
+     "minimumKnown": 5,
+     "knownEntries": 395,
+     "coverage": 1.0
+    },
+    "archetypes": [
+     "best-for-most",
+     "strictest-match",
+     "budget-honest"
+    ],
+    "page": {
+     "stage": "approved-batch",
+     "primaryRoute": true
+    },
+    "consumer": {
+     "reads": "Round 8 approved category differences reads.",
+     "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+     "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+     "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+     "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+    }
+   }
+  },
+  {
+   "id": "notes",
+   "label": "Notes",
+   "file": "notes.json",
+   "n": 13,
+   "type": "Services",
+   "criteria": [
+    {
+     "key": "privacy",
+     "label": "Stored so the provider cannot read notes"
+    },
+    {
+     "key": "openness",
+     "label": "Open source"
+    },
+    {
+     "key": "portability",
+     "label": "Notes leave in open formats"
+    },
+    {
+     "key": "respect",
+     "label": "No advertising business model"
+    },
+    {
+     "key": "accessibility",
+     "label": "Easy to start, sync across devices and share"
+    },
+    {
+     "key": "economical",
+     "label": "Economical"
+    }
+   ],
+   "domain": "Tech & digital",
+   "need": "connect",
+   "group": "Digital services",
+   "regionProfile": {
+    "entryCount": 13,
+    "regionTagged": 13,
+    "missingRegion": 0,
+    "values": {
+     "global": 13
+    },
+    "filterValues": [],
+    "globalEntries": 13,
+    "unknownRegionValues": {},
+    "countryLevelNeeded": false,
+    "countryLevelLimitationCount": 0,
+    "strictCurrentEnumSafe": true
+   },
+   "provenanceProfile": {
+    "entryCount": 13,
+    "singleSourceEntries": 4,
+    "multiSourceEntries": 9,
+    "noSourceEntries": 0,
+    "noteOnlyEntries": 0,
+    "averageSourceDomains": 1.92,
+    "topPrimarySources": [
+     {
+      "label": "GitHub",
+      "entries": 2
+     },
+     {
+      "label": "anytype.io",
+      "entries": 1
+     },
+     {
+      "label": "bear.app",
+      "entries": 1
+     },
+     {
+      "label": "evernote.com",
+      "entries": 1
+     },
+     {
+      "label": "joplinapp.org",
+      "entries": 1
+     },
+     {
+      "label": "microsoft.com",
+      "entries": 1
+     }
+    ]
+   },
+   "valueSignatureProfile": {
+    "entryCount": 13,
+    "signedEntries": 13,
+    "drawableEntries": 13,
+    "minimumThemesForBloom": 2,
+    "themeCounts": {
+     "privacy": 13,
+     "cost": 13
+    }
+   },
+   "decision": {
+    "category": "notes",
+    "reads": {
+     "text": "Compare notes by privacy, everyday access, openness, and data portability.",
+     "basis": [
+      {
+       "criterion": "privacy",
+       "readsAs": "privacy"
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access"
+      },
+      {
+       "criterion": "openness",
+       "readsAs": "openness"
+      },
+      {
+       "criterion": "portability",
+       "readsAs": "data portability"
+      }
+     ],
+     "signature": {
+      "by": "Conscious Consuming",
+      "on": "2026-07-15",
+      "status": "approved-batch"
+     },
+     "receipt": {
+      "dataset": "notes",
+      "entryCount": 13,
+      "criteria": [
+       {
+        "criterion": "privacy",
+        "readsAs": "privacy",
+        "known": 13,
+        "minimum": 30,
+        "maximum": 88,
+        "spread": 58
+       },
+       {
+        "criterion": "accessibility",
+        "readsAs": "everyday access",
+        "known": 13,
+        "minimum": 40,
+        "maximum": 88,
+        "spread": 48
+       },
+       {
+        "criterion": "openness",
+        "readsAs": "openness",
+        "known": 12,
+        "minimum": 12,
+        "maximum": 96,
+        "spread": 84
+       },
+       {
+        "criterion": "portability",
+        "readsAs": "data portability",
+        "known": 13,
+        "minimum": 50,
+        "maximum": 96,
+        "spread": 46
+       }
+      ]
+     }
+    },
+    "axes": [
+     {
+      "id": "cost-or-values",
+      "kind": "cost-values",
+      "label": "Cost or overall fit",
+      "question": "Lower cost or a stronger overall fit?",
+      "criteria": [
+       "economical",
+       "privacy",
+       "accessibility",
+       "openness",
+       "portability",
+       "respect"
+      ],
+      "poles": [
+       "Lower cost",
+       "Stronger overall fit"
+      ],
+      "default": 50
+     },
+     {
+      "id": "access-or-privacy",
+      "kind": "tradeoff",
+      "label": "Access or privacy",
+      "question": "Easier access or less data exposure?",
+      "criteria": [
+       "accessibility",
+       "privacy"
+      ],
+      "poles": [
+       "Easier access",
+       "Less exposure"
+      ],
+      "default": 50
+     },
+     {
+      "id": "openness",
+      "kind": "criterion",
+      "label": "Openness",
+      "question": "Does openness matter more?",
+      "criteria": [
+       "openness"
+      ],
+      "poles": [
+       "Flexible",
+       "More open"
+      ],
+      "default": 50
+     }
+    ],
+    "budget": {
+     "available": true,
+     "mode": "assessed-affordability-rank",
+     "criterion": "economical",
+     "minimumKnown": 5,
+     "knownEntries": 12,
+     "coverage": 0.9231
+    },
+    "archetypes": [
+     "best-for-most",
+     "strictest-match",
+     "budget-honest"
+    ],
+    "page": {
+     "stage": "approved-batch",
+     "primaryRoute": true
+    },
+    "consumer": {
+     "reads": "Round 8 approved category differences reads.",
+     "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+     "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+     "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+     "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+    }
+   }
+  },
+  {
    "id": "off-grid-power-systems",
    "label": "Off-grid power systems",
    "file": "off-grid-power-systems.json",
@@ -23305,6 +25676,202 @@
    }
   },
   {
+   "id": "online-pharmacies-and-prescription-delivery",
+   "label": "Online pharmacies and prescription delivery",
+   "file": "online-pharmacies-and-prescription-delivery.json",
+   "n": 14,
+   "type": "Services",
+   "criteria": [
+    {
+     "key": "safety",
+     "label": "Latest GPhC inspection outcome and history (reports published since April 2019)"
+    },
+    {
+     "key": "health",
+     "label": "GPhC register: notices, conditions and enforcement history"
+    },
+    {
+     "key": "complaints",
+     "label": "Advertising Standards Authority rulings on the pharmacy or its owner"
+    },
+    {
+     "key": "accessibility",
+     "label": "Handles NHS prescriptions (the patient pays only the NHS charge, or nothing if exempt)"
+    }
+   ],
+   "domain": "Health & wellness",
+   "need": "care",
+   "group": "Medicines and supplements",
+   "regionProfile": {
+    "entryCount": 14,
+    "regionTagged": 14,
+    "missingRegion": 0,
+    "values": {
+     "UK": 14
+    },
+    "filterValues": [
+     "UK"
+    ],
+    "globalEntries": 0,
+    "unknownRegionValues": {},
+    "countryLevelNeeded": false,
+    "countryLevelLimitationCount": 0,
+    "strictCurrentEnumSafe": true
+   },
+   "provenanceProfile": {
+    "entryCount": 14,
+    "singleSourceEntries": 1,
+    "multiSourceEntries": 13,
+    "noSourceEntries": 0,
+    "noteOnlyEntries": 0,
+    "averageSourceDomains": 2.93,
+    "topPrimarySources": [
+     {
+      "label": "inspections.pharmacyregulation.org",
+      "entries": 8
+     },
+     {
+      "label": "asa.org.uk",
+      "entries": 5
+     },
+     {
+      "label": "nhs.uk",
+      "entries": 1
+     }
+    ]
+   },
+   "valueSignatureProfile": {
+    "entryCount": 14,
+    "signedEntries": 14,
+    "drawableEntries": 13,
+    "minimumThemesForBloom": 2,
+    "themeCounts": {
+     "people": 13,
+     "health": 13,
+     "cost": 11
+    }
+   },
+   "decision": {
+    "category": "online-pharmacies-and-prescription-delivery",
+    "reads": {
+     "text": "Compare online pharmacies and prescription delivery by safety, everyday access, body safety, and complaint record.",
+     "basis": [
+      {
+       "criterion": "safety",
+       "readsAs": "safety"
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access"
+      },
+      {
+       "criterion": "health",
+       "readsAs": "body safety"
+      },
+      {
+       "criterion": "complaints",
+       "readsAs": "complaint record"
+      }
+     ],
+     "signature": {
+      "by": "Conscious Consuming",
+      "on": "2026-07-15",
+      "status": "approved-batch"
+     },
+     "receipt": {
+      "dataset": "online-pharmacies-and-prescription-delivery",
+      "entryCount": 14,
+      "criteria": [
+       {
+        "criterion": "safety",
+        "readsAs": "safety",
+        "known": 13,
+        "minimum": 15,
+        "maximum": 95,
+        "spread": 80
+       },
+       {
+        "criterion": "accessibility",
+        "readsAs": "everyday access",
+        "known": 11,
+        "minimum": 20,
+        "maximum": 100,
+        "spread": 80
+       },
+       {
+        "criterion": "health",
+        "readsAs": "body safety",
+        "known": 13,
+        "minimum": 10,
+        "maximum": 90,
+        "spread": 80
+       },
+       {
+        "criterion": "complaints",
+        "readsAs": "complaint record",
+        "known": 13,
+        "minimum": 15,
+        "maximum": 90,
+        "spread": 75
+       }
+      ]
+     }
+    },
+    "axes": [
+     {
+      "id": "record-or-reach",
+      "kind": "tradeoff",
+      "label": "Record or reach",
+      "question": "A stronger inspection record, or easier to actually get?",
+      "criteria": [
+       "safety",
+       "accessibility"
+      ],
+      "poles": [
+       "Stronger record",
+       "Easier to get"
+      ],
+      "default": 50
+     },
+     {
+      "id": "health",
+      "kind": "criterion",
+      "label": "Body safety",
+      "question": "Does body safety matter more?",
+      "criteria": [
+       "health"
+      ],
+      "poles": [
+       "Flexible",
+       "Body safety"
+      ],
+      "default": 50
+     }
+    ],
+    "budget": {
+     "available": false,
+     "mode": "none",
+     "knownEntries": 0,
+     "coverage": 0
+    },
+    "archetypes": [
+     "best-for-most",
+     "strictest-match"
+    ],
+    "page": {
+     "stage": "approved-batch",
+     "primaryRoute": true
+    },
+    "consumer": {
+     "reads": "Round 8 approved category differences reads.",
+     "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+     "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+     "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+     "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+    }
+   }
+  },
+  {
    "id": "over-the-counter-medicine",
    "label": "Over-the-counter medicine",
    "file": "over-the-counter-medicine.json",
@@ -23696,6 +26263,390 @@
    }
   },
   {
+   "id": "protein-and-sports-nutrition",
+   "label": "Protein and sports nutrition",
+   "file": "protein-and-sports-nutrition.json",
+   "n": 22,
+   "type": "Products",
+   "criteria": [
+    {
+     "key": "economical",
+     "label": "Price per 25 g of protein (US retail, one listed size and date)"
+    },
+    {
+     "key": "safety",
+     "label": "Lead per serving in Consumer Reports' 2025 lab test (lower is better)"
+    },
+    {
+     "key": "health",
+     "label": "FDA recall record for this product format under the brand name"
+    },
+    {
+     "key": "certification",
+     "label": "Listed in NSF's Certified for Sport register"
+    }
+   ],
+   "domain": "Health & wellness",
+   "need": "care",
+   "group": "Movement and fitness",
+   "regionProfile": {
+    "entryCount": 22,
+    "regionTagged": 22,
+    "missingRegion": 0,
+    "values": {
+     "US": 22
+    },
+    "filterValues": [
+     "US"
+    ],
+    "globalEntries": 0,
+    "unknownRegionValues": {},
+    "countryLevelNeeded": false,
+    "countryLevelLimitationCount": 0,
+    "strictCurrentEnumSafe": true
+   },
+   "provenanceProfile": {
+    "entryCount": 22,
+    "singleSourceEntries": 1,
+    "multiSourceEntries": 21,
+    "noSourceEntries": 0,
+    "noteOnlyEntries": 0,
+    "averageSourceDomains": 2.68,
+    "topPrimarySources": [
+     {
+      "label": "api.fda.gov",
+      "entries": 21
+     },
+     {
+      "label": "target.com",
+      "entries": 1
+     }
+    ]
+   },
+   "valueSignatureProfile": {
+    "entryCount": 22,
+    "signedEntries": 22,
+    "drawableEntries": 16,
+    "minimumThemesForBloom": 2,
+    "themeCounts": {
+     "health": 21,
+     "honesty": 5,
+     "cost": 15
+    }
+   },
+   "decision": {
+    "category": "protein-and-sports-nutrition",
+    "reads": {
+     "text": "Compare protein and sports nutrition by safety, cost, and body safety.",
+     "basis": [
+      {
+       "criterion": "safety",
+       "readsAs": "safety"
+      },
+      {
+       "criterion": "economical",
+       "readsAs": "cost"
+      },
+      {
+       "criterion": "health",
+       "readsAs": "body safety"
+      }
+     ],
+     "signature": {
+      "by": "Conscious Consuming",
+      "on": "2026-07-15",
+      "status": "approved-batch"
+     },
+     "receipt": {
+      "dataset": "protein-and-sports-nutrition",
+      "entryCount": 22,
+      "criteria": [
+       {
+        "criterion": "safety",
+        "readsAs": "safety",
+        "known": 18,
+        "minimum": 0,
+        "maximum": 79,
+        "spread": 79
+       },
+       {
+        "criterion": "economical",
+        "readsAs": "cost",
+        "known": 15,
+        "minimum": 0,
+        "maximum": 88,
+        "spread": 88
+       },
+       {
+        "criterion": "health",
+        "readsAs": "body safety",
+        "known": 21,
+        "minimum": 20,
+        "maximum": 85,
+        "spread": 65
+       }
+      ]
+     }
+    },
+    "axes": [
+     {
+      "id": "cost-or-values",
+      "kind": "cost-values",
+      "label": "Cost or overall fit",
+      "question": "Lower cost or a stronger overall fit?",
+      "criteria": [
+       "economical",
+       "safety",
+       "health"
+      ],
+      "poles": [
+       "Lower cost",
+       "Stronger overall fit"
+      ],
+      "default": 50
+     },
+     {
+      "id": "health",
+      "kind": "criterion",
+      "label": "Body safety",
+      "question": "Does body safety matter more?",
+      "criteria": [
+       "health"
+      ],
+      "poles": [
+       "Flexible",
+       "Body safety"
+      ],
+      "default": 50
+     }
+    ],
+    "budget": {
+     "available": true,
+     "mode": "assessed-affordability-rank",
+     "criterion": "economical",
+     "minimumKnown": 5,
+     "knownEntries": 15,
+     "coverage": 0.6818
+    },
+    "archetypes": [
+     "best-for-most",
+     "strictest-match",
+     "budget-honest"
+    ],
+    "page": {
+     "stage": "approved-batch",
+     "primaryRoute": true
+    },
+    "consumer": {
+     "reads": "Round 8 approved category differences reads.",
+     "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+     "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+     "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+     "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+    }
+   }
+  },
+  {
+   "id": "repair-and-tailoring",
+   "label": "Repair and tailoring",
+   "file": "repair-and-tailoring.json",
+   "n": 14,
+   "type": "Services",
+   "criteria": [
+    {
+     "key": "economical",
+     "label": "Low cost to the customer, free or a published low price"
+    },
+    {
+     "key": "accessibility",
+     "label": "Easy to get done: walk-in or post, short wait, few exclusions (ease of use, not disability access)"
+    },
+    {
+     "key": "transparency",
+     "label": "Publishes its prices, waiting time and what it will not repair"
+    }
+   ],
+   "domain": "Clothing",
+   "need": "care",
+   "group": "Secondhand and repair",
+   "regionProfile": {
+    "entryCount": 14,
+    "regionTagged": 14,
+    "missingRegion": 0,
+    "values": {
+     "US": 5,
+     "EU": 3,
+     "UK": 7,
+     "global": 2
+    },
+    "filterValues": [
+     "US",
+     "EU",
+     "UK"
+    ],
+    "globalEntries": 2,
+    "unknownRegionValues": {},
+    "countryLevelNeeded": false,
+    "countryLevelLimitationCount": 0,
+    "strictCurrentEnumSafe": true
+   },
+   "provenanceProfile": {
+    "entryCount": 14,
+    "singleSourceEntries": 13,
+    "multiSourceEntries": 1,
+    "noSourceEntries": 0,
+    "noteOnlyEntries": 0,
+    "averageSourceDomains": 1.07,
+    "topPrimarySources": [
+     {
+      "label": "arcteryx.com",
+      "entries": 1
+     },
+     {
+      "label": "barbour.com",
+      "entries": 1
+     },
+     {
+      "label": "filson.com",
+      "entries": 1
+     },
+     {
+      "label": "help.levi.com",
+      "entries": 1
+     },
+     {
+      "label": "help.mammut.com",
+      "entries": 1
+     },
+     {
+      "label": "ifixit.com",
+      "entries": 1
+     }
+    ]
+   },
+   "valueSignatureProfile": {
+    "entryCount": 14,
+    "signedEntries": 14,
+    "drawableEntries": 12,
+    "minimumThemesForBloom": 2,
+    "themeCounts": {
+     "honesty": 12,
+     "cost": 14
+    }
+   },
+   "decision": {
+    "category": "repair-and-tailoring",
+    "reads": {
+     "text": "Compare repair and tailoring by cost, everyday access, and disclosure.",
+     "basis": [
+      {
+       "criterion": "economical",
+       "readsAs": "cost"
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access"
+      },
+      {
+       "criterion": "transparency",
+       "readsAs": "disclosure"
+      }
+     ],
+     "signature": {
+      "by": "Conscious Consuming",
+      "on": "2026-07-15",
+      "status": "approved-batch"
+     },
+     "receipt": {
+      "dataset": "repair-and-tailoring",
+      "entryCount": 14,
+      "criteria": [
+       {
+        "criterion": "economical",
+        "readsAs": "cost",
+        "known": 10,
+        "minimum": 55,
+        "maximum": 95,
+        "spread": 40
+       },
+       {
+        "criterion": "accessibility",
+        "readsAs": "everyday access",
+        "known": 13,
+        "minimum": 35,
+        "maximum": 85,
+        "spread": 50
+       },
+       {
+        "criterion": "transparency",
+        "readsAs": "disclosure",
+        "known": 12,
+        "minimum": 35,
+        "maximum": 90,
+        "spread": 55
+       }
+      ]
+     }
+    },
+    "axes": [
+     {
+      "id": "cost-or-values",
+      "kind": "cost-values",
+      "label": "Cost or overall fit",
+      "question": "Lower cost or a stronger overall fit?",
+      "criteria": [
+       "economical",
+       "accessibility",
+       "transparency"
+      ],
+      "poles": [
+       "Lower cost",
+       "Stronger overall fit"
+      ],
+      "default": 50
+     },
+     {
+      "id": "transparency",
+      "kind": "criterion",
+      "label": "Disclosure",
+      "question": "Does stronger disclosure matter more?",
+      "criteria": [
+       "transparency"
+      ],
+      "poles": [
+       "Flexible",
+       "Stronger disclosure"
+      ],
+      "default": 50
+     }
+    ],
+    "budget": {
+     "available": true,
+     "mode": "assessed-affordability-rank",
+     "criterion": "economical",
+     "minimumKnown": 5,
+     "knownEntries": 10,
+     "coverage": 0.7143
+    },
+    "archetypes": [
+     "best-for-most",
+     "strictest-match",
+     "budget-honest"
+    ],
+    "page": {
+     "stage": "approved-batch",
+     "primaryRoute": true
+    },
+    "consumer": {
+     "reads": "Round 8 approved category differences reads.",
+     "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+     "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+     "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+     "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+    }
+   }
+  },
+  {
    "id": "reusable-nappies",
    "label": "Reusable nappies",
    "file": "reusable-nappies.json",
@@ -23949,7 +26900,11 @@
     "averageSourceDomains": 1.23,
     "topPrimarySources": [
      {
-      "label": "attorneygeneral.utah.gov",
+      "label": "ag.ny.gov",
+      "entries": 1
+     },
+     {
+      "label": "apps.apple.com",
       "entries": 1
      },
      {
@@ -23958,10 +26913,6 @@
      },
      {
       "label": "fare.coop",
-      "entries": 1
-     },
-     {
-      "label": "gocurb.com",
       "entries": 1
      },
      {
@@ -24963,6 +27914,411 @@
    }
   },
   {
+   "id": "shoe-repair-and-resoling",
+   "label": "Shoe repair and resoling",
+   "file": "shoe-repair-and-resoling.json",
+   "n": 13,
+   "type": "Services",
+   "criteria": [
+    {
+     "key": "economical",
+     "label": "Low price for a full sole replacement"
+    },
+    {
+     "key": "accessibility",
+     "label": "Easy to get done: walk-in or post, short wait, few limits on which shoes qualify (ease of use, not disability access)"
+    },
+    {
+     "key": "repairability",
+     "label": "How completely the shoe is renewed, from a sole only to a full rebuild on the original last"
+    }
+   ],
+   "domain": "Clothing",
+   "need": "care",
+   "group": "Secondhand and repair",
+   "regionProfile": {
+    "entryCount": 13,
+    "regionTagged": 13,
+    "missingRegion": 0,
+    "values": {
+     "US": 8,
+     "EU": 3,
+     "UK": 5,
+     "global": 1
+    },
+    "filterValues": [
+     "US",
+     "EU",
+     "UK"
+    ],
+    "globalEntries": 1,
+    "unknownRegionValues": {},
+    "countryLevelNeeded": false,
+    "countryLevelLimitationCount": 0,
+    "strictCurrentEnumSafe": true
+   },
+   "provenanceProfile": {
+    "entryCount": 13,
+    "singleSourceEntries": 13,
+    "multiSourceEntries": 0,
+    "noSourceEntries": 0,
+    "noteOnlyEntries": 0,
+    "averageSourceDomains": 1.0,
+    "topPrimarySources": [
+     {
+      "label": "allenedmonds.com",
+      "entries": 1
+     },
+     {
+      "label": "bootrepaircompany.co.uk",
+      "entries": 1
+     },
+     {
+      "label": "danner.com",
+      "entries": 1
+     },
+     {
+      "label": "drmartensrepairs.com",
+      "entries": 1
+     },
+     {
+      "label": "fredsshoerepair.com",
+      "entries": 1
+     },
+     {
+      "label": "loake.com",
+      "entries": 1
+     }
+    ]
+   },
+   "valueSignatureProfile": {
+    "entryCount": 13,
+    "signedEntries": 13,
+    "drawableEntries": 10,
+    "minimumThemesForBloom": 2,
+    "themeCounts": {
+     "planet": 10,
+     "cost": 13
+    }
+   },
+   "decision": {
+    "category": "shoe-repair-and-resoling",
+    "reads": {
+     "text": "Compare shoe repair and resoling by cost, everyday access, and repairability.",
+     "basis": [
+      {
+       "criterion": "economical",
+       "readsAs": "cost"
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access"
+      },
+      {
+       "criterion": "repairability",
+       "readsAs": "repairability"
+      }
+     ],
+     "signature": {
+      "by": "Conscious Consuming",
+      "on": "2026-07-15",
+      "status": "approved-batch"
+     },
+     "receipt": {
+      "dataset": "shoe-repair-and-resoling",
+      "entryCount": 13,
+      "criteria": [
+       {
+        "criterion": "economical",
+        "readsAs": "cost",
+        "known": 9,
+        "minimum": 30,
+        "maximum": 76,
+        "spread": 46
+       },
+       {
+        "criterion": "accessibility",
+        "readsAs": "everyday access",
+        "known": 13,
+        "minimum": 20,
+        "maximum": 75,
+        "spread": 55
+       },
+       {
+        "criterion": "repairability",
+        "readsAs": "repairability",
+        "known": 10,
+        "minimum": 20,
+        "maximum": 90,
+        "spread": 70
+       }
+      ]
+     }
+    },
+    "axes": [
+     {
+      "id": "cost-or-values",
+      "kind": "cost-values",
+      "label": "Cost or overall fit",
+      "question": "Lower cost or a stronger overall fit?",
+      "criteria": [
+       "economical",
+       "accessibility",
+       "repairability"
+      ],
+      "poles": [
+       "Lower cost",
+       "Stronger overall fit"
+      ],
+      "default": 50
+     },
+     {
+      "id": "repairability",
+      "kind": "criterion",
+      "label": "Repairability",
+      "question": "Does easier repair matter more?",
+      "criteria": [
+       "repairability"
+      ],
+      "poles": [
+       "Flexible",
+       "Easier repair"
+      ],
+      "default": 50
+     }
+    ],
+    "budget": {
+     "available": true,
+     "mode": "assessed-affordability-rank",
+     "criterion": "economical",
+     "minimumKnown": 5,
+     "knownEntries": 9,
+     "coverage": 0.6923
+    },
+    "archetypes": [
+     "best-for-most",
+     "strictest-match",
+     "budget-honest"
+    ],
+    "page": {
+     "stage": "approved-batch",
+     "primaryRoute": true
+    },
+    "consumer": {
+     "reads": "Round 8 approved category differences reads.",
+     "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+     "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+     "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+     "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+    }
+   }
+  },
+  {
+   "id": "social-networks",
+   "label": "Social networks",
+   "file": "social-networks.json",
+   "n": 16,
+   "type": "Services",
+   "criteria": [
+    {
+     "key": "privacy",
+     "label": "Privacy from ad profiling"
+    },
+    {
+     "key": "openness",
+     "label": "Open protocol or open source"
+    },
+    {
+     "key": "portability",
+     "label": "Easy to leave with your data or your followers"
+    },
+    {
+     "key": "accessibility",
+     "label": "Easy to join, and where your people already are"
+    }
+   ],
+   "domain": "Tech & digital",
+   "need": "connect",
+   "group": "Digital services",
+   "regionProfile": {
+    "entryCount": 16,
+    "regionTagged": 16,
+    "missingRegion": 0,
+    "values": {
+     "global": 16
+    },
+    "filterValues": [],
+    "globalEntries": 16,
+    "unknownRegionValues": {},
+    "countryLevelNeeded": false,
+    "countryLevelLimitationCount": 0,
+    "strictCurrentEnumSafe": true
+   },
+   "provenanceProfile": {
+    "entryCount": 16,
+    "singleSourceEntries": 2,
+    "multiSourceEntries": 14,
+    "noSourceEntries": 0,
+    "noteOnlyEntries": 0,
+    "averageSourceDomains": 2.63,
+    "topPrimarySources": [
+     {
+      "label": "help.instagram.com",
+      "entries": 2
+     },
+     {
+      "label": "sec.gov",
+      "entries": 2
+     },
+     {
+      "label": "GitHub",
+      "entries": 1
+     },
+     {
+      "label": "atproto.com",
+      "entries": 1
+     },
+     {
+      "label": "blog.youtube",
+      "entries": 1
+     },
+     {
+      "label": "dataprotection.ie",
+      "entries": 1
+     }
+    ]
+   },
+   "valueSignatureProfile": {
+    "entryCount": 16,
+    "signedEntries": 16,
+    "drawableEntries": 16,
+    "minimumThemesForBloom": 2,
+    "themeCounts": {
+     "privacy": 16,
+     "cost": 16
+    }
+   },
+   "decision": {
+    "category": "social-networks",
+    "reads": {
+     "text": "Compare social networks by privacy, everyday access, openness, and data portability.",
+     "basis": [
+      {
+       "criterion": "privacy",
+       "readsAs": "privacy"
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access"
+      },
+      {
+       "criterion": "openness",
+       "readsAs": "openness"
+      },
+      {
+       "criterion": "portability",
+       "readsAs": "data portability"
+      }
+     ],
+     "signature": {
+      "by": "Conscious Consuming",
+      "on": "2026-07-15",
+      "status": "approved-batch"
+     },
+     "receipt": {
+      "dataset": "social-networks",
+      "entryCount": 16,
+      "criteria": [
+       {
+        "criterion": "privacy",
+        "readsAs": "privacy",
+        "known": 16,
+        "minimum": 12,
+        "maximum": 88,
+        "spread": 76
+       },
+       {
+        "criterion": "accessibility",
+        "readsAs": "everyday access",
+        "known": 16,
+        "minimum": 40,
+        "maximum": 92,
+        "spread": 52
+       },
+       {
+        "criterion": "openness",
+        "readsAs": "openness",
+        "known": 16,
+        "minimum": 10,
+        "maximum": 95,
+        "spread": 85
+       },
+       {
+        "criterion": "portability",
+        "readsAs": "data portability",
+        "known": 13,
+        "minimum": 40,
+        "maximum": 88,
+        "spread": 48
+       }
+      ]
+     }
+    },
+    "axes": [
+     {
+      "id": "access-or-privacy",
+      "kind": "tradeoff",
+      "label": "Access or privacy",
+      "question": "Easier access or less data exposure?",
+      "criteria": [
+       "accessibility",
+       "privacy"
+      ],
+      "poles": [
+       "Easier access",
+       "Less exposure"
+      ],
+      "default": 50
+     },
+     {
+      "id": "openness",
+      "kind": "criterion",
+      "label": "Openness",
+      "question": "Does openness matter more?",
+      "criteria": [
+       "openness"
+      ],
+      "poles": [
+       "Flexible",
+       "More open"
+      ],
+      "default": 50
+     }
+    ],
+    "budget": {
+     "available": false,
+     "mode": "none",
+     "knownEntries": 0,
+     "coverage": 0
+    },
+    "archetypes": [
+     "best-for-most",
+     "strictest-match"
+    ],
+    "page": {
+     "stage": "approved-batch",
+     "primaryRoute": true
+    },
+    "consumer": {
+     "reads": "Round 8 approved category differences reads.",
+     "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+     "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+     "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+     "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+    }
+   }
+  },
+  {
    "id": "used-cars",
    "label": "Used cars",
    "file": "used-cars.json",
@@ -25003,11 +28359,11 @@
    },
    "provenanceProfile": {
     "entryCount": 16,
-    "singleSourceEntries": 1,
-    "multiSourceEntries": 15,
+    "singleSourceEntries": 2,
+    "multiSourceEntries": 14,
     "noSourceEntries": 0,
     "noteOnlyEntries": 0,
-    "averageSourceDomains": 2.13,
+    "averageSourceDomains": 2.06,
     "topPrimarySources": [
      {
       "label": "consumerreports.org",
@@ -25335,6 +28691,231 @@
     "archetypes": [
      "best-for-most",
      "strictest-match"
+    ],
+    "page": {
+     "stage": "approved-batch",
+     "primaryRoute": true
+    },
+    "consumer": {
+     "reads": "Round 8 approved category differences reads.",
+     "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+     "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+     "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+     "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+    }
+   }
+  },
+  {
+   "id": "video-calls",
+   "label": "Video calls",
+   "file": "video-calls.json",
+   "n": 14,
+   "type": "Services",
+   "criteria": [
+    {
+     "key": "privacy",
+     "label": "Calls end-to-end encrypted by default"
+    },
+    {
+     "key": "openness",
+     "label": "Open source, or open to other services"
+    },
+    {
+     "key": "accessibility",
+     "label": "Easy to start, and easy for a guest to join without an account or install"
+    },
+    {
+     "key": "economical",
+     "label": "Economical, judged by what the free tier allows"
+    }
+   ],
+   "domain": "Tech & digital",
+   "need": "connect",
+   "group": "Digital services",
+   "regionProfile": {
+    "entryCount": 14,
+    "regionTagged": 14,
+    "missingRegion": 0,
+    "values": {
+     "global": 14
+    },
+    "filterValues": [],
+    "globalEntries": 14,
+    "unknownRegionValues": {},
+    "countryLevelNeeded": false,
+    "countryLevelLimitationCount": 0,
+    "strictCurrentEnumSafe": true
+   },
+   "provenanceProfile": {
+    "entryCount": 14,
+    "singleSourceEntries": 5,
+    "multiSourceEntries": 9,
+    "noSourceEntries": 0,
+    "noteOnlyEntries": 0,
+    "averageSourceDomains": 1.86,
+    "topPrimarySources": [
+     {
+      "label": "GitHub",
+      "entries": 1
+     },
+     {
+      "label": "discord.com",
+      "entries": 1
+     },
+     {
+      "label": "help.webex.com",
+      "entries": 1
+     },
+     {
+      "label": "jami.net",
+      "entries": 1
+     },
+     {
+      "label": "jitsi.org",
+      "entries": 1
+     },
+     {
+      "label": "nextcloud.com",
+      "entries": 1
+     }
+    ]
+   },
+   "valueSignatureProfile": {
+    "entryCount": 14,
+    "signedEntries": 14,
+    "drawableEntries": 14,
+    "minimumThemesForBloom": 2,
+    "themeCounts": {
+     "privacy": 14,
+     "cost": 14
+    }
+   },
+   "decision": {
+    "category": "video-calls",
+    "reads": {
+     "text": "Compare video calls by privacy, everyday access, openness, and cost.",
+     "basis": [
+      {
+       "criterion": "privacy",
+       "readsAs": "privacy"
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access"
+      },
+      {
+       "criterion": "openness",
+       "readsAs": "openness"
+      },
+      {
+       "criterion": "economical",
+       "readsAs": "cost"
+      }
+     ],
+     "signature": {
+      "by": "Conscious Consuming",
+      "on": "2026-07-15",
+      "status": "approved-batch"
+     },
+     "receipt": {
+      "dataset": "video-calls",
+      "entryCount": 14,
+      "criteria": [
+       {
+        "criterion": "privacy",
+        "readsAs": "privacy",
+        "known": 14,
+        "minimum": 25,
+        "maximum": 95,
+        "spread": 70
+       },
+       {
+        "criterion": "accessibility",
+        "readsAs": "everyday access",
+        "known": 14,
+        "minimum": 40,
+        "maximum": 88,
+        "spread": 48
+       },
+       {
+        "criterion": "openness",
+        "readsAs": "openness",
+        "known": 11,
+        "minimum": 8,
+        "maximum": 95,
+        "spread": 87
+       },
+       {
+        "criterion": "economical",
+        "readsAs": "cost",
+        "known": 13,
+        "minimum": 40,
+        "maximum": 100,
+        "spread": 60
+       }
+      ]
+     }
+    },
+    "axes": [
+     {
+      "id": "cost-or-values",
+      "kind": "cost-values",
+      "label": "Cost or overall fit",
+      "question": "Lower cost or a stronger overall fit?",
+      "criteria": [
+       "economical",
+       "privacy",
+       "accessibility",
+       "openness"
+      ],
+      "poles": [
+       "Lower cost",
+       "Stronger overall fit"
+      ],
+      "default": 50
+     },
+     {
+      "id": "access-or-privacy",
+      "kind": "tradeoff",
+      "label": "Access or privacy",
+      "question": "Easier access or less data exposure?",
+      "criteria": [
+       "accessibility",
+       "privacy"
+      ],
+      "poles": [
+       "Easier access",
+       "Less exposure"
+      ],
+      "default": 50
+     },
+     {
+      "id": "openness",
+      "kind": "criterion",
+      "label": "Openness",
+      "question": "Does openness matter more?",
+      "criteria": [
+       "openness"
+      ],
+      "poles": [
+       "Flexible",
+       "More open"
+      ],
+      "default": 50
+     }
+    ],
+    "budget": {
+     "available": true,
+     "mode": "assessed-affordability-rank",
+     "criterion": "economical",
+     "minimumKnown": 5,
+     "knownEntries": 13,
+     "coverage": 0.9286
+    },
+    "archetypes": [
+     "best-for-most",
+     "strictest-match",
+     "budget-honest"
     ],
     "page": {
      "stage": "approved-batch",
@@ -26464,6 +30045,18 @@
          "groups": [
           "Movement and fitness",
           "Mind and mood"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "care-at-home-and-in-later-life",
+       "label": "Care at home and in later life",
+       "selectors": [
+        {
+         "domain": "Health & wellness",
+         "groups": [
+          "Care at home and in later life"
          ]
         }
        ]
@@ -27631,6 +31224,13 @@
       "cid": "over-the-counter-medicine"
      },
      {
+      "label": "Online pharmacies",
+      "group": "Medicines and supplements",
+      "cid": "online-pharmacies-and-prescription-delivery",
+      "need": "care",
+      "type": "Services"
+     },
+     {
       "label": "First aid",
       "type": "Products",
       "group": "Medicines and supplements",
@@ -27640,13 +31240,22 @@
       "label": "Fitness equipment",
       "type": "Products",
       "group": "Movement and fitness",
-      "need": "care"
+      "need": "care",
+      "cid": "fitness-equipment"
+     },
+     {
+      "label": "Cardio machines",
+      "group": "Movement and fitness",
+      "cid": "cardio-machines",
+      "need": "care",
+      "type": "Products"
      },
      {
       "label": "Sports nutrition",
       "type": "Products",
       "group": "Movement and fitness",
-      "need": "care"
+      "need": "care",
+      "cid": "protein-and-sports-nutrition"
      },
      {
       "label": "Mental-health apps",
@@ -27665,6 +31274,20 @@
       "type": "Products",
       "group": "Sexual and reproductive health",
       "need": "care"
+     },
+     {
+      "label": "Home care services",
+      "group": "Care at home and in later life",
+      "cid": "home-care-services",
+      "need": "care",
+      "type": "Services"
+     },
+     {
+      "label": "Care homes",
+      "group": "Care at home and in later life",
+      "cid": "care-homes",
+      "need": "care",
+      "type": "Services"
      },
      {
       "label": "Glasses & contact lenses",
@@ -27705,6 +31328,13 @@
       "need": "care"
      },
      {
+      "label": "Insulated & down jackets",
+      "group": "Everyday clothing",
+      "cid": "insulated-and-down-jackets",
+      "need": "care",
+      "type": "Products"
+     },
+     {
       "label": "Underwear & socks",
       "type": "Products",
       "group": "Everyday clothing",
@@ -27733,7 +31363,15 @@
       "label": "Repair & tailoring",
       "type": "Services",
       "group": "Secondhand and repair",
-      "need": "care"
+      "need": "care",
+      "cid": "repair-and-tailoring"
+     },
+     {
+      "label": "Shoe repair & resoling",
+      "group": "Secondhand and repair",
+      "cid": "shoe-repair-and-resoling",
+      "need": "care",
+      "type": "Services"
      }
     ]
    },
@@ -27770,11 +31408,17 @@
      },
      {
       "label": "Social networks",
-      "cid": "digital-services",
-      "facet": "social",
+      "cid": "social-networks",
       "type": "Services",
       "group": "Digital services",
       "need": "connect"
+     },
+     {
+      "label": "Other digital tools",
+      "group": "Digital services",
+      "cid": "digital-services",
+      "need": "connect",
+      "type": "Services"
      },
      {
       "label": "Federated social servers",
@@ -27785,32 +31429,28 @@
      },
      {
       "label": "Cloud storage",
-      "cid": "digital-services",
-      "facet": "cloud storage",
+      "cid": "cloud-storage",
       "type": "Services",
       "group": "Digital services",
       "need": "connect"
      },
      {
       "label": "Notes",
-      "cid": "digital-services",
-      "facet": "notes",
+      "cid": "notes",
       "type": "Services",
       "group": "Digital services",
       "need": "connect"
      },
      {
       "label": "Maps",
-      "cid": "digital-services",
-      "facet": "maps",
+      "cid": "maps",
       "type": "Services",
       "group": "Digital services",
       "need": "connect"
      },
      {
       "label": "Video calls",
-      "cid": "digital-services",
-      "facet": "video calls",
+      "cid": "video-calls",
       "type": "Services",
       "group": "Digital services",
       "need": "connect"
@@ -27988,16 +31628,25 @@
     "label": "Transport & mobility",
     "categories": [
      {
-      "label": "Cars",
+      "label": "New cars",
       "type": "Products",
       "group": "Cars",
-      "need": "move"
+      "need": "move",
+      "cid": "new-cars"
      },
      {
       "label": "Electric vehicles",
       "type": "Products",
       "group": "Cars",
-      "need": "move"
+      "need": "move",
+      "cid": "electric-vehicles"
+     },
+     {
+      "label": "Hybrid and plug-in hybrid cars",
+      "type": "Products",
+      "group": "Cars",
+      "need": "move",
+      "cid": "hybrid-and-plug-in-hybrid-cars"
      },
      {
       "label": "Used cars",
@@ -28247,7 +31896,8 @@
       "label": "Baby food & formula",
       "type": "Products",
       "group": "Babies and toddlers",
-      "need": "care"
+      "need": "care",
+      "cid": "infant-formula"
      },
      {
       "label": "Baby wipes",
@@ -28495,7 +32145,7 @@
  },
  "regionDecisionContract": {
   "status": "h1-app-owned-region-decision",
-  "consumer": "Claude H1 region filter decision in app/app.js",
+  "consumer": "App H1 region filter decision in app/app.js",
   "currentFilterValues": [
    "everywhere",
    "US",
@@ -28541,6 +32191,8 @@
    "airlines",
    "b-corporations",
    "bicycles",
+   "cardio-machines",
+   "care-homes",
    "cat-food",
    "credit-cards",
    "crowdfunding-platforms",
@@ -28548,21 +32200,33 @@
    "dog-food",
    "e-bikes",
    "electric-toothbrushes",
+   "electric-vehicles",
    "electricity-suppliers",
+   "fitness-equipment",
    "glasses-and-contact-lenses",
    "headphones-and-earbuds",
+   "home-care-services",
+   "hybrid-and-plug-in-hybrid-cars",
+   "infant-formula",
+   "insulated-and-down-jackets",
+   "maps",
    "mattresses",
    "menstrual-cups-and-discs",
    "mortgages",
    "nappies",
+   "new-cars",
    "off-grid-power-systems",
    "online-courses",
+   "online-pharmacies-and-prescription-delivery",
    "over-the-counter-medicine",
    "podcast-apps-and-players",
+   "protein-and-sports-nutrition",
+   "repair-and-tailoring",
    "reusable-nappies",
    "ride-hailing",
    "secondhand-and-resale",
    "secondhand-marketplaces",
+   "shoe-repair-and-resoling",
    "used-cars",
    "vet-services",
    "video-streaming",
@@ -28739,8 +32403,8 @@
   ],
   "missingLimitationEntries": [],
   "coverage": {
-   "categoryCount": 126,
-   "categoriesWithRegionControls": 57,
+   "categoryCount": 144,
+   "categoriesWithRegionControls": 71,
    "limitationCategories": 1,
    "countryLevelLimitationEntries": 15,
    "missingLimitationEntries": 0
@@ -28748,7 +32412,7 @@
  },
  "namingContract": {
   "status": "h3-app-owned-naming-ia-contract",
-  "consumer": "Claude H3 naming/IA copy polish in app/app.js and public route copy",
+  "consumer": "App H3 naming/IA copy polish in app/app.js and public route copy",
   "canonicalNames": {
    "ecosystem": {
     "name": "Values Commons",
@@ -28835,7 +32499,7 @@
   "appOwnedDecision": "Decide final app/footer/header wording against these names; do not change generated data to compensate for app-side IA copy.",
   "drainRule": "H3 can drain when app-owned wordmark, footer, route metadata, and methodology links use the three-name stack consistently or document an explicit exception.",
   "coverage": {
-   "categoryCount": 126,
+   "categoryCount": 144,
    "canonicalNameCount": 3,
    "copyRuleCount": 4,
    "appOwnedTargetCount": 5
@@ -28843,7 +32507,7 @@
  },
  "provenanceDisplayContract": {
   "status": "h10-app-owned-provenance-display-contract",
-  "consumer": "Claude H10 Trust Lens and provenance rendering in app/app.js, verdict cards, ranked lists, item pages, and node pages",
+  "consumer": "App H10 Trust Lens and provenance rendering in app/app.js, verdict cards, ranked lists, item pages, and node pages",
   "sourceFields": [
    "factCount",
    "sourcedFactCount",
@@ -28854,10 +32518,10 @@
    "noteOnlyFactCount"
   ],
   "coverage": {
-   "categoryCount": 126,
-   "entryCount": 24228,
-   "singleSourceEntries": 18191,
-   "multiSourceEntries": 6033,
+   "categoryCount": 144,
+   "entryCount": 24998,
+   "singleSourceEntries": 18400,
+   "multiSourceEntries": 6594,
    "noSourceEntries": 4,
    "noteOnlyEntries": 0
   },
@@ -29298,7 +32962,7 @@
    "purpose": "App-owned H10 drain contract for Trust Lens and provenance display integration.",
    "status": "pending-app-integration",
    "activeHandoff": "H10",
-   "namedConsumer": "Claude H10 Trust Lens/provenance drain pass",
+   "namedConsumer": "App H10 Trust Lens/provenance drain pass",
    "h10DrainableFromDataAlone": false,
    "drainRule": "H10 drains only after app-owned implementation evidence covers every step here or documents equivalent coverage; generated data alone is insufficient.",
    "receiptContract": {
@@ -34545,7 +38209,7 @@
  },
  "certificationScoringContract": {
   "status": "h20-app-owned-certification-scoring-parity",
-  "consumer": "Claude H20 browser-side Open Food Facts scoring in app/app.js offScore and app/engine.js",
+  "consumer": "App H20 browser-side Open Food Facts scoring in app/app.js offScore and app/engine.js",
   "categories": [
    "coffee",
    "dark-chocolate",
@@ -35516,7 +39180,7 @@
        {
         "text": "Beauty decisions currently award 60 points when an ingredient list is present and 40 when product labels are present. Other categories use their own sourced rubrics for terms, holdings, supply chains, audits, or corrections, so the shared key does not mean one universal formula.",
         "sourceLabel": "Conscious Consuming — Beauty scoring source",
-        "source": "https://github.com/Vingadden/ConsciousConsuming/blob/main/pipeline/scoring_beauty.py",
+        "source": "https://github.com/BentleyMoon/conscious-consuming/blob/main/pipeline/scoring_beauty.py",
         "asOf": "2026-07-18"
        }
       ]
@@ -35854,7 +39518,7 @@
        {
         "text": "The current food implementation maps Open Food Facts grades A, B, C, D, and E to 100, 75, 50, 25, and 0; a missing or unsupported grade stays unknown. Other categories retain their own sourced rubrics, and the resulting numbers are only meaningful within that decision.",
         "sourceLabel": "Conscious Consuming — Food scoring source",
-        "source": "https://github.com/Vingadden/ConsciousConsuming/blob/main/pipeline/scoring.py",
+        "source": "https://github.com/BentleyMoon/conscious-consuming/blob/main/pipeline/scoring.py",
         "asOf": "2026-07-18"
        }
       ]
@@ -35862,5 +39526,12 @@
     ]
    }
   }
+ },
+ "mapTotals": {
+  "decisions": 1069,
+  "answered": 144,
+  "open": 900,
+  "held": 22,
+  "refused": 3
  }
 }
