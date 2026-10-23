@@ -17,7 +17,7 @@ own.
   cap, because a missing label only means no paperwork was found; it lowers the average and stops
   there. `research/engine_score_test.js` pins each of these rules.
 - **`app/data/`** 126 category datasets, 24,228 entries, each rating carrying a source and an as-of date.
-- **`research/`** 96 audit scripts, and the reason to trust anything else here. They pin sentences,
+- **`research/`** 96 audit scripts. They pin sentences,
   gate claims on receipts, check contrast and accessibility, and fail the build when a number
   drifts from the source it came from.
 - **`content/guides/`** 108 guides: how to choose in a category, and what leaving costs.
@@ -56,8 +56,7 @@ node pipeline/build_awards.js    # the awards ledger
 ## What it refuses to do
 
 **312 measures are published as withheld.** Where fewer than nine in ten entries in a category
-carry a sourced score, no award is given and the gap is listed openly with no estimate in its place. If you copy one idea from this repository
-into your own work, copy that one.
+carry a sourced score, no award is given and the gap is listed openly with no estimate in its place.
 
 ## How good is the sourcing, exactly
 
@@ -88,7 +87,7 @@ tools.
 That is the most useful thing you can send, and it does not need an account.
 
 - **Email**: **futurisminstitute@gmail.com**. Say which decision, category or page is affected,
-  attach the source, and name what should change. One sharp correction beats a long list.
+  attach the source, and name what should change.
 - **A patch file**: the fact-repair page at
   [valuescommons.org/workshop/](https://valuescommons.org/workshop/) produces a small JSON patch in
   your browser. Send the file to the same address. Nothing is uploaded from that page by itself.

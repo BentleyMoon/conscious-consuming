@@ -34,4 +34,4 @@ Guides and docs are prose, so Creative Commons is the natural fit; share-alike k
 `LICENSE` now carries the **full verbatim GNU AGPL-3.0 text** beneath a short multi-asset header
 (so the file alone can't be misread as putting the *data* under AGPL). The header is brief enough
 that GitHub/SPDX license auto-detection still resolves the file as `AGPL-3.0`, which the DPG
-review relies on. No further license-text step remains before submission.
+review relies on.
