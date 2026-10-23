@@ -1208,11 +1208,14 @@
       "declaredVersion": "0.1",
       "status": "stable",
       "kind": "generated",
-      "purpose": "Compact eager Ask index for categories, guides, errands, and high-priority targets.",
+      "purpose": "Compact eager Ask index for categories, guides, errands, and high-priority targets (ask-core.json), with its brand layer loaded on the first keystroke (ask-brands.json, type ask-core-brands).",
       "marker": {
         "mode": "explicit-format",
         "format": "ovs-ask-core-index",
-        "pathPattern": "app/data/nodes/ask-core.json"
+        "pathPatterns": [
+          "app/data/nodes/ask-core.json",
+          "app/data/nodes/ask-brands.json"
+        ]
       },
       "schema": "app/data/standard/schemas/ask-core-index.schema.json",
       "schemaNote": "Core shape is schema-backed; node_index_audit and ask_readiness_audit still enforce startup budgets, resolver quality, and expected target coverage.",
@@ -1223,7 +1226,8 @@
         "content/lenses/*.json"
       ],
       "generatedOutputs": [
-        "app/data/nodes/ask-core.json"
+        "app/data/nodes/ask-core.json",
+        "app/data/nodes/ask-brands.json"
       ],
       "builders": [
         "pipeline/build_nodes.js"
@@ -1247,11 +1251,11 @@
       "declaredVersion": "0.1",
       "status": "stable",
       "kind": "generated",
-      "purpose": "Full generated Ask search index for deeper product and node lookup.",
+      "purpose": "Full generated Ask search index for deeper product and node lookup, shipped as first-character shards routed by ask-core.json productIndex.",
       "marker": {
         "mode": "explicit-format",
         "format": "ovs-ask-index",
-        "pathPattern": "app/data/nodes/ask-index.json"
+        "pathPattern": "app/data/nodes/ask-index-*.json"
       },
       "schema": "app/data/standard/schemas/ask-index.schema.json",
       "schemaNote": "Core shape is schema-backed; node_index_audit and ask_readiness_audit still enforce generated sync, token coverage, resolver behavior, lazy load hint, byte budget, and shard posture.",
@@ -1262,7 +1266,7 @@
         "app/data/*.json"
       ],
       "generatedOutputs": [
-        "app/data/nodes/ask-index.json"
+        "app/data/nodes/ask-index-*.json"
       ],
       "builders": [
         "pipeline/build_nodes.js"

@@ -365,7 +365,24 @@
       "title": "Barcode lookup uses the lazy full Ask index",
       "owner": "app/design",
       "sourceFiles": [
-        "ask-index.json",
+        "ask-index-0-2.json",
+        "ask-index-3.json",
+        "ask-index-4-5.json",
+        "ask-index-6-9.json",
+        "ask-index-a.json",
+        "ask-index-b.json",
+        "ask-index-c.json",
+        "ask-index-d-e.json",
+        "ask-index-f-g.json",
+        "ask-index-h-j.json",
+        "ask-index-k-l.json",
+        "ask-index-m.json",
+        "ask-index-n-o.json",
+        "ask-index-p-q.json",
+        "ask-index-r.json",
+        "ask-index-s.json",
+        "ask-index-t-v.json",
+        "ask-index-w-z.json",
         "ask-fixtures.json",
         "ask-traces.json",
         "node-load-plan.json"
@@ -373,7 +390,7 @@
       "steps": [
         "Start with compact Ask available.",
         "Enter barcode query: 5449000054227.",
-        "Load ask-index.json only for the barcode/product path and route to the expected item."
+        "Load ask-index-*.json only for the barcode/product path and route to the expected item."
       ],
       "acceptanceCriteria": [
         "Barcode result resolves from the full index.",
@@ -381,7 +398,7 @@
         "Compact core Ask remains usable while lazy lookup loads."
       ],
       "mustNot": [
-        "Do not eagerly load ask-index.json at startup.",
+        "Do not eagerly load ask-index-*.json at startup.",
         "Do not hide core results if lazy product lookup fails."
       ],
       "fixtures": {
@@ -736,7 +753,7 @@
         "The recovery path keeps the rest of the app honest and usable."
       ],
       "mustNot": [
-        "Do not claim product/barcode coverage if ask-index.json failed.",
+        "Do not claim product/barcode coverage if ask-index-*.json failed.",
         "Do not treat a lazy product failure as a failure of categories, guides, or node pages."
       ],
       "fixtures": {
@@ -744,7 +761,24 @@
         "family": "unavailable",
         "stage": "lazy-product-ask",
         "sourceFiles": [
-          "ask-index.json"
+          "ask-index-0-2.json",
+          "ask-index-3.json",
+          "ask-index-4-5.json",
+          "ask-index-6-9.json",
+          "ask-index-a.json",
+          "ask-index-b.json",
+          "ask-index-c.json",
+          "ask-index-d-e.json",
+          "ask-index-f-g.json",
+          "ask-index-h-j.json",
+          "ask-index-k-l.json",
+          "ask-index-m.json",
+          "ask-index-n-o.json",
+          "ask-index-p-q.json",
+          "ask-index-r.json",
+          "ask-index-s.json",
+          "ask-index-t-v.json",
+          "ask-index-w-z.json"
         ]
       }
     },
@@ -918,7 +952,7 @@
       "fixtures": {
         "activeHandoff": "H4",
         "expectedStatusBeforeAppWork": "pending-app-integration",
-        "loadPlanStages": 6,
+        "loadPlanStages": 7,
         "runtimeStateCases": 15
       }
     }

@@ -9,12 +9,11 @@
 
 const fs = require('fs');
 const path = require('path');
-const { askNormalize } = require('../pipeline/build_nodes.js');
+const { askNormalize, readAskIndexesFromDisk } = require('../pipeline/build_nodes.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const BRAND_OUT = path.join(ROOT, 'app', 'data', 'nodes', 'brands.json');
 const COMPANY_OUT = path.join(ROOT, 'app', 'data', 'nodes', 'companies.json');
-const ASK_OUT = path.join(ROOT, 'app', 'data', 'nodes', 'ask-index.json');
 const NODE_WALKTHROUGHS_OUT = path.join(ROOT, 'app', 'data', 'nodes', 'node-walkthroughs.json');
 const LINES_SRC = path.join(ROOT, 'content', 'lines.json');
 const DATA_INDEX = path.join(ROOT, 'app', 'data', 'index.json');
@@ -165,7 +164,7 @@ function main() {
   const refs = {
     brands: byId(readJson(BRAND_OUT).nodes),
     companies: byId(readJson(COMPANY_OUT).nodes),
-    askIndex: readJson(ASK_OUT),
+    askIndex: readAskIndexesFromDisk().askIndex,
     lines: new Map((readJson(LINES_SRC).lines || []).map(line => [line.id, line])),
     items: itemMap()
   };

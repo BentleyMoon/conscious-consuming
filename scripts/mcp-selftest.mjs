@@ -44,7 +44,10 @@ const s3 = await rpc('tools/call', { name: 'search', arguments: { query: 'zzqxv 
 const s3p = s3.result && s3.result.structuredContent;
 expect(s3p && s3p.results.length === 0 && /category/.test(s3p.hint || ''), 'a miss returns the honest category hint, never silence');
 expect(loadCounts.get('/app/data/nodes/ask-core.json') === 1, 'compact search index is loaded once per isolate');
-expect(loadCounts.get('/app/data/nodes/ask-index.json') === 1, 'full search index is loaded once per isolate');
+expect(loadCounts.get('/app/data/nodes/ask-brands.json') === 1, 'brand layer of the compact index is loaded once per isolate');
+const shardLoads = [...loadCounts.entries()].filter(([p]) => /\/ask-index-[a-z0-9-]+\.json$/.test(p));
+expect(shardLoads.length > 1 && shardLoads.every(([, n]) => n === 1), 'every product-index shard is loaded once per isolate');
+expect(!loadCounts.has('/app/data/nodes/ask-index.json'), 'the retired single ask-index.json is not requested');
 
 // the real agent journey for a service entry: category search → fetch → entry ids include it
 const j1 = await rpc('tools/call', { name: 'fetch', arguments: { id: 'ovs:cat/banking' } });

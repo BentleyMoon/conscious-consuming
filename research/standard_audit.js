@@ -1284,7 +1284,8 @@ function validateAskIndex(value, label = 'ask-index') {
   if (!isObject(value.budget)) {
     errors.push(`${label}.budget: missing object`);
   } else {
-    push(errors, value.budget.maxBytes === 6000000, `${label}.budget.maxBytes: must be 6000000`);
+    const sharded = value.shards?.status === 'sharded';
+    push(errors, value.budget.maxBytes === (sharded ? 1500000 : 6000000), `${label}.budget.maxBytes: must be ${sharded ? '1500000 for a shard' : '6000000'}`);
     push(errors, Number.isInteger(value.budget.currentBytes) && value.budget.currentBytes > 0, `${label}.budget.currentBytes: must be positive integer`);
     push(errors, typeof value.budget.withinBudget === 'boolean', `${label}.budget.withinBudget: must be boolean`);
     push(errors, value.budget.withinBudget === (value.budget.currentBytes <= value.budget.maxBytes), `${label}.budget.withinBudget: mismatch`);
@@ -1294,12 +1295,18 @@ function validateAskIndex(value, label = 'ask-index') {
   if (!isObject(value.shards)) {
     errors.push(`${label}.shards: missing object`);
   } else {
-    push(errors, ['not-needed', 'required'].includes(value.shards.status), `${label}.shards.status: invalid status`);
+    push(errors, ['not-needed', 'required', 'sharded'].includes(value.shards.status), `${label}.shards.status: invalid status`);
     push(errors, Number.isInteger(value.shards.count) && value.shards.count >= 1, `${label}.shards.count: must be positive integer`);
     errors.push(...validateStringArray(value.shards.files, `${label}.shards.files`));
     push(errors, isString(value.shards.hint), `${label}.shards.hint: missing hint`);
-    if (value.budget?.withinBudget === true) push(errors, value.shards.status === 'not-needed', `${label}.shards.status: should be not-needed while within budget`);
-    if (value.budget?.withinBudget === false) push(errors, value.shards.status === 'required', `${label}.shards.status: should be required when over budget`);
+    if (value.shards.status === 'sharded') {
+      push(errors, isString(value.shards.file) && value.shards.files.includes(value.shards.file), `${label}.shards.file: must name this shard among shards.files`);
+      push(errors, /^[0-9a-z]+$/.test(String(value.shards.units || '')), `${label}.shards.units: must list unit characters`);
+      push(errors, value.budget?.withinBudget === true, `${label}.budget.withinBudget: a shard must stay within its budget`);
+    } else {
+      if (value.budget?.withinBudget === true) push(errors, value.shards.status === 'not-needed', `${label}.shards.status: should be not-needed while within budget`);
+      if (value.budget?.withinBudget === false) push(errors, value.shards.status === 'required', `${label}.shards.status: should be required when over budget`);
+    }
   }
   errors.push(...validateTokenMap(value.tokens, `${label}.tokens`));
   errors.push(...validateTargetMap(value.aliases, `${label}.aliases`, { allowEmpty: true }));
@@ -1402,7 +1409,7 @@ function validateAskCoreStartupContract(value, label) {
   }
   if (!isObject(value.lazyBoundary)) errors.push(`${label}.lazyBoundary: missing object`);
   else {
-    push(errors, value.lazyBoundary.file === 'ask-index.json', `${label}.lazyBoundary.file: must be ask-index.json`);
+    push(errors, value.lazyBoundary.file === 'ask-index-*.json', `${label}.lazyBoundary.file: must be ask-index-*.json`);
     push(errors, value.lazyBoundary.loadHint === 'lazy-product-search', `${label}.lazyBoundary.loadHint: must be lazy-product-search`);
     push(errors, isString(value.lazyBoundary.use), `${label}.lazyBoundary.use: missing use`);
     push(errors, isString(value.lazyBoundary.trigger), `${label}.lazyBoundary.trigger: missing trigger`);
@@ -1452,13 +1459,20 @@ function validateAskCoreIndex(value, label = 'ask-core-index') {
   const errors = [];
   if (!isObject(value)) return [`${label}: must be an object`];
   push(errors, value.format === 'ovs-ask-core-index', `${label}: wrong format`);
-  push(errors, value.type === 'ask-core', `${label}.type: must be ask-core`);
+  const brandLayer = value.type === 'ask-core-brands';
+  push(errors, value.type === 'ask-core' || brandLayer, `${label}.type: must be ask-core or ask-core-brands`);
   push(errors, /^0\.1(?:\.0)?(?:[-+].*)?$/.test(String(value.version || '')), `${label}: version must start with 0.1`);
   push(errors, DATE.test(String(value.built || '')), `${label}.built: must be YYYY-MM-DD`);
   push(errors, Array.isArray(value.source) && value.source.length > 0, `${label}.source: missing non-empty array`);
   push(errors, isString(value.strategy), `${label}.strategy: missing strategy`);
   push(errors, Array.isArray(value.targetFields) && value.targetFields.length > 0, `${label}.targetFields: missing non-empty array`);
-  errors.push(...validateAskCoreStartupContract(value.startupContract, `${label}.startupContract`));
+  if (brandLayer) {
+    push(errors, value.loadHint === 'first-keystroke-search', `${label}.loadHint: brand layer must be first-keystroke-search`);
+    push(errors, isObject(value.budget) && Number.isInteger(value.budget.maxBytes) && Number.isInteger(value.budget.currentBytes) && value.budget.currentBytes <= value.budget.maxBytes, `${label}.budget: brand layer needs a budget it stays within`);
+  } else {
+    errors.push(...validateAskCoreStartupContract(value.startupContract, `${label}.startupContract`));
+    push(errors, isObject(value.productIndex) && isObject(value.productIndex.units) && Array.isArray(value.productIndex.files) && value.productIndex.files.length > 0, `${label}.productIndex: missing product-index shard router`);
+  }
   errors.push(...validateTokenMap(value.tokens, `${label}.tokens`));
   errors.push(...validateTargetMap(value.aliases, `${label}.aliases`, { allowEmpty: true }));
   if (!isObject(value.targets) || !Object.keys(value.targets).length) errors.push(`${label}.targets: missing non-empty object`);
@@ -1672,7 +1686,7 @@ function validateAskFixtures(value, label = 'ask-fixtures') {
       return;
     }
     push(errors, layer.layer === 'core' || layer.layer === 'full', `${at}.layer: must be core or full`);
-    push(errors, /^[A-Za-z0-9._/-]+\.json$/.test(String(layer.file || '')), `${at}.file: invalid json file`);
+    push(errors, /^[A-Za-z0-9._/*-]+\.json$/.test(String(layer.file || '')), `${at}.file: invalid json file`);
     push(errors, isString(layer.use), `${at}.use: missing use`);
   });
   if (!Array.isArray(value.cases) || !value.cases.length) errors.push(`${label}.cases: missing non-empty array`);

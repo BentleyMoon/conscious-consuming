@@ -10,10 +10,9 @@
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
-const { askNormalize, itemId, resolveAskQuery } = require('../pipeline/build_nodes.js');
+const { askNormalize, itemId, resolveAskQuery, readAskIndexesFromDisk } = require('../pipeline/build_nodes.js');
 
 const ROOT = path.resolve(__dirname, '..');
-const ASK_OUT = path.join(ROOT, 'app', 'data', 'nodes', 'ask-index.json');
 const ASK_CORE_OUT = path.join(ROOT, 'app', 'data', 'nodes', 'ask-core.json');
 const ASK_FIXTURES_OUT = path.join(ROOT, 'app', 'data', 'nodes', 'ask-fixtures.json');
 const ASK_TRACES_OUT = path.join(ROOT, 'app', 'data', 'nodes', 'ask-traces.json');
@@ -289,7 +288,7 @@ function checkCoreStartupContract(askCoreIndex, refs, fixtureCases) {
   expect(/startup Ask contract/i.test(contract.purpose || ''), 'app/data/nodes/ask-core.json: startupContract missing startup Ask purpose');
   expect(/app-owned/i.test(contract.appLaneNote || ''), 'app/data/nodes/ask-core.json: startupContract missing app-owned note');
   expect(contract.loadHint === 'eager-search', 'app/data/nodes/ask-core.json: startupContract loadHint should be eager-search');
-  expect(contract.lazyBoundary?.file === 'ask-index.json', 'app/data/nodes/ask-core.json: startupContract lazy boundary should point to ask-index.json');
+  expect(contract.lazyBoundary?.file === 'ask-index-*.json', 'app/data/nodes/ask-core.json: startupContract lazy boundary should point to the ask-index-*.json shards');
   expect(contract.lazyBoundary?.loadHint === 'lazy-product-search', 'app/data/nodes/ask-core.json: startupContract lazy boundary loadHint mismatch');
   expect(contract.lazyBoundary?.keepCoreIfLazyFails === true, 'app/data/nodes/ask-core.json: startupContract should keep core results when lazy Ask fails');
   expect((contract.covers?.targetTypes || []).includes('category'), 'app/data/nodes/ask-core.json: startupContract should cover categories');
@@ -371,17 +370,17 @@ function checkAppResolverOrdering() {
 
 function checkAppLazyProductAsk() {
   const app = fs.readFileSync(APP_JS, 'utf8');
-  expect(/function loadAskIndex\(\)/.test(app), 'app/app.js: missing lazy ask-index loader');
-  expect(/fetchNodeJson\('ask-index\.json'/.test(app), 'app/app.js: lazy Ask loader should fetch ask-index.json');
+  expect(/function loadAskIndex\(q,limit\)/.test(app), 'app/app.js: missing lazy ask-index loader');
+  expect(/function loadAskShardFiles\(/.test(app) && /fetchNodeJson\(file,false\)/.test(app), 'app/app.js: lazy Ask loader should fetch the ask-index-*.json shards');
   expect(/function resolveAskFullRows\(/.test(app), 'app/app.js: missing full Ask item resolver');
-  expect(!/boot\(\)\.then\(\(\)=>\{[\s\S]{0,300}loadAskIndex\(\)/.test(app), 'app/app.js: ask-index.json must not load during boot');
+  expect(!/boot\(\)\.then\(\(\)=>\{[\s\S]{0,300}(loadAskIndex|loadAskBrands)\(/.test(app), 'app/app.js: ask-index.json must not load during boot');
   const start = app.indexOf('function resolveAsk(q)');
   const end = app.indexOf('function renderWorkbench()', start);
   expect(start >= 0 && end > start, 'app/app.js: could not isolate resolveAsk(q) for lazy Ask check');
   if (start >= 0 && end > start) {
     const body = app.slice(start, end);
-    expect(/digits\.length>=6[\s\S]{0,300}loadAskIndex\(\)\.then/.test(body), 'app/app.js: typed barcode Ask should use the lazy ask-index path');
-    expect(/resolveAskCoreRows\(q,6,false\)[\s\S]{0,500}loadAskIndex\(\)\.then/.test(body), 'app/app.js: product Ask should load ask-index only after compact core misses');
+    expect(/digits\.length>=6[\s\S]{0,300}loadAskIndex\(q,6\)\.then/.test(body), 'app/app.js: typed barcode Ask should use the lazy ask-index path');
+    expect(/resolveAskCoreRows\(q,6,false\)[\s\S]{0,500}loadAskIndex\(q,6\)\.then/.test(body), 'app/app.js: product Ask should load ask-index only after compact core misses');
     expect(/resolveAskFullRows\(q,6,false\)/.test(body), 'app/app.js: resolveAsk(q) should read full Ask item hits after lazy load');
     expect(/catch\(\(\)=>resolveAskLegacy\(q\)\)/.test(body), 'app/app.js: lazy Ask failure should leave legacy/core search usable');
   }
@@ -389,8 +388,9 @@ function checkAppLazyProductAsk() {
 
 function main() {
   console.log('Ask readiness audit');
-  const askIndex = readJson(ASK_OUT);
-  const askCoreIndex = readJson(ASK_CORE_OUT);
+  // The product index ships as shards and the core layer as ask-core.json + ask-brands.json;
+  // replay against both merged, the way the app resolves once they are loaded.
+  const { askIndex, askCoreIndex } = readAskIndexesFromDisk();
   const refs = loadRefs();
   const fixtureCases = loadFixtureCases(refs);
   const result = checkCases(askIndex, refs, fixtureCases, {

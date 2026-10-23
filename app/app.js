@@ -2170,7 +2170,7 @@ function wireSuggest(input){
     panel.querySelectorAll('a').forEach(a=>a.onmousedown=e=>{e.preventDefault();hide();location.hash=items[+a.dataset.i].hash;});
   };
   input.addEventListener('input',()=>{
-    clearTimeout(t); loadAskCore();
+    clearTimeout(t); loadAskCore(); loadAskBrands(); // the brand layer waits for the first keystroke
     t=setTimeout(()=>{
       const nq=askNorm(input.value); if(!nq||nq.length<2){hide();return;}
       const legacy=()=>loadNodes().then(()=>{
@@ -2182,7 +2182,7 @@ function wireSuggest(input){
         }
         show(out);
       });
-      loadAskCore().then(()=>{
+      loadAskLayer().then(()=>{
         const out=resolveAskCoreRows(input.value,6,true);
         if(out.length)show(out);else legacy();
       }).catch(legacy);
@@ -4304,7 +4304,8 @@ function renderScan(){
 //    #n/<type>/<slug> is the address. The engine already speaks this id space (ovs:…); this makes it walkable.
 //    Runtime node data comes from the generated indexes. sample.json remains a schema example only.
 //    Lines come straight from the registry; categories/guides/items redirect to their existing (richer) pages. ══
-let NODES=null,NODES_P=null,ASK_CORE=null,ASK_CORE_P=null,ASK_INDEX=null,ASK_INDEX_P=null;
+let NODES=null,NODES_P=null,ASK_CORE=null,ASK_CORE_P=null,ASK_BRANDS=null,ASK_BRANDS_P=null,ASK_LAYER=null,ASK_INDEX=null;
+const ASK_SHARDS={}; // product-index shard file -> load promise
 function fetchNodeJson(file,optional){
   return fetch('./data/nodes/'+file).then(r=>{
     if(!r.ok)throw new Error('HTTP '+r.status);
@@ -4322,21 +4323,85 @@ function loadAskCore(){
   });
   return ASK_CORE_P;
 }
-function loadAskIndex(){
-  if(ASK_INDEX)return Promise.resolve(ASK_INDEX);
-  if(ASK_INDEX_P)return ASK_INDEX_P;
-  ASK_INDEX_P=fetchNodeJson('ask-index.json',false).then(res=>{
-    ASK_INDEX=(res.data&&res.data.format==='ovs-ask-index')?res.data:{tokens:{},aliases:{},failed:true,error:res.error||'invalid ask-index'};
-    if(res.error)ASK_INDEX.failed=true,ASK_INDEX.error=res.error;
-    return ASK_INDEX;
+// The brand layer of Ask (ask-brands.json) waits for the first keystroke in a search box or a submitted
+// query; brand targets grow with the catalogue, so they stay out of the startup file. Merged into the
+// ask-core.json layer it resolves exactly as the single core file did. If it fails, core results stand.
+function loadAskBrands(){
+  if(ASK_BRANDS_P)return ASK_BRANDS_P;
+  ASK_BRANDS_P=Promise.all([loadAskCore(),fetchNodeJson('ask-brands.json',false)]).then(([core,res])=>{
+    ASK_BRANDS=(res.data&&res.data.format==='ovs-ask-core-index')?res.data:{tokens:{},aliases:{},targets:{},failed:true,error:res.error||'invalid ask-brands'};
+    if(res.error)ASK_BRANDS.failed=true,ASK_BRANDS.error=res.error;
+    if(core&&!core.failed&&!ASK_BRANDS.failed)ASK_LAYER=askMergeLayers(core,ASK_BRANDS);
+    return ASK_BRANDS;
   });
-  return ASK_INDEX_P;
+  return ASK_BRANDS_P;
+}
+function loadAskLayer(){return loadAskBrands().then(()=>askCoreLayer());}
+function askCoreLayer(){return ASK_LAYER||ASK_CORE;}
+function askMergeLayers(core,extra){
+  const tokens=Object.assign({},core.tokens||{}),et=extra.tokens||{};
+  for(const k in et)tokens[k]=tokens[k]?tokens[k].concat(et[k]):et[k];
+  return {format:core.format,tokens:tokens,aliases:Object.assign({},core.aliases||{},extra.aliases||{}),targets:Object.assign({},core.targets||{},extra.targets||{})};
+}
+// The lazy product index is sharded by the first character of each word; ask-core.json productIndex maps
+// characters to shard files (pipeline/build_nodes.js explains the routing). loadAskIndex(q,limit) loads the
+// shards q can match in, and only when those cannot fill `limit` results above the containment ceiling,
+// the shards their directories name for every word of q. The loaded shards merge into ASK_INDEX, and the
+// resolver answers from them exactly as it did from the single ask-index file.
+function askShardUnits(nq){
+  const words=nq.split(' ').filter(Boolean),units={};
+  for(const w of words)units[w[0]]=1;
+  if(words.length===1){
+    const w=words[0];
+    if(w.length>1)units[w[1]]=1;
+    if(/[0-9]/.test(w)&&/^[0-9]*$/.test(w.slice(1)))for(let d=0;d<10;d++)units[String(d)]=1;
+  }
+  return Object.keys(units);
+}
+function askDirectoryUnits(nq,directory){
+  let shared=null;
+  for(const w of nq.split(' ').filter(Boolean)){
+    const units={};units[w[0]]=1;
+    for(const entry in (directory||{})){
+      if(entry[0]!==w[0]||!_tokEq(w,entry))continue;
+      for(const u of directory[entry])units[u]=1;
+    }
+    if(shared){const next={};for(const u in shared)if(units[u])next[u]=1;shared=next;}else shared=units;
+  }
+  return Object.keys(shared||{});
+}
+function loadAskShardFiles(files){
+  return Promise.all(files.map(file=>{
+    if(!ASK_SHARDS[file])ASK_SHARDS[file]=fetchNodeJson(file,false).then(res=>{
+      const d=res.data;
+      if(!d||d.format!=='ovs-ask-index')throw new Error(res.error||('invalid '+file));
+      if(!ASK_INDEX)ASK_INDEX={tokens:{},aliases:{},directory:{},files:[]};
+      Object.assign(ASK_INDEX.tokens,d.tokens||{});Object.assign(ASK_INDEX.aliases,d.aliases||{});Object.assign(ASK_INDEX.directory,d.directory||{});
+      ASK_INDEX.files.push(file);
+      return file;
+    }).catch(err=>{delete ASK_SHARDS[file];throw err;}); // a failed shard can be retried by the next search
+    return ASK_SHARDS[file];
+  }));
+}
+function loadAskIndex(q,limit){
+  limit=limit||6;
+  return loadAskCore().then(core=>{
+    const pi=core&&core.productIndex;
+    if(!pi||!pi.units)throw new Error('product index router unavailable');
+    const nq=askNorm(q); if(!nq)return ASK_INDEX;
+    const filesFor=units=>{const out={};for(const u of units){const f=pi.units[u];if(f)out[f]=1;}return Object.keys(out);};
+    return loadAskShardFiles(filesFor(askShardUnits(nq))).then(()=>{
+      const rows=resolveAskIndexRows(q,ASK_INDEX,limit,false);
+      if(rows.length>=limit&&rows[limit-1].score>(pi.containmentCeiling||76))return ASK_INDEX;
+      return loadAskShardFiles(filesFor(askDirectoryUnits(nq,ASK_INDEX&&ASK_INDEX.directory))).then(()=>ASK_INDEX);
+    });
+  });
 }
 function loadNodes(){
   if(NODES)return Promise.resolve(NODES);
   if(NODES_P)return NODES_P;
   // The generated indexes: brands + companies + tags + errands, merged into one node pool,
-  // plus everyday-phrase synonyms. ask-core.json handles startup Ask; ask-index.json stays lazy.
+  // plus everyday-phrase synonyms. ask-core.json handles startup Ask; the ask-index-*.json shards stay lazy.
   const required=['brands.json','companies.json','tags.json','errands.json'];
   NODES_P=Promise.all([fetchNodeJson('manifest.json',true)].concat(required.map(f=>fetchNodeJson(f,false)),[fetchNodeJson('synonyms.json',true)]))
     .then(results=>{
@@ -4594,7 +4659,7 @@ function resolveAskIndexRows(q,index,limit,includePrefix){
   }).map(hit=>askRow(hit,index)).filter(Boolean).filter(row=>{if(seen[row.hash])return false;seen[row.hash]=1;return true;}).slice(0,limit||6);
 }
 function resolveAskCoreRows(q,limit,includePrefix){
-  return resolveAskIndexRows(q,ASK_CORE,limit,includePrefix);
+  return resolveAskIndexRows(q,askCoreLayer(),limit,includePrefix);
 }
 function resolveAskFullRows(q,limit,includePrefix){
   return resolveAskIndexRows(q,ASK_INDEX,limit,includePrefix).filter(row=>row.id.indexOf('ovs:item/')===0);
@@ -4648,18 +4713,18 @@ function resolveAsk(q){
   q=String(q||'').trim();
   const digits=q.replace(/\D/g,'');
   if(digits.length>=6&&digits.length===q.replace(/\s/g,'').length){ // a barcode, typed or pasted
-    return loadAskIndex().then(()=>{
+    return loadAskIndex(q,6).then(()=>{
       const hits=resolveAskFullRows(q,6,false);
       if(hits.length===1)return {kind:'nav',hash:hits[0].hash};
       if(hits.length>1)return {kind:'multi',hits:hits};
       return ensureBarcodes().then(idx=>idx[digits]?{kind:'nav',hash:'#item/'+encodeURIComponent(idx[digits])+'/'+encodeURIComponent(digits)}:null);
     }).catch(()=>ensureBarcodes().then(idx=>idx[digits]?{kind:'nav',hash:'#item/'+encodeURIComponent(idx[digits])+'/'+encodeURIComponent(digits)}:null));
   }
-  return loadAskCore().then(()=>{
+  return loadAskLayer().then(()=>{
     const hits=resolveAskCoreRows(q,6,false);
     if(hits.length===1)return {kind:'nav',hash:hits[0].hash};
     if(hits.length>1)return {kind:'multi',hits:hits};
-    return loadAskIndex().then(()=>{
+    return loadAskIndex(q,6).then(()=>{
       const fullHits=resolveAskFullRows(q,6,false);
       if(fullHits.length===1)return {kind:'nav',hash:fullHits[0].hash};
       if(fullHits.length>1)return {kind:'multi',hits:fullHits};
@@ -4724,7 +4789,7 @@ function h4LoaderPlanSelfCheck(loader,loadedFiles,askCore){
   const eagerOk=['manifest.json','tags.json','errands.json','synonyms.json'].every(f=>loaded.has(f));
   const pageNodeOk=['brands.json','companies.json'].every(f=>loaded.has(f));
   const askCoreOk=askCore&&askCore.format==='ovs-ask-core-index';
-  const lazyBoundaryOk=!loaded.has('ask-index.json')&&!loaded.has('sample.json');
+  const lazyBoundaryOk=!Array.from(loaded).some(f=>f.indexOf('ask-index')===0)&&!loaded.has('ask-brands.json')&&!loaded.has('sample.json');
   const totalsOk=totals.stages===stages.length&&totals.runtimeStages===runtime.length&&totals.devContractStages===dev.length;
   return {pass:stageOk&&cacheOk&&eagerOk&&pageNodeOk&&askCoreOk&&lazyBoundaryOk&&totalsOk,total:stages.length,stageOk:stageOk,cacheOk:cacheOk,eagerOk:eagerOk,pageNodeOk:pageNodeOk,askCoreOk:askCoreOk,lazyBoundaryOk:lazyBoundaryOk,totalsOk:totalsOk};
 }
@@ -4739,14 +4804,14 @@ function h4AskCoreSelfCheck(qa){
 function h4RunLazyAskSelfCheck(qa,box,evidenceItems){
   const cases=((qa.askFixtures&&qa.askFixtures.cases)||[]).filter(c=>c.layer==='full');
   box.textContent='Loading the lazy product/barcode index...';
-  loadAskIndex().then(()=>{
+  Promise.all(cases.map(c=>loadAskIndex(c.query,c.expectOneInTop||5))).then(()=>{
     const ok=cases.filter(c=>{
       const rows=resolveAskFullRows(c.query,c.expectOneInTop||5,false);
       return rows.some(r=>(c.expectAny||[]).indexOf(r.id)>=0);
     }).length;
-    box.innerHTML=`Lazy product Ask self-check: <b>${ok}/${cases.length}</b> full-index fixture target${cases.length===1?'':'s'} resolved. This loaded ask-index.json only after you asked for this check.`;
+    box.innerHTML=`Lazy product Ask self-check: <b>${ok}/${cases.length}</b> full-index fixture target${cases.length===1?'':'s'} resolved. This loaded only the product-index shards those queries need (${(ASK_INDEX&&ASK_INDEX.files.length)||0}), and only after you asked for this check.`;
     if(cases.length&&ok===cases.length)h4MarkEvidence(evidenceItems,'lazy-product-ask','Lazy product Ask evidence recorded from the self-check.');
-  }).catch(()=>{box.textContent='Lazy product Ask self-check could not load ask-index.json. Core Ask results still work.';});
+  }).catch(()=>{box.textContent='Lazy product Ask self-check could not load the product-index shards. Core Ask results still work.';});
 }
 function h4QaList(label,items){
   items=(items||[]).filter(Boolean);
@@ -5021,7 +5086,7 @@ function initH4WorkbenchQA(){
     return;
   }
   box.innerHTML='<p class="alts-sub" style="margin:.45rem 0 0">Loading the company and search checklist...</p>';
-  Promise.all([loadNodeQaContracts(),loadNodes(),loadAskCore()]).then(([qa,nodes,askCore])=>{
+  Promise.all([loadNodeQaContracts(),loadNodes(),loadAskBrands().then(()=>ASK_CORE)]).then(([qa,nodes,askCore])=>{
     if(qa.failed.length){
       box.innerHTML='<p class="alts-sub" style="margin:.45rem 0 0">The checklist could not load: '+esc(qa.failed.join(', '))+'. Category and guide pages still work.</p>';
       return;

@@ -46,12 +46,12 @@
         ],
         "passWhen": [
           "The base app remains usable while metadata and ask-core.json load.",
-          "Startup Ask never requires ask-index.json for core category, brand, company, guide, line, tag, or errand results.",
+          "Startup Ask never requires ask-index-*.json for core category, brand, company, guide, line, tag, or errand results.",
           "Empty and unavailable states route to the generated recovery hashes."
         ],
         "mustNot": [
           "Do not block category browsing on generated-node startup work.",
-          "Do not claim product or barcode coverage before ask-index.json is loaded and valid."
+          "Do not claim product or barcode coverage before ask-index-*.json is loaded and valid."
         ]
       },
       {
@@ -88,17 +88,34 @@
           "lazy-product-unavailable"
         ],
         "sourceFiles": [
-          "ask-index.json",
+          "ask-index-0-2.json",
+          "ask-index-3.json",
+          "ask-index-4-5.json",
+          "ask-index-6-9.json",
+          "ask-index-a.json",
+          "ask-index-b.json",
+          "ask-index-c.json",
+          "ask-index-d-e.json",
+          "ask-index-f-g.json",
+          "ask-index-h-j.json",
+          "ask-index-k-l.json",
+          "ask-index-m.json",
+          "ask-index-n-o.json",
+          "ask-index-p-q.json",
+          "ask-index-r.json",
+          "ask-index-s.json",
+          "ask-index-t-v.json",
+          "ask-index-w-z.json",
           "manifest.json",
           "node-load-plan.json"
         ],
         "passWhen": [
-          "ask-index.json loads only after a product-name or barcode path asks for it.",
+          "ask-index-*.json loads only after a product-name or barcode path asks for it.",
           "Core Ask results stay visible while the lazy product index loads.",
           "A lazy index failure disables only product and barcode lookup."
         ],
         "mustNot": [
-          "Do not eagerly load ask-index.json at startup.",
+          "Do not eagerly load ask-index-*.json at startup.",
           "Do not treat lazy product failure as failure of categories, guides, or node pages."
         ]
       },
@@ -170,7 +187,24 @@
         "loadHint": "lazy-product-search",
         "runtime": true,
         "sourceFiles": [
-          "ask-index.json"
+          "ask-index-0-2.json",
+          "ask-index-3.json",
+          "ask-index-4-5.json",
+          "ask-index-6-9.json",
+          "ask-index-a.json",
+          "ask-index-b.json",
+          "ask-index-c.json",
+          "ask-index-d-e.json",
+          "ask-index-f-g.json",
+          "ask-index-h-j.json",
+          "ask-index-k-l.json",
+          "ask-index-m.json",
+          "ask-index-n-o.json",
+          "ask-index-p-q.json",
+          "ask-index-r.json",
+          "ask-index-s.json",
+          "ask-index-t-v.json",
+          "ask-index-w-z.json"
         ],
         "caseIds": [
           "lazy-product-loading",
@@ -219,7 +253,7 @@
       ],
       "mustNot": [
         "Do not block category browsing on full generated node indexes.",
-        "Do not start loading ask-index.json before the load plan is known."
+        "Do not start loading ask-index-*.json before the load plan is known."
       ],
       "appOwnedCopyIntent": "Use calm, honest copy that names what is unavailable without implying total app failure.",
       "sourceFiles": [
@@ -299,7 +333,7 @@
         "Keep the full Ask index out of the startup path."
       ],
       "mustNot": [
-        "Do not load ask-index.json merely to fill the startup search slot.",
+        "Do not load ask-index-*.json merely to fill the startup search slot.",
         "Do not show product/barcode lookup as ready before the lazy index loads."
       ],
       "appOwnedCopyIntent": "Use calm, honest copy that names what is unavailable without implying total app failure.",
@@ -477,35 +511,69 @@
       "trigger": "A product-name or barcode lookup requests the full Ask index.",
       "requiredBehavior": [
         "Keep core search results visible while full product lookup loads.",
-        "Load ask-index.json once and cache by manifest sha256.",
+        "Load ask-index-*.json once and cache by manifest sha256.",
         "Keep product lookup clearly separate from startup Ask readiness."
       ],
       "mustNot": [
         "Do not blank core Ask results while lazy product lookup is pending.",
-        "Do not load ask-index.json before the user path asks for product/barcode depth."
+        "Do not load ask-index-*.json before the user path asks for product/barcode depth."
       ],
       "appOwnedCopyIntent": "Use calm, honest copy that names what is unavailable without implying total app failure.",
       "sourceFiles": [
-        "ask-index.json"
+        "ask-index-0-2.json",
+        "ask-index-3.json",
+        "ask-index-4-5.json",
+        "ask-index-6-9.json",
+        "ask-index-a.json",
+        "ask-index-b.json",
+        "ask-index-c.json",
+        "ask-index-d-e.json",
+        "ask-index-f-g.json",
+        "ask-index-h-j.json",
+        "ask-index-k-l.json",
+        "ask-index-m.json",
+        "ask-index-n-o.json",
+        "ask-index-p-q.json",
+        "ask-index-r.json",
+        "ask-index-s.json",
+        "ask-index-t-v.json",
+        "ask-index-w-z.json"
       ]
     },
     {
       "id": "lazy-product-unavailable",
       "family": "unavailable",
       "stage": "lazy-product-ask",
-      "trigger": "ask-index.json fails fetch, parse, integrity, or memory checks.",
+      "trigger": "ask-index-*.json fails fetch, parse, integrity, or memory checks.",
       "requiredBehavior": [
         "Keep compact core results visible.",
         "Label product/barcode lookup as unavailable for the moment.",
         "Allow retry without restarting the whole app."
       ],
       "mustNot": [
-        "Do not claim product/barcode coverage if ask-index.json failed.",
+        "Do not claim product/barcode coverage if ask-index-*.json failed.",
         "Do not treat a lazy product failure as a failure of categories, guides, or node pages."
       ],
       "appOwnedCopyIntent": "Use calm, honest copy that names what is unavailable without implying total app failure.",
       "sourceFiles": [
-        "ask-index.json"
+        "ask-index-0-2.json",
+        "ask-index-3.json",
+        "ask-index-4-5.json",
+        "ask-index-6-9.json",
+        "ask-index-a.json",
+        "ask-index-b.json",
+        "ask-index-c.json",
+        "ask-index-d-e.json",
+        "ask-index-f-g.json",
+        "ask-index-h-j.json",
+        "ask-index-k-l.json",
+        "ask-index-m.json",
+        "ask-index-n-o.json",
+        "ask-index-p-q.json",
+        "ask-index-r.json",
+        "ask-index-s.json",
+        "ask-index-t-v.json",
+        "ask-index-w-z.json"
       ]
     },
     {

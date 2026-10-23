@@ -72,8 +72,33 @@ const rpcError = (id, code, message) => ({ jsonrpc: '2.0', id: id === undefined 
 // isolate — the worker-side mirror of the app's compact-core → lazy-full pattern. Service-lens
 // entries (banks, apps) are not name-indexed yet (queued to the data lane); the honest path there
 // is category → entries, and a zero-result search says so instead of returning nothing mutely.
-let _coreIndex; // Promise<parsed ask-core.json | null>
-let _fullIndex; // Promise<parsed ask-index.json | null>
+let _coreIndex; // Promise<ask-core.json merged with its first-keystroke brand layer ask-brands.json | null>
+let _fullIndex; // Promise<every ask-index-*.json shard merged into one { tokens, aliases } | null>
+// The app loads ask-brands.json on the first keystroke and only the product shards a query needs; a
+// worker answers many queries per isolate, so it loads the whole set once and merges it. Merged, the
+// files hold exactly the postings the single ask-core.json and ask-index.json held.
+async function _loadCoreLayer(loadJson) {
+  const [core, brands] = await Promise.all([
+    loadJson('/app/data/nodes/ask-core.json'),
+    loadJson('/app/data/nodes/ask-brands.json').catch(() => null),
+  ]);
+  if (!core || !brands || !brands.tokens) return core;
+  const tokens = { ...core.tokens };
+  for (const [k, ids] of Object.entries(brands.tokens)) tokens[k] = tokens[k] ? tokens[k].concat(ids) : ids;
+  return { ...core, tokens, aliases: { ...core.aliases, ...(brands.aliases || {}) }, targets: { ...core.targets, ...(brands.targets || {}) } };
+}
+async function _loadProductIndex(core, loadJson) {
+  const files = ((core && core.productIndex && core.productIndex.files) || []).map((f) => f.file);
+  if (!files.length) return null;
+  const shards = await Promise.all(files.map((f) => loadJson('/app/data/nodes/' + f)));
+  const out = { tokens: {}, aliases: {} };
+  for (const shard of shards) {
+    if (!shard) continue;
+    Object.assign(out.tokens, shard.tokens || {});
+    Object.assign(out.aliases, shard.aliases || {});
+  }
+  return out;
+}
 const _lensCache = new Map(); // small per-isolate cache for lens files touched by title resolution
 async function _lens(cid, loadJson) {
   if (!_lensCache.has(cid)) _lensCache.set(cid, loadJson('/app/data/' + cid + '.json'));
@@ -94,7 +119,7 @@ function scoreTokens(tokens, q, words, scores) {
   }
 }
 async function doSearch(query, loadJson, appBase) {
-  if (!_coreIndex) _coreIndex = loadJson('/app/data/nodes/ask-core.json');
+  if (!_coreIndex) _coreIndex = _loadCoreLayer(loadJson);
   const core = await _coreIndex;
   if (!core || !core.tokens || !core.targets) return { results: [], note: 'index unavailable' };
   const q = fold(query).trim();
@@ -106,7 +131,7 @@ async function doSearch(query, loadJson, appBase) {
   if (core.aliases && core.aliases[q]) scores.set(core.aliases[q], (scores.get(core.aliases[q]) || 0) + 5);
   // the lazy full item index (food names + barcodes); degrade silently if unavailable
   try {
-    if (!_fullIndex) _fullIndex = loadJson('/app/data/nodes/ask-index.json');
+    if (!_fullIndex) _fullIndex = _loadProductIndex(core, loadJson);
     const full = await _fullIndex;
     if (full && full.tokens) {
       scoreTokens(full.tokens, q, words, scores);

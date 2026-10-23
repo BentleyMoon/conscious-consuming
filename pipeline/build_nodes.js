@@ -20,7 +20,6 @@ const ERRANDS_OUT = path.join(ROOT, 'app', 'data', 'nodes', 'errands.json');
 const OUT_DIR = path.join(ROOT, 'app', 'data', 'nodes');
 const BRAND_OUT = path.join(OUT_DIR, 'brands.json');
 const COMPANY_OUT = path.join(OUT_DIR, 'companies.json');
-const ASK_OUT = path.join(OUT_DIR, 'ask-index.json');
 const ASK_CORE_OUT = path.join(OUT_DIR, 'ask-core.json');
 const AVOID_TOKENS_OUT = path.join(OUT_DIR, 'avoid-tokens.json');
 const ASK_FIXTURES_OUT = path.join(OUT_DIR, 'ask-fixtures.json');
@@ -36,9 +35,31 @@ const NODE_RUNTIME_STATES_OUT = path.join(OUT_DIR, 'node-runtime-states.json');
 const NODE_PREVIEW_MATRIX_OUT = path.join(OUT_DIR, 'node-preview-matrix.json');
 const READINESS_OUT = path.join(OUT_DIR, 'readiness.json');
 const MANIFEST_OUT = path.join(OUT_DIR, 'manifest.json');
-const ASK_INDEX_MAX_BYTES = 6000000;
 const ASK_CORE_MAX_BYTES = 780000; // raised 2026-08-13 with the catalogue; see node_index_audit.js
 const ASK_CORE_MIN_HEADROOM_BYTES = 50000;
+// 2026-10-15. Brand targets left the startup file. ask-core.json now holds categories, companies,
+// tags, errands, lines and guides (a set that grows with the ontology, not the catalogue); brand
+// targets live in ask-brands.json, fetched on the first keystroke in a search box. Both files are
+// one resolver layer: the app merges them, and the merged index answers exactly as the single
+// ask-core.json did.
+const ASK_BRANDS_OUT = path.join(OUT_DIR, 'ask-brands.json');
+const ASK_BRANDS_TYPE = 'ask-core-brands';
+const ASK_BRANDS_MAX_BYTES = 1500000;
+const ASK_BRANDS_MIN_HEADROOM_BYTES = 100000;
+// 2026-10-15. The product index (ask-index.json, 5.6 MB against a 6 MB single-fetch budget) is
+// sharded by the first character of each word. ASK_SHARD_MAX_BYTES is the hard per-file budget;
+// shards are packed to ASK_SHARD_PACK_BYTES so the build re-splits long before a file nears it.
+// ASK_INDEX_TOTAL_MAX_BYTES bounds the whole set on disk and in an offline cache; no visitor
+// fetches the whole set for one search (see askShardUnitsForQuery and content/MASS-DATA-ACCESS-PLAN.md).
+const ASK_SHARD_MAX_BYTES = 1500000;
+const ASK_SHARD_PACK_BYTES = 400000;
+const ASK_INDEX_TOTAL_MAX_BYTES = 12000000;
+const ASK_SHARD_UNITS = '0123456789abcdefghijklmnopqrstuvwxyz'.split('');
+const ASK_SHARD_PREFIX = 'ask-index-';
+// Set by buildAll before the contract builders run: the shard files of this build, and their total.
+let ASK_SHARD_FILES = [];
+let ASK_SHARD_TOTAL_BYTES = 0;
+let ASK_SHARD_LARGEST_BYTES = 0;
 
 const ASK_STOP = new Set([
   'is', 'are', 'the', 'a', 'an', 'best', 'good', 'bad', 'cheapest', 'most',
@@ -143,14 +164,17 @@ function readJson(file) {
 // indentation; this layout keeps git diffs line-per-token and parses to the identical object.
 // Honest accounting: gzip already removed most of that whitespace in transit, so the saving is
 // in raw bytes, parse work and the repository, not much in transfer. The 6 MB budget stays.
-// research/node_index_audit.js carries the same function and must stay in step.
+// 2026-10-15: the same layout covers the product-index shards (tokens, aliases, directory) and the
+// first-keystroke brand layer (tokens, aliases, targets). research/node_index_audit.js imports
+// formatJson from here instead of carrying a copy.
+const LINE_FORMATTED_FIELDS = new Set(['tokens', 'aliases', 'directory', 'targets']);
 function formatAskIndex(value) {
   const keys = Object.keys(value);
   const lines = ['{'];
   keys.forEach((key, i) => {
     const comma = i === keys.length - 1 ? '' : ',';
     const field = value[key];
-    if ((key === 'tokens' || key === 'aliases') && field && typeof field === 'object' && !Array.isArray(field)) {
+    if (LINE_FORMATTED_FIELDS.has(key) && field && typeof field === 'object' && !Array.isArray(field)) {
       const entries = Object.keys(field).map(k => JSON.stringify(k) + ':' + JSON.stringify(field[k]));
       lines.push(`  ${JSON.stringify(key)}: {` + (entries.length ? '\n' + entries.join(',\n') + '\n  }' : '}') + comma);
     } else {
@@ -162,7 +186,7 @@ function formatAskIndex(value) {
 }
 
 function formatJson(value) {
-  if (value && value.format === 'ovs-ask-index') return formatAskIndex(value);
+  if (value && (value.format === 'ovs-ask-index' || value.type === ASK_BRANDS_TYPE)) return formatAskIndex(value);
   return JSON.stringify(value, null, 2) + '\n';
 }
 
@@ -178,35 +202,246 @@ function jsonSha256(value) {
   return sha256Text(formatJson(value));
 }
 
-function withAskIndexBudget(index) {
-  const out = {
-    ...index,
+// ── Product-index shards ─────────────────────────────────────────────────────────────────────
+// Every key of the full Ask index is a normalized phrase ("alpro oat milk"). A key lives in the
+// shard of its first word's first character (its home). Matching (resolveAskQuery) can reach a
+// key in four ways, and the routing below guarantees each one finds the key in a loaded shard:
+//   · alias / exact / query-token / prefix: the key starts with a query word, so its home is the
+//     unit of that word's first character, which the query always loads;
+//   · containment where every key word matches a query word: the key's first word matches one,
+//     and token matching (equal, or a 4+ character prefix) never changes the first character;
+//   · fuzzy-1 (one-word query against a one-word key, one edit apart): a one-word key is also
+//     copied to the unit of its second character, a one-character key to every unit, and the query
+//     loads the units of its first two characters. Numeric keys (barcodes) are not copied; a
+//     one-word query that is numeric after its first character loads every digit unit instead;
+//   · containment where every query word matches a key word anywhere in the key: each shard's
+//     directory lists, for a word that occurs after the first position in keys homed elsewhere,
+//     the units those keys live in. When the first round cannot already fill the requested results
+//     with scores above ASK_CONTAINMENT_CEILING, the reader loads the units every query word's
+//     directory entries share. Containment scores at most 76, so the pruned round never changes
+//     the top results.
+// The merged tokens of any set of shards are a subset of the full index with identical postings,
+// so the resolver answers from shards exactly as it answered from the single file. The audit
+// (research/node_index_audit.js) replays the fixtures and a query sample both ways to prove it.
+const ASK_CONTAINMENT_CEILING = 76;
+
+function askShardUnitOf(word) {
+  const unit = String(word || '').charAt(0);
+  return ASK_SHARD_UNITS.includes(unit) ? unit : null;
+}
+
+function askKeyShardUnits(key) {
+  const words = String(key || '').split(' ').filter(Boolean);
+  const home = askShardUnitOf(words[0]);
+  const copies = new Set();
+  if (words.length === 1) {
+    if (key.length === 1) ASK_SHARD_UNITS.forEach(unit => copies.add(unit));
+    else if (!/^[0-9]+$/.test(key)) copies.add(askShardUnitOf(key.slice(1)));
+  }
+  copies.delete(home);
+  copies.delete(null);
+  return { home, copies: [...copies].sort(), words };
+}
+
+function askShardUnitsForQuery(normalized) {
+  const words = String(normalized || '').split(' ').filter(Boolean);
+  const units = new Set(words.map(askShardUnitOf));
+  if (words.length === 1) {
+    const word = words[0];
+    if (word.length > 1) units.add(askShardUnitOf(word.slice(1)));
+    if (/[0-9]/.test(word) && /^[0-9]*$/.test(word.slice(1))) ASK_SHARD_UNITS.filter(unit => /[0-9]/.test(unit)).forEach(unit => units.add(unit));
+  }
+  units.delete(null);
+  return [...units].sort();
+}
+
+// The second round: units every query word's matches share (see the block comment above).
+function askShardDirectoryUnits(normalized, directory) {
+  const words = String(normalized || '').split(' ').filter(Boolean);
+  let shared = null;
+  for (const word of words) {
+    const units = new Set([askShardUnitOf(word)]);
+    for (const [entry, homes] of Object.entries(directory || {})) {
+      if (entry.charAt(0) !== word.charAt(0) || !askTokenEqual(word, entry)) continue;
+      for (const unit of String(homes)) units.add(unit);
+    }
+    shared = shared ? new Set([...shared].filter(unit => units.has(unit))) : units;
+  }
+  if (shared) shared.delete(null);
+  return shared ? [...shared].sort() : [];
+}
+
+function askShardFileName(units) {
+  const first = units[0];
+  const last = units[units.length - 1];
+  return `${ASK_SHARD_PREFIX}${first}${last !== first ? '-' + last : ''}.json`;
+}
+
+function askShardLineBytes(key, value) {
+  return Buffer.byteLength(JSON.stringify(key) + ':' + JSON.stringify(value) + ',\n', 'utf8');
+}
+
+function buildAskIndexShards(askIndex, packBytes = ASK_SHARD_PACK_BYTES) {
+  const perUnit = new Map(ASK_SHARD_UNITS.map(unit => [unit, { tokens: new Map(), aliases: new Map(), directory: new Map() }]));
+  for (const [key, ids] of Object.entries(askIndex.tokens || {})) {
+    const { home, copies, words } = askKeyShardUnits(key);
+    assert(home, `ask-index shard: key "${key}" does not start with a shardable character`);
+    for (const unit of [home, ...copies]) perUnit.get(unit).tokens.set(key, ids);
+    for (const word of new Set(words.slice(1))) {
+      const unit = askShardUnitOf(word);
+      if (!unit || unit === home) continue;
+      const directory = perUnit.get(unit).directory;
+      if (!directory.has(word)) directory.set(word, new Set());
+      directory.get(word).add(home);
+    }
+  }
+  for (const [key, id] of Object.entries(askIndex.aliases || {})) {
+    const unit = askShardUnitOf(key);
+    assert(unit, `ask-index shard: alias "${key}" does not start with a shardable character`);
+    perUnit.get(unit).aliases.set(key, id);
+  }
+
+  const unitBytes = new Map();
+  for (const [unit, data] of perUnit.entries()) {
+    let bytes = 0;
+    for (const [key, ids] of data.tokens.entries()) bytes += askShardLineBytes(key, ids);
+    for (const [key, id] of data.aliases.entries()) bytes += askShardLineBytes(key, id);
+    for (const [word, homes] of data.directory.entries()) bytes += askShardLineBytes(word, [...homes].join(''));
+    unitBytes.set(unit, bytes);
+  }
+
+  // Contiguous packing in unit order keeps file names readable and stable between builds.
+  const groups = [];
+  let current = null;
+  for (const unit of ASK_SHARD_UNITS) {
+    const bytes = unitBytes.get(unit);
+    if (current && current.bytes + bytes <= packBytes) {
+      current.units.push(unit);
+      current.bytes += bytes;
+    } else {
+      current = { units: [unit], bytes };
+      groups.push(current);
+    }
+  }
+  const files = groups.map(group => askShardFileName(group.units));
+
+  const shards = groups.map((group, index) => {
+    const tokens = new Map();
+    const aliases = new Map();
+    const directory = new Map();
+    for (const unit of group.units) {
+      const data = perUnit.get(unit);
+      for (const [key, ids] of data.tokens.entries()) tokens.set(key, ids);
+      for (const [key, id] of data.aliases.entries()) aliases.set(key, id);
+      for (const [word, homes] of data.directory.entries()) directory.set(word, [...homes].sort().join(''));
+    }
+    const sortedObject = map => {
+      const out = {};
+      for (const key of [...map.keys()].sort()) out[key] = map.get(key);
+      return out;
+    };
+    const shard = {
+      format: 'ovs-ask-index',
+      version: '0.1',
+      built: askIndex.built,
+      source: askIndex.source,
+      loadHint: 'lazy-product-search',
+      budget: {
+        maxBytes: ASK_SHARD_MAX_BYTES,
+        currentBytes: 0,
+        withinBudget: false,
+        measurement: 'UTF-8 bytes of this shard as written (one token per line)',
+        actionWhenExceeded: 'Lower ASK_SHARD_PACK_BYTES, or split the unit into two-character units, before this shard ships.'
+      },
+      shards: {
+        status: 'sharded',
+        count: files.length,
+        files,
+        file: files[index],
+        units: group.units.join(''),
+        routing: 'first-character',
+        hint: 'Load the shards named by ask-core.json productIndex.units for the query words; merge their tokens and aliases and resolve as one index.'
+      },
+      tokens: sortedObject(tokens),
+      aliases: sortedObject(aliases),
+      directory: sortedObject(directory),
+      stats: {
+        units: group.units.length,
+        tokens: tokens.size,
+        aliases: aliases.size,
+        directoryWords: directory.size
+      }
+    };
+    for (let i = 0; i < 5; i += 1) {
+      const currentBytes = jsonBytes(shard);
+      if (shard.budget.currentBytes === currentBytes) break;
+      shard.budget.currentBytes = currentBytes;
+      shard.budget.withinBudget = currentBytes <= ASK_SHARD_MAX_BYTES;
+    }
+    return { file: files[index], units: group.units.join(''), index: shard };
+  });
+
+  const totalBytes = shards.reduce((sum, shard) => sum + shard.index.budget.currentBytes, 0);
+  const unitsToFile = {};
+  for (const shard of shards) for (const unit of shard.units) unitsToFile[unit] = shard.file;
+  const router = {
     loadHint: 'lazy-product-search',
-    budget: {
-      maxBytes: ASK_INDEX_MAX_BYTES,
-      currentBytes: 0,
-      withinBudget: false,
-      measurement: 'UTF-8 bytes of the generated file as written (one token per line)',
-      actionWhenExceeded: 'Shard the token and alias tables before app-owned code treats this as a single lazy fetch.'
-    },
-    shards: {
-      status: 'not-needed',
-      count: 1,
-      files: ['ask-index.json'],
-      hint: 'Single lazy file is allowed while currentBytes stays under maxBytes; add shard files only after the budget is exceeded.'
+    routing: 'first-character',
+    rule: 'Load the shard of each query word\'s first character; a one-word query also loads the shard of its second character, and a one-word query that is numeric after its first character loads every digit shard. If fewer than the requested results score above containmentCeiling, also load the units the directory entries of every query word share.',
+    containmentCeiling: ASK_CONTAINMENT_CEILING,
+    shardMaxBytes: ASK_SHARD_MAX_BYTES,
+    packBytes: ASK_SHARD_PACK_BYTES,
+    totalMaxBytes: ASK_INDEX_TOTAL_MAX_BYTES,
+    totalBytes,
+    withinBudget: totalBytes <= ASK_INDEX_TOTAL_MAX_BYTES && shards.every(shard => shard.index.budget.withinBudget),
+    units: unitsToFile,
+    files: shards.map(shard => ({ file: shard.file, units: shard.units, bytes: shard.index.budget.currentBytes }))
+  };
+  return { shards, router, totalBytes };
+}
+
+// For audits that replay generated files: rebuild the full index from the shards on disk, and the
+// core resolver layer from ask-core.json + ask-brands.json (core fields kept, postings merged).
+function readAskIndexesFromDisk() {
+  const core = readJson(ASK_CORE_OUT);
+  const brands = fs.existsSync(ASK_BRANDS_OUT) ? readJson(ASK_BRANDS_OUT) : { tokens: {}, aliases: {}, targets: {} };
+  const full = { format: 'ovs-ask-index', tokens: {}, aliases: {}, stats: {} };
+  for (const entry of (core.productIndex && core.productIndex.files) || []) {
+    const shard = readJson(path.join(OUT_DIR, entry.file));
+    Object.assign(full.tokens, shard.tokens || {});
+    Object.assign(full.aliases, shard.aliases || {});
+  }
+  const sorted = obj => Object.fromEntries(Object.keys(obj).sort().map(key => [key, obj[key]]));
+  full.tokens = sorted(full.tokens);
+  full.aliases = sorted(full.aliases);
+  return { askIndex: full, askCoreIndex: { ...core, ...mergeAskLayers(core, brands) }, askCoreFile: core, askBrandFile: brands };
+}
+
+// Resolve against the shards the way the app does: first round, then the directory round.
+function resolveAskQuerySharded(query, shardSet, limit = 12) {
+  const normalized = askNormalize(query);
+  const byFile = new Map(shardSet.shards.map(shard => [shard.file, shard.index]));
+  const loaded = new Set();
+  const merged = { tokens: {}, aliases: {}, directory: {} };
+  const load = units => {
+    for (const unit of units) {
+      const file = shardSet.router.units[unit];
+      if (!file || loaded.has(file)) continue;
+      loaded.add(file);
+      const shard = byFile.get(file);
+      Object.assign(merged.tokens, shard.tokens);
+      Object.assign(merged.aliases, shard.aliases);
+      Object.assign(merged.directory, shard.directory);
     }
   };
-  for (let i = 0; i < 5; i += 1) {
-    const currentBytes = jsonBytes(out);
-    if (out.budget.currentBytes === currentBytes) break;
-    out.budget.currentBytes = currentBytes;
-    out.budget.withinBudget = currentBytes <= out.budget.maxBytes;
-    out.shards.status = out.budget.withinBudget ? 'not-needed' : 'required';
-    out.shards.hint = out.budget.withinBudget
-      ? 'Single lazy file is allowed while currentBytes stays under maxBytes; add shard files only after the budget is exceeded.'
-      : 'Budget exceeded: split token/alias tables into deterministic shard files and load only the matching shard.';
+  load(askShardUnitsForQuery(normalized));
+  let hits = resolveAskQuery(query, merged, limit);
+  if (!(hits.length >= limit && hits[limit - 1].score > ASK_CONTAINMENT_CEILING)) {
+    const before = loaded.size;
+    load(askShardDirectoryUnits(normalized, merged.directory));
+    if (loaded.size !== before) hits = resolveAskQuery(query, merged, limit);
   }
-  return out;
+  return { hits, files: [...loaded].sort() };
 }
 
 function assert(condition, message) {
@@ -970,7 +1205,7 @@ function addCoreTarget(targets, wanted, id, type, label) {
   targets[id] = target;
 }
 
-function buildAskCoreIndex(askIndex, categories, brandIndex, companyIndex, linesSource, built) {
+function buildAskCoreIndex(askIndex, categories, brandIndex, companyIndex, linesSource, built, productRouter) {
   const tokens = {};
   const aliases = {};
   const wanted = new Set();
@@ -1044,7 +1279,7 @@ function buildAskCoreIndex(askIndex, categories, brandIndex, companyIndex, lines
     version: '0.1',
     built,
     source: [
-      'app/data/nodes/ask-index.json',
+      'app/data/nodes/ask-index-*.json',
       'app/data/index.json',
       'app/data/nodes/brands.json',
       'app/data/nodes/companies.json',
@@ -1067,16 +1302,128 @@ function buildAskCoreIndex(askIndex, categories, brandIndex, companyIndex, lines
     }
   };
 
-  return withAskCoreStartupContract(coreIndex, categories, brandIndex, companyIndex, linesSource);
+  const { core, brands } = splitAskCoreBrandLayer(coreIndex, productRouter);
+  const layer = mergeAskLayers(core, brands);
+  return {
+    askCoreIndex: withAskCoreStartupContract(core, layer, categories, brandIndex, companyIndex, linesSource),
+    askBrandIndex: withAskBrandBudget(brands),
+    askCoreLayer: layer
+  };
 }
 
-function withAskCoreStartupContract(coreIndex, categories, brandIndex, companyIndex, linesSource) {
+function isBrandAskTarget(id) {
+  return typeof id === 'string' && id.startsWith('ovs:brand/');
+}
+
+// Split the core resolver layer in two files: brand targets grow with the catalogue, so they wait
+// for the first keystroke; everything else stays in the startup file. Postings keep their order.
+function splitAskCoreBrandLayer(coreIndex, productRouter) {
+  const coreTokens = {};
+  const brandTokens = {};
+  for (const [key, ids] of Object.entries(coreIndex.tokens)) {
+    const brandIds = ids.filter(isBrandAskTarget);
+    const otherIds = ids.filter(id => !isBrandAskTarget(id));
+    if (otherIds.length) coreTokens[key] = otherIds;
+    if (brandIds.length) brandTokens[key] = brandIds;
+  }
+  const coreAliases = {};
+  const brandAliases = {};
+  for (const [key, id] of Object.entries(coreIndex.aliases)) {
+    if (isBrandAskTarget(id)) brandAliases[key] = id;
+    else coreAliases[key] = id;
+  }
+  const coreTargets = {};
+  const brandTargets = {};
+  for (const [id, target] of Object.entries(coreIndex.targets)) {
+    if (isBrandAskTarget(id)) brandTargets[id] = target;
+    else coreTargets[id] = target;
+  }
+  const core = {
+    ...coreIndex,
+    strategy: 'Startup-friendly search. Brand targets load from ask-brands.json on the first keystroke and merge into this layer.',
+    brandLayer: {
+      file: 'ask-brands.json',
+      loadHint: 'first-keystroke-search',
+      merge: 'Concatenate token postings and union aliases and targets; keys and target ids never collide across the two files.'
+    },
+    productIndex: productRouter,
+    tokens: coreTokens,
+    aliases: coreAliases,
+    targets: coreTargets,
+    stats: {
+      ...coreIndex.stats,
+      tokens: Object.keys(coreTokens).length,
+      aliases: Object.keys(coreAliases).length,
+      targets: Object.keys(coreTargets).length
+    }
+  };
+  const brands = {
+    format: 'ovs-ask-core-index',
+    type: ASK_BRANDS_TYPE,
+    version: coreIndex.version,
+    built: coreIndex.built,
+    source: coreIndex.source,
+    strategy: 'First-keystroke brand layer of the core Ask index. Merge with ask-core.json and resolve as one index.',
+    targetFields: coreIndex.targetFields,
+    loadHint: 'first-keystroke-search',
+    budget: null,
+    tokens: brandTokens,
+    aliases: brandAliases,
+    targets: brandTargets,
+    stats: {
+      tokens: Object.keys(brandTokens).length,
+      aliases: Object.keys(brandAliases).length,
+      targets: Object.keys(brandTargets).length
+    }
+  };
+  return { core, brands };
+}
+
+function withAskBrandBudget(brands) {
+  const out = {
+    ...brands,
+    budget: {
+      maxBytes: ASK_BRANDS_MAX_BYTES,
+      currentBytes: 0,
+      minimumHeadroomBytes: ASK_BRANDS_MIN_HEADROOM_BYTES,
+      headroomBytes: 0,
+      withinBudget: false,
+      hasMinimumHeadroom: false,
+      measurement: 'UTF-8 bytes of the generated file as written (one token per line)'
+    }
+  };
+  for (let i = 0; i < 5; i += 1) {
+    const currentBytes = jsonBytes(out);
+    if (out.budget.currentBytes === currentBytes) break;
+    out.budget.currentBytes = currentBytes;
+    out.budget.headroomBytes = ASK_BRANDS_MAX_BYTES - currentBytes;
+    out.budget.withinBudget = currentBytes < ASK_BRANDS_MAX_BYTES;
+    out.budget.hasMinimumHeadroom = out.budget.headroomBytes >= ASK_BRANDS_MIN_HEADROOM_BYTES;
+  }
+  return out;
+}
+
+// The resolver layer the app builds from ask-core.json + ask-brands.json.
+function mergeAskLayers(core, extra) {
+  const tokens = { ...(core.tokens || {}) };
+  for (const [key, ids] of Object.entries((extra && extra.tokens) || {})) {
+    tokens[key] = tokens[key] ? [...tokens[key], ...ids].sort((a, b) => a.localeCompare(b)) : ids;
+  }
+  return {
+    format: core.format,
+    tokens,
+    aliases: { ...(core.aliases || {}), ...((extra && extra.aliases) || {}) },
+    targets: { ...(core.targets || {}), ...((extra && extra.targets) || {}) }
+  };
+}
+
+function withAskCoreStartupContract(coreIndex, layer, categories, brandIndex, companyIndex, linesSource) {
   let out = { ...coreIndex };
   for (let i = 0; i < 5; i += 1) {
     const currentBytes = jsonBytes(out);
     const next = {
       ...coreIndex,
-      startupContract: buildAskCoreStartupContract(out, categories, brandIndex, companyIndex, linesSource, currentBytes)
+      startupContract: buildAskCoreStartupContract(layer, categories, brandIndex, companyIndex, linesSource, currentBytes)
     };
     if (jsonBytes(next) === currentBytes && formatJson(next.startupContract) === formatJson(out.startupContract || {})) return next;
     out = next;
@@ -1152,8 +1499,15 @@ function buildAskCoreStartupContract(coreIndex, categories, brandIndex, companyI
       rankOrder: ['alias', 'exact', 'query-token', 'fuzzy-1', 'token-containment', 'type-priority'],
       maxStartupResults: 5
     },
+    brandLayer: {
+      file: 'ask-brands.json',
+      loadHint: 'first-keystroke-search',
+      trigger: 'First keystroke in a search box, or a submitted query.',
+      keepCoreIfBrandsFail: true
+    },
     lazyBoundary: {
-      file: 'ask-index.json',
+      file: 'ask-index-*.json',
+      router: 'productIndex',
       loadHint: 'lazy-product-search',
       use: 'Products/barcodes.',
       trigger: 'Product/barcode/deeper search.',
@@ -1300,7 +1654,7 @@ function buildAskFixtures(categories, built) {
       },
       {
         layer: 'full',
-        file: 'ask-index.json',
+        file: 'ask-index-*.json',
         use: 'lazy product-name and barcode search'
       }
     ],
@@ -1366,14 +1720,15 @@ function buildAskOrderingChecks(top, assertions = []) {
   });
 }
 
-function buildAskTraces(askFixturesIndex, askIndex, askCoreIndex, categories, brandIndex, companyIndex, linesSource, built) {
+function buildAskTraces(askFixturesIndex, askShardSet, askCoreLayer, categories, brandIndex, companyIndex, linesSource, built) {
   const labels = buildAskTraceLabels(categories, brandIndex, companyIndex, linesSource);
   const traces = [];
 
   for (const test of askFixturesIndex.cases || []) {
-    const index = test.layer === 'core' ? askCoreIndex : askIndex;
-    const file = test.layer === 'core' ? 'ask-core.json' : 'ask-index.json';
-    const top = resolveAskQuery(test.query, index, 12)
+    const sharded = test.layer === 'core' ? null : resolveAskQuerySharded(test.query, askShardSet, 12);
+    const file = test.layer === 'core' ? 'ask-core.json' : 'ask-index-*.json';
+    const files = test.layer === 'core' ? ['ask-core.json', 'ask-brands.json'] : sharded.files;
+    const top = (sharded ? sharded.hits : resolveAskQuery(test.query, askCoreLayer, 12))
       .slice(0, Math.max(5, test.expectOneInTop || 5))
       .map(hit => ({
         id: hit.id,
@@ -1397,6 +1752,7 @@ function buildAskTraces(askFixturesIndex, askIndex, askCoreIndex, categories, br
       intent: test.intent,
       layer: test.layer,
       file,
+      files,
       expectAny: test.expectAny || [],
       expectOneInTop: test.expectOneInTop || 5,
       orderingAssertions,
@@ -1415,7 +1771,7 @@ function buildAskTraces(askFixturesIndex, askIndex, askCoreIndex, categories, br
     source: [
       'app/data/nodes/ask-fixtures.json',
       'app/data/nodes/ask-core.json',
-      'app/data/nodes/ask-index.json'
+      'app/data/nodes/ask-index-*.json'
     ],
     purpose: 'Deterministic resolver traces for app-owned Ask integration and visual QA.',
     resolverModel: 'pipeline/build_nodes.js resolveAskQuery',
@@ -1430,7 +1786,7 @@ function buildAskPresentation(askTracesIndex, built) {
     built,
     source: [
       'app/data/nodes/ask-core.json',
-      'app/data/nodes/ask-index.json',
+      'app/data/nodes/ask-index-*.json',
       'app/data/nodes/ask-traces.json'
     ],
     purpose: 'Suggested presentation contract for app-owned Ask integration; copy, layout, and interaction remain app-owned.',
@@ -2138,12 +2494,14 @@ function buildNodeRouteGuardrails(categories, brandIndex, companyIndex, linesSou
   };
 }
 
-function buildNodeLoadPlan(brandIndex, companyIndex, askIndex, askCoreIndex, built) {
+function buildNodeLoadPlan(brandIndex, companyIndex, askIndex, askCoreIndex, askBrandIndex, built) {
   const startupBudgetBytes = 780000;
   const minimumHeadroomBytes = 50000;
   const askCoreBytes = jsonBytes(askCoreIndex);
   const askCoreHeadroomBytes = startupBudgetBytes - askCoreBytes;
-  const fullAskBytes = jsonBytes(askIndex);
+  const fullAskBytes = ASK_SHARD_TOTAL_BYTES;
+  const askBrandBytes = jsonBytes(askBrandIndex);
+  const largestShardBytes = ASK_SHARD_LARGEST_BYTES;
   const pageNodeBytes = jsonBytes(brandIndex) + jsonBytes(companyIndex);
   const establishedEagerFiles = ['tags.json', 'errands.json', 'synonyms.json'];
 
@@ -2206,16 +2564,36 @@ function buildNodeLoadPlan(brandIndex, companyIndex, askIndex, askCoreIndex, bui
       'Startup search box, command palette, or any first-use Ask entry point.',
       [
         'Keep ask-core.json under the startup budget with minimum headroom.',
-        'Use ask-core hash targets directly; do not require ask-index.json for category, brand, company, guide, line, tag, or errand results.',
+        'Use ask-core hash targets directly; do not require ask-index-*.json for category, brand, company, guide, line, tag, or errand results.',
         'Preserve resolver ordering from the generated traces, including typo before loose containment.'
       ],
-      'Show a search-unavailable state or fall back to existing in-memory search; do not eagerly pull ask-index.json as a rescue path.',
+      'Show a search-unavailable state or fall back to existing in-memory search; do not eagerly pull ask-index-*.json as a rescue path.',
       {
         bytes: askCoreBytes,
         budgetBytes: startupBudgetBytes,
         headroomBytes: askCoreHeadroomBytes,
         withinBudget: askCoreBytes < startupBudgetBytes,
         hasMinimumHeadroom: askCoreHeadroomBytes >= minimumHeadroomBytes
+      }
+    ),
+    stage(
+      'first-keystroke-ask-brands',
+      'Load the brand layer of Ask on the first keystroke',
+      'first-keystroke-search',
+      ['ask-brands.json'],
+      'First keystroke in a search box, or a submitted query, whichever comes first.',
+      [
+        'Merge ask-brands.json into the ask-core.json layer; the merged layer resolves exactly as the single core file did.',
+        'Keep ask-brands.json out of startup: catalogue growth adds brands here, not to the startup file.',
+        'If the brand layer fails, keep core results (categories, companies, guides, lines, tags, errands) visible.'
+      ],
+      'Brand results can be missing while every other core result keeps working.',
+      {
+        bytes: askBrandBytes,
+        budgetBytes: ASK_BRANDS_MAX_BYTES,
+        headroomBytes: ASK_BRANDS_MAX_BYTES - askBrandBytes,
+        withinBudget: askBrandBytes < ASK_BRANDS_MAX_BYTES,
+        hasMinimumHeadroom: ASK_BRANDS_MAX_BYTES - askBrandBytes >= ASK_BRANDS_MIN_HEADROOM_BYTES
       }
     ),
     stage(
@@ -2236,7 +2614,7 @@ function buildNodeLoadPlan(brandIndex, companyIndex, askIndex, askCoreIndex, bui
       'lazy-product-ask',
       'Lazy-load full product and barcode Ask',
       'lazy-product-search',
-      ['ask-index.json'],
+      [...ASK_SHARD_FILES],
       'Product-name search, barcode lookup, or an explicit deeper-results action.',
       [
         'Never require the full Ask index for the first usable search result list.',
@@ -2244,7 +2622,12 @@ function buildNodeLoadPlan(brandIndex, companyIndex, askIndex, askCoreIndex, bui
         'If the lazy index fails, keep core results visible and label product lookup as unavailable.'
       ],
       'Product lookup can fail independently without breaking startup Ask or generated node pages.',
-      { bytes: fullAskBytes }
+      {
+        bytes: fullAskBytes,
+        shardBudgetBytes: ASK_SHARD_MAX_BYTES,
+        totalBudgetBytes: ASK_INDEX_TOTAL_MAX_BYTES,
+        largestShardBytes: largestShardBytes
+      }
     ),
     stage(
       'dev-contracts',
@@ -2297,7 +2680,13 @@ function buildNodeLoadPlan(brandIndex, companyIndex, askIndex, askCoreIndex, bui
       askCoreHeadroomBytes,
       askCoreWithinBudget: askCoreBytes < startupBudgetBytes,
       askCoreHasHeadroom: askCoreHeadroomBytes >= minimumHeadroomBytes,
+      askBrandBytes,
+      askBrandBudgetBytes: ASK_BRANDS_MAX_BYTES,
+      askBrandWithinBudget: askBrandBytes < ASK_BRANDS_MAX_BYTES,
       fullAskBytes,
+      askShardBudgetBytes: ASK_SHARD_MAX_BYTES,
+      askShardTotalBudgetBytes: ASK_INDEX_TOTAL_MAX_BYTES,
+      largestShardBytes,
       pageNodeBytes,
       establishedEagerBytes
     },
@@ -2359,7 +2748,7 @@ function buildNodeRuntimeStates(nodeLoadPlanIndex, askPresentationIndex, nodeRou
       ],
       [
         'Do not block category browsing on full generated node indexes.',
-        'Do not start loading ask-index.json before the load plan is known.'
+        'Do not start loading ask-index-*.json before the load plan is known.'
       ],
       { sourceFiles: filesFor('bootstrap-metadata') }
     ),
@@ -2425,7 +2814,7 @@ function buildNodeRuntimeStates(nodeLoadPlanIndex, askPresentationIndex, nodeRou
         'Keep the full Ask index out of the startup path.'
       ],
       [
-        'Do not load ask-index.json merely to fill the startup search slot.',
+        'Do not load ask-index-*.json merely to fill the startup search slot.',
         'Do not show product/barcode lookup as ready before the lazy index loads.'
       ],
       { sourceFiles: filesFor('startup-ask-core') }
@@ -2564,12 +2953,12 @@ function buildNodeRuntimeStates(nodeLoadPlanIndex, askPresentationIndex, nodeRou
       'A product-name or barcode lookup requests the full Ask index.',
       [
         'Keep core search results visible while full product lookup loads.',
-        'Load ask-index.json once and cache by manifest sha256.',
+        'Load ask-index-*.json once and cache by manifest sha256.',
         'Keep product lookup clearly separate from startup Ask readiness.'
       ],
       [
         'Do not blank core Ask results while lazy product lookup is pending.',
-        'Do not load ask-index.json before the user path asks for product/barcode depth.'
+        'Do not load ask-index-*.json before the user path asks for product/barcode depth.'
       ],
       { sourceFiles: filesFor('lazy-product-ask') }
     ),
@@ -2577,14 +2966,14 @@ function buildNodeRuntimeStates(nodeLoadPlanIndex, askPresentationIndex, nodeRou
       'lazy-product-unavailable',
       'unavailable',
       'lazy-product-ask',
-      'ask-index.json fails fetch, parse, integrity, or memory checks.',
+      'ask-index-*.json fails fetch, parse, integrity, or memory checks.',
       [
         'Keep compact core results visible.',
         'Label product/barcode lookup as unavailable for the moment.',
         'Allow retry without restarting the whole app.'
       ],
       [
-        'Do not claim product/barcode coverage if ask-index.json failed.',
+        'Do not claim product/barcode coverage if ask-index-*.json failed.',
         'Do not treat a lazy product failure as a failure of categories, guides, or node pages.'
       ],
       { sourceFiles: filesFor('lazy-product-ask') }
@@ -2643,12 +3032,12 @@ function buildNodeRuntimeStates(nodeLoadPlanIndex, askPresentationIndex, nodeRou
       sourceFiles: ['manifest.json', 'node-load-plan.json', 'ask-core.json', 'ask-presentation.json'],
       passWhen: [
         'The base app remains usable while metadata and ask-core.json load.',
-        'Startup Ask never requires ask-index.json for core category, brand, company, guide, line, tag, or errand results.',
+        'Startup Ask never requires ask-index-*.json for core category, brand, company, guide, line, tag, or errand results.',
         'Empty and unavailable states route to the generated recovery hashes.'
       ],
       mustNot: [
         'Do not block category browsing on generated-node startup work.',
-        'Do not claim product or barcode coverage before ask-index.json is loaded and valid.'
+        'Do not claim product or barcode coverage before ask-index-*.json is loaded and valid.'
       ]
     },
     {
@@ -2679,14 +3068,14 @@ function buildNodeRuntimeStates(nodeLoadPlanIndex, askPresentationIndex, nodeRou
         'lazy-product-loading',
         'lazy-product-unavailable'
       ],
-      sourceFiles: ['ask-index.json', 'manifest.json', 'node-load-plan.json'],
+      sourceFiles: [...ASK_SHARD_FILES, 'manifest.json', 'node-load-plan.json'],
       passWhen: [
-        'ask-index.json loads only after a product-name or barcode path asks for it.',
+        'ask-index-*.json loads only after a product-name or barcode path asks for it.',
         'Core Ask results stay visible while the lazy product index loads.',
         'A lazy index failure disables only product and barcode lookup.'
       ],
       mustNot: [
-        'Do not eagerly load ask-index.json at startup.',
+        'Do not eagerly load ask-index-*.json at startup.',
         'Do not treat lazy product failure as failure of categories, guides, or node pages.'
       ]
     },
@@ -2818,11 +3207,11 @@ function buildNodePreviewMatrix(askTracesIndex, askPresentationIndex, nodeWalkth
       'lazy-barcode-lookup',
       'lazy-product',
       'Barcode lookup uses the lazy full Ask index',
-      ['ask-index.json', 'ask-fixtures.json', 'ask-traces.json', 'node-load-plan.json'],
+      [...ASK_SHARD_FILES, 'ask-fixtures.json', 'ask-traces.json', 'node-load-plan.json'],
       [
         'Start with compact Ask available.',
         'Enter barcode query: 5449000054227.',
-        'Load ask-index.json only for the barcode/product path and route to the expected item.'
+        'Load ask-index-*.json only for the barcode/product path and route to the expected item.'
       ],
       [
         'Barcode result resolves from the full index.',
@@ -2830,7 +3219,7 @@ function buildNodePreviewMatrix(askTracesIndex, askPresentationIndex, nodeWalkth
         'Compact core Ask remains usable while lazy lookup loads.'
       ],
       [
-        'Do not eagerly load ask-index.json at startup.',
+        'Do not eagerly load ask-index-*.json at startup.',
         'Do not hide core results if lazy product lookup fails.'
       ],
       {
@@ -3288,7 +3677,7 @@ function buildH4DrainContract(phases, publicGates, nodePreviewMatrixIndex) {
         'The app has a visible recovery path for missing or stale generated node files.'
       ],
       [
-        'Do not eager-load ask-index.json just to make startup search work.',
+        'Do not eager-load ask-index-*.json just to make startup search work.',
         'Do not ignore sha256/hash-mismatch behavior in the loader path.'
       ]
     ),
@@ -3315,11 +3704,11 @@ function buildH4DrainContract(phases, publicGates, nodePreviewMatrixIndex) {
       'lazy-product-ask',
       'Keep product Ask lazy and bounded',
       ['lazy-product-ask'],
-      ['app/data/nodes/ask-index.json', 'app/data/nodes/ask-fixtures.json', 'app/data/nodes/ask-traces.json'],
-      'ask-index.json#loadHint',
+      ['app/data/nodes/ask-index-*.json', 'app/data/nodes/ask-fixtures.json', 'app/data/nodes/ask-traces.json'],
+      `${ASK_SHARD_FILES[0]}#loadHint`,
       [
-        'Running-app product-name or barcode lookup loads ask-index.json only after compact startup Ask is usable.',
-        'Failure to load ask-index.json leaves compact Ask, browse, and route behavior available.'
+        'Running-app product-name or barcode lookup loads ask-index-*.json only after compact startup Ask is usable.',
+        'Failure to load ask-index-*.json leaves compact Ask, browse, and route behavior available.'
       ],
       [
         'Barcode fixtures resolve to the expected item hashes after lazy load.',
@@ -3525,7 +3914,7 @@ function buildH4ClosureManifest(checklist, nodePreviewMatrixIndex) {
     ),
     layer(
       'ask-index-lazy-boundary',
-      'app/data/nodes/ask-index.json#loadHint',
+      `app/data/nodes/${ASK_SHARD_FILES[0]}#loadHint`,
       'ovs-ask-index',
       'Lazy product and barcode Ask boundary for the large full index.',
       { loadHint: 'lazy-product-search' }
@@ -3676,7 +4065,7 @@ function buildH4ClosureManifest(checklist, nodePreviewMatrixIndex) {
     ],
     nextAppActions: [
       'Open the H4 workbench in the running app and walk loader, Ask, route, runtime, preview, walkthrough, and public-gate sections.',
-      'Run the button-gated lazy Ask check and confirm ask-index.json stays out of startup.',
+      'Run the button-gated lazy Ask check and confirm ask-index-*.json stays out of startup.',
       'Walk public gates one surface at a time in the release order before graduating any workbench surface.',
       'Either drain H4 in docs/CONTENT-HANDOFF.md with app/design evidence or name the exact remaining blocker.'
     ],
@@ -3728,12 +4117,12 @@ function buildNodeIntegrationChecklist(brandIndex, companyIndex, askIndex, askCo
     phase(
       'discover-load-plan',
       'Discover load plan and budgets',
-      ['manifest.json', 'node-load-plan.json', 'readiness.json', 'ask-core.json', 'ask-index.json'],
+      ['manifest.json', 'node-load-plan.json', 'readiness.json', 'ask-core.json', 'ask-brands.json', ...ASK_SHARD_FILES],
       [
         'Load manifest/readiness first or embed equivalent file metadata.',
         'Follow node-load-plan.json stages for eager, deferred, lazy, and dev-contract files.',
         'Keep ask-core.json eager and below the startup budget with minimum headroom.',
-        'Keep ask-index.json lazy for product-name and barcode lookup.',
+        'Keep ask-index-*.json lazy for product-name and barcode lookup.',
         'Use manifest sha256 fields to detect stale or corrupted cached node files.'
       ],
       'Startup latency or stale cache behavior if all indexes are loaded eagerly.'
@@ -3752,11 +4141,11 @@ function buildNodeIntegrationChecklist(brandIndex, companyIndex, askIndex, askCo
     phase(
       'lazy-product-ask',
       'Add lazy product and barcode lookup',
-      ['ask-index.json', 'ask-fixtures.json', 'ask-traces.json'],
+      [...ASK_SHARD_FILES, 'ask-fixtures.json', 'ask-traces.json'],
       [
         'Full Ask loads only when product or barcode lookup is needed.',
         'Barcode fixture routes to the expected item hash.',
-        'No UI path requires ask-index.json before startup search is usable.'
+        'No UI path requires ask-index-*.json before startup search is usable.'
       ],
       'Large full index can dominate startup if accidentally eager-loaded.'
     ),
@@ -3852,7 +4241,7 @@ function buildNodeIntegrationChecklist(brandIndex, companyIndex, askIndex, askCo
       'app/data/nodes/node-load-plan.json',
       'app/data/nodes/readiness.json',
       'app/data/nodes/ask-core.json',
-      'app/data/nodes/ask-index.json',
+      'app/data/nodes/ask-index-*.json',
       'app/data/nodes/ask-fixtures.json',
       'app/data/nodes/ask-traces.json',
       'app/data/nodes/ask-presentation.json',
@@ -3872,13 +4261,14 @@ function buildNodeIntegrationChecklist(brandIndex, companyIndex, askIndex, askCo
       askCoreHeadroomBytes: startupBudgetBytes - askCoreBytes,
       askCoreWithinBudget: askCoreBytes < startupBudgetBytes,
       askCoreHasHeadroom: startupBudgetBytes - askCoreBytes >= minimumHeadroomBytes,
-      fullAskBytes: jsonBytes(askIndex),
+      fullAskBytes: ASK_SHARD_TOTAL_BYTES,
       nodeLoadPlanStages: (nodeLoadPlanIndex.stages || []).length,
       nodeRuntimeStateCases: (nodeRuntimeStatesIndex.cases || []).length,
       nodePreviewScenarios: (nodePreviewMatrixIndex.scenarios || []).length,
       eagerRuntimeFiles: ['manifest.json', 'node-load-plan.json', 'tags.json', 'errands.json', 'synonyms.json', 'ask-core.json'],
       deferredRuntimeFiles: ['brands.json', 'companies.json'],
-      lazyRuntimeFiles: ['ask-index.json'],
+      firstKeystrokeRuntimeFiles: ['ask-brands.json'],
+      lazyRuntimeFiles: [...ASK_SHARD_FILES],
       legacyNonRuntimeFiles: ['sample.json'],
       devContractFiles
     },
@@ -3917,7 +4307,7 @@ function buildNodeIntegrationChecklist(brandIndex, companyIndex, askIndex, askCo
 
 function buildReadinessReport(brandIndex, companyIndex, askIndex, askCoreIndex, askFixturesIndex, askTracesIndex, askPresentationIndex, nodeWalkthroughsIndex, nodePageContractsIndex, nodeRouteFixturesIndex, nodeRouteGuardrailsIndex, nodeIntegrationChecklistIndex, nodeLoadPlanIndex, nodeRuntimeStatesIndex, nodePreviewMatrixIndex, built) {
   const askCoreBytes = jsonBytes(askCoreIndex);
-  const fullAskBytes = jsonBytes(askIndex);
+  const fullAskBytes = ASK_SHARD_TOTAL_BYTES;
   const startupBudgetBytes = 780000;
   const minimumHeadroomBytes = 50000;
   const askCoreHeadroomBytes = startupBudgetBytes - askCoreBytes;
@@ -3976,7 +4366,8 @@ function buildReadinessReport(brandIndex, companyIndex, askIndex, askCoreIndex, 
       },
       {
         step: 5,
-        file: 'ask-index.json',
+        file: ASK_SHARD_FILES[0],
+        files: [...ASK_SHARD_FILES],
         loadHint: 'lazy-product-search',
         bytes: fullAskBytes,
         purpose: 'Lazy product-name and barcode lookup.'
@@ -4171,7 +4562,7 @@ function buildManifestLoaderPlan(nodeLoadPlanIndex, indexes) {
   };
 }
 
-function buildManifest(brandIndex, companyIndex, askIndex, askCoreIndex, avoidTokensIndex, askFixturesIndex, askTracesIndex, askPresentationIndex, nodeWalkthroughsIndex, nodePageContractsIndex, nodeRouteFixturesIndex, nodeRouteGuardrailsIndex, nodeIntegrationChecklistIndex, nodeLoadPlanIndex, nodeRuntimeStatesIndex, nodePreviewMatrixIndex, readinessIndex, built) {
+function buildManifest(brandIndex, companyIndex, askIndex, askShardSet, askCoreIndex, askBrandIndex, avoidTokensIndex, askFixturesIndex, askTracesIndex, askPresentationIndex, nodeWalkthroughsIndex, nodePageContractsIndex, nodeRouteFixturesIndex, nodeRouteGuardrailsIndex, nodeIntegrationChecklistIndex, nodeLoadPlanIndex, nodeRuntimeStatesIndex, nodePreviewMatrixIndex, readinessIndex, built) {
   const indexes = [];
   for (const item of [
     summarizeExistingNodeFile('sample.json', 'sample', 'legacy-sample'),
@@ -4223,18 +4614,34 @@ function buildManifest(brandIndex, companyIndex, askIndex, askCoreIndex, avoidTo
   });
 
   indexes.push({
-    type: 'ask',
-    file: 'ask-index.json',
-    format: askIndex.format,
-    version: askIndex.version,
-    built: askIndex.built,
-    bytes: jsonBytes(askIndex),
-    sha256: jsonSha256(askIndex),
-    loadHint: 'lazy-product-search',
-    tokens: Object.keys(askIndex.tokens || {}).length,
-    aliases: Object.keys(askIndex.aliases || {}).length,
-    barcodeLikeItems: askIndex.stats?.barcodeLikeItems || 0
+    type: 'ask-brands',
+    file: 'ask-brands.json',
+    format: askBrandIndex.format,
+    version: askBrandIndex.version,
+    built: askBrandIndex.built,
+    bytes: jsonBytes(askBrandIndex),
+    sha256: jsonSha256(askBrandIndex),
+    loadHint: 'first-keystroke-search',
+    tokens: Object.keys(askBrandIndex.tokens || {}).length,
+    aliases: Object.keys(askBrandIndex.aliases || {}).length,
+    targets: Object.keys(askBrandIndex.targets || {}).length
   });
+
+  for (const shard of askShardSet.shards) {
+    indexes.push({
+      type: 'ask',
+      file: shard.file,
+      format: shard.index.format,
+      version: shard.index.version,
+      built: shard.index.built,
+      bytes: jsonBytes(shard.index),
+      sha256: jsonSha256(shard.index),
+      loadHint: 'lazy-product-search',
+      units: shard.units,
+      tokens: Object.keys(shard.index.tokens || {}).length,
+      aliases: Object.keys(shard.index.aliases || {}).length
+    });
+  }
 
   indexes.push({
     type: 'avoid-token',
@@ -4406,9 +4813,10 @@ function buildManifest(brandIndex, companyIndex, askIndex, askCoreIndex, avoidTo
       'errands.json',
       'synonyms.json',
       'ask-core.json',
+      'ask-brands.json',
       'brands.json',
       'companies.json',
-      'ask-index.json',
+      ...ASK_SHARD_FILES,
       'avoid-tokens.json',
       'sample.json'
     ],
@@ -4418,9 +4826,13 @@ function buildManifest(brandIndex, companyIndex, askIndex, askCoreIndex, avoidTo
       generatedPageNodes,
       askCoreTokens: Object.keys(askCoreIndex.tokens || {}).length,
       askCoreTargets: Object.keys(askCoreIndex.targets || {}).length,
+      askBrandTokens: Object.keys(askBrandIndex.tokens || {}).length,
+      askBrandTargets: Object.keys(askBrandIndex.targets || {}).length,
       askTokens: Object.keys(askIndex.tokens || {}).length,
       askAliases: Object.keys(askIndex.aliases || {}).length,
       askBarcodeLikeItems: askIndex.stats?.barcodeLikeItems || 0,
+      askShards: askShardSet.shards.length,
+      askShardBytes: askShardSet.totalBytes,
       avoidTokenFamilies: (avoidTokensIndex.families || []).length,
       avoidTokens: avoidTokensIndex.stats?.tokens || 0,
       avoidUniqueTokens: avoidTokensIndex.stats?.uniqueTokens || 0,
@@ -4448,8 +4860,12 @@ function buildAll() {
   const ownership = ownershipGraph(edges);
   const brandIndex = buildBrandIndex(categories, ownership, built);
   const companyIndex = buildCompanyIndex(ownership, brandIndex, lines, built);
-  const askIndex = withAskIndexBudget(buildAskIndex(categories, brandIndex, companyIndex, lines, built));
-  const askCoreIndex = buildAskCoreIndex(askIndex, categories, brandIndex, companyIndex, lines, built);
+  const askIndex = buildAskIndex(categories, brandIndex, companyIndex, lines, built);
+  const askShardSet = buildAskIndexShards(askIndex);
+  ASK_SHARD_FILES = askShardSet.shards.map(shard => shard.file);
+  ASK_SHARD_TOTAL_BYTES = askShardSet.totalBytes;
+  ASK_SHARD_LARGEST_BYTES = Math.max(...askShardSet.shards.map(shard => shard.index.budget.currentBytes));
+  const { askCoreIndex, askBrandIndex, askCoreLayer } = buildAskCoreIndex(askIndex, categories, brandIndex, companyIndex, lines, built, askShardSet.router);
   const avoidTokensIndex = buildAvoidTokens(lines, companyIndex, built);
   let avoidBytes = -1;
   while (avoidTokensIndex.stats.bytes !== avoidBytes) {
@@ -4457,19 +4873,19 @@ function buildAll() {
     avoidTokensIndex.stats.bytes = jsonBytes(avoidTokensIndex);
   }
   const askFixturesIndex = buildAskFixtures(categories, built);
-  const askTracesIndex = buildAskTraces(askFixturesIndex, askIndex, askCoreIndex, categories, brandIndex, companyIndex, lines, built);
+  const askTracesIndex = buildAskTraces(askFixturesIndex, askShardSet, askCoreLayer, categories, brandIndex, companyIndex, lines, built);
   const askPresentationIndex = buildAskPresentation(askTracesIndex, built);
-  const nodeWalkthroughsIndex = buildNodeWalkthroughs(categories, askCoreIndex, brandIndex, companyIndex, lines, built);
+  const nodeWalkthroughsIndex = buildNodeWalkthroughs(categories, askCoreLayer, brandIndex, companyIndex, lines, built);
   const nodePageContractsIndex = buildNodePageContracts(categories, brandIndex, companyIndex, lines, built);
   const nodeRouteFixturesIndex = buildNodeRouteFixtures(nodePageContractsIndex, built);
   const nodeRouteGuardrailsIndex = buildNodeRouteGuardrails(categories, brandIndex, companyIndex, lines, built);
-  const nodeLoadPlanIndex = buildNodeLoadPlan(brandIndex, companyIndex, askIndex, askCoreIndex, built);
+  const nodeLoadPlanIndex = buildNodeLoadPlan(brandIndex, companyIndex, askIndex, askCoreIndex, askBrandIndex, built);
   const nodeRuntimeStatesIndex = buildNodeRuntimeStates(nodeLoadPlanIndex, askPresentationIndex, nodeRouteGuardrailsIndex, built);
   const nodePreviewMatrixIndex = buildNodePreviewMatrix(askTracesIndex, askPresentationIndex, nodeWalkthroughsIndex, nodeRouteFixturesIndex, nodeRouteGuardrailsIndex, nodeLoadPlanIndex, nodeRuntimeStatesIndex, built);
   const nodeIntegrationChecklistIndex = buildNodeIntegrationChecklist(brandIndex, companyIndex, askIndex, askCoreIndex, askFixturesIndex, askTracesIndex, askPresentationIndex, nodeWalkthroughsIndex, nodePageContractsIndex, nodeRouteFixturesIndex, nodeRouteGuardrailsIndex, nodeLoadPlanIndex, nodeRuntimeStatesIndex, nodePreviewMatrixIndex, built);
   const readinessIndex = buildReadinessReport(brandIndex, companyIndex, askIndex, askCoreIndex, askFixturesIndex, askTracesIndex, askPresentationIndex, nodeWalkthroughsIndex, nodePageContractsIndex, nodeRouteFixturesIndex, nodeRouteGuardrailsIndex, nodeIntegrationChecklistIndex, nodeLoadPlanIndex, nodeRuntimeStatesIndex, nodePreviewMatrixIndex, built);
-  const manifestIndex = buildManifest(brandIndex, companyIndex, askIndex, askCoreIndex, avoidTokensIndex, askFixturesIndex, askTracesIndex, askPresentationIndex, nodeWalkthroughsIndex, nodePageContractsIndex, nodeRouteFixturesIndex, nodeRouteGuardrailsIndex, nodeIntegrationChecklistIndex, nodeLoadPlanIndex, nodeRuntimeStatesIndex, nodePreviewMatrixIndex, readinessIndex, built);
-  return { brandIndex, companyIndex, askIndex, askCoreIndex, avoidTokensIndex, askFixturesIndex, askTracesIndex, askPresentationIndex, nodeWalkthroughsIndex, nodePageContractsIndex, nodeRouteFixturesIndex, nodeRouteGuardrailsIndex, nodeIntegrationChecklistIndex, nodeLoadPlanIndex, nodeRuntimeStatesIndex, nodePreviewMatrixIndex, readinessIndex, manifestIndex };
+  const manifestIndex = buildManifest(brandIndex, companyIndex, askIndex, askShardSet, askCoreIndex, askBrandIndex, avoidTokensIndex, askFixturesIndex, askTracesIndex, askPresentationIndex, nodeWalkthroughsIndex, nodePageContractsIndex, nodeRouteFixturesIndex, nodeRouteGuardrailsIndex, nodeIntegrationChecklistIndex, nodeLoadPlanIndex, nodeRuntimeStatesIndex, nodePreviewMatrixIndex, readinessIndex, built);
+  return { brandIndex, companyIndex, askIndex, askShardSet, askCoreIndex, askBrandIndex, askCoreLayer, avoidTokensIndex, askFixturesIndex, askTracesIndex, askPresentationIndex, nodeWalkthroughsIndex, nodePageContractsIndex, nodeRouteFixturesIndex, nodeRouteGuardrailsIndex, nodeIntegrationChecklistIndex, nodeLoadPlanIndex, nodeRuntimeStatesIndex, nodePreviewMatrixIndex, readinessIndex, manifestIndex };
 }
 
 function expectedNodeOutputFiles(manifestIndex) {
@@ -4501,8 +4917,9 @@ function writeOutputs(outputs) {
   removeOrphanedNodeOutputs(outputs.manifestIndex);
   fs.writeFileSync(BRAND_OUT, formatJson(outputs.brandIndex));
   fs.writeFileSync(COMPANY_OUT, formatJson(outputs.companyIndex));
-  fs.writeFileSync(ASK_OUT, formatJson(outputs.askIndex));
+  for (const shard of outputs.askShardSet.shards) fs.writeFileSync(path.join(OUT_DIR, shard.file), formatJson(shard.index));
   fs.writeFileSync(ASK_CORE_OUT, formatJson(outputs.askCoreIndex));
+  fs.writeFileSync(ASK_BRANDS_OUT, formatJson(outputs.askBrandIndex));
   fs.writeFileSync(AVOID_TOKENS_OUT, formatJson(outputs.avoidTokensIndex));
   fs.writeFileSync(ASK_FIXTURES_OUT, formatJson(outputs.askFixturesIndex));
   fs.writeFileSync(ASK_TRACES_OUT, formatJson(outputs.askTracesIndex));
@@ -4519,12 +4936,13 @@ function writeOutputs(outputs) {
   fs.writeFileSync(MANIFEST_OUT, formatJson(outputs.manifestIndex));
 }
 
-function checkOutputs(outputs) {
-  const expected = new Map([
+function expectedOutputBodies(outputs) {
+  return new Map([
     [BRAND_OUT, formatJson(outputs.brandIndex)],
     [COMPANY_OUT, formatJson(outputs.companyIndex)],
-    [ASK_OUT, formatJson(outputs.askIndex)],
+    ...outputs.askShardSet.shards.map(shard => [path.join(OUT_DIR, shard.file), formatJson(shard.index)]),
     [ASK_CORE_OUT, formatJson(outputs.askCoreIndex)],
+    [ASK_BRANDS_OUT, formatJson(outputs.askBrandIndex)],
     [AVOID_TOKENS_OUT, formatJson(outputs.avoidTokensIndex)],
     [ASK_FIXTURES_OUT, formatJson(outputs.askFixturesIndex)],
     [ASK_TRACES_OUT, formatJson(outputs.askTracesIndex)],
@@ -4540,6 +4958,10 @@ function checkOutputs(outputs) {
     [READINESS_OUT, formatJson(outputs.readinessIndex)],
     [MANIFEST_OUT, formatJson(outputs.manifestIndex)]
   ]);
+}
+
+function checkOutputs(outputs) {
+  const expected = expectedOutputBodies(outputs);
   const drift = [];
   for (const [file, body] of expected.entries()) {
     if (!fs.existsSync(file)) {
@@ -4572,8 +4994,9 @@ function main() {
     writeOutputs(outputs);
     console.log(`build_nodes: wrote app/data/nodes/brands.json (${outputs.brandIndex.nodes.length} brands; ${outputs.brandIndex.longTail} long-tail)`);
     console.log(`build_nodes: wrote app/data/nodes/companies.json (${outputs.companyIndex.nodes.length} companies)`);
-    console.log(`build_nodes: wrote app/data/nodes/ask-index.json (${Object.keys(outputs.askIndex.tokens || {}).length} tokens)`);
+    console.log(`build_nodes: wrote ${outputs.askShardSet.shards.length} app/data/nodes/ask-index-*.json shards (${Object.keys(outputs.askIndex.tokens || {}).length} tokens; ${outputs.askShardSet.totalBytes} bytes; largest ${Math.max(...outputs.askShardSet.shards.map(shard => shard.index.budget.currentBytes))} bytes)`);
     console.log(`build_nodes: wrote app/data/nodes/ask-core.json (${Object.keys(outputs.askCoreIndex.tokens || {}).length} tokens; ${Object.keys(outputs.askCoreIndex.targets || {}).length} targets)`);
+    console.log(`build_nodes: wrote app/data/nodes/ask-brands.json (${Object.keys(outputs.askBrandIndex.tokens || {}).length} tokens; ${Object.keys(outputs.askBrandIndex.targets || {}).length} targets)`);
     console.log(`build_nodes: wrote app/data/nodes/avoid-tokens.json (${outputs.avoidTokensIndex.families.length} families; ${outputs.avoidTokensIndex.stats.tokens} tokens)`);
     console.log(`build_nodes: wrote app/data/nodes/ask-fixtures.json (${outputs.askFixturesIndex.cases.length} cases)`);
     console.log(`build_nodes: wrote app/data/nodes/ask-traces.json (${outputs.askTracesIndex.traces.length} traces)`);
@@ -4598,7 +5021,24 @@ if (require.main === module) main();
 
 module.exports = {
   ASK_STOP,
+  ASK_CORE_MAX_BYTES,
+  ASK_CORE_MIN_HEADROOM_BYTES,
+  ASK_BRANDS_MAX_BYTES,
+  ASK_BRANDS_MIN_HEADROOM_BYTES,
+  ASK_BRANDS_TYPE,
+  ASK_SHARD_MAX_BYTES,
+  ASK_SHARD_PACK_BYTES,
+  ASK_INDEX_TOTAL_MAX_BYTES,
+  ASK_CONTAINMENT_CEILING,
   buildAll,
+  expectedOutputBodies,
+  formatJson,
+  mergeAskLayers,
+  askShardUnitsForQuery,
+  askShardDirectoryUnits,
+  resolveAskQuerySharded,
+  buildAskIndexShards,
+  readAskIndexesFromDisk,
   normalizeLoose,
   askNormalize,
   resolveAskQuery,

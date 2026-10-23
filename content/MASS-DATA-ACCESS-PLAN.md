@@ -114,7 +114,33 @@ What was done:
 - Four new generated categories: `bottled-water` (OFF `waters`, 500 raw -> 446 scored), `fragrance` (OBF `perfumes`, 445 raw -> 120 scored, with the transparency criterion renamed "Lists ingredients" and every note saying a listed "parfum" can hide many undisclosed compounds), `floor-cleaners` (EPA Safer Choice, 64) and `carpet-cleaners` (EPA Safer Choice, 68).
 - Held: EPA Odor Removers (42 consumer products after merging one row per UPC) and Automatic Dishwasher Products (17) are below the floor. EPA All-Purpose Cleaners (121) duplicates the hand-checked `cleaning-products` decision. Alcohol, baby food and pet food stay held, as above. The 12 earlier beauty lenses were not deepened: they have been edited since generation, so regenerating them would overwrite that work.
 
-To go further, the app lane would need to lazy-load brand targets out of the startup Ask core and shard `ask-index.json`. With both done, the 1,000-record caches are one `fetch_raw.py --deepen --cap 1000` away.
+To go further, the app lane would need to lazy-load brand targets out of the startup Ask core and shard `ask-index.json`. Both are now done (next section), so the 1,000-record caches are one `fetch_raw.py --deepen --cap 1000` away.
+
+### Brand layer and product-index shards (2026-10-15)
+
+Both app-lane changes are done (`pipeline/build_nodes.js`, `app/app.js`, `mcp.js`). Neither budget was raised.
+
+- **Startup file holds no brands.** `ask-core.json` keeps categories, companies, tags, errands, lines and guides; brand targets moved to `ask-brands.json`, which the app fetches on the first keystroke in a search box (or a submitted query) and merges into the core layer. Merged, the two files hold exactly the tokens, aliases and targets the single `ask-core.json` held, and the golden queries are unchanged.
+- **Product index sharded by first character.** `ask-index.json` is replaced by `ask-index-<units>.json` shards, routed by `ask-core.json` `productIndex`. A key lives in the shard of its first word's first character; one-word keys are also copied to their second character's shard; each shard carries a directory of later words pointing at the shards that hold them. A search loads the shards of its words' first characters (barcodes load the digit shards) and, only when that cannot fill the results above the containment score of 76, the shards the directory names for every word. That makes the sharded answer exactly the full-index answer; `node_index_audit.js` checks it on the fixtures plus a fixed query sample, and checks that the merged shards equal the full index.
+- **Budgets.** `ask-core.json`: 780,000 B with 50 KB headroom (unchanged). `ask-brands.json`: 1,500,000 B with 100 KB headroom (new). Each shard: 1,500,000 B, packed to 400,000 B so the build re-splits long before a shard nears it (new). Shard set: 12,000,000 B on disk and in an offline cache (new). The 6,000,000 B budget belonged to the single file and went with it: no search fetches the set as one file now.
+
+| File | Before | After |
+| --- | ---: | ---: |
+| `ask-core.json` (every visitor, startup) | 727,066 B | 189,497 B (590 KB headroom) |
+| `ask-brands.json` (first keystroke) | none | 408,074 B |
+| `ask-index.json` / shards (product search) | 5,614,231 B, one file | 18 shards, 6,084,820 B total, largest 542,009 B |
+
+Browser check (Chromium via Playwright, `python3 -m http.server`, public and workbench channels). The suggestion panel and the submitted-search result were captured before the change and compared after it for `oat`, `oatly`, `alpro`, `Patagonia`, `Triodos`, `nestel`, `Oat No Sugars`, `mandeldrink`, `Avoine Boisson biologique`, `5411188124689`, `almond milk` and `banking`. All 48 results were identical. Startup fetches only `ask-core.json`, and the first keystroke adds `ask-brands.json`. Product-index bytes for one submitted search on a fresh page:
+
+| Query | Result | Product shards fetched |
+| --- | --- | ---: |
+| `oat`, `Patagonia` | category / brand from the core layer | none |
+| `5411188124689` (barcode) | the item page | 4 digit shards, 1.43 MB |
+| `Avoine Boisson biologique` | 6 entries | 2 shards, 0.64 MB |
+| `Triodos` | 6 entries | 10 shards, 3.58 MB |
+| `mandeldrink` | 6 entries | 11 shards, 3.87 MB |
+
+Before, every product search fetched 5.6 MB. A one-word query that appears as a later word in many names (`mandeldrink`, `Triodos`) still fetches most shards, because its matches sit in names starting with every letter. Exact results cost that. A word-level index would cut it, at the price of a larger set on disk. The next lever, if one shard nears its budget, is two-character units.
 
 API limits observed. Open Food Facts documents 10 search requests a minute. The fetchers now wait 6.5 s between search requests, send a descriptive User-Agent, and do not retry 4xx answers. Anonymous search returns HTTP 401 past page 10 of 100, so the API path tops out near 1,000 records per tag. Deeper than that needs the bulk dump (`ingest_dump.py`). Intermittent 503s still happen, and the append-only deepen mode can be re-run to fill what they interrupted.
 

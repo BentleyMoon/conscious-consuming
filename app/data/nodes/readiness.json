@@ -13,7 +13,7 @@
         "node-load-plan.json"
       ],
       "loadHint": "eager-metadata",
-      "bytes": 6262,
+      "bytes": 8036,
       "purpose": "Discover available node indexes, byte sizes, integrity hashes, and runtime loading stages."
     },
     {
@@ -31,9 +31,9 @@
       "step": 3,
       "file": "ask-core.json",
       "loadHint": "eager-search",
-      "bytes": 727066,
+      "bytes": 190469,
       "budgetBytes": 780000,
-      "headroomBytes": 52934,
+      "headroomBytes": 589531,
       "purpose": "Startup search over categories, brands, companies, tags, guides, errands, and lines."
     },
     {
@@ -48,9 +48,29 @@
     },
     {
       "step": 5,
-      "file": "ask-index.json",
+      "file": "ask-index-0-2.json",
+      "files": [
+        "ask-index-0-2.json",
+        "ask-index-3.json",
+        "ask-index-4-5.json",
+        "ask-index-6-9.json",
+        "ask-index-a.json",
+        "ask-index-b.json",
+        "ask-index-c.json",
+        "ask-index-d-e.json",
+        "ask-index-f-g.json",
+        "ask-index-h-j.json",
+        "ask-index-k-l.json",
+        "ask-index-m.json",
+        "ask-index-n-o.json",
+        "ask-index-p-q.json",
+        "ask-index-r.json",
+        "ask-index-s.json",
+        "ask-index-t-v.json",
+        "ask-index-w-z.json"
+      ],
       "loadHint": "lazy-product-search",
-      "bytes": 5614231,
+      "bytes": 6084820,
       "purpose": "Lazy product-name and barcode lookup."
     }
   ],
@@ -118,7 +138,7 @@
     {
       "file": "node-load-plan.json",
       "loadHint": "runtime-contract",
-      "stages": 6,
+      "stages": 7,
       "purpose": "Runtime loading stages, integrity behavior, and failure-mode contract for app-owned integration."
     }
   ],
@@ -132,21 +152,21 @@
     "brands": 2437,
     "brandLongTail": 5562,
     "companies": 29,
-    "askCoreTokens": 3360,
-    "askCoreTargets": 2861,
+    "askCoreTokens": 1039,
+    "askCoreTargets": 424,
     "askTokens": 78641,
     "askAliases": 3107,
     "goldenQueries": 13
   },
   "budgets": {
-    "askCoreBytes": 727066,
+    "askCoreBytes": 190469,
     "startupBudgetBytes": 780000,
     "minimumHeadroomBytes": 50000,
-    "askCoreHeadroomBytes": 52934,
+    "askCoreHeadroomBytes": 589531,
     "askCoreWithinBudget": true,
     "askCoreHasHeadroom": true,
-    "fullAskBytes": 5614231,
-    "nodeLoadPlanStages": 6,
+    "fullAskBytes": 6084820,
+    "nodeLoadPlanStages": 7,
     "nodeRuntimeStateCases": 15,
     "nodePreviewScenarios": 21
   },
@@ -474,7 +494,7 @@
           "The app has a visible recovery path for missing or stale generated node files."
         ],
         "mustNot": [
-          "Do not eager-load ask-index.json just to make startup search work.",
+          "Do not eager-load ask-index-*.json just to make startup search work.",
           "Do not ignore sha256/hash-mismatch behavior in the loader path."
         ]
       },
@@ -514,14 +534,14 @@
           "lazy-product-ask"
         ],
         "sourceFiles": [
-          "app/data/nodes/ask-index.json",
+          "app/data/nodes/ask-index-*.json",
           "app/data/nodes/ask-fixtures.json",
           "app/data/nodes/ask-traces.json"
         ],
-        "contractPointer": "ask-index.json#loadHint",
+        "contractPointer": "ask-index-0-2.json#loadHint",
         "appOwnedEvidence": [
-          "Running-app product-name or barcode lookup loads ask-index.json only after compact startup Ask is usable.",
-          "Failure to load ask-index.json leaves compact Ask, browse, and route behavior available."
+          "Running-app product-name or barcode lookup loads ask-index-*.json only after compact startup Ask is usable.",
+          "Failure to load ask-index-*.json leaves compact Ask, browse, and route behavior available."
         ],
         "passWhen": [
           "Barcode fixtures resolve to the expected item hashes after lazy load.",
@@ -771,7 +791,7 @@
       },
       {
         "id": "ask-index-lazy-boundary",
-        "pointer": "app/data/nodes/ask-index.json#loadHint",
+        "pointer": "app/data/nodes/ask-index-0-2.json#loadHint",
         "format": "ovs-ask-index",
         "reviewRole": "Lazy product and barcode Ask boundary for the large full index.",
         "drainableFromLayerAlone": false,
@@ -1071,7 +1091,7 @@
     ],
     "nextAppActions": [
       "Open the H4 workbench in the running app and walk loader, Ask, route, runtime, preview, walkthrough, and public-gate sections.",
-      "Run the button-gated lazy Ask check and confirm ask-index.json stays out of startup.",
+      "Run the button-gated lazy Ask check and confirm ask-index-*.json stays out of startup.",
       "Walk public gates one surface at a time in the release order before graduating any workbench surface.",
       "Either drain H4 in docs/CONTENT-HANDOFF.md with app/design evidence or name the exact remaining blocker."
     ],

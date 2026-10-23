@@ -5,7 +5,11 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
-const { buildAll, askNormalize, itemId, coreAskTarget, resolveAskQuery } = require('../pipeline/build_nodes.js');
+const {
+  buildAll, askNormalize, itemId, coreAskTarget, resolveAskQuery, formatJson, expectedOutputBodies, mergeAskLayers,
+  resolveAskQuerySharded, askShardUnitsForQuery, ASK_BRANDS_TYPE, ASK_BRANDS_MAX_BYTES, ASK_BRANDS_MIN_HEADROOM_BYTES,
+  ASK_SHARD_MAX_BYTES, ASK_INDEX_TOTAL_MAX_BYTES, ASK_CONTAINMENT_CEILING
+} = require('../pipeline/build_nodes.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const DATA_INDEX = path.join(ROOT, 'app', 'data', 'index.json');
@@ -14,7 +18,7 @@ const EDGES_SRC = path.join(ROOT, 'app', 'edges.json');
 const LINES_SRC = path.join(ROOT, 'content', 'lines.json');
 const BRAND_OUT = path.join(ROOT, 'app', 'data', 'nodes', 'brands.json');
 const COMPANY_OUT = path.join(ROOT, 'app', 'data', 'nodes', 'companies.json');
-const ASK_OUT = path.join(ROOT, 'app', 'data', 'nodes', 'ask-index.json');
+const NODES_DIR = path.join(ROOT, 'app', 'data', 'nodes');
 const ASK_CORE_OUT = path.join(ROOT, 'app', 'data', 'nodes', 'ask-core.json');
 const AVOID_TOKENS_OUT = path.join(ROOT, 'app', 'data', 'nodes', 'avoid-tokens.json');
 const ASK_FIXTURES_OUT = path.join(ROOT, 'app', 'data', 'nodes', 'ask-fixtures.json');
@@ -35,6 +39,7 @@ const ERRANDS_OUT = path.join(ROOT, 'app', 'data', 'nodes', 'errands.json');
 const GUIDES_OUT = path.join(ROOT, 'app', 'guides.js');
 
 const failures = [];
+const ASK_FIRST_SHARD = () => (readJson(path.join(NODES_DIR, 'ask-core.json')).productIndex?.files || [])[0]?.file || 'ask-index-missing.json';
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -44,28 +49,7 @@ function expect(condition, message) {
   if (!condition) failures.push(message);
 }
 
-// Kept in step with pipeline/build_nodes.js: the full Ask index is written one token per line.
-function formatAskIndex(value) {
-  const keys = Object.keys(value);
-  const lines = ['{'];
-  keys.forEach((key, i) => {
-    const comma = i === keys.length - 1 ? '' : ',';
-    const field = value[key];
-    if ((key === 'tokens' || key === 'aliases') && field && typeof field === 'object' && !Array.isArray(field)) {
-      const entries = Object.keys(field).map(k => JSON.stringify(k) + ':' + JSON.stringify(field[k]));
-      lines.push(`  ${JSON.stringify(key)}: {` + (entries.length ? '\n' + entries.join(',\n') + '\n  }' : '}') + comma);
-    } else {
-      lines.push(`  ${JSON.stringify(key)}: ` + JSON.stringify(field, null, 2).replace(/\n/g, '\n  ') + comma);
-    }
-  });
-  lines.push('}');
-  return lines.join('\n') + '\n';
-}
-
-function formatJson(value) {
-  if (value && value.format === 'ovs-ask-index') return formatAskIndex(value);
-  return JSON.stringify(value, null, 2) + '\n';
-}
+// formatJson comes from pipeline/build_nodes.js (one token per line for Ask indexes and shards).
 
 function sha256Text(text) {
   return crypto.createHash('sha256').update(text, 'utf8').digest('hex');
@@ -101,29 +85,15 @@ function parseGuides() {
 }
 
 function checkGeneratedSync(outputs) {
-  const expected = new Map([
-    [BRAND_OUT, formatJson(outputs.brandIndex)],
-    [COMPANY_OUT, formatJson(outputs.companyIndex)],
-    [ASK_OUT, formatJson(outputs.askIndex)],
-    [ASK_CORE_OUT, formatJson(outputs.askCoreIndex)],
-    [AVOID_TOKENS_OUT, formatJson(outputs.avoidTokensIndex)],
-    [ASK_FIXTURES_OUT, formatJson(outputs.askFixturesIndex)],
-    [ASK_TRACES_OUT, formatJson(outputs.askTracesIndex)],
-    [ASK_PRESENTATION_OUT, formatJson(outputs.askPresentationIndex)],
-    [NODE_WALKTHROUGHS_OUT, formatJson(outputs.nodeWalkthroughsIndex)],
-    [NODE_PAGE_CONTRACTS_OUT, formatJson(outputs.nodePageContractsIndex)],
-    [NODE_ROUTE_FIXTURES_OUT, formatJson(outputs.nodeRouteFixturesIndex)],
-    [NODE_ROUTE_GUARDRAILS_OUT, formatJson(outputs.nodeRouteGuardrailsIndex)],
-    [NODE_INTEGRATION_CHECKLIST_OUT, formatJson(outputs.nodeIntegrationChecklistIndex)],
-    [NODE_LOAD_PLAN_OUT, formatJson(outputs.nodeLoadPlanIndex)],
-    [NODE_RUNTIME_STATES_OUT, formatJson(outputs.nodeRuntimeStatesIndex)],
-    [NODE_PREVIEW_MATRIX_OUT, formatJson(outputs.nodePreviewMatrixIndex)],
-    [READINESS_OUT, formatJson(outputs.readinessIndex)],
-    [MANIFEST_OUT, formatJson(outputs.manifestIndex)]
-  ]);
-  for (const [file, body] of expected.entries()) {
+  for (const [file, body] of expectedOutputBodies(outputs).entries()) {
     expect(fs.existsSync(file), `${rel(file)}: missing generated output`);
     if (fs.existsSync(file)) expect(fs.readFileSync(file, 'utf8') === body, `${rel(file)}: generated output is stale`);
+  }
+  // The single ask-index.json was retired for shards on 2026-10-15; a stale copy must not linger.
+  expect(!fs.existsSync(path.join(NODES_DIR, 'ask-index.json')), 'app/data/nodes/ask-index.json: retired single-file index is still on disk');
+  const shardFiles = new Set(outputs.askShardSet.shards.map(shard => shard.file));
+  for (const name of fs.readdirSync(NODES_DIR)) {
+    if (/^ask-index-.*\.json$/.test(name)) expect(shardFiles.has(name), `app/data/nodes/${name}: orphaned product-index shard`);
   }
 }
 
@@ -231,26 +201,79 @@ function checkRouteHint(id, target, label) {
   }
 }
 
-function checkAskIndex(index, refs) {
-  expect(index.format === 'ovs-ask-index', 'app/data/nodes/ask-index.json: wrong format');
-  expect(index.version === '0.1', 'app/data/nodes/ask-index.json: wrong version');
-  expect(index.loadHint === 'lazy-product-search', 'app/data/nodes/ask-index.json: loadHint should be lazy-product-search');
-  const indexBytes = Buffer.byteLength(formatJson(index), 'utf8');
-  expect(index.budget?.maxBytes === 6000000, 'app/data/nodes/ask-index.json: max byte budget should be 6,000,000');
-  expect(index.budget?.currentBytes === indexBytes, 'app/data/nodes/ask-index.json: budget currentBytes must match serialized file size');
-  expect(index.budget?.withinBudget === (indexBytes <= index.budget?.maxBytes), 'app/data/nodes/ask-index.json: withinBudget mismatch');
-  expect(indexBytes <= 6000000, `app/data/nodes/ask-index.json: lazy index exceeded 6 MB budget (${indexBytes} bytes)`);
-  expect(index.shards?.count === 1, 'app/data/nodes/ask-index.json: single-file shard count should be 1 while under budget');
-  expect((index.shards?.files || []).includes('ask-index.json'), 'app/data/nodes/ask-index.json: shard files should include ask-index.json');
-  expect(index.shards?.status === 'not-needed', 'app/data/nodes/ask-index.json: shards should not be required while under budget');
-  expect(/lazy file/i.test(index.shards?.hint || ''), 'app/data/nodes/ask-index.json: shards hint should explain lazy single-file posture');
-  const tokens = index.tokens || {};
-  const aliases = index.aliases || {};
+// 2026-10-15. The product index ships as first-character shards (ask-index-*.json) routed by
+// ask-core.json productIndex. Budgets: each shard at most ASK_SHARD_MAX_BYTES (1.5 MB, the most a
+// product search fetches in one file), the set at most ASK_INDEX_TOTAL_MAX_BYTES (disk and offline
+// cache weight). The 6 MB single-fetch budget retired with the single file: no search fetches the
+// set as one file any more. The merged shards must equal the full index the builder resolves
+// against, and a sharded search must answer exactly as the full index does.
+function checkAskIndexShards(outputs, refs) {
+  const index = outputs.askIndex;
+  const router = outputs.askCoreIndex.productIndex || {};
+  const shardSet = outputs.askShardSet;
+  const files = shardSet.shards.map(shard => shard.file);
+  const label = 'app/data/nodes/ask-index-*.json';
+
+  expect(files.length >= 2, `${label}: expected the product index to ship as shards`);
+  expect(JSON.stringify((router.files || []).map(entry => entry.file)) === JSON.stringify(files), 'app/data/nodes/ask-core.json: productIndex files out of step with the shards');
+  expect(router.loadHint === 'lazy-product-search', 'app/data/nodes/ask-core.json: productIndex loadHint should be lazy-product-search');
+  expect(router.containmentCeiling === ASK_CONTAINMENT_CEILING, 'app/data/nodes/ask-core.json: productIndex containment ceiling mismatch');
+  expect(router.shardMaxBytes === ASK_SHARD_MAX_BYTES && ASK_SHARD_MAX_BYTES === 1500000, 'app/data/nodes/ask-core.json: productIndex per-shard budget should be 1,500,000');
+  expect(router.totalMaxBytes === ASK_INDEX_TOTAL_MAX_BYTES && ASK_INDEX_TOTAL_MAX_BYTES === 12000000, 'app/data/nodes/ask-core.json: productIndex total budget should be 12,000,000');
+  for (const unit of '0123456789abcdefghijklmnopqrstuvwxyz') {
+    expect(files.includes((router.units || {})[unit]), `app/data/nodes/ask-core.json: productIndex has no shard for "${unit}"`);
+  }
+
+  let totalBytes = 0;
+  const merged = { tokens: {}, aliases: {} };
+  for (const shard of shardSet.shards) {
+    const file = path.join(NODES_DIR, shard.file);
+    const at = `app/data/nodes/${shard.file}`;
+    expect(fs.existsSync(file), `${at}: missing shard`);
+    if (!fs.existsSync(file)) continue;
+    const data = readJson(file);
+    const bytes = fs.statSync(file).size;
+    totalBytes += bytes;
+    expect(data.format === 'ovs-ask-index', `${at}: wrong format`);
+    expect(data.version === '0.1', `${at}: wrong version`);
+    expect(data.loadHint === 'lazy-product-search', `${at}: loadHint should be lazy-product-search`);
+    expect(data.budget?.maxBytes === ASK_SHARD_MAX_BYTES, `${at}: per-shard budget should be ${ASK_SHARD_MAX_BYTES}`);
+    expect(data.budget?.currentBytes === bytes, `${at}: budget currentBytes must match the file size`);
+    expect(data.budget?.withinBudget === (bytes <= ASK_SHARD_MAX_BYTES), `${at}: withinBudget mismatch`);
+    expect(bytes <= ASK_SHARD_MAX_BYTES, `${at}: shard exceeded the ${ASK_SHARD_MAX_BYTES}-byte per-shard budget (${bytes} bytes)`);
+    expect(data.shards?.status === 'sharded', `${at}: shards.status should be sharded`);
+    expect(data.shards?.count === files.length, `${at}: shards.count mismatch`);
+    expect(JSON.stringify(data.shards?.files || []) === JSON.stringify(files), `${at}: shards.files mismatch`);
+    expect(data.shards?.file === shard.file, `${at}: shards.file should name itself`);
+    expect(data.shards?.units === shard.units, `${at}: shards.units mismatch`);
+    for (const unit of shard.units) expect((router.units || {})[unit] === shard.file, `${at}: router does not send "${unit}" here`);
+    expect((router.files || []).some(entry => entry.file === shard.file && entry.bytes === bytes), `${at}: productIndex bytes stale`);
+    for (const [key, ids] of Object.entries(data.tokens || {})) {
+      if (merged.tokens[key]) expect(JSON.stringify(merged.tokens[key]) === JSON.stringify(ids), `${at}: copied token "${key}" differs between shards`);
+      merged.tokens[key] = ids;
+    }
+    Object.assign(merged.aliases, data.aliases || {});
+    for (const [word, homes] of Object.entries(data.directory || {})) {
+      expect(shard.units.includes(word[0]), `${at}: directory word "${word}" is in the wrong shard`);
+      expect(/^[0-9a-z]+$/.test(homes), `${at}: directory entry for "${word}" should list unit characters`);
+    }
+  }
+  expect(router.totalBytes === totalBytes, 'app/data/nodes/ask-core.json: productIndex totalBytes stale');
+  expect(totalBytes <= ASK_INDEX_TOTAL_MAX_BYTES, `${label}: shard set exceeded the ${ASK_INDEX_TOTAL_MAX_BYTES}-byte total budget (${totalBytes} bytes)`);
+
+  // No posting lost or changed: the shards together are the full index.
+  const sortedKeys = obj => Object.keys(obj).sort();
+  expect(JSON.stringify(sortedKeys(merged.tokens)) === JSON.stringify(sortedKeys(index.tokens || {})), `${label}: merged shard tokens differ from the full Ask index`);
+  expect(sortedKeys(index.tokens || {}).every(key => JSON.stringify(merged.tokens[key]) === JSON.stringify(index.tokens[key])), `${label}: merged shard postings differ from the full Ask index`);
+  expect(JSON.stringify(sortedKeys(merged.aliases).map(key => [key, merged.aliases[key]])) === JSON.stringify(sortedKeys(index.aliases || {}).map(key => [key, index.aliases[key]])), `${label}: merged shard aliases differ from the full Ask index`);
+
+  const tokens = merged.tokens;
+  const aliases = merged.aliases;
   const barcodeLikeItems = [...refs.items.entries()].filter(([, item]) => /^\d{8,14}$/.test(item.code || ''));
-  expect(Object.keys(tokens).length >= 20000, `app/data/nodes/ask-index.json: expected at least 20000 token keys, found ${Object.keys(tokens).length}`);
-  expect(Object.keys(aliases).length >= 2500, `app/data/nodes/ask-index.json: expected at least 2500 aliases, found ${Object.keys(aliases).length}`);
-  expect(index.stats?.barcodeLikeItems === barcodeLikeItems.length, 'app/data/nodes/ask-index.json: barcodeLikeItems stat mismatch');
-  expect(barcodeLikeItems.length >= 20000, `app/data/nodes/ask-index.json: expected at least 20000 barcode-like item codes, found ${barcodeLikeItems.length}`);
+  expect(Object.keys(tokens).length >= 20000, `${label}: expected at least 20000 token keys, found ${Object.keys(tokens).length}`);
+  expect(Object.keys(aliases).length >= 2500, `${label}: expected at least 2500 aliases, found ${Object.keys(aliases).length}`);
+  expect(index.stats?.barcodeLikeItems === barcodeLikeItems.length, `${label}: barcodeLikeItems stat mismatch`);
+  expect(barcodeLikeItems.length >= 20000, `${label}: expected at least 20000 barcode-like item codes, found ${barcodeLikeItems.length}`);
 
   for (const [key, ids] of Object.entries(tokens)) {
     expect(/^[a-z0-9 ]+$/.test(key) && key.trim() === key && !/\s{2,}/.test(key), `Ask token key is not normalized: ${key}`);
@@ -278,6 +301,59 @@ function checkAskIndex(index, refs) {
     const ids = tokens[key] || (aliases[key] ? [aliases[key]] : []);
     expect(ids.includes(target), `${query}: Ask index does not include ${target}`);
   }
+
+  // Exactness: a sharded search answers as the full index does. Fixture queries plus a fixed sample
+  // that exercises every routing rule (whole keys, first and later words, typos, barcodes).
+  const keys = Object.keys(index.tokens || {}).sort();
+  const sample = (readJson(ASK_FIXTURES_OUT).cases || []).map(test => test.query);
+  sample.push('mandeldrink', 'avoine boisson biologique', 'triodos', 'oat milk', 'a', '5', '5411188124689', '6411188124689', '541118812468');
+  for (let i = 0; i < 12; i += 1) {
+    const key = keys[Math.floor((i + 0.5) * keys.length / 12)];
+    const words = key.split(' ');
+    const word = words[words.length - 1];
+    sample.push(key, word, word.length > 4 ? word.slice(0, 2) + 'x' + word.slice(3) : word + 'x');
+  }
+  let routedFiles = 0;
+  for (const query of sample) {
+    const full = resolveAskQuery(query, index, 6).map(hit => `${hit.id}:${hit.score}`).join('|');
+    const sharded = resolveAskQuerySharded(query, shardSet, 6);
+    routedFiles += sharded.files.length;
+    expect(sharded.hits.map(hit => `${hit.id}:${hit.score}`).join('|') === full, `${query}: sharded Ask results differ from the full index`);
+    for (const unit of askShardUnitsForQuery(askNormalize(query))) expect(sharded.files.includes(router.units[unit]), `${query}: first-round shard for "${unit}" not loaded`);
+  }
+  expect(routedFiles < sample.length * files.length, `${label}: sharded search loads every shard for every query`);
+}
+
+function checkAskBrandLayer(brands, core, refs) {
+  const at = 'app/data/nodes/ask-brands.json';
+  expect(brands.format === 'ovs-ask-core-index', `${at}: wrong format`);
+  expect(brands.type === ASK_BRANDS_TYPE, `${at}: type should be ${ASK_BRANDS_TYPE}`);
+  expect(brands.loadHint === 'first-keystroke-search', `${at}: loadHint should be first-keystroke-search`);
+  const bytes = Buffer.byteLength(formatJson(brands), 'utf8');
+  expect(ASK_BRANDS_MAX_BYTES === 1500000 && ASK_BRANDS_MIN_HEADROOM_BYTES === 100000, `${at}: budget constants changed`);
+  expect(brands.budget?.maxBytes === ASK_BRANDS_MAX_BYTES, `${at}: budget maxBytes mismatch`);
+  expect(brands.budget?.currentBytes === bytes, `${at}: budget currentBytes must match serialized file size`);
+  expect(brands.budget?.headroomBytes === ASK_BRANDS_MAX_BYTES - bytes, `${at}: budget headroom mismatch`);
+  expect(bytes < ASK_BRANDS_MAX_BYTES, `${at}: brand layer exceeded the ${ASK_BRANDS_MAX_BYTES}-byte budget (${bytes} bytes)`);
+  expect(ASK_BRANDS_MAX_BYTES - bytes >= ASK_BRANDS_MIN_HEADROOM_BYTES, `${at}: brand layer has less than ${ASK_BRANDS_MIN_HEADROOM_BYTES} bytes headroom`);
+  const isBrand = id => String(id).startsWith('ovs:brand/');
+  for (const [key, ids] of Object.entries(brands.tokens || {})) {
+    expect(ids.every(isBrand), `${at}: token "${key}" carries a non-brand target`);
+    for (const id of ids) expect(targetExists(id, refs) && brands.targets[id], `${at}: token "${key}" has unknown brand target ${id}`);
+  }
+  for (const [key, id] of Object.entries(brands.aliases || {})) {
+    expect(isBrand(id), `${at}: alias "${key}" carries a non-brand target`);
+    expect(!(core.aliases || {})[key], `${at}: alias "${key}" collides with ask-core.json`);
+  }
+  for (const [id, target] of Object.entries(brands.targets || {})) {
+    expect(isBrand(id) && target.type === 'brand', `${at}: target ${id} is not a brand`);
+    checkRouteHint(id, target, id);
+  }
+  expect(Object.keys(brands.targets || {}).length >= 1900, `${at}: expected at least 1900 brand targets`);
+  // The point of the split: no brand target is a startup search target.
+  expect(!Object.keys(core.targets || {}).some(isBrand), 'app/data/nodes/ask-core.json: brand targets belong in ask-brands.json, not the startup file');
+  expect(!Object.values(core.tokens || {}).some(ids => ids.some(isBrand)), 'app/data/nodes/ask-core.json: brand postings belong in ask-brands.json');
+  expect(core.brandLayer?.file === 'ask-brands.json' && core.brandLayer?.loadHint === 'first-keystroke-search', 'app/data/nodes/ask-core.json: brandLayer should point to ask-brands.json');
 }
 
 function buildAskOrderingChecks(top, assertions = []) {
@@ -302,7 +378,10 @@ function buildAskOrderingChecks(top, assertions = []) {
   });
 }
 
-function checkAskCoreIndex(index, fullIndex, refs) {
+function checkAskCoreIndex(coreIndex, brandIndex, fullIndex, refs) {
+  // ask-core.json and ask-brands.json are one resolver layer; coverage, golden queries and target
+  // checks run on the merged layer, while the startup byte budget applies to ask-core.json alone.
+  const index = { ...coreIndex, ...mergeAskLayers(coreIndex, brandIndex) };
   expect(index.format === 'ovs-ask-core-index', 'app/data/nodes/ask-core.json: wrong format');
   expect(index.type === 'ask-core', 'app/data/nodes/ask-core.json: wrong type');
   expect(index.version === '0.1', 'app/data/nodes/ask-core.json: wrong version');
@@ -322,7 +401,7 @@ function checkAskCoreIndex(index, fullIndex, refs) {
   expect(coreTokens < fullTokens / 10, `app/data/nodes/ask-core.json: should stay much smaller than full Ask (${coreTokens}/${fullTokens})`);
   expect(coreAliases >= Math.min(2500, fullAliases - 100), `app/data/nodes/ask-core.json: unexpectedly low alias count (${coreAliases}/${fullAliases})`);
   expect(coreTargets >= 2000, `app/data/nodes/ask-core.json: expected visible target label coverage, found ${coreTargets}`);
-  const coreBytes = Buffer.byteLength(formatJson(index), 'utf8');
+  const coreBytes = Buffer.byteLength(formatJson(coreIndex), 'utf8');
   expect(coreBytes < 780000, 'app/data/nodes/ask-core.json: compact index exceeded 700 KB budget');
   /* 2026-08-13. Ceiling raised 700 KB -> 780 KB. The catalogue went from 88 built decisions to 118
      in one day, a 34 per cent increase, and this budget was set when it was 88. Raised on purpose
@@ -347,7 +426,8 @@ function checkAskCoreIndex(index, fullIndex, refs) {
   const rankOrder = contract.resolver?.rankOrder || [];
   expect(rankOrder.includes('alias') && rankOrder.includes('exact') && rankOrder.includes('query-token'), 'app/data/nodes/ask-core.json: startupContract rankOrder missing direct match phases');
   expect(rankOrder.indexOf('fuzzy-1') >= 0 && rankOrder.indexOf('token-containment') >= 0 && rankOrder.indexOf('fuzzy-1') < rankOrder.indexOf('token-containment'), 'app/data/nodes/ask-core.json: startupContract should rank typo before containment');
-  expect(contract.lazyBoundary?.file === 'ask-index.json', 'app/data/nodes/ask-core.json: startupContract lazyBoundary should name ask-index.json');
+  expect(contract.lazyBoundary?.file === 'ask-index-*.json' && contract.lazyBoundary?.router === 'productIndex', 'app/data/nodes/ask-core.json: startupContract lazyBoundary should name the ask-index-*.json shards and their router');
+  expect(contract.brandLayer?.file === 'ask-brands.json' && contract.brandLayer?.keepCoreIfBrandsFail === true, 'app/data/nodes/ask-core.json: startupContract should name the first-keystroke brand layer');
   expect(contract.lazyBoundary?.loadHint === 'lazy-product-search', 'app/data/nodes/ask-core.json: startupContract lazyBoundary loadHint mismatch');
   expect(contract.lazyBoundary?.keepCoreIfLazyFails === true, 'app/data/nodes/ask-core.json: startupContract should keep core results if lazy index fails');
   expect(contract.emptyState?.primary === '#contribute/want/<query>', 'app/data/nodes/ask-core.json: startupContract empty-state request route mismatch');
@@ -427,7 +507,7 @@ function checkAskCoreIndex(index, fullIndex, refs) {
     'ovs:guide/password-managers',
     'ovs:errand/pick-a-bank'
   ]) {
-    expect(referenced.has(required), `${required}: expected in compact Ask core`);
+    expect(referenced.has(required), `${required}: expected in the compact Ask core layer`);
   }
 }
 
@@ -499,7 +579,7 @@ function checkPresentation(presentation, outputs) {
   expect(presentation.format === 'ovs-ask-presentation-contract', 'app/data/nodes/ask-presentation.json: wrong format');
   expect(presentation.version === '0.1', 'app/data/nodes/ask-presentation.json: wrong version');
   expect(Array.isArray(presentation.source), 'app/data/nodes/ask-presentation.json: missing source list');
-  for (const file of ['app/data/nodes/ask-core.json', 'app/data/nodes/ask-index.json', 'app/data/nodes/ask-traces.json']) {
+  for (const file of ['app/data/nodes/ask-core.json', 'app/data/nodes/ask-index-*.json', 'app/data/nodes/ask-traces.json']) {
     expect((presentation.source || []).includes(file), `app/data/nodes/ask-presentation.json: source list missing ${file}`);
   }
   expect(/app-owned/i.test(presentation.purpose || ''), 'app/data/nodes/ask-presentation.json: missing app-owned purpose note');
@@ -921,7 +1001,7 @@ function checkNodeLoadPlan(loadPlan, outputs) {
 
   const budgets = loadPlan.budgets || {};
   const askCoreBytes = Buffer.byteLength(formatJson(outputs.askCoreIndex), 'utf8');
-  const fullAskBytes = Buffer.byteLength(formatJson(outputs.askIndex), 'utf8');
+  const fullAskBytes = outputs.askShardSet.totalBytes;
   const pageNodeBytes = Buffer.byteLength(formatJson(outputs.brandIndex), 'utf8') + Buffer.byteLength(formatJson(outputs.companyIndex), 'utf8');
   expect(budgets.startupBudgetBytes === 780000, 'app/data/nodes/node-load-plan.json: startup budget mismatch');
   expect(budgets.minimumHeadroomBytes === 50000, 'app/data/nodes/node-load-plan.json: minimum headroom mismatch');
@@ -938,13 +1018,14 @@ function checkNodeLoadPlan(loadPlan, outputs) {
     'bootstrap-metadata',
     'established-node-primitives',
     'startup-ask-core',
+    'first-keystroke-ask-brands',
     'defer-page-nodes',
     'lazy-product-ask',
     'dev-contracts'
   ];
   expect(stages.length === requiredStages.length, 'app/data/nodes/node-load-plan.json: unexpected stage count');
   expect(loadPlan.totals?.stages === stages.length, 'app/data/nodes/node-load-plan.json: stage total mismatch');
-  expect(loadPlan.totals?.runtimeStages === 5, 'app/data/nodes/node-load-plan.json: runtime stage total mismatch');
+  expect(loadPlan.totals?.runtimeStages === 6, 'app/data/nodes/node-load-plan.json: runtime stage total mismatch');
   expect(loadPlan.totals?.devContractStages === 1, 'app/data/nodes/node-load-plan.json: dev-contract stage total mismatch');
 
   for (let i = 0; i < requiredStages.length; i += 1) {
@@ -971,7 +1052,14 @@ function checkNodeLoadPlan(loadPlan, outputs) {
   expect(byId.get('startup-ask-core')?.hasMinimumHeadroom === true, 'app/data/nodes/node-load-plan.json: ask-core stage should have headroom');
   expect((byId.get('startup-ask-core')?.acceptanceCriteria || []).some(line => /typo before loose containment/i.test(line)), 'app/data/nodes/node-load-plan.json: ask-core stage should preserve typo ordering');
   expect(byId.get('lazy-product-ask')?.loadHint === 'lazy-product-search', 'app/data/nodes/node-load-plan.json: product Ask should be lazy');
-  expect((byId.get('lazy-product-ask')?.files || []).includes('ask-index.json'), 'app/data/nodes/node-load-plan.json: lazy stage should include ask-index.json');
+  expect(JSON.stringify(byId.get('lazy-product-ask')?.files || []) === JSON.stringify(outputs.askShardSet.shards.map(shard => shard.file)), 'app/data/nodes/node-load-plan.json: lazy stage should list the ask-index-*.json shards');
+  expect(byId.get('lazy-product-ask')?.shardBudgetBytes === ASK_SHARD_MAX_BYTES && byId.get('lazy-product-ask')?.totalBudgetBytes === ASK_INDEX_TOTAL_MAX_BYTES, 'app/data/nodes/node-load-plan.json: lazy stage shard budgets mismatch');
+  const brandBytes = Buffer.byteLength(formatJson(outputs.askBrandIndex), 'utf8');
+  expect(byId.get('first-keystroke-ask-brands')?.loadHint === 'first-keystroke-search', 'app/data/nodes/node-load-plan.json: brand layer should load on the first keystroke');
+  expect(JSON.stringify(byId.get('first-keystroke-ask-brands')?.files || []) === JSON.stringify(['ask-brands.json']), 'app/data/nodes/node-load-plan.json: brand stage should load ask-brands.json');
+  expect(byId.get('first-keystroke-ask-brands')?.bytes === brandBytes && budgets.askBrandBytes === brandBytes, 'app/data/nodes/node-load-plan.json: brand layer byte mismatch');
+  expect(byId.get('first-keystroke-ask-brands')?.withinBudget === true && byId.get('first-keystroke-ask-brands')?.hasMinimumHeadroom === true, 'app/data/nodes/node-load-plan.json: brand layer should be within budget with headroom');
+  expect(!(byId.get('startup-ask-core')?.files || []).includes('ask-brands.json'), 'app/data/nodes/node-load-plan.json: brand layer must stay out of startup');
   expect(byId.get('lazy-product-ask')?.bytes === fullAskBytes, 'app/data/nodes/node-load-plan.json: lazy stage byte mismatch');
   expect((byId.get('defer-page-nodes')?.files || []).includes('brands.json'), 'app/data/nodes/node-load-plan.json: page-node stage should include brands.json');
   expect((byId.get('defer-page-nodes')?.files || []).includes('companies.json'), 'app/data/nodes/node-load-plan.json: page-node stage should include companies.json');
@@ -1381,7 +1469,7 @@ function checkH4DrainContract(contract, label, outputs, phases, publicGates) {
   for (const pointer of [
     'manifest.json#loaderPlan',
     'ask-core.json#startupContract',
-    'ask-index.json#loadHint',
+    `${ASK_FIRST_SHARD()}#loadHint`,
     'node-runtime-states.json#qaContract',
     'node-preview-matrix.json#runContract',
     'node-integration-checklist.json#publicGates.releaseContract',
@@ -1422,7 +1510,7 @@ function checkH4ClosureManifest(closure, label, outputs, checklist) {
     ['manifest-loader-plan', 'app/data/nodes/manifest.json#loaderPlan', 'manifest-loader-plan'],
     ['node-load-plan', 'app/data/nodes/node-load-plan.json', 'ovs-node-load-plan'],
     ['ask-core-startup-contract', 'app/data/nodes/ask-core.json#startupContract', 'ovs-ask-core-index'],
-    ['ask-index-lazy-boundary', 'app/data/nodes/ask-index.json#loadHint', 'ovs-ask-index'],
+    ['ask-index-lazy-boundary', `app/data/nodes/${ASK_FIRST_SHARD()}#loadHint`, 'ovs-ask-index'],
     ['ask-fixtures', 'app/data/nodes/ask-fixtures.json', 'ovs-ask-fixtures'],
     ['ask-traces', 'app/data/nodes/ask-traces.json', 'ovs-ask-traces'],
     ['ask-presentation', 'app/data/nodes/ask-presentation.json', 'ovs-ask-presentation-contract'],
@@ -1504,7 +1592,7 @@ function checkH4ClosureManifest(closure, label, outputs, checklist) {
   expect((closure?.stopRules || []).some(line => /one-surface-at-a-time/i.test(line)), `${label}: H4 closure stop rules should keep one-surface release`);
   expect((closure?.stopRules || []).some(line => /upload/i.test(line) && /automatically/i.test(line)), `${label}: H4 closure stop rules should reject auto upload`);
   expect((closure?.nextAppActions || []).some(line => /H4 workbench/i.test(line)), `${label}: H4 closure next actions should name workbench`);
-  expect((closure?.nextAppActions || []).some(line => /lazy Ask/i.test(line) && /ask-index\.json/i.test(line)), `${label}: H4 closure next actions should name lazy Ask`);
+  expect((closure?.nextAppActions || []).some(line => /lazy Ask/i.test(line) && /ask-index-\*\.json/i.test(line)), `${label}: H4 closure next actions should name lazy Ask`);
   expect((closure?.nextAppActions || []).some(line => /public gates/i.test(line) && /one surface/i.test(line)), `${label}: H4 closure next actions should name public gates`);
   expect((closure?.nextAppActions || []).some(line => /drain H4/i.test(line) && /remaining blocker/i.test(line)), `${label}: H4 closure next actions should name final decision`);
 
@@ -1532,7 +1620,7 @@ function checkNodeIntegrationChecklist(checklist, outputs) {
     'app/data/nodes/node-load-plan.json',
     'app/data/nodes/readiness.json',
     'app/data/nodes/ask-core.json',
-    'app/data/nodes/ask-index.json',
+    'app/data/nodes/ask-index-*.json',
     'app/data/nodes/ask-fixtures.json',
     'app/data/nodes/ask-traces.json',
     'app/data/nodes/ask-presentation.json',
@@ -1553,7 +1641,7 @@ function checkNodeIntegrationChecklist(checklist, outputs) {
   expect(target.askCoreHeadroomBytes === target.startupBudgetBytes - target.askCoreBytes, 'app/data/nodes/node-integration-checklist.json: ask-core headroom mismatch');
   expect(target.askCoreWithinBudget === true, 'app/data/nodes/node-integration-checklist.json: ask-core should be within budget');
   expect(target.askCoreHasHeadroom === true, 'app/data/nodes/node-integration-checklist.json: ask-core should keep headroom');
-  expect(target.fullAskBytes === Buffer.byteLength(formatJson(outputs.askIndex), 'utf8'), 'app/data/nodes/node-integration-checklist.json: full Ask bytes mismatch');
+  expect(target.fullAskBytes === outputs.askShardSet.totalBytes, 'app/data/nodes/node-integration-checklist.json: full Ask bytes mismatch');
   expect(target.nodeLoadPlanStages === (outputs.nodeLoadPlanIndex.stages || []).length, 'app/data/nodes/node-integration-checklist.json: node-load-plan stage count mismatch');
   expect(target.nodeRuntimeStateCases === (outputs.nodeRuntimeStatesIndex.cases || []).length, 'app/data/nodes/node-integration-checklist.json: runtime state case count mismatch');
   expect(target.nodePreviewScenarios === (outputs.nodePreviewMatrixIndex.scenarios || []).length, 'app/data/nodes/node-integration-checklist.json: preview matrix scenario count mismatch');
@@ -1564,9 +1652,11 @@ function checkNodeIntegrationChecklist(checklist, outputs) {
   for (const file of ['brands.json', 'companies.json']) {
     expect((target.deferredRuntimeFiles || []).includes(file), `app/data/nodes/node-integration-checklist.json: deferred files missing ${file}`);
   }
-  for (const file of ['ask-index.json']) {
+  for (const file of outputs.askShardSet.shards.map(shard => shard.file)) {
     expect((target.lazyRuntimeFiles || []).includes(file), `app/data/nodes/node-integration-checklist.json: lazy files missing ${file}`);
   }
+  expect(JSON.stringify(target.firstKeystrokeRuntimeFiles || []) === JSON.stringify(['ask-brands.json']), 'app/data/nodes/node-integration-checklist.json: first-keystroke files should be ask-brands.json');
+  expect(!(target.eagerRuntimeFiles || []).includes('ask-brands.json'), 'app/data/nodes/node-integration-checklist.json: ask-brands.json must not be eager');
   expect((target.legacyNonRuntimeFiles || []).includes('sample.json'), 'app/data/nodes/node-integration-checklist.json: legacy files should name sample.json');
   for (const file of ['ask-fixtures.json', 'ask-traces.json', 'ask-presentation.json', 'node-walkthroughs.json', 'node-page-contracts.json', 'node-route-fixtures.json', 'node-route-guardrails.json', 'node-runtime-states.json', 'node-preview-matrix.json', 'node-integration-checklist.json']) {
     expect((target.devContractFiles || []).includes(file), `app/data/nodes/node-integration-checklist.json: dev contract list missing ${file}`);
@@ -1645,7 +1735,7 @@ function checkReadiness(readiness, outputs) {
     expect(Number.isInteger(step.step) && step.step > 0, 'app/data/nodes/readiness.json: runtime step missing order');
     expect(typeof step.purpose === 'string' && step.purpose.trim(), 'app/data/nodes/readiness.json: runtime step missing purpose');
   }
-  for (const file of ['manifest.json', 'node-load-plan.json', 'tags.json', 'errands.json', 'synonyms.json', 'ask-core.json', 'brands.json', 'companies.json', 'ask-index.json']) {
+  for (const file of ['manifest.json', 'node-load-plan.json', 'tags.json', 'errands.json', 'synonyms.json', 'ask-core.json', 'brands.json', 'companies.json', ...outputs.askShardSet.shards.map(shard => shard.file)]) {
     expect(runtimeFiles.has(file), `app/data/nodes/readiness.json: runtime plan missing ${file}`);
   }
   expect(!runtimeFiles.has('sample.json'), 'app/data/nodes/readiness.json: runtime plan must not include sample.json');
@@ -1704,7 +1794,8 @@ function checkManifest(manifest, outputs) {
   expect(/does not hash itself/i.test(manifest.integrity?.scope || ''), 'app/data/nodes/manifest.json: integrity scope should exclude manifest self-hash');
   expect(Array.isArray(manifest.indexes), 'app/data/nodes/manifest.json: indexes must be an array');
   expect(Array.isArray(manifest.loadOrder), 'app/data/nodes/manifest.json: loadOrder must be an array');
-  for (const fileName of ['sample.json', 'tags.json', 'errands.json', 'synonyms.json', 'node-load-plan.json', 'brands.json', 'companies.json', 'avoid-tokens.json', 'ask-core.json', 'ask-index.json']) {
+  const shardFiles = outputs.askShardSet.shards.map(shard => shard.file);
+  for (const fileName of ['sample.json', 'tags.json', 'errands.json', 'synonyms.json', 'node-load-plan.json', 'brands.json', 'companies.json', 'avoid-tokens.json', 'ask-core.json', 'ask-brands.json', ...shardFiles]) {
     expect(manifest.loadOrder.includes(fileName), `app/data/nodes/manifest.json: loadOrder missing ${fileName}`);
     expect(fs.existsSync(path.join(ROOT, 'app', 'data', 'nodes', fileName)), `app/data/nodes/manifest.json: listed file missing ${fileName}`);
   }
@@ -1767,7 +1858,10 @@ function checkManifest(manifest, outputs) {
   expect((loaderById.get('bootstrap-metadata')?.files || []).some(item => item.file === 'manifest.json' && item.integrity === 'self-unhashed'), 'app/data/nodes/manifest.json: loaderPlan bootstrap should include self-unhashed manifest');
   expect((loaderById.get('bootstrap-metadata')?.files || []).some(item => item.file === 'node-load-plan.json' && item.cacheKey === `node-load-plan.json:${byFile.get('node-load-plan.json')?.sha256}`), 'app/data/nodes/manifest.json: loaderPlan bootstrap should include hashed node-load-plan');
   expect((loaderById.get('startup-ask-core')?.files || []).some(item => item.file === 'ask-core.json' && item.cacheKey === `ask-core.json:${byFile.get('ask-core.json')?.sha256}`), 'app/data/nodes/manifest.json: loaderPlan startup should include hashed ask-core');
-  expect((loaderById.get('lazy-product-ask')?.files || []).some(item => item.file === 'ask-index.json' && item.cacheKey === `ask-index.json:${byFile.get('ask-index.json')?.sha256}`), 'app/data/nodes/manifest.json: loaderPlan lazy stage should include hashed ask-index');
+  for (const file of shardFiles) {
+    expect((loaderById.get('lazy-product-ask')?.files || []).some(item => item.file === file && item.cacheKey === `${file}:${byFile.get(file)?.sha256}`), `app/data/nodes/manifest.json: loaderPlan lazy stage should include hashed ${file}`);
+  }
+  expect((loaderById.get('first-keystroke-ask-brands')?.files || []).some(item => item.file === 'ask-brands.json' && item.cacheKey === `ask-brands.json:${byFile.get('ask-brands.json')?.sha256}`), 'app/data/nodes/manifest.json: loaderPlan brand stage should include hashed ask-brands');
   expect(loaderById.get('dev-contracts')?.runtime === false, 'app/data/nodes/manifest.json: loaderPlan dev-contracts should not be a runtime stage');
   expect(byFile.get('brands.json')?.nodes === (outputs.brandIndex.nodes || []).length, 'app/data/nodes/manifest.json: brand count mismatch');
   expect(byFile.get('companies.json')?.nodes === (outputs.companyIndex.nodes || []).length, 'app/data/nodes/manifest.json: company count mismatch');
@@ -1776,9 +1870,15 @@ function checkManifest(manifest, outputs) {
   expect(byFile.get('avoid-tokens.json')?.uniqueTokens === outputs.avoidTokensIndex.stats?.uniqueTokens, 'app/data/nodes/manifest.json: avoid unique-token count mismatch');
   expect(byFile.get('ask-core.json')?.tokens === Object.keys(outputs.askCoreIndex.tokens || {}).length, 'app/data/nodes/manifest.json: Ask core token count mismatch');
   expect(byFile.get('ask-core.json')?.targets === Object.keys(outputs.askCoreIndex.targets || {}).length, 'app/data/nodes/manifest.json: Ask core target count mismatch');
-  expect(byFile.get('ask-index.json')?.tokens === Object.keys(outputs.askIndex.tokens || {}).length, 'app/data/nodes/manifest.json: Ask token count mismatch');
-  expect(byFile.get('ask-index.json')?.aliases === Object.keys(outputs.askIndex.aliases || {}).length, 'app/data/nodes/manifest.json: Ask alias count mismatch');
-  expect(byFile.get('ask-index.json')?.barcodeLikeItems === outputs.askIndex.stats?.barcodeLikeItems, 'app/data/nodes/manifest.json: Ask barcode-like item count mismatch');
+  expect(byFile.get('ask-brands.json')?.targets === Object.keys(outputs.askBrandIndex.targets || {}).length, 'app/data/nodes/manifest.json: Ask brand target count mismatch');
+  for (const shard of outputs.askShardSet.shards) {
+    expect(byFile.get(shard.file)?.tokens === Object.keys(shard.index.tokens || {}).length, `app/data/nodes/manifest.json: ${shard.file} token count mismatch`);
+    expect(byFile.get(shard.file)?.units === shard.units, `app/data/nodes/manifest.json: ${shard.file} units mismatch`);
+  }
+  expect(manifest.totals?.askTokens === Object.keys(outputs.askIndex.tokens || {}).length, 'app/data/nodes/manifest.json: Ask token count mismatch');
+  expect(manifest.totals?.askAliases === Object.keys(outputs.askIndex.aliases || {}).length, 'app/data/nodes/manifest.json: Ask alias count mismatch');
+  expect(manifest.totals?.askBarcodeLikeItems === outputs.askIndex.stats?.barcodeLikeItems, 'app/data/nodes/manifest.json: Ask barcode-like item count mismatch');
+  expect(manifest.totals?.askShards === shardFiles.length && manifest.totals?.askShardBytes === outputs.askShardSet.totalBytes, 'app/data/nodes/manifest.json: Ask shard totals mismatch');
   expect(byFile.get('ask-fixtures.json')?.cases === (outputs.askFixturesIndex.cases || []).length, 'app/data/nodes/manifest.json: Ask fixture count mismatch');
   expect(byFile.get('ask-traces.json')?.traces === (outputs.askTracesIndex.traces || []).length, 'app/data/nodes/manifest.json: Ask trace count mismatch');
   expect(byFile.get('ask-presentation.json')?.qaCases === (outputs.askPresentationIndex.qaCases || []).length, 'app/data/nodes/manifest.json: Ask presentation QA count mismatch');
@@ -1802,7 +1902,8 @@ function checkManifest(manifest, outputs) {
   }
   expect(byFile.get('avoid-tokens.json')?.loadHint === 'extension-data', 'app/data/nodes/manifest.json: avoid-tokens should be extension-data');
   expect(byFile.get('ask-core.json')?.loadHint === 'eager-search', 'app/data/nodes/manifest.json: ask-core should be eager-search');
-  expect(byFile.get('ask-index.json')?.loadHint === 'lazy-product-search', 'app/data/nodes/manifest.json: ask-index should be lazy-product-search');
+  for (const file of shardFiles) expect(byFile.get(file)?.loadHint === 'lazy-product-search', `app/data/nodes/manifest.json: ${file} should be lazy-product-search`);
+  expect(byFile.get('ask-brands.json')?.loadHint === 'first-keystroke-search', 'app/data/nodes/manifest.json: ask-brands should be first-keystroke-search');
   expect(byFile.get('sample.json')?.loadHint === 'legacy-sample', 'app/data/nodes/manifest.json: sample.json should be marked legacy-sample');
   expect(byFile.get('ask-fixtures.json')?.loadHint === 'dev-contract', 'app/data/nodes/manifest.json: ask-fixtures should be dev-contract');
   expect(byFile.get('ask-traces.json')?.loadHint === 'dev-contract', 'app/data/nodes/manifest.json: ask-traces should be dev-contract');
@@ -1842,8 +1943,13 @@ function checkAppRuntimeIntegration() {
   const text = fs.readFileSync(APP_JS, 'utf8');
   expect(/function loadAskCore\(\)/.test(text), 'app/app.js: missing H4 compact Ask loader');
   expect(/fetchNodeJson\('ask-core\.json'/.test(text), 'app/app.js: startup Ask should load generated ask-core.json');
-  expect(/function loadAskIndex\(\)/.test(text), 'app/app.js: missing H4 lazy product Ask loader');
-  expect(/fetchNodeJson\('ask-index\.json'/.test(text), 'app/app.js: lazy product Ask should load generated ask-index.json');
+  expect(/function loadAskIndex\(q,limit\)/.test(text), 'app/app.js: missing H4 lazy product Ask loader');
+  expect(/core&&core\.productIndex/.test(text) && /function loadAskShardFiles\(/.test(text), 'app/app.js: lazy product Ask should load the ask-index-*.json shards named by ask-core.json productIndex');
+  expect(/function askShardUnits\(/.test(text) && /function askDirectoryUnits\(/.test(text), 'app/app.js: lazy product Ask should route by first character and directory');
+  expect(!/fetchNodeJson\('ask-index\.json'/.test(text), 'app/app.js: the retired single ask-index.json must not be fetched');
+  expect(/function loadAskBrands\(\)/.test(text) && /fetchNodeJson\('ask-brands\.json'/.test(text), 'app/app.js: missing first-keystroke brand layer loader');
+  expect(/clearTimeout\(t\); loadAskCore\(\); loadAskBrands\(\);/.test(text), 'app/app.js: the brand layer should load on the first keystroke');
+  expect(!/boot\(\)\.then\(\(\)=>\{[\s\S]{0,300}loadAskBrands\(\)/.test(text), 'app/app.js: ask-brands.json must not load during boot');
   expect(/function resolveAskCoreRows\(/.test(text), 'app/app.js: missing generated Ask core resolver');
   expect(/function resolveAskFullRows\(/.test(text), 'app/app.js: missing generated full Ask item resolver');
   expect(/function resolveAskLegacy\(/.test(text), 'app/app.js: missing explicit legacy Ask fallback boundary');
@@ -1855,9 +1961,9 @@ function checkAppRuntimeIntegration() {
   expect(!/sample\.json remains the fallback/i.test(text), 'app/app.js: stale sample fallback comment still present');
   expect(!/C1's generated indexes later/i.test(text), 'app/app.js: stale generated-index-later comment still present');
   expect(/Company and brand index unavailable/.test(text), 'app/app.js: missing visible company-and-brand failure state');
-  expect(/ask-index\.json stays lazy/.test(text), 'app/app.js: lazy ask-index boundary should remain documented in runtime code');
-  expect(/loadAskIndex\(\)\.then/.test(text), 'app/app.js: ask-index should be loaded only behind a lazy resolver path');
-  expect(!/boot\(\)\.then\(\(\)=>\{[\s\S]{0,300}loadAskIndex\(\)/.test(text), 'app/app.js: ask-index must not be eager-loaded at boot');
+  expect(/ask-index-\*\.json shards stay lazy/.test(text), 'app/app.js: lazy ask-index boundary should remain documented in runtime code');
+  expect(/loadAskIndex\(q,6\)\.then/.test(text), 'app/app.js: ask-index shards should be loaded only behind a lazy resolver path');
+  expect(!/boot\(\)\.then\(\(\)=>\{[\s\S]{0,300}loadAskIndex\(/.test(text), 'app/app.js: ask-index must not be eager-loaded at boot');
   expect(/function loadNodeQaContracts\(\)/.test(text), 'app/app.js: missing H4 workbench QA contract loader');
   for (const file of ['node-preview-matrix.json', 'node-runtime-states.json', 'node-integration-checklist.json']) {
     expect(text.includes(`'${file}'`), `app/app.js: H4 workbench QA panel missing ${file}`);
@@ -1873,7 +1979,7 @@ function checkAppRuntimeIntegration() {
   expect(/function h4LoaderPlanSelfCheck\(/.test(text), 'app/app.js: missing H4 loader-plan self-check helper');
   expect(/function h4AskCoreSelfCheck\(/.test(text), 'app/app.js: missing H4 core Ask self-check helper');
   expect(/function h4RunLazyAskSelfCheck\(/.test(text), 'app/app.js: missing H4 lazy Ask self-check helper');
-  expect(/Promise\.all\(\[loadNodeQaContracts\(\),loadNodes\(\),loadAskCore\(\)\]\)/.test(text), 'app/app.js: workbench self-check should load generated nodes and ask-core');
+  expect(/Promise\.all\(\[loadNodeQaContracts\(\),loadNodes\(\),loadAskBrands\(\)\.then\(\(\)=>ASK_CORE\)\]\)/.test(text), 'app/app.js: workbench self-check should load generated nodes and the ask-core layer');
   expect(/id="h4qa"/.test(text), 'app/app.js: workbench should expose an H4 QA mount');
   expect(/h4-drain-decision/.test(text), 'app/app.js: workbench QA should name the final H4 drain gate');
   expect(/named routes/.test(text), 'app/app.js: workbench QA should surface named route count');
@@ -1932,7 +2038,7 @@ function checkAppRuntimeIntegration() {
   expect(/Start-page search/.test(text), 'app/app.js: workbench QA should show start-page search result');
   expect(/id="h4asklazy"/.test(text), 'app/app.js: workbench QA should expose a lazy Ask self-check button');
   expect(/larger index loads only when this button is pressed/.test(text), 'app/app.js: larger product search should remain button-gated');
-  expect(/loadAskIndex\(\)\.then/.test(text), 'app/app.js: lazy Ask self-check should call loadAskIndex behind the button');
+  expect(/cases\.map\(c=>loadAskIndex\(c\.query,c\.expectOneInTop\|\|5\)\)/.test(text), 'app/app.js: lazy Ask self-check should call loadAskIndex behind the button');
   expect(/Runtime QA modes/.test(text), 'app/app.js: workbench QA should show runtime QA mode order');
   expect(/function h4LoaderStageDetail\(/.test(text), 'app/app.js: workbench QA should render manifest loader stage details');
   expect(/Loader-plan checklist/.test(text), 'app/app.js: workbench QA should show the loader-plan checklist');
@@ -1940,7 +2046,7 @@ function checkAppRuntimeIntegration() {
   expect(/manifest\.loaderPlan/.test(text) && /Cache key/.test(text), 'app/app.js: loader-plan checklist should name manifest.loaderPlan and cache keys');
   expect(/Failure mode/.test(text) && /Load hint/.test(text), 'app/app.js: loader stages should include load hints and failure modes');
   expect(/askCoreOk=askCore&&askCore\.format==='ovs-ask-core-index'/.test(text), 'app/app.js: loader-plan self-check should include loaded ask-core index evidence');
-  expect(/lazyBoundaryOk=!\s*loaded\.has\('ask-index\.json'\)&&!\s*loaded\.has\('sample\.json'\)/.test(text), 'app/app.js: loader-plan self-check should preserve lazy Ask and no-sample boundaries');
+  expect(/lazyBoundaryOk=!Array\.from\(loaded\)\.some\(f=>f\.indexOf\('ask-index'\)===0\)&&!loaded\.has\('ask-brands\.json'\)&&!loaded\.has\('sample\.json'\)/.test(text), 'app/app.js: loader-plan self-check should preserve lazy Ask and no-sample boundaries');
   expect(/eagerOk=.*'manifest\.json'.*'tags\.json'.*'errands\.json'.*'synonyms\.json'/.test(text), 'app/app.js: loader-plan self-check should name the eager runtime node files');
   expect(/pageNodeOk=.*'brands\.json'.*'companies\.json'/.test(text), 'app/app.js: loader-plan self-check should name deferred page-node files');
   expect(/function h4RuntimeModeDetail\(/.test(text), 'app/app.js: workbench QA should render runtime mode details');
@@ -1991,8 +2097,9 @@ function main() {
 
   checkBrandIndex(outputs.brandIndex, cats, companies);
   checkCompanyIndex(outputs.companyIndex, brands);
-  checkAskIndex(outputs.askIndex, { cats, items, brands, companies, tags, errands, lines, guides });
-  checkAskCoreIndex(outputs.askCoreIndex, outputs.askIndex, { cats, items, brands, companies, tags, errands, lines, guides });
+  checkAskIndexShards(outputs, { cats, items, brands, companies, tags, errands, lines, guides });
+  checkAskCoreIndex(outputs.askCoreIndex, outputs.askBrandIndex, outputs.askIndex, { cats, items, brands, companies, tags, errands, lines, guides });
+  checkAskBrandLayer(outputs.askBrandIndex, outputs.askCoreIndex, { cats, items, brands, companies, tags, errands, lines, guides });
   checkAvoidTokens(outputs.avoidTokensIndex, outputs, { lines });
   checkPresentation(outputs.askPresentationIndex, outputs);
   checkNodeWalkthroughs(outputs.nodeWalkthroughsIndex, outputs);
@@ -2019,6 +2126,9 @@ function main() {
   console.log(`  Ask tokens: ${Object.keys(outputs.askIndex.tokens || {}).length}`);
   console.log(`  Ask barcode-like item codes: ${outputs.askIndex.stats?.barcodeLikeItems || 0}`);
   console.log(`  Ask core tokens: ${Object.keys(outputs.askCoreIndex.tokens || {}).length}`);
+  console.log(`  ask-core.json bytes: ${Buffer.byteLength(formatJson(outputs.askCoreIndex), 'utf8')} (budget 780000, headroom >= 50000)`);
+  console.log(`  ask-brands.json bytes: ${Buffer.byteLength(formatJson(outputs.askBrandIndex), 'utf8')} (budget ${ASK_BRANDS_MAX_BYTES})`);
+  console.log(`  product-index shards: ${outputs.askShardSet.shards.length}, ${outputs.askShardSet.totalBytes} bytes (largest ${Math.max(...outputs.askShardSet.shards.map(shard => shard.index.budget.currentBytes))}; per-shard budget ${ASK_SHARD_MAX_BYTES}, total ${ASK_INDEX_TOTAL_MAX_BYTES})`);
   console.log(`  Avoid token families: ${(outputs.avoidTokensIndex.families || []).length}`);
   console.log(`  Avoid tokens: ${outputs.avoidTokensIndex.stats?.tokens || 0}`);
   console.log(`  Ask aliases: ${Object.keys(outputs.askIndex.aliases || {}).length}`);

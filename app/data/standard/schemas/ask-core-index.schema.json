@@ -5,6 +5,15 @@
   "description": "A compact startup-friendly Ask index over non-item targets, with target metadata.",
   "type": "object",
   "additionalProperties": true,
+  "if": {
+    "properties": { "type": { "const": "ask-core" } }
+  },
+  "then": {
+    "required": ["startupContract", "productIndex"]
+  },
+  "else": {
+    "required": ["loadHint", "budget"]
+  },
   "required": [
     "format",
     "type",
@@ -13,7 +22,6 @@
     "source",
     "strategy",
     "targetFields",
-    "startupContract",
     "tokens",
     "aliases",
     "targets",
@@ -24,7 +32,7 @@
       "const": "ovs-ask-core-index"
     },
     "type": {
-      "const": "ask-core"
+      "enum": ["ask-core", "ask-core-brands"]
     },
     "version": {
       "type": "string",
@@ -298,7 +306,7 @@
       ],
       "properties": {
         "file": {
-          "const": "ask-index.json"
+          "const": "ask-index-*.json"
         },
         "loadHint": {
           "const": "lazy-product-search"

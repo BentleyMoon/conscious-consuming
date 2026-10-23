@@ -19,11 +19,17 @@
   "budgets": {
     "startupBudgetBytes": 780000,
     "minimumHeadroomBytes": 50000,
-    "askCoreBytes": 727066,
-    "askCoreHeadroomBytes": 52934,
+    "askCoreBytes": 190469,
+    "askCoreHeadroomBytes": 589531,
     "askCoreWithinBudget": true,
     "askCoreHasHeadroom": true,
-    "fullAskBytes": 5614231,
+    "askBrandBytes": 408074,
+    "askBrandBudgetBytes": 1500000,
+    "askBrandWithinBudget": true,
+    "fullAskBytes": 6084820,
+    "askShardBudgetBytes": 1500000,
+    "askShardTotalBudgetBytes": 12000000,
+    "largestShardBytes": 542009,
     "pageNodeBytes": 1788750,
     "establishedEagerBytes": 89568
   },
@@ -72,13 +78,33 @@
       "trigger": "Startup search box, command palette, or any first-use Ask entry point.",
       "acceptanceCriteria": [
         "Keep ask-core.json under the startup budget with minimum headroom.",
-        "Use ask-core hash targets directly; do not require ask-index.json for category, brand, company, guide, line, tag, or errand results.",
+        "Use ask-core hash targets directly; do not require ask-index-*.json for category, brand, company, guide, line, tag, or errand results.",
         "Preserve resolver ordering from the generated traces, including typo before loose containment."
       ],
-      "failureMode": "Show a search-unavailable state or fall back to existing in-memory search; do not eagerly pull ask-index.json as a rescue path.",
-      "bytes": 727066,
+      "failureMode": "Show a search-unavailable state or fall back to existing in-memory search; do not eagerly pull ask-index-*.json as a rescue path.",
+      "bytes": 190469,
       "budgetBytes": 780000,
-      "headroomBytes": 52934,
+      "headroomBytes": 589531,
+      "withinBudget": true,
+      "hasMinimumHeadroom": true
+    },
+    {
+      "id": "first-keystroke-ask-brands",
+      "label": "Load the brand layer of Ask on the first keystroke",
+      "loadHint": "first-keystroke-search",
+      "files": [
+        "ask-brands.json"
+      ],
+      "trigger": "First keystroke in a search box, or a submitted query, whichever comes first.",
+      "acceptanceCriteria": [
+        "Merge ask-brands.json into the ask-core.json layer; the merged layer resolves exactly as the single core file did.",
+        "Keep ask-brands.json out of startup: catalogue growth adds brands here, not to the startup file.",
+        "If the brand layer fails, keep core results (categories, companies, guides, lines, tags, errands) visible."
+      ],
+      "failureMode": "Brand results can be missing while every other core result keeps working.",
+      "bytes": 408074,
+      "budgetBytes": 1500000,
+      "headroomBytes": 1091926,
       "withinBudget": true,
       "hasMinimumHeadroom": true
     },
@@ -104,7 +130,24 @@
       "label": "Lazy-load full product and barcode Ask",
       "loadHint": "lazy-product-search",
       "files": [
-        "ask-index.json"
+        "ask-index-0-2.json",
+        "ask-index-3.json",
+        "ask-index-4-5.json",
+        "ask-index-6-9.json",
+        "ask-index-a.json",
+        "ask-index-b.json",
+        "ask-index-c.json",
+        "ask-index-d-e.json",
+        "ask-index-f-g.json",
+        "ask-index-h-j.json",
+        "ask-index-k-l.json",
+        "ask-index-m.json",
+        "ask-index-n-o.json",
+        "ask-index-p-q.json",
+        "ask-index-r.json",
+        "ask-index-s.json",
+        "ask-index-t-v.json",
+        "ask-index-w-z.json"
       ],
       "trigger": "Product-name search, barcode lookup, or an explicit deeper-results action.",
       "acceptanceCriteria": [
@@ -113,7 +156,10 @@
         "If the lazy index fails, keep core results visible and label product lookup as unavailable."
       ],
       "failureMode": "Product lookup can fail independently without breaking startup Ask or generated node pages.",
-      "bytes": 5614231
+      "bytes": 6084820,
+      "shardBudgetBytes": 1500000,
+      "totalBudgetBytes": 12000000,
+      "largestShardBytes": 542009
     },
     {
       "id": "dev-contracts",
@@ -141,8 +187,8 @@
     }
   ],
   "totals": {
-    "stages": 6,
-    "runtimeStages": 5,
+    "stages": 7,
+    "runtimeStages": 6,
     "devContractStages": 1
   }
 }

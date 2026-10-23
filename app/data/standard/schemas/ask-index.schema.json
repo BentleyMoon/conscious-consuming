@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://openvaluesstandard.org/schema/ask-index-v0.1.schema.json",
   "title": "Open Values Ask Index v0.1",
-  "description": "A generated full Ask search index mapping tokens and aliases to Open Values targets.",
+  "description": "A generated Ask search index mapping tokens and aliases to Open Values targets: one file, or one first-character shard of the product index (shards.status sharded, budget.maxBytes 1500000).",
   "type": "object",
   "additionalProperties": true,
   "required": [
@@ -70,7 +70,7 @@
       "required": ["maxBytes", "currentBytes", "withinBudget", "measurement", "actionWhenExceeded"],
       "properties": {
         "maxBytes": {
-          "const": 6000000
+          "enum": [6000000, 1500000]
         },
         "currentBytes": {
           "type": "integer",
@@ -93,7 +93,7 @@
       "required": ["status", "count", "files", "hint"],
       "properties": {
         "status": {
-          "enum": ["not-needed", "required"]
+          "enum": ["not-needed", "required", "sharded"]
         },
         "count": {
           "type": "integer",

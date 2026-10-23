@@ -5,7 +5,7 @@
   "source": [
     "app/data/nodes/ask-fixtures.json",
     "app/data/nodes/ask-core.json",
-    "app/data/nodes/ask-index.json"
+    "app/data/nodes/ask-index-*.json"
   ],
   "purpose": "Deterministic resolver traces for app-owned Ask integration and visual QA.",
   "resolverModel": "pipeline/build_nodes.js resolveAskQuery",
@@ -16,6 +16,10 @@
       "intent": "company/brand concern",
       "layer": "core",
       "file": "ask-core.json",
+      "files": [
+        "ask-core.json",
+        "ask-brands.json"
+      ],
       "expectAny": [
         "ovs:company/nestle",
         "ovs:line/avoid:nestle",
@@ -86,6 +90,10 @@
       "intent": "multi-intent food query",
       "layer": "core",
       "file": "ask-core.json",
+      "files": [
+        "ask-core.json",
+        "ask-brands.json"
+      ],
       "expectAny": [
         "ovs:cat/cheese",
         "ovs:tag/vegan"
@@ -155,6 +163,10 @@
       "intent": "plain category question",
       "layer": "core",
       "file": "ask-core.json",
+      "files": [
+        "ask-core.json",
+        "ask-brands.json"
+      ],
       "expectAny": [
         "ovs:cat/banking",
         "ovs:errand/pick-a-bank"
@@ -214,6 +226,10 @@
       "intent": "everyday brand alias",
       "layer": "core",
       "file": "ask-core.json",
+      "files": [
+        "ask-core.json",
+        "ask-brands.json"
+      ],
       "expectAny": [
         "ovs:company/coca-cola",
         "ovs:line/avoid:coca-cola",
@@ -284,6 +300,10 @@
       "intent": "single-edit typo",
       "layer": "core",
       "file": "ask-core.json",
+      "files": [
+        "ask-core.json",
+        "ask-brands.json"
+      ],
       "expectAny": [
         "ovs:company/nestle",
         "ovs:brand/nestle",
@@ -376,6 +396,10 @@
       "intent": "question scaffolding strips away",
       "layer": "core",
       "file": "ask-core.json",
+      "files": [
+        "ask-core.json",
+        "ask-brands.json"
+      ],
       "expectAny": [
         "ovs:brand/oatly"
       ],
@@ -404,6 +428,10 @@
       "intent": "digital category",
       "layer": "core",
       "file": "ask-core.json",
+      "files": [
+        "ask-core.json",
+        "ask-brands.json"
+      ],
       "expectAny": [
         "ovs:cat/password-managers"
       ],
@@ -442,6 +470,10 @@
       "intent": "line/company action intent",
       "layer": "core",
       "file": "ask-core.json",
+      "files": [
+        "ask-core.json",
+        "ask-brands.json"
+      ],
       "expectAny": [
         "ovs:company/amazon",
         "ovs:line/avoid:amazon",
@@ -492,6 +524,10 @@
       "intent": "tag plus household language",
       "layer": "core",
       "file": "ask-core.json",
+      "files": [
+        "ask-core.json",
+        "ask-brands.json"
+      ],
       "expectAny": [
         "ovs:tag/b-corp",
         "ovs:cat/paper-goods"
@@ -551,6 +587,10 @@
       "intent": "regional synonym",
       "layer": "core",
       "file": "ask-core.json",
+      "files": [
+        "ask-core.json",
+        "ask-brands.json"
+      ],
       "expectAny": [
         "ovs:cat/dish-soap"
       ],
@@ -589,6 +629,10 @@
       "intent": "common synonym",
       "layer": "core",
       "file": "ask-core.json",
+      "files": [
+        "ask-core.json",
+        "ask-brands.json"
+      ],
       "expectAny": [
         "ovs:cat/phones"
       ],
@@ -637,6 +681,10 @@
       "intent": "guide-style question",
       "layer": "core",
       "file": "ask-core.json",
+      "files": [
+        "ask-core.json",
+        "ask-brands.json"
+      ],
       "expectAny": [
         "ovs:guide/private-messaging",
         "ovs:cat/digital-services"
@@ -685,7 +733,13 @@
       "normalized": "5449000054227",
       "intent": "barcode routes to an item",
       "layer": "full",
-      "file": "ask-index.json",
+      "file": "ask-index-*.json",
+      "files": [
+        "ask-index-0-2.json",
+        "ask-index-3.json",
+        "ask-index-4-5.json",
+        "ask-index-6-9.json"
+      ],
       "expectAny": [
         "ovs:item/soda/5449000054227"
       ],

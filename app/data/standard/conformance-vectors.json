@@ -1627,6 +1627,21 @@
       "value": {
         "format": "ovs-ask-core-index",
         "type": "ask-core",
+        "productIndex": {
+          "loadHint": "lazy-product-search",
+          "routing": "first-character",
+          "containmentCeiling": 76,
+          "units": {
+            "a": "ask-index-a-z.json"
+          },
+          "files": [
+            {
+              "file": "ask-index-a-z.json",
+              "units": "a",
+              "bytes": 1
+            }
+          ]
+        },
         "version": "0.1",
         "built": "2026-07-07",
         "source": [
@@ -1681,7 +1696,8 @@
             "maxStartupResults": 5
           },
           "lazyBoundary": {
-            "file": "ask-index.json",
+            "file": "ask-index-*.json",
+            "router": "productIndex",
             "loadHint": "lazy-product-search",
             "use": "Product-name and barcode results only.",
             "trigger": "Product-name search, barcode lookup, or explicit deeper-results action.",
@@ -1751,6 +1767,21 @@
       "value": {
         "format": "ovs-ask-core-index",
         "type": "ask-core",
+        "productIndex": {
+          "loadHint": "lazy-product-search",
+          "routing": "first-character",
+          "containmentCeiling": 76,
+          "units": {
+            "a": "ask-index-a-z.json"
+          },
+          "files": [
+            {
+              "file": "ask-index-a-z.json",
+              "units": "a",
+              "bytes": 1
+            }
+          ]
+        },
         "version": "0.1",
         "built": "2026-07-07",
         "source": [
@@ -1805,7 +1836,8 @@
             "maxStartupResults": 5
           },
           "lazyBoundary": {
-            "file": "ask-index.json",
+            "file": "ask-index-*.json",
+            "router": "productIndex",
             "loadHint": "lazy-product-search",
             "use": "Product-name and barcode results only.",
             "trigger": "Product-name search, barcode lookup, or explicit deeper-results action.",
