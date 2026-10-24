@@ -95,6 +95,16 @@ const COPY = {
   permanence: ['permanence', 'Permanence', 'Do you want what you pay for to stay there?', 'Flexible', 'More permanent'],
   reliability: ['reliability', 'Reliability', 'Do you need it to run to schedule?', 'Flexible', 'More reliable'],
   rewards: ['rewards', 'Rewards', 'Do you want richer ongoing rewards?', 'Flexible', 'Richer rewards'],
+  // 2026-10-23. damage_protection is registered for clothing rental, which is built and still held in
+  // content/lenses-pending (see its README); registering it now means publishing it later needs no builder change.
+  // Its theme was already registered in pipeline/build_datasets.py and research/verify_run.js
+  // (people: who carries the loss when something goes wrong); this is the third registry.
+  damage_protection: ['damage cover', 'Damage cover', 'Do you want rental damage covered?', 'Flexible', 'Better cover'],
+  // 2026-10-23. Two keys arrived with trade unions when it left content/lenses-pending. Their
+  // themes (scale: people, political_lobbying: cost) are in pipeline/build_datasets.py,
+  // research/verify_run.js and app/engine.js, with the reasoning and a review flag in the builder.
+  political_lobbying: ['political spending', 'Political spending', 'Does lower political and lobbying spending matter more?', 'Flexible', 'Lower spending'],
+  scale: ['size and reach', 'Size and reach', 'Does a larger, better-resourced organization matter more?', 'Flexible', 'Larger reach'],
   accessibility: ['everyday access', 'Access', 'Do you need easier everyday access?', 'Flexible', 'Easier access'],
   artist_pay: ['artist pay', 'Artist pay', 'Should fairer artist pay count more?', 'Flexible', 'Fairer artist pay'],
   calm: ['attention load', 'Attention load', 'Do you want the calmer option?', 'Flexible', 'Calmer experience'],
@@ -181,6 +191,22 @@ const TRADEOFFS = {
   'fees|privacy': ['fees-or-privacy', 'Fees or privacy', 'Lower fees or less data exposure?', ['Lower fees', 'Less exposure']],
   'price|local': ['price-or-local', 'Price or local support', 'Lower price or stronger local support?', ['Lower price', 'More local']],
   'privacy|accessibility': ['privacy-or-setup', 'Privacy or setup', 'Less data exposure or easier setup?', ['Less exposure', 'Easier setup']],
+  // 2026-10-23. Fourteen pairs arrived with the 21 hand-built lenses published into the navigation
+  // on this date. Each pole reads in the lens's own tradeoff order and in its tradeoffLabels' words.
+  'repairability|economical': ['repair-or-cost', 'Repair or cost', 'Easier to repair, or a lower price?', ['Easier to fix', 'Lower cost']],
+  'economical|repairability': ['cost-or-repair', 'Cost or repair', 'A lower price, or parts the owner can replace?', ['Lower cost', 'Easier to fix']],
+  'openness|economical': ['openness-or-cost', 'Openness or cost', 'Open formats and library books, or a lower price?', ['More open', 'Lower cost']],
+  'ownership|longevity': ['ownership-or-catalogue', 'Ownership or catalogue', 'Games you physically own, or the largest back catalogue?', ['Games you keep', 'Larger catalogue']],
+  'environment|privacy': ['efficiency-or-privacy', 'Efficiency or privacy', 'Less electricity per hour on, or less viewing data collected?', ['Less electricity', 'Less exposure']],
+  'environment|accessibility': ['efficiency-or-access', 'Efficiency or access', 'Most efficient, or easiest to get installed and paid for?', ['More efficient', 'Easier to get']],
+  'durability|labor': ['lifespan-or-labor', 'Lifespan or labor', 'The longest warranted life, or the lowest forced-labour exposure?', ['Longer life', 'Lower labour risk']],
+  'fees|security': ['fees-or-custody', 'Fees or custody', 'Cheapest to trade, or safest place to hold?', ['Lower fees', 'Safer custody']],
+  'accessibility|economical': ['ease-or-cost', 'Ease or cost', 'Easiest to install and use correctly, or a lower price?', ['Easier to use', 'Lower cost']],
+  'environment|economical': ['efficiency-or-price', 'Efficiency or price', 'Least energy per mile, or a lower starting price?', ['Less energy', 'Lower price']],
+  'portability|security': ['recovery-or-security', 'Recovery or security', 'Easiest to move and recover, or hardest to steal?', ['Easier recovery', 'Harder to steal']],
+  'price|damage_protection': ['price-or-cover', 'Price or damage cover', 'Cheaper each rental, or less owed if something goes wrong?', ['Lower price', 'Better cover']],
+  'privacy|selection': ['privacy-or-reach', 'Privacy or reach', 'Less data collected about you, or the widest reach of listings?', ['Less exposure', 'Wider reach']],
+  'economical|scale': ['dues-or-scale', 'Dues or scale', 'The cheapest national dues, or the largest, best-resourced union?', ['Lower dues', 'Larger union']],
 };
 
 function readJson(file) {

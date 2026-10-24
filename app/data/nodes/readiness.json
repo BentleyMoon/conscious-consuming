@@ -24,16 +24,16 @@
         "synonyms.json"
       ],
       "loadHint": "eager",
-      "bytes": 89568,
+      "bytes": 91036,
       "purpose": "Small node helpers for tag, errand, and everyday-phrase routing; sample.json stays out of runtime evidence."
     },
     {
       "step": 3,
       "file": "ask-core.json",
       "loadHint": "eager-search",
-      "bytes": 190469,
+      "bytes": 195774,
       "budgetBytes": 780000,
-      "headroomBytes": 589531,
+      "headroomBytes": 584226,
       "purpose": "Startup search over categories, brands, companies, tags, guides, errands, and lines."
     },
     {
@@ -43,7 +43,7 @@
         "companies.json"
       ],
       "loadHint": "defer-page-nodes",
-      "bytes": 1788750,
+      "bytes": 1816380,
       "purpose": "Full brand/company node pages and ownership context."
     },
     {
@@ -66,11 +66,11 @@
         "ask-index-p-q.json",
         "ask-index-r.json",
         "ask-index-s.json",
-        "ask-index-t-v.json",
-        "ask-index-w-z.json"
+        "ask-index-t-u.json",
+        "ask-index-v-z.json"
       ],
       "loadHint": "lazy-product-search",
-      "bytes": 6084820,
+      "bytes": 6160225,
       "purpose": "Lazy product-name and barcode lookup."
     }
   ],
@@ -149,23 +149,23 @@
     "node": "#n/<type>/<slug>"
   },
   "counts": {
-    "brands": 2437,
-    "brandLongTail": 5562,
+    "brands": 2479,
+    "brandLongTail": 5736,
     "companies": 29,
-    "askCoreTokens": 1039,
-    "askCoreTargets": 424,
-    "askTokens": 78641,
-    "askAliases": 3107,
+    "askCoreTokens": 1058,
+    "askCoreTargets": 444,
+    "askTokens": 79508,
+    "askAliases": 3168,
     "goldenQueries": 13
   },
   "budgets": {
-    "askCoreBytes": 190469,
+    "askCoreBytes": 195774,
     "startupBudgetBytes": 780000,
     "minimumHeadroomBytes": 50000,
-    "askCoreHeadroomBytes": 589531,
+    "askCoreHeadroomBytes": 584226,
     "askCoreWithinBudget": true,
     "askCoreHasHeadroom": true,
-    "fullAskBytes": 6084820,
+    "fullAskBytes": 6160225,
     "nodeLoadPlanStages": 7,
     "nodeRuntimeStateCases": 15,
     "nodePreviewScenarios": 21
@@ -363,7 +363,7 @@
           "Do not turn item counts into importance claims.",
           "Do not imply every brand product is covered."
         ],
-        "generatedCount": 2437
+        "generatedCount": 2479
       },
       {
         "id": "company-pages",
@@ -1191,10 +1191,10 @@
           "reason": "token-containment"
         },
         {
-          "id": "ovs:errand/pick-a-bank",
-          "label": "Pick a bank",
-          "type": "errand",
-          "hash": "#n/errand/pick-a-bank",
+          "id": "ovs:brand/bank-of-america",
+          "label": "Bank of America",
+          "type": "brand",
+          "hash": "#n/brand/bank-of-america",
           "reason": "token-containment"
         }
       ]

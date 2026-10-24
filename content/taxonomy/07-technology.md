@@ -13,24 +13,24 @@ edge: Devices, the connections they run on, and the software and services used t
 - Phones | cid: phones | aka: mobile phones, smartphones
 - Laptops | cid: laptops
 - Desktop computers
-- Tablets
-- E-readers | need: learn
+- Tablets | cid: tablets
+- E-readers | need: learn | cid: e-readers
 - Refurbished devices | mode: reuse | aka: refurbished phones, second-hand tech
 
 ### Wearables and audio
-- Smartwatches and wearables | aka: smartwatches, fitness trackers
+- Smartwatches and wearables | aka: smartwatches, fitness trackers | cid: smartwatches-and-wearables
 - Headphones and earbuds | cid: headphones-and-earbuds
 - Speakers and sound systems
 
 ### Screens and cameras
-- TVs | aka: televisions
+- TVs | aka: televisions | cid: tvs
 - Monitors
 - Projectors
 - Cameras | aka: digital cameras
 - Action cameras and drones
 
 ### Games hardware
-- Game consoles
+- Game consoles | cid: game-consoles
 - Handheld consoles
 - Gaming computers and parts
 - VR and mixed reality headsets
@@ -143,7 +143,7 @@ edge: Devices, the connections they run on, and the software and services used t
 
 ### Protecting accounts
 - Password managers | cid: password-managers
-- Authenticator and two-factor apps | aka: 2FA apps, authenticator apps, authenticator 2fa apps
+- Authenticator and two-factor apps | aka: 2FA apps, authenticator apps, authenticator 2fa apps | cid: authenticator-and-two-factor-apps
 - Hardware security keys | type: P | mode: buy
 - Account recovery and inheritance planning
 
@@ -157,7 +157,7 @@ edge: Devices, the connections they run on, and the software and services used t
 - Encrypted email services
 - Encrypted file storage and backup
 - Antivirus and device security
-- Ad and tracker blockers | mode: free
+- Ad and tracker blockers | mode: free | cid: ad-and-tracker-blockers
 - Data removal services
 - Identity theft protection
 

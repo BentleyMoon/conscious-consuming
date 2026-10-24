@@ -1,0 +1,1283 @@
+{
+ "meta": {
+  "id": "heat-pumps",
+  "label": "Heat pumps",
+  "type": "Products",
+  "primaryAxis": "environment",
+  "tradeoff": [
+   "environment",
+   "accessibility"
+  ],
+  "tradeoffLabels": [
+   "most efficient, lowest-impact refrigerant",
+   "easiest to get installed and paid for"
+  ],
+  "source": "Conscious Consuming (curated)",
+  "attribution": "Compares air-source heat pumps for whole-home heating, plus the gas boiler most people would otherwise fit and three ways of paying for a heat pump. UK and EU options are air-to-water heat pumps for radiators; US options are ducted or mini-split air-to-air heat pumps, the usual US whole-home type. METHOD. Environment, UK and EU: every model's EU Product Information Sheet in the European Product Registry for Energy Labelling (EPREL, Delegated Regulation (EU) 811/2013), using the seasonal space heating efficiency at medium temperature (55C flow, average climate), the figure that matters for a house keeping its radiators. Each model is the size nearest 8 kW its maker registers. Score = efficiency minus 80, so the EU legal minimum for a heat pump (110%, Regulation (EU) 813/2013) scores 30, and a 94% gas boiler on the same scale scores 14; 10 points come off if the refrigerant's global warming potential is 150 or more, the threshold the EU F-gas Regulation (EU) 2024/573 uses to ban such refrigerants in self-contained heat pumps up to 12 kW from 1 January 2027. Every EU and UK model here uses R290 (propane), so none loses those points. Environment, US: the ENERGY STAR certified heat pump lists (data.energystar.gov), using the median HSPF2 across a series' certified matched systems. Score = 30 + (HSPF2 minus 7.5, the federal minimum for split heat pumps in 10 CFR 430.32) x 20, minus 10 for refrigerant GWP of 150 or more (every US model here uses R-454B, GWP 470). US and EU scores sit on different test regimes and are not comparable with each other; compare US with US. Longevity: the longest manufacturer warranty a homeowner can get without paying extra for it, usually by choosing the maker's top installer tier and registering on time, as published by the maker; 12 years scores 100, so the score is years x 100 / 12, capped at 100. Each note gives the standard term and the conditions. Left blank where we could not read current terms (Samsung, LG, Bosch). Accessibility: how a household gets one fitted and paid for. 90 when one company surveys, installs, handles the grant and publishes a price; 70 when it is sold through the maker's installer network; grant routes are scored on their size and how widely they are open. Not scored: installed price (it depends on the house), running cost (it follows from efficiency and your tariff), noise (given in each note as the registered outdoor sound power), and whether a heat pump suits a particular home. Grants as of October 2026: the UK Boiler Upgrade Scheme pays GBP 7,500 in England and Wales; Home Energy Scotland pays up to GBP 7,500 plus an optional loan; the US 25C tax credit ended for heat pumps placed in service after 31 December 2025 (IRS), leaving state-run federal HEEHR rebates where states have launched them. Rejected: Gree (its EPREL model codes could not be tied to a named current product), Daikin Altherma 3 M R32 (no first-party page tying the registered code to the product), Viessmann Vitocal 250-A (UK warranty page unavailable). Sources: EPREL, ENERGY STAR, EUR-Lex, eCFR, GOV.UK, Home Energy Scotland, US Department of Energy, IRS, and makers' own product, datasheet and warranty pages. Not financial advice. Reviewed 2026-10.",
+  "allergens": false,
+  "presets": {
+   "Balanced": {
+    "w": {
+     "environment": 3,
+     "longevity": 2,
+     "accessibility": 2
+    },
+    "x": []
+   },
+   "Lowest impact": {
+    "w": {
+     "environment": 5,
+     "longevity": 2,
+     "accessibility": 1
+    },
+    "x": []
+   },
+   "Longest warranty": {
+    "w": {
+     "longevity": 5,
+     "environment": 2,
+     "accessibility": 1
+    },
+    "x": []
+   },
+   "Easiest to get": {
+    "w": {
+     "accessibility": 5,
+     "environment": 2,
+     "longevity": 1
+    },
+    "x": []
+   }
+  },
+  "n": 18,
+  "valueSignatureProfile": {
+   "entryCount": 18,
+   "signedEntries": 18,
+   "drawableEntries": 12,
+   "minimumThemesForBloom": 2,
+   "themeCounts": {
+    "planet": 15,
+    "cost": 15
+   }
+  },
+  "provenanceProfile": {
+   "entryCount": 18,
+   "singleSourceEntries": 6,
+   "multiSourceEntries": 12,
+   "noSourceEntries": 0,
+   "noteOnlyEntries": 0,
+   "averageSourceDomains": 1.67,
+   "topPrimarySources": [
+    {
+     "label": "eprel.ec.europa.eu",
+     "entries": 4
+    },
+    {
+     "label": "airahome.com",
+     "entries": 1
+    },
+    {
+     "label": "bryant.com",
+     "entries": 1
+    },
+    {
+     "label": "carrier.com",
+     "entries": 1
+    },
+    {
+     "label": "daikin.co.uk",
+     "entries": 1
+    },
+    {
+     "label": "energy.gov",
+     "entries": 1
+    }
+   ]
+  },
+  "decision": {
+   "category": "heat-pumps",
+   "reads": {
+    "text": "Compare heat pumps by environmental impact, everyday access, and support life.",
+    "basis": [
+     {
+      "criterion": "environment",
+      "readsAs": "environmental impact"
+     },
+     {
+      "criterion": "accessibility",
+      "readsAs": "everyday access"
+     },
+     {
+      "criterion": "longevity",
+      "readsAs": "support life"
+     }
+    ],
+    "signature": {
+     "by": "Conscious Consuming",
+     "on": "2026-07-15",
+     "status": "approved-batch"
+    },
+    "receipt": {
+     "dataset": "heat-pumps",
+     "entryCount": 18,
+     "criteria": [
+      {
+       "criterion": "environment",
+       "readsAs": "environmental impact",
+       "known": 15,
+       "minimum": 14,
+       "maximum": 76,
+       "spread": 62
+      },
+      {
+       "criterion": "accessibility",
+       "readsAs": "everyday access",
+       "known": 15,
+       "minimum": 35,
+       "maximum": 90,
+       "spread": 55
+      },
+      {
+       "criterion": "longevity",
+       "readsAs": "support life",
+       "known": 11,
+       "minimum": 42,
+       "maximum": 100,
+       "spread": 58
+      }
+     ]
+    }
+   },
+   "axes": [
+    {
+     "id": "efficiency-or-access",
+     "kind": "tradeoff",
+     "label": "Efficiency or access",
+     "question": "Most efficient, or easiest to get installed and paid for?",
+     "criteria": [
+      "environment",
+      "accessibility"
+     ],
+     "poles": [
+      "More efficient",
+      "Easier to get"
+     ],
+     "default": 50
+    },
+    {
+     "id": "longevity",
+     "kind": "criterion",
+     "label": "Support life",
+     "question": "Do you want longer support?",
+     "criteria": [
+      "longevity"
+     ],
+     "poles": [
+      "Flexible",
+      "Longer support"
+     ],
+     "default": 50
+    }
+   ],
+   "budget": {
+    "available": false,
+    "mode": "none",
+    "knownEntries": 0,
+    "coverage": 0
+   },
+   "archetypes": [
+    "best-for-most",
+    "strictest-match"
+   ],
+   "page": {
+    "stage": "approved-batch",
+    "primaryRoute": true
+   },
+   "consumer": {
+    "reads": "Round 8 approved category differences reads.",
+    "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+    "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+    "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+    "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+   }
+  }
+ },
+ "criteria": [
+  {
+   "key": "environment",
+   "label": "Efficiency at radiator temperatures and refrigerant",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "longevity",
+   "label": "Longest manufacturer warranty",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "accessibility",
+   "label": "Getting one installed and paid for",
+   "source": "curated",
+   "tier": "assessed"
+  }
+ ],
+ "products": [
+  {
+   "code": "daikin-altherma-4-h",
+   "name": "Daikin Altherma 4 H (8 kW, R290)",
+   "brand": "Daikin",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Daikin's R290 monobloc range launched in April 2025, here the 8 kW EPSK08 outdoor unit. The most efficient model at radiator temperatures in this roster, and one of the quietest on paper.",
+   "scores": {
+    "environment": 76,
+    "longevity": 42,
+    "accessibility": 70
+   },
+   "provenance": {
+    "environment": {
+     "note": "Daikin Altherma 4 H (EPSK08 outdoor unit)'s EU Product Information Sheet (EPREL registration 2331513) gives a seasonal space heating efficiency of 156% at medium temperature (55C flow, average climate) for a rated output of 8 kW, with an outdoor sound power of 45 dB. Daikin says the Altherma 4 is its first residential heat pump developed for R-290 (propane), which has a near zero GWP. Score: 156 minus 80 = 76, with no refrigerant deduction because the refrigerant's GWP is under 150. The 156% figure is for the package with the EPBX10 indoor unit and a 500-litre cylinder, the highest medium-temperature figure in this roster.",
+     "source": "https://eprel.ec.europa.eu/fiches/spaceheaters/Fiche_2331513_EN.pdf",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Daikin UK gives a two-year guarantee as standard; once the installer registers the heat pump on Stand By Me, the owner can extend it to 5 years free of charge. A further 2 years (7 in total) can be bought only when a Daikin Sustainable Home Expert installed it. Scored on the 5 years available without paying extra: 5 of 12 years = 42.",
+     "source": "https://www.daikin.co.uk/en_GB/service-end-user/warranty.html",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Sold and fitted through installers in Daikin's own Sustainable Home Installer and Expert tiers, who register the unit for the extended warranty. You find and hire the installer yourself; in England and Wales the installer can claim the GBP 7,500 Boiler Upgrade Scheme grant if MCS certified.",
+     "source": "https://www.daikin.co.uk/en_GB/service-end-user/warranty.html",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EU Product Information Sheet",
+     "url": "https://eprel.ec.europa.eu/fiches/spaceheaters/Fiche_2331513_EN.pdf"
+    },
+    {
+     "label": "Daikin: Altherma 4 R-290 range",
+     "url": "https://www.daikin.eu/en_us/press-releases/daikin-altherma-4-new-classifications.html"
+    },
+    {
+     "label": "Daikin UK warranty",
+     "url": "https://www.daikin.co.uk/en_GB/service-end-user/warranty.html"
+    }
+   ],
+   "region": [
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "R290 refrigerant",
+    "Class A+++ at 55C",
+    "Installer network"
+   ],
+   "valueSignature": {
+    "planet": 59,
+    "cost": 70
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "daikin.co.uk",
+    "sourceLabels": [
+     "daikin.co.uk",
+     "eprel.ec.europa.eu"
+    ]
+   }
+  },
+  {
+   "code": "lg-therma-v-r290",
+   "name": "LG Therma V R290 Monobloc (HM091HF)",
+   "brand": "LG Electronics",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "LG's R290 monobloc, here the single-phase HM091HF outdoor unit. Second most efficient at radiator temperatures in this roster on its EU sheet, from a maker better known for appliances and air conditioning.",
+   "scores": {
+    "environment": 71
+   },
+   "provenance": {
+    "environment": {
+     "note": "LG Therma V R290 Monobloc HM091HF's EU Product Information Sheet (EPREL registration 2367958) gives a seasonal space heating efficiency of 151% at medium temperature (55C flow, average climate) for a rated output of 7 kW, with an outdoor sound power of 50 dB. LG says the Therma V R290 Monobloc uses R290 with a GWP of three. Score: 151 minus 80 = 71, with no refrigerant deduction because the refrigerant's GWP is under 150.",
+     "source": "https://eprel.ec.europa.eu/fiches/spaceheaters/Fiche_2367958_EN.pdf",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EU Product Information Sheet",
+     "url": "https://eprel.ec.europa.eu/fiches/spaceheaters/Fiche_2367958_EN.pdf"
+    },
+    {
+     "label": "LG: Therma V R290 Monobloc",
+     "url": "https://www.lg.com/global/business/insights/hvac/blog/introducing-therma-v-r290-monobloc/"
+    }
+   ],
+   "region": [
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "R290 refrigerant",
+    "Class A+++ at 55C",
+    "Warranty terms not found"
+   ],
+   "valueSignature": {
+    "planet": 71
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "eprel.ec.europa.eu"
+   }
+  },
+  {
+   "code": "viessmann-vitocal-150-a",
+   "name": "Viessmann Vitocal 150-A (9 kW, R290)",
+   "brand": "Viessmann",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Viessmann's mainstream R290 monobloc for boiler replacement, with flow temperatures up to 70C so existing radiators can usually stay.",
+   "scores": {
+    "environment": 65,
+    "longevity": 83,
+    "accessibility": 70
+   },
+   "provenance": {
+    "environment": {
+     "note": "Viessmann Vitocal 150-A Compact (9 kW)'s EU Product Information Sheet (EPREL registration 2508640) gives a seasonal space heating efficiency of 145% at medium temperature (55C flow, average climate) for a rated output of 9 kW, with an outdoor sound power of 53 dB. Viessmann's UK product page says the Vitocal 15x series uses R290 (propane) with a GWP100 of 0.02. Score: 145 minus 80 = 65, with no refrigerant deduction because the refrigerant's GWP is under 150. The registration is for the Compact package with an integrated cylinder.",
+     "source": "https://eprel.ec.europa.eu/fiches/spaceheaters/Fiche_2508640_EN.pdf",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Viessmann's UK product page lists a 2-year standard warranty. Viessmann UK's 'Viessmann Simplified' announcement (August 2024, still live on its site in October 2026) says the Vitocal 150-A and 151-A 'are now available with an extendable 10-year warranty' and that the offer has no expiry date, with terms held in its Installer Portal. Scored on 10 of 12 years = 83.",
+     "source": "https://www.viessmann.co.uk/en/latest-news/viessmann-simplified.html",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Installed through Viessmann-trained installers. Viessmann's UK page also lists ViAccess, an MCS umbrella scheme that lets installers who are not MCS members fit its air source heat pumps and still use the Boiler Upgrade Scheme, which widens the pool of installers who can get you the grant.",
+     "source": "https://www.viessmann.co.uk/en/products/heat-pump/Vitocal-150-A-standard.html",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EU Product Information Sheet",
+     "url": "https://eprel.ec.europa.eu/fiches/spaceheaters/Fiche_2508640_EN.pdf"
+    },
+    {
+     "label": "Viessmann UK: Vitocal 150-A",
+     "url": "https://www.viessmann.co.uk/en/products/heat-pump/Vitocal-150-A-standard.html"
+    },
+    {
+     "label": "Viessmann UK: extended warranty offer",
+     "url": "https://www.viessmann.co.uk/en/latest-news/viessmann-simplified.html"
+    }
+   ],
+   "region": [
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "R290 refrigerant",
+    "10-year warranty option",
+    "High flow temperature"
+   ],
+   "valueSignature": {
+    "planet": 74,
+    "cost": 70
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "viessmann.co.uk",
+    "sourceLabels": [
+     "viessmann.co.uk",
+     "eprel.ec.europa.eu"
+    ]
+   }
+  },
+  {
+   "code": "panasonic-aquarea-l",
+   "name": "Panasonic Aquarea L Generation (7 kW, R290)",
+   "brand": "Panasonic",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Panasonic's R290 split air-to-water heat pump, here the 7 kW WH-WDG07LE5 outdoor unit with its hydro module.",
+   "scores": {
+    "environment": 62,
+    "longevity": 58,
+    "accessibility": 70
+   },
+   "provenance": {
+    "environment": {
+     "note": "Panasonic Aquarea L (WH-WDG07LE5 outdoor unit)'s EU Product Information Sheet (EPREL registration 1791526) gives a seasonal space heating efficiency of 142% at medium temperature (55C flow, average climate) for a rated output of 7 kW, with an outdoor sound power of 53 dB. Panasonic's L Generation service presentation (a separate document) says the range uses R290, with 0.96 kg in the WH-WDG07LE5. Score: 142 minus 80 = 62, with no refrigerant deduction because the refrigerant's GWP is under 150.",
+     "source": "https://eprel.ec.europa.eu/fiches/spaceheaters/Fiche_1791526_EN.pdf",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Panasonic UK's warranty conditions for air-to-water (A2W) products give 3 years to an ordinary installer, 5 years parts and labour to an accredited installer, and 7 years parts and labour to a PRO Partner or Elite PRO Partner who registers the unit on PRO Club and fits the CZ-TAW1 cloud adapter. The document is dated December 2021 and is still the version Panasonic's PRO Club serves. Scored on 7 of 12 years = 58.",
+     "source": "https://www.panasonicproclub.com/uploads/GB/certifications/R2-WEBSITE_PANASONIC_UK_RAC_PAC_VRF_A2W_Warranty_01DEC_2021.pdf",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Fitted through installers in Panasonic's PRO Partner programme; the warranty length depends on which tier your installer belongs to, so it is worth asking before you hire. Grant access depends on the installer being MCS certified.",
+     "source": "https://www.panasonicproclub.com/uploads/GB/certifications/R2-WEBSITE_PANASONIC_UK_RAC_PAC_VRF_A2W_Warranty_01DEC_2021.pdf",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EU Product Information Sheet",
+     "url": "https://eprel.ec.europa.eu/fiches/spaceheaters/Fiche_1791526_EN.pdf"
+    },
+    {
+     "label": "Panasonic: L Generation R290 service guide",
+     "url": "https://www.oceanairuk.com/cdn/shop/files/Panasonic_Service_Engineer_Aquarea_L_Generation_R290_Spilt.pdf"
+    },
+    {
+     "label": "Panasonic UK warranty conditions",
+     "url": "https://www.panasonicproclub.com/uploads/GB/certifications/R2-WEBSITE_PANASONIC_UK_RAC_PAC_VRF_A2W_Warranty_01DEC_2021.pdf"
+    }
+   ],
+   "region": [
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "R290 refrigerant",
+    "Split system",
+    "Installer-tier warranty"
+   ],
+   "valueSignature": {
+    "planet": 60,
+    "cost": 70
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "panasonicproclub.com",
+    "sourceLabels": [
+     "panasonicproclub.com",
+     "eprel.ec.europa.eu"
+    ]
+   }
+  },
+  {
+   "code": "mitsubishi-ecodan-r290",
+   "name": "Mitsubishi Electric Ecodan R290 (8.5 kW)",
+   "brand": "Mitsubishi Electric",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The R290 generation of Mitsubishi Electric's Ecodan range. Here the PUZ-WZ85VAA outdoor unit with an Ecodan cylinder.",
+   "scores": {
+    "environment": 61,
+    "longevity": 58,
+    "accessibility": 70
+   },
+   "provenance": {
+    "environment": {
+     "note": "Mitsubishi Electric Ecodan R290 PUZ-WZ85VAA's EU Product Information Sheet (EPREL registration 2258215) gives a seasonal space heating efficiency of 141% at medium temperature (55C flow, average climate) for a rated output of 8 kW, with an outdoor sound power of 54 dB. Mitsubishi Electric's separate datasheet for the PUZ-WZ85/100/120 lists the refrigerant as R290 (GWP 0.02). Score: 141 minus 80 = 61, with no refrigerant deduction because the refrigerant's GWP is under 150. Other cylinder pairings of the same outdoor unit are registered at 140% to 143%.",
+     "source": "https://eprel.ec.europa.eu/fiches/spaceheaters/Fiche_2258215_EN.pdf",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Mitsubishi Electric UK's Ecodan warranty page sets the warranty by installer tier: 'Standard Installers -  receive up to 3 years', Accredited Installers up to 5 years, and Ecodan Business Solutions Partners up to 7 years. Scored on 7 of 12 years = 58; a homeowner gets the full term only by choosing an installer in the top tier.",
+     "source": "https://les.mitsubishielectric.co.uk/ecodan-residential-warranty",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Sold through Mitsubishi Electric's tiered network of standard, accredited and Business Solutions Partner installers, so there is a wide choice of fitters; the warranty you get depends on which tier you hire.",
+     "source": "https://les.mitsubishielectric.co.uk/ecodan-residential-warranty",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EU Product Information Sheet",
+     "url": "https://eprel.ec.europa.eu/fiches/spaceheaters/Fiche_2258215_EN.pdf"
+    },
+    {
+     "label": "Mitsubishi Electric: Ecodan R290 datasheet",
+     "url": "https://library.mitsubishielectric.co.uk/pdf/download_full/5456"
+    },
+    {
+     "label": "Mitsubishi Electric: Ecodan warranty",
+     "url": "https://les.mitsubishielectric.co.uk/ecodan-residential-warranty"
+    }
+   ],
+   "region": [
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "R290 refrigerant",
+    "Large installer network",
+    "Installer-tier warranty"
+   ],
+   "valueSignature": {
+    "planet": 59.5,
+    "cost": 70
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "les.mitsubishielectric.co.uk",
+    "sourceLabels": [
+     "les.mitsubishielectric.co.uk",
+     "eprel.ec.europa.eu"
+    ]
+   }
+  },
+  {
+   "code": "aira-heat-pump",
+   "name": "Aira Heat Pump (8 kW)",
+   "brand": "Aira",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A heat pump company that designs its own R290 unit and sells it direct with survey, installation and a 15-year guarantee in one package, in the UK and parts of Europe.",
+   "scores": {
+    "environment": 61,
+    "longevity": 100,
+    "accessibility": 90
+   },
+   "provenance": {
+    "environment": {
+     "note": "The Aira 8 kW outdoor unit (HPO-AW-8-230V)'s EU Product Information Sheet (EPREL registration 1974845) gives a seasonal space heating efficiency of 141% at medium temperature (55C flow, average climate) for a rated output of 9 kW, with an outdoor sound power of 56 dB. Aira's own site says its heat pump uses R290 refrigerant. Score: 141 minus 80 = 61, with no refrigerant deduction because the refrigerant's GWP is under 150. The registration pairs it with Aira's 250-litre all-in-one indoor unit.",
+     "source": "https://eprel.ec.europa.eu/fiches/spaceheaters/Fiche_1974845_EN.pdf",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Aira's 15-Year Aira Guarantee is included in the price and combines a product and installation warranty (parts, labour, necessary maintenance and servicing), a comfort guarantee of 18C to 22C indoors, and a performance guarantee of at least four times a boiler's heating efficiency over a year. 15 years caps the scale at 100, the longest in this roster.",
+     "source": "https://www.airahome.com/en-gb/cleaner-more-affordable-heating",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "One company assesses the home, designs, installs and removes the old boiler, and publishes a starting price: 'Aira Heat Pump prices start from £6,729', a figure for a 6 kW system that already includes the GBP 7,500 grant (England and Wales). Finance is offered.",
+     "source": "https://www.airahome.com/en-gb/cleaner-more-affordable-heating",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EU Product Information Sheet",
+     "url": "https://eprel.ec.europa.eu/fiches/spaceheaters/Fiche_1974845_EN.pdf"
+    },
+    {
+     "label": "Aira: prices and guarantee",
+     "url": "https://www.airahome.com/en-gb/cleaner-more-affordable-heating"
+    }
+   ],
+   "region": [
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "R290 refrigerant",
+    "15-year guarantee",
+    "Direct installer"
+   ],
+   "valueSignature": {
+    "planet": 80.5,
+    "cost": 90
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "airahome.com",
+    "sourceLabels": [
+     "airahome.com",
+     "eprel.ec.europa.eu"
+    ]
+   }
+  },
+  {
+   "code": "samsung-ehs-mono-r290",
+   "name": "Samsung EHS Mono R290 (8 kW)",
+   "brand": "Samsung",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Samsung's R290 monobloc, launched in the UK in November 2023 and rated for 75C hot water. Here the 8 kW AE080CXYDEK.",
+   "scores": {
+    "environment": 59
+   },
+   "provenance": {
+    "environment": {
+     "note": "Samsung EHS Mono R290 AE080CXYDEK's EU Product Information Sheet (EPREL registration 1853014) gives a seasonal space heating efficiency of 139% at medium temperature (55C flow, average climate) for a rated output of 8 kW, with an outdoor sound power of 59 dB. Samsung's UK launch release (a separate page) says the EHS Mono R290 has a GWP of 3, against 675 for R32. Score: 139 minus 80 = 59, with no refrigerant deduction because the refrigerant's GWP is under 150.",
+     "source": "https://eprel.ec.europa.eu/fiches/spaceheaters/Fiche_1853014_EN.pdf",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EU Product Information Sheet",
+     "url": "https://eprel.ec.europa.eu/fiches/spaceheaters/Fiche_1853014_EN.pdf"
+    },
+    {
+     "label": "Samsung UK launch",
+     "url": "https://news.samsung.com/uk/samsung-climate-solutions-to-revolutionise-home-heating-with-new-ehs-mono-heat-pump-featuring-r290"
+    }
+   ],
+   "region": [
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "R290 refrigerant",
+    "75C hot water",
+    "Warranty terms not found"
+   ],
+   "valueSignature": {
+    "planet": 59
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "eprel.ec.europa.eu"
+   }
+  },
+  {
+   "code": "bosch-compress-5800i-aw",
+   "name": "Bosch Compress 5800i AW (7 kW, R290)",
+   "brand": "Bosch Home Comfort (Worcester Bosch in the UK)",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Bosch's compact R290 monobloc, sold in the UK under Worcester Bosch. Its EU sheet lists the lowest outdoor sound power in this roster, 42 dB.",
+   "scores": {
+    "environment": 58,
+    "accessibility": 70
+   },
+   "provenance": {
+    "environment": {
+     "note": "Bosch Compress 5800i AW 7 OR-S (part 8738213466)'s EU Product Information Sheet (EPREL registration 1560683) gives a seasonal space heating efficiency of 138% at medium temperature (55C flow, average climate) for a rated output of 7 kW, with an outdoor sound power of 42 dB. Worcester Bosch's separate specifier guide lists R290 as the refrigerant for all three CS5800i outdoor units. Score: 138 minus 80 = 58, with no refrigerant deduction because the refrigerant's GWP is under 150.",
+     "source": "https://eprel.ec.europa.eu/fiches/spaceheaters/Fiche_1560683_EN.pdf",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Worcester Bosch's heat pump guarantee terms say the guarantee is at least two years and 'may be longer depending on the Product model and the accreditation of your installer', and its site offers introductions to Worcester Accredited Installers. No longevity score: the terms we read do not state the extended length for this model.",
+     "source": "https://www.worcester-bosch.co.uk/heat-pump-guarantee-terms-and-conditions",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EU Product Information Sheet",
+     "url": "https://eprel.ec.europa.eu/fiches/spaceheaters/Fiche_1560683_EN.pdf"
+    },
+    {
+     "label": "Worcester Bosch: 5800i specifier guide",
+     "url": "https://installer.worcester-bosch.co.uk/support/literature/download/8716122820"
+    },
+    {
+     "label": "Worcester Bosch: heat pump guarantee terms",
+     "url": "https://www.worcester-bosch.co.uk/heat-pump-guarantee-terms-and-conditions"
+    }
+   ],
+   "region": [
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "R290 refrigerant",
+    "Quiet outdoor unit",
+    "Installer network"
+   ],
+   "valueSignature": {
+    "planet": 58,
+    "cost": 70
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "eprel.ec.europa.eu",
+    "sourceLabels": [
+     "eprel.ec.europa.eu",
+     "worcester-bosch.co.uk"
+    ]
+   }
+  },
+  {
+   "code": "vaillant-arotherm-plus",
+   "name": "Vaillant aroTHERM plus (7 kW, R290)",
+   "brand": "Vaillant",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Vaillant's R290 monobloc, from the German boiler maker; several sizes carry the Quiet Mark. Here the 7 kW model, whose EU sheet rates 6 kW at 55C.",
+   "scores": {
+    "environment": 54,
+    "longevity": 58,
+    "accessibility": 70
+   },
+   "provenance": {
+    "environment": {
+     "note": "Vaillant aroTHERM plus VWL 75/6 A 230V's EU Product Information Sheet (EPREL registration 1844424) gives a seasonal space heating efficiency of 134% at medium temperature (55C flow, average climate) for a rated output of 6 kW, with an outdoor sound power of 55 dB. Vaillant's UK product page (a separate page) says the aroTHERM plus uses natural refrigerant R290. Score: 134 minus 80 = 54, with no refrigerant deduction because the refrigerant's GWP is under 150.",
+     "source": "https://eprel.ec.europa.eu/fiches/spaceheaters/Fiche_1844424_EN.pdf",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Vaillant's UK page: 'The aroTHERM plus heat pump comes with a 2-year standard guarantee but can be extended up to 7 years', limited to Platinum and Renewable Partner installers who also register it with a Vaillant cylinder; lower-tier installers may be charged for upgrades. Scored on 7 of 12 years = 58.",
+     "source": "https://www.vaillant.co.uk/product-systems/heat-pumps/arotherm-plus/",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Fitted through Vaillant's installer network, with a 'Find an installer' search on its UK site; the longest guarantee needs a Platinum or Renewable Partner installer.",
+     "source": "https://www.vaillant.co.uk/product-systems/heat-pumps/arotherm-plus/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EU Product Information Sheet",
+     "url": "https://eprel.ec.europa.eu/fiches/spaceheaters/Fiche_1844424_EN.pdf"
+    },
+    {
+     "label": "Vaillant UK: aroTHERM plus",
+     "url": "https://www.vaillant.co.uk/product-systems/heat-pumps/arotherm-plus/"
+    }
+   ],
+   "region": [
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "R290 refrigerant",
+    "Quiet Mark",
+    "Installer network"
+   ],
+   "valueSignature": {
+    "planet": 56,
+    "cost": 70
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "vaillant.co.uk",
+    "sourceLabels": [
+     "vaillant.co.uk",
+     "eprel.ec.europa.eu"
+    ]
+   }
+  },
+  {
+   "code": "octopus-cosy",
+   "name": "Octopus Cosy 6",
+   "brand": "Octopus Energy",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The UK energy supplier's own R290 heat pump, sold and installed by Octopus alongside its heat pump tariff. Here the 6 kW model.",
+   "scores": {
+    "environment": 50,
+    "longevity": 67,
+    "accessibility": 90
+   },
+   "provenance": {
+    "environment": {
+     "note": "Octopus Cosy 6's EU Product Information Sheet (EPREL registration 2843206) gives a seasonal space heating efficiency of 130% at medium temperature (55C flow, average climate) for a rated output of 6 kW, with an outdoor sound power of 58 dB. Octopus's own page says the Cosy uses the natural refrigerant R290. Score: 130 minus 80 = 50, with no refrigerant deduction because the refrigerant's GWP is under 150. The larger Cosy 9 and Cosy 12 are registered at 134% and 150% at 55C.",
+     "source": "https://eprel.ec.europa.eu/fiches/spaceheaters/Fiche_2843206_EN.pdf",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Octopus advertises 'An 8 year warranty, plus smart software updates' on its Cosy heat pumps. Scored on 8 of 12 years = 67.",
+     "source": "https://octopus.energy/cosy-heat-pump/",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Octopus surveys, installs and handles the grant itself, and publishes a typical price: 'Our typical heat pump price is £4,064', the median post-survey quote after the GBP 7,500 Boiler Upgrade Scheme grant, which it compares with a national average of GBP 5,408.",
+     "source": "https://octopus.energy/cosy-heat-pump/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EU Product Information Sheet",
+     "url": "https://eprel.ec.europa.eu/fiches/spaceheaters/Fiche_2843206_EN.pdf"
+    },
+    {
+     "label": "Octopus: Cosy heat pump",
+     "url": "https://octopus.energy/cosy-heat-pump/"
+    }
+   ],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "R290 refrigerant",
+    "Direct installer",
+    "Published typical price"
+   ],
+   "valueSignature": {
+    "planet": 58.5,
+    "cost": 90
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "octopus.energy",
+    "sourceLabels": [
+     "octopus.energy",
+     "eprel.ec.europa.eu"
+    ]
+   }
+  },
+  {
+   "code": "trane-trucomfort-20",
+   "name": "Trane 20 TruComfort Variable Speed Heat Pump",
+   "brand": "Trane Technologies",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Trane's top variable-speed ducted heat pump on the new R-454B refrigerant, mostly certified for cold climates. A ducted air-to-air system, the usual US whole-home heat pump.",
+   "scores": {
+    "environment": 64,
+    "longevity": 83,
+    "accessibility": 70
+   },
+   "provenance": {
+    "environment": {
+     "note": "ENERGY STAR's certified heat pump list has 315 matched systems in the 20 TruComfort Variable Speed Heat Pump series (Trane), with HSPF2 from 9.0 to 10.5 and a median of 9.7; all listed with R-454B (GWP 470 in the ENERGY STAR record). US scale: 30 + (HSPF2 minus the federal minimum of 7.5) x 20 = 74, minus 10 because R-454B's GWP is above 150, = 64. Not comparable with the EU-label scores above.",
+     "source": "https://data.energystar.gov/resource/3m3x-a2hy.json?series_name=20%20TruComfort%20Variable%20Speed%20Heat%20Pump",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Trane's current heat pump brochure (dated March 2024) gives its variable-speed TruComfort units a 12-year limited warranty on the compressor and 10 years on the outdoor coil and functional parts with registration within 60 days, otherwise base terms apply. Scored on the 10-year parts term: 10 of 12 = 83.",
+     "source": "https://www.trane.com/residential/en/assets/product-brochures/trane-brochure-heat-pumps-032624.pdf",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Sold and installed through Trane's independent dealer network, which its site searches by area ('Find a Local Pro'). The federal 25C tax credit that covered heat pumps ended for equipment placed in service after 31 December 2025.",
+     "source": "https://www.trane.com/residential/en/products/heat-pumps/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "ENERGY STAR certified records",
+     "url": "https://data.energystar.gov/resource/3m3x-a2hy.json?series_name=20%20TruComfort%20Variable%20Speed%20Heat%20Pump"
+    },
+    {
+     "label": "Trane heat pump brochure",
+     "url": "https://www.trane.com/residential/en/assets/product-brochures/trane-brochure-heat-pumps-032624.pdf"
+    },
+    {
+     "label": "IRS: 25C credit end date",
+     "url": "https://www.irs.gov/credits-deductions/energy-efficient-home-improvement-credit"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "ENERGY STAR",
+    "Cold climate",
+    "R-454B refrigerant"
+   ],
+   "valueSignature": {
+    "planet": 73.5,
+    "cost": 70
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "trane.com",
+    "sourceLabels": [
+     "trane.com",
+     "data.energystar.gov"
+    ]
+   }
+  },
+  {
+   "code": "mitsubishi-m-series-us",
+   "name": "Mitsubishi Electric M-Series mini-split (US)",
+   "brand": "Mitsubishi Electric Trane HVAC US",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Ductless and ducted mini-split heat pumps sold in the US by Mitsubishi Electric's joint venture with Trane, including Hyper-Heat cold-climate models. Room-by-room heating suits homes without ducts.",
+   "scores": {
+    "environment": 66,
+    "longevity": 100,
+    "accessibility": 70
+   },
+   "provenance": {
+    "environment": {
+     "note": "ENERGY STAR's mini-split list has 155 Mitsubishi Electric M series systems, HSPF2 from 8.1 to 12.9 with a median of 9.8; 153 use R-454B (GWP 470 in the record) and 81 are marked cold climate. US scale: 30 + (9.8 minus 7.5) x 20 = 76, minus 10 for a GWP above 150, = 66. Not comparable with the EU-label scores above.",
+     "source": "https://data.energystar.gov/resource/akti-mt5s.json?series_name=M%20series&outdoor_unit_brand_name=Mitsubishi%20Electric",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Mitsubishi Electric Trane HVAC US offers '12 year parts/compressor' on residential systems installed in a single-family home by a Diamond Contractor or Ductless Pro and registered within 90 days. 12 years scores 100.",
+     "source": "https://mitsubishicomfort.com/register-your-product",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Installed by licensed contractors; the longest warranty needs a Diamond Contractor, which the registration page links to a contractor search. Mini-splits need no ductwork, which widens the homes they fit.",
+     "source": "https://mitsubishicomfort.com/register-your-product",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "ENERGY STAR certified records",
+     "url": "https://data.energystar.gov/resource/akti-mt5s.json?series_name=M%20series&outdoor_unit_brand_name=Mitsubishi%20Electric"
+    },
+    {
+     "label": "Mitsubishi Electric: warranty registration",
+     "url": "https://mitsubishicomfort.com/register-your-product"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "ENERGY STAR",
+    "Ductless",
+    "12-year warranty"
+   ],
+   "valueSignature": {
+    "planet": 83,
+    "cost": 70
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "mitsubishicomfort.com",
+    "sourceLabels": [
+     "mitsubishicomfort.com",
+     "data.energystar.gov"
+    ]
+   }
+  },
+  {
+   "code": "carrier-infinity-23",
+   "name": "Carrier Infinity 23 VS Heat Pump",
+   "brand": "Carrier Global",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Carrier's flagship variable-speed ducted heat pump on R-454B, almost all combinations certified for cold climates.",
+   "scores": {
+    "environment": 50,
+    "longevity": 83,
+    "accessibility": 70
+   },
+   "provenance": {
+    "environment": {
+     "note": "ENERGY STAR's certified heat pump list has 1113 matched systems in the Infinity 23 VS Heat Pump series (Carrier), with HSPF2 from 8.0 to 10.5 and a median of 9.0; all listed with R-454B (GWP 470 in the ENERGY STAR record). US scale: 30 + (HSPF2 minus the federal minimum of 7.5) x 20 = 60, minus 10 because R-454B's GWP is above 150, = 50. Not comparable with the EU-label scores above.",
+     "source": "https://data.energystar.gov/resource/3m3x-a2hy.json?series_name=Infinity%2023%20VS%20Heat%20Pump",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Carrier's Consumer Choice Warranty: on timely registration (within 90 days) the owner picks either a 10-year parts-only limited warranty or 5 years parts plus 3 years labour; late registration leaves the standard 5-year parts warranty with no labour. Scored on 10 of 12 years = 83.",
+     "source": "https://www.carrier.com/residential/en/us/homeowner-resources/warranty/index.html",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Sold and fitted by independent Carrier dealers; the labour-cover warranty option is available only where the installing dealer takes part in Carrier's Consumer Choice programme. The federal 25C heat pump tax credit ended for equipment placed in service after 2025.",
+     "source": "https://www.carrier.com/residential/en/us/homeowner-resources/warranty/index.html",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "ENERGY STAR certified records",
+     "url": "https://data.energystar.gov/resource/3m3x-a2hy.json?series_name=Infinity%2023%20VS%20Heat%20Pump"
+    },
+    {
+     "label": "Carrier warranty",
+     "url": "https://www.carrier.com/residential/en/us/homeowner-resources/warranty/index.html"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "ENERGY STAR",
+    "Cold climate",
+    "R-454B refrigerant"
+   ],
+   "valueSignature": {
+    "planet": 66.5,
+    "cost": 70
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "carrier.com",
+    "sourceLabels": [
+     "carrier.com",
+     "data.energystar.gov"
+    ]
+   }
+  },
+  {
+   "code": "bryant-evolution-20",
+   "name": "Bryant Evolution 20 VS Heat Pump",
+   "brand": "Bryant (Carrier Global)",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Bryant's top variable-speed ducted heat pump. Bryant is a Carrier brand, and this line is certified for cold climates in every listed combination.",
+   "scores": {
+    "environment": 50,
+    "longevity": 83,
+    "accessibility": 70
+   },
+   "provenance": {
+    "environment": {
+     "note": "ENERGY STAR's certified heat pump list has 938 matched systems in the Evolution 20 VS Heat Pump series (Bryant), with HSPF2 from 8.1 to 9.5 and a median of 9.0; all listed with R-454B (GWP 470 in the ENERGY STAR record). US scale: 30 + (HSPF2 minus the federal minimum of 7.5) x 20 = 60, minus 10 because R-454B's GWP is above 150, = 50. Not comparable with the EU-label scores above.",
+     "source": "https://data.energystar.gov/resource/3m3x-a2hy.json?series_name=Evolution%2020%20VS%20Heat%20Pump",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Bryant's heat pump page lists a '10-year parts limited warranty upon timely registration', and also mentions a Red Shield 10-year unit replacement warranty. Scored on 10 of 12 years = 83.",
+     "source": "https://www.bryant.com/en/us/products/heat-pumps/",
+     "asof": "2026-10"
+    },
+    "accessibility": {
+     "note": "Sold and installed through independent Bryant dealers, with Bryant-branded financing offered. The federal 25C heat pump tax credit ended for equipment placed in service after 2025.",
+     "source": "https://www.bryant.com/en/us/products/heat-pumps/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "ENERGY STAR certified records",
+     "url": "https://data.energystar.gov/resource/3m3x-a2hy.json?series_name=Evolution%2020%20VS%20Heat%20Pump"
+    },
+    {
+     "label": "Bryant heat pumps",
+     "url": "https://www.bryant.com/en/us/products/heat-pumps/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "ENERGY STAR",
+    "Cold climate",
+    "R-454B refrigerant"
+   ],
+   "valueSignature": {
+    "planet": 66.5,
+    "cost": 70
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "bryant.com",
+    "sourceLabels": [
+     "bryant.com",
+     "data.energystar.gov"
+    ]
+   }
+  },
+  {
+   "code": "gas-condensing-boiler",
+   "name": "New gas condensing boiler (the usual default)",
+   "brand": "mainstream gas boiler",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Replacing a boiler like for like, which is what most UK and many European households still do. Included as the honest floor: cheaper and simpler to fit in most homes, but it keeps burning gas.",
+   "scores": {
+    "environment": 14
+   },
+   "provenance": {
+    "environment": {
+     "note": "A typical new condensing combi, here a 30 kW Worcester model in EPREL (registration 468228), is registered at a seasonal space heating efficiency of 94%, energy class A, on the same EU scale where the heat pumps above reach 130% to 156% at 55C. Score: 94 minus 80 = 14. It also burns gas on site, which no refrigerant deduction captures.",
+     "source": "https://eprel.ec.europa.eu/fiches/spaceheaters/Fiche_468228_EN.pdf",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EU Product Information Sheet (example boiler)",
+     "url": "https://eprel.ec.europa.eu/fiches/spaceheaters/Fiche_468228_EN.pdf"
+    },
+    {
+     "label": "Octopus: boiler and heat pump lifespans",
+     "url": "https://octopus.energy/cosy-heat-pump/"
+    }
+   ],
+   "region": [
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Honest floor",
+    "Fossil gas",
+    "No grant"
+   ],
+   "valueSignature": {
+    "planet": 14
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "eprel.ec.europa.eu"
+   }
+  },
+  {
+   "code": "boiler-upgrade-scheme",
+   "name": "Boiler Upgrade Scheme grant (England and Wales)",
+   "brand": "UK government grant",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Not a heat pump but the main way people in England and Wales pay for one: GBP 7,500 off an air source heat pump, claimed by your MCS-certified installer.",
+   "scores": {
+    "accessibility": 80
+   },
+   "provenance": {
+    "accessibility": {
+     "note": "GOV.UK: '£7,500 towards an air source heat pump', plus GBP 1,500 more until March 2027 for homes heated by oil or LPG with no mains gas. No grant for hybrid gas and heat pump systems. Eligibility (owning the property, replacing fossil fuel heating, an MCS-certified installer who applies) is set out on the scheme's eligibility page. Open in England and Wales only.",
+     "source": "https://www.gov.uk/apply-boiler-upgrade-scheme/what-you-can-get",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "GOV.UK: what you can get",
+     "url": "https://www.gov.uk/apply-boiler-upgrade-scheme/what-you-can-get"
+    },
+    {
+     "label": "GOV.UK: eligibility",
+     "url": "https://www.gov.uk/apply-boiler-upgrade-scheme/check-if-youre-eligible"
+    }
+   ],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "Grant",
+    "GBP 7,500",
+    "Installer applies"
+   ],
+   "valueSignature": {
+    "cost": 80
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "gov.uk"
+   }
+  },
+  {
+   "code": "home-energy-scotland-grant-loan",
+   "name": "Home Energy Scotland Grant and Loan",
+   "brand": "Scottish Government grant and loan",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Scotland's equivalent of the Boiler Upgrade Scheme: a grant towards a heat pump plus an optional interest-free loan, for homeowners who live in the home.",
+   "scores": {
+    "accessibility": 80
+   },
+   "provenance": {
+    "accessibility": {
+     "note": "Home Energy Scotland: for heating systems such as heat pumps, grant funding of up to GBP 7,500 is available, with another GBP 7,500 as an optional interest-free loan, and a GBP 1,500 uplift for rural and island homes. Open to homeowners in Scotland for their only or main residence, with no benefits test.",
+     "source": "https://www.homeenergyscotland.org/funding/grants-loans",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Home Energy Scotland: grants and loans",
+     "url": "https://www.homeenergyscotland.org/funding/grants-loans"
+    }
+   ],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "Grant",
+    "Interest-free loan",
+    "Scotland"
+   ],
+   "valueSignature": {
+    "cost": 80
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "homeenergyscotland.org"
+   }
+  },
+  {
+   "code": "us-home-energy-rebates",
+   "name": "US Home Energy Rebates (HEEHR), state by state",
+   "brand": "US federal rebate run by states",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The federal rebate for heat pumps and other electric upgrades, delivered by state energy offices. With the 25C tax credit gone for installs after 2025, this is the main remaining federal route, but only where a state has launched it.",
+   "scores": {
+    "accessibility": 35
+   },
+   "provenance": {
+    "accessibility": {
+     "note": "The US Department of Energy says the HEEHR program can save households 'up to $14,000 on efficient upgrades', paid at point of sale, but that rebates 'are now available in select states' and to check with your state energy office. The IRS says the separate 25C credit (up to $2,000 a year for heat pumps) covers improvements made through 31 December 2025, so it no longer applies to new installs. Scored low because availability depends on where you live.",
+     "source": "https://www.energy.gov/scep/home-energy-rebates-programs",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "DOE: Home Energy Rebates",
+     "url": "https://www.energy.gov/scep/home-energy-rebates-programs"
+    },
+    {
+     "label": "IRS: 25C credit end date",
+     "url": "https://www.irs.gov/credits-deductions/energy-efficient-home-improvement-credit"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Rebate",
+    "State by state",
+    "25C credit ended"
+   ],
+   "valueSignature": {
+    "cost": 35
+   },
+   "provenanceSummary": {
+    "factCount": 1,
+    "sourcedFactCount": 1,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "energy.gov"
+   }
+  }
+ ]
+}

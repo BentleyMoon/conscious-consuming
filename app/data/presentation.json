@@ -45,12 +45,12 @@
     },
     "counts": {
       "needs": 8,
-      "categories": 18,
-      "subcategories": 39,
-      "decisions": 219,
-      "livePaths": 134,
-      "liveDatasets": 130,
-      "notYetCovered": 85
+      "categories": 20,
+      "subcategories": 42,
+      "decisions": 224,
+      "livePaths": 154,
+      "liveDatasets": 150,
+      "notYetCovered": 70
     },
     "needs": [
       {
@@ -176,6 +176,20 @@
                 ]
               }
             ]
+          },
+          {
+            "id": "where-you-shop",
+            "label": "Where you shop",
+            "reads": "The shops where the week's food is bought.",
+            "subcategories": [
+              {
+                "id": "shops-and-suppliers",
+                "label": "Shops and suppliers",
+                "decisionIds": [
+                  "supermarkets"
+                ]
+              }
+            ]
           }
         ]
       },
@@ -278,6 +292,7 @@
                   "underwear-and-socks",
                   "jewellery-and-watches",
                   "secondhand-and-resale",
+                  "clothing-rental",
                   "repair-and-tailoring"
                 ]
               },
@@ -674,14 +689,36 @@
                 "label": "Passwords and private connections",
                 "decisionIds": [
                   "password-managers",
-                  "vpn"
+                  "vpn",
+                  "ad-and-tracker-blockers"
                 ]
               },
               {
                 "id": "account-security",
                 "label": "Account security",
                 "decisionIds": [
-                  "authenticator-2fa-apps"
+                  "authenticator-and-two-factor-apps"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "work",
+            "label": "Work",
+            "reads": "Finding a job, and having a voice once you are in one.",
+            "subcategories": [
+              {
+                "id": "finding-work",
+                "label": "Finding work",
+                "decisionIds": [
+                  "job-boards"
+                ]
+              },
+              {
+                "id": "voice-at-work",
+                "label": "Voice at work",
+                "decisionIds": [
+                  "trade-unions"
                 ]
               }
             ]
@@ -1414,6 +1451,19 @@
         "cid": "pickles"
       },
       {
+        "id": "supermarkets",
+        "label": "Supermarkets",
+        "state": "live",
+        "route": "#decide/supermarkets",
+        "need": "nourish",
+        "category": "where-you-shop",
+        "subcategory": "shops-and-suppliers",
+        "type": "Services",
+        "sourceDomain": "Shops",
+        "sourceGroup": "Shops and suppliers",
+        "cid": "supermarkets"
+      },
+      {
         "id": "soap",
         "label": "Soap",
         "state": "live",
@@ -1772,26 +1822,28 @@
       {
         "id": "mental-health-apps",
         "label": "Mental-health apps",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/mental-health-apps",
+        "state": "live",
+        "route": "#decide/mental-health-apps",
         "need": "care",
         "category": "health-and-wellbeing",
         "subcategory": "mind-and-movement",
         "type": "Services",
         "sourceDomain": "Health & wellness",
-        "sourceGroup": "Mind and mood"
+        "sourceGroup": "Mind and mood",
+        "cid": "mental-health-apps"
       },
       {
         "id": "meditation-apps",
         "label": "Meditation apps",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/meditation-apps",
+        "state": "live",
+        "route": "#decide/meditation-apps",
         "need": "care",
         "category": "health-and-wellbeing",
         "subcategory": "mind-and-movement",
         "type": "Services",
         "sourceDomain": "Health & wellness",
-        "sourceGroup": "Mind and mood"
+        "sourceGroup": "Mind and mood",
+        "cid": "meditation-apps"
       },
       {
         "id": "clothing",
@@ -1856,6 +1908,18 @@
         "cid": "secondhand-and-resale"
       },
       {
+        "id": "clothing-rental",
+        "label": "Clothing rental",
+        "state": "not-yet-covered",
+        "route": "#not-yet-covered/clothing-rental",
+        "need": "care",
+        "category": "clothes-family-and-pets",
+        "subcategory": "clothing-and-repair",
+        "type": "Services",
+        "sourceDomain": "Clothing",
+        "sourceGroup": "Secondhand and repair"
+      },
+      {
         "id": "repair-and-tailoring",
         "label": "Repair & tailoring",
         "state": "not-yet-covered",
@@ -1907,14 +1971,15 @@
       {
         "id": "car-seats",
         "label": "Car seats",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/car-seats",
+        "state": "live",
+        "route": "#decide/car-seats",
         "need": "care",
         "category": "clothes-family-and-pets",
         "subcategory": "children-and-pets",
         "type": "Products",
         "sourceDomain": "Kids & family",
-        "sourceGroup": "Babies and toddlers"
+        "sourceGroup": "Babies and toddlers",
+        "cid": "car-seats"
       },
       {
         "id": "strollers-and-pushchairs",
@@ -2254,14 +2319,15 @@
       {
         "id": "vacuum-cleaners",
         "label": "Vacuum cleaners",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/vacuum-cleaners",
+        "state": "live",
+        "route": "#decide/vacuum-cleaners",
         "need": "keep-a-home",
         "category": "home-energy-and-outdoors",
         "subcategory": "furniture-and-appliances",
         "type": "Products",
         "sourceDomain": "Home",
-        "sourceGroup": "Appliances"
+        "sourceGroup": "Appliances",
+        "cid": "vacuum-cleaners"
       },
       {
         "id": "washing-machines",
@@ -2328,14 +2394,15 @@
       {
         "id": "solar-panels",
         "label": "Solar panels",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/solar-panels",
+        "state": "live",
+        "route": "#decide/solar-panels",
         "need": "keep-a-home",
         "category": "home-energy-and-outdoors",
         "subcategory": "energy-and-repairs",
         "type": "Products",
         "sourceDomain": "Energy & connectivity",
-        "sourceGroup": "Energy at home"
+        "sourceGroup": "Energy at home",
+        "cid": "solar-panels"
       },
       {
         "id": "off-grid-power-systems",
@@ -2366,14 +2433,15 @@
       {
         "id": "heat-pumps",
         "label": "Heat pumps",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/heat-pumps",
+        "state": "live",
+        "route": "#decide/heat-pumps",
         "need": "keep-a-home",
         "category": "home-energy-and-outdoors",
         "subcategory": "energy-and-repairs",
         "type": "Products",
         "sourceDomain": "Energy & connectivity",
-        "sourceGroup": "Energy at home"
+        "sourceGroup": "Energy at home",
+        "cid": "heat-pumps"
       },
       {
         "id": "smart-thermostats",
@@ -2639,26 +2707,28 @@
       {
         "id": "tablets",
         "label": "Tablets",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/tablets",
+        "state": "live",
+        "route": "#decide/tablets",
         "need": "connect",
         "category": "devices",
         "subcategory": "phones-and-computers",
         "type": "Products",
         "sourceDomain": "Tech & digital",
-        "sourceGroup": "Devices"
+        "sourceGroup": "Devices",
+        "cid": "tablets"
       },
       {
         "id": "smartwatches-and-wearables",
         "label": "Smartwatches & wearables",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/smartwatches-and-wearables",
+        "state": "live",
+        "route": "#decide/smartwatches-and-wearables",
         "need": "connect",
         "category": "devices",
         "subcategory": "personal-and-media-devices",
         "type": "Products",
         "sourceDomain": "Tech & digital",
-        "sourceGroup": "Devices"
+        "sourceGroup": "Devices",
+        "cid": "smartwatches-and-wearables"
       },
       {
         "id": "headphones-and-earbuds",
@@ -2676,26 +2746,28 @@
       {
         "id": "tvs",
         "label": "TVs",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/tvs",
+        "state": "live",
+        "route": "#decide/tvs",
         "need": "connect",
         "category": "devices",
         "subcategory": "personal-and-media-devices",
         "type": "Products",
         "sourceDomain": "Tech & digital",
-        "sourceGroup": "Devices"
+        "sourceGroup": "Devices",
+        "cid": "tvs"
       },
       {
         "id": "game-consoles",
         "label": "Game consoles",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/game-consoles",
+        "state": "live",
+        "route": "#decide/game-consoles",
         "need": "connect",
         "category": "devices",
         "subcategory": "personal-and-media-devices",
         "type": "Products",
         "sourceDomain": "Tech & digital",
-        "sourceGroup": "Devices"
+        "sourceGroup": "Devices",
+        "cid": "game-consoles"
       },
       {
         "id": "cameras",
@@ -2761,14 +2833,15 @@
       {
         "id": "electric-vehicles",
         "label": "Electric vehicles",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/electric-vehicles",
+        "state": "live",
+        "route": "#decide/electric-vehicles",
         "need": "move",
         "category": "getting-around",
         "subcategory": "cars-bikes-and-transit",
         "type": "Products",
         "sourceDomain": "Transport & mobility",
-        "sourceGroup": "Cars"
+        "sourceGroup": "Cars",
+        "cid": "electric-vehicles"
       },
       {
         "id": "used-cars",
@@ -3010,14 +3083,15 @@
       {
         "id": "e-readers",
         "label": "E-readers",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/e-readers",
+        "state": "live",
+        "route": "#decide/e-readers",
         "need": "learn",
         "category": "learning-and-making",
         "subcategory": "books-and-school",
         "type": "Products",
         "sourceDomain": "Tech & digital",
-        "sourceGroup": "Devices"
+        "sourceGroup": "Devices",
+        "cid": "e-readers"
       },
       {
         "id": "books",
@@ -3336,14 +3410,15 @@
       {
         "id": "money-transfer-and-remittance",
         "label": "Money transfer & remittance",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/money-transfer-and-remittance",
+        "state": "live",
+        "route": "#decide/money-transfer-and-remittance",
         "need": "protect",
         "category": "money",
         "subcategory": "everyday-money",
         "type": "Services",
         "sourceDomain": "Money",
-        "sourceGroup": "Everyday banking"
+        "sourceGroup": "Everyday banking",
+        "cid": "money-transfer-and-remittance"
       },
       {
         "id": "investing",
@@ -3385,14 +3460,15 @@
       {
         "id": "budgeting-apps",
         "label": "Budgeting apps",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/budgeting-apps",
+        "state": "live",
+        "route": "#decide/budgeting-apps",
         "need": "protect",
         "category": "money",
         "subcategory": "saving-investing-and-insurance",
         "type": "Services",
         "sourceDomain": "Money",
-        "sourceGroup": "Saving, investing and insurance"
+        "sourceGroup": "Saving, investing and insurance",
+        "cid": "budgeting-apps"
       },
       {
         "id": "mortgages",
@@ -3410,14 +3486,15 @@
       {
         "id": "crypto-exchanges",
         "label": "Crypto exchanges",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/crypto-exchanges",
+        "state": "live",
+        "route": "#decide/crypto-exchanges",
         "need": "protect",
         "category": "money",
         "subcategory": "saving-investing-and-insurance",
         "type": "Services",
         "sourceDomain": "Money",
-        "sourceGroup": "Saving, investing and insurance"
+        "sourceGroup": "Saving, investing and insurance",
+        "cid": "crypto-exchanges"
       },
       {
         "id": "password-managers",
@@ -3446,16 +3523,56 @@
         "cid": "vpn"
       },
       {
-        "id": "authenticator-2fa-apps",
+        "id": "ad-and-tracker-blockers",
+        "label": "Ad & tracker blockers",
+        "state": "live",
+        "route": "#decide/ad-and-tracker-blockers",
+        "need": "protect",
+        "category": "privacy-and-security",
+        "subcategory": "passwords-and-private-connections",
+        "type": "Services",
+        "sourceDomain": "Tech & digital",
+        "sourceGroup": "Privacy and security",
+        "cid": "ad-and-tracker-blockers"
+      },
+      {
+        "id": "authenticator-and-two-factor-apps",
         "label": "Authenticator / 2FA apps",
-        "state": "not-yet-covered",
-        "route": "#not-yet-covered/authenticator-2fa-apps",
+        "state": "live",
+        "route": "#decide/authenticator-and-two-factor-apps",
         "need": "protect",
         "category": "privacy-and-security",
         "subcategory": "account-security",
         "type": "Services",
         "sourceDomain": "Tech & digital",
-        "sourceGroup": "Privacy and security"
+        "sourceGroup": "Privacy and security",
+        "cid": "authenticator-and-two-factor-apps"
+      },
+      {
+        "id": "job-boards",
+        "label": "Job boards",
+        "state": "live",
+        "route": "#decide/job-boards",
+        "need": "protect",
+        "category": "work",
+        "subcategory": "finding-work",
+        "type": "Services",
+        "sourceDomain": "Work",
+        "sourceGroup": "Finding work",
+        "cid": "job-boards"
+      },
+      {
+        "id": "trade-unions",
+        "label": "Trade unions",
+        "state": "live",
+        "route": "#decide/trade-unions",
+        "need": "protect",
+        "category": "work",
+        "subcategory": "voice-at-work",
+        "type": "Organizations",
+        "sourceDomain": "Work",
+        "sourceGroup": "Voice at work",
+        "cid": "trade-unions"
       }
     ]
   },
@@ -5408,5 +5525,5 @@
       }
     ]
   },
-  "checksum": "sha256:58cfb74ca88d50dcf1174fe783002a960a5c33f9ff80b57a3a9c78a4a21ec906"
+  "checksum": "sha256:606eb7dc9e42db029fa554a43ba1c98bac98625c260b38b66b274f3bdb7d2201"
 }

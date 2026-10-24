@@ -315,22 +315,26 @@ function resolvedTaxonomy(ontology, index) {
   const generatedIds = new Set((index.categories || []).map((category) => category.id));
 
   assert(needs.length === 8, `taxonomy: expected 8 needs, found ${needs.length}`);
-  assert(needs.reduce((sum, need) => sum + need.categories.length, 0) === 18, 'taxonomy: expected 18 categories');
-  assert(needs.flatMap((need) => need.categories).reduce((sum, category) => sum + category.subcategories.length, 0) === 39, 'taxonomy: expected 39 subcategories');
+  // 2026-10-23: two presentation categories for the two new domains, Where you shop (NOURISH, one
+  // subcategory) and Work (PROTECT, two subcategories). 18 -> 20 categories, 39 -> 42 subcategories.
+  assert(needs.reduce((sum, need) => sum + need.categories.length, 0) === 20, 'taxonomy: expected 20 categories');
+  assert(needs.flatMap((need) => need.categories).reduce((sum, category) => sum + category.subcategories.length, 0) === 42, 'taxonomy: expected 42 subcategories');
   // 2026-08-13, swarm waves two and three. Two rows added, Reusable nappies and Clothing rental, both being the reuse route beside the thing it replaces, which is the comparison this catalogue exists to make. Ten decisions promoted from gap to live across health, transport, travel, money, home, family and clothing. 206 -> 208 rows, 96 -> 110 live paths, 88 -> 102 datasets, 110 -> 98 gaps.
   // 2026-08-14, Phase 10 serial promotion. Four built decisions added four source rows;
   // no existing row moved and the not-yet-covered count stayed at 87.
   // 2026-10-14. Four generated decisions from vetted bulk sources: Bottled water and Fragrance &
   // perfume were gap rows and became live; Floor cleaners and Carpet cleaners are new rows under
   // Cleaning supplies. 217 -> 219 rows, 130 -> 134 live paths, 126 -> 130 datasets, 87 -> 85 gaps.
-  assert(decisions.length === 219, `taxonomy: expected 219 decisions, found ${decisions.length}`);
-  assert(live.length === 134, `taxonomy: expected 134 live paths, found ${live.length}`);
+  // 2026-10-23: 20 hand-built lenses published. Sixteen filled gap rows already waiting (tablets, e-readers, smartwatches, game consoles, TVs, vacuum cleaners, heat pumps, solar panels, budgeting apps, crypto exchanges, mental-health and meditation apps, car seats, electric vehicles, money transfer, authenticator apps); ad and tracker blockers left content/lenses-pending for a new row in an existing home; job boards, trade unions and supermarkets left it for two new domains, Work and Shops. Clothing rental gained a row under Clothing but stays a gap: one of its twelve options rests only on a domain that is now parked, and eleven is under the roster floor.
+  // 219 -> 224 rows, 134 -> 154 live paths, 130 -> 150 datasets, 85 -> 70 gaps.
+  assert(decisions.length === 224, `taxonomy: expected 224 decisions, found ${decisions.length}`);
+  assert(live.length === 154, `taxonomy: expected 154 live paths, found ${live.length}`);
   // 124 on 2026-08-26: messaging and browsers left the shared digital-services dataset and
   // gained their own, the first two of the nine-way split in docs/ONTOLOGY-RESEARCH.md 4.1.
   // 126 on 2026-09-23: email and search left the shared digital-services dataset in the same
   // split, the next two of the nine-way division.
-  assert(liveIds.size === 130, `taxonomy: expected 130 live datasets, found ${liveIds.size}`);
-  assert(gaps.length === 85, `taxonomy: expected 85 gaps, found ${gaps.length}`);
+  assert(liveIds.size === 150, `taxonomy: expected 150 live datasets, found ${liveIds.size}`);
+  assert(gaps.length === 70, `taxonomy: expected 70 gaps, found ${gaps.length}`);
   assert(duplicateValues(decisions.map((decision) => decision.id)).length === 0, 'taxonomy: duplicate decision id');
   assert(duplicateValues(decisions.map((decision) => decision.route)).length === 0, 'taxonomy: duplicate decision route');
   assert([...liveIds].every((id) => generatedIds.has(id)) && [...generatedIds].every((id) => liveIds.has(id)), 'taxonomy: generated category set disagrees with resolved live datasets');

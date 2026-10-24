@@ -20,7 +20,7 @@ edge: Holding money, moving it, borrowing it, growing it, and insuring against l
 - Payments | cid: payments | aka: payment apps, digital wallets
 - Credit cards | cid: credit-cards
 - Debit and prepaid cards
-- Money transfer and remittance | aka: sending money abroad
+- Money transfer and remittance | aka: sending money abroad | cid: money-transfer-and-remittance
 - Buy now, pay later
 - Cash access and ATMs
 
@@ -81,7 +81,7 @@ edge: Holding money, moving it, borrowing it, growing it, and insuring against l
 ## Managing money | cadence: monthly
 
 ### Tools
-- Budgeting apps
+- Budgeting apps | cid: budgeting-apps
 - Money management and open banking apps
 - Subscription trackers and cancellation tools
 - Tax filing software
@@ -94,7 +94,7 @@ edge: Holding money, moving it, borrowing it, growing it, and insuring against l
 ## Crypto and new finance
 
 ### Digital assets
-- Crypto exchanges
+- Crypto exchanges | cid: crypto-exchanges
 - Crypto wallets
 - Stablecoins and crypto payments
 - Crypto mining and staking | hold: The measures that matter here are energy use and custody risk, and both change faster than the catalogue can currently keep a ranking honest. Held rather than published stale.

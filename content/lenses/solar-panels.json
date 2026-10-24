@@ -1,0 +1,889 @@
+{
+  "meta": {
+    "id": "solar-panels",
+    "label": "Solar panels",
+    "type": "Products",
+    "primaryAxis": "durability",
+    "tradeoff": [
+      "durability",
+      "labor"
+    ],
+    "tradeoffLabels": [
+      "longest warranted life",
+      "lowest forced-labour exposure"
+    ],
+    "source": "Conscious Consuming (curated)",
+    "attribution": "Compares rooftop solar panel ranges from the makers most sold to homeowners in the UK, Europe and the US, plus four ways to get solar power without buying panels for your own roof. METHOD. Durability: the product warranty and the warranted power schedule. For most ranges these come from the consumer group CHOICE's published listing of a representative model (an Australian listing of a model sold globally; terms can differ by country, so check the datasheet for yours), for Qcells from EnergySage's listing, and for Silfab from its own datasheet. Where the longer term needs a certified installer and registration, the longer term is scored and the note says so. Score = 50 x product years / 30 (capped at 30) + 50 x (guaranteed % of rated power at year 25 minus 80) / 12, so 30 years and 92% at year 25 score 100. Reliability: Kiwa PVEL's 2026 PV Module Reliability Scorecard, an independent lab programme to which makers submit products; score = number of its 8 tests in which the maker has at least one Top Performer model, x 12.5. Makers not in the 2026 Scorecard are left blank, since not entering is not the same as failing. Labor (forced-labour risk in the polysilicon supply chain): starts from Sheffield Hallam University's Over-Exposed assessment of Uyghur Region exposure (November 2023, its latest): NONE (Verified) 85, NONE (Unverified) 70, HIGH 30, VERY HIGH 15. Then, from current records: +10 where the Solar Stewardship Initiative lists one of the maker's sites with a valid Supply Chain Traceability certificate, +5 where it lists only ESG certificates, +10 for a documented ingot-to-module supply chain built outside China, and -10 where a subsidiary is on the US UFLPA Entity List (DHS, updated 31 July 2026). Makers Sheffield Hallam did not assess are left blank. Accessibility is scored only for the routes that do not need panels on a roof you own. Not scored: price (it is set by installers), efficiency and carbon footprint (EPEAT's solar registry lists almost only one utility-scale maker, so no consistent footprint data exists for rooftop panels). Status checks, October 2026: SunPower Corp. went bankrupt in August 2024 and its name now belongs to Complete Solaria, an installer; Maxeon, which made SunPower-designed panels, says it sold non-US assets to focus only on the US, where US Customs has detained its panel shipments since July 2024 under the UFLPA, so it is left out. Panasonic closed its solar and storage business in April 2025 and says it will honour warranties. Meyer Burger closed its Arizona factory and its German subsidiaries filed for insolvency in 2025. None of the three is listed. Sources: CHOICE, EnergySage, Kiwa PVEL, Sheffield Hallam University, Solar Stewardship Initiative, US DHS, Hanwha, Silfab, REC, Verbraucherzentrale, US DOE, FTC, IRS. Not financial advice. Reviewed 2026-10.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": {
+          "durability": 3,
+          "reliability": 2,
+          "labor": 3,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Built to last": {
+        "w": {
+          "durability": 5,
+          "reliability": 4,
+          "labor": 1,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "Fair supply chain": {
+        "w": {
+          "labor": 5,
+          "durability": 2,
+          "reliability": 1,
+          "accessibility": 1
+        },
+        "x": []
+      },
+      "No roof of my own": {
+        "w": {
+          "accessibility": 5,
+          "durability": 1,
+          "reliability": 1,
+          "labor": 1
+        },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    {
+      "key": "durability",
+      "label": "Warranty length and guaranteed power at year 25",
+      "source": "curated"
+    },
+    {
+      "key": "reliability",
+      "label": "Independent lab reliability (Kiwa PVEL 2026)",
+      "source": "curated"
+    },
+    {
+      "key": "labor",
+      "label": "Forced-labour risk in the supply chain",
+      "source": "curated"
+    },
+    {
+      "key": "accessibility",
+      "label": "Possible without a roof of your own",
+      "source": "curated"
+    }
+  ],
+  "products": [
+    {
+      "code": "rec-alpha-pure-rx",
+      "name": "REC Alpha Pure-RX",
+      "brand": "REC Group",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Heterojunction panels that REC lists as made in Singapore. The strongest year-25 power guarantee in this roster.",
+      "scores": {
+        "durability": 92,
+        "labor": 70
+      },
+      "provenance": {
+        "durability": {
+          "note": "CHOICE's listing of the REC Alpha Pure-RX (REC460AA) gives 20 years, or 25 if fitted by an REC Certified installer: 25-year product warranty (scored on the certified-installer term); the power warranty allows 2% loss in year one and 0.25% a year after, which guarantees 92.0% of rated power at year 25. Score: 50 x 25/30 for the product term + 50 x (92.0 - 80)/12 for the year-25 guarantee = 92.",
+          "source": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/rec-rec460aa-pure-rx",
+          "asof": "2026-10"
+        },
+        "labor": {
+          "note": "Sheffield Hallam University's Over-Exposed assessment (November 2023, the latest it published) rated REC's N-Peak and Alpha lines NONE (Unverified) for Uyghur Region exposure, citing a 2021 REC supplier report in which those lines' wafer suppliers listed OCI and Wacker (Germany) as polysilicon sources, while rating REC's older TwinPeak 4 line VERY HIGH. Scale: NONE (Verified) 85, NONE (Unverified) 70, HIGH 30, VERY HIGH 15. No REC site is on the Solar Stewardship Initiative's certified list or the UFLPA Entity List as of October 2026.",
+          "source": "https://www.shu.ac.uk/-/media/home/research/helena-kennedy-centre/projects/over-exposed/crawford-murphy-et-al--over-exposed-november-2023.pdf",
+          "asof": "2023-11"
+        }
+      },
+      "links": [
+        {
+          "label": "CHOICE product listing",
+          "url": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/rec-rec460aa-pure-rx"
+        },
+        {
+          "label": "REC warranty",
+          "url": "https://www.recgroup.com/en/empowering-warranty"
+        },
+        {
+          "label": "Sheffield Hallam: Over-Exposed",
+          "url": "https://www.shu.ac.uk/-/media/home/research/helena-kennedy-centre/projects/over-exposed/crawford-murphy-et-al--over-exposed-november-2023.pdf"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Made in Singapore",
+        "92% at year 25",
+        "Lower forced-labour exposure"
+      ]
+    },
+    {
+      "code": "qcells-q-tron",
+      "name": "Qcells Q.TRON BLK M-G2+",
+      "brand": "Qcells (Hanwha)",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Hanwha's mainstream Qcells rooftop panel. Qcells says it now runs the only US factory making ingots, wafers, cells and modules under one roof.",
+      "scores": {
+        "durability": 86,
+        "reliability": 75,
+        "labor": 25
+      },
+      "provenance": {
+        "durability": {
+          "note": "EnergySage's listing of the Qcells Q.TRON BLK M-G2+ 425W gives a 25-year materials warranty and a 25-year output warranty: 25-year product warranty; the power warranty allows 1.5% loss in year one and 0.33% a year after, which guarantees 90.58% of rated power at year 25. Score: 50 x 25/30 for the product term + 50 x (90.58 - 80)/12 for the year-25 guarantee = 86.",
+          "source": "https://www.energysage.com/equipment/solar-panels/qcells/qtron-blk-m-g2-425w-de97fdf6/",
+          "asof": "2026-10"
+        },
+        "reliability": {
+          "note": "Kiwa PVEL's 2026 PV Module Reliability Scorecard lists Qcells as a Top Performer in 6 of its 8 lab tests (thermal cycling, damp heat, mechanical stress, hail, PID, UV-induced degradation, LID/LETID and energy-yield modelling). Score: 6/8 = 75. Top Performer status applies to the specific bills of materials the maker sent for testing.",
+          "source": "https://scorecard.pvel.com/manufacturers/",
+          "asof": "2026-10"
+        },
+        "labor": {
+          "note": "Sheffield Hallam's Over-Exposed (November 2023) rated Qcells VERY HIGH for Uyghur Region exposure (15 on this scale). Since then Hanwha says it began cell production in June 2026 at Cartersville, Georgia, which will make ingots, wafers, cells and modules under one roof when fully running in Q3 2026: +10 for a documented supply chain built outside the region, = 25. The release does not say where its polysilicon comes from, and panels sold outside the US are not necessarily made there.",
+          "source": "https://www.hanwha.com/newsroom/news/press-releases/qcells-begins-solar-cell-manufacturing-at-americas-first-and-only-vertically-integrated-solar-factory-in-cartersville-georgia.do",
+          "asof": "2026-06"
+        }
+      },
+      "links": [
+        {
+          "label": "EnergySage product listing",
+          "url": "https://www.energysage.com/equipment/solar-panels/qcells/qtron-blk-m-g2-425w-de97fdf6/"
+        },
+        {
+          "label": "Hanwha: Cartersville factory",
+          "url": "https://www.hanwha.com/newsroom/news/press-releases/qcells-begins-solar-cell-manufacturing-at-americas-first-and-only-vertically-integrated-solar-factory-in-cartersville-georgia.do"
+        },
+        {
+          "label": "Kiwa PVEL 2026 Top Performers",
+          "url": "https://scorecard.pvel.com/manufacturers/"
+        },
+        {
+          "label": "Sheffield Hallam: Over-Exposed",
+          "url": "https://www.shu.ac.uk/-/media/home/research/helena-kennedy-centre/projects/over-exposed/crawford-murphy-et-al--over-exposed-november-2023.pdf"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "US-made option",
+        "25-year warranty",
+        "PVEL Top Performer"
+      ]
+    },
+    {
+      "code": "jinkosolar-tiger-neo",
+      "name": "JinkoSolar Tiger Neo",
+      "brand": "JinkoSolar",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "One of the world's largest panel makers and a common budget-to-mid choice on UK, European and US roofs. N-type TOPCon panels.",
+      "scores": {
+        "durability": 81,
+        "reliability": 88,
+        "labor": 40
+      },
+      "provenance": {
+        "durability": {
+          "note": "CHOICE's listing of the Tiger Neo JKM440N-54HL4R-B: 25-year product warranty; the power warranty allows 1% loss in year one and 0.4% a year after, which guarantees 89.4% of rated power at year 25. Score: 50 x 25/30 for the product term + 50 x (89.4 - 80)/12 for the year-25 guarantee = 81.",
+          "source": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/jinko-tiger-neo-jkm440n-54hl4r-b",
+          "asof": "2026-10"
+        },
+        "reliability": {
+          "note": "Kiwa PVEL's 2026 PV Module Reliability Scorecard lists Jinko as a Top Performer in 7 of its 8 lab tests (thermal cycling, damp heat, mechanical stress, hail, PID, UV-induced degradation, LID/LETID and energy-yield modelling). Score: 7/8 = 88. Top Performer status applies to the specific bills of materials the maker sent for testing.",
+          "source": "https://scorecard.pvel.com/manufacturers/",
+          "asof": "2026-10"
+        },
+        "labor": {
+          "note": "Sheffield Hallam's Over-Exposed (November 2023) rated Jinko HIGH for Uyghur Region exposure in both its China and its Southeast Asia/US lines (30 on this scale). The Solar Stewardship Initiative now lists JinkoSolar module sites in Feidong and Shangrao with current Supply Chain Traceability certificates (Bronze, valid to December 2026) as well as ESG certificates: +10, = 40. SSI says certification covers the named sites only, not the whole company or its supply chain.",
+          "source": "https://www.solarstewardshipinitiative.org/certified-sites/",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "CHOICE product listing",
+          "url": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/jinko-tiger-neo-jkm440n-54hl4r-b"
+        },
+        {
+          "label": "Kiwa PVEL 2026 Top Performers",
+          "url": "https://scorecard.pvel.com/manufacturers/"
+        },
+        {
+          "label": "Solar Stewardship Initiative certified sites",
+          "url": "https://www.solarstewardshipinitiative.org/certified-sites/"
+        },
+        {
+          "label": "Sheffield Hallam: Over-Exposed",
+          "url": "https://www.shu.ac.uk/-/media/home/research/helena-kennedy-centre/projects/over-exposed/crawford-murphy-et-al--over-exposed-november-2023.pdf"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Mainstream",
+        "PVEL Top Performer",
+        "SSI traceability-certified sites"
+      ]
+    },
+    {
+      "code": "canadian-solar-tophiku6",
+      "name": "Canadian Solar TOPHiKu6",
+      "brand": "Canadian Solar",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Canadian Solar's residential TOPCon panel; CHOICE lists it as made in China, Thailand or Vietnam.",
+      "scores": {
+        "durability": 81,
+        "reliability": 88,
+        "labor": 40
+      },
+      "provenance": {
+        "durability": {
+          "note": "CHOICE's listing of the TOPHiKu6 CS6R-440T: 25-year product warranty; the power warranty allows 1% loss in year one and 0.4% a year after, which guarantees 89.4% of rated power at year 25. Score: 50 x 25/30 for the product term + 50 x (89.4 - 80)/12 for the year-25 guarantee = 81.",
+          "source": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/canadian-solar-tophiku6-cs6r-440t-iec1000v",
+          "asof": "2026-10"
+        },
+        "reliability": {
+          "note": "Kiwa PVEL's 2026 PV Module Reliability Scorecard lists Canadian Solar as a Top Performer in 7 of its 8 lab tests (thermal cycling, damp heat, mechanical stress, hail, PID, UV-induced degradation, LID/LETID and energy-yield modelling). Score: 7/8 = 88. Top Performer status applies to the specific bills of materials the maker sent for testing.",
+          "source": "https://scorecard.pvel.com/manufacturers/",
+          "asof": "2026-10"
+        },
+        "labor": {
+          "note": "Sheffield Hallam's Over-Exposed (November 2023) rated Canadian Solar HIGH for Uyghur Region exposure (30). The Solar Stewardship Initiative now lists a Canadian Solar ingot site in Baotou and a cell site in Suqian with current Supply Chain Traceability certificates (Silver, valid to March 2027): +10, = 40. Certification covers the named sites only.",
+          "source": "https://www.solarstewardshipinitiative.org/certified-sites/",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "CHOICE product listing",
+          "url": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/canadian-solar-tophiku6-cs6r-440t-iec1000v"
+        },
+        {
+          "label": "Kiwa PVEL 2026 Top Performers",
+          "url": "https://scorecard.pvel.com/manufacturers/"
+        },
+        {
+          "label": "Solar Stewardship Initiative certified sites",
+          "url": "https://www.solarstewardshipinitiative.org/certified-sites/"
+        },
+        {
+          "label": "Sheffield Hallam: Over-Exposed",
+          "url": "https://www.shu.ac.uk/-/media/home/research/helena-kennedy-centre/projects/over-exposed/crawford-murphy-et-al--over-exposed-november-2023.pdf"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Mainstream",
+        "PVEL Top Performer",
+        "SSI traceability-certified sites"
+      ]
+    },
+    {
+      "code": "tongwei-solar",
+      "name": "Tongwei TNC panels",
+      "brand": "Tongwei",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A large Chinese polysilicon and cell producer that also sells its own rooftop panels; its certified sites include a polysilicon plant.",
+      "scores": {
+        "durability": 64,
+        "reliability": 88,
+        "labor": 40
+      },
+      "provenance": {
+        "durability": {
+          "note": "CHOICE's listing of the Tongwei TWMNH-48HC440: 15-year product warranty; the power warranty allows 1% loss in year one and 0.4% a year after, which guarantees 89.4% of rated power at year 25. Score: 50 x 15/30 for the product term + 50 x (89.4 - 80)/12 for the year-25 guarantee = 64.",
+          "source": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/tongwei-twmnh-48hc440",
+          "asof": "2026-10"
+        },
+        "reliability": {
+          "note": "Kiwa PVEL's 2026 PV Module Reliability Scorecard lists Tongwei as a Top Performer in 7 of its 8 lab tests (thermal cycling, damp heat, mechanical stress, hail, PID, UV-induced degradation, LID/LETID and energy-yield modelling). Score: 7/8 = 88. Top Performer status applies to the specific bills of materials the maker sent for testing.",
+          "source": "https://scorecard.pvel.com/manufacturers/",
+          "asof": "2026-10"
+        },
+        "labor": {
+          "note": "Sheffield Hallam's Over-Exposed (November 2023) rated Tongwei HIGH for Uyghur Region exposure (30). The Solar Stewardship Initiative now lists Tongwei's Nantong module site with a current Supply Chain Traceability certificate (Bronze, valid to January 2027) and its Inner Mongolia polysilicon site with an ESG certificate: +10, = 40. Certification covers the named sites only.",
+          "source": "https://www.solarstewardshipinitiative.org/certified-sites/",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "CHOICE product listing",
+          "url": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/tongwei-twmnh-48hc440"
+        },
+        {
+          "label": "Kiwa PVEL 2026 Top Performers",
+          "url": "https://scorecard.pvel.com/manufacturers/"
+        },
+        {
+          "label": "Solar Stewardship Initiative certified sites",
+          "url": "https://www.solarstewardshipinitiative.org/certified-sites/"
+        },
+        {
+          "label": "Sheffield Hallam: Over-Exposed",
+          "url": "https://www.shu.ac.uk/-/media/home/research/helena-kennedy-centre/projects/over-exposed/crawford-murphy-et-al--over-exposed-november-2023.pdf"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Polysilicon to panel",
+        "PVEL Top Performer",
+        "Shorter product warranty"
+      ]
+    },
+    {
+      "code": "trina-vertex-s-plus",
+      "name": "Trina Solar Vertex S+",
+      "brand": "Trina Solar",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Trina's residential glass-glass TOPCon panel, a common mid-price choice in Europe, the UK and Australia.",
+      "scores": {
+        "durability": 81,
+        "reliability": 75,
+        "labor": 25
+      },
+      "provenance": {
+        "durability": {
+          "note": "CHOICE's listing of the Vertex S+ TSM-440NEG9R.28: 25-year product warranty; the power warranty allows 1% loss in year one and 0.4% a year after, which guarantees 89.4% of rated power at year 25. Score: 50 x 25/30 for the product term + 50 x (89.4 - 80)/12 for the year-25 guarantee = 81.",
+          "source": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/trina-vertex-s-tsm-440neg9r28",
+          "asof": "2026-10"
+        },
+        "reliability": {
+          "note": "Kiwa PVEL's 2026 PV Module Reliability Scorecard lists Trina Solar as a Top Performer in 6 of its 8 lab tests (thermal cycling, damp heat, mechanical stress, hail, PID, UV-induced degradation, LID/LETID and energy-yield modelling). Score: 6/8 = 75. Top Performer status applies to the specific bills of materials the maker sent for testing.",
+          "source": "https://scorecard.pvel.com/manufacturers/",
+          "asof": "2026-10"
+        },
+        "labor": {
+          "note": "Sheffield Hallam's Over-Exposed (November 2023) rated Trina's China-made modules VERY HIGH for Uyghur Region exposure (15), and its Southeast Asian production for the US NONE (Unverified). Scored on the China line, which supplies the UK, Europe and Australia. The Solar Stewardship Initiative now lists Trina module sites in Dongtai, Yancheng and Yiwu with current Supply Chain Traceability certificates (Silver, valid to December 2026 or January 2027): +10, = 25.",
+          "source": "https://www.solarstewardshipinitiative.org/certified-sites/",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "CHOICE product listing",
+          "url": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/trina-vertex-s-tsm-440neg9r28"
+        },
+        {
+          "label": "Kiwa PVEL 2026 Top Performers",
+          "url": "https://scorecard.pvel.com/manufacturers/"
+        },
+        {
+          "label": "Solar Stewardship Initiative certified sites",
+          "url": "https://www.solarstewardshipinitiative.org/certified-sites/"
+        },
+        {
+          "label": "Sheffield Hallam: Over-Exposed",
+          "url": "https://www.shu.ac.uk/-/media/home/research/helena-kennedy-centre/projects/over-exposed/crawford-murphy-et-al--over-exposed-november-2023.pdf"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Mainstream",
+        "Glass-glass",
+        "SSI traceability-certified sites"
+      ]
+    },
+    {
+      "code": "longi-hi-mo",
+      "name": "LONGi Hi-MO 6",
+      "brand": "LONGi Green Energy",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "One of the largest Chinese wafer and panel makers. Here the Hi-MO 6 Scientist residential panel.",
+      "scores": {
+        "durability": 79,
+        "reliability": 88,
+        "labor": 20
+      },
+      "provenance": {
+        "durability": {
+          "note": "CHOICE's listing of the Hi-MO 6 Scientist LR5-54HTH-440M: 25-year product warranty; the power warranty allows 1.5% loss in year one and 0.4% a year after, which guarantees 88.9% of rated power at year 25. Score: 50 x 25/30 for the product term + 50 x (88.9 - 80)/12 for the year-25 guarantee = 79.",
+          "source": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/longi-hi-mo-6-scientist-lr5-54hth-440m",
+          "asof": "2026-10"
+        },
+        "reliability": {
+          "note": "Kiwa PVEL's 2026 PV Module Reliability Scorecard lists LONGi as a Top Performer in 7 of its 8 lab tests (thermal cycling, damp heat, mechanical stress, hail, PID, UV-induced degradation, LID/LETID and energy-yield modelling). Score: 7/8 = 88. Top Performer status applies to the specific bills of materials the maker sent for testing.",
+          "source": "https://scorecard.pvel.com/manufacturers/",
+          "asof": "2026-10"
+        },
+        "labor": {
+          "note": "Sheffield Hallam's Over-Exposed (November 2023) rated LONGi VERY HIGH for Uyghur Region exposure in both its China and its Southeast Asia lines (15). The Solar Stewardship Initiative now lists LONGi module sites in Chuzhou (Gold) and Jiaxing (Silver) with ESG certificates but no Supply Chain Traceability certificate: +5, = 20.",
+          "source": "https://www.solarstewardshipinitiative.org/certified-sites/",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "CHOICE product listing",
+          "url": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/longi-hi-mo-6-scientist-lr5-54hth-440m"
+        },
+        {
+          "label": "Kiwa PVEL 2026 Top Performers",
+          "url": "https://scorecard.pvel.com/manufacturers/"
+        },
+        {
+          "label": "Solar Stewardship Initiative certified sites",
+          "url": "https://www.solarstewardshipinitiative.org/certified-sites/"
+        },
+        {
+          "label": "Sheffield Hallam: Over-Exposed",
+          "url": "https://www.shu.ac.uk/-/media/home/research/helena-kennedy-centre/projects/over-exposed/crawford-murphy-et-al--over-exposed-november-2023.pdf"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Largest maker",
+        "PVEL Top Performer",
+        "No traceability certificate"
+      ]
+    },
+    {
+      "code": "ja-solar-deepblue-4",
+      "name": "JA Solar DeepBlue 4.0 Pro",
+      "brand": "JA Solar",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "One of the largest Chinese panel makers, sold widely through installers and wholesalers.",
+      "scores": {
+        "durability": 81,
+        "reliability": 62,
+        "labor": 10
+      },
+      "provenance": {
+        "durability": {
+          "note": "CHOICE's listing of the DeepBlue 4.0 Pro JAM54D40-440/LB: 25-year product warranty; the power warranty allows 1% loss in year one and 0.4% a year after, which guarantees 89.4% of rated power at year 25. Score: 50 x 25/30 for the product term + 50 x (89.4 - 80)/12 for the year-25 guarantee = 81.",
+          "source": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/ja-solar-deep-blue-40-pro-jam54d40-440lb1500v",
+          "asof": "2026-10"
+        },
+        "reliability": {
+          "note": "Kiwa PVEL's 2026 PV Module Reliability Scorecard lists JA Solar as a Top Performer in 5 of its 8 lab tests (thermal cycling, damp heat, mechanical stress, hail, PID, UV-induced degradation, LID/LETID and energy-yield modelling). Score: 5/8 = 62. Top Performer status applies to the specific bills of materials the maker sent for testing.",
+          "source": "https://scorecard.pvel.com/manufacturers/",
+          "asof": "2026-10"
+        },
+        "labor": {
+          "note": "The US Department of Homeland Security added Donghai JA Solar Technology Co., Ltd. to the UFLPA Entity List on 15 January 2025, so goods from that entity are presumed made with forced labour and barred from US import (list last updated 31 July 2026): -10. Sheffield Hallam's Over-Exposed (November 2023) had rated all JA Solar lines VERY HIGH (15). The Solar Stewardship Initiative lists JA Solar module sites in Dongtai and Shanghai with ESG certificates only: +5. Total 10.",
+          "source": "https://www.dhs.gov/uflpa-entity-list",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "CHOICE product listing",
+          "url": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/ja-solar-deep-blue-40-pro-jam54d40-440lb1500v"
+        },
+        {
+          "label": "Kiwa PVEL 2026 Top Performers",
+          "url": "https://scorecard.pvel.com/manufacturers/"
+        },
+        {
+          "label": "DHS: UFLPA Entity List",
+          "url": "https://www.dhs.gov/uflpa-entity-list"
+        },
+        {
+          "label": "Solar Stewardship Initiative certified sites",
+          "url": "https://www.solarstewardshipinitiative.org/certified-sites/"
+        },
+        {
+          "label": "Sheffield Hallam: Over-Exposed",
+          "url": "https://www.shu.ac.uk/-/media/home/research/helena-kennedy-centre/projects/over-exposed/crawford-murphy-et-al--over-exposed-november-2023.pdf"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Mainstream",
+        "Subsidiary on UFLPA list",
+        "No traceability certificate"
+      ]
+    },
+    {
+      "code": "aiko-neostar",
+      "name": "Aiko Neostar 2P",
+      "brand": "Aiko Solar",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Back-contact (ABC) panels from a Chinese cell maker that also supplies cells to other brands.",
+      "scores": {
+        "durability": 86,
+        "reliability": 88
+      },
+      "provenance": {
+        "durability": {
+          "note": "CHOICE's listing of the Aiko A440-MAH54Mb: 25-year product warranty; the power warranty allows 1% loss in year one and 0.35% a year after, which guarantees 90.6% of rated power at year 25. Score: 50 x 25/30 for the product term + 50 x (90.6 - 80)/12 for the year-25 guarantee = 86.",
+          "source": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/aiko-aiko-a440-mah54mb",
+          "asof": "2026-10"
+        },
+        "reliability": {
+          "note": "Kiwa PVEL's 2026 PV Module Reliability Scorecard lists Aiko Solar as a Top Performer in 7 of its 8 lab tests (thermal cycling, damp heat, mechanical stress, hail, PID, UV-induced degradation, LID/LETID and energy-yield modelling). Score: 7/8 = 88. Top Performer status applies to the specific bills of materials the maker sent for testing.",
+          "source": "https://scorecard.pvel.com/manufacturers/",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "CHOICE product listing",
+          "url": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/aiko-aiko-a440-mah54mb"
+        },
+        {
+          "label": "Kiwa PVEL 2026 Top Performers",
+          "url": "https://scorecard.pvel.com/manufacturers/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Back-contact cells",
+        "PVEL Top Performer",
+        "Forced-labour risk not assessed"
+      ]
+    },
+    {
+      "code": "astronergy-astro-n5s",
+      "name": "Astronergy ASTRO N5s",
+      "brand": "Astronergy (Chint)",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Panels from Astronergy, whose certified factories are Chint Solar and Chint New Energy sites in Zhejiang. A budget TOPCon option.",
+      "scores": {
+        "durability": 59,
+        "reliability": 62
+      },
+      "provenance": {
+        "durability": {
+          "note": "CHOICE's listing of the ASTRO N5s CHSM54N(DG)/F-HC 435: 12-year product warranty; the power warranty allows 1% loss in year one and 0.4% a year after, which guarantees 89.4% of rated power at year 25. Score: 50 x 12/30 for the product term + 50 x (89.4 - 80)/12 for the year-25 guarantee = 59.",
+          "source": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/astronergy-astro-n5s-chsm54ndgfhc-435",
+          "asof": "2026-10"
+        },
+        "reliability": {
+          "note": "Kiwa PVEL's 2026 PV Module Reliability Scorecard lists Astronergy as a Top Performer in 5 of its 8 lab tests (thermal cycling, damp heat, mechanical stress, hail, PID, UV-induced degradation, LID/LETID and energy-yield modelling). Score: 5/8 = 62. Top Performer status applies to the specific bills of materials the maker sent for testing.",
+          "source": "https://scorecard.pvel.com/manufacturers/",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "CHOICE product listing",
+          "url": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/astronergy-astro-n5s-chsm54ndgfhc-435"
+        },
+        {
+          "label": "Kiwa PVEL 2026 Top Performers",
+          "url": "https://scorecard.pvel.com/manufacturers/"
+        },
+        {
+          "label": "Solar Stewardship Initiative certified sites",
+          "url": "https://www.solarstewardshipinitiative.org/certified-sites/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Budget",
+        "12-year product warranty",
+        "Forced-labour risk not assessed"
+      ]
+    },
+    {
+      "code": "phono-solar",
+      "name": "Phono Solar PS440 (TOPCon)",
+      "brand": "Phono Solar",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A Chinese maker selling on price, with a 30-year product warranty, the joint longest here.",
+      "scores": {
+        "durability": 94,
+        "reliability": 88
+      },
+      "provenance": {
+        "durability": {
+          "note": "CHOICE's listing of the Phono Solar PS440L14GFH/16QSH: 30-year product warranty; the power warranty allows 1% loss in year one and 0.35% a year after, which guarantees 90.6% of rated power at year 25. Score: 50 x 30/30 for the product term + 50 x (90.6 - 80)/12 for the year-25 guarantee = 94.",
+          "source": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/phono-solar-ps440l14gfh-16qsh",
+          "asof": "2026-10"
+        },
+        "reliability": {
+          "note": "Kiwa PVEL's 2026 PV Module Reliability Scorecard lists Phono Solar as a Top Performer in 7 of its 8 lab tests (thermal cycling, damp heat, mechanical stress, hail, PID, UV-induced degradation, LID/LETID and energy-yield modelling). Score: 7/8 = 88. Top Performer status applies to the specific bills of materials the maker sent for testing.",
+          "source": "https://scorecard.pvel.com/manufacturers/",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "CHOICE product listing",
+          "url": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/phono-solar-ps440l14gfh-16qsh"
+        },
+        {
+          "label": "Kiwa PVEL 2026 Top Performers",
+          "url": "https://scorecard.pvel.com/manufacturers/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "30-year product warranty",
+        "PVEL Top Performer",
+        "Forced-labour risk not assessed"
+      ]
+    },
+    {
+      "code": "winaico",
+      "name": "Winaico WST NGX",
+      "brand": "Winaico",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A Taiwanese maker; CHOICE lists the country of origin as Taiwan, one of the few rooftop panels here made outside China and Southeast Asia.",
+      "scores": {
+        "durability": 89
+      },
+      "provenance": {
+        "durability": {
+          "note": "CHOICE's listing of the Winaico WST-430NGXB-D3 (made in Taiwan): 30-year product warranty; the power warranty allows 1% loss in year one and 0.4% a year after, which guarantees 89.4% of rated power at year 25. Score: 50 x 30/30 for the product term + 50 x (89.4 - 80)/12 for the year-25 guarantee = 89.",
+          "source": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/winaico-wst-430ngxb-d3",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "CHOICE product listing",
+          "url": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/winaico-wst-430ngxb-d3"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Made in Taiwan",
+        "30-year product warranty",
+        "Not in PVEL 2026"
+      ]
+    },
+    {
+      "code": "hyundai-solar",
+      "name": "Hyundai HiE panels",
+      "brand": "Hyundai Energy Solutions",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Panels CHOICE lists as made in South Korea. Its warranted degradation (2% in year one, 0.55% a year after) is the fastest in this roster.",
+      "scores": {
+        "durability": 62
+      },
+      "provenance": {
+        "durability": {
+          "note": "CHOICE's listing of the Hyundai HiE-S390UF (made in South Korea): 25-year product warranty; the power warranty allows 2% loss in year one and 0.55% a year after, which guarantees 84.8% of rated power at year 25. Score: 50 x 25/30 for the product term + 50 x (84.8 - 80)/12 for the year-25 guarantee = 62.",
+          "source": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/hyundai-hie-s390uf",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "CHOICE product listing",
+          "url": "https://www.choice.com.au/products/home-improvement/energy-saving/solar/hyundai-hie-s390uf"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Made in South Korea",
+        "Faster degradation",
+        "Not in PVEL 2026"
+      ]
+    },
+    {
+      "code": "silfab-elite",
+      "name": "Silfab Elite",
+      "brand": "Silfab Solar",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A North American panel maker that says its Elite series is made only in the US. Sold through US installers.",
+      "scores": {
+        "durability": 63
+      },
+      "provenance": {
+        "durability": {
+          "note": "Silfab's Elite SIL-370/375/380 BK datasheet gives a 25-year product workmanship warranty (12 years, extendable to 25 with registration) and a 30-year linear power guarantee of at least 97.1% at the end of year one and 85.1% at the end of year 25. Score: 50 x 25/30 + 50 x (85.1 - 80)/12 = 63. Silfab's warranty page confirms the 25-year extended product and 30-year power warranty needs installer registration.",
+          "source": "https://public.files.energysage.com/_QM6ByVDqAjWFW7MXELC0Q",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Silfab Elite datasheet",
+          "url": "https://public.files.energysage.com/_QM6ByVDqAjWFW7MXELC0Q"
+        },
+        {
+          "label": "Silfab warranty",
+          "url": "https://silfabsolar.com/warranty/"
+        },
+        {
+          "label": "Silfab: made in the USA",
+          "url": "https://silfabsolar.com/"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "US-made",
+        "Registration needed for 25 years",
+        "Not in PVEL 2026"
+      ]
+    },
+    {
+      "code": "plug-in-balcony-solar-germany",
+      "name": "Plug-in balcony solar (Steckersolar, Germany)",
+      "brand": "plug-in solar kit",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "One to four standard panels on a balcony or wall, plugged into a socket through a small inverter. The one way here a renter can own panels; German law now treats it as its own category.",
+      "scores": {
+        "accessibility": 85
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "Verbraucherzentrale (German consumer advice centres): since Solarpaket I (May 2024) there is no registration with the grid operator, a simplified entry in the Marktstammdatenregister you can make yourself, and no wait for a new meter; the legal limits are 800 W (AC) at the inverter and 2,000 W of panels. Since October 2024 a landlord or owners' association may refuse only if installation would be unreasonable for them, not for looks alone. Kits are self-installed and move with you.",
+          "source": "https://www.verbraucherzentrale.de/wissen/energie/erneuerbare-energien/steckersolar-solarstrom-vom-balkon-direkt-in-die-steckdose-44715",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Verbraucherzentrale: Steckersolar",
+          "url": "https://www.verbraucherzentrale.de/wissen/energie/erneuerbare-energien/steckersolar-solarstrom-vom-balkon-direkt-in-die-steckdose-44715"
+        }
+      ],
+      "region": [
+        "EU"
+      ],
+      "focuses": [
+        "Renters can do it",
+        "800 W limit",
+        "Self-install"
+      ]
+    },
+    {
+      "code": "community-solar-us",
+      "name": "Community solar subscription (US)",
+      "brand": "community solar subscription",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Subscribing to a share of an off-site solar farm and getting a credit on your electric bill. No panels on your home.",
+      "scores": {
+        "accessibility": 70
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "US Department of Energy: subscribers usually pay a monthly fee for a share of an off-site array's output and receive a bill credit, and community solar 'can be a great option for people who are unable to install solar panels on their roofs because they are renters, can’t afford solar, or because their roofs or electrical systems aren’t suited to solar'. Scored below plug-in solar because it depends on a project and enabling rules in your utility area.",
+          "source": "https://www.energy.gov/eere/solar/community-solar-basics",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "DOE: community solar basics",
+          "url": "https://www.energy.gov/eere/solar/community-solar-basics"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "Renters can do it",
+        "No upfront cost",
+        "Depends on your utility area"
+      ]
+    },
+    {
+      "code": "solar-lease-us",
+      "name": "Solar lease (US)",
+      "brand": "third-party-owned solar",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A company installs and owns panels on your roof and you pay a monthly lease, usually for about 20 years.",
+      "scores": {
+        "accessibility": 50
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "US Federal Trade Commission: with a lease you don't own the system, can't claim tax credits or renewable energy certificates, contracts often last 20 years, lease payments may rise over time, and you should check how it affects selling your home. Since the IRS says the homeowner's 25D Residential Clean Energy Credit is not available for property placed in service after 31 December 2025, buying no longer carries the 30% federal credit either. Scored mid-scale: no upfront cost, but you need a suitable roof you own and a long contract.",
+          "source": "https://consumer.ftc.gov/articles/solar-power-your-home",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "FTC: solar power for your home",
+          "url": "https://consumer.ftc.gov/articles/solar-power-your-home"
+        },
+        {
+          "label": "IRS: 25D credit end date",
+          "url": "https://www.irs.gov/credits-deductions/residential-clean-energy-credit"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "No upfront cost",
+        "20-year contract",
+        "You don't own it"
+      ]
+    },
+    {
+      "code": "solar-ppa-us",
+      "name": "Solar power purchase agreement (US)",
+      "brand": "third-party-owned solar",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Like a lease, but you pay per kilowatt-hour for the power the panels on your roof make instead of a fixed monthly fee.",
+      "scores": {
+        "accessibility": 50
+      },
+      "provenance": {
+        "accessibility": {
+          "note": "US Federal Trade Commission: under a PPA a company installs and owns the system and you agree to buy the power it produces, so as with a lease you cannot claim tax credits or renewable energy certificates and the contract is long-term; ask how it transfers if you sell. Scored like a lease: no upfront cost, but only for owners of a suitable roof.",
+          "source": "https://consumer.ftc.gov/articles/solar-power-your-home",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "FTC: solar power for your home",
+          "url": "https://consumer.ftc.gov/articles/solar-power-your-home"
+        }
+      ],
+      "region": [
+        "US"
+      ],
+      "focuses": [
+        "No upfront cost",
+        "Pay per kWh",
+        "You don't own it"
+      ]
+    }
+  ]
+}

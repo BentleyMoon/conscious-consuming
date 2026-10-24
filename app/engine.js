@@ -34,6 +34,8 @@
     rewards: 'cost',
     complaints: 'people', buyer_protection: 'people', damage_protection: 'people',
     permanence: 'honesty', reliability: 'honesty', cancellations: 'honesty',
+    // 2026-10-23, trade unions. Flagged for review; see pipeline/build_datasets.py.
+    scale: 'people', political_lobbying: 'cost',
     transparency: 'honesty', independence: 'honesty', nonprofit: 'honesty', certification: 'honesty', depth: 'honesty',
     privacy: 'privacy', openness: 'privacy', jurisdiction: 'privacy', security: 'privacy',
     vegan: 'animals', cruelty_free: 'animals',

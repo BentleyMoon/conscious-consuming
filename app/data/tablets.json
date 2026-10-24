@@ -1,0 +1,1551 @@
+{
+ "meta": {
+  "id": "tablets",
+  "label": "Tablets",
+  "type": "Products",
+  "primaryAxis": "repairability",
+  "tradeoff": [
+   "repairability",
+   "economical"
+  ],
+  "tradeoffLabels": [
+   "easiest to repair",
+   "lowest price"
+  ],
+  "source": "Conscious Consuming (curated)",
+  "attribution": "Options are specific tablet models on sale in October 2026 in the US, UK and EU. Since June 2025 every smartphone and slate tablet sold in the EU must carry an energy label and a public record in the EU product register (EPREL, eprel.ec.europa.eu), and that record is the main source here. Repairable: the EU repairability index (0 to 5, built from disassembly depth, fasteners, tools, spare parts, repair information and software updates) times 20; for a model outside the register, iFixit's teardown score out of 10 times 10, noted where used. Long support: the minimum years of security and operating-system updates the maker declares in the register, counted from when the model stops being sold in the EU (5 years scores 70, 6 scores 80, 7 scores 90); for a model outside the register, the maker's own published support date, scored on the same rough scale. Durable: from the same EU record, the battery's rated charge cycles (800 cycles scores 50, 1,000 scores 60, 1,200 scores 70, 2,000 scores 90), plus 10, 7, 5 or 2 points for drop-test class A, B, C or D, plus 5 for IP68 dust and water protection. Price: the maker's own store on the date checked, base configuration where it could be identified, in that store's currency; bands treat dollars and pounds at face value (150 or less scores 95, up to 200 scores 88, 300 scores 80, 400 scores 72, 500 scores 64, 650 scores 56, 800 scores 48, 1,000 scores 40, 1,300 scores 30, above that 20). Sale prices are noted. Not scored: privacy, which depends mostly on the operating system and accounts rather than the tablet model and has no per-model independent test; screen and performance; energy class. The Google Pixel Tablet is left out because the Google Store no longer sells it, OnePlus because it ended new product rollouts in Europe and North America in 2026, and Amazon's new Alexa Tablets because, at launch, Amazon had published no update period and no repair data existed yet. Sources: EPREL records, iFixit's tablet repairability table, Apple, Samsung, Lenovo, Microsoft and Amazon store and support pages, Microsoft's Surface lifecycle table, Amazon's Fire tablet security update page. The greenest tablet is usually the one you already own. Reviewed 2026-10. Suggest changes via Contribute.",
+  "allergens": false,
+  "presets": {
+   "Balanced": {
+    "w": {
+     "repairability": 3,
+     "longevity": 3,
+     "durability": 2,
+     "economical": 2
+    },
+    "x": []
+   },
+   "Most repairable": {
+    "w": {
+     "repairability": 5,
+     "longevity": 3,
+     "durability": 2,
+     "economical": 1
+    },
+    "x": []
+   },
+   "Longest-lived": {
+    "w": {
+     "longevity": 5,
+     "durability": 4,
+     "repairability": 3,
+     "economical": 1
+    },
+    "x": []
+   },
+   "Cheapest": {
+    "w": {
+     "economical": 5,
+     "longevity": 2,
+     "repairability": 2,
+     "durability": 1
+    },
+    "x": []
+   }
+  },
+  "n": 19,
+  "valueSignatureProfile": {
+   "entryCount": 19,
+   "signedEntries": 19,
+   "drawableEntries": 18,
+   "minimumThemesForBloom": 2,
+   "themeCounts": {
+    "planet": 19,
+    "cost": 18
+   }
+  },
+  "provenanceProfile": {
+   "entryCount": 19,
+   "singleSourceEntries": 2,
+   "multiSourceEntries": 17,
+   "noSourceEntries": 0,
+   "noteOnlyEntries": 0,
+   "averageSourceDomains": 1.95,
+   "topPrimarySources": [
+    {
+     "label": "eprel.ec.europa.eu",
+     "entries": 17
+    },
+    {
+     "label": "amazon.com",
+     "entries": 1
+    },
+    {
+     "label": "ifixit.com",
+     "entries": 1
+    }
+   ]
+  },
+  "decision": {
+   "category": "tablets",
+   "reads": {
+    "text": "Compare tablets by repairability, cost, support life, and durability.",
+    "basis": [
+     {
+      "criterion": "repairability",
+      "readsAs": "repairability"
+     },
+     {
+      "criterion": "economical",
+      "readsAs": "cost"
+     },
+     {
+      "criterion": "longevity",
+      "readsAs": "support life"
+     },
+     {
+      "criterion": "durability",
+      "readsAs": "durability"
+     }
+    ],
+    "signature": {
+     "by": "Conscious Consuming",
+     "on": "2026-07-15",
+     "status": "approved-batch"
+    },
+    "receipt": {
+     "dataset": "tablets",
+     "entryCount": 19,
+     "criteria": [
+      {
+       "criterion": "repairability",
+       "readsAs": "repairability",
+       "known": 18,
+       "minimum": 54,
+       "maximum": 81,
+       "spread": 27
+      },
+      {
+       "criterion": "economical",
+       "readsAs": "cost",
+       "known": 18,
+       "minimum": 20,
+       "maximum": 88,
+       "spread": 68
+      },
+      {
+       "criterion": "longevity",
+       "readsAs": "support life",
+       "known": 19,
+       "minimum": 60,
+       "maximum": 90,
+       "spread": 30
+      },
+      {
+       "criterion": "durability",
+       "readsAs": "durability",
+       "known": 17,
+       "minimum": 60,
+       "maximum": 95,
+       "spread": 35
+      }
+     ]
+    }
+   },
+   "axes": [
+    {
+     "id": "cost-or-values",
+     "kind": "cost-values",
+     "label": "Cost or overall fit",
+     "question": "Lower cost or a stronger overall fit?",
+     "criteria": [
+      "economical",
+      "repairability",
+      "longevity",
+      "durability"
+     ],
+     "poles": [
+      "Lower cost",
+      "Stronger overall fit"
+     ],
+     "default": 50
+    },
+    {
+     "id": "longevity",
+     "kind": "criterion",
+     "label": "Support life",
+     "question": "Do you want longer support?",
+     "criteria": [
+      "longevity"
+     ],
+     "poles": [
+      "Flexible",
+      "Longer support"
+     ],
+     "default": 50
+    }
+   ],
+   "budget": {
+    "available": true,
+    "mode": "assessed-affordability-rank",
+    "criterion": "economical",
+    "minimumKnown": 5,
+    "knownEntries": 18,
+    "coverage": 0.9474
+   },
+   "archetypes": [
+    "best-for-most",
+    "strictest-match",
+    "budget-honest"
+   ],
+   "page": {
+    "stage": "approved-batch",
+    "primaryRoute": true
+   },
+   "consumer": {
+    "reads": "Round 8 approved category differences reads.",
+    "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+    "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+    "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+    "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+   }
+  }
+ },
+ "criteria": [
+  {
+   "key": "repairability",
+   "label": "Repairable (EU repair score)",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "longevity",
+   "label": "Years of security updates",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "durability",
+   "label": "Battery cycles and drop tests",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "economical",
+   "label": "Price",
+   "source": "curated",
+   "tier": "assessed"
+  }
+ ],
+ "products": [
+  {
+   "code": "ipad-a16",
+   "name": "Apple iPad (A16)",
+   "brand": "Apple",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Apple's entry iPad from 2025: long update history, but glued construction and a middling EU repair score.",
+   "scores": {
+    "repairability": 56,
+    "durability": 60,
+    "longevity": 70,
+    "economical": 64
+   },
+   "provenance": {
+    "repairability": {
+     "note": "The EU energy label record for the Apple iPad (A16) (model A3354, EPREL 2261043) gives a repairability index of 2.78 out of 5, class C, and lists spare-part availability for the display; scored here as the index times 20.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2261043",
+     "asof": "2026-10"
+    },
+    "durability": {
+     "note": "The same EU label record rates the battery for 1000 full charge cycles and says the Apple iPad (A16) declares no passed drop test, reliability class E, with an IP42 rating for dust and water.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2261043",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "The maker declares in the EU register that the Apple iPad (A16) will get security and operating-system updates for at least 5 years after the model stops being sold in the EU.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2261043",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Apple's US store lists the iPad (A16) from $449 on the date checked.",
+     "source": "https://www.apple.com/shop/buy-ipad/ipad",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Apple Store",
+     "url": "https://www.apple.com/shop/buy-ipad/ipad"
+    },
+    {
+     "label": "EU label record",
+     "url": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2261043"
+    },
+    {
+     "label": "Model numbers",
+     "url": "https://support.apple.com/en-us/108043"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Mainstream",
+    "Long support"
+   ],
+   "valueSignature": {
+    "planet": 62,
+    "cost": 64
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "eprel.ec.europa.eu",
+    "sourceLabels": [
+     "eprel.ec.europa.eu",
+     "apple.com"
+    ]
+   }
+  },
+  {
+   "code": "ipad-mini-a17-pro",
+   "name": "Apple iPad mini (A17 Pro)",
+   "brand": "Apple",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The small 8.3-inch iPad from 2024, with the same EU repair class as the rest of the iPad range.",
+   "scores": {
+    "repairability": 55,
+    "durability": 62,
+    "longevity": 70,
+    "economical": 56
+   },
+   "provenance": {
+    "repairability": {
+     "note": "The EU energy label record for the Apple iPad mini (A17 Pro) (model A2993, EPREL 2261243) gives a repairability index of 2.73 out of 5, class C, and lists spare-part availability for the display; scored here as the index times 20.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2261243",
+     "asof": "2026-10"
+    },
+    "durability": {
+     "note": "The same EU label record rates the battery for 1000 full charge cycles and says the Apple iPad mini (A17 Pro) passed 52 drops without defect, reliability class D, with an IP42 rating for dust and water.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2261243",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "The maker declares in the EU register that the Apple iPad mini (A17 Pro) will get security and operating-system updates for at least 5 years after the model stops being sold in the EU.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2261243",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Apple's US store lists the iPad mini (A17 Pro) from $599 on the date checked.",
+     "source": "https://www.apple.com/shop/buy-ipad/ipad-mini",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Apple Store",
+     "url": "https://www.apple.com/shop/buy-ipad/ipad-mini"
+    },
+    {
+     "label": "EU label record",
+     "url": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2261243"
+    },
+    {
+     "label": "Model numbers",
+     "url": "https://support.apple.com/en-us/108043"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Compact"
+   ],
+   "valueSignature": {
+    "planet": 62.33,
+    "cost": 56
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "eprel.ec.europa.eu",
+    "sourceLabels": [
+     "eprel.ec.europa.eu",
+     "apple.com"
+    ]
+   }
+  },
+  {
+   "code": "ipad-air-m4",
+   "name": "Apple iPad Air 11-inch (M4)",
+   "brand": "Apple",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 mid-range iPad; Apple lists display and battery parts for it in the EU register.",
+   "scores": {
+    "repairability": 57,
+    "durability": 60,
+    "longevity": 70,
+    "economical": 48
+   },
+   "provenance": {
+    "repairability": {
+     "note": "The EU energy label record for the Apple iPad Air 11-inch (M4) (model A3459, EPREL 2556298) gives a repairability index of 2.85 out of 5, class C, and lists spare-part availability for the display and battery; scored here as the index times 20.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2556298",
+     "asof": "2026-10"
+    },
+    "durability": {
+     "note": "The same EU label record rates the battery for 1000 full charge cycles and says the Apple iPad Air 11-inch (M4) passed 51 drops without defect, reliability class E, with an IP42 rating for dust and water.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2556298",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "The maker declares in the EU register that the Apple iPad Air 11-inch (M4) will get security and operating-system updates for at least 5 years after the model stops being sold in the EU.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2556298",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Apple's US store lists the iPad Air 11-inch (M4) from $749 on the date checked.",
+     "source": "https://www.apple.com/shop/buy-ipad/ipad-air",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Apple Store",
+     "url": "https://www.apple.com/shop/buy-ipad/ipad-air"
+    },
+    {
+     "label": "EU label record",
+     "url": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2556298"
+    },
+    {
+     "label": "Model numbers",
+     "url": "https://support.apple.com/en-us/108043"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Mainstream"
+   ],
+   "valueSignature": {
+    "planet": 62.33,
+    "cost": 48
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "eprel.ec.europa.eu",
+    "sourceLabels": [
+     "eprel.ec.europa.eu",
+     "apple.com"
+    ]
+   }
+  },
+  {
+   "code": "ipad-pro-m5",
+   "name": "Apple iPad Pro 11-inch (M5)",
+   "brand": "Apple",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Apple's top tablet from late 2025, the most expensive iPad here with the lowest EU repair index of the four.",
+   "scores": {
+    "repairability": 54,
+    "durability": 60,
+    "longevity": 70,
+    "economical": 30
+   },
+   "provenance": {
+    "repairability": {
+     "note": "The EU energy label record for the Apple iPad Pro 11-inch (M5) (model A3357, EPREL 2402629) gives a repairability index of 2.7 out of 5, class C, and lists spare-part availability for the display; scored here as the index times 20.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2402629",
+     "asof": "2026-10"
+    },
+    "durability": {
+     "note": "The same EU label record rates the battery for 1000 full charge cycles and says the Apple iPad Pro 11-inch (M5) passed 47 drops without defect, reliability class E, with an IP42 rating for dust and water.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2402629",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "The maker declares in the EU register that the Apple iPad Pro 11-inch (M5) will get security and operating-system updates for at least 5 years after the model stops being sold in the EU.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2402629",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Apple's US store lists the iPad Pro 11-inch (M5) from $1199 on the date checked.",
+     "source": "https://www.apple.com/shop/buy-ipad/ipad-pro",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Apple Store",
+     "url": "https://www.apple.com/shop/buy-ipad/ipad-pro"
+    },
+    {
+     "label": "EU label record",
+     "url": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2402629"
+    },
+    {
+     "label": "Model numbers",
+     "url": "https://support.apple.com/en-us/108043"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Premium"
+   ],
+   "valueSignature": {
+    "planet": 61.33,
+    "cost": 30
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "eprel.ec.europa.eu",
+    "sourceLabels": [
+     "eprel.ec.europa.eu",
+     "apple.com"
+    ]
+   }
+  },
+  {
+   "code": "galaxy-tab-a11",
+   "name": "Samsung Galaxy Tab A11",
+   "brand": "Samsung",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Samsung's cheapest current tablet, with an unusually good drop-test result for a budget model.",
+   "scores": {
+    "repairability": 54,
+    "durability": 75,
+    "longevity": 70,
+    "economical": 88
+   },
+   "provenance": {
+    "repairability": {
+     "note": "The EU energy label record for the Samsung Galaxy Tab A11 (model SM-X130, EPREL 2417657) gives a repairability index of 2.72 out of 5, class C, and lists spare-part availability for the display and battery; scored here as the index times 20.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2417657",
+     "asof": "2026-10"
+    },
+    "durability": {
+     "note": "The same EU label record rates the battery for 1200 full charge cycles and says the Samsung Galaxy Tab A11 passed 104 drops without defect, reliability class C, with an IP52 rating for dust and water.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2417657",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "The maker declares in the EU register that the Samsung Galaxy Tab A11 will get security and operating-system updates for at least 5 years after the model stops being sold in the EU.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2417657",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Samsung's UK store lists the 8.7-inch Galaxy Tab A11 (64 GB, Wi-Fi) at £169.",
+     "source": "https://www.samsung.com/uk/tablets/galaxy-tab-a/galaxy-tab-a11-grey-64gb-wi-fi-sm-x130nzaaeub/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Samsung UK",
+     "url": "https://www.samsung.com/uk/tablets/galaxy-tab-a/galaxy-tab-a11-grey-64gb-wi-fi-sm-x130nzaaeub/"
+    },
+    {
+     "label": "EU label record",
+     "url": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2417657"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Budget"
+   ],
+   "valueSignature": {
+    "planet": 66.33,
+    "cost": 88
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "eprel.ec.europa.eu",
+    "sourceLabels": [
+     "eprel.ec.europa.eu",
+     "samsung.com"
+    ]
+   }
+  },
+  {
+   "code": "galaxy-tab-a11-plus",
+   "name": "Samsung Galaxy Tab A11+",
+   "brand": "Samsung",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 11-inch budget Galaxy tablet; the price depends heavily on Samsung's frequent sales.",
+   "scores": {
+    "repairability": 56,
+    "durability": 70,
+    "longevity": 70,
+    "economical": 88
+   },
+   "provenance": {
+    "repairability": {
+     "note": "The EU energy label record for the Samsung Galaxy Tab A11+ (model SM-X230, EPREL 2472907) gives a repairability index of 2.8 out of 5, class C, and lists spare-part availability for the display and battery; scored here as the index times 20.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2472907",
+     "asof": "2026-10"
+    },
+    "durability": {
+     "note": "The same EU label record rates the battery for 1200 full charge cycles and says the Samsung Galaxy Tab A11+ declares no passed drop test, reliability class E, with an IP52 rating for dust and water.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2472907",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "The maker declares in the EU register that the Samsung Galaxy Tab A11+ will get security and operating-system updates for at least 5 years after the model stops being sold in the EU.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2472907",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Samsung's UK store showed the 11-inch Galaxy Tab A11+ (128 GB) at £189 on the date checked, marked down from £289.",
+     "source": "https://www.samsung.com/uk/tablets/galaxy-tab-a/galaxy-tab-a11-plus-grey-128gb-wi-fi-sm-x230nzareub/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Samsung UK",
+     "url": "https://www.samsung.com/uk/tablets/galaxy-tab-a/galaxy-tab-a11-plus-grey-128gb-wi-fi-sm-x230nzareub/"
+    },
+    {
+     "label": "EU label record",
+     "url": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2472907"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Budget"
+   ],
+   "valueSignature": {
+    "planet": 65.33,
+    "cost": 88
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "eprel.ec.europa.eu",
+    "sourceLabels": [
+     "eprel.ec.europa.eu",
+     "samsung.com"
+    ]
+   }
+  },
+  {
+   "code": "galaxy-tab-s10-fe",
+   "name": "Samsung Galaxy Tab S10 FE",
+   "brand": "Samsung",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A mid-range Galaxy tablet whose battery is rated for twice the charge cycles of most rivals here.",
+   "scores": {
+    "repairability": 56,
+    "durability": 95,
+    "longevity": 70,
+    "economical": 64
+   },
+   "provenance": {
+    "repairability": {
+     "note": "The EU energy label record for the Samsung Galaxy Tab S10 FE (model SM-X520, EPREL 2284544) gives a repairability index of 2.82 out of 5, class C, and lists spare-part availability for the display and battery; scored here as the index times 20.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2284544",
+     "asof": "2026-10"
+    },
+    "durability": {
+     "note": "The same EU label record rates the battery for 2000 full charge cycles and says the Samsung Galaxy Tab S10 FE declares no passed drop test, reliability class E, with an IP68 rating for dust and water.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2284544",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "The maker declares in the EU register that the Samsung Galaxy Tab S10 FE will get security and operating-system updates for at least 5 years after the model stops being sold in the EU.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2284544",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Samsung's UK store showed the Galaxy Tab S10 FE (10.9-inch, Wi-Fi) at £409 on the date checked, down from £539.",
+     "source": "https://www.samsung.com/uk/search/?searchvalue=SM-X520",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Samsung UK",
+     "url": "https://www.samsung.com/uk/search/?searchvalue=SM-X520"
+    },
+    {
+     "label": "EU label record",
+     "url": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2284544"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Long battery life"
+   ],
+   "valueSignature": {
+    "planet": 73.67,
+    "cost": 64
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "eprel.ec.europa.eu",
+    "sourceLabels": [
+     "eprel.ec.europa.eu",
+     "samsung.com"
+    ]
+   }
+  },
+  {
+   "code": "galaxy-tab-s11",
+   "name": "Samsung Galaxy Tab S11",
+   "brand": "Samsung",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Samsung's 2025 premium 11-inch tablet, water resistant to IP68.",
+   "scores": {
+    "repairability": 57,
+    "durability": 75,
+    "longevity": 70,
+    "economical": 40
+   },
+   "provenance": {
+    "repairability": {
+     "note": "The EU energy label record for the Samsung Galaxy Tab S11 (model SM-X730, EPREL 2410085) gives a repairability index of 2.86 out of 5, class C, and lists spare-part availability for the display and battery; scored here as the index times 20.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2410085",
+     "asof": "2026-10"
+    },
+    "durability": {
+     "note": "The same EU label record rates the battery for 1200 full charge cycles and says the Samsung Galaxy Tab S11 declares no passed drop test, reliability class E, with an IP68 rating for dust and water.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2410085",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "The maker declares in the EU register that the Samsung Galaxy Tab S11 will get security and operating-system updates for at least 5 years after the model stops being sold in the EU.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2410085",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Samsung's UK store lists the 11-inch Galaxy Tab S11 from £949 for the 128 GB model.",
+     "source": "https://www.samsung.com/uk/tablets/galaxy-tab-s11/buy/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Samsung UK",
+     "url": "https://www.samsung.com/uk/tablets/galaxy-tab-s11/buy/"
+    },
+    {
+     "label": "EU label record",
+     "url": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2410085"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Premium"
+   ],
+   "valueSignature": {
+    "planet": 67.33,
+    "cost": 40
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "eprel.ec.europa.eu",
+    "sourceLabels": [
+     "eprel.ec.europa.eu",
+     "samsung.com"
+    ]
+   }
+  },
+  {
+   "code": "galaxy-tab-s12-plus",
+   "name": "Samsung Galaxy Tab S12+",
+   "brand": "Samsung",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 12.6-inch member of Samsung's October 2026 flagship range.",
+   "scores": {
+    "repairability": 57,
+    "durability": 75,
+    "longevity": 70,
+    "economical": 30
+   },
+   "provenance": {
+    "repairability": {
+     "note": "The EU energy label record for the Samsung Galaxy Tab S12+ (model SM-X840, EPREL 2690295) gives a repairability index of 2.86 out of 5, class C, and lists spare-part availability for the display and battery; scored here as the index times 20.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2690295",
+     "asof": "2026-10"
+    },
+    "durability": {
+     "note": "The same EU label record rates the battery for 1200 full charge cycles and says the Samsung Galaxy Tab S12+ declares no passed drop test, reliability class E, with an IP68 rating for dust and water.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2690295",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "The maker declares in the EU register that the Samsung Galaxy Tab S12+ will get security and operating-system updates for at least 5 years after the model stops being sold in the EU.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2690295",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Samsung's UK store lists the 12.6-inch Galaxy Tab S12+ from £1,199.",
+     "source": "https://www.samsung.com/uk/tablets/galaxy-tab-s12/buy/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Samsung UK",
+     "url": "https://www.samsung.com/uk/tablets/galaxy-tab-s12/buy/"
+    },
+    {
+     "label": "EU label record",
+     "url": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2690295"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Premium"
+   ],
+   "valueSignature": {
+    "planet": 67.33,
+    "cost": 30
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "eprel.ec.europa.eu",
+    "sourceLabels": [
+     "eprel.ec.europa.eu",
+     "samsung.com"
+    ]
+   }
+  },
+  {
+   "code": "galaxy-tab-s12-ultra",
+   "name": "Samsung Galaxy Tab S12 Ultra",
+   "brand": "Samsung",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Samsung's largest and most expensive tablet, launched October 2026.",
+   "scores": {
+    "repairability": 56,
+    "durability": 75,
+    "longevity": 70,
+    "economical": 20
+   },
+   "provenance": {
+    "repairability": {
+     "note": "The EU energy label record for the Samsung Galaxy Tab S12 Ultra (model SM-X940, EPREL 2690290) gives a repairability index of 2.78 out of 5, class C, and lists spare-part availability for the display and battery; scored here as the index times 20.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2690290",
+     "asof": "2026-10"
+    },
+    "durability": {
+     "note": "The same EU label record rates the battery for 1200 full charge cycles and says the Samsung Galaxy Tab S12 Ultra declares no passed drop test, reliability class E, with an IP68 rating for dust and water.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2690290",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "The maker declares in the EU register that the Samsung Galaxy Tab S12 Ultra will get security and operating-system updates for at least 5 years after the model stops being sold in the EU.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2690290",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Samsung's UK store lists the 14.6-inch Galaxy Tab S12 Ultra from £1,399 for 256 GB, rising to £1,999 for 1 TB.",
+     "source": "https://www.samsung.com/uk/tablets/galaxy-tab-s12/buy/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Samsung UK",
+     "url": "https://www.samsung.com/uk/tablets/galaxy-tab-s12/buy/"
+    },
+    {
+     "label": "EU label record",
+     "url": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2690290"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Premium"
+   ],
+   "valueSignature": {
+    "planet": 67,
+    "cost": 20
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "eprel.ec.europa.eu",
+    "sourceLabels": [
+     "eprel.ec.europa.eu",
+     "samsung.com"
+    ]
+   }
+  },
+  {
+   "code": "galaxy-tab-active5-pro",
+   "name": "Samsung Galaxy Tab Active5 Pro",
+   "brand": "Samsung",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A rugged work tablet and the only Samsung here with a battery the owner can swap; the best-scoring Samsung on repair.",
+   "scores": {
+    "repairability": 72,
+    "durability": 95,
+    "longevity": 70,
+    "economical": 40
+   },
+   "provenance": {
+    "repairability": {
+     "note": "The EU energy label record for the Samsung Galaxy Tab Active5 Pro (model SM-X350, EPREL 2284546) gives a repairability index of 3.6 out of 5, class B, and lists spare-part availability for all priority parts; scored here as the index times 20.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2284546",
+     "asof": "2026-10"
+    },
+    "durability": {
+     "note": "The same EU label record rates the battery for 2000 full charge cycles and says the Samsung Galaxy Tab Active5 Pro declares no passed drop test, reliability class E, with an IP68 rating for dust and water.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2284546",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "The maker declares in the EU register that the Samsung Galaxy Tab Active5 Pro will get security and operating-system updates for at least 5 years after the model stops being sold in the EU.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2284546",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Samsung's UK business store lists the Galaxy Tab Active5 Pro (5G, 256 GB) at £879; it says the battery can be swapped without rebooting and offers up to 8 years of firmware updates for business devices.",
+     "source": "https://www.samsung.com/uk/business/tablets/galaxy-tab-active/galaxy-tab-active5-pro-green-256gb-sm-x356bzgeeeb/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Samsung UK",
+     "url": "https://www.samsung.com/uk/business/tablets/galaxy-tab-active/galaxy-tab-active5-pro-green-256gb-sm-x356bzgeeeb/"
+    },
+    {
+     "label": "EU label record",
+     "url": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2284546"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Rugged",
+    "Replaceable battery"
+   ],
+   "valueSignature": {
+    "planet": 79,
+    "cost": 40
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "eprel.ec.europa.eu",
+    "sourceLabels": [
+     "eprel.ec.europa.eu",
+     "samsung.com"
+    ]
+   }
+  },
+  {
+   "code": "lenovo-tab",
+   "name": "Lenovo Tab (10.1-inch)",
+   "brand": "Lenovo",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A plain budget Android tablet with one of the best EU repair classes of any mainstream brand.",
+   "scores": {
+    "repairability": 81,
+    "durability": 60,
+    "longevity": 90,
+    "economical": 88
+   },
+   "provenance": {
+    "repairability": {
+     "note": "The EU energy label record for the Lenovo Tab (10.1-inch) (model TB311FU, EPREL 2226205) gives a repairability index of 4.05 out of 5, class A, and lists spare-part availability for all priority parts; scored here as the index times 20.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2226205",
+     "asof": "2026-10"
+    },
+    "durability": {
+     "note": "The same EU label record rates the battery for 1000 full charge cycles and says the Lenovo Tab (10.1-inch) passed 14 drops without defect, reliability class E, with an IP52 rating for dust and water.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2226205",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "The maker declares in the EU register that the Lenovo Tab (10.1-inch) will get security and operating-system updates for at least 7 years after the model stops being sold in the EU.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2226205",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Lenovo's UK store lists the Lenovo Tab 10.1-inch (4 GB, 64 GB) at £189.",
+     "source": "https://www.lenovo.com/gb/en/tablets/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Lenovo UK tablets",
+     "url": "https://www.lenovo.com/gb/en/tablets/"
+    },
+    {
+     "label": "EU label record",
+     "url": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2226205"
+    }
+   ],
+   "region": [
+    "UK",
+    "EU",
+    "global"
+   ],
+   "focuses": [
+    "Budget",
+    "Repairable"
+   ],
+   "valueSignature": {
+    "planet": 77,
+    "cost": 88
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "eprel.ec.europa.eu",
+    "sourceLabels": [
+     "eprel.ec.europa.eu",
+     "lenovo.com"
+    ]
+   }
+  },
+  {
+   "code": "lenovo-tab-m11",
+   "name": "Lenovo Tab M11",
+   "brand": "Lenovo",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "An 11-inch budget tablet sold with a pen, repair class A in the EU register.",
+   "scores": {
+    "repairability": 81,
+    "durability": 60,
+    "longevity": 90,
+    "economical": 88
+   },
+   "provenance": {
+    "repairability": {
+     "note": "The EU energy label record for the Lenovo Tab M11 (model TB330FU, EPREL 2230554) gives a repairability index of 4.03 out of 5, class A, and lists spare-part availability for all priority parts; scored here as the index times 20.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2230554",
+     "asof": "2026-10"
+    },
+    "durability": {
+     "note": "The same EU label record rates the battery for 1000 full charge cycles and says the Lenovo Tab M11 passed 1 drops without defect, reliability class E, with an IP52 rating for dust and water.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2230554",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "The maker declares in the EU register that the Lenovo Tab M11 will get security and operating-system updates for at least 7 years after the model stops being sold in the EU.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2230554",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Lenovo's UK store lists the Tab M11 (4 GB, 128 GB) with a pen at £199.99.",
+     "source": "https://www.lenovo.com/gb/en/tablets/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Lenovo UK tablets",
+     "url": "https://www.lenovo.com/gb/en/tablets/"
+    },
+    {
+     "label": "EU label record",
+     "url": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2230554"
+    }
+   ],
+   "region": [
+    "UK",
+    "EU",
+    "global"
+   ],
+   "focuses": [
+    "Budget",
+    "Repairable"
+   ],
+   "valueSignature": {
+    "planet": 77,
+    "cost": 88
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "eprel.ec.europa.eu",
+    "sourceLabels": [
+     "eprel.ec.europa.eu",
+     "lenovo.com"
+    ]
+   }
+  },
+  {
+   "code": "lenovo-idea-tab-pro",
+   "name": "Lenovo Idea Tab Pro",
+   "brand": "Lenovo",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A large-screen mid-range tablet with repair class A and a seven-year update declaration.",
+   "scores": {
+    "repairability": 81,
+    "durability": 60,
+    "longevity": 90,
+    "economical": 72
+   },
+   "provenance": {
+    "repairability": {
+     "note": "The EU energy label record for the Lenovo Idea Tab Pro (model TB373FU, EPREL 2283933) gives a repairability index of 4.04 out of 5, class A, and lists spare-part availability for all priority parts; scored here as the index times 20.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2283933",
+     "asof": "2026-10"
+    },
+    "durability": {
+     "note": "The same EU label record rates the battery for 1000 full charge cycles and says the Lenovo Idea Tab Pro passed 14 drops without defect, reliability class E, with an IP52 rating for dust and water.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2283933",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "The maker declares in the EU register that the Lenovo Idea Tab Pro will get security and operating-system updates for at least 7 years after the model stops being sold in the EU.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2283933",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Lenovo's UK store lists the 12.7-inch Idea Tab Pro (8 GB, 128 GB) with pen at £379.99.",
+     "source": "https://www.lenovo.com/gb/en/tablets/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Lenovo UK tablets",
+     "url": "https://www.lenovo.com/gb/en/tablets/"
+    },
+    {
+     "label": "EU label record",
+     "url": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2283933"
+    }
+   ],
+   "region": [
+    "UK",
+    "EU",
+    "global"
+   ],
+   "focuses": [
+    "Repairable",
+    "Long support"
+   ],
+   "valueSignature": {
+    "planet": 77,
+    "cost": 72
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "eprel.ec.europa.eu",
+    "sourceLabels": [
+     "eprel.ec.europa.eu",
+     "lenovo.com"
+    ]
+   }
+  },
+  {
+   "code": "lenovo-idea-tab-pro-gen-2",
+   "name": "Lenovo Idea Tab Pro Gen 2",
+   "brand": "Lenovo",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The 2026 successor to the Idea Tab Pro, with the same repair class and update period.",
+   "scores": {
+    "repairability": 81,
+    "durability": 60,
+    "longevity": 90,
+    "economical": 56
+   },
+   "provenance": {
+    "repairability": {
+     "note": "The EU energy label record for the Lenovo Idea Tab Pro Gen 2 (model TB390FU, EPREL 2583821) gives a repairability index of 4.04 out of 5, class A, and lists spare-part availability for all priority parts; scored here as the index times 20.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2583821",
+     "asof": "2026-10"
+    },
+    "durability": {
+     "note": "The same EU label record rates the battery for 1000 full charge cycles and says the Lenovo Idea Tab Pro Gen 2 passed 12 drops without defect, reliability class E, with an IP52 rating for dust and water.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2583821",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "The maker declares in the EU register that the Lenovo Idea Tab Pro Gen 2 will get security and operating-system updates for at least 7 years after the model stops being sold in the EU.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2583821",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Lenovo's UK store lists the Idea Tab Pro Gen 2 starting at £519.",
+     "source": "https://www.lenovo.com/gb/en/tablets/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Lenovo UK tablets",
+     "url": "https://www.lenovo.com/gb/en/tablets/"
+    },
+    {
+     "label": "EU label record",
+     "url": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2583821"
+    }
+   ],
+   "region": [
+    "UK",
+    "EU",
+    "global"
+   ],
+   "focuses": [
+    "Repairable",
+    "Long support"
+   ],
+   "valueSignature": {
+    "planet": 77,
+    "cost": 56
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "eprel.ec.europa.eu",
+    "sourceLabels": [
+     "eprel.ec.europa.eu",
+     "lenovo.com"
+    ]
+   }
+  },
+  {
+   "code": "lenovo-yoga-tab-gen-2",
+   "name": "Lenovo Yoga Tab Gen 2",
+   "brand": "Lenovo",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Lenovo's premium Android tablet from 2026, repair class A at a flagship price.",
+   "scores": {
+    "repairability": 81,
+    "durability": 60,
+    "longevity": 90,
+    "economical": 56
+   },
+   "provenance": {
+    "repairability": {
+     "note": "The EU energy label record for the Lenovo Yoga Tab Gen 2 (model TB711FU, EPREL 2791353) gives a repairability index of 4.07 out of 5, class A, and lists spare-part availability for all priority parts; scored here as the index times 20.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2791353",
+     "asof": "2026-10"
+    },
+    "durability": {
+     "note": "The same EU label record rates the battery for 1000 full charge cycles and says the Lenovo Yoga Tab Gen 2 passed 6 drops without defect, reliability class E, with an IP52 rating for dust and water.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2791353",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "The maker declares in the EU register that the Lenovo Yoga Tab Gen 2 will get security and operating-system updates for at least 7 years after the model stops being sold in the EU.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2791353",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Lenovo's UK store lists the Yoga Tab Gen 2 at £639.",
+     "source": "https://www.lenovo.com/gb/en/tablets/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Lenovo UK tablets",
+     "url": "https://www.lenovo.com/gb/en/tablets/"
+    },
+    {
+     "label": "EU label record",
+     "url": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2791353"
+    }
+   ],
+   "region": [
+    "UK",
+    "EU",
+    "global"
+   ],
+   "focuses": [
+    "Repairable",
+    "Long support"
+   ],
+   "valueSignature": {
+    "planet": 77,
+    "cost": 56
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "eprel.ec.europa.eu",
+    "sourceLabels": [
+     "eprel.ec.europa.eu",
+     "lenovo.com"
+    ]
+   }
+  },
+  {
+   "code": "xiaomi-pad-8",
+   "name": "Xiaomi Pad 8",
+   "brand": "Xiaomi",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Xiaomi's 2026 11-inch tablet, the best drop-test result of the mainstream tablets here. Xiaomi's own store could not be read, so no price is scored.",
+   "scores": {
+    "repairability": 55,
+    "durability": 70,
+    "longevity": 70
+   },
+   "provenance": {
+    "repairability": {
+     "note": "The EU energy label record for the Xiaomi Pad 8 (model 25097RP43G, EPREL 2485400) gives a repairability index of 2.74 out of 5, class C, and lists spare-part availability for the display, battery and back cover; scored here as the index times 20. The model code 25097RP43G is matched to the Xiaomi Pad 8 by a published spec listing that cites the same EPREL number.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2485400",
+     "asof": "2026-10"
+    },
+    "durability": {
+     "note": "The same EU label record rates the battery for 1000 full charge cycles and says the Xiaomi Pad 8 passed 208 drops without defect, reliability class A, with an IP54 rating for dust and water.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2485400",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "The maker declares in the EU register that the Xiaomi Pad 8 will get security and operating-system updates for at least 5 years after the model stops being sold in the EU.",
+     "source": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2485400",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EU label record",
+     "url": "https://eprel.ec.europa.eu/screen/product/smartphonestablets20231669/2485400"
+    },
+    {
+     "label": "Spec listing",
+     "url": "https://www.newmobile.com/uk/Xiaomi-Pad-8/Specs"
+    }
+   ],
+   "region": [
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Durable"
+   ],
+   "valueSignature": {
+    "planet": 65
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "eprel.ec.europa.eu"
+   }
+  },
+  {
+   "code": "microsoft-surface-pro",
+   "name": "Microsoft Surface Pro (2026)",
+   "brand": "Microsoft",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A Windows 2-in-1 rather than a mobile-OS tablet; Microsoft publishes service guides and sells parts, and iFixit scores the line well.",
+   "scores": {
+    "repairability": 80,
+    "longevity": 70,
+    "economical": 30
+   },
+   "provenance": {
+    "repairability": {
+     "note": "iFixit's tablet repairability table gives the Surface Pro 11 (2024), the predecessor of the current models, 8 out of 10 for a rear storage hatch, a screwed-in battery, public repair manuals and spare parts; Microsoft's current Surface Pro page says replacement components are sold through the Microsoft Store and iFixit. The Surface Pro has no record in the EU label register, so the iFixit score is used, times 10.",
+     "source": "https://www.ifixit.com/repairability/tablet-repairability-scores",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Microsoft's Surface lifecycle table lists driver and firmware support for the Surface Pro 12th Edition (Snapdragon) from June 16, 2026 to June 16, 2032, and for the Surface Pro 12-inch 2nd Edition from October 13, 2026 to October 13, 2032: six years from release.",
+     "source": "https://learn.microsoft.com/en-us/surface/surface-driver-firmware-lifecycle-support",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Microsoft's US store lists the Surface Pro 12-inch from $1,149.99, keyboard sold separately.",
+     "source": "https://www.microsoft.com/en-us/surface/devices/surface-pro",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Surface Pro",
+     "url": "https://www.microsoft.com/en-us/surface/devices/surface-pro"
+    },
+    {
+     "label": "Support lifecycle",
+     "url": "https://learn.microsoft.com/en-us/surface/surface-driver-firmware-lifecycle-support"
+    },
+    {
+     "label": "iFixit scores",
+     "url": "https://www.ifixit.com/repairability/tablet-repairability-scores"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Repairable",
+    "Windows"
+   ],
+   "valueSignature": {
+    "planet": 75,
+    "cost": 30
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "ifixit.com",
+    "sourceLabels": [
+     "ifixit.com",
+     "learn.microsoft.com",
+     "microsoft.com"
+    ]
+   }
+  },
+  {
+   "code": "amazon-fire-hd-10",
+   "name": "Amazon Fire HD 10 (2023)",
+   "brand": "Amazon",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The cheap Fire OS tablet many households already own, still sold in the US; Amazon's new Android-based Alexa Tablets replace the line from October 2026.",
+   "scores": {
+    "longevity": 60,
+    "economical": 88
+   },
+   "provenance": {
+    "longevity": {
+     "note": "Amazon's Fire tablet security page says it will provide security updates 'until at least four years from when you bought it new, from Amazon as the seller' and lists the Fire HD 10 (Generation 13, 2023) as supported at least through 31 December 2029. It is not in the EU label register, so no repair or durability figures are scored.",
+     "source": "https://www.amazon.com/gp/help/customer/display.html?nodeId=G3YFLQ5Z33MZA6FT",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Amazon's US listing for the Fire HD 10 (32 GB) showed $154.99 and in stock on the date checked.",
+     "source": "https://www.amazon.com/dp/B0BHZT5S12",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Amazon listing",
+     "url": "https://www.amazon.com/dp/B0BHZT5S12"
+    },
+    {
+     "label": "Security update period",
+     "url": "https://www.amazon.com/gp/help/customer/display.html?nodeId=G3YFLQ5Z33MZA6FT"
+    },
+    {
+     "label": "Alexa Tablets announcement",
+     "url": "https://www.aboutamazon.com/news/devices/new-amazon-alexa-tablets-alexa-plus"
+    }
+   ],
+   "region": [
+    "US",
+    "UK"
+   ],
+   "focuses": [
+    "Budget"
+   ],
+   "valueSignature": {
+    "planet": 60,
+    "cost": 88
+   },
+   "provenanceSummary": {
+    "factCount": 2,
+    "sourcedFactCount": 2,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "amazon.com"
+   }
+  }
+ ]
+}

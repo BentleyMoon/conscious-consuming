@@ -180,7 +180,8 @@ function main() {
   // 126 on 2026-09-23: email and search left the shared digital-services dataset in the same
   // split, authoring their own contracts.
   // 130 on 2026-10-14: four generated categories from vetted bulk sources.
-  if (contracts.length !== 130) failures.push(`${decisionRel}: expected 130 decision contracts, found ${contracts.length}`);
+  // 150 on 2026-10-23: 20 hand-built lenses published into the navigation, each with its own contract.
+  if (contracts.length !== 150) failures.push(`${decisionRel}: expected 150 decision contracts, found ${contracts.length}`);
   for (const contract of contracts) {
     const label = contract.category || '(unknown category)';
     const summary = contract.reads && contract.reads.text || '';

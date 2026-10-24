@@ -1,0 +1,1518 @@
+{
+ "meta": {
+  "id": "budgeting-apps",
+  "label": "Budgeting apps",
+  "type": "Services",
+  "primaryAxis": "privacy",
+  "tradeoff": [
+   "economical",
+   "privacy"
+  ],
+  "tradeoffLabels": [
+   "costs least to use",
+   "shares least of your financial life"
+  ],
+  "source": "Conscious Consuming (curated)",
+  "attribution": "Compares tools for running a household budget in the US and UK: subscription apps, free apps funded by offers, open-banking apps, open-source desktop and self-hosted software, and the plain spreadsheet. Mint, once the default free budgeting app, was closed by Intuit in 2024 and its tracking moved to Credit Karma, which is scored here as Mint's successor. Privacy: what each app's App Store privacy label (the developer's own declaration to Apple) and privacy policy say about tracking you across other companies' apps, using your data for advertising, selling data, and which bank aggregator (Plaid, MX, Finicity, Yodlee, Salt Edge, Tink) connects your accounts. Local or self-hosted software scores highest; no tracking and no advertising use of financial data next; financial data used for the developer's marketing lower; tracking or third-party advertising lowest, with financial data in tracking the floor. Value: the annual price of the cheapest plan that includes automatic bank import, from the app's own pricing page or App Store listing; score = 100 minus 0.6 points per US dollar a year (UK prices converted at roughly $1.30 to the pound before scoring). Free tiers that already include bank-linked budgeting score 85 to 90 because they are limited or funded by offers; free software scores 95 to 100. Openness: whether you can take your data and the tool with you: an open-source licence scores 100, an open spreadsheet file 80 to 95, a public API 70, a full CSV export 55 to 65, an export only on a paid tier 45. Checked against each project's licence file or each app's own help-centre article. Transparency: whether the price and the way the company makes money are plain: a single published subscription or donation-funded open source scores 85 to 90; published freemium tiers 65 to 75; a free app funded by referrals or advertising 45 to 60; choose-your-price and many overlapping offers lower. Not scored: features, ease of use and bank coverage, which depend on what a household needs. Rejected: Cleo, chiefly a cash-advance app that the FTC charged in March 2025 with misleading users about advance amounts and obstructing cancellation; Moneyhub, whose site now sells its money tools to businesses rather than households. Sources: Apple App Store listings, each app's privacy policy, pricing and help pages, project licence files and sites, the CFPB's budget tools and LibreOffice. Prices change and offers rotate: check the live page before subscribing. Not financial advice. Reviewed 2026-10.",
+  "allergens": false,
+  "presets": {
+   "Balanced": {
+    "w": {
+     "privacy": 3,
+     "economical": 2,
+     "openness": 2,
+     "transparency": 2
+    },
+    "x": []
+   },
+   "Most private": {
+    "w": {
+     "privacy": 5,
+     "openness": 3,
+     "transparency": 2,
+     "economical": 1
+    },
+    "x": []
+   },
+   "Cheapest": {
+    "w": {
+     "economical": 5,
+     "privacy": 2,
+     "transparency": 2,
+     "openness": 1
+    },
+    "x": []
+   },
+   "Own your data": {
+    "w": {
+     "openness": 5,
+     "privacy": 3,
+     "transparency": 2,
+     "economical": 1
+    },
+    "x": []
+   }
+  },
+  "n": 18,
+  "valueSignatureProfile": {
+   "entryCount": 18,
+   "signedEntries": 18,
+   "drawableEntries": 18,
+   "minimumThemesForBloom": 2,
+   "themeCounts": {
+    "honesty": 18,
+    "privacy": 18,
+    "cost": 18
+   }
+  },
+  "provenanceProfile": {
+   "entryCount": 18,
+   "singleSourceEntries": 5,
+   "multiSourceEntries": 13,
+   "noSourceEntries": 0,
+   "noteOnlyEntries": 0,
+   "averageSourceDomains": 1.89,
+   "topPrimarySources": [
+    {
+     "label": "apps.apple.com",
+     "entries": 4
+    },
+    {
+     "label": "actualbudget.org",
+     "entries": 1
+    },
+    {
+     "label": "emma-app.com",
+     "entries": 1
+    },
+    {
+     "label": "files.consumerfinance.gov",
+     "entries": 1
+    },
+    {
+     "label": "firefly-iii.org",
+     "entries": 1
+    },
+    {
+     "label": "gethomebank.org",
+     "entries": 1
+    }
+   ]
+  },
+  "decision": {
+   "category": "budgeting-apps",
+   "reads": {
+    "text": "Compare budgeting apps by privacy, cost, openness, and disclosure.",
+    "basis": [
+     {
+      "criterion": "privacy",
+      "readsAs": "privacy"
+     },
+     {
+      "criterion": "economical",
+      "readsAs": "cost"
+     },
+     {
+      "criterion": "openness",
+      "readsAs": "openness"
+     },
+     {
+      "criterion": "transparency",
+      "readsAs": "disclosure"
+     }
+    ],
+    "signature": {
+     "by": "Conscious Consuming",
+     "on": "2026-07-15",
+     "status": "approved-batch"
+    },
+    "receipt": {
+     "dataset": "budgeting-apps",
+     "entryCount": 18,
+     "criteria": [
+      {
+       "criterion": "privacy",
+       "readsAs": "privacy",
+       "known": 18,
+       "minimum": 20,
+       "maximum": 95,
+       "spread": 75
+      },
+      {
+       "criterion": "economical",
+       "readsAs": "cost",
+       "known": 18,
+       "minimum": 35,
+       "maximum": 100,
+       "spread": 65
+      },
+      {
+       "criterion": "openness",
+       "readsAs": "openness",
+       "known": 17,
+       "minimum": 45,
+       "maximum": 100,
+       "spread": 55
+      },
+      {
+       "criterion": "transparency",
+       "readsAs": "disclosure",
+       "known": 18,
+       "minimum": 45,
+       "maximum": 90,
+       "spread": 45
+      }
+     ]
+    }
+   },
+   "axes": [
+    {
+     "id": "cost-or-values",
+     "kind": "cost-values",
+     "label": "Cost or overall fit",
+     "question": "Lower cost or a stronger overall fit?",
+     "criteria": [
+      "economical",
+      "privacy",
+      "openness",
+      "transparency"
+     ],
+     "poles": [
+      "Lower cost",
+      "Stronger overall fit"
+     ],
+     "default": 50
+    },
+    {
+     "id": "openness",
+     "kind": "criterion",
+     "label": "Openness",
+     "question": "Does openness matter more?",
+     "criteria": [
+      "openness"
+     ],
+     "poles": [
+      "Flexible",
+      "More open"
+     ],
+     "default": 50
+    }
+   ],
+   "budget": {
+    "available": true,
+    "mode": "assessed-affordability-rank",
+    "criterion": "economical",
+    "minimumKnown": 5,
+    "knownEntries": 18,
+    "coverage": 1.0
+   },
+   "archetypes": [
+    "best-for-most",
+    "strictest-match",
+    "budget-honest"
+   ],
+   "page": {
+    "stage": "approved-batch",
+    "primaryRoute": true
+   },
+   "consumer": {
+    "reads": "Round 8 approved category differences reads.",
+    "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+    "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+    "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+    "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+   }
+  }
+ },
+ "criteria": [
+  {
+   "key": "privacy",
+   "label": "Shares little of your financial data (tracking, ads, sale)",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "economical",
+   "label": "Low yearly cost for bank-linked budgeting",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "openness",
+   "label": "You can take your data, or the whole tool, with you",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "transparency",
+   "label": "Plain about the price and how it makes money",
+   "source": "curated",
+   "tier": "assessed"
+  }
+ ],
+ "products": [
+  {
+   "code": "ynab",
+   "name": "YNAB (You Need A Budget)",
+   "brand": "You Need A Budget",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A zero-based budgeting app that gives every dollar a job, sold as a subscription with no ads or offers. One of the dearer apps, but its business model is plain and it does not sell your financial data.",
+   "scores": {
+    "privacy": 70,
+    "economical": 35,
+    "openness": 60,
+    "transparency": 90
+   },
+   "provenance": {
+    "privacy": {
+     "note": "YNAB's App Store privacy label lists no data used to track you; contact details are used for YNAB's own marketing. Its privacy policy says it does not sell your financial data but does 'perform typical targeted advertising' to find new customers, and that bank connections run through aggregators such as MX and Plaid, only with your consent. Scored 70: no tracking or sale, but your contact details feed its marketing.",
+     "source": "https://www.ynab.com/privacy-policy",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "YNAB's pricing page lists $109 a year or $14.99 a month after a free trial; there is no free plan. Score = 100 minus 0.6 points per dollar of annual cost.",
+     "source": "https://www.ynab.com/pricing",
+     "asof": "2026-10"
+    },
+    "openness": {
+     "note": "YNAB's help centre says you can export your plan and full transaction history to CSV or TSV files, from the web version only (not targets or category notes). Scored 60: a full documented export, but a closed app and format.",
+     "source": "https://support.ynab.com/en_us/how-to-export-plan-data-Sy_CouWA9",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "YNAB's privacy policy describes it as a consumer-focused subscription business that relies on subscriptions, and its pricing page shows one annual and one monthly price. Scored 90: a single published price and no offers or referrals funding the app.",
+     "source": "https://www.ynab.com/pricing",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "YNAB pricing",
+     "url": "https://www.ynab.com/pricing"
+    },
+    {
+     "label": "YNAB privacy policy",
+     "url": "https://www.ynab.com/privacy-policy"
+    },
+    {
+     "label": "YNAB on the App Store",
+     "url": "https://apps.apple.com/us/app/ynab/id1010865877"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Zero-based",
+    "Subscription"
+   ],
+   "valueSignature": {
+    "honesty": 90,
+    "privacy": 65,
+    "cost": 35
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "ynab.com",
+    "sourceLabels": [
+     "ynab.com",
+     "support.ynab.com"
+    ]
+   }
+  },
+  {
+   "code": "monarch",
+   "name": "Monarch Money",
+   "brand": "Monarch Money",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A subscription budgeting and net-worth app that became the main home for former Mint users. Full-featured and ad-free inside the app, at about $100 a year, with a clear CSV export.",
+   "scores": {
+    "privacy": 60,
+    "economical": 40,
+    "openness": 65,
+    "transparency": 85
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Monarch's App Store privacy label lists no data used to track you, but names financial info and advertising data among data used for its own advertising or marketing. Its privacy policy says it will never sell your financial data and receives account data through Plaid, Finicity, MX or Spinwheel without ever receiving your bank login. Scored 60: no sale or tracking, but financial data is listed for its own marketing.",
+     "source": "https://apps.apple.com/us/app/monarch-budget-track-money/id1459319842",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Monarch's pricing page lists a yearly subscription at $99.99 or monthly at $14.99; the App Store also lists a $199.99 yearly Plus tier. Score = 100 minus 0.6 points per dollar of the $99.99 plan.",
+     "source": "https://www.monarch.com/pricing",
+     "asof": "2026-10"
+    },
+    "openness": {
+     "note": "Monarch's help centre says you can download transaction and balance history as a CSV file for one account or all accounts at once on the web, and that your full history stays available to download even after your subscription or trial ends (page read through a browser because it blocks scripted requests). Scored 65: complete export that survives cancelling, but a closed app.",
+     "source": "https://help.monarch.com/hc/en-us/articles/15526600975764-Downloading-Transaction-or-Account-History",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Monarch's pricing page states its two subscription prices up front, and the app carries no ads. Its policy notes that 'selling' and 'sharing' language relates only to advertising cookies on its website. Scored 85: plain subscription pricing, with website ad cookies the only caveat.",
+     "source": "https://www.monarch.com/privacy",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Monarch pricing",
+     "url": "https://www.monarch.com/pricing"
+    },
+    {
+     "label": "Monarch privacy policy",
+     "url": "https://www.monarch.com/privacy"
+    },
+    {
+     "label": "Monarch on the App Store",
+     "url": "https://apps.apple.com/us/app/monarch-budget-track-money/id1459319842"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Mint alternative",
+    "Net worth"
+   ],
+   "valueSignature": {
+    "honesty": 85,
+    "privacy": 62.5,
+    "cost": 40
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "monarch.com",
+    "sourceLabels": [
+     "monarch.com",
+     "apps.apple.com",
+     "help.monarch.com"
+    ]
+   }
+  },
+  {
+   "code": "rocket-money",
+   "name": "Rocket Money",
+   "brand": "Rocket Money",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A free spending tracker and subscription canceller with a pay-what-you-choose premium tier. Cheap to start, but its App Store label says purchase and financial data are used for third-party advertising.",
+   "scores": {
+    "privacy": 30,
+    "economical": 85,
+    "openness": 55,
+    "transparency": 50
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Rocket Money's App Store privacy label lists purchase history and financial info (payment info) among data used for third-party advertising, and its privacy policy, shared across Rocket's services, says it shares personal information to let others serve advertisements across the web and in mobile apps; bank connections go through providers such as Plaid. Scored 30: financial data used for third-party advertising.",
+     "source": "https://apps.apple.com/us/app/rocket-money-bills-budgets/id1130616675",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Rocket Money has a free tier; the App Store lists Premium subscriptions at prices from $2.99 to $11.99 a month. Scored 85: bank-linked tracking is free, with a limited free tier and a paid upgrade.",
+     "source": "https://apps.apple.com/us/app/rocket-money-bills-budgets/id1130616675",
+     "asof": "2026-10"
+    },
+    "openness": {
+     "note": "Rocket Money's help centre says you can export your transactions as a CSV file, filtered by date range, sent as a download link. Scored 55: a transaction export only.",
+     "source": "https://help.rocketmoney.com/en/articles/10296106-exporting-transactions",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Premium is sold on a choose-your-price basis (the App Store lists ten different Premium price points), and the free tier is funded partly through advertising use of customer data described in Rocket's policy. Scored 50: the price and the business model take digging to understand.",
+     "source": "https://apps.apple.com/us/app/rocket-money-bills-budgets/id1130616675",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Rocket Money on the App Store",
+     "url": "https://apps.apple.com/us/app/rocket-money-bills-budgets/id1130616675"
+    },
+    {
+     "label": "Rocket privacy policy",
+     "url": "https://www.rocketaccount.com/#/privacy-policy"
+    },
+    {
+     "label": "Exporting transactions",
+     "url": "https://help.rocketmoney.com/en/articles/10296106-exporting-transactions"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Free tier",
+    "Subscription cancelling"
+   ],
+   "valueSignature": {
+    "honesty": 50,
+    "privacy": 42.5,
+    "cost": 85
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "apps.apple.com",
+    "sourceLabels": [
+     "apps.apple.com",
+     "help.rocketmoney.com"
+    ]
+   }
+  },
+  {
+   "code": "copilot",
+   "name": "Copilot Money",
+   "brand": "Copilot Money",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A subscription budgeting app for Apple devices and the web, with automatic categorisation. Its App Store label lists no tracking and no advertising use of data, and its policy says financial data never influences ads.",
+   "scores": {
+    "privacy": 80,
+    "economical": 43,
+    "openness": 60,
+    "transparency": 90
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Copilot's App Store privacy label lists no data used to track you and no advertising or marketing purposes, only analytics, personalisation and app functionality. Its privacy policy says it does not sell your financial information and that it is never used to generate or influence advertising; bank connections run through Plaid and Finicity. Scored 80.",
+     "source": "https://apps.apple.com/us/app/copilot-track-budget-money/id1447330651",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "The App Store lists Copilot's yearly subscription at $95.00 and monthly at $13.00; there is no free plan. Score = 100 minus 0.6 points per dollar of annual cost.",
+     "source": "https://apps.apple.com/us/app/copilot-track-budget-money/id1447330651",
+     "asof": "2026-10"
+    },
+    "openness": {
+     "note": "Copilot's help centre says you can export all of your transaction data as a spreadsheet (CSV) on iOS, iPadOS, macOS and the web. Scored 60: full transaction export, closed app.",
+     "source": "https://help.copilot.money/en/articles/5944414-exporting-your-transaction-data",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Copilot sells one product at two published prices and its policy separates its marketing website's cookies from the app, where financial data is not used for ads. Scored 90.",
+     "source": "https://www.copilot.money/privacy-policy",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Copilot on the App Store",
+     "url": "https://apps.apple.com/us/app/copilot-track-budget-money/id1447330651"
+    },
+    {
+     "label": "Copilot privacy policy",
+     "url": "https://www.copilot.money/privacy-policy"
+    },
+    {
+     "label": "Exporting your transaction data",
+     "url": "https://help.copilot.money/en/articles/5944414-exporting-your-transaction-data"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Apple devices",
+    "No ads"
+   ],
+   "valueSignature": {
+    "honesty": 90,
+    "privacy": 70,
+    "cost": 43
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "apps.apple.com",
+    "sourceLabels": [
+     "apps.apple.com",
+     "copilot.money",
+     "help.copilot.money"
+    ]
+   }
+  },
+  {
+   "code": "goodbudget",
+   "name": "Goodbudget",
+   "brand": "Dayspring Technologies",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A digital envelope budgeting app, usable free with manual entry and shared between household members. Bank import is on the paid Premium plan.",
+   "scores": {
+    "privacy": 65,
+    "economical": 52,
+    "openness": 60,
+    "transparency": 75
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Goodbudget's App Store privacy label lists no data used to track you, but names financial info among data used for its own advertising or marketing. Its privacy policy lists the companies it shares data with, including Plaid for financial data aggregation. Scored 65.",
+     "source": "https://apps.apple.com/us/app/goodbudget-budget-planner/id471112395",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "The App Store lists Goodbudget's Annual Premium plan at $79.99 (Annual Plus from $49.99), and Goodbudget's blog says bank transaction import is a Premium feature; a free plan with manual envelopes also exists. Score = 100 minus 0.6 points per dollar of the plan with bank import.",
+     "source": "https://goodbudget.com/blog/2026/03/gb-finally-imports-pending-transactions/",
+     "asof": "2026-10"
+    },
+    "openness": {
+     "note": "Goodbudget's help centre says you can download your transaction history with the Export CSV link above the transactions list. Scored 60.",
+     "source": "https://goodbudget.com/help/customize-your-goodbudget/export-transactions/",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Goodbudget publishes free, Plus and Premium tiers, but the App Store lists several different prices for the same Annual Plus plan ($49.99 to $69.99), and its own pricing page could not be found. Scored 75.",
+     "source": "https://apps.apple.com/us/app/goodbudget-budget-planner/id471112395",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Goodbudget on the App Store",
+     "url": "https://apps.apple.com/us/app/goodbudget-budget-planner/id471112395"
+    },
+    {
+     "label": "Goodbudget privacy policy",
+     "url": "https://goodbudget.com/privacy-policy/"
+    },
+    {
+     "label": "How to download your transaction history",
+     "url": "https://goodbudget.com/help/customize-your-goodbudget/export-transactions/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Envelope budgeting",
+    "Free tier"
+   ],
+   "valueSignature": {
+    "honesty": 75,
+    "privacy": 62.5,
+    "cost": 52
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "apps.apple.com",
+    "sourceLabels": [
+     "apps.apple.com",
+     "goodbudget.com"
+    ]
+   }
+  },
+  {
+   "code": "everydollar",
+   "name": "EveryDollar",
+   "brand": "Ramsey Solutions",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Dave Ramsey's zero-based budgeting app: free with manual entry, with bank connections and CSV export on Premium. Its App Store label says contact details, identifiers and usage data are used to track you across other companies' apps and sites.",
+   "scores": {
+    "privacy": 40,
+    "economical": 52,
+    "openness": 45,
+    "transparency": 70
+   },
+   "provenance": {
+    "privacy": {
+     "note": "EveryDollar's App Store privacy label lists contact info, identifiers and usage data as data used to track you across apps and websites owned by other companies. Ramsey Solutions' privacy policy says it does not sell your personal information to third parties. Scored 40: no sale, but cross-app tracking.",
+     "source": "https://apps.apple.com/us/app/everydollar-budget-management/id942571931",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Ramsey's EveryDollar page says the free version can be used at no cost and that Premium, which connects your bank, costs $79.99 billed annually or $17.99 a month after a 14-day trial. Score = 100 minus 0.6 points per dollar of the plan with bank connections.",
+     "source": "https://www.ramseysolutions.com/money/everydollar",
+     "asof": "2026-10"
+    },
+    "openness": {
+     "note": "Ramsey's EveryDollar page lists 'Export your budget data as a CSV file.' among Premium features, so the free version has no export. Scored 45: export only behind the paywall.",
+     "source": "https://www.ramseysolutions.com/money/everydollar",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Ramsey's page states the free and Premium prices plainly; the App Store also lists Plus and Ramsey+ bundles at other prices, and the app is part of a wider Ramsey product line. Scored 70.",
+     "source": "https://www.ramseysolutions.com/money/everydollar",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EveryDollar",
+     "url": "https://www.ramseysolutions.com/money/everydollar"
+    },
+    {
+     "label": "Ramsey privacy policy",
+     "url": "https://www.ramseysolutions.com/company/policies/privacy-policy"
+    },
+    {
+     "label": "EveryDollar on the App Store",
+     "url": "https://apps.apple.com/us/app/everydollar-budget-management/id942571931"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Zero-based",
+    "Free tier"
+   ],
+   "valueSignature": {
+    "honesty": 70,
+    "privacy": 42.5,
+    "cost": 52
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "ramseysolutions.com",
+    "sourceLabels": [
+     "ramseysolutions.com",
+     "apps.apple.com"
+    ]
+   }
+  },
+  {
+   "code": "pocketguard",
+   "name": "PocketGuard",
+   "brand": "PocketGuard",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A budgeting app built around how much is safe to spend. Its App Store label lists financial info among data used to track you, the most exposed label in this comparison, and its policy allows selling de-identified data.",
+   "scores": {
+    "privacy": 20,
+    "economical": 55,
+    "openness": 45,
+    "transparency": 65
+   },
+   "provenance": {
+    "privacy": {
+     "note": "PocketGuard's App Store privacy label lists financial info, contact info, user content, identifiers, usage data and diagnostics as data used to track you across other companies' apps and websites, and identifiers and advertising data as used for third-party advertising. Its privacy policy says it may disclose, share or sell aggregated or de-identified data to third parties, and that it uses Salt Edge. Scored 20.",
+     "source": "https://apps.apple.com/us/app/pocketguard-budget-app/id949414211",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "PocketGuard's pricing page lists Premium at $74.99 billed yearly, $12.99 a month, or $149 once for lifetime access, each after a 7-day trial. Score = 100 minus 0.6 points per dollar of the yearly plan.",
+     "source": "https://pocketguard.com/pricing/",
+     "asof": "2026-10"
+    },
+    "openness": {
+     "note": "PocketGuard's help centre lists CSV export as a PocketGuard Plus feature, sent as an emailed link valid for 24 hours. Scored 45: export only on a paid plan.",
+     "source": "https://pocketguard.com/help/export-transactions/",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "The pricing page shows yearly, monthly and lifetime prices clearly, but the App Store lists a dozen different subscription offers, including a $2.99 weekly offer, and the policy's data-sale clause sits deep in the text. Scored 65.",
+     "source": "https://pocketguard.com/pricing/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "PocketGuard pricing",
+     "url": "https://pocketguard.com/pricing/"
+    },
+    {
+     "label": "PocketGuard privacy policy",
+     "url": "https://pocketguard.com/privacy/"
+    },
+    {
+     "label": "PocketGuard on the App Store",
+     "url": "https://apps.apple.com/us/app/pocketguard-budget-app/id949414211"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Safe to spend",
+    "Tracking"
+   ],
+   "valueSignature": {
+    "honesty": 65,
+    "privacy": 32.5,
+    "cost": 55
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "pocketguard.com",
+    "sourceLabels": [
+     "pocketguard.com",
+     "apps.apple.com"
+    ]
+   }
+  },
+  {
+   "code": "emma",
+   "name": "Emma",
+   "brand": "Emma",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A UK open-banking money app that tracks spending, subscriptions and credit across your accounts, with a free tier and paid plans. Export of your data is a Pro and Ultimate feature.",
+   "scores": {
+    "privacy": 55,
+    "economical": 85,
+    "openness": 45,
+    "transparency": 75
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Emma's privacy policy says account data reaches it through trusted service providers or banks using Open Banking, and that it shares data with TransUnion for its credit score features and with banking, cloud and identity-verification partners; consent is sought for certain marketing. Emma's own site also carries cashback offers from retailers. No App Store privacy label was checked. Scored 55.",
+     "source": "https://emma-app.com/privacy",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Emma's plan comparison lists Basic at £0 a year with 2 bank logins, Plus at £41.99 a year, Pro at £83.99 and Ultimate at £124.99. Scored 85: bank-linked budgeting is free on a limited tier.",
+     "source": "https://emma-app.com/plans/compare-emma-plans",
+     "asof": "2026-10"
+    },
+    "openness": {
+     "note": "Emma's help centre says exporting all your transaction data to CSV is available on Emma Pro and Emma Ultimate, from the mobile app. Scored 45: export only on the dearer plans.",
+     "source": "https://help.emma-app.com/en/article/export-my-data-1a1mm1e/",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Emma publishes four tiers with prices and features side by side, though the plans also bundle savings, investing fees and cashback. Scored 75.",
+     "source": "https://emma-app.com/plans/compare-emma-plans",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Compare Emma plans",
+     "url": "https://emma-app.com/plans/compare-emma-plans"
+    },
+    {
+     "label": "Emma privacy policy",
+     "url": "https://emma-app.com/privacy"
+    },
+    {
+     "label": "Export my data",
+     "url": "https://help.emma-app.com/en/article/export-my-data-1a1mm1e/"
+    }
+   ],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "Open banking",
+    "Free tier"
+   ],
+   "valueSignature": {
+    "honesty": 75,
+    "privacy": 50,
+    "cost": 85
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "emma-app.com",
+    "sourceLabels": [
+     "emma-app.com",
+     "help.emma-app.com"
+    ]
+   }
+  },
+  {
+   "code": "snoop",
+   "name": "Snoop",
+   "brand": "Usnoop Limited",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A free UK open-banking app that watches your bills and suggests cheaper deals, with a paid Snoop Plus tier. It says it never sells your data; partners you choose to switch to receive your details.",
+   "scores": {
+    "privacy": 45,
+    "economical": 90,
+    "openness": 45,
+    "transparency": 60
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Snoop's UK App Store privacy label lists identifiers as data used to track you, and financial info among data used for its own marketing. Its privacy policy says it never sells any of your personal information, that partners receive relevant data only when you choose to switch a service, and that it uses Tink as its Open Banking data aggregator. Scored 45: no sale, but identifier tracking and deal-driven sharing.",
+     "source": "https://www.snoop.app/privacy-policy/",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Snoop's Plus page lists the core app as free forever and Snoop Plus at £5.99 a month or £47.99 billed annually. Scored 90: bank-linked tracking and budgeting are free.",
+     "source": "https://snoop.app/plus/",
+     "asof": "2026-10"
+    },
+    "openness": {
+     "note": "Snoop's Plus page lists 'Export transaction data' as a Snoop Plus feature, as a CSV file. Scored 45: export only on the paid tier.",
+     "source": "https://snoop.app/plus/",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "The free app is funded in part by deals and switching offers, described in the privacy policy, while Plus prices are published. Scored 60: clear prices, but a referral model behind the free tier.",
+     "source": "https://www.snoop.app/privacy-policy/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Snoop Plus",
+     "url": "https://snoop.app/plus/"
+    },
+    {
+     "label": "Snoop privacy policy",
+     "url": "https://www.snoop.app/privacy-policy/"
+    },
+    {
+     "label": "Snoop on the App Store (UK)",
+     "url": "https://apps.apple.com/gb/app/budget-planner-l-snoop-money/id1495077102"
+    }
+   ],
+   "region": [
+    "UK"
+   ],
+   "focuses": [
+    "Bill savings",
+    "Free"
+   ],
+   "valueSignature": {
+    "honesty": 60,
+    "privacy": 45,
+    "cost": 90
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "snoop.app"
+   }
+  },
+  {
+   "code": "actual-budget",
+   "name": "Actual Budget",
+   "brand": "Actual Budget",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A free, open-source envelope budgeting app that is local-first: your data lives on your devices or a server you run, with optional end-to-end encryption. Bank sync is optional and needs your own keys from a provider.",
+   "scores": {
+    "privacy": 95,
+    "economical": 95,
+    "openness": 100,
+    "transparency": 90
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Actual's site describes it as local-first software where you own your data, with optional end-to-end encryption. Its bank sync documentation says connecting a bank is optional and relies on you supplying your own API keys from a provider such as GoCardless, SimpleFIN, Enable Banking, Akahu or Pluggy, and only works with your own Actual server. Scored 95.",
+     "source": "https://actualbudget.org/",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Actual is free to download and self-host; its site also offers one-click hosting through PikaPods for a small hosting fee. Scored 95: free, with an optional hosting cost.",
+     "source": "https://actualbudget.org/",
+     "asof": "2026-10"
+    },
+    "openness": {
+     "note": "Actual's LICENSE file in its public source repository is the MIT licence, a permissive open-source licence. Scored 100.",
+     "source": "https://raw.githubusercontent.com/actualbudget/actual/master/LICENSE.txt",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "The code is public and the project is funded by donations, with no subscription for the self-hosted app. Scored 90.",
+     "source": "https://actualbudget.org/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Actual Budget",
+     "url": "https://actualbudget.org/"
+    },
+    {
+     "label": "Connecting your bank",
+     "url": "https://actualbudget.org/docs/advanced/bank-sync/"
+    },
+    {
+     "label": "Licence",
+     "url": "https://raw.githubusercontent.com/actualbudget/actual/master/LICENSE.txt"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Open source",
+    "Self-hosted"
+   ],
+   "valueSignature": {
+    "honesty": 90,
+    "privacy": 97.5,
+    "cost": 95
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "actualbudget.org",
+    "sourceLabels": [
+     "actualbudget.org",
+     "raw.githubusercontent.com"
+    ]
+   }
+  },
+  {
+   "code": "firefly-iii",
+   "name": "Firefly III",
+   "brand": "Firefly III",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A free, open-source personal finance manager you host yourself, with double-entry bookkeeping, budgets and a rule engine. For people comfortable running a small server.",
+   "scores": {
+    "privacy": 95,
+    "economical": 95,
+    "openness": 100,
+    "transparency": 90
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Firefly III's site describes a self-hosted personal finance manager with a separate Data Importer that pulls in CSV files or bank data from providers you configure; your records live on your own server. Scored 95.",
+     "source": "https://www.firefly-iii.org/",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Firefly III's site calls it a free and open source personal finance manager; the only cost is hosting it yourself. Scored 95.",
+     "source": "https://www.firefly-iii.org/",
+     "asof": "2026-10"
+    },
+    "openness": {
+     "note": "Firefly III's LICENSE file in its public repository is the GNU Affero General Public License version 3. Scored 100.",
+     "source": "https://raw.githubusercontent.com/firefly-iii/firefly-iii/main/LICENSE",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "The code is public and the project carries no subscription or advertising. Scored 90.",
+     "source": "https://www.firefly-iii.org/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Firefly III",
+     "url": "https://www.firefly-iii.org/"
+    },
+    {
+     "label": "Licence",
+     "url": "https://raw.githubusercontent.com/firefly-iii/firefly-iii/main/LICENSE"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Open source",
+    "Self-hosted"
+   ],
+   "valueSignature": {
+    "honesty": 90,
+    "privacy": 97.5,
+    "cost": 95
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "firefly-iii.org",
+    "sourceLabels": [
+     "firefly-iii.org",
+     "raw.githubusercontent.com"
+    ]
+   }
+  },
+  {
+   "code": "gnucash",
+   "name": "GnuCash",
+   "brand": "GnuCash",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Long-running free desktop accounting software for households and small businesses, using double-entry bookkeeping. Steeper to learn than an app, but your files stay on your computer.",
+   "scores": {
+    "privacy": 95,
+    "economical": 100,
+    "openness": 100,
+    "transparency": 90
+   },
+   "provenance": {
+    "privacy": {
+     "note": "GnuCash is desktop software for Linux, Windows and macOS that stores your books in files on your own computer, with no account at the developer. Scored 95.",
+     "source": "https://www.gnucash.org/",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "GnuCash's site offers it as a free download with no paid tier. Scored 100.",
+     "source": "https://www.gnucash.org/",
+     "asof": "2026-10"
+    },
+    "openness": {
+     "note": "GnuCash's site says it is 'freely licensed under the GNU GPL' and available for GNU/Linux, BSD, Solaris, Mac OS X and Microsoft Windows. Scored 100.",
+     "source": "https://www.gnucash.org/",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Volunteer-built and donation-funded, with public source code and no advertising. Scored 90.",
+     "source": "https://www.gnucash.org/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "GnuCash",
+     "url": "https://www.gnucash.org/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Open source",
+    "Desktop"
+   ],
+   "valueSignature": {
+    "honesty": 90,
+    "privacy": 97.5,
+    "cost": 100
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "gnucash.org"
+   }
+  },
+  {
+   "code": "homebank",
+   "name": "HomeBank",
+   "brand": "HomeBank",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Free desktop software for personal accounts and budgets, developed in France for 28 years, which imports your bank statement files rather than connecting to your bank.",
+   "scores": {
+    "privacy": 95,
+    "economical": 100,
+    "openness": 100,
+    "transparency": 85
+   },
+   "provenance": {
+    "privacy": {
+     "note": "HomeBank is desktop software for Windows, GNU/Linux, FreeBSD and macOS; its site describes importing bank statement files and applying rules to them on your own computer, with no bank connection or account at the developer. Scored 95.",
+     "source": "https://www.gethomebank.org/en/index.php",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "HomeBank's site offers it as free software at no cost. Scored 100.",
+     "source": "https://www.gethomebank.org/en/index.php",
+     "asof": "2026-10"
+    },
+    "openness": {
+     "note": "HomeBank's About page says it is free software released under the GPL License. Scored 100.",
+     "source": "https://www.gethomebank.org/en/about.php",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "HomeBank's site says the project is primarily supported by advertising on its website, alongside donations; the software itself shows no ads. Scored 85: openly stated, with ads on the website.",
+     "source": "https://www.gethomebank.org/en/index.php",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "HomeBank",
+     "url": "https://www.gethomebank.org/en/index.php"
+    },
+    {
+     "label": "About HomeBank",
+     "url": "https://www.gethomebank.org/en/about.php"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Open source",
+    "Desktop"
+   ],
+   "valueSignature": {
+    "honesty": 85,
+    "privacy": 97.5,
+    "cost": 100
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "gethomebank.org"
+   }
+  },
+  {
+   "code": "spreadsheet-budget",
+   "name": "DIY spreadsheet budget",
+   "brand": "spreadsheet",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The do-it-yourself route: a budget in a spreadsheet such as LibreOffice Calc, Excel or Google Sheets, filled from your bank statements. Free and fully under your control, at the cost of entering or importing transactions yourself.",
+   "scores": {
+    "privacy": 90,
+    "economical": 100,
+    "openness": 95,
+    "transparency": 90
+   },
+   "provenance": {
+    "privacy": {
+     "note": "A budget kept in a local spreadsheet file shares nothing with any app maker; the CFPB's free cash flow budget tool shows the same method on paper. A cloud spreadsheet is only as private as the account it lives in. Scored 90.",
+     "source": "https://files.consumerfinance.gov/f/documents/cfpb_your-money-your-goals_cash_flow_budget_tool_2018-11_ADA.pdf",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "LibreOffice, including its Calc spreadsheet, is free to download, and the CFPB publishes free budget worksheets. Scored 100.",
+     "source": "https://www.libreoffice.org/",
+     "asof": "2026-10"
+    },
+    "openness": {
+     "note": "LibreOffice's licences page says it is Free Software made available under the Mozilla Public License v2.0, and it saves in the open OpenDocument format; your data is a file you own. Scored 95.",
+     "source": "https://www.libreoffice.org/licenses/",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Every number and formula is visible to you, and nobody is paid when you use it. Scored 90.",
+     "source": "https://files.consumerfinance.gov/f/documents/cfpb_your-money-your-goals_cash_flow_budget_tool_2018-11_ADA.pdf",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "CFPB cash flow budget tool",
+     "url": "https://files.consumerfinance.gov/f/documents/cfpb_your-money-your-goals_cash_flow_budget_tool_2018-11_ADA.pdf"
+    },
+    {
+     "label": "LibreOffice",
+     "url": "https://www.libreoffice.org/"
+    },
+    {
+     "label": "LibreOffice licences",
+     "url": "https://www.libreoffice.org/licenses/"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Do it yourself",
+    "Free"
+   ],
+   "valueSignature": {
+    "honesty": 90,
+    "privacy": 92.5,
+    "cost": 100
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "files.consumerfinance.gov",
+    "sourceLabels": [
+     "files.consumerfinance.gov",
+     "libreoffice.org"
+    ]
+   }
+  },
+  {
+   "code": "tiller",
+   "name": "Tiller",
+   "brand": "Tiller",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A service that feeds your bank transactions into your own Google Sheets or Excel spreadsheet each day, so you budget in a spreadsheet without typing. Paid, but the data sits in a file you control.",
+   "scores": {
+    "privacy": 75,
+    "economical": 41,
+    "openness": 80,
+    "transparency": 90
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Tiller's privacy policy says it does not sell your personal information, does not store your bank usernames or passwords, and works with its partner Yodlee to collect your transaction data, which it stores encrypted. Scored 75.",
+     "source": "https://tiller.com/privacy/",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Tiller's pricing page says it is $99 a year after a 30-day free trial. Score = 100 minus 0.6 points per dollar of annual cost.",
+     "source": "https://tiller.com/pricing/",
+     "asof": "2026-10"
+    },
+    "openness": {
+     "note": "Tiller's pricing page says you sign up with a Microsoft or Google account and work in its spreadsheet templates, so every transaction lands in a spreadsheet file in your own account, in an open, editable layout. Scored 80.",
+     "source": "https://tiller.com/pricing/",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Tiller's pricing page says it is $99 a year with 'never any ads or hidden fees'. Scored 90.",
+     "source": "https://tiller.com/pricing/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Tiller pricing",
+     "url": "https://tiller.com/pricing/"
+    },
+    {
+     "label": "Tiller privacy",
+     "url": "https://tiller.com/privacy/"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Spreadsheet",
+    "Bank feeds"
+   ],
+   "valueSignature": {
+    "honesty": 90,
+    "privacy": 77.5,
+    "cost": 41
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "tiller.com"
+   }
+  },
+  {
+   "code": "quicken-simplifi",
+   "name": "Quicken Simplifi",
+   "brand": "Quicken",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Quicken's web and mobile budgeting app, a lighter cousin of its desktop software. Mid-priced, with a first-year discount that renews at the full price.",
+   "scores": {
+    "privacy": 55,
+    "economical": 50,
+    "openness": 55,
+    "transparency": 70
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Quicken's US privacy statement says it will not sell or share information you provide without your permission except as the statement describes, but that it may share anonymous, aggregated or de-identified data with third parties for business purposes, and it describes advertising uses. Scored 55.",
+     "source": "https://www.quicken.com/privacy-us/us/",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Quicken's Simplifi page lists $6.99 a month billed annually ($83.88 a year), shown in October 2026 with a first-year offer of $3.99 a month for new members ordering by November 13, 2026. Score = 100 minus 0.6 points per dollar of the full annual price.",
+     "source": "https://www.quicken.com/products/simplifi/",
+     "asof": "2026-10"
+    },
+    "openness": {
+     "note": "Simplifi's support site says you can export transactions, across accounts or filtered, to CSV, currently the only export format. Scored 55.",
+     "source": "https://support.simplifi.quicken.com/en/articles/3404263-how-to-export-transactions-from-quicken-simplifi",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "The headline price is a first-year discount; Quicken's own fine print says offers are for the first year only. Scored 70.",
+     "source": "https://www.quicken.com/products/simplifi/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Quicken Simplifi",
+     "url": "https://www.quicken.com/products/simplifi/"
+    },
+    {
+     "label": "Quicken US privacy statement",
+     "url": "https://www.quicken.com/privacy-us/us/"
+    },
+    {
+     "label": "How to export transactions",
+     "url": "https://support.simplifi.quicken.com/en/articles/3404263-how-to-export-transactions-from-quicken-simplifi"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Quicken",
+    "Subscription"
+   ],
+   "valueSignature": {
+    "honesty": 70,
+    "privacy": 55,
+    "cost": 50
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "quicken.com",
+    "sourceLabels": [
+     "quicken.com",
+     "support.simplifi.quicken.com"
+    ]
+   }
+  },
+  {
+   "code": "credit-karma",
+   "name": "Intuit Credit Karma",
+   "brand": "Intuit",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Where Intuit moved Mint's spending and net-worth tracking after closing Mint in 2024. Free, and paid for by the credit cards and loans it recommends, with an App Store label that lists tracking.",
+   "scores": {
+    "privacy": 30,
+    "economical": 90,
+    "transparency": 45
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Credit Karma's App Store privacy label lists identifiers as data used to track you, and financial and credit info and browsing history among data used for its own advertising or marketing. Scored 30: a free service whose data supports offers.",
+     "source": "https://apps.apple.com/us/app/intuit-credit-karma/id519817714",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Intuit's Mint site says Mint has been reimagined on Credit Karma, where you can link accounts from more than 17,000 institutions and track spending by category; Credit Karma is free to use. Scored 90: free, with no paid tier.",
+     "source": "https://mint.intuit.com/",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Credit Karma's own site footer says it may be compensated through third-party advertisers; its tracking tools sit beside card, loan and insurance offers. Scored 45: free, funded by the products it shows you.",
+     "source": "https://www.creditkarma.com/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Mint: now on Credit Karma",
+     "url": "https://mint.intuit.com/"
+    },
+    {
+     "label": "Credit Karma on the App Store",
+     "url": "https://apps.apple.com/us/app/intuit-credit-karma/id519817714"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Mint successor",
+    "Ad-funded"
+   ],
+   "valueSignature": {
+    "honesty": 45,
+    "privacy": 30,
+    "cost": 90
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "apps.apple.com",
+    "sourceLabels": [
+     "apps.apple.com",
+     "creditkarma.com",
+     "mint.intuit.com"
+    ]
+   }
+  },
+  {
+   "code": "lunch-money",
+   "name": "Lunch Money",
+   "brand": "Lunch Money",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A small, independent subscription budgeting app for the web, popular with people managing money in several currencies, with a public developer API.",
+   "scores": {
+    "privacy": 75,
+    "economical": 40,
+    "openness": 70,
+    "transparency": 90
+   },
+   "provenance": {
+    "privacy": {
+     "note": "Lunch Money's privacy policy says it never sells information about its customers, that it has read-only access to synced accounts and never sees your bank credentials, and that bank data is imported through Plaid. No App Store privacy label was checked. Scored 75.",
+     "source": "https://lunchmoney.app/privacy",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Lunch Money's pricing page lists $10 a month, or an annual subscription with a set-your-own-price option shown at $100 a year, after a 30-day trial. Score = 100 minus 0.6 points per dollar of the $100 annual figure.",
+     "source": "https://lunchmoney.app/pricing",
+     "asof": "2026-10"
+    },
+    "openness": {
+     "note": "Lunch Money's site says you can import directly from banks, upload transactions via CSV and automate imports with its developer API. Scored 70: a public API, though the app itself is closed.",
+     "source": "https://lunchmoney.app/",
+     "asof": "2026-10"
+    },
+    "transparency": {
+     "note": "Lunch Money's pricing page says everything is included and your price never goes up. Scored 90.",
+     "source": "https://lunchmoney.app/pricing",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Lunch Money pricing",
+     "url": "https://lunchmoney.app/pricing"
+    },
+    {
+     "label": "Lunch Money privacy",
+     "url": "https://lunchmoney.app/privacy"
+    }
+   ],
+   "region": [
+    "global"
+   ],
+   "focuses": [
+    "Multi-currency",
+    "Developer API"
+   ],
+   "valueSignature": {
+    "honesty": 90,
+    "privacy": 72.5,
+    "cost": 40
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 1,
+    "singleSource": true,
+    "primarySource": "lunchmoney.app"
+   }
+  }
+ ]
+}

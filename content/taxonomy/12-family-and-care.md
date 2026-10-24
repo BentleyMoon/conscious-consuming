@@ -28,7 +28,7 @@ edge: Looking after people who depend on you, at both ends of a life. Children's
 - Cots and cribs
 - Baby monitors | need: connect
 - Strollers and pushchairs | aka: prams, buggies
-- Car seats | need: move
+- Car seats | need: move | cid: car-seats
 - Slings and carriers
 - Travel cots and portable sleep
 

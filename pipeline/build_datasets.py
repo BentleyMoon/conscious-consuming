@@ -436,6 +436,15 @@ KEY2THEME = {
     # catalogue and then removes it has a gap between claim and delivery.
     "permanence": "honesty",
     "reliability": "honesty", "cancellations": "honesty",
+    # 2026-10-23. Two keys arrived with trade unions when it left content/lenses-pending, and an
+    # unthemed scored key fails research/value_signature_audit.js. Both are flagged for review.
+    # "scale" is a union's size and resources, read as people: it is the collective strength a
+    # union brings to the workers it represents. "political_lobbying" scores lower political and
+    # lobbying spending per member higher, read as cost: it is how much of a member's dues leaves
+    # for politics rather than representation, and it sits beside the dues axis. A reader who
+    # wants a union to spend more on politics would read it the other way; if that reading should
+    # win, the fix is in the lens's scoring direction, not here.
+    "scale": "people", "political_lobbying": "cost",
 }
 COUNTRY_LEVEL_REGION_LIMITATIONS = {
     "payments": {

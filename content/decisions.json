@@ -7192,6 +7192,78 @@
       }
     },
     {
+      "category": "ad-and-tracker-blockers",
+      "reads": {
+        "text": "Compare ad and tracker blockers by privacy, everyday access, editorial independence, and openness.",
+        "basis": [
+          {
+            "criterion": "privacy",
+            "readsAs": "privacy"
+          },
+          {
+            "criterion": "accessibility",
+            "readsAs": "everyday access"
+          },
+          {
+            "criterion": "independence",
+            "readsAs": "editorial independence"
+          },
+          {
+            "criterion": "openness",
+            "readsAs": "openness"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "access-or-privacy",
+          "kind": "tradeoff",
+          "label": "Access or privacy",
+          "question": "Easier access or less data exposure?",
+          "criteria": [
+            "accessibility",
+            "privacy"
+          ],
+          "poles": [
+            "Easier access",
+            "Less exposure"
+          ],
+          "default": 50
+        },
+        {
+          "id": "independence",
+          "kind": "criterion",
+          "label": "Editorial independence",
+          "question": "Does editorial independence matter more?",
+          "criteria": [
+            "independence"
+          ],
+          "poles": [
+            "Flexible",
+            "More independent"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": false,
+        "mode": "none"
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
       "category": "airlines",
       "reads": {
         "text": "Compare airlines by reliability, cost, and cancellations.",
@@ -7257,6 +7329,78 @@
         "best-for-most",
         "strictest-match",
         "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "authenticator-and-two-factor-apps",
+      "reads": {
+        "text": "Compare authenticator and two-factor apps by security, data portability, openness, and privacy.",
+        "basis": [
+          {
+            "criterion": "security",
+            "readsAs": "security"
+          },
+          {
+            "criterion": "portability",
+            "readsAs": "data portability"
+          },
+          {
+            "criterion": "openness",
+            "readsAs": "openness"
+          },
+          {
+            "criterion": "privacy",
+            "readsAs": "privacy"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "recovery-or-security",
+          "kind": "tradeoff",
+          "label": "Recovery or security",
+          "question": "Easiest to move and recover, or hardest to steal?",
+          "criteria": [
+            "portability",
+            "security"
+          ],
+          "poles": [
+            "Easier recovery",
+            "Harder to steal"
+          ],
+          "default": 50
+        },
+        {
+          "id": "openness",
+          "kind": "criterion",
+          "label": "Openness",
+          "question": "Does openness matter more?",
+          "criteria": [
+            "openness"
+          ],
+          "poles": [
+            "Flexible",
+            "More open"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": false,
+        "mode": "none"
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match"
       ],
       "page": {
         "stage": "approved-batch",
@@ -7503,6 +7647,160 @@
       }
     },
     {
+      "category": "budgeting-apps",
+      "reads": {
+        "text": "Compare budgeting apps by privacy, cost, openness, and disclosure.",
+        "basis": [
+          {
+            "criterion": "privacy",
+            "readsAs": "privacy"
+          },
+          {
+            "criterion": "economical",
+            "readsAs": "cost"
+          },
+          {
+            "criterion": "openness",
+            "readsAs": "openness"
+          },
+          {
+            "criterion": "transparency",
+            "readsAs": "disclosure"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "privacy",
+            "openness",
+            "transparency"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "openness",
+          "kind": "criterion",
+          "label": "Openness",
+          "question": "Does openness matter more?",
+          "criteria": [
+            "openness"
+          ],
+          "poles": [
+            "Flexible",
+            "More open"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "car-seats",
+      "reads": {
+        "text": "Compare car seats by everyday access, cost, safety, and support life.",
+        "basis": [
+          {
+            "criterion": "accessibility",
+            "readsAs": "everyday access"
+          },
+          {
+            "criterion": "economical",
+            "readsAs": "cost"
+          },
+          {
+            "criterion": "safety",
+            "readsAs": "safety"
+          },
+          {
+            "criterion": "longevity",
+            "readsAs": "support life"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "accessibility",
+            "safety",
+            "longevity"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "safety",
+          "kind": "criterion",
+          "label": "Safety",
+          "question": "Does stronger safety matter more?",
+          "criteria": [
+            "safety"
+          ],
+          "poles": [
+            "Flexible",
+            "Stronger safety"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
       "category": "cat-food",
       "reads": {
         "text": "Compare cat food by body safety, everyday access, and disclosure.",
@@ -7675,6 +7973,83 @@
           "poles": [
             "Flexible",
             "Easier access"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-fees-rank",
+        "criterion": "fees",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "crypto-exchanges",
+      "reads": {
+        "text": "Compare crypto exchanges by security, fees, complaint record, and disclosure.",
+        "basis": [
+          {
+            "criterion": "security",
+            "readsAs": "security"
+          },
+          {
+            "criterion": "fees",
+            "readsAs": "fees"
+          },
+          {
+            "criterion": "complaints",
+            "readsAs": "complaint record"
+          },
+          {
+            "criterion": "transparency",
+            "readsAs": "disclosure"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Fees or overall fit",
+          "question": "Lower fees or a stronger overall fit?",
+          "criteria": [
+            "fees",
+            "security",
+            "complaints",
+            "transparency"
+          ],
+          "poles": [
+            "Lower fees",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "complaints",
+          "kind": "criterion",
+          "label": "Complaint record",
+          "question": "Do you want the cleaner complaint record?",
+          "criteria": [
+            "complaints"
+          ],
+          "poles": [
+            "Flexible",
+            "Cleaner record"
           ],
           "default": 50
         }
@@ -7913,6 +8288,83 @@
       }
     },
     {
+      "category": "e-readers",
+      "reads": {
+        "text": "Compare e-readers by openness, cost, privacy, and support life.",
+        "basis": [
+          {
+            "criterion": "openness",
+            "readsAs": "openness"
+          },
+          {
+            "criterion": "economical",
+            "readsAs": "cost"
+          },
+          {
+            "criterion": "privacy",
+            "readsAs": "privacy"
+          },
+          {
+            "criterion": "longevity",
+            "readsAs": "support life"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "openness",
+            "privacy",
+            "longevity"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "privacy",
+          "kind": "criterion",
+          "label": "Privacy",
+          "question": "Does less data exposure matter more?",
+          "criteria": [
+            "privacy"
+          ],
+          "poles": [
+            "Flexible",
+            "Less exposure"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
       "category": "electric-toothbrushes",
       "reads": {
         "text": "Compare electric toothbrushes by body safety, cost, environmental impact, and everyday access.",
@@ -7970,6 +8422,83 @@
           "poles": [
             "Flexible",
             "Lower impact"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "electric-vehicles",
+      "reads": {
+        "text": "Compare electric vehicles by environmental impact, cost, safety, and support life.",
+        "basis": [
+          {
+            "criterion": "environment",
+            "readsAs": "environmental impact"
+          },
+          {
+            "criterion": "economical",
+            "readsAs": "cost"
+          },
+          {
+            "criterion": "safety",
+            "readsAs": "safety"
+          },
+          {
+            "criterion": "longevity",
+            "readsAs": "support life"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "environment",
+            "safety",
+            "longevity"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "safety",
+          "kind": "criterion",
+          "label": "Safety",
+          "question": "Does stronger safety matter more?",
+          "criteria": [
+            "safety"
+          ],
+          "poles": [
+            "Flexible",
+            "Stronger safety"
           ],
           "default": 50
         }
@@ -8234,6 +8763,98 @@
       }
     },
     {
+      "category": "game-consoles",
+      "reads": {
+        "text": "Compare game consoles by repairability, ownership, support life, and cost.",
+        "basis": [
+          {
+            "criterion": "repairability",
+            "readsAs": "repairability"
+          },
+          {
+            "criterion": "ownership",
+            "readsAs": "ownership"
+          },
+          {
+            "criterion": "longevity",
+            "readsAs": "support life"
+          },
+          {
+            "criterion": "economical",
+            "readsAs": "cost"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "repairability",
+            "ownership",
+            "longevity"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "ownership-or-catalogue",
+          "kind": "tradeoff",
+          "label": "Ownership or catalogue",
+          "question": "Games you physically own, or the largest back catalogue?",
+          "criteria": [
+            "ownership",
+            "longevity"
+          ],
+          "poles": [
+            "Games you keep",
+            "Larger catalogue"
+          ],
+          "default": 50
+        },
+        {
+          "id": "repairability",
+          "kind": "criterion",
+          "label": "Repairability",
+          "question": "Does easier repair matter more?",
+          "criteria": [
+            "repairability"
+          ],
+          "poles": [
+            "Flexible",
+            "Easier repair"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
       "category": "glasses-and-contact-lenses",
       "reads": {
         "text": "Compare glasses and contact lenses by everyday access, cost, and disclosure.",
@@ -8378,6 +8999,124 @@
         "best-for-most",
         "strictest-match",
         "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "heat-pumps",
+      "reads": {
+        "text": "Compare heat pumps by environmental impact, everyday access, and support life.",
+        "basis": [
+          {
+            "criterion": "environment",
+            "readsAs": "environmental impact"
+          },
+          {
+            "criterion": "accessibility",
+            "readsAs": "everyday access"
+          },
+          {
+            "criterion": "longevity",
+            "readsAs": "support life"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "efficiency-or-access",
+          "kind": "tradeoff",
+          "label": "Efficiency or access",
+          "question": "Most efficient, or easiest to get installed and paid for?",
+          "criteria": [
+            "environment",
+            "accessibility"
+          ],
+          "poles": [
+            "More efficient",
+            "Easier to get"
+          ],
+          "default": 50
+        },
+        {
+          "id": "longevity",
+          "kind": "criterion",
+          "label": "Support life",
+          "question": "Do you want longer support?",
+          "criteria": [
+            "longevity"
+          ],
+          "poles": [
+            "Flexible",
+            "Longer support"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": false,
+        "mode": "none"
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "job-boards",
+      "reads": {
+        "text": "Compare job boards by privacy and selection.",
+        "basis": [
+          {
+            "criterion": "privacy",
+            "readsAs": "privacy"
+          },
+          {
+            "criterion": "selection",
+            "readsAs": "selection"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "privacy-or-reach",
+          "kind": "tradeoff",
+          "label": "Privacy or reach",
+          "question": "Less data collected about you, or the widest reach of listings?",
+          "criteria": [
+            "privacy",
+            "selection"
+          ],
+          "poles": [
+            "Less exposure",
+            "Wider reach"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": false,
+        "mode": "none"
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match"
       ],
       "page": {
         "stage": "approved-batch",
@@ -8539,6 +9278,83 @@
       }
     },
     {
+      "category": "meditation-apps",
+      "reads": {
+        "text": "Compare meditation apps by privacy, cost, everyday access, and disclosure.",
+        "basis": [
+          {
+            "criterion": "privacy",
+            "readsAs": "privacy"
+          },
+          {
+            "criterion": "economical",
+            "readsAs": "cost"
+          },
+          {
+            "criterion": "accessibility",
+            "readsAs": "everyday access"
+          },
+          {
+            "criterion": "transparency",
+            "readsAs": "disclosure"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "privacy",
+            "accessibility",
+            "transparency"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "accessibility",
+          "kind": "criterion",
+          "label": "Access",
+          "question": "Do you need easier everyday access?",
+          "criteria": [
+            "accessibility"
+          ],
+          "poles": [
+            "Flexible",
+            "Easier access"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
       "category": "menstrual-cups-and-discs",
       "reads": {
         "text": "Compare menstrual cups and discs by everyday access, cost, body safety, and labor and sourcing.",
@@ -8595,6 +9411,83 @@
           "poles": [
             "Flexible",
             "Body safety"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "mental-health-apps",
+      "reads": {
+        "text": "Compare mental-health apps by safety, cost, privacy, and everyday access.",
+        "basis": [
+          {
+            "criterion": "safety",
+            "readsAs": "safety"
+          },
+          {
+            "criterion": "economical",
+            "readsAs": "cost"
+          },
+          {
+            "criterion": "privacy",
+            "readsAs": "privacy"
+          },
+          {
+            "criterion": "accessibility",
+            "readsAs": "everyday access"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "safety",
+            "privacy",
+            "accessibility"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "privacy",
+          "kind": "criterion",
+          "label": "Privacy",
+          "question": "Does less data exposure matter more?",
+          "criteria": [
+            "privacy"
+          ],
+          "poles": [
+            "Flexible",
+            "Less exposure"
           ],
           "default": 50
         }
@@ -8697,6 +9590,83 @@
         "available": true,
         "mode": "assessed-affordability-rank",
         "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "money-transfer-and-remittance",
+      "reads": {
+        "text": "Compare money transfer and remittance by fees, everyday access, disclosure, and complaint record.",
+        "basis": [
+          {
+            "criterion": "fees",
+            "readsAs": "fees"
+          },
+          {
+            "criterion": "accessibility",
+            "readsAs": "everyday access"
+          },
+          {
+            "criterion": "transparency",
+            "readsAs": "disclosure"
+          },
+          {
+            "criterion": "complaints",
+            "readsAs": "complaint record"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Fees or overall fit",
+          "question": "Lower fees or a stronger overall fit?",
+          "criteria": [
+            "fees",
+            "accessibility",
+            "transparency",
+            "complaints"
+          ],
+          "poles": [
+            "Lower fees",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "transparency",
+          "kind": "criterion",
+          "label": "Disclosure",
+          "question": "Does stronger disclosure matter more?",
+          "criteria": [
+            "transparency"
+          ],
+          "poles": [
+            "Flexible",
+            "Stronger disclosure"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-fees-rank",
+        "criterion": "fees",
         "minimumKnown": 5
       },
       "archetypes": [
@@ -9597,6 +10567,450 @@
       }
     },
     {
+      "category": "smartwatches-and-wearables",
+      "reads": {
+        "text": "Compare smartwatches and wearables by repairability, support life, cost, and privacy.",
+        "basis": [
+          {
+            "criterion": "repairability",
+            "readsAs": "repairability"
+          },
+          {
+            "criterion": "longevity",
+            "readsAs": "support life"
+          },
+          {
+            "criterion": "economical",
+            "readsAs": "cost"
+          },
+          {
+            "criterion": "privacy",
+            "readsAs": "privacy"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "repairability",
+            "longevity",
+            "privacy",
+            "openness"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "repair-or-lifespan",
+          "kind": "tradeoff",
+          "label": "Repair or lifespan",
+          "question": "Easier to open and fix, or longer before the battery gives out?",
+          "criteria": [
+            "repairability",
+            "longevity"
+          ],
+          "poles": [
+            "Easier to fix",
+            "Lasts longer"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "solar-panels",
+      "reads": {
+        "text": "Compare solar panels by durability, labor practices, reliability, and everyday access.",
+        "basis": [
+          {
+            "criterion": "durability",
+            "readsAs": "durability"
+          },
+          {
+            "criterion": "labor",
+            "readsAs": "labor practices"
+          },
+          {
+            "criterion": "reliability",
+            "readsAs": "reliability"
+          },
+          {
+            "criterion": "accessibility",
+            "readsAs": "everyday access"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "lifespan-or-labor",
+          "kind": "tradeoff",
+          "label": "Lifespan or labor",
+          "question": "The longest warranted life, or the lowest forced-labour exposure?",
+          "criteria": [
+            "durability",
+            "labor"
+          ],
+          "poles": [
+            "Longer life",
+            "Lower labour risk"
+          ],
+          "default": 50
+        },
+        {
+          "id": "reliability",
+          "kind": "criterion",
+          "label": "Reliability",
+          "question": "Do you need it to run to schedule?",
+          "criteria": [
+            "reliability"
+          ],
+          "poles": [
+            "Flexible",
+            "More reliable"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": false,
+        "mode": "none"
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "supermarkets",
+      "reads": {
+        "text": "Compare supermarkets by labor and sourcing, cost, and everyday access.",
+        "basis": [
+          {
+            "criterion": "ethics",
+            "readsAs": "labor and sourcing"
+          },
+          {
+            "criterion": "economical",
+            "readsAs": "cost"
+          },
+          {
+            "criterion": "accessibility",
+            "readsAs": "everyday access"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "ethics",
+            "accessibility"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "accessibility",
+          "kind": "criterion",
+          "label": "Access",
+          "question": "Do you need easier everyday access?",
+          "criteria": [
+            "accessibility"
+          ],
+          "poles": [
+            "Flexible",
+            "Easier access"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "tablets",
+      "reads": {
+        "text": "Compare tablets by repairability, cost, support life, and durability.",
+        "basis": [
+          {
+            "criterion": "repairability",
+            "readsAs": "repairability"
+          },
+          {
+            "criterion": "economical",
+            "readsAs": "cost"
+          },
+          {
+            "criterion": "longevity",
+            "readsAs": "support life"
+          },
+          {
+            "criterion": "durability",
+            "readsAs": "durability"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "repairability",
+            "longevity",
+            "durability"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "longevity",
+          "kind": "criterion",
+          "label": "Support life",
+          "question": "Do you want longer support?",
+          "criteria": [
+            "longevity"
+          ],
+          "poles": [
+            "Flexible",
+            "Longer support"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "trade-unions",
+      "reads": {
+        "text": "Compare trade unions by size and reach, cost, and political spending.",
+        "basis": [
+          {
+            "criterion": "scale",
+            "readsAs": "size and reach"
+          },
+          {
+            "criterion": "economical",
+            "readsAs": "cost"
+          },
+          {
+            "criterion": "political_lobbying",
+            "readsAs": "political spending"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "scale",
+            "political_lobbying"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "political-lobbying",
+          "kind": "criterion",
+          "label": "Political spending",
+          "question": "Does lower political and lobbying spending matter more?",
+          "criteria": [
+            "political_lobbying"
+          ],
+          "poles": [
+            "Flexible",
+            "Lower spending"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "tvs",
+      "reads": {
+        "text": "Compare tvs by environmental impact, privacy, durability, and support life.",
+        "basis": [
+          {
+            "criterion": "environment",
+            "readsAs": "environmental impact"
+          },
+          {
+            "criterion": "privacy",
+            "readsAs": "privacy"
+          },
+          {
+            "criterion": "durability",
+            "readsAs": "durability"
+          },
+          {
+            "criterion": "longevity",
+            "readsAs": "support life"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "efficiency-or-privacy",
+          "kind": "tradeoff",
+          "label": "Efficiency or privacy",
+          "question": "Less electricity per hour on, or less viewing data collected?",
+          "criteria": [
+            "environment",
+            "privacy"
+          ],
+          "poles": [
+            "Less electricity",
+            "Less exposure"
+          ],
+          "default": 50
+        },
+        {
+          "id": "durability",
+          "kind": "criterion",
+          "label": "Durability",
+          "question": "Do you want a longer useful life?",
+          "criteria": [
+            "durability"
+          ],
+          "poles": [
+            "Flexible",
+            "Longer life"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": false,
+        "mode": "none"
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
       "category": "used-cars",
       "reads": {
         "text": "Compare used cars by disclosure, cost, and everyday access.",
@@ -9648,6 +11062,83 @@
           "poles": [
             "Flexible",
             "Easier access"
+          ],
+          "default": 50
+        }
+      ],
+      "budget": {
+        "available": true,
+        "mode": "assessed-affordability-rank",
+        "criterion": "economical",
+        "minimumKnown": 5
+      },
+      "archetypes": [
+        "best-for-most",
+        "strictest-match",
+        "budget-honest"
+      ],
+      "page": {
+        "stage": "approved-batch",
+        "primaryRoute": true
+      }
+    },
+    {
+      "category": "vacuum-cleaners",
+      "reads": {
+        "text": "Compare vacuum cleaners by repairability, cost, support life, and privacy.",
+        "basis": [
+          {
+            "criterion": "repairability",
+            "readsAs": "repairability"
+          },
+          {
+            "criterion": "economical",
+            "readsAs": "cost"
+          },
+          {
+            "criterion": "longevity",
+            "readsAs": "support life"
+          },
+          {
+            "criterion": "privacy",
+            "readsAs": "privacy"
+          }
+        ],
+        "signature": {
+          "by": "Conscious Consuming",
+          "on": "2026-07-15",
+          "status": "approved-batch"
+        }
+      },
+      "axes": [
+        {
+          "id": "cost-or-values",
+          "kind": "cost-values",
+          "label": "Cost or overall fit",
+          "question": "Lower cost or a stronger overall fit?",
+          "criteria": [
+            "economical",
+            "repairability",
+            "longevity",
+            "privacy"
+          ],
+          "poles": [
+            "Lower cost",
+            "Stronger overall fit"
+          ],
+          "default": 50
+        },
+        {
+          "id": "longevity",
+          "kind": "criterion",
+          "label": "Support life",
+          "question": "Do you want longer support?",
+          "criteria": [
+            "longevity"
+          ],
+          "poles": [
+            "Flexible",
+            "Longer support"
           ],
           "default": 50
         }

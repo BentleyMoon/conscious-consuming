@@ -337,7 +337,8 @@ function main() {
   // 126 on 2026-09-23: email and search left the shared digital-services dataset in the same
   // split, the next two of the nine-way division.
   // 130 on 2026-10-14: bottled-water, fragrance, floor-cleaners and carpet-cleaners from vetted bulk sources.
-  expect(live.length === 130, `app/data/index.json: expected 130 live categories, found ${live.length}`);
+  // 150 on 2026-10-23: 20 hand-built lenses published into the navigation.
+  expect(live.length === 150, `app/data/index.json: expected 150 live categories, found ${live.length}`);
   const contractCategories = contracts.map((contract) => contract.category);
   const contractCategorySet = new Set(contractCategories);
   expect(contractCategorySet.size === contractCategories.length, 'content/decisions.json: rollout categories must be unique');
@@ -427,14 +428,15 @@ function main() {
     }
   }
 
-  expect(receipt.categories === 130, `rollout: tested ${receipt.categories}/130 generated categories`);
+  expect(receipt.categories === 150, `rollout: tested ${receipt.categories}/150 generated categories`);
   expect(receipt.pilotRoutes === 2, `rollout: expected 2 founder-approved pilot routes, found ${receipt.pilotRoutes}`);
   // 122 on 2026-08-26: messaging and browsers joined the approved batch with their own
   // contracts when the digital-services split gave them datasets.
   // 124 on 2026-09-23: email and search joined the approved batch with their own contracts
   // when the same split gave them datasets.
   // 128 on 2026-10-14: bottled-water, fragrance, floor-cleaners and carpet-cleaners joined the batch.
-  expect(receipt.batchRoutes === 128, `rollout: expected 128 approved batch routes, found ${receipt.batchRoutes}`);
+  // 148 on 2026-10-23: the 20 hand-built lenses published into the navigation joined the batch.
+  expect(receipt.batchRoutes === 148, `rollout: expected 148 approved batch routes, found ${receipt.batchRoutes}`);
   expect(receipt.certificationPilots === 3, `rollout: expected 3 S8 certification pilots, found ${receipt.certificationPilots}`);
   expect(receipt.categoryAssignmentPaths === 24, `rollout: expected 24 category-assignment ranking paths, found ${receipt.categoryAssignmentPaths}`);
   expect(receipt.floorFolded === 22, `rollout: shared floor should preserve its bounded 22-option receipt, found ${receipt.floorFolded}`);

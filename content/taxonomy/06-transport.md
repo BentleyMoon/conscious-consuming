@@ -12,7 +12,7 @@ edge: Getting a person or a thing from one place to another, and everything owne
 ### Buying a car | cadence: once
 - New cars | aka: cars
 - Used cars | cid: used-cars
-- Electric vehicles | aka: EVs, electric cars
+- Electric vehicles | aka: EVs, electric cars | cid: electric-vehicles
 - Hybrid and plug-in hybrid cars
 - Small and city cars
 - Vans and pickups

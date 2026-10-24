@@ -24,16 +24,18 @@ const ROOT = path.resolve(__dirname, '..');
 // kind of move as messaging and browsers on 2026-08-26. Rows stay 217, live paths stay 130.
 const EXPECTED = {
   needs: 8,
-  categories: 18,
-  subcategories: 39,
+  // 2026-10-23: Where you shop (NOURISH) and Work (PROTECT) added for the two new domains. 18 -> 20 categories, 39 -> 42 subcategories.
+  categories: 20,
+  subcategories: 42,
   // 2026-10-14: four generated decisions (bottled water, fragrance, floor and carpet cleaners). 217 -> 219 rows, 130 -> 134 live paths, 126 -> 130 datasets.
-  rows: 219,
-  livePaths: 134,
+  // 2026-10-23: 20 hand-built lenses published. Sixteen filled gap rows already waiting (tablets, e-readers, smartwatches, game consoles, TVs, vacuum cleaners, heat pumps, solar panels, budgeting apps, crypto exchanges, mental-health and meditation apps, car seats, electric vehicles, money transfer, authenticator apps); ad and tracker blockers left content/lenses-pending for a new row in an existing home; job boards, trade unions and supermarkets left it for two new domains, Work and Shops. Clothing rental gained a row under Clothing but stays a gap: one of its twelve options rests only on a domain that is now parked, and eleven is under the roster floor. 219 -> 224 rows, 134 -> 154 live paths, 130 -> 150 datasets, 85 -> 70 gaps.
+  rows: 224,
+  livePaths: 154,
   // 124 on 2026-08-26: messaging and browsers flipped from digital-services facets to their
   // own datasets, the first two of the nine-way split. Rows stay 217, live paths stay 130.
   // 126 on 2026-09-23: email and search flipped the same way, the next two of the split.
-  liveDatasets: 130,
-  gaps: 85, // 87 -> 85 on 2026-10-14: Bottled water and Fragrance & perfume became live.
+  liveDatasets: 150,
+  gaps: 70, // 87 -> 85 on 2026-10-14: Bottled water and Fragrance & perfume became live. 85 -> 70 on 2026-10-23: sixteen waiting gap rows gained cids and Clothing rental joined as a new gap.
 };
 
 function readJson(rel) {

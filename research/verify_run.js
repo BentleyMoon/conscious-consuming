@@ -30,6 +30,8 @@ const KEY2THEME = {
   complaints: 'people', buyer_protection: 'people', damage_protection: 'people',
   permanence: 'honesty',
   reliability: 'honesty', cancellations: 'honesty',
+  // 2026-10-23, trade unions. Kept in step with pipeline/build_datasets.py; flagged for review there.
+  scale: 'people', political_lobbying: 'cost',
 };
 const vfac = new Set(), lfac = {}, rfac = new Set();
 const catById = new Map(cats.map(c => [c.id, c]));
@@ -164,8 +166,11 @@ const checks = {
   // 126 on 2026-09-23: the same split gave email and search their own datasets.
   // 130 on 2026-10-14: four generated categories from vetted bulk sources: bottled-water (Open
   // Food Facts), fragrance (Open Beauty Facts), floor-cleaners and carpet-cleaners (EPA Safer Choice).
-  'categories = 130': cats.length === 130 ? 130 : 'FAIL(' + cats.length + ')',
-  'all 15 live category domains': liveCategoryDomains.size === 15 ? 'yes' : 'FAIL(' + liveCategoryDomains.size + ')',
+  // 150 on 2026-10-23: 20 hand-built lenses published into the navigation. Domains holding a built
+  // category 15 -> 17: the two new domains, Work and Shops, each hold one or more from the start.
+  // Garden & outdoors is still the only domain with nothing built.
+  'categories = 150': cats.length === 150 ? 150 : 'FAIL(' + cats.length + ')',
+  'all 17 live category domains': liveCategoryDomains.size === 17 ? 'yes' : 'FAIL(' + liveCategoryDomains.size + ')',
   'priced food have economical': PRICED.every(id => B.data[id] && B.data[id].criteria.some(c => c.key === 'economical')),
   'food with economical (all)': FOOD.filter(id => B.data[id] && B.data[id].criteria.some(c => c.key === 'economical')).length,
   'beauty (13) have beauty criteria': BEAUTY.every(id => B.data[id] && B.data[id].criteria.some(c => c.key === 'cruelty_free')),

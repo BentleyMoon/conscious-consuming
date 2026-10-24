@@ -1,0 +1,1157 @@
+{
+  "meta": {
+    "id": "authenticator-and-two-factor-apps",
+    "label": "Authenticator and two-factor apps",
+    "type": "Services",
+    "primaryAxis": "security",
+    "tradeoff": [
+      "portability",
+      "security"
+    ],
+    "tradeoffLabels": [
+      "easiest to move and recover",
+      "hardest to steal"
+    ],
+    "source": "Conscious Consuming (curated)",
+    "attribution": "Compares ways to get the second factor for logging in: standalone authenticator apps (time-based one-time codes), password managers that also generate codes, codes held on a hardware key, and two routes that are not an authenticator app: hardware security keys or passkeys, and text-message codes as the honest floor. Global apps, with US guidance from the FTC and NIST. Any second factor is far safer than a password alone; this helps you pick one you can trust and move. Method, on a 0 to 100 scale set by Conscious Consuming from the cited record. Security: how secrets are protected (local encryption, end-to-end encrypted sync, app lock, independent audits, hardware storage), lowered for documented incidents (Authy's 2024 phone-number exposure), for sync the provider does not describe as end-to-end encrypted, and for storing codes in the same vault as passwords, which KeePassXC's own manual warns against. Hardware keys score highest, following the FTC and NIST SP 800-63B. Openness: the licence of the published source, read from F-Droid (which builds apps from source) or the project's licence file; closed apps with no published source score 10 to 15. Portability: whether you can export your secrets in a form another app can import (files with otpauth links, QR export), or are locked in (no export, or restore only within the same app or platform). Privacy: Apple App Store privacy labels as declared by each developer (not verified by Apple): Data Not Collected scores highest, data not linked to you next, account data linked to you lower, analytics, location and especially advertising use lowest; Android-only apps are scored from F-Droid permissions and the developer's own statements. Not scored: push-approval features for work accounts, price, and design. A cell is empty where the criterion does not apply (openness of a sign-in method, Apple Passwords' code export) or no source could be read (LastPass Authenticator's security). Sources: FTC, NIST SP 800-63B, Apple App Store listings, F-Droid, project licence files on GitHub, Twilio security notices and help centre, Google, Microsoft, Apple, Cisco Duo, Bitwarden, 1Password, Proton, Ente, 2FAS, Stratum, KeePassXC and Yubico documentation. Reviewed 2026-10. Suggest changes via Contribute.",
+    "allergens": false,
+    "presets": {
+      "Balanced": {
+        "w": {
+          "security": 3,
+          "portability": 3,
+          "privacy": 3,
+          "openness": 2
+        },
+        "x": []
+      },
+      "Hardest to steal": {
+        "w": {
+          "security": 5,
+          "privacy": 2,
+          "openness": 2,
+          "portability": 1
+        },
+        "x": []
+      },
+      "Open & portable": {
+        "w": {
+          "openness": 5,
+          "portability": 4,
+          "security": 2,
+          "privacy": 2
+        },
+        "x": []
+      },
+      "Most private": {
+        "w": {
+          "privacy": 5,
+          "openness": 3,
+          "security": 2,
+          "portability": 1
+        },
+        "x": []
+      }
+    }
+  },
+  "criteria": [
+    {
+      "key": "security",
+      "label": "Security of your codes",
+      "source": "curated"
+    },
+    {
+      "key": "openness",
+      "label": "Open source",
+      "source": "curated"
+    },
+    {
+      "key": "portability",
+      "label": "Export & recovery",
+      "source": "curated"
+    },
+    {
+      "key": "privacy",
+      "label": "Data collected",
+      "source": "curated"
+    }
+  ],
+  "products": [
+    {
+      "code": "google-authenticator",
+      "name": "Google Authenticator",
+      "brand": "Google",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "The best-known authenticator app. Since version 6 (Android) and 4 (iOS) it can sync codes to your Google Account. Google says synced codes are encrypted in transit and at rest, but does not describe the sync as end-to-end encrypted.",
+      "scores": {
+        "security": 55,
+        "openness": 15,
+        "portability": 60,
+        "privacy": 40
+      },
+      "provenance": {
+        "security": {
+          "note": "Google's help page says 'Google encrypts Authenticator codes both in transit and at rest across our products'. It does not say the sync is end-to-end encrypted, so Google, not only you, holds the keys to synced codes. Codes can instead be kept on the device by choosing to use the app without an account.",
+          "source": "https://support.google.com/accounts/answer/1066447?hl=en",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "Google's own archived open-source repository says that while the fork is open source, 'the [official version][playstore] of the app still remains proprietary'. The app people install is closed source.",
+          "source": "https://raw.githubusercontent.com/google/google-authenticator-android/master/README.md",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "Codes sync to other devices through your Google Account, or can be moved by Menu, Transfer codes, Export codes, which shows QR codes to scan on the new device. Several other apps (Aegis, Proton Authenticator, Bitwarden Authenticator) can import that QR export, but there is no plain file export.",
+          "source": "https://support.google.com/accounts/answer/1066447?hl=en",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Apple App Store privacy label (declared by Google, not verified by Apple): data linked to you includes coarse location, email address, user and device IDs, product interaction and diagnostics, used for analytics, product personalisation and app functionality.",
+          "source": "https://apps.apple.com/us/app/google-authenticator/id388497605",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Google help: Authenticator",
+          "url": "https://support.google.com/accounts/answer/1066447?hl=en"
+        },
+        {
+          "label": "App Store privacy label",
+          "url": "https://apps.apple.com/us/app/google-authenticator/id388497605"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Mainstream",
+        "Google Account sync",
+        "Closed source"
+      ]
+    },
+    {
+      "code": "microsoft-authenticator",
+      "name": "Microsoft Authenticator",
+      "brand": "Microsoft",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Microsoft's app for one-time codes and push sign-in approvals, common at work. Cloud backup goes to a personal Microsoft account (Android) or iCloud (iOS) and cannot cross between iPhone and Android. Its password autofill feature ended in August 2025.",
+      "scores": {
+        "security": 66,
+        "openness": 10,
+        "portability": 20,
+        "privacy": 35
+      },
+      "provenance": {
+        "security": {
+          "note": "Microsoft's FAQ says App Lock asks for your device PIN or biometric every time you open Authenticator and when approving sign-ins, but adds 'there's no guarantee that App Lock will stop someone from accessing Authenticator'. Autofill was discontinued in mid-August 2025.",
+          "source": "https://support.microsoft.com/en-us/account-billing/common-questions-about-the-microsoft-authenticator-app-12d283d1-bcef-4875-9ae5-ac360e2945dd",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "Microsoft publishes no source code for Authenticator; it is distributed only as a closed app through the app stores.",
+          "source": "https://apps.apple.com/us/app/microsoft-authenticator/id983156458",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "Microsoft's backup article says 'accounts backed up using an iOS device cannot be restored on an Android device', and backup is tied to a Microsoft personal account (Google One backup on Android from January 2027). The menu offers export for passwords, but no export of one-time-code secrets.",
+          "source": "https://support.microsoft.com/account-billing/bb939936-7a8d-4e88-bc43-49bc1a700a40",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Apple App Store privacy label (declared by Microsoft, not verified by Apple): data linked to you includes precise location, email address, user and device IDs, user content, product interaction and diagnostics, used for analytics and app functionality. Microsoft says location is used for work sign-in policies and that coordinates are not stored.",
+          "source": "https://apps.apple.com/us/app/microsoft-authenticator/id983156458",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Backup article",
+          "url": "https://support.microsoft.com/account-billing/bb939936-7a8d-4e88-bc43-49bc1a700a40"
+        },
+        {
+          "label": "FAQ",
+          "url": "https://support.microsoft.com/en-us/account-billing/common-questions-about-the-microsoft-authenticator-app-12d283d1-bcef-4875-9ae5-ac360e2945dd"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Work accounts",
+        "Push approval",
+        "No export"
+      ]
+    },
+    {
+      "code": "authy",
+      "name": "Twilio Authy",
+      "brand": "Twilio",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Twilio's authenticator with encrypted multi-device backups tied to your phone number. Its desktop apps were shut down on 19 March 2024, and in July 2024 Twilio said attackers had used an unauthenticated endpoint to identify Authy account data, including phone numbers. It does not let you export your codes.",
+      "scores": {
+        "security": 50,
+        "openness": 10,
+        "portability": 10,
+        "privacy": 35
+      },
+      "provenance": {
+        "security": {
+          "note": "Twilio's 1 July 2024 security alert says 'threat actors were able to identify data associated with Authy accounts, including phone numbers, due to an unauthenticated endpoint', and asked all users to update. Twilio said it saw no evidence its systems were breached, but exposed phone numbers make SIM-swap and phishing attacks easier.",
+          "source": "https://www.twilio.com/en-us/changelog/Security_Alert_Authy_App_Android_iOS",
+          "asof": "2024-07"
+        },
+        "openness": {
+          "note": "Authy is a closed app; Twilio publishes no source code for it, and ended the Windows, macOS and Linux desktop apps on 19 March 2024 (earlier than the August 2024 date first announced).",
+          "source": "https://www.twilio.com/en-us/changelog/end-of-life--eol--of-twilio-authy-desktop-apps",
+          "asof": "2024-02"
+        },
+        "portability": {
+          "note": "Twilio's help centre article (read in a browser, as it loads by script) states that, to maintain security, the Authy application does not allow importing or exporting 2FA account tokens; leaving means disabling and re-enrolling 2FA on every account.",
+          "source": "https://help.twilio.com/articles/19753420684059",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Apple App Store privacy label (declared by Authy Inc., not verified by Apple): data linked to you includes phone number, email address, coarse location, user and device IDs, product interaction, crash and performance data, used for analytics and app functionality. An account requires a phone number.",
+          "source": "https://apps.apple.com/us/app/twilio-authy/id494168017",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Security alert (Jul 2024)",
+          "url": "https://www.twilio.com/en-us/changelog/Security_Alert_Authy_App_Android_iOS"
+        },
+        {
+          "label": "Desktop end of life",
+          "url": "https://www.twilio.com/en-us/changelog/end-of-life--eol--of-twilio-authy-desktop-apps"
+        },
+        {
+          "label": "Export not supported",
+          "url": "https://help.twilio.com/articles/19753420684059"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Phone-number account",
+        "No export",
+        "Desktop discontinued"
+      ]
+    },
+    {
+      "code": "2fas-auth",
+      "name": "2FAS Auth",
+      "brand": "2FAS",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free, open-source authenticator for iPhone and Android with no account, optional backup to your own iCloud or Google Drive, and a browser extension that sends codes over an end-to-end encrypted link.",
+      "scores": {
+        "security": 82,
+        "openness": 88,
+        "portability": 90,
+        "privacy": 88
+      },
+      "provenance": {
+        "security": {
+          "note": "2FAS says 'Local, on-device encryption ensures only you have the encryption keys', that browser-extension traffic is end-to-end encrypted, and publishes a cryptography white paper documenting its design.",
+          "source": "https://2fas.com/",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "The 2FAS Android and iOS app repositories are published under the GNU General Public License version 3.",
+          "source": "https://raw.githubusercontent.com/twofas/2fas-android/main/LICENSE",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "2FAS says you can 'Synchronize your Tokens with 2FAS export files, iCloud or Google Drive', and Proton and others list 2FAS as an app whose codes can be exported and imported elsewhere.",
+          "source": "https://2fas.com/auth/",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Apple App Store privacy label (declared by Two Factor Authentication Service Inc., not verified by Apple): no data linked to you; only crash data not linked to you, for app functionality and diagnostics. 2FAS says it uses no tracking codes and requires no account.",
+          "source": "https://apps.apple.com/us/app/2fa-authenticator-2fas/id1217793794",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "2FAS Auth",
+          "url": "https://2fas.com/auth/"
+        },
+        {
+          "label": "Source code (Android)",
+          "url": "https://github.com/twofas/2fas-android"
+        },
+        {
+          "label": "App Store privacy label",
+          "url": "https://apps.apple.com/us/app/2fa-authenticator-2fas/id1217793794"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Open source",
+        "No account",
+        "Free"
+      ]
+    },
+    {
+      "code": "aegis",
+      "name": "Aegis Authenticator",
+      "brand": "Aegis",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free, open-source Android-only authenticator that keeps codes in an encrypted vault on the phone, has no internet permission, and makes encrypted automatic backups to a location you choose.",
+      "scores": {
+        "security": 88,
+        "openness": 95,
+        "portability": 95,
+        "privacy": 95
+      },
+      "provenance": {
+        "security": {
+          "note": "F-Droid's listing says that with a password set 'the vault will be encrypted using strong cryptography', with biometric unlock, screen capture prevention and tap to reveal. The permissions list shows camera, biometrics and start-at-boot, with no network access, so codes cannot leave the phone over the internet.",
+          "source": "https://f-droid.org/en/packages/com.beemdevelopment.aegis/",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "F-Droid lists Aegis under the GNU General Public License v3.0 only and builds and signs it from source, version 3.4.3 added September 2026.",
+          "source": "https://f-droid.org/en/packages/com.beemdevelopment.aegis/",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "Aegis can make automatic encrypted backups to a folder or cloud provider you pick, supports manual exports, and imports from 2FAS, Authy, FreeOTP, Google Authenticator, Microsoft Authenticator and others (some need root).",
+          "source": "https://f-droid.org/en/packages/com.beemdevelopment.aegis/",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Aegis requests no network permission on F-Droid and needs no account; there is nothing to sync to a company server.",
+          "source": "https://f-droid.org/en/packages/com.beemdevelopment.aegis/",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "F-Droid listing",
+          "url": "https://f-droid.org/en/packages/com.beemdevelopment.aegis/"
+        },
+        {
+          "label": "Source code",
+          "url": "https://github.com/beemdevelopment/Aegis"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Open source",
+        "Android only",
+        "Offline"
+      ]
+    },
+    {
+      "code": "ente-auth",
+      "name": "Ente Auth",
+      "brand": "Ente",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free, open-source authenticator with end-to-end encrypted sync across phone, desktop and web, from the makers of Ente Photos. Its cryptography was externally audited by Cure53 and Symbolic Software in 2023. An account is optional.",
+      "scores": {
+        "security": 86,
+        "openness": 95,
+        "portability": 92,
+        "privacy": 75
+      },
+      "provenance": {
+        "security": {
+          "note": "Ente says Auth 'provides end-to-end encrypted cloud backups' and that 'Our cryptography has been externally audited'; the audit, published in March 2023, was by Cure53 with Symbolic Software. An offline mode without an account is available.",
+          "source": "https://ente.io/auth/",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "F-Droid lists Ente Auth under the GNU Affero General Public License v3.0 only, built from source (version 4.4.25, August 2026).",
+          "source": "https://f-droid.org/en/packages/io.ente.auth/",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "Ente says 'You can export and import your data. No lockins.', with bulk import from other 2FA apps and apps on mobile, desktop and web.",
+          "source": "https://ente.io/auth/",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Apple App Store privacy label (declared by Ente Technologies, not verified by Apple): data linked to you is limited to email address, user ID and user content for app functionality and support (the account used for encrypted sync); no tracking data.",
+          "source": "https://apps.apple.com/us/app/ente-auth-2fa-authenticator/id6444121398",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Ente Auth",
+          "url": "https://ente.io/auth/"
+        },
+        {
+          "label": "Cryptography audit (2023)",
+          "url": "https://ente.io/blog/cryptography-audit/"
+        },
+        {
+          "label": "F-Droid listing",
+          "url": "https://f-droid.org/en/packages/io.ente.auth/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Open source",
+        "E2EE sync",
+        "Audited"
+      ]
+    },
+    {
+      "code": "proton-authenticator",
+      "name": "Proton Authenticator",
+      "brand": "Proton",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Proton's free, open-source standalone authenticator for iPhone, Android, Mac, Windows and Linux. Works without a Proton account; with one, codes sync end-to-end encrypted. Proton is based in Switzerland.",
+      "scores": {
+        "security": 85,
+        "openness": 88,
+        "portability": 90,
+        "privacy": 88
+      },
+      "provenance": {
+        "security": {
+          "note": "Proton describes it as 'an open source and end-to-end encrypted 2FA app' with end-to-end encrypted backups and biometric unlock, usable offline and without signing up.",
+          "source": "https://proton.me/authenticator",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "Proton's Android Authenticator repository is published under the GNU General Public License version 3; Proton's open-source page links the Authenticator source.",
+          "source": "https://raw.githubusercontent.com/protonpass/android-authenticator/main/LICENSE",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "Proton's support article imports codes as CSV or QR code and lists Proton Authenticator itself among apps you can export codes from.",
+          "source": "https://proton.me/support/import-2fa-codes",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Apple App Store privacy label (declared by Proton AG, not verified by Apple): no data linked to you; only analytics and crash diagnostics not linked to you. No account, phone number or email is required.",
+          "source": "https://apps.apple.com/us/app/proton-authenticator-2fa/id6741758667",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Proton Authenticator",
+          "url": "https://proton.me/authenticator"
+        },
+        {
+          "label": "Import and export",
+          "url": "https://proton.me/support/import-2fa-codes"
+        },
+        {
+          "label": "App Store privacy label",
+          "url": "https://apps.apple.com/us/app/proton-authenticator-2fa/id6741758667"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Open source",
+        "E2EE sync",
+        "No account needed"
+      ]
+    },
+    {
+      "code": "bitwarden-authenticator",
+      "name": "Bitwarden Authenticator",
+      "brand": "Bitwarden",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A free, open-source standalone authenticator from the open-source password manager Bitwarden, usable with or without a Bitwarden account, that can optionally sync codes with your Bitwarden vault.",
+      "scores": {
+        "security": 82,
+        "openness": 88,
+        "portability": 92,
+        "privacy": 78
+      },
+      "provenance": {
+        "security": {
+          "note": "Bitwarden's help page says the standalone app works with or without a Password Manager account and keeps 'Local Codes' separately from codes synced from your vault, so you can keep second factors apart from passwords.",
+          "source": "https://bitwarden.com/help/bitwarden-authenticator/",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "The Bitwarden Authenticator Android and iOS repositories are published under the GNU General Public License version 3.",
+          "source": "https://raw.githubusercontent.com/bitwarden/authenticator-android/main/LICENSE.txt",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "Bitwarden's import/export page says you can export to .json or .csv and that 'Exported data includes the otpauth://totp/?secret= string for each entry'; it imports from Google Authenticator, 2FAS, Aegis, LastPass and others.",
+          "source": "https://bitwarden.com/help/authenticator-import-export/",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Apple App Store privacy label (declared by Bitwarden Inc, not verified by Apple): data linked to you is limited to email address for app functionality; crash diagnostics are not linked to you.",
+          "source": "https://apps.apple.com/us/app/bitwarden-authenticator/id6497335175",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Help: Bitwarden Authenticator",
+          "url": "https://bitwarden.com/help/bitwarden-authenticator/"
+        },
+        {
+          "label": "Import and export",
+          "url": "https://bitwarden.com/help/authenticator-import-export/"
+        },
+        {
+          "label": "Source code (Android)",
+          "url": "https://github.com/bitwarden/authenticator-android"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Open source",
+        "Standard export",
+        "Free"
+      ]
+    },
+    {
+      "code": "1password-otp",
+      "name": "1Password (built-in one-time codes)",
+      "brand": "1Password",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Storing one-time code secrets inside the 1Password password manager so codes fill in alongside passwords. Convenient and well secured, but it puts both factors in one vault, which the KeePassXC project warns removes most of the benefit of two-factor authentication.",
+      "scores": {
+        "security": 74,
+        "openness": 15,
+        "portability": 80,
+        "privacy": 50
+      },
+      "provenance": {
+        "security": {
+          "note": "1Password says accounts are protected by a password it never stores plus a 128-bit Secret Key, uses Secure Remote Password authentication, publishes a SOC 2 report and independent audits. The score is reduced because codes sit in the same vault as passwords.",
+          "source": "https://1password.com/security",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "1Password publishes security audits but not the source code of its apps; it is a closed, paid product.",
+          "source": "https://1password.com/security",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "1Password's export guide says the CSV export includes a 'One-time password' field alongside title, website, username and password, and full exports use the unencrypted .1pux format.",
+          "source": "https://support.1password.com/export/",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Apple App Store privacy label (declared by AgileBits, not verified by Apple): data linked to you includes coarse location, name, email address, user and device IDs, product interaction and crash data, used for analytics and app functionality.",
+          "source": "https://apps.apple.com/us/app/1password-password-manager/id1511601750",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "One-time passwords in 1Password",
+          "url": "https://support.1password.com/one-time-passwords/"
+        },
+        {
+          "label": "Export",
+          "url": "https://support.1password.com/export/"
+        },
+        {
+          "label": "Security",
+          "url": "https://1password.com/security"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Password manager",
+        "Autofill",
+        "Paid"
+      ]
+    },
+    {
+      "code": "proton-pass-otp",
+      "name": "Proton Pass (built-in one-time codes)",
+      "brand": "Proton",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "One-time code generation inside the Proton Pass password manager, a paid feature. Open source, but like any password-manager option it keeps both factors in one vault.",
+      "scores": {
+        "security": 72,
+        "openness": 88,
+        "portability": 80,
+        "privacy": 88
+      },
+      "provenance": {
+        "security": {
+          "note": "Proton's guide says Proton Pass 'can securely generate TOTP codes for websites that you have saved login details for' instead of a separate authenticator app, and that it is a premium feature. Storing the code with the password is convenient but means one compromised vault exposes both factors.",
+          "source": "https://proton.me/support/pass-2fa",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "The Proton Pass Android app repository is published under the GNU General Public License version 3.",
+          "source": "https://raw.githubusercontent.com/protonpass/android-pass/main/LICENSE",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "Proton's support article lists Proton Pass among authenticators whose codes can be exported, and Proton Authenticator imports them.",
+          "source": "https://proton.me/support/import-2fa-codes",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Apple App Store privacy label (declared by Proton AG, not verified by Apple): no data linked to you; only crash and diagnostic data not linked to you, for app functionality.",
+          "source": "https://apps.apple.com/us/app/proton-pass-password-manager/id6443490629",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "2FA in Proton Pass",
+          "url": "https://proton.me/support/pass-2fa"
+        },
+        {
+          "label": "Source code (Android)",
+          "url": "https://github.com/protonpass/android-pass"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Password manager",
+        "Open source",
+        "Paid feature"
+      ]
+    },
+    {
+      "code": "bitwarden-password-manager-otp",
+      "name": "Bitwarden Password Manager (integrated authenticator)",
+      "brand": "Bitwarden",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Code generation inside the open-source Bitwarden password manager, part of its paid Premium plan. Codes autofill with passwords; the same-vault trade-off applies, and Bitwarden offers its separate Authenticator app for people who want them apart.",
+      "scores": {
+        "security": 72,
+        "openness": 85,
+        "portability": 85,
+        "privacy": 72
+      },
+      "provenance": {
+        "security": {
+          "note": "Bitwarden's help page says the integrated authenticator generates codes 'directly in your vault'; storing keys is free but generating codes needs Premium or a paid organisation. Keeping codes in the same vault as passwords lowers the score, as for other password managers.",
+          "source": "https://bitwarden.com/help/integrated-authenticator/",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "Bitwarden's client repository says its code is covered by the GNU GPL v3.0 by default, with some Bitwarden-licensed code in a separate directory.",
+          "source": "https://raw.githubusercontent.com/bitwarden/clients/main/LICENSE.txt",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "Bitwarden's import guide says a Password Manager .json export carries TOTP seeds, which Bitwarden Authenticator and other apps can import.",
+          "source": "https://bitwarden.com/help/authenticator-import-export/",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Apple App Store privacy label (declared by Bitwarden Inc, not verified by Apple): data linked to you is email address and device ID for app functionality; name, product personalisation and crash data are collected but not linked to you.",
+          "source": "https://apps.apple.com/us/app/bitwarden-password-manager/id1137397744",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Integrated authenticator",
+          "url": "https://bitwarden.com/help/integrated-authenticator/"
+        },
+        {
+          "label": "Source code",
+          "url": "https://github.com/bitwarden/clients"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Password manager",
+        "Open source",
+        "Paid feature"
+      ]
+    },
+    {
+      "code": "apple-passwords",
+      "name": "Apple Passwords (verification codes)",
+      "brand": "Apple",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "The Passwords app built into iPhone, iPad and Mac can hold authenticator setup keys and fill in verification codes, synced through iCloud Keychain. Free and built in, but tied to Apple devices and to the same vault as your passwords.",
+      "scores": {
+        "security": 76,
+        "openness": 10,
+        "privacy": 78
+      },
+      "provenance": {
+        "security": {
+          "note": "Apple's iCloud data security overview lists Passwords and Keychain as end-to-end encrypted, with keys only on trusted devices, even under standard data protection. The score is lowered because codes are kept next to passwords.",
+          "source": "https://support.apple.com/en-us/102651",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "The Passwords app is part of Apple's closed operating systems; no source code is published.",
+          "source": "https://support.apple.com/guide/iphone/automatically-fill-in-verification-codes-ipha6173c19f/ios",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Because Passwords and Keychain data are end-to-end encrypted, Apple says no one else can access them, 'not even Apple'. An Apple Account is required.",
+          "source": "https://support.apple.com/en-us/102651",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Fill in verification codes",
+          "url": "https://support.apple.com/guide/iphone/automatically-fill-in-verification-codes-ipha6173c19f/ios"
+        },
+        {
+          "label": "iCloud data security",
+          "url": "https://support.apple.com/en-us/102651"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Built in",
+        "Apple only",
+        "E2EE sync"
+      ]
+    },
+    {
+      "code": "freeotp",
+      "name": "FreeOTP",
+      "brand": "Red Hat",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A small, long-running open-source authenticator sponsored by Red Hat, for Android and iPhone. No account and no data collection, but F-Droid warns users about its backup and restore.",
+      "scores": {
+        "security": 70,
+        "openness": 92,
+        "portability": 50,
+        "privacy": 92
+      },
+      "provenance": {
+        "security": {
+          "note": "FreeOTP stores codes locally and supports fingerprint unlock, but has no encrypted sync, and its F-Droid page warns 'Users reported issues with the backup & restore functionality', so losing the phone can mean losing codes.",
+          "source": "https://f-droid.org/en/packages/org.fedorahosted.freeotp/",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "F-Droid lists FreeOTP under the Apache License 2.0, built and signed from source (version 2.0.6, February 2026).",
+          "source": "https://f-droid.org/en/packages/org.fedorahosted.freeotp/",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "FreeOTP has a backup and restore feature, but F-Droid's note that users reported problems with it means migration should be tested; there is no documented standard-format export on the page.",
+          "source": "https://f-droid.org/en/packages/org.fedorahosted.freeotp/",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Apple App Store privacy label (declared by Red Hat, not verified by Apple): Data Not Collected.",
+          "source": "https://apps.apple.com/us/app/freeotp-authenticator/id872559395",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "F-Droid listing",
+          "url": "https://f-droid.org/en/packages/org.fedorahosted.freeotp/"
+        },
+        {
+          "label": "App Store privacy label",
+          "url": "https://apps.apple.com/us/app/freeotp-authenticator/id872559395"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Open source",
+        "No account",
+        "Minimal"
+      ]
+    },
+    {
+      "code": "stratum",
+      "name": "Stratum",
+      "brand": "Stratum",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "A community-run open-source Android authenticator (formerly Authenticator Pro) with encrypted backups, a Wear OS app and import from many other apps. It does not need internet access.",
+      "scores": {
+        "security": 82,
+        "openness": 90,
+        "portability": 92,
+        "privacy": 92
+      },
+      "provenance": {
+        "security": {
+          "note": "Stratum says it protects codes with a password and biometric unlock, backs up 'with strong encryption', and 'only requires a single permission and does not require Internet access to function'.",
+          "source": "https://stratumauth.com/",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "Stratum's repository is published under the GNU General Public License version 3, and the project says it has no corporate ties.",
+          "source": "https://raw.githubusercontent.com/stratumauth/app/master/LICENSE",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "Stratum says it 'does not lock-in your data' and that everything 'can be exported at any time', with import from supported alternative apps.",
+          "source": "https://stratumauth.com/",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Stratum says it does not 'communicate with distant servers' and needs no internet access or account.",
+          "source": "https://stratumauth.com/",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Stratum",
+          "url": "https://stratumauth.com/"
+        },
+        {
+          "label": "Source code",
+          "url": "https://github.com/stratumauth/app"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Open source",
+        "Android only",
+        "Offline"
+      ]
+    },
+    {
+      "code": "keepassxc",
+      "name": "KeePassXC (TOTP in a KeePass database)",
+      "brand": "KeePassXC",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "The open-source desktop password manager can store authenticator secrets in your encrypted KeePass database file and show codes. Fully offline and portable, but its own manual warns that keeping codes with passwords defeats much of the point of 2FA.",
+      "scores": {
+        "security": 70,
+        "openness": 92,
+        "portability": 85,
+        "privacy": 92
+      },
+      "provenance": {
+        "security": {
+          "note": "The KeePassXC user guide says the database 'is fully encrypted at all times', but also warns 'Storing TOTP codes in the same database as the password will eliminate the advantages of two-factor authentication'.",
+          "source": "https://keepassxc.org/docs/KeePassXC_UserGuide",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "KeePassXC is published under the GNU General Public License version 3.",
+          "source": "https://raw.githubusercontent.com/keepassxreboot/keepassxc/develop/LICENSE.GPL-3",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "Codes live in a standard .kdbx file you store wherever you wish, and the guide says you can view an entry's secret as a QR code for exporting to a mobile device; KeePassXC also exports databases.",
+          "source": "https://keepassxc.org/docs/KeePassXC_UserGuide",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "The database is a local file under your control; KeePassXC has no account or company sync service, so nothing is held by the developer.",
+          "source": "https://keepassxc.org/docs/KeePassXC_UserGuide",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "User guide",
+          "url": "https://keepassxc.org/docs/KeePassXC_UserGuide"
+        },
+        {
+          "label": "Source code",
+          "url": "https://github.com/keepassxreboot/keepassxc"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Open source",
+        "Desktop",
+        "Offline"
+      ]
+    },
+    {
+      "code": "duo-mobile",
+      "name": "Duo Mobile",
+      "brand": "Cisco",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Cisco's Duo app, mostly used for work sign-in approvals, which can also hold codes for personal accounts. Third-party codes can be backed up with a recovery password but only restored into Duo.",
+      "scores": {
+        "security": 72,
+        "openness": 15,
+        "portability": 35,
+        "privacy": 45
+      },
+      "provenance": {
+        "security": {
+          "note": "Duo's guide says third-party account backups are protected by a 10 to 128 character recovery password that Duo Support cannot recover or reset, and that Duo cannot recover those accounts without a backup.",
+          "source": "https://guide.duo.com/duo-restore",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "Duo Mobile is a closed app; Cisco publishes client libraries for developers but not the app's source.",
+          "source": "https://apps.apple.com/us/app/duo-mobile/id422663827",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "Duo Restore moves accounts to a new phone running Duo Mobile; the guide describes no export of code secrets to other apps, so leaving means re-enrolling each account.",
+          "source": "https://guide.duo.com/duo-restore",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Apple App Store privacy label (declared by Duo Security LLC, not verified by Apple): data linked to you includes coarse location, device ID, product interaction and diagnostics, used for analytics and app functionality.",
+          "source": "https://apps.apple.com/us/app/duo-mobile/id422663827",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Duo Restore",
+          "url": "https://guide.duo.com/duo-restore"
+        },
+        {
+          "label": "App Store privacy label",
+          "url": "https://apps.apple.com/us/app/duo-mobile/id422663827"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Work accounts",
+        "Push approval",
+        "Closed source"
+      ]
+    },
+    {
+      "code": "lastpass-authenticator",
+      "name": "LastPass Authenticator",
+      "brand": "LastPass",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "LastPass's free authenticator app, with backup tied to a LastPass account. Its App Store label is the only one here that declares advertising or marketing use of linked data.",
+      "scores": {
+        "openness": 10,
+        "portability": 55,
+        "privacy": 30
+      },
+      "provenance": {
+        "openness": {
+          "note": "LastPass publishes no source code for LastPass Authenticator; it is a closed app.",
+          "source": "https://apps.apple.com/us/app/lastpass-authenticator/id1079110004",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "Proton's import guide lists LastPass Authenticator among apps whose codes can be exported for import elsewhere; Bitwarden Authenticator also imports LastPass exports.",
+          "source": "https://proton.me/support/import-2fa-codes",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Apple App Store privacy label (declared by LastPass US LP, not verified by Apple): data linked to you includes user ID used for the developer's advertising or marketing, plus analytics, product interaction, coarse location and device ID.",
+          "source": "https://apps.apple.com/us/app/lastpass-authenticator/id1079110004",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "App Store privacy label",
+          "url": "https://apps.apple.com/us/app/lastpass-authenticator/id1079110004"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Password-manager companion",
+        "Closed source"
+      ]
+    },
+    {
+      "code": "yubico-authenticator",
+      "name": "Yubico Authenticator (codes on a YubiKey)",
+      "brand": "Yubico",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "An open-source app that shows one-time codes whose secrets live on a YubiKey hardware key rather than the phone. Very hard to steal remotely, but you need the key with you and should register a spare.",
+      "scores": {
+        "security": 92,
+        "openness": 92,
+        "portability": 50,
+        "privacy": 95
+      },
+      "provenance": {
+        "security": {
+          "note": "Yubico says 'Your credential stays safe in the secure element of the YubiKey and cannot be extracted', and that storing credentials on a hardware key is safer than on a mobile phone.",
+          "source": "https://www.yubico.com/products/yubico-authenticator/",
+          "asof": "2026-10"
+        },
+        "openness": {
+          "note": "F-Droid lists Yubico Authenticator under the Apache License 2.0, built from source (version 7.4.2, September 2026).",
+          "source": "https://f-droid.org/en/packages/com.yubico.yubioath/",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "Because secrets cannot be extracted from the key, they cannot be exported; they move with the key itself to any phone or computer running the app. Losing the key means re-enrolling, unless you set up a second key.",
+          "source": "https://www.yubico.com/products/yubico-authenticator/",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Apple App Store privacy label (declared by Yubico, not verified by Apple): Data Not Collected.",
+          "source": "https://apps.apple.com/us/app/yubico-authenticator/id1476679808",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "Yubico Authenticator",
+          "url": "https://www.yubico.com/products/yubico-authenticator/"
+        },
+        {
+          "label": "F-Droid listing",
+          "url": "https://f-droid.org/en/packages/com.yubico.yubioath/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Hardware-backed",
+        "Open source app",
+        "Needs a YubiKey"
+      ]
+    },
+    {
+      "code": "security-key-passkey",
+      "name": "Hardware security key or passkey instead of codes",
+      "brand": "hardware security key",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "Where a site supports it, using a FIDO security key (such as a YubiKey) or a passkey instead of six-digit codes. These cannot be phished the way typed codes can, and are the strongest option the FTC and NIST describe. Not every site supports them yet, and you should register a backup key.",
+      "scores": {
+        "security": 98,
+        "portability": 40
+      },
+      "provenance": {
+        "security": {
+          "note": "The FTC says 'Security keys are the strongest method of two-factor authentication because they don't use credentials that hackers can steal'. NIST SP 800-63B treats out-of-band codes as not phishing-resistant and requires a phishing-resistant authenticator with a non-exportable key at its highest assurance level (AAL3).",
+          "source": "https://consumer.ftc.gov/articles/use-two-factor-authentication-protect-your-accounts",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "NIST's highest level requires 'a non-exportable authentication key', which is what makes hardware keys strong but means a key cannot be copied: you register a second key with each account as a backup. Synced passkeys in a password manager or platform account move between devices more easily.",
+          "source": "https://pages.nist.gov/800-63-4/sp800-63b.html",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "FTC: two-factor authentication",
+          "url": "https://consumer.ftc.gov/articles/use-two-factor-authentication-protect-your-accounts"
+        },
+        {
+          "label": "NIST SP 800-63B",
+          "url": "https://pages.nist.gov/800-63-4/sp800-63b.html"
+        },
+        {
+          "label": "FIDO Alliance: passkeys",
+          "url": "https://fidoalliance.org/passkeys/"
+        }
+      ],
+      "region": [
+        "global"
+      ],
+      "focuses": [
+        "Phishing-resistant",
+        "Hardware",
+        "Strongest"
+      ]
+    },
+    {
+      "code": "sms-codes",
+      "name": "Text-message (SMS) codes",
+      "brand": "none",
+      "allergens": [],
+      "allergensDeclared": true,
+      "description": "The honest floor: codes sent by text message, which most sites offer and which need no app. Far better than a password alone, but codes can be stolen through SIM-swap attacks, and US agencies now advise using an authenticator app or security key instead.",
+      "scores": {
+        "security": 18,
+        "portability": 70,
+        "privacy": 30
+      },
+      "provenance": {
+        "security": {
+          "note": "The FTC says SMS codes are 'better than nothing' but that 'Hackers can take over your phone number through a SIM card swap attack and get text messages sent to your number', and it is safer to use an authenticator app or security key.",
+          "source": "https://consumer.ftc.gov/articles/use-two-factor-authentication-protect-your-accounts",
+          "asof": "2026-10"
+        },
+        "portability": {
+          "note": "SMS needs no app and moves with your phone number to a new phone. NIST notes verifiers should consider 'device swap, SIM change, number porting' as risk signals and must offer alternatives for people without mobile coverage.",
+          "source": "https://pages.nist.gov/800-63-4/sp800-63b.html",
+          "asof": "2026-10"
+        },
+        "privacy": {
+          "note": "Every service using SMS codes needs your phone number, and NIST classes authentication over the public telephone network as 'restricted'. Your carrier and anyone who takes over the number can see the codes.",
+          "source": "https://pages.nist.gov/800-63-4/sp800-63b.html",
+          "asof": "2026-10"
+        }
+      },
+      "links": [
+        {
+          "label": "FTC: two-factor authentication",
+          "url": "https://consumer.ftc.gov/articles/use-two-factor-authentication-protect-your-accounts"
+        },
+        {
+          "label": "NIST SP 800-63B",
+          "url": "https://pages.nist.gov/800-63-4/sp800-63b.html"
+        }
+      ],
+      "region": [
+        "US",
+        "UK",
+        "EU",
+        "global"
+      ],
+      "focuses": [
+        "Honest floor",
+        "No app",
+        "SIM-swap risk"
+      ]
+    }
+  ]
+}

@@ -80,6 +80,7 @@ const REGULATORS = [
   'dataprotection.ie',      // Ireland's Data Protection Commission, lead EU regulator for big tech
   'fca.org.uk',             // UK Financial Conduct Authority, the financial services register and handbook
   'finra.org',              // FINRA, the SEC-overseen regulator of US broker-dealers and funding portals
+  'nhs.uk',                 // NHS England and the NHS website, public health bodies
 ];
 
 function readJson(file) {

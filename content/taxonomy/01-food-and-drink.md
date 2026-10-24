@@ -166,7 +166,7 @@ edge: Everything eaten or drunk, where it is bought, and where it is eaten. Food
 ## Where food comes from | type: S
 
 ### Shops and suppliers
-- Supermarkets | aka: grocery stores
+- Supermarkets | aka: grocery stores | cid: supermarkets
 - Discount supermarkets
 - Online grocery
 - Food co-operatives | aka: food co-ops, buying clubs

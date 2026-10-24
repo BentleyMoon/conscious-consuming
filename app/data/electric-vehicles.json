@@ -1,0 +1,1672 @@
+{
+ "meta": {
+  "id": "electric-vehicles",
+  "label": "Electric vehicles",
+  "type": "Products",
+  "primaryAxis": "environment",
+  "tradeoff": [
+   "environment",
+   "economical"
+  ],
+  "tradeoffLabels": [
+   "least energy per mile",
+   "lowest price"
+  ],
+  "source": "Conscious Consuming (curated)",
+  "attribution": "Covers new battery-electric cars on sale in the United States, the UK and the EU in October 2026, from mainstream makers to the cheapest new EVs. Fifteen are sold in the US and scored on US data; four (Renault 5, MG4, BYD Dolphin, Polestar 2) are not sold in the US and are scored on UK and EU data. METHOD. Energy efficiency (environment) uses the official US EPA figure from fueleconomy.gov for US models: combined kWh per 100 miles from the wall, including charging losses, for the base version priced here, converted to kWh per 100 km and scored as 100 minus 4 points per kWh above 14, so a car using 15 kWh per 100 km scores 96 and one using 26.6 scores 50. For the four Europe-only cars there is no EPA test, so the figure is the registration-weighted WLTP consumption in the European Environment Agency's 2025 provisional CO2 monitoring data, scored on the same scale. WLTP figures read lower than EPA figures for the same car: the Model 3 averages 125 Wh/km (12.5 kWh per 100 km) in the EEA data against EPA's 15.1 for the Standard RWD, so the Europe-only scores are flattered and should be compared with care. Crash safety (safety) is NHTSA's overall 5-Star rating, times 20; where NHTSA has not rated the car, Euro NCAP's star rating times 20; for the Rivian R1S, rated by neither, the IIHS Top Safety Pick+ award, scored 100. Each note names which body supplied the number. The Chevrolet Bolt and the 2026 Nissan Leaf are unscored because no crash rating had been published for them. Price (economical) is the starting price on the maker's own US site or UK configurator, before destination charges and incentives, with UK prices converted to dollars at ECB reference rates for 23 October 2026, and scored as 110 minus 1 point per $1,000. Tesla's website refused connections from here, so the two Teslas carry no price score. Battery warranty (longevity) is the maker's published high-voltage battery warranty, at 10 points per year, with the mileage cap in each note. Not scored: real-world range in cold weather, charging speed, reliability records, where the battery's materials come from, and tax credits, which change by country and buyer. Not financial advice. Sources: EPA fueleconomy.gov, the European Environment Agency, NHTSA, Euro NCAP, IIHS, the European Central Bank and each maker's own price, warranty and specification pages. Reviewed 2026-10. Suggest changes via Contribute.",
+  "allergens": false,
+  "presets": {
+   "Balanced": {
+    "w": {
+     "environment": 3,
+     "safety": 3,
+     "economical": 3,
+     "longevity": 2
+    },
+    "x": []
+   },
+   "Most efficient": {
+    "w": {
+     "environment": 5,
+     "economical": 2,
+     "safety": 2,
+     "longevity": 1
+    },
+    "x": []
+   },
+   "Safest rated": {
+    "w": {
+     "safety": 5,
+     "environment": 2,
+     "economical": 2,
+     "longevity": 1
+    },
+    "x": []
+   },
+   "Lowest cost to own": {
+    "w": {
+     "economical": 5,
+     "longevity": 3,
+     "environment": 2,
+     "safety": 1
+    },
+    "x": []
+   }
+  },
+  "n": 20,
+  "valueSignatureProfile": {
+   "entryCount": 20,
+   "signedEntries": 20,
+   "drawableEntries": 20,
+   "minimumThemesForBloom": 2,
+   "themeCounts": {
+    "planet": 20,
+    "health": 18,
+    "cost": 18
+   }
+  },
+  "provenanceProfile": {
+   "entryCount": 20,
+   "singleSourceEntries": 0,
+   "multiSourceEntries": 20,
+   "noSourceEntries": 0,
+   "noteOnlyEntries": 0,
+   "averageSourceDomains": 2.95,
+   "topPrimarySources": [
+    {
+     "label": "api.nhtsa.gov",
+     "entries": 3
+    },
+    {
+     "label": "chevrolet.com",
+     "entries": 3
+    },
+    {
+     "label": "kia.com",
+     "entries": 3
+    },
+    {
+     "label": "hyundaiusa.com",
+     "entries": 2
+    },
+    {
+     "label": "byd.com",
+     "entries": 1
+    },
+    {
+     "label": "mg.co.uk",
+     "entries": 1
+    }
+   ]
+  },
+  "decision": {
+   "category": "electric-vehicles",
+   "reads": {
+    "text": "Compare electric vehicles by environmental impact, cost, safety, and support life.",
+    "basis": [
+     {
+      "criterion": "environment",
+      "readsAs": "environmental impact"
+     },
+     {
+      "criterion": "economical",
+      "readsAs": "cost"
+     },
+     {
+      "criterion": "safety",
+      "readsAs": "safety"
+     },
+     {
+      "criterion": "longevity",
+      "readsAs": "support life"
+     }
+    ],
+    "signature": {
+     "by": "Conscious Consuming",
+     "on": "2026-07-15",
+     "status": "approved-batch"
+    },
+    "receipt": {
+     "dataset": "electric-vehicles",
+     "entryCount": 20,
+     "criteria": [
+      {
+       "criterion": "environment",
+       "readsAs": "environmental impact",
+       "known": 20,
+       "minimum": 49,
+       "maximum": 96,
+       "spread": 47
+      },
+      {
+       "criterion": "economical",
+       "readsAs": "cost",
+       "known": 18,
+       "minimum": 26,
+       "maximum": 82,
+       "spread": 56
+      },
+      {
+       "criterion": "safety",
+       "readsAs": "safety",
+       "known": 18,
+       "minimum": 80,
+       "maximum": 100,
+       "spread": 20
+      },
+      {
+       "criterion": "longevity",
+       "readsAs": "support life",
+       "known": 20,
+       "minimum": 80,
+       "maximum": 100,
+       "spread": 20
+      }
+     ]
+    }
+   },
+   "axes": [
+    {
+     "id": "cost-or-values",
+     "kind": "cost-values",
+     "label": "Cost or overall fit",
+     "question": "Lower cost or a stronger overall fit?",
+     "criteria": [
+      "economical",
+      "environment",
+      "safety",
+      "longevity"
+     ],
+     "poles": [
+      "Lower cost",
+      "Stronger overall fit"
+     ],
+     "default": 50
+    },
+    {
+     "id": "safety",
+     "kind": "criterion",
+     "label": "Safety",
+     "question": "Does stronger safety matter more?",
+     "criteria": [
+      "safety"
+     ],
+     "poles": [
+      "Flexible",
+      "Stronger safety"
+     ],
+     "default": 50
+    }
+   ],
+   "budget": {
+    "available": true,
+    "mode": "assessed-affordability-rank",
+    "criterion": "economical",
+    "minimumKnown": 5,
+    "knownEntries": 18,
+    "coverage": 0.9
+   },
+   "archetypes": [
+    "best-for-most",
+    "strictest-match",
+    "budget-honest"
+   ],
+   "page": {
+    "stage": "approved-batch",
+    "primaryRoute": true
+   },
+   "consumer": {
+    "reads": "Round 8 approved category differences reads.",
+    "axes": "Round 8 practical decision dials, with the S4 cost-or-values default where evidence permits.",
+    "budget": "Round 8 honest budget eligibility, with S4 refusing to guess missing cost data.",
+    "archetypes": "Round 8 computed answer slots matched to available category evidence.",
+    "page": "Round 7 personal precedence extended in Round 9 to the shared decision page for every live category."
+   }
+  }
+ },
+ "criteria": [
+  {
+   "key": "environment",
+   "label": "Energy used per mile",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "safety",
+   "label": "Crash test rating",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "economical",
+   "label": "Starting price",
+   "source": "curated",
+   "tier": "assessed"
+  },
+  {
+   "key": "longevity",
+   "label": "Battery warranty length",
+   "source": "curated",
+   "tier": "assessed"
+  }
+ ],
+ "products": [
+  {
+   "code": "tesla-model-3",
+   "name": "Tesla Model 3",
+   "brand": "Tesla",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A mid-size electric sedan and the most efficient car EPA lists in this roster in its Standard RWD form.",
+   "scores": {
+    "environment": 96,
+    "safety": 100,
+    "longevity": 80
+   },
+   "provenance": {
+    "environment": {
+     "note": "EPA's fueleconomy.gov lists the 2026 Model 3 Standard RWD at 139 MPGe combined, 24.3 kWh per 100 miles from the wall (15.1 kWh per 100 km), with 321 miles of EPA range.",
+     "source": "https://www.fueleconomy.gov/feg/noframes/50251.shtml",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA's 5-Star Safety Ratings give the 2026 Model 3 RWD 5 stars overall. Frontal, side and rollover ratings are each five stars.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/22553",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Tesla's North American warranty, effective 1 September 2026, covers the battery of a 'Model 3 and Model Y Standard or Standard Range Plus - 8 years or 100,000 miles' with 70% capacity retention; Long Range and Performance versions get 120,000 miles.",
+     "source": "https://digitalassets.tesla.com/tesla-contents/image/upload/tesla-new-vehicle-limited-warranty-en-us.pdf",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy",
+     "url": "https://www.fueleconomy.gov/feg/noframes/50251.shtml"
+    },
+    {
+     "label": "NHTSA ratings",
+     "url": "https://www.nhtsa.gov/vehicle/2026/TESLA/MODEL%25203/4%2520DR/RWD"
+    },
+    {
+     "label": "Tesla warranty (PDF)",
+     "url": "https://digitalassets.tesla.com/tesla-contents/image/upload/tesla-new-vehicle-limited-warranty-en-us.pdf"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Sedan",
+    "Most efficient"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 100
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "digitalassets.tesla.com",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "tesla-model-y",
+   "name": "Tesla Model Y",
+   "brand": "Tesla",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A mid-size electric SUV and the most-registered electric car in the European Environment Agency's 2025 data among the makes checked here.",
+   "scores": {
+    "environment": 95,
+    "safety": 100,
+    "longevity": 80
+   },
+   "provenance": {
+    "environment": {
+     "note": "EPA's fueleconomy.gov lists the 2026 Model Y Standard RWD on 18-inch wheels at 138 MPGe combined, 24.3 kWh per 100 miles from the wall (15.1 kWh per 100 km), with 321 miles of EPA range.",
+     "source": "https://www.fueleconomy.gov/feg/noframes/50040.shtml",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA's 5-Star Safety Ratings give the 2026 Model Y RWD 5 stars overall. IIHS names the 2027 Model Y a Top Safety Pick+.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/22141",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Tesla's North American warranty, effective 1 September 2026, gives the Model Y Standard battery 8 years or 100,000 miles with 70% capacity retention, and Long Range or Performance versions 8 years or 120,000 miles.",
+     "source": "https://digitalassets.tesla.com/tesla-contents/image/upload/tesla-new-vehicle-limited-warranty-en-us.pdf",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "EPA fuel economy",
+     "url": "https://www.fueleconomy.gov/feg/noframes/50040.shtml"
+    },
+    {
+     "label": "Tesla warranty (PDF)",
+     "url": "https://digitalassets.tesla.com/tesla-contents/image/upload/tesla-new-vehicle-limited-warranty-en-us.pdf"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "SUV",
+    "Most efficient"
+   ],
+   "valueSignature": {
+    "planet": 87.5,
+    "health": 100
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "digitalassets.tesla.com",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "chevrolet-equinox-ev",
+   "name": "Chevrolet Equinox EV",
+   "brand": "Chevrolet",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A compact electric SUV from General Motors with over 300 miles of EPA range at a mainstream price.",
+   "scores": {
+    "environment": 79,
+    "safety": 100,
+    "economical": 75,
+    "longevity": 80
+   },
+   "provenance": {
+    "environment": {
+     "note": "EPA's fueleconomy.gov lists the 2026 Equinox EV FWD at 108 MPGe combined, 31.1 kWh per 100 miles from the wall (19.3 kWh per 100 km), with 319 miles of EPA range.",
+     "source": "https://www.fueleconomy.gov/feg/noframes/49953.shtml",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA's 5-Star Safety Ratings give the 2026 Equinox EV FWD 5 stars overall.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21824",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Chevrolet's US site lists the Equinox EV LT from $34,995 before destination and any incentive.",
+     "source": "https://www.chevrolet.com/electric/equinox-ev",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Chevrolet says every Chevy EV is backed by an 8-year/100,000-mile battery limited warranty.",
+     "source": "https://www.chevrolet.com/electric/ev-range-battery",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Chevrolet Equinox EV",
+     "url": "https://www.chevrolet.com/electric/equinox-ev"
+    },
+    {
+     "label": "EPA fuel economy",
+     "url": "https://www.fueleconomy.gov/feg/noframes/49953.shtml"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "SUV",
+    "Long range"
+   ],
+   "valueSignature": {
+    "planet": 79.5,
+    "health": 100,
+    "cost": 75
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "chevrolet.com",
+    "sourceLabels": [
+     "chevrolet.com",
+     "api.nhtsa.gov",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "chevrolet-bolt",
+   "name": "Chevrolet Bolt (2027)",
+   "brand": "Chevrolet",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The returning Bolt, now a small crossover, and the cheapest new EV in this roster.",
+   "scores": {
+    "environment": 86,
+    "economical": 82,
+    "longevity": 80
+   },
+   "provenance": {
+    "environment": {
+     "note": "EPA's fueleconomy.gov lists the 2027 Bolt at 120 MPGe combined, 28.2 kWh per 100 miles from the wall (17.5 kWh per 100 km), with 262 miles of EPA range.",
+     "source": "https://www.fueleconomy.gov/feg/noframes/50372.shtml",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Chevrolet's US site lists the 2027 Bolt LT from $27,600.",
+     "source": "https://www.chevrolet.com/electric/bolt-ev",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Chevrolet's Bolt page says the Bolt is backed by an 8-yr./100,000-mi. battery limited warranty.",
+     "source": "https://www.chevrolet.com/electric/bolt-ev",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Chevrolet Bolt",
+     "url": "https://www.chevrolet.com/electric/bolt-ev"
+    },
+    {
+     "label": "EPA fuel economy",
+     "url": "https://www.fueleconomy.gov/feg/noframes/50372.shtml"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Crossover",
+    "Lowest price",
+    "Not yet crash rated"
+   ],
+   "valueSignature": {
+    "planet": 83,
+    "cost": 82
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "chevrolet.com",
+    "sourceLabels": [
+     "chevrolet.com",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "chevrolet-blazer-ev",
+   "name": "Chevrolet Blazer EV",
+   "brand": "Chevrolet",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A mid-size electric SUV from General Motors, larger and dearer than the Equinox EV.",
+   "scores": {
+    "environment": 76,
+    "safety": 100,
+    "economical": 65,
+    "longevity": 80
+   },
+   "provenance": {
+    "environment": {
+     "note": "EPA's fueleconomy.gov lists the 2026 Blazer EV FWD at 104 MPGe combined, 32.3 kWh per 100 miles from the wall (20.1 kWh per 100 km), with 312 miles of EPA range.",
+     "source": "https://www.fueleconomy.gov/feg/noframes/49644.shtml",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA's 5-Star Safety Ratings give the 2026 Blazer EV RWD (the AWD is also five stars; NHTSA lists the FWD version as not rated) 5 stars overall.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21791",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Chevrolet's US site lists the 2026 Blazer EV LT from $45,000.",
+     "source": "https://www.chevrolet.com/electric/blazer-ev",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Chevrolet's range and battery page says every Chevy EV carries an 8-year/100,000-mile battery limited warranty, which covers the Blazer EV.",
+     "source": "https://www.chevrolet.com/electric/ev-range-battery",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Chevrolet Blazer EV",
+     "url": "https://www.chevrolet.com/electric/blazer-ev"
+    },
+    {
+     "label": "EPA fuel economy",
+     "url": "https://www.fueleconomy.gov/feg/noframes/49644.shtml"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "SUV"
+   ],
+   "valueSignature": {
+    "planet": 78,
+    "health": 100,
+    "cost": 65
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "chevrolet.com",
+    "sourceLabels": [
+     "chevrolet.com",
+     "api.nhtsa.gov",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "hyundai-ioniq-5",
+   "name": "Hyundai Ioniq 5",
+   "brand": "Hyundai",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A mid-size electric crossover on an 800-volt platform that charges quickly at fast chargers.",
+   "scores": {
+    "environment": 84,
+    "safety": 100,
+    "economical": 75,
+    "longevity": 100
+   },
+   "provenance": {
+    "environment": {
+     "note": "EPA's fueleconomy.gov lists the 2027 Ioniq 5 Standard range RWD at 115 MPGe combined, 29.0 kWh per 100 miles from the wall (18.0 kWh per 100 km), with 245 miles of EPA range.",
+     "source": "https://www.fueleconomy.gov/feg/noframes/50646.shtml",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA's 5-Star Safety Ratings give the 2027 Ioniq 5 RWD 5 stars overall. The frontal rating is four stars; IIHS names the 2026 Ioniq 5 a Top Safety Pick+.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/22961",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Hyundai's US site lists the 2027 Ioniq 5 from $35,250 starting MSRP.",
+     "source": "https://www.hyundaiusa.com/us/en/vehicles/ioniq-5",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Hyundai's US page lists a 10 years/100,000 miles Hybrid/Electric Battery Warranty as standard.",
+     "source": "https://www.hyundaiusa.com/us/en/vehicles/ioniq-5",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Hyundai Ioniq 5",
+     "url": "https://www.hyundaiusa.com/us/en/vehicles/ioniq-5"
+    },
+    {
+     "label": "EPA fuel economy",
+     "url": "https://www.fueleconomy.gov/feg/noframes/50646.shtml"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Crossover",
+    "Fast charging",
+    "10-year battery warranty"
+   ],
+   "valueSignature": {
+    "planet": 92,
+    "health": 100,
+    "cost": 75
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "hyundaiusa.com",
+    "sourceLabels": [
+     "hyundaiusa.com",
+     "api.nhtsa.gov",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "hyundai-ioniq-9",
+   "name": "Hyundai Ioniq 9",
+   "brand": "Hyundai",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A three-row electric SUV, Hyundai’s largest EV, with a 335-mile EPA range in its RWD form.",
+   "scores": {
+    "environment": 64,
+    "safety": 100,
+    "economical": 51,
+    "longevity": 100
+   },
+   "provenance": {
+    "environment": {
+     "note": "EPA's fueleconomy.gov lists the 2026 Ioniq 9 RWD at 92 MPGe combined, 37.0 kWh per 100 miles from the wall (23.0 kWh per 100 km), with 335 miles of EPA range.",
+     "source": "https://www.fueleconomy.gov/feg/noframes/49661.shtml",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA's 5-Star Safety Ratings give the 2026 Ioniq 9 RWD 5 stars overall. IIHS names it a Top Safety Pick+.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21158",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Hyundai's US site lists the Ioniq 9 from $58,955 starting MSRP.",
+     "source": "https://www.hyundaiusa.com/us/en/vehicles/ioniq-9",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Hyundai's Ioniq 9 page lists the standard 10 years/100,000 miles Hybrid/Electric Battery Warranty.",
+     "source": "https://www.hyundaiusa.com/us/en/vehicles/ioniq-9",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Hyundai Ioniq 9",
+     "url": "https://www.hyundaiusa.com/us/en/vehicles/ioniq-9"
+    },
+    {
+     "label": "EPA fuel economy",
+     "url": "https://www.fueleconomy.gov/feg/noframes/49661.shtml"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Three rows",
+    "10-year battery warranty"
+   ],
+   "valueSignature": {
+    "planet": 82,
+    "health": 100,
+    "cost": 51
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "hyundaiusa.com",
+    "sourceLabels": [
+     "hyundaiusa.com",
+     "api.nhtsa.gov",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "kia-ev3",
+   "name": "Kia EV3",
+   "brand": "Kia",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A small electric crossover, new to the US for 2027 and Europe’s most-registered Kia EV in 2025.",
+   "scores": {
+    "environment": 84,
+    "safety": 80,
+    "economical": 80,
+    "longevity": 100
+   },
+   "provenance": {
+    "environment": {
+     "note": "EPA's fueleconomy.gov lists the 2027 EV3 Standard Range FWD at 115 MPGe combined, 28.8 kWh per 100 miles from the wall (17.9 kWh per 100 km), with 221 miles of EPA range.",
+     "source": "https://www.fueleconomy.gov/feg/noframes/50651.shtml",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "Euro NCAP rated the EV3 in standard form 4 stars in 2025; Euro NCAP still lists that rating as current. With the optional DriveWise ADAS Pack it rates five; NHTSA has not yet rated the 2027 EV3.",
+     "source": "https://www.euroncap.com/assessments/kia/ev3/1111/",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Kia's US site lists the 2027 EV3 Light from $29,890 starting MSRP.",
+     "source": "https://www.kia.com/us/en/ev3",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Kia's US page says the car and its battery are covered by Kia's '10-year/100,000-mile Limited Battery and EV System Warranty'.",
+     "source": "https://www.kia.com/us/en/ev3",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Kia EV3",
+     "url": "https://www.kia.com/us/en/ev3"
+    },
+    {
+     "label": "EPA fuel economy",
+     "url": "https://www.fueleconomy.gov/feg/noframes/50651.shtml"
+    },
+    {
+     "label": "Euro NCAP",
+     "url": "https://www.euroncap.com/assessments/kia/ev3/1111/"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Small crossover",
+    "10-year battery warranty"
+   ],
+   "valueSignature": {
+    "planet": 92,
+    "health": 80,
+    "cost": 80
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "kia.com",
+    "sourceLabels": [
+     "kia.com",
+     "euroncap.com",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "kia-ev6",
+   "name": "Kia EV6",
+   "brand": "Kia",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A mid-size electric crossover sharing the Ioniq 5’s 800-volt platform.",
+   "scores": {
+    "environment": 83,
+    "safety": 100,
+    "economical": 72,
+    "longevity": 100
+   },
+   "provenance": {
+    "environment": {
+     "note": "EPA's fueleconomy.gov lists the 2026 EV6 Standard Range RWD at 115 MPGe combined, 29.2 kWh per 100 miles from the wall (18.2 kWh per 100 km), with 237 miles of EPA range.",
+     "source": "https://www.fueleconomy.gov/feg/noframes/50215.shtml",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA's 5-Star Safety Ratings give the 2026 EV6 RWD 5 stars overall.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21169",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Kia's US site lists the EV6 from $37,900 starting MSRP.",
+     "source": "https://www.kia.com/us/en/ev6",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "On the EV6 page, Kia says the car and its battery are covered by Kia's '10-year/100,000-mile Limited Battery and EV System Warranty'.",
+     "source": "https://www.kia.com/us/en/ev6",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Kia EV6",
+     "url": "https://www.kia.com/us/en/ev6"
+    },
+    {
+     "label": "EPA fuel economy",
+     "url": "https://www.fueleconomy.gov/feg/noframes/50215.shtml"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Crossover",
+    "Fast charging",
+    "10-year battery warranty"
+   ],
+   "valueSignature": {
+    "planet": 91.5,
+    "health": 100,
+    "cost": 72
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "kia.com",
+    "sourceLabels": [
+     "kia.com",
+     "api.nhtsa.gov",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "kia-ev9",
+   "name": "Kia EV9",
+   "brand": "Kia",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A three-row electric SUV; heavy, so it uses more energy per mile than the smaller cars here.",
+   "scores": {
+    "environment": 62,
+    "safety": 100,
+    "economical": 55,
+    "longevity": 100
+   },
+   "provenance": {
+    "environment": {
+     "note": "EPA's fueleconomy.gov lists the 2026 EV9 Standard Range RWD at 88 MPGe combined, 38.0 kWh per 100 miles from the wall (23.6 kWh per 100 km), with 230 miles of EPA range.",
+     "source": "https://www.fueleconomy.gov/feg/noframes/49665.shtml",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA's 5-Star Safety Ratings give the 2026 EV9 RWD 5 stars overall. Frontal and rollover ratings are four stars; IIHS names the 2026 EV9 a Top Safety Pick+.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21171",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Kia's US site lists the EV9 from $54,900 starting MSRP.",
+     "source": "https://www.kia.com/us/en/ev9",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Kia's EV9 page says the battery is protected by Kia's '10-year/100,000-mile Limited Battery and EV System Warranty'.",
+     "source": "https://www.kia.com/us/en/ev9",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Kia EV9",
+     "url": "https://www.kia.com/us/en/ev9"
+    },
+    {
+     "label": "EPA fuel economy",
+     "url": "https://www.fueleconomy.gov/feg/noframes/49665.shtml"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Three rows",
+    "10-year battery warranty"
+   ],
+   "valueSignature": {
+    "planet": 81,
+    "health": 100,
+    "cost": 55
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "kia.com",
+    "sourceLabels": [
+     "kia.com",
+     "api.nhtsa.gov",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "ford-mustang-mach-e",
+   "name": "Ford Mustang Mach-E",
+   "brand": "Ford",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A mid-size electric crossover, Ford’s best-selling EV.",
+   "scores": {
+    "environment": 78,
+    "safety": 100,
+    "economical": 72,
+    "longevity": 80
+   },
+   "provenance": {
+    "environment": {
+     "note": "EPA's fueleconomy.gov lists the 2026 Mustang Mach-E RWD at 107 MPGe combined, 31.4 kWh per 100 miles from the wall (19.5 kWh per 100 km), with 260 miles of EPA range.",
+     "source": "https://www.fueleconomy.gov/feg/noframes/50204.shtml",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA's 5-Star Safety Ratings give the 2026 Mustang Mach-E RWD 5 stars overall. The frontal rating is four stars; IIHS names the 2026 Mach-E a Top Safety Pick.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21428",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Ford's US site lists the Mustang Mach-E from $37,795 starting MSRP.",
+     "source": "https://www.ford.com/suvs/mach-e/",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Ford's 2025 model-year electric vehicle warranty guide says the high voltage battery and eDrive systems are 'covered by the Electric Vehicle Component coverage for eight years or 100,000 miles, whichever comes first'; it is the newest guide Ford publishes for the Mach-E.",
+     "source": "https://www.fordservicecontent.com/Ford_Content/Catalog/owner_information/2025_US_Ford_Mach_E_WG_V1.pdf",
+     "asof": "2024-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Ford Mustang Mach-E",
+     "url": "https://www.ford.com/suvs/mach-e/"
+    },
+    {
+     "label": "EPA fuel economy",
+     "url": "https://www.fueleconomy.gov/feg/noframes/50204.shtml"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Crossover"
+   ],
+   "valueSignature": {
+    "planet": 79,
+    "health": 100,
+    "cost": 72
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 4,
+    "singleSource": false,
+    "primarySource": "api.nhtsa.gov",
+    "sourceLabels": [
+     "api.nhtsa.gov",
+     "ford.com",
+     "fordservicecontent.com",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "volkswagen-id4",
+   "name": "Volkswagen ID.4",
+   "brand": "Volkswagen",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A compact electric SUV built in Tennessee for the US market and in Germany for Europe.",
+   "scores": {
+    "environment": 82,
+    "safety": 100,
+    "economical": 65,
+    "longevity": 80
+   },
+   "provenance": {
+    "environment": {
+     "note": "EPA's fueleconomy.gov lists the 2026 ID.4 RWD at 113 MPGe combined, 29.8 kWh per 100 miles from the wall (18.5 kWh per 100 km), with 291 miles of EPA range.",
+     "source": "https://www.fueleconomy.gov/feg/noframes/49987.shtml",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA's 5-Star Safety Ratings give the 2026 ID.4 RWD 5 stars overall. The rollover rating is four stars.",
+     "source": "https://api.nhtsa.gov/SafetyRatings/VehicleId/21037",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Volkswagen's US site lists the 2026 ID.4 from $45,095 starting MSRP.",
+     "source": "https://www.vw.com/en/models/id-4.html",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Volkswagen's US ID.4 page lists '8 Years/100,000 miles (whichever occurs first) High-Voltage Battery Limited Warranty'.",
+     "source": "https://www.vw.com/en/models/id-4.html",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Volkswagen ID.4",
+     "url": "https://www.vw.com/en/models/id-4.html"
+    },
+    {
+     "label": "EPA fuel economy",
+     "url": "https://www.fueleconomy.gov/feg/noframes/49987.shtml"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "SUV"
+   ],
+   "valueSignature": {
+    "planet": 81,
+    "health": 100,
+    "cost": 65
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "vw.com",
+    "sourceLabels": [
+     "vw.com",
+     "api.nhtsa.gov",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "nissan-leaf",
+   "name": "Nissan Leaf (2026)",
+   "brand": "Nissan",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "The third-generation Leaf, now a small crossover with a 75 kWh battery and over 300 miles of EPA range on steel wheels.",
+   "scores": {
+    "environment": 87,
+    "economical": 80,
+    "longevity": 80
+   },
+   "provenance": {
+    "environment": {
+     "note": "EPA's fueleconomy.gov lists the 2026 Leaf 75 kWh on 18-inch steel wheels (the S+) at 121 MPGe combined, 27.8 kWh per 100 miles from the wall (17.3 kWh per 100 km), with 303 miles of EPA range.",
+     "source": "https://www.fueleconomy.gov/feg/noframes/49975.shtml",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Nissan's US site lists the 2026 Leaf S+ from $29,990 starting MSRP.",
+     "source": "https://www.nissanusa.com/vehicles/electric-cars/leaf.html",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Nissan's US Leaf page says the battery is protected with an 8-yr/100k limited battery warranty, whichever occurs first.",
+     "source": "https://www.nissanusa.com/vehicles/electric-cars/leaf.html",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Nissan Leaf",
+     "url": "https://www.nissanusa.com/vehicles/electric-cars/leaf.html"
+    },
+    {
+     "label": "EPA fuel economy",
+     "url": "https://www.fueleconomy.gov/feg/noframes/49975.shtml"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Crossover",
+    "Low price",
+    "Not yet crash rated"
+   ],
+   "valueSignature": {
+    "planet": 83.5,
+    "cost": 80
+   },
+   "provenanceSummary": {
+    "factCount": 3,
+    "sourcedFactCount": 3,
+    "sourceDomainCount": 2,
+    "singleSource": false,
+    "primarySource": "nissanusa.com",
+    "sourceLabels": [
+     "nissanusa.com",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "rivian-r1s",
+   "name": "Rivian R1S",
+   "brand": "Rivian",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A large three-row electric SUV built for off-road use; the least efficient vehicle in this roster.",
+   "scores": {
+    "environment": 49,
+    "safety": 100,
+    "economical": 26,
+    "longevity": 80
+   },
+   "provenance": {
+    "environment": {
+     "note": "EPA's fueleconomy.gov lists the 2027 R1S Premium on 20-inch wheels at 79 MPGe combined, 42.9 kWh per 100 miles from the wall (26.6 kWh per 100 km), with 300 miles of EPA range.",
+     "source": "https://www.fueleconomy.gov/feg/noframes/50669.shtml",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "NHTSA lists the 2026 R1S as not rated and Euro NCAP has not tested it, so this score uses IIHS: the 2026-27 R1S is on IIHS's 2026 Top Safety Pick+ list, its highest award, scored as 100.",
+     "source": "https://www.iihs.org/ratings/top-safety-picks/2026",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Rivian's US site lists the R1S Premium from $83,990, the dearest car here.",
+     "source": "https://rivian.com/r1s",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Rivian's support page gives R1 vehicles from model year 2025 with Dual Large, Dual Max, Tri or Quad configurations '8 years or 150,000 miles' of battery cover; Dual Standard gets 120,000 miles.",
+     "source": "https://rivian.com/support/article/what-is-the-warranty-on-my-battery",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Rivian R1S",
+     "url": "https://rivian.com/r1s"
+    },
+    {
+     "label": "EPA fuel economy",
+     "url": "https://www.fueleconomy.gov/feg/noframes/50669.shtml"
+    },
+    {
+     "label": "IIHS Top Safety Picks",
+     "url": "https://www.iihs.org/ratings/top-safety-picks/2026"
+    }
+   ],
+   "region": [
+    "US"
+   ],
+   "focuses": [
+    "Three rows",
+    "Off-road",
+    "Least efficient"
+   ],
+   "valueSignature": {
+    "planet": 64.5,
+    "health": 100,
+    "cost": 26
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "rivian.com",
+    "sourceLabels": [
+     "rivian.com",
+     "fueleconomy.gov",
+     "iihs.org"
+    ]
+   }
+  },
+  {
+   "code": "toyota-bz",
+   "name": "Toyota bZ",
+   "brand": "Toyota",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "Toyota’s compact electric SUV, renamed from bZ4X for its 2026 update; sold as the bZ4X in Europe.",
+   "scores": {
+    "environment": 92,
+    "safety": 100,
+    "economical": 75,
+    "longevity": 80
+   },
+   "provenance": {
+    "environment": {
+     "note": "EPA's fueleconomy.gov lists the 2027 bZ FWD with the smaller battery at 130 MPGe combined, 25.8 kWh per 100 miles from the wall (16.1 kWh per 100 km), with 236 miles of EPA range.",
+     "source": "https://www.fueleconomy.gov/feg/noframes/50863.shtml",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "Euro NCAP rated the updated bZ4X 5 stars in 2025; Euro NCAP still lists that rating as current. NHTSA lists the 2026 bZ as not rated.",
+     "source": "https://www.euroncap.com/assessments/toyota/bz4x/1163/",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Toyota's US site lists the bZ from $34,980 starting MSRP.",
+     "source": "https://www.toyota.com/bz/",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Toyota's bZ page cites 8 years or 100,000 miles of battery warranty covering the electric vehicle driving components.",
+     "source": "https://www.toyota.com/bz/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Toyota bZ",
+     "url": "https://www.toyota.com/bz/"
+    },
+    {
+     "label": "EPA fuel economy",
+     "url": "https://www.fueleconomy.gov/feg/noframes/50863.shtml"
+    },
+    {
+     "label": "Euro NCAP",
+     "url": "https://www.euroncap.com/assessments/toyota/bz4x/1163/"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "SUV",
+    "Efficient"
+   ],
+   "valueSignature": {
+    "planet": 86,
+    "health": 100,
+    "cost": 75
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "toyota.com",
+    "sourceLabels": [
+     "toyota.com",
+     "euroncap.com",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "volvo-ex30",
+   "name": "Volvo EX30",
+   "brand": "Volvo",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A small electric SUV from Volvo, which is owned by China's Geely.",
+   "scores": {
+    "environment": 84,
+    "safety": 100,
+    "economical": 70,
+    "longevity": 80
+   },
+   "provenance": {
+    "environment": {
+     "note": "EPA's fueleconomy.gov lists the 2026 EX30 Single motor extended range at 116 MPGe combined, 29.2 kWh per 100 miles from the wall (18.1 kWh per 100 km), with 261 miles of EPA range.",
+     "source": "https://www.fueleconomy.gov/feg/noframes/49989.shtml",
+     "asof": "2026-10"
+    },
+    "safety": {
+     "note": "Euro NCAP rated the EX30 5 stars in 2024; Euro NCAP still lists that rating as current. NHTSA lists the 2026 EX30 as not rated.",
+     "source": "https://www.euroncap.com/assessments/volvo/ex30/1098/",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Volvo's US site lists the EX30 Plus from $40,345 MSRP.",
+     "source": "https://www.volvocars.com/us/cars/ex30-electric/",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Volvo's model-year 2026 US warranty manual for fully electric models says the battery will be replaced free if its State of Health is below 70% 'at 8 years or 100,000 miles/ 160,000 kilometers, whichever occurs first'.",
+     "source": "https://www.volvocars.com/images/cs/v3/assets/bltccbab8edae0354cd/blt79f8a67d798c8d78/68befcffe94f786661a1f43a/MY2026_WTY572.06.25_Fully_Elec_Wty_Manual_Rev2_WEB_06-18-25.pdf?branch=prod_alias",
+     "asof": "2025-09"
+    }
+   },
+   "links": [
+    {
+     "label": "Volvo EX30",
+     "url": "https://www.volvocars.com/us/cars/ex30-electric/"
+    },
+    {
+     "label": "EPA fuel economy",
+     "url": "https://www.fueleconomy.gov/feg/noframes/49989.shtml"
+    },
+    {
+     "label": "Euro NCAP",
+     "url": "https://www.euroncap.com/assessments/volvo/ex30/1098/"
+    }
+   ],
+   "region": [
+    "US",
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Small SUV"
+   ],
+   "valueSignature": {
+    "planet": 82,
+    "health": 100,
+    "cost": 70
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "volvocars.com",
+    "sourceLabels": [
+     "volvocars.com",
+     "euroncap.com",
+     "fueleconomy.gov"
+    ]
+   }
+  },
+  {
+   "code": "renault-5",
+   "name": "Renault 5 E-Tech",
+   "brand": "Renault",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A small retro-styled electric hatchback, Renault's most-registered electric car in the European Environment Agency's 2025 data.",
+   "scores": {
+    "environment": 96,
+    "safety": 80,
+    "economical": 81,
+    "longevity": 80
+   },
+   "provenance": {
+    "environment": {
+     "note": "The European Environment Agency's 2025 provisional registration data give the Renault 5 E-Tech a registration-weighted WLTP consumption of 149 Wh/km (14.9 kWh per 100 km) across 69,221 cars registered in 2025, after excluding records outside 100 to 300 Wh/km. WLTP figures read lower than EPA figures for the same car, so this score flatters it against US-tested models.",
+     "source": "https://discodata.eea.europa.eu/sql?query=SELECT%20Mk%2C%20Cn%2C%20SUM(R)%20AS%20regs%2C%20SUM(R*%5BZ%20(Wh%2Fkm)%5D)%2FSUM(R)%20AS%20z%20FROM%20%5BCO2Emission%5D.%5Blatest%5D.%5Bco2cars_2025Pv31%5D%20WHERE%20Ft%3D'electric'%20AND%20%5BZ%20(Wh%2Fkm)%5D%20BETWEEN%20100%20AND%20300%20AND%20Cn%3D'RENAULT%205%20E-TECH%20ELECTRIC'%20GROUP%20BY%20Mk%2C%20Cn&p=1&nrOfHits=10",
+     "asof": "2025-08"
+    },
+    "safety": {
+     "note": "Euro NCAP rated the Renault 5 E-Tech 4 stars in 2024; Euro NCAP still lists that rating as current.",
+     "source": "https://www.euroncap.com/assessments/renault/5/1080/",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Renault UK lists the Renault 5 E-Tech from £21,495, a price that already includes the UK government Electric Car Grant; the other UK prices here carry no grant. Converted at ECB reference rates for 23 October 2026, about $28,740.",
+     "source": "https://www.renault.co.uk/electric-vehicles/r5-e-tech-electric.html",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Renault UK says the traction battery on its E-Tech electric vehicles comes with an 8 year/100,000 mile warranty, whichever is reached first.",
+     "source": "https://www.renault.co.uk/warranty.html",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Renault 5 E-Tech",
+     "url": "https://www.renault.co.uk/electric-vehicles/r5-e-tech-electric.html"
+    },
+    {
+     "label": "Euro NCAP",
+     "url": "https://www.euroncap.com/assessments/renault/5/1080/"
+    }
+   ],
+   "region": [
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Small hatchback",
+    "Lowest UK price"
+   ],
+   "valueSignature": {
+    "planet": 88,
+    "health": 80,
+    "cost": 81
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "renault.co.uk",
+    "sourceLabels": [
+     "renault.co.uk",
+     "discodata.eea.europa.eu",
+     "euroncap.com"
+    ]
+   }
+  },
+  {
+   "code": "mg4",
+   "name": "MG4 EV",
+   "brand": "MG",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A compact electric hatchback from MG, which is owned by China's SAIC Motor.",
+   "scores": {
+    "environment": 90,
+    "safety": 100,
+    "economical": 69,
+    "longevity": 80
+   },
+   "provenance": {
+    "environment": {
+     "note": "The European Environment Agency's 2025 provisional registration data give the MG4 a registration-weighted WLTP consumption of 166 Wh/km (16.6 kWh per 100 km) across 16,750 cars registered in 2025, after excluding records outside 100 to 300 Wh/km. WLTP figures read lower than EPA figures for the same car, so this score flatters it against US-tested models.",
+     "source": "https://discodata.eea.europa.eu/sql?query=SELECT%20Mk%2C%20Cn%2C%20SUM(R)%20AS%20regs%2C%20SUM(R*%5BZ%20(Wh%2Fkm)%5D)%2FSUM(R)%20AS%20z%20FROM%20%5BCO2Emission%5D.%5Blatest%5D.%5Bco2cars_2025Pv31%5D%20WHERE%20Ft%3D'electric'%20AND%20%5BZ%20(Wh%2Fkm)%5D%20BETWEEN%20100%20AND%20300%20AND%20Cn%3D'MG4%20ELECTRIC'%20GROUP%20BY%20Mk%2C%20Cn&p=1&nrOfHits=10",
+     "asof": "2025-08"
+    },
+    "safety": {
+     "note": "Euro NCAP rated the MG4 5 stars in 2022; Euro NCAP still lists that rating as current.",
+     "source": "https://www.euroncap.com/assessments/mg/4+electric/1001/",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "MG UK lists the MG4 EV from £30,495. Converted at ECB reference rates for 23 October 2026, about $40,770.",
+     "source": "https://www.mg.co.uk/new-cars/mg4-ev",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "MG's UK warranty statement of November 2025 says 'From 01/01/2025 the Lithium-Ion High Voltage Battery in all cases is covered for 8 years or 100,000 miles whichever comes sooner'.",
+     "source": "https://www.mg.co.uk/sites/default/files/2025-11/MG_Online_Warranty_Statement_Nov_2025.pdf",
+     "asof": "2025-11"
+    }
+   },
+   "links": [
+    {
+     "label": "MG4 EV",
+     "url": "https://www.mg.co.uk/new-cars/mg4-ev"
+    },
+    {
+     "label": "Euro NCAP",
+     "url": "https://www.euroncap.com/assessments/mg/4+electric/1001/"
+    }
+   ],
+   "region": [
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Hatchback"
+   ],
+   "valueSignature": {
+    "planet": 85,
+    "health": 100,
+    "cost": 69
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "mg.co.uk",
+    "sourceLabels": [
+     "mg.co.uk",
+     "discodata.eea.europa.eu",
+     "euroncap.com"
+    ]
+   }
+  },
+  {
+   "code": "byd-dolphin",
+   "name": "BYD Dolphin",
+   "brand": "BYD",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A compact electric hatchback from China's BYD, which makes its own Blade battery cells.",
+   "scores": {
+    "environment": 92,
+    "safety": 100,
+    "economical": 70,
+    "longevity": 80
+   },
+   "provenance": {
+    "environment": {
+     "note": "The European Environment Agency's 2025 provisional registration data give the BYD Dolphin a registration-weighted WLTP consumption of 159 Wh/km (15.9 kWh per 100 km) across 5,786 cars registered in 2025, after excluding records outside 100 to 300 Wh/km. WLTP figures read lower than EPA figures for the same car, so this score flatters it against US-tested models.",
+     "source": "https://discodata.eea.europa.eu/sql?query=SELECT%20Mk%2C%20Cn%2C%20SUM(R)%20AS%20regs%2C%20SUM(R*%5BZ%20(Wh%2Fkm)%5D)%2FSUM(R)%20AS%20z%20FROM%20%5BCO2Emission%5D.%5Blatest%5D.%5Bco2cars_2025Pv31%5D%20WHERE%20Ft%3D'electric'%20AND%20%5BZ%20(Wh%2Fkm)%5D%20BETWEEN%20100%20AND%20300%20AND%20Cn%3D'BYD%20DOLPHIN'%20GROUP%20BY%20Mk%2C%20Cn&p=1&nrOfHits=10",
+     "asof": "2025-08"
+    },
+    "safety": {
+     "note": "Euro NCAP rated the BYD Dolphin 5 stars in 2023; Euro NCAP still lists that rating as current.",
+     "source": "https://www.euroncap.com/assessments/byd/dolphin/1040/",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "BYD's UK configurator lists the Dolphin Comfort from £30,230. Converted at ECB reference rates for 23 October 2026, about $40,410.",
+     "source": "https://www.byd.com/uk/configurator/dolphin",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "BYD UK's warranty page says 'The battery is covered for 8 years or 125,000 miles' whichever comes first; BYD's European warranty manual of November 2025 gives 96 months or 250,000 km.",
+     "source": "https://www.byd.com/uk/service-maintenance/warranty-policy",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "BYD Dolphin",
+     "url": "https://www.byd.com/uk/electric-cars/dolphin"
+    },
+    {
+     "label": "Euro NCAP",
+     "url": "https://www.euroncap.com/assessments/byd/dolphin/1040/"
+    }
+   ],
+   "region": [
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Hatchback"
+   ],
+   "valueSignature": {
+    "planet": 86,
+    "health": 100,
+    "cost": 70
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "byd.com",
+    "sourceLabels": [
+     "byd.com",
+     "discodata.eea.europa.eu",
+     "euroncap.com"
+    ]
+   }
+  },
+  {
+   "code": "polestar-2",
+   "name": "Polestar 2",
+   "brand": "Polestar",
+   "allergens": [],
+   "allergensDeclared": true,
+   "description": "A mid-size electric fastback from Polestar, the Geely-controlled offshoot of Volvo.",
+   "scores": {
+    "environment": 94,
+    "safety": 100,
+    "economical": 50,
+    "longevity": 80
+   },
+   "provenance": {
+    "environment": {
+     "note": "The European Environment Agency's 2025 provisional registration data give the Polestar 2 a registration-weighted WLTP consumption of 156 Wh/km (15.6 kWh per 100 km) across 8,995 cars registered in 2025, after excluding records outside 100 to 300 Wh/km. WLTP figures read lower than EPA figures for the same car, so this score flatters it against US-tested models.",
+     "source": "https://discodata.eea.europa.eu/sql?query=SELECT%20Mk%2C%20Cn%2C%20SUM(R)%20AS%20regs%2C%20SUM(R*%5BZ%20(Wh%2Fkm)%5D)%2FSUM(R)%20AS%20z%20FROM%20%5BCO2Emission%5D.%5Blatest%5D.%5Bco2cars_2025Pv31%5D%20WHERE%20Ft%3D'electric'%20AND%20%5BZ%20(Wh%2Fkm)%5D%20BETWEEN%20100%20AND%20300%20AND%20Cn%3D'POLESTAR%202'%20GROUP%20BY%20Mk%2C%20Cn&p=1&nrOfHits=10",
+     "asof": "2025-08"
+    },
+    "safety": {
+     "note": "Euro NCAP rated the Polestar 2 5 stars in 2021; Euro NCAP still lists that rating as current. Euro NCAP later noted it among cars given the maximum penalty in its compatibility test with other vehicles.",
+     "source": "https://www.euroncap.com/assessments/polestar/2/0855/",
+     "asof": "2026-10"
+    },
+    "economical": {
+     "note": "Polestar UK lists the Polestar 2 starting at £45,210 before a temporary £5,000 sales offer. Converted at ECB reference rates for 23 October 2026, about $60,440.",
+     "source": "https://www.polestar.com/uk/polestar-2/",
+     "asof": "2026-10"
+    },
+    "longevity": {
+     "note": "Polestar UK says every car has 3 years vehicle, 8 years battery and 12 years corrosion warranty, the battery cover running 8 years or 100,000 miles, with repair or replacement if State-of-Health drops below 70%.",
+     "source": "https://www.polestar.com/uk/polestar-2/",
+     "asof": "2026-10"
+    }
+   },
+   "links": [
+    {
+     "label": "Polestar 2",
+     "url": "https://www.polestar.com/uk/polestar-2/"
+    },
+    {
+     "label": "Euro NCAP",
+     "url": "https://www.euroncap.com/assessments/polestar/2/0855/"
+    }
+   ],
+   "region": [
+    "UK",
+    "EU"
+   ],
+   "focuses": [
+    "Fastback"
+   ],
+   "valueSignature": {
+    "planet": 87,
+    "health": 100,
+    "cost": 50
+   },
+   "provenanceSummary": {
+    "factCount": 4,
+    "sourcedFactCount": 4,
+    "sourceDomainCount": 3,
+    "singleSource": false,
+    "primarySource": "polestar.com",
+    "sourceLabels": [
+     "polestar.com",
+     "discodata.eea.europa.eu",
+     "euroncap.com"
+    ]
+   }
+  }
+ ]
+}

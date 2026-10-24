@@ -106,18 +106,23 @@ function main() {
   expect(actual.taxonomy && actual.taxonomy.sourceSchema === 'app/data/standard/schemas/ontology.schema.json', 'taxonomy schema source missing');
   expect(fs.existsSync(path.join(ROOT, actual.taxonomy.sourceSchema)), 'taxonomy schema source does not exist');
   expect(actual.taxonomy && actual.taxonomy.counts.needs === 8, 'taxonomy needs count changed');
-  expect(actual.taxonomy && actual.taxonomy.counts.categories === 18, 'taxonomy category count changed');
-  expect(actual.taxonomy && actual.taxonomy.counts.subcategories === 39, 'taxonomy subcategory count changed');
-  expect(actual.taxonomy && actual.taxonomy.counts.decisions === 219, 'taxonomy decision count changed');
+  // 2026-10-23: two presentation categories (Where you shop, Work) and three subcategories for the
+  // two new domains; five new rows (clothing rental, ad and tracker blockers, job boards, trade
+  // unions, supermarkets). 18 -> 20 categories, 39 -> 42 subcategories, 219 -> 224 decisions.
+  expect(actual.taxonomy && actual.taxonomy.counts.categories === 20, 'taxonomy category count changed');
+  expect(actual.taxonomy && actual.taxonomy.counts.subcategories === 42, 'taxonomy subcategory count changed');
+  expect(actual.taxonomy && actual.taxonomy.counts.decisions === 224, 'taxonomy decision count changed');
   // 2026-08-14 serial promotion: four built energy and open-technology rows
   // became live without reducing the 87 explicitly not-yet-covered rows.
-  expect(actual.taxonomy && actual.taxonomy.counts.livePaths === 134, 'taxonomy live path count changed');
+  // 2026-10-23: 20 hand-built lenses published, sixteen into waiting gap rows and four into new rows; the fifth new row, Clothing rental, is a gap. 134 -> 154.
+  expect(actual.taxonomy && actual.taxonomy.counts.livePaths === 154, 'taxonomy live path count changed');
   // 124 on 2026-08-26: messaging and browsers left the shared digital-services dataset, the
   // first two of the nine-way split recorded in docs/ONTOLOGY-RESEARCH.md 4.1.
   // 126 on 2026-09-23: email and search left the shared digital-services dataset in the same
   // split, the next two of the nine-way division.
-  expect(actual.taxonomy && actual.taxonomy.counts.liveDatasets === 130, 'taxonomy live dataset count changed');
-  expect(actual.taxonomy && actual.taxonomy.counts.notYetCovered === 85, 'taxonomy gap count changed');
+  // 150 and 70 on 2026-10-23: the same 20 lenses; sixteen of them were gap rows and Clothing rental joined as a new gap, so gaps fall 85 -> 70.
+  expect(actual.taxonomy && actual.taxonomy.counts.liveDatasets === 150, 'taxonomy live dataset count changed');
+  expect(actual.taxonomy && actual.taxonomy.counts.notYetCovered === 70, 'taxonomy gap count changed');
 
   const decisions = actual.taxonomy && actual.taxonomy.decisions || [];
   expect(new Set(decisions.map((decision) => decision.id)).size === decisions.length, 'generated decision ids are not unique');

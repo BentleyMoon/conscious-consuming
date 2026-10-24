@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "note": "Needs-first life coverage (v4). Eight human needs are the primary discovery layer. Presentation map v1 resolves them through 18 plain categories and 39 plain subcategories. Every live and growing source row maps exactly once while the complete v3 domain -> group -> category -> optional facet tree remains intact as a compatibility index. A source row with a 'cid' is live; one without is shown as 'Not yet covered'. Group labels are noun phrases drawn from content/taxonomy.json, the full map. See docs/design/INFORMATION-ARCHITECTURE.md and docs/TAXONOMY.md.",
+  "note": "Needs-first life coverage (v4). Eight human needs are the primary discovery layer. Presentation map v1 resolves them through 20 plain categories and 42 plain subcategories. Every live and growing source row maps exactly once while the complete v3 domain -> group -> category -> optional facet tree remains intact as a compatibility index. A source row with a 'cid' is live; one without is shown as 'Not yet covered'. Group labels are noun phrases drawn from content/taxonomy.json, the full map. See docs/design/INFORMATION-ARCHITECTURE.md and docs/TAXONOMY.md.",
   "types": [
     "Products",
     "Services",
@@ -204,6 +204,26 @@
                 "domain": "Food & drink",
                 "groups": [
                   "Spreads and condiments"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "where-you-shop",
+        "label": "Where you shop",
+        "need": "nourish",
+        "reads": "The shops where the week's food is bought.",
+        "subcategories": [
+          {
+            "id": "shops-and-suppliers",
+            "label": "Shops and suppliers",
+            "selectors": [
+              {
+                "domain": "Shops",
+                "groups": [
+                  "Shops and suppliers"
                 ]
               }
             ]
@@ -788,7 +808,8 @@
                 ],
                 "labels": [
                   "Password managers",
-                  "VPNs"
+                  "VPNs",
+                  "Ad & tracker blockers"
                 ]
               }
             ]
@@ -804,6 +825,38 @@
                 ],
                 "labels": [
                   "Authenticator / 2FA apps"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "work",
+        "label": "Work",
+        "need": "protect",
+        "reads": "Finding a job, and having a voice once you are in one.",
+        "subcategories": [
+          {
+            "id": "finding-work",
+            "label": "Finding work",
+            "selectors": [
+              {
+                "domain": "Work",
+                "groups": [
+                  "Finding work"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "voice-at-work",
+            "label": "Voice at work",
+            "selectors": [
+              {
+                "domain": "Work",
+                "groups": [
+                  "Voice at work"
                 ]
               }
             ]
@@ -1301,6 +1354,7 @@
         },
         {
           "label": "Vacuum cleaners",
+          "cid": "vacuum-cleaners",
           "type": "Products",
           "group": "Appliances",
           "need": "keep-a-home"
@@ -1505,12 +1559,14 @@
         },
         {
           "label": "Mental-health apps",
+          "cid": "mental-health-apps",
           "type": "Services",
           "group": "Mind and mood",
           "need": "care"
         },
         {
           "label": "Meditation apps",
+          "cid": "meditation-apps",
           "type": "Services",
           "group": "Mind and mood",
           "need": "care"
@@ -1583,6 +1639,12 @@
           "group": "Secondhand and repair",
           "need": "care",
           "cid": "secondhand-and-resale"
+        },
+        {
+          "label": "Clothing rental",
+          "type": "Services",
+          "group": "Secondhand and repair",
+          "need": "care"
         },
         {
           "label": "Repair & tailoring",
@@ -1713,13 +1775,22 @@
           "need": "protect"
         },
         {
+          "label": "Ad & tracker blockers",
+          "cid": "ad-and-tracker-blockers",
+          "type": "Services",
+          "group": "Privacy and security",
+          "need": "protect"
+        },
+        {
           "label": "Tablets",
+          "cid": "tablets",
           "type": "Products",
           "group": "Devices",
           "need": "connect"
         },
         {
           "label": "Smartwatches & wearables",
+          "cid": "smartwatches-and-wearables",
           "type": "Products",
           "group": "Devices",
           "need": "connect"
@@ -1733,18 +1804,21 @@
         },
         {
           "label": "TVs",
+          "cid": "tvs",
           "type": "Products",
           "group": "Devices",
           "need": "connect"
         },
         {
           "label": "E-readers",
+          "cid": "e-readers",
           "type": "Products",
           "group": "Devices",
           "need": "learn"
         },
         {
           "label": "Game consoles",
+          "cid": "game-consoles",
           "type": "Products",
           "group": "Devices",
           "need": "connect"
@@ -1763,6 +1837,7 @@
         },
         {
           "label": "Authenticator / 2FA apps",
+          "cid": "authenticator-and-two-factor-apps",
           "type": "Services",
           "group": "Privacy and security",
           "need": "protect"
@@ -1802,6 +1877,7 @@
         },
         {
           "label": "Money transfer & remittance",
+          "cid": "money-transfer-and-remittance",
           "type": "Services",
           "group": "Everyday banking",
           "need": "protect"
@@ -1820,6 +1896,7 @@
         },
         {
           "label": "Budgeting apps",
+          "cid": "budgeting-apps",
           "type": "Services",
           "group": "Saving, investing and insurance",
           "need": "protect"
@@ -1833,6 +1910,7 @@
         },
         {
           "label": "Crypto exchanges",
+          "cid": "crypto-exchanges",
           "type": "Services",
           "group": "Saving, investing and insurance",
           "need": "protect"
@@ -1850,6 +1928,7 @@
         },
         {
           "label": "Electric vehicles",
+          "cid": "electric-vehicles",
           "type": "Products",
           "group": "Cars",
           "need": "move"
@@ -1914,6 +1993,7 @@
         },
         {
           "label": "Solar panels",
+          "cid": "solar-panels",
           "type": "Products",
           "group": "Energy at home",
           "need": "keep-a-home"
@@ -1934,6 +2014,7 @@
         },
         {
           "label": "Heat pumps",
+          "cid": "heat-pumps",
           "type": "Products",
           "group": "Energy at home",
           "need": "keep-a-home"
@@ -2112,6 +2193,7 @@
         },
         {
           "label": "Car seats",
+          "cid": "car-seats",
           "type": "Products",
           "group": "Babies and toddlers",
           "need": "care"
@@ -2343,6 +2425,37 @@
           "type": "Services",
           "group": "How a business is owned",
           "need": "give-and-act"
+        }
+      ]
+    },
+    {
+      "label": "Work",
+      "categories": [
+        {
+          "label": "Job boards",
+          "cid": "job-boards",
+          "type": "Services",
+          "group": "Finding work",
+          "need": "protect"
+        },
+        {
+          "label": "Trade unions",
+          "cid": "trade-unions",
+          "type": "Organizations",
+          "group": "Voice at work",
+          "need": "protect"
+        }
+      ]
+    },
+    {
+      "label": "Shops",
+      "categories": [
+        {
+          "label": "Supermarkets",
+          "cid": "supermarkets",
+          "type": "Services",
+          "group": "Shops and suppliers",
+          "need": "nourish"
         }
       ]
     }

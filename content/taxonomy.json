@@ -124,37 +124,37 @@
   "families": 231,
   "decisions": 1070,
   "inScope": 1067,
-  "covered": 134,
-  "open": 920,
-  "hold": 13,
+  "covered": 154,
+  "open": 901,
+  "hold": 12,
   "out": 3,
-  "datasets": 130,
-  "coveredPercent": 12.6
+  "datasets": 150,
+  "coveredPercent": 14.4
  },
  "byNeed": {
   "nourish": {
    "inScope": 134,
-   "covered": 51
+   "covered": 52
   },
   "care": {
    "inScope": 303,
-   "covered": 28
+   "covered": 30
   },
   "keep-a-home": {
    "inScope": 171,
-   "covered": 12
+   "covered": 15
   },
   "connect": {
    "inScope": 73,
-   "covered": 16
+   "covered": 20
   },
   "move": {
    "inScope": 106,
-   "covered": 5
+   "covered": 7
   },
   "learn": {
    "inScope": 118,
-   "covered": 9
+   "covered": 10
   },
   "give-and-act": {
    "inScope": 60,
@@ -162,7 +162,7 @@
   },
   "protect": {
    "inScope": 102,
-   "covered": 7
+   "covered": 14
   }
  },
  "byDivision": {
@@ -172,7 +172,7 @@
     "food-and-drink"
    ],
    "inScope": 131,
-   "covered": 51
+   "covered": 52
   },
   "02": {
    "title": "Alcoholic beverages, tobacco and narcotics",
@@ -180,7 +180,7 @@
     "food-and-drink"
    ],
    "inScope": 131,
-   "covered": 51
+   "covered": 52
   },
   "03": {
    "title": "Clothing and footwear",
@@ -196,7 +196,7 @@
     "home"
    ],
    "inScope": 167,
-   "covered": 12
+   "covered": 15
   },
   "05": {
    "title": "Furnishings, household equipment and routine household maintenance",
@@ -204,7 +204,7 @@
     "home"
    ],
    "inScope": 167,
-   "covered": 12
+   "covered": 15
   },
   "06": {
    "title": "Health",
@@ -212,7 +212,7 @@
     "health"
    ],
    "inScope": 79,
-   "covered": 3
+   "covered": 5
   },
   "07": {
    "title": "Transport",
@@ -220,7 +220,7 @@
     "transport"
    ],
    "inScope": 55,
-   "covered": 4
+   "covered": 5
   },
   "08": {
    "title": "Information and communication",
@@ -228,7 +228,7 @@
     "technology"
    ],
    "inScope": 99,
-   "covered": 19
+   "covered": 26
   },
   "09": {
    "title": "Recreation, sport and culture",
@@ -254,7 +254,7 @@
     "travel"
    ],
    "inScope": 174,
-   "covered": 52
+   "covered": 53
   },
   "12": {
    "title": "Insurance and financial services",
@@ -262,7 +262,7 @@
     "money"
    ],
    "inScope": 54,
-   "covered": 5
+   "covered": 8
   },
   "13": {
    "title": "Personal care, social protection and miscellaneous goods and services",
@@ -271,7 +271,7 @@
     "family-and-care"
    ],
    "inScope": 143,
-   "covered": 19
+   "covered": 20
   },
   "14": {
    "title": "Individual consumption expenditure of non-profit institutions serving households",
@@ -287,7 +287,7 @@
     "family-and-care"
    ],
    "inScope": 60,
-   "covered": 2
+   "covered": 3
   }
  },
  "realms": [
@@ -2257,7 +2257,8 @@
          "mode": "buy",
          "cadence": "weekly",
          "actor": "person",
-         "scope": "open",
+         "scope": "covered",
+         "cid": "supermarkets",
          "aka": [
           "grocery stores"
          ]
@@ -2982,8 +2983,8 @@
          "mode": "buy",
          "cadence": "once",
          "actor": "household",
-         "scope": "hold",
-         "reason": "two real per-model registers exist, the UK's MCS Product Directory and California's CEC Solar Equipment List, but neither could be read with the tools available. MCS's search interface returns HTTP 403 to automated requests. The CEC list renders manufacturer, wattage, efficiency and PTC data through client-side JavaScript after the page loads, so a URL fetch retrieves only the empty filter form; its bulk data export exists only as a binary spreadsheet that no available tool can parse into rows. TUV Rheinland's Certipedia requires the same kind of interactive search. Building this decision honestly needs either browser automation that can drive one of those search interfaces to completion, or a spreadsheet reader for the CEC export; manufacturer datasheets alone, with no register to check them against, would not clear this lane's bar for a second, independent axis."
+         "scope": "covered",
+         "cid": "solar-panels"
         },
         {
          "id": "home-batteries",
@@ -3014,7 +3015,8 @@
          "mode": "buy",
          "cadence": "once",
          "actor": "household",
-         "scope": "open"
+         "scope": "covered",
+         "cid": "heat-pumps"
         },
         {
          "id": "wood-stoves-and-biomass-heating",
@@ -4285,7 +4287,8 @@
          "mode": "buy",
          "cadence": "rare",
          "actor": "person",
-         "scope": "open"
+         "scope": "covered",
+         "cid": "vacuum-cleaners"
         },
         {
          "id": "robot-vacuums",
@@ -8813,7 +8816,8 @@
          "mode": "subscribe",
          "cadence": "monthly",
          "actor": "person",
-         "scope": "open",
+         "scope": "covered",
+         "cid": "mental-health-apps",
          "aka": [
           "mental health apps"
          ]
@@ -8830,7 +8834,8 @@
          "mode": "subscribe",
          "cadence": "monthly",
          "actor": "person",
-         "scope": "open"
+         "scope": "covered",
+         "cid": "meditation-apps"
         },
         {
          "id": "mood-and-habit-trackers",
@@ -9282,7 +9287,8 @@
          "mode": "buy",
          "cadence": "once",
          "actor": "person",
-         "scope": "open",
+         "scope": "covered",
+         "cid": "electric-vehicles",
          "aka": [
           "EVs",
           "electric cars"
@@ -10208,7 +10214,8 @@
          "mode": "buy",
          "cadence": "rare",
          "actor": "person",
-         "scope": "open"
+         "scope": "covered",
+         "cid": "tablets"
         },
         {
          "id": "e-readers",
@@ -10222,7 +10229,8 @@
          "mode": "buy",
          "cadence": "rare",
          "actor": "person",
-         "scope": "open"
+         "scope": "covered",
+         "cid": "e-readers"
         },
         {
          "id": "refurbished-devices",
@@ -10260,7 +10268,8 @@
          "mode": "buy",
          "cadence": "rare",
          "actor": "person",
-         "scope": "open",
+         "scope": "covered",
+         "cid": "smartwatches-and-wearables",
          "aka": [
           "smartwatches",
           "fitness trackers"
@@ -10313,7 +10322,8 @@
          "mode": "buy",
          "cadence": "rare",
          "actor": "person",
-         "scope": "open",
+         "scope": "covered",
+         "cid": "tvs",
          "aka": [
           "televisions"
          ]
@@ -10395,7 +10405,8 @@
          "mode": "buy",
          "cadence": "rare",
          "actor": "person",
-         "scope": "open"
+         "scope": "covered",
+         "cid": "game-consoles"
         },
         {
          "id": "handheld-consoles",
@@ -11587,7 +11598,8 @@
          "mode": "subscribe",
          "cadence": "yearly",
          "actor": "person",
-         "scope": "open",
+         "scope": "covered",
+         "cid": "authenticator-and-two-factor-apps",
          "aka": [
           "2FA apps",
           "authenticator apps",
@@ -11751,7 +11763,8 @@
          "mode": "free",
          "cadence": "yearly",
          "actor": "person",
-         "scope": "open"
+         "scope": "covered",
+         "cid": "ad-and-tracker-blockers"
         },
         {
          "id": "data-removal-services",
@@ -14630,7 +14643,8 @@
          "mode": "subscribe",
          "cadence": "daily",
          "actor": "person",
-         "scope": "open",
+         "scope": "covered",
+         "cid": "money-transfer-and-remittance",
          "aka": [
           "sending money abroad"
          ]
@@ -15225,7 +15239,8 @@
          "mode": "subscribe",
          "cadence": "monthly",
          "actor": "person",
-         "scope": "open"
+         "scope": "covered",
+         "cid": "budgeting-apps"
         },
         {
          "id": "money-management-and-open-banking-apps",
@@ -15341,7 +15356,8 @@
          "mode": "subscribe",
          "cadence": "yearly",
          "actor": "person",
-         "scope": "open"
+         "scope": "covered",
+         "cid": "crypto-exchanges"
         },
         {
          "id": "crypto-wallets",
@@ -15652,7 +15668,8 @@
          "mode": "buy",
          "cadence": "once",
          "actor": "household",
-         "scope": "open"
+         "scope": "covered",
+         "cid": "car-seats"
         },
         {
          "id": "slings-and-carriers",
@@ -16970,7 +16987,8 @@
          "mode": "free",
          "cadence": "rare",
          "actor": "person",
-         "scope": "open"
+         "scope": "covered",
+         "cid": "job-boards"
         },
         {
          "id": "recruitment-agencies",
@@ -17114,7 +17132,8 @@
          "mode": "subscribe",
          "cadence": "rare",
          "actor": "person",
-         "scope": "open"
+         "scope": "covered",
+         "cid": "trade-unions"
         },
         {
          "id": "employment-advice-services",

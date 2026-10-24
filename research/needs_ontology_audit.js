@@ -39,6 +39,14 @@ const EXPECTED_DOMAINS = [
   'Garden & outdoors',
   'Giving & causes',
   'Companies & makers',
+  // 2026-10-23, approved by the owner. Two domains added, the first since the legacy sixteen, so
+  // that finished datasets held in content/lenses-pending could publish into an honest home rather
+  // than be filed under a wrong one. Work holds job boards and trade unions, the map's
+  // work-and-livelihood realm, which the shopping-catalogue tree never had. Shops holds
+  // supermarkets, the map's food-and-drink / where food comes from / shops and suppliers, which the
+  // foodstuffs tree had no shelf for. Appended, so no existing domain moved.
+  'Work',
+  'Shops',
 ];
 /* 2026-08-12, swarm wave one. CARE 15 -> 17 (over-the-counter medicine, dog food) and MOVE 1 -> 2
    (used cars). MOVE had exactly one live category before this, which is why the front page showed
@@ -51,16 +59,22 @@ const EXPECTED_DOMAINS = [
 const EXPECTED_LIVE_BY_NEED = {
   // 2026-10-14: NOURISH 50 -> 51 (bottled water), CARE 26 -> 27 (fragrance), KEEP A HOME 10 -> 12
   // (floor cleaners, carpet cleaners).
-  nourish: 51,
-  care: 27,
-  'keep-a-home': 12,
+  // 2026-10-23: 20 hand-built lenses published. NOURISH 51 -> 52 (supermarkets), CARE 27 -> 30
+  // (mental-health apps, meditation apps, car seats; clothing rental's row stays a gap), KEEP A HOME 12 -> 15 (vacuum
+  // cleaners, heat pumps, solar panels), CONNECT 12 -> 16 (tablets, smartwatches and wearables, TVs,
+  // game consoles), MOVE 6 -> 7 (electric vehicles), LEARN 9 -> 10 (e-readers), PROTECT 7 -> 14
+  // (budgeting apps, crypto exchanges, money transfer, authenticator apps, ad and tracker blockers,
+  // job boards, trade unions). GIVE & ACT unchanged at 6.
+  nourish: 52,
+  care: 30,
+  'keep-a-home': 15,
   // 12 on 2026-09-23: email and search left the shared digital-services dataset in the split,
   // the same kind of move as messaging and browsers on 2026-08-26.
-  connect: 12,
-  move: 6,
-  learn: 9,
+  connect: 16,
+  move: 7,
+  learn: 10,
   'give-and-act': 6,
-  protect: 7,
+  protect: 14,
 };
 /* The compatibility index is pinned by hash so it cannot drift by accident. Moving this constant
    is meant to be an act somebody performs on purpose and explains, which is what this comment is.
@@ -132,7 +146,18 @@ const EXPECTED_LIVE_BY_NEED = {
 // cids bottled-water and fragrance, and two rows, Floor cleaners and Carpet cleaners, were added to
 // Home under Cleaning supplies with their own cids. Four generated datasets from vetted bulk sources
 // (Open Food Facts, Open Beauty Facts, EPA Safer Choice); nothing else in the projection moved.
-const ROUND9_DOMAIN_SIGNATURE = '4bc7e3ebb7f6ac48b1717a1189207eb0876155144f9097bb21806534dd1cb300';
+// Re-pinned 2026-10-23, 4bc7e3eb -> 53c68837. 20 hand-built lenses published. Sixteen existing gap
+// rows gained a cid and nothing else (Tablets, E-readers, Smartwatches & wearables, Game consoles,
+// TVs, Vacuum cleaners, Heat pumps, Solar panels, Budgeting apps, Crypto exchanges, Mental-health
+// apps, Meditation apps, Car seats, Electric vehicles, Money transfer & remittance, Authenticator /
+// 2FA apps). Two rows added in existing homes: Clothing rental (Clothing, after Secondhand &
+// resale), as a gap with no cid, because one of its twelve options rests only on a domain that is
+// now parked and eleven is under the roster floor; and Ad & tracker blockers (Tech & digital, after
+// VPNs), live. Two domains appended with the
+// owner's approval, Work (Job boards, Trade unions) and Shops (Supermarkets), for datasets the
+// legacy tree had nowhere to put; see content/lenses-pending/README.md. No existing row was
+// relabelled, regrouped or retyped.
+const ROUND9_DOMAIN_SIGNATURE = '53c68837550cf972c971fa1e3da56f3f650e4673d62dfb048dfb12b3f40e8866';
 
 function read(rel) {
   try {
@@ -212,8 +237,10 @@ function main() {
   }
 
   // 2026-10-14: floor-cleaners and carpet-cleaners added two rows; bottled-water and fragrance turned two gap rows live.
-  expect(rows === 219, `content/ontology.json: expected 219 category rows, found ${rows}`);
-  expect(liveRows === 134, `content/ontology.json: expected 134 live rows including facets, found ${liveRows}`);
+  // 2026-10-23: five rows added (clothing rental, as a gap, plus ad and tracker blockers, job boards,
+  // trade unions and supermarkets, live) and sixteen gap rows gained cids. 219 -> 224 rows, 134 -> 154 live rows.
+  expect(rows === 224, `content/ontology.json: expected 224 category rows, found ${rows}`);
+  expect(liveRows === 154, `content/ontology.json: expected 154 live rows including facets, found ${liveRows}`);
   // Moved 2026-08-26: messaging and browsers flipped from digital-services facets to their own
   // datasets, the first two of the nine-way split in docs/ONTOLOGY-RESEARCH.md 4.1.
   // Moved again 2026-09-23: email and search flipped the same way, the next two of the nine-way
@@ -223,7 +250,8 @@ function main() {
   // first two of the nine-way split recorded in docs/ONTOLOGY-RESEARCH.md 4.1.
   // 126 on 2026-09-23: email and search left the shared digital-services dataset in the same
   // split, the next two of the nine-way division.
-  expect(cidRecords.size === 130, `content/ontology.json: expected 130 unique live categories, found ${cidRecords.size}`);
+  // 150 on 2026-10-23: 20 hand-built lenses published into the navigation.
+  expect(cidRecords.size === 150, `content/ontology.json: expected 150 unique live categories, found ${cidRecords.size}`);
   for (const id of validNeeds) {
     expect(rowCounts[id] > 0, `content/ontology.json: ${id} is an orphan need`);
     expect(liveSets[id].size === EXPECTED_LIVE_BY_NEED[id], `content/ontology.json: ${id} expected ${EXPECTED_LIVE_BY_NEED[id]} live categories, found ${liveSets[id].size}`);
@@ -240,7 +268,8 @@ function main() {
 
   // 126 on 2026-09-23: email and search left the shared digital-services dataset in the split,
   // 2026-09-23.
-  expect(Array.isArray(index.categories) && index.categories.length === 130, `app/data/index.json: expected 130 live categories, found ${(index.categories || []).length}`);
+  // 150 on 2026-10-23: the same 20 lenses.
+  expect(Array.isArray(index.categories) && index.categories.length === 150, `app/data/index.json: expected 150 live categories, found ${(index.categories || []).length}`);
   expect(JSON.stringify(index.ontology) === JSON.stringify(ontology), 'app/data/index.json: embedded ontology differs from content/ontology.json');
   const generatedIds = new Set();
   for (const category of index.categories || []) {

@@ -10,7 +10,7 @@ edge: The decisions a person makes as a worker, and the small number a very smal
 ## Finding work | cadence: rare
 
 ### Looking for a job
-- Job boards | mode: free
+- Job boards | mode: free | cid: job-boards
 - Recruitment agencies
 - CV and application tools | mode: subscribe
 - Interview preparation services
@@ -25,7 +25,7 @@ edge: The decisions a person makes as a worker, and the small number a very smal
 ## Being paid and represented
 
 ### Voice at work | type: O
-- Trade unions | mode: subscribe
+- Trade unions | mode: subscribe | cid: trade-unions
 - Employment advice services | type: I | mode: free
 - Workplace grievance and whistleblowing support | type: I
 

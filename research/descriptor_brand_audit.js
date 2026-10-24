@@ -74,6 +74,9 @@ const ORG_MARKERS = new Set([
 // Real makers whose names happen to use a descriptor word, each with the reason it stays.
 const REAL_BRANDS = new Map([
   // none needed on 2026-09-23; add as 'normalized label' => 'why it is a maker'
+  // 2026-10-23: a US bank's own name, used as the brand of its Zelle and wire options in the
+  // money-transfer and credit-card lenses; "bank" is a descriptor word only by coincidence here.
+  ['bank of america', 'Bank of America, N.A., the US bank, named as itself'],
 ]);
 
 function readJson(file) {

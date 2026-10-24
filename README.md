@@ -16,7 +16,7 @@ own.
   low caps the result, so a single dealbreaker cannot be averaged away. A certification axis cannot
   cap, because a missing label only means no paperwork was found; it lowers the average and stops
   there. `research/engine_score_test.js` pins each of these rules.
-- **`app/data/`** 130 category datasets, 30,064 entries, each rating carrying a source and an as-of date.
+- **`app/data/`** 150 category datasets, 30,421 entries, each rating carrying a source and an as-of date.
 - **`research/`** 96 audit scripts, and the reason to trust anything else here. They pin sentences,
   gate claims on receipts, check contrast and accessibility, and fail the build when a number
   drifts from the source it came from.
@@ -49,26 +49,26 @@ Two sets of files are generated on demand, to keep a clone small. Rebuild them i
 want them:
 
 ```bash
-node pipeline/build_cards.js     # the shareable comparison pages, 3,829 of them
+node pipeline/build_cards.js     # the shareable comparison pages, 4,186 of them
 node pipeline/build_awards.js    # the awards ledger
 ```
 
 ## What it refuses to do
 
-**324 measures are published as withheld.** Where fewer than nine in ten entries in a category
+**342 measures are published as withheld.** Where fewer than nine in ten entries in a category
 carry a sourced score, no award is given and the gap is listed openly with no estimate in its place. If you copy one idea from this repository
 into your own work, copy that one.
 
 ## How good is the sourcing, exactly
 
-Counted on 14 October 2026, from the data in this repository:
+Counted on 23 October 2026, from the data in this repository:
 
 | Measure | Count | How to recount it |
 | --- | --- | --- |
-| Entries | 30,064 | every `products` entry in `app/data/*.json` |
-| Entries resting on more than one independent source domain | 6,306 | `provenanceSummary.sourceDomainCount > 1` |
-| Verdict pages built | 3,829 | `node pipeline/build_cards.js` |
-| Verdict pages offered to search engines | 508 | more than one source domain and a check dated to the month, `verdictIsIndexable` in `pipeline/build_cards.js` |
+| Entries | 30,421 | every `products` entry in `app/data/*.json` |
+| Entries resting on more than one independent source domain | 6,582 | `provenanceSummary.sourceDomainCount > 1` |
+| Verdict pages built | 4,186 | `node pipeline/build_cards.js` |
+| Verdict pages offered to search engines | 760 | more than one source domain and a check dated to the month, `verdictIsIndexable` in `pipeline/build_cards.js` |
 
 The gap between the second row and the first is the real state of this corpus: four fifths of
 the entries rest on a single source, and that source is often the seller's own website. Pages under

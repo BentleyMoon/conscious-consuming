@@ -48,9 +48,9 @@ edge: The place itself, what it runs on, what is in it, and what keeps it standi
 - Prepayment and emergency energy support | type: I
 
 ### Generating and storing power | type: P | mode: buy | cadence: once
-- Solar panels | hold: two real per-model registers exist, the UK's MCS Product Directory and California's CEC Solar Equipment List, but neither could be read with the tools available. MCS's search interface returns HTTP 403 to automated requests. The CEC list renders manufacturer, wattage, efficiency and PTC data through client-side JavaScript after the page loads, so a URL fetch retrieves only the empty filter form; its bulk data export exists only as a binary spreadsheet that no available tool can parse into rows. TUV Rheinland's Certipedia requires the same kind of interactive search. Building this decision honestly needs either browser automation that can drive one of those search interfaces to completion, or a spreadsheet reader for the CEC export; manufacturer datasheets alone, with no register to check them against, would not clear this lane's bar for a second, independent axis.
+- Solar panels | cid: solar-panels
 - Home batteries | aka: battery storage
-- Heat pumps
+- Heat pumps | cid: heat-pumps
 - Wood stoves and biomass heating
 - Small wind turbines
 - Solar water heating
@@ -158,7 +158,7 @@ edge: The place itself, what it runs on, what is in it, and what keeps it standi
 - Water boilers and filters at the tap
 
 ### Floor, air and climate
-- Vacuum cleaners
+- Vacuum cleaners | cid: vacuum-cleaners
 - Robot vacuums
 - Air purifiers
 - Dehumidifiers and humidifiers

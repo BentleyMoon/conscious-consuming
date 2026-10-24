@@ -97,8 +97,8 @@ edge: Treating and monitoring a body, and the services that do it. The line agai
 - Peer support groups | type: I | mode: free | actor: community
 
 ### Everyday tools | type: S | mode: subscribe | cadence: monthly
-- Mental-health apps | aka: mental health apps
-- Meditation apps
+- Mental-health apps | aka: mental health apps | cid: mental-health-apps
+- Meditation apps | cid: meditation-apps
 - Mood and habit trackers
 - Sleep apps and aids | type: P | mode: buy
 

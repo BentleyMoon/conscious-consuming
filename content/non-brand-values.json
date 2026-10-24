@@ -1,7 +1,7 @@
 {
   "format": "ovs-non-brand-values",
   "version": "1.0.0",
-  "updated": "2026-10-14",
+  "updated": "2026-10-23",
   "purpose": "Values found in a product's brand field that are not a brand. pipeline/build_nodes.js makes no brand node from them, so no card claims to be made by them. The product keeps the text; only the brand node and its made-by edge are withheld.",
   "matching": "Each value is compared after the same normalization the builder applies to brand text: accents stripped, & read as 'and', apostrophes dropped, every other run of non-alphanumerics read as one space, lowercase. 'open-source coding agent' and 'open source coding agent' are the same entry.",
   "why": "The hand-built datasets often put the kind of thing in the brand field ('private messenger', 'mainstream earbuds', 'repair-first route'). Naming each product's real maker instead would add a made-by claim nobody has sourced, so the builder withholds the node rather than guessing. research/descriptor_brand_audit.js fails when a descriptor reaches the brand index, including one this list has not met yet.",
@@ -65,7 +65,9 @@
       "safer choice mainstream", "social resale marketplace", "store brand", "subscription cartridge",
       "target private label", "tea", "transparency leader", "ultra-fast fashion", "walmart private label",
       "walmart, target and similar general retailers", "factory-refurbished, sold through trekbikes.com",
-      "example: citi bike, new york city"
+      "example: citi bike, new york city",
+      "public libraries", "spreadsheet", "mainstream gas boiler", "UK government grant", "Scottish Government grant and loan", "US federal rebate run by states", "plug-in solar kit", "community solar subscription", "third-party-owned solar", "exchange-traded product route", "self-custody route",
+      "built into browser", "cloud DNS filtering", "self-hosted, open source", "baby and toddler clothing rental", "menswear formalwear rental"
     ],
     "not buying, or not a product": [
       "free, no purchase", "habit", "maintenance habit", "no-purchase baseline", "not a chain",
